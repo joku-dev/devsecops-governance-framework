@@ -203,6 +203,12 @@ Use the copyable public adoption package:
 sed -n '1,220p' adoption-package/README.md
 ```
 
+Inspect the validated neutral demo consumer:
+
+```bash
+sed -n '1,220p' docs/onboarding/validated-demo-consumer.md
+```
+
 Read the explanation of policy, directive, baseline, verification, and governance as code:
 
 ```bash
