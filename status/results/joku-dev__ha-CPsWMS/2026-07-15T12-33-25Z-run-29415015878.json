@@ -40,15 +40,15 @@
       "governance-control-evaluation"
     ],
     "artifact_sizes": {
-      "governance-control-evaluation": 0,
-      "devsecops-governance-run-input": 0,
-      "devsecops-pipeline-evidence": 0,
-      "application-evidence": 0
+      "governance-control-evaluation": 5438,
+      "devsecops-governance-run-input": 901,
+      "devsecops-pipeline-evidence": 68710,
+      "application-evidence": 74021
     }
   },
   "downloaded_artifact": {
     "downloaded": true,
-    "artifact_size_bytes": 0,
+    "artifact_size_bytes": 5438,
     "control_evaluation_report_sha256": "05be0415ce9e028e3bd8eca180a7bbd0a4bf5ba3e08c55b97d9f73a4bde2bcb1",
     "governance_run_input_sha256": "20da76ab027d8a63b93ad08b2782f3fcc591271c7608f7c1b2108046905dc7a8",
     "governance_run_input_refs": []
