@@ -340,6 +340,11 @@ def main() -> int:
     validate_schema(errors, ROOT / "schemas" / "control.schema.json", MODEL / "controls" / "dscb-gov.yaml")
     validate_schema(errors, ROOT / "schemas" / "control-coverage.schema.json", MODEL / "controls" / "control-coverage.yaml")
     validate_schema(errors, ROOT / "schemas" / "evidence-trust-model.schema.json", MODEL / "evidence" / "evidence-trust-model.yaml")
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "evidence-trust-record.schema.json",
+        ROOT / "docs" / "examples" / "evidence-trust-record.example.json",
+    )
     validate_schema(errors, ROOT / "schemas" / "governance-document-catalog.schema.json", MODEL / "documents" / "governance-documents.yaml")
     validate_schema(errors, ROOT / "schemas" / "source-document-register.schema.json", MODEL / "documents" / "source-document-register.yaml")
     validate_schema(errors, ROOT / "schemas" / "document-control-traceability.schema.json", MODEL / "traceability" / "document-to-control.yaml")

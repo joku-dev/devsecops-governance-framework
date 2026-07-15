@@ -7,10 +7,10 @@ This guide explains two operational capabilities of this repository:
 1. how to create normalized governance result snapshots for downstream repositories
 2. how the status viewer distinguishes `main` results from branch or pull-request results
 
-The current intake stores governance outcomes and selected provenance and
-integrity metadata. The report-only model for evaluating that metadata is
-defined in `docs/operations/evidence/evidence-trust-model.md`. Version 1 does
-not change latest-result selection or viewer behavior.
+The current intake stores governance outcomes and additive provenance,
+integrity, and custody metadata. The report-only model for evaluating that
+metadata is defined in `docs/operations/evidence/evidence-trust-model.md`.
+Trust capture does not change latest-result selection or viewer behavior.
 
 ## Part 1: Result Intake
 
@@ -25,6 +25,11 @@ This keeps downstream evidence history:
 - Git-tracked
 - comparable across repositories
 - reusable for the central viewer
+
+New automated GitHub Actions intake snapshots also contain an optional
+`trust` capture block. It records content hashes, run attempt, source binding,
+and initial custody while remaining explicitly `unverified` and
+`not_evaluated`. Historical snapshots are not rewritten.
 
 ## Intake Script
 

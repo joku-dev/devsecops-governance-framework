@@ -37,17 +37,19 @@ unverified. Neither value may be inferred from the other.
 
 ### DevSecOps Intake
 
-The current GitHub Actions intake already records:
+The GitHub Actions intake records:
 
 - repository, branch, commit, workflow run, event, status, and baseline
 - artifact names and sizes
-- SHA-256 for the control evaluation report
-- SHA-256 for the governance run input when present
+- SHA-256 for the downloaded archive, control evaluation report, and
+  governance run input when present
+- workflow run attempt and the authoritative artifact download URI
+- initial download and extract-and-hash custody steps
 - the downstream run URL
 
-This provides useful identity, provenance, and integrity material. The snapshot
-does not yet record that those signals were evaluated as named verification
-checks, and it does not assign a trust level.
+This provides useful identity, provenance, integrity, and custody material. New
+snapshots explicitly record `unverified` and `not_evaluated`; capture alone does
+not promote the evidence to a verified trust level.
 
 ### Architecture Intake
 
@@ -57,19 +59,21 @@ The architecture intake records:
   baseline
 - normalized evidence-presence flags and gate results
 - the downstream run URL
+- SHA-256 for the downloaded archive, architecture report, and release input
+- workflow run attempt and initial custody steps
 
-It does not currently store digests for the architecture report, release input,
-or downloaded artifact.
+These fields are additive. Existing architecture snapshots remain valid and are
+not rewritten.
 
 ### Shared Gaps
 
-Both intake paths still need:
+Both intake paths still need Phase 3 verification capabilities:
 
-- an explicit verifier and verification timestamp
+- an explicit verifier and verification timestamp after evaluation
 - per-check results instead of inferred booleans
-- run-attempt and replay-key handling
+- replay-key construction and duplicate or cross-subject reuse evaluation
 - freshness policies by evidence type and decision context
-- raw-to-normalized chain-of-custody records
+- a normalized snapshot digest and transformation record
 - trusted issuer and attestation verification
 - a normalized trust projection for indexes and the viewer
 
@@ -122,44 +126,70 @@ trusted level. The verifier must:
 `unknown`, missing, skipped, and `not_evaluated` checks do not satisfy a trust
 level.
 
-## Target Trust Record
+## Additive Trust Capture Record
 
-The next additive contract phase should introduce a normalized block similar
-to this shape:
+New automated intake snapshots include a normalized block. This abbreviated
+view shows the trust state and capture categories; the linked example contains
+the complete schema-valid record:
 
 ```json
 {
   "trust": {
     "model_id": "evidence-trust-model-v1",
-    "effective_level": "integrity_verified",
-    "verifier": "central-governance-intake",
-    "verified_at": "2026-07-15T12:33:25Z",
-    "checks": [
-      {
-        "id": "content_digest_verified",
-        "result": "pass",
-        "evidence_refs": ["downloaded_artifact.control_evaluation_report_sha256"]
-      }
-    ]
+    "capture_phase": "additive_capture",
+    "effective_level": "unverified",
+    "assessment_status": "not_evaluated",
+    "verifier": null,
+    "verified_at": null,
+    "checks": [],
+    "capture": {
+      "collector": "central-governance-intake",
+      "captured_at": "2026-07-15T14:00:00Z",
+      "source": {
+        "repository_id": "joku-dev/ha-CPsWMS",
+        "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+        "run_id": "29415015294",
+        "run_attempt": 1,
+        "artifact_name": "architecture-governance-evidence",
+        "...": "workflow name and authoritative source URI"
+      },
+      "subjects": [
+        {
+          "id": "architecture_governance_report",
+          "algorithm": "sha256",
+          "digest": "<64 lowercase hexadecimal characters>",
+          "...": "evidence reference and byte size"
+        }
+      ],
+      "custody": [
+        {"action": "download", "...": "actor, time, source, outputs"},
+        {"action": "extract_and_hash", "...": "actor, time, source, outputs"}
+      ]
+    }
   }
 }
 ```
 
-This is a target shape, not a current downstream contract. Schema changes must
-follow the evidence schema versioning and release process.
+The complete contract and example are
+`schemas/evidence-trust-record.schema.json` and
+`docs/examples/evidence-trust-record.example.json`. The intake collector may
+record claims and hashes, but `not_evaluated` requires `unverified`, a null
+verifier, a null verification timestamp, and no verification checks.
 
-## Chain Of Custody Target
+## Chain Of Custody
 
-For each intaken artifact, future verification should retain or reference:
+For each newly intaken artifact, additive capture retains or references:
 
 - authoritative source URI
-- collector identity and version
+- collector identity
 - collection timestamp
 - raw archive digest
 - extracted evidence digests
-- normalization transformation identifiers
-- normalized snapshot digest
-- previous verification record when re-verifying
+- the download and extract-and-hash steps
+
+Phase 3 still needs normalization transformation identifiers, a normalized
+snapshot digest, and linkage to a previous verification record when
+re-verifying.
 
 Large raw artifacts may remain in the platform evidence store. The central
 snapshot needs stable references and digests, not a duplicate raw archive.
@@ -185,12 +215,14 @@ evaluated.
 
 ### Phase 1: Model And Gap Assessment
 
+- complete
 - validate this structured model
 - keep all trust behavior report-only
 - do not rewrite historical snapshots
 
 ### Phase 2: Additive Capture
 
+- current
 - add optional trust metadata
 - add architecture content and archive digests
 - add run attempt and custody fields to both intake paths
@@ -237,10 +269,10 @@ prevent a trust value from being confused with `pass`, `fail`, or `findings`.
 
 ## Release Decision
 
-No baseline release is required for Phase 1 because:
+No baseline release is required for Phase 2 because:
 
-- the downstream evidence contract is unchanged
-- no field becomes mandatory
+- the change affects only central intake snapshots and uses an optional block
+- no downstream producer field becomes mandatory
 - existing snapshots remain valid
 - OPA and workflow enforcement are unchanged
 - the model is report-only

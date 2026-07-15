@@ -134,7 +134,13 @@ def devsecops_lineage(lineage: dict) -> None:
             "model/evidence/evidence-types.yaml",
             "model/evidence/evidence-trust-model.yaml",
             "schemas/evidence-trust-model.schema.json",
+            "schemas/evidence-trust-record.schema.json",
             "docs/operations/evidence/evidence-trust-model.md",
+            "docs/examples/evidence-trust-record.example.json",
+            "scripts/lib/evidence_trust.py",
+            "scripts/intake_github_actions_run.py",
+            "scripts/intake_architecture_github_actions_run.py",
+            "tests/test_evidence_trust_capture.py",
             "model/controls/control-coverage.yaml",
         ],
         "PRA-STD-001": [

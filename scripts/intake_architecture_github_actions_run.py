@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import quote
@@ -17,6 +18,7 @@ import tempfile
 import zipfile
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
+from lib.evidence_trust import build_trust_capture, digest_subject
 from lib.json_io import load_json, write_json
 
 
@@ -139,6 +141,8 @@ def write_snapshot(
     report: dict,
     release_input: dict,
     branch_protected: bool,
+    artifact_metadata: dict,
+    trust: dict,
     notes: str,
 ) -> Path:
     summary = report.get("summary", {})
@@ -171,6 +175,8 @@ def write_snapshot(
             "architecture_runtime_governance": conclusion_to_status(run.get("conclusion")),
         },
         "evidence": architecture_evidence_flags(release_input),
+        "artifact_metadata": artifact_metadata,
+        "trust": trust,
         "architecture_summary": summary,
         "gates": report.get("gates", []),
         "overall_status": overall_status,
@@ -228,8 +234,45 @@ def main() -> int:
         if archive.exists():
             with zipfile.ZipFile(archive) as handle:
                 handle.extractall(extract_dir)
-        report = load_json(find_json(extract_dir, "architecture-governance-report.json"))
-        release_input = load_json(find_json(extract_dir, "architecture-release-input.json"))
+        report_path = find_json(extract_dir, "architecture-governance-report.json")
+        release_input_path = find_json(extract_dir, "architecture-release-input.json")
+        report = load_json(report_path)
+        release_input = load_json(release_input_path)
+        subjects = [
+            digest_subject(
+                "architecture_governance_report",
+                report_path,
+                "artifact_metadata.architecture_governance_report_sha256",
+            ),
+            digest_subject(
+                "architecture_release_input",
+                release_input_path,
+                "artifact_metadata.architecture_release_input_sha256",
+            ),
+        ]
+        if archive.exists():
+            subjects.append(digest_subject("artifact_archive", archive, "artifact_metadata.artifact_archive_sha256"))
+
+        subject_digests = {subject["id"]: subject["digest"] for subject in subjects}
+        artifact_metadata = {
+            "artifact_name": args.artifact_name,
+            "artifact_size_bytes": int(selected_artifact.get("size_in_bytes", selected_artifact.get("size", 0))),
+            "architecture_governance_report_sha256": subject_digests["architecture_governance_report"],
+            "architecture_release_input_sha256": subject_digests["architecture_release_input"],
+            "artifact_archive_sha256": subject_digests.get("artifact_archive"),
+        }
+        captured_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+        trust = build_trust_capture(
+            repository_id=args.repository_id,
+            commit_id=run.get("head_sha", "unknown"),
+            workflow_name=run.get("name", "Architecture Runtime Governance"),
+            run_id=str(run.get("id")),
+            run_attempt=run.get("run_attempt"),
+            artifact_name=args.artifact_name,
+            source_uri=selected_artifact.get("archive_download_url", run.get("html_url", "")),
+            captured_at=captured_at,
+            subjects=subjects,
+        )
 
     protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
     output_path = write_snapshot(
@@ -239,6 +282,8 @@ def main() -> int:
         report=report,
         release_input=release_input,
         branch_protected=protected,
+        artifact_metadata=artifact_metadata,
+        trust=trust,
         notes=args.notes,
     )
     print(output_path.relative_to(ROOT))

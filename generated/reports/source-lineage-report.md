@@ -1,12 +1,12 @@
 # Source Lineage Report
 
-Generated: `2026-07-15T13:43:54Z`
+Generated: `2026-07-15T14:03:16Z`
 
 ## Summary
 
 - Source documents: `20`
 - Source documents with lineage entries: `20`
-- Derived artifact links: `292`
+- Derived artifact links: `298`
 - Missing derived artifacts: `0`
 
 ## Source Documents
@@ -29,7 +29,7 @@ Generated: `2026-07-15T13:43:54Z`
 | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md` | `true` | `13` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `36` |
+| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `42` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.public.md` | `true` | `29` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md` | `true` | `11` |
@@ -336,6 +336,7 @@ Generated: `2026-07-15T13:43:54Z`
 | `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
 | `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `governance_document` | `DSCB-STD-001` | `true` |
+| `docs/examples/evidence-trust-record.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/evidence-trust-model.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/control-coverage.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/dscb-gov.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -346,6 +347,11 @@ Generated: `2026-07-15T13:43:54Z`
 | `model/evidence/evidence-trust-model.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/evidence/evidence-types.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/evidence-trust-model.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `schemas/evidence-trust-record.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `scripts/intake_architecture_github_actions_run.py` | `governance_model` | `DSCB-STD-001` | `true` |
+| `scripts/intake_github_actions_run.py` | `governance_model` | `DSCB-STD-001` | `true` |
+| `scripts/lib/evidence_trust.py` | `governance_model` | `DSCB-STD-001` | `true` |
+| `tests/test_evidence_trust_capture.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `policies/opa/access_control.rego` | `policy_as_code` | `devsecops_baseline` | `true` |
 | `policies/opa/artifact_integrity.rego` | `policy_as_code` | `devsecops_baseline` | `true` |
 | `policies/opa/artifact_signing.rego` | `policy_as_code` | `devsecops_baseline` | `true` |

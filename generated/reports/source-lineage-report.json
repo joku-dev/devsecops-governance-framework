@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T13:43:54Z",
+  "generated_at": "2026-07-15T14:03:16Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1465,6 +1465,12 @@
           "exists": true
         },
         {
+          "artifact_path": "docs/examples/evidence-trust-record.example.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "docs/operations/evidence/evidence-trust-model.md",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1520,6 +1526,36 @@
         },
         {
           "artifact_path": "schemas/evidence-trust-model.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "schemas/evidence-trust-record.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "scripts/intake_architecture_github_actions_run.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "scripts/intake_github_actions_run.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "scripts/lib/evidence_trust.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "tests/test_evidence_trust_capture.py",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -1941,7 +1977,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 292,
+    "derived_artifact_count": 298,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []

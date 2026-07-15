@@ -223,7 +223,7 @@ decision_rules:
 migration_gaps:
   - id: shared_trust_projection_missing
     scope: shared
-    current_state: Results contain governance outcomes and selected metadata but no normalized trust assessment.
+    current_state: New automated intake results capture an explicit unverified trust record but do not derive a verified level.
     missing_capabilities:
       - trust level
       - per-check verification results
@@ -231,31 +231,27 @@ migration_gaps:
       - verification timestamp
     target_level: integrity_verified
     priority: high
-    phase: additive_capture
+    phase: verification_projection
   - id: devsecops_custody_partial
     scope: devsecops_intake
-    current_state: Report and governance-input SHA-256 values are captured with run and artifact metadata.
+    current_state: New intake captures extracted-content and archive SHA-256 values, run attempt, source binding, and initial custody steps.
     missing_capabilities:
-      - raw archive digest
-      - run attempt
       - authoritative verification outcomes
       - normalized snapshot digest
       - transformation log
     target_level: provenance_verified
     priority: high
     phase: verification_projection
-  - id: architecture_integrity_missing
+  - id: architecture_verification_projection_missing
     scope: architecture_intake
-    current_state: Run, commit, event, baseline, and evidence flags are captured without content digests.
+    current_state: New intake captures architecture report, release-input, and archive SHA-256 values with run attempt and initial custody.
     missing_capabilities:
-      - architecture report digest
-      - architecture release-input digest
-      - raw archive digest
-      - run attempt
-      - custody record
+      - authoritative digest comparison
+      - normalized snapshot digest
+      - transformation log
     target_level: integrity_verified
     priority: high
-    phase: additive_capture
+    phase: verification_projection
   - id: authenticity_not_evaluated
     scope: shared
     current_state: Platform API access identifies a source run but no signed attestation or approved issuer is evaluated.
@@ -292,12 +288,12 @@ migration_gaps:
 migration_phases:
   - id: model_report_only
     order: 1
-    state: current
+    state: complete
     objective: Establish vocabulary, levels, decision rules, gaps, and validation without changing evidence consumers.
     enforcement: report_only
   - id: additive_capture
     order: 2
-    state: planned
+    state: current
     objective: Add optional trust metadata and missing digests to both intake paths while preserving schema compatibility.
     enforcement: report_only
   - id: verification_projection
