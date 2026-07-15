@@ -223,7 +223,7 @@ decision_rules:
 migration_gaps:
   - id: shared_provenance_verification_pending
     scope: shared
-    current_state: New intake uses a versioned collector record, derives integrity trust centrally, evaluates governance-result freshness against a provisional report-only policy, and projects Trust separately from governance outcomes.
+    current_state: New intake and the vulnerability-scan pilot use versioned collector records, derive integrity trust centrally, evaluate applicable provisional Freshness policies, and keep Trust separate from governance outcomes.
     missing_capabilities:
       - approved freshness policy
       - replay-history evaluation
@@ -265,7 +265,7 @@ migration_gaps:
     phase: attestation_pilot
   - id: freshness_policy_approval_pending
     scope: shared
-    current_state: Provisional policy set v0.1 evaluates governance-result age at intake and defines typed rules that remain not-evaluated until their timestamps or subject bindings are captured.
+    current_state: Provisional policy set v0.1 evaluates governance-result age at intake and vulnerability-scan age in the typed collector pilot; other rules remain not-evaluated until their timestamps or subject bindings are captured.
     missing_capabilities:
       - control-owner, Security, and Operations approval
       - typed evidence timestamps and subject bindings

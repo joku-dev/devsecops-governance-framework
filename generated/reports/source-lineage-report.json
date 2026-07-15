@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T14:53:52Z",
+  "generated_at": "2026-07-15T15:13:41Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1477,6 +1477,12 @@
           "exists": true
         },
         {
+          "artifact_path": "docs/examples/vulnerability-scan-input.example.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "docs/operations/evidence/evidence-collector-contract.md",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1597,6 +1603,18 @@
           "exists": true
         },
         {
+          "artifact_path": "schemas/vulnerability-scan-input.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "scripts/collect_vulnerability_scan_evidence.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "scripts/generate_architecture_results_index.py",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1652,6 +1670,12 @@
         },
         {
           "artifact_path": "tests/test_evidence_trust_indexes.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "tests/test_vulnerability_scan_collector.py",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -2073,7 +2097,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 314,
+    "derived_artifact_count": 318,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []

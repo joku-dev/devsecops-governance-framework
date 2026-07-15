@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-07-15T14:53:52Z`
+Generated: `2026-07-15T15:13:40Z`
 
 ## Inputs
 
@@ -11,7 +11,7 @@ Generated: `2026-07-15T14:53:52Z`
 
 - Registered source documents: `20`
 - Source documents with lineage: `20`
-- Derived artifact links: `314`
+- Derived artifact links: `318`
 
 ## Domain Coverage
 
@@ -127,7 +127,7 @@ Representative artifacts:
 - Owner: `devsecops-owners`
 - Version: `public-placeholder`
 - Domains: `devsecops`
-- Lineage artifacts: `58`
+- Lineage artifacts: `62`
 - Source state: `active_source`
 - Release consideration: `baseline_release_review`
 - Review lanes: `devsecops-review, policy-as-code-review, release-review, schema-review, viewer-status-review`
@@ -151,6 +151,7 @@ Representative artifacts:
 
 - `docs/examples/evidence-collector-record.example.json`
 - `docs/examples/evidence-trust-record.example.json`
+- `docs/examples/vulnerability-scan-input.example.json`
 - `docs/governance/source-documents/DSCB-STD-SRC-001.public.md`
 - `docs/operations/evidence/evidence-collector-contract.md`
 - `docs/operations/evidence/evidence-trust-model.md`
@@ -158,7 +159,6 @@ Representative artifacts:
 - `generated/reports/architecture-source-replacement-assessment.md`
 - `generated/reports/governance-change-impact.json`
 - `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
 
 ### `PRA-STD-SRC-001`
 

@@ -41,6 +41,21 @@ profiles:
       - scripts/intake_architecture_github_actions_run.py
       - scripts/lib/evidence_trust.py
     state: implemented
+  - id: repository-normalized-vulnerability-scan
+    collector_id: central-vulnerability-scan-collector
+    collector_version: 0.1.0
+    evidence_type: vulnerability_scan
+    governance_domains:
+      - devsecops
+    source_provider: ci_artifact
+    freshness_policy: freshness-vulnerability-scan-24h
+    input_schema: schemas/vulnerability-scan-input.schema.json
+    subject_binding_mode: co_collected
+    rejects_placeholders: true
+    implementation_paths:
+      - scripts/collect_vulnerability_scan_evidence.py
+      - scripts/lib/evidence_trust.py
+    state: pilot
 adoption:
   new_automated_intake_uses_contract: true
   existing_records_remain_valid: true
@@ -49,8 +64,8 @@ adoption:
   downstream_producer_contract_changed: false
   baseline_release_required: false
 open_decisions:
-  - id: vulnerability_scan_collector
-    question: Which authoritative scanner format and subject identity should be the first typed evidence collector pilot?
+  - id: scanner_native_adapters
+    question: Which scanner-native formats should receive maintained adapters to the repository-normalized vulnerability input?
     required_reviewers:
       - security
       - devsecops

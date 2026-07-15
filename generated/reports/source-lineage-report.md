@@ -1,12 +1,12 @@
 # Source Lineage Report
 
-Generated: `2026-07-15T14:53:52Z`
+Generated: `2026-07-15T15:13:41Z`
 
 ## Summary
 
 - Source documents: `20`
 - Source documents with lineage entries: `20`
-- Derived artifact links: `314`
+- Derived artifact links: `318`
 - Missing derived artifacts: `0`
 
 ## Source Documents
@@ -29,7 +29,7 @@ Generated: `2026-07-15T14:53:52Z`
 | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md` | `true` | `13` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `58` |
+| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `62` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.public.md` | `true` | `29` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md` | `true` | `11` |
@@ -338,6 +338,7 @@ Generated: `2026-07-15T14:53:52Z`
 | `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `governance_document` | `DSCB-STD-001` | `true` |
 | `docs/examples/evidence-collector-record.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/examples/evidence-trust-record.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `docs/examples/vulnerability-scan-input.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/evidence-collector-contract.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/evidence-trust-model.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `generated/viewer/status-viewer.html` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -358,6 +359,8 @@ Generated: `2026-07-15T14:53:52Z`
 | `schemas/evidence-trust-model.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/evidence-trust-record.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/governance-results-index.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `schemas/vulnerability-scan-input.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `scripts/collect_vulnerability_scan_evidence.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `scripts/generate_architecture_results_index.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `scripts/generate_repository_results_index.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `scripts/generate_status_viewer.py` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -368,6 +371,7 @@ Generated: `2026-07-15T14:53:52Z`
 | `tests/test_evidence_freshness_policies.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_evidence_trust_capture.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_evidence_trust_indexes.py` | `governance_model` | `DSCB-STD-001` | `true` |
+| `tests/test_vulnerability_scan_collector.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `policies/opa/access_control.rego` | `policy_as_code` | `devsecops_baseline` | `true` |
 | `policies/opa/artifact_integrity.rego` | `policy_as_code` | `devsecops_baseline` | `true` |
 | `policies/opa/artifact_signing.rego` | `policy_as_code` | `devsecops_baseline` | `true` |
