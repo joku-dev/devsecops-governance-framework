@@ -10,7 +10,7 @@ on:
       baseline:
         description: Expected solution baseline identifier
         required: false
-        default: demo-solution-baseline
+        default: example-solution-baseline
       governance_repository:
         description: Governance repository containing collectors, schemas and OPA policies
         required: false
@@ -68,7 +68,7 @@ jobs:
             --repo app \
             --output governance/generated/demo/architecture-release-input.json \
             --release-id "${{ github.event.inputs.release_id || github.sha }}" \
-            --baseline "${{ github.event.inputs.baseline || 'demo-solution-baseline' }}"
+            --baseline "${{ github.event.inputs.baseline || 'example-solution-baseline' }}"
 
       - name: Validate architecture release input schema
         working-directory: governance

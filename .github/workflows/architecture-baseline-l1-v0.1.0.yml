@@ -11,7 +11,7 @@ on:
       solution_baseline:
         description: Expected product or solution architecture baseline identifier.
         required: false
-        default: demo-solution-baseline
+        default: example-solution-baseline
         type: string
       application_path:
         description: Path to the application repository workspace.
