@@ -34,9 +34,9 @@ Downstream repositories can consume the released architecture baseline with:
 ```yaml
 jobs:
   architecture-baseline:
-    uses: joku-dev/devsecops-governance-as-code/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
+    uses: joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
     with:
-      solution_baseline: ha-CPsWMS-demo-baseline
+      solution_baseline: example-solution-baseline
       fail_on_findings: false
 ```
 

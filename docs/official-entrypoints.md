@@ -15,6 +15,10 @@ It is intended for:
 
 - Repository overview: `README.md`
 - Documentation landing page: `docs/index.md`
+- External review brief: `docs/onboarding/external-review-brief.md`
+- Public quickstart: `docs/onboarding/public-repo-quickstart.md`
+- Validated neutral demo consumer: `docs/onboarding/validated-demo-consumer.md`
+- Public adoption release: `docs/releases/v0.1.0-public-adoption.md`
 - Reading compass for new team members: `docs/lesekompass.md`
 - Role-based documentation paths: `docs/paths/index.md`
 - AI navigation index: `docs/ai-index.md`
@@ -48,6 +52,9 @@ It is intended for:
 
 ## Onboarding Documents
 
+- External review brief: `docs/onboarding/external-review-brief.md`
+- Public repository quickstart: `docs/onboarding/public-repo-quickstart.md`
+- Validated demo consumer: `docs/onboarding/validated-demo-consumer.md`
 - Application repository onboarding: `docs/onboarding/application-repo-onboarding.md`
 - How other repositories use this governance repository: `docs/onboarding/how-other-repos-use-this-governance-repo.md`
 - How other repositories use the central governance baseline: `docs/onboarding/how-other-repositories-use-the-central-governance-baseline.md`
@@ -76,8 +83,6 @@ It is intended for:
 - Operational governance enforcement options: `docs/operations/processes/operational-governance-enforcement-options.md`
 - Documentation structure model: `docs/operations/planning/document-structure-model.md`
 - Documentation structure audit: `docs/operations/planning/document-structure-audit.md`
-- ha-CPsWMS governance validation status: `docs/operations/status/ha-cpswms-governance-validation-status.md`
-- ha-CPsWMS governance lessons learned: `docs/operations/status/ha-cpswms-governance-lessons-learned.md`
 
 ## Platform Explanation
 
@@ -97,6 +102,7 @@ It is intended for:
 ## Release Documents
 
 - Release overview: `docs/releases/index.md`
+- Public adoption release v0.1.0: `docs/releases/v0.1.0-public-adoption.md`
 - Release and migration model: `docs/releases/release-and-migration-model.md`
 - Release publication checklist: `docs/releases/release-publication-checklist.md`
 - L1 baseline v1.0.0: `docs/releases/l1-baseline-v1.0.0.md`

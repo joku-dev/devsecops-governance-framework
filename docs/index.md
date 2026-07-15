@@ -1,8 +1,8 @@
-# DevSecOps Governance as Code
+# DevSecOps Governance Framework
 
-This documentation space is the entry point for the central governance-as-code workspace for DevSecOps, architecture runtime governance, machine-readable evidence, released baselines, and CI/CD platform integration.
+This documentation space is the entry point for the public DevSecOps Governance Framework: reusable DevSecOps and architecture governance baselines, machine-readable evidence, released baselines, onboarding guidance, and CI/CD platform integration.
 
-The repository name remains `devsecops-governance-as-code` for continuity, but the scope now includes DevSecOps controls, architecture governance, runtime readiness, application repository evidence, status reporting, and adapter patterns for GitHub Actions, Bamboo/Bitbucket, Jenkins, and GitLab CI.
+Application repositories can consume this framework from CI/CD without copying the governance logic into every project.
 
 ## Role-Based Paths
 
@@ -17,7 +17,9 @@ The repository name remains `devsecops-governance-as-code` for continuity, but t
 
 - If you want a quick reading compass for new team members, read `lesekompass.md`.
 - If you want the official entrypoint overview, read `official-entrypoints.md`.
-- If you are new, begin with `onboarding/application-repo-onboarding.md`.
+- If you are reviewing the public adoption state, begin with `onboarding/external-review-brief.md`.
+- If you want to try it in an application repository, begin with `onboarding/public-repo-quickstart.md`.
+- If you want a validated neutral example, read `onboarding/validated-demo-consumer.md`.
 - If you want the operational flow, read `operations/guides/beginner-step-by-step-operations-guide.md`.
 - If you want the downstream evidence contract, read `operations/evidence/governance-evidence-contract.md`.
 - If you want to change upstream governance documents safely, read `operations/guides/how-to-update-baseline-input-documents.md`.

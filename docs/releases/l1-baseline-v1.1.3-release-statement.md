@@ -62,7 +62,7 @@ The main release-context run retained:
 Consumers should update to:
 
 ```yaml
-uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
+uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
 ```
 
 Consumers that provide a custom `governance/governance-run-input.json` should add `run_context` when possible.

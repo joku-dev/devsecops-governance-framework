@@ -15,7 +15,7 @@ plan:
   name: Architecture Runtime Governance
 
 variables:
-  governance.repository: https://github.com/joku-dev/devsecops-governance-as-code.git
+  governance.repository: https://github.com/joku-dev/devsecops-governance-framework.git
   governance.ref: architecture-baseline-l1-v0.1.0
   solution.baseline: demo-solution-baseline
   fail.on.findings: "false"

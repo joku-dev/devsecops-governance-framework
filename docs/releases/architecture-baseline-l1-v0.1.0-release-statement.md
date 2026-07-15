@@ -56,7 +56,7 @@ The current mainline Architecture Runtime Governance result is:
 Consumers should pin the released architecture workflow:
 
 ```yaml
-uses: joku-dev/devsecops-governance-as-code/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
+uses: joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
 ```
 
 For onboarding and demos, keep `fail_on_findings: false`.
