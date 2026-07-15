@@ -142,9 +142,20 @@ the complete schema-valid record:
     "verified_at": null,
     "checks": [],
     "capture": {
-      "collector": "central-governance-intake",
+      "contract_id": "evidence-collector-contract",
+      "contract_version": "0.1.0",
+      "status": "collected",
+      "enforcement": "report_only",
+      "evidence_type": "governance_result",
+      "governance_domain": "architecture",
+      "collector": {
+        "id": "central-governance-intake",
+        "version": "0.1.0"
+      },
+      "produced_at": "2026-07-15T13:58:00Z",
       "captured_at": "2026-07-15T14:00:00Z",
       "source": {
+        "provider": "github_actions",
         "repository_id": "joku-dev/ha-CPsWMS",
         "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
         "run_id": "29415015294",
@@ -163,7 +174,8 @@ the complete schema-valid record:
       "custody": [
         {"action": "download", "...": "actor, time, source, outputs"},
         {"action": "extract_and_hash", "...": "actor, time, source, outputs"}
-      ]
+      ],
+      "errors": []
     }
   }
 }
@@ -174,6 +186,11 @@ The complete contract and example are
 `docs/examples/evidence-trust-record.example.json`. The intake collector may
 record claims and hashes, but `not_evaluated` requires `unverified`, a null
 verifier, a null verification timestamp, and no verification checks.
+
+For new automated intake, `trust.capture` also conforms to the versioned
+Evidence Collector Contract described in
+`docs/operations/evidence/evidence-collector-contract.md`. Historical capture
+records retain their legacy string collector identity and remain valid.
 
 ## Chain Of Custody
 

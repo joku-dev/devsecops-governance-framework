@@ -29,7 +29,11 @@ This keeps downstream evidence history:
 
 New automated GitHub Actions intake snapshots contain an optional `trust`
 block. It records content hashes, run attempt, source binding, and initial
-custody. The central verifier recomputes the captured-subject hashes and may
+custody through the versioned Evidence Collector Contract defined in
+`docs/operations/evidence/evidence-collector-contract.md`. The collector record
+is stored as `trust.capture`; DevSecOps and architecture intake use the same
+profile with explicit domain context. The central verifier recomputes the
+captured-subject hashes and may
 assign `integrity_verified`; unresolved checks remain `not_evaluated`.
 It also compares the workflow update time with the intake verification time
 using the provisional 24-hour governance-result Freshness policy. An expired

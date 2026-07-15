@@ -1,0 +1,68 @@
+schema_version: 1.0.0
+contract_id: evidence-collector-contract
+version: 0.1.0
+status: provisional
+source_document: docs/governance/source-documents/DSCB-STD-SRC-001.public.md
+owner: governance-maintainers
+enforcement: report_only
+purpose: Normalize evidence identity, time, source, subjects, custody, and collection errors before Trust verification.
+principles:
+  - id: collection_is_not_verification
+    requirement: A collector records observable source material and must not assign an evidence Trust level.
+  - id: outcome_is_independent
+    requirement: Collection status and evidence Trust must not change the governance outcome carried by the evidence.
+  - id: subject_digests_are_mandatory
+    requirement: Every successfully collected subject must include its size and a SHA-256 digest over the collected bytes.
+  - id: time_semantics_are_explicit
+    requirement: produced_at identifies when the authoritative source finished producing the evidence and captured_at identifies central collection time.
+  - id: failures_are_records
+    requirement: Partial and failed collection attempts must be explicit and must not be represented as successfully collected evidence.
+  - id: history_is_immutable
+    requirement: Contract upgrades must not silently rewrite historical collector records.
+record_semantics:
+  statuses:
+    collected: Required subjects and custody steps were captured without collection errors.
+    partial: At least one subject was captured but one or more collection errors remain.
+    failed: No usable subject was captured and at least one collection error is recorded.
+  missing_metadata: Missing mandatory metadata prevents a collected status.
+  collector_identity: Collector ID and version identify the implementation contract, not an attested issuer.
+profiles:
+  - id: github-actions-governance-result
+    collector_id: central-governance-intake
+    collector_version: 0.1.0
+    evidence_type: governance_result
+    governance_domains:
+      - devsecops
+      - architecture
+    source_provider: github_actions
+    freshness_policy: freshness-governance-result-24h
+    implementation_paths:
+      - scripts/intake_github_actions_run.py
+      - scripts/intake_architecture_github_actions_run.py
+      - scripts/lib/evidence_trust.py
+    state: implemented
+adoption:
+  new_automated_intake_uses_contract: true
+  existing_records_remain_valid: true
+  existing_records_reclassified: false
+  latest_result_selection_changed: false
+  downstream_producer_contract_changed: false
+  baseline_release_required: false
+open_decisions:
+  - id: vulnerability_scan_collector
+    question: Which authoritative scanner format and subject identity should be the first typed evidence collector pilot?
+    required_reviewers:
+      - security
+      - devsecops
+      - evidence_and_intake
+  - id: normalized_transformation_identity
+    question: Which stable identifiers describe future parsing and normalization transformations?
+    required_reviewers:
+      - governance
+      - evidence_and_intake
+      - platform
+change_control:
+  requires_gcr: true
+  preserve_historical_records: true
+  retrospective_reclassification: false
+  blocking_requires_release_review: true

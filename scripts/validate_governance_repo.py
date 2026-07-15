@@ -342,6 +342,16 @@ def main() -> int:
     validate_schema(errors, ROOT / "schemas" / "evidence-trust-model.schema.json", MODEL / "evidence" / "evidence-trust-model.yaml")
     validate_schema(
         errors,
+        ROOT / "schemas" / "evidence-collector-contract.schema.json",
+        MODEL / "evidence" / "evidence-collector-contract.yaml",
+    )
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "evidence-collector-record.schema.json",
+        ROOT / "docs" / "examples" / "evidence-collector-record.example.json",
+    )
+    validate_schema(
+        errors,
         ROOT / "schemas" / "evidence-freshness-policies.schema.json",
         MODEL / "evidence" / "evidence-freshness-policies.yaml",
     )
