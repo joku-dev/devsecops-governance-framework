@@ -82,7 +82,7 @@ class EvidenceTrustModelTests(unittest.TestCase):
 
         gap_ids = {item["id"] for item in self.model["migration_gaps"]}
         self.assertIn("devsecops_custody_partial", gap_ids)
-        self.assertIn("architecture_verification_projection_missing", gap_ids)
+        self.assertIn("architecture_provenance_verification_pending", gap_ids)
         self.assertIn("authenticity_not_evaluated", gap_ids)
         self.assertIn("freshness_policy_missing", gap_ids)
         self.assertIn("replay_detection_partial", gap_ids)

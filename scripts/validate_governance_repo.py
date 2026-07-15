@@ -355,6 +355,9 @@ def main() -> int:
     architecture_index_path = ROOT / "status" / "architecture-results-index.json"
     if architecture_index_path.exists():
         validate_schema(errors, ROOT / "schemas" / "architecture-results-index.schema.json", architecture_index_path)
+    repository_index_path = ROOT / "status" / "repository-results-index.json"
+    if repository_index_path.exists():
+        validate_schema(errors, ROOT / "schemas" / "governance-results-index.schema.json", repository_index_path)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)

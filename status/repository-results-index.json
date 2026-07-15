@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T12:55:36Z",
+  "generated_at": "2026-07-15T14:11:33Z",
   "summary": {
     "repository_count": 2,
     "result_count": 16,
@@ -8,7 +8,10 @@
     "failing_results": 1,
     "mainline_results": 10,
     "branch_results": 4,
-    "manual_results": 2
+    "manual_results": 2,
+    "trust_level_counts": {
+      "unverified": 16
+    }
   },
   "repositories": [
     {
@@ -22,7 +25,17 @@
         "generated_at": "2026-06-28T08:00:21Z",
         "governance_baseline_ref": "main@34bdc66",
         "source_file": "status/results/joku-dev__ai-native-engineering-factory/2026-06-28T08-00-21Z-run-28315832162.json",
-        "control_evaluation_summary": {}
+        "control_evaluation_summary": {},
+        "trust": {
+          "effective_level": "unverified",
+          "assessment_status": "not_available",
+          "verified_at": null,
+          "check_summary": {
+            "pass": 0,
+            "fail": 0,
+            "not_evaluated": 0
+          }
+        }
       },
       "history": [
         {
@@ -35,6 +48,16 @@
           "commit_id": "7350225150fd342a2adf3df23ce04d7277a36d3f",
           "governance_baseline_ref": "main@34bdc66",
           "control_evaluation_summary": {},
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ai-native-engineering-factory/2026-06-28T07-49-37Z-run-28315609025.json"
         },
         {
@@ -47,6 +70,16 @@
           "commit_id": "7e80f63fac4ac4695606a195e8c6e7d58b9408c6",
           "governance_baseline_ref": "main@34bdc66",
           "control_evaluation_summary": {},
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ai-native-engineering-factory/2026-06-28T08-00-21Z-run-28315832162.json"
         }
       ]
@@ -70,6 +103,16 @@
           "not_applicable": 30,
           "applicable_controls": 16,
           "tested_controls": 16
+        },
+        "trust": {
+          "effective_level": "unverified",
+          "assessment_status": "not_available",
+          "verified_at": null,
+          "check_summary": {
+            "pass": 0,
+            "fail": 0,
+            "not_evaluated": 0
+          }
         }
       },
       "history": [
@@ -83,6 +126,16 @@
           "commit_id": "8e7b742f41f902b4b85d1f6d4f3e556a96d937a3",
           "governance_baseline_ref": "l1-baseline-v1.0.0",
           "control_evaluation_summary": {},
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-27T08-36-38Z-run-28284063513.json"
         },
         {
@@ -95,6 +148,16 @@
           "commit_id": "d2f0dba3f88de91838213060e4a014fe78026dd1",
           "governance_baseline_ref": "l1-baseline-v1.0.0",
           "control_evaluation_summary": {},
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-27T14-49-08Z-run-28292518364.json"
         },
         {
@@ -114,6 +177,16 @@
             "not_applicable": 30,
             "applicable_controls": 16,
             "tested_controls": 16
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-27T15-19-14Z-run-28293253390.json"
         },
@@ -135,6 +208,16 @@
             "applicable_controls": 16,
             "tested_controls": 16
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-27T15-33-14Z-run-28293604694.json"
         },
         {
@@ -154,6 +237,16 @@
             "not_applicable": 30,
             "applicable_controls": 16,
             "tested_controls": 16
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-27T15-38-14Z-run-28293749755.json"
         },
@@ -175,6 +268,16 @@
             "applicable_controls": 16,
             "tested_controls": 16
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-27T21-38-40Z-run-28302556581.json"
         },
         {
@@ -194,6 +297,16 @@
             "not_applicable": 32,
             "applicable_controls": 14,
             "tested_controls": 14
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-27T21-47-39Z-run-28302764711.json"
         },
@@ -215,6 +328,16 @@
             "applicable_controls": 16,
             "tested_controls": 16
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-27T21-49-48Z-run-28302814664.json"
         },
         {
@@ -234,6 +357,16 @@
             "not_applicable": 30,
             "applicable_controls": 16,
             "tested_controls": 16
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-06-28T06-42-31Z-run-28314109954.json"
         },
@@ -255,6 +388,16 @@
             "applicable_controls": 16,
             "tested_controls": 16
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-02T12-48-14Z-run-28591160311.json"
         },
         {
@@ -274,6 +417,16 @@
             "not_applicable": 30,
             "applicable_controls": 16,
             "tested_controls": 16
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-02T13-05-30Z-run-28592257991.json"
         },
@@ -295,6 +448,16 @@
             "applicable_controls": 14,
             "tested_controls": 14
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-04T09-14-05Z-run-28701598340.json"
         },
         {
@@ -315,6 +478,16 @@
             "applicable_controls": 16,
             "tested_controls": 16
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-04T14-12-37Z-run-28708822838.json"
         },
         {
@@ -334,6 +507,16 @@
             "not_applicable": 30,
             "applicable_controls": 16,
             "tested_controls": 16
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-15T12-33-25Z-run-29415015878.json"
         }

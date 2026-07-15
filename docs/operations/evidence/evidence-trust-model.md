@@ -47,9 +47,10 @@ The GitHub Actions intake records:
 - initial download and extract-and-hash custody steps
 - the downstream run URL
 
-This provides useful identity, provenance, integrity, and custody material. New
-snapshots explicitly record `unverified` and `not_evaluated`; capture alone does
-not promote the evidence to a verified trust level.
+This provides useful identity, provenance, integrity, and custody material. The
+central verifier independently recomputes captured-subject digests and may
+derive `integrity_verified`. It does not derive a higher level from capture
+alone.
 
 ### Architecture Intake
 
@@ -65,17 +66,15 @@ The architecture intake records:
 These fields are additive. Existing architecture snapshots remain valid and are
 not rewritten.
 
-### Shared Gaps
+### Shared Verification State
 
-Both intake paths still need Phase 3 verification capabilities:
+Both intake paths now record a named verifier, verification timestamp, and
+per-check results. The remaining Phase 3 capabilities are:
 
-- an explicit verifier and verification timestamp after evaluation
-- per-check results instead of inferred booleans
 - replay-key construction and duplicate or cross-subject reuse evaluation
 - freshness policies by evidence type and decision context
 - a normalized snapshot digest and transformation record
 - trusted issuer and attestation verification
-- a normalized trust projection for indexes and the viewer
 
 Existing snapshots remain valid historical evidence and are not retroactively
 promoted. Without an explicit trust assessment, their model default is
@@ -222,7 +221,7 @@ evaluated.
 
 ### Phase 2: Additive Capture
 
-- current
+- complete
 - add optional trust metadata
 - add architecture content and archive digests
 - add run attempt and custody fields to both intake paths
@@ -230,8 +229,9 @@ evaluated.
 
 ### Phase 3: Verification Projection
 
+- current
 - centralize trust-level derivation
-- evaluate freshness and replay
+- project unresolved freshness and replay checks as `not_evaluated`
 - expose trust separately from governance result in indexes and viewer
 - keep findings report-only
 
@@ -256,22 +256,23 @@ evaluated.
 | Initial attestation format and predicate | Security, Platform, Architecture |
 | Trust requirements for protected mainline or release | Governance, Security, Release Manager |
 
-These decisions block later phases, not the report-only model introduced here.
+Freshness windows block completion of Phase 3. The other decisions block the
+later attestation and enforcement phases, not the current report-only
+projection.
 
 ## Latest-State And Viewer Impact
 
 Version 1 does not change which result becomes `latest_result`. Mainline push
-selection remains unchanged, branch and manual history remain separate, and the
-viewer continues to show current governance outcomes without a trust badge.
-
-Adding a viewer trust projection belongs to Phase 3 and requires tests that
-prevent a trust value from being confused with `pass`, `fail`, or `findings`.
+selection remains unchanged, and branch and manual history remain separate.
+Indexes and the viewer now show evidence trust next to, but never instead of,
+the governance result. Historical snapshots without a Trust record project as
+`unverified` with assessment status `not_available`.
 
 ## Release Decision
 
-No baseline release is required for Phase 2 because:
+No baseline release is required for the report-only Phase 3 projection because:
 
-- the change affects only central intake snapshots and uses an optional block
+- the change affects central intake snapshots, internal indexes, and the viewer
 - no downstream producer field becomes mandatory
 - existing snapshots remain valid
 - OPA and workflow enforcement are unchanged

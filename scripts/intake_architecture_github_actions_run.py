@@ -18,7 +18,7 @@ import tempfile
 import zipfile
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
-from lib.evidence_trust import build_trust_capture, digest_subject
+from lib.evidence_trust import build_trust_capture, digest_subject, verify_trust_capture
 from lib.json_io import load_json, write_json
 
 
@@ -252,6 +252,12 @@ def main() -> int:
         ]
         if archive.exists():
             subjects.append(digest_subject("artifact_archive", archive, "artifact_metadata.artifact_archive_sha256"))
+        subject_paths = {
+            "architecture_governance_report": report_path,
+            "architecture_release_input": release_input_path,
+        }
+        if archive.exists():
+            subject_paths["artifact_archive"] = archive
 
         subject_digests = {subject["id"]: subject["digest"] for subject in subjects}
         artifact_metadata = {
@@ -272,6 +278,15 @@ def main() -> int:
             source_uri=selected_artifact.get("archive_download_url", run.get("html_url", "")),
             captured_at=captured_at,
             subjects=subjects,
+        )
+        trust = verify_trust_capture(
+            trust,
+            repository_id=args.repository_id,
+            commit_id=run.get("head_sha", "unknown"),
+            run_id=str(run.get("id")),
+            artifact_name=args.artifact_name,
+            subject_paths=subject_paths,
+            verified_at=captured_at,
         )
 
     protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)

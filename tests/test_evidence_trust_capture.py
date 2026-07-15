@@ -24,7 +24,7 @@ def load_script(name: str):
 
 
 architecture_intake = load_script("intake_architecture_github_actions_run")
-from lib.evidence_trust import build_trust_capture, digest_subject
+from lib.evidence_trust import build_trust_capture, digest_subject, project_trust, verify_trust_capture
 
 
 class EvidenceTrustCaptureTests(unittest.TestCase):
@@ -70,6 +70,50 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
 
         errors = list(Draft202012Validator(SCHEMA).iter_errors(trust))
         self.assertTrue(errors)
+
+    def test_verifier_derives_integrity_level_and_leaves_later_checks_pending(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            directory = Path(tempdir)
+            trust = self.build_capture(directory)
+            verified = verify_trust_capture(
+                trust,
+                repository_id="owner/repo",
+                commit_id="abc123",
+                run_id="42",
+                artifact_name="governance-evidence",
+                subject_paths={"governance_report": directory / "report.json"},
+                verified_at="2026-07-15T14:01:00Z",
+            )
+
+        Draft202012Validator(SCHEMA).validate(verified)
+        projection = project_trust({"overall_status": "fail", "trust": verified})
+        self.assertEqual(projection["effective_level"], "integrity_verified")
+        self.assertEqual(projection["assessment_status"], "evaluated")
+        self.assertEqual(projection["check_summary"], {"pass": 5, "fail": 0, "not_evaluated": 7})
+
+    def test_digest_mismatch_prevents_integrity_level(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            directory = Path(tempdir)
+            trust = self.build_capture(directory)
+            (directory / "report.json").write_text('{"status":"changed"}\n', encoding="utf-8")
+            verified = verify_trust_capture(
+                trust,
+                repository_id="owner/repo",
+                commit_id="abc123",
+                run_id="42",
+                artifact_name="governance-evidence",
+                subject_paths={"governance_report": directory / "report.json"},
+                verified_at="2026-07-15T14:01:00Z",
+            )
+
+        self.assertEqual(verified["effective_level"], "unverified")
+        checks = {check["id"]: check["result"] for check in verified["checks"]}
+        self.assertEqual(checks["content_digest_verified"], "fail")
+
+    def test_historical_snapshot_projects_as_unverified_without_reclassification(self):
+        projection = project_trust({"overall_status": "pass"})
+        self.assertEqual(projection["effective_level"], "unverified")
+        self.assertEqual(projection["assessment_status"], "not_available")
 
     def test_architecture_snapshot_captures_digests_without_changing_outcome(self):
         with tempfile.TemporaryDirectory() as tempdir:

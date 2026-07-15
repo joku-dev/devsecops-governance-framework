@@ -181,6 +181,26 @@ def run_link(run_id: str, url: str) -> str:
     return f'<a href="{escape(url)}"><code>{run_text}</code></a>'
 
 
+def trust_tone(level: str) -> str:
+    return "ok" if level in {"integrity_verified", "provenance_verified", "attested"} else "warn"
+
+
+def trust_badge(projection: dict) -> str:
+    if not projection:
+        return badge("Evidence: not tracked", "plain")
+    level = projection.get("effective_level", "unverified")
+    return badge(f"Evidence: {level}", trust_tone(level))
+
+
+def trust_detail(projection: dict) -> str:
+    status = projection.get("assessment_status", "not_available")
+    summary = projection.get("check_summary", {})
+    return (
+        f"{status}; checks pass {summary.get('pass', 0)}, "
+        f"fail {summary.get('fail', 0)}, pending {summary.get('not_evaluated', 0)}"
+    )
+
+
 def build_latest_repository_cards(results_index: dict) -> str:
     cards = []
     for repository in results_index.get("repositories", []):
@@ -206,6 +226,7 @@ def build_latest_repository_cards(results_index: dict) -> str:
         baseline = latest.get("governance_baseline_ref", "unknown")
         generated_at = latest.get("generated_at", "unknown")
         commit_id = latest.get("commit_id", "unknown")
+        trust = latest.get("trust", {})
         summary_class = "ok" if summary.get("fail", 0) == 0 and summary.get("not_tested", 0) == 0 else "warn"
         cards.append(
             "<section class=\"latest-card\">"
@@ -218,6 +239,8 @@ def build_latest_repository_cards(results_index: dict) -> str:
             f"<div><dt>Last {escape(latest_scope)} Run</dt><dd>{run_link(run_id, run_url)}</dd></div>"
             f"<div><dt>Commit</dt><dd><code>{escape(short_sha(commit_id))}</code></dd></div>"
             f"<div><dt>Generated</dt><dd>{escape(generated_at)}</dd></div>"
+            f"<div><dt>Evidence Trust</dt><dd>{trust_badge(trust)}</dd></div>"
+            f"<div><dt>Trust Assessment</dt><dd>{escape(trust_detail(trust))}</dd></div>"
             "</dl>"
             f"<div class=\"control-score {summary_class}\">"
             f"<strong>{escape(format_control_summary(summary))}</strong>"
@@ -256,6 +279,7 @@ def build_latest_architecture_cards(architecture_index: dict) -> str:
         baseline = latest.get("architecture_baseline_ref", "unknown")
         generated_at = latest.get("generated_at", "unknown")
         commit_id = latest.get("commit_id", "unknown")
+        trust = latest.get("trust", {})
         finding_count = summary.get("finding_count", 0)
         gate_count = summary.get("gate_count", 0)
         passed = summary.get("passed", 0)
@@ -271,6 +295,8 @@ def build_latest_architecture_cards(architecture_index: dict) -> str:
             f"<div><dt>Last {escape(latest_scope)} Run</dt><dd>{run_link(run_id, run_url)}</dd></div>"
             f"<div><dt>Commit</dt><dd><code>{escape(short_sha(commit_id))}</code></dd></div>"
             f"<div><dt>Generated</dt><dd>{escape(generated_at)}</dd></div>"
+            f"<div><dt>Evidence Trust</dt><dd>{trust_badge(trust)}</dd></div>"
+            f"<div><dt>Trust Assessment</dt><dd>{escape(trust_detail(trust))}</dd></div>"
             "</dl>"
             f"<div class=\"control-score {summary_class}\">"
             f"<strong>{escape(str(passed))}/{escape(str(gate_count))} gates pass · {escape(str(finding_count))} findings</strong>"
@@ -320,6 +346,8 @@ def build_repository_status_board(results_index: dict, architecture_index: dict)
         devsecops_summary = devsecops_latest.get("control_evaluation_summary", {})
         architecture_latest = architecture_by_repo.get(repo_id, {}).get("latest_result", {})
         architecture_summary = architecture_latest.get("architecture_summary", {})
+        devsecops_trust = devsecops_latest.get("trust", {})
+        architecture_trust = architecture_latest.get("trust", {})
 
         devsecops_status = devsecops_latest.get("status", "not tracked")
         architecture_status = architecture_latest.get("status", "not tracked")
@@ -354,11 +382,13 @@ def build_repository_status_board(results_index: dict, architecture_index: dict)
             f"{badge(devsecops_status, status_tone(devsecops_status))}"
             f"<span class=\"cell-detail\">{escape(control_text)}</span>"
             f"<span class=\"cell-detail\"><code>{escape(devsecops_latest.get('governance_baseline_ref', 'not tracked'))}</code></span>"
+            f"<span class=\"cell-detail\">{trust_badge(devsecops_trust)}</span>"
             "</td>"
             "<td>"
             f"{badge(architecture_status.upper() if architecture_status != 'not tracked' else architecture_status, status_tone(architecture_status))}"
             f"<span class=\"cell-detail\">{escape(architecture_text)}</span>"
             f"<span class=\"cell-detail\"><code>{escape(architecture_latest.get('architecture_baseline_ref', 'not tracked'))}</code></span>"
+            f"<span class=\"cell-detail\">{trust_badge(architecture_trust)}</span>"
             "</td>"
             f"<td>{run_link(devsecops_run or 'not tracked', devsecops_url)}</td>"
             f"<td>{run_link(architecture_run or 'not tracked', architecture_latest.get('pipeline_url', ''))}</td>"
@@ -373,7 +403,7 @@ def build_repository_status_board(results_index: dict, architecture_index: dict)
         "<section class=\"panel status-board\">"
         "<div class=\"panel-heading\">"
         "<div><h2>Repository Governance Status</h2>"
-        "<p>One operational row per repository, with DevSecOps and architecture status side by side.</p></div>"
+        "<p>Governance outcomes and Evidence Trust are shown as independent signals for each repository.</p></div>"
         "</div>"
         "<div class=\"table-scroll\">"
         "<table>"
