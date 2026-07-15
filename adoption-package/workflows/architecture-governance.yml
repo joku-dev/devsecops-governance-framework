@@ -1,0 +1,22 @@
+name: Architecture Governance
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  architecture-governance:
+    name: Architecture L1 Baseline
+    uses: joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
+    with:
+      release_id: ${{ github.sha }}
+      solution_baseline: example-solution-baseline
+      application_path: .
+      upload_evidence: true
+      fail_on_findings: false

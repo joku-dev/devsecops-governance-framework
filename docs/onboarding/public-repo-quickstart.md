@@ -20,6 +20,16 @@ The application repository remains responsible for building its own artifact, pr
 4. Review generated reports before making the workflow a required check.
 5. Replace placeholder evidence with real SBOM, vulnerability, static-analysis, traceability, and architecture evidence.
 
+## Copyable Adoption Package
+
+Use the repository adoption package when you want file-based templates instead of copying from this page:
+
+```text
+adoption-package/
+```
+
+It contains ready-to-copy GitHub Actions workflows, minimal evidence examples, optional architecture evidence placeholders, and a first-adoption checklist.
+
 ## Minimal DevSecOps Baseline Workflow
 
 Create this file in the application repository:

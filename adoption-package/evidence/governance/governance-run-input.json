@@ -1,0 +1,72 @@
+{
+  "contract_version": "1.0",
+  "release_candidate": true,
+  "run_context": {
+    "event": "pull_request",
+    "purpose": "pull_request_validation",
+    "release_context": false,
+    "source": "adoption-package"
+  },
+  "required_platform_level": "PRA-Level 1",
+  "repository": {
+    "protected_branch": true,
+    "direct_push_allowed": false,
+    "review_required": true
+  },
+  "traceability": {
+    "requirements_linked": false,
+    "testcases_linked": false,
+    "reports_linked": false
+  },
+  "source_control": {
+    "approved_vcs": true,
+    "identifiable_authors": true,
+    "review_records_present": true
+  },
+  "static_analysis": {
+    "performed": false,
+    "findings_reviewed": false
+  },
+  "evidence": {
+    "sbom": {
+      "exists": true,
+      "linked_to_artifact": true
+    },
+    "vulnerability_scan": {
+      "exists": true,
+      "path": "security/vulnerability-scan.json",
+      "max_severity": "none"
+    }
+  },
+  "artifact": {
+    "artifact_id": "application-source.tar.gz",
+    "artifact_type": "application-source",
+    "artifact_version": "replace-with-commit-or-version",
+    "digest": {
+      "exists": true,
+      "linked_to_artifact": true,
+      "algorithm": "sha256",
+      "value": "replace-with-generated-digest"
+    },
+    "signature": {
+      "exists": false
+    }
+  },
+  "pipeline": {
+    "pipeline_id": "DevSecOps Baseline",
+    "pipeline_run_id": "replace-with-run-id",
+    "commit_id": "replace-with-commit-id",
+    "event": "pull_request",
+    "status": "success",
+    "security_gates": {
+      "enforced": false
+    },
+    "security_thresholds_exceeded": false,
+    "external_direct_downloads_detected": false
+  },
+  "operations": {
+    "deployed_versions_recorded": false,
+    "security_events_recorded": false
+  },
+  "waivers": []
+}

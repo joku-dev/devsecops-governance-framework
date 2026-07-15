@@ -1,0 +1,13 @@
+{
+  "evidence_type": "security_evidence",
+  "status": "draft",
+  "owner": "Security Owner",
+  "summary": "Summarizes security verification evidence such as threat model, vulnerability scan, crypto review or security test results.",
+  "evidence_refs": [
+    "security/vulnerability-scan.json"
+  ],
+  "known_limitations": [
+    "Template placeholder; add real security review and scan evidence."
+  ],
+  "follow_up_actions": []
+}
