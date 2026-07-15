@@ -126,6 +126,10 @@ instead of claiming native compatibility with every scanner. Trivy, Grype,
 Snyk, and other tools can later receive explicit adapters into this normalized
 input. Placeholder and demo scanner identities are rejected.
 
+The complete operator guide, input reference, output interpretation, and
+failure behavior are documented in
+`docs/operations/evidence/vulnerability-scan-collector-usage.md`.
+
 Example:
 
 ```bash

@@ -143,6 +143,7 @@ def devsecops_lineage(lineage: dict) -> None:
             "schemas/evidence-trust-record.schema.json",
             "docs/operations/evidence/evidence-trust-model.md",
             "docs/operations/evidence/evidence-collector-contract.md",
+            "docs/operations/evidence/vulnerability-scan-collector-usage.md",
             "docs/examples/evidence-trust-record.example.json",
             "docs/examples/evidence-collector-record.example.json",
             "docs/examples/vulnerability-scan-input.example.json",

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T15:13:41Z",
+  "generated_at": "2026-07-15T15:41:42Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1495,6 +1495,12 @@
           "exists": true
         },
         {
+          "artifact_path": "docs/operations/evidence/vulnerability-scan-collector-usage.md",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "generated/viewer/status-viewer.html",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -2097,7 +2103,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 318,
+    "derived_artifact_count": 319,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []
