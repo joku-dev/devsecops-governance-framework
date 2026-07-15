@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T15:41:42Z",
+  "generated_at": "2026-07-15T16:48:55Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1465,6 +1465,12 @@
           "exists": true
         },
         {
+          "artifact_path": "docs/demos/demo-consumer-typed-evidence-trust.md",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "docs/examples/evidence-collector-record.example.json",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1609,6 +1615,18 @@
           "exists": true
         },
         {
+          "artifact_path": "schemas/typed-evidence-result.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "schemas/typed-evidence-results-index.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "schemas/vulnerability-scan-input.schema.json",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1639,7 +1657,19 @@
           "exists": true
         },
         {
+          "artifact_path": "scripts/generate_typed_evidence_results_index.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "scripts/intake_architecture_github_actions_run.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "scripts/intake_evidence_trust_github_actions_run.py",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -1652,6 +1682,12 @@
         },
         {
           "artifact_path": "scripts/lib/evidence_trust.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "status/typed-evidence-results-index.json",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -1676,6 +1712,12 @@
         },
         {
           "artifact_path": "tests/test_evidence_trust_indexes.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "tests/test_typed_evidence_intake.py",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -2103,7 +2145,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 319,
+    "derived_artifact_count": 326,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []

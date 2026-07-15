@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-15T16:42:43Z",
+  "summary": {
+    "repository_count": 1,
+    "result_count": 1,
+    "mainline_results": 1,
+    "branch_results": 0,
+    "manual_results": 0,
+    "freshness_failures": 0,
+    "trust_level_counts": {
+      "integrity_verified": 1
+    }
+  },
+  "repositories": [
+    {
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "results_path": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/",
+      "latest_result": {
+        "generated_at": "2026-07-15T16:33:38Z",
+        "evidence_type": "vulnerability_scan",
+        "pipeline_run_id": "29432884108",
+        "pipeline_event": "push",
+        "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29432884108",
+        "branch": "main",
+        "commit_id": "4ec2b2bd53560e010ebb1c078c4d3bd41b0bfcc6",
+        "collector_status": "collected",
+        "enforcement": "report_only",
+        "scanner": {
+          "name": "trivy",
+          "version": "v0.70.0"
+        },
+        "finding_count": 0,
+        "max_severity": "none",
+        "severity_consistent": true,
+        "subject_binding": {
+          "mode": "co_collected",
+          "scanner_attested": false
+        },
+        "freshness": "pass",
+        "content_integrity": "pass",
+        "trust": {
+          "effective_level": "integrity_verified",
+          "assessment_status": "evaluated",
+          "verified_at": "2026-07-15T16:42:42Z",
+          "check_summary": {
+            "pass": 6,
+            "fail": 0,
+            "not_evaluated": 6
+          }
+        },
+        "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-33-38Z-run-29432884108-vulnerability-scan.json"
+      },
+      "history": [
+        {
+          "generated_at": "2026-07-15T16:33:38Z",
+          "evidence_type": "vulnerability_scan",
+          "pipeline_run_id": "29432884108",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29432884108",
+          "branch": "main",
+          "commit_id": "4ec2b2bd53560e010ebb1c078c4d3bd41b0bfcc6",
+          "collector_status": "collected",
+          "enforcement": "report_only",
+          "scanner": {
+            "name": "trivy",
+            "version": "v0.70.0"
+          },
+          "finding_count": 0,
+          "max_severity": "none",
+          "severity_consistent": true,
+          "subject_binding": {
+            "mode": "co_collected",
+            "scanner_attested": false
+          },
+          "freshness": "pass",
+          "content_integrity": "pass",
+          "trust": {
+            "effective_level": "integrity_verified",
+            "assessment_status": "evaluated",
+            "verified_at": "2026-07-15T16:42:42Z",
+            "check_summary": {
+              "pass": 6,
+              "fail": 0,
+              "not_evaluated": 6
+            }
+          },
+          "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-33-38Z-run-29432884108-vulnerability-scan.json"
+        }
+      ]
+    }
+  ]
+}

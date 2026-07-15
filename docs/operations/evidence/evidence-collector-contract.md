@@ -153,3 +153,27 @@ The pilot binds the scan report and application artifact by collecting both in
 one record. This is `co_collected` binding, not proof that the scanner attested
 to the artifact digest. The distinction remains explicit in collector
 observations until scanner-native attestations are supported.
+
+## Central Typed-Evidence Intake
+
+`scripts/intake_evidence_trust_github_actions_run.py` is the first central
+consumer of the vulnerability profile. It downloads the complete
+`application-evidence` artifact and requires both the normalized scan and the
+evaluated application artifact. It then replaces the producer-side
+verification assessment with a central verification performed over the
+downloaded bytes.
+
+The resulting snapshot validates against
+`schemas/typed-evidence-result.schema.json`. The generator
+`scripts/generate_typed_evidence_results_index.py` projects snapshots into
+`status/typed-evidence-results-index.json`, which validates against
+`schemas/typed-evidence-results-index.schema.json` and feeds the dedicated
+viewer section.
+
+This adoption is additive:
+
+- existing collector and Trust records remain valid
+- the downstream producer contract remains optional
+- a later manual run cannot replace an existing `main` push as latest typed evidence
+- typed Trust does not alter the governance-result indexes
+- all Trust and Freshness findings remain report-only

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Typed Evidence Results Index",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "summary", "repositories"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "summary": {
+      "type": "object",
+      "required": [
+        "repository_count",
+        "result_count",
+        "mainline_results",
+        "branch_results",
+        "manual_results",
+        "freshness_failures",
+        "trust_level_counts"
+      ],
+      "properties": {
+        "repository_count": { "type": "integer", "minimum": 0 },
+        "result_count": { "type": "integer", "minimum": 0 },
+        "mainline_results": { "type": "integer", "minimum": 0 },
+        "branch_results": { "type": "integer", "minimum": 0 },
+        "manual_results": { "type": "integer", "minimum": 0 },
+        "freshness_failures": { "type": "integer", "minimum": 0 },
+        "trust_level_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "additionalProperties": false
+    },
+    "repositories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["repository_id", "results_path", "latest_result", "history"],
+        "properties": {
+          "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+          "results_path": { "type": "string", "minLength": 1 },
+          "latest_result": { "$ref": "#/$defs/resultProjection" },
+          "history": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/resultProjection" }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "trustProjection": {
+      "type": "object",
+      "required": ["effective_level", "assessment_status", "verified_at", "check_summary"],
+      "properties": {
+        "effective_level": { "enum": ["unverified", "integrity_verified", "provenance_verified", "attested"] },
+        "assessment_status": { "enum": ["not_available", "not_evaluated", "evaluated"] },
+        "verified_at": { "type": ["string", "null"] },
+        "check_summary": {
+          "type": "object",
+          "required": ["pass", "fail", "not_evaluated"],
+          "properties": {
+            "pass": { "type": "integer", "minimum": 0 },
+            "fail": { "type": "integer", "minimum": 0 },
+            "not_evaluated": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "resultProjection": {
+      "type": "object",
+      "required": [
+        "generated_at",
+        "evidence_type",
+        "pipeline_run_id",
+        "pipeline_event",
+        "pipeline_url",
+        "branch",
+        "commit_id",
+        "collector_status",
+        "enforcement",
+        "scanner",
+        "finding_count",
+        "max_severity",
+        "severity_consistent",
+        "subject_binding",
+        "freshness",
+        "content_integrity",
+        "trust",
+        "source_file"
+      ],
+      "properties": {
+        "generated_at": { "type": "string", "format": "date-time" },
+        "evidence_type": { "const": "vulnerability_scan" },
+        "pipeline_run_id": { "type": "string", "minLength": 1 },
+        "pipeline_event": { "type": "string", "minLength": 1 },
+        "pipeline_url": { "type": "string", "minLength": 1 },
+        "branch": { "type": "string", "minLength": 1 },
+        "commit_id": { "type": "string", "minLength": 1 },
+        "collector_status": { "enum": ["collected", "partial", "failed", "unknown"] },
+        "enforcement": { "const": "report_only" },
+        "scanner": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "version": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
+        "finding_count": { "type": "integer", "minimum": 0 },
+        "max_severity": { "enum": ["none", "unknown", "info", "low", "medium", "high", "critical"] },
+        "severity_consistent": { "type": "boolean" },
+        "subject_binding": {
+          "type": "object",
+          "required": ["mode", "scanner_attested"],
+          "properties": {
+            "mode": { "enum": ["co_collected", "scanner_attested", "unknown"] },
+            "scanner_attested": { "type": "boolean" }
+          },
+          "additionalProperties": false
+        },
+        "freshness": { "enum": ["pass", "fail", "not_evaluated"] },
+        "content_integrity": { "enum": ["pass", "fail", "not_evaluated"] },
+        "trust": { "$ref": "#/$defs/trustProjection" },
+        "source_file": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

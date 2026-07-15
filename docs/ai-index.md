@@ -177,6 +177,9 @@ python3 -m unittest discover -s tests
 | Viewer output | `generated/viewer/status-viewer.html` |
 | Intake docs | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
 | Vulnerability collector guide | `docs/operations/evidence/vulnerability-scan-collector-usage.md` |
+| Typed evidence result index | `status/typed-evidence-results-index.json` |
+| Typed evidence result history | `status/typed-evidence-results/` |
+| Typed evidence intake | `scripts/intake_evidence_trust_github_actions_run.py` |
 | Agent usage snapshot | `docs/operations/agents/agent-usage-snapshot-latest.md` |
 | Agent usage summary | `generated/agent-usage/agent-usage-summary.json` |
 
@@ -191,6 +194,7 @@ python3 scripts/generate_status_viewer.py
 | Demo need | File |
 |---|---|
 | Full end-to-end demo | `docs/demos/demo-end-to-end-governance.md` |
+| Consumer typed-evidence demo | `docs/demos/demo-consumer-typed-evidence-trust.md` |
 | Architecture-only demo | `docs/demos/demo-ha-cpswms-runtime-governance.md` |
 | Architecture result explanation | `docs/demos/ha-cpswms-architecture-governance-results.md` |
 | DevSecOps historical demo guide | `docs/demos/demo-guide-2026-07-02-ha-cpswms.md` |
