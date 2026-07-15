@@ -29,8 +29,10 @@ class SourceDocumentIntakeStatusTests(unittest.TestCase):
         self.assertTrue(output_md.exists())
 
         payload = json.loads(output_json.read_text(encoding="utf-8"))
-        self.assertEqual(payload["summary"]["registered_source_documents"], 10)
+        self.assertEqual(payload["summary"]["registered_source_documents"], 20)
         self.assertEqual(payload["summary"]["status_counts"]["candidate"], 5)
+        self.assertEqual(payload["summary"]["status_counts"]["intake"], 10)
+        self.assertEqual(payload["summary"]["status_counts"]["review"], 3)
         self.assertEqual(payload["summary"]["replacement_review_items"], 1)
         self.assertEqual(payload["decision"]["runtime_governance_changed"], False)
         self.assertEqual(payload["decision"]["stricter_rules_enabled"], False)

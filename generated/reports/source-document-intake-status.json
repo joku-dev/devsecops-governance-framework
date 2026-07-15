@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T08:14:03Z",
+  "generated_at": "2026-07-15T09:56:05Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json",
@@ -12,39 +12,41 @@
     "stricter_rules_enabled": false
   },
   "summary": {
-    "registered_source_documents": 10,
+    "registered_source_documents": 20,
     "status_counts": {
       "candidate": 5,
       "draft": 2,
-      "intake": 3
+      "intake": 10,
+      "review": 3
     },
     "governance_domain_counts": {
-      "architecture": 6,
-      "devsecops": 4,
-      "directive": 1,
-      "platform": 1,
-      "policy": 1
+      "architecture": 12,
+      "devsecops": 8,
+      "directive": 2,
+      "platform": 2,
+      "policy": 2
     },
     "owner_counts": {
-      "architecture-owners": 6,
-      "devsecops-owners": 1,
-      "governance-owners": 2,
-      "platform-owners": 1
+      "architecture-owners": 12,
+      "devsecops-owners": 2,
+      "governance-owners": 4,
+      "platform-owners": 2
     },
     "review_state_counts": {
-      "accepted_intake": 3,
+      "accepted_intake": 10,
+      "active_review_in_progress": 3,
       "candidate_replacement_review_required": 1,
       "candidate_similarity_review_required": 4,
       "draft_source_of_truth_decision_required": 2
     },
     "attention_counts": {
-      "attention": 7,
-      "ok": 3
+      "attention": 10,
+      "ok": 10
     },
-    "open_review_items": 7,
+    "open_review_items": 10,
     "replacement_review_items": 1,
     "documents_with_operational_artifacts": 5,
-    "documents_without_operational_artifacts": 5
+    "documents_without_operational_artifacts": 15
   },
   "open_items": [
     {
@@ -102,6 +104,30 @@
       "owner": "architecture-owners",
       "review_state": "candidate_replacement_review_required",
       "next_action": "Review replacement decision before promoting the source or moving lineage."
+    },
+    {
+      "id": "DEVSECOPS-POL-REQ-001",
+      "title": "DevSecOps Policy Requirements Extract",
+      "status": "review",
+      "owner": "governance-owners",
+      "review_state": "active_review_in_progress",
+      "next_action": "Complete review and record the intake decision."
+    },
+    {
+      "id": "DEVSECOPS-DIR-REQ-001",
+      "title": "DevSecOps Directive Requirements Extract",
+      "status": "review",
+      "owner": "governance-owners",
+      "review_state": "active_review_in_progress",
+      "next_action": "Complete review and record the intake decision."
+    },
+    {
+      "id": "ARCH-SDD-REQ-001",
+      "title": "Integrated SDD Architecture Governance Requirements Extract",
+      "status": "review",
+      "owner": "architecture-owners",
+      "review_state": "active_review_in_progress",
+      "next_action": "Complete review and record the intake decision."
     }
   ],
   "replacement_review_items": [
@@ -428,6 +454,269 @@
           "recommendation": "Review as likely replacement before moving lineage or creating a new architecture baseline."
         }
       ]
+    },
+    {
+      "id": "DEVSECOPS-POL-REQ-001",
+      "title": "DevSecOps Policy Requirements Extract",
+      "status": "review",
+      "owner": "governance-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
+      "governance_domains": [
+        "policy",
+        "devsecops"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "active_review_in_progress",
+      "attention": "attention",
+      "next_action": "Complete review and record the intake decision.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "DEVSECOPS-DIR-REQ-001",
+      "title": "DevSecOps Directive Requirements Extract",
+      "status": "review",
+      "owner": "governance-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
+      "governance_domains": [
+        "directive",
+        "devsecops"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "active_review_in_progress",
+      "attention": "attention",
+      "next_action": "Complete review and record the intake decision.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "DSCB-STD-REQ-001",
+      "title": "DevSecOps Control Baseline Requirements Extract",
+      "status": "intake",
+      "owner": "devsecops-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
+      "governance_domains": [
+        "devsecops"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "PRA-STD-REQ-001",
+      "title": "Platform Reference Architecture Requirements Extract",
+      "status": "intake",
+      "owner": "platform-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
+      "governance_domains": [
+        "platform",
+        "devsecops"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-SDD-REQ-001",
+      "title": "Integrated SDD Architecture Governance Requirements Extract",
+      "status": "review",
+      "owner": "architecture-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "active_review_in_progress",
+      "attention": "attention",
+      "next_action": "Complete review and record the intake decision.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-TPL-REQ-001",
+      "title": "Architecture Templates and Checklists Requirements Extract",
+      "status": "intake",
+      "owner": "architecture-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-EA-REQ-001",
+      "title": "Enterprise Architecture Requirements Extract",
+      "status": "intake",
+      "owner": "architecture-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-SA-REQ-001",
+      "title": "Solution Architecture Requirements Extract",
+      "status": "intake",
+      "owner": "architecture-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-PA-REQ-001",
+      "title": "Product Architecture Requirements Extract",
+      "status": "intake",
+      "owner": "architecture-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-GOV-REQ-001",
+      "title": "Architecture Governance Framework Requirements Extract",
+      "status": "intake",
+      "owner": "architecture-owners",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-15",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [
+        "docs/governance/source-documents"
+      ],
+      "replacement_review_items": []
     }
   ],
   "process_notes": [

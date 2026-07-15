@@ -1,10 +1,10 @@
 # Architecture Source Replacement Assessment
 
-Generated: `2026-07-15T08:14:03Z`
+Generated: `2026-07-15T09:56:05Z`
 
 ## Summary
 
-- Architecture source documents: `6`
+- Architecture source documents: `12`
 - Active architecture sources: `1`
 - Candidate architecture sources: `5`
 - Comparisons: `5`

@@ -174,3 +174,136 @@ documents:
       notes: Public placeholder only; original source content is withheld from the public repository.
     derived_artifact_areas: []
     notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: DEVSECOPS-POL-REQ-001
+    title: DevSecOps Policy Requirements Extract
+    status: review
+    source_path: docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md
+    governance_domains:
+      - policy
+      - devsecops
+    owner: governance-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: DEVSECOPS-DIR-REQ-001
+    title: DevSecOps Directive Requirements Extract
+    status: review
+    source_path: docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md
+    governance_domains:
+      - directive
+      - devsecops
+    owner: governance-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: DSCB-STD-REQ-001
+    title: DevSecOps Control Baseline Requirements Extract
+    status: intake
+    source_path: docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md
+    governance_domains:
+      - devsecops
+    owner: devsecops-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: PRA-STD-REQ-001
+    title: Platform Reference Architecture Requirements Extract
+    status: intake
+    source_path: docs/governance/source-documents/PRA-STD-SRC-001.requirements.md
+    governance_domains:
+      - platform
+      - devsecops
+    owner: platform-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: ARCH-SDD-REQ-001
+    title: Integrated SDD Architecture Governance Requirements Extract
+    status: review
+    source_path: docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: ARCH-TPL-REQ-001
+    title: Architecture Templates and Checklists Requirements Extract
+    status: intake
+    source_path: docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: ARCH-EA-REQ-001
+    title: Enterprise Architecture Requirements Extract
+    status: intake
+    source_path: docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: ARCH-SA-REQ-001
+    title: Solution Architecture Requirements Extract
+    status: intake
+    source_path: docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: ARCH-PA-REQ-001
+    title: Product Architecture Requirements Extract
+    status: intake
+    source_path: docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: ARCH-GOV-REQ-001
+    title: Architecture Governance Framework Requirements Extract
+    status: intake
+    source_path: docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: requirements-only-sanitized
+    intake_date: "2026-07-15"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/source-documents
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.

@@ -1,6 +1,6 @@
 # Source Document Intake Review Briefs
 
-Generated: `2026-07-15T08:14:02Z`
+Generated: `2026-07-15T09:56:04Z`
 
 ## Decision State
 
@@ -11,13 +11,14 @@ Generated: `2026-07-15T08:14:02Z`
 
 ## Summary
 
-- Review briefs: `7`
-- Human decisions required: `7`
+- Review briefs: `10`
+- Human decisions required: `10`
 
 ## Focus Counts
 
 | Focus | Count |
 |---|---:|
+| `lineage maintenance` | `3` |
 | `replacement decision` | `1` |
 | `similarity and source classification` | `4` |
 | `source-of-truth and approval path` | `2` |
@@ -342,6 +343,139 @@ Decision options:
 - `replacement_confirmed`: Accept this source as replacing the referenced source after human review.
 - `related_source_keep_candidate`: Keep the source registered as related material, but do not replace the active source.
 - `duplicate_or_not_relevant_retire`: Close the source for future derivation while preserving history.
+
+Decision template:
+
+- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Decision owner: `architecture-owners`
+- Decision date: `<YYYY-MM-DD>`
+- Derived artifacts allowed: `<yes/no>`
+- Runtime governance change: `<yes/no>`
+- Release decision: `no_release_by_default`
+
+Guardrails:
+
+- The agent must not promote the source document.
+- The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.
+- A human-owned change request must record the final decision.
+
+### `SDI-REVIEW-DEVSECOPS-POL-REQ-001`
+
+- Prepared by agent: `source-document-intake`
+- Agent scope: `decision_support_only`
+- Autonomous decision: `false`
+- Decision authority: `governance-owners`
+- Review focus: `lineage maintenance`
+- Source ID: `DEVSECOPS-POL-REQ-001`
+- Title: DevSecOps Policy Requirements Extract
+- Status: `review`
+- Source path: `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md`
+
+Agent observations:
+
+- Current status is review.
+- Review state is active_review_in_progress.
+- Operational artifact count is 0.
+- Impact release consideration is no_release_by_default.
+
+Required inputs:
+
+- source document owner decision
+- change request with documented rationale
+- impact classification: documentation-only, model change, policy change, schema change, or release change
+
+Decision options:
+
+- `maintain_current_state`: No decision required beyond normal lineage maintenance.
+
+Decision template:
+
+- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Decision owner: `governance-owners`
+- Decision date: `<YYYY-MM-DD>`
+- Derived artifacts allowed: `<yes/no>`
+- Runtime governance change: `<yes/no>`
+- Release decision: `no_release_by_default`
+
+Guardrails:
+
+- The agent must not promote the source document.
+- The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.
+- A human-owned change request must record the final decision.
+
+### `SDI-REVIEW-DEVSECOPS-DIR-REQ-001`
+
+- Prepared by agent: `source-document-intake`
+- Agent scope: `decision_support_only`
+- Autonomous decision: `false`
+- Decision authority: `governance-owners`
+- Review focus: `lineage maintenance`
+- Source ID: `DEVSECOPS-DIR-REQ-001`
+- Title: DevSecOps Directive Requirements Extract
+- Status: `review`
+- Source path: `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md`
+
+Agent observations:
+
+- Current status is review.
+- Review state is active_review_in_progress.
+- Operational artifact count is 0.
+- Impact release consideration is no_release_by_default.
+
+Required inputs:
+
+- source document owner decision
+- change request with documented rationale
+- impact classification: documentation-only, model change, policy change, schema change, or release change
+
+Decision options:
+
+- `maintain_current_state`: No decision required beyond normal lineage maintenance.
+
+Decision template:
+
+- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Decision owner: `governance-owners`
+- Decision date: `<YYYY-MM-DD>`
+- Derived artifacts allowed: `<yes/no>`
+- Runtime governance change: `<yes/no>`
+- Release decision: `no_release_by_default`
+
+Guardrails:
+
+- The agent must not promote the source document.
+- The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.
+- A human-owned change request must record the final decision.
+
+### `SDI-REVIEW-ARCH-SDD-REQ-001`
+
+- Prepared by agent: `source-document-intake`
+- Agent scope: `decision_support_only`
+- Autonomous decision: `false`
+- Decision authority: `architecture-owners`
+- Review focus: `lineage maintenance`
+- Source ID: `ARCH-SDD-REQ-001`
+- Title: Integrated SDD Architecture Governance Requirements Extract
+- Status: `review`
+- Source path: `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md`
+
+Agent observations:
+
+- Current status is review.
+- Review state is active_review_in_progress.
+- Operational artifact count is 0.
+- Impact release consideration is no_release_by_default.
+
+Required inputs:
+
+- source document owner decision
+- change request with documented rationale
+- impact classification: documentation-only, model change, policy change, schema change, or release change
+- architecture owner or enterprise architect review
+
+Decision options:
+
+- `maintain_current_state`: No decision required beyond normal lineage maintenance.
 
 Decision template:
 

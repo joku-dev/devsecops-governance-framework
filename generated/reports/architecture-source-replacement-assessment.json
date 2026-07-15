@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T08:14:03Z",
+  "generated_at": "2026-07-15T09:56:05Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml"
   },
   "summary": {
-    "architecture_source_documents": 6,
+    "architecture_source_documents": 12,
     "active_architecture_sources": 1,
     "candidate_architecture_sources": 5,
     "comparisons": 5,
