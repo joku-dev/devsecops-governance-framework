@@ -13,6 +13,11 @@ on:
       - "status/**"
       - ".github/workflows/publish-docs.yml"
   workflow_dispatch:
+    inputs:
+      publish_private_pages:
+        description: "Deploy Pages even when the repository is private"
+        required: false
+        default: "false"
 
 permissions:
   contents: read
@@ -25,6 +30,7 @@ concurrency:
 
 jobs:
   publish-docs:
+    if: ${{ !github.event.repository.private || inputs.publish_private_pages == 'true' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
