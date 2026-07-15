@@ -114,6 +114,7 @@ nav:
       - Overview: releases/index.md
       - Release And Migration Model: releases/release-and-migration-model.md
       - Release Publication Checklist: releases/release-publication-checklist.md
+      - Public Adoption v0.1.0: releases/v0.1.0-public-adoption.md
       - L1 Baseline v1.0.0: releases/l1-baseline-v1.0.0.md
       - L1 Baseline v1.0.0 Release Statement: releases/l1-baseline-v1.0.0-release-statement.md
       - L1 Baseline v1.1.0: releases/l1-baseline-v1.1.0.md
