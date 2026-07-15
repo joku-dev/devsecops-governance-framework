@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document records the successful end-to-end validation of `devsecops-governance-as-code` against the application repository `ha-CPsWMS`.
+This document records the successful end-to-end validation of the repository then named `devsecops-governance-as-code` against the application repository `ha-CPsWMS`. The current repository identity is `devsecops-governance-framework`.
 
 ## Scope
 
@@ -18,7 +18,7 @@ The validation covers:
 
 Repository:
 
-- `joku-dev/devsecops-governance-as-code`
+- `joku-dev/devsecops-governance-as-code` (repository identity at the time of this validation)
 
 Confirmed status:
 

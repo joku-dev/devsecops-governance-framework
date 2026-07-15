@@ -180,7 +180,7 @@ If the worktree contains unrelated local changes, leave them alone. Work with re
 Open current viewer locally:
 
 ```bash
-cd /workspace/devsecops-governance-as-code/generated/viewer
+cd /workspace/devsecops-governance-framework/generated/viewer
 python3 -m http.server 8000
 ```
 

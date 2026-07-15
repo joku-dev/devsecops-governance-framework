@@ -321,7 +321,7 @@ mkdocs serve
 Example commands:
 
 ```bash
-cd /workspace/devsecops-governance-as-code
+cd /workspace/devsecops-governance-framework
 python3 -m venv .venv-docs
 . .venv-docs/bin/activate
 pip install -r requirements-docs.txt

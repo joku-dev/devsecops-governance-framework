@@ -16,7 +16,7 @@ jobs:
       - name: Check out governance repository
         uses: actions/checkout@v4
         with:
-          repository: your-org/devsecops-governance-as-code
+          repository: your-org/devsecops-governance-framework
           path: governance
 
       - name: Set up Python

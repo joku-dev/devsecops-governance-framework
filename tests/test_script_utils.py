@@ -13,7 +13,7 @@ from lib.json_io import load_json, write_json  # noqa: E402
 
 class ScriptUtilityTests(unittest.TestCase):
     def test_slugify_repository_preserves_readable_repository_identity(self):
-        self.assertEqual(slugify_repository("joku-dev/devsecops-governance-as-code"), "joku-dev__devsecops-governance-as-code")
+        self.assertEqual(slugify_repository("joku-dev/devsecops-governance-framework"), "joku-dev__devsecops-governance-framework")
 
     def test_sanitize_timestamp_removes_filename_sensitive_characters(self):
         self.assertEqual(sanitize_timestamp("2026-07-04T09:10:11+00:00"), "2026-07-04T09-10-11-00-00")

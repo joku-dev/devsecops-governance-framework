@@ -84,7 +84,7 @@ def main() -> int:
         "repository_id": args.repository_id,
         "baseline_level": args.baseline_level,
         "governance_baseline_ref": args.governance_baseline_ref,
-        "governance_repository": "joku-dev/devsecops-governance-as-code",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
         "result_type": "governance-baseline-run",
         "generated_at": generated_at,
         "pipeline": {

@@ -8,7 +8,7 @@ Der Referenzpfad besteht aus:
 
 | Bestandteil | Wert |
 |---|---|
-| Governance-Repo | `joku-dev/devsecops-governance-as-code` |
+| Governance-Repo | `joku-dev/devsecops-governance-framework` |
 | Applikationsrepo | `joku-dev/ha-CPsWMS` |
 | CI-Plattform | GitHub Actions |
 | DevSecOps Baseline | `l1-baseline-v1.1.3` |
@@ -117,7 +117,7 @@ Erwartung:
 
 - Neue JSON-Dateien verwenden das normalisierte Evidence-Format.
 - `repository_id` ist `joku-dev/ha-CPsWMS`.
-- `governance_repository` ist `joku-dev/devsecops-governance-as-code`.
+- `governance_repository` ist `joku-dev/devsecops-governance-framework`.
 - DevSecOps-Ergebnisse referenzieren die erwartete L1-Baseline.
 - Architektur-Ergebnisse referenzieren `architecture-baseline-l1-v0.1.0`.
 

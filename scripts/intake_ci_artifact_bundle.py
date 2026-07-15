@@ -138,7 +138,7 @@ def intake_devsecops(bundle_root: Path, args: object) -> Path:
         "repository_id": repo_id,
         "baseline_level": args.baseline_level,
         "governance_baseline_ref": args.governance_baseline_ref,
-        "governance_repository": "joku-dev/devsecops-governance-as-code",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
         "result_type": "governance-baseline-run",
         "generated_at": created_at,
         "pipeline": {
@@ -186,7 +186,7 @@ def intake_architecture(bundle_root: Path, args: object) -> Path:
         "schema_version": "1.0.0",
         "repository_id": repo_id,
         "architecture_baseline_ref": args.architecture_baseline_ref,
-        "governance_repository": "joku-dev/devsecops-governance-as-code",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
         "result_type": "architecture-runtime-governance-run",
         "generated_at": created_at,
         "pipeline": {

@@ -152,7 +152,7 @@ class RepoValidationTests(unittest.TestCase):
                         "jobs:",
                         "  governance:",
                         "    steps:",
-                        "      - run: git clone https://github.com/example/devsecops-governance-as-code.git governance",
+                        "      - run: git clone https://github.com/example/devsecops-governance-framework.git governance",
                         "      - run: python3 governance/scripts/validate_governance_repo.py",
                         "      - run: python3 -m unittest discover -s governance/tests",
                         "      - run: opa check governance/policies/opa",
@@ -174,6 +174,7 @@ class RepoValidationTests(unittest.TestCase):
             payload = json.loads(result_path.read_text(encoding="utf-8"))
             self.assertEqual(payload["status"], "pass")
             self.assertEqual(len(payload["checks"]), 3)
+            self.assertIn("devsecops-governance-framework", payload["checks"][1]["details"])
 
     def test_repository_onboarding_readiness_report_is_generated(self):
         with tempfile.TemporaryDirectory() as tempdir:
@@ -249,6 +250,7 @@ class RepoValidationTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
             payload = json.loads(output.read_text(encoding="utf-8"))
+            self.assertEqual(payload["governance_repo"], "devsecops-governance-framework")
             self.assertIn("execution", payload)
             self.assertIn("policy_evaluations", payload)
             self.assertIn("artifacts", payload)
