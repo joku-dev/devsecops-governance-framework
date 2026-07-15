@@ -151,7 +151,7 @@ def write_snapshot(
         "schema_version": "1.0.0",
         "repository_id": repository_id,
         "architecture_baseline_ref": architecture_baseline_ref,
-        "governance_repository": "joku-dev/devsecops-governance-as-code",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
         "result_type": "architecture-runtime-governance-run",
         "generated_at": generated_at,
         "pipeline": {

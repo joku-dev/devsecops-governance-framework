@@ -22,7 +22,7 @@ The check is currently used as **report-only governance**. It makes architecture
 | Latest mainline commit in viewer | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` |
 | Release ID | `ha-CPsWMS-demo` |
 | Detected services | `5` |
-| Governance repository | `/workspace/devsecops-governance-as-code` |
+| Governance repository | `/workspace/devsecops-governance-framework` |
 
 ## Source Files
 
@@ -483,7 +483,7 @@ These limitations do not fail the current demo policy because approved evidence 
 Regenerate the architecture input:
 
 ```bash
-cd /workspace/devsecops-governance-as-code
+cd /workspace/devsecops-governance-framework
 python3 scripts/collect_architecture_release_input.py \
   --repo /workspace/ha-CPsWMS \
   --output generated/demo/ha-cpswms-architecture-release-input.json \

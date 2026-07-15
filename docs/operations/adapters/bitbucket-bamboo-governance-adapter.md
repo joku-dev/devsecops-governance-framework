@@ -77,7 +77,7 @@ The reference plan uses Bamboo variables so each application repository can adop
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `governance.repository` | `https://github.com/joku-dev/devsecops-governance-as-code.git` | Central governance repository URL. Replace with the internal Bitbucket mirror when available. |
+| `governance.repository` | `https://github.com/joku-dev/devsecops-governance-framework.git` | Central governance repository URL. Replace with the internal Bitbucket mirror when available. |
 | `governance.ref` | `l1-baseline-v1.1.3` | Pinned governance baseline or commit SHA. |
 | `governance.mode` | `report-only` | `report-only`, `block-on-error` or `waiver-required`. |
 | `governance.max.allowed.severity` | `high` | Maximum vulnerability severity accepted by the starter gate. |

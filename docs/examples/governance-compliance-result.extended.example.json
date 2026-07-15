@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "governance_repo": "devsecops-governance-as-code",
+  "governance_repo": "devsecops-governance-framework",
   "target_repo": "sample-app",
   "timestamp": "2026-06-26T18:45:00Z",
   "status": "pass",
@@ -15,7 +15,7 @@
       "check_id": "governance_reference_present",
       "description": "The target repository references the governance repository or governance templates.",
       "status": "pass",
-      "details": "Found devsecops-governance-as-code reference in workflow file."
+      "details": "Found devsecops-governance-framework reference in workflow file."
     },
     {
       "check_id": "governance_commands_present",

@@ -22,7 +22,7 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
         run = {
             "referenced_workflows": [
                 {
-                    "path": "joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3",
+                    "path": "joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3",
                     "ref": "refs/tags/l1-baseline-v1.1.3",
                 }
             ]
@@ -136,6 +136,7 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                     notes="test",
                 )
                 data = json.loads(output_path.read_text(encoding="utf-8"))
+                self.assertEqual(data["governance_repository"], "joku-dev/devsecops-governance-framework")
                 self.assertEqual(data["downloaded_artifact"]["downloaded"], True)
                 self.assertEqual(data["downloaded_artifact"]["artifact_size_bytes"], 5438)
                 self.assertEqual(data["downloaded_artifact"]["control_evaluation_report_sha256"], report_sha256)

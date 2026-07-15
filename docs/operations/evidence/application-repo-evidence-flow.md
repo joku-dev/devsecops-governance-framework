@@ -77,7 +77,7 @@ Der zentrale Aufruf sieht konzeptionell so aus:
 devsecops-baseline:
   name: Central DevSecOps Baseline
   needs: prepare-devsecops-evidence
-  uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@<pinned-ref>
+  uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-reusable.yml@<pinned-ref>
   with:
     level: L1
     max_allowed_severity: high
@@ -706,7 +706,7 @@ Beispiel:
   "repository_id": "joku-dev/ha-CPsWMS",
   "baseline_level": "L1",
   "governance_baseline_ref": "l1-baseline-v1.1.3",
-  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "governance_repository": "joku-dev/devsecops-governance-framework",
   "result_type": "governance-baseline-run",
   "pipeline": {
     "pipeline_name": "DevSecOps Baseline",

@@ -85,8 +85,17 @@ Example upgrade:
 Typical consumer action:
 
 ```yaml
-uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-l1-v1.1.2.yml@main
+uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.2.yml@main
 ```
+
+## Repository Identity Migration
+
+Current consumer instructions use `joku-dev/devsecops-governance-framework`.
+Released packages, source snapshots, historical results, and dated reference runs
+may still contain the former identity `joku-dev/devsecops-governance-as-code` as
+release provenance. Do not rewrite those controlled artifacts in place. The
+integration scanner recognizes both identities so older pinned consumers remain
+detectable during migration; new integrations should use only the current name.
 
 ## Required Release Documentation
 

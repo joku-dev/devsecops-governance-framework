@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document proposes a professional target structure for `devsecops-governance-as-code`.
+This document proposes a professional target structure for `devsecops-governance-framework`.
 
 The goal is to make the repository easier to understand, easier to operate, and better suited for:
 
@@ -532,7 +532,7 @@ For example:
 ```json
 {
   "release_id": "v0.1",
-  "baseline_repo": "devsecops-governance-as-code",
+  "baseline_repo": "devsecops-governance-framework",
   "commit": "db69905",
   "status": "pilot",
   "included_levels": ["L1", "L2", "L3", "GOV"],

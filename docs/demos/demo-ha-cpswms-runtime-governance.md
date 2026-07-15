@@ -289,7 +289,7 @@ Key interpretation:
 Generate architecture release input:
 
 ```bash
-cd /workspace/devsecops-governance-as-code
+cd /workspace/devsecops-governance-framework
 python3 scripts/collect_architecture_release_input.py \
   --repo /workspace/ha-CPsWMS \
   --output generated/demo/ha-cpswms-architecture-release-input.json \

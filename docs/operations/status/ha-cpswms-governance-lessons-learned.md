@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document records the practical lessons learned from integrating `joku-dev/ha-CPsWMS` with the central repository `joku-dev/devsecops-governance-as-code`.
+This document records the practical lessons learned from integrating `joku-dev/ha-CPsWMS` with the central repository then named `joku-dev/devsecops-governance-as-code`. The current repository identity is `joku-dev/devsecops-governance-framework`.
 
 It complements the pure status documentation by explaining what worked, what failed first, what had to be corrected, and what other repositories should copy from this rollout.
 

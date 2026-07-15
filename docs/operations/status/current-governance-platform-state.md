@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document explains the current overall state of the `devsecops-governance-as-code` repository after the latest governance, release, publishing, downstream integration, architecture runtime governance, and result intake work.
+This document explains the current overall state of the `devsecops-governance-framework` repository after the latest governance, release, publishing, downstream integration, architecture runtime governance, and result intake work.
 
 It is intended as a single place where readers can understand:
 

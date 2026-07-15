@@ -20,7 +20,7 @@ That means:
 Open a terminal and go into the repository:
 
 ```bash
-cd /workspace/devsecops-governance-as-code
+cd /workspace/devsecops-governance-framework
 ```
 
 Useful tools:

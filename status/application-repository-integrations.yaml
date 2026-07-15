@@ -34,7 +34,7 @@ integrations:
 
 summary:
   operational_state: L1 operational
-  central_baseline_repository: joku-dev/devsecops-governance-as-code
+  central_baseline_repository: joku-dev/devsecops-governance-framework
   rollout_phase: pilot validated and released; factory report-only onboarding active
   integrated_repositories: 2
   successful_baseline_runs: 10

@@ -10,7 +10,7 @@ governance_check:
     - chmod +x /usr/local/bin/opa
     - python -m pip install --upgrade pip
     - python -m pip install pyyaml jsonschema
-    - git clone https://github.com/your-org/devsecops-governance-as-code.git governance
+    - git clone https://github.com/your-org/devsecops-governance-framework.git governance
   script:
     - cd governance
     - python3 scripts/validate_governance_repo.py

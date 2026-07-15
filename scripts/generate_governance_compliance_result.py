@@ -37,6 +37,13 @@ def command_status(cmd: list[str]) -> tuple[str, str]:
     return status, details
 
 
+def display_path(path: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def evaluate_policy(input_path: Path, query: str) -> dict:
     result = run(
         [
@@ -117,10 +124,10 @@ def main() -> int:
         path = ROOT / relpath
         if artifact_id == "control_evaluation_report_json":
             path = control_report_json_path
-            relpath = str(control_report_json_path)
+            relpath = display_path(control_report_json_path)
         elif artifact_id == "control_evaluation_report_markdown":
             path = control_report_markdown_path
-            relpath = str(control_report_markdown_path)
+            relpath = display_path(control_report_markdown_path)
         artifacts.append(
             {
                 "artifact_id": artifact_id,

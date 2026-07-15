@@ -224,7 +224,7 @@ on:
 
 jobs:
   architecture-governance:
-    uses: joku-dev/devsecops-governance-as-code/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
+    uses: joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
     with:
       release_id: ${{ github.sha }}
       solution_baseline: ha-CPsWMS-demo-baseline
@@ -291,7 +291,7 @@ Der Workflow checkt zusätzlich das Governance-Repository mit der freigegebenen 
 - name: Checkout governance repository
   uses: actions/checkout@v4
   with:
-    repository: joku-dev/devsecops-governance-as-code
+    repository: joku-dev/devsecops-governance-framework
     ref: architecture-baseline-l1-v0.1.0
     path: governance
 ```
@@ -693,7 +693,7 @@ Beispielhafte zentrale Statusstruktur:
   "schema_version": "1.0.0",
   "repository_id": "joku-dev/ha-CPsWMS",
   "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
-  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "governance_repository": "joku-dev/devsecops-governance-framework",
   "result_type": "architecture-runtime-governance-run",
   "pipeline": {
     "pipeline_name": "Architecture Runtime Governance",

@@ -62,7 +62,10 @@ def main() -> int:
     ci_files = list(iter_ci_files(target_repo))
     ci_texts = load_texts(ci_files)
 
+    # Keep the former repository name as a compatibility signal for consumers
+    # that still pin an older released baseline.
     governance_reference_patterns = [
+        "devsecops-governance-framework",
         "devsecops-governance-as-code",
         "validate_governance_repo.py",
         "check_repo_governance_integration.py",
@@ -74,6 +77,8 @@ def main() -> int:
         "opa check",
     ]
     governance_workflow_patterns = [
+        "uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-reusable.yml",
+        "uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-reusable.yml@",
         "uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml",
         "uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@",
         "application_evidence_artifact_name:",

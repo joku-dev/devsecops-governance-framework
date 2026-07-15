@@ -2,7 +2,7 @@
 
 ## Summary
 
-The central repository `devsecops-governance-as-code` is now operationally usable as an executable DevSecOps governance baseline.
+The central repository `devsecops-governance-framework` is now operationally usable as an executable DevSecOps governance baseline.
 
 The application repository `ha-CPsWMS` has been successfully integrated with this central baseline.
 

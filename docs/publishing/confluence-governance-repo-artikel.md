@@ -2,7 +2,7 @@
 
 ## Kurzfassung
 
-Das Repository `devsecops-governance-as-code` ist der zentrale Ort, an dem DevSecOps-Governance nicht nur als Dokumentation, sondern als versionierbare, prüfbare und teilweise automatisierbare Steuerungslogik gepflegt wird.
+Das Repository `devsecops-governance-framework` ist der zentrale Ort, an dem DevSecOps-Governance nicht nur als Dokumentation, sondern als versionierbare, prüfbare und teilweise automatisierbare Steuerungslogik gepflegt wird.
 
 Es verbindet klassische Governance-Artefakte wie Policy, Directive, Standards und Architekturvorgaben mit maschinenlesbaren Modellen, Policy-as-Code-Regeln, Evidenzanforderungen und wiederverwendbaren CI/CD-Prüfungen.
 

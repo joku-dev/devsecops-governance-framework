@@ -31,13 +31,13 @@ For the demo, the important point is traceability:
 
 | Repository | Role | Demo branch |
 |---|---|---|
-| `joku-dev/devsecops-governance-as-code` | Governance source, models, policies, baselines, intake and viewer | `main` |
+| `joku-dev/devsecops-governance-framework` | Governance source, models, policies, baselines, intake and viewer | `main` |
 | `joku-dev/ha-CPsWMS` | Application evidence and downstream GitHub Actions workflows | `main` |
 
 Local paths used during development:
 
 ```text
-/workspace/devsecops-governance-as-code
+/workspace/devsecops-governance-framework
 /workspace/ha-CPsWMS
 ```
 
@@ -151,7 +151,7 @@ gh auth status
 The local viewer can be served from the generated viewer directory:
 
 ```bash
-cd /workspace/devsecops-governance-as-code/generated/viewer
+cd /workspace/devsecops-governance-framework/generated/viewer
 python3 -m http.server 8000
 ```
 
@@ -166,7 +166,7 @@ http://localhost:8000/status-viewer.html
 Run this in the governance repository:
 
 ```bash
-cd /workspace/devsecops-governance-as-code
+cd /workspace/devsecops-governance-framework
 python3 scripts/validate_runtime_governance.py
 python3 scripts/validate_governance_repo.py
 python3 -m unittest discover -s tests
@@ -553,7 +553,7 @@ Interpretation:
 Regenerate it:
 
 ```bash
-cd /workspace/devsecops-governance-as-code
+cd /workspace/devsecops-governance-framework
 python3 scripts/generate_status_viewer.py
 ```
 

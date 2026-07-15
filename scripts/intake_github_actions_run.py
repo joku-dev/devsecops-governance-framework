@@ -229,7 +229,7 @@ def write_snapshot(
         "repository_id": repository_id,
         "baseline_level": baseline_level,
         "governance_baseline_ref": governance_baseline_ref,
-        "governance_repository": "joku-dev/devsecops-governance-as-code",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
         "result_type": "governance-baseline-run",
         "generated_at": generated_at,
         "pipeline": {

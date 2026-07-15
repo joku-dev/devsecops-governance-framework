@@ -1,27 +1,27 @@
 {
   "schema_version": "1.0.0",
-  "governance_repo": "devsecops-governance-as-code",
-  "target_repo": "devsecops-governance-as-code",
-  "timestamp": "2026-06-27T10:26:01Z",
+  "governance_repo": "devsecops-governance-framework",
+  "target_repo": "devsecops-governance-framework",
+  "timestamp": "2026-07-15T12:51:51Z",
   "status": "pass",
   "checks": [
     {
       "check_id": "governance_ci_file_present",
       "description": "A CI pipeline file is present in the target repository.",
       "status": "pass",
-      "details": "Found CI files: .github/workflows/devsecops-baseline-l1-v1.0.0.yml, .github/workflows/devsecops-baseline-reusable.yml, .github/workflows/static.yml, .github/workflows/governance-ci.yml, .github/workflows/publish-docs.yml"
+      "details": "Found CI files: .github/workflows/intake-architecture-result.yml, .github/workflows/devsecops-baseline-l1-v1.0.0.yml, .github/workflows/intake-governance-result.yml, .github/workflows/devsecops-baseline-reusable.yml, .github/workflows/devsecops-baseline-l1-v1.1.3.yml, .github/workflows/architecture-baseline-l1-v0.1.0.yml, .github/workflows/devsecops-baseline-l1-v1.1.2.yml, .github/workflows/devsecops-baseline-l1-v1.1.0.yml, .github/workflows/governance-ci.yml, .github/workflows/devsecops-baseline-l1-v1.1.1.yml, .github/workflows/publish-docs.yml"
     },
     {
       "check_id": "governance_reference_present",
       "description": "The target repository references the governance repository or governance templates.",
       "status": "pass",
-      "details": ".github/workflows/devsecops-baseline-l1-v1.0.0.yml -> devsecops-governance-as-code; .github/workflows/governance-ci.yml -> validate_governance_repo.py"
+      "details": ".github/workflows/intake-architecture-result.yml -> validate_governance_repo.py; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> devsecops-governance-as-code; .github/workflows/intake-governance-result.yml -> validate_governance_repo.py; .github/workflows/devsecops-baseline-l1-v1.1.3.yml -> devsecops-governance-framework; .github/workflows/architecture-baseline-l1-v0.1.0.yml -> devsecops-governance-framework; .github/workflows/devsecops-baseline-l1-v1.1.2.yml -> devsecops-governance-as-code; .github/workflows/devsecops-baseline-l1-v1.1.0.yml -> devsecops-governance-as-code; .github/workflows/governance-ci.yml -> validate_governance_repo.py; .github/workflows/devsecops-baseline-l1-v1.1.1.yml -> devsecops-governance-as-code"
     },
     {
       "check_id": "governance_commands_present",
       "description": "The target repository CI includes expected governance validation commands or a reusable governance workflow integration.",
       "status": "pass",
-      "details": ".github/workflows/governance-ci.yml -> validate_governance_repo.py; .github/workflows/governance-ci.yml -> unittest discover -s tests; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> application_evidence_artifact_name:; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> artifact_path:; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> sbom_path:; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> vulnerability_scan_path:; .github/workflows/devsecops-baseline-reusable.yml -> application_evidence_artifact_name:; .github/workflows/devsecops-baseline-reusable.yml -> artifact_path:; .github/workflows/devsecops-baseline-reusable.yml -> sbom_path:; .github/workflows/devsecops-baseline-reusable.yml -> vulnerability_scan_path:"
+      "details": ".github/workflows/intake-architecture-result.yml -> validate_governance_repo.py; .github/workflows/intake-architecture-result.yml -> unittest discover -s tests; .github/workflows/intake-governance-result.yml -> validate_governance_repo.py; .github/workflows/intake-governance-result.yml -> unittest discover -s tests; .github/workflows/governance-ci.yml -> validate_governance_repo.py; .github/workflows/governance-ci.yml -> unittest discover -s tests; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> application_evidence_artifact_name:; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> artifact_path:; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> sbom_path:; .github/workflows/devsecops-baseline-l1-v1.0.0.yml -> vulnerability_scan_path:; .github/workflows/devsecops-baseline-reusable.yml -> application_evidence_artifact_name:; .github/workflows/devsecops-baseline-reusable.yml -> artifact_path:; .github/workflows/devsecops-baseline-reusable.yml -> sbom_path:; .github/workflows/devsecops-baseline-reusable.yml -> vulnerability_scan_path:; .github/workflows/devsecops-baseline-l1-v1.1.3.yml -> uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-reusable.yml; .github/workflows/devsecops-baseline-l1-v1.1.3.yml -> uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-reusable.yml@; .github/workflows/devsecops-baseline-l1-v1.1.3.yml -> application_evidence_artifact_name:; .github/workflows/devsecops-baseline-l1-v1.1.3.yml -> artifact_path:; .github/workflows/devsecops-baseline-l1-v1.1.3.yml -> sbom_path:; .github/workflows/devsecops-baseline-l1-v1.1.3.yml -> vulnerability_scan_path:; .github/workflows/devsecops-baseline-l1-v1.1.2.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml; .github/workflows/devsecops-baseline-l1-v1.1.2.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@; .github/workflows/devsecops-baseline-l1-v1.1.2.yml -> application_evidence_artifact_name:; .github/workflows/devsecops-baseline-l1-v1.1.2.yml -> artifact_path:; .github/workflows/devsecops-baseline-l1-v1.1.2.yml -> sbom_path:; .github/workflows/devsecops-baseline-l1-v1.1.2.yml -> vulnerability_scan_path:; .github/workflows/devsecops-baseline-l1-v1.1.0.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml; .github/workflows/devsecops-baseline-l1-v1.1.0.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@; .github/workflows/devsecops-baseline-l1-v1.1.0.yml -> application_evidence_artifact_name:; .github/workflows/devsecops-baseline-l1-v1.1.0.yml -> artifact_path:; .github/workflows/devsecops-baseline-l1-v1.1.0.yml -> sbom_path:; .github/workflows/devsecops-baseline-l1-v1.1.0.yml -> vulnerability_scan_path:; .github/workflows/devsecops-baseline-l1-v1.1.1.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml; .github/workflows/devsecops-baseline-l1-v1.1.1.yml -> uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@; .github/workflows/devsecops-baseline-l1-v1.1.1.yml -> application_evidence_artifact_name:; .github/workflows/devsecops-baseline-l1-v1.1.1.yml -> artifact_path:; .github/workflows/devsecops-baseline-l1-v1.1.1.yml -> sbom_path:; .github/workflows/devsecops-baseline-l1-v1.1.1.yml -> vulnerability_scan_path:"
     }
   ],
   "execution": {
@@ -95,6 +95,12 @@
     "input_file": "demo/inputs/release-candidate-green.json",
     "required_platform_level": "PRA-Level 2",
     "release_candidate": true,
+    "run_context": {
+      "event": "push",
+      "purpose": "release",
+      "release_context": true,
+      "source": "demo"
+    },
     "policy_results": {
       "branch_protection": {
         "status": "pass",
@@ -1244,12 +1250,12 @@
     },
     {
       "artifact_id": "control_evaluation_report_json",
-      "path": "/workspace/devsecops-governance-as-code/generated/control-evaluation-report.json",
+      "path": "generated/control-evaluation-report.json",
       "status": "present"
     },
     {
       "artifact_id": "control_evaluation_report_markdown",
-      "path": "/workspace/devsecops-governance-as-code/generated/control-evaluation-report.md",
+      "path": "generated/control-evaluation-report.md",
       "status": "present"
     }
   ]
