@@ -174,4 +174,4 @@ Pull requests should normally run `report-only` first. After evidence is stable 
 
 ## Working Reference
 
-The `joku-dev/ha-CPsWMS` repository is the current working reference consumer. Its governance workflows demonstrate the public baseline consumption pattern.
+The `joku-dev/governance-framework-demo-consumer` repository is the neutral public reference consumer. Its governance workflows demonstrate the public baseline consumption pattern.

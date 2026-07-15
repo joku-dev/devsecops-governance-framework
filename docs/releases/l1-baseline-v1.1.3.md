@@ -27,7 +27,7 @@ This prevents release-only controls from being reported as failed when a workflo
 Downstream repositories should consume:
 
 ```yaml
-uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
+uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
 ```
 
 ## Migration Notes

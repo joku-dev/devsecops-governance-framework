@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    GOVERNANCE_REPOSITORY = 'https://github.com/joku-dev/devsecops-governance-as-code.git'
+    GOVERNANCE_REPOSITORY = 'https://github.com/joku-dev/devsecops-governance-framework.git'
     GOVERNANCE_REF = 'architecture-baseline-l1-v0.1.0'
     SOLUTION_BASELINE = 'demo-solution-baseline'
     FAIL_ON_FINDINGS = 'false'

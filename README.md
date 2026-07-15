@@ -1,10 +1,10 @@
 # DevSecOps Governance Framework
 
-This repository is the central governance framework workspace for DevSecOps, governance-as-code, architecture runtime governance, machine-readable evidence, released baselines, and CI/CD platform integration.
+This public repository provides reusable DevSecOps and architecture governance baselines that application repositories can consume from CI/CD without copying governance logic into every project.
 
-It started with the DevSecOps Control Baseline and DevSecOps Platform Reference Architecture. It now also covers architecture governance, runtime readiness, downstream application evidence, result intake, status reporting, and CI/CD adapter patterns for GitHub Actions, Bamboo/Bitbucket, Jenkins, and GitLab CI.
+It combines governance-as-code, policy-as-code, machine-readable evidence, released baselines, runtime architecture governance, onboarding guidance, and CI/CD adapter patterns for GitHub Actions, Bamboo/Bitbucket, Jenkins, and GitLab CI.
 
-The repository also models the governance stack above those standards: a `Policy` defines mandatory intent, a `Directive` defines binding operational execution, and the Standards define the detailed controls and platform expectations.
+The repository models a governance stack where a `Policy` defines mandatory intent, a `Directive` defines binding operational execution, and structured baseline artifacts define detailed controls, platform expectations, evidence contracts, and executable checks.
 
 ## Start Here
 
@@ -16,6 +16,12 @@ The repository also models the governance stack above those standards: a `Policy
 | Inspect the validated neutral consumer | `docs/onboarding/validated-demo-consumer.md` |
 | Review the current public release | `docs/releases/v0.1.0-public-adoption.md` |
 | Open the published documentation | `https://joku-dev.github.io/devsecops-governance-framework/` |
+
+## Use In Three Steps
+
+1. Copy the workflows from `adoption-package/workflows/` into an application repository.
+2. Keep the first runs in `report-only` and review the generated artifacts.
+3. Replace placeholder evidence with real scanner, SBOM, repository-control and architecture evidence before enabling blocking checks.
 
 ## Purpose
 
@@ -109,7 +115,6 @@ The addendum keeps the original framework document as the normative reference an
 - `architecture-baseline-l1-v0.1.0` is available as the released architecture runtime governance baseline.
 - GitHub Pages documentation publishing is active.
 - A normalized central results index exists in `status/repository-results-index.json`.
-- `ha-CPsWMS` has already been validated successfully against the central governance baseline on a protected `main` branch.
 - `governance-framework-demo-consumer` is the neutral public reference consumer for first adoption validation.
 - A draft CI/CD adapter model exists for extending the same governance core beyond GitHub Actions to Bamboo/Bitbucket and Jenkins.
 
@@ -362,37 +367,37 @@ Validate the runtime governance addendum:
 python3 scripts/validate_runtime_governance.py
 ```
 
-Generate a demo architecture release-readiness input for `ha-CPsWMS`:
+Generate a demo architecture release-readiness input for a local application repository:
 
 ```bash
 python3 scripts/collect_architecture_release_input.py \
-  --repo /workspace/ha-CPsWMS \
-  --output generated/demo/ha-cpswms-architecture-release-input.json \
-  --release-id ha-CPsWMS-demo \
-  --baseline ha-CPsWMS-demo-baseline
+  --repo /workspace/governance-framework-demo-consumer \
+  --output generated/demo/demo-consumer-architecture-release-input.json \
+  --release-id demo-consumer \
+  --baseline example-solution-baseline
 ```
 
 Generate a demo architecture governance report:
 
 ```bash
 python3 scripts/generate_architecture_governance_report.py \
-  --input generated/demo/ha-cpswms-architecture-release-input.json \
-  --output-json generated/demo/ha-cpswms-architecture-governance-report.json \
-  --output-md generated/demo/ha-cpswms-architecture-governance-report.md
+  --input generated/demo/demo-consumer-architecture-release-input.json \
+  --output-json generated/demo/demo-consumer-architecture-governance-report.json \
+  --output-md generated/demo/demo-consumer-architecture-governance-report.md
 ```
 
 Generate a demo DevSecOps governance report:
 
 ```bash
 python3 scripts/collect_devsecops_release_input.py \
-  --repo /workspace/ha-CPsWMS \
-  --output generated/demo/ha-cpswms-devsecops-release-input.json \
-  --release-id ha-CPsWMS-demo
+  --repo /workspace/governance-framework-demo-consumer \
+  --output generated/demo/demo-consumer-devsecops-release-input.json \
+  --release-id demo-consumer
 
 python3 scripts/generate_devsecops_governance_report.py \
-  --input generated/demo/ha-cpswms-devsecops-release-input.json \
-  --output-json generated/demo/ha-cpswms-devsecops-governance-report.json \
-  --output-md generated/demo/ha-cpswms-devsecops-governance-report.md
+  --input generated/demo/demo-consumer-devsecops-release-input.json \
+  --output-json generated/demo/demo-consumer-devsecops-governance-report.json \
+  --output-md generated/demo/demo-consumer-devsecops-governance-report.md
 ```
 
 By default, this is report-only. Add `--fail-on-findings` when the same check should behave as a blocking gate.
@@ -401,18 +406,18 @@ Generate the combined end-to-end demo report:
 
 ```bash
 python3 scripts/generate_end_to_end_governance_report.py \
-  --architecture-json generated/demo/ha-cpswms-architecture-governance-report.json \
-  --devsecops-json generated/demo/ha-cpswms-devsecops-governance-report.json \
-  --output-json generated/demo/ha-cpswms-end-to-end-governance-report.json \
-  --output-md generated/demo/ha-cpswms-end-to-end-governance-report.md
+  --architecture-json generated/demo/demo-consumer-architecture-governance-report.json \
+  --devsecops-json generated/demo/demo-consumer-devsecops-governance-report.json \
+  --output-json generated/demo/demo-consumer-end-to-end-governance-report.json \
+  --output-md generated/demo/demo-consumer-end-to-end-governance-report.md
 ```
 
 Intake a downstream Architecture Runtime Governance GitHub Actions run and refresh the architecture status index:
 
 ```bash
 python3 scripts/intake_architecture_github_actions_run.py \
-  --repository-id joku-dev/ha-CPsWMS \
-  --run-id 28588778642 \
+  --repository-id joku-dev/governance-framework-demo-consumer \
+  --run-id 29410866951 \
   --architecture-baseline-ref architecture-baseline-l1-v0.1.0
 
 python3 scripts/generate_architecture_results_index.py
@@ -425,10 +430,10 @@ The detailed live demo runbook is:
 docs/demos/demo-end-to-end-governance.md
 ```
 
-The detailed ha-CPsWMS architecture governance result explanation is:
+The validated neutral demo consumer is documented here:
 
 ```text
-docs/demos/ha-cpswms-architecture-governance-results.md
+docs/onboarding/validated-demo-consumer.md
 ```
 
 The reusable GitHub Actions template for application repositories is:
@@ -455,11 +460,11 @@ The released Architecture Runtime Governance baseline is consumed like this:
 ```yaml
 uses: joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
 with:
-  solution_baseline: ha-CPsWMS-demo-baseline
+  solution_baseline: example-solution-baseline
   fail_on_findings: false
 ```
 
-`architecture-baseline-l1-v0.1.0` is the architecture governance baseline. `ha-CPsWMS-demo-baseline` is the solution/product baseline used by the application evidence.
+`architecture-baseline-l1-v0.1.0` is the architecture governance baseline. `example-solution-baseline` is the solution/product baseline used by the application evidence.
 
 ## Important Principle
 

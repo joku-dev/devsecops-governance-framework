@@ -1,4 +1,4 @@
-site_name: DevSecOps Governance as Code
+site_name: DevSecOps Governance Framework
 nav:
   - Home: index.md
   - Official Entrypoints: official-entrypoints.md

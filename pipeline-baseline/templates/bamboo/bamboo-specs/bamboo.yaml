@@ -16,7 +16,7 @@ plan:
   name: DevSecOps Governance Baseline
 
 variables:
-  governance.repository: https://github.com/joku-dev/devsecops-governance-as-code.git
+  governance.repository: https://github.com/joku-dev/devsecops-governance-framework.git
   governance.ref: l1-baseline-v1.1.3
   governance.mode: report-only
   governance.max.allowed.severity: high
