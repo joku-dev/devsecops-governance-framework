@@ -56,6 +56,7 @@ The demo consumer successfully runs:
 
 | Question | Start here |
 | --- | --- |
+| How should an external reviewer evaluate it? | `docs/onboarding/external-evaluator-guide.md` |
 | What is the fastest way to try it? | `docs/onboarding/public-repo-quickstart.md` |
 | What files can I copy? | `adoption-package/README.md` |
 | Has a clean consumer been validated? | `docs/onboarding/validated-demo-consumer.md` |
