@@ -142,7 +142,7 @@ jobs:
     uses: joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
     with:
       release_id: ${{ github.sha }}
-      solution_baseline: demo-solution-baseline
+      solution_baseline: example-solution-baseline
       application_path: .
       upload_evidence: true
       fail_on_findings: false
