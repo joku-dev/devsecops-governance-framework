@@ -60,6 +60,24 @@ def validate_schema(errors, schema_path: Path, instance_path: Path):
         errors.append(f"Schema validation failed for {instance_path.relative_to(ROOT)} at {location}: {issue.message}")
 
 
+def validate_typed_evidence_results(errors):
+    results_root = ROOT / "status" / "typed-evidence-results"
+    if not results_root.exists():
+        return
+    trust_schema = load_json(ROOT / "schemas" / "evidence-trust-record.schema.json")
+    trust_validator = Draft202012Validator(trust_schema) if Draft202012Validator is not None else None
+    for result_path in sorted(results_root.rglob("*.json")):
+        validate_schema(errors, ROOT / "schemas" / "typed-evidence-result.schema.json", result_path)
+        if trust_validator is None:
+            continue
+        payload = load_json(result_path)
+        for issue in trust_validator.iter_errors(payload.get("trust")):
+            location = " -> ".join(str(part) for part in issue.absolute_path) or "<root>"
+            errors.append(
+                f"Trust schema validation failed for {result_path.relative_to(ROOT)} at {location}: {issue.message}"
+            )
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -378,6 +396,14 @@ def main() -> int:
     repository_index_path = ROOT / "status" / "repository-results-index.json"
     if repository_index_path.exists():
         validate_schema(errors, ROOT / "schemas" / "governance-results-index.schema.json", repository_index_path)
+    typed_evidence_index_path = ROOT / "status" / "typed-evidence-results-index.json"
+    if typed_evidence_index_path.exists():
+        validate_schema(
+            errors,
+            ROOT / "schemas" / "typed-evidence-results-index.schema.json",
+            typed_evidence_index_path,
+        )
+    validate_typed_evidence_results(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)

@@ -201,6 +201,64 @@ def trust_detail(projection: dict) -> str:
     )
 
 
+def build_typed_evidence_trust_section(typed_evidence_index: dict) -> str:
+    repositories = typed_evidence_index.get("repositories", [])
+    if not repositories:
+        return ""
+    summary = typed_evidence_index.get("summary", {})
+    level_counts = summary.get("trust_level_counts", {})
+    cards = [
+        ("Evidence Repositories", summary.get("repository_count", 0), "Typed evidence tracked centrally"),
+        ("Evidence Results", summary.get("result_count", 0), f"Mainline: {summary.get('mainline_results', 0)}"),
+        ("Integrity Verified", level_counts.get("integrity_verified", 0), "Outcome-independent Trust"),
+        ("Freshness Failures", summary.get("freshness_failures", 0), "Report-only findings"),
+    ]
+    card_html = "".join(
+        "<section class=\"card\">"
+        f"<h3>{escape(str(title))}</h3>"
+        f"<div class=\"value\">{escape(str(value))}</div>"
+        f"<p>{escape(str(detail))}</p>"
+        "</section>"
+        for title, value, detail in cards
+    )
+    rows = []
+    for repository in repositories:
+        latest = repository.get("latest_result", {})
+        scanner = latest.get("scanner", {})
+        scanner_text = scanner.get("name", "unknown")
+        if scanner.get("version"):
+            scanner_text = f"{scanner_text} {scanner['version']}"
+        trust = latest.get("trust", {})
+        freshness = latest.get("freshness", "not_evaluated")
+        integrity = latest.get("content_integrity", "not_evaluated")
+        binding = latest.get("subject_binding", {})
+        rows.append(
+            [
+                f"<code>{escape(repository.get('repository_id', 'unknown'))}</code>",
+                f"<code>{escape(latest.get('evidence_type', 'unknown'))}</code>",
+                escape(scanner_text),
+                trust_badge(trust) + f"<span class=\"cell-detail\">{escape(trust_detail(trust))}</span>",
+                badge(integrity, "ok" if integrity == "pass" else "warn"),
+                badge(freshness, "ok" if freshness == "pass" else "warn"),
+                f"{escape(str(latest.get('finding_count', 0)))} · {badge(latest.get('max_severity', 'unknown'), status_tone('warn' if latest.get('finding_count', 0) else 'success'))}",
+                f"<code>{escape(binding.get('mode', 'unknown'))}</code><span class=\"cell-detail\">scanner attested: {escape(format_bool_flag(binding.get('scanner_attested')))}</span>",
+                run_link(latest.get("pipeline_run_id", "unknown"), latest.get("pipeline_url", "")),
+            ]
+        )
+    return (
+        "<section id=\"evidence-trust\" class=\"viewer-section\">"
+        "<div class=\"section-title\"><h2>Typed Evidence Trust</h2>"
+        "<p>Centrally reverified vulnerability evidence, shown independently from governance outcomes and delivery enforcement.</p></div>"
+        f"<section class=\"cards\">{card_html}</section>"
+        "<section class=\"panel\"><h2>Latest Typed Evidence</h2>"
+        + html_table(
+            ["Repository", "Evidence", "Scanner", "Trust", "Integrity", "Freshness", "Findings", "Subject Binding", "Run"],
+            rows,
+        )
+        + "</section></section>"
+    )
+
+
 def build_latest_repository_cards(results_index: dict) -> str:
     cards = []
     for repository in results_index.get("repositories", []):
@@ -1064,6 +1122,11 @@ def main() -> int:
         "summary": {},
         "repositories": [],
     }
+    typed_evidence_index_path = ROOT / "status" / "typed-evidence-results-index.json"
+    typed_evidence_index = load_json(typed_evidence_index_path) if typed_evidence_index_path.exists() else {
+        "summary": {},
+        "repositories": [],
+    }
     control_report_path = ROOT / "generated" / "control-evaluation-report.json"
     control_report = load_json(control_report_path) if control_report_path.exists() else None
     control_coverage_path = ROOT / "generated" / "reports" / "control-coverage-report.json"
@@ -1260,6 +1323,8 @@ def main() -> int:
         }
     if architecture_index.get("repositories"):
         payload["architecture_results_summary"] = architecture_index.get("summary", {})
+    if typed_evidence_index.get("repositories"):
+        payload["typed_evidence_results_summary"] = typed_evidence_index.get("summary", {})
     if agent_usage_summary:
         payload["agent_usage_summary"] = {
             "event_count": agent_usage_summary.get("event_count", 0),
@@ -1405,6 +1470,7 @@ def main() -> int:
         if runtime_cards_html
         else ""
     )
+    typed_evidence_trust_html = build_typed_evidence_trust_section(typed_evidence_index)
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -1523,6 +1589,7 @@ def main() -> int:
     <div class="section-nav-inner">
       <a href="#overview">Overview</a>
       <a href="#runtime-governance">Runtime Governance</a>
+      <a href="#evidence-trust">Evidence Trust</a>
       <a href="#source-intake">Source Intake</a>
       <a href="#agent-usage">Agent Usage</a>
       <a href="#runs">Runs</a>
@@ -1549,6 +1616,8 @@ def main() -> int:
     </section>
 
     {runtime_governance_html}
+
+    {typed_evidence_trust_html}
 
     {source_intake_html}
 
@@ -1644,6 +1713,7 @@ def main() -> int:
             <li><a href="../agent-usage/agent-usage-summary.json">Agent Usage Summary JSON</a></li>
             <li><a href="../../operations/agents/agent-usage-snapshot-latest/">Latest Agent Usage Snapshot</a></li>
             <li><a href="../../status/architecture-results-index.json">Architecture Results Index JSON</a></li>
+            <li><a href="../../status/typed-evidence-results-index.json">Typed Evidence Results Index JSON</a></li>
             <li><a href="../../operations/status/current-governance-platform-state/">Current Governance Platform State</a></li>
             <li><a href="../../operations/status/ha-cpswms-governance-validation-status/">ha-CPsWMS Validation Status</a></li>
             <li><a href="../../releases/l1-baseline-v1.1.3/">L1 Baseline v1.1.3</a></li>

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Typed Evidence Trust Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "result_type",
+    "repository_id",
+    "evidence_type",
+    "generated_at",
+    "pipeline",
+    "repository",
+    "source_artifact",
+    "trust"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "result_type": { "const": "typed-evidence-trust" },
+    "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+    "evidence_type": { "const": "vulnerability_scan" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "pipeline": {
+      "type": "object",
+      "required": ["pipeline_name", "pipeline_run_id", "pipeline_url", "event", "status", "run_attempt"],
+      "properties": {
+        "pipeline_name": { "type": "string", "minLength": 1 },
+        "pipeline_run_id": { "type": "string", "minLength": 1 },
+        "pipeline_url": { "type": "string", "minLength": 1 },
+        "event": { "type": "string", "minLength": 1 },
+        "status": { "type": "string", "minLength": 1 },
+        "run_attempt": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "repository": {
+      "type": "object",
+      "required": ["branch", "commit_id"],
+      "properties": {
+        "branch": { "type": "string", "minLength": 1 },
+        "commit_id": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "source_artifact": {
+      "type": "object",
+      "required": ["name", "artifact_id", "size_bytes", "archive_download_url", "archive_sha256"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "artifact_id": { "type": "string", "minLength": 1 },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "archive_download_url": { "type": "string", "minLength": 1 },
+        "archive_sha256": {
+          "oneOf": [
+            { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            { "type": "null" }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "trust": {
+      "type": "object",
+      "required": ["model_id", "effective_level", "assessment_status", "verifier", "verified_at", "checks", "capture"],
+      "properties": {
+        "model_id": { "const": "evidence-trust-model-v1" },
+        "effective_level": { "enum": ["unverified", "integrity_verified", "provenance_verified", "attested"] },
+        "assessment_status": { "enum": ["not_evaluated", "evaluated"] },
+        "verifier": { "type": ["string", "null"] },
+        "verified_at": { "type": ["string", "null"] },
+        "checks": { "type": "array" },
+        "capture": { "type": "object" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

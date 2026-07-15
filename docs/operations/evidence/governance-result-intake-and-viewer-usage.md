@@ -13,6 +13,10 @@ metadata is defined in `docs/operations/evidence/evidence-trust-model.md`.
 Trust verification does not change latest-result selection. The viewer projects
 Trust as a separate report-only signal.
 
+Typed evidence such as vulnerability scans uses a separate snapshot store and
+index. This prevents an evidence-quality signal from being mistaken for a
+governance outcome.
+
 ## Part 1: Result Intake
 
 ### Goal
@@ -40,6 +44,36 @@ using the provisional 24-hour governance-result Freshness policy. An expired
 or future-dated result creates a report-only failed Trust check; it does not
 change the governance outcome or latest-result selection. Historical
 snapshots are not rewritten and project as `unverified`.
+
+## Typed Evidence Trust Intake
+
+For a GitHub Actions run containing an `application-evidence` artifact, use:
+
+```bash
+python3 scripts/intake_evidence_trust_github_actions_run.py \
+  --repository-id joku-dev/governance-framework-demo-consumer \
+  --run-id 29432884108
+python3 scripts/generate_typed_evidence_results_index.py
+python3 scripts/generate_status_viewer.py
+```
+
+The intake requires a vulnerability Trust record plus the exact scan report
+and evaluated application artifact. It binds the repository, commit, run, and
+artifact to authoritative GitHub Actions metadata, recomputes both subject
+digests, and applies the 24-hour vulnerability Freshness policy. Producer-side
+Trust is therefore not accepted without central re-verification.
+
+Typed snapshots and their aggregate index are stored under:
+
+```text
+status/typed-evidence-results/
+status/typed-evidence-results-index.json
+```
+
+The latest typed result follows the same operational principle as governance
+results: a `main` branch `push` is preferred, so a later manual diagnostic run
+does not replace it. This selection is confined to the typed-evidence index;
+it does not change governance `latest_result`.
 
 ## Intake Script
 
@@ -256,6 +290,30 @@ Expected `client_payload` fields:
 }
 ```
 
+## Automated Typed-Evidence Workflow
+
+The separate `.github/workflows/intake-evidence-trust.yml` workflow accepts:
+
+- manual inputs `repository_id`, `run_id`, and optional `artifact_name`
+- `repository_dispatch` events of type `typed-evidence-trust-ready`
+
+Expected dispatch payload:
+
+```json
+{
+  "repository_id": "joku-dev/governance-framework-demo-consumer",
+  "run_id": "29432884108",
+  "artifact_name": "application-evidence"
+}
+```
+
+For cross-repository artifact access, configure `GH_RESULT_INTAKE_TOKEN` with
+Actions read access to the producer repository. The workflow centrally
+verifies the evidence, regenerates only the typed index and shared viewer,
+validates the repository, and commits the new typed snapshot. Producer-side
+automatic dispatch is optional; manual workflow dispatch remains sufficient
+for the demo.
+
 ## Practical Benefit
 
 With this model, the viewer can now show:
@@ -265,3 +323,4 @@ With this model, the viewer can now show:
 - coverage trends over time
 - baseline version changes across runs
 - evidence Trust independently from governance `pass`, `fail`, or `findings`
+- typed vulnerability Trust, scanner observations, Freshness, integrity, and subject binding without creating a governance outcome
