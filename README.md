@@ -197,6 +197,12 @@ Read the application repository onboarding guide:
 sed -n '1,260p' docs/onboarding/application-repo-onboarding.md
 ```
 
+Use the copyable public adoption package:
+
+```bash
+sed -n '1,220p' adoption-package/README.md
+```
+
 Read the explanation of policy, directive, baseline, verification, and governance as code:
 
 ```bash

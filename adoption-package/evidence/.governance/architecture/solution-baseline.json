@@ -1,0 +1,15 @@
+{
+  "evidence_type": "solution_baseline",
+  "status": "draft",
+  "owner": "Solution Architect",
+  "baseline_version": "example-solution-baseline",
+  "summary": "Defines compatible product versions, interface versions, data contracts, security assumptions and deployment configuration for this solution baseline.",
+  "evidence_refs": [
+    "docs/ARCHITECTURE.md",
+    "docs/DEPLOYMENT.md"
+  ],
+  "known_limitations": [
+    "Template placeholder; replace with the application-specific solution baseline."
+  ],
+  "follow_up_actions": []
+}
