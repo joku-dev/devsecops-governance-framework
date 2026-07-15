@@ -120,6 +120,7 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 artifacts = [{"name": "governance-control-evaluation", "size_in_bytes": 5438}]
                 selected_artifact = artifacts[0]
                 trust = intake.build_trust_capture(
+                    governance_domain="devsecops",
                     repository_id="owner/repo",
                     commit_id="abc123",
                     workflow_name="DevSecOps Baseline",
@@ -127,6 +128,7 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                     run_attempt=1,
                     artifact_name="governance-control-evaluation",
                     source_uri="https://example.com/artifact/1",
+                    produced_at="2026-07-04T00:00:00Z",
                     captured_at="2026-07-04T00:01:00Z",
                     subjects=[
                         {

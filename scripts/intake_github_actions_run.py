@@ -346,6 +346,7 @@ def main() -> int:
 
         captured_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
         trust = build_trust_capture(
+            governance_domain="devsecops",
             repository_id=args.repository_id,
             commit_id=run.get("head_sha", "unknown"),
             workflow_name=run.get("name", "DevSecOps Baseline"),
@@ -353,6 +354,7 @@ def main() -> int:
             run_attempt=run.get("run_attempt"),
             artifact_name=args.artifact_name,
             source_uri=selected_artifact.get("archive_download_url", run.get("html_url", "")),
+            produced_at=run.get("updated_at") or run.get("created_at"),
             captured_at=captured_at,
             subjects=subjects,
         )

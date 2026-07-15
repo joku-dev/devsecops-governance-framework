@@ -92,6 +92,7 @@ class EvidenceFreshnessPolicyTests(unittest.TestCase):
             report.write_text('{"overall_status":"pass"}\n', encoding="utf-8")
             subject = digest_subject("governance_report", report, "artifact_metadata.report_sha256")
             trust = build_trust_capture(
+                governance_domain="devsecops",
                 repository_id="owner/repo",
                 commit_id="abc123",
                 workflow_name="Governance",
@@ -99,6 +100,7 @@ class EvidenceFreshnessPolicyTests(unittest.TestCase):
                 run_attempt=1,
                 artifact_name="governance-evidence",
                 source_uri="https://example.test/artifact/42",
+                produced_at="2026-07-14T12:00:00Z",
                 captured_at="2026-07-15T14:00:00Z",
                 subjects=[subject],
             )

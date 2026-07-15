@@ -223,7 +223,7 @@ decision_rules:
 migration_gaps:
   - id: shared_provenance_verification_pending
     scope: shared
-    current_state: New intake derives integrity trust centrally, evaluates governance-result freshness against a provisional report-only policy, and projects Trust separately from governance outcomes.
+    current_state: New intake uses a versioned collector record, derives integrity trust centrally, evaluates governance-result freshness against a provisional report-only policy, and projects Trust separately from governance outcomes.
     missing_capabilities:
       - approved freshness policy
       - replay-history evaluation
@@ -234,7 +234,7 @@ migration_gaps:
     phase: verification_projection
   - id: devsecops_custody_partial
     scope: devsecops_intake
-    current_state: New intake captures extracted-content and archive SHA-256 values, run attempt, source binding, and initial custody steps.
+    current_state: New intake captures a schema-valid collector record with extracted-content and archive SHA-256 values, run attempt, source binding, timestamps, and initial custody steps.
     missing_capabilities:
       - authoritative verification outcomes
       - normalized snapshot digest
@@ -244,7 +244,7 @@ migration_gaps:
     phase: verification_projection
   - id: architecture_provenance_verification_pending
     scope: architecture_intake
-    current_state: New intake verifies captured architecture bytes for integrity and projects the result without changing architecture findings.
+    current_state: New intake emits the shared collector contract, verifies captured architecture bytes for integrity, and projects the result without changing architecture findings.
     missing_capabilities:
       - verified baseline resolution
       - normalized snapshot digest
@@ -275,7 +275,7 @@ migration_gaps:
     phase: verification_projection
   - id: replay_detection_partial
     scope: shared
-    current_state: Run IDs and timestamped filenames provide identifiers but uniqueness and cross-subject reuse are not verified.
+    current_state: Versioned collector identity, run attempt, source subject, and digests are captured but uniqueness and cross-subject reuse are not verified.
     missing_capabilities:
       - canonical replay key
       - run-attempt handling

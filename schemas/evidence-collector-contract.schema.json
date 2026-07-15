@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Collector Contract Model",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "contract_id",
+    "version",
+    "status",
+    "source_document",
+    "owner",
+    "enforcement",
+    "purpose",
+    "principles",
+    "record_semantics",
+    "profiles",
+    "adoption",
+    "open_decisions",
+    "change_control"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "contract_id": { "const": "evidence-collector-contract" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "status": { "enum": ["provisional", "approved", "retired"] },
+    "source_document": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 },
+    "enforcement": { "const": "report_only" },
+    "purpose": { "type": "string", "minLength": 20 },
+    "principles": {
+      "type": "array",
+      "minItems": 6,
+      "items": { "$ref": "#/$defs/identifiedRequirement" }
+    },
+    "record_semantics": {
+      "type": "object",
+      "required": ["statuses", "missing_metadata", "collector_identity"],
+      "properties": {
+        "statuses": {
+          "type": "object",
+          "required": ["collected", "partial", "failed"],
+          "properties": {
+            "collected": { "type": "string", "minLength": 10 },
+            "partial": { "type": "string", "minLength": 10 },
+            "failed": { "type": "string", "minLength": 10 }
+          },
+          "additionalProperties": false
+        },
+        "missing_metadata": { "type": "string", "minLength": 10 },
+        "collector_identity": { "type": "string", "minLength": 10 }
+      },
+      "additionalProperties": false
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "collector_id",
+          "collector_version",
+          "evidence_type",
+          "governance_domains",
+          "source_provider",
+          "freshness_policy",
+          "implementation_paths",
+          "state"
+        ],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "collector_id": { "$ref": "#/$defs/id" },
+          "collector_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+          "evidence_type": { "$ref": "#/$defs/id" },
+          "governance_domains": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "enum": ["devsecops", "architecture"] },
+            "uniqueItems": true
+          },
+          "source_provider": { "$ref": "#/$defs/id" },
+          "freshness_policy": { "type": "string", "pattern": "^freshness-[a-z0-9-]+$" },
+          "implementation_paths": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "state": { "enum": ["planned", "pilot", "implemented", "retired"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "adoption": {
+      "type": "object",
+      "required": [
+        "new_automated_intake_uses_contract",
+        "existing_records_remain_valid",
+        "existing_records_reclassified",
+        "latest_result_selection_changed",
+        "downstream_producer_contract_changed",
+        "baseline_release_required"
+      ],
+      "properties": {
+        "new_automated_intake_uses_contract": { "const": true },
+        "existing_records_remain_valid": { "const": true },
+        "existing_records_reclassified": { "const": false },
+        "latest_result_selection_changed": { "const": false },
+        "downstream_producer_contract_changed": { "const": false },
+        "baseline_release_required": { "const": false }
+      },
+      "additionalProperties": false
+    },
+    "open_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "question", "required_reviewers"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "question": { "type": "string", "minLength": 20 },
+          "required_reviewers": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/id" },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "change_control": {
+      "type": "object",
+      "required": [
+        "requires_gcr",
+        "preserve_historical_records",
+        "retrospective_reclassification",
+        "blocking_requires_release_review"
+      ],
+      "properties": {
+        "requires_gcr": { "const": true },
+        "preserve_historical_records": { "const": true },
+        "retrospective_reclassification": { "const": false },
+        "blocking_requires_release_review": { "const": true }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "identifiedRequirement": {
+      "type": "object",
+      "required": ["id", "requirement"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "requirement": { "type": "string", "minLength": 20 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

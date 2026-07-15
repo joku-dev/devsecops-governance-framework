@@ -12,6 +12,9 @@ import yaml
 
 MODEL_ID = "evidence-trust-model-v1"
 COLLECTOR_ID = "central-governance-intake"
+COLLECTOR_VERSION = "0.1.0"
+COLLECTOR_CONTRACT_ID = "evidence-collector-contract"
+COLLECTOR_CONTRACT_VERSION = "0.1.0"
 VERIFIER_ID = "central-governance-intake/v1"
 CHECK_IDS = [
     "subject_identity_complete",
@@ -106,6 +109,7 @@ def evaluate_freshness(policy: dict, *, produced_at: str | None, evaluated_at: s
 
 def build_trust_capture(
     *,
+    governance_domain: str,
     repository_id: str,
     commit_id: str,
     workflow_name: str,
@@ -113,9 +117,26 @@ def build_trust_capture(
     run_attempt: int | None,
     artifact_name: str,
     source_uri: str,
+    produced_at: str,
     captured_at: str,
     subjects: list[dict],
 ) -> dict:
+    if governance_domain not in {"devsecops", "architecture"}:
+        raise ValueError(f"Unsupported governance collector domain: {governance_domain}")
+    if not isinstance(run_attempt, int) or isinstance(run_attempt, bool) or run_attempt < 1:
+        raise ValueError("A positive GitHub Actions run attempt is required for collected evidence")
+    if _parse_timestamp(produced_at) is None or _parse_timestamp(captured_at) is None:
+        raise ValueError("Timezone-aware collector produced_at and captured_at timestamps are required")
+    repository_parts = repository_id.split("/")
+    source_values = [commit_id, workflow_name, str(run_id), artifact_name, source_uri]
+    if (
+        len(repository_parts) != 2
+        or not all(repository_parts)
+        or any(not value or value.strip().lower() in {"none", "null", "unknown"} for value in source_values)
+    ):
+        raise ValueError("Complete governance-result source identity is required for collected evidence")
+    if not subjects:
+        raise ValueError("At least one digested subject is required for collected evidence")
     subject_refs = [subject["evidence_ref"] for subject in subjects]
     return {
         "model_id": MODEL_ID,
@@ -126,9 +147,20 @@ def build_trust_capture(
         "verified_at": None,
         "checks": [],
         "capture": {
-            "collector": COLLECTOR_ID,
+            "contract_id": COLLECTOR_CONTRACT_ID,
+            "contract_version": COLLECTOR_CONTRACT_VERSION,
+            "status": "collected",
+            "enforcement": "report_only",
+            "evidence_type": "governance_result",
+            "governance_domain": governance_domain,
+            "collector": {
+                "id": COLLECTOR_ID,
+                "version": COLLECTOR_VERSION,
+            },
+            "produced_at": produced_at,
             "captured_at": captured_at,
             "source": {
+                "provider": "github_actions",
                 "repository_id": repository_id,
                 "commit_id": commit_id,
                 "workflow_name": workflow_name,
@@ -156,6 +188,7 @@ def build_trust_capture(
                     "output_refs": subject_refs,
                 },
             ],
+            "errors": [],
         },
     }
 

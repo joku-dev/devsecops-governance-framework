@@ -33,6 +33,7 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
         report.write_text('{"status":"pass"}\n', encoding="utf-8")
         subject = digest_subject("governance_report", report, "artifact_metadata.governance_report_sha256")
         return build_trust_capture(
+            governance_domain="devsecops",
             repository_id="owner/repo",
             commit_id="abc123",
             workflow_name="Governance",
@@ -40,6 +41,7 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
             run_attempt=2,
             artifact_name="governance-evidence",
             source_uri="https://api.github.test/artifacts/7/zip",
+            produced_at="2026-07-15T13:59:00Z",
             captured_at="2026-07-15T14:00:00Z",
             subjects=[subject],
         )
@@ -55,6 +57,8 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
         self.assertIsNone(trust["verified_at"])
         self.assertEqual(trust["checks"], [])
         self.assertEqual(trust["capture"]["source"]["run_attempt"], 2)
+        self.assertEqual(trust["capture"]["contract_id"], "evidence-collector-contract")
+        self.assertEqual(trust["capture"]["collector"]["version"], "0.1.0")
         self.assertEqual([step["action"] for step in trust["capture"]["custody"]], ["download", "extract_and_hash"])
 
     def test_documented_capture_example_validates(self):

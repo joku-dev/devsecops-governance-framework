@@ -1,0 +1,56 @@
+{
+  "contract_id": "evidence-collector-contract",
+  "contract_version": "0.1.0",
+  "status": "collected",
+  "enforcement": "report_only",
+  "evidence_type": "governance_result",
+  "governance_domain": "devsecops",
+  "collector": {
+    "id": "central-governance-intake",
+    "version": "0.1.0"
+  },
+  "produced_at": "2026-07-15T13:58:00Z",
+  "captured_at": "2026-07-15T14:00:00Z",
+  "source": {
+    "provider": "github_actions",
+    "repository_id": "owner/repository",
+    "commit_id": "abc123",
+    "workflow_name": "DevSecOps Baseline",
+    "run_id": "42",
+    "run_attempt": 1,
+    "artifact_name": "governance-control-evaluation",
+    "source_uri": "https://api.github.example/repos/owner/repository/actions/artifacts/7/zip"
+  },
+  "subjects": [
+    {
+      "id": "control_evaluation_report",
+      "evidence_ref": "downloaded_artifact.control_evaluation_report_sha256",
+      "algorithm": "sha256",
+      "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "size_bytes": 1234
+    }
+  ],
+  "custody": [
+    {
+      "sequence": 1,
+      "action": "download",
+      "actor": "central-governance-intake",
+      "at": "2026-07-15T14:00:00Z",
+      "source_uri": "https://api.github.example/repos/owner/repository/actions/artifacts/7/zip",
+      "output_refs": [
+        "artifact_metadata"
+      ]
+    },
+    {
+      "sequence": 2,
+      "action": "extract_and_hash",
+      "actor": "central-governance-intake",
+      "at": "2026-07-15T14:00:00Z",
+      "source_uri": "https://api.github.example/repos/owner/repository/actions/artifacts/7/zip",
+      "output_refs": [
+        "downloaded_artifact.control_evaluation_report_sha256"
+      ]
+    }
+  ],
+  "errors": []
+}
