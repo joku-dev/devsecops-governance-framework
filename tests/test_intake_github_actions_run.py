@@ -84,6 +84,10 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9",
             )
 
+    def test_artifact_size_bytes_uses_github_api_field(self):
+        self.assertEqual(intake.artifact_size_bytes({"size_in_bytes": 5438}), 5438)
+        self.assertEqual(intake.artifact_size_bytes({"size": 1234}), 1234)
+
     def test_find_governance_input_returns_payload_and_path(self):
         with tempfile.TemporaryDirectory() as tempdir:
             directory = Path(tempdir)
@@ -113,7 +117,7 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 governance_input_path.unlink()
                 run = {"id": 1, "conclusion": "success", "updated_at": "2026-07-04T00:00:00Z", "head_branch": "main", "head_sha": "abc123", "html_url": "https://example.com/run/1", "name": "DevSecOps Baseline", "event": "push"}
                 jobs = []
-                artifacts = [{"name": "governance-control-evaluation", "size": 1234}]
+                artifacts = [{"name": "governance-control-evaluation", "size_in_bytes": 5438}]
                 selected_artifact = artifacts[0]
                 output_path = intake.write_snapshot(
                     repository_id="owner/repo",
@@ -133,9 +137,9 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 )
                 data = json.loads(output_path.read_text(encoding="utf-8"))
                 self.assertEqual(data["downloaded_artifact"]["downloaded"], True)
-                self.assertEqual(data["downloaded_artifact"]["artifact_size_bytes"], 1234)
+                self.assertEqual(data["downloaded_artifact"]["artifact_size_bytes"], 5438)
                 self.assertEqual(data["downloaded_artifact"]["control_evaluation_report_sha256"], report_sha256)
                 self.assertEqual(data["downloaded_artifact"]["governance_run_input_sha256"], governance_input_sha256)
-                self.assertEqual(data["artifact_metadata"]["artifact_sizes"]["governance-control-evaluation"], 1234)
+                self.assertEqual(data["artifact_metadata"]["artifact_sizes"]["governance-control-evaluation"], 5438)
             finally:
                 intake.STATUS_RESULTS = old_status_results
