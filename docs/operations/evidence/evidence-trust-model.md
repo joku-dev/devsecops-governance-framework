@@ -220,7 +220,7 @@ rules. The provisional, versioned policy set is defined in
 | Evidence type | Provisional validity rule | Current evaluation |
 |---|---|---|
 | Governance result | maximum age 24 hours | evaluated during DevSecOps and architecture intake |
-| Vulnerability scan | maximum age 24 hours | configured; waits for typed evidence timestamp |
+| Vulnerability scan | maximum age 24 hours | evaluated by the typed collector pilot |
 | Runtime evidence | maximum age 30 minutes | configured; waits for typed evidence timestamp |
 | Architecture review | maximum age 180 days | configured; waits for typed approval timestamp |
 | SBOM | must match the evaluated subject digest | configured; waits for subject binding |

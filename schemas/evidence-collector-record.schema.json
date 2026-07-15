@@ -47,7 +47,8 @@
     "errors": {
       "type": "array",
       "items": { "$ref": "#/$defs/collectionError" }
-    }
+    },
+    "observations": { "type": "object" }
   },
   "allOf": [
     {
@@ -96,6 +97,16 @@
               "source_uri"
             ]
           }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "evidence_type": { "const": "vulnerability_scan" } }, "required": ["evidence_type"] },
+      "then": {
+        "required": ["observations"],
+        "properties": {
+          "governance_domain": { "const": "devsecops" },
+          "observations": { "$ref": "#/$defs/vulnerabilityObservations" }
         }
       }
     }
@@ -155,6 +166,40 @@
         "retryable": { "type": "boolean" }
       },
       "additionalProperties": false
+    },
+    "vulnerabilityObservations": {
+      "type": "object",
+      "required": ["scanner", "finding_count", "declared_max_severity", "observed_max_severity", "severity_consistent", "subject_binding"],
+      "properties": {
+        "scanner": {
+          "type": "object",
+          "required": ["name", "version"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "version": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
+        "finding_count": { "type": "integer", "minimum": 0 },
+        "declared_max_severity": { "$ref": "#/$defs/severity" },
+        "observed_max_severity": { "$ref": "#/$defs/severity" },
+        "severity_consistent": { "type": "boolean" },
+        "subject_binding": {
+          "type": "object",
+          "required": ["mode", "evaluated_subject", "scan_declared_subject", "scanner_attested"],
+          "properties": {
+            "mode": { "const": "co_collected" },
+            "evaluated_subject": { "type": "string", "minLength": 1 },
+            "scan_declared_subject": { "type": ["string", "null"] },
+            "scanner_attested": { "const": false }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "severity": {
+      "enum": ["none", "info", "low", "medium", "high", "critical", "unknown"]
     }
   },
   "additionalProperties": false

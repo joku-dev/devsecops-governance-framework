@@ -109,5 +109,43 @@ Add a new collector through a focused GCR:
 6. add representative collection and Trust tests
 7. preserve historical records and keep initial behavior report-only
 
-The recommended next pilot is a vulnerability-scan collector once the scanner
-format and artifact subject identity have been selected.
+## Vulnerability Scan Pilot
+
+The second profile is `repository-normalized-vulnerability-scan`:
+
+- collector: `central-vulnerability-scan-collector` version `0.1.0`
+- evidence type: `vulnerability_scan`
+- domain: DevSecOps
+- input: repository-normalized JSON with scanner identity and findings
+- subjects: the scan report and evaluated application artifact
+- Freshness rule: maximum age 24 hours
+- state: pilot
+
+The pilot deliberately accepts the small format already used by the repository
+instead of claiming native compatibility with every scanner. Trivy, Grype,
+Snyk, and other tools can later receive explicit adapters into this normalized
+input. Placeholder and demo scanner identities are rejected.
+
+Example:
+
+```bash
+python3 scripts/collect_vulnerability_scan_evidence.py \
+  --scan-path security/vulnerability-scan.json \
+  --evaluated-subject-path dist/application.tar.gz \
+  --repository-id owner/repository \
+  --commit-id abc123 \
+  --run-id 42 \
+  --run-attempt 1 \
+  --source-uri https://example.invalid/actions/artifacts/7/zip \
+  --produced-at 2026-07-15T13:55:00Z
+```
+
+The output is a full evidence Trust record. It verifies the collected bytes and
+applies the provisional Freshness policy, but it does not infer a governance
+pass. A stale scan has a failed report-only Freshness check while retaining any
+independently established integrity level.
+
+The pilot binds the scan report and application artifact by collecting both in
+one record. This is `co_collected` binding, not proof that the scanner attested
+to the artifact digest. The distinction remains explicit in collector
+observations until scanner-native attestations are supported.

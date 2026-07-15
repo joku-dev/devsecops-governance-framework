@@ -41,7 +41,7 @@ policies:
     decision_contexts:
       - release
       - mainline
-    produced_at_claim: evidence.vulnerability_scan.produced_at
+    produced_at_claim: trust.capture.produced_at
     evaluated_at_claim: trust.verified_at
     rationale: Vulnerability information changes quickly and should be refreshed daily for release and mainline decisions.
   - id: freshness-runtime-evidence-30m

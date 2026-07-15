@@ -53,6 +53,22 @@ class EvidenceCollectorContractTests(unittest.TestCase):
         self.assertIn(profile["freshness_policy"], freshness_ids)
         self.assertTrue((ROOT / self.model["source_document"]).is_file())
 
+    def test_vulnerability_scan_pilot_has_input_subject_and_freshness_contracts(self):
+        profile = next(item for item in self.model["profiles"] if item["evidence_type"] == "vulnerability_scan")
+        self.assertEqual(profile["state"], "pilot")
+        self.assertEqual(profile["governance_domains"], ["devsecops"])
+        self.assertEqual(profile["subject_binding_mode"], "co_collected")
+        self.assertTrue(profile["rejects_placeholders"])
+        self.assertTrue((ROOT / profile["input_schema"]).is_file())
+        for implementation_path in profile["implementation_paths"]:
+            self.assertTrue((ROOT / implementation_path).is_file())
+
+        freshness = yaml.safe_load(
+            (ROOT / "model" / "evidence" / "evidence-freshness-policies.yaml").read_text(encoding="utf-8")
+        )
+        freshness_ids = {policy["id"] for policy in freshness["policies"]}
+        self.assertIn(profile["freshness_policy"], freshness_ids)
+
     def test_documented_collector_record_validates(self):
         example = json.loads(EXAMPLE_PATH.read_text(encoding="utf-8"))
         jsonschema.Draft202012Validator(self.record_schema).validate(example)

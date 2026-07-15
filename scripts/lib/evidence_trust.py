@@ -64,7 +64,7 @@ def load_freshness_policy(path: Path, policy_id: str) -> dict:
 
 
 def _parse_timestamp(value: str | None) -> datetime | None:
-    if not value:
+    if not isinstance(value, str) or not value:
         return None
     try:
         parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
@@ -121,10 +121,50 @@ def build_trust_capture(
     captured_at: str,
     subjects: list[dict],
 ) -> dict:
+    return build_typed_trust_capture(
+        evidence_type="governance_result",
+        governance_domain=governance_domain,
+        collector_id=COLLECTOR_ID,
+        collector_version=COLLECTOR_VERSION,
+        source_provider="github_actions",
+        repository_id=repository_id,
+        commit_id=commit_id,
+        workflow_name=workflow_name,
+        run_id=run_id,
+        run_attempt=run_attempt,
+        artifact_name=artifact_name,
+        source_uri=source_uri,
+        produced_at=produced_at,
+        captured_at=captured_at,
+        subjects=subjects,
+    )
+
+
+def build_typed_trust_capture(
+    *,
+    evidence_type: str,
+    governance_domain: str,
+    collector_id: str,
+    collector_version: str,
+    source_provider: str,
+    repository_id: str,
+    commit_id: str,
+    workflow_name: str,
+    run_id: str,
+    run_attempt: int | None,
+    artifact_name: str,
+    source_uri: str,
+    produced_at: str,
+    captured_at: str,
+    subjects: list[dict],
+    observations: dict | None = None,
+) -> dict:
     if governance_domain not in {"devsecops", "architecture"}:
         raise ValueError(f"Unsupported governance collector domain: {governance_domain}")
+    if not evidence_type or not collector_id or not collector_version or not source_provider:
+        raise ValueError("Evidence type, collector identity, version, and source provider are required")
     if not isinstance(run_attempt, int) or isinstance(run_attempt, bool) or run_attempt < 1:
-        raise ValueError("A positive GitHub Actions run attempt is required for collected evidence")
+        raise ValueError("A positive CI run attempt is required for collected evidence")
     if _parse_timestamp(produced_at) is None or _parse_timestamp(captured_at) is None:
         raise ValueError("Timezone-aware collector produced_at and captured_at timestamps are required")
     repository_parts = repository_id.split("/")
@@ -134,10 +174,56 @@ def build_trust_capture(
         or not all(repository_parts)
         or any(not value or value.strip().lower() in {"none", "null", "unknown"} for value in source_values)
     ):
-        raise ValueError("Complete governance-result source identity is required for collected evidence")
+        raise ValueError("Complete source identity is required for collected evidence")
     if not subjects:
         raise ValueError("At least one digested subject is required for collected evidence")
     subject_refs = [subject["evidence_ref"] for subject in subjects]
+    capture = {
+        "contract_id": COLLECTOR_CONTRACT_ID,
+        "contract_version": COLLECTOR_CONTRACT_VERSION,
+        "status": "collected",
+        "enforcement": "report_only",
+        "evidence_type": evidence_type,
+        "governance_domain": governance_domain,
+        "collector": {
+            "id": collector_id,
+            "version": collector_version,
+        },
+        "produced_at": produced_at,
+        "captured_at": captured_at,
+        "source": {
+            "provider": source_provider,
+            "repository_id": repository_id,
+            "commit_id": commit_id,
+            "workflow_name": workflow_name,
+            "run_id": str(run_id),
+            "run_attempt": run_attempt,
+            "artifact_name": artifact_name,
+            "source_uri": source_uri,
+        },
+        "subjects": subjects,
+        "custody": [
+            {
+                "sequence": 1,
+                "action": "download",
+                "actor": collector_id,
+                "at": captured_at,
+                "source_uri": source_uri,
+                "output_refs": ["artifact_metadata"],
+            },
+            {
+                "sequence": 2,
+                "action": "extract_and_hash",
+                "actor": collector_id,
+                "at": captured_at,
+                "source_uri": source_uri,
+                "output_refs": subject_refs,
+            },
+        ],
+        "errors": [],
+    }
+    if observations is not None:
+        capture["observations"] = observations
     return {
         "model_id": MODEL_ID,
         "capture_phase": "additive_capture",
@@ -146,50 +232,7 @@ def build_trust_capture(
         "verifier": None,
         "verified_at": None,
         "checks": [],
-        "capture": {
-            "contract_id": COLLECTOR_CONTRACT_ID,
-            "contract_version": COLLECTOR_CONTRACT_VERSION,
-            "status": "collected",
-            "enforcement": "report_only",
-            "evidence_type": "governance_result",
-            "governance_domain": governance_domain,
-            "collector": {
-                "id": COLLECTOR_ID,
-                "version": COLLECTOR_VERSION,
-            },
-            "produced_at": produced_at,
-            "captured_at": captured_at,
-            "source": {
-                "provider": "github_actions",
-                "repository_id": repository_id,
-                "commit_id": commit_id,
-                "workflow_name": workflow_name,
-                "run_id": str(run_id),
-                "run_attempt": run_attempt,
-                "artifact_name": artifact_name,
-                "source_uri": source_uri,
-            },
-            "subjects": subjects,
-            "custody": [
-                {
-                    "sequence": 1,
-                    "action": "download",
-                    "actor": COLLECTOR_ID,
-                    "at": captured_at,
-                    "source_uri": source_uri,
-                    "output_refs": ["artifact_metadata"],
-                },
-                {
-                    "sequence": 2,
-                    "action": "extract_and_hash",
-                    "actor": COLLECTOR_ID,
-                    "at": captured_at,
-                    "source_uri": source_uri,
-                    "output_refs": subject_refs,
-                },
-            ],
-            "errors": [],
-        },
+        "capture": capture,
     }
 
 
@@ -204,6 +247,7 @@ def verify_trust_capture(
     verified_at: str,
     freshness_policy: dict | None = None,
     produced_at: str | None = None,
+    verifier_id: str = VERIFIER_ID,
 ) -> dict:
     """Evaluate only checks supported by authoritative intake-time material."""
     result = deepcopy(trust)
@@ -273,7 +317,7 @@ def verify_trust_capture(
         {
             "effective_level": "integrity_verified" if integrity_verified else "unverified",
             "assessment_status": "evaluated",
-            "verifier": VERIFIER_ID,
+            "verifier": verifier_id,
             "verified_at": verified_at,
             "checks": [checks[check_id] for check_id in CHECK_IDS],
         }

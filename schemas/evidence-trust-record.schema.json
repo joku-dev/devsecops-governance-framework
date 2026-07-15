@@ -146,7 +146,8 @@
             },
             "additionalProperties": false
           }
-        }
+        },
+        "observations": { "type": "object" }
       },
       "allOf": [
         {
