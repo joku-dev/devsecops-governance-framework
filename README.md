@@ -12,6 +12,7 @@ The repository models a governance stack where a `Policy` defines mandatory inte
 |---|---|
 | Review the public adoption state | `docs/onboarding/external-review-brief.md` |
 | Run an external evaluation | `docs/onboarding/external-evaluator-guide.md` |
+| Run a controlled adoption pilot | `docs/onboarding/pilot-runbook.md` |
 | Try the framework in an application repo | `docs/onboarding/public-repo-quickstart.md` |
 | Copy ready-to-use templates | `adoption-package/README.md` |
 | Inspect the validated neutral consumer | `docs/onboarding/validated-demo-consumer.md` |

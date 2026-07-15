@@ -39,6 +39,7 @@ Use this guide to check:
 | Repository | `https://github.com/joku-dev/devsecops-governance-framework` |
 | Pages site | `https://joku-dev.github.io/devsecops-governance-framework/` |
 | Review brief | `docs/onboarding/external-review-brief.md` |
+| Pilot runbook | `docs/onboarding/pilot-runbook.md` |
 | Quickstart | `docs/onboarding/public-repo-quickstart.md` |
 | Adoption package | `adoption-package/README.md` |
 | Demo consumer | `https://github.com/joku-dev/governance-framework-demo-consumer` |

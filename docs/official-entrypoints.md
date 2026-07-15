@@ -17,6 +17,7 @@ It is intended for:
 - Documentation landing page: `docs/index.md`
 - External review brief: `docs/onboarding/external-review-brief.md`
 - External evaluator guide: `docs/onboarding/external-evaluator-guide.md`
+- Pilot runbook: `docs/onboarding/pilot-runbook.md`
 - Public quickstart: `docs/onboarding/public-repo-quickstart.md`
 - Validated neutral demo consumer: `docs/onboarding/validated-demo-consumer.md`
 - Public adoption release: `docs/releases/v0.1.0-public-adoption.md`
@@ -55,6 +56,7 @@ It is intended for:
 
 - External review brief: `docs/onboarding/external-review-brief.md`
 - External evaluator guide: `docs/onboarding/external-evaluator-guide.md`
+- Pilot runbook: `docs/onboarding/pilot-runbook.md`
 - Public repository quickstart: `docs/onboarding/public-repo-quickstart.md`
 - Validated demo consumer: `docs/onboarding/validated-demo-consumer.md`
 - Application repository onboarding: `docs/onboarding/application-repo-onboarding.md`
