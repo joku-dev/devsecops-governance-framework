@@ -32,13 +32,15 @@ class SourceDocumentIntakeReviewBriefTests(unittest.TestCase):
         self.assertEqual(payload["decision"]["current_state"], "decision_support_only")
         self.assertEqual(payload["decision"]["autonomous_decisions_enabled"], False)
         self.assertEqual(payload["decision"]["runtime_governance_changed"], False)
-        self.assertEqual(payload["summary"]["review_briefs"], 7)
-        self.assertEqual(payload["summary"]["human_decision_required"], 7)
+        self.assertEqual(payload["summary"]["review_briefs"], 10)
+        self.assertEqual(payload["summary"]["human_decision_required"], 10)
 
         briefs_by_source = {
             brief["source_document"]["id"]: brief
             for brief in payload["review_briefs"]
         }
+        self.assertIn("ARCH-SDD-REQ-001", briefs_by_source)
+        self.assertNotIn("ARCH-GOV-REQ-001", briefs_by_source)
         replacement_brief = briefs_by_source["ARCH-GOV-SRC-002"]
         self.assertEqual(replacement_brief["prepared_by_agent"], "source-document-intake")
         self.assertEqual(replacement_brief["autonomous_decision"], False)

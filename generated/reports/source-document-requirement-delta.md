@@ -1,6 +1,6 @@
 # Source Document Requirement Delta
 
-Generated: `2026-07-15T08:14:01Z`
+Generated: `2026-07-15T09:56:05Z`
 
 ## Decision State
 

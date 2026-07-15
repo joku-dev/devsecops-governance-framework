@@ -1,6 +1,6 @@
 # Source Document Intake Status
 
-Generated: `2026-07-15T08:14:03Z`
+Generated: `2026-07-15T09:56:05Z`
 
 ## Decision State
 
@@ -10,11 +10,11 @@ Generated: `2026-07-15T08:14:03Z`
 
 ## Summary
 
-- Registered source documents: `10`
-- Open review items: `7`
+- Registered source documents: `20`
+- Open review items: `10`
 - Replacement review items: `1`
 - Documents with operational artifacts: `5`
-- Documents without operational artifacts: `5`
+- Documents without operational artifacts: `15`
 
 ## Status Counts
 
@@ -22,13 +22,15 @@ Generated: `2026-07-15T08:14:03Z`
 |---|---:|
 | `candidate` | `5` |
 | `draft` | `2` |
-| `intake` | `3` |
+| `intake` | `10` |
+| `review` | `3` |
 
 ## Review State Counts
 
 | Review state | Count |
 |---|---:|
-| `accepted_intake` | `3` |
+| `accepted_intake` | `10` |
+| `active_review_in_progress` | `3` |
 | `candidate_replacement_review_required` | `1` |
 | `candidate_similarity_review_required` | `4` |
 | `draft_source_of_truth_decision_required` | `2` |
@@ -37,11 +39,11 @@ Generated: `2026-07-15T08:14:03Z`
 
 | Domain | Count |
 |---|---:|
-| `architecture` | `6` |
-| `devsecops` | `4` |
-| `directive` | `1` |
-| `platform` | `1` |
-| `policy` | `1` |
+| `architecture` | `12` |
+| `devsecops` | `8` |
+| `directive` | `2` |
+| `platform` | `2` |
+| `policy` | `2` |
 
 ## Open Intake Items
 
@@ -54,6 +56,9 @@ Generated: `2026-07-15T08:14:03Z`
 | `ARCH-SA-SRC-001` | `candidate` | `architecture-owners` | `candidate_similarity_review_required` | Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant. |
 | `ARCH-PA-SRC-001` | `candidate` | `architecture-owners` | `candidate_similarity_review_required` | Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant. |
 | `ARCH-GOV-SRC-002` | `candidate` | `architecture-owners` | `candidate_replacement_review_required` | Review replacement decision before promoting the source or moving lineage. |
+| `DEVSECOPS-POL-REQ-001` | `review` | `governance-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
+| `DEVSECOPS-DIR-REQ-001` | `review` | `governance-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
+| `ARCH-SDD-REQ-001` | `review` | `architecture-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
 
 ## Replacement Review Items
 
@@ -75,6 +80,16 @@ Generated: `2026-07-15T08:14:03Z`
 | `ARCH-SA-SRC-001` | `candidate` | `architecture` | `candidate_similarity_review_required` | `0` |
 | `ARCH-PA-SRC-001` | `candidate` | `architecture` | `candidate_similarity_review_required` | `0` |
 | `ARCH-GOV-SRC-002` | `candidate` | `architecture` | `candidate_replacement_review_required` | `0` |
+| `DEVSECOPS-POL-REQ-001` | `review` | `policy, devsecops` | `active_review_in_progress` | `0` |
+| `DEVSECOPS-DIR-REQ-001` | `review` | `directive, devsecops` | `active_review_in_progress` | `0` |
+| `DSCB-STD-REQ-001` | `intake` | `devsecops` | `accepted_intake` | `0` |
+| `PRA-STD-REQ-001` | `intake` | `platform, devsecops` | `accepted_intake` | `0` |
+| `ARCH-SDD-REQ-001` | `review` | `architecture` | `active_review_in_progress` | `0` |
+| `ARCH-TPL-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
+| `ARCH-EA-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
+| `ARCH-SA-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
+| `ARCH-PA-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
+| `ARCH-GOV-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
 
 ## Process Notes
 

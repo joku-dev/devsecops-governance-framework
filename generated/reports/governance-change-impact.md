@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-07-15T08:14:03Z`
+Generated: `2026-07-15T09:56:04Z`
 
 ## Inputs
 
@@ -9,35 +9,35 @@ Generated: `2026-07-15T08:14:03Z`
 
 ## Summary
 
-- Registered source documents: `10`
-- Source documents with lineage: `10`
-- Derived artifact links: `179`
+- Registered source documents: `20`
+- Source documents with lineage: `20`
+- Derived artifact links: `289`
 
 ## Domain Coverage
 
 | Domain | Source documents |
 |---|---:|
-| `architecture` | `6` |
-| `devsecops` | `4` |
-| `directive` | `1` |
-| `platform` | `1` |
-| `policy` | `1` |
+| `architecture` | `12` |
+| `devsecops` | `8` |
+| `directive` | `2` |
+| `platform` | `2` |
+| `policy` | `2` |
 
 ## Release Considerations
 
 | Consideration | Source documents |
 |---|---:|
 | `baseline_release_review` | `2` |
-| `no_release_by_default` | `8` |
+| `no_release_by_default` | `18` |
 
 ## Review Lanes
 
 | Review lane | Source documents |
 |---|---:|
-| `architecture-review` | `6` |
-| `devsecops-review` | `4` |
-| `governance-review` | `2` |
-| `platform-review` | `1` |
+| `architecture-review` | `12` |
+| `devsecops-review` | `8` |
+| `governance-review` | `4` |
+| `platform-review` | `2` |
 | `policy-as-code-review` | `2` |
 | `release-review` | `2` |
 | `schema-review` | `1` |
@@ -418,6 +418,362 @@ Replacement and similarity:
 
 - Candidate replacement for: `ARCH-SDD-SRC-001`
 - Similarity assessment: `replacement_candidate`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+- `python3 scripts/validate_runtime_governance.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `DEVSECOPS-POL-REQ-001`
+
+- Title: DevSecOps Policy Requirements Extract
+- Source: `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md`
+- Status: `review`
+- Owner: `governance-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `policy, devsecops`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `devsecops-review, governance-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `DEVSECOPS-DIR-REQ-001`
+
+- Title: DevSecOps Directive Requirements Extract
+- Source: `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md`
+- Status: `review`
+- Owner: `governance-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `directive, devsecops`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `devsecops-review, governance-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `DSCB-STD-REQ-001`
+
+- Title: DevSecOps Control Baseline Requirements Extract
+- Source: `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md`
+- Status: `intake`
+- Owner: `devsecops-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `devsecops`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `devsecops-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `PRA-STD-REQ-001`
+
+- Title: Platform Reference Architecture Requirements Extract
+- Source: `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md`
+- Status: `intake`
+- Owner: `platform-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `platform, devsecops`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `devsecops-review, platform-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `ARCH-SDD-REQ-001`
+
+- Title: Integrated SDD Architecture Governance Requirements Extract
+- Source: `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md`
+- Status: `review`
+- Owner: `architecture-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `architecture`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `architecture-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+- `python3 scripts/validate_runtime_governance.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `ARCH-TPL-REQ-001`
+
+- Title: Architecture Templates and Checklists Requirements Extract
+- Source: `docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md`
+- Status: `intake`
+- Owner: `architecture-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `architecture`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `architecture-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+- `python3 scripts/validate_runtime_governance.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `ARCH-EA-REQ-001`
+
+- Title: Enterprise Architecture Requirements Extract
+- Source: `docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md`
+- Status: `intake`
+- Owner: `architecture-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `architecture`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `architecture-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+- `python3 scripts/validate_runtime_governance.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `ARCH-SA-REQ-001`
+
+- Title: Solution Architecture Requirements Extract
+- Source: `docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md`
+- Status: `intake`
+- Owner: `architecture-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `architecture`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `architecture-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+- `python3 scripts/validate_runtime_governance.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `ARCH-PA-REQ-001`
+
+- Title: Product Architecture Requirements Extract
+- Source: `docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md`
+- Status: `intake`
+- Owner: `architecture-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `architecture`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `architecture-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+- `python3 scripts/validate_runtime_governance.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `ARCH-GOV-REQ-001`
+
+- Title: Architecture Governance Framework Requirements Extract
+- Source: `docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md`
+- Status: `intake`
+- Owner: `architecture-owners`
+- Version: `requirements-only-sanitized`
+- Domains: `architecture`
+- Lineage artifacts: `11`
+- Source state: `active_source`
+- Release consideration: `no_release_by_default`
+- Review lanes: `architecture-review`
+
+Derived artifact areas:
+
+- `docs/governance/source-documents`
 
 Suggested validation:
 

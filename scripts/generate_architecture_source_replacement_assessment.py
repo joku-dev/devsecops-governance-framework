@@ -106,6 +106,10 @@ def document_profile(document: dict) -> dict:
     }
 
 
+def participates_in_replacement_assessment(document: dict) -> bool:
+    return document.get("version") != "requirements-only-sanitized"
+
+
 def overlap_ratio(left: set[str], right: set[str]) -> float:
     if not left or not right:
         return 0.0
@@ -174,14 +178,19 @@ def build_report() -> dict:
         for document in register.get("documents", [])
         if "architecture" in document.get("governance_domains", [])
     ]
+    replacement_assessment_documents = [
+        document
+        for document in architecture_documents
+        if participates_in_replacement_assessment(document)
+    ]
     active_sources = [
         document_profile(document)
-        for document in architecture_documents
+        for document in replacement_assessment_documents
         if document.get("status") in {"intake", "review", "approved"}
     ]
     candidates = [
         document_profile(document)
-        for document in architecture_documents
+        for document in replacement_assessment_documents
         if document.get("status") == "candidate"
     ]
 
