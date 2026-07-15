@@ -7,6 +7,13 @@ central governance repository independently verifies and displays its Trust.
 The demo deliberately keeps evidence quality separate from a governance pass
 or delivery gate.
 
+For the complete German presenter preparation, live script, fallback plan,
+troubleshooting, and Q&A guide, use:
+
+```text
+docs/demos/presentation-guide-typed-evidence-trust-de.md
+```
+
 ## Validated Starting Point
 
 | Component | Validated state |

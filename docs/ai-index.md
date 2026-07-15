@@ -195,6 +195,7 @@ python3 scripts/generate_status_viewer.py
 |---|---|
 | Full end-to-end demo | `docs/demos/demo-end-to-end-governance.md` |
 | Consumer typed-evidence demo | `docs/demos/demo-consumer-typed-evidence-trust.md` |
+| Typed-evidence presentation guide | `docs/demos/presentation-guide-typed-evidence-trust-de.md` |
 | Architecture-only demo | `docs/demos/demo-ha-cpswms-runtime-governance.md` |
 | Architecture result explanation | `docs/demos/ha-cpswms-architecture-governance-results.md` |
 | DevSecOps historical demo guide | `docs/demos/demo-guide-2026-07-02-ha-cpswms.md` |

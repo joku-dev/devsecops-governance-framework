@@ -58,6 +58,7 @@ nav:
   - Demos:
       - End-to-End Governance Demo: demos/demo-end-to-end-governance.md
       - Demo Consumer Typed Evidence Trust: demos/demo-consumer-typed-evidence-trust.md
+      - Präsentationsanleitung Typed Evidence Trust: demos/presentation-guide-typed-evidence-trust-de.md
       - Architecture Runtime Governance Demo: demos/demo-ha-cpswms-runtime-governance.md
       - ha-CPsWMS Architecture Governance Results: demos/ha-cpswms-architecture-governance-results.md
       - Historical ha-CPsWMS Demo Guide: demos/demo-guide-2026-07-02-ha-cpswms.md

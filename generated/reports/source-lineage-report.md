@@ -1,12 +1,12 @@
 # Source Lineage Report
 
-Generated: `2026-07-15T16:48:55Z`
+Generated: `2026-07-15T16:57:27Z`
 
 ## Summary
 
 - Source documents: `20`
 - Source documents with lineage entries: `20`
-- Derived artifact links: `326`
+- Derived artifact links: `327`
 - Missing derived artifacts: `0`
 
 ## Source Documents
@@ -29,7 +29,7 @@ Generated: `2026-07-15T16:48:55Z`
 | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md` | `true` | `13` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `70` |
+| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `71` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.public.md` | `true` | `29` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md` | `true` | `11` |
@@ -337,6 +337,7 @@ Generated: `2026-07-15T16:48:55Z`
 | `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `governance_document` | `DSCB-STD-001` | `true` |
 | `docs/demos/demo-consumer-typed-evidence-trust.md` | `governance_model` | `DSCB-STD-001` | `true` |
+| `docs/demos/presentation-guide-typed-evidence-trust-de.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/examples/evidence-collector-record.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/examples/evidence-trust-record.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/examples/vulnerability-scan-input.example.json` | `governance_model` | `DSCB-STD-001` | `true` |

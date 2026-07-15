@@ -69,6 +69,7 @@ control decision or accepting a producer assertion on Trust.
 
 - `status/typed-evidence-results-index.json`
 - `generated/viewer/status-viewer.html`
+- `docs/demos/presentation-guide-typed-evidence-trust-de.md`
 - source-lineage and governance-impact reports
 
 ## Validated Demo State
