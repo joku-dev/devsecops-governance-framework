@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T16:48:55Z",
+  "generated_at": "2026-07-15T16:57:27Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1471,6 +1471,12 @@
           "exists": true
         },
         {
+          "artifact_path": "docs/demos/presentation-guide-typed-evidence-trust-de.md",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "docs/examples/evidence-collector-record.example.json",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -2145,7 +2151,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 326,
+    "derived_artifact_count": 327,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []

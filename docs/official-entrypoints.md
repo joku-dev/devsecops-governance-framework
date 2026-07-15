@@ -75,6 +75,7 @@ It is intended for:
 - Evidence Collector Contract: `docs/operations/evidence/evidence-collector-contract.md`
 - Vulnerability Scan Collector Usage: `docs/operations/evidence/vulnerability-scan-collector-usage.md`
 - Demo Consumer Typed Evidence Trust: `docs/demos/demo-consumer-typed-evidence-trust.md`
+- Präsentationsanleitung Typed Evidence Trust: `docs/demos/presentation-guide-typed-evidence-trust-de.md`
 - How to update baseline input documents: `docs/operations/guides/how-to-update-baseline-input-documents.md`
 - Governance evidence schema versioning: `docs/operations/evidence/governance-evidence-schema-versioning.md`
 - New artifact intake process: `docs/operations/processes/new-artifact-intake-process.md`
