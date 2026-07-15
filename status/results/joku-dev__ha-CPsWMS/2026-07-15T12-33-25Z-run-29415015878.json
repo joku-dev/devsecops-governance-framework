@@ -3,7 +3,7 @@
   "repository_id": "joku-dev/ha-CPsWMS",
   "baseline_level": "L1",
   "governance_baseline_ref": "l1-baseline-v1.1.3",
-  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "governance_repository": "joku-dev/devsecops-governance-framework",
   "result_type": "governance-baseline-run",
   "generated_at": "2026-07-15T12:33:25Z",
   "pipeline": {
