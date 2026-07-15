@@ -74,6 +74,16 @@ Use `docs/demos/demo-end-to-end-governance.md` as the primary demo runbook.
 Before committing governance behavior, schemas, generated reports, viewer data, or docs that describe current results, run:
 
 ```bash
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
+```
+
+The bootstrap is idempotent. The complete validation command uses the pinned
+Python dependencies and OPA version declared by the repository. Its expanded
+validation sequence is:
+
+```bash
+opa check policies/opa
 python3 scripts/validate_runtime_governance.py
 python3 scripts/validate_governance_repo.py
 python3 -m unittest discover -s tests

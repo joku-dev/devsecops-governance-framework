@@ -81,6 +81,15 @@ If a new artifact is added from a source document, update the relevant lineage m
 Full validation:
 
 ```bash
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
+```
+
+The second command runs the following checks with repository-pinned Python and
+OPA versions:
+
+```bash
+opa check policies/opa
 python3 scripts/validate_runtime_governance.py
 python3 scripts/validate_governance_repo.py
 python3 -m unittest discover -s tests
