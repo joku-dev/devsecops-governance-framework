@@ -1,0 +1,347 @@
+schema_version: "1.0.0"
+model_id: evidence-trust-model-v1
+title: Evidence Trust Model v1
+status: active_report_only
+source_document: docs/governance/source-documents/DSCB-STD-SRC-001.public.md
+owner: governance-owners
+
+adoption:
+  contract_impact: additive
+  enforcement: report_only
+  existing_evidence_default: unverified
+  trust_does_not_imply_governance_pass: true
+  governance_pass_does_not_imply_trust: true
+  existing_snapshots_reclassified: false
+
+principles:
+  - id: separate_trust_from_result
+    statement: Evidence trust describes confidence in origin and integrity, not whether governance requirements passed.
+  - id: verify_do_not_infer
+    statement: Missing or unknown verification signals must not be interpreted as successful checks.
+  - id: bind_to_subject
+    statement: Every verified claim must bind to the repository, commit, run, artifact, or other subject it describes.
+  - id: preserve_custody
+    statement: Raw, normalized, and centrally intaken evidence must remain linked through recorded digests and transformations.
+  - id: advance_monotonically
+    statement: A higher trust level must satisfy all requirements of every lower trust level.
+  - id: adopt_before_enforce
+    statement: Trust signals remain report-only until schemas, migration guidance, verification logic, and release impact are approved.
+
+trust_dimensions:
+  - id: identity
+    description: Stable identity for the evidence record and its governed subject.
+    required_claims:
+      - evidence_id
+      - evidence_type
+      - subject.repository_id
+      - subject.commit_id
+  - id: integrity
+    description: Cryptographic binding between recorded metadata and the exact evidence bytes.
+    required_claims:
+      - integrity.algorithm
+      - integrity.digest
+      - integrity.verification_result
+  - id: provenance
+    description: Traceable producer, workflow, run, event, baseline, and source location.
+    required_claims:
+      - producer.system
+      - producer.workflow_ref
+      - producer.run_id
+      - producer.run_attempt
+      - producer.event
+      - producer.baseline_ref
+      - collection.source_uri
+  - id: authenticity
+    description: Independently verified attestation that binds a trusted issuer to the evidence subject.
+    required_claims:
+      - attestation.format
+      - attestation.issuer
+      - attestation.subject_digest
+      - attestation.signature_verification_result
+  - id: freshness
+    description: Evaluated age and validity of evidence for its intended governance decision.
+    required_claims:
+      - freshness.produced_at
+      - freshness.collected_at
+      - freshness.policy_id
+      - freshness.verification_result
+  - id: replay_resistance
+    description: Detection of duplicate, superseded, or cross-subject reuse of evidence.
+    required_claims:
+      - replay.replay_key
+      - replay.subject_binding_verified
+      - replay.uniqueness_verification_result
+  - id: chain_of_custody
+    description: Traceable acquisition and transformation from source artifact to normalized snapshot.
+    required_claims:
+      - custody.collector
+      - custody.collected_at
+      - custody.raw_digest
+      - custody.normalized_digest
+      - custody.transformations
+
+verification_checks:
+  - id: subject_identity_complete
+    dimension: identity
+    description: Evidence type, repository, commit, and governed subject identifiers are present.
+  - id: content_digest_verified
+    dimension: integrity
+    description: A supported digest is recomputed over the collected bytes and matches the recorded digest.
+  - id: producer_run_resolved
+    dimension: provenance
+    description: The producer run is resolved from the authoritative platform API.
+  - id: commit_matches_run
+    dimension: provenance
+    description: The claimed commit matches the authoritative run metadata.
+  - id: artifact_belongs_to_run
+    dimension: provenance
+    description: The collected artifact is listed for the claimed workflow run and attempt.
+  - id: baseline_ref_resolved
+    dimension: provenance
+    description: The governance baseline reference is derived from a pinned workflow reference or verified metadata.
+  - id: freshness_evaluated
+    dimension: freshness
+    description: Evidence age and expiry are evaluated against an approved evidence-type policy.
+  - id: replay_key_unique
+    dimension: replay_resistance
+    description: Repository, run, attempt, artifact, subject, and digest do not conflict with accepted evidence history.
+  - id: custody_recorded
+    dimension: chain_of_custody
+    description: Collector, source URI, timestamps, raw digest, normalized digest, and transformations are recorded.
+  - id: attestation_signature_valid
+    dimension: authenticity
+    description: The attestation signature or equivalent authenticity proof is cryptographically valid.
+  - id: attestation_issuer_trusted
+    dimension: authenticity
+    description: The verified issuer is present in an approved trust-root registry.
+  - id: attestation_subject_matches
+    dimension: authenticity
+    description: The attested subject digest matches the evidence or artifact being evaluated.
+
+trust_levels:
+  - id: unverified
+    rank: 0
+    description: Evidence is recorded but no trust verification is asserted.
+    required_dimensions: []
+    required_checks: []
+    recommended_uses:
+      - diagnostic_visibility
+      - historical_record
+    not_sufficient_for:
+      - independent_audit_reliance
+      - automated_blocking
+  - id: integrity_verified
+    rank: 1
+    description: Evidence identity is present and its collected bytes match a verified digest.
+    required_dimensions:
+      - identity
+      - integrity
+    required_checks:
+      - subject_identity_complete
+      - content_digest_verified
+    recommended_uses:
+      - tamper_detection
+      - report_only_governance_review
+    not_sufficient_for:
+      - producer_identity_assurance
+      - automated_blocking
+  - id: provenance_verified
+    rank: 2
+    description: Integrity, producer run, subject binding, freshness, replay, and custody are independently verified.
+    required_dimensions:
+      - identity
+      - integrity
+      - provenance
+      - freshness
+      - replay_resistance
+      - chain_of_custody
+    required_checks:
+      - subject_identity_complete
+      - content_digest_verified
+      - producer_run_resolved
+      - commit_matches_run
+      - artifact_belongs_to_run
+      - baseline_ref_resolved
+      - freshness_evaluated
+      - replay_key_unique
+      - custody_recorded
+    recommended_uses:
+      - audit_evidence_review
+      - official_status_trust_projection
+    not_sufficient_for:
+      - cryptographic_issuer_assurance
+      - automated_blocking_without_release_approval
+  - id: attested
+    rank: 3
+    description: Provenance-verified evidence also carries a valid attestation from an approved issuer.
+    required_dimensions:
+      - identity
+      - integrity
+      - provenance
+      - authenticity
+      - freshness
+      - replay_resistance
+      - chain_of_custody
+    required_checks:
+      - subject_identity_complete
+      - content_digest_verified
+      - producer_run_resolved
+      - commit_matches_run
+      - artifact_belongs_to_run
+      - baseline_ref_resolved
+      - freshness_evaluated
+      - replay_key_unique
+      - custody_recorded
+      - attestation_signature_valid
+      - attestation_issuer_trusted
+      - attestation_subject_matches
+    recommended_uses:
+      - high_assurance_audit_review
+      - release_evidence_candidate
+    not_sufficient_for:
+      - governance_pass_without_policy_evaluation
+      - automated_blocking_without_release_approval
+
+decision_rules:
+  - id: trust_and_governance_result_are_independent
+    requirement: A trusted artifact may contain failing findings, and a passing result may remain unverified.
+  - id: unknown_is_not_verified
+    requirement: Missing, unknown, skipped, or not-evaluated checks cannot satisfy a trust-level requirement.
+  - id: level_is_derived
+    requirement: Producers may provide claims, but only the intake verifier assigns the effective trust level.
+  - id: level_is_monotonic
+    requirement: Every assigned level must include all dimensions and checks required by lower levels.
+  - id: subject_binding_is_mandatory
+    requirement: Digests and attestations must bind to the repository, commit, run attempt, and relevant artifact subject.
+  - id: downgrade_is_visible
+    requirement: A failed re-verification must produce a visible downgrade or verification finding and must not silently retain the prior level.
+  - id: stronger_evidence_is_not_silently_replaced
+    requirement: Evidence with weaker trust must not silently replace stronger evidence for the same subject and decision context.
+  - id: blocking_requires_release_review
+    requirement: Trust-based blocking requires schema migration, representative evidence, policy tests, release review, and explicit maintainer approval.
+
+migration_gaps:
+  - id: shared_trust_projection_missing
+    scope: shared
+    current_state: Results contain governance outcomes and selected metadata but no normalized trust assessment.
+    missing_capabilities:
+      - trust level
+      - per-check verification results
+      - verifier identity
+      - verification timestamp
+    target_level: integrity_verified
+    priority: high
+    phase: additive_capture
+  - id: devsecops_custody_partial
+    scope: devsecops_intake
+    current_state: Report and governance-input SHA-256 values are captured with run and artifact metadata.
+    missing_capabilities:
+      - raw archive digest
+      - run attempt
+      - authoritative verification outcomes
+      - normalized snapshot digest
+      - transformation log
+    target_level: provenance_verified
+    priority: high
+    phase: verification_projection
+  - id: architecture_integrity_missing
+    scope: architecture_intake
+    current_state: Run, commit, event, baseline, and evidence flags are captured without content digests.
+    missing_capabilities:
+      - architecture report digest
+      - architecture release-input digest
+      - raw archive digest
+      - run attempt
+      - custody record
+    target_level: integrity_verified
+    priority: high
+    phase: additive_capture
+  - id: authenticity_not_evaluated
+    scope: shared
+    current_state: Platform API access identifies a source run but no signed attestation or approved issuer is evaluated.
+    missing_capabilities:
+      - attestation format decision
+      - trusted issuer registry
+      - signature verification
+      - attested subject binding
+    target_level: attested
+    priority: medium
+    phase: attestation_pilot
+  - id: freshness_policy_missing
+    scope: shared
+    current_state: Generation timestamps are recorded but no evidence-type validity policy is evaluated.
+    missing_capabilities:
+      - evidence-type freshness windows
+      - expiry evaluation
+      - stale-evidence findings
+    target_level: provenance_verified
+    priority: medium
+    phase: verification_projection
+  - id: replay_detection_partial
+    scope: shared
+    current_state: Run IDs and timestamped filenames provide identifiers but uniqueness and cross-subject reuse are not verified.
+    missing_capabilities:
+      - canonical replay key
+      - run-attempt handling
+      - duplicate digest detection
+      - cross-subject reuse detection
+    target_level: provenance_verified
+    priority: medium
+    phase: verification_projection
+
+migration_phases:
+  - id: model_report_only
+    order: 1
+    state: current
+    objective: Establish vocabulary, levels, decision rules, gaps, and validation without changing evidence consumers.
+    enforcement: report_only
+  - id: additive_capture
+    order: 2
+    state: planned
+    objective: Add optional trust metadata and missing digests to both intake paths while preserving schema compatibility.
+    enforcement: report_only
+  - id: verification_projection
+    order: 3
+    state: planned
+    objective: Derive trust levels centrally, surface verification findings, and prevent silent trust upgrades.
+    enforcement: report_only
+  - id: attestation_pilot
+    order: 4
+    state: gated
+    objective: Pilot approved issuers and signed subject-bound attestations with representative repositories.
+    enforcement: report_only
+  - id: enforcement_decision
+    order: 5
+    state: gated
+    objective: Decide whether any trust requirement should become blocking through an explicit release and migration review.
+    enforcement: decision_required
+
+open_decisions:
+  - id: trusted_issuer_registry
+    question: Which workload identities and trust roots may issue accepted attestations?
+    required_reviewers:
+      - security
+      - platform
+      - governance
+    blocking_for_phase: attestation_pilot
+  - id: freshness_windows
+    question: Which validity windows apply to each evidence type and decision context?
+    required_reviewers:
+      - control_owners
+      - security
+      - operations
+    blocking_for_phase: verification_projection
+  - id: attestation_format
+    question: Which attestation envelope and predicate shape will be supported first?
+    required_reviewers:
+      - security
+      - platform
+      - architecture
+    blocking_for_phase: attestation_pilot
+  - id: trust_based_enforcement
+    question: Which trust levels, if any, may gate protected mainline or release decisions?
+    required_reviewers:
+      - governance
+      - security
+      - release_manager
+    blocking_for_phase: enforcement_decision

@@ -7,6 +7,11 @@ This guide explains two operational capabilities of this repository:
 1. how to create normalized governance result snapshots for downstream repositories
 2. how the status viewer distinguishes `main` results from branch or pull-request results
 
+The current intake stores governance outcomes and selected provenance and
+integrity metadata. The report-only model for evaluating that metadata is
+defined in `docs/operations/evidence/evidence-trust-model.md`. Version 1 does
+not change latest-result selection or viewer behavior.
+
 ## Part 1: Result Intake
 
 ### Goal

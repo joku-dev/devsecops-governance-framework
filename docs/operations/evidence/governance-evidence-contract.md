@@ -58,6 +58,20 @@ That would create problems:
 
 The contract therefore gives downstream repositories one common structure for governance-relevant facts.
 
+## Evidence Content Versus Evidence Trust
+
+This contract describes governance-relevant claims and evidence content. It
+does not by itself prove that a claim is authentic, fresh, non-replayed, or
+bound to an independently verified producer.
+
+The report-only trust model for those questions is defined in:
+
+- `model/evidence/evidence-trust-model.yaml`
+- `docs/operations/evidence/evidence-trust-model.md`
+
+Evidence trust remains separate from control outcome: trusted evidence may
+contain findings, and passing evidence may remain unverified.
+
 ## Minimum Required Sections
 
 The following sections are currently required by the schema:

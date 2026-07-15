@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T11:34:39Z",
+  "generated_at": "2026-07-15T13:43:53Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
@@ -8,7 +8,7 @@
   "summary": {
     "registered_source_documents": 20,
     "source_documents_with_lineage": 20,
-    "derived_artifact_links": 289,
+    "derived_artifact_links": 292,
     "domains": {
       "architecture": 12,
       "devsecops": 8,
@@ -30,7 +30,7 @@
       "architecture_model": 8,
       "derived_artifact": 212,
       "governance_document": 4,
-      "governance_model": 36,
+      "governance_model": 39,
       "policy_as_code": 15,
       "release_document": 1,
       "release_metadata": 1,
@@ -45,7 +45,7 @@
       "platform-review": 2,
       "policy-as-code-review": 2,
       "release-review": 2,
-      "schema-review": 1,
+      "schema-review": 2,
       "viewer-status-review": 2
     }
   },
@@ -169,11 +169,11 @@
         "releases/l1",
         "generated/reports"
       ],
-      "lineage_artifact_count": 33,
+      "lineage_artifact_count": 36,
       "lineage_artifact_types": {
         "derived_artifact": 10,
         "governance_document": 1,
-        "governance_model": 7,
+        "governance_model": 10,
         "policy_as_code": 11,
         "release_package": 3,
         "traceability_mapping": 1
@@ -181,7 +181,8 @@
       "review_lanes": [
         "devsecops-review",
         "policy-as-code-review",
-        "release-review"
+        "release-review",
+        "schema-review"
       ],
       "release_consideration": "baseline_release_review",
       "source_state": "active_source",
@@ -197,6 +198,7 @@
       "change_request_required_for_source_update": true,
       "representative_artifacts": [
         "docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+        "docs/operations/evidence/evidence-trust-model.md",
         "generated/reports/architecture-source-replacement-assessment.json",
         "generated/reports/architecture-source-replacement-assessment.md",
         "generated/reports/governance-change-impact.json",
@@ -204,8 +206,7 @@
         "generated/reports/source-document-intake-review-briefs.json",
         "generated/reports/source-document-intake-review-briefs.md",
         "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json"
+        "generated/reports/source-document-intake-status.md"
       ]
     },
     {
