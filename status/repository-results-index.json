@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-04T14:12:55Z",
+  "generated_at": "2026-07-15T12:33:50Z",
   "summary": {
     "repository_count": 2,
-    "result_count": 15,
-    "passing_results": 14,
+    "result_count": 16,
+    "passing_results": 15,
     "failing_results": 1,
-    "mainline_results": 9,
+    "mainline_results": 10,
     "branch_results": 4,
     "manual_results": 2
   },
@@ -57,11 +57,11 @@
       "results_path": "status/results/joku-dev__ha-CPsWMS/",
       "latest_result": {
         "status": "pass",
-        "pipeline_run_id": "28708822838",
-        "commit_id": "cada7117a1dcbae35e16cf0ca892c11802fc3a2f",
-        "generated_at": "2026-07-04T14:12:37Z",
+        "pipeline_run_id": "29415015878",
+        "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+        "generated_at": "2026-07-15T12:33:25Z",
         "governance_baseline_ref": "l1-baseline-v1.1.3",
-        "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-04T14-12-37Z-run-28708822838.json",
+        "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-15T12-33-25Z-run-29415015878.json",
         "control_evaluation_summary": {
           "total_controls": 46,
           "pass": 16,
@@ -316,6 +316,26 @@
             "tested_controls": 16
           },
           "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-04T14-12-37Z-run-28708822838.json"
+        },
+        {
+          "generated_at": "2026-07-15T12:33:25Z",
+          "status": "pass",
+          "pipeline_run_id": "29415015878",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/29415015878",
+          "branch": "main",
+          "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+          "governance_baseline_ref": "l1-baseline-v1.1.3",
+          "control_evaluation_summary": {
+            "total_controls": 46,
+            "pass": 16,
+            "fail": 0,
+            "not_tested": 0,
+            "not_applicable": 30,
+            "applicable_controls": 16,
+            "tested_controls": 16
+          },
+          "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-15T12-33-25Z-run-29415015878.json"
         }
       ]
     }
