@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-04T14:12:12Z",
+  "generated_at": "2026-07-15T12:08:32Z",
   "summary": {
     "repository_count": 1,
-    "result_count": 7,
-    "passing_results": 7,
+    "result_count": 8,
+    "passing_results": 8,
     "findings_results": 0,
-    "mainline_results": 4,
+    "mainline_results": 5,
     "branch_results": 2,
     "manual_results": 1
   },
@@ -17,14 +17,14 @@
       "results_path": "status/architecture-results/joku-dev__ha-CPsWMS/",
       "latest_result": {
         "status": "pass",
-        "pipeline_run_id": "28708822660",
-        "commit_id": "cada7117a1dcbae35e16cf0ca892c11802fc3a2f",
-        "generated_at": "2026-07-04T14:11:47Z",
+        "pipeline_run_id": "29414076871",
+        "commit_id": "085ba5e5b14fcf557cd22747d07ca287884b93df",
+        "generated_at": "2026-07-15T12:08:03Z",
         "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
-        "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/28708822660",
+        "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/29414076871",
         "branch": "main",
         "pipeline_event": "push",
-        "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-04T14-11-47Z-run-28708822660.json",
+        "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T12-08-03Z-run-29414076871.json",
         "architecture_summary": {
           "gate_count": 4,
           "passed": 4,
@@ -151,6 +151,23 @@
             "finding_count": 0
           },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-04T14-11-47Z-run-28708822660.json"
+        },
+        {
+          "generated_at": "2026-07-15T12:08:03Z",
+          "status": "pass",
+          "pipeline_run_id": "29414076871",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/29414076871",
+          "branch": "main",
+          "commit_id": "085ba5e5b14fcf557cd22747d07ca287884b93df",
+          "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+          "architecture_summary": {
+            "gate_count": 4,
+            "passed": 4,
+            "with_findings": 0,
+            "finding_count": 0
+          },
+          "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T12-08-03Z-run-29414076871.json"
         }
       ]
     }
