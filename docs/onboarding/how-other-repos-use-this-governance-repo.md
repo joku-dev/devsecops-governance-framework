@@ -59,7 +59,7 @@ This repository contains:
 
 ### 2. Governance Repository
 
-This repository, `devsecops-governance-as-code`, contains:
+This repository, `devsecops-governance-framework`, contains:
 
 - the governance model,
 - the control baseline,
@@ -84,7 +84,7 @@ The application pipeline typically performs these steps:
 Assume:
 
 - application repository: `sample-app`
-- governance repository: `devsecops-governance-as-code`
+- governance repository: `devsecops-governance-framework`
 
 ### Step 1: Check Out Both Repositories
 
@@ -92,7 +92,7 @@ Example:
 
 ```bash
 git clone <application-repo-url> sample-app
-git clone <governance-repo-url> devsecops-governance-as-code
+git clone <governance-repo-url> devsecops-governance-framework
 ```
 
 ### What this step does
@@ -133,7 +133,7 @@ In a real project, the equivalent input would be generated from the application 
 Before using the governance rules, the pipeline should validate the governance repository:
 
 ```bash
-cd devsecops-governance-as-code
+cd devsecops-governance-framework
 python3 scripts/validate_governance_repo.py
 python3 -m unittest discover -s tests
 opa check policies/opa
@@ -158,7 +158,7 @@ Example:
 
 ```bash
 opa eval -f pretty \
-  -d devsecops-governance-as-code/policies/opa \
+  -d devsecops-governance-framework/policies/opa \
   -i sample-app/generated/release-candidate.json \
   'data.devsecops.branch_protection.deny'
 ```
@@ -237,9 +237,9 @@ This is the easiest real-world usage model:
 
 ```bash
 git clone <application-repo-url> sample-app
-git clone <governance-repo-url> devsecops-governance-as-code
+git clone <governance-repo-url> devsecops-governance-framework
 
-cd devsecops-governance-as-code
+cd devsecops-governance-framework
 python3 scripts/validate_governance_repo.py
 python3 -m unittest discover -s tests
 opa check policies/opa

@@ -1,51 +1,74 @@
-name: DevSecOps Pipeline Baseline
+name: DevSecOps Baseline
 
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
 
 jobs:
-  code:
-    name: Code Checks
+  prepare-evidence:
+    name: Prepare Evidence
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7.0.0
-      - name: Source integrity and secure coding evidence
-        run: echo "Run branch protection, review evidence, secret scanning, and SAST checks here."
+      - name: Checkout application repository
+        uses: actions/checkout@v4
 
-  build:
-    name: Controlled Build
-    runs-on: ubuntu-latest
-    needs: code
-    steps:
-      - uses: actions/checkout@v7.0.0
-      - name: Build artifact
-        run: echo "Run controlled build and produce artifact metadata here."
+      - name: Build artifact and evidence
+        run: |
+          mkdir -p dist security governance
+          echo "replace with real build output" > dist/application-artifact.txt
 
-  test:
-    name: Test and Security Gates
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v7.0.0
-      - name: Vulnerability and security gate evidence
-        run: echo "Run vulnerability scanning and policy threshold checks here."
+          cat > security/sbom.cyclonedx.json <<'JSON'
+          {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.5",
+            "version": 1,
+            "components": []
+          }
+          JSON
 
-  package:
-    name: Package and Evidence
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v7.0.0
-      - name: SBOM and artifact integrity evidence
-        run: echo "Generate SBOM, artifact digest, signature, and repository metadata here."
+          cat > security/vulnerability-scan.json <<'JSON'
+          {
+            "scanner": "placeholder",
+            "max_severity": "none",
+            "findings": []
+          }
+          JSON
 
-  release:
-    name: Release Decision
-    runs-on: ubuntu-latest
-    needs: package
-    steps:
-      - uses: actions/checkout@v7.0.0
-      - name: Release approval and evidence bundle
-        run: echo "Evaluate release approval, waiver status, and evidence bundle completeness here."
+          cat > governance/governance-run-input.json <<'JSON'
+          {
+            "release_candidate": true,
+            "required_platform_level": "PRA-Level 1"
+          }
+          JSON
+
+      - name: Upload application evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-evidence
+          path: |
+            dist/application-artifact.txt
+            security/sbom.cyclonedx.json
+            security/vulnerability-scan.json
+            governance/governance-run-input.json
+
+  devsecops-baseline:
+    name: Central DevSecOps Baseline
+    needs: prepare-evidence
+    uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
+    with:
+      governance_mode: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'block-on-error' || 'report-only' }}
+      max_allowed_severity: high
+      artifact_path: dist/application-artifact.txt
+      sbom_path: security/sbom.cyclonedx.json
+      vulnerability_scan_path: security/vulnerability-scan.json
+      governance_run_input_path: governance/governance-run-input.json
+      application_evidence_artifact_name: application-evidence
+      generate_demo_evidence: false

@@ -98,7 +98,7 @@ Update these values in the copied workflow as needed:
 
 | Field | Default | Meaning |
 |---|---|---|
-| `repository` | `joku-dev/devsecops-governance-as-code` | Governance repository containing policies and scripts. |
+| `repository` | `joku-dev/devsecops-governance-framework` | Governance repository containing policies and scripts. |
 | `ref` | `architecture-baseline-l1-v0.1.0` | Governance branch/tag/SHA to use. |
 | `--baseline` | `app-demo-baseline` | Solution baseline identifier expected for release compatibility. |
 

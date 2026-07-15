@@ -14,7 +14,7 @@ on:
       governance_repository:
         description: Governance repository containing collectors, schemas and OPA policies
         required: false
-        default: joku-dev/devsecops-governance-as-code
+        default: joku-dev/devsecops-governance-framework
       governance_ref:
         description: Governance repository branch, tag or SHA
         required: false
@@ -42,7 +42,7 @@ jobs:
       - name: Checkout governance repository
         uses: actions/checkout@v7.0.0
         with:
-          repository: ${{ github.event.inputs.governance_repository || 'joku-dev/devsecops-governance-as-code' }}
+          repository: ${{ github.event.inputs.governance_repository || 'joku-dev/devsecops-governance-framework' }}
           ref: ${{ github.event.inputs.governance_ref || 'architecture-baseline-l1-v0.1.0' }}
           path: governance
 
