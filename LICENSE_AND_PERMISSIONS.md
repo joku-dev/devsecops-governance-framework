@@ -15,7 +15,7 @@ employment agreements.
 Unless a separate, approved license file or written agreement states otherwise,
 all repository content is treated as controlled internal material.
 
-Rights holder: `To be assigned`.
+Rights holder: `Joern Kutscher`.
 
 Recommended default for this repository: controlled internal use with all rights
 reserved. This is the safest default for governance-as-code material because the
