@@ -3,12 +3,12 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 import argparse
-import hashlib
 import json
 import os
 import re
@@ -19,6 +19,7 @@ import tempfile
 import zipfile
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
+from lib.evidence_trust import build_trust_capture, compute_sha256, digest_subject
 from lib.json_io import load_json, write_json
 
 
@@ -137,12 +138,6 @@ def find_report(extract_dir: Path) -> Path:
     return matches[0]
 
 
-def compute_sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    digest.update(path.read_bytes())
-    return digest.hexdigest()
-
-
 def artifact_size_bytes(artifact: dict) -> int:
     return int(artifact.get("size_in_bytes", artifact.get("size", 0)))
 
@@ -200,6 +195,7 @@ def write_snapshot(
     artifacts: list[dict],
     selected_artifact: dict | None,
     artifact_names: set[str],
+    trust: dict,
     notes: str,
 ) -> Path:
     control_summary = report.get("summary", report)
@@ -251,6 +247,7 @@ def write_snapshot(
             "artifact_sizes": artifact_sizes,
         },
         "downloaded_artifact": downloaded_artifact_info,
+        "trust": trust,
         "control_evaluation_summary": control_summary,
         "overall_status": overall_status,
         "notes": notes,
@@ -316,6 +313,36 @@ def main() -> int:
         governance_input, governance_input_path = find_governance_input(extract_dir)
         report_sha256 = compute_sha256(report_path)
         governance_input_sha256 = compute_sha256(governance_input_path) if governance_input_path is not None else None
+        subjects = [
+            digest_subject(
+                "control_evaluation_report",
+                report_path,
+                "downloaded_artifact.control_evaluation_report_sha256",
+            )
+        ]
+        if governance_input_path is not None:
+            subjects.append(
+                digest_subject(
+                    "governance_run_input",
+                    governance_input_path,
+                    "downloaded_artifact.governance_run_input_sha256",
+                )
+            )
+        if archive.exists():
+            subjects.append(digest_subject("artifact_archive", archive, "trust.capture.subjects.artifact_archive"))
+
+        captured_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+        trust = build_trust_capture(
+            repository_id=args.repository_id,
+            commit_id=run.get("head_sha", "unknown"),
+            workflow_name=run.get("name", "DevSecOps Baseline"),
+            run_id=str(run.get("id")),
+            run_attempt=run.get("run_attempt"),
+            artifact_name=args.artifact_name,
+            source_uri=selected_artifact.get("archive_download_url", run.get("html_url", "")),
+            captured_at=captured_at,
+            subjects=subjects,
+        )
 
     baseline_ref = args.governance_baseline_ref or infer_baseline_ref(run)
     protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
@@ -333,6 +360,7 @@ def main() -> int:
         artifacts=artifacts,
         selected_artifact=selected_artifact,
         artifact_names=artifact_names,
+        trust=trust,
         notes=args.notes,
     )
     print(output_path.relative_to(ROOT))

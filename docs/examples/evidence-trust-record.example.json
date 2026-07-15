@@ -1,0 +1,59 @@
+{
+  "model_id": "evidence-trust-model-v1",
+  "capture_phase": "additive_capture",
+  "effective_level": "unverified",
+  "assessment_status": "not_evaluated",
+  "verifier": null,
+  "verified_at": null,
+  "checks": [],
+  "capture": {
+    "collector": "central-governance-intake",
+    "captured_at": "2026-07-15T14:00:00Z",
+    "source": {
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+      "workflow_name": "Architecture Runtime Governance",
+      "run_id": "29415015294",
+      "run_attempt": 1,
+      "artifact_name": "architecture-governance-evidence",
+      "source_uri": "https://api.github.com/repos/joku-dev/ha-CPsWMS/actions/artifacts/123/zip"
+    },
+    "subjects": [
+      {
+        "id": "architecture_governance_report",
+        "evidence_ref": "artifact_metadata.architecture_governance_report_sha256",
+        "algorithm": "sha256",
+        "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "size_bytes": 4096
+      },
+      {
+        "id": "architecture_release_input",
+        "evidence_ref": "artifact_metadata.architecture_release_input_sha256",
+        "algorithm": "sha256",
+        "digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "size_bytes": 8192
+      }
+    ],
+    "custody": [
+      {
+        "sequence": 1,
+        "action": "download",
+        "actor": "central-governance-intake",
+        "at": "2026-07-15T14:00:00Z",
+        "source_uri": "https://api.github.com/repos/joku-dev/ha-CPsWMS/actions/artifacts/123/zip",
+        "output_refs": ["artifact_metadata"]
+      },
+      {
+        "sequence": 2,
+        "action": "extract_and_hash",
+        "actor": "central-governance-intake",
+        "at": "2026-07-15T14:00:00Z",
+        "source_uri": "https://api.github.com/repos/joku-dev/ha-CPsWMS/actions/artifacts/123/zip",
+        "output_refs": [
+          "artifact_metadata.architecture_governance_report_sha256",
+          "artifact_metadata.architecture_release_input_sha256"
+        ]
+      }
+    ]
+  }
+}

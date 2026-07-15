@@ -119,6 +119,25 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 jobs = []
                 artifacts = [{"name": "governance-control-evaluation", "size_in_bytes": 5438}]
                 selected_artifact = artifacts[0]
+                trust = intake.build_trust_capture(
+                    repository_id="owner/repo",
+                    commit_id="abc123",
+                    workflow_name="DevSecOps Baseline",
+                    run_id="1",
+                    run_attempt=1,
+                    artifact_name="governance-control-evaluation",
+                    source_uri="https://example.com/artifact/1",
+                    captured_at="2026-07-04T00:01:00Z",
+                    subjects=[
+                        {
+                            "id": "control_evaluation_report",
+                            "evidence_ref": "downloaded_artifact.control_evaluation_report_sha256",
+                            "algorithm": "sha256",
+                            "digest": report_sha256,
+                            "size_bytes": 20,
+                        }
+                    ],
+                )
                 output_path = intake.write_snapshot(
                     repository_id="owner/repo",
                     baseline_level="L1",
@@ -133,6 +152,7 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                     artifacts=artifacts,
                     selected_artifact=selected_artifact,
                     artifact_names={"governance-control-evaluation"},
+                    trust=trust,
                     notes="test",
                 )
                 data = json.loads(output_path.read_text(encoding="utf-8"))
@@ -142,5 +162,7 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 self.assertEqual(data["downloaded_artifact"]["control_evaluation_report_sha256"], report_sha256)
                 self.assertEqual(data["downloaded_artifact"]["governance_run_input_sha256"], governance_input_sha256)
                 self.assertEqual(data["artifact_metadata"]["artifact_sizes"]["governance-control-evaluation"], 5438)
+                self.assertEqual(data["trust"]["effective_level"], "unverified")
+                self.assertEqual(data["trust"]["capture"]["source"]["run_attempt"], 1)
             finally:
                 intake.STATUS_RESULTS = old_status_results
