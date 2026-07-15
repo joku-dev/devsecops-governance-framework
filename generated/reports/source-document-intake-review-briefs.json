@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T09:56:04Z",
+  "generated_at": "2026-07-15T09:58:52Z",
   "inputs": {
     "source_document_intake_status": "generated/reports/source-document-intake-status.json",
     "governance_change_impact": "generated/reports/governance-change-impact.json"
