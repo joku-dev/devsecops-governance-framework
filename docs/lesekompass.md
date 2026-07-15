@@ -23,8 +23,8 @@ The current demo target is `joku-dev/ha-CPsWMS`.
 
 | Domain | Current baseline | Current mainline demo status |
 |---|---|---|
-| DevSecOps L1 | `l1-baseline-v1.1.3` | `pass`, run `28592257991`, `16/16` applicable controls |
-| Architecture L1 | `architecture-baseline-l1-v0.1.0` | `PASS`, run `28592256765`, `4/4` gates |
+| DevSecOps L1 | `l1-baseline-v1.1.3` | `pass`, run `29415015878`, `16/16` applicable controls |
+| Architecture L1 | `architecture-baseline-l1-v0.1.0` | `PASS`, run `29415015294`, `4/4` gates |
 
 The demo is intentionally report-only. Findings should be visible in reports, artifacts, indexes and the viewer unless a consuming workflow explicitly enables blocking behavior.
 

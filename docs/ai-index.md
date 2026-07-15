@@ -198,8 +198,8 @@ Current known-good ha-CPsWMS runs:
 
 | Domain | Run | Expected |
 |---|---:|---|
-| DevSecOps Baseline | `28592257991` | pass, `16/16` controls |
-| Architecture Runtime Governance | `28592256765` | PASS, `4/4` gates |
+| DevSecOps Baseline | `29415015878` | pass, `16/16` controls |
+| Architecture Runtime Governance | `29415015294` | PASS, `4/4` gates |
 
 ## Release Map
 
