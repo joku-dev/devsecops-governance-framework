@@ -430,7 +430,7 @@ pipeline-baseline/templates/app-architecture-evidence/
 The released Architecture Runtime Governance baseline is consumed like this:
 
 ```yaml
-uses: joku-dev/devsecops-governance-as-code/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
+uses: joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
 with:
   solution_baseline: ha-CPsWMS-demo-baseline
   fail_on_findings: false

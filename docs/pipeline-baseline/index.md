@@ -80,7 +80,7 @@ That would make controlled baseline consumption harder to govern.
 
 Downstream repositories should use:
 
-- `joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3`
+- `joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3`
 
 This is the recommended revision-safe reference for the current released `L1` baseline.
 
@@ -149,7 +149,7 @@ jobs:
   devsecops-baseline-l1:
     name: Central DevSecOps L1 Baseline
     needs: prepare-devsecops-evidence
-    uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
+    uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
     with:
       artifact_path: dist/example-app.txt
       sbom_path: security/sbom.cyclonedx.json

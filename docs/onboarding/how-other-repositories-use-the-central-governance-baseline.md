@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This guide explains step by step how another application repository can use the central repository `joku-dev/devsecops-governance-as-code`.
+This guide explains step by step how another application repository can use the central repository `joku-dev/devsecops-governance-framework`.
 
 The goal is to help repository owners integrate a shared DevSecOps baseline without copying the governance repository into every project.
 
@@ -110,7 +110,7 @@ jobs:
   devsecops-baseline:
     name: Central DevSecOps Baseline
     needs: prepare-devsecops-evidence
-    uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@528bee5fd067ab7f65c3030863ca338e0553cfdf
+    uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
     with:
       level: L1
       max_allowed_severity: high
@@ -314,6 +314,6 @@ After a successful run, an application repository can state:
 
 ## References
 
-- Central governance repository: `joku-dev/devsecops-governance-as-code`
+- Central governance repository: `joku-dev/devsecops-governance-framework`
 - Onboarding guide in this repository: `docs/onboarding/application-repo-onboarding.md`
 - Example application repository workflow: `examples/github-actions/workflows/application-devsecops-baseline-template.yml`

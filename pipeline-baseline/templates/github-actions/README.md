@@ -1,6 +1,6 @@
 # GitHub Actions Reference Mapping
 
-This folder contains a tool-specific sketch for implementing the tool-agnostic CI/CD Pipeline Control Baseline in GitHub Actions.
+This folder contains GitHub Actions templates for consuming the public DevSecOps Governance Framework from application repositories.
 
 The workflow is intentionally minimal. It shows where baseline checks belong, not a complete enterprise implementation.
 
@@ -8,11 +8,11 @@ The workflow is intentionally minimal. It shows where baseline checks belong, no
 
 | Workflow | Purpose |
 |---|---|
-| `devsecops-baseline.yml` | Sketches where DevSecOps pipeline baseline checks belong. |
+| `devsecops-baseline.yml` | Minimal application-repository workflow that calls the public L1 DevSecOps baseline. |
 | `architecture-governance.yml` | Runs the architecture runtime governance collector and OPA readiness policies against an application repository. |
 | `app-repo-architecture-governance.yml` | Minimal copy-paste workflow for application repositories. |
 
-See `ADOPTION.md` for application repository onboarding guidance.
+See `docs/onboarding/public-repo-quickstart.md` and `ADOPTION.md` for application repository onboarding guidance.
 
 ## Architecture Governance Workflow
 
