@@ -1,0 +1,17 @@
+{
+  "selected_agents": [
+    "demo-readiness",
+    "devsecops-baseline",
+    "repo-steward"
+  ],
+  "required_validations": [
+    "git diff --check",
+    "python3 scripts/run_demo.py",
+    "python3 scripts/validate_governance_repo.py"
+  ],
+  "release_impact": "none",
+  "forbidden_changes": [
+    "demo_claim_without_regeneration"
+  ],
+  "commit_readiness": "requires_demo_readiness_review"
+}

@@ -1,0 +1,9 @@
+{
+  "evidence_type": "feedback_evidence",
+  "status": "draft",
+  "owner": "Architecture Owner",
+  "summary": "Summarizes how runtime, demo, integration or benchmark findings are converted into owned improvement actions.",
+  "evidence_refs": [],
+  "known_limitations": [],
+  "follow_up_actions": []
+}

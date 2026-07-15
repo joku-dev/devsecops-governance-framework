@@ -1,0 +1,162 @@
+level: GOV
+name: Governance Requirements
+required_platform_level: Not applicable
+requirements:
+- id: DSCB-GOV-REQ-001
+  domain: applicability
+  title: Applicability
+  control_objective: Ensure governance obligations for applicability, compliance verification, and deviations are implemented and evidenced.
+  requirement: All programs SHALL implement the Level 1 Control Baseline.
+  required_platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - program_control_baseline_assignment
+  - applicability_assessment_record
+  verification:
+    method: hybrid
+    frequency: governance_review
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_check
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+  automation:
+    type: evidence_check
+    maturity: immediate
+    rationale: Program baseline assignment can be checked through governance records.
+    check_type: presence
+    machine_readable_evidence_required: true
+  verification_requirement: Program governance records SHALL identify the applicable Control Baseline level for each program.
+- id: DSCB-GOV-REQ-002
+  domain: compliance_verification
+  title: Compliance Verification
+  control_objective: Ensure governance obligations for applicability, compliance verification, and deviations are implemented and evidenced.
+  requirement: 'Compliance with this Standard SHALL be verified through:'
+  required_platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - maturity_assessment_record
+  - internal_audit_record
+  - architecture_review_record
+  - program_lifecycle_review_record
+  verification:
+    method: hybrid
+    frequency: governance_review
+  policy_as_code:
+    candidate: false
+    enforcement: review_check
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+  automation:
+    type: review_check
+    maturity: tool_integration_required
+    rationale: Compliance verification includes audit and review activities that require human judgment.
+    check_type: review
+    machine_readable_evidence_required: true
+  verification_requirement: Compliance verification evidence SHALL include maturity assessment, audit, architecture review, or program lifecycle
+    review records as applicable.
+- id: DSCB-GOV-REQ-003
+  domain: compliance_verification
+  title: Compliance Verification
+  control_objective: Ensure governance obligations for applicability, compliance verification, and deviations are implemented and evidenced.
+  requirement: Non-compliance requires an approved waiver.
+  required_platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - maturity_assessment_record
+  - internal_audit_record
+  - architecture_review_record
+  - program_lifecycle_review_record
+  verification:
+    method: hybrid
+    frequency: governance_review
+  policy_as_code:
+    candidate: true
+    enforcement: governance_gate
+    rule: policies/opa/waiver_validity.rego
+  waiver:
+    allowed: false
+    authority: DevSecOps Governance Board
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    rationale: Non-compliance without approved waiver can be blocked in governance/release checks.
+    check_type: approval
+    machine_readable_evidence_required: true
+  verification_requirement: Non-compliance records SHALL reference an approved waiver before a release, deployment, or governance decision is
+    accepted.
+- id: DSCB-GOV-REQ-004
+  domain: deviations
+  title: Deviations
+  control_objective: Ensure governance obligations for applicability, compliance verification, and deviations are implemented and evidenced.
+  requirement: Deviations from this Standard SHALL follow the waiver process defined in the DevSecOps Directive.
+  required_platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - waiver_record
+  - risk_classification
+  - expiry_record
+  - compensating_controls
+  verification:
+    method: hybrid
+    frequency: governance_review
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_check
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+  automation:
+    type: evidence_check
+    maturity: immediate
+    rationale: Deviation process use can be checked through waiver registry records.
+    check_type: linkage
+    machine_readable_evidence_required: true
+  verification_requirement: Deviation records SHALL reference the defined waiver process and waiver registry entry.
+- id: DSCB-GOV-REQ-005
+  domain: deviations
+  title: Deviations
+  control_objective: Ensure governance obligations for applicability, compliance verification, and deviations are implemented and evidenced.
+  requirement: 'All deviations SHALL:'
+  required_platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - waiver_record
+  - risk_classification
+  - expiry_record
+  - compensating_controls
+  verification:
+    method: hybrid
+    frequency: governance_review
+  policy_as_code:
+    candidate: true
+    enforcement: governance_gate
+    rule: policies/opa/waiver_validity.rego
+  waiver:
+    allowed: false
+    authority: DevSecOps Governance Board
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    rationale: Waiver completeness and expiry can be automatically checked.
+    check_type: approval
+    machine_readable_evidence_required: true
+  verification_requirement: Each deviation SHALL provide machine-readable waiver evidence containing justification, documentation reference, risk
+    classification, and expiry date.

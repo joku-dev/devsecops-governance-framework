@@ -1,0 +1,33 @@
+adoption_rules:
+  - id: adoption.new_programs
+    source_requirement: DSDIR-REQ-011
+    rule: New programs initiated after entry into force shall implement DevSecOps in accordance with enterprise Standards.
+    verification_evidence:
+      - program_approval_record
+      - devsecops_adoption_assessment
+      - applicable_standards_record
+
+  - id: adoption.program_approval
+    source_requirement: DSDIR-REQ-012
+    rule: DevSecOps adoption shall be considered during program approval processes.
+    verification_evidence:
+      - program_approval_checklist
+      - adoption_assessment_record
+      - waiver_record
+
+  - id: adoption.existing_programs
+    source_requirement: DSDIR-REQ-013
+    rule: Existing programs shall establish a DevSecOps transition roadmap aligned with enterprise maturity targets.
+    verification_evidence:
+      - transition_roadmap
+      - maturity_target_record
+      - roadmap_review_record
+
+  - id: adoption.portfolio_reporting
+    source_requirement: DSDIR-REQ-020
+    rule: Portfolio-level DevSecOps adoption reporting shall aggregate accepted results across all in-scope repositories.
+    verification_evidence:
+      - repository_adoption_matrix
+      - accepted_result_index
+      - stale_result_register
+      - portfolio_adoption_report

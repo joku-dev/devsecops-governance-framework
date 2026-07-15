@@ -1,0 +1,15 @@
+{
+  "target": {
+    "path": "/tmp/ha-CPsWMS-current-main",
+    "commit": "4a86f0c",
+    "release_id": "ha-CPsWMS-current-main"
+  },
+  "gate": {
+    "id": "devsecops_release_readiness",
+    "status": "pass",
+    "findings": []
+  },
+  "summary": {
+    "finding_count": 0
+  }
+}

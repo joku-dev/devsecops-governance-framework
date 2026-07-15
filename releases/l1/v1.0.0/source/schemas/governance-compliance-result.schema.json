@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Compliance Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "governance_repo",
+    "target_repo",
+    "timestamp",
+    "status",
+    "checks"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "governance_repo": {
+      "type": "string"
+    },
+    "target_repo": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pass", "fail"]
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check_id", "description", "status"],
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pass", "fail"]
+          },
+          "details": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["artifact_id", "path", "status"],
+        "properties": {
+          "artifact_id": { "type": "string" },
+          "path": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["present", "missing"]
+          }
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "properties": {
+        "validator": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string", "enum": ["pass", "fail"] },
+            "command": { "type": "string" }
+          }
+        },
+        "unit_tests": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string", "enum": ["pass", "fail"] },
+            "command": { "type": "string" }
+          }
+        },
+        "opa_check": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string", "enum": ["pass", "fail"] },
+            "command": { "type": "string" }
+          }
+        }
+      }
+    },
+    "policy_evaluations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["policy_id", "status", "deny_count"],
+        "properties": {
+          "policy_id": { "type": "string" },
+          "status": { "type": "string", "enum": ["pass", "fail"] },
+          "deny_count": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

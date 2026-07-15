@@ -1,0 +1,31 @@
+mappings:
+  - document_id: DEVSECOPS-POL-001
+    control_levels:
+      - L1
+      - L2
+      - L3
+      - GOV
+    rationale: Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.
+  - document_id: DEVSECOPS-DIR-001
+    control_ids:
+      - DSCB-GOV-REQ-002
+      - DSCB-GOV-REQ-003
+      - DSCB-GOV-REQ-004
+      - DSCB-GOV-REQ-005
+    control_levels:
+      - L2
+      - L3
+    rationale: Defines operational compliance workflow, waiver handling, and binding execution rules for higher-assurance environments.
+  - document_id: DSCB-STD-001
+    control_levels:
+      - L1
+      - L2
+      - L3
+      - GOV
+    rationale: Primary normative source for the structured control library.
+  - document_id: PRA-STD-001
+    control_levels:
+      - L1
+      - L2
+      - L3
+    rationale: Primary normative source for platform capability mappings and required platform levels.

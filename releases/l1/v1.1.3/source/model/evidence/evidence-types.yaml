@@ -1,0 +1,595 @@
+evidence_types:
+- id: requirements_traceability_records
+  name: Requirements Traceability Records
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-001
+- id: configuration_management_records
+  name: Configuration Management Records
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-001
+- id: commit_history
+  name: Commit History
+  category: repository
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-002
+  - DSCB-L1-REQ-003
+- id: code_review_records
+  name: Code Review Records
+  category: repository
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-002
+  - DSCB-L1-REQ-003
+- id: branch_protection_configuration
+  name: Branch Protection Configuration
+  category: repository
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-002
+  - DSCB-L1-REQ-003
+- id: static_code_analysis_reports
+  name: Static Code Analysis Reports
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-004
+- id: code_review_documentation
+  name: Code Review Documentation
+  category: repository
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-004
+- id: sbom
+  name: Sbom
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-005
+  - DSCB-L1-REQ-006
+- id: dependency_scan_reports
+  name: Dependency Scan Reports
+  category: security
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-005
+  - DSCB-L1-REQ-006
+- id: build_pipeline_logs
+  name: Build Pipeline Logs
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-007
+  - DSCB-L1-REQ-008
+- id: artifact_version_identifiers
+  name: Artifact Version Identifiers
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-007
+  - DSCB-L1-REQ-008
+- id: vulnerability_scan_reports
+  name: Vulnerability Scan Reports
+  category: security
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-009
+  - DSCB-L1-REQ-010
+- id: vulnerability_assessment_documentation
+  name: Vulnerability Assessment Documentation
+  category: security
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-009
+  - DSCB-L1-REQ-010
+- id: artifact_signature_records
+  name: Artifact Signature Records
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-011
+  - DSCB-L1-REQ-012
+- id: artifact_repository_metadata
+  name: Artifact Repository Metadata
+  category: repository
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-011
+  - DSCB-L1-REQ-012
+- id: artifact_checksum_or_digest_records
+  name: Artifact Checksum Or Digest Records
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-011
+  - DSCB-L1-REQ-012
+- id: release_approval_records
+  name: Release Approval Records
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-013
+  - DSCB-L1-REQ-014
+- id: deployment_logs
+  name: Deployment Logs
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-013
+  - DSCB-L1-REQ-014
+- id: pipeline_execution_logs
+  name: Pipeline Execution Logs
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-015
+  - DSCB-L2-REQ-011
+  - DSCB-L2-REQ-012
+- id: security_scan_reports
+  name: Security Scan Reports
+  category: security
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-015
+- id: artifact_metadata
+  name: Artifact Metadata
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-015
+- id: approval_records
+  name: Approval Records
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-015
+- id: system_logs
+  name: System Logs
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-016
+- id: deployment_records
+  name: Deployment Records
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-016
+- id: incident_records
+  name: Incident Records
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L1-REQ-016
+- id: environment_configuration_records
+  name: Environment Configuration Records
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-001
+  - DSCB-L2-REQ-002
+- id: system_configuration_baselines
+  name: System Configuration Baselines
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-001
+  - DSCB-L2-REQ-002
+- id: authentication_logs
+  name: Authentication Logs
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-003
+  - DSCB-L2-REQ-004
+- id: access_control_configuration
+  name: Access Control Configuration
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-003
+  - DSCB-L2-REQ-004
+- id: repository_configuration
+  name: Repository Configuration
+  category: repository
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-005
+  - DSCB-L2-REQ-006
+- id: dependency_management_logs
+  name: Dependency Management Logs
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-005
+  - DSCB-L2-REQ-006
+- id: artifact_signatures
+  name: Artifact Signatures
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-007
+  - DSCB-L2-REQ-008
+- id: signing_records
+  name: Signing Records
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-007
+  - DSCB-L2-REQ-008
+- id: infrastructure_repositories
+  name: Infrastructure Repositories
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-009
+  - DSCB-L2-REQ-010
+- id: infrastructure_change_history
+  name: Infrastructure Change History
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-009
+  - DSCB-L2-REQ-010
+- id: pipeline_policy_gate_records
+  name: Pipeline Policy Gate Records
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-011
+  - DSCB-L2-REQ-012
+- id: security_monitoring_logs
+  name: Security Monitoring Logs
+  category: security
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-013
+  - DSCB-L2-REQ-014
+- id: security_event_records
+  name: Security Event Records
+  category: security
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L2-REQ-013
+  - DSCB-L2-REQ-014
+- id: rebuild_verification_records
+  name: Rebuild Verification Records
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-001
+  - DSCB-L3-REQ-002
+- id: build_configuration_records
+  name: Build Configuration Records
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-001
+  - DSCB-L3-REQ-002
+- id: build_environment_configuration
+  name: Build Environment Configuration
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-003
+  - DSCB-L3-REQ-004
+- id: pipeline_execution_records
+  name: Pipeline Execution Records
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-003
+  - DSCB-L3-REQ-004
+- id: provenance_metadata
+  name: Provenance Metadata
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-005
+  - DSCB-L3-REQ-006
+- id: dependency_records
+  name: Dependency Records
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-005
+  - DSCB-L3-REQ-006
+- id: signing_infrastructure_records
+  name: Signing Infrastructure Records
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-007
+  - DSCB-L3-REQ-008
+- id: artifact_signature_logs
+  name: Artifact Signature Logs
+  category: artifact
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-007
+  - DSCB-L3-REQ-008
+- id: traceability_records
+  name: Traceability Records
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-009
+- id: deployment_metadata
+  name: Deployment Metadata
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-009
+- id: runtime_integrity_verification_logs
+  name: Runtime Integrity Verification Logs
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-010
+- id: compliance_evidence_repository
+  name: Compliance Evidence Repository
+  category: repository
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-011
+- id: pipeline_audit_records
+  name: Pipeline Audit Records
+  category: pipeline
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-L3-REQ-011
+- id: program_control_baseline_assignment
+  name: Program Control Baseline Assignment
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-001
+- id: applicability_assessment_record
+  name: Applicability Assessment Record
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-001
+- id: maturity_assessment_record
+  name: Maturity Assessment Record
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+- id: internal_audit_record
+  name: Internal Audit Record
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+- id: architecture_review_record
+  name: Architecture Review Record
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+- id: program_lifecycle_review_record
+  name: Program Lifecycle Review Record
+  category: audit
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+- id: waiver_record
+  name: Waiver Record
+  category: waiver
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005
+- id: risk_classification
+  name: Risk Classification
+  category: waiver
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005
+- id: expiry_record
+  name: Expiry Record
+  category: waiver
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005
+- id: compensating_controls
+  name: Compensating Controls
+  category: waiver
+  producer: devsecops_platform
+  format:
+  - json
+  retention: project_lifecycle
+  supports_requirements:
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005

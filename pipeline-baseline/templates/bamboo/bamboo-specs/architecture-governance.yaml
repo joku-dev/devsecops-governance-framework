@@ -1,0 +1,132 @@
+# Bamboo YAML Specs reference plan for Architecture Runtime Governance on
+# Bamboo Data Center 12.1.9.
+#
+# Intended repository location in an application repository:
+#   bamboo-specs/architecture-governance.yaml
+#
+# Use this as a separate plan or merge the job into bamboo-specs/bamboo.yaml
+# once the application repository has stable architecture evidence.
+
+version: 2
+
+plan:
+  project-key: GOV
+  key: ARCH
+  name: Architecture Runtime Governance
+
+variables:
+  governance.repository: https://github.com/joku-dev/devsecops-governance-as-code.git
+  governance.ref: architecture-baseline-l1-v0.1.0
+  solution.baseline: demo-solution-baseline
+  fail.on.findings: "false"
+
+stages:
+  - Architecture Governance:
+      jobs:
+        - Evaluate architecture governance
+
+Evaluate architecture governance:
+  tasks:
+    - checkout:
+        force-clean-build: true
+
+    - script:
+        interpreter: SHELL
+        description: Clone pinned architecture governance baseline
+        scripts:
+          - |
+            set -eu
+            rm -rf governance
+            git clone "${bamboo_governance_repository}" governance
+            cd governance
+            git checkout "${bamboo_governance_ref}"
+
+    - script:
+        interpreter: SHELL
+        description: Install lightweight validation dependencies
+        scripts:
+          - |
+            set -eu
+            python3 -m pip install --user --upgrade jsonschema pyyaml
+
+    - script:
+        interpreter: SHELL
+        description: Install OPA if the Bamboo agent does not provide it
+        scripts:
+          - |
+            set -eu
+            if ! command -v opa >/dev/null 2>&1; then
+              curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+              chmod +x opa
+              mkdir -p "$HOME/bin"
+              mv opa "$HOME/bin/opa"
+              export PATH="$HOME/bin:$PATH"
+            fi
+            opa version
+
+    - script:
+        interpreter: SHELL
+        description: Collect architecture release input
+        scripts:
+          - |
+            set -eu
+            mkdir -p generated/app
+            python3 governance/scripts/collect_architecture_release_input.py \
+              --repo . \
+              --output generated/app/architecture-release-input.json \
+              --release-id "${bamboo_planRepository_revision}" \
+              --baseline "${bamboo_solution_baseline}"
+
+    - script:
+        interpreter: SHELL
+        description: Generate architecture governance report
+        scripts:
+          - |
+            set -eu
+            cp generated/app/architecture-release-input.json governance/generated/app/architecture-release-input.json
+            cd governance
+            python3 - <<'PY'
+            from pathlib import Path
+            import json
+            import jsonschema
+
+            schema = json.loads(Path("schemas/architecture-release-candidate.schema.json").read_text())
+            data = json.loads(Path("generated/app/architecture-release-input.json").read_text())
+            jsonschema.validate(data, schema)
+            print("Architecture release input validates against schema")
+            PY
+
+            python3 scripts/generate_architecture_governance_report.py \
+              --input generated/app/architecture-release-input.json \
+              --output-json generated/app/architecture-governance-report.json \
+              --output-md generated/app/architecture-governance-report.md
+
+            cp generated/app/architecture-governance-report.json ../generated/app/
+            cp generated/app/architecture-governance-report.md ../generated/app/
+
+    - script:
+        interpreter: SHELL
+        description: Apply optional architecture blocking mode
+        scripts:
+          - |
+            set -eu
+            if [ "${bamboo_fail_on_findings}" = "true" ]; then
+              python3 - <<'PY'
+              from pathlib import Path
+              import json
+
+              report = json.loads(Path("generated/app/architecture-governance-report.json").read_text())
+              finding_count = report.get("summary", {}).get("finding_count", 0)
+              if finding_count:
+                  print(f"Architecture governance found {finding_count} finding(s).")
+                  raise SystemExit(1)
+              print("Architecture governance found no findings.")
+              PY
+            fi
+
+  artifacts:
+    - name: architecture-governance-evidence
+      location: generated/app
+      pattern: "architecture-*"
+      shared: true
+      required: true

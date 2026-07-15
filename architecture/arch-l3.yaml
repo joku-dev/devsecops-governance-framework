@@ -1,0 +1,72 @@
+level: ARCH-L3
+name: Runtime and Continuous Improvement
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+requirements:
+- id: ARCH-L3-REQ-001
+  domain: Operation
+  title: Runtime observability
+  source_markers: [P11]
+  requirement: Products shall expose logs, metrics, traces, health indicators and operational diagnostics where runtime governance applies.
+  verification_requirement: Verify that monitoring dashboards, runtime evidence and health indicators exist and are linked to the product release.
+  evidence: [logging_concept, metrics_definition, monitoring_dashboard, runtime_evidence, health_indicator_definition]
+  verification:
+    method: hybrid
+    frequency: operation
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Observability checks need integration with monitoring systems.
+  policy_as_code:
+    candidate: true
+    enforcement: operation_readiness_gate
+    rule: policies/opa/architecture_operation_readiness.rego
+  exception:
+    allowed: true
+    authority: Product Architect
+- id: ARCH-L3-REQ-002
+  domain: Feedback
+  title: Architecture feedback loop
+  source_markers: [B5]
+  requirement: Findings from demos, integration, release, operation and reviews shall feed back into architecture improvement.
+  verification_requirement: Verify that feedback items are linked to owners, technical debt, improvement actions or guardrail updates.
+  evidence: [demo_or_review_finding, operational_finding_trend, technical_debt_item, improvement_backlog_item, closed_improvement_action]
+  verification:
+    method: hybrid
+    frequency: inspect_and_adapt
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: linkage
+    machine_readable_evidence_required: true
+    rationale: Feedback governance requires linking findings to improvement actions.
+  policy_as_code:
+    candidate: true
+    enforcement: operation_readiness_gate
+    rule: policies/opa/architecture_operation_readiness.rego
+  exception:
+    allowed: false
+    authority: Architecture Review Board
+- id: ARCH-L3-REQ-003
+  domain: Technical Debt
+  title: Technical debt and architecture runway improvement
+  source_markers: [E9, E10, S9, S10, P12]
+  requirement: Architecture runway, reuse opportunities and technical debt shall be visible, owned, prioritized and improved over time.
+  verification_requirement: Verify that debt registers, runway items, mitigation plans and trend evidence are available.
+  evidence: [architecture_runway, enterprise_technical_debt_register, solution_technical_debt_register, risk_and_debt_register, technical_debt_trend]
+  verification:
+    method: hybrid
+    frequency: inspect_and_adapt
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: linkage
+    machine_readable_evidence_required: true
+    rationale: Debt and runway items can be linked to backlog and trend evidence.
+  policy_as_code:
+    candidate: false
+    enforcement: review
+  exception:
+    allowed: false
+    authority: Architecture Review Board

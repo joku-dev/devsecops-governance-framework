@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-15T08:14:03Z",
+  "inputs": {
+    "source_document_register": "model/documents/source-document-register.yaml",
+    "source_lineage_report": "generated/reports/source-lineage-report.json",
+    "architecture_source_replacement_assessment": "generated/reports/architecture-source-replacement-assessment.json"
+  },
+  "decision": {
+    "current_state": "report_only",
+    "runtime_governance_changed": false,
+    "stricter_rules_enabled": false
+  },
+  "summary": {
+    "registered_source_documents": 10,
+    "status_counts": {
+      "candidate": 5,
+      "draft": 2,
+      "intake": 3
+    },
+    "governance_domain_counts": {
+      "architecture": 6,
+      "devsecops": 4,
+      "directive": 1,
+      "platform": 1,
+      "policy": 1
+    },
+    "owner_counts": {
+      "architecture-owners": 6,
+      "devsecops-owners": 1,
+      "governance-owners": 2,
+      "platform-owners": 1
+    },
+    "review_state_counts": {
+      "accepted_intake": 3,
+      "candidate_replacement_review_required": 1,
+      "candidate_similarity_review_required": 4,
+      "draft_source_of_truth_decision_required": 2
+    },
+    "attention_counts": {
+      "attention": 7,
+      "ok": 3
+    },
+    "open_review_items": 7,
+    "replacement_review_items": 1,
+    "documents_with_operational_artifacts": 5,
+    "documents_without_operational_artifacts": 5
+  },
+  "open_items": [
+    {
+      "id": "DEVSECOPS-POL-SRC-001",
+      "title": "DevSecOps Policy Version 1 draft 3",
+      "status": "draft",
+      "owner": "governance-owners",
+      "review_state": "draft_source_of_truth_decision_required",
+      "next_action": "Confirm source-of-truth and approval path before treating the draft as a baseline source."
+    },
+    {
+      "id": "DEVSECOPS-DIR-SRC-001",
+      "title": "DevSecOps Directive Version 0 draft 1",
+      "status": "draft",
+      "owner": "governance-owners",
+      "review_state": "draft_source_of_truth_decision_required",
+      "next_action": "Confirm source-of-truth and approval path before treating the draft as a baseline source."
+    },
+    {
+      "id": "ARCH-TPL-SRC-001",
+      "title": "SDD Architecture Template and Checklists",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "review_state": "candidate_similarity_review_required",
+      "next_action": "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant."
+    },
+    {
+      "id": "ARCH-EA-SRC-001",
+      "title": "SDD Enterprise Architecture Guidelines",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "review_state": "candidate_similarity_review_required",
+      "next_action": "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant."
+    },
+    {
+      "id": "ARCH-SA-SRC-001",
+      "title": "SDD Solution Architecture Guidelines",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "review_state": "candidate_similarity_review_required",
+      "next_action": "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant."
+    },
+    {
+      "id": "ARCH-PA-SRC-001",
+      "title": "SDD Product Architecture Guidelines",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "review_state": "candidate_similarity_review_required",
+      "next_action": "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant."
+    },
+    {
+      "id": "ARCH-GOV-SRC-002",
+      "title": "SDD Architecture Governance Framework",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "review_state": "candidate_replacement_review_required",
+      "next_action": "Review replacement decision before promoting the source or moving lineage."
+    }
+  ],
+  "replacement_review_items": [
+    {
+      "id": "ARCH-GOV-SRC-002",
+      "title": "SDD Architecture Governance Framework",
+      "owner": "architecture-owners",
+      "candidate_replacement_for": [
+        "ARCH-SDD-SRC-001"
+      ],
+      "comparisons": [
+        {
+          "target_id": "ARCH-SDD-SRC-001",
+          "classification": "registered_replacement_candidate",
+          "title_overlap": 1.0,
+          "content_overlap": 0.71,
+          "recommendation": "Review as likely replacement before moving lineage or creating a new architecture baseline."
+        }
+      ],
+      "next_action": "Review replacement decision before promoting the source or moving lineage."
+    }
+  ],
+  "documents": [
+    {
+      "id": "DEVSECOPS-POL-SRC-001",
+      "title": "DevSecOps Policy Version 1 draft 3",
+      "status": "draft",
+      "owner": "governance-owners",
+      "version": "1 draft 3",
+      "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md",
+      "governance_domains": [
+        "policy",
+        "devsecops"
+      ],
+      "intake_date": "2026-06-26",
+      "review_state": "draft_source_of_truth_decision_required",
+      "attention": "attention",
+      "next_action": "Confirm source-of-truth and approval path before treating the draft as a baseline source.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 13,
+      "operational_artifact_count": 2,
+      "operational_artifact_types": {
+        "governance_document": 1,
+        "traceability_mapping": 1
+      },
+      "derived_artifact_areas": [
+        "docs/governance/devsecops-policy.md",
+        "model/documents/governance-documents.yaml",
+        "model/traceability/document-to-control.yaml"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "DEVSECOPS-DIR-SRC-001",
+      "title": "DevSecOps Directive Version 0 draft 1",
+      "status": "draft",
+      "owner": "governance-owners",
+      "version": "0 draft 1",
+      "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md",
+      "governance_domains": [
+        "directive",
+        "devsecops"
+      ],
+      "intake_date": "2026-06-26",
+      "review_state": "draft_source_of_truth_decision_required",
+      "attention": "attention",
+      "next_action": "Confirm source-of-truth and approval path before treating the draft as a baseline source.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 13,
+      "operational_artifact_count": 2,
+      "operational_artifact_types": {
+        "governance_document": 1,
+        "traceability_mapping": 1
+      },
+      "derived_artifact_areas": [
+        "docs/governance/devsecops-directive.md",
+        "model/documents/governance-documents.yaml",
+        "model/traceability/document-to-control.yaml"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "DSCB-STD-SRC-001",
+      "title": "DevSecOps Control Baseline Standard aligned with Platform Levels",
+      "status": "intake",
+      "owner": "devsecops-owners",
+      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "governance_domains": [
+        "devsecops"
+      ],
+      "intake_date": "2026-06-26",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 33,
+      "operational_artifact_count": 22,
+      "operational_artifact_types": {
+        "governance_document": 1,
+        "governance_model": 6,
+        "policy_as_code": 11,
+        "release_package": 3,
+        "traceability_mapping": 1
+      },
+      "derived_artifact_areas": [
+        "model/controls",
+        "model/evidence",
+        "policies/opa",
+        "releases/l1",
+        "generated/reports"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "PRA-STD-SRC-001",
+      "title": "DevSecOps Platform Reference Architecture Standard aligned with Control Baseline",
+      "status": "intake",
+      "owner": "platform-owners",
+      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "governance_domains": [
+        "platform",
+        "devsecops"
+      ],
+      "intake_date": "2026-06-26",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 29,
+      "operational_artifact_count": 18,
+      "operational_artifact_types": {
+        "derived_artifact": 6,
+        "governance_document": 1,
+        "governance_model": 10,
+        "traceability_mapping": 1
+      },
+      "derived_artifact_areas": [
+        "model/platform",
+        "pipeline-baseline",
+        "model/traceability",
+        "generated/reports",
+        "generated/viewer"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-SDD-SRC-001",
+      "title": "SDD Architecture Governance Framework",
+      "status": "intake",
+      "owner": "architecture-owners",
+      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-02",
+      "review_state": "accepted_intake",
+      "attention": "ok",
+      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "similarity_assessment": "not_recorded",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 36,
+      "operational_artifact_count": 25,
+      "operational_artifact_types": {
+        "architecture_model": 8,
+        "derived_artifact": 6,
+        "policy_as_code": 4,
+        "release_document": 1,
+        "release_metadata": 1,
+        "release_snapshot": 5
+      },
+      "derived_artifact_areas": [
+        "architecture",
+        "policies/opa/architecture_*.rego",
+        "schemas/architecture-*.json",
+        "releases/architecture",
+        "status/architecture-results-index.json",
+        "generated/viewer"
+      ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-TPL-SRC-001",
+      "title": "SDD Architecture Template and Checklists",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.public.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-02",
+      "review_state": "candidate_similarity_review_required",
+      "attention": "attention",
+      "next_action": "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant.",
+      "similarity_assessment": "not_assessed",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-EA-SRC-001",
+      "title": "SDD Enterprise Architecture Guidelines",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.public.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-02",
+      "review_state": "candidate_similarity_review_required",
+      "attention": "attention",
+      "next_action": "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant.",
+      "similarity_assessment": "not_assessed",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-SA-SRC-001",
+      "title": "SDD Solution Architecture Guidelines",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.public.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-02",
+      "review_state": "candidate_similarity_review_required",
+      "attention": "attention",
+      "next_action": "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant.",
+      "similarity_assessment": "not_assessed",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-PA-SRC-001",
+      "title": "SDD Product Architecture Guidelines",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.public.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-02",
+      "review_state": "candidate_similarity_review_required",
+      "attention": "attention",
+      "next_action": "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant.",
+      "similarity_assessment": "not_assessed",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [],
+      "replacement_review_items": []
+    },
+    {
+      "id": "ARCH-GOV-SRC-002",
+      "title": "SDD Architecture Governance Framework",
+      "status": "candidate",
+      "owner": "architecture-owners",
+      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
+      "governance_domains": [
+        "architecture"
+      ],
+      "intake_date": "2026-07-02",
+      "review_state": "candidate_replacement_review_required",
+      "attention": "attention",
+      "next_action": "Review replacement decision before promoting the source or moving lineage.",
+      "similarity_assessment": "replacement_candidate",
+      "candidate_replacement_for": [
+        "ARCH-SDD-SRC-001"
+      ],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [],
+      "replacement_review_items": [
+        {
+          "target_id": "ARCH-SDD-SRC-001",
+          "classification": "registered_replacement_candidate",
+          "title_overlap": 1.0,
+          "content_overlap": 0.71,
+          "recommendation": "Review as likely replacement before moving lineage or creating a new architecture baseline."
+        }
+      ]
+    }
+  ],
+  "process_notes": [
+    "Candidate and draft source documents remain non-blocking until a separate governance change confirms promotion.",
+    "This report is informational and does not promote source documents or alter runtime governance.",
+    "Operational artifact counts exclude intake bookkeeping and impact-report artifacts."
+  ]
+}

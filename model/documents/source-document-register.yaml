@@ -1,0 +1,176 @@
+schema_version: "1.0.0"
+documents:
+  - id: DEVSECOPS-POL-SRC-001
+    title: DevSecOps Policy Version 1 draft 3
+    status: draft
+    source_path: docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md
+    governance_domains:
+      - policy
+      - devsecops
+    owner: governance-owners
+    version: "1 draft 3"
+    intake_date: "2026-06-26"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/devsecops-policy.md
+      - model/documents/governance-documents.yaml
+      - model/traceability/document-to-control.yaml
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: DEVSECOPS-DIR-SRC-001
+    title: DevSecOps Directive Version 0 draft 1
+    status: draft
+    source_path: docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md
+    governance_domains:
+      - directive
+      - devsecops
+    owner: governance-owners
+    version: "0 draft 1"
+    intake_date: "2026-06-26"
+    supersedes: null
+    derived_artifact_areas:
+      - docs/governance/devsecops-directive.md
+      - model/documents/governance-documents.yaml
+      - model/traceability/document-to-control.yaml
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: DSCB-STD-SRC-001
+    title: DevSecOps Control Baseline Standard aligned with Platform Levels
+    status: intake
+    source_path: docs/governance/source-documents/DSCB-STD-SRC-001.public.md
+    governance_domains:
+      - devsecops
+    owner: devsecops-owners
+    version: public-placeholder
+    intake_date: "2026-06-26"
+    supersedes: null
+    derived_artifact_areas:
+      - model/controls
+      - model/evidence
+      - policies/opa
+      - releases/l1
+      - generated/reports
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: PRA-STD-SRC-001
+    title: DevSecOps Platform Reference Architecture Standard aligned with Control Baseline
+    status: intake
+    source_path: docs/governance/source-documents/PRA-STD-SRC-001.public.md
+    governance_domains:
+      - platform
+      - devsecops
+    owner: platform-owners
+    version: public-placeholder
+    intake_date: "2026-06-26"
+    supersedes: null
+    derived_artifact_areas:
+      - model/platform
+      - pipeline-baseline
+      - model/traceability
+      - generated/reports
+      - generated/viewer
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: ARCH-SDD-SRC-001
+    title: SDD Architecture Governance Framework
+    status: intake
+    source_path: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: public-placeholder
+    intake_date: "2026-07-02"
+    supersedes: null
+    derived_artifact_areas:
+      - architecture
+      - policies/opa/architecture_*.rego
+      - schemas/architecture-*.json
+      - releases/architecture
+      - status/architecture-results-index.json
+      - generated/viewer
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: ARCH-TPL-SRC-001
+    title: SDD Architecture Template and Checklists
+    status: candidate
+    source_path: docs/governance/source-documents/ARCH-TPL-SRC-001.public.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: public-placeholder
+    intake_date: "2026-07-02"
+    supersedes: null
+    candidate_replacement_for: []
+    similarity_assessment:
+      assessment: not_assessed
+      compared_to: []
+      notes: Public placeholder only; original source content is withheld from the public repository.
+    derived_artifact_areas: []
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: ARCH-EA-SRC-001
+    title: SDD Enterprise Architecture Guidelines
+    status: candidate
+    source_path: docs/governance/source-documents/ARCH-EA-SRC-001.public.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: public-placeholder
+    intake_date: "2026-07-02"
+    supersedes: null
+    candidate_replacement_for: []
+    similarity_assessment:
+      assessment: not_assessed
+      compared_to: []
+      notes: Public placeholder only; original source content is withheld from the public repository.
+    derived_artifact_areas: []
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: ARCH-SA-SRC-001
+    title: SDD Solution Architecture Guidelines
+    status: candidate
+    source_path: docs/governance/source-documents/ARCH-SA-SRC-001.public.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: public-placeholder
+    intake_date: "2026-07-02"
+    supersedes: null
+    candidate_replacement_for: []
+    similarity_assessment:
+      assessment: not_assessed
+      compared_to: []
+      notes: Public placeholder only; original source content is withheld from the public repository.
+    derived_artifact_areas: []
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: ARCH-PA-SRC-001
+    title: SDD Product Architecture Guidelines
+    status: candidate
+    source_path: docs/governance/source-documents/ARCH-PA-SRC-001.public.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: public-placeholder
+    intake_date: "2026-07-02"
+    supersedes: null
+    candidate_replacement_for: []
+    similarity_assessment:
+      assessment: not_assessed
+      compared_to: []
+      notes: Public placeholder only; original source content is withheld from the public repository.
+    derived_artifact_areas: []
+    notes: Public placeholder only. Original source content is withheld from the public repository.
+  - id: ARCH-GOV-SRC-002
+    title: SDD Architecture Governance Framework
+    status: candidate
+    source_path: docs/governance/source-documents/ARCH-GOV-SRC-002.public.md
+    governance_domains:
+      - architecture
+    owner: architecture-owners
+    version: public-placeholder
+    intake_date: "2026-07-02"
+    supersedes: null
+    candidate_replacement_for:
+      - ARCH-SDD-SRC-001
+    similarity_assessment:
+      assessment: replacement_candidate
+      compared_to:
+        - source_id: ARCH-SDD-SRC-001
+          similarity: high
+          notes: Public placeholder only; replacement relationship preserved for private review.
+      notes: Public placeholder only; original source content is withheld from the public repository.
+    derived_artifact_areas: []
+    notes: Public placeholder only. Original source content is withheld from the public repository.

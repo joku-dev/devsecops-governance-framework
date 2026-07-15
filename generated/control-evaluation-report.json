@@ -1,0 +1,1127 @@
+{
+  "schema_version": "1.0.0",
+  "input_file": "demo/inputs/release-candidate-green.json",
+  "required_platform_level": "PRA-Level 2",
+  "release_candidate": true,
+  "run_context": {
+    "event": "push",
+    "purpose": "release",
+    "release_context": true,
+    "source": "demo"
+  },
+  "policy_results": {
+    "branch_protection": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "sbom": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "vulnerability_gate": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "artifact_integrity": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "access_control": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "dependency_source_control": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "iac": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "artifact_signing": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "pipeline_security_gates": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    },
+    "waiver_validity": {
+      "status": "pass",
+      "deny_count": 0,
+      "deny_messages": []
+    }
+  },
+  "summary": {
+    "total_controls": 46,
+    "pass": 30,
+    "fail": 0,
+    "not_tested": 0,
+    "not_applicable": 16,
+    "applicable_controls": 30,
+    "tested_controls": 30
+  },
+  "controls": [
+    {
+      "control_id": "DSCB-GOV-REQ-001",
+      "level": "GOV",
+      "domain": "applicability",
+      "title": "Applicability",
+      "required_platform_level": "Not applicable",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-gov.yaml",
+      "expected_evidence": [
+        "program_control_baseline_assignment",
+        "applicability_assessment_record"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Governance-board-level controls are not directly evaluated by this repository pipeline run."
+    },
+    {
+      "control_id": "DSCB-GOV-REQ-002",
+      "level": "GOV",
+      "domain": "compliance_verification",
+      "title": "Compliance Verification",
+      "required_platform_level": "Not applicable",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-gov.yaml",
+      "expected_evidence": [
+        "maturity_assessment_record",
+        "internal_audit_record",
+        "architecture_review_record",
+        "program_lifecycle_review_record"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Governance-board-level controls are not directly evaluated by this repository pipeline run."
+    },
+    {
+      "control_id": "DSCB-GOV-REQ-003",
+      "level": "GOV",
+      "domain": "compliance_verification",
+      "title": "Compliance Verification",
+      "required_platform_level": "Not applicable",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": "policies/opa/waiver_validity.rego",
+      "policy_id": null,
+      "source_file": "model/controls/dscb-gov.yaml",
+      "expected_evidence": [
+        "maturity_assessment_record",
+        "internal_audit_record",
+        "architecture_review_record",
+        "program_lifecycle_review_record"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Governance-board-level controls are not directly evaluated by this repository pipeline run."
+    },
+    {
+      "control_id": "DSCB-GOV-REQ-004",
+      "level": "GOV",
+      "domain": "deviations",
+      "title": "Deviations",
+      "required_platform_level": "Not applicable",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-gov.yaml",
+      "expected_evidence": [
+        "waiver_record",
+        "risk_classification",
+        "expiry_record",
+        "compensating_controls"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Governance-board-level controls are not directly evaluated by this repository pipeline run."
+    },
+    {
+      "control_id": "DSCB-GOV-REQ-005",
+      "level": "GOV",
+      "domain": "deviations",
+      "title": "Deviations",
+      "required_platform_level": "Not applicable",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": "policies/opa/waiver_validity.rego",
+      "policy_id": null,
+      "source_file": "model/controls/dscb-gov.yaml",
+      "expected_evidence": [
+        "waiver_record",
+        "risk_classification",
+        "expiry_record",
+        "compensating_controls"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Governance-board-level controls are not directly evaluated by this repository pipeline run."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-001",
+      "level": "L1",
+      "domain": "traceability",
+      "title": "Traceability",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "requirements_traceability_records",
+        "configuration_management_records"
+      ],
+      "evidence_sources": [
+        "requirements_traceability_records",
+        "configuration_management_records"
+      ],
+      "decision_basis": [
+        "traceability.requirements_linked",
+        "traceability.testcases_linked",
+        "traceability.reports_linked"
+      ],
+      "message": "Traceability is evaluated from explicit structured linkage fields for requirements, testcases, and reports."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-002",
+      "level": "L1",
+      "domain": "source_code_integrity",
+      "title": "Source Code Integrity",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "commit_history",
+        "code_review_records",
+        "branch_protection_configuration"
+      ],
+      "evidence_sources": [
+        "commit_history",
+        "code_review_records",
+        "branch_protection_configuration"
+      ],
+      "decision_basis": [
+        "source_control.approved_vcs",
+        "source_control.identifiable_authors",
+        "source_control.review_records_present"
+      ],
+      "message": "Source control governance is evaluated from explicit version-control, author-traceability, and review-record fields."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-003",
+      "level": "L1",
+      "domain": "source_code_integrity",
+      "title": "Source Code Integrity",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/branch_protection.rego",
+      "policy_id": "branch_protection",
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "commit_history",
+        "code_review_records",
+        "branch_protection_configuration"
+      ],
+      "evidence_sources": [
+        "commit_history",
+        "code_review_records",
+        "branch_protection_configuration"
+      ],
+      "decision_basis": [
+        "branch_protection"
+      ],
+      "message": "Mapped policy `branch_protection` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-004",
+      "level": "L1",
+      "domain": "secure_coding_practices",
+      "title": "Secure Coding Practices",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "static_code_analysis_reports",
+        "code_review_documentation"
+      ],
+      "evidence_sources": [
+        "static_code_analysis_reports",
+        "code_review_documentation"
+      ],
+      "decision_basis": [
+        "static_analysis.performed",
+        "static_analysis.findings_reviewed"
+      ],
+      "message": "Secure coding evidence is evaluated from structured static-analysis execution and review fields."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-005",
+      "level": "L1",
+      "domain": "software_supply_chain_transparency",
+      "title": "Software Supply Chain Transparency",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "sbom",
+        "dependency_scan_reports"
+      ],
+      "evidence_sources": [
+        "sbom",
+        "dependencies"
+      ],
+      "decision_basis": [
+        "evidence.sbom.exists",
+        "dependencies"
+      ],
+      "message": "Dependencies are treated as documented when the input includes a dependency list and an SBOM."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-006",
+      "level": "L1",
+      "domain": "software_supply_chain_transparency",
+      "title": "Software Supply Chain Transparency",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/sbom_required.rego",
+      "policy_id": "sbom",
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "sbom",
+        "dependency_scan_reports"
+      ],
+      "evidence_sources": [
+        "sbom",
+        "dependency_scan_reports"
+      ],
+      "decision_basis": [
+        "sbom"
+      ],
+      "message": "Mapped policy `sbom` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-007",
+      "level": "L1",
+      "domain": "controlled_build_process",
+      "title": "Controlled Build Process",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "build_pipeline_logs",
+        "artifact_version_identifiers"
+      ],
+      "evidence_sources": [
+        "pipeline_execution_logs"
+      ],
+      "decision_basis": [
+        "pipeline"
+      ],
+      "message": "The run is treated as pipeline-executed when structured pipeline metadata is present."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-008",
+      "level": "L1",
+      "domain": "controlled_build_process",
+      "title": "Controlled Build Process",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "build_pipeline_logs",
+        "artifact_version_identifiers"
+      ],
+      "evidence_sources": [
+        "artifact_checksum_or_digest_records",
+        "artifact_metadata"
+      ],
+      "decision_basis": [
+        "artifact.digest.exists",
+        "artifact.artifact_version"
+      ],
+      "message": "Artifact uniqueness is inferred from digest presence or explicit artifact version metadata."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-009",
+      "level": "L1",
+      "domain": "vulnerability_identification",
+      "title": "Vulnerability Identification",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/vulnerability_gate.rego",
+      "policy_id": "vulnerability_gate",
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "vulnerability_scan_reports",
+        "vulnerability_assessment_documentation"
+      ],
+      "evidence_sources": [
+        "vulnerability_scan_reports",
+        "vulnerability_assessment_documentation"
+      ],
+      "decision_basis": [
+        "vulnerability_gate"
+      ],
+      "message": "Mapped policy `vulnerability_gate` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-010",
+      "level": "L1",
+      "domain": "vulnerability_identification",
+      "title": "Vulnerability Identification",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/vulnerability_gate.rego",
+      "policy_id": "vulnerability_gate",
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "vulnerability_scan_reports",
+        "vulnerability_assessment_documentation"
+      ],
+      "evidence_sources": [
+        "vulnerability_scan_reports",
+        "vulnerability_assessment_documentation"
+      ],
+      "decision_basis": [
+        "vulnerability_gate"
+      ],
+      "message": "Mapped policy `vulnerability_gate` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-011",
+      "level": "L1",
+      "domain": "artifact_integrity",
+      "title": "Artifact Integrity",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/artifact_integrity.rego",
+      "policy_id": "artifact_integrity",
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "artifact_signature_records",
+        "artifact_repository_metadata",
+        "artifact_checksum_or_digest_records"
+      ],
+      "evidence_sources": [
+        "artifact_signature_records",
+        "artifact_repository_metadata",
+        "artifact_checksum_or_digest_records"
+      ],
+      "decision_basis": [
+        "artifact_integrity"
+      ],
+      "message": "Mapped policy `artifact_integrity` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-012",
+      "level": "L1",
+      "domain": "artifact_integrity",
+      "title": "Artifact Integrity",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "artifact_signature_records",
+        "artifact_repository_metadata",
+        "artifact_checksum_or_digest_records"
+      ],
+      "evidence_sources": [
+        "artifact_checksum_or_digest_records"
+      ],
+      "decision_basis": [
+        "artifact.digest.linked_to_artifact",
+        "artifact.digest.exists"
+      ],
+      "message": "Artifact identity is inferred from digest linkage to the evaluated artifact."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-013",
+      "level": "L1",
+      "domain": "release_authorization",
+      "title": "Release Authorization",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "release_approval_records",
+        "deployment_logs"
+      ],
+      "evidence_sources": [
+        "release_approval_records"
+      ],
+      "decision_basis": [
+        "release_approval.approved",
+        "release_approval.approver"
+      ],
+      "message": "Release authorization is evaluated from explicit structured approval metadata."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-014",
+      "level": "L1",
+      "domain": "release_authorization",
+      "title": "Release Authorization",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "release_approval_records",
+        "deployment_logs"
+      ],
+      "evidence_sources": [
+        "release_approval_records",
+        "deployment_logs",
+        "artifact_checksum_or_digest_records"
+      ],
+      "decision_basis": [
+        "release_approval.approved_artifact_only",
+        "artifact.digest.exists"
+      ],
+      "message": "Approved-artifact deployment is evaluated from explicit release approval metadata plus artifact identity evidence."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-015",
+      "level": "L1",
+      "domain": "pipeline_evidence_generation",
+      "title": "Pipeline Evidence Generation",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "pipeline_execution_logs",
+        "security_scan_reports",
+        "artifact_metadata",
+        "approval_records"
+      ],
+      "evidence_sources": [
+        "pipeline_execution_logs",
+        "security_scan_reports",
+        "artifact_metadata"
+      ],
+      "decision_basis": [
+        "evidence.pipeline_execution",
+        "pipeline"
+      ],
+      "message": "Machine-readable evidence generation is inferred from structured pipeline execution data."
+    },
+    {
+      "control_id": "DSCB-L1-REQ-016",
+      "level": "L1",
+      "domain": "operational_traceability",
+      "title": "Operational Traceability",
+      "required_platform_level": "PRA-Level 1",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l1.yaml",
+      "expected_evidence": [
+        "system_logs",
+        "deployment_records",
+        "incident_records"
+      ],
+      "evidence_sources": [
+        "deployment_records",
+        "system_logs",
+        "incident_records"
+      ],
+      "decision_basis": [
+        "operations.deployed_versions_recorded",
+        "operations.security_events_recorded"
+      ],
+      "message": "Operational traceability is evaluated from explicit deployed-version and security-event recording fields."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-001",
+      "level": "L2",
+      "domain": "secure_development_environments",
+      "title": "Secure Development Environments",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "environment_configuration_records",
+        "system_configuration_baselines"
+      ],
+      "evidence_sources": [
+        "environment_configuration_records"
+      ],
+      "decision_basis": [
+        "environment.centrally_managed",
+        "environment.secure_workspace"
+      ],
+      "message": "Development environment central management is evaluated from explicit environment management fields."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-002",
+      "level": "L2",
+      "domain": "secure_development_environments",
+      "title": "Secure Development Environments",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "environment_configuration_records",
+        "system_configuration_baselines"
+      ],
+      "evidence_sources": [
+        "environment_configuration_records",
+        "system_configuration_baselines"
+      ],
+      "decision_basis": [
+        "environment.config_compliant",
+        "environment.configuration_baselines_defined"
+      ],
+      "message": "Environment configuration compliance is evaluated from explicit baseline and compliance fields."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-003",
+      "level": "L2",
+      "domain": "devsecops_platform_access_control",
+      "title": "DevSecOps Platform Access Control",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "authentication_logs",
+        "access_control_configuration"
+      ],
+      "evidence_sources": [
+        "access_control_configuration"
+      ],
+      "decision_basis": [
+        "platform.central_identity_management"
+      ],
+      "message": "Central identity management is taken directly from the evaluated platform metadata."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-004",
+      "level": "L2",
+      "domain": "devsecops_platform_access_control",
+      "title": "DevSecOps Platform Access Control",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/access_control.rego",
+      "policy_id": "access_control",
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "authentication_logs",
+        "access_control_configuration"
+      ],
+      "evidence_sources": [
+        "authentication_logs",
+        "access_control_configuration"
+      ],
+      "decision_basis": [
+        "access_control"
+      ],
+      "message": "Mapped policy `access_control` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-005",
+      "level": "L2",
+      "domain": "dependency_source_control",
+      "title": "Dependency Source Control",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "repository_configuration",
+        "dependency_management_logs"
+      ],
+      "evidence_sources": [
+        "dependency_management_logs"
+      ],
+      "decision_basis": [
+        "dependencies[*].source_approved"
+      ],
+      "message": "Dependency repository approval is inferred from the source_approved flag on all declared dependencies."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-006",
+      "level": "L2",
+      "domain": "dependency_source_control",
+      "title": "Dependency Source Control",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/dependency_source_control.rego",
+      "policy_id": "dependency_source_control",
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "repository_configuration",
+        "dependency_management_logs"
+      ],
+      "evidence_sources": [
+        "repository_configuration",
+        "dependency_management_logs"
+      ],
+      "decision_basis": [
+        "dependency_source_control"
+      ],
+      "message": "Mapped policy `dependency_source_control` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-007",
+      "level": "L2",
+      "domain": "artifact_signing",
+      "title": "Artifact Signing",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/artifact_signing.rego",
+      "policy_id": "artifact_signing",
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "artifact_signatures",
+        "signing_records"
+      ],
+      "evidence_sources": [
+        "artifact_signatures",
+        "signing_records"
+      ],
+      "decision_basis": [
+        "artifact_signing"
+      ],
+      "message": "Mapped policy `artifact_signing` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-008",
+      "level": "L2",
+      "domain": "artifact_signing",
+      "title": "Artifact Signing",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "artifact_signatures",
+        "signing_records"
+      ],
+      "evidence_sources": [
+        "signing_records"
+      ],
+      "decision_basis": [
+        "signing.keys_protected"
+      ],
+      "message": "Signing key protection is taken from the signing metadata in the run input."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-009",
+      "level": "L2",
+      "domain": "infrastructure_as_code",
+      "title": "Infrastructure as Code",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": "policies/opa/iac_required.rego",
+      "policy_id": "iac",
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "infrastructure_repositories",
+        "infrastructure_change_history"
+      ],
+      "evidence_sources": [
+        "infrastructure_repositories",
+        "infrastructure_change_history"
+      ],
+      "decision_basis": [
+        "iac"
+      ],
+      "message": "Mapped policy `iac` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-010",
+      "level": "L2",
+      "domain": "infrastructure_as_code",
+      "title": "Infrastructure as Code",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "hybrid",
+      "status": "pass",
+      "policy_rule": "policies/opa/iac_required.rego",
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "infrastructure_repositories",
+        "infrastructure_change_history"
+      ],
+      "evidence_sources": [
+        "infrastructure_change_history"
+      ],
+      "decision_basis": [
+        "infrastructure.iac_repository.version_controlled"
+      ],
+      "message": "Infrastructure version control is inferred from the IaC repository metadata."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-011",
+      "level": "L2",
+      "domain": "pipeline_security_gates",
+      "title": "Pipeline Security Gates",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/pipeline_security_gates.rego",
+      "policy_id": "pipeline_security_gates",
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "pipeline_policy_gate_records",
+        "pipeline_execution_logs"
+      ],
+      "evidence_sources": [
+        "pipeline_policy_gate_records",
+        "pipeline_execution_logs"
+      ],
+      "decision_basis": [
+        "pipeline_security_gates"
+      ],
+      "message": "Mapped policy `pipeline_security_gates` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-012",
+      "level": "L2",
+      "domain": "pipeline_security_gates",
+      "title": "Pipeline Security Gates",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": "policies/opa/pipeline_security_gates.rego",
+      "policy_id": "pipeline_security_gates",
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "pipeline_policy_gate_records",
+        "pipeline_execution_logs"
+      ],
+      "evidence_sources": [
+        "pipeline_policy_gate_records",
+        "pipeline_execution_logs"
+      ],
+      "decision_basis": [
+        "pipeline_security_gates"
+      ],
+      "message": "Mapped policy `pipeline_security_gates` returned 0 deny messages."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-013",
+      "level": "L2",
+      "domain": "security_monitoring",
+      "title": "Security Monitoring",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "security_monitoring_logs",
+        "security_event_records"
+      ],
+      "evidence_sources": [
+        "security_monitoring_logs",
+        "security_event_records"
+      ],
+      "decision_basis": [
+        "monitoring.security_events_generated",
+        "monitoring.integration_enabled"
+      ],
+      "message": "Security monitoring generation is evaluated from explicit monitoring event generation and integration fields."
+    },
+    {
+      "control_id": "DSCB-L2-REQ-014",
+      "level": "L2",
+      "domain": "security_monitoring",
+      "title": "Security Monitoring",
+      "required_platform_level": "PRA-Level 2",
+      "verification_method": "automated",
+      "status": "pass",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l2.yaml",
+      "expected_evidence": [
+        "security_monitoring_logs",
+        "security_event_records"
+      ],
+      "evidence_sources": [
+        "security_monitoring_logs",
+        "security_event_records"
+      ],
+      "decision_basis": [
+        "monitoring.forwarded_to_monitoring",
+        "monitoring.security_events_generated"
+      ],
+      "message": "Security event forwarding is evaluated from explicit forwarding metadata."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-001",
+      "level": "L3",
+      "domain": "deterministic_builds",
+      "title": "Deterministic Builds",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "rebuild_verification_records",
+        "build_configuration_records"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-002",
+      "level": "L3",
+      "domain": "deterministic_builds",
+      "title": "Deterministic Builds",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "rebuild_verification_records",
+        "build_configuration_records"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-003",
+      "level": "L3",
+      "domain": "build_environment_isolation",
+      "title": "Build Environment Isolation",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "automated",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "build_environment_configuration",
+        "pipeline_execution_records"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-004",
+      "level": "L3",
+      "domain": "build_environment_isolation",
+      "title": "Build Environment Isolation",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "automated",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "build_environment_configuration",
+        "pipeline_execution_records"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-005",
+      "level": "L3",
+      "domain": "dependency_provenance",
+      "title": "Dependency Provenance",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "provenance_metadata",
+        "dependency_records"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-006",
+      "level": "L3",
+      "domain": "dependency_provenance",
+      "title": "Dependency Provenance",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "provenance_metadata",
+        "dependency_records"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-007",
+      "level": "L3",
+      "domain": "trusted_artifact_signing",
+      "title": "Trusted Artifact Signing",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "automated",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "signing_infrastructure_records",
+        "artifact_signature_logs"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-008",
+      "level": "L3",
+      "domain": "trusted_artifact_signing",
+      "title": "Trusted Artifact Signing",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "automated",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "signing_infrastructure_records",
+        "artifact_signature_logs"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-009",
+      "level": "L3",
+      "domain": "end_to_end_traceability",
+      "title": "End-to-End Traceability",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "hybrid",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "traceability_records",
+        "deployment_metadata"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-010",
+      "level": "L3",
+      "domain": "runtime_integrity_verification",
+      "title": "Runtime Integrity Verification",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "automated",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "runtime_integrity_verification_logs"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    },
+    {
+      "control_id": "DSCB-L3-REQ-011",
+      "level": "L3",
+      "domain": "continuous_compliance_evidence",
+      "title": "Continuous Compliance Evidence",
+      "required_platform_level": "PRA-Level 3",
+      "verification_method": "automated",
+      "status": "not_applicable",
+      "policy_rule": null,
+      "policy_id": null,
+      "source_file": "model/controls/dscb-l3.yaml",
+      "expected_evidence": [
+        "compliance_evidence_repository",
+        "pipeline_audit_records"
+      ],
+      "evidence_sources": [],
+      "decision_basis": [],
+      "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "target": {
+    "path": "/tmp/ha-CPsWMS-current-main",
+    "commit": "4a86f0c",
+    "release_id": "ha-CPsWMS-current-main",
+    "detected_services": 5
+  },
+  "gates": [
+    {
+      "id": "architecture_readiness",
+      "title": "Architecture Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "integration_readiness",
+      "title": "Integration Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "operation_readiness",
+      "title": "Operation Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "release_readiness",
+      "title": "Release Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    }
+  ],
+  "summary": {
+    "gate_count": 4,
+    "passed": 4,
+    "with_findings": 0,
+    "finding_count": 0
+  }
+}

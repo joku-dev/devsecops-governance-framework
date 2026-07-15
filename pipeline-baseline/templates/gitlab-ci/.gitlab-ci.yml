@@ -1,0 +1,31 @@
+stages:
+  - code
+  - build
+  - test
+  - package
+  - release
+
+code_checks:
+  stage: code
+  script:
+    - echo "Run branch protection, review evidence, secret scanning, and SAST checks here."
+
+controlled_build:
+  stage: build
+  script:
+    - echo "Run controlled build and produce artifact metadata here."
+
+security_gates:
+  stage: test
+  script:
+    - echo "Run vulnerability scanning and policy threshold checks here."
+
+package_evidence:
+  stage: package
+  script:
+    - echo "Generate SBOM, artifact digest, signature, and repository metadata here."
+
+release_decision:
+  stage: release
+  script:
+    - echo "Evaluate release approval, waiver status, and evidence bundle completeness here."

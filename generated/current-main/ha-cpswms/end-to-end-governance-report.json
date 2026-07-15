@@ -1,0 +1,24 @@
+{
+  "target": {
+    "path": "/tmp/ha-CPsWMS-current-main",
+    "commit": "4a86f0c",
+    "release_id": "ha-CPsWMS-current-main",
+    "detected_services": 5
+  },
+  "overall_status": "pass",
+  "domains": {
+    "architecture": {
+      "status": "pass",
+      "finding_count": 0,
+      "findings": []
+    },
+    "devsecops": {
+      "status": "pass",
+      "finding_count": 0,
+      "findings": []
+    }
+  },
+  "summary": {
+    "finding_count": 0
+  }
+}

@@ -1,0 +1,72 @@
+schema_version: 1.0.0
+source_of_truth: docs/governance/governance-roles-and-agent-profiles.md
+always_select:
+  - repo-steward
+rules:
+  - path_prefix: .agents/routing/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: .agents/roles/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: .agents/skills/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: .agents/providers/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: tests/agent_harness/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: docs/governance/source-documents/
+    agents: [source-document-intake, governance-analyst]
+  - path_prefix: model/documents/
+    agents: [source-document-intake, governance-analyst]
+  - path_prefix: docs/governance/change-requests/
+    agents: [source-document-intake, governance-analyst]
+  - path_prefix: model/controls/
+    agents: [devsecops-baseline, governance-analyst]
+  - path_prefix: architecture/
+    agents: [architecture-runtime-governance, policy-as-code]
+  - path_prefix: docs/operations/evidence/architecture-evidence
+    agents: [architecture-runtime-governance, evidence-and-intake]
+  - path_prefix: docs/operations/evidence/application-repo-architecture
+    agents: [architecture-runtime-governance, evidence-and-intake]
+  - path_prefix: pipeline-baseline/templates/app-architecture-evidence/
+    agents: [architecture-runtime-governance, evidence-and-intake]
+  - path_prefix: scripts/collect_architecture_release_input.py
+    agents: [architecture-runtime-governance, evidence-and-intake, release-manager]
+  - path_prefix: scripts/generate_architecture_governance_report.py
+    agents: [architecture-runtime-governance, evidence-and-intake, release-manager]
+  - path_prefix: scripts/validate_governance_repo.py
+    agents: [governance-analyst, release-manager]
+  - path_prefix: policies/opa/
+    agents: [policy-as-code, release-manager]
+  - path_prefix: schemas/
+    agents: [evidence-and-intake, release-manager]
+  - path_prefix: status/
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: generated/viewer/
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: releases/
+    agents: [release-manager]
+  - path_prefix: docs/releases/
+    agents: [release-manager, governance-analyst]
+  - path_prefix: demo/
+    agents: [demo-readiness, devsecops-baseline]
+  - path_prefix: .github/workflows/
+    agents: [devsecops-baseline, release-manager]
+  - path_prefix: pipeline-baseline/templates/bamboo/
+    agents: [devsecops-baseline, release-manager]
+  - path_prefix: pipeline-baseline/templates/bitbucket/
+    agents: [devsecops-baseline, release-manager]
+  - path_prefix: pipeline-baseline/templates/jenkins/
+    agents: [devsecops-baseline, release-manager]
+  - path_prefix: pipeline-baseline/templates/gitlab-ci/
+    agents: [devsecops-baseline, release-manager]
+  - path_prefix: templates/ci/
+    agents: [devsecops-baseline, release-manager]
+  - path_prefix: tests/test_repo_validation.py
+    agents: [governance-analyst, release-manager]
+invariants:
+  - repo-steward is required for every meaningful repository change.
+  - Candidate source documents must not derive controls, markers, policies, schemas, or releases before review.
+  - Released baselines must not be silently mutated.
+  - Policy and workflow changes must classify report-only versus blocking behavior.
+  - Evidence intake must distinguish mainline, branch, pull_request, and manual contexts.
+  - Company platform adapters such as Bitbucket, Bamboo, Jenkins, and GitLab must remain additive and must not fork the governance core.

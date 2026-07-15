@@ -1,0 +1,22 @@
+{
+  "selected_agents": [
+    "demo-readiness",
+    "devsecops-baseline",
+    "policy-as-code",
+    "release-manager",
+    "repo-steward"
+  ],
+  "required_validations": [
+    "git diff --check",
+    "opa check policies/opa",
+    "python3 -m unittest discover -s tests",
+    "python3 scripts/run_demo.py",
+    "python3 scripts/validate_governance_repo.py"
+  ],
+  "release_impact": "candidate",
+  "forbidden_changes": [
+    "silent_released_baseline_mutation",
+    "unclassified_report_only_to_blocking_change"
+  ],
+  "commit_readiness": "requires_policy_and_release_review"
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Document Rendering Profiles",
+  "type": "object",
+  "required": ["render_profiles"],
+  "properties": {
+    "render_profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "document_number",
+          "prepared_by",
+          "approved_by",
+          "endorsed_by",
+          "authorized_by",
+          "area_of_application",
+          "version",
+          "revision_description",
+          "revision_date",
+          "entry_into_force"
+        ],
+        "properties": {
+          "document_number": { "type": "string" },
+          "prepared_by": { "type": "string" },
+          "approved_by": { "type": "string" },
+          "endorsed_by": { "type": "string" },
+          "authorized_by": { "type": "string" },
+          "area_of_application": { "type": "string" },
+          "version": { "type": "string" },
+          "revision_description": { "type": "string" },
+          "revision_date": { "type": "string" },
+          "entry_into_force": { "type": "string" }
+        }
+      }
+    }
+  }
+}

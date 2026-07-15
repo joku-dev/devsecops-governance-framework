@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Architecture Release Candidate Policy Input",
+  "type": "object",
+  "required": ["release_candidate", "architecture"],
+  "properties": {
+    "release_candidate": { "type": "boolean" },
+    "architecture": {
+      "type": "object",
+      "required": [
+        "marker_assessments",
+        "release_compatibility_declaration",
+        "solution_baseline",
+        "compatibility_evidence",
+        "security_evidence",
+        "deployment_evidence",
+        "runtime_evidence",
+        "feedback_evidence",
+        "exceptions"
+      ],
+      "properties": {
+        "marker_assessments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "score"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^(B|E|S|P)[0-9]+$" },
+              "score": { "type": "integer", "minimum": 0, "maximum": 5 },
+              "score_rationale": { "type": "string" },
+              "evidence": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "release_compatibility_declaration": {
+          "type": "object",
+          "required": ["exists", "baseline_version", "approved"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "baseline_version": { "type": "string" },
+            "approved": { "type": "boolean" },
+            "declaration_id": { "type": "string" },
+            "approved_by": { "type": "string" },
+            "approval_date": { "type": "string" }
+          }
+        },
+        "solution_baseline": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "baseline_id": { "type": "string" },
+            "version": { "type": "string" }
+          }
+        },
+        "compatibility_evidence": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "evidence_refs": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "security_evidence": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "evidence_refs": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "deployment_evidence": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "evidence_refs": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "runtime_evidence": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "evidence_refs": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "feedback_evidence": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "evidence_refs": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "status", "expired", "applies_to"],
+            "properties": {
+              "id": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["proposed", "approved", "rejected", "expired", "closed"]
+              },
+              "expired": { "type": "boolean" },
+              "applies_to": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "owner": { "type": "string" },
+              "mitigation": { "type": "string" },
+              "risk_classification": { "type": "string" },
+              "review_date": { "type": "string" },
+              "expiry_date": { "type": "string" },
+              "approval_authority": { "type": "string" },
+              "conditions": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

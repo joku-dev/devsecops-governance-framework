@@ -1,0 +1,75 @@
+artifact_types:
+  - id: container_image
+    required_metadata:
+      - artifact_id
+      - image_digest
+      - repository
+      - tag
+      - build_id
+      - commit_id
+    typical_evidence:
+      - sbom_file
+      - vulnerability_scan_report
+      - image_digest_record
+      - signature_record
+
+  - id: binary_package
+    required_metadata:
+      - artifact_id
+      - version
+      - checksum
+      - build_id
+      - commit_id
+    typical_evidence:
+      - sbom_file
+      - checksum_record
+      - signature_record
+      - repository_metadata
+
+  - id: library
+    required_metadata:
+      - artifact_id
+      - version
+      - package_registry
+      - build_id
+      - commit_id
+    typical_evidence:
+      - dependency_inventory
+      - sbom_file
+      - vulnerability_scan_report
+
+  - id: firmware
+    required_metadata:
+      - artifact_id
+      - version
+      - checksum
+      - target_hardware
+      - build_id
+      - commit_id
+    typical_evidence:
+      - checksum_record
+      - signature_record
+      - traceability_record
+      - verification_result_record
+
+  - id: script_or_configuration
+    required_metadata:
+      - artifact_id
+      - version
+      - repository_path
+      - commit_id
+    typical_evidence:
+      - code_review_record
+      - static_analysis_report
+      - configuration_validation_record
+
+  - id: infrastructure_as_code
+    required_metadata:
+      - artifact_id
+      - repository_path
+      - commit_id
+      - environment_id
+    typical_evidence:
+      - iac_validation_log
+      - infrastructure_change_history
+      - deployment_record

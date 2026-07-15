@@ -1,0 +1,58 @@
+roles:
+  - id: role.cdo
+    name: Chief Digitalisation Officer
+    responsibilities:
+      - enterprise_owner_of_devsecops
+      - platform_capability_funding
+      - adoption_timelines
+      - maturity_targets
+      - executive_reporting
+    source_requirements:
+      - DSDIR-REQ-001
+
+  - id: role.ciso
+    name: CISO / Cybersecurity Function
+    responsibilities:
+      - cybersecurity_control_baselines
+      - vulnerability_requirements_and_slas
+      - security_domain_classification
+      - cybersecurity_risk_acceptance
+      - cybersecurity_compliance_audits
+      - veto_authority_for_control_reductions
+    source_requirements:
+      - DSDIR-REQ-002
+
+  - id: role.safety_authority
+    name: Safety Authority
+    responsibilities:
+      - safety_lifecycle_requirements
+      - safety_impact_classification
+      - safety_critical_deviation_approval
+      - safety_evidence_generation
+    source_requirements:
+      - DSDIR-REQ-003
+
+  - id: role.devsecops_governance_board
+    name: DevSecOps Governance Board
+    responsibilities:
+      - control_baseline_structure
+      - standard_and_baseline_approval
+      - maturity_level_definition
+      - waiver_evaluation
+      - adoption_monitoring
+      - domain_specific_implementation_coordination
+    source_requirements:
+      - DSDIR-REQ-004
+      - DSDIR-REQ-006
+
+  - id: role.platform_lead
+    name: DevSecOps Platform Lead
+    responsibilities:
+      - approved_pipeline_blueprints
+      - enterprise_control_baseline_implementation
+      - secure_artifact_repositories
+      - evidence_generation_mechanisms
+      - platform_lifecycle_management
+    source_requirements:
+      - DSDIR-REQ-008
+      - DSDIR-REQ-009

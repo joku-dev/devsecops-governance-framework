@@ -1,0 +1,93 @@
+# Bitbucket Pipelines sketch for DevSecOps governance evidence collection.
+#
+# This file is a reference mapping, not a complete enterprise pipeline.
+# Adapt image, caches, repository checkout, credentials and artifact retention
+# to the local Bitbucket workspace.
+
+image: python:3.11-slim
+
+pipelines:
+  default:
+    - step:
+        name: DevSecOps governance evidence
+        script:
+          - set -eu
+          - mkdir -p dist security generated/evidence
+          - tar --exclude='.git' -czf dist/application-source.tar.gz .
+          - |
+            cat > security/sbom.cyclonedx.json <<'JSON'
+            {
+              "bomFormat": "CycloneDX",
+              "specVersion": "1.5",
+              "version": 1,
+              "components": []
+            }
+            JSON
+          - |
+            cat > security/vulnerability-scan.json <<'JSON'
+            {
+              "scanner": "placeholder",
+              "max_severity": "none",
+              "findings": []
+            }
+            JSON
+          - |
+            python3 scripts/generate_platform_context.py \
+              --platform bitbucket-pipelines \
+              --output generated/evidence/platform-context.json
+          - |
+            python3 scripts/generate_pipeline_evidence.py \
+              --platform bitbucket-pipelines \
+              --platform-context-file generated/evidence/platform-context.json \
+              --governance-mode report-only \
+              --artifact-path dist/application-source.tar.gz \
+              --sbom-path security/sbom.cyclonedx.json \
+              --vulnerability-scan-path security/vulnerability-scan.json \
+              --branch-protection-status not_implemented_for_bitbucket_template
+        artifacts:
+          - generated/evidence/*.json
+          - dist/application-source.tar.gz
+          - security/*.json
+
+  pull-requests:
+    "**":
+      - step:
+          name: Pull request governance evidence
+          script:
+            - set -eu
+            - mkdir -p dist security generated/evidence
+            - tar --exclude='.git' -czf dist/application-source.tar.gz .
+            - |
+              cat > security/sbom.cyclonedx.json <<'JSON'
+              {
+                "bomFormat": "CycloneDX",
+                "specVersion": "1.5",
+                "version": 1,
+                "components": []
+              }
+              JSON
+            - |
+              cat > security/vulnerability-scan.json <<'JSON'
+              {
+                "scanner": "placeholder",
+                "max_severity": "none",
+                "findings": []
+              }
+              JSON
+            - |
+              python3 scripts/generate_platform_context.py \
+                --platform bitbucket-pipelines \
+                --output generated/evidence/platform-context.json
+            - |
+              python3 scripts/generate_pipeline_evidence.py \
+                --platform bitbucket-pipelines \
+                --platform-context-file generated/evidence/platform-context.json \
+                --governance-mode report-only \
+                --artifact-path dist/application-source.tar.gz \
+                --sbom-path security/sbom.cyclonedx.json \
+                --vulnerability-scan-path security/vulnerability-scan.json \
+                --branch-protection-status not_implemented_for_bitbucket_template
+          artifacts:
+            - generated/evidence/*.json
+            - dist/application-source.tar.gz
+            - security/*.json

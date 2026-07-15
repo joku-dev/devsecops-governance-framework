@@ -1,0 +1,331 @@
+source_document: DevSecOps Directive
+id_prefix: DSDIR
+requirements:
+- id: DSDIR-REQ-001
+  domain: strategic_authority
+  title: CDO enterprise ownership
+  requirement: The CDO is the enterprise owner of DevSecOps and is responsible for establishing DevSecOps as the enterprise software delivery
+    model, platform capability funding, adoption timelines, maturity targets, safety lifecycle integration, and executive maturity reporting.
+  verification_requirement: Governance records SHALL identify CDO ownership, adoption targets, maturity reporting, and platform capability responsibility.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Ownership and reporting records can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-001
+  - DSCB-GOV-REQ-002
+- id: DSDIR-REQ-002
+  domain: strategic_authority
+  title: Cybersecurity authority
+  requirement: The CISO is responsible for cybersecurity control baselines, vulnerability requirements and SLAs, security domain classification,
+    cybersecurity risk acceptance, cybersecurity audits, and veto authority regarding reductions of mandatory cybersecurity controls.
+  verification_requirement: Governance records SHALL identify cybersecurity authority, control baseline ownership, SLA ownership, domain classification,
+    risk acceptance, and veto records where applicable.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Requires governance and security risk records.
+  implemented_by:
+  - DSCB-L1-REQ-009
+  - DSCB-L1-REQ-010
+  - DSCB-GOV-REQ-003
+- id: DSDIR-REQ-003
+  domain: strategic_authority
+  title: Safety authority
+  requirement: The Safety Authority is responsible for safety lifecycle requirements, safety impact classifications, safety-critical deviation
+    approvals, and safety evidence generation within DevSecOps processes.
+  verification_requirement: Safety governance records SHALL identify safety authority responsibilities, classifications, deviation approvals,
+    and safety evidence obligations.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Requires safety governance and evidence integration.
+  implemented_by:
+  - DSCB-L1-REQ-001
+  - DSCB-L3-REQ-009
+- id: DSDIR-REQ-004
+  domain: governance_board
+  title: Governance Board establishment
+  requirement: A DevSecOps Governance Board shall be established to coordinate enterprise-wide DevSecOps implementation.
+  verification_requirement: Governance records SHALL contain an approved DevSecOps Governance Board charter and active board record.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Board charter and status can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-002
+- id: DSDIR-REQ-005
+  domain: governance_board
+  title: Governance Board composition
+  requirement: The DevSecOps Governance Board shall include SDD capability leadership, CISO representation, Safety Authority representation, enterprise
+    architecture, divisional or program representation, and compliance representation where applicable.
+  verification_requirement: Board membership records SHALL show required role representation or documented justification for non-applicability.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Membership records can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-002
+- id: DSDIR-REQ-006
+  domain: governance_board
+  title: Governance Board responsibilities
+  requirement: The DevSecOps Governance Board is responsible for maintaining control baseline structure, approving standards and baselines, defining
+    maturity levels, evaluating waivers, monitoring adoption, and coordinating domain-specific implementations.
+  verification_requirement: Governance decision records SHALL show board decisions for baselines, standards, maturity levels, waivers, adoption
+    monitoring, and domain-specific implementation topics.
+  automation:
+    type: review_check
+    maturity: tool_integration_required
+    check_type: review
+    machine_readable_evidence_required: true
+    rationale: Decision existence can be checked but board judgment remains human.
+  implemented_by:
+  - DSCB-GOV-REQ-001
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+- id: DSDIR-REQ-007
+  domain: governance_board
+  title: Escalation authority
+  requirement: The Board shall escalate high-risk cybersecurity matters to the CISO, safety-critical deviations to the Safety Authority, and enterprise
+    governance conflicts to the CDO.
+  verification_requirement: Escalation records SHALL show that decisions were escalated to the required authority according to matter type.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Escalation routing and approval authority can be checked in governance records.
+  implemented_by:
+  - DSCB-GOV-REQ-003
+  - DSCB-GOV-REQ-005
+- id: DSDIR-REQ-008
+  domain: platform_governance
+  title: Platform ownership
+  requirement: Enterprise DevSecOps platform capabilities shall be operated under the responsibility of the DevSecOps Platform Lead within the
+    CDO organization.
+  verification_requirement: Platform governance records SHALL identify the responsible Platform Lead and platform scope.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Platform ownership metadata can be checked.
+  implemented_by:
+  - DSCB-L2-REQ-003
+  - DSCB-L2-REQ-004
+- id: DSDIR-REQ-009
+  domain: platform_governance
+  title: Platform Lead responsibilities
+  requirement: The Platform Lead is responsible for approved pipeline blueprints, implementing enterprise control baselines, secure artifact repositories,
+    evidence generation mechanisms, and platform lifecycle management.
+  verification_requirement: Platform evidence SHALL show approved pipeline blueprints, baseline implementation evidence, artifact repository configuration,
+    evidence generation, and lifecycle management records.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Requires platform inventory and configuration evidence.
+  implemented_by:
+  - DSCB-L1-REQ-015
+  - DSCB-L2-REQ-011
+  - DSCB-L2-REQ-012
+- id: DSDIR-REQ-010
+  domain: platform_governance
+  title: Domain platform compliance
+  requirement: All domain-specific DevSecOps platform variants must comply with enterprise DevSecOps Standards.
+  verification_requirement: Each domain platform variant SHALL provide compliance evidence against applicable enterprise DevSecOps Standards and
+    PRA-Level requirements.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: linkage
+    machine_readable_evidence_required: true
+    rationale: Requires platform variant inventory and compliance evidence.
+  implemented_by:
+  - DSCB-GOV-REQ-001
+  - DSCB-GOV-REQ-002
+- id: DSDIR-REQ-011
+  domain: adoption_rules
+  title: New program adoption
+  requirement: All programs initiated after entry into force of the DevSecOps Policy shall implement DevSecOps in accordance with enterprise Standards.
+  verification_requirement: Program approval records SHALL show DevSecOps adoption status and applicable enterprise standards for new programs.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Program metadata and approval records can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-001
+- id: DSDIR-REQ-012
+  domain: adoption_rules
+  title: Program approval consideration
+  requirement: DevSecOps adoption shall be considered during program approval processes.
+  verification_requirement: Program approval evidence SHALL include DevSecOps adoption assessment or documented waiver.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Approval checklist evidence can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+- id: DSDIR-REQ-013
+  domain: adoption_rules
+  title: Existing program transition roadmap
+  requirement: Existing programs shall establish a DevSecOps transition roadmap aligned with enterprise maturity targets.
+  verification_requirement: Existing program records SHALL include a transition roadmap linked to enterprise maturity targets.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Roadmap presence and maturity target linkage can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-001
+  - DSCB-GOV-REQ-002
+- id: DSDIR-REQ-014
+  domain: control_baseline_management
+  title: Control baseline definition
+  requirement: Mandatory DevSecOps control baselines shall be defined in DevSecOps Standards.
+  verification_requirement: Standard inventory evidence SHALL identify the mandatory DevSecOps control baselines and their approved versions.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Document inventory metadata can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-001
+- id: DSDIR-REQ-015
+  domain: control_baseline_management
+  title: Control baseline coverage
+  requirement: The control baseline shall include cybersecurity, safety, software supply chain integrity, artifact integrity and signing, traceability
+    and evidence, operational monitoring, and lifecycle management requirements.
+  verification_requirement: Control baseline metadata SHALL show coverage of the required requirement domains.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Control domain coverage can be checked in the control library.
+  implemented_by:
+  - DSCB-L1-REQ-001
+  - DSCB-L1-REQ-006
+  - DSCB-L1-REQ-011
+  - DSCB-L2-REQ-007
+  - DSCB-L2-REQ-013
+  - DSCB-L2-REQ-014
+- id: DSDIR-REQ-016
+  domain: control_baseline_management
+  title: Applicable baseline assignment
+  requirement: Programs must implement the applicable control baseline based on security domain, system criticality, and operational environment.
+  verification_requirement: Program metadata SHALL show security domain, system criticality, operational environment, and assigned control baseline
+    level.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Baseline assignment can be checked through program metadata.
+  implemented_by:
+  - DSCB-GOV-REQ-001
+- id: DSDIR-REQ-017
+  domain: waiver_management
+  title: Waiver conditions
+  requirement: Deviations from mandatory requirements are permitted only where technical or regulatory justification exists, risk classification
+    is documented, compensating controls are defined, and expiry dates are defined.
+  verification_requirement: Waiver records SHALL include technical or regulatory justification, risk classification, compensating controls, and
+    expiry date.
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Waiver completeness can be checked automatically.
+  implemented_by:
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005
+- id: DSDIR-REQ-018
+  domain: waiver_management
+  title: Central waiver registry
+  requirement: All waivers must be documented in a centralized waiver registry.
+  verification_requirement: Each active waiver SHALL have a central waiver registry identifier and status.
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Registry presence can be checked automatically.
+  implemented_by:
+  - DSCB-GOV-REQ-003
+  - DSCB-GOV-REQ-005
+- id: DSDIR-REQ-019
+  domain: waiver_management
+  title: Waiver authority
+  requirement: Approval authority shall follow risk classification.
+  verification_requirement: Waiver approval evidence SHALL show approval by the authority required for the documented risk classification.
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Approval authority can be checked against risk classification.
+  implemented_by:
+  - DSCB-GOV-REQ-005
+- id: DSDIR-REQ-020
+  domain: reporting
+  title: Enterprise reporting
+  requirement: The DevSecOps Governance Board shall establish enterprise reporting covering platform adoption, maturity distribution, open waivers
+    by risk category, vulnerability remediation performance, and compliance audit findings.
+  verification_requirement: Enterprise reporting evidence SHALL include platform adoption, maturity distribution, waiver status, vulnerability
+    remediation performance, and audit finding metrics.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Requires reporting integration across platform, waiver, vulnerability, and audit data.
+  implemented_by:
+  - DSCB-GOV-REQ-002
+- id: DSDIR-REQ-021
+  domain: reporting
+  title: Periodic reporting
+  requirement: Reporting shall be provided periodically to the CDO and relevant governance bodies.
+  verification_requirement: Reporting records SHALL show reporting period, recipients, delivery status, and covered metrics.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Reporting delivery metadata can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-002
+- id: DSDIR-REQ-022
+  domain: document_hierarchy
+  title: Implementation through standards and processes
+  requirement: The Directive shall be implemented through DevSecOps Standards, processes, and guidelines including Control Baseline, Secure Software
+    Supply Chain, Artifact Integrity and Signing, Evidence and Traceability, Platform Architecture, Waiver Management, Platform Onboarding, Program
+    Maturity Assessment, Pipeline Blueprint Usage, Secure Coding, and SBOM Management guidance.
+  verification_requirement: Document hierarchy records SHALL show the standards, processes, and guidelines implementing the Directive and their
+    current approval status.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Document hierarchy metadata can be checked.
+  implemented_by:
+  - DSCB-GOV-REQ-002

@@ -1,0 +1,88 @@
+pipeline {
+  agent any
+
+  environment {
+    GOVERNANCE_MODE = 'report-only'
+    MAX_ALLOWED_SEVERITY = 'high'
+  }
+
+  stages {
+    stage('Code Checks') {
+      steps {
+        checkout scm
+        sh 'mkdir -p dist security generated/evidence'
+      }
+    }
+
+    stage('Controlled Build') {
+      steps {
+        sh "tar --exclude='.git' -czf dist/application-source.tar.gz ."
+      }
+    }
+
+    stage('Test and Security Gates') {
+      steps {
+        sh '''
+          cat > security/vulnerability-scan.json <<'JSON'
+          {
+            "scanner": "placeholder",
+            "max_severity": "none",
+            "findings": []
+          }
+          JSON
+        '''
+      }
+    }
+
+    stage('Package and Evidence') {
+      steps {
+        sh '''
+          cat > security/sbom.cyclonedx.json <<'JSON'
+          {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.5",
+            "version": 1,
+            "components": []
+          }
+          JSON
+
+          python3 scripts/generate_platform_context.py \
+            --platform jenkins \
+            --output generated/evidence/platform-context.json
+
+          python3 scripts/generate_pipeline_evidence.py \
+            --platform jenkins \
+            --platform-context-file generated/evidence/platform-context.json \
+            --governance-mode "${GOVERNANCE_MODE}" \
+            --max-allowed-severity "${MAX_ALLOWED_SEVERITY}" \
+            --artifact-path dist/application-source.tar.gz \
+            --sbom-path security/sbom.cyclonedx.json \
+            --vulnerability-scan-path security/vulnerability-scan.json \
+            --branch-protection-status not_checked_by_jenkins_template
+        '''
+      }
+    }
+
+    stage('Release Decision') {
+      steps {
+        sh '''
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          gate = json.loads(Path("generated/evidence/baseline-gate-result.json").read_text())
+          print(json.dumps(gate, indent=2))
+          if gate["status"] != "pass" and gate["governance_mode"] in {"block-on-error", "waiver-required"}:
+              raise SystemExit(1)
+          PY
+        '''
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: 'generated/evidence/*.json, dist/application-source.tar.gz, security/*.json', fingerprint: true
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "baseline_level": "L1",
+  "governance_baseline_ref": "l1-baseline-v1.0.0",
+  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "result_type": "governance-baseline-run",
+  "generated_at": "2026-06-27T08:36:38Z",
+  "pipeline": {
+    "pipeline_name": "DevSecOps Baseline",
+    "pipeline_run_id": "28284063513",
+    "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/28284063513",
+    "event": "push",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "main",
+    "branch_protected": true,
+    "commit_id": "8e7b742f41f902b4b85d1f6d4f3e556a96d937a3"
+  },
+  "checks": {
+    "baseline_gate": "success",
+    "ci": "success"
+  },
+  "evidence": {
+    "sbom": true,
+    "vulnerability_scan": true,
+    "artifact_digest": true
+  },
+  "overall_status": "pass",
+  "notes": "Protected main branch and central L1 governance workflow succeeded on main after PR-based rollout."
+}

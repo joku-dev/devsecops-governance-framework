@@ -1,0 +1,9 @@
+{
+  "active": true,
+  "initial_count": 20,
+  "last_recorded_at": "2026-07-06T20:04:30Z",
+  "mode": "continuous",
+  "remaining": null,
+  "started_at": "2026-07-06T18:06:55Z",
+  "usage_log": "generated/agent-usage/agent-usage.jsonl"
+}

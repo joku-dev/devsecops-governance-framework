@@ -1,0 +1,869 @@
+control_placements:
+- control: DSCB-GOV-REQ-001
+  level: GOV
+  stage: plan
+  gate_type: evidence_check
+  check_type: presence
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - program_control_baseline_assignment
+  - applicability_assessment_record
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Program governance records SHALL identify the applicable Control Baseline level for each program.
+  policy_rule: ''
+- control: DSCB-GOV-REQ-002
+  level: GOV
+  stage: release
+  gate_type: review_check
+  check_type: review
+  default_gate_result_on_failure: manual_review_required
+  maturity: tool_integration_required
+  required_evidence:
+  - maturity_assessment_record
+  - internal_audit_record
+  - architecture_review_record
+  - program_lifecycle_review_record
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  verification_requirement: Compliance verification evidence SHALL include maturity assessment, audit, architecture review, or program lifecycle review records as
+    applicable.
+  policy_rule: ''
+- control: DSCB-GOV-REQ-003
+  level: GOV
+  stage: release
+  gate_type: blocking_gate
+  check_type: approval
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - maturity_assessment_record
+  - internal_audit_record
+  - architecture_review_record
+  - program_lifecycle_review_record
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: Non-compliance records SHALL reference an approved waiver before a release, deployment, or governance decision is accepted.
+  policy_rule: policies/opa/waiver_validity.rego
+- control: DSCB-GOV-REQ-004
+  level: GOV
+  stage: release
+  gate_type: evidence_check
+  check_type: linkage
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - waiver_record
+  - risk_classification
+  - expiry_record
+  - compensating_controls
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: Deviation records SHALL reference the defined waiver process and waiver registry entry.
+  policy_rule: ''
+- control: DSCB-GOV-REQ-005
+  level: GOV
+  stage: release
+  gate_type: blocking_gate
+  check_type: approval
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - waiver_record
+  - risk_classification
+  - expiry_record
+  - compensating_controls
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: Each deviation SHALL provide machine-readable waiver evidence containing justification, documentation reference, risk classification,
+    and expiry date.
+  policy_rule: policies/opa/waiver_validity.rego
+- control: DSCB-L1-REQ-001
+  level: L1
+  stage: plan
+  gate_type: evidence_check
+  check_type: linkage
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - requirements_traceability_records
+  - configuration_management_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Each release candidate SHALL provide machine-readable traceability records linking software components to defined system or software requirements
+    and corresponding test cases or reports.
+  policy_rule: ''
+- control: DSCB-L1-REQ-002
+  level: L1
+  stage: code
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - commit_history
+  - code_review_records
+  - branch_protection_configuration
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Each repository SHALL provide machine-readable commit and author metadata showing that source code changes are maintained in an approved
+    version control system and attributable to an identifiable author.
+  policy_rule: ''
+- control: DSCB-L1-REQ-003
+  level: L1
+  stage: code
+  gate_type: blocking_gate
+  check_type: configuration
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - commit_history
+  - code_review_records
+  - branch_protection_configuration
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Protected branch configuration SHALL show that direct pushes are disabled and changes require the defined integration workflow.
+  policy_rule: policies/opa/branch_protection.rego
+- control: DSCB-L1-REQ-004
+  level: L1
+  stage: code
+  gate_type: evidence_check
+  check_type: presence
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - static_code_analysis_reports
+  - code_review_documentation
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Each releasable software change SHALL provide secure coding evidence, including configured static analysis results and code review records
+    for the applicable technology stack.
+  policy_rule: ''
+- control: DSCB-L1-REQ-005
+  level: L1
+  stage: package
+  gate_type: evidence_check
+  check_type: presence
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - sbom
+  - dependency_scan_reports
+  evidence_contracts:
+  - evidence.sbom
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Each release candidate SHALL provide a machine-readable dependency inventory or SBOM covering the software dependencies included in the
+    artifact.
+  policy_rule: ''
+- control: DSCB-L1-REQ-006
+  level: L1
+  stage: package
+  gate_type: blocking_gate
+  check_type: linkage
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - sbom
+  - dependency_scan_reports
+  evidence_contracts:
+  - evidence.sbom
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Each release candidate SHALL provide a machine-readable SBOM linked to the releasable artifact identifier.
+  policy_rule: policies/opa/sbom_required.rego
+- control: DSCB-L1-REQ-007
+  level: L1
+  stage: build
+  gate_type: evidence_check
+  check_type: presence
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - build_pipeline_logs
+  - artifact_version_identifiers
+  evidence_contracts:
+  - evidence.pipeline_execution
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Each release candidate SHALL provide pipeline execution evidence showing that build activities were executed through controlled automated
+    pipelines.
+  policy_rule: ''
+- control: DSCB-L1-REQ-008
+  level: L1
+  stage: build
+  gate_type: evidence_check
+  check_type: presence
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - build_pipeline_logs
+  - artifact_version_identifiers
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Each build output SHALL provide artifact metadata containing a unique artifact identifier, version, digest, or equivalent repository identifier.
+  policy_rule: ''
+- control: DSCB-L1-REQ-009
+  level: L1
+  stage: test
+  gate_type: blocking_gate
+  check_type: presence
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - vulnerability_scan_reports
+  - vulnerability_assessment_documentation
+  evidence_contracts:
+  - evidence.vulnerability_scan
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Each build or release candidate SHALL provide machine-readable vulnerability scan evidence from the build or test stage.
+  policy_rule: policies/opa/vulnerability_gate.rego
+- control: DSCB-L1-REQ-010
+  level: L1
+  stage: release
+  gate_type: blocking_gate
+  check_type: threshold
+  default_gate_result_on_failure: fail
+  maturity: tool_integration_required
+  required_evidence:
+  - vulnerability_scan_reports
+  - vulnerability_assessment_documentation
+  evidence_contracts:
+  - evidence.vulnerability_scan
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: Each release candidate SHALL provide vulnerability assessment evidence showing that identified vulnerabilities were evaluated or covered
+    by an approved waiver before release.
+  policy_rule: policies/opa/vulnerability_gate.rego
+- control: DSCB-L1-REQ-011
+  level: L1
+  stage: package
+  gate_type: blocking_gate
+  check_type: integrity
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - artifact_signature_records
+  - artifact_repository_metadata
+  - artifact_checksum_or_digest_records
+  evidence_contracts:
+  - evidence.artifact_integrity
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Each releasable artifact SHALL provide integrity evidence such as checksum, digest, repository integrity metadata, or signature linked
+    to the artifact identifier.
+  policy_rule: policies/opa/artifact_integrity.rego
+- control: DSCB-L1-REQ-012
+  level: L1
+  stage: package
+  gate_type: evidence_check
+  check_type: presence
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - artifact_signature_records
+  - artifact_repository_metadata
+  - artifact_checksum_or_digest_records
+  evidence_contracts:
+  - evidence.artifact_integrity
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Each artifact SHALL provide repository metadata proving a unique and stable artifact identity.
+  policy_rule: ''
+- control: DSCB-L1-REQ-013
+  level: L1
+  stage: release
+  gate_type: evidence_check
+  check_type: approval
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - release_approval_records
+  - deployment_logs
+  evidence_contracts:
+  - evidence.release_approval
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: Each deployment or release candidate SHALL provide approval evidence linked to the artifact, release, or deployment record.
+  policy_rule: ''
+- control: DSCB-L1-REQ-014
+  level: L1
+  stage: deploy
+  gate_type: blocking_gate
+  check_type: approval
+  default_gate_result_on_failure: fail
+  maturity: tool_integration_required
+  required_evidence:
+  - release_approval_records
+  - deployment_logs
+  evidence_contracts:
+  - evidence.release_approval
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - deployment
+  - waiver
+  verification_requirement: Deployment evidence SHALL show that only artifacts with approved release status were deployed.
+  policy_rule: ''
+- control: DSCB-L1-REQ-015
+  level: L1
+  stage: release
+  gate_type: evidence_check
+  check_type: presence
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - pipeline_execution_logs
+  - security_scan_reports
+  - artifact_metadata
+  - approval_records
+  evidence_contracts:
+  - evidence.pipeline_execution
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: Each pipeline execution SHALL produce a machine-readable evidence bundle covering the implemented controls applicable to the pipeline
+    stage.
+  policy_rule: ''
+- control: DSCB-L1-REQ-016
+  level: L1
+  stage: operate
+  gate_type: evidence_check
+  check_type: linkage
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - system_logs
+  - deployment_records
+  - incident_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - deployment
+  - waiver
+  verification_requirement: Each operational deployment SHALL provide records linking deployed software versions to deployment records and relevant security or incident
+    events.
+  policy_rule: ''
+- control: DSCB-L2-REQ-001
+  level: L2
+  stage: code
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - environment_configuration_records
+  - system_configuration_baselines
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Platform inventory or configuration management evidence SHALL show that development environments are centrally managed.
+  policy_rule: ''
+- control: DSCB-L2-REQ-002
+  level: L2
+  stage: code
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - environment_configuration_records
+  - system_configuration_baselines
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Development environment evidence SHALL show compliance with the applicable enterprise security configuration baseline.
+  policy_rule: ''
+- control: DSCB-L2-REQ-003
+  level: L2
+  stage: code
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - authentication_logs
+  - access_control_configuration
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Platform configuration evidence SHALL show that DevSecOps platform access is integrated with centralized identity management.
+  policy_rule: ''
+- control: DSCB-L2-REQ-004
+  level: L2
+  stage: code
+  gate_type: blocking_gate
+  check_type: configuration
+  default_gate_result_on_failure: fail
+  maturity: tool_integration_required
+  required_evidence:
+  - authentication_logs
+  - access_control_configuration
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Privileged access evidence SHALL show that multi-factor authentication is enforced for privileged DevSecOps platform roles.
+  policy_rule: policies/opa/access_control.rego
+- control: DSCB-L2-REQ-005
+  level: L2
+  stage: package
+  gate_type: blocking_gate
+  check_type: configuration
+  default_gate_result_on_failure: fail
+  maturity: tool_integration_required
+  required_evidence:
+  - repository_configuration
+  - dependency_management_logs
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Build and dependency configuration SHALL show that software dependencies are retrieved from approved repositories.
+  policy_rule: ''
+- control: DSCB-L2-REQ-006
+  level: L2
+  stage: build
+  gate_type: blocking_gate
+  check_type: configuration
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - repository_configuration
+  - dependency_management_logs
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Pipeline, build, or dependency logs SHALL show that direct downloads from non-approved external sources are not used.
+  policy_rule: policies/opa/dependency_source_control.rego
+- control: DSCB-L2-REQ-007
+  level: L2
+  stage: package
+  gate_type: blocking_gate
+  check_type: integrity
+  default_gate_result_on_failure: fail
+  maturity: tool_integration_required
+  required_evidence:
+  - artifact_signatures
+  - signing_records
+  evidence_contracts:
+  - evidence.artifact_signature
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Each releasable artifact SHALL provide signature evidence created before release.
+  policy_rule: policies/opa/artifact_signing.rego
+- control: DSCB-L2-REQ-008
+  level: L2
+  stage: package
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - artifact_signatures
+  - signing_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Signing infrastructure evidence SHALL show that signing keys are protected and managed according to enterprise security policy.
+  policy_rule: ''
+- control: DSCB-L2-REQ-009
+  level: L2
+  stage: deploy
+  gate_type: evidence_check
+  check_type: linkage
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - infrastructure_repositories
+  - infrastructure_change_history
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - deployment
+  - waiver
+  verification_requirement: Deployment evidence SHALL reference version-controlled Infrastructure as Code definitions for the deployed infrastructure.
+  policy_rule: policies/opa/iac_required.rego
+- control: DSCB-L2-REQ-010
+  level: L2
+  stage: code
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - infrastructure_repositories
+  - infrastructure_change_history
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Infrastructure definition evidence SHALL show that IaC sources are maintained in version control with change history.
+  policy_rule: policies/opa/iac_required.rego
+- control: DSCB-L2-REQ-011
+  level: L2
+  stage: test
+  gate_type: blocking_gate
+  check_type: presence
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - pipeline_policy_gate_records
+  - pipeline_execution_logs
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - waiver
+  verification_requirement: Pipeline execution evidence SHALL show that required security gates were executed for the relevant lifecycle stage.
+  policy_rule: policies/opa/pipeline_security_gates.rego
+- control: DSCB-L2-REQ-012
+  level: L2
+  stage: release
+  gate_type: blocking_gate
+  check_type: threshold
+  default_gate_result_on_failure: fail
+  maturity: immediate
+  required_evidence:
+  - pipeline_policy_gate_records
+  - pipeline_execution_logs
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: Release decision evidence SHALL show that releases are blocked when security thresholds are exceeded unless an approved waiver exists.
+  policy_rule: policies/opa/pipeline_security_gates.rego
+- control: DSCB-L2-REQ-013
+  level: L2
+  stage: operate
+  gate_type: evidence_check
+  check_type: presence
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - security_monitoring_logs
+  - security_event_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - deployment
+  - waiver
+  verification_requirement: Operational system evidence SHALL show that defined security-relevant events are generated.
+  policy_rule: ''
+- control: DSCB-L2-REQ-014
+  level: L2
+  stage: operate
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - security_monitoring_logs
+  - security_event_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - deployment
+  - waiver
+  verification_requirement: Monitoring configuration or telemetry evidence SHALL show that security events are forwarded to approved monitoring systems.
+  policy_rule: ''
+- control: DSCB-L3-REQ-001
+  level: L3
+  stage: build
+  gate_type: evidence_check
+  check_type: integrity
+  default_gate_result_on_failure: waiver_required
+  maturity: future
+  required_evidence:
+  - rebuild_verification_records
+  - build_configuration_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Rebuild verification evidence SHALL show that the same source code and build configuration can reproduce the expected build output within
+    defined tolerance.
+  policy_rule: ''
+- control: DSCB-L3-REQ-002
+  level: L3
+  stage: build
+  gate_type: evidence_check
+  check_type: linkage
+  default_gate_result_on_failure: waiver_required
+  maturity: immediate
+  required_evidence:
+  - rebuild_verification_records
+  - build_configuration_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Build configuration evidence SHALL show that build definitions are maintained in version control and linked to the build execution.
+  policy_rule: ''
+- control: DSCB-L3-REQ-003
+  level: L3
+  stage: build
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - build_environment_configuration
+  - pipeline_execution_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Pipeline evidence SHALL show that builds are executed in isolated build environments.
+  policy_rule: ''
+- control: DSCB-L3-REQ-004
+  level: L3
+  stage: build
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - build_environment_configuration
+  - pipeline_execution_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Pipeline environment evidence SHALL show that build environments are recreated for each controlled pipeline execution.
+  policy_rule: ''
+- control: DSCB-L3-REQ-005
+  level: L3
+  stage: package
+  gate_type: evidence_check
+  check_type: provenance
+  default_gate_result_on_failure: waiver_required
+  maturity: future
+  required_evidence:
+  - provenance_metadata
+  - dependency_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Dependency metadata SHALL provide verifiable provenance information for dependencies used in the build.
+  policy_rule: ''
+- control: DSCB-L3-REQ-006
+  level: L3
+  stage: build
+  gate_type: evidence_check
+  check_type: provenance
+  default_gate_result_on_failure: waiver_required
+  maturity: future
+  required_evidence:
+  - provenance_metadata
+  - dependency_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Build evidence SHALL record dependency provenance metadata during the build process.
+  policy_rule: ''
+- control: DSCB-L3-REQ-007
+  level: L3
+  stage: package
+  gate_type: blocking_gate
+  check_type: integrity
+  default_gate_result_on_failure: fail
+  maturity: tool_integration_required
+  required_evidence:
+  - signing_infrastructure_records
+  - artifact_signature_logs
+  evidence_contracts:
+  - evidence.artifact_signature
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Artifact signature evidence SHALL show that released artifacts are signed using enterprise signing infrastructure.
+  policy_rule: ''
+- control: DSCB-L3-REQ-008
+  level: L3
+  stage: package
+  gate_type: evidence_check
+  check_type: configuration
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - signing_infrastructure_records
+  - artifact_signature_logs
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - waiver
+  verification_requirement: Trust infrastructure evidence SHALL show that signing keys are centrally managed.
+  policy_rule: ''
+- control: DSCB-L3-REQ-009
+  level: L3
+  stage: release
+  gate_type: evidence_check
+  check_type: linkage
+  default_gate_result_on_failure: waiver_required
+  maturity: future
+  required_evidence:
+  - traceability_records
+  - deployment_metadata
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: Each release candidate SHALL provide end-to-end traceability evidence linking requirements, source code, verification results, build artifacts,
+    deployment metadata, and deployed software.
+  policy_rule: ''
+- control: DSCB-L3-REQ-010
+  level: L3
+  stage: operate
+  gate_type: evidence_check
+  check_type: integrity
+  default_gate_result_on_failure: waiver_required
+  maturity: future
+  required_evidence:
+  - runtime_integrity_verification_logs
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - deployment
+  - waiver
+  verification_requirement: Runtime evidence SHALL show integrity verification results for deployed software artifacts.
+  policy_rule: ''
+- control: DSCB-L3-REQ-011
+  level: L3
+  stage: release
+  gate_type: evidence_check
+  check_type: linkage
+  default_gate_result_on_failure: waiver_required
+  maturity: tool_integration_required
+  required_evidence:
+  - compliance_evidence_repository
+  - pipeline_audit_records
+  evidence_contracts: []
+  minimum_metadata_groups:
+  - pipeline_execution
+  - evidence
+  - artifact
+  - release
+  - waiver
+  verification_requirement: The DevSecOps platform SHALL provide machine-readable compliance evidence covering lifecycle activities and linked control identifiers.
+  policy_rule: ''

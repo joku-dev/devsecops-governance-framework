@@ -1,0 +1,27 @@
+waiver_process:
+  source_requirements:
+    - DSPOL-REQ-002
+    - DSPOL-REQ-020
+    - DSDIR-REQ-017
+    - DSDIR-REQ-018
+    - DSDIR-REQ-019
+  mandatory_fields:
+    - waiver_id
+    - affected_requirement
+    - technical_or_regulatory_justification
+    - risk_classification
+    - compensating_controls
+    - expiry_date
+    - approval_authority
+    - approval_status
+  approval_authority:
+    low: DevSecOps Governance Board
+    medium: DevSecOps Governance Board
+    high_cybersecurity: CISO
+    high_safety: Safety Authority
+  verification_evidence:
+    - waiver_registry_record
+    - approval_record
+    - risk_classification_record
+    - expiry_record
+    - compensating_control_record

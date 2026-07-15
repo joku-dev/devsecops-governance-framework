@@ -1,0 +1,110 @@
+{
+  "release_candidate": true,
+  "run_context": {
+    "event": "push",
+    "purpose": "release",
+    "release_context": true,
+    "source": "demo"
+  },
+  "required_platform_level": "PRA-Level 2",
+  "repository": {
+    "protected_branch": true,
+    "direct_push_allowed": true,
+    "review_required": false
+  },
+  "platform": {
+    "privileged_access": true,
+    "mfa_enforced": false,
+    "central_identity_management": false
+  },
+  "traceability": {
+    "requirements_linked": false,
+    "testcases_linked": false,
+    "reports_linked": false
+  },
+  "source_control": {
+    "approved_vcs": false,
+    "identifiable_authors": false,
+    "review_records_present": false
+  },
+  "static_analysis": {
+    "performed": false,
+    "findings_reviewed": false
+  },
+  "environment": {
+    "centrally_managed": false,
+    "secure_workspace": false,
+    "config_compliant": false,
+    "configuration_baselines_defined": false
+  },
+  "evidence": {
+    "sbom": {
+      "exists": false,
+      "linked_to_artifact": false
+    },
+    "vulnerability_scan": {
+      "exists": false
+    }
+  },
+  "artifact": {
+    "digest": {
+      "exists": false,
+      "linked_to_artifact": false
+    },
+    "signature": {
+      "exists": false
+    }
+  },
+  "signing": {
+    "keys_protected": false
+  },
+  "pipeline": {
+    "event": "push",
+    "external_direct_downloads_detected": true,
+    "security_gates": {
+      "enforced": false
+    },
+    "security_thresholds_exceeded": true
+  },
+  "release": {
+    "approved_waiver": {
+      "exists": false
+    }
+  },
+  "release_approval": {
+    "approved": false,
+    "approver": "",
+    "approved_artifact_only": false
+  },
+  "dependencies": [
+    {
+      "name": "example-library",
+      "source_approved": false
+    }
+  ],
+  "infrastructure": {
+    "iac_repository": {
+      "exists": false,
+      "version_controlled": false
+    }
+  },
+  "operations": {
+    "deployed_versions_recorded": false,
+    "security_events_recorded": false
+  },
+  "monitoring": {
+    "security_events_generated": false,
+    "integration_enabled": false,
+    "forwarded_to_monitoring": false
+  },
+  "deployment": {
+    "required": true
+  },
+  "vulnerabilities": [
+    {
+      "id": "CVE-DEMO-0001",
+      "severity": "critical"
+    }
+  ],
+  "waivers": []
+}

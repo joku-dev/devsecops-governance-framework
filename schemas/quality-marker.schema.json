@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Architecture Quality Marker Catalogue",
+  "type": "object",
+  "required": ["source_document", "model_version", "scoring", "markers"],
+  "properties": {
+    "source_document": { "type": "string" },
+    "model_version": { "type": "string" },
+    "description": { "type": "string" },
+    "scoring": {
+      "type": "object",
+      "required": ["scale"],
+      "properties": {
+        "scale": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["score", "name", "runtime_interpretation"],
+            "properties": {
+              "score": { "type": "integer", "minimum": 0, "maximum": 5 },
+              "name": { "type": "string" },
+              "runtime_interpretation": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "level",
+          "title",
+          "source_reference",
+          "review_question",
+          "criticality",
+          "required_evidence_score_3",
+          "required_evidence_score_4",
+          "required_evidence_score_5",
+          "owner_role",
+          "review_points"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(B|E|S|P)[0-9]+$" },
+          "level": { "type": "string", "enum": ["BAPO", "Enterprise", "Solution", "Product"] },
+          "title": { "type": "string" },
+          "source_reference": { "type": "string" },
+          "review_question": { "type": "string" },
+          "criticality": {
+            "type": "string",
+            "enum": ["architecture_readiness", "integration_readiness", "release_readiness", "operation_readiness", "recommended", "informational"]
+          },
+          "required_evidence_score_3": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "required_evidence_score_4": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "required_evidence_score_5": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "owner_role": { "type": "string" },
+          "review_points": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

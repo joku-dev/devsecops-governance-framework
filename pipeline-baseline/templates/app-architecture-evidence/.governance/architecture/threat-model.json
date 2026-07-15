@@ -1,0 +1,14 @@
+{
+  "evidence_type": "threat_model",
+  "status": "draft",
+  "owner": "Security Architect",
+  "summary": "Tool-neutral threat model evidence for architecture review. Replace with the product or solution threat model used by the team.",
+  "evidence_refs": [
+    "docs/ARCHITECTURE.md",
+    "docs/DEPLOYMENT.md"
+  ],
+  "known_limitations": [
+    "Template placeholder; not approved evidence until reviewed."
+  ],
+  "follow_up_actions": []
+}

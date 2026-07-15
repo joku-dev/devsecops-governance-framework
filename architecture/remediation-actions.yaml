@@ -1,0 +1,91 @@
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+model_version: 0.1.0
+remediations:
+- id: REM-REL-DECL
+  match: release compatibility declaration
+  title: Create release compatibility declaration
+  action: Create and approve a release compatibility declaration that identifies the supported solution baseline, interface versions, data versions, deployment assumptions, security assumptions, known limitations and approval roles.
+  evidence:
+  - release_compatibility_declaration
+  - product_compatibility_matrix
+  - approval_record
+- id: REM-SOL-BASELINE
+  match: solution baseline
+  title: Define solution baseline
+  action: Define a solution baseline that lists participating product versions, interface versions, data contract versions, security baseline and deployment configuration.
+  evidence:
+  - solution_release_baseline
+  - product_participation_map
+  - compatibility_matrix
+- id: REM-SECURITY-VERIFY
+  match: "marker E6"
+  title: Verify enterprise security guardrail evidence
+  action: Add verified security evidence such as threat model review, vulnerability scan result, crypto/security review or security architecture review.
+  evidence:
+  - security_architecture_review
+  - vulnerability_scan_result
+  - security_test_evidence
+- id: REM-SOLUTION-SECURITY
+  match: "marker S5"
+  title: Verify solution security evidence
+  action: Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.
+  evidence:
+  - solution_threat_model
+  - trust_zone_model
+  - security_test_evidence
+- id: REM-PRODUCT-SECURITY
+  match: "marker P8"
+  title: Verify product security implementation
+  action: Add product-level security verification evidence for authentication, authorization, crypto usage, logging and vulnerability handling.
+  evidence:
+  - product_security_concept
+  - vulnerability_scan_result
+  - security_test_evidence
+- id: REM-RESILIENCE
+  match: "marker S8"
+  title: Verify solution resilience scenarios
+  action: Add tested degraded-mode, failover, recovery or disconnected/intermittent/limited connectivity scenarios.
+  evidence:
+  - degraded_mode_scenario
+  - resilience_test_result
+  - recovery_evidence
+- id: REM-PRODUCT-RESILIENCE
+  match: "marker P10"
+  title: Verify product resilience behavior
+  action: Add failure-mode, restart, recovery, degraded-mode or DIL behavior tests.
+  evidence:
+  - failure_mode_test
+  - recovery_test_result
+  - degraded_mode_evidence
+- id: REM-RELEASE-ARCHITECTURE
+  match: "marker S6"
+  title: Complete release architecture evidence
+  action: Link the solution baseline to compatible product releases, interface versions, data contracts and deployment assumptions.
+  evidence:
+  - solution_release_baseline
+  - product_compatibility_matrix
+  - release_declaration
+- id: REM-PRODUCT-COMPATIBILITY
+  match: "marker P13"
+  title: Declare product release compatibility
+  action: Add a product release compatibility declaration showing supported baselines, interface versions, data versions, deployment assumptions, exceptions and approvals.
+  evidence:
+  - product_release_compatibility_declaration
+  - compatibility_evidence
+  - release_review_record
+- id: REM-FEEDBACK-LOOP
+  match: "marker B5"
+  title: Strengthen architecture feedback loop
+  action: Link operational findings, demo findings or benchmark trends to owned improvement actions, technical debt items or architecture runway.
+  evidence:
+  - operational_finding
+  - improvement_backlog_item
+  - technical_debt_item
+- id: REM-OBSERVABILITY
+  match: "marker P11"
+  title: Verify observability evidence
+  action: Add runtime metrics, health indicators, monitoring dashboard evidence or operational diagnostics that prove observability works.
+  evidence:
+  - monitoring_dashboard
+  - runtime_metric
+  - health_indicator

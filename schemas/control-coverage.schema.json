@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DevSecOps Control Coverage Status",
+  "type": "object",
+  "required": ["coverage"],
+  "properties": {
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["control_id", "automation_status", "priority", "rationale", "next_action"],
+        "properties": {
+          "control_id": {
+            "type": "string",
+            "pattern": "^DSCB-(L1|L2|L3|GOV)-REQ-[0-9]{3}$"
+          },
+          "automation_status": {
+            "type": "string",
+            "enum": ["automated", "manual", "not_applicable", "planned"]
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 10
+          },
+          "next_action": {
+            "type": "string",
+            "minLength": 10
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

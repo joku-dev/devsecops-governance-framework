@@ -1,0 +1,15 @@
+{
+  "evidence_type": "model_based_architecture",
+  "status": "draft",
+  "owner": "Solution Architect",
+  "summary": "Tool-neutral model-based architecture evidence. Reference a model repository, model export, or reviewed architecture model without mandating a vendor tool.",
+  "model_export": "docs/architecture/model-export.pdf",
+  "baseline_id": "example-solution-baseline",
+  "evidence_refs": [
+    "docs/ARCHITECTURE.md"
+  ],
+  "known_limitations": [
+    "Template placeholder; no vendor-specific modeling tool is required by this template."
+  ],
+  "follow_up_actions": []
+}

@@ -1,0 +1,17 @@
+id: waiver-demo-001
+scope: release-candidate-exception
+object_id: CVE-2099-0001
+affected_requirements:
+  - DSCB-L1-REQ-010
+  - DSCB-GOV-REQ-005
+risk_classification: medium
+justification: Temporary exception until vendor fix is released and validated.
+compensating_controls:
+  - Temporary network restriction applied
+  - Daily monitoring review enabled
+approval_authority: DevSecOps Governance Board
+approved_by: governance-board-chair
+approved_on: "2026-06-20"
+expiry: "2026-07-20"
+expired: false
+status: approved

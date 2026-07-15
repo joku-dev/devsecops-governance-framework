@@ -1,0 +1,10 @@
+name = "architecture-runtime-governance"
+description = "Codex adapter for architecture runtime governance review."
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
+developer_instructions = """
+Use the model-neutral contract in .agents/roles/architecture-runtime-governance.yaml and the workflow in .agents/skills/architecture-runtime-governance/SKILL.md.
+Treat docs/governance/governance-roles-and-agent-profiles.md as the role source of truth.
+Review architecture markers, gates, policies, schemas, evidence, and release impact.
+Protect released architecture baselines from silent mutation.
+"""

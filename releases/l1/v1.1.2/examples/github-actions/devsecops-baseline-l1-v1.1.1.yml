@@ -1,0 +1,129 @@
+name: DevSecOps Baseline L1 v1.1.1
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+jobs:
+  prepare-devsecops-evidence:
+    name: Prepare DevSecOps Evidence
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Produce baseline evidence
+        run: |
+          mkdir -p dist security governance
+          printf 'example artifact from %s\n' "${GITHUB_SHA}" > dist/example-app.txt
+          cat > security/sbom.cyclonedx.json <<'JSON'
+          {"bomFormat":"CycloneDX","specVersion":"1.5","version":1,"metadata":{"component":{"type":"application","name":"example-app"}},"components":[]}
+          JSON
+          cat > security/vulnerability-scan.json <<'JSON'
+          {"scanner":"example-scanner","max_severity":"none","findings":[]}
+          JSON
+          cat > governance/governance-run-input.json <<'JSON'
+          {
+            "release_candidate": true,
+            "required_platform_level": "PRA-Level 2",
+            "repository": {
+              "protected_branch": true,
+              "direct_push_allowed": false,
+              "review_required": true
+            },
+            "traceability": {
+              "requirements_linked": true,
+              "testcases_linked": true,
+              "reports_linked": true
+            },
+            "source_control": {
+              "approved_vcs": true,
+              "identifiable_authors": true,
+              "review_records_present": true
+            },
+            "static_analysis": {
+              "performed": true,
+              "findings_reviewed": true
+            },
+            "environment": {
+              "centrally_managed": true,
+              "secure_workspace": true,
+              "config_compliant": true,
+              "configuration_baselines_defined": true
+            },
+            "evidence": {
+              "sbom": {
+                "exists": true,
+                "linked_to_artifact": true
+              },
+              "vulnerability_scan": {
+                "exists": true,
+                "path": "security/vulnerability-scan.json",
+                "max_severity": "none"
+              }
+            },
+            "artifact": {
+            "artifact_id": "example-app.txt",
+            "artifact_type": "application-build-output",
+            "artifact_version": "${{ github.sha }}",
+              "digest": {
+                "exists": true,
+                "linked_to_artifact": true
+              },
+              "signature": {
+                "exists": false
+              }
+            },
+            "pipeline": {
+              "pipeline_id": "DevSecOps Baseline L1 v1.1.1",
+              "pipeline_run_id": "${{ github.run_id }}",
+              "commit_id": "${{ github.sha }}",
+              "status": "success",
+              "security_gates": {
+                "enforced": true
+              },
+              "security_thresholds_exceeded": false,
+              "external_direct_downloads_detected": false
+            },
+            "operations": {
+              "deployed_versions_recorded": true,
+              "security_events_recorded": true
+            },
+            "monitoring": {
+              "security_events_generated": true,
+              "integration_enabled": true,
+              "forwarded_to_monitoring": true
+            },
+            "waivers": []
+          }
+          JSON
+
+      - name: Upload application evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-evidence
+          path: |
+            dist/example-app.txt
+            security/sbom.cyclonedx.json
+            security/vulnerability-scan.json
+            governance/governance-run-input.json
+
+  devsecops-baseline-l1:
+    name: Central DevSecOps L1 Baseline
+    needs: prepare-devsecops-evidence
+    uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-l1-v1.1.1.yml@l1-baseline-v1.1.1
+    with:
+      artifact_path: dist/example-app.txt
+      sbom_path: security/sbom.cyclonedx.json
+      vulnerability_scan_path: security/vulnerability-scan.json
+      governance_run_input_path: governance/governance-run-input.json
+      application_evidence_artifact_name: application-evidence
+      release_candidate: true

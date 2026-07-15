@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CI/CD Platform Context",
+  "type": "object",
+  "required": [
+    "source",
+    "repository_id",
+    "branch",
+    "commit_id",
+    "pipeline_id",
+    "pipeline_run_id",
+    "event"
+  ],
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": ["github-actions", "bamboo", "bitbucket-pipelines", "jenkins", "gitlab-ci", "manual"]
+    },
+    "repository_id": { "type": "string" },
+    "branch": { "type": "string" },
+    "commit_id": { "type": "string" },
+    "pipeline_id": { "type": "string" },
+    "pipeline_run_id": { "type": "string" },
+    "pipeline_url": { "type": "string" },
+    "event": { "type": "string" },
+    "pull_request_id": { "type": "string" },
+    "pull_request_target": { "type": "string" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,20 @@
+{
+  "selected_agents": [
+    "architecture-runtime-governance",
+    "policy-as-code",
+    "release-manager",
+    "repo-steward"
+  ],
+  "required_validations": [
+    "git diff --check",
+    "opa check policies/opa",
+    "python3 -m unittest discover -s tests",
+    "python3 scripts/validate_governance_repo.py",
+    "python3 scripts/validate_runtime_governance.py"
+  ],
+  "release_impact": "candidate",
+  "forbidden_changes": [
+    "unclassified_report_only_to_blocking_change"
+  ],
+  "commit_readiness": "requires_architecture_and_policy_review"
+}

@@ -1,0 +1,95 @@
+level: ARCH-L1
+name: Architecture Minimum Evidence
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+requirements:
+- id: ARCH-L1-REQ-001
+  domain: BAPO
+  title: Business traceability and ownership
+  source_markers: [B1, B2, B3, B4]
+  requirement: Architecture items shall identify business intent, cross-level alignment, executable process implications and accountable ownership before implementation starts.
+  verification_requirement: Verify that BAPO markers B1 to B4 are assessed at score 3 or higher and linked to evidence.
+  evidence: [business_capability_mapping, traceability_record, process_description, owner_list]
+  verification:
+    method: hybrid
+    frequency: architecture_review
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: threshold
+    machine_readable_evidence_required: true
+    rationale: Marker scores and evidence links can be checked from the architecture marker assessment input.
+  policy_as_code:
+    candidate: true
+    enforcement: architecture_readiness_gate
+    rule: policies/opa/architecture_readiness.rego
+  exception:
+    allowed: true
+    authority: Architecture Review Board
+- id: ARCH-L1-REQ-002
+  domain: Product Architecture
+  title: Product architecture baseline
+  source_markers: [P0, P1, P2, P3, P7]
+  requirement: Product architecture shall define contribution, context, structure, major decisions and ownership.
+  verification_requirement: Verify that the product architecture document, ADR register, context model and ownership records exist and are current.
+  evidence: [product_architecture_document, product_bapo_map, context_diagram, building_block_view, adr_register]
+  verification:
+    method: hybrid
+    frequency: architecture_review
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Minimum product architecture artifacts can be represented as evidence references.
+  policy_as_code:
+    candidate: true
+    enforcement: architecture_readiness_gate
+    rule: policies/opa/architecture_readiness.rego
+  exception:
+    allowed: true
+    authority: Product Architect
+- id: ARCH-L1-REQ-003
+  domain: Solution Architecture
+  title: Solution boundary and capability allocation
+  source_markers: [S0, S1, S2]
+  requirement: Solution architecture shall define the solution capability, participating products, boundaries and capability allocation.
+  verification_requirement: Verify that the solution BAPO map, product participation map and capability-to-product mapping exist.
+  evidence: [solution_bapo_map, product_participation_map, solution_context_diagram, capability_to_product_mapping]
+  verification:
+    method: hybrid
+    frequency: solution_planning
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Solution boundary and allocation artifacts can be checked as required evidence.
+  policy_as_code:
+    candidate: true
+    enforcement: architecture_readiness_gate
+    rule: policies/opa/architecture_readiness.rego
+  exception:
+    allowed: true
+    authority: Solution Architect
+- id: ARCH-L1-REQ-004
+  domain: Enterprise Architecture
+  title: Enterprise architecture orientation
+  source_markers: [E0, E1, E2]
+  requirement: Enterprise-relevant architecture work shall be traceable to strategic SDD alignment and applicable reference architecture guidance.
+  verification_requirement: Verify that strategic mapping, enterprise guardrail mapping and applicable reference architecture evidence are available where enterprise impact exists.
+  evidence: [strategic_theme_mapping, sdd_alignment_record, enterprise_guardrail_mapping, published_reference_architecture]
+  verification:
+    method: manual
+    frequency: enterprise_guardrail_review
+  automation:
+    type: review_check
+    maturity: tool_integration_required
+    check_type: review
+    machine_readable_evidence_required: true
+    rationale: Enterprise impact still requires architecture review, but evidence presence can be checked.
+  policy_as_code:
+    candidate: false
+    enforcement: review
+  exception:
+    allowed: true
+    authority: Enterprise Architect

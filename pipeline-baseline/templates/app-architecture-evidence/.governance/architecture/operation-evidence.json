@@ -1,0 +1,11 @@
+{
+  "evidence_type": "operation_evidence",
+  "status": "draft",
+  "owner": "Operations Owner",
+  "summary": "Summarizes runtime observability evidence such as dashboards, metrics, health indicators, traces and operational diagnostics.",
+  "evidence_refs": [
+    "docs/DEPLOYMENT.md"
+  ],
+  "known_limitations": [],
+  "follow_up_actions": []
+}

@@ -1,0 +1,127 @@
+name: Released Architecture L1 Baseline Gate v0.1.0
+
+on:
+  workflow_call:
+    inputs:
+      release_id:
+        description: Release candidate identifier.
+        required: false
+        default: ""
+        type: string
+      solution_baseline:
+        description: Expected product or solution architecture baseline identifier.
+        required: false
+        default: demo-solution-baseline
+        type: string
+      application_path:
+        description: Path to the application repository workspace.
+        required: false
+        default: .
+        type: string
+      upload_evidence:
+        description: Upload the collected architecture governance evidence.
+        required: false
+        default: true
+        type: boolean
+      fail_on_findings:
+        description: Fail the workflow when architecture governance findings exist.
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  released-architecture-l1-baseline:
+    name: Released Architecture L1 Baseline v0.1.0
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout application repository
+        uses: actions/checkout@v4
+        with:
+          path: application
+
+      - name: Checkout governance repository
+        uses: actions/checkout@v4
+        with:
+          repository: joku-dev/devsecops-governance-as-code
+          ref: architecture-baseline-l1-v0.1.0
+          path: governance
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade jsonschema pyyaml
+
+      - name: Install OPA
+        run: |
+          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+          chmod +x opa
+          sudo mv opa /usr/local/bin/opa
+          opa version
+
+      - name: Collect architecture governance input
+        run: |
+          mkdir -p governance/generated/app
+          python governance/scripts/collect_architecture_release_input.py \
+            --repo "application/${{ inputs.application_path }}" \
+            --output governance/generated/app/architecture-release-input.json \
+            --release-id "${{ inputs.release_id || github.sha }}" \
+            --baseline "${{ inputs.solution_baseline }}"
+
+      - name: Validate architecture release input schema
+        working-directory: governance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import jsonschema
+
+          schema = json.loads(Path("schemas/architecture-release-candidate.schema.json").read_text())
+          data = json.loads(Path("generated/app/architecture-release-input.json").read_text())
+          jsonschema.validate(data, schema)
+          print("Architecture release input validates against schema")
+          PY
+
+      - name: Generate architecture governance report
+        working-directory: governance
+        run: |
+          python scripts/generate_architecture_governance_report.py \
+            --input generated/app/architecture-release-input.json \
+            --output-json generated/app/architecture-governance-report.json \
+            --output-md generated/app/architecture-governance-report.md
+          cat generated/app/architecture-governance-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload architecture governance evidence
+        if: ${{ inputs.upload_evidence }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: architecture-governance-evidence
+          path: |
+            governance/generated/app/architecture-release-input.json
+            governance/generated/app/architecture-governance-report.json
+            governance/generated/app/architecture-governance-report.md
+
+      - name: Enforce architecture governance findings
+        if: ${{ inputs.fail_on_findings }}
+        working-directory: governance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          report = json.loads(Path("generated/app/architecture-governance-report.json").read_text(encoding="utf-8"))
+          finding_count = report.get("summary", {}).get("finding_count", 0)
+          if finding_count:
+              print(f"Architecture governance found {finding_count} finding(s).")
+              for gate in report.get("gates", []):
+                  for finding in gate.get("findings", []):
+                      print(f"- {gate.get('title', 'Gate')}: {finding}")
+              raise SystemExit(1)
+          print("Architecture governance found no findings.")
+          PY

@@ -1,0 +1,23 @@
+stages:
+  - governance
+
+governance_check:
+  stage: governance
+  image: python:3.11
+  before_script:
+    - apt-get update && apt-get install -y curl
+    - curl -L -o /usr/local/bin/opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+    - chmod +x /usr/local/bin/opa
+    - python -m pip install --upgrade pip
+    - python -m pip install pyyaml jsonschema
+    - git clone https://github.com/your-org/devsecops-governance-as-code.git governance
+  script:
+    - cd governance
+    - python3 scripts/validate_governance_repo.py
+    - python3 -m unittest discover -s tests
+    - opa check policies/opa
+    - cd ..
+    - python3 governance/scripts/check_repo_governance_integration.py --target-repo . --output-file governance-compliance-result.json
+  artifacts:
+    paths:
+      - governance-compliance-result.json

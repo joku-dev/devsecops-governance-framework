@@ -1,0 +1,17 @@
+{
+  "selected_agents": [
+    "governance-analyst",
+    "release-manager",
+    "repo-steward"
+  ],
+  "required_validations": [
+    "git diff --check",
+    "python3 -m unittest discover -s tests",
+    "python3 scripts/validate_governance_repo.py"
+  ],
+  "release_impact": "released_baseline",
+  "forbidden_changes": [
+    "silent_released_baseline_mutation"
+  ],
+  "commit_readiness": "requires_release_manager_approval"
+}

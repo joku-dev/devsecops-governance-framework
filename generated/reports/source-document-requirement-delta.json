@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-15T08:14:01Z",
+  "inputs": {
+    "architecture_source_replacement_assessment": "generated/reports/architecture-source-replacement-assessment.json"
+  },
+  "decision": {
+    "current_state": "review_support_only",
+    "runtime_governance_changed": false,
+    "candidate_promoted": false,
+    "stricter_rules_enabled": false
+  },
+  "summary": {
+    "replacement_pairs": 1,
+    "status_counts": {
+      "changed": 1,
+      "equivalent": 2,
+      "removed": 1
+    },
+    "review_priority_counts": {
+      "high": 2,
+      "low": 2
+    },
+    "potential_impact_counts": {
+      "evidence_contracts": 1,
+      "review_gates": 1,
+      "runtime_governance_review": 4
+    }
+  },
+  "requirement_delta_pairs": [
+    {
+      "candidate_id": "ARCH-GOV-SRC-002",
+      "candidate_title": "SDD Architecture Governance Framework",
+      "candidate_source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
+      "target_id": "ARCH-SDD-SRC-001",
+      "target_title": "SDD Architecture Governance Framework",
+      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+      "replacement_classification": "registered_replacement_candidate",
+      "source_similarity": {
+        "title_overlap": 1.0,
+        "content_overlap": 0.71,
+        "shared_heading_count": 0
+      },
+      "summary": {
+        "candidate_requirements": 3,
+        "target_requirements": 4,
+        "deltas": 4,
+        "status_counts": {
+          "changed": 1,
+          "equivalent": 2,
+          "removed": 1
+        },
+        "review_priority_counts": {
+          "high": 2,
+          "low": 2
+        },
+        "potential_impact_counts": {
+          "evidence_contracts": 1,
+          "review_gates": 1,
+          "runtime_governance_review": 4
+        },
+        "differences_requiring_review": 2
+      },
+      "deltas": [
+        {
+          "status": "changed",
+          "similarity": 0.631,
+          "review_priority": "high",
+          "potential_impacts": [
+            "evidence_contracts",
+            "runtime_governance_review"
+          ],
+          "candidate_requirement": {
+            "id": "REQ-ARCH-GOV-SRC-002-974f0e3d5f",
+            "source_id": "ARCH-GOV-SRC-002",
+            "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
+            "line": 19,
+            "heading": "Public Source Placeholder: ARCH-GOV-SRC-002",
+            "statement": "- Architecture exceptions shall remain visible until closure.",
+            "normalized": "architecture exceptions shall remain visible until closure",
+            "strength": "mandatory",
+            "potential_impacts": [
+              "runtime_governance_review"
+            ]
+          },
+          "target_requirement": {
+            "id": "REQ-ARCH-SDD-SRC-001-08f3440402",
+            "source_id": "ARCH-SDD-SRC-001",
+            "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+            "line": 20,
+            "heading": "Public Source Placeholder: ARCH-SDD-SRC-001",
+            "statement": "- Architecture evidence shall remain traceable to private source authority.",
+            "normalized": "architecture evidence shall remain traceable to private source authority",
+            "strength": "mandatory",
+            "potential_impacts": [
+              "evidence_contracts",
+              "runtime_governance_review"
+            ]
+          }
+        },
+        {
+          "status": "removed",
+          "similarity": 0.0,
+          "review_priority": "high",
+          "potential_impacts": [
+            "runtime_governance_review"
+          ],
+          "candidate_requirement": null,
+          "target_requirement": {
+            "id": "REQ-ARCH-SDD-SRC-001-d9cb6a316e",
+            "source_id": "ARCH-SDD-SRC-001",
+            "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+            "line": 19,
+            "heading": "Public Source Placeholder: ARCH-SDD-SRC-001",
+            "statement": "- Architecture exceptions shall be documented with owner, risk, expiry, and follow-up action.",
+            "normalized": "architecture exceptions shall be documented with owner risk expiry and follow up action",
+            "strength": "mandatory",
+            "potential_impacts": [
+              "runtime_governance_review"
+            ]
+          }
+        },
+        {
+          "status": "equivalent",
+          "similarity": 1.0,
+          "review_priority": "low",
+          "potential_impacts": [
+            "runtime_governance_review"
+          ],
+          "candidate_requirement": {
+            "id": "REQ-ARCH-GOV-SRC-002-7d81a4834d",
+            "source_id": "ARCH-GOV-SRC-002",
+            "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
+            "line": 17,
+            "heading": "Public Source Placeholder: ARCH-GOV-SRC-002",
+            "statement": "- Architecture governance shall preserve human decision accountability.",
+            "normalized": "architecture governance shall preserve human decision accountability",
+            "strength": "mandatory",
+            "potential_impacts": [
+              "runtime_governance_review"
+            ]
+          },
+          "target_requirement": {
+            "id": "REQ-ARCH-SDD-SRC-001-b7632e4a67",
+            "source_id": "ARCH-SDD-SRC-001",
+            "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+            "line": 17,
+            "heading": "Public Source Placeholder: ARCH-SDD-SRC-001",
+            "statement": "- Architecture governance shall preserve human decision accountability.",
+            "normalized": "architecture governance shall preserve human decision accountability",
+            "strength": "mandatory",
+            "potential_impacts": [
+              "runtime_governance_review"
+            ]
+          }
+        },
+        {
+          "status": "equivalent",
+          "similarity": 1.0,
+          "review_priority": "low",
+          "potential_impacts": [
+            "review_gates",
+            "runtime_governance_review"
+          ],
+          "candidate_requirement": {
+            "id": "REQ-ARCH-GOV-SRC-002-ba31b11667",
+            "source_id": "ARCH-GOV-SRC-002",
+            "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
+            "line": 18,
+            "heading": "Public Source Placeholder: ARCH-GOV-SRC-002",
+            "statement": "- Architecture governance shall use versioned baselines for reproducible review.",
+            "normalized": "architecture governance shall use versioned baselines for reproducible review",
+            "strength": "mandatory",
+            "potential_impacts": [
+              "review_gates",
+              "runtime_governance_review"
+            ]
+          },
+          "target_requirement": {
+            "id": "REQ-ARCH-SDD-SRC-001-f75562459b",
+            "source_id": "ARCH-SDD-SRC-001",
+            "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+            "line": 18,
+            "heading": "Public Source Placeholder: ARCH-SDD-SRC-001",
+            "statement": "- Architecture governance shall use versioned baselines for reproducible review.",
+            "normalized": "architecture governance shall use versioned baselines for reproducible review",
+            "strength": "mandatory",
+            "potential_impacts": [
+              "review_gates",
+              "runtime_governance_review"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "review_notes": [
+    "This is a keyword-based normative statement delta, not a final legal or architecture decision.",
+    "Changed, added, and removed mandatory or prohibition statements require human architecture-owner review.",
+    "Removed statements may indicate content deleted from the candidate or moved into companion documents; confirm against the full architecture source set before deciding.",
+    "No source document status, lineage, runtime governance, policy, schema, or release package is changed by this report."
+  ]
+}

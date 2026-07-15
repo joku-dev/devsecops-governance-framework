@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/ai-native-engineering-factory",
+  "target_repo": "ai-native-engineering-factory",
+  "target_path": "/workspace/ai-native-engineering-factory",
+  "generated_at": "2026-06-28T08:02:51Z",
+  "status": "ready",
+  "summary": {
+    "checks": 5,
+    "pass": 5,
+    "warn": 0,
+    "fail": 0,
+    "recommended_next_step": "Continue report-only central L1 runs and prepare branch protection before block-on-error enforcement."
+  },
+  "checks": [
+    {
+      "check_id": "repository_shape",
+      "title": "Repository has discoverable project structure",
+      "status": "pass",
+      "evidence": [
+        "README.md",
+        "pyproject.toml",
+        "153 source/script files",
+        "137 test files"
+      ],
+      "recommendation": "Keep README, setup instructions, source layout, and test entrypoints stable before wiring central governance."
+    },
+    {
+      "check_id": "local_quality_gates",
+      "title": "Local CI already covers tests, lint, typing, and governance freshness",
+      "status": "pass",
+      "evidence": [
+        ".github/workflows/devsecops-governance-l1.yml",
+        ".github/workflows/quality-gates.yml",
+        ".gitlab-ci.yml",
+        "pytest=True",
+        "ruff=True",
+        "mypy=True",
+        "governance_evidence_check=True",
+        "agent_execution_gate=True"
+      ],
+      "recommendation": "Preserve existing local quality gates and add the central L1 baseline as a separate report-only job first."
+    },
+    {
+      "check_id": "governance_evidence_surface",
+      "title": "Repository already contains governance and execution evidence",
+      "status": "pass",
+      "evidence": [
+        "51 governance docs",
+        "137 agent execution records",
+        "127 slice candidate records",
+        "17 generated governance examples"
+      ],
+      "recommendation": "Map this repository-native evidence into the central L1 evidence contract instead of duplicating it manually."
+    },
+    {
+      "check_id": "supply_chain_and_security_evidence",
+      "title": "Security and supply-chain evidence is present or planned",
+      "status": "pass",
+      "evidence": [
+        ".factory/security/90-day-pilot-readiness.example.json",
+        ".factory/security/assurance-runtime-policy.json",
+        ".factory/security/authorization-dry-run-observations.example.json",
+        ".factory/security/authorized_keys.example",
+        ".factory/security/factory-execution-authorization.json",
+        "security_docs=True",
+        "ci_supply_chain_script=True",
+        "secrets_scan_support=True",
+        "sbom_or_vulnerability_artifact=True"
+      ],
+      "recommendation": "Before mainline enforcement, provide concrete SBOM and vulnerability scan artifacts for central intake."
+    },
+    {
+      "check_id": "central_baseline_integration",
+      "title": "Central governance baseline workflow is wired",
+      "status": "pass",
+      "evidence": [
+        "scanner_status=pass",
+        "governance_ci_file_present: pass",
+        "governance_reference_present: pass",
+        "governance_commands_present: pass"
+      ],
+      "recommendation": "Continue report-only L1 branch runs, publish a released baseline pin before production use, and move to block-on-error only after branch protection is ready."
+    }
+  ]
+}

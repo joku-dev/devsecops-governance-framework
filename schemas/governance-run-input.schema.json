@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Run Input",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "release_candidate",
+    "required_platform_level",
+    "repository",
+    "evidence",
+    "artifact",
+    "pipeline"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "enum": ["1.0"]
+    },
+    "release_candidate": { "type": "boolean" },
+    "run_context": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "string",
+          "enum": ["push", "pull_request", "workflow_dispatch", "schedule", "local", "unknown"]
+        },
+        "purpose": {
+          "type": "string",
+          "enum": ["release", "diagnostic", "branch_validation", "pull_request_validation", "unknown"]
+        },
+        "release_context": { "type": "boolean" },
+        "source": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "required_platform_level": {
+      "type": "string",
+      "enum": ["PRA-Level 1", "PRA-Level 2", "PRA-Level 3"]
+    },
+    "repository": {
+      "type": "object",
+      "required": ["protected_branch", "direct_push_allowed", "review_required"],
+      "properties": {
+        "protected_branch": { "type": "boolean" },
+        "direct_push_allowed": { "type": "boolean" },
+        "review_required": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "platform": {
+      "type": "object",
+      "properties": {
+        "privileged_access": { "type": "boolean" },
+        "mfa_enforced": { "type": "boolean" },
+        "central_identity_management": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "traceability": {
+      "type": "object",
+      "properties": {
+        "requirements_linked": { "type": "boolean" },
+        "testcases_linked": { "type": "boolean" },
+        "reports_linked": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "source_control": {
+      "type": "object",
+      "properties": {
+        "approved_vcs": { "type": "boolean" },
+        "identifiable_authors": { "type": "boolean" },
+        "review_records_present": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "static_analysis": {
+      "type": "object",
+      "properties": {
+        "performed": { "type": "boolean" },
+        "findings_reviewed": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "centrally_managed": { "type": "boolean" },
+        "secure_workspace": { "type": "boolean" },
+        "config_compliant": { "type": "boolean" },
+        "configuration_baselines_defined": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["sbom", "vulnerability_scan"],
+      "properties": {
+        "sbom": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "linked_to_artifact": { "type": "boolean" }
+          },
+          "additionalProperties": true
+        },
+        "vulnerability_scan": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "path": { "type": "string" },
+            "max_severity": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "pipeline_execution": {
+          "type": "object",
+          "properties": {
+            "evidence_id": { "type": "string" },
+            "pipeline_run_id": { "type": "string" },
+            "status": { "type": "string" },
+            "generated_at": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["digest", "signature"],
+      "properties": {
+        "artifact_id": { "type": "string" },
+        "artifact_type": { "type": "string" },
+        "artifact_version": { "type": "string" },
+        "digest": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "linked_to_artifact": { "type": "boolean" },
+            "algorithm": { "type": "string" },
+            "value": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "signature": {
+          "type": "object",
+          "required": ["exists"],
+          "properties": {
+            "exists": { "type": "boolean" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "signing": {
+      "type": "object",
+      "properties": {
+        "keys_protected": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "pipeline": {
+      "type": "object",
+      "required": ["security_gates", "security_thresholds_exceeded", "external_direct_downloads_detected"],
+      "properties": {
+        "pipeline_id": { "type": "string" },
+        "pipeline_run_id": { "type": "string" },
+        "commit_id": { "type": "string" },
+        "event": {
+          "type": "string",
+          "enum": ["push", "pull_request", "workflow_dispatch", "schedule", "local", "unknown"]
+        },
+        "status": { "type": "string" },
+        "security_gates": {
+          "type": "object",
+          "required": ["enforced"],
+          "properties": {
+            "enforced": { "type": "boolean" }
+          },
+          "additionalProperties": true
+        },
+        "security_thresholds_exceeded": { "type": "boolean" },
+        "external_direct_downloads_detected": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "release": {
+      "type": "object",
+      "properties": {
+        "release_id": { "type": "string" },
+        "approval_status": { "type": "string" },
+        "approved_waiver": {
+          "type": "object",
+          "properties": {
+            "exists": { "type": "boolean" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "release_approval": {
+      "type": "object",
+      "properties": {
+        "approved": { "type": "boolean" },
+        "approver": { "type": "string" },
+        "approved_artifact_only": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "source_approved"],
+        "properties": {
+          "name": { "type": "string" },
+          "source_approved": { "type": "boolean" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "infrastructure": {
+      "type": "object",
+      "properties": {
+        "iac_repository": {
+          "type": "object",
+          "properties": {
+            "exists": { "type": "boolean" },
+            "version_controlled": { "type": "boolean" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "operations": {
+      "type": "object",
+      "properties": {
+        "deployed_versions_recorded": { "type": "boolean" },
+        "security_events_recorded": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "monitoring": {
+      "type": "object",
+      "properties": {
+        "security_events_generated": { "type": "boolean" },
+        "integration_enabled": { "type": "boolean" },
+        "forwarded_to_monitoring": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "deployment": {
+      "type": "object",
+      "properties": {
+        "required": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "vulnerabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "severity": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "waivers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "scope",
+          "object_id",
+          "affected_requirements",
+          "risk_classification",
+          "justification",
+          "compensating_controls",
+          "approval_authority",
+          "approved_by",
+          "approved_on",
+          "expiry",
+          "expired",
+          "status"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "scope": { "type": "string" },
+          "object_id": { "type": "string" },
+          "affected_requirements": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "risk_classification": {
+            "type": "string",
+            "enum": ["low", "medium", "high_cybersecurity", "high_safety", "critical"]
+          },
+          "justification": {
+            "type": "string",
+            "minLength": 10
+          },
+          "compensating_controls": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "approval_authority": { "type": "string" },
+          "approved_by": { "type": "string" },
+          "approved_on": { "type": "string", "format": "date" },
+          "expiry": { "type": "string", "format": "date" },
+          "expired": { "type": "boolean" },
+          "status": {
+            "type": "string",
+            "enum": ["requested", "approved", "rejected", "expired", "revoked"]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

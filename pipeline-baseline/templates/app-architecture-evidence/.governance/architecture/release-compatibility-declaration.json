@@ -1,0 +1,13 @@
+{
+  "evidence_type": "release_compatibility_declaration",
+  "status": "draft",
+  "owner": "Product Architect",
+  "baseline_version": "example-solution-baseline",
+  "summary": "Declares compatibility of this product or solution release with the referenced baseline.",
+  "evidence_refs": [
+    "docs/ARCHITECTURE.md",
+    "docs/DEPLOYMENT.md"
+  ],
+  "known_limitations": [],
+  "follow_up_actions": []
+}

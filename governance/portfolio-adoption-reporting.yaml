@@ -1,0 +1,162 @@
+schema_version: "1.0.0"
+id: portfolio-adoption-reporting
+title: Portfolio-Level Adoption Reporting Across Repositories
+purpose: >
+  Define the standard portfolio reporting model for DevSecOps and architecture
+  governance adoption across multiple consuming repositories.
+source_requirements:
+  - DSPOL-REQ-021
+  - DSDIR-REQ-020
+  - DSDIR-REQ-021
+source_indexes:
+  devsecops_results: status/repository-results-index.json
+  architecture_results: status/architecture-results-index.json
+reporting_scope:
+  included_repository_states:
+    - onboarded
+    - pilot
+    - adopting
+    - active
+    - exception
+    - retired
+  included_result_contexts:
+    - mainline
+    - release
+    - manually_accepted
+  excluded_result_contexts:
+    - pull_request
+    - branch
+    - diagnostic
+    - experiment
+  rule: >
+    Portfolio adoption reporting uses accepted mainline, release, or explicitly
+    accepted manual results. Pull-request, branch, diagnostic, and experiment
+    results may be used as operational detail but must not change portfolio
+    adoption status.
+repository_adoption_states:
+  - id: not_onboarded
+    description: Repository is known but has no approved governance integration.
+    evidence:
+      - repository_inventory_entry
+  - id: onboarded
+    description: Repository has an owner, target baseline, and integration plan.
+    evidence:
+      - repository_owner
+      - target_baseline
+      - onboarding_record
+  - id: pilot
+    description: Repository runs governance checks in report-only or pilot mode.
+    evidence:
+      - report_only_run
+      - pilot_result_snapshot
+  - id: adopting
+    description: Repository has accepted governance checks and is closing adoption gaps.
+    evidence:
+      - accepted_mainline_result
+      - open_gap_record
+      - remediation_owner
+  - id: active
+    description: Repository has current accepted passing results for applicable baselines.
+    evidence:
+      - current_devsecops_result
+      - current_architecture_result_when_applicable
+  - id: exception
+    description: Repository is covered by an approved waiver or temporary exception.
+    evidence:
+      - waiver_record
+      - expiry_or_review_date
+  - id: retired
+    description: Repository is no longer in active governance scope.
+    evidence:
+      - retirement_record
+portfolio_metrics:
+  - id: repository_coverage
+    title: Repository coverage
+    definition: Count and percentage of in-scope repositories with an onboarding state.
+    numerator: repositories_with_state_onboarded_or_later
+    denominator: repositories_in_scope
+  - id: baseline_adoption_rate
+    title: Baseline adoption rate
+    definition: Percentage of in-scope repositories pinned to an approved baseline.
+    numerator: repositories_with_approved_baseline_ref
+    denominator: repositories_in_scope
+  - id: current_pass_rate
+    title: Current pass rate
+    definition: Percentage of active repositories with latest accepted results passing.
+    numerator: active_repositories_with_latest_accepted_pass
+    denominator: active_repositories_with_latest_accepted_result
+  - id: stale_result_rate
+    title: Stale result rate
+    definition: Percentage of active repositories whose accepted result is older than the reporting freshness threshold.
+    numerator: active_repositories_with_stale_latest_result
+    denominator: active_repositories
+  - id: exception_rate
+    title: Exception rate
+    definition: Percentage of in-scope repositories operating under approved waiver or exception.
+    numerator: repositories_in_exception_state
+    denominator: repositories_in_scope
+  - id: architecture_governance_coverage
+    title: Architecture governance coverage
+    definition: Percentage of architecture-in-scope repositories with accepted architecture governance results.
+    numerator: architecture_scope_repositories_with_accepted_result
+    denominator: architecture_scope_repositories
+freshness_policy:
+  default_max_age_days: 30
+  release_relevant_max_age_days: 14
+  stale_status: stale
+  missing_status: missing
+portfolio_report_sections:
+  - portfolio_summary
+  - repository_adoption_matrix
+  - baseline_distribution
+  - latest_accepted_result_status
+  - stale_or_missing_results
+  - open_waivers_and_exceptions
+  - adoption_risks_and_actions
+  - repositories_requiring_governance_owner_attention
+repository_matrix_fields:
+  - repository_id
+  - owner
+  - business_or_product_area
+  - adoption_state
+  - target_devsecops_baseline
+  - latest_devsecops_result_status
+  - latest_devsecops_result_date
+  - architecture_governance_in_scope
+  - target_architecture_baseline
+  - latest_architecture_result_status
+  - latest_architecture_result_date
+  - open_waiver_count
+  - stale_or_missing_result
+  - next_action
+  - action_owner
+cadence:
+  operational_review: biweekly
+  governance_board_review: monthly
+  executive_summary: quarterly
+ownership:
+  accountable: DevSecOps Governance Board
+  responsible:
+    - Enterprise DevSecOps Governance Lead
+    - DevSecOps Platform Lead
+  consulted:
+    - Repository Owners
+    - Architecture Board
+    - CISO
+    - Waiver Authority
+  informed:
+    - CDO
+    - relevant_governance_bodies
+quality_rules:
+  - id: accepted-results-only
+    rule: Portfolio status must be based on accepted mainline, release, or explicitly accepted manual results.
+  - id: no-pr-status-promotion
+    rule: Pull-request and branch results must not be promoted to portfolio adoption status without explicit acceptance.
+  - id: owner-required
+    rule: Every in-scope repository must have an owner and action owner for open adoption gaps.
+  - id: baseline-required
+    rule: Every onboarded repository must declare the target DevSecOps baseline and, when applicable, target architecture baseline.
+  - id: stale-results-visible
+    rule: Missing or stale accepted results must be visible in the portfolio report.
+  - id: exception-expiry-required
+    rule: Exceptions must include a waiver or review date and cannot be reported as active adoption.

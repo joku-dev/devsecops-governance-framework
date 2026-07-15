@@ -1,0 +1,26 @@
+# Default owners
+* @joku-dev
+
+# Core governance documents
+/docs/governance/ @joku-dev
+/docs/examples/ @joku-dev
+
+# Operational governance documentation
+/docs/operations/ @joku-dev
+/docs/releases/ @joku-dev
+/docs/onboarding/ @joku-dev
+/docs/platform/ @joku-dev
+/docs/controls/ @joku-dev
+/docs/publishing/ @joku-dev
+
+# Governance model and validation surface
+/schemas/ @joku-dev
+/scripts/ @joku-dev
+/.github/workflows/ @joku-dev
+/releases/ @joku-dev
+/status/ @joku-dev
+/generated/viewer/ @joku-dev
+
+# Root governance entrypoints
+/README.md @joku-dev
+/mkdocs.yml @joku-dev

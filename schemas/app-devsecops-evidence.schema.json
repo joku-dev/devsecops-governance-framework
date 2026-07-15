@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Application DevSecOps Evidence",
+  "type": "object",
+  "required": ["status", "owner", "evidence_refs"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "approved"]
+    },
+    "owner": { "type": "string" },
+    "approved_by": { "type": "string" },
+    "approval_date": { "type": "string" },
+    "summary": { "type": "string" },
+    "repository": {
+      "type": "object",
+      "properties": {
+        "protected_branch": { "type": "boolean" },
+        "direct_push_allowed": { "type": "boolean" },
+        "review_required": { "type": "boolean" }
+      }
+    },
+    "sbom": {
+      "type": "object",
+      "properties": {
+        "exists": { "type": "boolean" },
+        "linked_to_artifact": { "type": "boolean" }
+      }
+    },
+    "vulnerability_scan": {
+      "type": "object",
+      "properties": {
+        "exists": { "type": "boolean" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "properties": {
+        "digest_exists": { "type": "boolean" },
+        "digest_linked_to_artifact": { "type": "boolean" },
+        "signature_exists": { "type": "boolean" }
+      }
+    },
+    "pipeline": {
+      "type": "object",
+      "properties": {
+        "security_gates_enforced": { "type": "boolean" },
+        "security_thresholds_exceeded": { "type": "boolean" },
+        "external_direct_downloads_detected": { "type": "boolean" }
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "follow_up_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

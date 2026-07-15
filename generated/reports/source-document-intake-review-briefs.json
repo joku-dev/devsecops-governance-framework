@@ -1,0 +1,689 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-15T08:14:02Z",
+  "inputs": {
+    "source_document_intake_status": "generated/reports/source-document-intake-status.json",
+    "governance_change_impact": "generated/reports/governance-change-impact.json"
+  },
+  "decision": {
+    "current_state": "decision_support_only",
+    "autonomous_decisions_enabled": false,
+    "runtime_governance_changed": false,
+    "stricter_rules_enabled": false
+  },
+  "summary": {
+    "review_briefs": 7,
+    "focus_counts": {
+      "replacement decision": 1,
+      "similarity and source classification": 4,
+      "source-of-truth and approval path": 2
+    },
+    "human_decision_required": 7
+  },
+  "review_briefs": [
+    {
+      "brief_id": "SDI-REVIEW-DEVSECOPS-POL-SRC-001",
+      "prepared_by_agent": "source-document-intake",
+      "agent_scope": "decision_support_only",
+      "autonomous_decision": false,
+      "decision_authority": "governance-owners",
+      "review_focus": "source-of-truth and approval path",
+      "source_document": {
+        "id": "DEVSECOPS-POL-SRC-001",
+        "title": "DevSecOps Policy Version 1 draft 3",
+        "status": "draft",
+        "owner": "governance-owners",
+        "version": "1 draft 3",
+        "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md",
+        "governance_domains": [
+          "policy",
+          "devsecops"
+        ],
+        "review_state": "draft_source_of_truth_decision_required",
+        "similarity_assessment": "not_recorded",
+        "candidate_replacement_for": []
+      },
+      "agent_observations": [
+        "Current status is draft.",
+        "Review state is draft_source_of_truth_decision_required.",
+        "Operational artifact count is 2.",
+        "Impact release consideration is no_release_by_default."
+      ],
+      "required_inputs": [
+        "source document owner decision",
+        "change request with documented rationale",
+        "impact classification: documentation-only, model change, policy change, schema change, or release change",
+        "source-of-truth and approval-path decision"
+      ],
+      "decision_options": [
+        {
+          "option": "confirm_as_working_source",
+          "meaning": "Keep the draft as governed working source material with explicit ownership.",
+          "register_updates": [
+            "keep or move status according to approval decision",
+            "record source-of-truth decision"
+          ],
+          "derived_artifacts_allowed_after_decision": true,
+          "release_consideration": "depends on whether downstream behavior changes"
+        },
+        {
+          "option": "keep_draft",
+          "meaning": "Keep the document visible but do not treat it as approved source material.",
+          "register_updates": [
+            "keep status as draft",
+            "record missing approval or source-of-truth dependency"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        },
+        {
+          "option": "retire_or_supersede",
+          "meaning": "Close the draft if another source is authoritative.",
+          "register_updates": [
+            "set status to retired or superseded",
+            "set superseded_by when there is a known replacement"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        }
+      ],
+      "decision_template": {
+        "source_document_id": "DEVSECOPS-POL-SRC-001",
+        "source_document_title": "DevSecOps Policy Version 1 draft 3",
+        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "decision_owner": "governance-owners",
+        "decision_date": "<YYYY-MM-DD>",
+        "rationale": "<why this decision is correct>",
+        "register_updates_required": "<yes/no and fields>",
+        "derived_artifacts_allowed": "<yes/no>",
+        "runtime_governance_change": "<yes/no>",
+        "release_decision": "no_release_by_default",
+        "validation_required": [
+          "python3 -m unittest discover -s tests",
+          "python3 scripts/validate_governance_repo.py"
+        ]
+      },
+      "guardrails": [
+        "The agent must not promote the source document.",
+        "The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.",
+        "A human-owned change request must record the final decision."
+      ]
+    },
+    {
+      "brief_id": "SDI-REVIEW-DEVSECOPS-DIR-SRC-001",
+      "prepared_by_agent": "source-document-intake",
+      "agent_scope": "decision_support_only",
+      "autonomous_decision": false,
+      "decision_authority": "governance-owners",
+      "review_focus": "source-of-truth and approval path",
+      "source_document": {
+        "id": "DEVSECOPS-DIR-SRC-001",
+        "title": "DevSecOps Directive Version 0 draft 1",
+        "status": "draft",
+        "owner": "governance-owners",
+        "version": "0 draft 1",
+        "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md",
+        "governance_domains": [
+          "directive",
+          "devsecops"
+        ],
+        "review_state": "draft_source_of_truth_decision_required",
+        "similarity_assessment": "not_recorded",
+        "candidate_replacement_for": []
+      },
+      "agent_observations": [
+        "Current status is draft.",
+        "Review state is draft_source_of_truth_decision_required.",
+        "Operational artifact count is 2.",
+        "Impact release consideration is no_release_by_default."
+      ],
+      "required_inputs": [
+        "source document owner decision",
+        "change request with documented rationale",
+        "impact classification: documentation-only, model change, policy change, schema change, or release change",
+        "source-of-truth and approval-path decision"
+      ],
+      "decision_options": [
+        {
+          "option": "confirm_as_working_source",
+          "meaning": "Keep the draft as governed working source material with explicit ownership.",
+          "register_updates": [
+            "keep or move status according to approval decision",
+            "record source-of-truth decision"
+          ],
+          "derived_artifacts_allowed_after_decision": true,
+          "release_consideration": "depends on whether downstream behavior changes"
+        },
+        {
+          "option": "keep_draft",
+          "meaning": "Keep the document visible but do not treat it as approved source material.",
+          "register_updates": [
+            "keep status as draft",
+            "record missing approval or source-of-truth dependency"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        },
+        {
+          "option": "retire_or_supersede",
+          "meaning": "Close the draft if another source is authoritative.",
+          "register_updates": [
+            "set status to retired or superseded",
+            "set superseded_by when there is a known replacement"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        }
+      ],
+      "decision_template": {
+        "source_document_id": "DEVSECOPS-DIR-SRC-001",
+        "source_document_title": "DevSecOps Directive Version 0 draft 1",
+        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "decision_owner": "governance-owners",
+        "decision_date": "<YYYY-MM-DD>",
+        "rationale": "<why this decision is correct>",
+        "register_updates_required": "<yes/no and fields>",
+        "derived_artifacts_allowed": "<yes/no>",
+        "runtime_governance_change": "<yes/no>",
+        "release_decision": "no_release_by_default",
+        "validation_required": [
+          "python3 -m unittest discover -s tests",
+          "python3 scripts/validate_governance_repo.py"
+        ]
+      },
+      "guardrails": [
+        "The agent must not promote the source document.",
+        "The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.",
+        "A human-owned change request must record the final decision."
+      ]
+    },
+    {
+      "brief_id": "SDI-REVIEW-ARCH-TPL-SRC-001",
+      "prepared_by_agent": "source-document-intake",
+      "agent_scope": "decision_support_only",
+      "autonomous_decision": false,
+      "decision_authority": "architecture-owners",
+      "review_focus": "similarity and source classification",
+      "source_document": {
+        "id": "ARCH-TPL-SRC-001",
+        "title": "SDD Architecture Template and Checklists",
+        "status": "candidate",
+        "owner": "architecture-owners",
+        "version": "public-placeholder",
+        "source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.public.md",
+        "governance_domains": [
+          "architecture"
+        ],
+        "review_state": "candidate_similarity_review_required",
+        "similarity_assessment": "not_assessed",
+        "candidate_replacement_for": []
+      },
+      "agent_observations": [
+        "Current status is candidate.",
+        "Review state is candidate_similarity_review_required.",
+        "Operational artifact count is 0.",
+        "Impact release consideration is no_release_by_default."
+      ],
+      "required_inputs": [
+        "source document owner decision",
+        "change request with documented rationale",
+        "impact classification: documentation-only, model change, policy change, schema change, or release change",
+        "architecture owner or enterprise architect review"
+      ],
+      "decision_options": [
+        {
+          "option": "new_independent_source",
+          "meaning": "Accept the source as a separate intake source after review.",
+          "register_updates": [
+            "set status to intake or review",
+            "set similarity_assessment.assessment to new_source"
+          ],
+          "derived_artifacts_allowed_after_decision": true,
+          "release_consideration": "depends on derived governance behavior"
+        },
+        {
+          "option": "possible_duplicate",
+          "meaning": "Keep the source as a candidate until duplicate analysis is complete.",
+          "register_updates": [
+            "keep status as candidate",
+            "set similarity_assessment.assessment to possible_duplicate"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        },
+        {
+          "option": "replacement_candidate",
+          "meaning": "Treat the source as a possible replacement, but require a separate replacement decision.",
+          "register_updates": [
+            "keep status as candidate",
+            "populate candidate_replacement_for",
+            "set similarity_assessment.assessment to replacement_candidate"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release until replacement is confirmed"
+        },
+        {
+          "option": "not_relevant_retire",
+          "meaning": "Close the source for governed derivation.",
+          "register_updates": [
+            "set status to retired",
+            "set similarity_assessment.assessment to not_relevant"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        }
+      ],
+      "decision_template": {
+        "source_document_id": "ARCH-TPL-SRC-001",
+        "source_document_title": "SDD Architecture Template and Checklists",
+        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "decision_owner": "architecture-owners",
+        "decision_date": "<YYYY-MM-DD>",
+        "rationale": "<why this decision is correct>",
+        "register_updates_required": "<yes/no and fields>",
+        "derived_artifacts_allowed": "<yes/no>",
+        "runtime_governance_change": "<yes/no>",
+        "release_decision": "no_release_by_default",
+        "validation_required": [
+          "python3 -m unittest discover -s tests",
+          "python3 scripts/validate_governance_repo.py",
+          "python3 scripts/validate_runtime_governance.py"
+        ]
+      },
+      "guardrails": [
+        "The agent must not promote the source document.",
+        "The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.",
+        "A human-owned change request must record the final decision."
+      ]
+    },
+    {
+      "brief_id": "SDI-REVIEW-ARCH-EA-SRC-001",
+      "prepared_by_agent": "source-document-intake",
+      "agent_scope": "decision_support_only",
+      "autonomous_decision": false,
+      "decision_authority": "architecture-owners",
+      "review_focus": "similarity and source classification",
+      "source_document": {
+        "id": "ARCH-EA-SRC-001",
+        "title": "SDD Enterprise Architecture Guidelines",
+        "status": "candidate",
+        "owner": "architecture-owners",
+        "version": "public-placeholder",
+        "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.public.md",
+        "governance_domains": [
+          "architecture"
+        ],
+        "review_state": "candidate_similarity_review_required",
+        "similarity_assessment": "not_assessed",
+        "candidate_replacement_for": []
+      },
+      "agent_observations": [
+        "Current status is candidate.",
+        "Review state is candidate_similarity_review_required.",
+        "Operational artifact count is 0.",
+        "Impact release consideration is no_release_by_default."
+      ],
+      "required_inputs": [
+        "source document owner decision",
+        "change request with documented rationale",
+        "impact classification: documentation-only, model change, policy change, schema change, or release change",
+        "architecture owner or enterprise architect review"
+      ],
+      "decision_options": [
+        {
+          "option": "new_independent_source",
+          "meaning": "Accept the source as a separate intake source after review.",
+          "register_updates": [
+            "set status to intake or review",
+            "set similarity_assessment.assessment to new_source"
+          ],
+          "derived_artifacts_allowed_after_decision": true,
+          "release_consideration": "depends on derived governance behavior"
+        },
+        {
+          "option": "possible_duplicate",
+          "meaning": "Keep the source as a candidate until duplicate analysis is complete.",
+          "register_updates": [
+            "keep status as candidate",
+            "set similarity_assessment.assessment to possible_duplicate"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        },
+        {
+          "option": "replacement_candidate",
+          "meaning": "Treat the source as a possible replacement, but require a separate replacement decision.",
+          "register_updates": [
+            "keep status as candidate",
+            "populate candidate_replacement_for",
+            "set similarity_assessment.assessment to replacement_candidate"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release until replacement is confirmed"
+        },
+        {
+          "option": "not_relevant_retire",
+          "meaning": "Close the source for governed derivation.",
+          "register_updates": [
+            "set status to retired",
+            "set similarity_assessment.assessment to not_relevant"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        }
+      ],
+      "decision_template": {
+        "source_document_id": "ARCH-EA-SRC-001",
+        "source_document_title": "SDD Enterprise Architecture Guidelines",
+        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "decision_owner": "architecture-owners",
+        "decision_date": "<YYYY-MM-DD>",
+        "rationale": "<why this decision is correct>",
+        "register_updates_required": "<yes/no and fields>",
+        "derived_artifacts_allowed": "<yes/no>",
+        "runtime_governance_change": "<yes/no>",
+        "release_decision": "no_release_by_default",
+        "validation_required": [
+          "python3 -m unittest discover -s tests",
+          "python3 scripts/validate_governance_repo.py",
+          "python3 scripts/validate_runtime_governance.py"
+        ]
+      },
+      "guardrails": [
+        "The agent must not promote the source document.",
+        "The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.",
+        "A human-owned change request must record the final decision."
+      ]
+    },
+    {
+      "brief_id": "SDI-REVIEW-ARCH-SA-SRC-001",
+      "prepared_by_agent": "source-document-intake",
+      "agent_scope": "decision_support_only",
+      "autonomous_decision": false,
+      "decision_authority": "architecture-owners",
+      "review_focus": "similarity and source classification",
+      "source_document": {
+        "id": "ARCH-SA-SRC-001",
+        "title": "SDD Solution Architecture Guidelines",
+        "status": "candidate",
+        "owner": "architecture-owners",
+        "version": "public-placeholder",
+        "source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.public.md",
+        "governance_domains": [
+          "architecture"
+        ],
+        "review_state": "candidate_similarity_review_required",
+        "similarity_assessment": "not_assessed",
+        "candidate_replacement_for": []
+      },
+      "agent_observations": [
+        "Current status is candidate.",
+        "Review state is candidate_similarity_review_required.",
+        "Operational artifact count is 0.",
+        "Impact release consideration is no_release_by_default."
+      ],
+      "required_inputs": [
+        "source document owner decision",
+        "change request with documented rationale",
+        "impact classification: documentation-only, model change, policy change, schema change, or release change",
+        "architecture owner or enterprise architect review"
+      ],
+      "decision_options": [
+        {
+          "option": "new_independent_source",
+          "meaning": "Accept the source as a separate intake source after review.",
+          "register_updates": [
+            "set status to intake or review",
+            "set similarity_assessment.assessment to new_source"
+          ],
+          "derived_artifacts_allowed_after_decision": true,
+          "release_consideration": "depends on derived governance behavior"
+        },
+        {
+          "option": "possible_duplicate",
+          "meaning": "Keep the source as a candidate until duplicate analysis is complete.",
+          "register_updates": [
+            "keep status as candidate",
+            "set similarity_assessment.assessment to possible_duplicate"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        },
+        {
+          "option": "replacement_candidate",
+          "meaning": "Treat the source as a possible replacement, but require a separate replacement decision.",
+          "register_updates": [
+            "keep status as candidate",
+            "populate candidate_replacement_for",
+            "set similarity_assessment.assessment to replacement_candidate"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release until replacement is confirmed"
+        },
+        {
+          "option": "not_relevant_retire",
+          "meaning": "Close the source for governed derivation.",
+          "register_updates": [
+            "set status to retired",
+            "set similarity_assessment.assessment to not_relevant"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        }
+      ],
+      "decision_template": {
+        "source_document_id": "ARCH-SA-SRC-001",
+        "source_document_title": "SDD Solution Architecture Guidelines",
+        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "decision_owner": "architecture-owners",
+        "decision_date": "<YYYY-MM-DD>",
+        "rationale": "<why this decision is correct>",
+        "register_updates_required": "<yes/no and fields>",
+        "derived_artifacts_allowed": "<yes/no>",
+        "runtime_governance_change": "<yes/no>",
+        "release_decision": "no_release_by_default",
+        "validation_required": [
+          "python3 -m unittest discover -s tests",
+          "python3 scripts/validate_governance_repo.py",
+          "python3 scripts/validate_runtime_governance.py"
+        ]
+      },
+      "guardrails": [
+        "The agent must not promote the source document.",
+        "The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.",
+        "A human-owned change request must record the final decision."
+      ]
+    },
+    {
+      "brief_id": "SDI-REVIEW-ARCH-PA-SRC-001",
+      "prepared_by_agent": "source-document-intake",
+      "agent_scope": "decision_support_only",
+      "autonomous_decision": false,
+      "decision_authority": "architecture-owners",
+      "review_focus": "similarity and source classification",
+      "source_document": {
+        "id": "ARCH-PA-SRC-001",
+        "title": "SDD Product Architecture Guidelines",
+        "status": "candidate",
+        "owner": "architecture-owners",
+        "version": "public-placeholder",
+        "source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.public.md",
+        "governance_domains": [
+          "architecture"
+        ],
+        "review_state": "candidate_similarity_review_required",
+        "similarity_assessment": "not_assessed",
+        "candidate_replacement_for": []
+      },
+      "agent_observations": [
+        "Current status is candidate.",
+        "Review state is candidate_similarity_review_required.",
+        "Operational artifact count is 0.",
+        "Impact release consideration is no_release_by_default."
+      ],
+      "required_inputs": [
+        "source document owner decision",
+        "change request with documented rationale",
+        "impact classification: documentation-only, model change, policy change, schema change, or release change",
+        "architecture owner or enterprise architect review"
+      ],
+      "decision_options": [
+        {
+          "option": "new_independent_source",
+          "meaning": "Accept the source as a separate intake source after review.",
+          "register_updates": [
+            "set status to intake or review",
+            "set similarity_assessment.assessment to new_source"
+          ],
+          "derived_artifacts_allowed_after_decision": true,
+          "release_consideration": "depends on derived governance behavior"
+        },
+        {
+          "option": "possible_duplicate",
+          "meaning": "Keep the source as a candidate until duplicate analysis is complete.",
+          "register_updates": [
+            "keep status as candidate",
+            "set similarity_assessment.assessment to possible_duplicate"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        },
+        {
+          "option": "replacement_candidate",
+          "meaning": "Treat the source as a possible replacement, but require a separate replacement decision.",
+          "register_updates": [
+            "keep status as candidate",
+            "populate candidate_replacement_for",
+            "set similarity_assessment.assessment to replacement_candidate"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release until replacement is confirmed"
+        },
+        {
+          "option": "not_relevant_retire",
+          "meaning": "Close the source for governed derivation.",
+          "register_updates": [
+            "set status to retired",
+            "set similarity_assessment.assessment to not_relevant"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        }
+      ],
+      "decision_template": {
+        "source_document_id": "ARCH-PA-SRC-001",
+        "source_document_title": "SDD Product Architecture Guidelines",
+        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "decision_owner": "architecture-owners",
+        "decision_date": "<YYYY-MM-DD>",
+        "rationale": "<why this decision is correct>",
+        "register_updates_required": "<yes/no and fields>",
+        "derived_artifacts_allowed": "<yes/no>",
+        "runtime_governance_change": "<yes/no>",
+        "release_decision": "no_release_by_default",
+        "validation_required": [
+          "python3 -m unittest discover -s tests",
+          "python3 scripts/validate_governance_repo.py",
+          "python3 scripts/validate_runtime_governance.py"
+        ]
+      },
+      "guardrails": [
+        "The agent must not promote the source document.",
+        "The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.",
+        "A human-owned change request must record the final decision."
+      ]
+    },
+    {
+      "brief_id": "SDI-REVIEW-ARCH-GOV-SRC-002",
+      "prepared_by_agent": "source-document-intake",
+      "agent_scope": "decision_support_only",
+      "autonomous_decision": false,
+      "decision_authority": "architecture-owners",
+      "review_focus": "replacement decision",
+      "source_document": {
+        "id": "ARCH-GOV-SRC-002",
+        "title": "SDD Architecture Governance Framework",
+        "status": "candidate",
+        "owner": "architecture-owners",
+        "version": "public-placeholder",
+        "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
+        "governance_domains": [
+          "architecture"
+        ],
+        "review_state": "candidate_replacement_review_required",
+        "similarity_assessment": "replacement_candidate",
+        "candidate_replacement_for": [
+          "ARCH-SDD-SRC-001"
+        ]
+      },
+      "agent_observations": [
+        "Current status is candidate.",
+        "Review state is candidate_replacement_review_required.",
+        "Operational artifact count is 0.",
+        "Impact release consideration is no_release_by_default."
+      ],
+      "required_inputs": [
+        "source document owner decision",
+        "change request with documented rationale",
+        "impact classification: documentation-only, model change, policy change, schema change, or release change",
+        "architecture owner or enterprise architect review",
+        "replacement confirmation against the referenced existing source"
+      ],
+      "decision_options": [
+        {
+          "option": "replacement_confirmed",
+          "meaning": "Accept this source as replacing the referenced source after human review.",
+          "register_updates": [
+            "set candidate status to intake or review",
+            "set candidate supersedes to the replaced source ID",
+            "set replaced source superseded_by to this source ID"
+          ],
+          "derived_artifacts_allowed_after_decision": true,
+          "release_consideration": "architecture or baseline release candidate likely required if runtime behavior changes"
+        },
+        {
+          "option": "related_source_keep_candidate",
+          "meaning": "Keep the source registered as related material, but do not replace the active source.",
+          "register_updates": [
+            "keep status as candidate or move to review",
+            "record why replacement was not confirmed"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        },
+        {
+          "option": "duplicate_or_not_relevant_retire",
+          "meaning": "Close the source for future derivation while preserving history.",
+          "register_updates": [
+            "set status to retired",
+            "record retirement reason in notes or change request"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        }
+      ],
+      "decision_template": {
+        "source_document_id": "ARCH-GOV-SRC-002",
+        "source_document_title": "SDD Architecture Governance Framework",
+        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "decision_owner": "architecture-owners",
+        "decision_date": "<YYYY-MM-DD>",
+        "rationale": "<why this decision is correct>",
+        "register_updates_required": "<yes/no and fields>",
+        "derived_artifacts_allowed": "<yes/no>",
+        "runtime_governance_change": "<yes/no>",
+        "release_decision": "no_release_by_default",
+        "validation_required": [
+          "python3 -m unittest discover -s tests",
+          "python3 scripts/validate_governance_repo.py",
+          "python3 scripts/validate_runtime_governance.py"
+        ]
+      },
+      "guardrails": [
+        "The agent must not promote the source document.",
+        "The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.",
+        "A human-owned change request must record the final decision."
+      ]
+    }
+  ]
+}

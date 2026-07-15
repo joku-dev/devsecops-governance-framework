@@ -1,0 +1,15 @@
+{
+  "scenario": "detailed-architecture-evidence-change",
+  "description": "Detailed architecture evidence collector and template changes must use architecture and evidence review roles.",
+  "changed_files": [
+    "scripts/collect_architecture_release_input.py",
+    "scripts/generate_architecture_governance_report.py",
+    "pipeline-baseline/templates/app-architecture-evidence/.governance/architecture/threat-model.json",
+    "docs/operations/evidence/architecture-evidence-type-taxonomy.md"
+  ],
+  "forbidden_agents": [
+    "source-document-intake",
+    "demo-readiness"
+  ],
+  "reporting_semantics": "detailed_evidence_must_remain_report_only"
+}

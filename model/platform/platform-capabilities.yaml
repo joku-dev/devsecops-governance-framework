@@ -1,0 +1,424 @@
+capabilities:
+- id: evidence_and_traceability_layer
+  area: Evidence and Traceability
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-001
+- id: traceability_database
+  area: Evidence and Traceability
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-001
+- id: pipeline_audit_logs
+  area: Pipeline Execution
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-001
+  - DSCB-L1-REQ-015
+  - DSCB-L3-REQ-011
+- id: approved_version_control
+  area: Source Control
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-002
+  - DSCB-L1-REQ-003
+- id: code_review
+  area: Source Control
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-002
+  - DSCB-L1-REQ-003
+  - DSCB-L1-REQ-004
+- id: branch_protection
+  area: Source Control
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-002
+  - DSCB-L1-REQ-003
+- id: repository_audit_log
+  area: Source Control
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-002
+  - DSCB-L1-REQ-003
+- id: static_code_analysis
+  area: Security and Compliance Controls
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-004
+- id: secure_coding_guidance
+  area: Security and Compliance Controls
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-004
+- id: dependency_inventory
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-005
+  - DSCB-L1-REQ-006
+- id: sbom_generation
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-005
+  - DSCB-L1-REQ-006
+- id: dependency_scanning
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-005
+  - DSCB-L1-REQ-006
+- id: evidence_repository
+  area: Source Control
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-005
+  - DSCB-L1-REQ-006
+  - DSCB-L1-REQ-015
+- id: automated_pipeline_execution
+  area: Pipeline Execution
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-007
+  - DSCB-L1-REQ-008
+- id: build_pipeline_logging
+  area: Pipeline Execution
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-007
+  - DSCB-L1-REQ-008
+- id: artifact_versioning
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-007
+  - DSCB-L1-REQ-008
+- id: vulnerability_scanning
+  area: Security and Compliance Controls
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-009
+  - DSCB-L1-REQ-010
+- id: vulnerability_assessment
+  area: Security and Compliance Controls
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-009
+  - DSCB-L1-REQ-010
+- id: pipeline_evidence_generation
+  area: Pipeline Execution
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-009
+  - DSCB-L1-REQ-010
+- id: artifact_repository_integrity
+  area: Source Control
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-011
+  - DSCB-L1-REQ-012
+- id: checksum_or_digest_records
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-011
+  - DSCB-L1-REQ-012
+- id: artifact_metadata_management
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-011
+  - DSCB-L1-REQ-012
+- id: release_approval_workflow
+  area: Deployment and Environment Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-013
+  - DSCB-L1-REQ-014
+- id: deployment_logging
+  area: Deployment and Environment Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-013
+  - DSCB-L1-REQ-014
+- id: approved_artifact_selection
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-013
+  - DSCB-L1-REQ-014
+- id: machine_readable_evidence_generation
+  area: Evidence and Traceability
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-015
+- id: deployment_records
+  area: Deployment and Environment Management
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-016
+- id: operational_logging
+  area: Operational Monitoring
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-016
+- id: incident_record_repository
+  area: Source Control
+  required_from: PRA-Level 1
+  supports_requirements:
+  - DSCB-L1-REQ-016
+- id: central_development_environment_management
+  area: Developer Workspace
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-001
+  - DSCB-L2-REQ-002
+- id: configuration_baselines
+  area: Developer Workspace
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-001
+  - DSCB-L2-REQ-002
+- id: secure_developer_workspace
+  area: Developer Workspace
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-001
+  - DSCB-L2-REQ-002
+- id: central_iam
+  area: Developer Workspace
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-003
+  - DSCB-L2-REQ-004
+- id: rbac
+  area: Developer Workspace
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-003
+  - DSCB-L2-REQ-004
+- id: mfa_privileged_access
+  area: Developer Workspace
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-003
+  - DSCB-L2-REQ-004
+- id: access_audit_logging
+  area: Developer Workspace
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-003
+  - DSCB-L2-REQ-004
+- id: approved_dependency_repositories
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-005
+  - DSCB-L2-REQ-006
+- id: dependency_proxy
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-005
+  - DSCB-L2-REQ-006
+- id: external_download_prevention
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-005
+  - DSCB-L2-REQ-006
+- id: artifact_signing_service
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-007
+  - DSCB-L2-REQ-008
+- id: signing_key_management
+  area: Enterprise Trust and Key Management
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-007
+  - DSCB-L2-REQ-008
+- id: signature_verification
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-007
+  - DSCB-L2-REQ-008
+- id: iac_repository
+  area: Source Control
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-009
+  - DSCB-L2-REQ-010
+- id: environment_configuration_management
+  area: Infrastructure as Code / Environment Configuration
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-009
+  - DSCB-L2-REQ-010
+- id: iac_validation
+  area: Infrastructure as Code / Environment Configuration
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-009
+  - DSCB-L2-REQ-010
+- id: policy_gate_engine
+  area: Security and Compliance Controls
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-011
+  - DSCB-L2-REQ-012
+- id: security_threshold_enforcement
+  area: Security and Compliance Controls
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-011
+  - DSCB-L2-REQ-012
+- id: release_blocking
+  area: Deployment and Environment Management
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-011
+  - DSCB-L2-REQ-012
+- id: security_event_generation
+  area: Operational Monitoring
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-013
+  - DSCB-L2-REQ-014
+- id: security_event_forwarding
+  area: Operational Monitoring
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-013
+  - DSCB-L2-REQ-014
+- id: monitoring_integration
+  area: Operational Monitoring
+  required_from: PRA-Level 2
+  supports_requirements:
+  - DSCB-L2-REQ-013
+  - DSCB-L2-REQ-014
+- id: reproducible_build_verification
+  area: Pipeline Execution
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-001
+  - DSCB-L3-REQ-002
+- id: version_controlled_build_configuration
+  area: Pipeline Execution
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-001
+  - DSCB-L3-REQ-002
+- id: isolated_build_environment
+  area: Pipeline Execution
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-003
+  - DSCB-L3-REQ-004
+- id: recreatable_build_environment
+  area: Pipeline Execution
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-003
+  - DSCB-L3-REQ-004
+- id: provenance_capture
+  area: Evidence and Traceability
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-005
+  - DSCB-L3-REQ-006
+- id: trusted_dependency_sourcing
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-005
+  - DSCB-L3-REQ-006
+- id: dependency_records
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-005
+  - DSCB-L3-REQ-006
+- id: enterprise_trust_infrastructure
+  area: Enterprise Trust and Key Management
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-007
+  - DSCB-L3-REQ-008
+- id: central_signing_key_management
+  area: Enterprise Trust and Key Management
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-007
+  - DSCB-L3-REQ-008
+- id: artifact_signature_logs
+  area: Artifact and Dependency Management
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-007
+  - DSCB-L3-REQ-008
+- id: end_to_end_traceability
+  area: Evidence and Traceability
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-009
+- id: deployment_metadata
+  area: Deployment and Environment Management
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-009
+- id: evidence_graph
+  area: Evidence and Traceability
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-009
+- id: runtime_integrity_verification
+  area: Deployment and Environment Management
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-010
+- id: deployment_traceability
+  area: Deployment and Environment Management
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-010
+- id: continuous_compliance_evidence
+  area: Evidence and Traceability
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-011
+- id: compliance_evidence_repository
+  area: Source Control
+  required_from: PRA-Level 3
+  supports_requirements:
+  - DSCB-L3-REQ-011
+- id: governance_workflow
+  area: Governance
+  required_from: Not applicable
+  supports_requirements:
+  - DSCB-GOV-REQ-001
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005
+- id: waiver_registry
+  area: Governance
+  required_from: Not applicable
+  supports_requirements:
+  - DSCB-GOV-REQ-001
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005
+- id: compliance_reporting
+  area: Evidence and Traceability
+  required_from: Not applicable
+  supports_requirements:
+  - DSCB-GOV-REQ-001
+  - DSCB-GOV-REQ-002
+  - DSCB-GOV-REQ-003
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005

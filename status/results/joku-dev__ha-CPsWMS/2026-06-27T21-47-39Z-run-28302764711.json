@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "baseline_level": "L1",
+  "governance_baseline_ref": "governance-main-run-context",
+  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "result_type": "governance-baseline-run",
+  "generated_at": "2026-06-27T21:47:39Z",
+  "pipeline": {
+    "pipeline_name": "DevSecOps Baseline",
+    "pipeline_run_id": "28302764711",
+    "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/28302764711",
+    "event": "pull_request",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "devsecops/add-run-context-governance-input",
+    "branch_protected": false,
+    "commit_id": "df8d65c4f0d286470c5552bd3511a633e82c8539"
+  },
+  "checks": {
+    "baseline_gate": "success",
+    "ci": "success",
+    "governance_control_evaluation": "success"
+  },
+  "evidence": {
+    "sbom": true,
+    "vulnerability_scan": true,
+    "artifact_digest": true,
+    "governance_control_report": true,
+    "governance_run_input": true,
+    "static_analysis_summary": true,
+    "traceability_mapping": true,
+    "operations_evidence": true
+  },
+  "control_evaluation_summary": {
+    "total_controls": 46,
+    "pass": 14,
+    "fail": 0,
+    "not_tested": 0,
+    "not_applicable": 32,
+    "applicable_controls": 14,
+    "tested_controls": 14
+  },
+  "overall_status": "pass",
+  "notes": "PR validation run with explicit run_context. Release authorization controls are correctly not applicable outside release context."
+}

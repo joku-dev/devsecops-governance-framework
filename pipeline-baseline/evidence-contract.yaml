@@ -1,0 +1,111 @@
+evidence_contract:
+  - id: evidence.sbom
+    evidence_type: sbom_file
+    accepted_formats:
+      - cyclonedx-json
+      - spdx-json
+    required_fields:
+      - evidence_id
+      - artifact_id
+      - generated_at
+      - generator
+      - component_count
+    required_links:
+      - commit_id
+      - build_id
+      - artifact_id
+    supports_requirements:
+      - DSCB-L1-REQ-005
+      - DSCB-L1-REQ-006
+
+  - id: evidence.vulnerability_scan
+    evidence_type: vulnerability_scan_report
+    accepted_formats:
+      - sarif
+      - json
+    required_fields:
+      - evidence_id
+      - scan_tool
+      - scan_started_at
+      - scan_completed_at
+      - finding_count
+      - max_severity
+    required_links:
+      - commit_id
+      - build_id
+      - artifact_id
+    supports_requirements:
+      - DSCB-L1-REQ-009
+      - DSCB-L1-REQ-010
+
+  - id: evidence.artifact_integrity
+    evidence_type: artifact_checksum_or_digest_record
+    accepted_formats:
+      - json
+      - repository_metadata
+    required_fields:
+      - evidence_id
+      - artifact_id
+      - checksum_or_digest
+      - algorithm
+      - produced_at
+    required_links:
+      - build_id
+      - artifact_id
+    supports_requirements:
+      - DSCB-L1-REQ-011
+      - DSCB-L1-REQ-012
+
+  - id: evidence.artifact_signature
+    evidence_type: artifact_signature_record
+    accepted_formats:
+      - json
+      - signature_bundle
+    required_fields:
+      - evidence_id
+      - artifact_id
+      - signature
+      - signing_key_id
+      - signed_at
+    required_links:
+      - artifact_id
+      - release_id
+    supports_requirements:
+      - DSCB-L2-REQ-007
+      - DSCB-L3-REQ-007
+
+  - id: evidence.release_approval
+    evidence_type: release_approval_record
+    accepted_formats:
+      - json
+      - workflow_metadata
+    required_fields:
+      - evidence_id
+      - release_id
+      - approval_status
+      - approver
+      - approved_at
+    required_links:
+      - artifact_id
+      - release_id
+    supports_requirements:
+      - DSCB-L1-REQ-013
+      - DSCB-L1-REQ-014
+
+  - id: evidence.pipeline_execution
+    evidence_type: pipeline_execution_log
+    accepted_formats:
+      - json
+      - workflow_metadata
+    required_fields:
+      - evidence_id
+      - pipeline_run_id
+      - status
+      - started_at
+      - completed_at
+    required_links:
+      - commit_id
+      - build_id
+    supports_requirements:
+      - DSCB-L1-REQ-007
+      - DSCB-L1-REQ-015

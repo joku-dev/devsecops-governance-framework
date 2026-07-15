@@ -1,0 +1,71 @@
+name: DevSecOps Baseline
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+jobs:
+  prepare-devsecops-evidence:
+    name: Prepare DevSecOps Evidence
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.0
+
+      - name: Build source artifact
+        run: |
+          mkdir -p dist security
+          tar --exclude='.git' -czf dist/application-source.tar.gz .
+
+      - name: Generate placeholder SBOM
+        run: |
+          cat > security/sbom.cyclonedx.json <<'JSON'
+          {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.5",
+            "version": 1,
+            "components": []
+          }
+          JSON
+
+      - name: Generate placeholder vulnerability scan
+        run: |
+          cat > security/vulnerability-scan.json <<'JSON'
+          {
+            "scanner": "placeholder",
+            "max_severity": "none",
+            "findings": []
+          }
+          JSON
+
+      - name: Upload application evidence
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: application-evidence
+          path: |
+            dist/application-source.tar.gz
+            security/sbom.cyclonedx.json
+            security/vulnerability-scan.json
+
+  devsecops-baseline:
+    name: Central DevSecOps Baseline
+    needs: prepare-devsecops-evidence
+    uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@528bee5fd067ab7f65c3030863ca338e0553cfdf
+    with:
+      level: L1
+      max_allowed_severity: high
+      artifact_path: dist/application-source.tar.gz
+      sbom_path: security/sbom.cyclonedx.json
+      vulnerability_scan_path: security/vulnerability-scan.json
+      application_evidence_artifact_name: application-evidence
+      generate_demo_evidence: false
+      signature_path: ''

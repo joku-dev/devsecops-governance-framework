@@ -1,0 +1,241 @@
+level: L3
+name: Trusted Software Supply Chain / SDD
+required_platform_level: PRA-Level 3
+requirements:
+- id: DSCB-L3-REQ-001
+  domain: deterministic_builds
+  title: Deterministic Builds
+  control_objective: Ensure reproducible software builds.
+  requirement: Software builds SHALL be reproducible using identical source code and build configuration.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - reproducible_build_verification
+  - version_controlled_build_configuration
+  evidence:
+  - rebuild_verification_records
+  - build_configuration_records
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-002
+  domain: deterministic_builds
+  title: Deterministic Builds
+  control_objective: Ensure reproducible software builds.
+  requirement: Build configurations SHALL be version controlled.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - reproducible_build_verification
+  - version_controlled_build_configuration
+  evidence:
+  - rebuild_verification_records
+  - build_configuration_records
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-003
+  domain: build_environment_isolation
+  title: Build Environment Isolation
+  control_objective: Ensure build environments are protected against manipulation.
+  requirement: Software builds SHALL be executed in isolated build environments.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - isolated_build_environment
+  - recreatable_build_environment
+  evidence:
+  - build_environment_configuration
+  - pipeline_execution_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-004
+  domain: build_environment_isolation
+  title: Build Environment Isolation
+  control_objective: Ensure build environments are protected against manipulation.
+  requirement: Build environments SHALL be recreated for each pipeline execution.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - isolated_build_environment
+  - recreatable_build_environment
+  evidence:
+  - build_environment_configuration
+  - pipeline_execution_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-005
+  domain: dependency_provenance
+  title: Dependency Provenance
+  control_objective: Ensure verifiable origin of software dependencies.
+  requirement: Software dependencies SHALL include verifiable provenance information.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - provenance_capture
+  - trusted_dependency_sourcing
+  - dependency_records
+  evidence:
+  - provenance_metadata
+  - dependency_records
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-006
+  domain: dependency_provenance
+  title: Dependency Provenance
+  control_objective: Ensure verifiable origin of software dependencies.
+  requirement: Dependency provenance SHALL be recorded during the build process.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - provenance_capture
+  - trusted_dependency_sourcing
+  - dependency_records
+  evidence:
+  - provenance_metadata
+  - dependency_records
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-007
+  domain: trusted_artifact_signing
+  title: Trusted Artifact Signing
+  control_objective: Ensure artifacts are signed using enterprise-managed trust infrastructure.
+  requirement: Software artifacts SHALL be signed using enterprise signing infrastructure.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - enterprise_trust_infrastructure
+  - central_signing_key_management
+  - artifact_signature_logs
+  evidence:
+  - signing_infrastructure_records
+  - artifact_signature_logs
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-008
+  domain: trusted_artifact_signing
+  title: Trusted Artifact Signing
+  control_objective: Ensure artifacts are signed using enterprise-managed trust infrastructure.
+  requirement: Signing keys SHALL be centrally managed.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - enterprise_trust_infrastructure
+  - central_signing_key_management
+  - artifact_signature_logs
+  evidence:
+  - signing_infrastructure_records
+  - artifact_signature_logs
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-009
+  domain: end_to_end_traceability
+  title: End-to-End Traceability
+  control_objective: Ensure traceability across the complete software lifecycle.
+  requirement: Traceability SHALL exist between requirements, source code, verification Cases / Procedures and Test result, build artifacts, and
+    deployed software.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - end_to_end_traceability
+  - deployment_metadata
+  - evidence_graph
+  evidence:
+  - traceability_records
+  - deployment_metadata
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L3-REQ-010
+  domain: runtime_integrity_verification
+  title: Runtime Integrity Verification
+  control_objective: Ensure operational systems verify software integrity.
+  requirement: Runtime environments SHALL verify the integrity of deployed software artifacts.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - runtime_integrity_verification
+  - deployment_traceability
+  evidence:
+  - runtime_integrity_verification_logs
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: CISO
+- id: DSCB-L3-REQ-011
+  domain: continuous_compliance_evidence
+  title: Continuous Compliance Evidence
+  control_objective: Ensure DevSecOps pipelines produce compliance evidence automatically.
+  requirement: DevSecOps platforms SHALL generate machine-readable compliance evidence for lifecycle activities.
+  required_platform_level: PRA-Level 3
+  platform_capabilities:
+  - continuous_compliance_evidence
+  - compliance_evidence_repository
+  - pipeline_audit_logs
+  evidence:
+  - compliance_evidence_repository
+  - pipeline_audit_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board

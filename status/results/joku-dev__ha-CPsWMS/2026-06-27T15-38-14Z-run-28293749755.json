@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "baseline_level": "L1",
+  "governance_baseline_ref": "l1-baseline-v1.1.2",
+  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "result_type": "governance-baseline-run",
+  "generated_at": "2026-06-27T15:38:14Z",
+  "pipeline": {
+    "pipeline_name": "DevSecOps Baseline",
+    "pipeline_run_id": "28293749755",
+    "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/28293749755",
+    "event": "push",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "main",
+    "branch_protected": true,
+    "commit_id": "a7c0f5beef39405887a0caaac23fa785147151b9"
+  },
+  "checks": {
+    "baseline_gate": "success",
+    "ci": "success",
+    "governance_control_evaluation": "success"
+  },
+  "evidence": {
+    "sbom": true,
+    "vulnerability_scan": true,
+    "artifact_digest": true,
+    "governance_control_report": true,
+    "governance_run_input": true,
+    "static_analysis_summary": true,
+    "traceability_mapping": true,
+    "operations_evidence": true
+  },
+  "control_evaluation_summary": {
+    "total_controls": 46,
+    "pass": 16,
+    "fail": 0,
+    "not_tested": 0,
+    "not_applicable": 30,
+    "applicable_controls": 16,
+    "tested_controls": 16
+  },
+  "overall_status": "pass",
+  "notes": "Protected main branch, released baseline v1.1.2, and enriched governance evidence succeeded on main after PR merge, resulting in full structured L1 control coverage."
+}

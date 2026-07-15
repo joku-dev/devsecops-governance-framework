@@ -1,0 +1,24 @@
+{
+  "target": {
+    "path": "/workspace/ha-CPsWMS",
+    "commit": "77e8fcd",
+    "release_id": "ha-CPsWMS-demo",
+    "detected_services": 5
+  },
+  "overall_status": "pass",
+  "domains": {
+    "architecture": {
+      "status": "pass",
+      "finding_count": 0,
+      "findings": []
+    },
+    "devsecops": {
+      "status": "pass",
+      "finding_count": 0,
+      "findings": []
+    }
+  },
+  "summary": {
+    "finding_count": 0
+  }
+}

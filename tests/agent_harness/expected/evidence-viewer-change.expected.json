@@ -1,0 +1,18 @@
+{
+  "selected_agents": [
+    "demo-readiness",
+    "evidence-and-intake",
+    "repo-steward"
+  ],
+  "required_validations": [
+    "git diff --check",
+    "python3 scripts/generate_status_viewer.py",
+    "python3 scripts/run_demo.py",
+    "python3 scripts/validate_governance_repo.py"
+  ],
+  "release_impact": "none",
+  "forbidden_changes": [
+    "official_latest_updated_from_pull_request"
+  ],
+  "commit_readiness": "requires_evidence_context_review"
+}

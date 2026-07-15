@@ -1,0 +1,15 @@
+levels:
+  - id: PRA-Level 1
+    name: Basic DevSecOps Platform
+    supports_control_baseline: L1
+    description: Minimum platform capabilities for controlled pipelines, source-code traceability, artifact handling, SBOM generation, vulnerability scan evidence, release approval, and baseline evidence retention.
+
+  - id: PRA-Level 2
+    name: Secure Managed DevSecOps Platform
+    supports_control_baseline: L2
+    description: Centrally managed access control, MFA for privileged access, approved dependency sourcing, artifact signing, Infrastructure as Code support, security gates, and monitoring integration.
+
+  - id: PRA-Level 3
+    name: Trusted SDD Platform
+    supports_control_baseline: L3
+    description: Trusted supply chain capabilities for reproducible builds, isolated build environments, provenance, enterprise trust infrastructure, runtime integrity, and continuous compliance evidence.

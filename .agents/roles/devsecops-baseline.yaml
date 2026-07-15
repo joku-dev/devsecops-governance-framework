@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: devsecops-baseline
+name: DevSecOps Baseline Agent
+description: Maintain DevSecOps controls, platform mapping, traceability, and evidence expectations.
+source_of_truth: docs/governance/governance-roles-and-agent-profiles.md
+primary_files:
+  - model/controls/
+  - model/platform/
+  - model/evidence/
+  - model/traceability/
+  - pipeline-baseline/
+  - docs/releases/l1-baseline-v1.1.3.md
+  - releases/l1/
+responsibilities:
+  - Maintain L1, L2, L3, and GOV controls.
+  - Maintain platform capability mapping and evidence expectations.
+  - Keep traceability complete from source to control and platform.
+  - Protect released DevSecOps baselines from silent mutation.
+validations:
+  - python3 scripts/validate_governance_repo.py
+  - python3 -m unittest discover -s tests
+output_contract:
+  - control impact
+  - evidence impact
+  - release impact
+  - validation results

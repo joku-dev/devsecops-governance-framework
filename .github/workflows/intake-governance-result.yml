@@ -1,0 +1,129 @@
+name: Intake Downstream Governance Result
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository_id:
+        description: Downstream repository in owner/name form.
+        required: true
+        default: joku-dev/ha-CPsWMS
+        type: string
+      run_id:
+        description: GitHub Actions run ID to intake.
+        required: true
+        type: string
+      governance_baseline_ref:
+        description: Optional baseline ref override. Leave empty to infer from referenced workflows.
+        required: false
+        default: ""
+        type: string
+      baseline_level:
+        description: Governance baseline level.
+        required: false
+        default: L1
+        type: string
+  repository_dispatch:
+    types:
+      - governance-result-ready
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: downstream-governance-result-intake
+  cancel-in-progress: false
+
+jobs:
+  intake-result:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out governance repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6.3.0
+        with:
+          python-version: "3.11"
+
+      - name: Install generator dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml jsonschema
+
+      - name: Set up OPA
+        uses: open-policy-agent/setup-opa@v2.4.0
+        with:
+          version: latest
+
+      - name: Intake downstream run
+        env:
+          GH_RESULT_INTAKE_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
+          REPOSITORY_ID: ${{ github.event.client_payload.repository_id || inputs.repository_id }}
+          RUN_ID: ${{ github.event.client_payload.run_id || inputs.run_id }}
+          GOVERNANCE_BASELINE_REF: ${{ github.event.client_payload.governance_baseline_ref || inputs.governance_baseline_ref }}
+          BASELINE_LEVEL: ${{ github.event.client_payload.baseline_level || inputs.baseline_level || 'L1' }}
+        run: |
+          if [ -z "${REPOSITORY_ID}" ] || [ -z "${RUN_ID}" ]; then
+            echo "repository_id and run_id are required"
+            exit 1
+          fi
+
+          args=(
+            --repository-id "${REPOSITORY_ID}"
+            --run-id "${RUN_ID}"
+            --baseline-level "${BASELINE_LEVEL}"
+          )
+          if [ -n "${GOVERNANCE_BASELINE_REF}" ]; then
+            args+=(--governance-baseline-ref "${GOVERNANCE_BASELINE_REF}")
+          fi
+
+          python3 scripts/intake_github_actions_run.py "${args[@]}"
+
+      - name: Regenerate status index and viewer
+        run: |
+          python3 scripts/generate_repository_results_index.py
+          python3 scripts/generate_status_viewer.py
+
+      - name: Validate generated state
+        run: |
+          python3 scripts/validate_governance_repo.py
+          python3 -m unittest discover -s tests
+
+      - name: Commit intake result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Commit/push attempt ${attempt}"
+            git reset --mixed HEAD
+            git pull --rebase --autostash origin main
+            python3 scripts/generate_repository_results_index.py
+            python3 scripts/generate_architecture_results_index.py
+            python3 scripts/generate_status_viewer.py
+
+            git add status/results status/repository-results-index.json generated/viewer/status-viewer.html
+            if git diff --cached --quiet; then
+              echo "No governance result changes to commit."
+              exit 0
+            fi
+
+            if git diff --cached --quiet HEAD; then
+              echo "Governance result is already represented on current main."
+              exit 0
+            fi
+
+            git commit -m "Intake downstream governance result"
+            if git push; then
+              exit 0
+            fi
+
+            echo "Push failed, retrying after rebasing onto current main."
+            git reset --soft HEAD~1
+            sleep $((attempt * 2))
+          done
+
+          echo "Could not push governance intake result after retries."
+          exit 1

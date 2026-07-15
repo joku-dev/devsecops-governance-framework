@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Application Architecture Evidence",
+  "type": "object",
+  "required": ["evidence_type", "status", "owner", "evidence_refs"],
+  "properties": {
+    "evidence_type": {
+      "type": "string",
+      "enum": [
+        "solution_baseline",
+        "release_compatibility_declaration",
+        "security_evidence",
+        "resilience_evidence",
+        "operation_evidence",
+        "feedback_evidence"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "approved"]
+    },
+    "owner": { "type": "string" },
+    "baseline_version": { "type": "string" },
+    "approved_by": { "type": "string" },
+    "approval_date": { "type": "string" },
+    "summary": { "type": "string" },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "follow_up_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

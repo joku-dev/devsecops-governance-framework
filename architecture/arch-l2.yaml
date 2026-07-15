@@ -1,0 +1,96 @@
+level: ARCH-L2
+name: Integration and Release Readiness
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+requirements:
+- id: ARCH-L2-REQ-001
+  domain: Interface and Data
+  title: Interface and data contract readiness
+  source_markers: [E3, E5, S3, S4, P6]
+  requirement: Cross-product interfaces and data contracts shall be specified, versioned, owned, validated and tested.
+  verification_requirement: Verify that interface contracts, data contracts, owners, version records, schema validation and contract test results exist.
+  evidence: [interface_catalogue, interface_contract, data_contract, owner_assignment, schema_validation_result, contract_test_result]
+  verification:
+    method: hybrid
+    frequency: integration_readiness
+  automation:
+    type: blocking_gate
+    maturity: tool_integration_required
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Contract and schema evidence can become a release-blocking gate once evidence producers are integrated.
+  policy_as_code:
+    candidate: true
+    enforcement: integration_readiness_gate
+    rule: policies/opa/architecture_integration_readiness.rego
+  exception:
+    allowed: true
+    authority: Solution Architect
+- id: ARCH-L2-REQ-002
+  domain: Security
+  title: Security readiness
+  source_markers: [E6, S5, P8]
+  requirement: Enterprise, solution and product security assumptions shall be defined, aligned and verified before release.
+  verification_requirement: Verify that security guardrails, solution trust boundaries, product security evidence and vulnerability evidence are available.
+  evidence: [security_guardrail_catalogue, solution_threat_model, trust_zone_model, product_security_concept, vulnerability_scan_result, security_test_evidence]
+  verification:
+    method: hybrid
+    frequency: release_readiness
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: threshold
+    machine_readable_evidence_required: true
+    rationale: Security marker scores and security evidence are release-critical.
+  policy_as_code:
+    candidate: true
+    enforcement: release_readiness_gate
+    rule: policies/opa/architecture_release_readiness.rego
+  exception:
+    allowed: true
+    authority: Security Architect
+- id: ARCH-L2-REQ-003
+  domain: Runtime and Deployment
+  title: Deployment and platform readiness
+  source_markers: [E8, P5]
+  requirement: Products and solutions shall provide reproducible deployment evidence aligned with runtime and platform expectations.
+  verification_requirement: Verify that deployment manifests, environment compatibility and rollback evidence exist.
+  evidence: [runtime_standard, deployment_manifest, environment_compatibility_evidence, deployment_pipeline_evidence, rollback_evidence]
+  verification:
+    method: automated
+    frequency: release_readiness
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Deployment evidence is already represented in the architecture release candidate input.
+  policy_as_code:
+    candidate: true
+    enforcement: release_readiness_gate
+    rule: policies/opa/architecture_release_readiness.rego
+  exception:
+    allowed: true
+    authority: Platform Architect
+- id: ARCH-L2-REQ-004
+  domain: Release
+  title: Solution and product release compatibility
+  source_markers: [E7, S6, S7, S8, P9, P10, P13]
+  requirement: Release candidates shall declare compatibility with the relevant baseline and provide integration, performance, resilience, security and deployment evidence.
+  verification_requirement: Verify that release-critical markers are score 4 or covered by a valid exception and that release compatibility evidence is approved.
+  evidence: [release_compatibility_declaration, solution_release_baseline, compatibility_evidence, integration_test_result, performance_test_result, resilience_test_result]
+  verification:
+    method: automated
+    frequency: release_readiness
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: threshold
+    machine_readable_evidence_required: true
+    rationale: Release readiness can be checked through marker scores, release evidence and exception validity.
+  policy_as_code:
+    candidate: true
+    enforcement: release_readiness_gate
+    rule: policies/opa/architecture_release_readiness.rego
+  exception:
+    allowed: true
+    authority: Architecture Review Board

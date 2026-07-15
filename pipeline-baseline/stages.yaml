@@ -1,0 +1,87 @@
+stages:
+  - id: plan
+    name: Plan
+    mandatory: true
+    purpose: Requirements, change intent, baseline applicability, and governance planning.
+    typical_evidence:
+      - requirement_traceability_record
+      - change_record
+      - baseline_assignment_record
+      - waiver_record
+
+  - id: code
+    name: Code
+    mandatory: true
+    purpose: Source code integrity, secure coding checks, credential protection, and review evidence.
+    typical_evidence:
+      - commit_history
+      - author_metadata
+      - code_review_record
+      - branch_protection_configuration
+      - static_code_analysis_report
+      - secret_scan_report
+
+  - id: build
+    name: Build
+    mandatory: true
+    purpose: Controlled build execution, build configuration, build environment evidence, and build output identity.
+    typical_evidence:
+      - pipeline_execution_log
+      - build_configuration_record
+      - build_environment_record
+      - artifact_metadata
+      - artifact_version_identifier
+
+  - id: test
+    name: Test
+    mandatory: true
+    purpose: Verification execution, security scans, vulnerability assessment, and threshold evaluation.
+    typical_evidence:
+      - test_result_record
+      - vulnerability_scan_report
+      - vulnerability_assessment_record
+      - security_gate_record
+      - threshold_decision_record
+
+  - id: package
+    name: Package
+    mandatory: true
+    purpose: SBOM generation, dependency transparency, artifact integrity, artifact signing, and artifact repository publication.
+    typical_evidence:
+      - sbom_file
+      - dependency_inventory
+      - artifact_checksum_or_digest_record
+      - artifact_signature_record
+      - artifact_repository_metadata
+
+  - id: release
+    name: Release
+    mandatory: true
+    purpose: Release approval, policy decision, waiver evaluation, evidence bundle finalization, and release readiness decision.
+    typical_evidence:
+      - release_approval_record
+      - policy_decision_record
+      - waiver_decision_record
+      - release_evidence_bundle
+      - compliance_summary
+
+  - id: deploy
+    name: Deploy
+    mandatory: conditional
+    purpose: Controlled deployment, artifact approval verification, deployment logging, and deployment traceability.
+    typical_evidence:
+      - deployment_record
+      - deployment_log
+      - deployed_artifact_identifier
+      - environment_configuration_record
+
+  - id: operate
+    name: Operate
+    mandatory: conditional
+    purpose: Operational traceability, security event generation, monitoring integration, runtime integrity, and incident evidence.
+    typical_evidence:
+      - operational_version_record
+      - security_event_record
+      - monitoring_forwarding_record
+      - runtime_integrity_verification_log
+      - incident_record

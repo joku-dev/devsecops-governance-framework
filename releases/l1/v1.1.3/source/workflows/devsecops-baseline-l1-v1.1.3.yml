@@ -1,0 +1,77 @@
+name: Released DevSecOps L1 Baseline Gate v1.1.3
+
+on:
+  workflow_call:
+    inputs:
+      max_allowed_severity:
+        description: Maximum allowed vulnerability severity.
+        required: false
+        default: high
+        type: string
+      artifact_path:
+        description: Path to the build artifact in the application repository workspace.
+        required: false
+        default: dist/example-app.txt
+        type: string
+      sbom_path:
+        description: Path to the SBOM file in the application repository workspace.
+        required: false
+        default: security/sbom.cyclonedx.json
+        type: string
+      vulnerability_scan_path:
+        description: Path to the vulnerability scan result in the application repository workspace.
+        required: false
+        default: security/vulnerability-scan.json
+        type: string
+      signature_path:
+        description: Optional path to an artifact signature file in the application repository workspace.
+        required: false
+        default: ""
+        type: string
+      governance_run_input_path:
+        description: Optional path to a governance run input JSON file in the application repository workspace.
+        required: false
+        default: ""
+        type: string
+      generate_demo_evidence:
+        description: Generate demo artifact, SBOM, and vulnerability evidence if no real evidence exists.
+        required: false
+        default: false
+        type: boolean
+      application_evidence_artifact_name:
+        description: Optional GitHub Actions artifact name containing application artifact, SBOM, vulnerability scan, and optional governance input evidence.
+        required: false
+        default: ""
+        type: string
+      release_candidate:
+        description: Treat this pipeline run as a release candidate gate.
+        required: false
+        default: false
+        type: boolean
+      upload_evidence:
+        description: Upload the collected evidence as GitHub Actions artifacts.
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+jobs:
+  released-l1-baseline:
+    name: Released DevSecOps L1 Baseline v1.1.3
+    uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@bd994c9b05d069d48afd3b1f1be3867f23b2aea9
+    with:
+      level: L1
+      max_allowed_severity: ${{ inputs.max_allowed_severity }}
+      artifact_path: ${{ inputs.artifact_path }}
+      sbom_path: ${{ inputs.sbom_path }}
+      vulnerability_scan_path: ${{ inputs.vulnerability_scan_path }}
+      signature_path: ${{ inputs.signature_path }}
+      governance_run_input_path: ${{ inputs.governance_run_input_path }}
+      generate_demo_evidence: ${{ inputs.generate_demo_evidence }}
+      application_evidence_artifact_name: ${{ inputs.application_evidence_artifact_name }}
+      release_candidate: ${{ inputs.release_candidate }}
+      upload_evidence: ${{ inputs.upload_evidence }}

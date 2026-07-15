@@ -1,0 +1,13 @@
+{
+  "scenario": "demo-documentation-change",
+  "description": "Demo documentation and sample input change must preserve current demo semantics.",
+  "changed_files": [
+    "demo/README.md",
+    "docs/demos/demo-end-to-end-governance.md",
+    "demo/inputs/release-candidate-green.json"
+  ],
+  "forbidden_agents": [
+    "source-document-intake",
+    "release-manager"
+  ]
+}

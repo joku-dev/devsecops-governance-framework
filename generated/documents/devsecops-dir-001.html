@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DevSecOps Directive</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px auto; max-width: 900px; line-height: 1.6; color: #222; }
+    h1, h2, h3 { color: #0d2b45; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+    code { background: #f4f4f4; padding: 0.1rem 0.3rem; }
+  </style>
+</head>
+<body>
+<h1>DevSecOps Directive</h1>
+<p>Document ID: DEVSECOPS-DIR-001</p>
+<p>Document Type: directive</p>
+<p>Status: draft</p>
+<p>Document Number: TBD</p>
+<p>| Field | Value |</p>
+<p>| --- | --- |</p>
+<p>| Prepared by | J. Kutscher |</p>
+<p>| Approved by | Head of Divisional Engineering |</p>
+<p>| Endorsed by | - |</p>
+<p>| Authorized by | J. Kutscher |</p>
+<p>| Area of application | Approved internal entities |</p>
+<h2>Record of Revisions</h2>
+<p>| Version | Brief description of change | Date |</p>
+<p>| --- | --- | --- |</p>
+<p>| 1.0 | Initial Version | 2024-12-10 |</p>
+<p>Purpose: Defines binding implementation rules for governance structure, platform ownership, adoption, control baseline management, waiver handling, and compliance reporting.</p>
+<h1>DevSecOps Directive</h1>
+<h2>Purpose</h2>
+<p>This Directive defines the governance structure, operational responsibilities, and implementation framework required to enforce the DevSecOps Policy across the enterprise.</p>
+<p>It ensures that DevSecOps is implemented consistently across divisions and programs while maintaining alignment with cybersecurity, safety, and regulatory requirements.</p>
+<p>It establishes:</p>
+<ul>
+<li>governance and decision authority,</li>
+<li>mandatory adoption rules,</li>
+<li>control baseline management,</li>
+<li>waiver and deviation management,</li>
+<li>reporting and compliance mechanisms.</li>
+</ul>
+<h2>Role In The Governance Stack</h2>
+<p>The directive answers the question: how the policy must be executed in practice.</p>
+<p>Compared with the Policy, the Directive is intentionally more procedural. It is the document that governance boards, quality owners, and delivery teams use when a control is not met and an explicit decision is required.</p>
+<h2>Scope</h2>
+<p>This Directive applies to:</p>
+<ul>
+<li>all programs developing software within SDD-relevant systems,</li>
+<li>all divisions responsible for software engineering,</li>
+<li>all DevSecOps platforms and software factories,</li>
+<li>all security domains and operational environments,</li>
+<li>both internal development and externally sourced software integrated into enterprise systems.</li>
+</ul>
+<h2>Strategic Authority</h2>
+<h3>Chief Digitalisation Officer (CDO)</h3>
+<p>The CDO is the enterprise owner of DevSecOps and is responsible for:</p>
+<ul>
+<li>establishing DevSecOps as the enterprise software delivery model,</li>
+<li>providing and funding enterprise DevSecOps platform capabilities,</li>
+<li>defining enterprise adoption timelines and maturity targets,</li>
+<li>integrating safety lifecycle requirements into DevSecOps,</li>
+<li>reporting DevSecOps maturity to executive management.</li>
+</ul>
+<h3>Cyber Security Function (CSCSO)</h3>
+<p>The security function is responsible for:</p>
+<ul>
+<li>defining mandatory cybersecurity control baselines,</li>
+<li>defining vulnerability management requirements and SLAs,</li>
+<li>classifying security domains,</li>
+<li>accepting cybersecurity risk associated with deviations,</li>
+<li>conducting cybersecurity compliance audits.</li>
+</ul>
+<p>The CSCSO holds veto authority regarding reductions of mandatory cybersecurity controls.</p>
+<h3>Safety Authority</h3>
+<p>The Safety Authority within the CDO organization is responsible for:</p>
+<ul>
+<li>defining mandatory safety lifecycle requirements,</li>
+<li>determining safety impact classifications,</li>
+<li>approving deviations affecting safety-critical systems,</li>
+<li>ensuring safety evidence generation within DevSecOps processes.</li>
+</ul>
+<h2>DevSecOps Governance Board</h2>
+<h3>Establishment</h3>
+<p>A DevSecOps Governance Board shall be established to coordinate enterprise-wide DevSecOps implementation.</p>
+<p>The Board operates as the primary technical governance body for DevSecOps.</p>
+<h3>Composition</h3>
+<p>The Board should include:</p>
+<ul>
+<li>Head of SDD Capabilities as chair,</li>
+<li>representative of the CSCSO organization,</li>
+<li>representative of the Safety Authority,</li>
+<li>SDD Enterprise Architect,</li>
+<li>representatives from major divisions or programs,</li>
+<li>compliance representative where applicable.</li>
+</ul>
+<h3>Responsibilities</h3>
+<p>The DevSecOps Governance Board is responsible for:</p>
+<ul>
+<li>maintaining the DevSecOps control baseline structure,</li>
+<li>approving DevSecOps standards and technical baselines,</li>
+<li>defining enterprise DevSecOps maturity levels,</li>
+<li>evaluating waiver requests within delegated authority,</li>
+<li>monitoring enterprise adoption and maturity progress,</li>
+<li>coordinating domain-specific DevSecOps implementations.</li>
+</ul>
+<h3>Escalation</h3>
+<p>The Board escalates decisions to:</p>
+<ul>
+<li>the CSCSO for high-risk cybersecurity matters,</li>
+<li>the Safety Authority for safety-critical deviations,</li>
+<li>the CDO for enterprise-level governance conflicts.</li>
+</ul>
+<h2>DevSecOps Platform Governance</h2>
+<h3>Platform Ownership</h3>
+<p>Enterprise DevSecOps platform capabilities shall be operated under the responsibility of the DevSecOps Platform Lead within the CDO organization. This includes both on-premises and cloud-based platforms.</p>
+<p>The Platform Lead is responsible for:</p>
+<ul>
+<li>maintaining approved pipeline blueprints,</li>
+<li>implementing enterprise control baselines,</li>
+<li>providing secure artifact repositories,</li>
+<li>implementing evidence generation mechanisms,</li>
+<li>managing platform lifecycle and upgrades.</li>
+</ul>
+<h3>Domain Platform Variants</h3>
+<p>Where required by security or operational constraints, domain-specific DevSecOps platform variants may be established, including:</p>
+<ul>
+<li>air-gapped environments,</li>
+<li>classified system environments,</li>
+<li>restricted operational networks.</li>
+</ul>
+<p>All domain platforms must comply with enterprise DevSecOps Standards.</p>
+<h2>Mandatory Adoption Rules</h2>
+<h3>New Programs</h3>
+<p>All programs initiated after entry into force of the Policy shall implement DevSecOps in accordance with enterprise Standards.</p>
+<p>DevSecOps adoption shall be considered during program approval processes.</p>
+<h3>Existing Programs</h3>
+<p>Existing programs shall establish a DevSecOps transition roadmap aligned with enterprise maturity targets.</p>
+<p>Transition timelines shall be defined by the DevSecOps Governance Board.</p>
+<h2>Control Baseline Management</h2>
+<p>Mandatory DevSecOps control baselines shall be defined in DevSecOps Standards.</p>
+<p>The control baseline shall include requirements covering:</p>
+<ul>
+<li>cybersecurity,</li>
+<li>safety,</li>
+<li>software supply chain integrity,</li>
+<li>artifact integrity and signing,</li>
+<li>traceability and evidence,</li>
+<li>operational monitoring and lifecycle management.</li>
+</ul>
+<p>Programs must implement the applicable control baseline based on:</p>
+<ul>
+<li>security domain,</li>
+<li>system criticality,</li>
+<li>operational environment.</li>
+</ul>
+<h2>Waiver And Deviation Management</h2>
+<h3>Waiver Principles</h3>
+<p>Deviations from mandatory requirements are permitted only when:</p>
+<ul>
+<li>technical or regulatory justification exists,</li>
+<li>risk classification is documented,</li>
+<li>compensating controls are defined,</li>
+<li>the approving authority and named approver are documented,</li>
+<li>an approval date is documented,</li>
+<li>expiry dates are defined.</li>
+</ul>
+<p>All waivers must be documented in a centralized waiver registry.</p>
+<p>Each approved waiver record shall at minimum contain:</p>
+<ul>
+<li>a unique waiver identifier,</li>
+<li>the affected scope or object,</li>
+<li>the affected requirements,</li>
+<li>the written justification,</li>
+<li>compensating controls or compensating measures,</li>
+<li>approval authority,</li>
+<li>named approver,</li>
+<li>approval date,</li>
+<li>expiry date,</li>
+<li>current status.</li>
+</ul>
+<h3>Waiver Authority</h3>
+<p>Approval authority shall follow the risk classification:</p>
+<ul>
+<li>low or medium risk: DevSecOps Governance Board,</li>
+<li>high cybersecurity risk: CSCSO,</li>
+<li>high safety risk: Safety Authority,</li>
+<li>critical risk: CDO and CSCSO jointly.</li>
+</ul>
+<h2>Reporting And Compliance Monitoring</h2>
+<p>The DevSecOps Governance Board shall establish enterprise reporting covering:</p>
+<ul>
+<li>platform adoption rates,</li>
+<li>DevSecOps maturity distribution across programs,</li>
+<li>open waivers by risk category,</li>
+<li>vulnerability remediation performance,</li>
+<li>compliance audit findings.</li>
+</ul>
+<p>Reporting shall be provided periodically to the CDO and relevant governance bodies.</p>
+<h2>Relationship To Standards, Processes, And Guidelines</h2>
+<p>This Directive is implemented through supporting documents such as:</p>
+<ul>
+<li>DevSecOps Standards including the Control Baseline Standard, Platform Architecture Standard, and related supply chain, artifact integrity, and evidence standards,</li>
+<li>DevSecOps Processes including waiver management, platform onboarding, and maturity assessment,</li>
+<li>DevSecOps Guidelines including pipeline blueprint usage, secure coding practices, and SBOM management guidance.</li>
+</ul>
+<h2>Entry Into Force</h2>
+<p>This Directive enters into force upon approval and remains valid until superseded or revoked.</p>
+<h2>Structured Mapping</h2>
+<p>This directive is represented in model/documents/governance-documents.yaml and traced to controls in model/traceability/document-to-control.yaml.</p>
+<h2>Entry Into Force</h2>
+<p>Upon approval</p>
+<h2>Repository Source</h2>
+<p>Rendered from docs/governance/devsecops-directive.md using scripts/render_governance_documents.py.</p>
+</body>
+</html>

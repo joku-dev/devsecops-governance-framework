@@ -1,0 +1,47 @@
+name: DevSecOps Baseline L1
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  prepare-devsecops-evidence:
+    name: Prepare DevSecOps Evidence
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Produce baseline evidence
+        run: |
+          mkdir -p dist security
+          printf 'example artifact from %s
+' "${GITHUB_SHA}" > dist/example-app.txt
+          cat > security/sbom.cyclonedx.json <<'JSON'
+          {"bomFormat":"CycloneDX","specVersion":"1.5","version":1,"metadata":{"component":{"type":"application","name":"example-app"}},"components":[]}
+          JSON
+          cat > security/vulnerability-scan.json <<'JSON'
+          {"scanner":"example-scanner","max_severity":"none","findings":[]}
+          JSON
+
+      - name: Upload application evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-evidence
+          path: |
+            dist/example-app.txt
+            security/sbom.cyclonedx.json
+            security/vulnerability-scan.json
+
+  devsecops-baseline-l1:
+    name: Central DevSecOps L1 Baseline
+    needs: prepare-devsecops-evidence
+    uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-l1-v1.0.0.yml@l1-baseline-v1.0.0
+    with:
+      artifact_path: dist/example-app.txt
+      sbom_path: security/sbom.cyclonedx.json
+      vulnerability_scan_path: security/vulnerability-scan.json
+      application_evidence_artifact_name: application-evidence

@@ -1,0 +1,69 @@
+minimum_metadata:
+  pipeline_execution:
+    - pipeline_id
+    - pipeline_run_id
+    - pipeline_definition_id
+    - repository_id
+    - branch
+    - commit_id
+    - triggered_by
+    - started_at
+    - completed_at
+    - status
+
+  build:
+    - build_id
+    - build_tool
+    - build_configuration_id
+    - source_commit_id
+    - runner_id
+    - build_environment_id
+    - build_started_at
+    - build_completed_at
+
+  artifact:
+    - artifact_id
+    - artifact_type
+    - artifact_version
+    - repository
+    - checksum_or_digest
+    - build_id
+    - commit_id
+    - created_at
+
+  evidence:
+    - evidence_id
+    - evidence_type
+    - produced_by
+    - produced_at
+    - linked_requirement_ids
+    - linked_artifact_id
+    - linked_pipeline_run_id
+    - status
+
+  release:
+    - release_id
+    - artifact_id
+    - approval_status
+    - approved_by
+    - approved_at
+    - policy_decision
+    - waiver_ids
+
+  deployment:
+    - deployment_id
+    - release_id
+    - artifact_id
+    - environment_id
+    - deployed_version
+    - deployed_at
+    - deployment_status
+
+  waiver:
+    - waiver_id
+    - affected_requirement_id
+    - risk_classification
+    - compensating_controls
+    - approval_authority
+    - approval_status
+    - expiry_date

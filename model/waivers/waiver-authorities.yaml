@@ -1,0 +1,11 @@
+authorities:
+  low:
+    approval_authority: DevSecOps Governance Board
+  medium:
+    approval_authority: DevSecOps Governance Board
+  high_cybersecurity:
+    approval_authority: CISO
+  high_safety:
+    approval_authority: Safety Authority
+  critical:
+    approval_authority: CDO and CSCSO jointly

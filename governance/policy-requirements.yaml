@@ -1,0 +1,315 @@
+source_document: DevSecOps Policy
+id_prefix: DSPOL
+requirements:
+- id: DSPOL-REQ-001
+  domain: scope
+  title: Policy applicability
+  requirement: The DevSecOps Policy applies to all SDD-relevant software components, organizational units, lifecycle phases, internally developed
+    software, externally sourced software integrated into company systems, and relevant security domains.
+  verification_requirement: Program applicability records SHALL identify whether the policy applies to each program, product, platform, and externally
+    sourced software component.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Applicability can be checked through program and product inventory metadata.
+  derived_controls:
+  - DSCB-GOV-REQ-001
+- id: DSPOL-REQ-002
+  domain: scope
+  title: Exemption approval
+  requirement: Any exemption from the DevSecOps Policy must be formally justified and approved via the defined waiver process.
+  verification_requirement: Each exemption SHALL reference an approved waiver record with justification, risk classification, compensating controls,
+    and expiry date.
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Unapproved exemptions can be blocked through waiver registry checks.
+  derived_controls:
+  - DSCB-GOV-REQ-003
+  - DSCB-GOV-REQ-005
+- id: DSPOL-REQ-003
+  domain: fundamental_principles
+  title: Security by design and default
+  requirement: Cybersecurity controls shall be integrated into architecture, development, and operations and enforced prior to deployment.
+  verification_requirement: Release evidence SHALL show that required security controls and gates were executed before deployment.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: linkage
+    machine_readable_evidence_required: true
+    rationale: Requires linkage across architecture review, pipeline gates, and deployment approval evidence.
+  derived_controls:
+  - DSCB-L1-REQ-009
+  - DSCB-L1-REQ-010
+  - DSCB-L2-REQ-011
+  - DSCB-L2-REQ-012
+- id: DSPOL-REQ-004
+  domain: fundamental_principles
+  title: Safety integration
+  requirement: Where applicable, safety requirements shall be integrated into the software lifecycle and supported by traceable and auditable
+    evidence.
+  verification_requirement: Safety applicability and evidence records SHALL be linked to lifecycle artifacts where safety relevance is declared.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: linkage
+    machine_readable_evidence_required: true
+    rationale: Safety integration requires ALM or safety evidence integration and cannot be evaluated only from CI/CD.
+  derived_controls:
+  - DSCB-L1-REQ-001
+  - DSCB-L3-REQ-009
+- id: DSPOL-REQ-005
+  domain: fundamental_principles
+  title: Automation first
+  requirement: Security, safety, quality, and compliance controls shall be implemented through automated mechanisms wherever technically feasible;
+    test automation shall have project-defined coverage over all requirements and be measured as KPI.
+  verification_requirement: Programs SHALL provide automation coverage evidence and KPI records for applicable security, safety, quality, compliance,
+    and test automation controls.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Automation coverage can be measured once pipeline and test management evidence are integrated.
+  derived_controls:
+  - DSCB-L1-REQ-015
+  - DSCB-L3-REQ-011
+- id: DSPOL-REQ-006
+  domain: fundamental_principles
+  title: Lifecycle ownership
+  requirement: Responsible teams shall maintain accountability from code creation through operational deployment and evolution.
+  verification_requirement: Ownership records SHALL link responsible teams to repositories, pipelines, artifacts, deployments, and operational
+    records.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: linkage
+    machine_readable_evidence_required: true
+    rationale: Requires ownership metadata across repository, pipeline, deployment, and operations systems.
+  derived_controls:
+  - DSCB-L1-REQ-002
+  - DSCB-L1-REQ-016
+- id: DSPOL-REQ-007
+  domain: fundamental_principles
+  title: Federated execution under central governance
+  requirement: Implementation may be decentralized across divisions and programs but shall operate within centrally defined governance, Standards,
+    and control baselines.
+  verification_requirement: Each division or program SHALL reference the centrally applicable standards and control baseline level in program
+    governance records.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Governance records can identify applicable standards and baseline levels.
+  derived_controls:
+  - DSCB-GOV-REQ-001
+- id: DSPOL-REQ-008
+  domain: fundamental_principles
+  title: Evidence-based compliance
+  requirement: Compliance evidence shall be generated automatically from approved development and operational pipelines.
+  verification_requirement: Approved pipelines SHALL generate machine-readable compliance evidence linked to control identifiers.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Evidence bundle presence can be checked in pipeline outputs.
+  derived_controls:
+  - DSCB-L1-REQ-015
+  - DSCB-L3-REQ-011
+- id: DSPOL-REQ-009
+  domain: fundamental_principles
+  title: Domain-aware application
+  requirement: DevSecOps implementation shall consider security domain, system criticality, and operational context while maintaining mandatory
+    baseline controls.
+  verification_requirement: Applicability records SHALL include security domain, system criticality, operational context, and assigned control
+    baseline level.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Classification fields can be checked in program metadata.
+  derived_controls:
+  - DSCB-GOV-REQ-001
+- id: DSPOL-REQ-010
+  domain: minimum_requirements
+  title: Lifecycle phase implementation
+  requirement: For each lifecycle phase, defined objectives, controls, and evidence SHALL be implemented in accordance with applicable Standards.
+  verification_requirement: Lifecycle evidence SHALL show applicable objectives, controls, and evidence for each relevant lifecycle phase.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Requires lifecycle model and evidence integration.
+  derived_controls:
+  - DSCB-L1-REQ-015
+- id: DSPOL-REQ-011
+  domain: minimum_requirements
+  title: Credential protection
+  requirement: Programs MUST ensure that no sensitive credentials are stored in source code.
+  verification_requirement: Repository scan evidence SHALL show that sensitive credentials were checked and findings resolved or waived.
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: threshold
+    machine_readable_evidence_required: true
+    rationale: Secret scanning can block releases or merges.
+  derived_controls:
+  - DSCB-L1-REQ-004
+  - DSCB-L2-REQ-011
+- id: DSPOL-REQ-012
+  domain: minimum_requirements
+  title: Dependency transparency
+  requirement: Programs MUST ensure that dependencies and third-party software components are transparent and verifiable.
+  verification_requirement: Dependency inventory, SBOM, and dependency scan evidence SHALL be available for releasable artifacts.
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: SBOM and dependency scan evidence can be checked automatically.
+  derived_controls:
+  - DSCB-L1-REQ-005
+  - DSCB-L1-REQ-006
+  - DSCB-L2-REQ-005
+- id: DSPOL-REQ-013
+  domain: minimum_requirements
+  title: Vulnerability management
+  requirement: Programs MUST ensure that vulnerabilities are identified, assessed, and treated according to defined SLAs.
+  verification_requirement: Vulnerability scan and assessment evidence SHALL show treatment status against defined severity thresholds and SLAs.
+  automation:
+    type: blocking_gate
+    maturity: tool_integration_required
+    check_type: threshold
+    machine_readable_evidence_required: true
+    rationale: Requires vulnerability tool and SLA configuration.
+  derived_controls:
+  - DSCB-L1-REQ-009
+  - DSCB-L1-REQ-010
+- id: DSPOL-REQ-014
+  domain: minimum_requirements
+  title: Release artifact integrity
+  requirement: Programs MUST ensure that releasable artifacts are uniquely identifiable, reproducible, and cryptographically signed.
+  verification_requirement: Artifact metadata SHALL show unique identity, integrity evidence, reproducibility evidence where applicable, and signature
+    evidence according to the required baseline level.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: integrity
+    machine_readable_evidence_required: true
+    rationale: Full check depends on artifact repository, signing, and reproducible build integration.
+  derived_controls:
+  - DSCB-L1-REQ-011
+  - DSCB-L1-REQ-012
+  - DSCB-L2-REQ-007
+  - DSCB-L3-REQ-001
+- id: DSPOL-REQ-015
+  domain: minimum_requirements
+  title: End-to-end traceability
+  requirement: Programs MUST ensure that requirements, source code, builds, and deployed artifacts are traceable.
+  verification_requirement: Traceability evidence SHALL link requirements, source code changes, build records, artifact identifiers, and deployment
+    records.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: linkage
+    machine_readable_evidence_required: true
+    rationale: Requires ALM, repository, pipeline, artifact, and deployment linkage.
+  derived_controls:
+  - DSCB-L1-REQ-001
+  - DSCB-L3-REQ-009
+- id: DSPOL-REQ-016
+  domain: minimum_requirements
+  title: Release approval evidence
+  requirement: Programs MUST ensure that release approvals are formally documented and auditable.
+  verification_requirement: Each release SHALL reference an approval record linked to release and artifact identifiers.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Requires release workflow or environment approval evidence.
+  derived_controls:
+  - DSCB-L1-REQ-013
+  - DSCB-L1-REQ-014
+- id: DSPOL-REQ-017
+  domain: evidence
+  title: Machine-generated evidence
+  requirement: For all mandatory controls, machine-generated evidence SHALL be available and retained.
+  verification_requirement: Evidence repository records SHALL show retained machine-generated evidence for applicable mandatory controls.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Evidence bundle completeness can be checked.
+  derived_controls:
+  - DSCB-L1-REQ-015
+  - DSCB-L3-REQ-011
+- id: DSPOL-REQ-018
+  domain: evidence
+  title: Manual evidence justification
+  requirement: Manual evidence is permitted only where automation is technically or regulatorily infeasible and must be formally justified.
+  verification_requirement: Manual evidence records SHALL include justification for infeasibility of automation and approval status.
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Manual evidence exceptions can be checked through governance records.
+  derived_controls:
+  - DSCB-GOV-REQ-003
+  - DSCB-GOV-REQ-005
+- id: DSPOL-REQ-019
+  domain: maturity_applicability
+  title: Maturity achievement or waiver
+  requirement: Programs SHALL achieve their defined maturity level or obtain formally approved waivers.
+  verification_requirement: Program records SHALL show target maturity level, current maturity status, and approved waiver where target maturity
+    is not achieved.
+  automation:
+    type: evidence_check
+    maturity: tool_integration_required
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Requires maturity assessment and waiver registry integration.
+  derived_controls:
+  - DSCB-GOV-REQ-001
+  - DSCB-GOV-REQ-003
+- id: DSPOL-REQ-020
+  domain: deviations
+  title: Waiver constraints
+  requirement: Deviations from mandatory requirements MUST be justified, risk-classified, compensated, time-limited, centrally recorded, and re-evaluated
+    prior to expiry.
+  verification_requirement: Waiver records SHALL contain justification, risk classification, compensating controls, expiry date, registry identifier,
+    and re-evaluation status.
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Waiver completeness and expiry can be checked automatically.
+  derived_controls:
+  - DSCB-GOV-REQ-004
+  - DSCB-GOV-REQ-005
+- id: DSPOL-REQ-021
+  domain: compliance_reporting
+  title: Compliance reporting and enforcement
+  requirement: Compliance with the DevSecOps Policy is mandatory and shall be considered in program approvals, architecture decisions, process
+    reviews, audits, and periodic corporate reporting.
+  verification_requirement: Governance evidence SHALL show compliance consideration in program approvals, architecture decisions, reviews, audits,
+    and periodic reporting.
+  automation:
+    type: review_check
+    maturity: tool_integration_required
+    check_type: review
+    machine_readable_evidence_required: true
+    rationale: The existence and status of review evidence can be checked, but judgment remains human.
+  derived_controls:
+  - DSCB-GOV-REQ-002

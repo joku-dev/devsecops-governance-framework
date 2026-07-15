@@ -1,0 +1,13 @@
+{
+  "evidence_type": "interface_contract",
+  "status": "draft",
+  "owner": "Product Architect",
+  "summary": "Tool-neutral interface contract evidence. Reference OpenAPI, AsyncAPI, schema, protocol, or interface documentation used by the product.",
+  "evidence_refs": [
+    "docs/ARCHITECTURE.md"
+  ],
+  "known_limitations": [
+    "Template placeholder; add concrete contract artifacts before review."
+  ],
+  "follow_up_actions": []
+}

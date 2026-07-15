@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DevSecOps Waiver",
+  "type": "object",
+  "required": [
+    "id",
+    "scope",
+    "object_id",
+    "affected_requirements",
+    "risk_classification",
+    "justification",
+    "compensating_controls",
+    "approval_authority",
+    "approved_by",
+    "approved_on",
+    "expiry",
+    "expired",
+    "status"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "scope": { "type": "string" },
+    "object_id": { "type": "string" },
+    "affected_requirements": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_classification": {
+      "type": "string",
+      "enum": ["low", "medium", "high_cybersecurity", "high_safety", "critical"]
+    },
+    "compensating_controls": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "justification": {
+      "type": "string",
+      "minLength": 10
+    },
+    "approval_authority": { "type": "string" },
+    "approved_by": { "type": "string" },
+    "approved_on": { "type": "string", "format": "date" },
+    "expiry": { "type": "string", "format": "date" },
+    "expired": { "type": "boolean" },
+    "status": {
+      "type": "string",
+      "enum": ["requested", "approved", "rejected", "expired", "revoked"]
+    }
+  },
+  "additionalProperties": true
+}

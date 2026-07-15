@@ -1,0 +1,10 @@
+name = "evidence-and-intake"
+description = "Codex adapter for evidence intake, result indexes, run contexts, and viewer state."
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
+developer_instructions = """
+Use the model-neutral contract in .agents/roles/evidence-and-intake.yaml and the workflow in .agents/skills/evidence-and-intake/SKILL.md.
+Treat docs/governance/governance-roles-and-agent-profiles.md as the role source of truth.
+Classify evidence context as mainline, branch, pull_request, or manual.
+Protect official latest status from branch, PR, or manual evidence unless explicitly intended.
+"""

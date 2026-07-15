@@ -1,0 +1,11 @@
+{
+  "evidence_type": "resilience_evidence",
+  "status": "draft",
+  "owner": "Product Architect",
+  "summary": "Summarizes verified resilience, degraded-mode, restart, failover, recovery or DIL behavior.",
+  "evidence_refs": [
+    "docs/DEPLOYMENT.md"
+  ],
+  "known_limitations": [],
+  "follow_up_actions": []
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "architecture_baseline_ref": "ha-CPsWMS-demo-baseline",
+  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "result_type": "architecture-runtime-governance-run",
+  "generated_at": "2026-07-02T12:08:10Z",
+  "pipeline": {
+    "pipeline_name": "Architecture Runtime Governance",
+    "pipeline_run_id": "28588779711",
+    "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/28588779711",
+    "event": "pull_request",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "codex/architecture-governance-workflow",
+    "branch_protected": false,
+    "commit_id": "a959e916ff0200c0c3bfadc66650b15c0918c8c7"
+  },
+  "target": {
+    "path": "/home/runner/work/ha-CPsWMS/ha-CPsWMS/app",
+    "commit": "0dedf21",
+    "release_id": "0dedf217ef5867ef3cb969b1f5e82a12c5ffd720",
+    "detected_services": 5
+  },
+  "checks": {
+    "architecture_runtime_governance": "success"
+  },
+  "evidence": {
+    "release_input": true,
+    "architecture_report": true,
+    "marker_assessments": 32,
+    "release_compatibility_declaration": true,
+    "solution_baseline": true,
+    "compatibility_evidence": true,
+    "security_evidence": true,
+    "deployment_evidence": true,
+    "runtime_evidence": true,
+    "feedback_evidence": true,
+    "exceptions": 0
+  },
+  "architecture_summary": {
+    "gate_count": 4,
+    "passed": 4,
+    "with_findings": 0,
+    "finding_count": 0
+  },
+  "gates": [
+    {
+      "id": "architecture_readiness",
+      "title": "Architecture Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "integration_readiness",
+      "title": "Integration Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "operation_readiness",
+      "title": "Operation Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "release_readiness",
+      "title": "Release Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    }
+  ],
+  "overall_status": "pass",
+  "notes": "PR Architecture Runtime Governance run for ha-CPsWMS report-only demo; all four architecture gates passed with zero findings."
+}

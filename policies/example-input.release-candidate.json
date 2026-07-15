@@ -1,0 +1,50 @@
+{
+  "release_candidate": true,
+  "repository": {
+    "protected_branch": true,
+    "direct_push_allowed": false,
+    "review_required": true
+  },
+  "evidence": {
+    "sbom": {
+      "exists": true,
+      "linked_to_artifact": true
+    },
+    "vulnerability_scan": {
+      "exists": true
+    }
+  },
+  "artifact": {
+    "digest": {
+      "exists": true,
+      "linked_to_artifact": true
+    },
+    "signature": {
+      "exists": false
+    }
+  },
+  "pipeline": {
+    "security_gates": {
+      "enforced": true
+    },
+    "security_thresholds_exceeded": false,
+    "external_direct_downloads_detected": false
+  },
+  "dependencies": [
+    {
+      "name": "example-library",
+      "source_approved": true
+    }
+  ],
+  "infrastructure": {
+    "iac_repository": {
+      "exists": true,
+      "version_controlled": true
+    }
+  },
+  "deployment": {
+    "required": true
+  },
+  "vulnerabilities": [],
+  "waivers": []
+}

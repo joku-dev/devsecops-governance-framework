@@ -1,0 +1,284 @@
+{
+  "agent_counts": {
+    "architecture-runtime-governance": 7,
+    "demo-readiness": 1,
+    "devsecops-baseline": 1,
+    "evidence-and-intake": 8,
+    "governance-analyst": 2,
+    "release-manager": 9,
+    "repo-steward": 17
+  },
+  "change_area_counts": {
+    ".agents/providers": 2,
+    ".agents/routing": 3,
+    "docs/ai-index.md": 1,
+    "docs/official-entrypoints.md": 1,
+    "docs/operations": 29,
+    "generated/agent-usage": 8,
+    "generated/demo": 4,
+    "generated/reports": 12,
+    "generated/viewer": 1,
+    "mkdocs.yml": 1,
+    "pipeline-baseline/templates/app-architecture-evidence": 14,
+    "pipeline-baseline/templates/bamboo": 1,
+    "pipeline-baseline/templates/bitbucket": 1,
+    "policies/example-input.architecture-release-candidate-findings.json": 2,
+    "policies/example-input.architecture-release-candidate.json": 2,
+    "schemas": 7,
+    "scripts": 23,
+    "tests": 26
+  },
+  "event_count": 17,
+  "first_event_at": "2026-07-06T18:12:27Z",
+  "generated_at": "2026-07-06T20:04:36Z",
+  "last_event_at": "2026-07-06T20:04:30Z",
+  "latest_events": [
+    {
+      "changed_areas": [
+        "docs/operations",
+        "generated/reports",
+        "pipeline-baseline/templates/bamboo",
+        "pipeline-baseline/templates/bitbucket",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_count": 17,
+      "platform": "local",
+      "provider": "none",
+      "release_impact": "candidate",
+      "run_type": "dispatch",
+      "selected_agents": [
+        "architecture-runtime-governance",
+        "devsecops-baseline",
+        "evidence-and-intake",
+        "release-manager",
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T18:36:02Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/operations",
+        "pipeline-baseline/templates/app-architecture-evidence",
+        "schemas",
+        "scripts"
+      ],
+      "changed_path_count": 11,
+      "platform": "local",
+      "provider": "codex",
+      "release_impact": "candidate",
+      "run_type": "provider_review",
+      "selected_agents": [
+        "architecture-runtime-governance",
+        "evidence-and-intake",
+        "release-manager",
+        "repo-steward"
+      ],
+      "source": "reference-run",
+      "timestamp": "2026-07-06T18:40:06Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/operations",
+        "generated/demo",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_count": 5,
+      "platform": "local",
+      "provider": "none",
+      "release_impact": "candidate",
+      "run_type": "dispatch",
+      "selected_agents": [
+        "architecture-runtime-governance",
+        "evidence-and-intake",
+        "release-manager",
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T18:46:25Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/operations",
+        "pipeline-baseline/templates/app-architecture-evidence",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_count": 5,
+      "platform": "local",
+      "provider": "none",
+      "release_impact": "candidate",
+      "run_type": "dispatch",
+      "selected_agents": [
+        "architecture-runtime-governance",
+        "evidence-and-intake",
+        "release-manager",
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T18:52:42Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/operations",
+        "generated/demo",
+        "pipeline-baseline/templates/app-architecture-evidence",
+        "policies/example-input.architecture-release-candidate-findings.json",
+        "policies/example-input.architecture-release-candidate.json",
+        "schemas",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_count": 12,
+      "platform": "local",
+      "provider": "none",
+      "release_impact": "candidate",
+      "run_type": "dispatch",
+      "selected_agents": [
+        "architecture-runtime-governance",
+        "evidence-and-intake",
+        "release-manager",
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T18:59:05Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/operations",
+        "generated/demo",
+        "pipeline-baseline/templates/app-architecture-evidence",
+        "policies/example-input.architecture-release-candidate-findings.json",
+        "policies/example-input.architecture-release-candidate.json",
+        "schemas",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_count": 14,
+      "platform": "local",
+      "provider": "none",
+      "release_impact": "candidate",
+      "run_type": "dispatch",
+      "selected_agents": [
+        "architecture-runtime-governance",
+        "evidence-and-intake",
+        "release-manager",
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T19:04:17Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/operations",
+        "generated/agent-usage",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_count": 4,
+      "platform": "local",
+      "provider": "none",
+      "release_impact": "none",
+      "run_type": "dispatch",
+      "selected_agents": [
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T19:15:15Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/operations",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_count": 3,
+      "platform": "local",
+      "provider": "none",
+      "release_impact": "none",
+      "run_type": "dispatch",
+      "selected_agents": [
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T19:42:08Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/ai-index.md",
+        "docs/official-entrypoints.md",
+        "docs/operations",
+        "generated/agent-usage",
+        "generated/viewer",
+        "mkdocs.yml",
+        "scripts"
+      ],
+      "changed_path_count": 8,
+      "platform": "local",
+      "provider": "none",
+      "release_impact": "candidate",
+      "run_type": "dispatch",
+      "selected_agents": [
+        "architecture-runtime-governance",
+        "demo-readiness",
+        "evidence-and-intake",
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T19:47:10Z",
+      "warnings": []
+    },
+    {
+      "changed_areas": [
+        "docs/operations",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_count": 3,
+      "platform": "local",
+      "provider": "codex",
+      "release_impact": "none",
+      "run_type": "provider_review",
+      "selected_agents": [
+        "repo-steward"
+      ],
+      "source": "manual",
+      "timestamp": "2026-07-06T20:04:30Z",
+      "warnings": []
+    }
+  ],
+  "metadata_only": true,
+  "platform_counts": {
+    "local": 17
+  },
+  "provider_counts": {
+    "codex": 2,
+    "none": 15
+  },
+  "run_type_counts": {
+    "dispatch": 15,
+    "provider_review": 2
+  },
+  "schema_version": "1.0.0",
+  "skill_counts": {
+    "architecture-runtime-governance": 7,
+    "demo-readiness": 1,
+    "devsecops-baseline": 1,
+    "evidence-and-intake": 8,
+    "governance-analysis": 2,
+    "release-management": 9,
+    "repo-steward": 17
+  },
+  "source_log": "generated/agent-usage/agent-usage.jsonl",
+  "warning_counts": {}
+}

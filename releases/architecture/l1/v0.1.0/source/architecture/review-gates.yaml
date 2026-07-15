@@ -1,0 +1,93 @@
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+model_version: 0.1.0
+review_gates:
+- id: RG-ARCH-READY
+  title: Architecture readiness
+  source_reference: "Section 5.8 and Section 9"
+  purpose: Determine whether architecture work is sufficiently designed, owned and process-aware to proceed into implementation.
+  minimum_thresholds:
+  - marker_scope: BAPO
+    marker_ids:
+    - B1
+    - B2
+    - B3
+    - B4
+    minimum_score: 3
+  - marker_scope: applicable_critical_markers
+    minimum_score: 3
+  required_evidence:
+  - architecture_review_record
+  - owner_assignment
+  - evidence_plan
+  decision_outcomes:
+  - approved
+  - conditionally_approved
+  - returned_for_rework
+  - exception_required
+- id: RG-INTEGRATION-READY
+  title: Integration readiness
+  source_reference: "Section 7.5, Section 7.6, Section 7.8"
+  purpose: Determine whether products can be integrated through defined interfaces, data contracts, security boundaries and deployment assumptions.
+  minimum_thresholds:
+  - marker_scope: integration_critical_markers
+    marker_ids:
+    - S3
+    - S5
+    - P5
+    minimum_score: 3
+  required_evidence:
+  - interface_catalogue
+  - data_contracts
+  - integration_plan
+  - deployment_view
+  - security_boundary_model
+  decision_outcomes:
+  - ready
+  - ready_with_conditions
+  - not_ready
+  - exception_required
+- id: RG-RELEASE-READY
+  title: Release readiness
+  source_reference: "Section 3.3.7, Section 10.10"
+  purpose: Determine whether a product or solution release is compatible with its baseline and supported by verification evidence.
+  minimum_thresholds:
+  - marker_scope: release_critical_markers
+    marker_ids:
+    - S3
+    - S5
+    - S6
+    - P5
+    - P8
+    - P13
+    minimum_score: 4
+    valid_exception_allowed: true
+  required_evidence:
+  - release_compatibility_declaration
+  - solution_baseline
+  - compatibility_evidence
+  - security_evidence
+  - deployment_evidence
+  decision_outcomes:
+  - release_approved
+  - release_blocked
+  - release_approved_with_conditions
+- id: RG-OPERATION-READY
+  title: Operation readiness
+  source_reference: "Section 6.9, Section 9.8"
+  purpose: Determine whether runtime behavior is observable, measurable and connected to feedback-driven improvement.
+  minimum_thresholds:
+  - marker_scope: operation_critical_markers
+    marker_ids:
+    - B5
+    - P11
+    minimum_score: 4
+  required_evidence:
+  - monitoring_dashboard
+  - runtime_metrics
+  - health_indicators
+  - incident_feedback_process
+  - improvement_backlog
+  decision_outcomes:
+  - operation_approved
+  - operation_approved_with_conditions
+  - operation_blocked

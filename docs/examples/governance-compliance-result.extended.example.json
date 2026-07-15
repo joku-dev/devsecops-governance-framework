@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "governance_repo": "devsecops-governance-as-code",
+  "target_repo": "sample-app",
+  "timestamp": "2026-06-26T18:45:00Z",
+  "status": "pass",
+  "checks": [
+    {
+      "check_id": "governance_ci_file_present",
+      "description": "A CI pipeline file is present in the target repository.",
+      "status": "pass",
+      "details": "Found .github/workflows/governance.yml"
+    },
+    {
+      "check_id": "governance_reference_present",
+      "description": "The target repository references the governance repository or governance templates.",
+      "status": "pass",
+      "details": "Found devsecops-governance-as-code reference in workflow file."
+    },
+    {
+      "check_id": "governance_commands_present",
+      "description": "The target repository CI includes expected governance validation commands.",
+      "status": "pass",
+      "details": "Found validate_governance_repo.py, unittest, and opa check references."
+    }
+  ],
+  "execution": {
+    "validator": {
+      "status": "pass",
+      "command": "python3 scripts/validate_governance_repo.py"
+    },
+    "unit_tests": {
+      "status": "pass",
+      "command": "python3 -m unittest discover -s tests"
+    },
+    "opa_check": {
+      "status": "pass",
+      "command": "opa check policies/opa"
+    }
+  },
+  "policy_evaluations": [
+    {
+      "policy_id": "branch_protection",
+      "status": "pass",
+      "deny_count": 0
+    },
+    {
+      "policy_id": "vulnerability_gate",
+      "status": "pass",
+      "deny_count": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "traceability_matrix",
+      "path": "generated/xlsx/traceability_matrix.csv",
+      "status": "present"
+    },
+    {
+      "artifact_id": "status_viewer",
+      "path": "generated/viewer/status-viewer.html",
+      "status": "present"
+    }
+  ],
+  "control_evaluations": {
+    "summary": {
+      "total_controls": 46,
+      "pass": 30,
+      "fail": 0,
+      "not_tested": 0,
+      "not_applicable": 16,
+      "applicable_controls": 30,
+      "tested_controls": 30
+    },
+    "controls": [
+      {
+        "control_id": "DSCB-L1-REQ-001",
+        "level": "L1",
+        "verification_method": "hybrid",
+        "status": "pass",
+        "message": "Traceability is evaluated from explicit structured linkage fields for requirements, testcases, and reports."
+      },
+      {
+        "control_id": "DSCB-L1-REQ-002",
+        "level": "L1",
+        "verification_method": "automated",
+        "status": "pass",
+        "message": "Source control governance is evaluated from explicit version-control, author-traceability, and review-record fields."
+      },
+      {
+        "control_id": "DSCB-L1-REQ-003",
+        "level": "L1",
+        "verification_method": "automated",
+        "status": "pass",
+        "message": "Mapped policy `branch_protection` returned 0 deny messages."
+      },
+      {
+        "control_id": "DSCB-L1-REQ-013",
+        "level": "L1",
+        "verification_method": "hybrid",
+        "status": "pass",
+        "message": "Release authorization is evaluated from explicit structured approval metadata."
+      },
+      {
+        "control_id": "DSCB-L2-REQ-013",
+        "level": "L2",
+        "verification_method": "automated",
+        "status": "pass",
+        "message": "Security monitoring generation is evaluated from explicit monitoring event generation and integration fields."
+      },
+      {
+        "control_id": "DSCB-L3-REQ-001",
+        "level": "L3",
+        "verification_method": "hybrid",
+        "status": "not_applicable",
+        "message": "Control requires PRA-Level 3, but the evaluated run declares PRA-Level 2."
+      }
+    ]
+  }
+}

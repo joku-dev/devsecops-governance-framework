@@ -1,0 +1,15 @@
+{
+  "scenario": "source-document-candidate",
+  "description": "A new source document is registered as a candidate and must not derive controls or policies before review.",
+  "changed_files": [
+    "docs/governance/source-documents/new-platform-standard.md",
+    "model/documents/source-document-register.yaml",
+    "docs/governance/change-requests/CR-new-platform-standard.md"
+  ],
+  "source_document_status": "candidate",
+  "forbidden_agents": [
+    "policy-as-code",
+    "release-manager",
+    "demo-readiness"
+  ]
+}

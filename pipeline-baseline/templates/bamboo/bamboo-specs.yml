@@ -1,0 +1,92 @@
+# Bamboo Specs sketch for DevSecOps governance evidence collection.
+#
+# This file is a reference mapping, not a complete enterprise plan.
+# Adapt repository checkout, tasks, artifact definitions and credentials to the
+# local Bamboo installation.
+
+version: 2
+
+plan:
+  project-key: GOV
+  key: DEVSECOPS
+  name: DevSecOps Governance Baseline
+
+stages:
+  - Evidence:
+      jobs:
+        - Prepare governance evidence
+
+Prepare governance evidence:
+  tasks:
+    - checkout:
+        force-clean-build: true
+
+    - script:
+        interpreter: SHELL
+        scripts:
+          - |
+            set -eu
+            mkdir -p dist security generated/evidence
+            tar --exclude='.git' -czf dist/application-source.tar.gz .
+
+    - script:
+        interpreter: SHELL
+        scripts:
+          - |
+            set -eu
+            cat > security/sbom.cyclonedx.json <<'JSON'
+            {
+              "bomFormat": "CycloneDX",
+              "specVersion": "1.5",
+              "version": 1,
+              "components": []
+            }
+            JSON
+
+    - script:
+        interpreter: SHELL
+        scripts:
+          - |
+            set -eu
+            cat > security/vulnerability-scan.json <<'JSON'
+            {
+              "scanner": "placeholder",
+              "max_severity": "none",
+              "findings": []
+            }
+            JSON
+
+    - script:
+        interpreter: SHELL
+        scripts:
+          - |
+            set -eu
+            python3 scripts/generate_platform_context.py \
+              --platform bamboo \
+              --output generated/evidence/platform-context.json
+
+            python3 scripts/generate_pipeline_evidence.py \
+              --platform bamboo \
+              --platform-context-file generated/evidence/platform-context.json \
+              --governance-mode report-only \
+              --artifact-path dist/application-source.tar.gz \
+              --sbom-path security/sbom.cyclonedx.json \
+              --vulnerability-scan-path security/vulnerability-scan.json \
+              --branch-protection-status not_implemented_for_bamboo_template
+
+  artifacts:
+    - name: devsecops-pipeline-evidence
+      location: .
+      pattern: "generated/evidence/*.json"
+      shared: true
+      required: true
+    - name: application-evidence
+      location: .
+      pattern: "dist/application-source.tar.gz"
+      shared: true
+      required: true
+    - name: security-evidence
+      location: .
+      pattern: "security/*.json"
+      shared: true
+      required: true

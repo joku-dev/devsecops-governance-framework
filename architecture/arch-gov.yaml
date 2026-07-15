@@ -1,0 +1,72 @@
+level: ARCH-GOV
+name: Architecture Governance
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+requirements:
+- id: ARCH-GOV-REQ-001
+  domain: Guardrails
+  title: Runtime and DevSecOps guardrails
+  source_guardrails: [AG-RUN-001, AG-DEVSECOPS-001]
+  requirement: Runtime, platform and DevSecOps guardrails shall define business driver, architecture rule, process requirement, ownership and evidence.
+  verification_requirement: Verify that guardrail records are complete and mapped to review gates and policy candidates where applicable.
+  evidence: [runtime_reference_architecture, ci_cd_pipeline_record, deployment_manifest, release_declaration]
+  verification:
+    method: hybrid
+    frequency: enterprise_guardrail_review
+  automation:
+    type: review_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Guardrail completeness can be checked structurally while content approval remains a review activity.
+  policy_as_code:
+    candidate: false
+    enforcement: review
+  exception:
+    allowed: false
+    authority: Enterprise Architect
+- id: ARCH-GOV-REQ-002
+  domain: Review Gates
+  title: Runtime review gate model
+  source_review_gates: [RG-ARCH-READY, RG-INTEGRATION-READY, RG-RELEASE-READY, RG-OPERATION-READY]
+  requirement: Architecture readiness, integration readiness, release readiness and operation readiness shall be represented as explicit gates with thresholds and evidence.
+  verification_requirement: Verify that each review gate has minimum thresholds, required evidence and decision outcomes.
+  evidence: [review_gate_catalogue, threshold_definition, required_evidence_definition]
+  verification:
+    method: automated
+    frequency: change_review
+  automation:
+    type: evidence_check
+    maturity: immediate
+    check_type: presence
+    machine_readable_evidence_required: true
+    rationale: Review gate data is fully machine-readable.
+  policy_as_code:
+    candidate: true
+    enforcement: schema_validation
+    rule: scripts/validate_runtime_governance.py
+  exception:
+    allowed: false
+    authority: Architecture Review Board
+- id: ARCH-GOV-REQ-003
+  domain: Exceptions
+  title: Controlled architecture exception
+  source_guardrails: [AG-EXC-001]
+  requirement: Architecture exceptions shall be documented, risk-assessed, owned, time-bounded, approved and tracked to closure.
+  verification_requirement: Verify that approved exceptions have owner, mitigation, risk classification, review date, expiry date and approval authority.
+  evidence: [exception_record, risk_assessment, mitigation_plan, approval_record, review_date, expiry_date]
+  verification:
+    method: automated
+    frequency: release_readiness
+  automation:
+    type: blocking_gate
+    maturity: immediate
+    check_type: approval
+    machine_readable_evidence_required: true
+    rationale: Exception validity is release-critical and can be checked from structured exception data.
+  policy_as_code:
+    candidate: true
+    enforcement: release_readiness_gate
+    rule: policies/opa/architecture_release_readiness.rego
+  exception:
+    allowed: false
+    authority: Architecture Review Board

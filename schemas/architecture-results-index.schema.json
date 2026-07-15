@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Architecture Runtime Governance Results Index",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at",
+    "summary",
+    "repositories"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "repository_count",
+        "result_count",
+        "passing_results",
+        "findings_results"
+      ],
+      "properties": {
+        "repository_count": { "type": "integer" },
+        "result_count": { "type": "integer" },
+        "passing_results": { "type": "integer" },
+        "findings_results": { "type": "integer" }
+      }
+    },
+    "repositories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository_id",
+          "architecture_baseline_ref",
+          "latest_result"
+        ],
+        "properties": {
+          "repository_id": { "type": "string" },
+          "architecture_baseline_ref": { "type": "string" },
+          "results_path": { "type": "string" },
+          "latest_result": {
+            "type": "object",
+            "required": [
+              "status",
+              "pipeline_run_id",
+              "commit_id",
+              "generated_at",
+              "architecture_baseline_ref"
+            ],
+            "properties": {
+              "status": { "type": "string" },
+              "pipeline_run_id": { "type": "string" },
+              "commit_id": { "type": "string" },
+              "generated_at": { "type": "string" },
+              "architecture_baseline_ref": { "type": "string" },
+              "pipeline_url": { "type": "string" },
+              "branch": { "type": "string" },
+              "pipeline_event": { "type": "string" },
+              "source_file": { "type": "string" },
+              "architecture_summary": { "type": "object" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

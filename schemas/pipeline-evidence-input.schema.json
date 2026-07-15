@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pipeline Evidence Input",
+  "type": "object",
+  "required": ["pipeline", "repository", "artifact", "evidence", "release", "waivers"],
+  "properties": {
+    "pipeline": {
+      "type": "object",
+      "required": ["pipeline_id", "pipeline_run_id", "commit_id", "status"],
+      "properties": {
+        "pipeline_id": { "type": "string" },
+        "pipeline_run_id": { "type": "string" },
+        "commit_id": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "properties": {
+        "repository_id": { "type": "string" },
+        "branch": { "type": "string" },
+        "protected_branch": { "type": "boolean" },
+        "direct_push_allowed": { "type": "boolean" },
+        "review_required": { "type": "boolean" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "properties": {
+        "artifact_id": { "type": "string" },
+        "artifact_type": { "type": "string" },
+        "artifact_version": { "type": "string" },
+        "digest": {
+          "type": "object",
+          "properties": {
+            "exists": { "type": "boolean" },
+            "linked_to_artifact": { "type": "boolean" }
+          }
+        },
+        "signature": {
+          "type": "object",
+          "properties": {
+            "exists": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "sbom": {
+          "type": "object",
+          "properties": {
+            "exists": { "type": "boolean" },
+            "linked_to_artifact": { "type": "boolean" }
+          }
+        },
+        "vulnerability_scan": {
+          "type": "object",
+          "properties": {
+            "exists": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "properties": {
+        "release_id": { "type": "string" },
+        "approval_status": { "type": "string" },
+        "approved_waiver": {
+          "type": "object",
+          "properties": {
+            "exists": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "waivers": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  }
+}

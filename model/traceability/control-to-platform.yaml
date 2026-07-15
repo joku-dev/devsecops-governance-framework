@@ -1,0 +1,476 @@
+mappings:
+- control: DSCB-L1-REQ-001
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - evidence_and_traceability_layer
+  - traceability_database
+  - pipeline_audit_logs
+  evidence:
+  - requirements_traceability_records
+  - configuration_management_records
+  policy_candidate: false
+- control: DSCB-L1-REQ-002
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - approved_version_control
+  - code_review
+  - branch_protection
+  - repository_audit_log
+  evidence:
+  - commit_history
+  - code_review_records
+  - branch_protection_configuration
+  policy_candidate: false
+- control: DSCB-L1-REQ-003
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - approved_version_control
+  - code_review
+  - branch_protection
+  - repository_audit_log
+  evidence:
+  - commit_history
+  - code_review_records
+  - branch_protection_configuration
+  policy_candidate: true
+- control: DSCB-L1-REQ-004
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - static_code_analysis
+  - code_review
+  - secure_coding_guidance
+  evidence:
+  - static_code_analysis_reports
+  - code_review_documentation
+  policy_candidate: false
+- control: DSCB-L1-REQ-005
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - dependency_inventory
+  - sbom_generation
+  - dependency_scanning
+  - evidence_repository
+  evidence:
+  - sbom
+  - dependency_scan_reports
+  policy_candidate: false
+- control: DSCB-L1-REQ-006
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - dependency_inventory
+  - sbom_generation
+  - dependency_scanning
+  - evidence_repository
+  evidence:
+  - sbom
+  - dependency_scan_reports
+  policy_candidate: true
+- control: DSCB-L1-REQ-007
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - automated_pipeline_execution
+  - build_pipeline_logging
+  - artifact_versioning
+  evidence:
+  - build_pipeline_logs
+  - artifact_version_identifiers
+  policy_candidate: false
+- control: DSCB-L1-REQ-008
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - automated_pipeline_execution
+  - build_pipeline_logging
+  - artifact_versioning
+  evidence:
+  - build_pipeline_logs
+  - artifact_version_identifiers
+  policy_candidate: false
+- control: DSCB-L1-REQ-009
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - vulnerability_scanning
+  - vulnerability_assessment
+  - pipeline_evidence_generation
+  evidence:
+  - vulnerability_scan_reports
+  - vulnerability_assessment_documentation
+  policy_candidate: true
+- control: DSCB-L1-REQ-010
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - vulnerability_scanning
+  - vulnerability_assessment
+  - pipeline_evidence_generation
+  evidence:
+  - vulnerability_scan_reports
+  - vulnerability_assessment_documentation
+  policy_candidate: true
+- control: DSCB-L1-REQ-011
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - artifact_repository_integrity
+  - checksum_or_digest_records
+  - artifact_metadata_management
+  evidence:
+  - artifact_signature_records
+  - artifact_repository_metadata
+  - artifact_checksum_or_digest_records
+  policy_candidate: true
+- control: DSCB-L1-REQ-012
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - artifact_repository_integrity
+  - checksum_or_digest_records
+  - artifact_metadata_management
+  evidence:
+  - artifact_signature_records
+  - artifact_repository_metadata
+  - artifact_checksum_or_digest_records
+  policy_candidate: false
+- control: DSCB-L1-REQ-013
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - release_approval_workflow
+  - deployment_logging
+  - approved_artifact_selection
+  evidence:
+  - release_approval_records
+  - deployment_logs
+  policy_candidate: false
+- control: DSCB-L1-REQ-014
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - release_approval_workflow
+  - deployment_logging
+  - approved_artifact_selection
+  evidence:
+  - release_approval_records
+  - deployment_logs
+  policy_candidate: false
+- control: DSCB-L1-REQ-015
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - machine_readable_evidence_generation
+  - pipeline_audit_logs
+  - evidence_repository
+  evidence:
+  - pipeline_execution_logs
+  - security_scan_reports
+  - artifact_metadata
+  - approval_records
+  policy_candidate: false
+- control: DSCB-L1-REQ-016
+  platform_level: PRA-Level 1
+  platform_capabilities:
+  - deployment_records
+  - operational_logging
+  - incident_record_repository
+  evidence:
+  - system_logs
+  - deployment_records
+  - incident_records
+  policy_candidate: false
+- control: DSCB-L2-REQ-001
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - central_development_environment_management
+  - configuration_baselines
+  - secure_developer_workspace
+  evidence:
+  - environment_configuration_records
+  - system_configuration_baselines
+  policy_candidate: false
+- control: DSCB-L2-REQ-002
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - central_development_environment_management
+  - configuration_baselines
+  - secure_developer_workspace
+  evidence:
+  - environment_configuration_records
+  - system_configuration_baselines
+  policy_candidate: false
+- control: DSCB-L2-REQ-003
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - central_iam
+  - rbac
+  - mfa_privileged_access
+  - access_audit_logging
+  evidence:
+  - authentication_logs
+  - access_control_configuration
+  policy_candidate: false
+- control: DSCB-L2-REQ-004
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - central_iam
+  - rbac
+  - mfa_privileged_access
+  - access_audit_logging
+  evidence:
+  - authentication_logs
+  - access_control_configuration
+  policy_candidate: true
+- control: DSCB-L2-REQ-005
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - approved_dependency_repositories
+  - dependency_proxy
+  - external_download_prevention
+  evidence:
+  - repository_configuration
+  - dependency_management_logs
+  policy_candidate: false
+- control: DSCB-L2-REQ-006
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - approved_dependency_repositories
+  - dependency_proxy
+  - external_download_prevention
+  evidence:
+  - repository_configuration
+  - dependency_management_logs
+  policy_candidate: true
+- control: DSCB-L2-REQ-007
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - artifact_signing_service
+  - signing_key_management
+  - signature_verification
+  evidence:
+  - artifact_signatures
+  - signing_records
+  policy_candidate: true
+- control: DSCB-L2-REQ-008
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - artifact_signing_service
+  - signing_key_management
+  - signature_verification
+  evidence:
+  - artifact_signatures
+  - signing_records
+  policy_candidate: false
+- control: DSCB-L2-REQ-009
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - iac_repository
+  - environment_configuration_management
+  - iac_validation
+  evidence:
+  - infrastructure_repositories
+  - infrastructure_change_history
+  policy_candidate: true
+- control: DSCB-L2-REQ-010
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - iac_repository
+  - environment_configuration_management
+  - iac_validation
+  evidence:
+  - infrastructure_repositories
+  - infrastructure_change_history
+  policy_candidate: true
+- control: DSCB-L2-REQ-011
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - policy_gate_engine
+  - security_threshold_enforcement
+  - release_blocking
+  evidence:
+  - pipeline_policy_gate_records
+  - pipeline_execution_logs
+  policy_candidate: true
+- control: DSCB-L2-REQ-012
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - policy_gate_engine
+  - security_threshold_enforcement
+  - release_blocking
+  evidence:
+  - pipeline_policy_gate_records
+  - pipeline_execution_logs
+  policy_candidate: true
+- control: DSCB-L2-REQ-013
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - security_event_generation
+  - security_event_forwarding
+  - monitoring_integration
+  evidence:
+  - security_monitoring_logs
+  - security_event_records
+  policy_candidate: false
+- control: DSCB-L2-REQ-014
+  platform_level: PRA-Level 2
+  platform_capabilities:
+  - security_event_generation
+  - security_event_forwarding
+  - monitoring_integration
+  evidence:
+  - security_monitoring_logs
+  - security_event_records
+  policy_candidate: false
+- control: DSCB-L3-REQ-001
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - reproducible_build_verification
+  - version_controlled_build_configuration
+  evidence:
+  - rebuild_verification_records
+  - build_configuration_records
+  policy_candidate: false
+- control: DSCB-L3-REQ-002
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - reproducible_build_verification
+  - version_controlled_build_configuration
+  evidence:
+  - rebuild_verification_records
+  - build_configuration_records
+  policy_candidate: false
+- control: DSCB-L3-REQ-003
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - isolated_build_environment
+  - recreatable_build_environment
+  evidence:
+  - build_environment_configuration
+  - pipeline_execution_records
+  policy_candidate: false
+- control: DSCB-L3-REQ-004
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - isolated_build_environment
+  - recreatable_build_environment
+  evidence:
+  - build_environment_configuration
+  - pipeline_execution_records
+  policy_candidate: false
+- control: DSCB-L3-REQ-005
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - provenance_capture
+  - trusted_dependency_sourcing
+  - dependency_records
+  evidence:
+  - provenance_metadata
+  - dependency_records
+  policy_candidate: false
+- control: DSCB-L3-REQ-006
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - provenance_capture
+  - trusted_dependency_sourcing
+  - dependency_records
+  evidence:
+  - provenance_metadata
+  - dependency_records
+  policy_candidate: false
+- control: DSCB-L3-REQ-007
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - enterprise_trust_infrastructure
+  - central_signing_key_management
+  - artifact_signature_logs
+  evidence:
+  - signing_infrastructure_records
+  - artifact_signature_logs
+  policy_candidate: false
+- control: DSCB-L3-REQ-008
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - enterprise_trust_infrastructure
+  - central_signing_key_management
+  - artifact_signature_logs
+  evidence:
+  - signing_infrastructure_records
+  - artifact_signature_logs
+  policy_candidate: false
+- control: DSCB-L3-REQ-009
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - end_to_end_traceability
+  - deployment_metadata
+  - evidence_graph
+  evidence:
+  - traceability_records
+  - deployment_metadata
+  policy_candidate: false
+- control: DSCB-L3-REQ-010
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - runtime_integrity_verification
+  - deployment_traceability
+  evidence:
+  - runtime_integrity_verification_logs
+  policy_candidate: false
+- control: DSCB-L3-REQ-011
+  platform_level: PRA-Level 3
+  platform_capabilities:
+  - continuous_compliance_evidence
+  - compliance_evidence_repository
+  - pipeline_audit_logs
+  evidence:
+  - compliance_evidence_repository
+  - pipeline_audit_records
+  policy_candidate: false
+- control: DSCB-GOV-REQ-001
+  platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - program_control_baseline_assignment
+  - applicability_assessment_record
+  policy_candidate: false
+- control: DSCB-GOV-REQ-002
+  platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - maturity_assessment_record
+  - internal_audit_record
+  - architecture_review_record
+  - program_lifecycle_review_record
+  policy_candidate: false
+- control: DSCB-GOV-REQ-003
+  platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - maturity_assessment_record
+  - internal_audit_record
+  - architecture_review_record
+  - program_lifecycle_review_record
+  policy_candidate: true
+- control: DSCB-GOV-REQ-004
+  platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - waiver_record
+  - risk_classification
+  - expiry_record
+  - compensating_controls
+  policy_candidate: false
+- control: DSCB-GOV-REQ-005
+  platform_level: Not applicable
+  platform_capabilities:
+  - governance_workflow
+  - waiver_registry
+  - compliance_reporting
+  evidence:
+  - waiver_record
+  - risk_classification
+  - expiry_record
+  - compensating_controls
+  policy_candidate: true

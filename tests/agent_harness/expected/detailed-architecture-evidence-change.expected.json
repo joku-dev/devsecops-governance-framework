@@ -1,0 +1,20 @@
+{
+  "selected_agents": [
+    "architecture-runtime-governance",
+    "evidence-and-intake",
+    "release-manager",
+    "repo-steward"
+  ],
+  "required_validations": [
+    "git diff --check",
+    "python3 -m unittest discover -s tests",
+    "python3 scripts/generate_status_viewer.py",
+    "python3 scripts/validate_governance_repo.py",
+    "python3 scripts/validate_runtime_governance.py"
+  ],
+  "release_impact": "candidate",
+  "forbidden_changes": [
+    "detailed_evidence_promoted_to_blocking_without_ea_decision"
+  ],
+  "commit_readiness": "requires_architecture_evidence_review"
+}

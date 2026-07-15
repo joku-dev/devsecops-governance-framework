@@ -1,0 +1,89 @@
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+model_version: 0.1.0
+guardrails:
+- id: AG-RUN-001
+  title: Runtime, platform and Edge/Fog/Cloud alignment
+  level: Enterprise
+  source_reference: "Section 6.9, Table 67"
+  business_driver: SDD capabilities must operate across tactical edge, fog and cloud environments while remaining deployable, observable, secure and maintainable.
+  architecture_rule: Define runtime, containerization, orchestration, deployment, observability, service discovery, configuration, update, rollback and environment-compatibility principles.
+  process_requirement: Deployment configurations, update mechanisms and environment assumptions must be tested and declared release-compatible for the relevant solution baseline.
+  ownership_requirement:
+  - Platform Architect
+  - Solution Architect
+  - Product Architect
+  - Security Architect
+  required_evidence:
+  - runtime_reference_architecture
+  - deployment_manifest
+  - environment_compatibility_matrix
+  - deployment_pipeline_evidence
+  - observability_dashboard
+  - update_and_rollback_evidence
+  - resource_measurements
+  - degraded_connectivity_test_evidence
+  exception_allowed: true
+  policy_candidate: true
+- id: AG-DEVSECOPS-001
+  title: DevSecOps and continuous release readiness
+  level: Enterprise
+  source_reference: "Section 6.10, Table 68"
+  business_driver: The organization needs faster modernization, secure delivery and continuous release readiness for software-defined capabilities.
+  architecture_rule: Products and solutions shall support CI/CD, automated testing, security scanning, deployment automation, monitoring, vulnerability handling and traceable release evidence.
+  process_requirement: Release readiness shall include automated build evidence, test evidence, security evidence, deployment evidence, compatibility evidence and release declaration evidence.
+  ownership_requirement:
+  - Platform Team
+  - Product Team
+  - Solution Architect
+  - Security Architect
+  required_evidence:
+  - ci_cd_pipeline_record
+  - automated_test_result
+  - contract_test_result
+  - security_scan_result
+  - deployment_manifest
+  - release_compatibility_matrix
+  - release_declaration
+  - monitoring_evidence
+  - vulnerability_remediation_record
+  exception_allowed: true
+  policy_candidate: true
+- id: AG-IFACE-001
+  title: Cross-product interface governance
+  level: Solution
+  source_reference: "Section 7.5, Table 78"
+  business_driver: Products must integrate reliably and release independently without breaking the solution.
+  architecture_rule: Cross-product APIs, topics, messages, schemas, protocols, ownership, versioning and compatibility rules must be defined.
+  process_requirement: Contract testing, interface review, compatibility testing and schema validation are required.
+  ownership_requirement:
+  - Solution Architect
+  - Interface Owner
+  - Product Architect
+  required_evidence:
+  - cross_product_interface_catalogue
+  - interface_contract
+  - interface_owner_list
+  - contract_test_result
+  - compatibility_matrix
+  exception_allowed: true
+  policy_candidate: true
+- id: AG-EXC-001
+  title: Controlled architecture exception
+  level: Governance
+  source_reference: "Section 6.12, Table 70 and Section 10.9"
+  business_driver: Justified deviations must be visible, risk-assessed, owned, time-bounded and fed back into architecture governance.
+  architecture_rule: Deviations from guardrails, standards, solution baselines, runtime assumptions or quality marker requirements must be documented as explicit exceptions.
+  process_requirement: Exceptions require decision, owner, mitigation, review date, expiry date, tracking and feedback.
+  ownership_requirement:
+  - Architecture Review Board
+  - Responsible Architect
+  - Exception Owner
+  required_evidence:
+  - exception_record
+  - risk_assessment
+  - mitigation_plan
+  - approval_record
+  - review_date
+  - expiry_date
+  exception_allowed: false
+  policy_candidate: true

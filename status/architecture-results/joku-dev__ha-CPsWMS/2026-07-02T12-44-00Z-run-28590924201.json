@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "architecture_baseline_ref": "ha-CPsWMS-demo-baseline",
+  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "result_type": "architecture-runtime-governance-run",
+  "generated_at": "2026-07-02T12:44:00Z",
+  "pipeline": {
+    "pipeline_name": "Architecture Runtime Governance",
+    "pipeline_run_id": "28590924201",
+    "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/28590924201",
+    "event": "push",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "main",
+    "branch_protected": true,
+    "commit_id": "f81d1035709f4c89e171a2f73b8b9c798fbd4e59"
+  },
+  "target": {
+    "path": "/home/runner/work/ha-CPsWMS/ha-CPsWMS/app",
+    "commit": "f81d103",
+    "release_id": "f81d1035709f4c89e171a2f73b8b9c798fbd4e59",
+    "detected_services": 5
+  },
+  "checks": {
+    "architecture_runtime_governance": "success"
+  },
+  "evidence": {
+    "release_input": true,
+    "architecture_report": true,
+    "marker_assessments": 32,
+    "release_compatibility_declaration": true,
+    "solution_baseline": true,
+    "compatibility_evidence": true,
+    "security_evidence": true,
+    "deployment_evidence": true,
+    "runtime_evidence": true,
+    "feedback_evidence": true,
+    "exceptions": 0
+  },
+  "architecture_summary": {
+    "gate_count": 4,
+    "passed": 4,
+    "with_findings": 0,
+    "finding_count": 0
+  },
+  "gates": [
+    {
+      "id": "architecture_readiness",
+      "title": "Architecture Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "integration_readiness",
+      "title": "Integration Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "operation_readiness",
+      "title": "Operation Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "release_readiness",
+      "title": "Release Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    }
+  ],
+  "overall_status": "pass",
+  "notes": "Intaken automatically from downstream Architecture Runtime Governance run."
+}

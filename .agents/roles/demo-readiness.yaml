@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: demo-readiness
+name: Demo Readiness Agent
+description: Keep demo runbooks, viewer data, and ha-CPsWMS current-main story consistent.
+source_of_truth: docs/governance/governance-roles-and-agent-profiles.md
+primary_files:
+  - docs/demos/demo-end-to-end-governance.md
+  - docs/demos/demo-ha-cpswms-runtime-governance.md
+  - docs/demos/ha-cpswms-architecture-governance-results.md
+  - generated/viewer/status-viewer.html
+  - generated/current-main/ha-cpswms/
+  - status/
+responsibilities:
+  - Keep demo docs, viewer data, and current-main results consistent.
+  - Preserve demo artifacts versus current-main artifacts.
+  - Keep ha-CPsWMS mainline status distinct from PR and branch runs.
+  - Verify report-only and blocking language.
+validations:
+  - python3 scripts/validate_runtime_governance.py
+  - python3 scripts/validate_governance_repo.py
+  - python3 scripts/run_demo.py
+  - python3 -m unittest discover -s tests
+output_contract:
+  - demo consistency
+  - current-main status impact
+  - viewer impact
+  - validation results

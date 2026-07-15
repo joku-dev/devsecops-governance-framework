@@ -1,0 +1,585 @@
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+model_version: 0.1.0
+description: >
+  Machine-readable runtime governance marker catalogue derived from the
+  SDD Architecture Governance Framework. This file is an addendum and does
+  not replace the source document.
+scoring:
+  scale:
+  - score: 0
+    name: Missing
+    runtime_interpretation: No evidence exists.
+  - score: 1
+    name: Mentioned
+    runtime_interpretation: Topic is named but not usable for governance decisions.
+  - score: 2
+    name: Described
+    runtime_interpretation: Architecture description exists but ownership or executable process may be weak.
+  - score: 3
+    name: Designed and owned
+    runtime_interpretation: Minimum level for architecture readiness.
+  - score: 4
+    name: Verified
+    runtime_interpretation: Minimum level for release-critical markers.
+  - score: 5
+    name: Continuously measured and improved
+    runtime_interpretation: Target level for operation-critical markers.
+markers:
+- id: B1
+  level: BAPO
+  title: Business traceability
+  source_reference: "Section 5.4, Table 53"
+  review_question: Is the architecture item linked to a business capability, mission outcome, value stream, strategic theme, customer need, or product contribution?
+  criticality: architecture_readiness
+  required_evidence_score_3:
+  - business_capability_mapping
+  - product_or_solution_contribution_statement
+  required_evidence_score_4:
+  - approved_architecture_review_record
+  - traceability_record
+  required_evidence_score_5:
+  - kpi_trend
+  - improvement_backlog_item
+  owner_role: Architecture Owner
+  review_points:
+  - epic_review
+  - architecture_review
+  - release_readiness
+- id: B2
+  level: BAPO
+  title: Cross-level architecture alignment
+  source_reference: "Section 5.4, Table 53"
+  review_question: Is the architecture item aligned with the relevant Enterprise, Solution and Product Architecture decisions, guardrails and constraints?
+  criticality: architecture_readiness
+  required_evidence_score_3:
+  - enterprise_guardrail_mapping
+  - solution_baseline_mapping
+  - product_architecture_mapping
+  required_evidence_score_4:
+  - approved_architecture_review_record
+  - compatibility_assessment
+  required_evidence_score_5:
+  - recurring_review_result
+  - guardrail_improvement_action
+  owner_role: Architecture Owner
+  review_points:
+  - architecture_review
+  - integration_readiness
+  - release_readiness
+- id: B3
+  level: BAPO
+  title: Process implication
+  source_reference: "Section 5.4, Table 53"
+  review_question: Are the required planning, integration, verification, release, security, or governance mechanisms identified and executable?
+  criticality: architecture_readiness
+  required_evidence_score_3:
+  - process_description
+  - planned_quality_gate
+  - owner_assignment
+  required_evidence_score_4:
+  - pipeline_evidence
+  - review_checklist_result
+  required_evidence_score_5:
+  - process_kpi_trend
+  - inspect_and_adapt_action
+  owner_role: Process Owner
+  review_points:
+  - pi_planning
+  - architecture_review
+  - release_readiness
+- id: B4
+  level: BAPO
+  title: Ownership clarity
+  source_reference: "Section 5.4, Table 53"
+  review_question: Are the responsible architecture owners, interface owners, data owners, security owners, platform owners, product owners, or governance bodies clearly assigned?
+  criticality: architecture_readiness
+  required_evidence_score_3:
+  - owner_list
+  - raci
+  required_evidence_score_4:
+  - review_record
+  - approval_record
+  required_evidence_score_5:
+  - ownership_review_history
+  - improvement_action
+  owner_role: Architecture Owner
+  review_points:
+  - architecture_review
+  - release_readiness
+- id: B5
+  level: BAPO
+  title: Feedback loop
+  source_reference: "Section 5.4, Table 53"
+  review_question: Is there a mechanism to feed findings from implementation, review, demo, integration, release, or operation back into architecture improvement?
+  criticality: operation_readiness
+  required_evidence_score_3:
+  - feedback_process
+  - follow_up_owner
+  required_evidence_score_4:
+  - demo_or_review_finding
+  - technical_debt_item
+  required_evidence_score_5:
+  - operational_finding_trend
+  - closed_improvement_action
+  owner_role: Architecture Review Board
+  review_points:
+  - inspect_and_adapt
+  - operation
+- id: S3
+  level: Solution
+  title: Cross-product interface maturity
+  source_reference: "Section 5.6, Table 55"
+  review_question: Are cross-product interfaces specified, versioned, owned, tested and aligned with enterprise interface guardrails?
+  criticality: release_readiness
+  required_evidence_score_3:
+  - interface_catalogue
+  - interface_owner_list
+  - version_record
+  required_evidence_score_4:
+  - contract_test_result
+  - compatibility_matrix
+  required_evidence_score_5:
+  - interface_kpi_trend
+  - deprecation_review_record
+  owner_role: Solution Architect
+  review_points:
+  - solution_planning
+  - integration_readiness
+  - release_readiness
+- id: S5
+  level: Solution
+  title: Integrated security
+  source_reference: "Section 5.6, Table 55"
+  review_question: Are solution-level security boundaries, trust zones, identities, crypto assumptions and controls defined and verified?
+  criticality: release_readiness
+  required_evidence_score_3:
+  - solution_threat_model
+  - trust_zone_model
+  - security_owner_assignment
+  required_evidence_score_4:
+  - security_architecture_review
+  - security_test_evidence
+  required_evidence_score_5:
+  - vulnerability_trend
+  - operational_security_finding_review
+  owner_role: Security Architect
+  review_points:
+  - architecture_review
+  - release_readiness
+  - operation
+- id: S6
+  level: Solution
+  title: Release architecture
+  source_reference: "Section 5.6, Table 55"
+  review_question: Is the solution release baseline defined, including compatible product releases, interface versions, data contracts and deployment assumptions?
+  criticality: release_readiness
+  required_evidence_score_3:
+  - solution_release_baseline
+  - product_compatibility_matrix
+  required_evidence_score_4:
+  - release_compatibility_declaration
+  - integration_test_result
+  required_evidence_score_5:
+  - release_compatibility_rate
+  - release_feedback_action
+  owner_role: Solution Architect
+  review_points:
+  - solution_release_readiness
+- id: P5
+  level: Product
+  title: Deployment reproducibility
+  source_reference: "Section 5.7, Table 56"
+  review_question: Can the product be deployed consistently across defined runtime environments through controlled and repeatable mechanisms?
+  criticality: release_readiness
+  required_evidence_score_3:
+  - deployment_view
+  - deployment_manifest
+  - environment_assumption_record
+  required_evidence_score_4:
+  - deployment_pipeline_evidence
+  - rollback_evidence
+  required_evidence_score_5:
+  - deployment_success_trend
+  - operational_deployment_feedback
+  owner_role: Product Architect
+  review_points:
+  - product_release_readiness
+  - operation
+- id: P8
+  level: Product
+  title: Security implementation
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are product-level security controls, identity assumptions, crypto usage, logging and vulnerability handling defined and verified?
+  criticality: release_readiness
+  required_evidence_score_3:
+  - product_security_concept
+  - threat_model
+  - vulnerability_handling_process
+  required_evidence_score_4:
+  - vulnerability_scan_result
+  - security_test_evidence
+  required_evidence_score_5:
+  - vulnerability_trend
+  - remediation_trend
+  owner_role: Product Security Owner
+  review_points:
+  - product_release_readiness
+  - operation
+- id: P11
+  level: Product
+  title: Observability
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are logs, metrics, traces, health indicators and operational diagnostics available and usable?
+  criticality: operation_readiness
+  required_evidence_score_3:
+  - logging_concept
+  - metrics_definition
+  - health_indicator_definition
+  required_evidence_score_4:
+  - monitoring_dashboard
+  - runtime_evidence
+  required_evidence_score_5:
+  - operational_metric_trend
+  - closed_operational_feedback_action
+  owner_role: Product Architect
+  review_points:
+  - product_release_readiness
+  - operation
+- id: P13
+  level: Product
+  title: Release compatibility
+  source_reference: "Section 5.7, Table 56"
+  review_question: Is compatibility with applicable solution baselines and enterprise guardrails declared, evidenced and reviewed?
+  criticality: release_readiness
+  required_evidence_score_3:
+  - solution_baseline_mapping
+  - enterprise_guardrail_mapping
+  required_evidence_score_4:
+  - product_release_compatibility_declaration
+  - compatibility_evidence
+  required_evidence_score_5:
+  - compatibility_trend
+  - release_feedback_action
+  owner_role: Product Architect
+  review_points:
+  - product_release_readiness
+  - solution_release_readiness
+- id: E0
+  level: Enterprise
+  title: Enterprise BAPO traceability
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are strategic business drivers translated into enterprise architecture guardrails, governance mechanisms and accountable ownership?
+  criticality: architecture_readiness
+  required_evidence_score_3: [strategic_theme_mapping, enterprise_guardrail_mapping, owner_assignment]
+  required_evidence_score_4: [enterprise_architecture_review_record, governance_mechanism_evidence]
+  required_evidence_score_5: [enterprise_kpi_trend, guardrail_improvement_action]
+  owner_role: Enterprise Architect
+  review_points: [epic_review, enterprise_guardrail_review]
+- id: E1
+  level: Enterprise
+  title: Strategic SDD alignment
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are enterprise architecture decisions aligned with the Software-Defined Defence strategy and relevant strategic capability priorities?
+  criticality: architecture_readiness
+  required_evidence_score_3: [sdd_alignment_record, capability_mapping]
+  required_evidence_score_4: [portfolio_architecture_review_record, approved_architecture_rationale]
+  required_evidence_score_5: [strategic_alignment_kpi, portfolio_feedback_action]
+  owner_role: Enterprise Architect
+  review_points: [epic_review, architecture_review]
+- id: E2
+  level: Enterprise
+  title: Reference architecture availability
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are relevant enterprise reference architectures published, understandable and applicable by solutions and products?
+  criticality: recommended
+  required_evidence_score_3: [published_reference_architecture, applicability_criteria]
+  required_evidence_score_4: [adoption_record, architecture_review_record]
+  required_evidence_score_5: [adoption_kpi_trend, reference_architecture_update]
+  owner_role: Enterprise Architect
+  review_points: [enterprise_guardrail_review]
+- id: E3
+  level: Enterprise
+  title: Interface standardization
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are enterprise-level interface principles, standards and versioning expectations defined and governed?
+  criticality: integration_readiness
+  required_evidence_score_3: [interface_standard_catalogue, versioning_rule, owner_assignment]
+  required_evidence_score_4: [interface_review_record, contract_test_evidence]
+  required_evidence_score_5: [interface_compliance_trend, deprecation_review_record]
+  owner_role: Enterprise Architect
+  review_points: [enterprise_guardrail_review, integration_readiness]
+- id: E4
+  level: Enterprise
+  title: Technology governance
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are technology choices governed across lifecycle, adoption, exception and retirement decisions?
+  criticality: recommended
+  required_evidence_score_3: [technology_radar, lifecycle_rule]
+  required_evidence_score_4: [technology_review_record, exception_register]
+  required_evidence_score_5: [technology_compliance_trend, retirement_plan_progress]
+  owner_role: Enterprise Architect
+  review_points: [enterprise_guardrail_review, architecture_review]
+- id: E5
+  level: Enterprise
+  title: Data architecture alignment
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are enterprise data, semantic, metadata, classification and provenance expectations defined consistently?
+  criticality: integration_readiness
+  required_evidence_score_3: [enterprise_data_model, semantic_model, data_owner_assignment]
+  required_evidence_score_4: [data_architecture_review_record, data_contract_validation]
+  required_evidence_score_5: [data_quality_trend, semantic_model_improvement]
+  owner_role: Data Architect
+  review_points: [architecture_review, integration_readiness]
+- id: E6
+  level: Enterprise
+  title: Security guardrails
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are enterprise security principles and mandatory controls defined for Software-Defined Defence architecture?
+  criticality: release_readiness
+  required_evidence_score_3: [security_guardrail_catalogue, trust_zone_principle, security_owner_assignment]
+  required_evidence_score_4: [security_architecture_review, security_test_evidence]
+  required_evidence_score_5: [security_kpi_trend, security_guardrail_update]
+  owner_role: Security Architect
+  review_points: [architecture_review, release_readiness]
+- id: E7
+  level: Enterprise
+  title: DevSecOps guardrails
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are common DevSecOps expectations defined for build, test, security, deployment and release evidence?
+  criticality: release_readiness
+  required_evidence_score_3: [ci_cd_standard, pipeline_control_definition, quality_gate_definition]
+  required_evidence_score_4: [pipeline_evidence, security_scan_evidence]
+  required_evidence_score_5: [devsecops_automation_rate, pipeline_improvement_action]
+  owner_role: Platform Owner
+  review_points: [release_readiness, inspect_and_adapt]
+- id: E8
+  level: Enterprise
+  title: Platform alignment
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are runtime, deployment, orchestration, containerization and observability expectations aligned across relevant platforms?
+  criticality: release_readiness
+  required_evidence_score_3: [runtime_standard, deployment_standard, observability_standard]
+  required_evidence_score_4: [deployment_evidence, environment_compatibility_evidence]
+  required_evidence_score_5: [platform_kpi_trend, runtime_guardrail_update]
+  owner_role: Platform Architect
+  review_points: [architecture_review, release_readiness, operation]
+- id: E9
+  level: Enterprise
+  title: Reuse and modularity
+  source_reference: "Section 5.5, Table 54"
+  review_question: Are reuse and modularity principles defined so that products and services can be shared safely across solutions?
+  criticality: recommended
+  required_evidence_score_3: [reuse_catalogue, modularity_rule, service_ownership_model]
+  required_evidence_score_4: [reuse_review_record, adoption_evidence]
+  required_evidence_score_5: [reuse_rate, reuse_improvement_action]
+  owner_role: Enterprise Architect
+  review_points: [architecture_review]
+- id: E10
+  level: Enterprise
+  title: Enterprise technical debt
+  source_reference: "Section 5.5, Table 54"
+  review_question: Is enterprise-level architecture debt visible, owned, prioritized and linked to funding or improvement actions?
+  criticality: recommended
+  required_evidence_score_3: [enterprise_technical_debt_register, owner_assignment]
+  required_evidence_score_4: [mitigation_plan, funded_improvement_item]
+  required_evidence_score_5: [technical_debt_trend, closed_debt_reduction_action]
+  owner_role: Enterprise Architect
+  review_points: [inspect_and_adapt, architecture_review]
+- id: S0
+  level: Solution
+  title: Solution BAPO traceability
+  source_reference: "Section 5.6, Table 55"
+  review_question: Is the solution capability traceable to product architecture decisions, integration and release mechanisms, and accountable ownership?
+  criticality: architecture_readiness
+  required_evidence_score_3: [solution_bapo_map, product_participation_map, owner_assignment]
+  required_evidence_score_4: [solution_review_record, release_governance_evidence]
+  required_evidence_score_5: [solution_feedback_trend, improvement_action]
+  owner_role: Solution Architect
+  review_points: [solution_planning, architecture_review]
+- id: S1
+  level: Solution
+  title: Solution boundary clarity
+  source_reference: "Section 5.6, Table 55"
+  review_question: Is the solution boundary clear, including participating products, external systems, interfaces, assumptions and constraints?
+  criticality: architecture_readiness
+  required_evidence_score_3: [solution_context_diagram, product_participation_map, boundary_assumption_record]
+  required_evidence_score_4: [solution_review_record, affected_scope_assessment]
+  required_evidence_score_5: [boundary_change_trend, scope_improvement_action]
+  owner_role: Solution Architect
+  review_points: [solution_planning]
+- id: S2
+  level: Solution
+  title: Capability allocation
+  source_reference: "Section 5.6, Table 55"
+  review_question: Are solution capabilities allocated clearly to participating products and product owners?
+  criticality: architecture_readiness
+  required_evidence_score_3: [capability_to_product_mapping, responsibility_allocation]
+  required_evidence_score_4: [backlog_mapping, solution_review_record]
+  required_evidence_score_5: [capability_feedback_trend, allocation_improvement_action]
+  owner_role: Solution Architect
+  review_points: [solution_planning, pi_planning]
+- id: S4
+  level: Solution
+  title: Data flow consistency
+  source_reference: "Section 5.6, Table 55"
+  review_question: Are cross-product data flows, schemas, topics, semantic mappings and data ownership defined consistently?
+  criticality: integration_readiness
+  required_evidence_score_3: [data_flow_model, schema_catalogue, data_owner_record]
+  required_evidence_score_4: [schema_validation_result, semantic_mapping_review]
+  required_evidence_score_5: [data_quality_trend, data_improvement_action]
+  owner_role: Data Architect
+  review_points: [solution_planning, integration_readiness]
+- id: S7
+  level: Solution
+  title: Integration readiness
+  source_reference: "Section 5.6, Table 55"
+  review_question: Is the solution ready for integration, verification and demonstration across participating products?
+  criticality: integration_readiness
+  required_evidence_score_3: [integration_plan, verification_matrix, demo_plan]
+  required_evidence_score_4: [integration_test_result, solution_demo_result]
+  required_evidence_score_5: [integration_success_trend, integration_improvement_action]
+  owner_role: Solution Architect
+  review_points: [integration_readiness, solution_demo]
+- id: S8
+  level: Solution
+  title: Resilience
+  source_reference: "Section 5.6, Table 55"
+  review_question: Are degraded-mode, failover, recovery and DIL scenarios defined and evidenced at solution level?
+  criticality: release_readiness
+  required_evidence_score_3: [degraded_mode_scenario, recovery_scenario]
+  required_evidence_score_4: [resilience_test_result, dil_test_evidence]
+  required_evidence_score_5: [resilience_metric_trend, operational_resilience_feedback]
+  owner_role: Solution Architect
+  review_points: [release_readiness, operation]
+- id: S9
+  level: Solution
+  title: Architecture runway
+  source_reference: "Section 5.6, Table 55"
+  review_question: Are solution-level architecture enablers identified and planned before they become delivery blockers?
+  criticality: recommended
+  required_evidence_score_3: [architecture_runway, dependency_map, owner_assignment]
+  required_evidence_score_4: [pi_objective_mapping, enabler_progress_evidence]
+  required_evidence_score_5: [runway_predictability_trend, blocker_reduction_action]
+  owner_role: Solution Architect
+  review_points: [pi_planning, inspect_and_adapt]
+- id: S10
+  level: Solution
+  title: Solution technical debt
+  source_reference: "Section 5.6, Table 55"
+  review_question: Is shared solution-level technical debt visible, owned, prioritized and linked to mitigation actions?
+  criticality: recommended
+  required_evidence_score_3: [solution_technical_debt_register, mitigation_owner]
+  required_evidence_score_4: [mitigation_plan, backlog_item]
+  required_evidence_score_5: [technical_debt_trend, closed_mitigation_action]
+  owner_role: Solution Architect
+  review_points: [inspect_and_adapt, architecture_review]
+- id: P0
+  level: Product
+  title: Product BAPO traceability
+  source_reference: "Section 5.7, Table 56"
+  review_question: Is the product contribution traceable to architecture decisions, delivery mechanisms, release mechanisms and accountable ownership?
+  criticality: architecture_readiness
+  required_evidence_score_3: [product_bapo_map, product_contribution_statement, owner_assignment]
+  required_evidence_score_4: [product_review_record, release_evidence]
+  required_evidence_score_5: [product_feedback_trend, improvement_action]
+  owner_role: Product Architect
+  review_points: [architecture_review, product_release_readiness]
+- id: P1
+  level: Product
+  title: Architecture completeness
+  source_reference: "Section 5.7, Table 56"
+  review_question: Does the product architecture contain the minimum required views, decisions, quality requirements, risks and evidence?
+  criticality: architecture_readiness
+  required_evidence_score_3: [product_architecture_document, adr_register, quality_catalogue]
+  required_evidence_score_4: [product_architecture_review_record, evidence_package]
+  required_evidence_score_5: [review_history, architecture_improvement_action]
+  owner_role: Product Architect
+  review_points: [architecture_review]
+- id: P2
+  level: Product
+  title: Context and boundary clarity
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are product users, external systems, boundaries, constraints and external dependencies clearly defined?
+  criticality: architecture_readiness
+  required_evidence_score_3: [context_diagram, dependency_map, scope_statement]
+  required_evidence_score_4: [review_record, dependency_validation]
+  required_evidence_score_5: [dependency_trend, boundary_improvement_action]
+  owner_role: Product Architect
+  review_points: [architecture_review]
+- id: P3
+  level: Product
+  title: Building block quality
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are product components, modules, responsibilities and internal interfaces clearly structured and owned?
+  criticality: architecture_readiness
+  required_evidence_score_3: [building_block_view, component_ownership_map]
+  required_evidence_score_4: [architecture_review_record, implementation_evidence]
+  required_evidence_score_5: [maintainability_trend, refactoring_action]
+  owner_role: Product Architect
+  review_points: [architecture_review]
+- id: P4
+  level: Product
+  title: Runtime behavior
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are key runtime scenarios, interactions, sequences and operational behavior described and understood?
+  criticality: integration_readiness
+  required_evidence_score_3: [runtime_view, scenario_description]
+  required_evidence_score_4: [runtime_test_result, demo_evidence]
+  required_evidence_score_5: [runtime_metric_trend, operational_feedback_action]
+  owner_role: Product Architect
+  review_points: [integration_readiness, product_demo]
+- id: P6
+  level: Product
+  title: Interface and data contract quality
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are product APIs, topics, schemas, events, protocols and data contracts specified, versioned, owned and tested?
+  criticality: release_readiness
+  required_evidence_score_3: [interface_contract, data_contract, owner_assignment]
+  required_evidence_score_4: [contract_test_result, schema_validation_result]
+  required_evidence_score_5: [interface_quality_trend, data_contract_improvement_action]
+  owner_role: Product Architect
+  review_points: [integration_readiness, release_readiness]
+- id: P7
+  level: Product
+  title: ADR discipline
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are major product architecture decisions documented with rationale, alternatives, consequences and ownership?
+  criticality: architecture_readiness
+  required_evidence_score_3: [adr_register, decision_record, owner_assignment]
+  required_evidence_score_4: [adr_review_record, tradeoff_analysis]
+  required_evidence_score_5: [adr_review_history, supersession_record]
+  owner_role: Product Architect
+  review_points: [architecture_review]
+- id: P9
+  level: Product
+  title: Performance and determinism
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are latency, throughput, scheduling, resource budgets and deterministic behavior defined and measured where required?
+  criticality: release_readiness
+  required_evidence_score_3: [performance_budget, resource_budget]
+  required_evidence_score_4: [performance_test_result, timing_analysis]
+  required_evidence_score_5: [performance_trend, capacity_improvement_action]
+  owner_role: Product Architect
+  review_points: [release_readiness, operation]
+- id: P10
+  level: Product
+  title: Resilience
+  source_reference: "Section 5.7, Table 56"
+  review_question: Are failure, restart, failover, degraded-mode, DIL and recovery behaviors defined and tested?
+  criticality: release_readiness
+  required_evidence_score_3: [failure_mode_scenario, recovery_scenario]
+  required_evidence_score_4: [resilience_test_result, recovery_test_result]
+  required_evidence_score_5: [resilience_metric_trend, operational_resilience_feedback]
+  owner_role: Product Architect
+  review_points: [release_readiness, operation]
+- id: P12
+  level: Product
+  title: Technical debt
+  source_reference: "Section 5.7, Table 56"
+  review_question: Is product-level architecture debt visible, owned, prioritized and actively reduced?
+  criticality: recommended
+  required_evidence_score_3: [risk_and_debt_register, owner_assignment]
+  required_evidence_score_4: [mitigation_plan, backlog_item]
+  required_evidence_score_5: [technical_debt_trend, closed_debt_reduction_action]
+  owner_role: Product Architect
+  review_points: [inspect_and_adapt, architecture_review]

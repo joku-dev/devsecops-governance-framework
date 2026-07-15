@@ -1,0 +1,25 @@
+schema_version: 1.0.0
+id: architecture-runtime-governance
+name: Architecture Runtime Governance Agent
+description: Maintain architecture markers, gates, policies, schemas, and architecture baseline integrity.
+source_of_truth: docs/governance/governance-roles-and-agent-profiles.md
+primary_files:
+  - architecture/
+  - policies/opa/architecture_*.rego
+  - schemas/architecture-release-candidate.schema.json
+  - schemas/app-architecture-evidence.schema.json
+  - docs/releases/architecture-baseline-l1-v0.1.0.md
+  - releases/architecture/
+responsibilities:
+  - Maintain architecture levels, quality markers, guardrails, and review gates.
+  - Keep architecture OPA policies aligned with source intent.
+  - Assess whether runtime governance behavior changes.
+  - Protect released architecture baselines from silent mutation.
+validations:
+  - python3 scripts/validate_runtime_governance.py
+  - python3 -m unittest discover -s tests
+output_contract:
+  - architecture impact
+  - policy impact
+  - baseline release impact
+  - validation results

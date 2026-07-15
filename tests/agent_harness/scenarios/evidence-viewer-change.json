@@ -1,0 +1,14 @@
+{
+  "scenario": "evidence-viewer-change",
+  "description": "Evidence intake and viewer change for a pull request context.",
+  "changed_files": [
+    "status/results/joku-dev__ha-CPsWMS/pr-42.json",
+    "status/repository-results-index.json",
+    "generated/viewer/status-viewer.html"
+  ],
+  "evidence_context": "pull_request",
+  "forbidden_agents": [
+    "source-document-intake",
+    "release-manager"
+  ]
+}

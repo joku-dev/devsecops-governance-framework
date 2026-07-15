@@ -1,0 +1,54 @@
+name: Governance Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  governance-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out application repository
+        uses: actions/checkout@v4
+
+      - name: Check out governance repository
+        uses: actions/checkout@v4
+        with:
+          repository: your-org/devsecops-governance-as-code
+          path: governance
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install governance dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml jsonschema
+
+      - name: Set up OPA
+        uses: open-policy-agent/setup-opa@v2
+        with:
+          version: latest
+
+      - name: Validate governance repository
+        working-directory: governance
+        run: |
+          python3 scripts/validate_governance_repo.py
+          python3 -m unittest discover -s tests
+          opa check policies/opa
+
+      - name: Evaluate application repository integration
+        run: |
+          python3 governance/scripts/check_repo_governance_integration.py \
+            --target-repo . \
+            --output-file governance-compliance-result.json
+
+      - name: Upload governance compliance result
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-compliance-result
+          path: governance-compliance-result.json

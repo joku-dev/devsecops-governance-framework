@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/ai-native-engineering-factory",
+  "baseline_level": "L1",
+  "governance_baseline_ref": "main@34bdc66",
+  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "result_type": "governance-baseline-run",
+  "generated_at": "2026-06-28T08:00:21Z",
+  "pipeline": {
+    "pipeline_name": "DevSecOps Governance L1",
+    "pipeline_run_id": "28315832162",
+    "pipeline_url": "https://github.com/joku-dev/ai-native-engineering-factory/actions/runs/28315832162",
+    "event": "pull_request",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "codex/add-central-l1-baseline-report-clean",
+    "branch_protected": false,
+    "commit_id": "7e80f63fac4ac4695606a195e8c6e7d58b9408c6"
+  },
+  "checks": {
+    "baseline_gate": "success",
+    "ci": "success"
+  },
+  "evidence": {
+    "sbom": true,
+    "vulnerability_scan": true,
+    "artifact_digest": true
+  },
+  "control_evaluation_summary": {},
+  "overall_status": "pass",
+  "notes": "Report-only central L1 onboarding run for ai-native-engineering-factory PR #93 after regenerating governance evidence for the Agent Execution Record. The central baseline completed successfully in report-only mode and quality-gates passed; the underlying finding remains: direct pushes are allowed on main, so this repository is not ready for block-on-error enforcement yet."
+}

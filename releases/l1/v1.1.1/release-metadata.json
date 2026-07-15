@@ -1,0 +1,33 @@
+{
+  "release_id": "l1-baseline-v1.1.1",
+  "release_type": "baseline-package",
+  "baseline_level": "L1",
+  "version": "v1.1.1",
+  "status": "prepared",
+  "revision_protection": {
+    "governance_model": "git-versioned",
+    "consumer_reference": "pin by git tag or commit SHA",
+    "workflow_wrapper": ".github/workflows/devsecops-baseline-l1-v1.1.1.yml",
+    "workflow_wrapper_ref": "l1-baseline-v1.1.1",
+    "reusable_workflow_ref": "0fe087626c553d6b6d64a584f6c76e7bc6f88cdd"
+  },
+  "source_snapshot": {
+    "governance_repo_ref": "main",
+    "controls_file": "source/model/controls/dscb-l1.yaml",
+    "evidence_file": "source/model/evidence/evidence-types.yaml",
+    "governance_run_input_schema": "source/schemas/governance-run-input.schema.json"
+  },
+  "included_assets": [
+    "source/model/controls/dscb-l1.yaml",
+    "source/model/evidence/evidence-types.yaml",
+    "source/policies/opa/",
+    "source/schemas/control.schema.json",
+    "source/schemas/evidence.schema.json",
+    "source/schemas/governance-compliance-result.schema.json",
+    "source/schemas/governance-run-input.schema.json",
+    "source/workflows/devsecops-baseline-reusable.yml",
+    "source/workflows/devsecops-baseline-l1-v1.1.1.yml",
+    "examples/github-actions/devsecops-baseline-l1-v1.1.1.yml",
+    "baseline-package.md"
+  ]
+}

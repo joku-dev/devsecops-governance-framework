@@ -1,0 +1,110 @@
+pipeline {
+  agent any
+
+  environment {
+    GOVERNANCE_REPOSITORY = 'https://github.com/joku-dev/devsecops-governance-as-code.git'
+    GOVERNANCE_REF = 'architecture-baseline-l1-v0.1.0'
+    SOLUTION_BASELINE = 'demo-solution-baseline'
+    FAIL_ON_FINDINGS = 'false'
+  }
+
+  stages {
+    stage('Checkout Application') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Checkout Governance Tooling') {
+      steps {
+        sh '''
+          set -eu
+          rm -rf governance
+          git clone "${GOVERNANCE_REPOSITORY}" governance
+          cd governance
+          git checkout "${GOVERNANCE_REF}"
+        '''
+      }
+    }
+
+    stage('Install Tooling') {
+      steps {
+        sh '''
+          set -eu
+          python3 -m pip install --user --upgrade jsonschema pyyaml
+          if ! command -v opa >/dev/null 2>&1; then
+            curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+            chmod +x opa
+            mkdir -p "$HOME/bin"
+            mv opa "$HOME/bin/opa"
+            export PATH="$HOME/bin:$PATH"
+          fi
+          opa version
+        '''
+      }
+    }
+
+    stage('Collect Architecture Evidence') {
+      steps {
+        sh '''
+          set -eu
+          mkdir -p governance/generated/app
+          python3 governance/scripts/collect_architecture_release_input.py \
+            --repo . \
+            --output governance/generated/app/architecture-release-input.json \
+            --release-id "${GIT_COMMIT}" \
+            --baseline "${SOLUTION_BASELINE}"
+        '''
+      }
+    }
+
+    stage('Generate Architecture Report') {
+      steps {
+        sh '''
+          set -eu
+          cd governance
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import jsonschema
+
+          schema = json.loads(Path("schemas/architecture-release-candidate.schema.json").read_text())
+          data = json.loads(Path("generated/app/architecture-release-input.json").read_text())
+          jsonschema.validate(data, schema)
+          print("Architecture release input validates against schema")
+          PY
+
+          python3 scripts/generate_architecture_governance_report.py \
+            --input generated/app/architecture-release-input.json \
+            --output-json generated/app/architecture-governance-report.json \
+            --output-md generated/app/architecture-governance-report.md
+        '''
+      }
+    }
+
+    stage('Release Decision') {
+      steps {
+        sh '''
+          set -eu
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          report = json.loads(Path("governance/generated/app/architecture-governance-report.json").read_text())
+          finding_count = report.get("summary", {}).get("finding_count", 0)
+          print(json.dumps(report.get("summary", {}), indent=2))
+          if finding_count and os.environ.get("FAIL_ON_FINDINGS", "false") == "true":
+              raise SystemExit(1)
+          PY
+        '''
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: 'governance/generated/app/architecture-release-input.json, governance/generated/app/architecture-governance-report.json, governance/generated/app/architecture-governance-report.md', fingerprint: true
+    }
+  }
+}

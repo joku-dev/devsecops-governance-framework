@@ -1,0 +1,105 @@
+{
+  "release_candidate": true,
+  "run_context": {
+    "event": "push",
+    "purpose": "release",
+    "release_context": true,
+    "source": "demo"
+  },
+  "required_platform_level": "PRA-Level 2",
+  "repository": {
+    "protected_branch": true,
+    "direct_push_allowed": false,
+    "review_required": true
+  },
+  "platform": {
+    "privileged_access": true,
+    "mfa_enforced": true,
+    "central_identity_management": true
+  },
+  "traceability": {
+    "requirements_linked": true,
+    "testcases_linked": true,
+    "reports_linked": true
+  },
+  "source_control": {
+    "approved_vcs": true,
+    "identifiable_authors": true,
+    "review_records_present": true
+  },
+  "static_analysis": {
+    "performed": true,
+    "findings_reviewed": true
+  },
+  "environment": {
+    "centrally_managed": true,
+    "secure_workspace": true,
+    "config_compliant": true,
+    "configuration_baselines_defined": true
+  },
+  "evidence": {
+    "sbom": {
+      "exists": true,
+      "linked_to_artifact": true
+    },
+    "vulnerability_scan": {
+      "exists": true
+    }
+  },
+  "artifact": {
+    "digest": {
+      "exists": true,
+      "linked_to_artifact": true
+    },
+    "signature": {
+      "exists": true
+    }
+  },
+  "signing": {
+    "keys_protected": true
+  },
+  "pipeline": {
+    "event": "push",
+    "external_direct_downloads_detected": false,
+    "security_gates": {
+      "enforced": true
+    },
+    "security_thresholds_exceeded": false
+  },
+  "release": {
+    "approved_waiver": {
+      "exists": false
+    }
+  },
+  "release_approval": {
+    "approved": true,
+    "approver": "release-manager",
+    "approved_artifact_only": true
+  },
+  "dependencies": [
+    {
+      "name": "example-library",
+      "source_approved": true
+    }
+  ],
+  "infrastructure": {
+    "iac_repository": {
+      "exists": true,
+      "version_controlled": true
+    }
+  },
+  "operations": {
+    "deployed_versions_recorded": true,
+    "security_events_recorded": true
+  },
+  "monitoring": {
+    "security_events_generated": true,
+    "integration_enabled": true,
+    "forwarded_to_monitoring": true
+  },
+  "deployment": {
+    "required": true
+  },
+  "vulnerabilities": [],
+  "waivers": []
+}

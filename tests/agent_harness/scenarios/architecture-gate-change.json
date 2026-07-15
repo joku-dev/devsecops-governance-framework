@@ -1,0 +1,12 @@
+{
+  "scenario": "architecture-gate-change",
+  "description": "Architecture runtime gate change affecting policy evaluation.",
+  "changed_files": [
+    "architecture/review-gates.yaml",
+    "policies/opa/architecture_runtime.rego"
+  ],
+  "forbidden_agents": [
+    "source-document-intake"
+  ],
+  "reporting_semantics": "must_classify_report_only_or_blocking"
+}

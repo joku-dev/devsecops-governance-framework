@@ -1,0 +1,147 @@
+{
+  "contract_version": "1.0",
+  "release_candidate": true,
+  "run_context": {
+    "event": "push",
+    "purpose": "release",
+    "release_context": true,
+    "source": "github-actions"
+  },
+  "required_platform_level": "PRA-Level 2",
+  "repository": {
+    "protected_branch": true,
+    "direct_push_allowed": false,
+    "review_required": true
+  },
+  "platform": {
+    "privileged_access": true,
+    "mfa_enforced": true,
+    "central_identity_management": true
+  },
+  "traceability": {
+    "requirements_linked": true,
+    "testcases_linked": true,
+    "reports_linked": true
+  },
+  "source_control": {
+    "approved_vcs": true,
+    "identifiable_authors": true,
+    "review_records_present": true
+  },
+  "static_analysis": {
+    "performed": true,
+    "findings_reviewed": true
+  },
+  "environment": {
+    "centrally_managed": true,
+    "secure_workspace": true,
+    "config_compliant": true,
+    "configuration_baselines_defined": true
+  },
+  "evidence": {
+    "sbom": {
+      "exists": true,
+      "linked_to_artifact": true
+    },
+    "vulnerability_scan": {
+      "exists": true,
+      "path": "security/vulnerability-scan.json",
+      "max_severity": "none"
+    },
+    "pipeline_execution": {
+      "evidence_id": "github-actions-28292518364",
+      "pipeline_run_id": "28292518364",
+      "status": "success",
+      "generated_at": "2026-06-27T14:49:08Z"
+    }
+  },
+  "artifact": {
+    "artifact_id": "ha-cpswms-source.tar.gz",
+    "artifact_type": "application-build-output",
+    "artifact_version": "d2f0dba3f88d",
+    "digest": {
+      "exists": true,
+      "linked_to_artifact": true,
+      "algorithm": "sha256",
+      "value": "example-digest-value"
+    },
+    "signature": {
+      "exists": false
+    }
+  },
+  "signing": {
+    "keys_protected": false
+  },
+  "pipeline": {
+    "pipeline_id": "DevSecOps Baseline",
+    "pipeline_run_id": "28292518364",
+    "commit_id": "d2f0dba3f88de91838213060e4a014fe78026dd1",
+    "event": "push",
+    "status": "success",
+    "security_gates": {
+      "enforced": true
+    },
+    "security_thresholds_exceeded": false,
+    "external_direct_downloads_detected": false
+  },
+  "release": {
+    "release_id": "joku-dev/ha-CPsWMS@d2f0dba3f88d",
+    "approval_status": "approved",
+    "approved_waiver": {
+      "exists": false
+    }
+  },
+  "release_approval": {
+    "approved": true,
+    "approver": "release-manager",
+    "approved_artifact_only": true
+  },
+  "dependencies": [
+    {
+      "name": "fastapi",
+      "source_approved": true
+    }
+  ],
+  "infrastructure": {
+    "iac_repository": {
+      "exists": true,
+      "version_controlled": true
+    }
+  },
+  "operations": {
+    "deployed_versions_recorded": true,
+    "security_events_recorded": true
+  },
+  "monitoring": {
+    "security_events_generated": true,
+    "integration_enabled": true,
+    "forwarded_to_monitoring": true
+  },
+  "deployment": {
+    "required": true
+  },
+  "vulnerabilities": [],
+  "waivers": [
+    {
+      "id": "waiver-demo-001",
+      "scope": "release-candidate-exception",
+      "object_id": "CVE-2099-0001",
+      "affected_requirements": [
+        "DSCB-L1-REQ-010",
+        "DSCB-GOV-REQ-005"
+      ],
+      "risk_classification": "medium",
+      "justification": "The finding is accepted temporarily because the vendor patch is scheduled and deployment is blocked otherwise.",
+      "compensating_controls": [
+        "Temporary network restriction applied",
+        "Daily monitoring review enabled"
+      ],
+      "approval_authority": "DevSecOps Governance Board",
+      "approved_by": "governance-board-chair",
+      "approved_on": "2026-06-20",
+      "expiry": "2026-07-20",
+      "expired": false,
+      "status": "approved"
+    }
+  ]
+}

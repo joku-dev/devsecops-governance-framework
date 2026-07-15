@@ -1,0 +1,47 @@
+integrations:
+  - repository: joku-dev/ha-CPsWMS
+    baseline_level: L1
+    status: operational
+    branch: main
+    governance_workflow_ref: l1-baseline-v1.1.3
+    last_evaluated_commit: f135c819554bb29f78c4d2b39f2e984dc78c5231
+    pipeline_run_id: "28314109954"
+    pipeline_result: success
+    evidence_status: available
+    governance_mode: block-on-error
+    enforcement:
+      blocks_merge: true
+      records_result: true
+      requires_waiver_on_failure: true
+      mode_reason: Operational mainline L1 baseline is validated and should block failed governance runs unless approved waiver evidence exists.
+    notes: Successful end-to-end baseline execution through the released central L1 reusable governance workflow v1.1.3 on a protected main branch, with static-analysis, traceability, operations evidence, and full structured L1 control coverage.
+  - repository: joku-dev/ai-native-engineering-factory
+    baseline_level: L1
+    status: report-only
+    branch: codex/add-central-l1-baseline-report-clean
+    governance_workflow_ref: main@34bdc66
+    last_evaluated_commit: 7e80f63fac4ac4695606a195e8c6e7d58b9408c6
+    pipeline_run_id: "28315832162"
+    pipeline_result: success
+    evidence_status: report_only_run_available
+    governance_mode: report-only
+    enforcement:
+      blocks_merge: false
+      records_result: true
+      requires_waiver_on_failure: false
+      mode_reason: Candidate repository is being onboarded through report-only L1 baseline runs before mainline enforcement.
+    notes: "Report-only central L1 onboarding run completed on PR #93 with quality-gates passing. The run recorded direct pushes allowed on main, so the repository should remain report-only until branch protection is ready for blocking enforcement."
+
+summary:
+  operational_state: L1 operational
+  central_baseline_repository: joku-dev/devsecops-governance-as-code
+  rollout_phase: pilot validated and released; factory report-only onboarding active
+  integrated_repositories: 2
+  successful_baseline_runs: 10
+  governance_modes:
+    readiness: 0
+    report-only: 1
+    warn-on-error: 0
+    block-on-error: 1
+    waiver-required: 0
+    disabled: 0

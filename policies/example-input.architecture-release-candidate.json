@@ -1,0 +1,68 @@
+{
+  "release_candidate": true,
+  "architecture": {
+    "marker_assessments": [
+      { "id": "B1", "score": 3 },
+      { "id": "B2", "score": 3 },
+      { "id": "B3", "score": 3 },
+      { "id": "B4", "score": 3 },
+      { "id": "B5", "score": 4 },
+      { "id": "P0", "score": 3 },
+      { "id": "P1", "score": 3 },
+      { "id": "P2", "score": 3 },
+      { "id": "P3", "score": 3 },
+      { "id": "P7", "score": 3 },
+      { "id": "S0", "score": 3 },
+      { "id": "S1", "score": 3 },
+      { "id": "S2", "score": 3 },
+      { "id": "E3", "score": 3 },
+      { "id": "E5", "score": 3 },
+      { "id": "S4", "score": 3 },
+      { "id": "S7", "score": 3 },
+      { "id": "P4", "score": 3 },
+      { "id": "E6", "score": 4 },
+      { "id": "E7", "score": 4 },
+      { "id": "E8", "score": 4 },
+      { "id": "S3", "score": 4 },
+      { "id": "S5", "score": 4 },
+      { "id": "S6", "score": 4 },
+      { "id": "S8", "score": 4 },
+      { "id": "P5", "score": 4 },
+      { "id": "P6", "score": 4 },
+      { "id": "P8", "score": 4 },
+      { "id": "P9", "score": 4 },
+      { "id": "P10", "score": 4 },
+      { "id": "P13", "score": 4 }
+    ],
+    "release_compatibility_declaration": {
+      "exists": true,
+      "baseline_version": "solution-baseline-2026.07",
+      "approved": true
+    },
+    "solution_baseline": {
+      "exists": true
+    },
+    "compatibility_evidence": {
+      "exists": true
+    },
+    "security_evidence": {
+      "exists": true
+    },
+    "deployment_evidence": {
+      "exists": true
+    },
+    "runtime_evidence": {
+      "exists": true
+    },
+    "review_evidence": {
+      "exists": false
+    },
+    "exception_evidence": {
+      "exists": false
+    },
+    "feedback_evidence": {
+      "exists": true
+    },
+    "exceptions": []
+  }
+}

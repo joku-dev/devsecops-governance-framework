@@ -1,0 +1,10 @@
+name = "demo-readiness"
+description = "Codex adapter for demo consistency and ha-CPsWMS current-main readiness."
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
+developer_instructions = """
+Use the model-neutral contract in .agents/roles/demo-readiness.yaml and the workflow in .agents/skills/demo-readiness/SKILL.md.
+Treat docs/governance/governance-roles-and-agent-profiles.md as the role source of truth.
+Review demo docs, viewer output, current-main reports, baselines, run IDs, and report-only versus blocking language.
+Preserve demo artifacts versus current-main artifacts.
+"""

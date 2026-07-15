@@ -1,0 +1,13 @@
+{
+  "evidence_type": "deployment_manifest",
+  "status": "draft",
+  "owner": "Platform Architect",
+  "summary": "Tool-neutral deployment manifest evidence. Reference Compose, Helm, Kubernetes, Terraform, Bamboo deployment configuration, or equivalent runtime configuration.",
+  "evidence_refs": [
+    "docs/DEPLOYMENT.md"
+  ],
+  "known_limitations": [
+    "Template placeholder; add concrete deployment artifact references before review."
+  ],
+  "follow_up_actions": []
+}

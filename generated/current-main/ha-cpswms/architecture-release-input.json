@@ -1,0 +1,595 @@
+{
+  "release_candidate": true,
+  "target_repository": {
+    "path": "/tmp/ha-CPsWMS-current-main",
+    "commit": "4a86f0c",
+    "release_id": "ha-CPsWMS-current-main",
+    "detected_services": 5
+  },
+  "architecture": {
+    "marker_assessments": [
+      {
+        "id": "B1",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "B2",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "B3",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "B4",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "B5",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/feedback-evidence.json",
+          "benchmark/reports/performance_evolution_summary.md",
+          "benchmark/reports/performance_evolution_summary.md"
+        ]
+      },
+      {
+        "id": "P0",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "P1",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "P2",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "P3",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "P7",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "S0",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "S1",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "S2",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "E3",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/release-compatibility-declaration.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json",
+          ".governance/architecture/solution-baseline.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "docs/ARCHITECTURE.md",
+          "semantic-enrichment/schemas/anomaly_detection_schema.json",
+          "semantic-enrichment/schemas/automation_intent_schema.json",
+          "semantic-enrichment/schemas/capability_mapping_schema.json",
+          "semantic-enrichment/schemas/causal_dependency_schema.json",
+          "semantic-enrichment/schemas/dependency_reasoning_schema.json",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "semantic-enrichment/schemas/failure_impact_schema.json",
+          "semantic-enrichment/schemas/fault_analysis_schema.json",
+          "semantic-enrichment/schemas/recommended_actions_schema.json",
+          "semantic-enrichment/schemas/room_inference_schema.json",
+          "semantic-enrichment/schemas/semantic_descriptions_schema.json",
+          "semantic-enrichment/schemas/semantic_roles_schema.json",
+          "semantic-enrichment/schemas/simulation_readiness_schema.json",
+          "semantic-enrichment/schemas/temporal_event_model_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json"
+        ]
+      },
+      {
+        "id": "E5",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/release-compatibility-declaration.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json",
+          ".governance/architecture/solution-baseline.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "docs/ARCHITECTURE.md",
+          "semantic-enrichment/schemas/anomaly_detection_schema.json",
+          "semantic-enrichment/schemas/automation_intent_schema.json",
+          "semantic-enrichment/schemas/capability_mapping_schema.json",
+          "semantic-enrichment/schemas/causal_dependency_schema.json",
+          "semantic-enrichment/schemas/dependency_reasoning_schema.json",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "semantic-enrichment/schemas/failure_impact_schema.json",
+          "semantic-enrichment/schemas/fault_analysis_schema.json",
+          "semantic-enrichment/schemas/recommended_actions_schema.json",
+          "semantic-enrichment/schemas/room_inference_schema.json",
+          "semantic-enrichment/schemas/semantic_descriptions_schema.json",
+          "semantic-enrichment/schemas/semantic_roles_schema.json",
+          "semantic-enrichment/schemas/simulation_readiness_schema.json",
+          "semantic-enrichment/schemas/temporal_event_model_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json"
+        ]
+      },
+      {
+        "id": "S4",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/release-compatibility-declaration.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json",
+          ".governance/architecture/solution-baseline.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "docs/ARCHITECTURE.md",
+          "semantic-enrichment/schemas/anomaly_detection_schema.json",
+          "semantic-enrichment/schemas/automation_intent_schema.json",
+          "semantic-enrichment/schemas/capability_mapping_schema.json",
+          "semantic-enrichment/schemas/causal_dependency_schema.json",
+          "semantic-enrichment/schemas/dependency_reasoning_schema.json",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "semantic-enrichment/schemas/failure_impact_schema.json",
+          "semantic-enrichment/schemas/fault_analysis_schema.json",
+          "semantic-enrichment/schemas/recommended_actions_schema.json",
+          "semantic-enrichment/schemas/room_inference_schema.json",
+          "semantic-enrichment/schemas/semantic_descriptions_schema.json",
+          "semantic-enrichment/schemas/semantic_roles_schema.json",
+          "semantic-enrichment/schemas/simulation_readiness_schema.json",
+          "semantic-enrichment/schemas/temporal_event_model_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json"
+        ]
+      },
+      {
+        "id": "S7",
+        "score": 4,
+        "evidence": [
+          "tests/semantic_core/test_causal.py",
+          "tests/semantic_core/test_confidence_model.py",
+          "tests/semantic_core/test_identity_models.py",
+          "tests/semantic_core/test_identity_resolver.py",
+          "tests/semantic_core/test_normalizer.py",
+          "tests/semantic_core/test_ontology.py",
+          "tests/semantic_core/test_resolution_pipeline.py",
+          "tests/semantic_core/test_temporal.py",
+          "tests/test_benchmark_framework.py"
+        ]
+      },
+      {
+        "id": "P4",
+        "score": 3,
+        "evidence": [
+          "docs/ARCHITECTURE.md",
+          "README.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "E6",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/security-evidence.json",
+          "docs/DEPLOYMENT.md",
+          ".github/workflows/ci.yml",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "E7",
+        "score": 4,
+        "evidence": [
+          "tests/semantic_core/test_causal.py",
+          "tests/semantic_core/test_confidence_model.py",
+          "tests/semantic_core/test_identity_models.py",
+          "tests/semantic_core/test_identity_resolver.py",
+          "tests/semantic_core/test_normalizer.py",
+          "tests/semantic_core/test_ontology.py",
+          "tests/semantic_core/test_resolution_pipeline.py",
+          "tests/semantic_core/test_temporal.py",
+          "tests/test_benchmark_framework.py",
+          "ha-sync/requirements.txt",
+          "query-api/requirements.txt",
+          "semantic-enrichment/requirements.txt",
+          "world-model-chat/requirements.txt"
+        ]
+      },
+      {
+        "id": "E8",
+        "score": 4,
+        "evidence": [
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "ha-sync/Dockerfile",
+          "query-api/Dockerfile",
+          "semantic-enrichment/Dockerfile",
+          "world-model-chat/Dockerfile"
+        ]
+      },
+      {
+        "id": "S3",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/release-compatibility-declaration.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json",
+          ".governance/architecture/solution-baseline.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "docs/ARCHITECTURE.md",
+          "semantic-enrichment/schemas/anomaly_detection_schema.json",
+          "semantic-enrichment/schemas/automation_intent_schema.json",
+          "semantic-enrichment/schemas/capability_mapping_schema.json",
+          "semantic-enrichment/schemas/causal_dependency_schema.json",
+          "semantic-enrichment/schemas/dependency_reasoning_schema.json",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "semantic-enrichment/schemas/failure_impact_schema.json",
+          "semantic-enrichment/schemas/fault_analysis_schema.json",
+          "semantic-enrichment/schemas/recommended_actions_schema.json",
+          "semantic-enrichment/schemas/room_inference_schema.json",
+          "semantic-enrichment/schemas/semantic_descriptions_schema.json",
+          "semantic-enrichment/schemas/semantic_roles_schema.json",
+          "semantic-enrichment/schemas/simulation_readiness_schema.json",
+          "semantic-enrichment/schemas/temporal_event_model_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json"
+        ]
+      },
+      {
+        "id": "S5",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/security-evidence.json",
+          "docs/DEPLOYMENT.md",
+          ".github/workflows/ci.yml",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "S6",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/release-compatibility-declaration.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json",
+          ".governance/architecture/solution-baseline.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "docs/ARCHITECTURE.md",
+          "semantic-enrichment/schemas/anomaly_detection_schema.json",
+          "semantic-enrichment/schemas/automation_intent_schema.json",
+          "semantic-enrichment/schemas/capability_mapping_schema.json",
+          "semantic-enrichment/schemas/causal_dependency_schema.json",
+          "semantic-enrichment/schemas/dependency_reasoning_schema.json",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "semantic-enrichment/schemas/failure_impact_schema.json",
+          "semantic-enrichment/schemas/fault_analysis_schema.json",
+          "semantic-enrichment/schemas/recommended_actions_schema.json",
+          "semantic-enrichment/schemas/room_inference_schema.json",
+          "semantic-enrichment/schemas/semantic_descriptions_schema.json",
+          "semantic-enrichment/schemas/semantic_roles_schema.json",
+          "semantic-enrichment/schemas/simulation_readiness_schema.json",
+          "semantic-enrichment/schemas/temporal_event_model_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json"
+        ]
+      },
+      {
+        "id": "S8",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/resilience-evidence.json",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "benchmark/reports/performance_evolution_summary.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "ha-sync/Dockerfile",
+          "query-api/Dockerfile",
+          "semantic-enrichment/Dockerfile",
+          "world-model-chat/Dockerfile"
+        ]
+      },
+      {
+        "id": "P5",
+        "score": 4,
+        "evidence": [
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "ha-sync/Dockerfile",
+          "query-api/Dockerfile",
+          "semantic-enrichment/Dockerfile",
+          "world-model-chat/Dockerfile"
+        ]
+      },
+      {
+        "id": "P6",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/release-compatibility-declaration.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json",
+          ".governance/architecture/solution-baseline.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "docs/ARCHITECTURE.md",
+          "semantic-enrichment/schemas/anomaly_detection_schema.json",
+          "semantic-enrichment/schemas/automation_intent_schema.json",
+          "semantic-enrichment/schemas/capability_mapping_schema.json",
+          "semantic-enrichment/schemas/causal_dependency_schema.json",
+          "semantic-enrichment/schemas/dependency_reasoning_schema.json",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "semantic-enrichment/schemas/failure_impact_schema.json",
+          "semantic-enrichment/schemas/fault_analysis_schema.json",
+          "semantic-enrichment/schemas/recommended_actions_schema.json",
+          "semantic-enrichment/schemas/room_inference_schema.json",
+          "semantic-enrichment/schemas/semantic_descriptions_schema.json",
+          "semantic-enrichment/schemas/semantic_roles_schema.json",
+          "semantic-enrichment/schemas/simulation_readiness_schema.json",
+          "semantic-enrichment/schemas/temporal_event_model_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json"
+        ]
+      },
+      {
+        "id": "P8",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/security-evidence.json",
+          "docs/DEPLOYMENT.md",
+          ".github/workflows/ci.yml",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      {
+        "id": "P9",
+        "score": 4,
+        "evidence": [
+          "benchmark/reports/2026-05-12T15-00-26.069153+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T15-33-10.755187+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T16-16-39.694080+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T16-21-18.732696+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T16-49-06.071563+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T16-55-16.456712+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T17-19-12.367157+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T17-28-44.956009+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T17-32-12.623429+00-00_benchmark.json",
+          "benchmark/reports/2026-05-12T17-36-04.751008+00-00_benchmark.json"
+        ]
+      },
+      {
+        "id": "P10",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/resilience-evidence.json",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "benchmark/reports/performance_evolution_summary.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "ha-sync/Dockerfile",
+          "query-api/Dockerfile",
+          "semantic-enrichment/Dockerfile",
+          "world-model-chat/Dockerfile"
+        ]
+      },
+      {
+        "id": "P11",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/operation-evidence.json",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "benchmark/reports/performance_evolution_summary.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml"
+        ]
+      },
+      {
+        "id": "P13",
+        "score": 4,
+        "evidence": [
+          ".governance/architecture/release-compatibility-declaration.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json",
+          ".governance/architecture/solution-baseline.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md",
+          "docker-compose.yml",
+          "docs/ARCHITECTURE.md",
+          "semantic-enrichment/schemas/anomaly_detection_schema.json",
+          "semantic-enrichment/schemas/automation_intent_schema.json",
+          "semantic-enrichment/schemas/capability_mapping_schema.json",
+          "semantic-enrichment/schemas/causal_dependency_schema.json",
+          "semantic-enrichment/schemas/dependency_reasoning_schema.json",
+          "semantic-enrichment/schemas/enrichment_schema.json",
+          "semantic-enrichment/schemas/failure_impact_schema.json",
+          "semantic-enrichment/schemas/fault_analysis_schema.json",
+          "semantic-enrichment/schemas/recommended_actions_schema.json",
+          "semantic-enrichment/schemas/room_inference_schema.json",
+          "semantic-enrichment/schemas/semantic_descriptions_schema.json",
+          "semantic-enrichment/schemas/semantic_roles_schema.json",
+          "semantic-enrichment/schemas/simulation_readiness_schema.json",
+          "semantic-enrichment/schemas/temporal_event_model_schema.json",
+          "world-model-chat/schemas/cypher_query_schema.json"
+        ]
+      }
+    ],
+    "release_compatibility_declaration": {
+      "exists": true,
+      "baseline_version": "ha-CPsWMS-demo-baseline",
+      "approved": true,
+      "declaration_id": ".governance/architecture/release-compatibility-declaration.json",
+      "approved_by": "Architecture Demo Review",
+      "approval_date": "2026-07-02"
+    },
+    "solution_baseline": {
+      "exists": true,
+      "baseline_id": ".governance/architecture/solution-baseline.json",
+      "version": "ha-CPsWMS-demo-baseline"
+    },
+    "compatibility_evidence": {
+      "exists": true,
+      "evidence_refs": [
+        ".governance/architecture/release-compatibility-declaration.json",
+        "docs/ARCHITECTURE.md",
+        "docs/DEPLOYMENT.md",
+        "docker-compose.yml",
+        "semantic-enrichment/schemas/enrichment_schema.json",
+        "world-model-chat/schemas/cypher_query_schema.json",
+        ".governance/architecture/solution-baseline.json",
+        "docs/ARCHITECTURE.md",
+        "docs/DEPLOYMENT.md",
+        "docker-compose.yml",
+        "docs/ARCHITECTURE.md",
+        "semantic-enrichment/schemas/anomaly_detection_schema.json",
+        "semantic-enrichment/schemas/automation_intent_schema.json",
+        "semantic-enrichment/schemas/capability_mapping_schema.json",
+        "semantic-enrichment/schemas/causal_dependency_schema.json",
+        "semantic-enrichment/schemas/dependency_reasoning_schema.json",
+        "semantic-enrichment/schemas/enrichment_schema.json",
+        "semantic-enrichment/schemas/failure_impact_schema.json",
+        "semantic-enrichment/schemas/fault_analysis_schema.json",
+        "semantic-enrichment/schemas/recommended_actions_schema.json",
+        "semantic-enrichment/schemas/room_inference_schema.json",
+        "semantic-enrichment/schemas/semantic_descriptions_schema.json",
+        "semantic-enrichment/schemas/semantic_roles_schema.json",
+        "semantic-enrichment/schemas/simulation_readiness_schema.json",
+        "semantic-enrichment/schemas/temporal_event_model_schema.json",
+        "world-model-chat/schemas/cypher_query_schema.json"
+      ]
+    },
+    "security_evidence": {
+      "exists": true,
+      "evidence_refs": [
+        ".governance/architecture/security-evidence.json",
+        "docs/DEPLOYMENT.md",
+        ".github/workflows/ci.yml",
+        "docs/DEPLOYMENT.md"
+      ]
+    },
+    "deployment_evidence": {
+      "exists": true,
+      "evidence_refs": [
+        "docs/DEPLOYMENT.md",
+        "docker-compose.yml",
+        "ha-sync/Dockerfile",
+        "query-api/Dockerfile",
+        "semantic-enrichment/Dockerfile",
+        "world-model-chat/Dockerfile"
+      ]
+    },
+    "runtime_evidence": {
+      "exists": true,
+      "evidence_refs": [
+        ".governance/architecture/operation-evidence.json",
+        "docs/DEPLOYMENT.md",
+        "docker-compose.yml",
+        "benchmark/reports/performance_evolution_summary.md",
+        "docs/DEPLOYMENT.md",
+        "docker-compose.yml"
+      ]
+    },
+    "feedback_evidence": {
+      "exists": true,
+      "evidence_refs": [
+        ".governance/architecture/feedback-evidence.json",
+        "benchmark/reports/performance_evolution_summary.md",
+        "benchmark/reports/performance_evolution_summary.md"
+      ]
+    },
+    "exceptions": []
+  }
+}

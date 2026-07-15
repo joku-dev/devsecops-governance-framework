@@ -1,0 +1,51 @@
+name: DevSecOps Pipeline Baseline
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  code:
+    name: Code Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Source integrity and secure coding evidence
+        run: echo "Run branch protection, review evidence, secret scanning, and SAST checks here."
+
+  build:
+    name: Controlled Build
+    runs-on: ubuntu-latest
+    needs: code
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Build artifact
+        run: echo "Run controlled build and produce artifact metadata here."
+
+  test:
+    name: Test and Security Gates
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Vulnerability and security gate evidence
+        run: echo "Run vulnerability scanning and policy threshold checks here."
+
+  package:
+    name: Package and Evidence
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: SBOM and artifact integrity evidence
+        run: echo "Generate SBOM, artifact digest, signature, and repository metadata here."
+
+  release:
+    name: Release Decision
+    runs-on: ubuntu-latest
+    needs: package
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Release approval and evidence bundle
+        run: echo "Evaluate release approval, waiver status, and evidence bundle completeness here."

@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Governance Status Viewer</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --panel-soft: #fbfcfd;
+      --ink: #17212b;
+      --muted: #637083;
+      --accent: #155c8a;
+      --accent-soft: #e8f2f8;
+      --ok: #e7f6ee;
+      --ok-ink: #11623d;
+      --warn: #fff3dc;
+      --warn-ink: #805700;
+      --danger: #fdecec;
+      --danger-ink: #9f2a2a;
+      --plain: #eef2f6;
+      --border: #d8dee6;
+      --shadow: 0 12px 28px rgba(23, 33, 43, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: var(--bg); color: var(--ink); }
+    header { background: #153243; color: white; padding: 28px 32px; border-bottom: 4px solid #58a4b0; }
+    header h1 { margin: 0; font-size: 2rem; letter-spacing: 0; }
+    header p { max-width: 860px; }
+    main { padding: 24px; max-width: 1440px; margin: 0 auto; }
+    .section-nav { position: sticky; top: 0; z-index: 5; background: rgba(246, 247, 249, 0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .section-nav-inner { max-width: 1440px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .section-nav a { color: var(--accent); background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 0.42rem 0.62rem; font-size: 0.9rem; text-decoration: none; }
+    .section-nav a:hover { text-decoration: none; border-color: var(--accent); background: var(--accent-soft); }
+    .viewer-section { margin: 0 0 32px; scroll-margin-top: 72px; }
+    .viewer-section + .viewer-section { padding-top: 8px; }
+    .section-title { margin: 0 0 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    .section-title h2 { margin: 0; font-size: 1.35rem; letter-spacing: 0; }
+    .section-title p { margin: 6px 0 0; color: var(--muted); max-width: 860px; }
+    .overview-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr); gap: 18px; align-items: start; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 18px; }
+    .card, .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 16px; box-shadow: var(--shadow); }
+    .panel { overflow-x: auto; }
+    .card h3, .panel h2 { margin: 0; font-size: 1rem; letter-spacing: 0; }
+    .card p { margin: 6px 0 0; color: var(--muted); overflow-wrap: anywhere; }
+    .value { font-size: 1.75rem; font-weight: 750; margin: 8px 0; letter-spacing: 0; overflow-wrap: anywhere; }
+    .latest-results { margin-bottom: 18px; }
+    .section-heading { display: flex; justify-content: space-between; gap: 16px; align-items: end; margin-bottom: 12px; }
+    .section-heading h2 { margin: 0; }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .latest-grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; }
+    .latest-card { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 18px; box-shadow: var(--shadow); }
+    .latest-card-header { display: flex; justify-content: space-between; gap: 16px; align-items: start; margin-bottom: 16px; }
+    .latest-card h3 { margin: 0 0 4px; font-size: 1.1rem; }
+    .latest-card p { margin: 0; color: var(--muted); }
+    .latest-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+    .latest-grid div { min-width: 0; }
+    .latest-grid dt { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
+    .latest-grid dd { margin: 4px 0 0; overflow-wrap: anywhere; }
+    .control-score { border-radius: 8px; padding: 12px; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+    .control-score.ok { background: var(--ok); }
+    .control-score.warn { background: var(--warn); }
+    .control-score span { color: var(--muted); font-size: 0.9rem; }
+    .panels { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .panel-heading { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+    .panel-heading p { margin: 5px 0 0; color: var(--muted); }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid var(--border); text-align: left; padding: 10px 9px; vertical-align: top; }
+    th { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; background: var(--panel-soft); }
+    tbody tr:hover { background: #fafbfc; }
+    code { background: var(--plain); padding: 0.1rem 0.32rem; border-radius: 5px; font-size: 0.92em; }
+    .badge { display: inline-block; padding: 0.18rem 0.48rem; border-radius: 999px; font-size: 0.78rem; font-weight: 650; white-space: nowrap; }
+    .badge.ok { background: var(--ok); color: var(--ok-ink); }
+    .badge.warn { background: var(--warn); color: var(--warn-ink); }
+    .badge.danger { background: var(--danger); color: var(--danger-ink); }
+    .badge.plain { background: var(--plain); color: #405062; }
+    .meta { color: rgba(255,255,255,0.85); }
+    .artifact-list a { color: var(--accent); text-decoration: none; }
+    .artifact-list li { margin: 0.35rem 0; }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+    .filters label { font-size: 0.9rem; color: var(--muted); }
+    .filters select, .filters input { padding: 0.45rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; font: inherit; }
+    .filters input { min-width: 240px; }
+    .filter-summary { margin: 10px 0 0; color: var(--muted); font-size: 0.9rem; }
+    .history-filters { padding: 10px; background: var(--panel-soft); border: 1px solid var(--border); border-radius: 8px; }
+    .history-compact table { font-size: 0.92rem; }
+    .history-compact th, .history-compact td { padding: 8px 7px; }
+    .repo-name { display: flex; flex-direction: column; gap: 6px; min-width: 220px; }
+    .cell-detail { display: block; margin-top: 5px; color: var(--muted); font-size: 0.86rem; overflow-wrap: anywhere; }
+    .status-board td:nth-child(2), .status-board td:nth-child(3) { min-width: 210px; }
+    pre { overflow: auto; background: #101820; color: #f2f6f8; padding: 14px; border-radius: 8px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    @media (max-width: 980px) {
+      .overview-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      header { padding: 22px 18px; }
+      main { padding: 16px; }
+      .latest-grid-cards { grid-template-columns: 1fr; }
+      .latest-grid { grid-template-columns: 1fr; }
+      .section-heading { display: block; }
+      table { min-width: 760px; }
+      .section-nav-inner { padding: 8px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Governance Status Viewer</h1>
+    <p class="meta">Operational snapshot of downstream governance results, released baselines, runtime architecture status, traceability coverage, and open governance work.</p>
+  </header>
+  <nav class="section-nav" aria-label="Viewer sections">
+    <div class="section-nav-inner">
+      <a href="#overview">Overview</a>
+      <a href="#runtime-governance">Runtime Governance</a>
+      <a href="#source-intake">Source Intake</a>
+      <a href="#agent-usage">Agent Usage</a>
+      <a href="#runs">Runs</a>
+      <a href="#controls">Controls</a>
+      <a href="#model">Governance Model</a>
+      <a href="#open-work">Open Work</a>
+      <a href="#artifacts">Artifacts & Data</a>
+    </div>
+  </nav>
+  <main>
+    <section id="overview" class="viewer-section">
+      <div class="section-title">
+        <h2>Operational Overview</h2>
+        <p>Current governed state across DevSecOps and Architecture Runtime Governance, with one row per downstream repository.</p>
+      </div>
+      <div class="overview-grid">
+        <section class="panel status-board"><div class="panel-heading"><div><h2>Repository Governance Status</h2><p>One operational row per repository, with DevSecOps and architecture status side by side.</p></div></div><div class="table-scroll"><table><thead><tr><th>Repository</th><th>DevSecOps</th><th>Architecture</th><th>DevSecOps Run</th><th>Architecture Run</th><th>Commit</th></tr></thead><tbody><tr><td><div class="repo-name"><code>joku-dev/ai-native-engineering-factory</code><span><span class="badge ok">mainline</span></span></div></td><td><span class="badge ok">pass</span><span class="cell-detail">No structured summary</span><span class="cell-detail"><code>main@34bdc66</code></span></td><td><span class="badge plain">not tracked</span><span class="cell-detail">No architecture run</span><span class="cell-detail"><code>not tracked</code></span></td><td><a href="https://github.com/joku-dev/ai-native-engineering-factory/actions/runs/28315832162"><code>28315832162</code></a></td><td><code>not tracked</code></td><td><code>7e80f63fac4a</code></td></tr><tr><td><div class="repo-name"><code>joku-dev/ha-CPsWMS</code><span><span class="badge ok">mainline</span></span></div></td><td><span class="badge ok">pass</span><span class="cell-detail">16/16 controls</span><span class="cell-detail"><code>l1-baseline-v1.1.3</code></span></td><td><span class="badge ok">PASS</span><span class="cell-detail">4/4 gates</span><span class="cell-detail"><code>architecture-baseline-l1-v0.1.0</code></span></td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28708822838"><code>28708822838</code></a></td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28708822660"><code>28708822660</code></a></td><td><code>cada7117a1dc</code></td></tr></tbody></table></div></section>
+        <div>
+          <section class="cards">
+            <section class="card"><h3>Operational State</h3><div class="value">L1 operational</div><p>Rollout: pilot validated and released; factory report-only onboarding active</p></section><section class="card"><h3>Integrated Repositories</h3><div class="value">2</div><p>Passing results: 14</p></section><section class="card"><h3>Central Baseline</h3><div class="value">Active</div><p>l1-baseline-v1.1.3, main@34bdc66</p></section><section class="card"><h3>Run Mix</h3><div class="value">9</div><p>Mainline push runs, branch/PR: 4, manual: 2</p></section><section class="card"><h3>Governance Modes</h3><div class="value">1 blocking</div><p>Report-only: 1, warn: 0</p></section>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="runtime-governance" class="viewer-section"><div class="section-title"><h2>Runtime Governance</h2><p>Architecture and DevSecOps demo readiness for ha-CPsWMS, generated from machine-readable app repository evidence.</p></div><section class="cards"><section class="card"><h3>End-to-End Governance</h3><div class="value">PASS</div><p><span class="badge ok">Findings: 0</span></p></section><section class="card"><h3>Architecture Gates</h3><div class="value">4/4</div><p><span class="badge ok">Findings: 0</span></p></section><section class="card"><h3>DevSecOps Release</h3><div class="value">PASS</div><p><span class="badge ok">Findings: 0</span></p></section><section class="card"><h3>Demo Target</h3><div class="value">cada7117a1dc</div><p><span class="badge plain">ha-CPsWMS-demo</span></p></section></section><section class="panels"><section class="panel"><h2>Architecture Runtime Gates</h2><table><thead><tr><th>Gate</th><th>Status</th><th>Findings</th><th>Details</th></tr></thead><tbody><tr><td>Architecture Readiness</td><td><span class="badge ok">PASS</span></td><td>0</td><td>No findings.</td></tr><tr><td>Integration Readiness</td><td><span class="badge ok">PASS</span></td><td>0</td><td>No findings.</td></tr><tr><td>Operation Readiness</td><td><span class="badge ok">PASS</span></td><td>0</td><td>No findings.</td></tr><tr><td>Release Readiness</td><td><span class="badge ok">PASS</span></td><td>0</td><td>No findings.</td></tr></tbody></table></section><section class="panel"><h2>End-to-End Domain Result</h2><table><thead><tr><th>Domain</th><th>Status</th><th>Findings</th><th>Details</th></tr></thead><tbody><tr><td>Architecture</td><td><span class="badge ok">PASS</span></td><td>0</td><td>No findings.</td></tr><tr><td>DevSecOps</td><td><span class="badge ok">PASS</span></td><td>0</td><td>No findings.</td></tr></tbody></table></section><section class="panel"><h2>Runtime Governance Artifacts</h2><ul class="artifact-list"><li><a href="../demo/ha-cpswms-end-to-end-governance-report.md">End-to-End Governance Report</a></li><li><a href="../demo/ha-cpswms-architecture-governance-report.md">Architecture Runtime Governance Report</a></li><li><a href="../demo/ha-cpswms-devsecops-governance-report.md">DevSecOps Governance Report</a></li><li><a href="../demo/ha-cpswms-architecture-release-input.json">Architecture Release Input JSON</a></li><li><a href="../demo/ha-cpswms-devsecops-release-input.json">DevSecOps Release Input JSON</a></li></ul></section></section></section>
+
+    <section id="source-intake" class="viewer-section"><div class="section-title"><h2>Source Document Intake</h2><p>Report-only source-document intake status, review briefs, and requirement deltas for candidate replacement decisions.</p></div><section class="cards"><article class="card"><h3>Registered Sources</h3><div class="value">10</div><p>Open review items: 7</p></article><article class="card"><h3>Replacement Reviews</h3><div class="value">1</div><p>Review briefs: 7</p></article><article class="card"><h3>Requirement Deltas</h3><div class="value">2</div><p>Equivalent: 2</p></article><article class="card"><h3>Decision State</h3><div class="value">Report-only</div><p>Runtime changed: no</p></article></section><section class="panels"><section class="panel"><h2>Open Intake Review Items</h2><table><thead><tr><th>Source</th><th>Status</th><th>Owner</th><th>Review State</th><th>Next Action</th></tr></thead><tbody><tr><td><code>DEVSECOPS-POL-SRC-001</code></td><td><span class="badge warn">draft</span></td><td>governance-owners</td><td><span class="badge warn">draft_source_of_truth_decision_required</span></td><td>Confirm source-of-truth and approval path before treating the draft as a baseline source.</td></tr><tr><td><code>DEVSECOPS-DIR-SRC-001</code></td><td><span class="badge warn">draft</span></td><td>governance-owners</td><td><span class="badge warn">draft_source_of_truth_decision_required</span></td><td>Confirm source-of-truth and approval path before treating the draft as a baseline source.</td></tr><tr><td><code>ARCH-TPL-SRC-001</code></td><td><span class="badge warn">candidate</span></td><td>architecture-owners</td><td><span class="badge warn">candidate_similarity_review_required</span></td><td>Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant.</td></tr><tr><td><code>ARCH-EA-SRC-001</code></td><td><span class="badge warn">candidate</span></td><td>architecture-owners</td><td><span class="badge warn">candidate_similarity_review_required</span></td><td>Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant.</td></tr><tr><td><code>ARCH-SA-SRC-001</code></td><td><span class="badge warn">candidate</span></td><td>architecture-owners</td><td><span class="badge warn">candidate_similarity_review_required</span></td><td>Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant.</td></tr><tr><td><code>ARCH-PA-SRC-001</code></td><td><span class="badge warn">candidate</span></td><td>architecture-owners</td><td><span class="badge warn">candidate_similarity_review_required</span></td><td>Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant.</td></tr><tr><td><code>ARCH-GOV-SRC-002</code></td><td><span class="badge warn">candidate</span></td><td>architecture-owners</td><td><span class="badge warn">candidate_replacement_review_required</span></td><td>Review replacement decision before promoting the source or moving lineage.</td></tr></tbody></table></section><section class="panel"><h2>Replacement Review Items</h2><table><thead><tr><th>Candidate</th><th>Replaces</th><th>Owner</th><th>Classification</th><th>Next Action</th></tr></thead><tbody><tr><td><code>ARCH-GOV-SRC-002</code></td><td><code>ARCH-SDD-SRC-001</code></td><td>architecture-owners</td><td><span class="badge warn">registered_replacement_candidate</span></td><td>Review replacement decision before promoting the source or moving lineage.</td></tr></tbody></table></section><section class="panel"><h2>Requirement Delta Summary</h2><table><thead><tr><th>Candidate</th><th>Target</th><th>Candidate Requirements</th><th>Target Requirements</th><th>Differences</th><th>Counts</th></tr></thead><tbody><tr><td><code>ARCH-GOV-SRC-002</code></td><td><code>ARCH-SDD-SRC-001</code></td><td>3</td><td>4</td><td>2</td><td>added 0, changed 1, removed 1, equivalent 2</td></tr></tbody></table></section><section class="panel"><h2>High Priority Requirement Delta Review</h2><table><thead><tr><th>Status</th><th>Priority</th><th>Candidate Ref</th><th>Target Ref</th><th>Potential Impacts</th><th>Statement</th></tr></thead><tbody><tr><td><span class="badge warn">changed</span></td><td><span class="badge danger">high</span></td><td><code>docs/governance/source-documents/ARCH-GOV-SRC-002.public.md:19</code></td><td><code>docs/governance/source-documents/ARCH-SDD-SRC-001.public.md:20</code></td><td>evidence_contracts, runtime_governance_review</td><td>- Architecture exceptions shall remain visible until closure.</td></tr><tr><td><span class="badge danger">removed</span></td><td><span class="badge danger">high</span></td><td><code>n/a</code></td><td><code>docs/governance/source-documents/ARCH-SDD-SRC-001.public.md:19</code></td><td>runtime_governance_review</td><td>- Architecture exceptions shall be documented with owner, risk, expiry, and follow-up action.</td></tr></tbody></table></section><section class="panel"><h2>Source Documents</h2><table><thead><tr><th>Source</th><th>Status</th><th>Domains</th><th>Review State</th><th>Operational Artifacts</th></tr></thead><tbody><tr><td><code>DEVSECOPS-POL-SRC-001</code></td><td><span class="badge warn">draft</span></td><td>policy, devsecops</td><td><span class="badge warn">draft_source_of_truth_decision_required</span></td><td>2</td></tr><tr><td><code>DEVSECOPS-DIR-SRC-001</code></td><td><span class="badge warn">draft</span></td><td>directive, devsecops</td><td><span class="badge warn">draft_source_of_truth_decision_required</span></td><td>2</td></tr><tr><td><code>DSCB-STD-SRC-001</code></td><td><span class="badge ok">intake</span></td><td>devsecops</td><td><span class="badge ok">accepted_intake</span></td><td>22</td></tr><tr><td><code>PRA-STD-SRC-001</code></td><td><span class="badge ok">intake</span></td><td>platform, devsecops</td><td><span class="badge ok">accepted_intake</span></td><td>18</td></tr><tr><td><code>ARCH-SDD-SRC-001</code></td><td><span class="badge ok">intake</span></td><td>architecture</td><td><span class="badge ok">accepted_intake</span></td><td>25</td></tr><tr><td><code>ARCH-TPL-SRC-001</code></td><td><span class="badge warn">candidate</span></td><td>architecture</td><td><span class="badge warn">candidate_similarity_review_required</span></td><td>0</td></tr><tr><td><code>ARCH-EA-SRC-001</code></td><td><span class="badge warn">candidate</span></td><td>architecture</td><td><span class="badge warn">candidate_similarity_review_required</span></td><td>0</td></tr><tr><td><code>ARCH-SA-SRC-001</code></td><td><span class="badge warn">candidate</span></td><td>architecture</td><td><span class="badge warn">candidate_similarity_review_required</span></td><td>0</td></tr><tr><td><code>ARCH-PA-SRC-001</code></td><td><span class="badge warn">candidate</span></td><td>architecture</td><td><span class="badge warn">candidate_similarity_review_required</span></td><td>0</td></tr><tr><td><code>ARCH-GOV-SRC-002</code></td><td><span class="badge warn">candidate</span></td><td>architecture</td><td><span class="badge warn">candidate_replacement_review_required</span></td><td>0</td></tr></tbody></table></section><section class="panel"><h2>Source Intake Artifacts</h2><ul class="artifact-list"><li><a href="../reports/source-document-intake-status.md">Source Document Intake Status</a></li><li><a href="../reports/source-document-intake-review-briefs.md">Source Document Intake Review Briefs</a></li><li><a href="../reports/source-document-requirement-delta.md">Source Document Requirement Delta</a></li><li><a href="../reports/architecture-source-replacement-assessment.md">Architecture Source Replacement Assessment</a></li><li><a href="../reports/source-lineage-report.md">Source Lineage Report</a></li></ul></section></section></section>
+
+    <section id="agent-usage" class="viewer-section"><div class="section-title"><h2>Agent Usage</h2><p>Continuous metadata-only record of selected governance roles, skills, providers, platforms, and recent dispatches.</p></div><section class="cards"><article class="card"><h3>Recorded Events</h3><div class="value">17</div><p>Last event 2026-07-06T20:04:30Z</p></article><article class="card"><h3>Top Agent</h3><div class="value">repo-steward</div><p>Most frequently selected governance role</p></article><article class="card"><h3>Provider Reviews</h3><div class="value">2</div><p>codex 2, mistral 0</p></article><article class="card"><h3>Dispatch Events</h3><div class="value">15</div><p>provider review 2</p></article></section><section class="panels"><section class="panel"><h2>Agent Counts</h2><table><thead><tr><th>Agent</th><th>Count</th></tr></thead><tbody><tr><td><code>repo-steward</code></td><td>17</td></tr><tr><td><code>release-manager</code></td><td>9</td></tr><tr><td><code>evidence-and-intake</code></td><td>8</td></tr><tr><td><code>architecture-runtime-governance</code></td><td>7</td></tr><tr><td><code>governance-analyst</code></td><td>2</td></tr><tr><td><code>demo-readiness</code></td><td>1</td></tr><tr><td><code>devsecops-baseline</code></td><td>1</td></tr></tbody></table></section><section class="panel"><h2>Provider And Platform Counts</h2><table><thead><tr><th>Provider</th><th>Count</th></tr></thead><tbody><tr><td><code>none</code></td><td>15</td></tr><tr><td><code>codex</code></td><td>2</td></tr></tbody></table><table><thead><tr><th>Platform</th><th>Count</th></tr></thead><tbody><tr><td><code>local</code></td><td>17</td></tr></tbody></table></section><section class="panel"><h2>Recent Agent Runs</h2><table><thead><tr><th>Timestamp</th><th>Type</th><th>Provider</th><th>Agents</th><th>Impact</th><th>Areas</th></tr></thead><tbody><tr><td>2026-07-06T18:59:05Z</td><td><span class="badge plain">dispatch</span></td><td>none</td><td>architecture-runtime-governance, evidence-and-intake, release-manager, repo-steward</td><td><span class="badge warn">candidate</span></td><td>docs/operations, generated/demo, pipeline-baseline/templates/app-architecture-evidence, policies/example-input.architecture-release-candidate-findings.json, policies/example-input.architecture-release-candidate.json, schemas, scripts, tests</td></tr><tr><td>2026-07-06T19:04:17Z</td><td><span class="badge plain">dispatch</span></td><td>none</td><td>architecture-runtime-governance, evidence-and-intake, release-manager, repo-steward</td><td><span class="badge warn">candidate</span></td><td>docs/operations, generated/demo, pipeline-baseline/templates/app-architecture-evidence, policies/example-input.architecture-release-candidate-findings.json, policies/example-input.architecture-release-candidate.json, schemas, scripts, tests</td></tr><tr><td>2026-07-06T19:15:15Z</td><td><span class="badge plain">dispatch</span></td><td>none</td><td>repo-steward</td><td><span class="badge plain">none</span></td><td>docs/operations, generated/agent-usage, scripts, tests</td></tr><tr><td>2026-07-06T19:42:08Z</td><td><span class="badge plain">dispatch</span></td><td>none</td><td>repo-steward</td><td><span class="badge plain">none</span></td><td>docs/operations, scripts, tests</td></tr><tr><td>2026-07-06T19:47:10Z</td><td><span class="badge plain">dispatch</span></td><td>none</td><td>architecture-runtime-governance, demo-readiness, evidence-and-intake, repo-steward</td><td><span class="badge warn">candidate</span></td><td>docs/ai-index.md, docs/official-entrypoints.md, docs/operations, generated/agent-usage, generated/viewer, mkdocs.yml, scripts</td></tr><tr><td>2026-07-06T20:04:30Z</td><td><span class="badge ok">provider_review</span></td><td>codex</td><td>repo-steward</td><td><span class="badge plain">none</span></td><td>docs/operations, scripts, tests</td></tr></tbody></table></section><section class="panel"><h2>Agent Usage Artifacts</h2><ul class="artifact-list"><li><a href="../../operations/agents/agent-usage-snapshot-latest/">Latest Agent Usage Snapshot</a></li><li><a href="../agent-usage/agent-usage-summary.json">Agent Usage Summary JSON</a></li><li><a href="../agent-usage/agent-usage.jsonl">Agent Usage JSONL Log</a></li></ul></section></section></section>
+
+    <section id="runs" class="viewer-section">
+      <div class="section-title">
+        <h2>Repository Execution</h2>
+        <p>Downstream pipeline status, mainline history, branch validation, manual diagnostics, and run links.</p>
+      </div>
+      <section class="panels">
+        <section class="panel">
+          <h2>Operational Integration Status</h2>
+          <table><thead><tr><th>Repository</th><th>Level</th><th>Status</th><th>Mode</th><th>Enforcement</th><th>Pipeline Result</th><th>Workflow Ref</th><th>Run ID</th><th>Notes</th></tr></thead><tbody><tr><td><code>joku-dev/ai-native-engineering-factory</code></td><td><span class="badge plain">L1</span></td><td><span class="badge warn">report-only</span></td><td><span class="badge warn">report-only</span></td><td>blocks merge: no; records result: yes; waiver on failure: no</td><td>success</td><td><code>main@34bdc66</code></td><td><code>28315832162</code></td><td>Report-only central L1 onboarding run completed on PR #93 with quality-gates passing. The run recorded direct pushes allowed on main, so the repository should remain report-only until branch protection is ready for blocking enforcement. Latest branch/PR run: 28315832162 on codex/add-central-l1-baseline-report-clean with coverage n/a/n/a pass.</td></tr><tr><td><code>joku-dev/ha-CPsWMS</code></td><td><span class="badge plain">L1</span></td><td><span class="badge ok">operational</span></td><td><span class="badge ok">block-on-error</span></td><td>blocks merge: yes; records result: yes; waiver on failure: yes</td><td>success</td><td><code>l1-baseline-v1.1.3</code></td><td><code>28708822838</code></td><td>Successful end-to-end baseline execution through the released central L1 reusable governance workflow v1.1.3 on a protected main branch, with static-analysis, traceability, operations evidence, and full structured L1 control coverage. Latest branch/PR run: 28302764711 on devsecops/add-run-context-governance-input with coverage 14/14 pass.</td></tr></tbody></table>
+        </section>
+        <section class="panel history-compact"><h2>Repository Result History</h2><p class="filter-summary">Filterable run history with baseline evolution, linked run IDs, and readable change reasons.</p><div class="filters history-filters"><label for="history-scope-filter">Scope</label><select id="history-scope-filter"><option value="all">All</option><option value="mainline">Mainline</option><option value="branch">Branch</option><option value="manual">Manual</option></select><label for="history-status-filter">Status</label><select id="history-status-filter"><option value="all">All</option><option value="pass">Pass</option><option value="fail">Fail</option></select><label for="history-baseline-filter">Baseline</label><select id="history-baseline-filter"><option value="all">All</option><option value="governance-main-run-context">governance-main-run-context</option><option value="l1-baseline-v1.0.0">l1-baseline-v1.0.0</option><option value="l1-baseline-v1.1.2">l1-baseline-v1.1.2</option><option value="l1-baseline-v1.1.3">l1-baseline-v1.1.3</option><option value="main@34bdc66">main@34bdc66</option></select><label for="history-search-filter">Search</label><input id="history-search-filter" type="search" placeholder="branch, run ID, repository" /></div><table><thead><tr><th>Repository</th><th>Generated At</th><th>Scope</th><th>Status</th><th>Baseline Ref</th><th>Branch</th><th>Run ID</th><th>Coverage</th><th>Why changed?</th></tr></thead><tbody><tr data-history-row="true" data-scope="branch" data-status="pass" data-baseline="main@34bdc66" data-branch="codex/add-central-l1-baseline-report-clean" data-repository="joku-dev/ai-native-engineering-factory" data-run-id="28315832162"><td><code>joku-dev/ai-native-engineering-factory</code></td><td>2026-06-28T08:00:21Z</td><td><span class="badge warn">branch</span></td><td><span class="badge ok">pass</span></td><td><code>main@34bdc66</code></td><td>codex/add-central-l1-baseline-report-clean</td><td><a href="https://github.com/joku-dev/ai-native-engineering-factory/actions/runs/28315832162"><code>28315832162</code></a></td><td>No structured control summary</td><td>No structured control summary</td></tr><tr data-history-row="true" data-scope="branch" data-status="pass" data-baseline="main@34bdc66" data-branch="codex/add-central-l1-baseline-report-clean" data-repository="joku-dev/ai-native-engineering-factory" data-run-id="28315609025"><td><code>joku-dev/ai-native-engineering-factory</code></td><td>2026-06-28T07:49:37Z</td><td><span class="badge warn">branch</span></td><td><span class="badge ok">pass</span></td><td><code>main@34bdc66</code></td><td>codex/add-central-l1-baseline-report-clean</td><td><a href="https://github.com/joku-dev/ai-native-engineering-factory/actions/runs/28315609025"><code>28315609025</code></a></td><td>No structured control summary</td><td>No structured control summary</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="l1-baseline-v1.1.3" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28708822838"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-07-04T14:12:37Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.1.3</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28708822838"><code>28708822838</code></a></td><td>16/16 pass, 0 fail, 0 not_tested</td><td>Pass 14 -> 16; Full applicable coverage reached</td></tr><tr data-history-row="true" data-scope="manual" data-status="pass" data-baseline="l1-baseline-v1.1.3" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28701598340"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-07-04T09:14:05Z</td><td><span class="badge plain">manual</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.1.3</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28701598340"><code>28701598340</code></a></td><td>14/14 pass, 0 fail, 0 not_tested</td><td>Pass 16 -> 14; Full applicable coverage reached</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="l1-baseline-v1.1.3" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28592257991"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-07-02T13:05:30Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.1.3</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28592257991"><code>28592257991</code></a></td><td>16/16 pass, 0 fail, 0 not_tested</td><td>No control-status change</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="l1-baseline-v1.1.3" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28591160311"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-07-02T12:48:14Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.1.3</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28591160311"><code>28591160311</code></a></td><td>16/16 pass, 0 fail, 0 not_tested</td><td>No control-status change</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="l1-baseline-v1.1.3" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28314109954"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-28T06:42:31Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.1.3</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28314109954"><code>28314109954</code></a></td><td>16/16 pass, 0 fail, 0 not_tested</td><td>Baseline governance-main-run-context -> l1-baseline-v1.1.3</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="governance-main-run-context" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28302814664"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-27T21:49:48Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>governance-main-run-context</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28302814664"><code>28302814664</code></a></td><td>16/16 pass, 0 fail, 0 not_tested</td><td>Pass 14 -> 16; Full applicable coverage reached</td></tr><tr data-history-row="true" data-scope="branch" data-status="pass" data-baseline="governance-main-run-context" data-branch="devsecops/add-run-context-governance-input" data-repository="joku-dev/ha-CPsWMS" data-run-id="28302764711"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-27T21:47:39Z</td><td><span class="badge warn">branch</span></td><td><span class="badge ok">pass</span></td><td><code>governance-main-run-context</code></td><td>devsecops/add-run-context-governance-input</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28302764711"><code>28302764711</code></a></td><td>14/14 pass, 0 fail, 0 not_tested</td><td>Baseline l1-baseline-v1.1.2 -> governance-main-run-context; Status fail -> pass; Fail 2 -> 0; Full applicable coverage reached</td></tr><tr data-history-row="true" data-scope="manual" data-status="fail" data-baseline="l1-baseline-v1.1.2" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28302556581"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-27T21:38:40Z</td><td><span class="badge plain">manual</span></td><td><span class="badge danger">fail</span></td><td><code>l1-baseline-v1.1.2</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28302556581"><code>28302556581</code></a></td><td>14/16 pass, 2 fail, 0 not_tested</td><td>Status pass -> fail; Pass 16 -> 14; Fail 0 -> 2</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="l1-baseline-v1.1.2" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28293749755"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-27T15:38:14Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.1.2</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28293749755"><code>28293749755</code></a></td><td>16/16 pass, 0 fail, 0 not_tested</td><td>Pass 15 -> 16; Fail 1 -> 0; Full applicable coverage reached</td></tr><tr data-history-row="true" data-scope="branch" data-status="pass" data-baseline="l1-baseline-v1.1.2" data-branch="devsecops/update-governance-pin-after-protection-fix" data-repository="joku-dev/ha-CPsWMS" data-run-id="28293604694"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-27T15:33:14Z</td><td><span class="badge warn">branch</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.1.2</code></td><td>devsecops/update-governance-pin-after-protection-fix</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28293604694"><code>28293604694</code></a></td><td>15/16 pass, 1 fail, 0 not_tested</td><td>Pass 13 -> 15; Fail 3 -> 1</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="l1-baseline-v1.1.2" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28293253390"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-27T15:19:14Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.1.2</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28293253390"><code>28293253390</code></a></td><td>13/16 pass, 3 fail, 0 not_tested</td><td>First structured control summary</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="l1-baseline-v1.0.0" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28292518364"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-27T14:49:08Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.0.0</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28292518364"><code>28292518364</code></a></td><td>No structured control summary</td><td>No structured control summary</td></tr><tr data-history-row="true" data-scope="mainline" data-status="pass" data-baseline="l1-baseline-v1.0.0" data-branch="main" data-repository="joku-dev/ha-CPsWMS" data-run-id="28284063513"><td><code>joku-dev/ha-CPsWMS</code></td><td>2026-06-27T08:36:38Z</td><td><span class="badge ok">mainline</span></td><td><span class="badge ok">pass</span></td><td><code>l1-baseline-v1.0.0</code></td><td>main</td><td><a href="https://github.com/joku-dev/ha-CPsWMS/actions/runs/28284063513"><code>28284063513</code></a></td><td>No structured control summary</td><td>No structured control summary</td></tr></tbody></table><p id="history-filter-summary" class="filter-summary"></p></section>
+      </section>
+    </section>
+
+    <section id="controls" class="viewer-section">
+      <div class="section-title">
+        <h2>Control Evaluation</h2>
+        <p>Latest structured control result, automation coverage, and searchable control-level status.</p>
+      </div>
+      <section class="cards"><section class="card"><h3>Evaluated Controls</h3><div class="value">16</div><p>Applicable: 16</p></section><section class="card"><h3>Control Failures</h3><div class="value">0</div><p>Passed: 16</p></section><section class="card"><h3>Untested Controls</h3><div class="value">0</div><p>Not applicable: 30</p></section></section>
+      <section class="cards"><section class="card"><h3>Automated Controls</h3><div class="value">32</div><p>Planned: 11</p></section><section class="card"><h3>Manual Controls</h3><div class="value">3</div><p>Not applicable: 0</p></section><section class="card"><h3>Planned Controls</h3><div class="value">11</div><p>Priority backlog</p></section></section>
+      <section class="panels">
+        <section class="panel"><h2>Latest Control Evaluation Snapshot</h2><div class="filters"><label for="control-status-filter">Status</label><select id="control-status-filter"><option value="all">All</option><option value="fail">Fail</option><option value="pass">Pass</option><option value="not_tested">Not tested</option><option value="not_applicable">Not applicable</option></select><label for="control-search-filter">Search</label><input id="control-search-filter" type="search" placeholder="DSCB-L1-REQ-003 or artifact" /></div><table><thead><tr><th>Control</th><th>Level</th><th>Method</th><th>Status</th><th>Message</th></tr></thead><tbody><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-001"><td><code>DSCB-L1-REQ-001</code></td><td><code>L1</code></td><td>hybrid</td><td><span class="badge ok">pass</span></td><td>Traceability is evaluated from explicit structured linkage fields for requirements, testcases, and reports.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-002"><td><code>DSCB-L1-REQ-002</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Source control governance is evaluated from explicit version-control, author-traceability, and review-record fields.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-003"><td><code>DSCB-L1-REQ-003</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Mapped policy `branch_protection` returned 0 deny messages.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-004"><td><code>DSCB-L1-REQ-004</code></td><td><code>L1</code></td><td>hybrid</td><td><span class="badge ok">pass</span></td><td>Secure coding evidence is evaluated from structured static-analysis execution and review fields.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-005"><td><code>DSCB-L1-REQ-005</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Dependencies are treated as documented when the input includes a dependency list and an SBOM.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-006"><td><code>DSCB-L1-REQ-006</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Mapped policy `sbom` returned 0 deny messages.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-007"><td><code>DSCB-L1-REQ-007</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>The run is treated as pipeline-executed when structured pipeline metadata is present.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-008"><td><code>DSCB-L1-REQ-008</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Artifact uniqueness is inferred from digest presence or explicit artifact version metadata.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-009"><td><code>DSCB-L1-REQ-009</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Mapped policy `vulnerability_gate` returned 0 deny messages.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-010"><td><code>DSCB-L1-REQ-010</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Mapped policy `vulnerability_gate` returned 0 deny messages.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-011"><td><code>DSCB-L1-REQ-011</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Mapped policy `artifact_integrity` returned 0 deny messages.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-012"><td><code>DSCB-L1-REQ-012</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Artifact identity is inferred from digest linkage to the evaluated artifact.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-013"><td><code>DSCB-L1-REQ-013</code></td><td><code>L1</code></td><td>hybrid</td><td><span class="badge ok">pass</span></td><td>Release authorization is evaluated from explicit structured approval metadata.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-014"><td><code>DSCB-L1-REQ-014</code></td><td><code>L1</code></td><td>hybrid</td><td><span class="badge ok">pass</span></td><td>Approved-artifact deployment is evaluated from explicit release approval metadata plus artifact identity evidence.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-015"><td><code>DSCB-L1-REQ-015</code></td><td><code>L1</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Machine-readable evidence generation is inferred from structured pipeline execution data.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L1-REQ-016"><td><code>DSCB-L1-REQ-016</code></td><td><code>L1</code></td><td>hybrid</td><td><span class="badge ok">pass</span></td><td>Operational traceability is evaluated from explicit deployed-version and security-event recording fields.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L2-REQ-001"><td><code>DSCB-L2-REQ-001</code></td><td><code>L2</code></td><td>hybrid</td><td><span class="badge ok">pass</span></td><td>Development environment central management is evaluated from explicit environment management fields.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L2-REQ-002"><td><code>DSCB-L2-REQ-002</code></td><td><code>L2</code></td><td>hybrid</td><td><span class="badge ok">pass</span></td><td>Environment configuration compliance is evaluated from explicit baseline and compliance fields.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L2-REQ-003"><td><code>DSCB-L2-REQ-003</code></td><td><code>L2</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Central identity management is taken directly from the evaluated platform metadata.</td></tr><tr data-control-row="true" data-status="pass" data-control-id="DSCB-L2-REQ-004"><td><code>DSCB-L2-REQ-004</code></td><td><code>L2</code></td><td>automated</td><td><span class="badge ok">pass</span></td><td>Mapped policy `access_control` returned 0 deny messages.</td></tr></tbody></table><p id="control-filter-summary" class="filter-summary"></p></section>
+        <section class="panel">
+          <h2>Control Automation Coverage</h2>
+          <table><thead><tr><th>Control</th><th>Level</th><th>Automation Status</th><th>Priority</th><th>Next Action</th></tr></thead><tbody><tr><td><code>DSCB-GOV-REQ-001</code></td><td><code>GOV</code></td><td><span class="badge plain">manual</span></td><td><span class="badge plain">low</span></td><td>Keep this under structured governance review and document evidence expectations clearly.</td></tr><tr><td><code>DSCB-GOV-REQ-002</code></td><td><code>GOV</code></td><td><span class="badge plain">manual</span></td><td><span class="badge plain">low</span></td><td>Maintain review evidence quality rather than forcing CI-only automation.</td></tr><tr><td><code>DSCB-GOV-REQ-003</code></td><td><code>GOV</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep waiver schema and policy checks aligned with the governance process.</td></tr><tr><td><code>DSCB-GOV-REQ-004</code></td><td><code>GOV</code></td><td><span class="badge plain">manual</span></td><td><span class="badge plain">low</span></td><td>Maintain standardized waiver records and governance review evidence.</td></tr><tr><td><code>DSCB-GOV-REQ-005</code></td><td><code>GOV</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep waiver validation logic aligned with the formal waiver standard.</td></tr><tr><td><code>DSCB-L1-REQ-001</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Maintain current evidence fields and extend only if deeper lifecycle traceability is needed.</td></tr><tr><td><code>DSCB-L1-REQ-002</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep the current evaluator aligned with repository governance inputs.</td></tr><tr><td><code>DSCB-L1-REQ-003</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep policy checks aligned with repository platform behavior.</td></tr><tr><td><code>DSCB-L1-REQ-004</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Extend only if richer secure-coding evidence is introduced.</td></tr><tr><td><code>DSCB-L1-REQ-005</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Maintain dependency evidence compatibility across consumer repositories.</td></tr><tr><td><code>DSCB-L1-REQ-006</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep released workflows and policies aligned.</td></tr><tr><td><code>DSCB-L1-REQ-007</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Preserve consistent pipeline evidence generation.</td></tr><tr><td><code>DSCB-L1-REQ-008</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Retain artifact metadata fields in downstream evidence.</td></tr><tr><td><code>DSCB-L1-REQ-009</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep vulnerability evidence format stable across releases.</td></tr><tr><td><code>DSCB-L1-REQ-010</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Preserve waiver and vulnerability evidence compatibility.</td></tr><tr><td><code>DSCB-L1-REQ-011</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Extend only if stronger signing or attestation logic is added.</td></tr><tr><td><code>DSCB-L1-REQ-012</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep artifact identity semantics stable.</td></tr><tr><td><code>DSCB-L1-REQ-013</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Maintain release approval evidence fields in the contract.</td></tr><tr><td><code>DSCB-L1-REQ-014</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Extend only if deployment attestation becomes part of the baseline.</td></tr><tr><td><code>DSCB-L1-REQ-015</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Preserve the current evidence artifact generation path.</td></tr><tr><td><code>DSCB-L1-REQ-016</code></td><td><code>L1</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep downstream operational evidence generation consistent.</td></tr><tr><td><code>DSCB-L2-REQ-001</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Maintain structured environment evidence in consumer payloads.</td></tr><tr><td><code>DSCB-L2-REQ-002</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Extend only if stronger workstation attestation becomes required.</td></tr><tr><td><code>DSCB-L2-REQ-003</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep platform evidence fields aligned with access-control expectations.</td></tr><tr><td><code>DSCB-L2-REQ-004</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Maintain policy alignment with platform access metadata.</td></tr><tr><td><code>DSCB-L2-REQ-005</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Preserve dependency source evidence semantics.</td></tr><tr><td><code>DSCB-L2-REQ-006</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep dependency-source policy checks aligned with workflow behavior.</td></tr><tr><td><code>DSCB-L2-REQ-007</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Maintain signing evidence and released workflow compatibility.</td></tr><tr><td><code>DSCB-L2-REQ-008</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Extend only if centralized key attestation becomes required.</td></tr><tr><td><code>DSCB-L2-REQ-009</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep IaC evidence fields and policy checks aligned.</td></tr><tr><td><code>DSCB-L2-REQ-010</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Preserve IaC repository evidence semantics.</td></tr><tr><td><code>DSCB-L2-REQ-011</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep workflow evidence and gate semantics consistent.</td></tr><tr><td><code>DSCB-L2-REQ-012</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Keep waiver and vulnerability gate behavior aligned.</td></tr><tr><td><code>DSCB-L2-REQ-013</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Maintain monitoring evidence compatibility.</td></tr><tr><td><code>DSCB-L2-REQ-014</code></td><td><code>L2</code></td><td><span class="badge ok">automated</span></td><td><span class="badge plain">low</span></td><td>Extend only if richer SOC integration evidence is required.</td></tr><tr><td><code>DSCB-L3-REQ-001</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">high</span></td><td>Add structured rebuild-verification evidence and implement evaluator logic for deterministic builds.</td></tr><tr><td><code>DSCB-L3-REQ-002</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">high</span></td><td>Add explicit build-configuration metadata and evaluator support for version-control assertions.</td></tr><tr><td><code>DSCB-L3-REQ-003</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">high</span></td><td>Add explicit isolated-environment evidence fields and implement pass-fail logic.</td></tr><tr><td><code>DSCB-L3-REQ-004</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">high</span></td><td>Add recreatable-environment evidence and implement evaluator support.</td></tr><tr><td><code>DSCB-L3-REQ-005</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">medium</span></td><td>Extend the evidence contract with provenance fields and add evaluator logic.</td></tr><tr><td><code>DSCB-L3-REQ-006</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">medium</span></td><td>Add provenance-capture evidence and build-process evaluation logic.</td></tr><tr><td><code>DSCB-L3-REQ-007</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">high</span></td><td>Add enterprise-signing evidence fields and implement evaluator logic for trusted signing.</td></tr><tr><td><code>DSCB-L3-REQ-008</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">high</span></td><td>Add centralized key-management evidence and evaluator support.</td></tr><tr><td><code>DSCB-L3-REQ-009</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">medium</span></td><td>Extend the evidence contract for deployment and lifecycle linkage and implement evaluator logic.</td></tr><tr><td><code>DSCB-L3-REQ-010</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">high</span></td><td>Add runtime-integrity evidence fields and implement automated evaluation logic.</td></tr><tr><td><code>DSCB-L3-REQ-011</code></td><td><code>L3</code></td><td><span class="badge warn">planned</span></td><td><span class="badge warn">medium</span></td><td>Extend lifecycle evidence generation and add evaluator logic for L3 compliance evidence.</td></tr></tbody></table>
+        </section>
+      </section>
+    </section>
+
+    <section id="model" class="viewer-section">
+      <div class="section-title">
+        <h2>Governance Model</h2>
+        <p>Source governance documents, policy coverage, and authority mappings that explain why controls exist.</p>
+      </div>
+      <section class="panels">
+        <section class="panel">
+          <h2>Governance Documents</h2>
+          <table><thead><tr><th>ID</th><th>Type</th><th>Title</th><th>Status</th><th>Source</th></tr></thead><tbody><tr><td><code>DEVSECOPS-POL-001</code></td><td>policy</td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><span class="badge warn">draft</span></td><td><code>docs/governance/devsecops-policy.md</code></td></tr><tr><td><code>DEVSECOPS-DIR-001</code></td><td>directive</td><td>DevSecOps Directive</td><td><span class="badge warn">draft</span></td><td><code>docs/governance/devsecops-directive.md</code></td></tr><tr><td><code>DSCB-STD-001</code></td><td>standard</td><td>DevSecOps Control Baseline Standard</td><td><span class="badge ok">imported</span></td><td><code>docs/governance/source-documents/DSCB-STD-SRC-001.public.md</code></td></tr><tr><td><code>PRA-STD-001</code></td><td>standard</td><td>DevSecOps Platform Reference Architecture Standard</td><td><span class="badge ok">imported</span></td><td><code>docs/governance/source-documents/PRA-STD-SRC-001.public.md</code></td></tr></tbody></table>
+        </section>
+        <section class="panel">
+          <h2>Policy Coverage Snapshot</h2>
+          <table><thead><tr><th>Control</th><th>Level</th><th>Title</th><th>Policy Candidate</th><th>Authority Documents</th></tr></thead><tbody><tr><td><code>DSCB-L1-REQ-001</code></td><td><code>L1</code></td><td>Traceability</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-002</code></td><td><code>L1</code></td><td>Source Code Integrity</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-003</code></td><td><code>L1</code></td><td>Source Code Integrity</td><td><span class="badge ok">true</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-004</code></td><td><code>L1</code></td><td>Secure Coding Practices</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-005</code></td><td><code>L1</code></td><td>Software Supply Chain Transparency</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-006</code></td><td><code>L1</code></td><td>Software Supply Chain Transparency</td><td><span class="badge ok">true</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-007</code></td><td><code>L1</code></td><td>Controlled Build Process</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-008</code></td><td><code>L1</code></td><td>Controlled Build Process</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-009</code></td><td><code>L1</code></td><td>Vulnerability Identification</td><td><span class="badge ok">true</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-010</code></td><td><code>L1</code></td><td>Vulnerability Identification</td><td><span class="badge ok">true</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-011</code></td><td><code>L1</code></td><td>Artifact Integrity</td><td><span class="badge ok">true</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-012</code></td><td><code>L1</code></td><td>Artifact Integrity</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-013</code></td><td><code>L1</code></td><td>Release Authorization</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-014</code></td><td><code>L1</code></td><td>Release Authorization</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-015</code></td><td><code>L1</code></td><td>Pipeline Evidence Generation</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L1-REQ-016</code></td><td><code>L1</code></td><td>Operational Traceability</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L2-REQ-001</code></td><td><code>L2</code></td><td>Secure Development Environments</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Directive; DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L2-REQ-002</code></td><td><code>L2</code></td><td>Secure Development Environments</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Directive; DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L2-REQ-003</code></td><td><code>L2</code></td><td>DevSecOps Platform Access Control</td><td><span class="badge plain">false</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Directive; DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr><tr><td><code>DSCB-L2-REQ-004</code></td><td><code>L2</code></td><td>DevSecOps Platform Access Control</td><td><span class="badge ok">true</span></td><td>DevSecOps Policy - Software Defined Defence (SDD); DevSecOps Directive; DevSecOps Control Baseline Standard; DevSecOps Platform Reference Architecture Standard</td></tr></tbody></table>
+        </section>
+        <section class="panel">
+          <h2>Authority Mapping Snapshot</h2>
+          <table><thead><tr><th>Document</th><th>Title</th><th>Control</th><th>Control Title</th><th>Rationale</th></tr></thead><tbody><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-GOV-REQ-001</code></td><td>Applicability</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-GOV-REQ-002</code></td><td>Compliance Verification</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-GOV-REQ-003</code></td><td>Compliance Verification</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-GOV-REQ-004</code></td><td>Deviations</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-GOV-REQ-005</code></td><td>Deviations</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-001</code></td><td>Traceability</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-002</code></td><td>Source Code Integrity</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-003</code></td><td>Source Code Integrity</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-004</code></td><td>Secure Coding Practices</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-005</code></td><td>Software Supply Chain Transparency</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-006</code></td><td>Software Supply Chain Transparency</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-007</code></td><td>Controlled Build Process</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-008</code></td><td>Controlled Build Process</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-009</code></td><td>Vulnerability Identification</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-010</code></td><td>Vulnerability Identification</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-011</code></td><td>Artifact Integrity</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-012</code></td><td>Artifact Integrity</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-013</code></td><td>Release Authorization</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-014</code></td><td>Release Authorization</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr><tr><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD)</td><td><code>DSCB-L1-REQ-015</code></td><td>Pipeline Evidence Generation</td><td>Establishes that the DevSecOps governance baseline is mandatory for applicable programs and platforms.</td></tr></tbody></table>
+        </section>
+      </section>
+    </section>
+
+    <section id="open-work" class="viewer-section">
+      <div class="section-title">
+        <h2>Open Work</h2>
+        <p>Governance gaps and planned control automation work that still need attention.</p>
+      </div>
+      <section class="panels">
+        <section class="panel">
+          <h2>Top Open Gaps</h2>
+          <table><thead><tr><th>Gap</th><th>Severity</th><th>Category</th><th>Subject</th><th>Summary</th></tr></thead><tbody><tr><td><code>GAP-DOC-DEVSECOPS-DIR-001</code></td><td><span class="badge warn">medium</span></td><td>governance_document_status</td><td><code>DEVSECOPS-DIR-001</code></td><td>DevSecOps Directive is still in draft status.</td></tr><tr><td><code>GAP-DOC-DEVSECOPS-POL-001</code></td><td><span class="badge warn">medium</span></td><td>governance_document_status</td><td><code>DEVSECOPS-POL-001</code></td><td>DevSecOps Policy - Software Defined Defence (SDD) is still in draft status.</td></tr></tbody></table>
+        </section>
+      </section>
+    </section>
+
+    <section id="artifacts" class="viewer-section">
+      <div class="section-title">
+        <h2>Artifacts & Machine Data</h2>
+        <p>Generated reports, rendered governance documents, release references, and the machine-readable summary.</p>
+      </div>
+      <section class="panels">
+        <section class="panel">
+          <h2>Artifacts</h2>
+          <ul class="artifact-list">
+            <li><a href="../reports/open-gap-report.md">Open Gap Report</a></li>
+            <li><a href="../reports/source-lineage-report.md">Source Lineage Report</a></li>
+            <li><a href="../reports/source-document-intake-status.md">Source Document Intake Status</a></li>
+            <li><a href="../reports/source-document-intake-review-briefs.md">Source Document Intake Review Briefs</a></li>
+            <li><a href="../reports/source-document-requirement-delta.md">Source Document Requirement Delta</a></li>
+            <li><a href="../reports/governance-change-impact.md">Governance Change Impact Report</a></li>
+            <li><a href="../reports/architecture-source-replacement-assessment.md">Architecture Source Replacement Assessment</a></li>
+            <li><a href="../reports/document-control-matrix.md">Document To Control Matrix</a></li>
+            <li><a href="../reports/control-coverage-report.md">Control Coverage Report</a></li>
+            <li><a href="../reports/ai-native-engineering-factory-onboarding-readiness.md">AI-Native Engineering Factory Onboarding Readiness</a></li>
+            <li><a href="../documents/devsecops-pol-001.html">Rendered Policy</a></li>
+            <li><a href="../documents/devsecops-dir-001.html">Rendered Directive</a></li>
+            <li><a href="../control-evaluation-report.json">Control Evaluation Report JSON</a></li>
+            <li><a href="../control-evaluation-report.md">Control Evaluation Report Markdown</a></li>
+            <li><a href="../agent-usage/agent-usage-summary.json">Agent Usage Summary JSON</a></li>
+            <li><a href="../../operations/agents/agent-usage-snapshot-latest/">Latest Agent Usage Snapshot</a></li>
+            <li><a href="../../status/architecture-results-index.json">Architecture Results Index JSON</a></li>
+            <li><a href="../../operations/status/current-governance-platform-state/">Current Governance Platform State</a></li>
+            <li><a href="../../operations/status/ha-cpswms-governance-validation-status/">ha-CPsWMS Validation Status</a></li>
+            <li><a href="../../releases/l1-baseline-v1.1.3/">L1 Baseline v1.1.3</a></li>
+            <li><a href="../../releases/l1-baseline-v1.1.3-release-statement/">L1 Release Statement</a></li>
+            <li><a href="../../onboarding/how-other-repos-use-this-governance-repo/">Integration Guide</a></li>
+            <li><a href="../../governance/policy-directive-baseline-verification-and-governance-as-code-explained/">Governance Relationship Explanation</a></li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h2>Machine Summary</h2>
+          <pre>{
+  &quot;documents&quot;: 4,
+  &quot;controls&quot;: 46,
+  &quot;gaps&quot;: 2,
+  &quot;policy_candidates&quot;: 31,
+  &quot;integrated_repositories&quot;: 2,
+  &quot;successful_baseline_runs&quot;: 14,
+  &quot;latest_governance_baselines&quot;: [
+    &quot;main@34bdc66&quot;,
+    &quot;l1-baseline-v1.1.3&quot;
+  ],
+  &quot;repository_result_history_entries&quot;: 15,
+  &quot;mainline_history_entries&quot;: 9,
+  &quot;branch_history_entries&quot;: 4,
+  &quot;manual_history_entries&quot;: 2,
+  &quot;control_evaluation_summary&quot;: {
+    &quot;total_controls&quot;: 46,
+    &quot;pass&quot;: 16,
+    &quot;fail&quot;: 0,
+    &quot;not_tested&quot;: 0,
+    &quot;not_applicable&quot;: 30,
+    &quot;applicable_controls&quot;: 16,
+    &quot;tested_controls&quot;: 16
+  },
+  &quot;runtime_governance_summary&quot;: {
+    &quot;target&quot;: {
+      &quot;path&quot;: &quot;/workspace/ha-CPsWMS&quot;,
+      &quot;commit&quot;: &quot;77e8fcd&quot;,
+      &quot;release_id&quot;: &quot;ha-CPsWMS-demo&quot;,
+      &quot;detected_services&quot;: 5
+    },
+    &quot;overall_status&quot;: &quot;pass&quot;,
+    &quot;domains&quot;: {
+      &quot;architecture&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;finding_count&quot;: 0,
+        &quot;findings&quot;: []
+      },
+      &quot;devsecops&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;finding_count&quot;: 0,
+        &quot;findings&quot;: []
+      }
+    },
+    &quot;finding_count&quot;: 0
+  },
+  &quot;architecture_results_summary&quot;: {
+    &quot;repository_count&quot;: 1,
+    &quot;result_count&quot;: 7,
+    &quot;passing_results&quot;: 7,
+    &quot;findings_results&quot;: 0,
+    &quot;mainline_results&quot;: 4,
+    &quot;branch_results&quot;: 2,
+    &quot;manual_results&quot;: 1
+  },
+  &quot;agent_usage_summary&quot;: {
+    &quot;event_count&quot;: 17,
+    &quot;provider_counts&quot;: {
+      &quot;codex&quot;: 2,
+      &quot;none&quot;: 15
+    },
+    &quot;platform_counts&quot;: {
+      &quot;local&quot;: 17
+    },
+    &quot;run_type_counts&quot;: {
+      &quot;dispatch&quot;: 15,
+      &quot;provider_review&quot;: 2
+    }
+  },
+  &quot;source_document_intake_summary&quot;: {
+    &quot;registered_source_documents&quot;: 10,
+    &quot;status_counts&quot;: {
+      &quot;candidate&quot;: 5,
+      &quot;draft&quot;: 2,
+      &quot;intake&quot;: 3
+    },
+    &quot;governance_domain_counts&quot;: {
+      &quot;architecture&quot;: 6,
+      &quot;devsecops&quot;: 4,
+      &quot;directive&quot;: 1,
+      &quot;platform&quot;: 1,
+      &quot;policy&quot;: 1
+    },
+    &quot;owner_counts&quot;: {
+      &quot;architecture-owners&quot;: 6,
+      &quot;devsecops-owners&quot;: 1,
+      &quot;governance-owners&quot;: 2,
+      &quot;platform-owners&quot;: 1
+    },
+    &quot;review_state_counts&quot;: {
+      &quot;accepted_intake&quot;: 3,
+      &quot;candidate_replacement_review_required&quot;: 1,
+      &quot;candidate_similarity_review_required&quot;: 4,
+      &quot;draft_source_of_truth_decision_required&quot;: 2
+    },
+    &quot;attention_counts&quot;: {
+      &quot;attention&quot;: 7,
+      &quot;ok&quot;: 3
+    },
+    &quot;open_review_items&quot;: 7,
+    &quot;replacement_review_items&quot;: 1,
+    &quot;documents_with_operational_artifacts&quot;: 5,
+    &quot;documents_without_operational_artifacts&quot;: 5
+  },
+  &quot;source_document_requirement_delta_summary&quot;: {
+    &quot;replacement_pairs&quot;: 1,
+    &quot;status_counts&quot;: {
+      &quot;changed&quot;: 1,
+      &quot;equivalent&quot;: 2,
+      &quot;removed&quot;: 1
+    },
+    &quot;review_priority_counts&quot;: {
+      &quot;high&quot;: 2,
+      &quot;low&quot;: 2
+    },
+    &quot;potential_impact_counts&quot;: {
+      &quot;evidence_contracts&quot;: 1,
+      &quot;review_gates&quot;: 1,
+      &quot;runtime_governance_review&quot;: 4
+    }
+  }
+}</pre>
+        </section>
+      </section>
+    </section>
+  </main>
+  <script>
+    (() => {
+      const statusFilter = document.getElementById('control-status-filter');
+      const searchFilter = document.getElementById('control-search-filter');
+      const summary = document.getElementById('control-filter-summary');
+      const rows = Array.from(document.querySelectorAll('tr[data-control-row="true"]'));
+      if (!statusFilter || !searchFilter || !summary || rows.length === 0) {
+        return;
+      }
+      const applyFilters = () => {
+        const status = statusFilter.value;
+        const query = searchFilter.value.trim().toLowerCase();
+        let visible = 0;
+        for (const row of rows) {
+          const rowStatus = row.dataset.status || '';
+          const text = row.textContent.toLowerCase();
+          const statusMatch = status === 'all' || rowStatus === status;
+          const queryMatch = query === '' || text.includes(query);
+          const show = statusMatch && queryMatch;
+          row.style.display = show ? '' : 'none';
+          if (show) {
+            visible += 1;
+          }
+        }
+        summary.textContent = `${visible} of ${rows.length} controls shown`;
+      };
+      statusFilter.addEventListener('change', applyFilters);
+      searchFilter.addEventListener('input', applyFilters);
+      applyFilters();
+    })();
+    (() => {
+      const scopeFilter = document.getElementById('history-scope-filter');
+      const statusFilter = document.getElementById('history-status-filter');
+      const baselineFilter = document.getElementById('history-baseline-filter');
+      const searchFilter = document.getElementById('history-search-filter');
+      const summary = document.getElementById('history-filter-summary');
+      const rows = Array.from(document.querySelectorAll('tr[data-history-row="true"]'));
+      if (!scopeFilter || !statusFilter || !baselineFilter || !searchFilter || !summary || rows.length === 0) {
+        return;
+      }
+      const applyFilters = () => {
+        const scope = scopeFilter.value;
+        const status = statusFilter.value;
+        const baseline = baselineFilter.value;
+        const query = searchFilter.value.trim().toLowerCase();
+        let visible = 0;
+        for (const row of rows) {
+          const scopeMatch = scope === 'all' || row.dataset.scope === scope;
+          const statusMatch = status === 'all' || row.dataset.status === status;
+          const baselineMatch = baseline === 'all' || row.dataset.baseline === baseline;
+          const queryText = [
+            row.dataset.repository || '',
+            row.dataset.branch || '',
+            row.dataset.runId || '',
+            row.textContent || '',
+          ].join(' ').toLowerCase();
+          const queryMatch = query === '' || queryText.includes(query);
+          const show = scopeMatch && statusMatch && baselineMatch && queryMatch;
+          row.style.display = show ? '' : 'none';
+          if (show) {
+            visible += 1;
+          }
+        }
+        summary.textContent = `${visible} of ${rows.length} runs shown`;
+      };
+      for (const element of [scopeFilter, statusFilter, baselineFilter]) {
+        element.addEventListener('change', applyFilters);
+      }
+      searchFilter.addEventListener('input', applyFilters);
+      applyFilters();
+    })();
+  </script>
+</body>
+</html>

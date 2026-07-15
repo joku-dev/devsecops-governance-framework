@@ -1,0 +1,127 @@
+site_name: DevSecOps Governance as Code
+nav:
+  - Home: index.md
+  - Official Entrypoints: official-entrypoints.md
+  - Reading Compass: lesekompass.md
+  - Foundation:
+      - Vision: foundation/01_VISION.md
+      - Constitution: foundation/02_CONSTITUTION.md
+      - Architecture Principles: foundation/03_ARCHITECTURE_PRINCIPLES.md
+      - Reference Architecture: foundation/04_REFERENCE_ARCHITECTURE.md
+      - Current Direction: foundation/05_CURRENT_DIRECTION.md
+      - Keynote Story: foundation/06_KEYNOTE_STORY.md
+      - AI Context: foundation/07_AI_CONTEXT.md
+      - Glossary: foundation/08_GLOSSARY.md
+  - Role-Based Paths:
+      - Overview: paths/index.md
+      - Beginner Path: paths/beginner-path.md
+      - Operator Path: paths/operator-path.md
+      - Auditor Path: paths/auditor-path.md
+      - Maintainer Path: paths/maintainer-path.md
+  - Governance:
+      - Management Readout: governance/MANAGEMENT_READOUT.md
+      - Document Hierarchy: governance/governance-document-hierarchy.md
+      - Source Of Truth: governance/source-of-truth.md
+      - Operating Model: governance/operating-model.md
+      - Architecture:
+          - ADO And DevSecOps Integrated Model: governance/architecture/ado-devsecops-integrated-governance-model.md
+          - Software Industrialisation Problem And Capability Map: governance/architecture/software-industrialisation-problem-capability-map.md
+          - Governance Repository Architecture Comparison: governance/architecture/governance-repository-architecture-comparison.md
+          - Runtime Governance Addendum: governance/architecture/runtime-governance-addendum.md
+          - Runtime Governance Transformation: governance/architecture/runtime-governance-transformation.md
+      - DevSecOps Organisational Role Model: governance/devsecops-governance-organisational-role-model.md
+      - Policy: governance/devsecops-policy.md
+      - Directive: governance/devsecops-directive.md
+      - Policy/Directive/Baseline Explained: governance/policy-directive-baseline-verification-and-governance-as-code-explained.md
+  - Platform:
+      - Control Baseline and Platform Architecture: platform/control-baseline-and-platform-architecture-relationship-explained.md
+  - Controls:
+      - Overview: controls/index.md
+  - Pipeline Baseline:
+      - Overview: pipeline-baseline/index.md
+  - Examples:
+      - Overview: examples/index.md
+      - Artifact Intake Classification Examples: examples/artifact-intake-classification.example.md
+      - Artifact Intake Checklist Template: examples/artifact-intake-checklist.template.md
+  - Publishing:
+      - Overview: publishing/index.md
+      - Confluence Governance Repo Article: publishing/confluence-governance-repo-artikel.md
+  - Onboarding:
+      - Application Repo Onboarding: onboarding/application-repo-onboarding.md
+      - Central Governance Baseline Guide: onboarding/how-other-repositories-use-the-central-governance-baseline.md
+      - Governance Repo Usage by Other Repos: onboarding/how-other-repos-use-this-governance-repo.md
+  - Demos:
+      - End-to-End Governance Demo: demos/demo-end-to-end-governance.md
+      - Architecture Runtime Governance Demo: demos/demo-ha-cpswms-runtime-governance.md
+      - ha-CPsWMS Architecture Governance Results: demos/ha-cpswms-architecture-governance-results.md
+      - Historical ha-CPsWMS Demo Guide: demos/demo-guide-2026-07-02-ha-cpswms.md
+  - Operations:
+      - Guides:
+          - Overview: operations/guides/index.md
+          - How To Use This Repo: operations/guides/how-to-use-this-repo.md
+          - Beginner Guide: operations/guides/beginner-step-by-step-operations-guide.md
+          - How To Add A New Artifact: operations/guides/how-to-add-a-new-artifact.md
+          - Updating Baseline Input Documents: operations/guides/how-to-update-baseline-input-documents.md
+          - MkDocs And GitHub Pages Step By Step: operations/guides/mkdocs-and-github-pages-step-by-step.md
+      - Processes:
+          - Overview: operations/processes/index.md
+          - New Artifact Intake Process: operations/processes/new-artifact-intake-process.md
+          - Source Document Intake Process: operations/processes/source-document-intake-process.md
+          - Source Document Intake Review Operating Model: operations/processes/source-document-intake-review-operating-model.md
+          - Enforcement Options: operations/processes/operational-governance-enforcement-options.md
+          - Waiver Management Standard: operations/processes/waiver-management-standard.md
+          - Application Repo Governance Timing: operations/processes/application-repo-governance-timing.md
+          - Spot Check Governance Intake: operations/processes/spot-check-governance-intake.md
+      - Evidence:
+          - Governance Evidence Contract: operations/evidence/governance-evidence-contract.md
+          - Governance Evidence Schema Versioning: operations/evidence/governance-evidence-schema-versioning.md
+          - Governance Result Intake And Viewer Usage: operations/evidence/governance-result-intake-and-viewer-usage.md
+          - Governance Results Storage Model: operations/evidence/governance-results-storage-model.md
+          - How To Read Control Evaluation Status: operations/evidence/how-to-read-control-evaluation-status.md
+          - Application Repo Evidence Flow: operations/evidence/application-repo-evidence-flow.md
+          - Application Repo Architecture Evidence Flow: operations/evidence/application-repo-architecture-evidence-flow.md
+          - Architecture Evidence Type Taxonomy: operations/evidence/architecture-evidence-type-taxonomy.md
+          - Architecture Evidence Taxonomy Mapping: operations/evidence/architecture-evidence-taxonomy-mapping.md
+          - Architecture Evidence EA Decision Brief: operations/evidence/architecture-evidence-ea-decision-brief.md
+          - Architecture Evidence EA Package: operations/evidence/architecture-evidence-ea-package.md
+          - Detailed Architecture Evidence Adoption Guide: operations/evidence/detailed-architecture-evidence-adoption-guide.md
+      - Agent System Usage: operations/agents/agent-system-usage.md
+      - Agent Harness Usage: operations/agents/agent-harness-usage.md
+      - Agent Usage Tracking: operations/agents/agent-usage-tracking.md
+      - Agent Usage Snapshot Latest: operations/agents/agent-usage-snapshot-latest.md
+      - Status:
+          - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md
+          - Current Governance Platform State: operations/status/current-governance-platform-state.md
+          - ha-CPsWMS Validation Status: operations/status/ha-cpswms-governance-validation-status.md
+          - ha-CPsWMS Lessons Learned: operations/status/ha-cpswms-governance-lessons-learned.md
+      - Platform Adapters:
+          - CI/CD Platform Adapter Strategy: operations/adapters/cicd-platform-adapter-strategy.md
+          - Bitbucket Bamboo Governance Adapter: operations/adapters/bitbucket-bamboo-governance-adapter.md
+          - Company Bitbucket Bamboo Mistral Target Path: operations/adapters/company-bitbucket-bamboo-mistral-target-path.md
+          - GitHub Reference Path: operations/adapters/github-reference-path.md
+          - GitHub Reference Validation Runbook: operations/adapters/github-reference-validation-runbook.md
+      - Reference Runs:
+          - 2026-07-04 ha-CPsWMS GitHub Reference Run: operations/reference-runs/2026-07-04-ha-cpswms-github-reference-run.md
+      - Planning:
+          - Replace Governance Placeholders Plan: operations/planning/replace-governance-placeholders-plan.md
+          - Target Structure Plan: operations/planning/repository-target-structure-and-migration-plan.md
+          - Documentation Structure Model: operations/planning/document-structure-model.md
+          - Documentation Structure Audit: operations/planning/document-structure-audit.md
+      - Migration Status: migration-status.md
+      - Roadmap: roadmap.md
+  - Releases:
+      - Overview: releases/index.md
+      - Release And Migration Model: releases/release-and-migration-model.md
+      - Release Publication Checklist: releases/release-publication-checklist.md
+      - L1 Baseline v1.0.0: releases/l1-baseline-v1.0.0.md
+      - L1 Baseline v1.0.0 Release Statement: releases/l1-baseline-v1.0.0-release-statement.md
+      - L1 Baseline v1.1.0: releases/l1-baseline-v1.1.0.md
+      - L1 Baseline v1.1.0 Release Statement: releases/l1-baseline-v1.1.0-release-statement.md
+      - L1 Baseline v1.1.1: releases/l1-baseline-v1.1.1.md
+      - L1 Baseline v1.1.1 Release Statement: releases/l1-baseline-v1.1.1-release-statement.md
+      - L1 Baseline v1.1.2: releases/l1-baseline-v1.1.2.md
+      - L1 Baseline v1.1.2 Release Statement: releases/l1-baseline-v1.1.2-release-statement.md
+      - L1 Baseline v1.1.3: releases/l1-baseline-v1.1.3.md
+      - L1 Baseline v1.1.3 Release Statement: releases/l1-baseline-v1.1.3-release-statement.md
+      - Architecture L1 Baseline v0.1.0: releases/architecture-baseline-l1-v0.1.0.md
+      - Architecture L1 Baseline v0.1.0 Release Statement: releases/architecture-baseline-l1-v0.1.0-release-statement.md

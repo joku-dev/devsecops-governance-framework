@@ -1,0 +1,12 @@
+{
+  "scenario": "opa-policy-change",
+  "description": "OPA policy change affecting vulnerability gate behavior.",
+  "changed_files": [
+    "policies/opa/vulnerability_gate.rego",
+    "demo/inputs/release-candidate-red.json"
+  ],
+  "forbidden_agents": [
+    "source-document-intake"
+  ],
+  "reporting_semantics": "must_classify_report_only_or_blocking"
+}

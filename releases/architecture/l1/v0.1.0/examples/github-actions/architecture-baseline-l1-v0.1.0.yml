@@ -1,0 +1,16 @@
+name: Architecture Runtime Governance
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  architecture-baseline:
+    name: Architecture L1 Baseline
+    uses: joku-dev/devsecops-governance-as-code/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
+    with:
+      solution_baseline: app-solution-baseline
+      fail_on_findings: false

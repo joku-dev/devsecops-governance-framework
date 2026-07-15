@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Document To Control Traceability",
+  "type": "object",
+  "required": ["mappings"],
+  "properties": {
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["document_id", "rationale"],
+        "properties": {
+          "document_id": {
+            "type": "string"
+          },
+          "control_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "control_levels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["L1", "L2", "L3", "GOV"]
+            }
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "anyOf": [
+          { "required": ["control_ids"] },
+          { "required": ["control_levels"] }
+        ]
+      }
+    }
+  }
+}

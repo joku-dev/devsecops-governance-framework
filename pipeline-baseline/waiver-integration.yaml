@@ -1,0 +1,29 @@
+waiver_integration:
+  principle: A failed gate may only proceed when a waiver is permitted by the requirement and an approved, non-expired waiver exists.
+  required_waiver_fields:
+    - waiver_id
+    - affected_requirement_id
+    - affected_artifact_or_release_id
+    - justification
+    - risk_classification
+    - compensating_controls
+    - approval_authority
+    - approval_status
+    - expiry_date
+
+  gate_behavior:
+    blocking_gate:
+      without_waiver: fail
+      with_valid_waiver: waiver_required
+    evidence_check:
+      missing_evidence_without_waiver: waiver_required
+      missing_evidence_with_valid_waiver: warn
+    review_check:
+      missing_review: manual_review_required
+
+  validity_rules:
+    - waiver approval_status must be approved
+    - waiver expiry_date must be in the future
+    - waiver affected_requirement_id must match the failed requirement
+    - waiver risk_classification must match required approval authority
+    - waiver compensating_controls must be present

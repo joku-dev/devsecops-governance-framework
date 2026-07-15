@@ -1,0 +1,23 @@
+render_profiles:
+  DEVSECOPS-POL-001:
+    document_number: TBD
+    prepared_by: J. Kutscher
+    approved_by: Head of Divisional Engineering
+    endorsed_by: ""
+    authorized_by: CDO
+    area_of_application: Approved internal entities
+    version: "1.0"
+    revision_description: Initial Version
+    revision_date: "2024-12-10"
+    entry_into_force: Upon approval
+  DEVSECOPS-DIR-001:
+    document_number: TBD
+    prepared_by: J. Kutscher
+    approved_by: Head of Divisional Engineering
+    endorsed_by: ""
+    authorized_by: J. Kutscher
+    area_of_application: Approved internal entities
+    version: "1.0"
+    revision_description: Initial Version
+    revision_date: "2024-12-10"
+    entry_into_force: Upon approval

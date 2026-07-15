@@ -1,0 +1,26 @@
+gate_semantics:
+  pass:
+    meaning: The required check passed and the required evidence is available.
+    pipeline_effect: continue
+
+  warn:
+    meaning: The check produced a non-blocking deviation or incomplete evidence that must be visible in reporting.
+    pipeline_effect: continue_with_finding
+
+  fail:
+    meaning: The check failed and no valid waiver or accepted exception is available.
+    pipeline_effect: block
+
+  waiver_required:
+    meaning: The check failed or evidence is incomplete, but continuation is possible only with an approved waiver.
+    pipeline_effect: block_until_waiver
+
+  manual_review_required:
+    meaning: The check cannot be fully automated and requires human review evidence before release or governance acceptance.
+    pipeline_effect: block_until_review
+
+default_mapping:
+  blocking_gate: fail
+  warning_gate: warn
+  evidence_check: waiver_required
+  review_check: manual_review_required

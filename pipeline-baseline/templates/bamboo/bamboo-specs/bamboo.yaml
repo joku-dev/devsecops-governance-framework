@@ -1,0 +1,157 @@
+# Bamboo YAML Specs reference plan for Bamboo Data Center 12.1.9.
+#
+# Intended repository location in an application repository:
+#   bamboo-specs/bamboo.yaml
+#
+# This plan keeps governance logic in the central governance repository. It
+# clones the governance repo at a pinned ref, generates normalized evidence,
+# archives the evidence as Bamboo artifacts, and can run in report-only or
+# blocking mode.
+
+version: 2
+
+plan:
+  project-key: GOV
+  key: DSO
+  name: DevSecOps Governance Baseline
+
+variables:
+  governance.repository: https://github.com/joku-dev/devsecops-governance-as-code.git
+  governance.ref: l1-baseline-v1.1.3
+  governance.mode: report-only
+  governance.max.allowed.severity: high
+  governance.branch.protection.status: not_implemented_for_bamboo_12_1_9_template
+  bitbucket.protected.branch: ""
+  bitbucket.direct.push.allowed: ""
+  bitbucket.review.required: ""
+
+stages:
+  - Governance Evidence:
+      jobs:
+        - Collect and evaluate DevSecOps evidence
+
+Collect and evaluate DevSecOps evidence:
+  tasks:
+    - checkout:
+        force-clean-build: true
+
+    - script:
+        interpreter: SHELL
+        description: Clone pinned governance baseline
+        scripts:
+          - |
+            set -eu
+            rm -rf governance
+            git clone "${bamboo_governance_repository}" governance
+            cd governance
+            git checkout "${bamboo_governance_ref}"
+
+    - script:
+        interpreter: SHELL
+        description: Package application source
+        scripts:
+          - |
+            set -eu
+            mkdir -p dist security generated/evidence
+            tar \
+              --exclude='.git' \
+              --exclude='governance' \
+              --exclude='generated' \
+              -czf dist/application-source.tar.gz .
+
+    - script:
+        interpreter: SHELL
+        description: Create placeholder security evidence
+        scripts:
+          - |
+            set -eu
+            if [ ! -f security/sbom.cyclonedx.json ]; then
+              cat > security/sbom.cyclonedx.json <<'JSON'
+            {
+              "bomFormat": "CycloneDX",
+              "specVersion": "1.5",
+              "version": 1,
+              "components": []
+            }
+            JSON
+            fi
+
+            if [ ! -f security/vulnerability-scan.json ]; then
+              cat > security/vulnerability-scan.json <<'JSON'
+            {
+              "scanner": "placeholder",
+              "max_severity": "none",
+              "findings": []
+            }
+            JSON
+            fi
+
+    - script:
+        interpreter: SHELL
+        description: Generate normalized DevSecOps governance evidence
+        scripts:
+          - |
+            set -eu
+            python3 governance/scripts/generate_platform_context.py \
+              --platform bamboo \
+              --output generated/evidence/platform-context.json
+
+            python3 governance/scripts/generate_pipeline_evidence.py \
+              --platform bamboo \
+              --platform-context-file generated/evidence/platform-context.json \
+              --governance-mode "${bamboo_governance_mode}" \
+              --max-allowed-severity "${bamboo_governance_max_allowed_severity}" \
+              --artifact-path dist/application-source.tar.gz \
+              --sbom-path security/sbom.cyclonedx.json \
+              --vulnerability-scan-path security/vulnerability-scan.json \
+              --protected-branch "${bamboo_bitbucket_protected_branch}" \
+              --direct-push-allowed "${bamboo_bitbucket_direct_push_allowed}" \
+              --review-required "${bamboo_bitbucket_review_required}" \
+              --branch-protection-status "${bamboo_governance_branch_protection_status}"
+
+    - script:
+        interpreter: SHELL
+        description: Apply optional blocking mode
+        scripts:
+          - |
+            set -eu
+            python3 - <<'PY'
+            import json
+            import os
+            from pathlib import Path
+
+            mode = os.environ.get("bamboo_governance_mode", "report-only")
+            gate = json.loads(Path("generated/evidence/baseline-gate-result.json").read_text())
+            errors = gate.get("errors", [])
+            status = gate.get("status", "unknown")
+
+            print(f"Governance mode: {mode}")
+            print(f"Baseline gate status: {status}")
+            for error in errors:
+                print(f"Governance finding: {error}")
+
+            if mode in {"block-on-error", "waiver-required"} and status != "pass":
+                raise SystemExit(1)
+            PY
+
+  artifacts:
+    - name: devsecops-platform-context
+      location: generated/evidence
+      pattern: "platform-context.json"
+      shared: true
+      required: true
+    - name: devsecops-pipeline-evidence
+      location: generated/evidence
+      pattern: "*.json"
+      shared: true
+      required: true
+    - name: application-artifact
+      location: dist
+      pattern: "application-source.tar.gz"
+      shared: true
+      required: true
+    - name: security-evidence
+      location: security
+      pattern: "*.json"
+      shared: true
+      required: true

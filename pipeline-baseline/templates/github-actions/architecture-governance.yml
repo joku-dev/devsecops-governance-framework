@@ -1,0 +1,157 @@
+name: Architecture Runtime Governance
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_id:
+        description: Release candidate identifier
+        required: false
+        default: demo-release-candidate
+      baseline:
+        description: Expected solution baseline identifier
+        required: false
+        default: demo-solution-baseline
+      governance_repository:
+        description: Governance repository containing collectors, schemas and OPA policies
+        required: false
+        default: joku-dev/devsecops-governance-as-code
+      governance_ref:
+        description: Governance repository branch, tag or SHA
+        required: false
+        default: architecture-baseline-l1-v0.1.0
+      fail_on_release_findings:
+        description: Fail the workflow when release-readiness findings exist
+        required: false
+        default: "false"
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  architecture-governance:
+    name: Architecture Runtime Governance
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout application repository
+        uses: actions/checkout@v7.0.0
+        with:
+          path: app
+
+      - name: Checkout governance repository
+        uses: actions/checkout@v7.0.0
+        with:
+          repository: ${{ github.event.inputs.governance_repository || 'joku-dev/devsecops-governance-as-code' }}
+          ref: ${{ github.event.inputs.governance_ref || 'architecture-baseline-l1-v0.1.0' }}
+          path: governance
+
+      - name: Set up Python
+        uses: actions/setup-python@v6.3.0
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade jsonschema pyyaml
+
+      - name: Install OPA
+        run: |
+          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+          chmod +x opa
+          sudo mv opa /usr/local/bin/opa
+          opa version
+
+      - name: Collect architecture release input
+        run: |
+          mkdir -p governance/generated/demo
+          python governance/scripts/collect_architecture_release_input.py \
+            --repo app \
+            --output governance/generated/demo/architecture-release-input.json \
+            --release-id "${{ github.event.inputs.release_id || github.sha }}" \
+            --baseline "${{ github.event.inputs.baseline || 'demo-solution-baseline' }}"
+
+      - name: Validate architecture release input schema
+        working-directory: governance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import jsonschema
+
+          schema = json.loads(Path("schemas/architecture-release-candidate.schema.json").read_text())
+          data = json.loads(Path("generated/demo/architecture-release-input.json").read_text())
+          jsonschema.validate(data, schema)
+          print("Architecture release input validates against schema")
+          PY
+
+      - name: Evaluate architecture readiness
+        working-directory: governance
+        run: |
+          opa eval --format=pretty \
+            --data policies/opa/architecture_readiness.rego \
+            --input generated/demo/architecture-release-input.json \
+            'data.architecture.readiness.deny'
+
+      - name: Evaluate integration readiness
+        working-directory: governance
+        run: |
+          opa eval --format=pretty \
+            --data policies/opa/architecture_integration_readiness.rego \
+            --input generated/demo/architecture-release-input.json \
+            'data.architecture.integration_readiness.deny'
+
+      - name: Evaluate operation readiness
+        working-directory: governance
+        run: |
+          opa eval --format=pretty \
+            --data policies/opa/architecture_operation_readiness.rego \
+            --input generated/demo/architecture-release-input.json \
+            'data.architecture.operation_readiness.deny'
+
+      - name: Evaluate release readiness
+        id: release_readiness
+        working-directory: governance
+        run: |
+          opa eval --format=json \
+            --data policies/opa/architecture_release_readiness.rego \
+            --input generated/demo/architecture-release-input.json \
+            'data.architecture.release_readiness.deny' \
+            > generated/demo/release-readiness-result.json
+          cat generated/demo/release-readiness-result.json
+
+      - name: Generate architecture governance report
+        working-directory: governance
+        run: |
+          python scripts/generate_architecture_governance_report.py \
+            --input generated/demo/architecture-release-input.json \
+            --output-json generated/demo/architecture-governance-report.json \
+            --output-md generated/demo/architecture-governance-report.md
+          cat generated/demo/architecture-governance-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload architecture governance evidence
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: architecture-governance-evidence
+          path: |
+            governance/generated/demo/architecture-release-input.json
+            governance/generated/demo/release-readiness-result.json
+            governance/generated/demo/architecture-governance-report.json
+            governance/generated/demo/architecture-governance-report.md
+
+      - name: Enforce release-readiness findings
+        if: ${{ github.event.inputs.fail_on_release_findings == 'true' }}
+        working-directory: governance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          result = json.loads(Path("generated/demo/release-readiness-result.json").read_text())
+          findings = result["result"][0]["expressions"][0]["value"]
+          if findings:
+              print("Release-readiness findings:")
+              for finding in findings:
+                  print(f"- {finding}")
+              raise SystemExit(1)
+          print("No release-readiness findings")
+          PY

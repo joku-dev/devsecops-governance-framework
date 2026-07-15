@@ -1,0 +1,321 @@
+level: L2
+name: Secure DevSecOps
+required_platform_level: PRA-Level 2
+requirements:
+- id: DSCB-L2-REQ-001
+  domain: secure_development_environments
+  title: Secure Development Environments
+  control_objective: Ensure development environments comply with enterprise security policies.
+  requirement: Development environments SHALL be centrally managed.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - central_development_environment_management
+  - configuration_baselines
+  - secure_developer_workspace
+  evidence:
+  - environment_configuration_records
+  - system_configuration_baselines
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-002
+  domain: secure_development_environments
+  title: Secure Development Environments
+  control_objective: Ensure development environments comply with enterprise security policies.
+  requirement: Development environments SHALL comply with enterprise security configuration standards.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - central_development_environment_management
+  - configuration_baselines
+  - secure_developer_workspace
+  evidence:
+  - environment_configuration_records
+  - system_configuration_baselines
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-003
+  domain: devsecops_platform_access_control
+  title: DevSecOps Platform Access Control
+  control_objective: Ensure secure access to DevSecOps platforms.
+  requirement: Access to DevSecOps platforms SHALL be controlled through centralized identity management
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - central_iam
+  - rbac
+  - mfa_privileged_access
+  - access_audit_logging
+  evidence:
+  - authentication_logs
+  - access_control_configuration
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-004
+  domain: devsecops_platform_access_control
+  title: DevSecOps Platform Access Control
+  control_objective: Ensure secure access to DevSecOps platforms.
+  requirement: Multi-factor authentication SHALL be enforced for privileged access.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - central_iam
+  - rbac
+  - mfa_privileged_access
+  - access_audit_logging
+  evidence:
+  - authentication_logs
+  - access_control_configuration
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/access_control.rego
+  waiver:
+    allowed: true
+    authority: CISO
+- id: DSCB-L2-REQ-005
+  domain: dependency_source_control
+  title: Dependency Source Control
+  control_objective: Ensure software dependencies originate from trusted repositories.
+  requirement: Software dependencies SHALL be retrieved from approved repositories.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - approved_dependency_repositories
+  - dependency_proxy
+  - external_download_prevention
+  evidence:
+  - repository_configuration
+  - dependency_management_logs
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-006
+  domain: dependency_source_control
+  title: Dependency Source Control
+  control_objective: Ensure software dependencies originate from trusted repositories.
+  requirement: Direct downloads from external sources SHALL NOT be permitted.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - approved_dependency_repositories
+  - dependency_proxy
+  - external_download_prevention
+  evidence:
+  - repository_configuration
+  - dependency_management_logs
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/dependency_source_control.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-007
+  domain: artifact_signing
+  title: Artifact Signing
+  control_objective: Ensure authenticity of released software artifacts.
+  requirement: Software artifacts SHALL be cryptographically signed before release.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - artifact_signing_service
+  - signing_key_management
+  - signature_verification
+  evidence:
+  - artifact_signatures
+  - signing_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/artifact_signing.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-008
+  domain: artifact_signing
+  title: Artifact Signing
+  control_objective: Ensure authenticity of released software artifacts.
+  requirement: Signing keys SHALL be protected and managed according to enterprise security policies.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - artifact_signing_service
+  - signing_key_management
+  - signature_verification
+  evidence:
+  - artifact_signatures
+  - signing_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-009
+  domain: infrastructure_as_code
+  title: Infrastructure as Code
+  control_objective: Ensure infrastructure configuration is controlled and reproducible.
+  requirement: Infrastructure used for software deployment SHALL be defined through Infrastructure as Code.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - iac_repository
+  - environment_configuration_management
+  - iac_validation
+  evidence:
+  - infrastructure_repositories
+  - infrastructure_change_history
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/iac_required.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-010
+  domain: infrastructure_as_code
+  title: Infrastructure as Code
+  control_objective: Ensure infrastructure configuration is controlled and reproducible.
+  requirement: Infrastructure definitions SHALL be maintained in version control.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - iac_repository
+  - environment_configuration_management
+  - iac_validation
+  evidence:
+  - infrastructure_repositories
+  - infrastructure_change_history
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/iac_required.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-011
+  domain: pipeline_security_gates
+  title: Pipeline Security Gates
+  control_objective: Ensure pipeline security policies are enforced prior to release.
+  requirement: DevSecOps pipelines SHALL enforce security gates.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - policy_gate_engine
+  - security_threshold_enforcement
+  - release_blocking
+  evidence:
+  - pipeline_policy_gate_records
+  - pipeline_execution_logs
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/pipeline_security_gates.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-012
+  domain: pipeline_security_gates
+  title: Pipeline Security Gates
+  control_objective: Ensure pipeline security policies are enforced prior to release.
+  requirement: Releases SHALL NOT proceed when defined security thresholds are exceeded.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - policy_gate_engine
+  - security_threshold_enforcement
+  - release_blocking
+  evidence:
+  - pipeline_policy_gate_records
+  - pipeline_execution_logs
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/pipeline_security_gates.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-013
+  domain: security_monitoring
+  title: Security Monitoring
+  control_objective: Ensure security-relevant events are monitored.
+  requirement: Operational systems SHALL generate security-relevant events.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - security_event_generation
+  - security_event_forwarding
+  - monitoring_integration
+  evidence:
+  - security_monitoring_logs
+  - security_event_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L2-REQ-014
+  domain: security_monitoring
+  title: Security Monitoring
+  control_objective: Ensure security-relevant events are monitored.
+  requirement: Security events SHALL be forwarded to monitoring systems.
+  required_platform_level: PRA-Level 2
+  platform_capabilities:
+  - security_event_generation
+  - security_event_forwarding
+  - monitoring_integration
+  evidence:
+  - security_monitoring_logs
+  - security_event_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board

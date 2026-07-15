@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "governance_repo": "devsecops-governance-as-code",
+  "target_repo": "sample-app",
+  "timestamp": "2026-06-26T18:30:00Z",
+  "status": "pass",
+  "checks": [
+    {
+      "check_id": "governance_ci_file_present",
+      "description": "A CI pipeline file is present in the target repository.",
+      "status": "pass",
+      "details": "Found .github/workflows/governance.yml"
+    },
+    {
+      "check_id": "governance_reference_present",
+      "description": "The target repository references the governance repository or governance template.",
+      "status": "pass",
+      "details": "Found devsecops-governance-as-code reference in workflow file."
+    },
+    {
+      "check_id": "governance_commands_present",
+      "description": "The target repository pipeline includes expected governance validation commands.",
+      "status": "pass",
+      "details": "Found validate_governance_repo.py, unittest, and opa check references."
+    }
+  ]
+}

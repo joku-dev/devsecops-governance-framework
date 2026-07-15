@@ -1,0 +1,17 @@
+{
+  "selected_agents": [
+    "governance-analyst",
+    "repo-steward",
+    "source-document-intake"
+  ],
+  "required_validations": [
+    "git diff --check",
+    "python3 scripts/generate_governance_change_impact_report.py",
+    "python3 scripts/validate_governance_repo.py"
+  ],
+  "release_impact": "none",
+  "forbidden_changes": [
+    "candidate_derivation_before_review"
+  ],
+  "commit_readiness": "requires_candidate_review"
+}

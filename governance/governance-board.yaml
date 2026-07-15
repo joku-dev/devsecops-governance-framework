@@ -1,0 +1,23 @@
+board:
+  id: devsecops_governance_board
+  source_requirements:
+    - DSDIR-REQ-004
+    - DSDIR-REQ-005
+    - DSDIR-REQ-006
+    - DSDIR-REQ-007
+  required_members:
+    - Head of SDD Capabilities
+    - CISO organization representative
+    - Safety Authority representative
+    - SDD Enterprise Architect
+    - Divisional or program representatives
+    - Compliance representative where applicable
+  escalation:
+    high_risk_cybersecurity: CISO
+    safety_critical_deviation: Safety Authority
+    enterprise_governance_conflict: CDO
+  verification_evidence:
+    - board_charter
+    - membership_record
+    - decision_record
+    - escalation_record

@@ -1,0 +1,422 @@
+name: Reusable DevSecOps Baseline Gate
+
+on:
+  workflow_call:
+    inputs:
+      level:
+        description: Baseline level to enforce.
+        required: false
+        default: L1
+        type: string
+      max_allowed_severity:
+        description: Maximum allowed vulnerability severity.
+        required: false
+        default: high
+        type: string
+      artifact_path:
+        description: Path to the build artifact in the application repository workspace.
+        required: false
+        default: dist/example-app.txt
+        type: string
+      sbom_path:
+        description: Path to the SBOM file in the application repository workspace.
+        required: false
+        default: security/sbom.cyclonedx.json
+        type: string
+      vulnerability_scan_path:
+        description: Path to the vulnerability scan result in the application repository workspace.
+        required: false
+        default: security/vulnerability-scan.json
+        type: string
+      signature_path:
+        description: Optional path to an artifact signature file in the application repository workspace.
+        required: false
+        default: ""
+        type: string
+      governance_run_input_path:
+        description: Optional path to a governance run input JSON file in the application repository workspace.
+        required: false
+        default: ""
+        type: string
+      generate_demo_evidence:
+        description: Generate demo artifact, SBOM, and vulnerability evidence if no real evidence exists.
+        required: false
+        default: false
+        type: boolean
+      application_evidence_artifact_name:
+        description: Optional GitHub Actions artifact name containing application artifact, SBOM, and vulnerability scan evidence.
+        required: false
+        default: ""
+        type: string
+      release_candidate:
+        description: Treat this pipeline run as a release candidate gate.
+        required: false
+        default: false
+        type: boolean
+      upload_evidence:
+        description: Upload the collected evidence as a GitHub Actions artifact.
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+jobs:
+  devsecops-baseline:
+    name: DevSecOps Baseline Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout application repository
+        uses: actions/checkout@v4
+        with:
+          path: application
+
+      - name: Download application evidence artifact
+        if: ${{ inputs.application_evidence_artifact_name != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.application_evidence_artifact_name }}
+          path: application
+
+      - name: Generate demo evidence
+        if: ${{ inputs.generate_demo_evidence }}
+        working-directory: application
+        run: |
+          mkdir -p "$(dirname "${{ inputs.artifact_path }}")" "$(dirname "${{ inputs.sbom_path }}")" "$(dirname "${{ inputs.vulnerability_scan_path }}")" generated/evidence
+          printf 'example artifact from %s\n' "${GITHUB_SHA}" > "${{ inputs.artifact_path }}"
+          cat > "${{ inputs.sbom_path }}" <<'JSON'
+          {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.5",
+            "version": 1,
+            "metadata": {
+              "component": {
+                "type": "application",
+                "name": "example-app"
+              }
+            },
+            "components": []
+          }
+          JSON
+          cat > "${{ inputs.vulnerability_scan_path }}" <<'JSON'
+          {
+            "scanner": "example-scanner",
+            "max_severity": "none",
+            "findings": []
+          }
+          JSON
+
+      - name: Resolve repository governance context
+        working-directory: application
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_API_URL: ${{ github.api_url }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          from pathlib import Path
+
+          repository = os.environ["GITHUB_REPOSITORY"]
+          branch = os.environ.get("GITHUB_BASE_REF") or os.environ.get("GITHUB_REF_NAME") or "main"
+          api_url = os.environ["GITHUB_API_URL"].rstrip("/")
+          token = os.environ["GITHUB_TOKEN"]
+          branch_encoded = urllib.parse.quote(branch, safe="")
+
+          def github_get(path):
+              request = urllib.request.Request(
+                  f"{api_url}{path}",
+                  headers={
+                      "Authorization": f"Bearer {token}",
+                      "Accept": "application/vnd.github+json",
+                      "User-Agent": "devsecops-governance-baseline",
+                  },
+              )
+              with urllib.request.urlopen(request) as response:
+                  return json.loads(response.read().decode("utf-8"))
+
+          protected_branch = None
+          review_required = None
+          direct_push_allowed = None
+          branch_protection_lookup = {"status": "not_attempted"}
+
+          try:
+              branch_data = github_get(f"/repos/{repository}/branches/{branch_encoded}")
+              protected_branch = bool(branch_data.get("protected", False))
+              branch_protection_lookup = {"status": "branch_checked"}
+
+              if protected_branch:
+                  try:
+                      protection = github_get(f"/repos/{repository}/branches/{branch_encoded}/protection")
+                      required_pull_request_reviews = protection.get("required_pull_request_reviews")
+                      review_required = bool(required_pull_request_reviews)
+                      direct_push_allowed = not review_required
+                      branch_protection_lookup = {"status": "protection_checked"}
+                  except urllib.error.HTTPError as error:
+                      direct_push_allowed = False
+                      branch_protection_lookup = {
+                          "status": "protection_unavailable",
+                          "http_status": error.code,
+                      }
+              else:
+                  review_required = False
+                  direct_push_allowed = True
+          except urllib.error.HTTPError as error:
+              branch_protection_lookup = {
+                  "status": "branch_lookup_failed",
+                  "http_status": error.code,
+              }
+
+          payload = {
+              "target_branch": branch,
+              "protected_branch": protected_branch,
+              "review_required": review_required,
+              "direct_push_allowed": direct_push_allowed,
+              "branch_protection_lookup": branch_protection_lookup,
+          }
+
+          output = Path("generated/evidence/governance-context.json")
+          output.parent.mkdir(parents=True, exist_ok=True)
+          output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          print(f"Wrote {output}")
+          PY
+
+      - name: Collect pipeline evidence
+        working-directory: application
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          def as_bool(value):
+              return str(value).strip().lower() in {"1", "true", "yes", "y", "on"}
+
+          def sha256(path):
+              digest = hashlib.sha256()
+              with path.open("rb") as handle:
+                  for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                      digest.update(chunk)
+              return digest.hexdigest()
+
+          def load_scan_max_severity(path):
+              if not path.is_file():
+                  return "none"
+              try:
+                  data = json.loads(path.read_text(encoding="utf-8"))
+              except Exception:
+                  return os.environ.get("VULNERABILITY_MAX_SEVERITY", "none")
+              return str(data.get("max_severity", os.environ.get("VULNERABILITY_MAX_SEVERITY", "none"))).lower()
+
+          severity_order = {
+              "none": 0,
+              "info": 1,
+              "low": 2,
+              "medium": 3,
+              "high": 4,
+              "critical": 5,
+          }
+
+          artifact = Path("${{ inputs.artifact_path }}")
+          sbom = Path("${{ inputs.sbom_path }}")
+          vulnerability_scan = Path("${{ inputs.vulnerability_scan_path }}")
+          signature_path_value = "${{ inputs.signature_path }}"
+          signature = Path(signature_path_value) if signature_path_value else None
+          governance_context = json.loads(Path("generated/evidence/governance-context.json").read_text(encoding="utf-8"))
+          artifact_exists = artifact.is_file()
+          commit_id = os.environ.get("GITHUB_SHA", "local")
+          run_id = os.environ.get("GITHUB_RUN_ID", "local")
+          repository = os.environ.get("GITHUB_REPOSITORY", "local/repository")
+          max_allowed_severity = "${{ inputs.max_allowed_severity }}".lower()
+          max_seen = load_scan_max_severity(vulnerability_scan)
+          security_thresholds_exceeded = severity_order.get(max_seen, 99) > severity_order.get(max_allowed_severity, 99)
+
+          evidence = {
+              "release_candidate": as_bool("${{ inputs.release_candidate }}"),
+              "pipeline": {
+                  "pipeline_id": os.environ.get("GITHUB_WORKFLOW", "github-actions"),
+                  "pipeline_run_id": run_id,
+                  "commit_id": commit_id,
+                  "status": "success",
+                  "security_gates": {"enforced": True},
+                  "security_thresholds_exceeded": security_thresholds_exceeded,
+                  "external_direct_downloads_detected": as_bool(os.environ.get("EXTERNAL_DIRECT_DOWNLOADS_DETECTED", "false")),
+              },
+              "repository": {
+                  "repository_id": repository,
+                  "branch": governance_context.get("target_branch", os.environ.get("GITHUB_REF_NAME", "local")),
+                  "protected_branch": governance_context.get("protected_branch"),
+                  "direct_push_allowed": governance_context.get("direct_push_allowed"),
+                  "review_required": governance_context.get("review_required"),
+                  "branch_protection_lookup": governance_context.get("branch_protection_lookup", {}),
+              },
+              "artifact": {
+                  "artifact_id": artifact.name,
+                  "artifact_type": os.environ.get("ARTIFACT_TYPE", "application-build-output"),
+                  "artifact_version": commit_id[:12],
+                  "digest": {
+                      "exists": artifact_exists,
+                      "linked_to_artifact": artifact_exists,
+                      "algorithm": "sha256",
+                      "value": sha256(artifact) if artifact_exists else "",
+                  },
+                  "signature": {
+                      "exists": bool(signature and signature.is_file()),
+                      "path": str(signature) if signature else "",
+                  },
+              },
+              "evidence": {
+                  "sbom": {
+                      "exists": sbom.is_file(),
+                      "linked_to_artifact": sbom.is_file() and artifact_exists,
+                      "path": str(sbom),
+                  },
+                  "vulnerability_scan": {
+                      "exists": vulnerability_scan.is_file(),
+                      "path": str(vulnerability_scan),
+                      "max_severity": max_seen,
+                  },
+                  "pipeline_execution": {
+                      "evidence_id": f"github-actions-{run_id}",
+                      "pipeline_run_id": run_id,
+                      "status": "success",
+                      "generated_at": datetime.now(timezone.utc).isoformat(),
+                  },
+              },
+              "release": {
+                  "release_id": f"{repository}@{commit_id[:12]}",
+                  "approval_status": "not_required",
+                  "approved_waiver": {"exists": as_bool(os.environ.get("APPROVED_WAIVER_EXISTS", "false"))},
+              },
+              "waivers": [],
+          }
+
+          output = Path("generated/evidence/pipeline-evidence.json")
+          output.parent.mkdir(parents=True, exist_ok=True)
+          output.write_text(json.dumps(evidence, indent=2) + "\n", encoding="utf-8")
+          print(f"Wrote {output}")
+          PY
+
+      - name: Enforce DevSecOps baseline gate
+        working-directory: application
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          severity_order = {
+              "none": 0,
+              "info": 1,
+              "low": 2,
+              "medium": 3,
+              "high": 4,
+              "critical": 5,
+          }
+
+          def get(data, path, default=None):
+              current = data
+              for part in path.split("."):
+                  if not isinstance(current, dict) or part not in current:
+                      return default
+                  current = current[part]
+              return current
+
+          def require(errors, data, path, expected=None):
+              value = get(data, path)
+              if expected is None:
+                  if value in (None, ""):
+                      errors.append(f"missing required value: {path}")
+              elif value != expected:
+                  errors.append(f"expected {path}={expected!r}, got {value!r}")
+
+          level = "${{ inputs.level }}"
+          max_allowed_severity = "${{ inputs.max_allowed_severity }}".lower()
+          data = json.loads(Path("generated/evidence/pipeline-evidence.json").read_text(encoding="utf-8"))
+          errors = []
+
+          require(errors, data, "pipeline.pipeline_id")
+          require(errors, data, "pipeline.pipeline_run_id")
+          require(errors, data, "pipeline.commit_id")
+          require(errors, data, "pipeline.status", "success")
+          require(errors, data, "pipeline.security_gates.enforced", True)
+          require(errors, data, "repository.repository_id")
+          require(errors, data, "repository.branch")
+          require(errors, data, "repository.direct_push_allowed", False)
+          require(errors, data, "artifact.artifact_id")
+          require(errors, data, "artifact.digest.exists", True)
+          require(errors, data, "artifact.digest.linked_to_artifact", True)
+          require(errors, data, "artifact.digest.value")
+          require(errors, data, "evidence.sbom.exists", True)
+          require(errors, data, "evidence.sbom.linked_to_artifact", True)
+          require(errors, data, "evidence.vulnerability_scan.exists", True)
+
+          max_seen = str(get(data, "evidence.vulnerability_scan.max_severity", "none")).lower()
+          if severity_order.get(max_seen, 99) > severity_order[max_allowed_severity]:
+              errors.append(f"vulnerability severity threshold exceeded: max_seen={max_seen}, allowed={max_allowed_severity}")
+
+          if get(data, "pipeline.security_thresholds_exceeded", False) and not get(data, "release.approved_waiver.exists", False):
+              errors.append("security thresholds exceeded without approved waiver")
+
+          if level in {"L2", "L3"}:
+              require(errors, data, "repository.protected_branch", True)
+              require(errors, data, "repository.review_required", True)
+              direct_push_allowed = get(data, "repository.direct_push_allowed")
+              if direct_push_allowed is None:
+                  errors.append("unable to determine whether direct pushes are allowed on the target branch")
+              elif direct_push_allowed:
+                  errors.append("direct pushes are allowed on the target branch")
+
+          if level == "L3":
+              require(errors, data, "artifact.signature.exists", True)
+
+          if errors:
+              print("DevSecOps pipeline baseline gate failed:")
+              for error in errors:
+                  print(f"- {error}")
+              sys.exit(1)
+
+          print(f"DevSecOps pipeline baseline gate passed (level={level}, max_allowed_severity={max_allowed_severity})")
+          PY
+
+      - name: Stage optional governance run input
+        if: ${{ inputs.governance_run_input_path != '' }}
+        working-directory: application
+        run: |
+          if [ ! -f "${{ inputs.governance_run_input_path }}" ]; then
+            echo "Expected governance run input not found: ${{ inputs.governance_run_input_path }}"
+            exit 1
+          fi
+          mkdir -p generated/evidence
+          cp "${{ inputs.governance_run_input_path }}" generated/evidence/governance-run-input.json
+
+      - name: Upload DevSecOps evidence
+        if: ${{ inputs.upload_evidence }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: devsecops-pipeline-evidence
+          path: |
+            application/generated/evidence/pipeline-evidence.json
+            application/${{ inputs.artifact_path }}
+            application/${{ inputs.sbom_path }}
+            application/${{ inputs.vulnerability_scan_path }}
+
+      - name: Upload governance run input
+        if: ${{ inputs.upload_evidence && inputs.governance_run_input_path != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: devsecops-governance-run-input
+          path: application/generated/evidence/governance-run-input.json

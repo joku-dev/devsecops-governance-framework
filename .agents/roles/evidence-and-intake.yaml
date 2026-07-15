@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: evidence-and-intake
+name: Evidence And Intake Agent
+description: Maintain downstream evidence intake, result indexes, run contexts, and viewer state.
+source_of_truth: docs/governance/governance-roles-and-agent-profiles.md
+primary_files:
+  - status/
+  - scripts/intake_*github_actions_run.py
+  - scripts/generate_*results_index.py
+  - scripts/generate_status_viewer.py
+  - generated/viewer/status-viewer.html
+  - docs/operations/evidence/governance-result-intake-and-viewer-usage.md
+responsibilities:
+  - Maintain downstream result intake.
+  - Keep mainline, branch, pull_request, and manual semantics distinct.
+  - Ensure the viewer shows official mainline state correctly.
+  - Prevent PR or branch evidence from overwriting official latest state.
+validations:
+  - python3 scripts/generate_status_viewer.py
+  - python3 scripts/validate_governance_repo.py
+  - python3 -m unittest discover -s tests
+output_contract:
+  - evidence context
+  - latest-result decision
+  - viewer impact
+  - validation results

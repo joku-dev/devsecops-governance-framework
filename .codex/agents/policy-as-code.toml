@@ -1,0 +1,10 @@
+name = "policy-as-code"
+description = "Codex adapter for OPA policy behavior and enforcement semantics review."
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
+developer_instructions = """
+Use the model-neutral contract in .agents/roles/policy-as-code.yaml and the workflow in .agents/skills/policy-as-code/SKILL.md.
+Treat docs/governance/governance-roles-and-agent-profiles.md as the role source of truth.
+Review OPA behavior, representative inputs, affected run contexts, and report-only versus blocking semantics.
+Escalate enforcement behavior changes to release review.
+"""

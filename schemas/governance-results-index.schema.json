@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Results Index",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at",
+    "summary",
+    "repositories"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "repository_count",
+        "result_count",
+        "passing_results",
+        "failing_results"
+      ],
+      "properties": {
+        "repository_count": { "type": "integer" },
+        "result_count": { "type": "integer" },
+        "passing_results": { "type": "integer" },
+        "failing_results": { "type": "integer" }
+      }
+    },
+    "repositories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository_id",
+          "baseline_level",
+          "latest_result"
+        ],
+        "properties": {
+          "repository_id": { "type": "string" },
+          "baseline_level": { "type": "string" },
+          "results_path": { "type": "string" },
+          "latest_result": {
+            "type": "object",
+            "required": [
+              "status",
+              "pipeline_run_id",
+              "commit_id",
+              "generated_at",
+              "governance_baseline_ref"
+            ],
+            "properties": {
+              "status": { "type": "string" },
+              "pipeline_run_id": { "type": "string" },
+              "commit_id": { "type": "string" },
+              "generated_at": { "type": "string" },
+              "governance_baseline_ref": { "type": "string" },
+              "source_file": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

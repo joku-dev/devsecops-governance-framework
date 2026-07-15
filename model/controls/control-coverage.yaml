@@ -1,0 +1,231 @@
+coverage:
+  - control_id: DSCB-L1-REQ-001
+    automation_status: automated
+    priority: low
+    rationale: Structured traceability fields are already evaluated by the control evaluator.
+    next_action: Maintain current evidence fields and extend only if deeper lifecycle traceability is needed.
+  - control_id: DSCB-L1-REQ-002
+    automation_status: automated
+    priority: low
+    rationale: Source control governance is already machine-evaluable from structured repository metadata.
+    next_action: Keep the current evaluator aligned with repository governance inputs.
+  - control_id: DSCB-L1-REQ-003
+    automation_status: automated
+    priority: low
+    rationale: Branch protection is enforced through policy-as-code and current evaluator logic.
+    next_action: Keep policy checks aligned with repository platform behavior.
+  - control_id: DSCB-L1-REQ-004
+    automation_status: automated
+    priority: low
+    rationale: Static-analysis execution and review evidence are already interpreted from structured fields.
+    next_action: Extend only if richer secure-coding evidence is introduced.
+  - control_id: DSCB-L1-REQ-005
+    automation_status: automated
+    priority: low
+    rationale: Dependency documentation is already evaluated from SBOM presence plus declared dependencies.
+    next_action: Maintain dependency evidence compatibility across consumer repositories.
+  - control_id: DSCB-L1-REQ-006
+    automation_status: automated
+    priority: low
+    rationale: SBOM existence is already enforced through policy-as-code.
+    next_action: Keep released workflows and policies aligned.
+  - control_id: DSCB-L1-REQ-007
+    automation_status: automated
+    priority: low
+    rationale: Controlled pipeline execution is already inferred from structured pipeline metadata.
+    next_action: Preserve consistent pipeline evidence generation.
+  - control_id: DSCB-L1-REQ-008
+    automation_status: automated
+    priority: low
+    rationale: Build-output uniqueness is already evaluated from artifact digest or version metadata.
+    next_action: Retain artifact metadata fields in downstream evidence.
+  - control_id: DSCB-L1-REQ-009
+    automation_status: automated
+    priority: low
+    rationale: Vulnerability scanning is already enforced through policy-as-code.
+    next_action: Keep vulnerability evidence format stable across releases.
+  - control_id: DSCB-L1-REQ-010
+    automation_status: automated
+    priority: low
+    rationale: Vulnerability evaluation before release is already covered by machine-readable gate logic.
+    next_action: Preserve waiver and vulnerability evidence compatibility.
+  - control_id: DSCB-L1-REQ-011
+    automation_status: automated
+    priority: low
+    rationale: Artifact integrity evidence is already evaluated through policy-as-code.
+    next_action: Extend only if stronger signing or attestation logic is added.
+  - control_id: DSCB-L1-REQ-012
+    automation_status: automated
+    priority: low
+    rationale: Artifact identity is already evaluated from structured digest linkage evidence.
+    next_action: Keep artifact identity semantics stable.
+  - control_id: DSCB-L1-REQ-013
+    automation_status: automated
+    priority: low
+    rationale: Release approval is already evaluated from structured approval metadata.
+    next_action: Maintain release approval evidence fields in the contract.
+  - control_id: DSCB-L1-REQ-014
+    automation_status: automated
+    priority: low
+    rationale: Approved-artifact-only deployment is already evaluated from release approval and artifact evidence.
+    next_action: Extend only if deployment attestation becomes part of the baseline.
+  - control_id: DSCB-L1-REQ-015
+    automation_status: automated
+    priority: low
+    rationale: Machine-readable evidence generation is already evaluated from pipeline execution evidence.
+    next_action: Preserve the current evidence artifact generation path.
+  - control_id: DSCB-L1-REQ-016
+    automation_status: automated
+    priority: low
+    rationale: Operational lifecycle evidence is already evaluated from structured operations fields.
+    next_action: Keep downstream operational evidence generation consistent.
+  - control_id: DSCB-L2-REQ-001
+    automation_status: automated
+    priority: low
+    rationale: Central management of development environments is already evaluated from environment metadata.
+    next_action: Maintain structured environment evidence in consumer payloads.
+  - control_id: DSCB-L2-REQ-002
+    automation_status: automated
+    priority: low
+    rationale: Environment compliance is already evaluated from configuration-baseline evidence fields.
+    next_action: Extend only if stronger workstation attestation becomes required.
+  - control_id: DSCB-L2-REQ-003
+    automation_status: automated
+    priority: low
+    rationale: Central identity management is already evaluated from structured platform metadata.
+    next_action: Keep platform evidence fields aligned with access-control expectations.
+  - control_id: DSCB-L2-REQ-004
+    automation_status: automated
+    priority: low
+    rationale: Privileged-access MFA is already enforced through policy-as-code.
+    next_action: Maintain policy alignment with platform access metadata.
+  - control_id: DSCB-L2-REQ-005
+    automation_status: automated
+    priority: low
+    rationale: Approved dependency sourcing is already evaluated from structured dependency metadata.
+    next_action: Preserve dependency source evidence semantics.
+  - control_id: DSCB-L2-REQ-006
+    automation_status: automated
+    priority: low
+    rationale: External direct-download prevention is already enforced through policy-as-code.
+    next_action: Keep dependency-source policy checks aligned with workflow behavior.
+  - control_id: DSCB-L2-REQ-007
+    automation_status: automated
+    priority: low
+    rationale: Artifact signing is already enforced through policy-as-code.
+    next_action: Maintain signing evidence and released workflow compatibility.
+  - control_id: DSCB-L2-REQ-008
+    automation_status: automated
+    priority: low
+    rationale: Signing-key protection is already evaluated from structured signing metadata.
+    next_action: Extend only if centralized key attestation becomes required.
+  - control_id: DSCB-L2-REQ-009
+    automation_status: automated
+    priority: low
+    rationale: IaC presence is already evaluated through policy-as-code in the current run profile.
+    next_action: Keep IaC evidence fields and policy checks aligned.
+  - control_id: DSCB-L2-REQ-010
+    automation_status: automated
+    priority: low
+    rationale: IaC version control is already evaluated from structured infrastructure metadata.
+    next_action: Preserve IaC repository evidence semantics.
+  - control_id: DSCB-L2-REQ-011
+    automation_status: automated
+    priority: low
+    rationale: Pipeline security-gate enforcement is already enforced through policy-as-code.
+    next_action: Keep workflow evidence and gate semantics consistent.
+  - control_id: DSCB-L2-REQ-012
+    automation_status: automated
+    priority: low
+    rationale: Security-threshold release blocking is already enforced through policy-as-code and waiver checks.
+    next_action: Keep waiver and vulnerability gate behavior aligned.
+  - control_id: DSCB-L2-REQ-013
+    automation_status: automated
+    priority: low
+    rationale: Security-event generation is already evaluated from structured monitoring metadata.
+    next_action: Maintain monitoring evidence compatibility.
+  - control_id: DSCB-L2-REQ-014
+    automation_status: automated
+    priority: low
+    rationale: Security-event forwarding is already evaluated from structured monitoring metadata.
+    next_action: Extend only if richer SOC integration evidence is required.
+  - control_id: DSCB-L3-REQ-001
+    automation_status: planned
+    priority: high
+    rationale: Reproducible-build verification is not yet machine-implemented in the current repository evaluator.
+    next_action: Add structured rebuild-verification evidence and implement evaluator logic for deterministic builds.
+  - control_id: DSCB-L3-REQ-002
+    automation_status: planned
+    priority: high
+    rationale: Version-controlled build-configuration evidence is not yet machine-implemented for L3 evaluation.
+    next_action: Add explicit build-configuration metadata and evaluator support for version-control assertions.
+  - control_id: DSCB-L3-REQ-003
+    automation_status: planned
+    priority: high
+    rationale: Isolated build-environment checking is marked as automated but not yet implemented in the evaluator.
+    next_action: Add explicit isolated-environment evidence fields and implement pass-fail logic.
+  - control_id: DSCB-L3-REQ-004
+    automation_status: planned
+    priority: high
+    rationale: Recreated-per-run build-environment checking is marked as automated but not yet evaluator-backed.
+    next_action: Add recreatable-environment evidence and implement evaluator support.
+  - control_id: DSCB-L3-REQ-005
+    automation_status: planned
+    priority: medium
+    rationale: Dependency provenance evidence exists conceptually but is not yet evaluated in machine-readable form.
+    next_action: Extend the evidence contract with provenance fields and add evaluator logic.
+  - control_id: DSCB-L3-REQ-006
+    automation_status: planned
+    priority: medium
+    rationale: Build-time provenance recording is not yet implemented in the current evaluator.
+    next_action: Add provenance-capture evidence and build-process evaluation logic.
+  - control_id: DSCB-L3-REQ-007
+    automation_status: planned
+    priority: high
+    rationale: Enterprise signing-infrastructure usage is marked as automated but not yet evaluator-backed.
+    next_action: Add enterprise-signing evidence fields and implement evaluator logic for trusted signing.
+  - control_id: DSCB-L3-REQ-008
+    automation_status: planned
+    priority: high
+    rationale: Central signing-key management is marked as automated but not yet evaluator-backed for L3.
+    next_action: Add centralized key-management evidence and evaluator support.
+  - control_id: DSCB-L3-REQ-009
+    automation_status: planned
+    priority: medium
+    rationale: End-to-end lifecycle traceability beyond current L1 traceability coverage is not yet machine-implemented.
+    next_action: Extend the evidence contract for deployment and lifecycle linkage and implement evaluator logic.
+  - control_id: DSCB-L3-REQ-010
+    automation_status: planned
+    priority: high
+    rationale: Runtime integrity verification is marked as automated but not yet implemented in the evaluator.
+    next_action: Add runtime-integrity evidence fields and implement automated evaluation logic.
+  - control_id: DSCB-L3-REQ-011
+    automation_status: planned
+    priority: medium
+    rationale: Continuous lifecycle compliance evidence is marked as automated but not yet evaluator-backed.
+    next_action: Extend lifecycle evidence generation and add evaluator logic for L3 compliance evidence.
+  - control_id: DSCB-GOV-REQ-001
+    automation_status: manual
+    priority: low
+    rationale: Baseline applicability assignment is primarily a governance-board and program-review activity.
+    next_action: Keep this under structured governance review and document evidence expectations clearly.
+  - control_id: DSCB-GOV-REQ-002
+    automation_status: manual
+    priority: low
+    rationale: Compliance verification across maturity, audit, and lifecycle review remains primarily governance-review driven.
+    next_action: Maintain review evidence quality rather than forcing CI-only automation.
+  - control_id: DSCB-GOV-REQ-003
+    automation_status: automated
+    priority: low
+    rationale: Waiver validity is already partially enforced through policy-as-code supporting governance review.
+    next_action: Keep waiver schema and policy checks aligned with the governance process.
+  - control_id: DSCB-GOV-REQ-004
+    automation_status: manual
+    priority: low
+    rationale: Deviation-process adherence is primarily a governance workflow and review responsibility.
+    next_action: Maintain standardized waiver records and governance review evidence.
+  - control_id: DSCB-GOV-REQ-005
+    automation_status: automated
+    priority: low
+    rationale: Core waiver quality requirements are already validated through policy-as-code and schema checks.
+    next_action: Keep waiver validation logic aligned with the formal waiver standard.

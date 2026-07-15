@@ -1,0 +1,37 @@
+{
+  "release_id": "architecture-baseline-l1-v0.1.0",
+  "release_type": "architecture-baseline-package",
+  "baseline_level": "ARCH-L1",
+  "version": "v0.1.0",
+  "status": "prepared",
+  "revision_protection": {
+    "governance_model": "git-versioned",
+    "consumer_reference": "pin by git tag or commit SHA",
+    "workflow_wrapper": ".github/workflows/architecture-baseline-l1-v0.1.0.yml",
+    "workflow_wrapper_ref": "architecture-baseline-l1-v0.1.0"
+  },
+  "source_snapshot": {
+    "architecture_requirements_file": "source/architecture/arch-l1.yaml",
+    "review_gates_file": "source/architecture/review-gates.yaml",
+    "quality_markers_file": "source/architecture/quality-markers.yaml",
+    "architecture_release_candidate_schema": "source/schemas/architecture-release-candidate.schema.json"
+  },
+  "included_assets": [
+    "source/architecture/arch-l1.yaml",
+    "source/architecture/review-gates.yaml",
+    "source/architecture/quality-markers.yaml",
+    "source/architecture/guardrails.yaml",
+    "source/architecture/remediation-actions.yaml",
+    "source/policies/opa/architecture_readiness.rego",
+    "source/policies/opa/architecture_integration_readiness.rego",
+    "source/policies/opa/architecture_operation_readiness.rego",
+    "source/policies/opa/architecture_release_readiness.rego",
+    "source/schemas/architecture-release-candidate.schema.json",
+    "source/schemas/app-architecture-evidence.schema.json",
+    "source/scripts/collect_architecture_release_input.py",
+    "source/scripts/generate_architecture_governance_report.py",
+    "source/workflows/architecture-baseline-l1-v0.1.0.yml",
+    "examples/github-actions/architecture-baseline-l1-v0.1.0.yml",
+    "baseline-package.md"
+  ]
+}
