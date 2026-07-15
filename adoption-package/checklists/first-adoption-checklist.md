@@ -38,4 +38,5 @@ Use this checklist before making the public governance baseline a required check
 - [ ] First report-only run reviewed.
 - [ ] Findings are triaged.
 - [ ] Blocking mode decision is documented.
+- [ ] Adoption decision record is completed.
 - [ ] Responsible owner is named for recurring evidence maintenance.

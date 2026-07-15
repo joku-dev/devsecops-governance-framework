@@ -21,6 +21,7 @@ joku-dev/devsecops-governance-framework
 | `evidence/security/vulnerability-scan.json` | `security/vulnerability-scan.json` | Minimal vulnerability scan placeholder for first wiring tests. |
 | `evidence/.governance/architecture/*.json` | `.governance/architecture/*.json` | Optional architecture evidence placeholders. |
 | `checklists/first-adoption-checklist.md` | Optional project checklist | Review checklist for first onboarding. |
+| `templates/adoption-decision-record.md` | Optional project decision record | Documents whether a pilot stays in `report-only`, starts controlled blocking, or stops. |
 
 ## Recommended Rollout
 
@@ -31,6 +32,7 @@ joku-dev/devsecops-governance-framework
 5. Switch protected `main` runs to `block-on-error` only after evidence is stable.
 6. Add `workflows/architecture-governance.yml` when architecture runtime evidence should be evaluated.
 7. Use the checklist before making the workflow a required branch-protection check.
+8. Record the pilot outcome with `templates/adoption-decision-record.md`.
 
 ## Expected First Result
 
