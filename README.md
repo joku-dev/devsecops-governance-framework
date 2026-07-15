@@ -6,6 +6,17 @@ It started with the DevSecOps Control Baseline and DevSecOps Platform Reference 
 
 The repository also models the governance stack above those standards: a `Policy` defines mandatory intent, a `Directive` defines binding operational execution, and the Standards define the detailed controls and platform expectations.
 
+## Start Here
+
+| Need | Entry point |
+|---|---|
+| Review the public adoption state | `docs/onboarding/external-review-brief.md` |
+| Try the framework in an application repo | `docs/onboarding/public-repo-quickstart.md` |
+| Copy ready-to-use templates | `adoption-package/README.md` |
+| Inspect the validated neutral consumer | `docs/onboarding/validated-demo-consumer.md` |
+| Review the current public release | `docs/releases/v0.1.0-public-adoption.md` |
+| Open the published documentation | `https://joku-dev.github.io/devsecops-governance-framework/` |
+
 ## Purpose
 
 The repository separates these concerns:
@@ -99,7 +110,7 @@ The addendum keeps the original framework document as the normative reference an
 - GitHub Pages documentation publishing is active.
 - A normalized central results index exists in `status/repository-results-index.json`.
 - `ha-CPsWMS` has already been validated successfully against the central governance baseline on a protected `main` branch.
-- GitHub Actions plus `ha-CPsWMS` is the private reference path for end-to-end validation; company platform adapters must remain additive.
+- `governance-framework-demo-consumer` is the neutral public reference consumer for first adoption validation.
 - A draft CI/CD adapter model exists for extending the same governance core beyond GitHub Actions to Bamboo/Bitbucket and Jenkins.
 
 ## AI And Agent Navigation

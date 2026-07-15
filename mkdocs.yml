@@ -47,6 +47,7 @@ nav:
       - Overview: publishing/index.md
       - Confluence Governance Repo Article: publishing/confluence-governance-repo-artikel.md
   - Onboarding:
+      - External Review Brief: onboarding/external-review-brief.md
       - Public Repo Quickstart: onboarding/public-repo-quickstart.md
       - Validated Demo Consumer: onboarding/validated-demo-consumer.md
       - Application Repo Onboarding: onboarding/application-repo-onboarding.md
