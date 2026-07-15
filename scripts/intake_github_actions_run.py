@@ -190,8 +190,8 @@ def write_snapshot(
     jobs: list[dict],
     report: dict,
     governance_input: dict,
-    report_path: Path,
-    governance_input_path: Path | None,
+    report_sha256: str,
+    governance_input_sha256: str | None,
     branch_protected: bool,
     artifacts: list[dict],
     selected_artifact: dict | None,
@@ -215,8 +215,8 @@ def write_snapshot(
         downloaded_artifact_info = {
             "downloaded": True,
             "artifact_size_bytes": selected_artifact.get("size", 0),
-            "control_evaluation_report_sha256": compute_sha256(report_path),
-            "governance_run_input_sha256": compute_sha256(governance_input_path) if governance_input_path is not None else None,
+            "control_evaluation_report_sha256": report_sha256,
+            "governance_run_input_sha256": governance_input_sha256,
             "governance_run_input_refs": governance_input.get("evidence_refs", []),
         }
 
@@ -310,6 +310,8 @@ def main() -> int:
         report_path = find_report(extract_dir)
         report = load_json(report_path)
         governance_input, governance_input_path = find_governance_input(extract_dir)
+        report_sha256 = compute_sha256(report_path)
+        governance_input_sha256 = compute_sha256(governance_input_path) if governance_input_path is not None else None
 
     baseline_ref = args.governance_baseline_ref or infer_baseline_ref(run)
     protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
@@ -320,9 +322,9 @@ def main() -> int:
         run=run,
         jobs=jobs,
         report=report,
-        report_path=report_path,
         governance_input=governance_input,
-        governance_input_path=governance_input_path,
+        report_sha256=report_sha256,
+        governance_input_sha256=governance_input_sha256,
         branch_protected=protected,
         artifacts=artifacts,
         selected_artifact=selected_artifact,

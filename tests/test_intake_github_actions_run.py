@@ -107,6 +107,10 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 report_path.write_text(json.dumps({"summary": {"fail": 0}}), encoding="utf-8")
                 governance_input_path = temp_root / "governance-run-input.json"
                 governance_input_path.write_text(json.dumps({"evidence_refs": ["ref1"]}), encoding="utf-8")
+                report_sha256 = intake.compute_sha256(report_path)
+                governance_input_sha256 = intake.compute_sha256(governance_input_path)
+                report_path.unlink()
+                governance_input_path.unlink()
                 run = {"id": 1, "conclusion": "success", "updated_at": "2026-07-04T00:00:00Z", "head_branch": "main", "head_sha": "abc123", "html_url": "https://example.com/run/1", "name": "DevSecOps Baseline", "event": "push"}
                 jobs = []
                 artifacts = [{"name": "governance-control-evaluation", "size": 1234}]
@@ -118,9 +122,9 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                     run=run,
                     jobs=jobs,
                     report={"summary": {"fail": 0}},
-                    report_path=report_path,
                     governance_input={"evidence_refs": ["ref1"]},
-                    governance_input_path=governance_input_path,
+                    report_sha256=report_sha256,
+                    governance_input_sha256=governance_input_sha256,
                     branch_protected=True,
                     artifacts=artifacts,
                     selected_artifact=selected_artifact,
@@ -130,7 +134,8 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 data = json.loads(output_path.read_text(encoding="utf-8"))
                 self.assertEqual(data["downloaded_artifact"]["downloaded"], True)
                 self.assertEqual(data["downloaded_artifact"]["artifact_size_bytes"], 1234)
-                self.assertEqual(data["downloaded_artifact"]["governance_run_input_sha256"], intake.compute_sha256(governance_input_path))
+                self.assertEqual(data["downloaded_artifact"]["control_evaluation_report_sha256"], report_sha256)
+                self.assertEqual(data["downloaded_artifact"]["governance_run_input_sha256"], governance_input_sha256)
                 self.assertEqual(data["artifact_metadata"]["artifact_sizes"]["governance-control-evaluation"], 1234)
             finally:
                 intake.STATUS_RESULTS = old_status_results
