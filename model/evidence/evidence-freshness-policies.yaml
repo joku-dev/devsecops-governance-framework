@@ -1,0 +1,91 @@
+schema_version: 1.0.0
+policy_set_id: evidence-freshness-policies
+version: 0.1.0
+status: provisional
+source_document: docs/governance/source-documents/DSCB-STD-SRC-001.public.md
+owner: governance-maintainers
+enforcement: report_only
+effective_from: "2026-07-15"
+review_due: "2026-10-15"
+change_control:
+  requires_gcr: true
+  preserve_historical_assessments: true
+  retrospective_reclassification: false
+  blocking_requires_release_review: true
+defaults:
+  missing_metadata_result: not_evaluated
+  expired_result: fail
+  future_timestamp_result: fail
+  finding_effect: report_only
+policies:
+  - id: freshness-governance-result-24h
+    evidence_type: governance_result
+    evaluation_mode: max_age
+    maximum_age_seconds: 86400
+    applies_to:
+      - devsecops_intake
+      - architecture_intake
+    decision_contexts:
+      - mainline
+      - branch
+      - manual
+    produced_at_claim: generated_at
+    evaluated_at_claim: trust.verified_at
+    rationale: A centrally intaken governance result should normally be collected within one day of the authoritative workflow update.
+  - id: freshness-vulnerability-scan-24h
+    evidence_type: vulnerability_scan
+    evaluation_mode: max_age
+    maximum_age_seconds: 86400
+    applies_to:
+      - devsecops_evidence
+    decision_contexts:
+      - release
+      - mainline
+    produced_at_claim: evidence.vulnerability_scan.produced_at
+    evaluated_at_claim: trust.verified_at
+    rationale: Vulnerability information changes quickly and should be refreshed daily for release and mainline decisions.
+  - id: freshness-runtime-evidence-30m
+    evidence_type: runtime_evidence
+    evaluation_mode: max_age
+    maximum_age_seconds: 1800
+    applies_to:
+      - architecture_evidence
+      - operations_evidence
+    decision_contexts:
+      - runtime
+      - release
+    produced_at_claim: evidence.runtime.produced_at
+    evaluated_at_claim: trust.verified_at
+    rationale: Runtime evidence should represent the current operating state rather than a distant historical observation.
+  - id: freshness-architecture-review-180d
+    evidence_type: architecture_review
+    evaluation_mode: max_age
+    maximum_age_seconds: 15552000
+    applies_to:
+      - architecture_evidence
+    decision_contexts:
+      - release
+      - mainline
+    produced_at_claim: evidence.architecture_review.approved_at
+    evaluated_at_claim: trust.verified_at
+    rationale: Architecture review remains usable for six months unless a relevant change invalidates its subject binding earlier.
+  - id: freshness-sbom-subject-bound
+    evidence_type: sbom
+    evaluation_mode: subject_bound
+    applies_to:
+      - devsecops_evidence
+    decision_contexts:
+      - release
+      - mainline
+    subject_claim: evidence.sbom.subject_digest
+    rationale: An SBOM is current when it is bound to the evaluated artifact or commit; elapsed time alone does not establish freshness.
+  - id: freshness-release-approval-candidate-bound
+    evidence_type: release_approval
+    evaluation_mode: release_candidate_bound
+    applies_to:
+      - devsecops_evidence
+      - architecture_evidence
+    decision_contexts:
+      - release
+    subject_claim: evidence.release_approval.release_candidate_id
+    rationale: A release approval is current only for the exact release candidate it authorizes.

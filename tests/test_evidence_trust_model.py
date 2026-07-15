@@ -84,7 +84,7 @@ class EvidenceTrustModelTests(unittest.TestCase):
         self.assertIn("devsecops_custody_partial", gap_ids)
         self.assertIn("architecture_provenance_verification_pending", gap_ids)
         self.assertIn("authenticity_not_evaluated", gap_ids)
-        self.assertIn("freshness_policy_missing", gap_ids)
+        self.assertIn("freshness_policy_approval_pending", gap_ids)
         self.assertIn("replay_detection_partial", gap_ids)
 
     def test_blocking_remains_gated_by_an_explicit_decision(self):

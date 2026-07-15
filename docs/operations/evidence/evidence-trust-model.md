@@ -197,8 +197,24 @@ snapshot needs stable references and digests, not a duplicate raw archive.
 
 Freshness must be contextual. A release approval, vulnerability scan, SBOM,
 architecture review, and runtime observation may require different validity
-windows. No universal expiry is defined in version 1 because control owners,
-Security, and Operations must approve those windows.
+rules. The provisional, versioned policy set is defined in
+`model/evidence/evidence-freshness-policies.yaml`:
+
+| Evidence type | Provisional validity rule | Current evaluation |
+|---|---|---|
+| Governance result | maximum age 24 hours | evaluated during DevSecOps and architecture intake |
+| Vulnerability scan | maximum age 24 hours | configured; waits for typed evidence timestamp |
+| Runtime evidence | maximum age 30 minutes | configured; waits for typed evidence timestamp |
+| Architecture review | maximum age 180 days | configured; waits for typed approval timestamp |
+| SBOM | must match the evaluated subject digest | configured; waits for subject binding |
+| Release approval | must match the exact release candidate | configured; waits for candidate binding |
+
+Version `0.1.0` is deliberately `provisional` and `report_only`. Missing
+metadata produces `not_evaluated`; an expired or future-dated governance
+result produces a failed Trust check without changing its governance outcome,
+latest-result selection, or delivery behavior. Later changes require a new
+GCR and policy version. Existing assessments are preserved and are not
+reclassified retrospectively.
 
 The future replay key should bind at least:
 
@@ -231,7 +247,8 @@ evaluated.
 
 - current
 - centralize trust-level derivation
-- project unresolved freshness and replay checks as `not_evaluated`
+- evaluate governance-result freshness with provisional policy v0.1
+- project unresolved typed freshness and replay checks as `not_evaluated`
 - expose trust separately from governance result in indexes and viewer
 - keep findings report-only
 
@@ -252,13 +269,13 @@ evaluated.
 | Decision | Required review |
 |---|---|
 | Trusted issuer and trust-root registry | Security, Platform, Governance |
-| Freshness windows per evidence type | Control owners, Security, Operations |
+| Approve or revise provisional freshness policy v0.1 | Control owners, Security, Operations |
 | Initial attestation format and predicate | Security, Platform, Architecture |
 | Trust requirements for protected mainline or release | Governance, Security, Release Manager |
 
-Freshness windows block completion of Phase 3. The other decisions block the
-later attestation and enforcement phases, not the current report-only
-projection.
+Approval of the provisional Freshness policy blocks completion of Phase 3,
+not its current report-only use. The other decisions block the later
+attestation and enforcement phases.
 
 ## Latest-State And Viewer Impact
 

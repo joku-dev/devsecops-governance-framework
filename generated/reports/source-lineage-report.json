@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T14:19:40Z",
+  "generated_at": "2026-07-15T14:32:24Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1519,6 +1519,12 @@
           "exists": true
         },
         {
+          "artifact_path": "model/evidence/evidence-freshness-policies.yaml",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "model/evidence/evidence-trust-model.yaml",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1532,6 +1538,12 @@
         },
         {
           "artifact_path": "schemas/architecture-results-index.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "schemas/evidence-freshness-policies.schema.json",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -1586,6 +1598,12 @@
         },
         {
           "artifact_path": "scripts/lib/evidence_trust.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "tests/test_evidence_freshness_policies.py",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -2019,7 +2037,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 305,
+    "derived_artifact_count": 308,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []

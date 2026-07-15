@@ -18,13 +18,19 @@ import tempfile
 import zipfile
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
-from lib.evidence_trust import build_trust_capture, digest_subject, verify_trust_capture
+from lib.evidence_trust import (
+    build_trust_capture,
+    digest_subject,
+    load_freshness_policy,
+    verify_trust_capture,
+)
 from lib.json_io import load_json, write_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_RESULTS = ROOT / "status" / "architecture-results"
 DEFAULT_API_URL = "https://api.github.com"
+FRESHNESS_POLICY_PATH = ROOT / "model" / "evidence" / "evidence-freshness-policies.yaml"
 
 
 def github_get_json(url: str, token: str | None) -> dict:
@@ -208,6 +214,7 @@ def main() -> int:
     repo_path = api_repo_path(args.repository_id)
 
     run = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}", token)
+    freshness_policy = load_freshness_policy(FRESHNESS_POLICY_PATH, "freshness-governance-result-24h")
     artifacts_payload = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}/artifacts?per_page=100", token)
     artifacts = artifacts_payload.get("artifacts", [])
     selected_artifact = next((artifact for artifact in artifacts if artifact.get("name") == args.artifact_name), None)
@@ -287,6 +294,8 @@ def main() -> int:
             artifact_name=args.artifact_name,
             subject_paths=subject_paths,
             verified_at=captured_at,
+            freshness_policy=freshness_policy,
+            produced_at=run.get("updated_at") or run.get("created_at"),
         )
 
     protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
