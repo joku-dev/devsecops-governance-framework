@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T14:03:16Z",
+  "generated_at": "2026-07-15T14:19:40Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
@@ -8,7 +8,7 @@
   "summary": {
     "registered_source_documents": 20,
     "source_documents_with_lineage": 20,
-    "derived_artifact_links": 298,
+    "derived_artifact_links": 305,
     "domains": {
       "architecture": 12,
       "devsecops": 8,
@@ -30,7 +30,7 @@
       "architecture_model": 8,
       "derived_artifact": 212,
       "governance_document": 4,
-      "governance_model": 45,
+      "governance_model": 52,
       "policy_as_code": 15,
       "release_document": 1,
       "release_metadata": 1,
@@ -46,7 +46,7 @@
       "policy-as-code-review": 2,
       "release-review": 2,
       "schema-review": 2,
-      "viewer-status-review": 2
+      "viewer-status-review": 3
     }
   },
   "source_impacts": [
@@ -169,11 +169,11 @@
         "releases/l1",
         "generated/reports"
       ],
-      "lineage_artifact_count": 42,
+      "lineage_artifact_count": 49,
       "lineage_artifact_types": {
         "derived_artifact": 10,
         "governance_document": 1,
-        "governance_model": 16,
+        "governance_model": 23,
         "policy_as_code": 11,
         "release_package": 3,
         "traceability_mapping": 1
@@ -182,7 +182,8 @@
         "devsecops-review",
         "policy-as-code-review",
         "release-review",
-        "schema-review"
+        "schema-review",
+        "viewer-status-review"
       ],
       "release_consideration": "baseline_release_review",
       "source_state": "active_source",
@@ -192,6 +193,7 @@
       "similarity_assessment": {},
       "suggested_validation": [
         "python3 -m unittest discover -s tests",
+        "python3 scripts/generate_status_viewer.py",
         "python3 scripts/validate_governance_repo.py",
         "verify release package metadata and checksums"
       ],

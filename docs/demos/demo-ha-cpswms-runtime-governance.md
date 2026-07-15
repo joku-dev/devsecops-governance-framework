@@ -353,6 +353,11 @@ Expected current viewer values:
 | Baseline | `architecture-baseline-l1-v0.1.0` |
 | Last Mainline Run | `29415015294` |
 | Summary | `4/4 gates pass`, `0 findings` |
+| Evidence Trust | `unverified` for the historical pre-Trust snapshot |
+
+The Trust value is a separate evidence-quality signal. It does not weaken or
+upgrade the architecture governance `PASS` result and will advance only after a
+new centrally verified intake snapshot is recorded.
 
 ## What Would Produce Findings
 

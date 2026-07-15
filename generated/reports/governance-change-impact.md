@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-07-15T14:03:16Z`
+Generated: `2026-07-15T14:19:40Z`
 
 ## Inputs
 
@@ -11,7 +11,7 @@ Generated: `2026-07-15T14:03:16Z`
 
 - Registered source documents: `20`
 - Source documents with lineage: `20`
-- Derived artifact links: `298`
+- Derived artifact links: `305`
 
 ## Domain Coverage
 
@@ -41,7 +41,7 @@ Generated: `2026-07-15T14:03:16Z`
 | `policy-as-code-review` | `2` |
 | `release-review` | `2` |
 | `schema-review` | `2` |
-| `viewer-status-review` | `2` |
+| `viewer-status-review` | `3` |
 
 ## Source Impact Details
 
@@ -127,10 +127,10 @@ Representative artifacts:
 - Owner: `devsecops-owners`
 - Version: `public-placeholder`
 - Domains: `devsecops`
-- Lineage artifacts: `42`
+- Lineage artifacts: `49`
 - Source state: `active_source`
 - Release consideration: `baseline_release_review`
-- Review lanes: `devsecops-review, policy-as-code-review, release-review, schema-review`
+- Review lanes: `devsecops-review, policy-as-code-review, release-review, schema-review, viewer-status-review`
 
 Derived artifact areas:
 
@@ -143,6 +143,7 @@ Derived artifact areas:
 Suggested validation:
 
 - `python3 -m unittest discover -s tests`
+- `python3 scripts/generate_status_viewer.py`
 - `python3 scripts/validate_governance_repo.py`
 - `verify release package metadata and checksums`
 

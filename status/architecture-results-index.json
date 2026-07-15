@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T12:55:40Z",
+  "generated_at": "2026-07-15T14:11:33Z",
   "summary": {
     "repository_count": 1,
     "result_count": 9,
@@ -8,7 +8,10 @@
     "findings_results": 0,
     "mainline_results": 6,
     "branch_results": 2,
-    "manual_results": 1
+    "manual_results": 1,
+    "trust_level_counts": {
+      "unverified": 9
+    }
   },
   "repositories": [
     {
@@ -30,6 +33,16 @@
           "passed": 4,
           "with_findings": 0,
           "finding_count": 0
+        },
+        "trust": {
+          "effective_level": "unverified",
+          "assessment_status": "not_available",
+          "verified_at": null,
+          "check_summary": {
+            "pass": 0,
+            "fail": 0,
+            "not_evaluated": 0
+          }
         }
       },
       "history": [
@@ -48,6 +61,16 @@
             "with_findings": 0,
             "finding_count": 0
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-02T12-08-10Z-run-28588779711.json"
         },
         {
@@ -64,6 +87,16 @@
             "passed": 4,
             "with_findings": 0,
             "finding_count": 0
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-02T12-08-17Z-run-28588778642.json"
         },
@@ -82,6 +115,16 @@
             "with_findings": 0,
             "finding_count": 0
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-02T12-44-00Z-run-28590924201.json"
         },
         {
@@ -98,6 +141,16 @@
             "passed": 4,
             "with_findings": 0,
             "finding_count": 0
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-02T12-47-47Z-run-28591158065.json"
         },
@@ -116,6 +169,16 @@
             "with_findings": 0,
             "finding_count": 0
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-02T13-05-12Z-run-28592256765.json"
         },
         {
@@ -132,6 +195,16 @@
             "passed": 4,
             "with_findings": 0,
             "finding_count": 0
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-04T09-13-52Z-run-28701598183.json"
         },
@@ -150,6 +223,16 @@
             "with_findings": 0,
             "finding_count": 0
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-04T14-11-47Z-run-28708822660.json"
         },
         {
@@ -167,6 +250,16 @@
             "with_findings": 0,
             "finding_count": 0
           },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
+          },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T12-08-03Z-run-29414076871.json"
         },
         {
@@ -183,6 +276,16 @@
             "passed": 4,
             "with_findings": 0,
             "finding_count": 0
+          },
+          "trust": {
+            "effective_level": "unverified",
+            "assessment_status": "not_available",
+            "verified_at": null,
+            "check_summary": {
+              "pass": 0,
+              "fail": 0,
+              "not_evaluated": 0
+            }
           },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T12-23-26Z-run-29415015294.json"
         }

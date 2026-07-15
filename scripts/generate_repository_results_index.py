@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 import json
 
+from lib.evidence_trust import project_trust
+
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_RESULTS = ROOT / "status" / "results"
@@ -25,6 +27,7 @@ def main() -> int:
     mainline_results = 0
     branch_results = 0
     manual_results = 0
+    trust_level_counts = {}
 
     for repo_dir in sorted(path for path in STATUS_RESULTS.iterdir() if path.is_dir()):
         results = sorted(repo_dir.glob("*.json"))
@@ -41,6 +44,8 @@ def main() -> int:
         representative = latest_main or latest
         result_count += len(parsed)
         for item in parsed:
+            level = project_trust(item)["effective_level"]
+            trust_level_counts[level] = trust_level_counts.get(level, 0) + 1
             if item.get("overall_status") == "pass":
                 passing_results += 1
             else:
@@ -65,6 +70,7 @@ def main() -> int:
                     "commit_id": item.get("repository", {}).get("commit_id", "unknown"),
                     "governance_baseline_ref": item.get("governance_baseline_ref", "unknown"),
                     "control_evaluation_summary": control_summary,
+                    "trust": project_trust(item),
                     "source_file": str(path.relative_to(ROOT)),
                 }
             )
@@ -85,6 +91,7 @@ def main() -> int:
                         if item == representative
                     ),
                     "control_evaluation_summary": representative.get("control_evaluation_summary", {}),
+                    "trust": project_trust(representative),
                 },
                 "history": history,
             }
@@ -101,6 +108,7 @@ def main() -> int:
             "mainline_results": mainline_results,
             "branch_results": branch_results,
             "manual_results": manual_results,
+            "trust_level_counts": trust_level_counts,
         },
         "repositories": repositories,
     }

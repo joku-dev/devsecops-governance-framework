@@ -19,7 +19,7 @@ import tempfile
 import zipfile
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
-from lib.evidence_trust import build_trust_capture, compute_sha256, digest_subject
+from lib.evidence_trust import build_trust_capture, compute_sha256, digest_subject, verify_trust_capture
 from lib.json_io import load_json, write_json
 
 
@@ -330,6 +330,11 @@ def main() -> int:
             )
         if archive.exists():
             subjects.append(digest_subject("artifact_archive", archive, "trust.capture.subjects.artifact_archive"))
+        subject_paths = {"control_evaluation_report": report_path}
+        if governance_input_path is not None:
+            subject_paths["governance_run_input"] = governance_input_path
+        if archive.exists():
+            subject_paths["artifact_archive"] = archive
 
         captured_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
         trust = build_trust_capture(
@@ -342,6 +347,15 @@ def main() -> int:
             source_uri=selected_artifact.get("archive_download_url", run.get("html_url", "")),
             captured_at=captured_at,
             subjects=subjects,
+        )
+        trust = verify_trust_capture(
+            trust,
+            repository_id=args.repository_id,
+            commit_id=run.get("head_sha", "unknown"),
+            run_id=str(run.get("id")),
+            artifact_name=args.artifact_name,
+            subject_paths=subject_paths,
+            verified_at=captured_at,
         )
 
     baseline_ref = args.governance_baseline_ref or infer_baseline_ref(run)

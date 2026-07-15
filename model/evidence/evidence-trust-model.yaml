@@ -221,15 +221,15 @@ decision_rules:
     requirement: Trust-based blocking requires schema migration, representative evidence, policy tests, release review, and explicit maintainer approval.
 
 migration_gaps:
-  - id: shared_trust_projection_missing
+  - id: shared_provenance_verification_pending
     scope: shared
-    current_state: New automated intake results capture an explicit unverified trust record but do not derive a verified level.
+    current_state: New intake derives integrity trust centrally and indexes and the viewer project trust separately from governance outcomes.
     missing_capabilities:
-      - trust level
-      - per-check verification results
-      - verifier identity
-      - verification timestamp
-    target_level: integrity_verified
+      - approved freshness evaluation
+      - replay-history evaluation
+      - complete normalized custody verification
+      - verified baseline resolution
+    target_level: provenance_verified
     priority: high
     phase: verification_projection
   - id: devsecops_custody_partial
@@ -242,14 +242,14 @@ migration_gaps:
     target_level: provenance_verified
     priority: high
     phase: verification_projection
-  - id: architecture_verification_projection_missing
+  - id: architecture_provenance_verification_pending
     scope: architecture_intake
-    current_state: New intake captures architecture report, release-input, and archive SHA-256 values with run attempt and initial custody.
+    current_state: New intake verifies captured architecture bytes for integrity and projects the result without changing architecture findings.
     missing_capabilities:
-      - authoritative digest comparison
+      - verified baseline resolution
       - normalized snapshot digest
       - transformation log
-    target_level: integrity_verified
+    target_level: provenance_verified
     priority: high
     phase: verification_projection
   - id: authenticity_not_evaluated
@@ -293,12 +293,12 @@ migration_phases:
     enforcement: report_only
   - id: additive_capture
     order: 2
-    state: current
+    state: complete
     objective: Add optional trust metadata and missing digests to both intake paths while preserving schema compatibility.
     enforcement: report_only
   - id: verification_projection
     order: 3
-    state: planned
+    state: current
     objective: Derive trust levels centrally, surface verification findings, and prevent silent trust upgrades.
     enforcement: report_only
   - id: attestation_pilot

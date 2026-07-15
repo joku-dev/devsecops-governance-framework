@@ -121,6 +121,8 @@ class RepoValidationTests(unittest.TestCase):
         self.assertIn("report-only", content)
         self.assertIn("blocks merge:", content)
         self.assertIn("Repository Governance Status", content)
+        self.assertIn("Evidence Trust", content)
+        self.assertIn("Evidence: unverified", content)
         self.assertIn("Architecture Runtime Gates", content)
         self.assertIn("architecture-baseline-l1-v0.1.0", content)
         self.assertIn("Source Document Intake", content)

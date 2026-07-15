@@ -10,7 +10,8 @@ This guide explains two operational capabilities of this repository:
 The current intake stores governance outcomes and additive provenance,
 integrity, and custody metadata. The report-only model for evaluating that
 metadata is defined in `docs/operations/evidence/evidence-trust-model.md`.
-Trust capture does not change latest-result selection or viewer behavior.
+Trust verification does not change latest-result selection. The viewer projects
+Trust as a separate report-only signal.
 
 ## Part 1: Result Intake
 
@@ -26,10 +27,11 @@ This keeps downstream evidence history:
 - comparable across repositories
 - reusable for the central viewer
 
-New automated GitHub Actions intake snapshots also contain an optional
-`trust` capture block. It records content hashes, run attempt, source binding,
-and initial custody while remaining explicitly `unverified` and
-`not_evaluated`. Historical snapshots are not rewritten.
+New automated GitHub Actions intake snapshots contain an optional `trust`
+block. It records content hashes, run attempt, source binding, and initial
+custody. The central verifier recomputes the captured-subject hashes and may
+assign `integrity_verified`; unresolved checks remain `not_evaluated`.
+Historical snapshots are not rewritten and project as `unverified`.
 
 ## Intake Script
 
@@ -254,3 +256,4 @@ With this model, the viewer can now show:
 - branch-level improvement runs
 - coverage trends over time
 - baseline version changes across runs
+- evidence Trust independently from governance `pass`, `fail`, or `findings`

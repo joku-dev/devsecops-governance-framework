@@ -21,13 +21,18 @@
         "repository_count",
         "result_count",
         "passing_results",
-        "failing_results"
+        "failing_results",
+        "trust_level_counts"
       ],
       "properties": {
         "repository_count": { "type": "integer" },
         "result_count": { "type": "integer" },
         "passing_results": { "type": "integer" },
-        "failing_results": { "type": "integer" }
+        "failing_results": { "type": "integer" },
+        "trust_level_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
       }
     },
     "repositories": {
@@ -50,7 +55,8 @@
               "pipeline_run_id",
               "commit_id",
               "generated_at",
-              "governance_baseline_ref"
+              "governance_baseline_ref",
+              "trust"
             ],
             "properties": {
               "status": { "type": "string" },
@@ -58,11 +64,36 @@
               "commit_id": { "type": "string" },
               "generated_at": { "type": "string" },
               "governance_baseline_ref": { "type": "string" },
-              "source_file": { "type": "string" }
+              "source_file": { "type": "string" },
+              "trust": { "$ref": "#/$defs/trustProjection" }
             }
           }
         }
       }
+    }
+  },
+  "$defs": {
+    "trustProjection": {
+      "type": "object",
+      "required": ["effective_level", "assessment_status", "verified_at", "check_summary"],
+      "properties": {
+        "effective_level": {
+          "enum": ["unverified", "integrity_verified", "provenance_verified", "attested"]
+        },
+        "assessment_status": { "enum": ["not_available", "not_evaluated", "evaluated"] },
+        "verified_at": { "type": ["string", "null"] },
+        "check_summary": {
+          "type": "object",
+          "required": ["pass", "fail", "not_evaluated"],
+          "properties": {
+            "pass": { "type": "integer", "minimum": 0 },
+            "fail": { "type": "integer", "minimum": 0 },
+            "not_evaluated": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
     }
   }
 }

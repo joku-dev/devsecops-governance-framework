@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T14:03:16Z",
+  "generated_at": "2026-07-15T14:19:40Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1477,6 +1477,12 @@
           "exists": true
         },
         {
+          "artifact_path": "generated/viewer/status-viewer.html",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "model/controls/control-coverage.yaml",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1525,6 +1531,12 @@
           "exists": true
         },
         {
+          "artifact_path": "schemas/architecture-results-index.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "schemas/evidence-trust-model.schema.json",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1532,6 +1544,30 @@
         },
         {
           "artifact_path": "schemas/evidence-trust-record.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "schemas/governance-results-index.schema.json",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "scripts/generate_architecture_results_index.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "scripts/generate_repository_results_index.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "scripts/generate_status_viewer.py",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -1556,6 +1592,12 @@
         },
         {
           "artifact_path": "tests/test_evidence_trust_capture.py",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "tests/test_evidence_trust_indexes.py",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -1977,7 +2019,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 298,
+    "derived_artifact_count": 305,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []
