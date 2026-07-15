@@ -226,6 +226,10 @@ rules. The provisional, versioned policy set is defined in
 | SBOM | must match the evaluated subject digest | configured; waits for subject binding |
 | Release approval | must match the exact release candidate | configured; waits for candidate binding |
 
+The vulnerability-scan pilot's command, input format, Trust output, Freshness
+behavior, and current integration boundary are documented in
+`docs/operations/evidence/vulnerability-scan-collector-usage.md`.
+
 Version `0.1.0` is deliberately `provisional` and `report_only`. Missing
 metadata produces `not_evaluated`; an expired or future-dated governance
 result produces a failed Trust check without changing its governance outcome,

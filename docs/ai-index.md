@@ -34,6 +34,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Understand DevSecOps baseline releases | `docs/releases/index.md`, `docs/releases/l1-baseline-v1.1.3.md` |
 | Understand architecture baseline releases | `docs/releases/architecture-baseline-l1-v0.1.0.md` |
 | Understand intake and viewer | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
+| Operate the vulnerability-scan collector pilot | `docs/operations/evidence/vulnerability-scan-collector-usage.md`, `scripts/collect_vulnerability_scan_evidence.py` |
 | Understand portfolio adoption reporting | `docs/operations/status/portfolio-adoption-reporting.md`, `governance/portfolio-adoption-reporting.yaml` |
 | Implement Bamboo 12.1.9 adapter | `docs/operations/adapters/bitbucket-bamboo-governance-adapter.md`, `pipeline-baseline/templates/bamboo/bamboo-specs/bamboo.yaml` |
 | Understand report-only versus blocking | `docs/operations/processes/operational-governance-enforcement-options.md` |
@@ -129,7 +130,7 @@ decision must be recorded by a human reviewer in a governance change request.
 |---|---|
 | Controls | `model/controls/dscb-l1.yaml`, `model/controls/dscb-l2.yaml`, `model/controls/dscb-l3.yaml`, `model/controls/dscb-gov.yaml` |
 | Coverage | `model/controls/control-coverage.yaml`, `generated/reports/control-coverage-report.md` |
-| Evidence | `model/evidence/evidence-types.yaml`, `model/evidence/evidence-trust-model.yaml`, `model/evidence/evidence-freshness-policies.yaml`, `model/evidence/evidence-collector-contract.yaml`, `docs/operations/evidence/governance-evidence-contract.md`, `docs/operations/evidence/evidence-trust-model.md`, `docs/operations/evidence/evidence-collector-contract.md` |
+| Evidence | `model/evidence/evidence-types.yaml`, `model/evidence/evidence-trust-model.yaml`, `model/evidence/evidence-freshness-policies.yaml`, `model/evidence/evidence-collector-contract.yaml`, `docs/operations/evidence/governance-evidence-contract.md`, `docs/operations/evidence/evidence-trust-model.md`, `docs/operations/evidence/evidence-collector-contract.md`, `docs/operations/evidence/vulnerability-scan-collector-usage.md` |
 | Pipeline placement | `pipeline-baseline/` |
 | OPA policies | `policies/opa/*` |
 | Current release | `releases/l1/v1.1.3/`, `docs/releases/l1-baseline-v1.1.3.md` |
@@ -175,6 +176,7 @@ python3 -m unittest discover -s tests
 | Viewer generator | `scripts/generate_status_viewer.py` |
 | Viewer output | `generated/viewer/status-viewer.html` |
 | Intake docs | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
+| Vulnerability collector guide | `docs/operations/evidence/vulnerability-scan-collector-usage.md` |
 | Agent usage snapshot | `docs/operations/agents/agent-usage-snapshot-latest.md` |
 | Agent usage summary | `generated/agent-usage/agent-usage-summary.json` |
 

@@ -1,12 +1,12 @@
 # Source Lineage Report
 
-Generated: `2026-07-15T15:13:41Z`
+Generated: `2026-07-15T15:41:42Z`
 
 ## Summary
 
 - Source documents: `20`
 - Source documents with lineage entries: `20`
-- Derived artifact links: `318`
+- Derived artifact links: `319`
 - Missing derived artifacts: `0`
 
 ## Source Documents
@@ -29,7 +29,7 @@ Generated: `2026-07-15T15:13:41Z`
 | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md` | `true` | `13` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `62` |
+| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `63` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.public.md` | `true` | `29` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md` | `true` | `11` |
@@ -341,6 +341,7 @@ Generated: `2026-07-15T15:13:41Z`
 | `docs/examples/vulnerability-scan-input.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/evidence-collector-contract.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/evidence-trust-model.md` | `governance_model` | `DSCB-STD-001` | `true` |
+| `docs/operations/evidence/vulnerability-scan-collector-usage.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `generated/viewer/status-viewer.html` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/control-coverage.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/dscb-gov.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
