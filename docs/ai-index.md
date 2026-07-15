@@ -129,7 +129,7 @@ decision must be recorded by a human reviewer in a governance change request.
 |---|---|
 | Controls | `model/controls/dscb-l1.yaml`, `model/controls/dscb-l2.yaml`, `model/controls/dscb-l3.yaml`, `model/controls/dscb-gov.yaml` |
 | Coverage | `model/controls/control-coverage.yaml`, `generated/reports/control-coverage-report.md` |
-| Evidence | `model/evidence/evidence-types.yaml`, `docs/operations/evidence/governance-evidence-contract.md` |
+| Evidence | `model/evidence/evidence-types.yaml`, `model/evidence/evidence-trust-model.yaml`, `docs/operations/evidence/governance-evidence-contract.md`, `docs/operations/evidence/evidence-trust-model.md` |
 | Pipeline placement | `pipeline-baseline/` |
 | OPA policies | `policies/opa/*` |
 | Current release | `releases/l1/v1.1.3/`, `docs/releases/l1-baseline-v1.1.3.md` |

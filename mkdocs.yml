@@ -80,6 +80,7 @@ nav:
           - Spot Check Governance Intake: operations/processes/spot-check-governance-intake.md
       - Evidence:
           - Governance Evidence Contract: operations/evidence/governance-evidence-contract.md
+          - Evidence Trust Model: operations/evidence/evidence-trust-model.md
           - Governance Evidence Schema Versioning: operations/evidence/governance-evidence-schema-versioning.md
           - Governance Result Intake And Viewer Usage: operations/evidence/governance-result-intake-and-viewer-usage.md
           - Governance Results Storage Model: operations/evidence/governance-results-storage-model.md

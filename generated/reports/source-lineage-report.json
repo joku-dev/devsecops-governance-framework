@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T11:34:39Z",
+  "generated_at": "2026-07-15T13:43:54Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1465,6 +1465,12 @@
           "exists": true
         },
         {
+          "artifact_path": "docs/operations/evidence/evidence-trust-model.md",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "model/controls/control-coverage.yaml",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -1501,7 +1507,19 @@
           "exists": true
         },
         {
+          "artifact_path": "model/evidence/evidence-trust-model.yaml",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "model/evidence/evidence-types.yaml",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
+          "artifact_path": "schemas/evidence-trust-model.schema.json",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
           "exists": true
@@ -1923,7 +1941,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 289,
+    "derived_artifact_count": 292,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []

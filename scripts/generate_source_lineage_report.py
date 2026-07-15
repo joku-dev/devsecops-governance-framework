@@ -132,6 +132,9 @@ def devsecops_lineage(lineage: dict) -> None:
             "model/controls/dscb-l2.yaml",
             "model/controls/dscb-l3.yaml",
             "model/evidence/evidence-types.yaml",
+            "model/evidence/evidence-trust-model.yaml",
+            "schemas/evidence-trust-model.schema.json",
+            "docs/operations/evidence/evidence-trust-model.md",
             "model/controls/control-coverage.yaml",
         ],
         "PRA-STD-001": [

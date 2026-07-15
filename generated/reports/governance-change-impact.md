@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-07-15T11:34:39Z`
+Generated: `2026-07-15T13:43:53Z`
 
 ## Inputs
 
@@ -11,7 +11,7 @@ Generated: `2026-07-15T11:34:39Z`
 
 - Registered source documents: `20`
 - Source documents with lineage: `20`
-- Derived artifact links: `289`
+- Derived artifact links: `292`
 
 ## Domain Coverage
 
@@ -40,7 +40,7 @@ Generated: `2026-07-15T11:34:39Z`
 | `platform-review` | `2` |
 | `policy-as-code-review` | `2` |
 | `release-review` | `2` |
-| `schema-review` | `1` |
+| `schema-review` | `2` |
 | `viewer-status-review` | `2` |
 
 ## Source Impact Details
@@ -127,10 +127,10 @@ Representative artifacts:
 - Owner: `devsecops-owners`
 - Version: `public-placeholder`
 - Domains: `devsecops`
-- Lineage artifacts: `33`
+- Lineage artifacts: `36`
 - Source state: `active_source`
 - Release consideration: `baseline_release_review`
-- Review lanes: `devsecops-review, policy-as-code-review, release-review`
+- Review lanes: `devsecops-review, policy-as-code-review, release-review, schema-review`
 
 Derived artifact areas:
 
@@ -149,6 +149,7 @@ Suggested validation:
 Representative artifacts:
 
 - `docs/governance/source-documents/DSCB-STD-SRC-001.public.md`
+- `docs/operations/evidence/evidence-trust-model.md`
 - `generated/reports/architecture-source-replacement-assessment.json`
 - `generated/reports/architecture-source-replacement-assessment.md`
 - `generated/reports/governance-change-impact.json`
@@ -157,7 +158,6 @@ Representative artifacts:
 - `generated/reports/source-document-intake-review-briefs.md`
 - `generated/reports/source-document-intake-status.json`
 - `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
 
 ### `PRA-STD-SRC-001`
 
