@@ -69,8 +69,8 @@ generated/reports/source-lineage-report.md
 The healthy demo state is:
 
 ```text
-Source documents: 10
-Derived artifact links: 119
+Source documents: 20
+Derived artifact links: 289
 Missing derived artifacts: 0
 ```
 
@@ -102,8 +102,8 @@ Keep these values consistent across demo docs and viewer data:
 
 | Domain | Status | Baseline | Run |
 |---|---|---|---|
-| DevSecOps | `pass` | `l1-baseline-v1.1.3` | `28592257991` |
-| Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `28592256765` |
+| DevSecOps | `pass` | `l1-baseline-v1.1.3` | `29415015878` |
+| Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `29415015294` |
 
 Primary demo document:
 

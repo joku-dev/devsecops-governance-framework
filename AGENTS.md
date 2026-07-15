@@ -64,8 +64,8 @@ The `ha-CPsWMS` mainline demo state is:
 
 | Domain | Status | Baseline | Run |
 |---|---|---|---|
-| DevSecOps | `pass` | `l1-baseline-v1.1.3` | `28592257991` |
-| Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `28592256765` |
+| DevSecOps | `pass` | `l1-baseline-v1.1.3` | `29415015878` |
+| Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `29415015294` |
 
 Use `docs/demos/demo-end-to-end-governance.md` as the primary demo runbook.
 

@@ -18,9 +18,9 @@ Use this document when the demo audience wants to go deeper into the architectur
 | Application branch | `main` |
 | Architecture governance baseline | `architecture-baseline-l1-v0.1.0` |
 | Solution baseline | `ha-CPsWMS-demo-baseline` |
-| Latest mainline run | `28592256765` |
-| Latest mainline commit | `4a86f0c5b3d7aa1883533fa787530a1f5ff886e7` |
-| Generated | `2026-07-02T13:05:12Z` |
+| Latest mainline run | `29415015294` |
+| Latest mainline commit | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` |
+| Generated | `2026-07-15T12:23:26Z` |
 | Current result | `PASS`, `4/4 gates`, `0 findings` |
 
 Interpretation:
@@ -320,7 +320,7 @@ Expected current gate summary:
 Current known-good architecture run:
 
 ```text
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/28592256765
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/29415015294
 ```
 
 Expected interpretation:
@@ -351,7 +351,7 @@ Expected current viewer values:
 | Repository | `joku-dev/ha-CPsWMS` |
 | Status | `PASS` |
 | Baseline | `architecture-baseline-l1-v0.1.0` |
-| Last Mainline Run | `28592256765` |
+| Last Mainline Run | `29415015294` |
 | Summary | `4/4 gates pass`, `0 findings` |
 
 ## What Would Produce Findings

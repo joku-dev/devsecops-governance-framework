@@ -61,8 +61,8 @@ These values are the known-good state after the current end-to-end test.
 
 | Domain | Repository | Status | Baseline | Last mainline run | Commit | Generated |
 |---|---|---|---|---|---|---|
-| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `28592257991` | `4a86f0c5b3d7aa1883533fa787530a1f5ff886e7` | `2026-07-02T13:05:30Z` |
-| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `28592256765` | `4a86f0c5b3d7aa1883533fa787530a1f5ff886e7` | `2026-07-02T13:05:12Z` |
+| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `29415015878` | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` | `2026-07-15T12:33:25Z` |
+| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `29415015294` | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` | `2026-07-15T12:23:26Z` |
 
 Expected summaries:
 
@@ -113,9 +113,9 @@ Current expected summary:
 
 | Metric | Value |
 |---|---:|
-| Source documents | `10` |
-| Source documents with lineage entries | `10` |
-| Derived artifact links | `119` |
+| Source documents | `20` |
+| Source documents with lineage entries | `20` |
+| Derived artifact links | `289` |
 | Missing derived artifacts | `0` |
 
 Interpretation:
@@ -423,16 +423,16 @@ Current known-good app runs:
 
 | Workflow | Run | Expected status |
 |---|---:|---|
-| Architecture Runtime Governance | `28592256765` | Success |
-| DevSecOps Baseline | `28592257991` | Success |
-| DevSecOps Governance | `28592256817` | Success |
-| CI | `28592256856` | Success |
+| Architecture Runtime Governance | `29415015294` | Success |
+| DevSecOps Baseline | `29415015878` | Success |
+| DevSecOps Governance | `29415015241` | Success |
+| CI | `29415015336` | Success |
 
 Open the run URLs:
 
 ```text
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/28592256765
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/28592257991
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/29415015294
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/29415015878
 ```
 
 Explain:

@@ -143,8 +143,8 @@ Current known-good `ha-CPsWMS` mainline results:
 
 | Domain | Status | Baseline | Run |
 |---|---|---|---|
-| DevSecOps | `pass` | `l1-baseline-v1.1.3` | `28592257991` |
-| Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `28592256765` |
+| DevSecOps | `pass` | `l1-baseline-v1.1.3` | `29415015878` |
+| Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `29415015294` |
 
 ### 5. Central Result Recording Exists
 
@@ -152,8 +152,8 @@ Successful downstream runs are now recorded in the repository as normalized resu
 
 Current examples:
 
-- `status/results/joku-dev__ha-CPsWMS/2026-07-02T13-05-30Z-run-28592257991.json`
-- `status/architecture-results/joku-dev__ha-CPsWMS/2026-07-02T13-05-12Z-run-28592256765.json`
+- `status/results/joku-dev__ha-CPsWMS/2026-07-15T12-33-25Z-run-29415015878.json`
+- `status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T12-23-26Z-run-29415015294.json`
 
 And summarized centrally in:
 
