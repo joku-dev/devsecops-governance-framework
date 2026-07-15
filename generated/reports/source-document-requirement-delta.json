@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T10:29:56Z",
+  "generated_at": "2026-07-15T11:14:51Z",
   "inputs": {
     "architecture_source_replacement_assessment": "generated/reports/architecture-source-replacement-assessment.json"
   },

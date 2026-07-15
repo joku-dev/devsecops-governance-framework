@@ -48,6 +48,7 @@ nav:
       - Confluence Governance Repo Article: publishing/confluence-governance-repo-artikel.md
   - Onboarding:
       - Public Repo Quickstart: onboarding/public-repo-quickstart.md
+      - Validated Demo Consumer: onboarding/validated-demo-consumer.md
       - Application Repo Onboarding: onboarding/application-repo-onboarding.md
       - Central Governance Baseline Guide: onboarding/how-other-repositories-use-the-central-governance-baseline.md
       - Governance Repo Usage by Other Repos: onboarding/how-other-repos-use-this-governance-repo.md
