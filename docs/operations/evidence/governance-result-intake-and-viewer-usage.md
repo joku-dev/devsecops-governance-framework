@@ -31,7 +31,11 @@ New automated GitHub Actions intake snapshots contain an optional `trust`
 block. It records content hashes, run attempt, source binding, and initial
 custody. The central verifier recomputes the captured-subject hashes and may
 assign `integrity_verified`; unresolved checks remain `not_evaluated`.
-Historical snapshots are not rewritten and project as `unverified`.
+It also compares the workflow update time with the intake verification time
+using the provisional 24-hour governance-result Freshness policy. An expired
+or future-dated result creates a report-only failed Trust check; it does not
+change the governance outcome or latest-result selection. Historical
+snapshots are not rewritten and project as `unverified`.
 
 ## Intake Script
 

@@ -4,7 +4,10 @@ from __future__ import annotations
 
 from pathlib import Path
 from copy import deepcopy
+from datetime import datetime
 import hashlib
+
+import yaml
 
 
 MODEL_ID = "evidence-trust-model-v1"
@@ -40,6 +43,65 @@ def digest_subject(subject_id: str, path: Path, evidence_ref: str) -> dict:
         "digest": compute_sha256(path),
         "size_bytes": path.stat().st_size,
     }
+
+
+def load_freshness_policy(path: Path, policy_id: str) -> dict:
+    policy_set = yaml.safe_load(path.read_text(encoding="utf-8"))
+    policy = next((item for item in policy_set.get("policies", []) if item.get("id") == policy_id), None)
+    if policy is None:
+        raise ValueError(f"Unknown evidence freshness policy: {policy_id}")
+    return {
+        **policy,
+        "policy_set_id": policy_set["policy_set_id"],
+        "policy_version": policy_set["version"],
+        "policy_status": policy_set["status"],
+        "enforcement": policy_set["enforcement"],
+        "defaults": policy_set["defaults"],
+    }
+
+
+def _parse_timestamp(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return parsed if parsed.tzinfo is not None else None
+    except ValueError:
+        return None
+
+
+def evaluate_freshness(policy: dict, *, produced_at: str | None, evaluated_at: str) -> dict:
+    defaults = policy["defaults"]
+    check = {
+        "id": "freshness_evaluated",
+        "result": defaults["missing_metadata_result"],
+        "evidence_refs": [policy["produced_at_claim"], policy["evaluated_at_claim"]],
+        "policy_id": policy["id"],
+        "policy_version": policy["policy_version"],
+        "policy_status": policy["policy_status"],
+        "produced_at": produced_at,
+        "evaluated_at": evaluated_at,
+        "maximum_age_seconds": policy.get("maximum_age_seconds"),
+        "finding_effect": defaults["finding_effect"],
+        "reason": "Required freshness timestamps are missing or invalid.",
+    }
+    produced = _parse_timestamp(produced_at)
+    evaluated = _parse_timestamp(evaluated_at)
+    if policy.get("evaluation_mode") != "max_age" or produced is None or evaluated is None:
+        return check
+    age_seconds = int((evaluated - produced).total_seconds())
+    check["age_seconds"] = age_seconds
+    maximum_age = policy["maximum_age_seconds"]
+    if age_seconds < 0:
+        check["result"] = defaults["future_timestamp_result"]
+        check["reason"] = "Evidence production time is later than the verification time."
+    elif age_seconds > maximum_age:
+        check["result"] = defaults["expired_result"]
+        check["reason"] = f"Evidence age {age_seconds}s exceeds the provisional maximum {maximum_age}s."
+    else:
+        check["result"] = "pass"
+        check["reason"] = f"Evidence age {age_seconds}s is within the provisional maximum {maximum_age}s."
+    return check
 
 
 def build_trust_capture(
@@ -107,6 +169,8 @@ def verify_trust_capture(
     artifact_name: str,
     subject_paths: dict[str, Path],
     verified_at: str,
+    freshness_policy: dict | None = None,
+    produced_at: str | None = None,
 ) -> dict:
     """Evaluate only checks supported by authoritative intake-time material."""
     result = deepcopy(trust)
@@ -161,6 +225,12 @@ def verify_trust_capture(
             "result": "pass" if passed else "fail",
             "evidence_refs": evidence_refs,
         }
+    if freshness_policy is not None:
+        checks["freshness_evaluated"] = evaluate_freshness(
+            freshness_policy,
+            produced_at=produced_at,
+            evaluated_at=verified_at,
+        )
 
     integrity_verified = all(
         checks[check_id]["result"] == "pass"

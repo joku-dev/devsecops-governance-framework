@@ -223,9 +223,9 @@ decision_rules:
 migration_gaps:
   - id: shared_provenance_verification_pending
     scope: shared
-    current_state: New intake derives integrity trust centrally and indexes and the viewer project trust separately from governance outcomes.
+    current_state: New intake derives integrity trust centrally, evaluates governance-result freshness against a provisional report-only policy, and projects Trust separately from governance outcomes.
     missing_capabilities:
-      - approved freshness evaluation
+      - approved freshness policy
       - replay-history evaluation
       - complete normalized custody verification
       - verified baseline resolution
@@ -263,13 +263,13 @@ migration_gaps:
     target_level: attested
     priority: medium
     phase: attestation_pilot
-  - id: freshness_policy_missing
+  - id: freshness_policy_approval_pending
     scope: shared
-    current_state: Generation timestamps are recorded but no evidence-type validity policy is evaluated.
+    current_state: Provisional policy set v0.1 evaluates governance-result age at intake and defines typed rules that remain not-evaluated until their timestamps or subject bindings are captured.
     missing_capabilities:
-      - evidence-type freshness windows
-      - expiry evaluation
-      - stale-evidence findings
+      - control-owner, Security, and Operations approval
+      - typed evidence timestamps and subject bindings
+      - typed stale-evidence projection
     target_level: provenance_verified
     priority: medium
     phase: verification_projection
@@ -321,7 +321,7 @@ open_decisions:
       - governance
     blocking_for_phase: attestation_pilot
   - id: freshness_windows
-    question: Which validity windows apply to each evidence type and decision context?
+    question: Should the provisional v0.1 validity rules be approved or revised for each evidence type and decision context?
     required_reviewers:
       - control_owners
       - security

@@ -19,13 +19,20 @@ import tempfile
 import zipfile
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
-from lib.evidence_trust import build_trust_capture, compute_sha256, digest_subject, verify_trust_capture
+from lib.evidence_trust import (
+    build_trust_capture,
+    compute_sha256,
+    digest_subject,
+    load_freshness_policy,
+    verify_trust_capture,
+)
 from lib.json_io import load_json, write_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_RESULTS = ROOT / "status" / "results"
 DEFAULT_API_URL = "https://api.github.com"
+FRESHNESS_POLICY_PATH = ROOT / "model" / "evidence" / "evidence-freshness-policies.yaml"
 
 
 def github_get_json(url: str, token: str | None) -> dict:
@@ -279,6 +286,7 @@ def main() -> int:
     repo_path = api_repo_path(args.repository_id)
 
     run = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}", token)
+    freshness_policy = load_freshness_policy(FRESHNESS_POLICY_PATH, "freshness-governance-result-24h")
     jobs_payload = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}/jobs?per_page=100", token)
     artifacts_payload = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}/artifacts?per_page=100", token)
     jobs = jobs_payload.get("jobs", [])
@@ -356,6 +364,8 @@ def main() -> int:
             artifact_name=args.artifact_name,
             subject_paths=subject_paths,
             verified_at=captured_at,
+            freshness_policy=freshness_policy,
+            produced_at=run.get("updated_at") or run.get("created_at"),
         )
 
     baseline_ref = args.governance_baseline_ref or infer_baseline_ref(run)

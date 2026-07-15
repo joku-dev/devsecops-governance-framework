@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Freshness Policies",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "policy_set_id",
+    "version",
+    "status",
+    "source_document",
+    "owner",
+    "enforcement",
+    "effective_from",
+    "review_due",
+    "change_control",
+    "defaults",
+    "policies"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "policy_set_id": { "const": "evidence-freshness-policies" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "status": { "enum": ["provisional", "approved", "retired"] },
+    "source_document": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 },
+    "enforcement": { "const": "report_only" },
+    "effective_from": { "type": "string", "format": "date" },
+    "review_due": { "type": "string", "format": "date" },
+    "change_control": {
+      "type": "object",
+      "required": ["requires_gcr", "preserve_historical_assessments", "retrospective_reclassification", "blocking_requires_release_review"],
+      "properties": {
+        "requires_gcr": { "const": true },
+        "preserve_historical_assessments": { "const": true },
+        "retrospective_reclassification": { "const": false },
+        "blocking_requires_release_review": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "defaults": {
+      "type": "object",
+      "required": ["missing_metadata_result", "expired_result", "future_timestamp_result", "finding_effect"],
+      "properties": {
+        "missing_metadata_result": { "const": "not_evaluated" },
+        "expired_result": { "const": "fail" },
+        "future_timestamp_result": { "const": "fail" },
+        "finding_effect": { "const": "report_only" }
+      },
+      "additionalProperties": false
+    },
+    "policies": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/policy" }
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+      "uniqueItems": true
+    },
+    "policy": {
+      "type": "object",
+      "required": ["id", "evidence_type", "evaluation_mode", "applies_to", "decision_contexts", "rationale"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^freshness-[a-z0-9-]+$" },
+        "evidence_type": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "evaluation_mode": { "enum": ["max_age", "subject_bound", "release_candidate_bound"] },
+        "maximum_age_seconds": { "type": "integer", "minimum": 1 },
+        "applies_to": { "$ref": "#/$defs/stringArray" },
+        "decision_contexts": { "$ref": "#/$defs/stringArray" },
+        "produced_at_claim": { "type": "string", "minLength": 1 },
+        "evaluated_at_claim": { "type": "string", "minLength": 1 },
+        "subject_claim": { "type": "string", "minLength": 1 },
+        "rationale": { "type": "string", "minLength": 20 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "evaluation_mode": { "const": "max_age" } } },
+          "then": { "required": ["maximum_age_seconds", "produced_at_claim", "evaluated_at_claim"] }
+        },
+        {
+          "if": { "properties": { "evaluation_mode": { "enum": ["subject_bound", "release_candidate_bound"] } } },
+          "then": { "required": ["subject_claim"] }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

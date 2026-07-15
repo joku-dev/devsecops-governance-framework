@@ -1,12 +1,12 @@
 # Source Lineage Report
 
-Generated: `2026-07-15T14:19:40Z`
+Generated: `2026-07-15T14:32:24Z`
 
 ## Summary
 
 - Source documents: `20`
 - Source documents with lineage entries: `20`
-- Derived artifact links: `305`
+- Derived artifact links: `308`
 - Missing derived artifacts: `0`
 
 ## Source Documents
@@ -29,7 +29,7 @@ Generated: `2026-07-15T14:19:40Z`
 | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md` | `true` | `13` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `49` |
+| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `52` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.public.md` | `true` | `29` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md` | `true` | `11` |
@@ -345,9 +345,11 @@ Generated: `2026-07-15T14:19:40Z`
 | `model/controls/dscb-l2.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/dscb-l3.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+| `model/evidence/evidence-freshness-policies.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/evidence/evidence-trust-model.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/evidence/evidence-types.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/architecture-results-index.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `schemas/evidence-freshness-policies.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/evidence-trust-model.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/evidence-trust-record.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/governance-results-index.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -357,6 +359,7 @@ Generated: `2026-07-15T14:19:40Z`
 | `scripts/intake_architecture_github_actions_run.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `scripts/intake_github_actions_run.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `scripts/lib/evidence_trust.py` | `governance_model` | `DSCB-STD-001` | `true` |
+| `tests/test_evidence_freshness_policies.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_evidence_trust_capture.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_evidence_trust_indexes.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `policies/opa/access_control.rego` | `policy_as_code` | `devsecops_baseline` | `true` |

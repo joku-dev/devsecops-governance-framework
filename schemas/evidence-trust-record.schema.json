@@ -33,7 +33,16 @@
             "type": "array",
             "items": { "type": "string", "minLength": 1 },
             "uniqueItems": true
-          }
+          },
+          "policy_id": { "type": "string", "minLength": 1 },
+          "policy_version": { "type": "string", "minLength": 1 },
+          "policy_status": { "enum": ["provisional", "approved", "retired"] },
+          "produced_at": { "type": ["string", "null"] },
+          "evaluated_at": { "type": "string", "minLength": 1 },
+          "age_seconds": { "type": "integer" },
+          "maximum_age_seconds": { "type": ["integer", "null"], "minimum": 1 },
+          "finding_effect": { "const": "report_only" },
+          "reason": { "type": "string", "minLength": 1 }
         },
         "additionalProperties": false
       }
