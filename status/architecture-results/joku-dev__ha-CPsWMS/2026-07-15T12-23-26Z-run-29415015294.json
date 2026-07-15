@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "repository_id": "joku-dev/ha-CPsWMS",
   "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
-  "governance_repository": "joku-dev/devsecops-governance-as-code",
+  "governance_repository": "joku-dev/devsecops-governance-framework",
   "result_type": "architecture-runtime-governance-run",
   "generated_at": "2026-07-15T12:23:26Z",
   "pipeline": {
