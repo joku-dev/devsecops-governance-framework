@@ -143,6 +143,16 @@ The addendum keeps the original framework document as the normative reference an
 
 ## Local Commands
 
+Prepare the pinned local validation toolchain and run all required checks:
+
+```bash
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
+```
+
+See `docs/operations/guides/local-validation-toolchain.md` for supported
+platforms, custom installation paths, pinned dependencies, and troubleshooting.
+
 Validate repository consistency:
 
 ```bash

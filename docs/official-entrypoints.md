@@ -68,6 +68,7 @@ It is intended for:
 - How to use this repository: `docs/operations/guides/how-to-use-this-repo.md`
 - AI working rules: `docs/operations/ai-working-rules.md`
 - Beginner step-by-step operations guide: `docs/operations/guides/beginner-step-by-step-operations-guide.md`
+- Local validation toolchain: `docs/operations/guides/local-validation-toolchain.md`
 - How to add a new artifact: `docs/operations/guides/how-to-add-a-new-artifact.md`
 - Governance evidence contract: `docs/operations/evidence/governance-evidence-contract.md`
 - How to update baseline input documents: `docs/operations/guides/how-to-update-baseline-input-documents.md`
