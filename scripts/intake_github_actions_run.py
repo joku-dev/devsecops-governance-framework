@@ -143,6 +143,10 @@ def compute_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def artifact_size_bytes(artifact: dict) -> int:
+    return int(artifact.get("size_in_bytes", artifact.get("size", 0)))
+
+
 def find_governance_input(extract_dir: Path) -> tuple[dict, Path | None]:
     preferred = extract_dir / "governance" / "governance-run-input.json"
     if preferred.is_file():
@@ -209,12 +213,12 @@ def write_snapshot(
     if governance_control_status:
         checks["governance_control_evaluation"] = governance_control_status
 
-    artifact_sizes = {artifact.get("name", "unknown"): artifact.get("size", 0) for artifact in artifacts}
+    artifact_sizes = {artifact.get("name", "unknown"): artifact_size_bytes(artifact) for artifact in artifacts}
     downloaded_artifact_info = None
     if selected_artifact is not None:
         downloaded_artifact_info = {
             "downloaded": True,
-            "artifact_size_bytes": selected_artifact.get("size", 0),
+            "artifact_size_bytes": artifact_size_bytes(selected_artifact),
             "control_evaluation_report_sha256": report_sha256,
             "governance_run_input_sha256": governance_input_sha256,
             "governance_run_input_refs": governance_input.get("evidence_refs", []),
