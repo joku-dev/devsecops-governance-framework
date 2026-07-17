@@ -9,6 +9,7 @@ import argparse
 import hashlib
 import json
 import os
+import sys
 
 from intake_github_actions_run import DEFAULT_API_URL, api_repo_path, github_get_json
 from lib.result_ledger import write_collection_attempt_append_only
@@ -22,7 +23,7 @@ CONFLICT_ROOT = ROOT / "status" / "intake-conflicts" / "collection-attempts"
 
 def build_attempt(*, repository_id: str, run: dict, evidence_type: str, collector_id: str,
                   collector_version: str, artifact_name: str, status: str, code: str,
-                  message: str, retryable: bool) -> dict:
+                  message: str, retryable: bool, additional_errors: list[dict] | None = None) -> dict:
     attempted_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     source = {
         "provider": "github_actions",
@@ -51,8 +52,30 @@ def build_attempt(*, repository_id: str, run: dict, evidence_type: str, collecto
         "collector": {"id": collector_id, "version": collector_version},
         "attempted_at": attempted_at,
         "source": source,
-        "errors": [{"code": code, "message": message, "retryable": retryable}],
+        "errors": [
+            {"code": code, "message": message, "retryable": retryable},
+            *(additional_errors or []),
+        ],
     }
+
+
+def load_run_metadata(*, api_url: str, repository_id: str, run_id: str, token: str | None) -> tuple[dict, list[dict]]:
+    try:
+        run = github_get_json(f"{api_url.rstrip('/')}{api_repo_path(repository_id)}/actions/runs/{run_id}", token)
+        return run, []
+    except Exception:
+        print("warning: GitHub run metadata unavailable; recording the failed attempt with fallback identity", file=sys.stderr)
+        return {
+            "id": str(run_id),
+            "run_attempt": None,
+            "name": "metadata-unavailable",
+            "head_sha": "unknown",
+            "html_url": f"https://github.com/{repository_id}/actions/runs/{run_id}",
+        }, [{
+            "code": "source_metadata_unavailable",
+            "message": "Authoritative GitHub Actions run metadata could not be retrieved during failure recording.",
+            "retryable": True,
+        }]
 
 
 def main() -> int:
@@ -71,12 +94,17 @@ def main() -> int:
     parser.add_argument("--token", default="")
     args = parser.parse_args()
     token = args.token or os.environ.get("GH_RESULT_INTAKE_TOKEN") or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
-    run = github_get_json(f"{args.api_url.rstrip('/')}{api_repo_path(args.repository_id)}/actions/runs/{args.run_id}", token)
+    run, metadata_errors = load_run_metadata(
+        api_url=args.api_url,
+        repository_id=args.repository_id,
+        run_id=args.run_id,
+        token=token,
+    )
     payload = build_attempt(
         repository_id=args.repository_id, run=run, evidence_type=args.evidence_type,
         collector_id=args.collector_id, collector_version=args.collector_version,
         artifact_name=args.artifact_name, status=args.status, code=args.error_code,
-        message=args.message, retryable=args.retryable,
+        message=args.message, retryable=args.retryable, additional_errors=metadata_errors,
     )
     output_dir = ATTEMPT_ROOT / slugify_repository(args.repository_id)
     output = output_dir / f"{sanitize_timestamp(payload['attempted_at'])}-run-{args.run_id}-{args.evidence_type}.json"
