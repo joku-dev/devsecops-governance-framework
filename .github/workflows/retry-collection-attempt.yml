@@ -1,0 +1,67 @@
+name: Retry Collection Attempt
+
+on:
+  workflow_dispatch:
+    inputs:
+      attempt_path:
+        description: Repository-relative JSON path below status/collection-attempts.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  retry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out governance repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6.3.0
+        with:
+          python-version: "3.11"
+
+      - name: Install validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-validation.txt
+
+      - name: Validate attempt and prepare retry
+        id: retry
+        env:
+          ATTEMPT_PATH: ${{ inputs.attempt_path }}
+        run: |
+          python3 scripts/prepare_collection_attempt_retry.py \
+            --attempt-path "${ATTEMPT_PATH}" \
+            --github-output "${GITHUB_OUTPUT}"
+
+      - name: Dispatch existing intake workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WORKFLOW: ${{ steps.retry.outputs.workflow }}
+          REPOSITORY_ID: ${{ steps.retry.outputs.repository_id }}
+          RUN_ID: ${{ steps.retry.outputs.run_id }}
+          ARTIFACT_NAME: ${{ steps.retry.outputs.artifact_name }}
+        run: |
+          args=(
+            --repo "${GITHUB_REPOSITORY}"
+            --ref main
+            -f "repository_id=${REPOSITORY_ID}"
+            -f "run_id=${RUN_ID}"
+          )
+          case "${WORKFLOW}" in
+            intake-governance-result.yml|intake-evidence-trust.yml)
+              args+=(-f "artifact_name=${ARTIFACT_NAME}")
+              ;;
+            intake-architecture-result.yml)
+              ;;
+            *)
+              echo "Unsupported retry workflow: ${WORKFLOW}"
+              exit 1
+              ;;
+          esac
+          gh workflow run "${WORKFLOW}" "${args[@]}"
+          echo "Dispatched ${WORKFLOW} for ${REPOSITORY_ID} run ${RUN_ID}."
