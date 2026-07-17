@@ -527,26 +527,92 @@ def build_intake_conflicts_section(conflicts: list[dict]) -> str:
     )
 
 
+def collection_identity(record: dict) -> tuple[str, str, str] | None:
+    source = record.get("source", {})
+    repository_id = record.get("repository_id") or source.get("repository_id")
+    run_id = source.get("run_id")
+    artifact_name = source.get("artifact_name")
+    if not repository_id or not run_id or not artifact_name:
+        return None
+    return repository_id, str(run_id), artifact_name
+
+
+def project_collection_attempt_lifecycle(attempts: list[dict], snapshots: list[dict]) -> list[dict]:
+    successful = {}
+    for snapshot in snapshots:
+        capture_source = snapshot.get("trust", {}).get("capture", {}).get("source", {})
+        identity = collection_identity({
+            "repository_id": snapshot.get("repository_id"),
+            "source": capture_source,
+        })
+        if identity:
+            successful[identity] = {
+                "resolved_at": snapshot.get("generated_at"),
+                "source_file": snapshot.get("_source_file"),
+            }
+
+    projected = []
+    for attempt in attempts:
+        errors = attempt.get("errors", [])
+        retryable = bool(errors) and all(error.get("retryable") is True for error in errors)
+        resolution = successful.get(collection_identity(attempt))
+        if resolution:
+            state = "resolved"
+        elif retryable:
+            state = "open"
+        else:
+            state = "permanent"
+        projected.append({
+            **attempt,
+            "lifecycle": {
+                "state": state,
+                "retryable": retryable,
+                "resolved_at": resolution.get("resolved_at") if resolution else None,
+                "resolution_source": resolution.get("source_file") if resolution else None,
+            },
+        })
+    return projected
+
+
 def build_collection_attempts_section(attempts: list[dict]) -> str:
+    counts = {
+        state: sum(1 for attempt in attempts if attempt.get("lifecycle", {}).get("state") == state)
+        for state in ("open", "resolved", "permanent")
+    }
     rows = []
     for attempt in attempts:
         source = attempt.get("source", {})
         errors = attempt.get("errors", [])
-        message = errors[0].get("message", "unknown") if errors else "unknown"
+        lifecycle = attempt.get("lifecycle", {})
+        state = lifecycle.get("state", "open")
+        tone = "pass" if state == "resolved" else "warn"
+        message = "; ".join(
+            f"{error.get('code', 'unknown')}: {error.get('message', 'unknown')}"
+            for error in errors
+        ) or "unknown"
         rows.append([
+            badge(state, tone),
             badge(attempt.get("status", "failed"), "warn"),
             escape(attempt.get("repository_id", "unknown")),
             escape(attempt.get("evidence_type", "unknown")),
             escape(attempt.get("attempted_at", "unknown")),
             f"<code>{escape(source.get('run_id', 'unknown'))}</code>",
+            escape(lifecycle.get("resolved_at") or "—"),
             escape(message),
         ])
-    table = html_table(["Status", "Repository", "Evidence", "Attempted", "Run", "Error"], rows) if rows else "<p>No failed or partial collection attempts are recorded.</p>"
+    table = html_table(
+        ["Lifecycle", "Collection", "Repository", "Evidence", "Attempted", "Run", "Resolved", "Error"],
+        rows,
+    ) if rows else "<p>No failed or partial collection attempts are recorded.</p>"
     return (
         '<section id="collection-attempts" class="viewer-section">'
         '<div class="section-title"><h2>Collection Attempts</h2>'
-        '<p>Report-only history of failed or partial evidence collection. These records do not replace successful evidence.</p></div>'
-        f'<section class="cards"><section class="card"><h3>Failed or Partial Attempts</h3><div class="value">{len(attempts)}</div><p>Append-only operational history</p></section></section>'
+        '<p>Report-only lifecycle derived from append-only failures and matching successful evidence snapshots.</p></div>'
+        '<section class="cards">'
+        f'<section class="card"><h3>Open</h3><div class="value">{counts["open"]}</div><p>Retryable without matching success</p></section>'
+        f'<section class="card"><h3>Resolved</h3><div class="value">{counts["resolved"]}</div><p>Matching successful snapshot exists</p></section>'
+        f'<section class="card"><h3>Permanent</h3><div class="value">{counts["permanent"]}</div><p>Contains a non-retryable error</p></section>'
+        '</section>'
         f'<section class="panel">{table}</section></section>'
     )
 
@@ -1462,6 +1528,22 @@ def main() -> int:
         load_json(path)
         for path in sorted(collection_attempts_root.rglob("*.json"))
     ] if collection_attempts_root.exists() else []
+    successful_collection_snapshots = []
+    for snapshot_root in (
+        ROOT / "status" / "results",
+        ROOT / "status" / "architecture-results",
+        ROOT / "status" / "typed-evidence-results",
+    ):
+        if not snapshot_root.exists():
+            continue
+        for path in sorted(snapshot_root.rglob("*.json")):
+            snapshot = load_json(path)
+            snapshot["_source_file"] = str(path.relative_to(ROOT))
+            successful_collection_snapshots.append(snapshot)
+    collection_attempts = project_collection_attempt_lifecycle(
+        collection_attempts,
+        successful_collection_snapshots,
+    )
     control_report_path = ROOT / "generated" / "control-evaluation-report.json"
     control_report = load_json(control_report_path) if control_report_path.exists() else None
     control_coverage_path = ROOT / "generated" / "reports" / "control-coverage-report.json"
