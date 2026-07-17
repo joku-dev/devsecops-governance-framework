@@ -69,6 +69,7 @@ It is intended for:
 - AI working rules: `docs/operations/ai-working-rules.md`
 - Beginner step-by-step operations guide: `docs/operations/guides/beginner-step-by-step-operations-guide.md`
 - Local validation toolchain: `docs/operations/guides/local-validation-toolchain.md`
+- Evidence- und Governance-Hardening: `docs/operations/guides/evidence-and-governance-hardening-guide.md`
 - How to add a new artifact: `docs/operations/guides/how-to-add-a-new-artifact.md`
 - Governance evidence contract: `docs/operations/evidence/governance-evidence-contract.md`
 - Evidence Trust Model: `docs/operations/evidence/evidence-trust-model.md`
