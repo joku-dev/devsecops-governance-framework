@@ -62,6 +62,11 @@ is compatible; reuse across an incompatible decision context is a report-only
 finding. Replay findings do not alter the independently derived integrity
 level or governance outcome.
 
+All workflows that commit intake results or portfolio status use the shared
+`governance-state-writer` concurrency group. This serializes writes to status
+indexes, generated graph data, viewer data, and portfolio projections while
+allowing read-only validation and documentation workflows to run independently.
+
 ## Typed Evidence Trust Intake
 
 For a GitHub Actions run containing an `application-evidence` artifact, use:
