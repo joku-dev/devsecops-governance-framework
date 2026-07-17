@@ -114,10 +114,15 @@ Each portfolio report should include a repository adoption matrix with:
 Use:
 
 ```bash
+python3 scripts/generate_portfolio_onboarding_status.py
 python3 scripts/generate_repository_results_index.py
 python3 scripts/generate_architecture_results_index.py
 python3 scripts/generate_status_viewer.py
 ```
+
+The portfolio generator writes `generated/reports/portfolio-onboarding-status.json`
+and `.md`. It uses only registry entries and accepted latest index projections;
+it does not approve waivers or change enforcement modes.
 
 ## Decision Boundaries
 
