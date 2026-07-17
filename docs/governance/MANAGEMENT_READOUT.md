@@ -17,7 +17,7 @@ append-only evidence intake protection, persisted failed collection attempts,
 explicit agent-to-evidence provenance, and a pinned validation toolchain.
 
 The current demo consumer `joku-dev/governance-framework-demo-consumer` is also
-clean on `main` at commit `7eae4298bc6f84b3920847e16eb38d1a72194a06`. Its CI,
+clean on `main` at commit `60ff24cd94a010feb468aab9a48ac8ead4bf96ad`. Its CI,
 DevSecOps Baseline, and Architecture Governance workflows completed
 successfully in the latest push (`29603209364`, `29603210148`, and
 `29603209915`). The `main` branch now requires pull-request review and rejects
@@ -73,12 +73,15 @@ central intake projection and remains useful as the previous clean reference.
 
 The latest consumer push is now centrally intaken. Its normalized DevSecOps
 snapshot is `pass` with the branch-protection control satisfied, and its
-Architecture snapshot remains `findings` with 26 report-only findings. The
+Architecture snapshot is `findings` with 25 report-only findings after adding
+reviewed compatibility, resilience, observability, and feedback evidence. The
 latest Typed Evidence projection has zero scanner findings, passing content
-integrity and Freshness, and effective Trust `integrity_verified`. The earlier
-manual rerun remains in history as a separate diagnostic reference. These
-results are intentionally visible in the central indexes and viewer; the
-Architecture findings do not block delivery while the demo remains report-only.
+integrity and Freshness, and effective Trust `integrity_verified`. The
+DevSecOps governance projection also records a report-only replay finding
+because the normalized control report digest was reused across runs; this does
+not affect the Typed Evidence projection. These results are intentionally
+visible in the central indexes and viewer; Architecture findings and replay
+findings do not block delivery while the demo remains report-only.
 
 This is the key proof point that the Governance-as-Code approach is operationally viable.
 
