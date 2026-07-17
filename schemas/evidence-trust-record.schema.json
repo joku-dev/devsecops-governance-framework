@@ -98,6 +98,7 @@
             "run_id": { "type": "string", "minLength": 1 },
             "run_attempt": { "type": ["integer", "null"], "minimum": 1 },
             "artifact_name": { "type": "string", "minLength": 1 },
+            "artifact_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
             "source_uri": { "type": "string", "minLength": 1 }
           },
           "additionalProperties": false
