@@ -80,7 +80,9 @@ Treat dependency changes as an intentional maintenance change:
 1. Update exact Python versions in `requirements-validation.txt`.
 2. Update the OPA version and all four official asset checksums in
    `scripts/validation-toolchain.env`.
-3. Align `.github/workflows/governance-ci.yml` with the pinned OPA version.
+3. Align all governance workflows that install Python or OPA with the pinned
+   requirements and version (`governance-ci`, intake workflows, and the
+   architecture baseline workflow).
 4. Recreate the local environment and run complete validation.
 5. Review and commit only intentional source changes; omit generated
    timestamp-only noise.
