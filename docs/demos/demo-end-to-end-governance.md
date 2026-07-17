@@ -454,6 +454,8 @@ In the governance repository, inspect the intake workflows:
 ```text
 .github/workflows/intake-governance-result.yml
 .github/workflows/intake-architecture-result.yml
+.github/workflows/intake-evidence-trust.yml
+.github/workflows/retry-collection-attempt.yml
 ```
 
 Explain:
@@ -468,12 +470,18 @@ generated/viewer/status-viewer.html
 ```
 
 - The intake workflows regenerate indexes and the viewer before committing.
-- The intake workflows use rebase with autostash so near-simultaneous DevSecOps and architecture intakes can both land.
+- Distinct consumer runs retain separate concurrency identities, and commit
+  retries reconcile near-simultaneous updates to shared projections.
+- Failed collections are stored append-only before the intake workflow ends in
+  failure. A retryable record can be routed back through the matching existing
+  intake with `Retry Collection Attempt`.
 
 Expected interpretation:
 
 - Intake commits are not manual demo cosmetics; they are part of the governance feedback loop.
-- A race between two intake workflows should be recoverable by rerunning the failed intake.
+- Concurrent consumer events should converge without discarding a distinct
+  intake. Collection failures remain visible until a matching successful
+  snapshot resolves them.
 
 ## Demo Step 8: Interpret The Viewer
 
@@ -621,11 +629,26 @@ Interpretation:
 Check the governance repository Actions tab for:
 
 ```text
-Intake Governance Result
-Intake Architecture Result
+Intake Downstream Governance Result
+Intake Downstream Architecture Result
+Intake Typed Evidence Trust
+Retry Collection Attempt
 ```
 
-If two intake runs overlap, rerun the failed one. The workflows use `git pull --rebase --autostash origin main`, so a rerun should usually recover from a concurrent update.
+Use the viewer's `Collection Attempts` section to distinguish an `open`,
+`resolved`, or `permanent` collection failure. For an `open` attempt:
+
+1. Open the matching JSON record below `status/collection-attempts/`.
+2. Confirm that every error is marked `retryable` and address the recorded
+   authentication, availability, or artifact cause.
+3. Start `Retry Collection Attempt` and provide that repository-relative path.
+4. Follow the newly dispatched intake workflow.
+5. Regenerate or refresh the viewer after the successful intake commit; the
+   lifecycle should become `resolved` while the original failure remains.
+
+Do not retry a `permanent` attempt without correcting and producing new source
+evidence. Concurrent Git push conflicts are handled by the intake workflows'
+rebase-and-retry loop and are separate from Collection Attempt recovery.
 
 ### GitHub Authentication Fails
 
