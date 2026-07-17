@@ -152,6 +152,7 @@ jobs:
         if: always()
         run: |
           python3 scripts/generate_repository_results_index.py
+          python3 scripts/generate_intake_health.py
           python3 scripts/generate_governance_graph.py
           python3 scripts/generate_status_viewer.py
 
@@ -174,10 +175,11 @@ jobs:
             git pull --rebase --autostash origin main
             python3 scripts/generate_repository_results_index.py
             python3 scripts/generate_architecture_results_index.py
+            python3 scripts/generate_intake_health.py
             python3 scripts/generate_governance_graph.py
             python3 scripts/generate_status_viewer.py
 
-            git add status/results status/collection-attempts status/intake-events status/intake-conflicts status/repository-results-index.json generated/graph/governance-graph.json generated/viewer/status-viewer.html
+            git add status/results status/collection-attempts status/intake-events status/intake-conflicts status/intake-health.json status/repository-results-index.json generated/graph/governance-graph.json generated/viewer/status-viewer.html
             if git diff --cached --quiet; then
               echo "No governance result changes to commit."
               exit 0

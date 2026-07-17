@@ -164,7 +164,7 @@ application service, Kubernetes workload, external database, or message queue.
 | Evidence collectors | Acquire a named artifact, bind subjects and digests, normalize a contract-specific result | `scripts/intake_*`, `scripts/collect_*`, `model/evidence/evidence-collector-contract.yaml` |
 | Evidence Trust verifier | Evaluate subject integrity, source metadata, custody, freshness, and replay without changing the underlying outcome | `scripts/lib/evidence_trust.py`, `model/evidence/`, Trust schemas |
 | Append-only result ledger | Accept new snapshots, treat identical intake as idempotent, quarantine conflicting identity reuse | `scripts/lib/result_ledger.py`, `status/results/`, `status/architecture-results/`, `status/typed-evidence-results/`, `status/intake-conflicts/` |
-| Collection attempt and intake telemetry | Record failed or partial collection for retry and every intake execution for later health measurement | `scripts/record_collection_attempt.py`, `scripts/record_intake_event.py`, `status/collection-attempts/`, `status/intake-events/` |
+| Collection attempt, intake telemetry, and health | Record failed or partial collection for retry, record every intake execution, and project report-only operational indicators | `scripts/record_collection_attempt.py`, `scripts/record_intake_event.py`, `scripts/generate_intake_health.py`, `status/collection-attempts/`, `status/intake-events/`, `status/intake-health.json` |
 | Status and portfolio projections | Select context-aware latest results and summarize multi-consumer adoption | result index generators, `status/*-index.json`, `governance/portfolio-adoption-reporting.yaml` |
 | Governance Intelligence Graph | Join stable identifiers into a deterministic read-only relationship graph | `scripts/generate_governance_graph.py`, `schemas/governance-graph.schema.json`, `generated/graph/` |
 | Viewer and documentation | Present status, Trust, attempts, portfolio information, lineage, and graph navigation | `scripts/generate_status_viewer.py`, `generated/viewer/`, `mkdocs.yml` |
@@ -391,7 +391,7 @@ not the governance contracts.
 | Current Trust generally stops at `integrity_verified` | Producer identity and authoritative provenance are not yet fully verified. |
 | No trusted attestation issuer path is active | `attested` remains a future Trust level. |
 | Freshness and replay are report-only | Operators must review findings; they are not automatic enforcement gates. |
-| Collection lifecycle is projected from immutable events | There is no mutable operational job state or automatic retry scheduler. Intake telemetry is now captured, but health thresholds are not yet defined. |
+| Collection lifecycle and health are projected from immutable events | There is no mutable operational job state or automatic retry scheduler. Health indicators are report-only and thresholds are not yet defined. |
 | Vulnerability scan is the current typed collector pilot | Additional evidence types still need contract-conformant adapters and tests. |
 | Some governance approvals remain organisational | Repository automation cannot substitute for the accountable governance forum. |
 
@@ -400,7 +400,8 @@ not the governance contracts.
 The next architecture increments should preserve current contracts and can be
 introduced independently:
 
-1. define intake health indicators, operational objectives, and alerting
+1. observe Intake Health over a representative period, then define operational
+   objectives and alerting
 2. add collector adapters for further evidence types
 3. pilot signed attestations and a trusted issuer policy
 4. formalize remaining approval and exception boundaries

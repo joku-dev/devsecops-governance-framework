@@ -47,6 +47,11 @@ class IntakeWorkflowConcurrencyTests(unittest.TestCase):
                 self.assertIn("Record intake telemetry", content)
                 self.assertIn("scripts/record_intake_event.py", content)
                 self.assertIn("status/intake-events", content)
+                self.assertGreaterEqual(
+                    content.count("scripts/generate_intake_health.py"),
+                    2,
+                )
+                self.assertIn("status/intake-health.json", content)
                 self.assertIn("Fail workflow after intake or telemetry failure", content)
                 self.assertIn("steps.regenerate.outcome == 'success'", content)
                 self.assertIn("steps.validation.outcome == 'success'", content)

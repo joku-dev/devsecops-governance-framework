@@ -5,7 +5,7 @@
 Intake operation telemetry records every central DevSecOps, architecture, and
 typed-evidence intake execution. It provides the event history needed to
 calculate reliable operational indicators such as success rate, failure rate,
-and intake duration in a later health projection.
+and intake duration in the report-only Intake Health projection.
 
 The telemetry is additive, append-only, and report-only. It does not change a
 governance outcome, Evidence Trust, `latest_result`, portfolio status, or
@@ -141,23 +141,21 @@ remain conflicts.
 - Telemetry begins when the instrumented workflows are merged; historical
   snapshots are not converted into synthetic events.
 - No SLO or alert threshold is defined by this contract.
-- No viewer or portfolio status is changed in this first increment.
+- The derived health projection remains informational and does not change
+  viewer, portfolio, Trust, or enforcement status.
 - Duration currently measures the central collection step boundary established
   by the workflow, not downstream evidence production time.
 - Events are stored in Git and therefore share the repository's current write
   throughput and concurrency limits.
 
-## Next Increment
+## Intake Health Projection
 
-The next PR can create a deterministic intake-health projection using these
-events. Initial report-only indicators should include:
-
-- success and failure rate over an explicit window
-- duration percentiles
-- event counts by consumer, collector, and evidence type
-- open and permanent collection failures
-- append-only conflict count
-- age of the last accepted mainline result
+`scripts/generate_intake_health.py` now creates the schema-valid read model at
+`status/intake-health.json`. It includes success and failure rate over an
+explicit 30-day window, duration percentiles, dimensional event counts,
+Collection Attempt lifecycle counts, append-only conflict count, and latest
+result age. See `docs/operations/evidence/intake-health-projection.md` for the
+contract and interpretation rules.
 
 Thresholds and alerts should be approved only after enough real events exist to
 establish a useful baseline.
@@ -167,6 +165,7 @@ establish a useful baseline.
 ```bash
 python3 scripts/validate_governance_repo.py
 python3 -m unittest tests.test_record_intake_event
+python3 -m unittest tests.test_generate_intake_health
 python3 -m unittest tests.test_result_ledger
 python3 -m unittest tests.test_intake_workflow_concurrency
 ./scripts/validate_all.sh
