@@ -31,16 +31,32 @@ integrations:
       requires_waiver_on_failure: false
       mode_reason: Candidate repository is being onboarded through report-only L1 baseline runs before mainline enforcement.
     notes: "Report-only central L1 onboarding run completed on PR #93 with quality-gates passing. The run recorded direct pushes allowed on main, so the repository should remain report-only until branch protection is ready for blocking enforcement."
+  - repository: joku-dev/governance-framework-demo-consumer
+    baseline_level: L1
+    status: operational
+    branch: main
+    governance_workflow_ref: l1-baseline-v1.1.3
+    last_evaluated_commit: 60ff24cd94a010feb468aab9a48ac8ead4bf96ad
+    pipeline_run_id: "29604841360"
+    pipeline_result: success
+    evidence_status: available
+    governance_mode: report-only
+    enforcement:
+      blocks_merge: false
+      records_result: true
+      requires_waiver_on_failure: false
+      mode_reason: Demo consumer is protected and produces complete evidence, but Architecture findings remain report-only during pilot operation.
+    notes: "Validated neutral consumer with released DevSecOps and Architecture baselines, real Trivy evidence, central Trust intake, and protected main branch."
 
 summary:
   operational_state: L1 operational
   central_baseline_repository: joku-dev/devsecops-governance-framework
   rollout_phase: pilot validated and released; factory report-only onboarding active
-  integrated_repositories: 2
-  successful_baseline_runs: 10
+  integrated_repositories: 3
+  successful_baseline_runs: 13
   governance_modes:
     readiness: 0
-    report-only: 1
+    report-only: 2
     warn-on-error: 0
     block-on-error: 1
     waiver-required: 0
