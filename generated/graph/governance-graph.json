@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-07-17T17:54:02Z",
+  "generated_at": "2026-07-17T17:54:06Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,29 +10,29 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 165,
-    "edge_count": 358,
+    "node_count": 169,
+    "edge_count": 363,
     "node_types": {
       "Artifact": 123,
       "Baseline": 3,
-      "Commit": 2,
+      "Commit": 3,
       "EvidenceRecord": 1,
       "Repository": 3,
-      "ResultSnapshot": 4,
+      "ResultSnapshot": 5,
       "Scanner": 1,
       "SourceDocument": 20,
-      "TrustAssessment": 4,
-      "WorkflowRun": 4
+      "TrustAssessment": 5,
+      "WorkflowRun": 5
     },
     "edge_types": {
       "DERIVES": 338,
-      "EVALUATES_COMMIT": 3,
+      "EVALUATES_COMMIT": 4,
       "HAS_EVIDENCE": 1,
-      "HAS_RESULT": 4,
-      "HAS_TRUST_ASSESSMENT": 4,
+      "HAS_RESULT": 5,
+      "HAS_TRUST_ASSESSMENT": 5,
       "PRODUCED_BY": 1,
-      "RECORDED_IN": 4,
-      "USES_BASELINE": 3
+      "RECORDED_IN": 5,
+      "USES_BASELINE": 4
     }
   },
   "nodes": [
@@ -1303,6 +1303,15 @@
       }
     },
     {
+      "id": "commit:joku-dev/governance-framework-demo-consumer:894f05f8031772f32dc0ea5e7bdfe827146f229d",
+      "type": "Commit",
+      "label": "894f05f80317",
+      "properties": {
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d"
+      }
+    },
+    {
       "id": "commit:joku-dev/ha-CPsWMS:716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
       "type": "Commit",
       "label": "716c3cda4fa5",
@@ -1351,6 +1360,20 @@
       "label": "joku-dev/ha-CPsWMS",
       "properties": {
         "repository_id": "joku-dev/ha-CPsWMS"
+      }
+    },
+    {
+      "id": "run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "type": "WorkflowRun",
+      "label": "architecture: 29434075225",
+      "properties": {
+        "domain": "architecture",
+        "run_id": "29434075225",
+        "status": "findings",
+        "generated_at": "2026-07-15T16:50:47Z",
+        "event": "push",
+        "branch": "main",
+        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29434075225"
       }
     },
     {
@@ -1415,6 +1438,15 @@
       "properties": {
         "name": "trivy",
         "version": "v0.70.0"
+      }
+    },
+    {
+      "id": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-50-47Z-run-29434075225.json",
+      "type": "ResultSnapshot",
+      "label": "2026-07-15T16-50-47Z-run-29434075225.json",
+      "properties": {
+        "path": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-50-47Z-run-29434075225.json",
+        "domain": "architecture"
       }
     },
     {
@@ -1737,6 +1769,22 @@
           "platform",
           "devsecops"
         ]
+      }
+    },
+    {
+      "id": "trust:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "type": "TrustAssessment",
+      "label": "integrity_verified",
+      "properties": {
+        "domain": "architecture",
+        "effective_level": "integrity_verified",
+        "assessment_status": "evaluated",
+        "verified_at": "2026-07-17T17:53:43Z",
+        "check_summary": {
+          "pass": 6,
+          "fail": 1,
+          "not_evaluated": 5
+        }
       }
     },
     {
@@ -4847,6 +4895,13 @@
       }
     },
     {
+      "id": "EVALUATES_COMMIT:run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z->commit:joku-dev/governance-framework-demo-consumer:894f05f8031772f32dc0ea5e7bdfe827146f229d",
+      "type": "EVALUATES_COMMIT",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "target": "commit:joku-dev/governance-framework-demo-consumer:894f05f8031772f32dc0ea5e7bdfe827146f229d",
+      "properties": {}
+    },
+    {
       "id": "EVALUATES_COMMIT:run:architecture:joku-dev/ha-CPsWMS:29415015294:2026-07-15T17:06:39Z->commit:joku-dev/ha-CPsWMS:716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
       "type": "EVALUATES_COMMIT",
       "source": "run:architecture:joku-dev/ha-CPsWMS:29415015294:2026-07-15T17:06:39Z",
@@ -4881,6 +4936,16 @@
       "target": "run:devsecops:joku-dev/ai-native-engineering-factory:28315832162:2026-06-28T08:00:21Z",
       "properties": {
         "domain": "devsecops",
+        "latest": true
+      }
+    },
+    {
+      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "type": "HAS_RESULT",
+      "source": "repository:joku-dev/governance-framework-demo-consumer",
+      "target": "run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "properties": {
+        "domain": "architecture",
         "latest": true
       }
     },
@@ -4922,6 +4987,13 @@
       "properties": {}
     },
     {
+      "id": "HAS_TRUST_ASSESSMENT:run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z->trust:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "type": "HAS_TRUST_ASSESSMENT",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "target": "trust:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "properties": {}
+    },
+    {
       "id": "HAS_TRUST_ASSESSMENT:run:architecture:joku-dev/ha-CPsWMS:29415015294:2026-07-15T17:06:39Z->trust:architecture:joku-dev/ha-CPsWMS:29415015294:2026-07-15T17:06:39Z",
       "type": "HAS_TRUST_ASSESSMENT",
       "source": "run:architecture:joku-dev/ha-CPsWMS:29415015294:2026-07-15T17:06:39Z",
@@ -4957,6 +5029,13 @@
       "properties": {}
     },
     {
+      "id": "RECORDED_IN:run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z->snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-50-47Z-run-29434075225.json",
+      "type": "RECORDED_IN",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "target": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-50-47Z-run-29434075225.json",
+      "properties": {}
+    },
+    {
       "id": "RECORDED_IN:run:architecture:joku-dev/ha-CPsWMS:29415015294:2026-07-15T17:06:39Z->snapshot:status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T17-06-39Z-run-29415015294.json",
       "type": "RECORDED_IN",
       "source": "run:architecture:joku-dev/ha-CPsWMS:29415015294:2026-07-15T17:06:39Z",
@@ -4975,6 +5054,13 @@
       "type": "RECORDED_IN",
       "source": "run:devsecops:joku-dev/ha-CPsWMS:29415015878:2026-07-15T17:07:40Z",
       "target": "snapshot:status/results/joku-dev__ha-CPsWMS/2026-07-15T17-07-40Z-run-29415015878.json",
+      "properties": {}
+    },
+    {
+      "id": "USES_BASELINE:run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z->baseline:architecture:architecture-baseline-l1-v0.1.0",
+      "type": "USES_BASELINE",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29434075225:2026-07-15T16:50:47Z",
+      "target": "baseline:architecture:architecture-baseline-l1-v0.1.0",
       "properties": {}
     },
     {

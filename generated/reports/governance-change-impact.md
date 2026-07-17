@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-07-17T17:00:30Z`
+Generated: `2026-07-17T17:54:01Z`
 
 ## Inputs
 
