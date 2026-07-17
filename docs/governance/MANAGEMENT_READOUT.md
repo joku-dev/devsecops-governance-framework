@@ -64,12 +64,20 @@ DevSecOps workflow produces the application, pipeline, and governance input
 evidence; the Architecture workflow validates and uploads its release input and
 governance evidence. Both remain report-only for the demo.
 
-The currently centrally re-verified Typed Evidence reference is run
+The earlier centrally re-verified Typed Evidence reference was run
 `29432884108` from consumer commit `4ec2b2bd53560e010ebb1c078c4d3bd41b0bfcc6`:
 Trivy `v0.70.0`, collector status `collected`, content integrity `pass`,
 Freshness `pass`, and effective Trust `integrity_verified`. This is a separate
-central intake projection and has not automatically advanced to the newer
-consumer commit until a new central intake is performed.
+central intake projection and remains useful as the previous clean reference.
+
+The newer consumer commit is now centrally intaken as well. Its normalized
+DevSecOps snapshot is `fail` with one report-only finding (`direct_push_allowed`
+is still true), and its Architecture snapshot is `findings` with 26 report-only
+findings. The Typed Evidence snapshot remains `integrity_verified` with zero
+scanner findings and a passing content-digest check, but its 24-hour Freshness
+check fails because the referenced workflow result is older than the
+provisional freshness window at intake time. These results are intentionally
+visible in the central indexes and viewer; they do not block delivery.
 
 This is the key proof point that the Governance-as-Code approach is operationally viable.
 
@@ -89,6 +97,8 @@ The following items are still open:
   recorded explicitly rather than inferred automatically
 - the newest consumer workflow results and the centrally re-verified Typed
   Evidence snapshot are intentionally tracked as separate states
+- successful workflow completion currently coexists with report-only governance
+  findings; this is expected while the consumer remains in report-only mode
 
 ## Recommended Next Priorities
 
