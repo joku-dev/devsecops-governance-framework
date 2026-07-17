@@ -73,11 +73,15 @@ central intake projection and remains useful as the previous clean reference.
 The newer consumer commit is now centrally intaken as well. Its normalized
 DevSecOps snapshot is `fail` with one report-only finding (`direct_push_allowed`
 is still true), and its Architecture snapshot is `findings` with 26 report-only
-findings. The Typed Evidence snapshot remains `integrity_verified` with zero
-scanner findings and a passing content-digest check, but its 24-hour Freshness
-check fails because the referenced workflow result is older than the
-provisional freshness window at intake time. These results are intentionally
-visible in the central indexes and viewer; they do not block delivery.
+findings. A fresh manual rerun of the same consumer commit (`29602535363` for
+DevSecOps and `29602537321` for Architecture) is now centrally intaken. The
+fresh DevSecOps and Architecture projections remain respectively `fail` and
+`findings`, while the fresh Typed Evidence projection (`29602535363`) has zero
+scanner findings, passing content integrity and Freshness, and effective Trust
+`integrity_verified`. The index deliberately keeps the latest `push` result as
+the mainline pointer and records the manual rerun in history. These results are
+intentionally visible in the central indexes and viewer; they do not block
+delivery.
 
 This is the key proof point that the Governance-as-Code approach is operationally viable.
 
@@ -96,7 +100,8 @@ The following items are still open:
 - agent-to-Evidence provenance is available, but associations are currently
   recorded explicitly rather than inferred automatically
 - the newest consumer workflow results and the centrally re-verified Typed
-  Evidence snapshot are intentionally tracked as separate states
+  Evidence snapshots are intentionally tracked by event type; manual reruns
+  are recorded in history while the latest `push` remains the mainline pointer
 - successful workflow completion currently coexists with report-only governance
   findings; this is expected while the consumer remains in report-only mode
 
