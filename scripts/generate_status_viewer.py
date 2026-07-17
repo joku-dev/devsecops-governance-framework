@@ -572,6 +572,90 @@ def build_collection_attempts_section(attempts: list[dict]) -> str:
     )
 
 
+def format_milliseconds(value: int | None) -> str:
+    if value is None:
+        return "—"
+    if value < 1000:
+        return f"{value} ms"
+    return f"{value / 1000:.1f} s"
+
+
+def format_age(value: int) -> str:
+    hours = value // 3_600_000
+    if hours < 24:
+        return f"{hours} h"
+    days, remaining_hours = divmod(hours, 24)
+    return f"{days} d {remaining_hours} h"
+
+
+def build_intake_health_section(health: dict) -> str:
+    if not health:
+        return ""
+    summary = health.get("summary", {})
+    events = summary.get("events", {})
+    durations = events.get("duration_ms", {})
+    attempts = summary.get("collection_attempts", {})
+    window = health.get("window", {})
+    dimension_rows = []
+    for row in health.get("dimensions", []):
+        metrics = row.get("metrics", {})
+        row_durations = metrics.get("duration_ms", {})
+        dimension_rows.append([
+            escape(row.get("dimension", "unknown")),
+            f"<code>{escape(row.get('value', 'unknown'))}</code>",
+            str(metrics.get("total", 0)),
+            str(metrics.get("success", 0)),
+            str(metrics.get("partial", 0)),
+            str(metrics.get("failed", 0)),
+            f"{metrics.get('success_rate_pct', 0):.2f}%",
+            escape(format_milliseconds(row_durations.get("p95"))),
+        ])
+    dimension_table = (
+        html_table(
+            ["Dimension", "Value", "Events", "Success", "Partial", "Failed", "Success Rate", "p95"],
+            dimension_rows,
+        )
+        if dimension_rows
+        else "<p>No intake events fall inside the observation window.</p>"
+    )
+
+    latest_rows = []
+    for row in health.get("latest_results", []):
+        latest_rows.append([
+            escape(row.get("repository_id", "unknown")),
+            escape(row.get("domain", "unknown")),
+            f"<code>{escape(row.get('run_id', 'unknown'))}</code>",
+            escape(row.get("generated_at", "unknown")),
+            escape(format_age(row.get("age_ms", 0))),
+        ])
+    latest_table = (
+        html_table(["Repository", "Domain", "Run", "Generated", "Age At Projection"], latest_rows)
+        if latest_rows
+        else "<p>No accepted latest results are available.</p>"
+    )
+
+    non_success = events.get("partial", 0) + events.get("failed", 0)
+    return (
+        '<section id="intake-health" class="viewer-section">'
+        '<div class="section-title"><h2>Intake Health</h2>'
+        '<p>Report-only operational observation. No SLO, alert threshold, or blocking decision is derived from these values.</p></div>'
+        '<section class="cards">'
+        f'<section class="card"><h3>Observation</h3><div class="value">{events.get("total", 0)}</div><p>{window.get("days", 30)}-day events · {escape(health.get("observation_status", "no_data"))}</p></section>'
+        f'<section class="card"><h3>Success Rate</h3><div class="value">{events.get("success_rate_pct", 0):.2f}%</div><p>Observed executions; not an approved SLO</p></section>'
+        f'<section class="card"><h3>p50 Duration</h3><div class="value">{escape(format_milliseconds(durations.get("p50")))}</div><p>Central collection boundary</p></section>'
+        f'<section class="card"><h3>p95 Duration</h3><div class="value">{escape(format_milliseconds(durations.get("p95")))}</div><p>Nearest-rank percentile</p></section>'
+        f'<section class="card"><h3>Non-Success</h3><div class="value">{non_success}</div><p>{events.get("partial", 0)} partial · {events.get("failed", 0)} failed</p></section>'
+        f'<section class="card"><h3>Operational Records</h3><div class="value">{summary.get("intake_conflicts", 0)}</div><p>conflicts · {attempts.get("open", 0)} open · {attempts.get("permanent", 0)} permanent attempts</p></section>'
+        '</section>'
+        '<section class="panels">'
+        f'<section class="panel"><h2>Event Dimensions</h2>{dimension_table}</section>'
+        f'<section class="panel"><h2>Latest Result Age</h2>{latest_table}</section>'
+        '</section>'
+        f'<p class="meta">Window: {escape(window.get("started_at", "unknown"))} to {escape(window.get("ended_at", "unknown"))}. Projection generated {escape(health.get("generated_at", "unknown"))}.</p>'
+        '</section>'
+    )
+
+
 def build_evidence_agent_provenance_section(index: dict) -> str:
     summary = index.get("summary", {})
     records = index.get("records", [])
@@ -1467,6 +1551,8 @@ def main() -> int:
         "summary": {},
         "repositories": [],
     }
+    intake_health_path = ROOT / "status" / "intake-health.json"
+    intake_health = load_json(intake_health_path) if intake_health_path.exists() else {}
     governance_graph_path = ROOT / "generated" / "graph" / "governance-graph.json"
     governance_graph = load_json(governance_graph_path) if governance_graph_path.exists() else {
         "summary": {},
@@ -1853,6 +1939,7 @@ def main() -> int:
     graph_script = governance_graph_script() if governance_graph_html else ""
     intake_conflicts_html = build_intake_conflicts_section(intake_conflicts)
     collection_attempts_html = build_collection_attempts_section(collection_attempts)
+    intake_health_html = build_intake_health_section(intake_health)
     provenance_index_path = ROOT / "status" / "evidence-agent-provenance-index.json"
     provenance_index = load_json(provenance_index_path) if provenance_index_path.exists() else {"summary": {}, "records": []}
     evidence_agent_provenance_html = build_evidence_agent_provenance_section(provenance_index)
@@ -2000,6 +2087,7 @@ def main() -> int:
       <a href="#governance-graph">Governance Graph</a>
       <a href="#runtime-governance">Runtime Governance</a>
       <a href="#evidence-trust">Evidence Trust</a>
+      <a href="#intake-health">Intake Health</a>
       <a href="#intake-conflicts">Intake Conflicts</a>
       <a href="#source-intake">Source Intake</a>
       <a href="#agent-usage">Agent Usage</a>
@@ -2031,6 +2119,8 @@ def main() -> int:
     {runtime_governance_html}
 
     {typed_evidence_trust_html}
+
+    {intake_health_html}
 
     {intake_conflicts_html}
 
@@ -2134,6 +2224,7 @@ def main() -> int:
             <li><a href="../../operations/agents/agent-usage-snapshot-latest/">Latest Agent Usage Snapshot</a></li>
             <li><a href="../../status/architecture-results-index.json">Architecture Results Index JSON</a></li>
             <li><a href="../../status/typed-evidence-results-index.json">Typed Evidence Results Index JSON</a></li>
+            <li><a href="../../status/intake-health.json">Intake Health JSON</a></li>
             <li><a href="../graph/governance-graph.json">Governance Intelligence Graph JSON</a></li>
             <li><a href="../../operations/status/current-governance-platform-state/">Current Governance Platform State</a></li>
             <li><a href="../../operations/status/ha-cpswms-governance-validation-status/">ha-CPsWMS Validation Status</a></li>

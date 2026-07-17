@@ -389,6 +389,58 @@ class ResultLedgerTests(unittest.TestCase):
         self.assertIn("<h3>Resolved</h3><div class=\"value\">1</div>", section)
         self.assertIn("<h3>Permanent</h3><div class=\"value\">1</div>", section)
 
+    def test_intake_health_viewer_is_report_only_and_shows_projection_metrics(self):
+        health = {
+            "generated_at": "2026-07-17T13:00:00Z",
+            "observation_status": "observed",
+            "window": {
+                "days": 30,
+                "started_at": "2026-06-17T13:00:00Z",
+                "ended_at": "2026-07-17T13:00:00Z",
+            },
+            "summary": {
+                "events": {
+                    "total": 3,
+                    "success": 3,
+                    "partial": 0,
+                    "failed": 0,
+                    "success_rate_pct": 100.0,
+                    "duration_ms": {"p50": 2000, "p95": 3000},
+                },
+                "collection_attempts": {"open": 0, "permanent": 0},
+                "intake_conflicts": 2,
+            },
+            "dimensions": [{
+                "dimension": "repository_id",
+                "value": "owner/repo",
+                "metrics": {
+                    "total": 3,
+                    "success": 3,
+                    "partial": 0,
+                    "failed": 0,
+                    "success_rate_pct": 100.0,
+                    "duration_ms": {"p95": 3000},
+                },
+            }],
+            "latest_results": [{
+                "repository_id": "owner/repo",
+                "domain": "devsecops",
+                "run_id": "42",
+                "generated_at": "2026-07-17T12:00:00Z",
+                "age_ms": 3_600_000,
+            }],
+        }
+
+        section = viewer.build_intake_health_section(health)
+
+        self.assertIn('id="intake-health"', section)
+        self.assertIn("100.00%", section)
+        self.assertIn("2.0 s", section)
+        self.assertIn("3.0 s", section)
+        self.assertIn("No SLO", section)
+        self.assertIn("owner/repo", section)
+        self.assertIn("1 h", section)
+
 
 if __name__ == "__main__":
     unittest.main()
