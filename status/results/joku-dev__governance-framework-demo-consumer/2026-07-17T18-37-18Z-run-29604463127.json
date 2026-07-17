@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/governance-framework-demo-consumer",
+  "baseline_level": "L1",
+  "governance_baseline_ref": "l1-baseline-v1.1.3",
+  "governance_repository": "joku-dev/devsecops-governance-framework",
+  "result_type": "governance-baseline-run",
+  "generated_at": "2026-07-17T18:37:18Z",
+  "pipeline": {
+    "pipeline_name": "DevSecOps Baseline",
+    "pipeline_run_id": "29604463127",
+    "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29604463127",
+    "event": "workflow_dispatch",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "main",
+    "branch_protected": true,
+    "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad"
+  },
+  "checks": {
+    "baseline_gate": "success"
+  },
+  "evidence": {
+    "sbom": false,
+    "vulnerability_scan": false,
+    "artifact_digest": false,
+    "governance_control_report": false,
+    "governance_run_input": true,
+    "static_analysis_summary": false,
+    "traceability_mapping": false,
+    "operations_evidence": false
+  },
+  "artifact_metadata": {
+    "artifact_names": [
+      "application-evidence",
+      "devsecops-governance-run-input",
+      "devsecops-pipeline-evidence"
+    ],
+    "artifact_sizes": {
+      "devsecops-governance-run-input": 906,
+      "devsecops-pipeline-evidence": 12829,
+      "application-evidence": 14571
+    }
+  },
+  "downloaded_artifact": {
+    "downloaded": true,
+    "artifact_size_bytes": 12829,
+    "control_evaluation_report_sha256": "71609438f57ac3908f7fb2862b7441d6c84fecb01f3b5858ecb91162c6847db5",
+    "governance_run_input_sha256": null,
+    "governance_run_input_refs": []
+  },
+  "trust": {
+    "model_id": "evidence-trust-model-v1",
+    "capture_phase": "additive_capture",
+    "effective_level": "integrity_verified",
+    "assessment_status": "evaluated",
+    "verifier": "central-governance-intake/v1",
+    "verified_at": "2026-07-17T18:37:41Z",
+    "checks": [
+      {
+        "id": "subject_identity_complete",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source",
+          "trust.capture.subjects"
+        ]
+      },
+      {
+        "id": "content_digest_verified",
+        "result": "pass",
+        "evidence_refs": [
+          "downloaded_artifact.control_evaluation_report_sha256"
+        ]
+      },
+      {
+        "id": "producer_run_resolved",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.run_id"
+        ]
+      },
+      {
+        "id": "commit_matches_run",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.commit_id"
+        ]
+      },
+      {
+        "id": "artifact_belongs_to_run",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.artifact_name"
+        ]
+      },
+      {
+        "id": "baseline_ref_resolved",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "freshness_evaluated",
+        "result": "pass",
+        "evidence_refs": [
+          "generated_at",
+          "trust.verified_at"
+        ],
+        "policy_id": "freshness-governance-result-24h",
+        "policy_version": "0.1.0",
+        "policy_status": "provisional",
+        "produced_at": "2026-07-17T18:37:18Z",
+        "evaluated_at": "2026-07-17T18:37:41Z",
+        "maximum_age_seconds": 86400,
+        "finding_effect": "report_only",
+        "reason": "Evidence age 23s is within the provisional maximum 86400s.",
+        "age_seconds": 23
+      },
+      {
+        "id": "replay_key_unique",
+        "result": "fail",
+        "evidence_refs": [
+          "trust.capture.source",
+          "trust.capture.subjects"
+        ],
+        "finding_effect": "report_only",
+        "reason": "A subject digest was reused across an incompatible repository, commit, or artifact context.",
+        "replay_key": "7628564675756c0bd9370095837e92b4278c683b7996a2e3b9947628ab0cc67e",
+        "related_replay_keys": [
+          "952ebb8c6a02f802dfac3a3fadb58ecaedf9c9fcee7c0d57681925426299479a",
+          "d0771c340a281a2d7ec776dc4bf2edb1bef34774b7001f407ebf20e4debbd65c"
+        ]
+      },
+      {
+        "id": "custody_recorded",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_signature_valid",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_issuer_trusted",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_subject_matches",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      }
+    ],
+    "capture": {
+      "contract_id": "evidence-collector-contract",
+      "contract_version": "0.1.0",
+      "status": "collected",
+      "enforcement": "report_only",
+      "evidence_type": "governance_result",
+      "governance_domain": "devsecops",
+      "collector": {
+        "id": "central-governance-intake",
+        "version": "0.1.0"
+      },
+      "produced_at": "2026-07-17T18:37:18Z",
+      "captured_at": "2026-07-17T18:37:41Z",
+      "source": {
+        "provider": "github_actions",
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+        "workflow_name": "DevSecOps Baseline",
+        "run_id": "29604463127",
+        "run_attempt": 1,
+        "artifact_name": "devsecops-pipeline-evidence",
+        "source_uri": "https://api.github.com/repos/joku-dev/governance-framework-demo-consumer/actions/artifacts/8416291054/zip",
+        "artifact_digest": "2a5aaaceb1e40f548fdec2c5ecb1b248bca43ba80de4d3baa22901131f9e0e7b"
+      },
+      "subjects": [
+        {
+          "id": "control_evaluation_report",
+          "evidence_ref": "downloaded_artifact.control_evaluation_report_sha256",
+          "algorithm": "sha256",
+          "digest": "71609438f57ac3908f7fb2862b7441d6c84fecb01f3b5858ecb91162c6847db5",
+          "size_bytes": 100
+        }
+      ],
+      "custody": [
+        {
+          "sequence": 1,
+          "action": "download",
+          "actor": "central-governance-intake",
+          "at": "2026-07-17T18:37:41Z",
+          "source_uri": "https://api.github.com/repos/joku-dev/governance-framework-demo-consumer/actions/artifacts/8416291054/zip",
+          "output_refs": [
+            "artifact_metadata"
+          ]
+        },
+        {
+          "sequence": 2,
+          "action": "extract_and_hash",
+          "actor": "central-governance-intake",
+          "at": "2026-07-17T18:37:41Z",
+          "source_uri": "https://api.github.com/repos/joku-dev/governance-framework-demo-consumer/actions/artifacts/8416291054/zip",
+          "output_refs": [
+            "downloaded_artifact.control_evaluation_report_sha256"
+          ]
+        }
+      ],
+      "errors": []
+    }
+  },
+  "control_evaluation_summary": {
+    "applicable_controls": 1,
+    "pass": 1,
+    "fail": 0,
+    "not_tested": 0
+  },
+  "overall_status": "pass",
+  "notes": "Intaken automatically from downstream GitHub Actions governance run."
+}
