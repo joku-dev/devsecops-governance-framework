@@ -115,6 +115,27 @@ must include a timezone.
 In GitHub Actions, repository, workflow, intake run, run attempt, and trigger
 event default from the standard `GITHUB_*` environment variables.
 
+## Validated Smoke Test
+
+The three instrumented central intake paths were exercised on 2026-07-17 with
+existing mainline evidence from
+`joku-dev/governance-framework-demo-consumer`:
+
+| Intake | Central run | Outcome | Recorded duration |
+|---|---:|---|---:|
+| DevSecOps governance | `29613365725` | success | 2 s |
+| Architecture governance | `29613411052` | success | 3 s |
+| Typed evidence | `29613460601` | success | 2 s |
+
+All runs were started with `workflow_dispatch`. They created schema-valid
+append-only operation events, created no Collection Attempts, and left the
+semantic content of the latest result indexes unchanged. The DevSecOps run
+also exposed a legacy ledger identity that lacked `artifact_digest`; the
+resulting report-only conflict remains immutable audit history. Subsequent
+intake treats this one-field legacy enrichment as idempotent when core context
+and subject digests are unchanged, while different present artifact digests
+remain conflicts.
+
 ## Current Limits
 
 - Telemetry begins when the instrumented workflows are merged; historical
