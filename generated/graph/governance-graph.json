@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-07-17T18:18:34Z",
+  "generated_at": "2026-07-17T18:27:56Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,12 +10,12 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 172,
+    "node_count": 173,
     "edge_count": 368,
     "node_types": {
       "Artifact": 123,
       "Baseline": 3,
-      "Commit": 3,
+      "Commit": 4,
       "EvidenceRecord": 1,
       "Repository": 3,
       "ResultSnapshot": 6,
@@ -1303,6 +1303,15 @@
       }
     },
     {
+      "id": "commit:joku-dev/governance-framework-demo-consumer:60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+      "type": "Commit",
+      "label": "60ff24cd94a0",
+      "properties": {
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad"
+      }
+    },
+    {
       "id": "commit:joku-dev/governance-framework-demo-consumer:7eae4298bc6f84b3920847e16eb38d1a72194a06",
       "type": "Commit",
       "label": "7eae4298bc6f",
@@ -1363,17 +1372,17 @@
       }
     },
     {
-      "id": "run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
+      "id": "run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
       "type": "WorkflowRun",
-      "label": "architecture: 29603209915",
+      "label": "architecture: 29603835105",
       "properties": {
         "domain": "architecture",
-        "run_id": "29603209915",
+        "run_id": "29603835105",
         "status": "findings",
-        "generated_at": "2026-07-17T18:16:41Z",
+        "generated_at": "2026-07-17T18:27:02Z",
         "event": "push",
         "branch": "main",
-        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29603209915"
+        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29603835105"
       }
     },
     {
@@ -1455,11 +1464,11 @@
       }
     },
     {
-      "id": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-41Z-run-29603209915.json",
+      "id": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-02Z-run-29603835105.json",
       "type": "ResultSnapshot",
-      "label": "2026-07-17T18-16-41Z-run-29603209915.json",
+      "label": "2026-07-17T18-27-02Z-run-29603835105.json",
       "properties": {
-        "path": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-41Z-run-29603209915.json",
+        "path": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-02Z-run-29603835105.json",
         "domain": "architecture"
       }
     },
@@ -1795,14 +1804,14 @@
       }
     },
     {
-      "id": "trust:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
+      "id": "trust:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
       "type": "TrustAssessment",
       "label": "integrity_verified",
       "properties": {
         "domain": "architecture",
         "effective_level": "integrity_verified",
         "assessment_status": "evaluated",
-        "verified_at": "2026-07-17T18:17:24Z",
+        "verified_at": "2026-07-17T18:27:44Z",
         "check_summary": {
           "pass": 7,
           "fail": 0,
@@ -4934,10 +4943,10 @@
       }
     },
     {
-      "id": "EVALUATES_COMMIT:run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z->commit:joku-dev/governance-framework-demo-consumer:7eae4298bc6f84b3920847e16eb38d1a72194a06",
+      "id": "EVALUATES_COMMIT:run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z->commit:joku-dev/governance-framework-demo-consumer:60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
       "type": "EVALUATES_COMMIT",
-      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
-      "target": "commit:joku-dev/governance-framework-demo-consumer:7eae4298bc6f84b3920847e16eb38d1a72194a06",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
+      "target": "commit:joku-dev/governance-framework-demo-consumer:60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
       "properties": {}
     },
     {
@@ -4986,10 +4995,10 @@
       }
     },
     {
-      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
+      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
       "type": "HAS_RESULT",
       "source": "repository:joku-dev/governance-framework-demo-consumer",
-      "target": "run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
+      "target": "run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
       "properties": {
         "domain": "architecture",
         "latest": true
@@ -5043,10 +5052,10 @@
       "properties": {}
     },
     {
-      "id": "HAS_TRUST_ASSESSMENT:run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z->trust:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
+      "id": "HAS_TRUST_ASSESSMENT:run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z->trust:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
       "type": "HAS_TRUST_ASSESSMENT",
-      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
-      "target": "trust:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
+      "target": "trust:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
       "properties": {}
     },
     {
@@ -5092,10 +5101,10 @@
       "properties": {}
     },
     {
-      "id": "RECORDED_IN:run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z->snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-41Z-run-29603209915.json",
+      "id": "RECORDED_IN:run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z->snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-02Z-run-29603835105.json",
       "type": "RECORDED_IN",
-      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
-      "target": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-41Z-run-29603209915.json",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
+      "target": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-02Z-run-29603835105.json",
       "properties": {}
     },
     {
@@ -5127,9 +5136,9 @@
       "properties": {}
     },
     {
-      "id": "USES_BASELINE:run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z->baseline:architecture:architecture-baseline-l1-v0.1.0",
+      "id": "USES_BASELINE:run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z->baseline:architecture:architecture-baseline-l1-v0.1.0",
       "type": "USES_BASELINE",
-      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29603209915:2026-07-17T18:16:41Z",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:29603835105:2026-07-17T18:27:02Z",
       "target": "baseline:architecture:architecture-baseline-l1-v0.1.0",
       "properties": {}
     },
