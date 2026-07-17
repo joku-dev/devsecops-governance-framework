@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence-agent-provenance",
+  "provenance_id": "demo-provenance-001",
+  "enforcement": "report_only",
+  "recorded_at": "2026-07-17T18:00:00Z",
+  "evidence": {
+    "repository_id": "owner/repo",
+    "evidence_type": "vulnerability_scan",
+    "subject_id": "vulnerability_scan_report",
+    "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "source_file": "status/typed-evidence-results/owner__repo/result.json"
+  },
+  "agent": {
+    "id": "evidence-and-intake",
+    "role_version": "1.0.0",
+    "skill": "evidence-and-intake",
+    "provider": "codex"
+  },
+  "involvement": "reviewed",
+  "dispatch": {
+    "id": "dispatch-2026-07-17-001",
+    "run_type": "provider_review",
+    "source": "manual",
+    "timestamp": "2026-07-17T17:59:00Z"
+  },
+  "notes": "Explicit review association; does not change evidence Trust."
+}

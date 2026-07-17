@@ -4,6 +4,40 @@
 
 Agent usage tracking records which governance roles and skills were selected or executed during a dispatch or provider-backed review.
 
+## Evidence Provenance
+
+Agent usage and Evidence provenance are related but separate. Usage records
+describe a dispatch; they do not prove that an agent handled a particular
+Evidence subject. Record an explicit report-only association when a role was
+selected, executed, reviewed, or approved for a concrete subject:
+
+```bash
+python3 scripts/record_evidence_agent_provenance.py \
+  --repository-id joku-dev/governance-framework-demo-consumer \
+  --evidence-type vulnerability_scan \
+  --subject-id vulnerability_scan_report \
+  --subject-digest <sha256> \
+  --source-file status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/result.json \
+  --agent-id evidence-and-intake \
+  --skill evidence-and-intake \
+  --provider codex \
+  --involvement reviewed \
+  --dispatch-id dispatch-2026-07-17-001 \
+  --run-type provider_review \
+  --dispatch-source manual
+```
+
+The record is append-only under `status/evidence-agent-provenance/`. Rebuild
+its index and the viewer after adding records:
+
+```bash
+python3 scripts/generate_evidence_agent_provenance_index.py
+python3 scripts/generate_status_viewer.py
+```
+
+This metadata is report-only. It never raises an Evidence Trust level and does
+not replace source, digest, custody, or attestation verification.
+
 Use it to answer:
 
 - which agents are used most often
