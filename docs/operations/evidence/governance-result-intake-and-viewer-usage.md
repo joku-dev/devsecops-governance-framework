@@ -103,6 +103,18 @@ Automatic retries are intentionally not enabled. This avoids retry storms and
 keeps authentication, expired-artifact, and permanent producer failures under
 operator control.
 
+The viewer derives a lifecycle state without modifying the append-only attempt:
+
+- `open`: all errors are retryable and no matching successful snapshot exists
+- `resolved`: a successful collection snapshot exists for the same repository,
+  downstream run ID, and artifact name
+- `permanent`: at least one recorded error is not retryable
+
+Resolution means that collection eventually succeeded. It does not imply that
+the collected governance result passed, and it does not change `latest_result`
+selection. The viewer shows the successful snapshot timestamp while the
+original failure remains available for audit.
+
 ## Typed Evidence Trust Intake
 
 For a GitHub Actions run containing an `application-evidence` artifact, use:
