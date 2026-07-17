@@ -49,6 +49,9 @@ def main() -> int:
         state = "pilot" if entry.get("governance_mode") == "report-only" else "active"
         rows.append({
             "repository_id": repository_id,
+            "owner": entry.get("owner", "missing"),
+            "action_owner": entry.get("action_owner", "missing"),
+            "business_or_product_area": entry.get("business_or_product_area", "unspecified"),
             "adoption_state": state,
             "target_devsecops_baseline": entry.get("governance_workflow_ref", "unknown"),
             "latest_devsecops": {"status": dev.get("status", "missing"), "run_id": dev.get("pipeline_run_id"), "age_days": dev_age},
@@ -72,11 +75,11 @@ def main() -> int:
     }
     OUTPUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_JSON.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    lines = ["# Portfolio Onboarding Status", "", f"Generated: `{payload['generated_at']}`", "", "| Repository | State | DevSecOps | Architecture | Stale | Next action |", "|---|---|---|---|---|---|"]
+    lines = ["# Portfolio Onboarding Status", "", f"Generated: `{payload['generated_at']}`", "", "| Repository | Owner | State | DevSecOps | Architecture | Stale | Next action |", "|---|---|---|---|---|---|---|"]
     for row in rows:
         dev = row["latest_devsecops"]
         arch = row["latest_architecture"] or {"status": "not in scope"}
-        lines.append(f"| `{row['repository_id']}` | `{row['adoption_state']}` | `{dev['status']}` | `{arch['status']}` | `{row['stale_or_missing']}` | {row['next_action']} |")
+        lines.append(f"| `{row['repository_id']}` | {row['owner']} | `{row['adoption_state']}` | `{dev['status']}` | `{arch['status']}` | `{row['stale_or_missing']}` | {row['next_action']} |")
     lines += ["", "This report is informational and does not approve waivers or change enforcement modes."]
     OUTPUT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"Wrote {OUTPUT_JSON.relative_to(ROOT)}")
