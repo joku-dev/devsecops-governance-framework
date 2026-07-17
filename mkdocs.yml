@@ -90,6 +90,7 @@ nav:
           - Governance Evidence Schema Versioning: operations/evidence/governance-evidence-schema-versioning.md
           - Governance Result Intake And Viewer Usage: operations/evidence/governance-result-intake-and-viewer-usage.md
           - Intake Operation Telemetry: operations/evidence/intake-operation-telemetry.md
+          - Intake Health Projection: operations/evidence/intake-health-projection.md
           - Governance Results Storage Model: operations/evidence/governance-results-storage-model.md
           - How To Read Control Evaluation Status: operations/evidence/how-to-read-control-evaluation-status.md
           - Application Repo Evidence Flow: operations/evidence/application-repo-evidence-flow.md
