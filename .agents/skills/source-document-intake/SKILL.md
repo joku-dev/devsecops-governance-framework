@@ -7,7 +7,7 @@ description: Register and classify incoming governance source documents, prepare
 
 ## Workflow
 
-1. Read `docs/governance/governance-roles-and-agent-profiles.md`, `.agents/roles/source-document-intake.yaml`, and `docs/operations/source-document-intake-review-operating-model.md`.
+1. Read `docs/governance/governance-roles-and-agent-profiles.md`, `.agents/roles/source-document-intake.yaml`, and `docs/operations/processes/source-document-intake-review-operating-model.md`.
 2. Inspect changed files under `docs/governance/source-documents/` and `model/documents/`; use `docs/governance/change-requests/` only as supporting decision context.
 3. If no source document or source-document register change exists, report that full Source Document Intake is not required and use only the change-request classification.
 4. Classify each source as new, duplicate, replacement candidate, superseding source, or retired source.

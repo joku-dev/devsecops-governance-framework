@@ -18,6 +18,9 @@ description: Review result intake, evidence context, status indexes, and governa
 Run or request:
 
 ```bash
+python3 scripts/generate_repository_results_index.py
+python3 scripts/generate_architecture_results_index.py
+python3 scripts/generate_typed_evidence_results_index.py
 python3 scripts/generate_status_viewer.py
 python3 scripts/validate_governance_repo.py
 python3 -m unittest discover -s tests
