@@ -68,6 +68,7 @@ nav:
           - How To Use This Repo: operations/guides/how-to-use-this-repo.md
           - Beginner Guide: operations/guides/beginner-step-by-step-operations-guide.md
           - Local Validation Toolchain: operations/guides/local-validation-toolchain.md
+          - Evidence And Governance Hardening: operations/guides/evidence-and-governance-hardening-guide.md
           - How To Add A New Artifact: operations/guides/how-to-add-a-new-artifact.md
           - Updating Baseline Input Documents: operations/guides/how-to-update-baseline-input-documents.md
           - MkDocs And GitHub Pages Step By Step: operations/guides/mkdocs-and-github-pages-step-by-step.md
