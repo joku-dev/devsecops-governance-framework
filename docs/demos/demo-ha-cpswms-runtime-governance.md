@@ -20,7 +20,7 @@ Use this document when the demo audience wants to go deeper into the architectur
 | Solution baseline | `ha-CPsWMS-demo-baseline` |
 | Latest mainline run | `29415015294` |
 | Latest mainline commit | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` |
-| Generated | `2026-07-15T12:23:26Z` |
+| Generated | `2026-07-15T17:06:39Z` |
 | Current result | `PASS`, `4/4 gates`, `0 findings` |
 
 Interpretation:
@@ -339,6 +339,7 @@ http://localhost:8000/status-viewer.html
 
 Show:
 
+- Governance Graph, filtered by `ha-CPsWMS`
 - Latest Architecture Results
 - Runtime Governance
 - Runtime Governance Artifacts
@@ -353,11 +354,11 @@ Expected current viewer values:
 | Baseline | `architecture-baseline-l1-v0.1.0` |
 | Last Mainline Run | `29415015294` |
 | Summary | `4/4 gates pass`, `0 findings` |
-| Evidence Trust | `unverified` for the historical pre-Trust snapshot |
+| Evidence Trust | `integrity_verified` after central re-verification |
 
 The Trust value is a separate evidence-quality signal. It does not weaken or
-upgrade the architecture governance `PASS` result and will advance only after a
-new centrally verified intake snapshot is recorded.
+upgrade the architecture governance `PASS` result and changes only when a new
+centrally assessed intake snapshot is recorded.
 
 ## What Would Produce Findings
 
