@@ -12,6 +12,7 @@ description: Review release impact, released baseline integrity, checksums, reus
 3. Classify impact as no release, release candidate, patch, minor, or major.
 4. Verify release metadata, checksums, release docs, and workflow refs move together.
 5. Reject silent mutation of existing released baselines.
+6. Compare packaged files with the release manifest and checksum records; treat any mismatch in an existing release as a blocking release-integrity finding.
 
 ## Validation
 
