@@ -33,7 +33,7 @@ architecture_index = load_script("generate_architecture_results_index")
 viewer = load_script("generate_status_viewer")
 
 
-def trust_record(*, repository="owner/repo", commit="abc123", run="42", attempt=1, artifact="evidence", digest="a" * 64):
+def trust_record(*, repository="owner/repo", commit="abc123", run="42", attempt=1, artifact="evidence", digest="a" * 64, artifact_digest=None):
     return {
         "model_id": "evidence-trust-model-v1",
         "capture_phase": "additive_capture",
@@ -52,6 +52,7 @@ def trust_record(*, repository="owner/repo", commit="abc123", run="42", attempt=
                 "run_id": run,
                 "run_attempt": attempt,
                 "artifact_name": artifact,
+                **({"artifact_digest": artifact_digest} if artifact_digest else {}),
             },
             "subjects": [{"id": "report", "digest": digest}],
         },
@@ -134,6 +135,26 @@ class ResultLedgerTests(unittest.TestCase):
         self.assertEqual(replay_check(conflicting_context)["result"], "fail")
         self.assertEqual(replay_check(incompatible)["result"], "fail")
         self.assertEqual(incompatible["effective_level"], "integrity_verified")
+
+    def test_deterministic_report_reuse_is_safe_when_artifact_digest_changes(self):
+        current = trust_record(
+            commit="new-commit",
+            run="43",
+            artifact_digest="b" * 64,
+            digest="a" * 64,
+            artifact="devsecops-pipeline-evidence",
+        )
+        prior = trust_record(
+            artifact_digest="c" * 64,
+            digest="a" * 64,
+            artifact="devsecops-pipeline-evidence",
+        )
+        current["capture"]["subjects"][0]["id"] = "control_evaluation_report"
+        prior["capture"]["subjects"][0]["id"] = "control_evaluation_report"
+        assessed = apply_replay_assessment(current, [{"trust": prior}])
+        replay = next(check for check in assessed["checks"] if check["id"] == "replay_key_unique")
+        self.assertEqual(replay["result"], "pass")
+        self.assertIn("same repository", replay["reason"])
 
     def test_result_indexes_keep_payload_and_source_path_paired(self):
         for module, domain in (
