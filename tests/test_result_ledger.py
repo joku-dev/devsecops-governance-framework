@@ -15,6 +15,7 @@ from lib.result_ledger import (  # noqa: E402
     AppendOnlyConflictError,
     apply_replay_assessment,
     write_collection_attempt_append_only,
+    write_intake_event_append_only,
     write_snapshot_append_only,
 )
 
@@ -232,6 +233,36 @@ class ResultLedgerTests(unittest.TestCase):
             second = write_collection_attempt_append_only(path, payload, conflict_root=root / "conflicts")
             self.assertEqual(first, second)
             self.assertEqual(json.loads(path.read_text(encoding="utf-8")), payload)
+
+    def test_intake_event_is_append_only_and_idempotent(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            root = Path(tempdir)
+            payload = {
+                "event_id": "a" * 64,
+                "completed_at": "2026-07-17T12:00:03Z",
+                "status": "success",
+            }
+            path = root / "events" / "event.json"
+            first = write_intake_event_append_only(path, payload, conflict_root=root / "conflicts")
+            second = write_intake_event_append_only(path, payload, conflict_root=root / "conflicts")
+            self.assertEqual(first, second)
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), payload)
+
+    def test_changed_intake_event_is_quarantined(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            root = Path(tempdir)
+            path = root / "status" / "intake-events" / "owner__repo" / "event.json"
+            original = {
+                "event_id": "a" * 64,
+                "completed_at": "2026-07-17T12:00:03Z",
+                "status": "success",
+            }
+            changed = {**original, "status": "failed"}
+            write_intake_event_append_only(path, original, conflict_root=root / "conflicts")
+            result = write_intake_event_append_only(path, changed, conflict_root=root / "conflicts")
+            self.assertEqual(result, path)
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), original)
+            self.assertEqual(len(list((root / "conflicts").glob("*.json"))), 1)
 
     def test_collection_attempt_example_validates(self):
         schema = json.loads((ROOT / "schemas" / "evidence-collection-attempt.schema.json").read_text(encoding="utf-8"))

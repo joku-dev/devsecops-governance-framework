@@ -257,7 +257,27 @@ Relevante Viewer-Bereiche sind:
 - Collection Attempts
 - Evidence Agent Provenance
 
-## 8. End-to-End-Betrieb
+## 8. Intake Operation Telemetry
+
+Jeder zentrale DevSecOps-, Architecture- und Typed-Evidence-Intake erfasst nun
+ein append-only, report-only Betriebsereignis – auch bei Erfolg. Dadurch steht
+erstmals ein korrekter Nenner für spätere Erfolgs-, Fehler- und Latenzmetriken
+zur Verfügung.
+
+Implementierung:
+
+- Schema: `schemas/intake-operation-event.schema.json`
+- Beispiel: `docs/examples/intake-operation-event.example.json`
+- Recorder: `scripts/record_intake_event.py`
+- Speicherung: `status/intake-events/`
+- Dokumentation: `docs/operations/evidence/intake-operation-telemetry.md`
+
+Die Telemetrie ersetzt keine Collection Attempts. Bei einem Fehler werden beide
+Records erzeugt: der Collection Attempt für Retry und Lifecycle, das Intake-
+Event für die Betriebsmetrik. Viewer, `latest_result`, Trust-Level und
+Enforcement bleiben in diesem ersten Schritt unverändert.
+
+## 9. End-to-End-Betrieb
 
 ### Deterministische Reports und Replay-Prüfung
 

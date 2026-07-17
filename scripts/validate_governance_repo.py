@@ -119,6 +119,14 @@ def validate_intake_conflicts(errors):
         validate_schema(errors, ROOT / "schemas" / "intake-conflict.schema.json", conflict_path)
 
 
+def validate_intake_events(errors):
+    events_root = ROOT / "status" / "intake-events"
+    if not events_root.exists():
+        return
+    for event_path in sorted(events_root.rglob("*.json")):
+        validate_schema(errors, ROOT / "schemas" / "intake-operation-event.schema.json", event_path)
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -421,6 +429,11 @@ def main() -> int:
     )
     validate_schema(
         errors,
+        ROOT / "schemas" / "intake-operation-event.schema.json",
+        ROOT / "docs" / "examples" / "intake-operation-event.example.json",
+    )
+    validate_schema(
+        errors,
         ROOT / "schemas" / "vulnerability-scan-input.schema.json",
         ROOT / "docs" / "examples" / "vulnerability-scan-input.example.json",
     )
@@ -456,6 +469,7 @@ def main() -> int:
         )
     validate_typed_evidence_results(errors)
     validate_intake_conflicts(errors)
+    validate_intake_events(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)

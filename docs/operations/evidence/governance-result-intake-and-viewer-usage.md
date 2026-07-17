@@ -81,6 +81,15 @@ be retrieved, the attempt is still recorded with the requested repository and
 run identity plus a `source_metadata_unavailable` error so that authentication
 and availability failures do not become invisible.
 
+Every central DevSecOps, architecture, and typed-evidence intake execution also
+creates an append-only operation event under `status/intake-events/`. Unlike a
+Collection Attempt, this telemetry includes successful execution and records
+the central workflow run attempt plus measured collection duration. It supplies
+the denominator for a later report-only Intake Health projection. Telemetry
+does not change the collected result, Evidence Trust, or latest-state
+selection. The complete contract and operating guidance are documented in
+`docs/operations/evidence/intake-operation-telemetry.md`.
+
 ### Controlled Retry And Backfill
 
 Retry remains an explicit operator decision. Start the `Retry Collection

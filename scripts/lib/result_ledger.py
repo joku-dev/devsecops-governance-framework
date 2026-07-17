@@ -292,3 +292,45 @@ def write_collection_attempt_append_only(
         payload,
         conflict_root=conflict_root,
     )
+
+
+def write_intake_event_append_only(
+    path: Path,
+    payload: dict,
+    *,
+    conflict_root: Path,
+) -> Path:
+    """Persist one intake operation event without overwriting prior telemetry."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    event_id = payload.get("event_id")
+    for existing_path in sorted(path.parent.glob("*.json")):
+        try:
+            existing = json.loads(existing_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if existing.get("event_id") != event_id:
+            continue
+        if canonical_digest(existing) == canonical_digest(payload):
+            return existing_path
+        conflict_path = conflict_root / f"{path.stem}-conflict-{canonical_digest(payload)[:12]}.json"
+        if not conflict_path.exists():
+            _write_exclusive(conflict_path, {
+                "schema_version": "1.0.0",
+                "conflict_type": "append_only_snapshot_conflict",
+                "enforcement": "report_only",
+                "detected_at": payload.get("completed_at", "unknown"),
+                "target_path": _portable_status_path(existing_path),
+                "existing_payload_sha256": canonical_digest(existing),
+                "incoming_payload_sha256": canonical_digest(payload),
+                "existing_evidence_identity": {"event_id": event_id},
+                "incoming_evidence_identity": {"event_id": event_id},
+            })
+        return existing_path
+    if not path.exists():
+        _write_exclusive(path, payload)
+        return path
+    return write_intake_event_append_only(
+        path.with_name(f"{path.stem}-retry{path.suffix}"),
+        payload,
+        conflict_root=conflict_root,
+    )
