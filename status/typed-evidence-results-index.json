@@ -1,16 +1,16 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T17:54:02Z",
+  "generated_at": "2026-07-17T18:08:55Z",
   "summary": {
     "repository_count": 1,
-    "result_count": 2,
+    "result_count": 3,
     "mainline_results": 2,
     "branch_results": 0,
-    "manual_results": 0,
+    "manual_results": 1,
     "freshness_failures": 1,
     "replay_failures": 0,
     "trust_level_counts": {
-      "integrity_verified": 2
+      "integrity_verified": 3
     }
   },
   "repositories": [
@@ -128,6 +128,43 @@
             }
           },
           "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-51-04Z-run-29434075358-vulnerability-scan.json"
+        },
+        {
+          "generated_at": "2026-07-17T18:06:29Z",
+          "evidence_type": "vulnerability_scan",
+          "pipeline_run_id": "29602535363",
+          "pipeline_event": "workflow_dispatch",
+          "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29602535363",
+          "branch": "main",
+          "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d",
+          "collector_status": "collected",
+          "enforcement": "report_only",
+          "scanner": {
+            "name": "trivy",
+            "version": "v0.70.0"
+          },
+          "finding_count": 0,
+          "max_severity": "none",
+          "severity_consistent": true,
+          "subject_binding": {
+            "mode": "co_collected",
+            "scanner_attested": false
+          },
+          "freshness": "pass",
+          "content_integrity": "pass",
+          "replay": "pass",
+          "trust": {
+            "effective_level": "integrity_verified",
+            "assessment_status": "evaluated",
+            "verified_at": "2026-07-17T18:08:37Z",
+            "replay": "pass",
+            "check_summary": {
+              "pass": 7,
+              "fail": 0,
+              "not_evaluated": 5
+            }
+          },
+          "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-06-29Z-run-29602535363-vulnerability-scan.json"
         }
       ]
     }
