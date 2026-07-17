@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Agent Provenance",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "provenance_id",
+    "enforcement",
+    "recorded_at",
+    "evidence",
+    "agent",
+    "involvement",
+    "dispatch"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "record_type": { "const": "evidence-agent-provenance" },
+    "provenance_id": { "type": "string", "minLength": 1 },
+    "enforcement": { "const": "report_only" },
+    "recorded_at": { "type": "string", "format": "date-time" },
+    "evidence": {
+      "type": "object",
+      "required": ["repository_id", "evidence_type", "subject_id", "subject_digest"],
+      "properties": {
+        "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "evidence_type": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "subject_id": { "type": "string", "minLength": 1 },
+        "subject_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "source_file": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "agent": {
+      "type": "object",
+      "required": ["id", "role_version"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "role_version": { "type": "string", "minLength": 1 },
+        "skill": { "type": "string", "minLength": 1 },
+        "provider": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "involvement": { "enum": ["selected", "executed", "reviewed", "approved"] },
+    "dispatch": {
+      "type": "object",
+      "required": ["id", "run_type", "source"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "run_type": { "enum": ["dispatch", "provider_review", "manual"] },
+        "source": { "type": "string", "minLength": 1 },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}
