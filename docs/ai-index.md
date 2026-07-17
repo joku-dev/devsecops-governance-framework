@@ -180,12 +180,17 @@ python3 -m unittest discover -s tests
 | Typed evidence result index | `status/typed-evidence-results-index.json` |
 | Typed evidence result history | `status/typed-evidence-results/` |
 | Typed evidence intake | `scripts/intake_evidence_trust_github_actions_run.py` |
+| Governance graph schema | `schemas/governance-graph.schema.json` |
+| Governance graph generator | `scripts/generate_governance_graph.py` |
+| Governance graph output | `generated/graph/governance-graph.json` |
+| Governance graph guide | `docs/operations/status/governance-intelligence-graph-viewer.md` |
 | Agent usage snapshot | `docs/operations/agents/agent-usage-snapshot-latest.md` |
 | Agent usage summary | `generated/agent-usage/agent-usage-summary.json` |
 
 Regenerate viewer:
 
 ```bash
+python3 scripts/generate_governance_graph.py
 python3 scripts/generate_status_viewer.py
 ```
 

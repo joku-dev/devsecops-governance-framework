@@ -83,6 +83,7 @@ It is intended for:
 - Source document intake process: `docs/operations/processes/source-document-intake-process.md`
 - Source document intake review operating model: `docs/operations/processes/source-document-intake-review-operating-model.md`
 - Current governance platform state: `docs/operations/status/current-governance-platform-state.md`
+- Governance Intelligence Graph Viewer: `docs/operations/status/governance-intelligence-graph-viewer.md`
 - How to read control evaluation status: `docs/operations/evidence/how-to-read-control-evaluation-status.md`
 - Governance result intake and viewer usage: `docs/operations/evidence/governance-result-intake-and-viewer-usage.md`
 - Bitbucket and Bamboo governance adapter: `docs/operations/adapters/bitbucket-bamboo-governance-adapter.md`

@@ -78,6 +78,39 @@ def validate_typed_evidence_results(errors):
             )
 
 
+def validate_governance_graph(errors):
+    command = [sys.executable, str(ROOT / "scripts" / "generate_governance_graph.py")]
+    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        errors.append(f"Governance graph generation failed: {result.stderr.strip() or result.stdout.strip()}")
+        return
+    graph_path = ROOT / "generated" / "graph" / "governance-graph.json"
+    if not graph_path.exists():
+        errors.append("Governance graph was not generated")
+        return
+    validate_schema(errors, ROOT / "schemas" / "governance-graph.schema.json", graph_path)
+    graph = load_json(graph_path)
+    nodes = graph.get("nodes", [])
+    edges = graph.get("edges", [])
+    node_ids = [node.get("id") for node in nodes]
+    if len(node_ids) != len(set(node_ids)):
+        errors.append("Governance graph contains duplicate node IDs")
+    edge_ids = [edge.get("id") for edge in edges]
+    if len(edge_ids) != len(set(edge_ids)):
+        errors.append("Governance graph contains duplicate edge IDs")
+    known_nodes = set(node_ids)
+    dangling = [
+        edge.get("id", "unknown")
+        for edge in edges
+        if edge.get("source") not in known_nodes or edge.get("target") not in known_nodes
+    ]
+    if dangling:
+        errors.append(f"Governance graph contains dangling edges: {dangling[:5]}")
+    summary = graph.get("summary", {})
+    if summary.get("node_count") != len(nodes) or summary.get("edge_count") != len(edges):
+        errors.append("Governance graph summary counts do not match graph contents")
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -488,6 +521,7 @@ def main() -> int:
     validate_source_document_intake_review_briefs(errors, source_document_register)
     validate_source_document_intake_status(errors, source_document_register)
     source_lineage_report = validate_source_lineage_report(errors) or {}
+    validate_governance_graph(errors)
     validate_source_document_register(errors, source_document_register, source_lineage_report)
     validate_governance_change_impact_report(errors)
     validate_architecture_source_replacement_assessment(errors)
