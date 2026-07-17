@@ -26,7 +26,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: downstream-architecture-result-intake
+  group: downstream-architecture-result-intake-${{ github.event.client_payload.repository_id || inputs.repository_id }}-${{ github.event.client_payload.run_id || inputs.run_id }}
   cancel-in-progress: false
 
 jobs:
