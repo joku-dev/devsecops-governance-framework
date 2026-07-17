@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Intelligence Graph",
+  "type": "object",
+  "required": ["schema_version", "graph_id", "generated_at", "source_inputs", "summary", "nodes", "edges"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "graph_id": { "const": "governance-intelligence-graph" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "source_inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "summary": {
+      "type": "object",
+      "required": ["node_count", "edge_count", "node_types", "edge_types"],
+      "properties": {
+        "node_count": { "type": "integer", "minimum": 0 },
+        "edge_count": { "type": "integer", "minimum": 0 },
+        "node_types": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "edge_types": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "additionalProperties": false
+    },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    }
+  },
+  "$defs": {
+    "node": {
+      "type": "object",
+      "required": ["id", "type", "label", "properties"],
+      "properties": {
+        "id": { "type": "string", "minLength": 3 },
+        "type": {
+          "enum": [
+            "Artifact",
+            "Baseline",
+            "Commit",
+            "EvidenceRecord",
+            "Repository",
+            "ResultSnapshot",
+            "Scanner",
+            "SourceDocument",
+            "TrustAssessment",
+            "WorkflowRun"
+          ]
+        },
+        "label": { "type": "string", "minLength": 1 },
+        "properties": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "type", "source", "target", "properties"],
+      "properties": {
+        "id": { "type": "string", "minLength": 3 },
+        "type": {
+          "enum": [
+            "DERIVES",
+            "EVALUATES_COMMIT",
+            "HAS_EVIDENCE",
+            "HAS_RESULT",
+            "HAS_TRUST_ASSESSMENT",
+            "PRODUCED_BY",
+            "RECORDED_IN",
+            "USES_BASELINE"
+          ]
+        },
+        "source": { "type": "string", "minLength": 3 },
+        "target": { "type": "string", "minLength": 3 },
+        "properties": { "type": "object" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

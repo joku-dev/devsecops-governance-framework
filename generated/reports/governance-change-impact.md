@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-07-15T16:57:28Z`
+Generated: `2026-07-17T16:26:09Z`
 
 ## Inputs
 
@@ -11,7 +11,7 @@ Generated: `2026-07-15T16:57:28Z`
 
 - Registered source documents: `20`
 - Source documents with lineage: `20`
-- Derived artifact links: `327`
+- Derived artifact links: `331`
 
 ## Domain Coverage
 
@@ -127,7 +127,7 @@ Representative artifacts:
 - Owner: `devsecops-owners`
 - Version: `public-placeholder`
 - Domains: `devsecops`
-- Lineage artifacts: `71`
+- Lineage artifacts: `75`
 - Source state: `active_source`
 - Release consideration: `baseline_release_review`
 - Review lanes: `devsecops-review, policy-as-code-review, release-review, schema-review, viewer-status-review`
@@ -158,7 +158,7 @@ Representative artifacts:
 - `docs/operations/evidence/evidence-collector-contract.md`
 - `docs/operations/evidence/evidence-trust-model.md`
 - `docs/operations/evidence/vulnerability-scan-collector-usage.md`
-- `generated/reports/architecture-source-replacement-assessment.json`
+- `docs/operations/status/governance-intelligence-graph-viewer.md`
 
 ### `PRA-STD-SRC-001`
 

@@ -61,8 +61,8 @@ These values are the known-good state after the current end-to-end test.
 
 | Domain | Repository | Status | Baseline | Last mainline run | Commit | Generated |
 |---|---|---|---|---|---|---|
-| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `29415015878` | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` | `2026-07-15T12:33:25Z` |
-| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `29415015294` | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` | `2026-07-15T12:23:26Z` |
+| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `29415015878` | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` | `2026-07-15T17:07:40Z` |
+| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `29415015294` | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` | `2026-07-15T17:06:39Z` |
 
 Expected summaries:
 
@@ -530,6 +530,7 @@ The demo proves that:
 4. GitHub Actions can run governance checks on the app repository.
 5. Governance repository intake can collect downstream results.
 6. A viewer can show mainline governance status for both DevSecOps and architecture.
+7. The Governance Graph can explain how repositories, runs, commits, baselines, evidence, Trust, snapshots, source documents, and derived artifacts relate.
 
 ## What The Demo Does Not Yet Prove
 
@@ -556,6 +557,7 @@ Regenerate it:
 
 ```bash
 cd /workspace/devsecops-governance-framework
+python3 scripts/generate_governance_graph.py
 python3 scripts/generate_status_viewer.py
 ```
 

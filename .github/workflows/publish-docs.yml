@@ -10,6 +10,8 @@ on:
       - "mkdocs.yml"
       - "requirements-docs.txt"
       - "scripts/generate_status_viewer.py"
+      - "scripts/generate_governance_graph.py"
+      - "generated/graph/**"
       - "status/**"
       - ".github/workflows/publish-docs.yml"
   workflow_dispatch:
@@ -52,6 +54,7 @@ jobs:
 
       - name: Generate governance viewer artifacts
         run: |
+          python3 scripts/generate_governance_graph.py
           python3 scripts/generate_status_viewer.py
 
       - name: Build docs site

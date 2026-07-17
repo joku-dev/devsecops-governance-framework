@@ -259,6 +259,243 @@ def build_typed_evidence_trust_section(typed_evidence_index: dict) -> str:
     )
 
 
+def build_governance_graph_section(governance_graph: dict) -> str:
+    if not governance_graph.get("nodes"):
+        return ""
+    summary = governance_graph.get("summary", {})
+    node_types = summary.get("node_types", {})
+    cards = [
+        ("Graph Nodes", summary.get("node_count", 0), "Versioned governance entities"),
+        ("Relationships", summary.get("edge_count", 0), "Deterministic directed edges"),
+        ("Source Documents", node_types.get("SourceDocument", 0), "Source-to-artifact lineage"),
+        ("Repositories", node_types.get("Repository", 0), "Current operational projections"),
+    ]
+    card_html = "".join(
+        "<section class=\"card\">"
+        f"<h3>{escape(str(title))}</h3>"
+        f"<div class=\"value\">{escape(str(value))}</div>"
+        f"<p>{escape(str(detail))}</p>"
+        "</section>"
+        for title, value, detail in cards
+    )
+    type_options = "".join(
+        f'<option value="{escape(node_type)}">{escape(node_type)} ({count})</option>'
+        for node_type, count in sorted(node_types.items())
+    )
+    graph_json = json.dumps(governance_graph, separators=(",", ":")).replace("</", "<\\/")
+    return (
+        '<section id="governance-graph" class="viewer-section">'
+        '<div class="section-title"><h2>Governance Intelligence Graph</h2>'
+        '<p>Interactive read-only projection of source lineage, repositories, mainline runs, baselines, evidence, and Trust. Git and versioned JSON remain authoritative.</p></div>'
+        f'<section class="cards">{card_html}</section>'
+        '<section class="panel graph-panel">'
+        '<div class="graph-toolbar">'
+        '<label for="graph-scope-filter">View</label>'
+        '<select id="graph-scope-filter">'
+        '<option value="operational">Operational flow</option>'
+        '<option value="lineage">Source lineage</option>'
+        '<option value="all">All graph data</option>'
+        '</select>'
+        '<label for="graph-type-filter">Node type</label>'
+        f'<select id="graph-type-filter"><option value="all">All types</option>{type_options}</select>'
+        '<label for="graph-search-filter">Search</label>'
+        '<input id="graph-search-filter" type="search" placeholder="ha-CPsWMS, baseline, source document..." />'
+        '<button id="graph-reset" type="button">Reset</button>'
+        '</div>'
+        '<p id="graph-filter-summary" class="filter-summary"></p>'
+        '<div class="graph-workspace">'
+        '<svg id="governance-graph-canvas" viewBox="0 0 1100 620" role="img" aria-label="Interactive governance relationship graph">'
+        '<defs><marker id="graph-arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z"></path></marker></defs>'
+        '<g id="governance-graph-edges"></g><g id="governance-graph-nodes"></g>'
+        '</svg>'
+        '<aside class="graph-details"><h3>Selected node</h3><p>Select a node to inspect its governed properties and relationships.</p><pre id="graph-selection-details">No node selected.</pre></aside>'
+        '</div>'
+        '<div id="graph-legend" class="graph-legend" aria-label="Graph legend"></div>'
+        '</section>'
+        f'<script id="governance-graph-data" type="application/json">{graph_json}</script>'
+        '</section>'
+    )
+
+
+def governance_graph_script() -> str:
+    return r"""
+  <script>
+    (() => {
+      const dataElement = document.getElementById('governance-graph-data');
+      const canvas = document.getElementById('governance-graph-canvas');
+      const edgeLayer = document.getElementById('governance-graph-edges');
+      const nodeLayer = document.getElementById('governance-graph-nodes');
+      const scopeFilter = document.getElementById('graph-scope-filter');
+      const typeFilter = document.getElementById('graph-type-filter');
+      const searchFilter = document.getElementById('graph-search-filter');
+      const resetButton = document.getElementById('graph-reset');
+      const summary = document.getElementById('graph-filter-summary');
+      const details = document.getElementById('graph-selection-details');
+      const legend = document.getElementById('graph-legend');
+      if (!dataElement || !canvas || !edgeLayer || !nodeLayer) return;
+
+      const graph = JSON.parse(dataElement.textContent);
+      const nodeById = new Map(graph.nodes.map(node => [node.id, node]));
+      const colors = {
+        SourceDocument: '#7c3aed', Artifact: '#64748b', Repository: '#0284c7',
+        WorkflowRun: '#0f766e', Baseline: '#d97706', TrustAssessment: '#16a34a',
+        EvidenceRecord: '#db2777', ResultSnapshot: '#475569', Commit: '#2563eb', Scanner: '#9333ea'
+      };
+      const operationalTypes = new Set(['Repository', 'WorkflowRun', 'Baseline', 'TrustAssessment', 'EvidenceRecord', 'ResultSnapshot', 'Commit', 'Scanner']);
+      const lineageTypes = new Set(['SourceDocument', 'Artifact']);
+      const svgNS = 'http://www.w3.org/2000/svg';
+      let selectedId = null;
+
+      const stableNumber = value => {
+        let hash = 2166136261;
+        for (let index = 0; index < value.length; index += 1) {
+          hash ^= value.charCodeAt(index);
+          hash = Math.imul(hash, 16777619);
+        }
+        return hash >>> 0;
+      };
+
+      const labelText = value => value.length > 28 ? `${value.slice(0, 25)}...` : value;
+
+      const filteredGraph = () => {
+        const scope = scopeFilter.value;
+        const selectedType = typeFilter.value;
+        const query = searchFilter.value.trim().toLowerCase();
+        let candidates = graph.nodes.filter(node => {
+          const scopeMatch = scope === 'all' || (scope === 'operational' ? operationalTypes.has(node.type) : lineageTypes.has(node.type));
+          const typeMatch = selectedType === 'all' || node.type === selectedType;
+          return scopeMatch && typeMatch;
+        });
+        if (query) {
+          const matches = new Set(candidates.filter(node => JSON.stringify(node).toLowerCase().includes(query)).map(node => node.id));
+          const neighbors = new Set(matches);
+          for (const edge of graph.edges) {
+            if (matches.has(edge.source)) neighbors.add(edge.target);
+            if (matches.has(edge.target)) neighbors.add(edge.source);
+          }
+          candidates = graph.nodes.filter(node => neighbors.has(node.id));
+        }
+        const truncated = candidates.length > 140;
+        candidates = candidates.slice(0, 140);
+        const ids = new Set(candidates.map(node => node.id));
+        const edges = graph.edges.filter(edge => ids.has(edge.source) && ids.has(edge.target));
+        return {nodes: candidates, edges, truncated};
+      };
+
+      const layout = (nodes, edges) => {
+        const positions = new Map(nodes.map(node => {
+          const seed = stableNumber(node.id);
+          return [node.id, {x: 90 + (seed % 920), y: 70 + ((seed >>> 10) % 480), vx: 0, vy: 0}];
+        }));
+        const edgePairs = edges.map(edge => [positions.get(edge.source), positions.get(edge.target)]).filter(pair => pair[0] && pair[1]);
+        for (let iteration = 0; iteration < 90; iteration += 1) {
+          const cooling = 1 - iteration / 100;
+          for (let left = 0; left < nodes.length; left += 1) {
+            const a = positions.get(nodes[left].id);
+            for (let right = left + 1; right < nodes.length; right += 1) {
+              const b = positions.get(nodes[right].id);
+              let dx = a.x - b.x;
+              let dy = a.y - b.y;
+              const distanceSquared = Math.max(dx * dx + dy * dy, 100);
+              const force = 900 / distanceSquared;
+              const distance = Math.sqrt(distanceSquared);
+              dx /= distance; dy /= distance;
+              a.vx += dx * force; a.vy += dy * force;
+              b.vx -= dx * force; b.vy -= dy * force;
+            }
+          }
+          for (const [a, b] of edgePairs) {
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const distance = Math.max(Math.sqrt(dx * dx + dy * dy), 1);
+            const force = (distance - 115) * 0.0018;
+            a.vx += dx * force; a.vy += dy * force;
+            b.vx -= dx * force; b.vy -= dy * force;
+          }
+          for (const position of positions.values()) {
+            position.vx += (550 - position.x) * 0.0008;
+            position.vy += (310 - position.y) * 0.0008;
+            position.x = Math.max(45, Math.min(1055, position.x + position.vx * cooling));
+            position.y = Math.max(35, Math.min(585, position.y + position.vy * cooling));
+            position.vx *= 0.75; position.vy *= 0.75;
+          }
+        }
+        return positions;
+      };
+
+      const showDetails = node => {
+        const incoming = graph.edges.filter(edge => edge.target === node.id).map(edge => ({type: edge.type, from: nodeById.get(edge.source)?.label || edge.source}));
+        const outgoing = graph.edges.filter(edge => edge.source === node.id).map(edge => ({type: edge.type, to: nodeById.get(edge.target)?.label || edge.target}));
+        details.textContent = JSON.stringify({type: node.type, label: node.label, properties: node.properties, incoming, outgoing}, null, 2);
+      };
+
+      const render = () => {
+        const filtered = filteredGraph();
+        const positions = layout(filtered.nodes, filtered.edges);
+        edgeLayer.replaceChildren();
+        nodeLayer.replaceChildren();
+        const connected = new Set();
+        if (selectedId) {
+          connected.add(selectedId);
+          for (const edge of filtered.edges) {
+            if (edge.source === selectedId) connected.add(edge.target);
+            if (edge.target === selectedId) connected.add(edge.source);
+          }
+        }
+        for (const edge of filtered.edges) {
+          const source = positions.get(edge.source);
+          const target = positions.get(edge.target);
+          if (!source || !target) continue;
+          const line = document.createElementNS(svgNS, 'line');
+          line.setAttribute('x1', source.x); line.setAttribute('y1', source.y);
+          line.setAttribute('x2', target.x); line.setAttribute('y2', target.y);
+          line.setAttribute('class', 'graph-edge');
+          line.setAttribute('marker-end', 'url(#graph-arrow)');
+          if (selectedId && edge.source !== selectedId && edge.target !== selectedId) line.classList.add('graph-muted');
+          edgeLayer.appendChild(line);
+        }
+        for (const node of filtered.nodes) {
+          const position = positions.get(node.id);
+          const group = document.createElementNS(svgNS, 'g');
+          group.setAttribute('class', 'graph-node');
+          group.setAttribute('transform', `translate(${position.x},${position.y})`);
+          group.setAttribute('tabindex', '0');
+          group.setAttribute('role', 'button');
+          group.setAttribute('aria-label', `${node.type}: ${node.label}`);
+          if (selectedId && !connected.has(node.id)) group.classList.add('graph-muted');
+          if (node.id === selectedId) group.classList.add('graph-selected');
+          const circle = document.createElementNS(svgNS, 'circle');
+          circle.setAttribute('r', node.type === 'Repository' || node.type === 'SourceDocument' ? 13 : 9);
+          circle.setAttribute('fill', colors[node.type] || '#64748b');
+          const text = document.createElementNS(svgNS, 'text');
+          text.setAttribute('x', 15); text.setAttribute('y', 4);
+          text.textContent = labelText(node.label);
+          const select = () => { selectedId = node.id; showDetails(node); render(); };
+          group.addEventListener('click', select);
+          group.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') select(); });
+          group.append(circle, text);
+          nodeLayer.appendChild(group);
+        }
+        summary.textContent = `${filtered.nodes.length} nodes and ${filtered.edges.length} relationships shown${filtered.truncated ? ' (limited to 140 nodes; refine the filters)' : ''}`;
+      };
+
+      for (const [type, color] of Object.entries(colors)) {
+        const item = document.createElement('span');
+        item.innerHTML = `<i style="background:${color}"></i>${type}`;
+        legend.appendChild(item);
+      }
+      for (const element of [scopeFilter, typeFilter]) element.addEventListener('change', () => { selectedId = null; render(); });
+      searchFilter.addEventListener('input', () => { selectedId = null; render(); });
+      resetButton.addEventListener('click', () => {
+        scopeFilter.value = 'operational'; typeFilter.value = 'all'; searchFilter.value = '';
+        selectedId = null; details.textContent = 'No node selected.'; render();
+      });
+      render();
+    })();
+  </script>
+"""
+
+
 def build_latest_repository_cards(results_index: dict) -> str:
     cards = []
     for repository in results_index.get("repositories", []):
@@ -1127,6 +1364,12 @@ def main() -> int:
         "summary": {},
         "repositories": [],
     }
+    governance_graph_path = ROOT / "generated" / "graph" / "governance-graph.json"
+    governance_graph = load_json(governance_graph_path) if governance_graph_path.exists() else {
+        "summary": {},
+        "nodes": [],
+        "edges": [],
+    }
     control_report_path = ROOT / "generated" / "control-evaluation-report.json"
     control_report = load_json(control_report_path) if control_report_path.exists() else None
     control_coverage_path = ROOT / "generated" / "reports" / "control-coverage-report.json"
@@ -1325,6 +1568,8 @@ def main() -> int:
         payload["architecture_results_summary"] = architecture_index.get("summary", {})
     if typed_evidence_index.get("repositories"):
         payload["typed_evidence_results_summary"] = typed_evidence_index.get("summary", {})
+    if governance_graph.get("nodes"):
+        payload["governance_graph_summary"] = governance_graph.get("summary", {})
     if agent_usage_summary:
         payload["agent_usage_summary"] = {
             "event_count": agent_usage_summary.get("event_count", 0),
@@ -1471,6 +1716,8 @@ def main() -> int:
         else ""
     )
     typed_evidence_trust_html = build_typed_evidence_trust_section(typed_evidence_index)
+    governance_graph_html = build_governance_graph_section(governance_graph)
+    graph_script = governance_graph_script() if governance_graph_html else ""
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -1557,6 +1804,29 @@ def main() -> int:
     .filters select, .filters input {{ padding: 0.45rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; font: inherit; }}
     .filters input {{ min-width: 240px; }}
     .filter-summary {{ margin: 10px 0 0; color: var(--muted); font-size: 0.9rem; }}
+    .graph-panel {{ overflow: hidden; }}
+    .graph-toolbar {{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; }}
+    .graph-toolbar label {{ font-size: 0.9rem; color: var(--muted); }}
+    .graph-toolbar select, .graph-toolbar input, .graph-toolbar button {{ padding: 0.5rem 0.65rem; border: 1px solid var(--border); border-radius: 7px; background: #fff; color: var(--text); font: inherit; }}
+    .graph-toolbar input {{ min-width: 280px; flex: 1; }}
+    .graph-toolbar button {{ cursor: pointer; color: var(--accent); font-weight: 700; }}
+    .graph-workspace {{ display: grid; grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr); gap: 14px; margin-top: 12px; }}
+    #governance-graph-canvas {{ width: 100%; min-height: 560px; border: 1px solid var(--border); border-radius: 10px; background: radial-gradient(circle at center, #ffffff 0, #f8fafc 72%); }}
+    #graph-arrow path {{ fill: #94a3b8; }}
+    .graph-edge {{ stroke: #94a3b8; stroke-width: 1.2; opacity: 0.55; }}
+    .graph-node {{ cursor: pointer; transition: opacity 0.15s ease; }}
+    .graph-node circle {{ stroke: #fff; stroke-width: 2.5; filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.24)); }}
+    .graph-node text {{ fill: var(--text); font-size: 11px; font-weight: 650; paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }}
+    .graph-node:focus {{ outline: none; }}
+    .graph-node:focus circle, .graph-selected circle {{ stroke: #0f172a; stroke-width: 4; }}
+    .graph-muted {{ opacity: 0.12; }}
+    .graph-details {{ border: 1px solid var(--border); border-radius: 10px; background: #f8fafc; padding: 14px; overflow: hidden; }}
+    .graph-details h3 {{ margin: 0 0 8px; }}
+    .graph-details p {{ color: var(--muted); font-size: 0.9rem; }}
+    .graph-details pre {{ max-height: 500px; overflow: auto; white-space: pre-wrap; word-break: break-word; font-size: 0.78rem; }}
+    .graph-legend {{ display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 12px; color: var(--muted); font-size: 0.82rem; }}
+    .graph-legend span {{ display: inline-flex; align-items: center; gap: 5px; }}
+    .graph-legend i {{ width: 10px; height: 10px; border-radius: 50%; display: inline-block; }}
     .history-filters {{ padding: 10px; background: var(--panel-soft); border: 1px solid var(--border); border-radius: 8px; }}
     .history-compact table {{ font-size: 0.92rem; }}
     .history-compact th, .history-compact td {{ padding: 8px 7px; }}
@@ -1568,6 +1838,7 @@ def main() -> int:
     a:hover {{ text-decoration: underline; }}
     @media (max-width: 980px) {{
       .overview-grid {{ grid-template-columns: 1fr; }}
+      .graph-workspace {{ grid-template-columns: 1fr; }}
     }}
     @media (max-width: 700px) {{
       header {{ padding: 22px 18px; }}
@@ -1588,6 +1859,7 @@ def main() -> int:
   <nav class="section-nav" aria-label="Viewer sections">
     <div class="section-nav-inner">
       <a href="#overview">Overview</a>
+      <a href="#governance-graph">Governance Graph</a>
       <a href="#runtime-governance">Runtime Governance</a>
       <a href="#evidence-trust">Evidence Trust</a>
       <a href="#source-intake">Source Intake</a>
@@ -1614,6 +1886,8 @@ def main() -> int:
         </div>
       </div>
     </section>
+
+    {governance_graph_html}
 
     {runtime_governance_html}
 
@@ -1714,6 +1988,7 @@ def main() -> int:
             <li><a href="../../operations/agents/agent-usage-snapshot-latest/">Latest Agent Usage Snapshot</a></li>
             <li><a href="../../status/architecture-results-index.json">Architecture Results Index JSON</a></li>
             <li><a href="../../status/typed-evidence-results-index.json">Typed Evidence Results Index JSON</a></li>
+            <li><a href="../graph/governance-graph.json">Governance Intelligence Graph JSON</a></li>
             <li><a href="../../operations/status/current-governance-platform-state/">Current Governance Platform State</a></li>
             <li><a href="../../operations/status/ha-cpswms-governance-validation-status/">ha-CPsWMS Validation Status</a></li>
             <li><a href="../../releases/l1-baseline-v1.1.3/">L1 Baseline v1.1.3</a></li>
@@ -1801,6 +2076,7 @@ def main() -> int:
       applyFilters();
     }})();
   </script>
+{graph_script}
 </body>
 </html>
 """

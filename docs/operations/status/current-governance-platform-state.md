@@ -13,13 +13,14 @@ It is intended as a single place where readers can understand:
 
 ## Current High-Level State
 
-The repository now acts as four things at the same time:
+The repository now acts as six things at the same time:
 
 1. a governance source repository
 2. a documentation publishing repository
 3. a released baseline package repository
 4. a central index for normalized downstream governance results
 5. a static status viewer for DevSecOps, architecture and lineage status
+6. a generated governance intelligence graph for relationship exploration
 
 ## What Exists Now
 
@@ -84,6 +85,19 @@ The static viewer is generated at:
 - `generated/viewer/status-viewer.html`
 
 It summarizes the latest known downstream DevSecOps and architecture results and links them back to generated reports and source lineage information.
+
+### Governance Graph Layer
+
+The deterministic, read-only graph projection is generated at:
+
+- `generated/graph/governance-graph.json`
+
+Its contract and generator are:
+
+- `schemas/governance-graph.schema.json`
+- `scripts/generate_governance_graph.py`
+
+The graph is rendered interactively inside the static viewer. It does not replace the source models, indexes, result snapshots, or released baselines and provides no write-back path.
 
 ## What Has Been Proven Operationally
 
@@ -152,8 +166,8 @@ Successful downstream runs are now recorded in the repository as normalized resu
 
 Current examples:
 
-- `status/results/joku-dev__ha-CPsWMS/2026-07-15T12-33-25Z-run-29415015878.json`
-- `status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T12-23-26Z-run-29415015294.json`
+- `status/results/joku-dev__ha-CPsWMS/2026-07-15T17-07-40Z-run-29415015878.json`
+- `status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T17-06-39Z-run-29415015294.json`
 
 And summarized centrally in:
 

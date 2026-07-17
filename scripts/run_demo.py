@@ -115,6 +115,7 @@ def main() -> int:
     ensure_success(["python3", "scripts/generate_document_control_matrix.py"])
     ensure_success(["python3", "scripts/generate_open_gap_report.py"])
     ensure_success(["python3", "scripts/render_governance_documents.py"])
+    ensure_success(["python3", "scripts/generate_governance_graph.py"])
     ensure_success(["python3", "scripts/generate_status_viewer.py"])
 
     scenarios = {

@@ -102,6 +102,7 @@ nav:
       - Agent Usage Snapshot Latest: operations/agents/agent-usage-snapshot-latest.md
       - Status:
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md
+          - Governance Intelligence Graph Viewer: operations/status/governance-intelligence-graph-viewer.md
           - Current Governance Platform State: operations/status/current-governance-platform-state.md
           - ha-CPsWMS Validation Status: operations/status/ha-cpswms-governance-validation-status.md
           - ha-CPsWMS Lessons Learned: operations/status/ha-cpswms-governance-lessons-learned.md
