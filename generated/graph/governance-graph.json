@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-07-17T16:26:09Z",
+  "generated_at": "2026-07-17T17:00:28Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,10 +10,10 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 158,
-    "edge_count": 351,
+    "node_count": 165,
+    "edge_count": 358,
     "node_types": {
-      "Artifact": 116,
+      "Artifact": 123,
       "Baseline": 3,
       "Commit": 2,
       "EvidenceRecord": 1,
@@ -25,7 +25,7 @@
       "WorkflowRun": 4
     },
     "edge_types": {
-      "DERIVES": 331,
+      "DERIVES": 338,
       "EVALUATES_COMMIT": 3,
       "HAS_EVIDENCE": 1,
       "HAS_RESULT": 4,
@@ -222,6 +222,16 @@
       "label": "docs/operations/evidence/evidence-trust-model.md",
       "properties": {
         "path": "docs/operations/evidence/evidence-trust-model.md",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
+      "type": "Artifact",
+      "label": "docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
+      "properties": {
+        "path": "docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
         "artifact_type": "governance_model",
         "exists": true
       }
@@ -967,6 +977,16 @@
       }
     },
     {
+      "id": "artifact:schemas/intake-conflict.schema.json",
+      "type": "Artifact",
+      "label": "schemas/intake-conflict.schema.json",
+      "properties": {
+        "path": "schemas/intake-conflict.schema.json",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
       "id": "artifact:schemas/typed-evidence-result.schema.json",
       "type": "Artifact",
       "label": "schemas/typed-evidence-result.schema.json",
@@ -1067,6 +1087,16 @@
       }
     },
     {
+      "id": "artifact:scripts/intake_ci_artifact_bundle.py",
+      "type": "Artifact",
+      "label": "scripts/intake_ci_artifact_bundle.py",
+      "properties": {
+        "path": "scripts/intake_ci_artifact_bundle.py",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
       "id": "artifact:scripts/intake_evidence_trust_github_actions_run.py",
       "type": "Artifact",
       "label": "scripts/intake_evidence_trust_github_actions_run.py",
@@ -1087,11 +1117,31 @@
       }
     },
     {
+      "id": "artifact:scripts/intake_governance_result.py",
+      "type": "Artifact",
+      "label": "scripts/intake_governance_result.py",
+      "properties": {
+        "path": "scripts/intake_governance_result.py",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
       "id": "artifact:scripts/lib/evidence_trust.py",
       "type": "Artifact",
       "label": "scripts/lib/evidence_trust.py",
       "properties": {
         "path": "scripts/lib/evidence_trust.py",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:scripts/lib/result_ledger.py",
+      "type": "Artifact",
+      "label": "scripts/lib/result_ledger.py",
+      "properties": {
+        "path": "scripts/lib/result_ledger.py",
         "artifact_type": "governance_model",
         "exists": true
       }
@@ -1103,6 +1153,16 @@
       "properties": {
         "path": "status/architecture-results-index.json",
         "artifact_type": "derived_artifact",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:status/intake-conflicts/README.md",
+      "type": "Artifact",
+      "label": "status/intake-conflicts/README.md",
+      "properties": {
+        "path": "status/intake-conflicts/README.md",
+        "artifact_type": "governance_model",
         "exists": true
       }
     },
@@ -1172,6 +1232,16 @@
       "label": "tests/test_governance_graph.py",
       "properties": {
         "path": "tests/test_governance_graph.py",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:tests/test_result_ledger.py",
+      "type": "Artifact",
+      "label": "tests/test_result_ledger.py",
+      "properties": {
+        "path": "tests/test_result_ledger.py",
         "artifact_type": "governance_model",
         "exists": true
       }
@@ -3652,6 +3722,15 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/operations/evidence/vulnerability-scan-collector-usage.md",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
@@ -4066,6 +4145,15 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:schemas/intake-conflict.schema.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:schemas/intake-conflict.schema.json",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:schemas/typed-evidence-result.schema.json",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
@@ -4156,6 +4244,15 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:scripts/intake_ci_artifact_bundle.py",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:scripts/intake_ci_artifact_bundle.py",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:scripts/intake_evidence_trust_github_actions_run.py",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
@@ -4174,10 +4271,37 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:scripts/intake_governance_result.py",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:scripts/intake_governance_result.py",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:scripts/lib/evidence_trust.py",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
       "target": "artifact:scripts/lib/evidence_trust.py",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:scripts/lib/result_ledger.py",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:scripts/lib/result_ledger.py",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:status/intake-conflicts/README.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:status/intake-conflicts/README.md",
       "properties": {
         "role": "DSCB-STD-001"
       }
@@ -4232,6 +4356,15 @@
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
       "target": "artifact:tests/test_governance_graph.py",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:tests/test_result_ledger.py",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:tests/test_result_ledger.py",
       "properties": {
         "role": "DSCB-STD-001"
       }

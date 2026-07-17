@@ -82,6 +82,7 @@
         },
         "assessment_status": { "enum": ["not_available", "not_evaluated", "evaluated"] },
         "verified_at": { "type": ["string", "null"] },
+        "replay": { "enum": ["pass", "fail", "not_evaluated"] },
         "check_summary": {
           "type": "object",
           "required": ["pass", "fail", "not_evaluated"],

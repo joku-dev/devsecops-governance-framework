@@ -26,11 +26,18 @@ from lib.evidence_trust import (
     load_freshness_policy,
     verify_trust_capture,
 )
-from lib.json_io import load_json, write_json
+from lib.json_io import load_json
+from lib.result_ledger import apply_replay_assessment, load_snapshot_payloads, write_snapshot_append_only
 
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_RESULTS = ROOT / "status" / "results"
+INTAKE_CONFLICTS = ROOT / "status" / "intake-conflicts" / "devsecops"
+TRUST_RESULT_ROOTS = (
+    ROOT / "status" / "results",
+    ROOT / "status" / "architecture-results",
+    ROOT / "status" / "typed-evidence-results",
+)
 DEFAULT_API_URL = "https://api.github.com"
 FRESHNESS_POLICY_PATH = ROOT / "model" / "evidence" / "evidence-freshness-policies.yaml"
 
@@ -262,7 +269,7 @@ def write_snapshot(
 
     repo_dir = STATUS_RESULTS / slugify_repository(repository_id)
     output_path = repo_dir / f"{sanitize_timestamp(generated_at)}-run-{run.get('id')}.json"
-    write_json(output_path, payload)
+    write_snapshot_append_only(output_path, payload, conflict_root=INTAKE_CONFLICTS)
     return output_path
 
 
@@ -369,6 +376,7 @@ def main() -> int:
             freshness_policy=freshness_policy,
             produced_at=run.get("updated_at") or run.get("created_at"),
         )
+        trust = apply_replay_assessment(trust, load_snapshot_payloads(TRUST_RESULT_ROOTS))
 
     baseline_ref = args.governance_baseline_ref or infer_baseline_ref(run)
     protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T17:07:12Z",
+  "generated_at": "2026-07-17T16:45:02Z",
   "summary": {
     "repository_count": 1,
     "result_count": 10,
@@ -39,6 +39,7 @@
           "effective_level": "integrity_verified",
           "assessment_status": "evaluated",
           "verified_at": "2026-07-15T17:06:55Z",
+          "replay": "not_evaluated",
           "check_summary": {
             "pass": 6,
             "fail": 0,
@@ -66,6 +67,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -93,6 +95,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -120,6 +123,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -147,6 +151,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -174,6 +179,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -201,6 +207,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -228,6 +235,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -255,6 +263,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -282,6 +291,7 @@
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": null,
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 0,
               "fail": 0,
@@ -309,6 +319,7 @@
             "effective_level": "integrity_verified",
             "assessment_status": "evaluated",
             "verified_at": "2026-07-15T17:06:55Z",
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 6,
               "fail": 0,
