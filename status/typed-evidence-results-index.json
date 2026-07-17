@@ -1,16 +1,16 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T18:08:55Z",
+  "generated_at": "2026-07-17T18:18:34Z",
   "summary": {
     "repository_count": 1,
-    "result_count": 3,
-    "mainline_results": 2,
+    "result_count": 4,
+    "mainline_results": 3,
     "branch_results": 0,
     "manual_results": 1,
     "freshness_failures": 1,
     "replay_failures": 0,
     "trust_level_counts": {
-      "integrity_verified": 3
+      "integrity_verified": 4
     }
   },
   "repositories": [
@@ -18,13 +18,13 @@
       "repository_id": "joku-dev/governance-framework-demo-consumer",
       "results_path": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/",
       "latest_result": {
-        "generated_at": "2026-07-15T16:51:04Z",
+        "generated_at": "2026-07-17T18:16:57Z",
         "evidence_type": "vulnerability_scan",
-        "pipeline_run_id": "29434075358",
+        "pipeline_run_id": "29603210148",
         "pipeline_event": "push",
-        "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29434075358",
+        "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29603210148",
         "branch": "main",
-        "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d",
+        "commit_id": "7eae4298bc6f84b3920847e16eb38d1a72194a06",
         "collector_status": "collected",
         "enforcement": "report_only",
         "scanner": {
@@ -38,21 +38,21 @@
           "mode": "co_collected",
           "scanner_attested": false
         },
-        "freshness": "fail",
+        "freshness": "pass",
         "content_integrity": "pass",
         "replay": "pass",
         "trust": {
           "effective_level": "integrity_verified",
           "assessment_status": "evaluated",
-          "verified_at": "2026-07-17T17:53:44Z",
+          "verified_at": "2026-07-17T18:18:15Z",
           "replay": "pass",
           "check_summary": {
-            "pass": 6,
-            "fail": 1,
+            "pass": 7,
+            "fail": 0,
             "not_evaluated": 5
           }
         },
-        "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-51-04Z-run-29434075358-vulnerability-scan.json"
+        "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-57Z-run-29603210148-vulnerability-scan.json"
       },
       "history": [
         {
@@ -165,6 +165,43 @@
             }
           },
           "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-06-29Z-run-29602535363-vulnerability-scan.json"
+        },
+        {
+          "generated_at": "2026-07-17T18:16:57Z",
+          "evidence_type": "vulnerability_scan",
+          "pipeline_run_id": "29603210148",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29603210148",
+          "branch": "main",
+          "commit_id": "7eae4298bc6f84b3920847e16eb38d1a72194a06",
+          "collector_status": "collected",
+          "enforcement": "report_only",
+          "scanner": {
+            "name": "trivy",
+            "version": "v0.70.0"
+          },
+          "finding_count": 0,
+          "max_severity": "none",
+          "severity_consistent": true,
+          "subject_binding": {
+            "mode": "co_collected",
+            "scanner_attested": false
+          },
+          "freshness": "pass",
+          "content_integrity": "pass",
+          "replay": "pass",
+          "trust": {
+            "effective_level": "integrity_verified",
+            "assessment_status": "evaluated",
+            "verified_at": "2026-07-17T18:18:15Z",
+            "replay": "pass",
+            "check_summary": {
+              "pass": 7,
+              "fail": 0,
+              "not_evaluated": 5
+            }
+          },
+          "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-57Z-run-29603210148-vulnerability-scan.json"
         }
       ]
     }
