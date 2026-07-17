@@ -312,13 +312,17 @@ Verantwortlich:
 Der Workflow installiert technische Laufzeitabhängigkeiten:
 
 ```bash
-python -m pip install --upgrade jsonschema pyyaml
+python -m pip install -r governance/requirements-validation.txt
 ```
 
 Zusätzlich wird OPA installiert:
 
 ```bash
-curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+opa_version="1.18.2"
+opa_sha256="9903e5125ac281104f2c4b7371d10cc3b74a98933743fcbfc174f9bf0ab20de8"
+curl --fail --location --silent --show-error \
+  -o opa "https://github.com/open-policy-agent/opa/releases/download/v${opa_version}/opa_linux_amd64_static"
+echo "${opa_sha256}  opa" | sha256sum --check --status
 chmod +x opa
 sudo mv opa /usr/local/bin/opa
 opa version
