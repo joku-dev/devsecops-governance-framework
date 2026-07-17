@@ -545,6 +545,17 @@ def main() -> int:
     validate_governance_change_impact_report(errors)
     validate_architecture_source_replacement_assessment(errors)
     validate_app_architecture_evidence_templates(errors)
+    provenance_validation = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate_evidence_agent_provenance.py")],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if provenance_validation.returncode != 0:
+        errors.append(
+            "Evidence agent provenance validation failed: "
+            + (provenance_validation.stderr.strip() or provenance_validation.stdout.strip())
+        )
 
     for mapping in traceability.get("mappings", []):
         control_id = mapping["control"]
