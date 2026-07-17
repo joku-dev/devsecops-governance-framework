@@ -14,7 +14,8 @@ This establishes a credible L1 minimum operational state for Governance as Code.
 
 The current `main` line is green and includes the governance intelligence graph,
 append-only evidence intake protection, persisted failed collection attempts,
-explicit agent-to-evidence provenance, and a pinned validation toolchain.
+controlled manual retry and lifecycle projection for those attempts, explicit
+agent-to-evidence provenance, and a pinned validation toolchain.
 
 The current demo consumer `joku-dev/governance-framework-demo-consumer` is also
 clean on `main` at commit `60ff24cd94a010feb468aab9a48ac8ead4bf96ad`. Its CI,
@@ -53,11 +54,17 @@ The successful integration with `ha-CPsWMS` demonstrates that:
 
 The central viewer now also provides separate report-only views for typed
 Evidence Trust, the governance relationship graph, intake conflicts, failed or
-partial collection attempts, and explicit agent participation in Evidence
-reviews.
+partial collection attempts, their derived `open`, `resolved`, or `permanent`
+lifecycle, and explicit agent participation in Evidence reviews.
 
 These views are projections of versioned JSON and do not replace the underlying
 Evidence source, digest, custody, or attestation data.
+
+Operators can retry an attempt only through the explicit `Retry Collection
+Attempt` workflow and only when every recorded error is retryable. The original
+append-only failure remains available for audit. A matching successful snapshot
+resolves the operational collection failure without implying that the collected
+governance outcome passed or changing the official `latest_result`.
 
 For the consumer demo, the latest successful workflows use released baseline
 references `l1-baseline-v1.1.3` and `architecture-baseline-l1-v0.1.0`. The
@@ -104,13 +111,15 @@ The following items are still open:
   are recorded in history while the latest `push` remains the mainline pointer
 - successful workflow completion currently coexists with report-only governance
   findings; this is expected while the consumer remains in report-only mode
+- collection retries are deliberately manual; automated retry policies, retry
+  budgets, and alert thresholds are not yet enabled
 
 ## Recommended Next Priorities
 
 1. Replace placeholder vulnerability evidence with a real scanner and complete
    the attestation/subject-binding pilot.
-2. Use the collector-attempt and provenance records in regular operational
-   review and audit preparation.
+2. Use Collection Attempt lifecycle, controlled retry, and provenance records
+   in regular operational review and audit preparation.
 3. Validate and operationalize branch-protection-based controls for L2.
 4. Introduce artifact signing, trust roots, and related release controls for L3.
 5. Onboard additional repositories using the same integration pattern.

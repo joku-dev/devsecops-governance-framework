@@ -64,6 +64,33 @@ report-only collection attempt when a GitHub Actions artifact cannot be
 downloaded or validated. It does not create a governance snapshot from that
 failed attempt.
 
+DevSecOps, architecture, and typed-evidence intake all persist failed attempts
+before reporting the workflow failure. If authoritative GitHub run metadata is
+unavailable, the recorder preserves the requested repository and run identity
+and adds `source_metadata_unavailable`; the metadata failure therefore remains
+visible instead of preventing the operational record itself.
+
+## Failure Recovery And Lifecycle
+
+Failure recovery is explicit and report-only. The `Retry Collection Attempt`
+workflow accepts the repository-relative path of an append-only attempt,
+validates it against the schema, requires every error to be `retryable`, and
+allows only known collector, evidence-type, and artifact routes. It then
+dispatches the existing DevSecOps, architecture, or typed-evidence intake
+workflow. Automatic retry is intentionally disabled.
+
+The viewer derives lifecycle without rewriting historical attempts:
+
+| Lifecycle | Meaning |
+|---|---|
+| `open` | Every error is retryable, but no matching successful snapshot exists. |
+| `resolved` | A successful snapshot matches repository, downstream run ID, and artifact. |
+| `permanent` | At least one error is not retryable. |
+
+`resolved` means collection succeeded later. It does not assign Evidence Trust,
+does not mean the collected governance outcome passed, and does not change
+latest-result selection.
+
 ## First Collector Profile
 
 The first profile is `github-actions-governance-result`:
