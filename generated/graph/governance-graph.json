@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-07-17T18:27:56Z",
+  "generated_at": "2026-07-17T18:28:00Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,12 +10,12 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 173,
+    "node_count": 172,
     "edge_count": 368,
     "node_types": {
       "Artifact": 123,
       "Baseline": 3,
-      "Commit": 4,
+      "Commit": 3,
       "EvidenceRecord": 1,
       "Repository": 3,
       "ResultSnapshot": 6,
@@ -1312,15 +1312,6 @@
       }
     },
     {
-      "id": "commit:joku-dev/governance-framework-demo-consumer:7eae4298bc6f84b3920847e16eb38d1a72194a06",
-      "type": "Commit",
-      "label": "7eae4298bc6f",
-      "properties": {
-        "repository_id": "joku-dev/governance-framework-demo-consumer",
-        "commit_id": "7eae4298bc6f84b3920847e16eb38d1a72194a06"
-      }
-    },
-    {
       "id": "commit:joku-dev/ha-CPsWMS:716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
       "type": "Commit",
       "label": "716c3cda4fa5",
@@ -1414,17 +1405,17 @@
       }
     },
     {
-      "id": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
+      "id": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
       "type": "WorkflowRun",
-      "label": "devsecops: 29603210148",
+      "label": "devsecops: 29603835297",
       "properties": {
         "domain": "devsecops",
-        "run_id": "29603210148",
+        "run_id": "29603835297",
         "status": "pass",
-        "generated_at": "2026-07-17T18:16:57Z",
+        "generated_at": "2026-07-17T18:27:18Z",
         "event": "push",
         "branch": "main",
-        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29603210148"
+        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29603835297"
       }
     },
     {
@@ -1491,11 +1482,11 @@
       }
     },
     {
-      "id": "snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-57Z-run-29603210148.json",
+      "id": "snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-18Z-run-29603835297.json",
       "type": "ResultSnapshot",
-      "label": "2026-07-17T18-16-57Z-run-29603210148.json",
+      "label": "2026-07-17T18-27-18Z-run-29603835297.json",
       "properties": {
-        "path": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-57Z-run-29603210148.json",
+        "path": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-18Z-run-29603835297.json",
         "domain": "devsecops"
       }
     },
@@ -1851,17 +1842,17 @@
       }
     },
     {
-      "id": "trust:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
+      "id": "trust:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
       "type": "TrustAssessment",
       "label": "integrity_verified",
       "properties": {
         "domain": "devsecops",
         "effective_level": "integrity_verified",
         "assessment_status": "evaluated",
-        "verified_at": "2026-07-17T18:17:21Z",
+        "verified_at": "2026-07-17T18:27:42Z",
         "check_summary": {
-          "pass": 7,
-          "fail": 0,
+          "pass": 6,
+          "fail": 1,
           "not_evaluated": 5
         }
       }
@@ -4964,10 +4955,10 @@
       "properties": {}
     },
     {
-      "id": "EVALUATES_COMMIT:run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z->commit:joku-dev/governance-framework-demo-consumer:7eae4298bc6f84b3920847e16eb38d1a72194a06",
+      "id": "EVALUATES_COMMIT:run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z->commit:joku-dev/governance-framework-demo-consumer:60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
       "type": "EVALUATES_COMMIT",
-      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
-      "target": "commit:joku-dev/governance-framework-demo-consumer:7eae4298bc6f84b3920847e16eb38d1a72194a06",
+      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
+      "target": "commit:joku-dev/governance-framework-demo-consumer:60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
       "properties": {}
     },
     {
@@ -5005,10 +4996,10 @@
       }
     },
     {
-      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
+      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
       "type": "HAS_RESULT",
       "source": "repository:joku-dev/governance-framework-demo-consumer",
-      "target": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
+      "target": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
       "properties": {
         "domain": "devsecops",
         "latest": true
@@ -5073,10 +5064,10 @@
       "properties": {}
     },
     {
-      "id": "HAS_TRUST_ASSESSMENT:run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z->trust:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
+      "id": "HAS_TRUST_ASSESSMENT:run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z->trust:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
       "type": "HAS_TRUST_ASSESSMENT",
-      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
-      "target": "trust:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
+      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
+      "target": "trust:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
       "properties": {}
     },
     {
@@ -5122,10 +5113,10 @@
       "properties": {}
     },
     {
-      "id": "RECORDED_IN:run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z->snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-57Z-run-29603210148.json",
+      "id": "RECORDED_IN:run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z->snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-18Z-run-29603835297.json",
       "type": "RECORDED_IN",
-      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
-      "target": "snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-57Z-run-29603210148.json",
+      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
+      "target": "snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-18Z-run-29603835297.json",
       "properties": {}
     },
     {
@@ -5157,9 +5148,9 @@
       "properties": {}
     },
     {
-      "id": "USES_BASELINE:run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z->baseline:devsecops:l1-baseline-v1.1.3",
+      "id": "USES_BASELINE:run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z->baseline:devsecops:l1-baseline-v1.1.3",
       "type": "USES_BASELINE",
-      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603210148:2026-07-17T18:16:57Z",
+      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:29603835297:2026-07-17T18:27:18Z",
       "target": "baseline:devsecops:l1-baseline-v1.1.3",
       "properties": {}
     },
