@@ -252,6 +252,7 @@ Relevante Viewer-Bereiche sind:
 
 - Governance-Status und historische Runs
 - Typed Evidence Trust
+- Intake Health mit report-only Erfolgs- und Laufzeitmetriken
 - Governance Intelligence Graph
 - Intake Conflict Quarantine
 - Collection Attempts
