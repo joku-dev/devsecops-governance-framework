@@ -390,6 +390,9 @@ def main() -> int:
             captured_at=captured_at,
             subjects=subjects,
         )
+        artifact_digest = selected_artifact.get("digest")
+        if artifact_digest:
+            trust["capture"]["source"]["artifact_digest"] = artifact_digest.removeprefix("sha256:")
         trust = verify_trust_capture(
             trust,
             repository_id=args.repository_id,
