@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-17T18:52:36Z",
+  "summary": {
+    "repository_count": 3,
+    "stale_or_missing_count": 0,
+    "report_only_count": 2,
+    "active_count": 1
+  },
+  "repositories": [
+    {
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "adoption_state": "active",
+      "target_devsecops_baseline": "l1-baseline-v1.1.3",
+      "latest_devsecops": {
+        "status": "pass",
+        "run_id": "29415015878",
+        "age_days": 2.07
+      },
+      "architecture_in_scope": true,
+      "target_architecture_baseline": "architecture-baseline-l1-v0.1.0",
+      "latest_architecture": {
+        "status": "pass",
+        "run_id": "29415015294",
+        "age_days": 2.07
+      },
+      "stale_or_missing": false,
+      "governance_mode": "block-on-error",
+      "next_action": "Maintain accepted mainline evidence"
+    },
+    {
+      "repository_id": "joku-dev/ai-native-engineering-factory",
+      "adoption_state": "pilot",
+      "target_devsecops_baseline": "main@34bdc66",
+      "latest_devsecops": {
+        "status": "pass",
+        "run_id": "28315832162",
+        "age_days": 19.45
+      },
+      "architecture_in_scope": false,
+      "target_architecture_baseline": null,
+      "latest_architecture": null,
+      "stale_or_missing": false,
+      "governance_mode": "report-only",
+      "next_action": "Review report-only findings"
+    },
+    {
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "adoption_state": "pilot",
+      "target_devsecops_baseline": "l1-baseline-v1.1.3",
+      "latest_devsecops": {
+        "status": "pass",
+        "run_id": "29603835297",
+        "age_days": 0.02
+      },
+      "architecture_in_scope": true,
+      "target_architecture_baseline": "architecture-baseline-l1-v0.1.0",
+      "latest_architecture": {
+        "status": "findings",
+        "run_id": "29603835105",
+        "age_days": 0.02
+      },
+      "stale_or_missing": false,
+      "governance_mode": "report-only",
+      "next_action": "Review report-only findings"
+    }
+  ]
+}
