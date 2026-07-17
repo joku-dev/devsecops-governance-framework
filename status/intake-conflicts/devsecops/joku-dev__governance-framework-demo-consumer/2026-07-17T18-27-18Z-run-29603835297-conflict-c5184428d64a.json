@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "conflict_type": "append_only_snapshot_conflict",
+  "enforcement": "report_only",
+  "detected_at": "2026-07-17T18:35:53Z",
+  "target_path": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-18Z-run-29603835297.json",
+  "existing_payload_sha256": "10a74841741fd831e03d36e6fd5ea74e3b64eda3135e7369e787f329370cf1d1",
+  "incoming_payload_sha256": "c5184428d64a89190a2e8981e0c4653975719d4c6d52f155373447f825cb8b3b",
+  "existing_evidence_identity": {
+    "context": {
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+      "workflow_name": "DevSecOps Baseline",
+      "run_id": "29603835297",
+      "run_attempt": 1,
+      "artifact_name": "devsecops-pipeline-evidence"
+    },
+    "subjects": {
+      "control_evaluation_report": "71609438f57ac3908f7fb2862b7441d6c84fecb01f3b5858ecb91162c6847db5"
+    }
+  },
+  "incoming_evidence_identity": {
+    "context": {
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+      "workflow_name": "DevSecOps Baseline",
+      "run_id": "29603835297",
+      "run_attempt": 1,
+      "artifact_name": "devsecops-pipeline-evidence",
+      "artifact_digest": "9d3c2c7e8203474e32890b816fa2e7e3221b641049c0b4735fa1c3493b89edf2"
+    },
+    "subjects": {
+      "control_evaluation_report": "71609438f57ac3908f7fb2862b7441d6c84fecb01f3b5858ecb91162c6847db5"
+    }
+  }
+}
