@@ -53,6 +53,8 @@ jobs:
           version: 1.18.2
 
       - name: Intake downstream architecture run
+        id: intake
+        continue-on-error: true
         env:
           GH_RESULT_INTAKE_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
           GH_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
@@ -70,19 +72,41 @@ jobs:
             --run-id "${RUN_ID}" \
             --architecture-baseline-ref "${ARCHITECTURE_BASELINE_REF}"
 
+      - name: Record failed collection attempt
+        if: steps.intake.outcome == 'failure'
+        env:
+          GH_RESULT_INTAKE_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
+          REPOSITORY_ID: ${{ github.event.client_payload.repository_id || inputs.repository_id }}
+          RUN_ID: ${{ github.event.client_payload.run_id || inputs.run_id }}
+        run: |
+          python3 scripts/record_collection_attempt.py \
+            --repository-id "${REPOSITORY_ID}" \
+            --run-id "${RUN_ID}" \
+            --evidence-type governance_result \
+            --collector-id central-governance-intake \
+            --artifact-name architecture-governance-evidence \
+            --error-code architecture_governance_intake_failed \
+            --message "Architecture governance result intake failed; inspect the workflow log for the detailed cause." \
+            --retryable
+
       - name: Regenerate architecture status index and viewer
+        id: regenerate
+        if: always()
         run: |
           python3 scripts/generate_architecture_results_index.py
           python3 scripts/generate_governance_graph.py
           python3 scripts/generate_status_viewer.py
 
       - name: Validate generated state
+        id: validation
+        if: always()
         run: |
           python3 scripts/validate_runtime_governance.py
           python3 scripts/validate_governance_repo.py
           python3 -m unittest discover -s tests
 
       - name: Commit intake result
+        if: always() && steps.regenerate.outcome == 'success' && steps.validation.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -96,7 +120,7 @@ jobs:
             python3 scripts/generate_governance_graph.py
             python3 scripts/generate_status_viewer.py
 
-            git add status/architecture-results status/intake-conflicts status/architecture-results-index.json generated/graph/governance-graph.json generated/viewer/status-viewer.html
+            git add status/architecture-results status/collection-attempts status/intake-conflicts status/architecture-results-index.json generated/graph/governance-graph.json generated/viewer/status-viewer.html
             if git diff --cached --quiet; then
               echo "No architecture result changes to commit."
               exit 0
@@ -119,3 +143,7 @@ jobs:
 
           echo "Could not push architecture intake result after retries."
           exit 1
+
+      - name: Fail workflow after recording collection attempt
+        if: steps.intake.outcome == 'failure'
+        run: exit 1

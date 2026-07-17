@@ -73,6 +73,14 @@ All commit steps reconcile with the current `main` branch and retry failed
 pushes. Concurrent intake runs therefore converge the shared graph, viewer,
 indexes, and portfolio projection without discarding distinct events.
 
+Failed DevSecOps, architecture, and typed-evidence collection attempts are
+written append-only under `status/collection-attempts/` before the workflow is
+reported as failed. These records are report-only and never replace successful
+evidence or official latest state. If authoritative GitHub run metadata cannot
+be retrieved, the attempt is still recorded with the requested repository and
+run identity plus a `source_metadata_unavailable` error so that authentication
+and availability failures do not become invisible.
+
 ## Typed Evidence Trust Intake
 
 For a GitHub Actions run containing an `application-evidence` artifact, use:

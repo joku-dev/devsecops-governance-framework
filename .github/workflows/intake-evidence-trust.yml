@@ -88,6 +88,7 @@ jobs:
             --retryable
 
       - name: Regenerate typed evidence index and viewer
+        id: regenerate
         if: always()
         run: |
           python3 scripts/generate_typed_evidence_results_index.py
@@ -95,6 +96,7 @@ jobs:
           python3 scripts/generate_status_viewer.py
 
       - name: Validate generated state
+        id: validation
         if: always()
         run: |
           python3 scripts/validate_runtime_governance.py
@@ -102,7 +104,7 @@ jobs:
           python3 -m unittest discover -s tests
 
       - name: Commit intake result
-        if: always()
+        if: always() && steps.regenerate.outcome == 'success' && steps.validation.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
