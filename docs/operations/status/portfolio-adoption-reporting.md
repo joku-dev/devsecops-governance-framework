@@ -124,6 +124,10 @@ The portfolio generator writes `generated/reports/portfolio-onboarding-status.js
 and `.md`. It uses only registry entries and accepted latest index projections;
 it does not approve waivers or change enforcement modes.
 
+The `Refresh Portfolio Onboarding Status` workflow runs this projection daily
+and can also be started manually. It validates the generated state before
+committing a changed portfolio snapshot.
+
 ## Decision Boundaries
 
 Portfolio adoption reporting is evidence for governance decisions. It does not approve waivers, change baselines, or promote a repository to active status by itself.
