@@ -68,6 +68,9 @@ The implementation follows these repository guardrails:
 4. Evidence is evaluated independently from the governance outcome it reports.
 5. Historical result snapshots are append-only; conflicting writes are visible
    and quarantined.
+   A legacy identity that lacks only `artifact_digest` can be matched to an
+   otherwise identical enriched identity without rewriting history; two
+   different present artifact digests remain a conflict.
 6. Generated reports, indexes, graph data, and the viewer are projections. They
    do not become new sources of truth.
 7. Report-only and blocking behavior are explicit configuration choices.

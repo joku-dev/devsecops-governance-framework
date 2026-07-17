@@ -288,6 +288,12 @@ Artefakt-Digest bei gleichem Report-Inhalt wird als kompatible Wiederverwendung
 bewertet; ein wiederverwendeter Artefakt-Digest in einem inkompatiblen Kontext
 bleibt ein report-only Replay-Finding.
 
+Bei älteren Ledger-Snapshots kann der `artifact_digest` noch fehlen. Ergänzt
+eine erneute Verifikation ausschließlich diesen Digest und bleiben Laufkontext
+und Subject-Digests identisch, ist der Intake idempotent und schreibt den alten
+Snapshot nicht um. Sind auf beiden Seiten Artefakt-Digests vorhanden und
+unterschiedlich, entsteht weiterhin ein report-only Intake-Konflikt.
+
 Für eine Änderung oder einen neuen Intake-Lauf:
 
 1. Downstream-Workflow und Artifact prüfen.

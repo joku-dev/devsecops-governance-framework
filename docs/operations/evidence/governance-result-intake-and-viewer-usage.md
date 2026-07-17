@@ -55,6 +55,13 @@ All central intake paths use append-only snapshot writes:
 - the conflicting identity and payload digests are stored under `status/intake-conflicts/`
 - conflict handling remains report-only and does not replace `latest_result`
 
+For legacy compatibility, an existing identity without `artifact_digest` is
+treated as the same evidence when a later verification adds that digest and
+all core run-context fields and subject digests are unchanged. The original
+snapshot remains immutable; the richer retry is an idempotent no-op. If both
+identities contain an artifact digest and those values differ, the write is
+still quarantined as a conflict.
+
 The central verifier also evaluates `replay_key_unique`. The replay identity
 binds repository, commit, workflow, run, run attempt, artifact, and subject
 digests. Digest reuse within the same repository, commit, and artifact context
