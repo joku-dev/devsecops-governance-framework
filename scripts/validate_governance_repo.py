@@ -127,6 +127,12 @@ def validate_intake_events(errors):
         validate_schema(errors, ROOT / "schemas" / "intake-operation-event.schema.json", event_path)
 
 
+def validate_intake_health(errors):
+    projection_path = ROOT / "status" / "intake-health.json"
+    if projection_path.exists():
+        validate_schema(errors, ROOT / "schemas" / "intake-health.schema.json", projection_path)
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -470,6 +476,7 @@ def main() -> int:
     validate_typed_evidence_results(errors)
     validate_intake_conflicts(errors)
     validate_intake_events(errors)
+    validate_intake_health(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)

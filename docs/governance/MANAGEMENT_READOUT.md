@@ -81,6 +81,13 @@ accepts the otherwise identical enriched identity without weakening conflict
 detection when two present artifact digests differ. The historical report-only
 conflict remains available for audit.
 
+Those events now feed a versioned, report-only Intake Health projection. Its
+current 30-day observation contains three successful executions, no partial or
+failed execution, p50 collection duration of 2 seconds, p95 of 3 seconds, no
+Collection Attempts, and two retained append-only conflicts. These figures are
+an operational observation rather than an approved SLO; they do not alter
+Trust, governance outcomes, latest-state selection, or enforcement.
+
 For the consumer demo, the latest successful workflows use released baseline
 references `l1-baseline-v1.1.3` and `architecture-baseline-l1-v0.1.0`. The
 DevSecOps workflow produces the application, pipeline, and governance input

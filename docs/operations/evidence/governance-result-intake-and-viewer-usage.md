@@ -92,10 +92,14 @@ Every central DevSecOps, architecture, and typed-evidence intake execution also
 creates an append-only operation event under `status/intake-events/`. Unlike a
 Collection Attempt, this telemetry includes successful execution and records
 the central workflow run attempt plus measured collection duration. It supplies
-the denominator for a later report-only Intake Health projection. Telemetry
-does not change the collected result, Evidence Trust, or latest-state
-selection. The complete contract and operating guidance are documented in
-`docs/operations/evidence/intake-operation-telemetry.md`.
+the denominator for the report-only Intake Health projection at
+`status/intake-health.json`. The projection is regenerated after every central
+intake and summarizes a 30-day event window, lifecycle counts, conflicts, and
+latest-result age. Telemetry and its projection do not change the collected
+result, Evidence Trust, or latest-state selection. The complete contracts and
+operating guidance are documented in
+`docs/operations/evidence/intake-operation-telemetry.md` and
+`docs/operations/evidence/intake-health-projection.md`.
 
 ### Controlled Retry And Backfill
 
