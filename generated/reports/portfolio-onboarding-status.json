@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T19:03:55Z",
+  "generated_at": "2026-07-17T19:05:36Z",
   "summary": {
     "repository_count": 3,
     "stale_or_missing_count": 0,
@@ -10,6 +10,9 @@
   "repositories": [
     {
       "repository_id": "joku-dev/ha-CPsWMS",
+      "owner": "Repository Owner",
+      "action_owner": "Governance Platform Lead",
+      "business_or_product_area": "HA-CPsWMS application",
       "adoption_state": "active",
       "target_devsecops_baseline": "l1-baseline-v1.1.3",
       "latest_devsecops": {
@@ -30,6 +33,9 @@
     },
     {
       "repository_id": "joku-dev/ai-native-engineering-factory",
+      "owner": "Repository Owner",
+      "action_owner": "Governance Platform Lead",
+      "business_or_product_area": "Engineering Factory",
       "adoption_state": "pilot",
       "target_devsecops_baseline": "main@34bdc66",
       "latest_devsecops": {
@@ -46,6 +52,9 @@
     },
     {
       "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "owner": "Repository Owner",
+      "action_owner": "Governance Platform Lead",
+      "business_or_product_area": "Governance demo",
       "adoption_state": "pilot",
       "target_devsecops_baseline": "l1-baseline-v1.1.3",
       "latest_devsecops": {
