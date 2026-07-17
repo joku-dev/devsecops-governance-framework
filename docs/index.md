@@ -30,6 +30,7 @@ Application repositories can consume this framework from CI/CD without copying t
 - If you want a concrete rollout retrospective, read `operations/status/ha-cpswms-governance-lessons-learned.md`.
 - If you want the documentation publishing flow, read `operations/guides/mkdocs-and-github-pages-step-by-step.md`.
 - If you want the governance logic, read `governance/policy-directive-baseline-verification-and-governance-as-code-explained.md`.
+- If you want the current technical system architecture, read `governance/architecture/governance-as-code-system-architecture.md`.
 - If you want the platform relationship, read `platform/control-baseline-and-platform-architecture-relationship-explained.md`.
 - If you want the release gate checklist, read `releases/release-publication-checklist.md`.
 - If you want the control automation status and prioritization, read `controls/index.md`.
