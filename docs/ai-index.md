@@ -195,6 +195,7 @@ python3 -m unittest discover -s tests
 | Agent usage snapshot | `docs/operations/agents/agent-usage-snapshot-latest.md` |
 | Agent usage summary | `generated/agent-usage/agent-usage-summary.json` |
 | Evidence collection attempts | `schemas/evidence-collection-attempt.schema.json`, `scripts/record_collection_attempt.py`, `status/collection-attempts/` |
+| Intake operation telemetry | `docs/operations/evidence/intake-operation-telemetry.md`, `schemas/intake-operation-event.schema.json`, `scripts/record_intake_event.py`, `status/intake-events/` |
 | Controlled collection retry | `.github/workflows/retry-collection-attempt.yml`, `scripts/prepare_collection_attempt_retry.py` |
 | Collection-attempt lifecycle projection | `scripts/generate_status_viewer.py`, `generated/viewer/status-viewer.html` |
 | Evidence agent provenance | `schemas/evidence-agent-provenance.schema.json`, `scripts/record_evidence_agent_provenance.py`, `scripts/validate_evidence_agent_provenance.py`, `status/evidence-agent-provenance/` |
