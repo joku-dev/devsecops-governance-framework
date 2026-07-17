@@ -45,7 +45,10 @@ def trust_from_snapshot(snapshot: dict) -> dict | None:
 
 def replay_context(trust: dict) -> dict:
     source = trust.get("capture", {}).get("source", {})
-    return {field: source.get(field) for field in REPLAY_CONTEXT_FIELDS}
+    context = {field: source.get(field) for field in REPLAY_CONTEXT_FIELDS}
+    if source.get("artifact_digest"):
+        context["artifact_digest"] = source["artifact_digest"]
+    return context
 
 
 def subject_digests(trust: dict) -> dict[str, str]:
@@ -122,7 +125,18 @@ def apply_replay_assessment(trust: dict, prior_snapshots: Iterable[dict]) -> dic
                 field: prior_context.get(field)
                 for field in ("repository_id", "commit_id", "artifact_name")
             }
-            if prior_decision_context == current_decision_context:
+            artifact_changed = bool(
+                current_context.get("artifact_digest")
+                and prior_context.get("artifact_digest")
+                and current_context.get("artifact_digest") != prior_context.get("artifact_digest")
+            )
+            reused_subject_ids = {
+                subject_id
+                for subject_id, digest in current_subjects.items()
+                if digest in reused
+            }
+            deterministic_report_reuse = reused_subject_ids == {"control_evaluation_report"} and artifact_changed
+            if prior_decision_context == current_decision_context or deterministic_report_reuse:
                 compatible_reuse.append(prior_key or canonical_digest(prior_context))
             else:
                 incompatible_reuse.append(prior_key or canonical_digest(prior_context))

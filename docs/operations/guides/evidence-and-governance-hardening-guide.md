@@ -253,6 +253,15 @@ Relevante Viewer-Bereiche sind:
 
 ## 8. End-to-End-Betrieb
 
+### Deterministische Reports und Replay-Prüfung
+
+Ein identischer normalisierter Control-Report ist bei einem neuen, legitim
+erzeugten Workflow-Lauf nicht automatisch ein Replay. Der Intake bindet solche
+Reports deshalb zusätzlich an den Digest des GitHub-Artefakts. Ein neuer
+Artefakt-Digest bei gleichem Report-Inhalt wird als kompatible Wiederverwendung
+bewertet; ein wiederverwendeter Artefakt-Digest in einem inkompatiblen Kontext
+bleibt ein report-only Replay-Finding.
+
 Für eine Änderung oder einen neuen Intake-Lauf:
 
 1. Downstream-Workflow und Artifact prüfen.
