@@ -1,5 +1,8 @@
 integrations:
   - repository: joku-dev/ha-CPsWMS
+    owner: Repository Owner
+    action_owner: Governance Platform Lead
+    business_or_product_area: HA-CPsWMS application
     baseline_level: L1
     status: operational
     branch: main
@@ -16,6 +19,9 @@ integrations:
       mode_reason: Operational mainline L1 baseline is validated and should block failed governance runs unless approved waiver evidence exists.
     notes: Successful end-to-end baseline execution through the released central L1 reusable governance workflow v1.1.3 on a protected main branch, with static-analysis, traceability, operations evidence, and full structured L1 control coverage.
   - repository: joku-dev/ai-native-engineering-factory
+    owner: Repository Owner
+    action_owner: Governance Platform Lead
+    business_or_product_area: Engineering Factory
     baseline_level: L1
     status: report-only
     branch: codex/add-central-l1-baseline-report-clean
@@ -32,6 +38,9 @@ integrations:
       mode_reason: Candidate repository is being onboarded through report-only L1 baseline runs before mainline enforcement.
     notes: "Report-only central L1 onboarding run completed on PR #93 with quality-gates passing. The run recorded direct pushes allowed on main, so the repository should remain report-only until branch protection is ready for blocking enforcement."
   - repository: joku-dev/governance-framework-demo-consumer
+    owner: Repository Owner
+    action_owner: Governance Platform Lead
+    business_or_product_area: Governance demo
     baseline_level: L1
     status: operational
     branch: main
