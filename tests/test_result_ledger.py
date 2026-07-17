@@ -88,6 +88,74 @@ class ResultLedgerTests(unittest.TestCase):
             self.assertFalse(retry_path.exists())
             self.assertFalse((root / "conflicts").exists())
 
+    def test_snapshot_write_accepts_legacy_identity_enriched_with_artifact_digest(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            root = Path(tempdir)
+            path = root / "results" / "2026-07-17T12-00-00Z-run-42.json"
+            legacy = {"generated_at": "2026-07-17T12:00:00Z", "trust": trust_record()}
+            enriched = {
+                "generated_at": "2026-07-17T12:05:00Z",
+                "trust": trust_record(artifact_digest="b" * 64),
+            }
+            write_snapshot_append_only(path, legacy, conflict_root=root / "conflicts")
+            selected = write_snapshot_append_only(
+                path,
+                enriched,
+                conflict_root=root / "conflicts",
+            )
+
+            self.assertEqual(selected, path)
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), legacy)
+            self.assertFalse((root / "conflicts").exists())
+
+    def test_snapshot_write_rejects_different_present_artifact_digests(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            root = Path(tempdir)
+            path = root / "results" / "owner__repo" / "snapshot.json"
+            first = {
+                "generated_at": "2026-07-17T12:00:00Z",
+                "trust": trust_record(artifact_digest="b" * 64),
+            }
+            changed = {
+                "generated_at": "2026-07-17T12:05:00Z",
+                "trust": trust_record(artifact_digest="c" * 64),
+            }
+            write_snapshot_append_only(path, first, conflict_root=root / "conflicts")
+
+            with self.assertRaises(AppendOnlyConflictError):
+                write_snapshot_append_only(
+                    path,
+                    changed,
+                    conflict_root=root / "conflicts",
+                    raise_on_conflict=True,
+                )
+
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), first)
+
+    def test_snapshot_write_does_not_downgrade_an_existing_artifact_digest(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            root = Path(tempdir)
+            path = root / "results" / "owner__repo" / "snapshot.json"
+            enriched = {
+                "generated_at": "2026-07-17T12:00:00Z",
+                "trust": trust_record(artifact_digest="b" * 64),
+            }
+            legacy = {
+                "generated_at": "2026-07-17T12:05:00Z",
+                "trust": trust_record(),
+            }
+            write_snapshot_append_only(path, enriched, conflict_root=root / "conflicts")
+
+            with self.assertRaises(AppendOnlyConflictError):
+                write_snapshot_append_only(
+                    path,
+                    legacy,
+                    conflict_root=root / "conflicts",
+                    raise_on_conflict=True,
+                )
+
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), enriched)
+
     def test_snapshot_conflict_is_quarantined_without_overwrite(self):
         schema = json.loads((ROOT / "schemas" / "intake-conflict.schema.json").read_text(encoding="utf-8"))
         with tempfile.TemporaryDirectory() as tempdir:

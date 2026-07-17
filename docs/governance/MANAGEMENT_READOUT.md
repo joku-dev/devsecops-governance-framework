@@ -71,6 +71,16 @@ every successful or failed execution. This creates the measurement foundation
 for future intake success-rate and latency reporting without changing results,
 Trust, or enforcement. Historical runs are not inferred or backfilled.
 
+The telemetry integration was smoke-tested across all three central paths on
+2026-07-17. DevSecOps, Architecture, and Typed Evidence intake completed
+successfully in runs `29613365725`, `29613411052`, and `29613460601`, recording
+collection durations of 2, 3, and 2 seconds. No Collection Attempt was created
+and the semantic latest-state projections remained unchanged. The test exposed
+one legacy snapshot without an artifact digest; compatibility hardening now
+accepts the otherwise identical enriched identity without weakening conflict
+detection when two present artifact digests differ. The historical report-only
+conflict remains available for audit.
+
 For the consumer demo, the latest successful workflows use released baseline
 references `l1-baseline-v1.1.3` and `architecture-baseline-l1-v0.1.0`. The
 DevSecOps workflow produces the application, pipeline, and governance input

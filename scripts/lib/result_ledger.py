@@ -189,6 +189,42 @@ def evidence_identity(payload: dict) -> dict:
     }
 
 
+def evidence_identities_compatible(
+    existing_payload: dict,
+    incoming_payload: dict,
+) -> bool:
+    """Accept exact identities and legacy identities enriched with an artifact digest."""
+    existing = evidence_identity(existing_payload)
+    incoming = evidence_identity(incoming_payload)
+    if existing == incoming:
+        return True
+
+    existing_context = existing.get("context")
+    incoming_context = incoming.get("context")
+    existing_subjects = existing.get("subjects")
+    incoming_subjects = incoming.get("subjects")
+    if not all(
+        isinstance(value, dict)
+        for value in (
+            existing_context,
+            incoming_context,
+            existing_subjects,
+            incoming_subjects,
+        )
+    ):
+        return False
+    if existing_subjects != incoming_subjects:
+        return False
+
+    existing_core = dict(existing_context)
+    incoming_core = dict(incoming_context)
+    existing_artifact_digest = existing_core.pop("artifact_digest", None)
+    incoming_artifact_digest = incoming_core.pop("artifact_digest", None)
+    if existing_core != incoming_core:
+        return False
+    return not existing_artifact_digest and bool(incoming_artifact_digest)
+
+
 def _write_exclusive(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("x", encoding="utf-8") as handle:
@@ -216,14 +252,14 @@ def write_snapshot_append_only(
                 existing = json.loads(existing_path.read_text(encoding="utf-8"))
             except (json.JSONDecodeError, OSError):
                 continue
-            if evidence_identity(existing) == evidence_identity(payload):
+            if evidence_identities_compatible(existing, payload):
                 return existing_path
     if not path.exists():
         _write_exclusive(path, payload)
         return path
 
     existing = json.loads(path.read_text(encoding="utf-8"))
-    if evidence_identity(existing) == evidence_identity(payload):
+    if evidence_identities_compatible(existing, payload):
         return path
 
     existing_digest = canonical_digest(existing)
