@@ -59,10 +59,10 @@ those meanings and does not substitute a local file modification time.
 | `failed` | No usable subjects and at least one explicit error |
 
 Missing mandatory identity, time, or subject metadata cannot be represented as
-successfully collected evidence. The current intake stops before writing a
-governance snapshot if mandatory GitHub Actions metadata is unavailable.
-Persistence and display of standalone failed collection attempts is a future
-operational decision; the contract already defines their portable shape.
+successfully collected evidence. The current intake records a separate
+report-only collection attempt when a GitHub Actions artifact cannot be
+downloaded or validated. It does not create a governance snapshot from that
+failed attempt.
 
 ## First Collector Profile
 

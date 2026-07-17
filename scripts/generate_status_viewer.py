@@ -527,6 +527,28 @@ def build_intake_conflicts_section(conflicts: list[dict]) -> str:
     )
 
 
+def build_collection_attempts_section(attempts: list[dict]) -> str:
+    rows = []
+    for attempt in attempts:
+        source = attempt.get("source", {})
+        errors = attempt.get("errors", [])
+        message = errors[0].get("message", "unknown") if errors else "unknown"
+        rows.append([
+            badge(attempt.get("status", "failed"), "warn"),
+            escape(attempt.get("repository_id", "unknown")),
+            escape(attempt.get("evidence_type", "unknown")),
+            escape(attempt.get("attempted_at", "unknown")),
+            f"<code>{escape(source.get('run_id', 'unknown'))}</code>",
+            escape(message),
+        ])
+    table = html_table(["Status", "Repository", "Evidence", "Attempted", "Run", "Error"], rows) if rows else "<p>No failed or partial collection attempts are recorded.</p>"
+    return (
+        '<section id="collection-attempts" class="viewer-section">'
+        '<div class="section-title"><h2>Collection Attempts</h2>'
+        '<p>Report-only history of failed or partial evidence collection. These records do not replace successful evidence.</p></div>'
+        f'<section class="cards"><section class="card"><h3>Failed or Partial Attempts</h3><div class="value">{len(attempts)}</div><p>Append-only operational history</p></section></section>'
+        f'<section class="panel">{table}</section></section>'
+    )
 def build_latest_repository_cards(results_index: dict) -> str:
     cards = []
     for repository in results_index.get("repositories", []):
@@ -1406,6 +1428,11 @@ def main() -> int:
         load_json(path)
         for path in sorted(intake_conflicts_root.rglob("*.json"))
     ] if intake_conflicts_root.exists() else []
+    collection_attempts_root = ROOT / "status" / "collection-attempts"
+    collection_attempts = [
+        load_json(path)
+        for path in sorted(collection_attempts_root.rglob("*.json"))
+    ] if collection_attempts_root.exists() else []
     control_report_path = ROOT / "generated" / "control-evaluation-report.json"
     control_report = load_json(control_report_path) if control_report_path.exists() else None
     control_coverage_path = ROOT / "generated" / "reports" / "control-coverage-report.json"
@@ -1759,6 +1786,7 @@ def main() -> int:
     governance_graph_html = build_governance_graph_section(governance_graph)
     graph_script = governance_graph_script() if governance_graph_html else ""
     intake_conflicts_html = build_intake_conflicts_section(intake_conflicts)
+    collection_attempts_html = build_collection_attempts_section(collection_attempts)
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -1936,6 +1964,8 @@ def main() -> int:
     {typed_evidence_trust_html}
 
     {intake_conflicts_html}
+
+    {collection_attempts_html}
 
     {source_intake_html}
 

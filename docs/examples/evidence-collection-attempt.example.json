@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence-collection-attempt",
+  "attempt_id": "demo-attempt-001",
+  "enforcement": "report_only",
+  "status": "failed",
+  "repository_id": "owner/repo",
+  "evidence_type": "vulnerability_scan",
+  "collector": {
+    "id": "central-vulnerability-scan-collector",
+    "version": "0.1.0"
+  },
+  "attempted_at": "2026-07-17T12:00:00Z",
+  "source": {
+    "provider": "github_actions",
+    "run_id": "42",
+    "run_attempt": 1,
+    "workflow_name": "Application Evidence",
+    "commit_id": "abc123",
+    "artifact_name": "application-evidence",
+    "source_uri": "https://github.com/owner/repo/actions/runs/42"
+  },
+  "errors": [
+    {
+      "code": "artifact_not_found",
+      "message": "The expected application evidence artifact was not available.",
+      "retryable": true
+    }
+  ]
+}

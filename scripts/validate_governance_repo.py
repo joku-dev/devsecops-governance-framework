@@ -411,6 +411,11 @@ def main() -> int:
     )
     validate_schema(
         errors,
+        ROOT / "schemas" / "evidence-collection-attempt.schema.json",
+        ROOT / "docs" / "examples" / "evidence-collection-attempt.example.json",
+    )
+    validate_schema(
+        errors,
         ROOT / "schemas" / "vulnerability-scan-input.schema.json",
         ROOT / "docs" / "examples" / "vulnerability-scan-input.example.json",
     )
