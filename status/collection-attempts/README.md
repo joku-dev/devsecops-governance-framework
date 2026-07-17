@@ -13,3 +13,8 @@ Retrying collection is a manual operator action. Use the `Retry Collection
 Attempt` GitHub Actions workflow with the repository-relative path of a record
 whose errors are all marked `retryable`. The original record remains unchanged;
 the selected existing intake workflow performs the new attempt.
+
+The status viewer derives `open`, `resolved`, or `permanent` by correlating the
+record with successful snapshots using repository, downstream run ID, and
+artifact name. This lifecycle is a projection only; no attempt record is
+rewritten or deleted.

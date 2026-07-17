@@ -143,10 +143,16 @@ Implementierung:
 - Quarantäne: `status/intake-conflicts/collection-attempts/`
 - Viewer: Abschnitt „Collection Attempts"
 
-Derzeit ist diese Funktion in den Typed-Evidence-Intake integriert. Bei einem
-fehlenden, nicht lesbaren oder nicht validierbaren `application-evidence`
-Artifact wird ein `failed`-Versuch gespeichert. Der Workflow wird anschließend
-weiterhin als fehlgeschlagen beendet, nachdem der Versuch committed wurde.
+Diese Funktion ist in den DevSecOps-, Architecture- und Typed-Evidence-Intake
+integriert. Ein `failed`-Versuch wird gespeichert, bevor der Workflow weiterhin
+als fehlgeschlagen beendet wird. Kann GitHub-Metadaten nicht gelesen werden,
+bleibt der Versuch über eine Fallback-Identität und den zusätzlichen Fehler
+`source_metadata_unavailable` sichtbar.
+
+Der manuelle Workflow `Retry Collection Attempt` kann einen vollständig als
+`retryable` markierten Versuch erneut an den passenden bestehenden Intake
+übergeben. Der Viewer leitet anschließend `open`, `resolved` oder `permanent`
+aus dem unveränderten Attempt und passenden erfolgreichen Snapshots ab.
 
 ### Manuelle Erfassung
 
