@@ -62,12 +62,16 @@ is compatible; reuse across an incompatible decision context is a report-only
 finding. Replay findings do not alter the independently derived integrity
 level or governance outcome.
 
-The governance, architecture, typed-evidence, and portfolio workflows retain
-separate concurrency groups so that an intake event in one domain cannot
-replace a pending event in another domain. Their commit steps reconcile with
-the current `main` branch and retry failed pushes, which preserves all intake
-events while converging the shared graph, viewer, indexes, and portfolio
-projection after concurrent updates.
+The governance, architecture, and typed-evidence workflows use concurrency
+groups scoped to intake type, consumer repository, and downstream run ID.
+Duplicate delivery of the same run is therefore serialized, while distinct
+runs from the same or different consumers can remain queued and execute. This
+avoids GitHub replacing an older pending multi-consumer intake event with a
+newer one. The recomputable portfolio projection retains its own static group.
+
+All commit steps reconcile with the current `main` branch and retry failed
+pushes. Concurrent intake runs therefore converge the shared graph, viewer,
+indexes, and portfolio projection without discarding distinct events.
 
 ## Typed Evidence Trust Intake
 
