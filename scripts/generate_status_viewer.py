@@ -549,6 +549,35 @@ def build_collection_attempts_section(attempts: list[dict]) -> str:
         f'<section class="cards"><section class="card"><h3>Failed or Partial Attempts</h3><div class="value">{len(attempts)}</div><p>Append-only operational history</p></section></section>'
         f'<section class="panel">{table}</section></section>'
     )
+
+
+def build_evidence_agent_provenance_section(index: dict) -> str:
+    summary = index.get("summary", {})
+    records = index.get("records", [])
+    if not records:
+        return ""
+    rows = []
+    for record in reversed(records[-30:]):
+        evidence = record.get("evidence", {})
+        agent = record.get("agent", {})
+        dispatch = record.get("dispatch", {})
+        rows.append([
+            escape(evidence.get("repository_id", "unknown")),
+            escape(evidence.get("subject_id", "unknown")),
+            f"<code>{escape(evidence.get('subject_digest', '')[:12])}</code>",
+            escape(agent.get("id", "unknown")),
+            badge(record.get("involvement", "unknown"), "plain"),
+            escape(dispatch.get("id", "unknown")),
+        ])
+    table = html_table(["Repository", "Subject", "Digest", "Agent", "Involvement", "Dispatch"], rows)
+    agents = ", ".join(f"{key}: {value}" for key, value in summary.get("agent_counts", {}).items()) or "none"
+    return (
+        '<section id="evidence-agent-provenance" class="viewer-section">'
+        '<div class="section-title"><h2>Evidence Agent Provenance</h2>'
+        '<p>Explicit report-only associations between Evidence subjects and agent participation. Provenance never changes Evidence Trust.</p></div>'
+        f'<section class="cards"><section class="card"><h3>Associations</h3><div class="value">{summary.get("record_count", 0)}</div><p>Agents: {escape(agents)}</p></section></section>'
+        f'<section class="panel">{table}</section></section>'
+    )
 def build_latest_repository_cards(results_index: dict) -> str:
     cards = []
     for repository in results_index.get("repositories", []):
@@ -1787,6 +1816,9 @@ def main() -> int:
     graph_script = governance_graph_script() if governance_graph_html else ""
     intake_conflicts_html = build_intake_conflicts_section(intake_conflicts)
     collection_attempts_html = build_collection_attempts_section(collection_attempts)
+    provenance_index_path = ROOT / "status" / "evidence-agent-provenance-index.json"
+    provenance_index = load_json(provenance_index_path) if provenance_index_path.exists() else {"summary": {}, "records": []}
+    evidence_agent_provenance_html = build_evidence_agent_provenance_section(provenance_index)
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -1966,6 +1998,8 @@ def main() -> int:
     {intake_conflicts_html}
 
     {collection_attempts_html}
+
+    {evidence_agent_provenance_html}
 
     {source_intake_html}
 
