@@ -53,7 +53,8 @@ The successful integration with `ha-CPsWMS` demonstrates that:
 - a machine-readable governance result can be stored as audit-relevant evidence
 
 The central viewer now also provides separate report-only views for typed
-Evidence Trust, the governance relationship graph, intake conflicts, failed or
+Evidence Trust, Intake Health, the governance relationship graph, intake
+conflicts, failed or
 partial collection attempts, their derived `open`, `resolved`, or `permanent`
 lifecycle, and explicit agent participation in Evidence reviews.
 
@@ -87,6 +88,9 @@ failed execution, p50 collection duration of 2 seconds, p95 of 3 seconds, no
 Collection Attempts, and two retained append-only conflicts. These figures are
 an operational observation rather than an approved SLO; they do not alter
 Trust, governance outcomes, latest-state selection, or enforcement.
+The viewer exposes the same committed projection with dimensional event counts
+and latest-result age; it does not independently recalculate or reinterpret the
+metrics.
 
 For the consumer demo, the latest successful workflows use released baseline
 references `l1-baseline-v1.1.3` and `architecture-baseline-l1-v0.1.0`. The

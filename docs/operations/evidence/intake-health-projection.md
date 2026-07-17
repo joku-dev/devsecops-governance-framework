@@ -84,10 +84,27 @@ The committed projection currently records the validated three-path smoke
 test: three successes, no failed or partial events, p50 2 seconds, p95 3
 seconds, no Collection Attempts, and two retained report-only conflicts.
 
+## Viewer
+
+The static status viewer contains a dedicated `Intake Health` section with:
+
+- observation count and explicit window
+- success rate without a health verdict or approved SLO
+- p50 and p95 collection duration
+- partial and failed execution count
+- Collection Attempt and conflict context
+- breakdowns by repository, collector, intake type, and evidence type
+- age of each accepted latest result at projection time
+
+The section reads `status/intake-health.json`; it does not calculate a second
+set of metrics. `Intake Conflicts` and `Collection Attempts` remain available
+as separate detail sections for the underlying append-only records.
+
 ## Validation
 
 ```bash
 python3 scripts/generate_intake_health.py
+python3 scripts/generate_status_viewer.py
 python3 scripts/validate_governance_repo.py
 python3 -m unittest tests.test_generate_intake_health
 ./scripts/validate_all.sh
