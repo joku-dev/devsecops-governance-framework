@@ -197,7 +197,8 @@ def trust_detail(projection: dict) -> str:
     summary = projection.get("check_summary", {})
     return (
         f"{status}; checks pass {summary.get('pass', 0)}, "
-        f"fail {summary.get('fail', 0)}, pending {summary.get('not_evaluated', 0)}"
+        f"fail {summary.get('fail', 0)}, pending {summary.get('not_evaluated', 0)}; "
+        f"replay {projection.get('replay', 'not_evaluated')}"
     )
 
 
@@ -212,6 +213,7 @@ def build_typed_evidence_trust_section(typed_evidence_index: dict) -> str:
         ("Evidence Results", summary.get("result_count", 0), f"Mainline: {summary.get('mainline_results', 0)}"),
         ("Integrity Verified", level_counts.get("integrity_verified", 0), "Outcome-independent Trust"),
         ("Freshness Failures", summary.get("freshness_failures", 0), "Report-only findings"),
+        ("Replay Findings", summary.get("replay_failures", 0), "Report-only context conflicts"),
     ]
     card_html = "".join(
         "<section class=\"card\">"
@@ -231,6 +233,7 @@ def build_typed_evidence_trust_section(typed_evidence_index: dict) -> str:
         trust = latest.get("trust", {})
         freshness = latest.get("freshness", "not_evaluated")
         integrity = latest.get("content_integrity", "not_evaluated")
+        replay = latest.get("replay", "not_evaluated")
         binding = latest.get("subject_binding", {})
         rows.append(
             [
@@ -240,6 +243,7 @@ def build_typed_evidence_trust_section(typed_evidence_index: dict) -> str:
                 trust_badge(trust) + f"<span class=\"cell-detail\">{escape(trust_detail(trust))}</span>",
                 badge(integrity, "ok" if integrity == "pass" else "warn"),
                 badge(freshness, "ok" if freshness == "pass" else "warn"),
+                badge(replay, "ok" if replay == "pass" else "warn"),
                 f"{escape(str(latest.get('finding_count', 0)))} · {badge(latest.get('max_severity', 'unknown'), status_tone('warn' if latest.get('finding_count', 0) else 'success'))}",
                 f"<code>{escape(binding.get('mode', 'unknown'))}</code><span class=\"cell-detail\">scanner attested: {escape(format_bool_flag(binding.get('scanner_attested')))}</span>",
                 run_link(latest.get("pipeline_run_id", "unknown"), latest.get("pipeline_url", "")),
@@ -252,7 +256,7 @@ def build_typed_evidence_trust_section(typed_evidence_index: dict) -> str:
         f"<section class=\"cards\">{card_html}</section>"
         "<section class=\"panel\"><h2>Latest Typed Evidence</h2>"
         + html_table(
-            ["Repository", "Evidence", "Scanner", "Trust", "Integrity", "Freshness", "Findings", "Subject Binding", "Run"],
+            ["Repository", "Evidence", "Scanner", "Trust", "Integrity", "Freshness", "Replay", "Findings", "Subject Binding", "Run"],
             rows,
         )
         + "</section></section>"
@@ -494,6 +498,33 @@ def governance_graph_script() -> str:
     })();
   </script>
 """
+
+
+def build_intake_conflicts_section(conflicts: list[dict]) -> str:
+    rows = []
+    for conflict in conflicts:
+        rows.append(
+            [
+                badge(conflict.get("enforcement", "report_only"), "warn"),
+                escape(conflict.get("detected_at", "unknown")),
+                f"<code>{escape(conflict.get('target_path', 'unknown'))}</code>",
+                f"<code>{escape(conflict.get('existing_payload_sha256', 'unknown')[:12])}</code>",
+                f"<code>{escape(conflict.get('incoming_payload_sha256', 'unknown')[:12])}</code>",
+            ]
+        )
+    table = (
+        html_table(["Mode", "Detected", "Protected Snapshot", "Existing", "Incoming"], rows)
+        if rows
+        else "<p>No append-only intake conflicts are recorded.</p>"
+    )
+    return (
+        '<section id="intake-conflicts" class="viewer-section">'
+        '<div class="section-title"><h2>Intake Conflict Quarantine</h2>'
+        '<p>Report-only attempts that would have overwritten an existing snapshot with different evidence.</p></div>'
+        '<section class="cards"><section class="card"><h3>Open Conflicts</h3>'
+        f'<div class="value">{len(conflicts)}</div><p>Original snapshots remain unchanged</p></section></section>'
+        f'<section class="panel">{table}</section></section>'
+    )
 
 
 def build_latest_repository_cards(results_index: dict) -> str:
@@ -1370,6 +1401,11 @@ def main() -> int:
         "nodes": [],
         "edges": [],
     }
+    intake_conflicts_root = ROOT / "status" / "intake-conflicts"
+    intake_conflicts = [
+        load_json(path)
+        for path in sorted(intake_conflicts_root.rglob("*.json"))
+    ] if intake_conflicts_root.exists() else []
     control_report_path = ROOT / "generated" / "control-evaluation-report.json"
     control_report = load_json(control_report_path) if control_report_path.exists() else None
     control_coverage_path = ROOT / "generated" / "reports" / "control-coverage-report.json"
@@ -1570,6 +1606,10 @@ def main() -> int:
         payload["typed_evidence_results_summary"] = typed_evidence_index.get("summary", {})
     if governance_graph.get("nodes"):
         payload["governance_graph_summary"] = governance_graph.get("summary", {})
+    payload["intake_conflicts_summary"] = {
+        "conflict_count": len(intake_conflicts),
+        "enforcement": "report_only",
+    }
     if agent_usage_summary:
         payload["agent_usage_summary"] = {
             "event_count": agent_usage_summary.get("event_count", 0),
@@ -1718,6 +1758,7 @@ def main() -> int:
     typed_evidence_trust_html = build_typed_evidence_trust_section(typed_evidence_index)
     governance_graph_html = build_governance_graph_section(governance_graph)
     graph_script = governance_graph_script() if governance_graph_html else ""
+    intake_conflicts_html = build_intake_conflicts_section(intake_conflicts)
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -1862,6 +1903,7 @@ def main() -> int:
       <a href="#governance-graph">Governance Graph</a>
       <a href="#runtime-governance">Runtime Governance</a>
       <a href="#evidence-trust">Evidence Trust</a>
+      <a href="#intake-conflicts">Intake Conflicts</a>
       <a href="#source-intake">Source Intake</a>
       <a href="#agent-usage">Agent Usage</a>
       <a href="#runs">Runs</a>
@@ -1892,6 +1934,8 @@ def main() -> int:
     {runtime_governance_html}
 
     {typed_evidence_trust_html}
+
+    {intake_conflicts_html}
 
     {source_intake_html}
 

@@ -42,7 +42,13 @@
           "age_seconds": { "type": "integer" },
           "maximum_age_seconds": { "type": ["integer", "null"], "minimum": 1 },
           "finding_effect": { "const": "report_only" },
-          "reason": { "type": "string", "minLength": 1 }
+          "reason": { "type": "string", "minLength": 1 },
+          "replay_key": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "related_replay_keys": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "uniqueItems": true
+          }
         },
         "additionalProperties": false
       }

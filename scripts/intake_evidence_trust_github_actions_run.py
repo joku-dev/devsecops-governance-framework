@@ -24,11 +24,18 @@ from intake_github_actions_run import (
 )
 from lib.evidence_trust import compute_sha256, load_freshness_policy, verify_trust_capture
 from lib.identifiers import sanitize_timestamp, slugify_repository
-from lib.json_io import load_json, write_json
+from lib.json_io import load_json
+from lib.result_ledger import apply_replay_assessment, load_snapshot_payloads, write_snapshot_append_only
 
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_RESULTS = ROOT / "status" / "typed-evidence-results"
+INTAKE_CONFLICTS = ROOT / "status" / "intake-conflicts" / "typed-evidence"
+TRUST_RESULT_ROOTS = (
+    ROOT / "status" / "results",
+    ROOT / "status" / "architecture-results",
+    ROOT / "status" / "typed-evidence-results",
+)
 FRESHNESS_POLICY_PATH = ROOT / "model" / "evidence" / "evidence-freshness-policies.yaml"
 VERIFIER_ID = "central-evidence-trust-intake/v1"
 
@@ -135,7 +142,7 @@ def write_snapshot(
     }
     output_dir = STATUS_RESULTS / slugify_repository(repository_id)
     output_path = output_dir / f"{sanitize_timestamp(generated_at)}-run-{run.get('id')}-vulnerability-scan.json"
-    write_json(output_path, payload)
+    write_snapshot_append_only(output_path, payload, conflict_root=INTAKE_CONFLICTS)
     return output_path
 
 
@@ -192,6 +199,7 @@ def main() -> int:
             extract_dir=extract_dir,
             verified_at=verified_at,
         )
+        trust = apply_replay_assessment(trust, load_snapshot_payloads(TRUST_RESULT_ROOTS))
         output = write_snapshot(
             repository_id=args.repository_id,
             run=run,

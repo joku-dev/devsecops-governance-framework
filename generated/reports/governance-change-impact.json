@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:26:09Z",
+  "generated_at": "2026-07-17T17:00:30Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
@@ -8,7 +8,7 @@
   "summary": {
     "registered_source_documents": 20,
     "source_documents_with_lineage": 20,
-    "derived_artifact_links": 331,
+    "derived_artifact_links": 338,
     "domains": {
       "architecture": 12,
       "devsecops": 8,
@@ -30,7 +30,7 @@
       "architecture_model": 8,
       "derived_artifact": 212,
       "governance_document": 4,
-      "governance_model": 78,
+      "governance_model": 85,
       "policy_as_code": 15,
       "release_document": 1,
       "release_metadata": 1,
@@ -169,11 +169,11 @@
         "releases/l1",
         "generated/reports"
       ],
-      "lineage_artifact_count": 75,
+      "lineage_artifact_count": 82,
       "lineage_artifact_types": {
         "derived_artifact": 10,
         "governance_document": 1,
-        "governance_model": 49,
+        "governance_model": 56,
         "policy_as_code": 11,
         "release_package": 3,
         "traceability_mapping": 1
@@ -207,8 +207,8 @@
         "docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
         "docs/operations/evidence/evidence-collector-contract.md",
         "docs/operations/evidence/evidence-trust-model.md",
-        "docs/operations/evidence/vulnerability-scan-collector-usage.md",
-        "docs/operations/status/governance-intelligence-graph-viewer.md"
+        "docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
+        "docs/operations/evidence/vulnerability-scan-collector-usage.md"
       ]
     },
     {

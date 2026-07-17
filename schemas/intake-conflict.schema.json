@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Append-Only Intake Conflict",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "conflict_type",
+    "enforcement",
+    "detected_at",
+    "target_path",
+    "existing_payload_sha256",
+    "incoming_payload_sha256",
+    "existing_evidence_identity",
+    "incoming_evidence_identity"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "conflict_type": { "const": "append_only_snapshot_conflict" },
+    "enforcement": { "const": "report_only" },
+    "detected_at": { "type": "string", "minLength": 1 },
+    "target_path": { "type": "string", "minLength": 1 },
+    "existing_payload_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "incoming_payload_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "existing_evidence_identity": { "type": "object" },
+    "incoming_evidence_identity": { "type": "object" }
+  },
+  "additionalProperties": false
+}

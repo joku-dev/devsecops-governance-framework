@@ -111,6 +111,14 @@ def validate_governance_graph(errors):
         errors.append("Governance graph summary counts do not match graph contents")
 
 
+def validate_intake_conflicts(errors):
+    conflicts_root = ROOT / "status" / "intake-conflicts"
+    if not conflicts_root.exists():
+        return
+    for conflict_path in sorted(conflicts_root.rglob("*.json")):
+        validate_schema(errors, ROOT / "schemas" / "intake-conflict.schema.json", conflict_path)
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -437,6 +445,7 @@ def main() -> int:
             typed_evidence_index_path,
         )
     validate_typed_evidence_results(errors)
+    validate_intake_conflicts(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)

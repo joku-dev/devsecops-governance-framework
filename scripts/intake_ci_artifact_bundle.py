@@ -13,20 +13,17 @@ import sys
 import zipfile
 
 from intake_governance_result import sanitize_timestamp, slugify_repository
+from lib.result_ledger import write_snapshot_append_only
 
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_RESULTS = ROOT / "status" / "results"
 ARCHITECTURE_RESULTS = ROOT / "status" / "architecture-results"
+INTAKE_CONFLICTS = ROOT / "status" / "intake-conflicts" / "ci-artifact-bundle"
 
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
-
-
-def write_json(path: Path, payload: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
 def extract_bundle(bundle: Path, destination: Path) -> Path:
@@ -161,7 +158,7 @@ def intake_devsecops(bundle_root: Path, args: object) -> Path:
     }
 
     output = STATUS_RESULTS / slugify_repository(repo_id) / f"{sanitize_timestamp(created_at)}-run-{run_id}.json"
-    write_json(output, payload)
+    write_snapshot_append_only(output, payload, conflict_root=INTAKE_CONFLICTS / "devsecops")
     return output
 
 
@@ -213,7 +210,7 @@ def intake_architecture(bundle_root: Path, args: object) -> Path:
     }
 
     output = ARCHITECTURE_RESULTS / slugify_repository(repo_id) / f"{sanitize_timestamp(created_at)}-run-{run_id}.json"
-    write_json(output, payload)
+    write_snapshot_append_only(output, payload, conflict_root=INTAKE_CONFLICTS / "architecture")
     return output
 
 

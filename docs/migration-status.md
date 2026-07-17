@@ -18,6 +18,7 @@
 | Initial policy-as-code candidates | 14 candidates |
 | Repository validation script | Complete |
 | Traceability CSV generator | Complete |
+| Append-only result intake and report-only replay assessment | Complete |
 
 ## Still To Refine
 
@@ -29,3 +30,4 @@ The current model is a complete MVP, not yet a fully approved enterprise baselin
 - mapping to concrete tool integrations such as GitLab, GitHub Enterprise, Artifactory, Nexus, SonarQube, Dependency-Track, DefectDojo, or ALM systems
 - executable policy input model per selected platform
 - generated DOCX/PDF production pipeline
+- signed attestation and manifest verification over captured result digests

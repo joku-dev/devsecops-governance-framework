@@ -237,15 +237,17 @@ latest-result selection, or delivery behavior. Later changes require a new
 GCR and policy version. Existing assessments are preserved and are not
 reclassified retrospectively.
 
-The future replay key should bind at least:
+The report-only replay key binds:
 
 ```text
 repository + commit + workflow + run + run_attempt + artifact + subject_digest
 ```
 
-Reusing the same digest is not automatically invalid, but reuse across a
-different subject or incompatible decision context must be visible and
-evaluated.
+Reusing the same digest is not automatically invalid. Reuse within the same
+repository, commit, and artifact context is compatible. Reuse across a
+different repository, commit, or artifact context is recorded as a report-only
+finding. Re-intake of the identical key is idempotent. A conflicting payload
+for an existing snapshot path is quarantined without overwriting history.
 
 ## Migration Plan
 
@@ -269,7 +271,7 @@ evaluated.
 - current
 - centralize trust-level derivation
 - evaluate governance-result freshness with provisional policy v0.1
-- project unresolved typed freshness and replay checks as `not_evaluated`
+- evaluate replay identity and incompatible digest reuse centrally
 - expose trust separately from governance result in indexes and viewer
 - keep findings report-only
 

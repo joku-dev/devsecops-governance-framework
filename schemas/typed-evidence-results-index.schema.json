@@ -24,6 +24,7 @@
         "branch_results": { "type": "integer", "minimum": 0 },
         "manual_results": { "type": "integer", "minimum": 0 },
         "freshness_failures": { "type": "integer", "minimum": 0 },
+        "replay_failures": { "type": "integer", "minimum": 0 },
         "trust_level_counts": {
           "type": "object",
           "additionalProperties": { "type": "integer", "minimum": 0 }
@@ -57,6 +58,7 @@
         "effective_level": { "enum": ["unverified", "integrity_verified", "provenance_verified", "attested"] },
         "assessment_status": { "enum": ["not_available", "not_evaluated", "evaluated"] },
         "verified_at": { "type": ["string", "null"] },
+        "replay": { "enum": ["pass", "fail", "not_evaluated"] },
         "check_summary": {
           "type": "object",
           "required": ["pass", "fail", "not_evaluated"],
@@ -125,6 +127,7 @@
         },
         "freshness": { "enum": ["pass", "fail", "not_evaluated"] },
         "content_integrity": { "enum": ["pass", "fail", "not_evaluated"] },
+        "replay": { "enum": ["pass", "fail", "not_evaluated"] },
         "trust": { "$ref": "#/$defs/trustProjection" },
         "source_file": { "type": "string", "minLength": 1 }
       },

@@ -25,6 +25,7 @@ def load_script(name: str):
 
 architecture_intake = load_script("intake_architecture_github_actions_run")
 from lib.evidence_trust import build_trust_capture, digest_subject, project_trust, verify_trust_capture
+from lib.result_ledger import apply_replay_assessment
 
 
 class EvidenceTrustCaptureTests(unittest.TestCase):
@@ -113,6 +114,27 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
         self.assertEqual(verified["effective_level"], "unverified")
         checks = {check["id"]: check["result"] for check in verified["checks"]}
         self.assertEqual(checks["content_digest_verified"], "fail")
+
+    def test_report_only_replay_assessment_remains_schema_valid(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            directory = Path(tempdir)
+            trust = self.build_capture(directory)
+            verified = verify_trust_capture(
+                trust,
+                repository_id="owner/repo",
+                commit_id="abc123",
+                run_id="42",
+                artifact_name="governance-evidence",
+                subject_paths={"governance_report": directory / "report.json"},
+                verified_at="2026-07-15T14:01:00Z",
+            )
+            assessed = apply_replay_assessment(verified, [])
+
+        Draft202012Validator(SCHEMA).validate(assessed)
+        replay = next(check for check in assessed["checks"] if check["id"] == "replay_key_unique")
+        self.assertEqual(replay["result"], "pass")
+        self.assertEqual(replay["finding_effect"], "report_only")
+        self.assertEqual(assessed["effective_level"], "integrity_verified")
 
     def test_historical_snapshot_projects_as_unverified_without_reclassification(self):
         projection = project_trust({"overall_status": "pass"})
