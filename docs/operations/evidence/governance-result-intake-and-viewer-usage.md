@@ -62,10 +62,12 @@ is compatible; reuse across an incompatible decision context is a report-only
 finding. Replay findings do not alter the independently derived integrity
 level or governance outcome.
 
-All workflows that commit intake results or portfolio status use the shared
-`governance-state-writer` concurrency group. This serializes writes to status
-indexes, generated graph data, viewer data, and portfolio projections while
-allowing read-only validation and documentation workflows to run independently.
+The governance, architecture, typed-evidence, and portfolio workflows retain
+separate concurrency groups so that an intake event in one domain cannot
+replace a pending event in another domain. Their commit steps reconcile with
+the current `main` branch and retry failed pushes, which preserves all intake
+events while converging the shared graph, viewer, indexes, and portfolio
+projection after concurrent updates.
 
 ## Typed Evidence Trust Intake
 

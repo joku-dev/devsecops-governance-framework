@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: governance-state-writer
+  group: portfolio-status
   cancel-in-progress: false
 
 jobs:
