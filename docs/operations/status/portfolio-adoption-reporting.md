@@ -124,6 +124,12 @@ The portfolio generator writes `generated/reports/portfolio-onboarding-status.js
 and `.md`. It uses only registry entries and accepted latest index projections;
 it does not approve waivers or change enforcement modes.
 
+Multi-consumer isolation is validated separately by
+`scripts/generate_multi_consumer_readiness.py`. The resulting report checks
+that registry, status paths, indexes, portfolio membership, workflow
+concurrency, telemetry identity, and Intake Health dimensions remain aligned.
+See `docs/operations/status/multi-consumer-readiness.md`.
+
 The `Refresh Portfolio Onboarding Status` workflow runs this projection daily
 and can also be started manually. It validates the generated state before
 committing a changed portfolio snapshot. The output is semantically stable:

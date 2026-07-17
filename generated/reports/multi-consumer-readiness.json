@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0.0",
+  "report_id": "multi-consumer-readiness",
+  "generated_at": "2026-07-17T21:56:30Z",
+  "enforcement": "report_only",
+  "ready": true,
+  "summary": {
+    "registered_consumers": 3,
+    "devsecops_consumers": 3,
+    "architecture_consumers": 2,
+    "typed_evidence_consumers": 1,
+    "telemetry_consumers": 1,
+    "passed_checks": 9,
+    "failed_checks": 0
+  },
+  "checks": [
+    {
+      "id": "multiple_consumers_registered",
+      "result": "pass",
+      "reason": "Registry contains 3 distinct consumer repositories.",
+      "evidence_refs": [
+        "status/application-repository-integrations.yaml"
+      ]
+    },
+    {
+      "id": "registry_ids_unique",
+      "result": "pass",
+      "reason": "Every registry entry has a unique owner/repository identifier.",
+      "evidence_refs": [
+        "status/application-repository-integrations.yaml"
+      ]
+    },
+    {
+      "id": "registry_summary_consistent",
+      "result": "pass",
+      "reason": "Registry summary declares 3; observed 3.",
+      "evidence_refs": [
+        "status/application-repository-integrations.yaml"
+      ]
+    },
+    {
+      "id": "devsecops_registry_coverage",
+      "result": "pass",
+      "reason": "The DevSecOps latest-state index covers exactly the registered consumers.",
+      "evidence_refs": [
+        "status/repository-results-index.json"
+      ]
+    },
+    {
+      "id": "result_storage_isolated",
+      "result": "pass",
+      "reason": "Every indexed result and latest source remains inside its consumer-specific status path.",
+      "evidence_refs": [
+        "status/repository-results-index.json",
+        "status/architecture-results-index.json",
+        "status/typed-evidence-results-index.json"
+      ]
+    },
+    {
+      "id": "portfolio_registry_coverage",
+      "result": "pass",
+      "reason": "The portfolio projection contains exactly the registered consumer repositories.",
+      "evidence_refs": [
+        "generated/reports/portfolio-onboarding-status.json",
+        "status/application-repository-integrations.yaml"
+      ]
+    },
+    {
+      "id": "intake_concurrency_isolated",
+      "result": "pass",
+      "reason": "All central intake concurrency groups bind consumer repository and downstream run without cancellation.",
+      "evidence_refs": [
+        ".github/workflows/intake-architecture-result.yml",
+        ".github/workflows/intake-evidence-trust.yml",
+        ".github/workflows/intake-governance-result.yml"
+      ]
+    },
+    {
+      "id": "telemetry_identity_isolated",
+      "result": "pass",
+      "reason": "Intake event IDs are unique and stored below the matching consumer path.",
+      "evidence_refs": [
+        "status/intake-events/",
+        "status/intake-health.json"
+      ]
+    },
+    {
+      "id": "health_dimensions_registered",
+      "result": "pass",
+      "reason": "Every consumer represented in Intake Health is present in the integration registry.",
+      "evidence_refs": [
+        "status/intake-health.json",
+        "status/application-repository-integrations.yaml"
+      ]
+    }
+  ],
+  "repositories": [
+    {
+      "repository_id": "joku-dev/ai-native-engineering-factory",
+      "governance_mode": "report-only",
+      "devsecops_result": true,
+      "architecture_result": false,
+      "typed_evidence_result": false,
+      "telemetry_events": 0
+    },
+    {
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "governance_mode": "report-only",
+      "devsecops_result": true,
+      "architecture_result": true,
+      "typed_evidence_result": true,
+      "telemetry_events": 3
+    },
+    {
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "governance_mode": "block-on-error",
+      "devsecops_result": true,
+      "architecture_result": true,
+      "typed_evidence_result": false,
+      "telemetry_events": 0
+    }
+  ]
+}
