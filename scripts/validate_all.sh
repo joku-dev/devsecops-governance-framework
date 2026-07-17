@@ -87,4 +87,5 @@ export PATH="$VALIDATION_VENV/bin:$PATH"
 opa check policies/opa
 "$PYTHON" scripts/validate_runtime_governance.py
 "$PYTHON" scripts/validate_governance_repo.py
+"$PYTHON" scripts/validate_evidence_agent_provenance.py
 "$PYTHON" -m unittest discover -s tests
