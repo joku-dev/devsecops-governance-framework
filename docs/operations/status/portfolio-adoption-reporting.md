@@ -126,7 +126,14 @@ it does not approve waivers or change enforcement modes.
 
 The `Refresh Portfolio Onboarding Status` workflow runs this projection daily
 and can also be started manually. It validates the generated state before
-committing a changed portfolio snapshot.
+committing a changed portfolio snapshot. The output is semantically stable:
+the timestamp is preserved while repository states and freshness categories
+remain unchanged. A new commit is created only when a status changes, a result
+is added, or a freshness threshold is crossed.
+
+Portfolio report schema version `2.0.0` replaces the continuously changing
+`age_days` value with the source result timestamp plus a deterministic
+`freshness.status` and `stale_after` boundary.
 
 ## Decision Boundaries
 

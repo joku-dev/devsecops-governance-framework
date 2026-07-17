@@ -26,7 +26,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: downstream-architecture-result-intake
+  group: governance-state-writer
   cancel-in-progress: false
 
 jobs:
