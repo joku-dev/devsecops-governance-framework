@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T18:52:36Z",
+  "generated_at": "2026-07-17T19:03:55Z",
   "summary": {
     "repository_count": 3,
     "stale_or_missing_count": 0,
@@ -15,14 +15,14 @@
       "latest_devsecops": {
         "status": "pass",
         "run_id": "29415015878",
-        "age_days": 2.07
+        "age_days": 2.08
       },
       "architecture_in_scope": true,
       "target_architecture_baseline": "architecture-baseline-l1-v0.1.0",
       "latest_architecture": {
         "status": "pass",
         "run_id": "29415015294",
-        "age_days": 2.07
+        "age_days": 2.08
       },
       "stale_or_missing": false,
       "governance_mode": "block-on-error",
@@ -35,7 +35,7 @@
       "latest_devsecops": {
         "status": "pass",
         "run_id": "28315832162",
-        "age_days": 19.45
+        "age_days": 19.46
       },
       "architecture_in_scope": false,
       "target_architecture_baseline": null,
@@ -51,14 +51,14 @@
       "latest_devsecops": {
         "status": "pass",
         "run_id": "29603835297",
-        "age_days": 0.02
+        "age_days": 0.03
       },
       "architecture_in_scope": true,
       "target_architecture_baseline": "architecture-baseline-l1-v0.1.0",
       "latest_architecture": {
         "status": "findings",
         "run_id": "29603835105",
-        "age_days": 0.02
+        "age_days": 0.03
       },
       "stale_or_missing": false,
       "governance_mode": "report-only",
