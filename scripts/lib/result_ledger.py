@@ -136,7 +136,12 @@ def apply_replay_assessment(trust: dict, prior_snapshots: Iterable[dict]) -> dic
                 if digest in reused
             }
             deterministic_report_reuse = reused_subject_ids == {"control_evaluation_report"} and artifact_changed
-            if prior_decision_context == current_decision_context or deterministic_report_reuse:
+            legacy_report_reuse = (
+                reused_subject_ids == {"control_evaluation_report"}
+                and bool(current_context.get("artifact_digest"))
+                and not prior_context.get("artifact_digest")
+            )
+            if prior_decision_context == current_decision_context or deterministic_report_reuse or legacy_report_reuse:
                 compatible_reuse.append(prior_key or canonical_digest(prior_context))
             else:
                 incompatible_reuse.append(prior_key or canonical_digest(prior_context))
