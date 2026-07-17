@@ -24,6 +24,7 @@ nav:
       - Source Of Truth: governance/source-of-truth.md
       - Operating Model: governance/operating-model.md
       - Architecture:
+          - Governance-as-Code System Architecture: governance/architecture/governance-as-code-system-architecture.md
           - ADO And DevSecOps Integrated Model: governance/architecture/ado-devsecops-integrated-governance-model.md
           - Software Industrialisation Problem And Capability Map: governance/architecture/software-industrialisation-problem-capability-map.md
           - Governance Repository Architecture Comparison: governance/architecture/governance-repository-architecture-comparison.md

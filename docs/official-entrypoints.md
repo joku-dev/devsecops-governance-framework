@@ -42,6 +42,7 @@ It is intended for:
 - Policy, Directive, Baseline, Verification, and Governance as Code: `docs/governance/policy-directive-baseline-verification-and-governance-as-code-explained.md`
 - Source of Truth: `docs/governance/source-of-truth.md`
 - Operating Model: `docs/governance/operating-model.md`
+- Governance-as-Code System Architecture: `docs/governance/architecture/governance-as-code-system-architecture.md`
 - ADO and DevSecOps-as-Code integrated governance model: `docs/governance/architecture/ado-devsecops-integrated-governance-model.md`
 - Software Industrialisation Problem and Capability Map: `docs/governance/architecture/software-industrialisation-problem-capability-map.md`
 - Governance Repository Architecture Comparison: `docs/governance/architecture/governance-repository-architecture-comparison.md`
