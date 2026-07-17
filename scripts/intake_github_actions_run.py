@@ -147,9 +147,34 @@ def find_report(extract_dir: Path) -> Path:
     if preferred.is_file():
         return preferred
     matches = sorted(extract_dir.rglob("control-evaluation-report.json"))
-    if not matches:
-        raise FileNotFoundError("control-evaluation-report.json not found in governance-control-evaluation artifact")
-    return matches[0]
+    if matches:
+        return matches[0]
+    fallback = extract_dir / "generated" / "evidence" / "baseline-gate-result.json"
+    if fallback.is_file():
+        return fallback
+    fallback_matches = sorted(extract_dir.rglob("baseline-gate-result.json"))
+    if fallback_matches:
+        return fallback_matches[0]
+    raise FileNotFoundError(
+        "Neither control-evaluation-report.json nor baseline-gate-result.json "
+        "was found in the governance artifact"
+    )
+
+
+def normalize_governance_report(report: dict, report_path: Path) -> dict:
+    """Normalize the released report or the consumer's report-only gate output."""
+    if report_path.name != "baseline-gate-result.json":
+        return report
+    failed = report.get("status") == "fail"
+    return {
+        "summary": {
+            "applicable_controls": 1,
+            "pass": 0 if failed else 1,
+            "fail": 1 if failed else 0,
+            "not_tested": 0,
+        },
+        "baseline_gate_result": report,
+    }
 
 
 def artifact_size_bytes(artifact: dict) -> int:
@@ -324,7 +349,7 @@ def main() -> int:
             with zipfile.ZipFile(archive) as handle:
                 handle.extractall(extract_dir)
         report_path = find_report(extract_dir)
-        report = load_json(report_path)
+        report = normalize_governance_report(load_json(report_path), report_path)
         governance_input, governance_input_path = find_governance_input(extract_dir)
         report_sha256 = compute_sha256(report_path)
         governance_input_sha256 = compute_sha256(governance_input_path) if governance_input_path is not None else None
