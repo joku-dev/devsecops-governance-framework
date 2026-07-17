@@ -34,6 +34,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Understand DevSecOps baseline releases | `docs/releases/index.md`, `docs/releases/l1-baseline-v1.1.3.md` |
 | Understand architecture baseline releases | `docs/releases/architecture-baseline-l1-v0.1.0.md` |
 | Understand intake and viewer | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
+| Operate Evidence- und Governance-Hardening | `docs/operations/guides/evidence-and-governance-hardening-guide.md` |
 | Operate the vulnerability-scan collector pilot | `docs/operations/evidence/vulnerability-scan-collector-usage.md`, `scripts/collect_vulnerability_scan_evidence.py` |
 | Understand portfolio adoption reporting | `docs/operations/status/portfolio-adoption-reporting.md`, `governance/portfolio-adoption-reporting.yaml` |
 | Implement Bamboo 12.1.9 adapter | `docs/operations/adapters/bitbucket-bamboo-governance-adapter.md`, `pipeline-baseline/templates/bamboo/bamboo-specs/bamboo.yaml` |
@@ -192,6 +193,8 @@ python3 -m unittest discover -s tests
 | Intake conflict schema | `schemas/intake-conflict.schema.json` |
 | Agent usage snapshot | `docs/operations/agents/agent-usage-snapshot-latest.md` |
 | Agent usage summary | `generated/agent-usage/agent-usage-summary.json` |
+| Evidence collection attempts | `schemas/evidence-collection-attempt.schema.json`, `scripts/record_collection_attempt.py`, `status/collection-attempts/` |
+| Evidence agent provenance | `schemas/evidence-agent-provenance.schema.json`, `scripts/record_evidence_agent_provenance.py`, `scripts/validate_evidence_agent_provenance.py`, `status/evidence-agent-provenance/` |
 
 Regenerate viewer:
 

@@ -18,6 +18,7 @@ behavior by themselves.
 | `docs/operations/guides/how-to-add-a-new-artifact.md` | Practical step-by-step guide for adding a new artifact safely. |
 | `docs/operations/guides/how-to-update-baseline-input-documents.md` | Maintenance flow for upstream baseline input document changes. |
 | `docs/operations/guides/mkdocs-and-github-pages-step-by-step.md` | Documentation publishing and MkDocs validation guide. |
+| `docs/operations/guides/evidence-and-governance-hardening-guide.md` | Operating guide for the append-only ledger, graph, collectors, provenance and validation. |
 
 ## Boundary
 
