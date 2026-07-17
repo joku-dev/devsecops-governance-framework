@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: portfolio-status
+  group: governance-state-writer
   cancel-in-progress: false
 
 jobs:
@@ -32,14 +32,8 @@ jobs:
         with:
           version: 1.18.2
 
-      - name: Regenerate portfolio and status projections
-        run: |
-          python3 scripts/generate_repository_results_index.py
-          python3 scripts/generate_architecture_results_index.py
-          python3 scripts/generate_typed_evidence_results_index.py
-          python3 scripts/generate_portfolio_onboarding_status.py
-          python3 scripts/generate_governance_graph.py
-          python3 scripts/generate_status_viewer.py
+      - name: Regenerate portfolio status
+        run: python3 scripts/generate_portfolio_onboarding_status.py
 
       - name: Validate generated state
         run: |
@@ -50,10 +44,23 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add status generated .github/workflows/portfolio-status.yml
-          if git diff --cached --quiet; then
-            echo "No portfolio status changes."
-            exit 0
-          fi
-          git commit -m "Refresh portfolio onboarding status"
-          git push
+
+          for attempt in 1 2 3; do
+            git reset --mixed HEAD
+            git pull --rebase --autostash origin main
+            python3 scripts/generate_portfolio_onboarding_status.py
+            git add generated/reports/portfolio-onboarding-status.json generated/reports/portfolio-onboarding-status.md
+            if git diff --cached --quiet; then
+              echo "No semantic portfolio status changes."
+              exit 0
+            fi
+            git commit -m "Refresh portfolio onboarding status"
+            if git push; then
+              exit 0
+            fi
+            git reset --soft HEAD~1
+            sleep $((attempt * 2))
+          done
+
+          echo "Could not push portfolio status after retries."
+          exit 1
