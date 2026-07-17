@@ -8,3 +8,8 @@ enforcement.
 Records validate against `schemas/evidence-collection-attempt.schema.json`.
 Identical retries are idempotent. A changed payload for the same attempt ID is
 kept in `status/intake-conflicts/collection-attempts/` for review.
+
+Retrying collection is a manual operator action. Use the `Retry Collection
+Attempt` GitHub Actions workflow with the repository-relative path of a record
+whose errors are all marked `retryable`. The original record remains unchanged;
+the selected existing intake workflow performs the new attempt.

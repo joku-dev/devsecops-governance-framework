@@ -81,6 +81,28 @@ be retrieved, the attempt is still recorded with the requested repository and
 run identity plus a `source_metadata_unavailable` error so that authentication
 and availability failures do not become invisible.
 
+### Controlled Retry And Backfill
+
+Retry remains an explicit operator decision. Start the `Retry Collection
+Attempt` workflow and provide the repository-relative path of an existing
+record below `status/collection-attempts/`, for example:
+
+```text
+status/collection-attempts/owner__repo/20260717T120000Z-run-42-governance_result.json
+```
+
+The workflow validates the record against the collection-attempt schema and
+requires every recorded error to be marked `retryable`. It accepts only known
+collector, evidence-type, and artifact combinations, then dispatches the
+existing DevSecOps, architecture, or typed-evidence intake workflow with the
+recorded repository and run ID. The original failed-attempt record remains
+unchanged; the retry is visible as a separate GitHub Actions run. A successful
+retry follows the normal append-only intake and latest-state rules.
+
+Automatic retries are intentionally not enabled. This avoids retry storms and
+keeps authentication, expired-artifact, and permanent producer failures under
+operator control.
+
 ## Typed Evidence Trust Intake
 
 For a GitHub Actions run containing an `application-evidence` artifact, use:
