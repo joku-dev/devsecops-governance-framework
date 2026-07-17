@@ -499,6 +499,7 @@ Show these sections:
 | Evidence Trust | Confidence in the captured evidence, shown independently from the governance outcome |
 | Runtime Governance | End-to-end demo status, architecture gates and DevSecOps release result |
 | Repository Execution | Mainline history, branch validation, manual diagnostics and run links |
+| Intake Health | 30-day execution count, observed success rate, p50/p95 duration and latest-result age without an SLO verdict |
 | Collection Attempts | Open, resolved and permanent report-only intake failures |
 | Artifacts & Machine Data | Links to indexes, reports, lineage and generated machine-readable files |
 
@@ -509,6 +510,9 @@ Expected interpretation:
 - Existing pre-Trust snapshots should show evidence Trust `unverified` without changing either governance result.
 - A resolved Collection Attempt proves only that collection later succeeded;
   it does not upgrade or weaken the collected governance outcome.
+- Intake Health should show the three validated smoke-test executions, 100%
+  observed success, p50 2 seconds, and p95 3 seconds. Explain that three runs
+  are not a production SLO baseline and do not enable blocking.
 - The viewer is the demo cockpit: it makes the current governance state visible without opening every raw JSON file.
 
 ## Report-Only Versus Blocking

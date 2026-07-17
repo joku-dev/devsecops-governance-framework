@@ -167,7 +167,7 @@ application service, Kubernetes workload, external database, or message queue.
 | Collection attempt, intake telemetry, and health | Record failed or partial collection for retry, record every intake execution, and project report-only operational indicators | `scripts/record_collection_attempt.py`, `scripts/record_intake_event.py`, `scripts/generate_intake_health.py`, `status/collection-attempts/`, `status/intake-events/`, `status/intake-health.json` |
 | Status and portfolio projections | Select context-aware latest results and summarize multi-consumer adoption | result index generators, `status/*-index.json`, `governance/portfolio-adoption-reporting.yaml` |
 | Governance Intelligence Graph | Join stable identifiers into a deterministic read-only relationship graph | `scripts/generate_governance_graph.py`, `schemas/governance-graph.schema.json`, `generated/graph/` |
-| Viewer and documentation | Present status, Trust, attempts, portfolio information, lineage, and graph navigation | `scripts/generate_status_viewer.py`, `generated/viewer/`, `mkdocs.yml` |
+| Viewer and documentation | Present status, Trust, Intake Health, attempts, portfolio information, lineage, and graph navigation | `scripts/generate_status_viewer.py`, `generated/viewer/`, `mkdocs.yml` |
 | Agent review system | Route bounded governance reviews using model-neutral roles and skills; record explicit agent involvement separately | `.agents/`, `.codex/agents/`, `tests/agent_harness/`, `status/evidence-agent-provenance/` |
 
 ## Sources of Truth and Read Models
