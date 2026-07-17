@@ -1,6 +1,6 @@
 # Architecture Source Replacement Assessment
 
-Generated: `2026-07-15T11:34:40Z`
+Generated: `2026-07-17T17:54:02Z`
 
 ## Summary
 

@@ -1,0 +1,395 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/governance-framework-demo-consumer",
+  "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+  "governance_repository": "joku-dev/devsecops-governance-framework",
+  "result_type": "architecture-runtime-governance-run",
+  "generated_at": "2026-07-15T16:50:47Z",
+  "pipeline": {
+    "pipeline_name": "Architecture Governance",
+    "pipeline_run_id": "29434075225",
+    "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29434075225",
+    "event": "push",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "main",
+    "branch_protected": false,
+    "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d"
+  },
+  "target": {
+    "path": "/home/runner/work/governance-framework-demo-consumer/governance-framework-demo-consumer/application",
+    "commit": "894f05f",
+    "release_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d",
+    "detected_services": 0
+  },
+  "checks": {
+    "architecture_runtime_governance": "success"
+  },
+  "evidence": {
+    "release_input": true,
+    "architecture_report": true,
+    "marker_assessments": 32,
+    "release_compatibility_declaration": true,
+    "solution_baseline": true,
+    "compatibility_evidence": true,
+    "security_evidence": true,
+    "deployment_evidence": true,
+    "runtime_evidence": true,
+    "review_evidence": false,
+    "exception_evidence": false,
+    "feedback_evidence": false,
+    "exceptions": 0
+  },
+  "artifact_metadata": {
+    "artifact_name": "architecture-governance-evidence",
+    "artifact_size_bytes": 5707,
+    "architecture_governance_report_sha256": "e1b1a748ceec7d78fd38e77edc2e67d1de4348247690f1f5e20ee9d51c9e8adc",
+    "architecture_release_input_sha256": "8ce027d0eedc8d8bb56269fb24b01d43f42885a0cc12860138044f9726052d39",
+    "artifact_archive_sha256": null
+  },
+  "trust": {
+    "model_id": "evidence-trust-model-v1",
+    "capture_phase": "additive_capture",
+    "effective_level": "integrity_verified",
+    "assessment_status": "evaluated",
+    "verifier": "central-governance-intake/v1",
+    "verified_at": "2026-07-17T17:53:43Z",
+    "checks": [
+      {
+        "id": "subject_identity_complete",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source",
+          "trust.capture.subjects"
+        ]
+      },
+      {
+        "id": "content_digest_verified",
+        "result": "pass",
+        "evidence_refs": [
+          "artifact_metadata.architecture_governance_report_sha256",
+          "artifact_metadata.architecture_release_input_sha256"
+        ]
+      },
+      {
+        "id": "producer_run_resolved",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.run_id"
+        ]
+      },
+      {
+        "id": "commit_matches_run",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.commit_id"
+        ]
+      },
+      {
+        "id": "artifact_belongs_to_run",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.artifact_name"
+        ]
+      },
+      {
+        "id": "baseline_ref_resolved",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "freshness_evaluated",
+        "result": "fail",
+        "evidence_refs": [
+          "generated_at",
+          "trust.verified_at"
+        ],
+        "policy_id": "freshness-governance-result-24h",
+        "policy_version": "0.1.0",
+        "policy_status": "provisional",
+        "produced_at": "2026-07-15T16:50:47Z",
+        "evaluated_at": "2026-07-17T17:53:43Z",
+        "maximum_age_seconds": 86400,
+        "finding_effect": "report_only",
+        "reason": "Evidence age 176576s exceeds the provisional maximum 86400s.",
+        "age_seconds": 176576
+      },
+      {
+        "id": "replay_key_unique",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source",
+          "trust.capture.subjects"
+        ],
+        "finding_effect": "report_only",
+        "reason": "No prior replay key or incompatible digest reuse was found.",
+        "replay_key": "1d0054153cde9f6430c7d063b236931c36e0c77b03baa01eba817871e02c82f6"
+      },
+      {
+        "id": "custody_recorded",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_signature_valid",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_issuer_trusted",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_subject_matches",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      }
+    ],
+    "capture": {
+      "contract_id": "evidence-collector-contract",
+      "contract_version": "0.1.0",
+      "status": "collected",
+      "enforcement": "report_only",
+      "evidence_type": "governance_result",
+      "governance_domain": "architecture",
+      "collector": {
+        "id": "central-governance-intake",
+        "version": "0.1.0"
+      },
+      "produced_at": "2026-07-15T16:50:47Z",
+      "captured_at": "2026-07-17T17:53:43Z",
+      "source": {
+        "provider": "github_actions",
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d",
+        "workflow_name": "Architecture Governance",
+        "run_id": "29434075225",
+        "run_attempt": 1,
+        "artifact_name": "architecture-governance-evidence",
+        "source_uri": "https://api.github.com/repos/joku-dev/governance-framework-demo-consumer/actions/artifacts/8350609589/zip"
+      },
+      "subjects": [
+        {
+          "id": "architecture_governance_report",
+          "evidence_ref": "artifact_metadata.architecture_governance_report_sha256",
+          "algorithm": "sha256",
+          "digest": "e1b1a748ceec7d78fd38e77edc2e67d1de4348247690f1f5e20ee9d51c9e8adc",
+          "size_bytes": 12569
+        },
+        {
+          "id": "architecture_release_input",
+          "evidence_ref": "artifact_metadata.architecture_release_input_sha256",
+          "algorithm": "sha256",
+          "digest": "8ce027d0eedc8d8bb56269fb24b01d43f42885a0cc12860138044f9726052d39",
+          "size_bytes": 10265
+        }
+      ],
+      "custody": [
+        {
+          "sequence": 1,
+          "action": "download",
+          "actor": "central-governance-intake",
+          "at": "2026-07-17T17:53:43Z",
+          "source_uri": "https://api.github.com/repos/joku-dev/governance-framework-demo-consumer/actions/artifacts/8350609589/zip",
+          "output_refs": [
+            "artifact_metadata"
+          ]
+        },
+        {
+          "sequence": 2,
+          "action": "extract_and_hash",
+          "actor": "central-governance-intake",
+          "at": "2026-07-17T17:53:43Z",
+          "source_uri": "https://api.github.com/repos/joku-dev/governance-framework-demo-consumer/actions/artifacts/8350609589/zip",
+          "output_refs": [
+            "artifact_metadata.architecture_governance_report_sha256",
+            "artifact_metadata.architecture_release_input_sha256"
+          ]
+        }
+      ],
+      "errors": []
+    }
+  },
+  "architecture_summary": {
+    "gate_count": 4,
+    "passed": 0,
+    "with_findings": 4,
+    "finding_count": 26
+  },
+  "gates": [
+    {
+      "id": "architecture_readiness",
+      "title": "Architecture Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-ARCH-READY: Architecture-readiness marker B3 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker P3 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker P7 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker S1 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker S2 requires score 3 or a valid exception; current score is 1."
+      ],
+      "remediations": []
+    },
+    {
+      "id": "integration_readiness",
+      "title": "Integration Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-INTEGRATION-READY: Integration-readiness marker E3 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker E5 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker P5 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker P6 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker S3 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker S4 requires score 3 or a valid exception; current score is 1."
+      ],
+      "remediations": []
+    },
+    {
+      "id": "operation_readiness",
+      "title": "Operation Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-OPERATION-READY: Operation readiness requires feedback evidence.",
+        "RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 1.",
+        "RG-OPERATION-READY: Operation-readiness marker P11 requires score 4 or a valid exception; current score is 3."
+      ],
+      "remediations": [
+        {
+          "id": "REM-FEEDBACK-LOOP",
+          "match": "marker B5",
+          "title": "Strengthen architecture feedback loop",
+          "action": "Link operational findings, demo findings or benchmark trends to owned improvement actions, technical debt items or architecture runway.",
+          "evidence": [
+            "operational_finding",
+            "improvement_backlog_item",
+            "technical_debt_item"
+          ]
+        },
+        {
+          "id": "REM-OBSERVABILITY",
+          "match": "marker P11",
+          "title": "Verify observability evidence",
+          "action": "Add runtime metrics, health indicators, monitoring dashboard evidence or operational diagnostics that prove observability works.",
+          "evidence": [
+            "monitoring_dashboard",
+            "runtime_metric",
+            "health_indicator"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "release_readiness",
+      "title": "Release Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-RELEASE-READY: Release compatibility declaration must be approved.",
+        "RG-RELEASE-READY: Release-critical architecture marker E6 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P10 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker P13 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P5 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker P6 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker P8 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P9 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker S3 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker S5 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker S6 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker S8 requires score 4 or a valid exception; current score is 1."
+      ],
+      "remediations": [
+        {
+          "id": "REM-REL-DECL",
+          "match": "release compatibility declaration",
+          "title": "Create release compatibility declaration",
+          "action": "Create and approve a release compatibility declaration that identifies the supported solution baseline, interface versions, data versions, deployment assumptions, security assumptions, known limitations and approval roles.",
+          "evidence": [
+            "release_compatibility_declaration",
+            "product_compatibility_matrix",
+            "approval_record"
+          ]
+        },
+        {
+          "id": "REM-SECURITY-VERIFY",
+          "match": "marker E6",
+          "title": "Verify enterprise security guardrail evidence",
+          "action": "Add verified security evidence such as threat model review, vulnerability scan result, crypto/security review or security architecture review.",
+          "evidence": [
+            "security_architecture_review",
+            "vulnerability_scan_result",
+            "security_test_evidence"
+          ]
+        },
+        {
+          "id": "REM-PRODUCT-RESILIENCE",
+          "match": "marker P10",
+          "title": "Verify product resilience behavior",
+          "action": "Add failure-mode, restart, recovery, degraded-mode or DIL behavior tests.",
+          "evidence": [
+            "failure_mode_test",
+            "recovery_test_result",
+            "degraded_mode_evidence"
+          ]
+        },
+        {
+          "id": "REM-PRODUCT-COMPATIBILITY",
+          "match": "marker P13",
+          "title": "Declare product release compatibility",
+          "action": "Add a product release compatibility declaration showing supported baselines, interface versions, data versions, deployment assumptions, exceptions and approvals.",
+          "evidence": [
+            "product_release_compatibility_declaration",
+            "compatibility_evidence",
+            "release_review_record"
+          ]
+        },
+        {
+          "id": "REM-PRODUCT-SECURITY",
+          "match": "marker P8",
+          "title": "Verify product security implementation",
+          "action": "Add product-level security verification evidence for authentication, authorization, crypto usage, logging and vulnerability handling.",
+          "evidence": [
+            "product_security_concept",
+            "vulnerability_scan_result",
+            "security_test_evidence"
+          ]
+        },
+        {
+          "id": "REM-SOLUTION-SECURITY",
+          "match": "marker S5",
+          "title": "Verify solution security evidence",
+          "action": "Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.",
+          "evidence": [
+            "solution_threat_model",
+            "trust_zone_model",
+            "security_test_evidence"
+          ]
+        },
+        {
+          "id": "REM-RELEASE-ARCHITECTURE",
+          "match": "marker S6",
+          "title": "Complete release architecture evidence",
+          "action": "Link the solution baseline to compatible product releases, interface versions, data contracts and deployment assumptions.",
+          "evidence": [
+            "solution_release_baseline",
+            "product_compatibility_matrix",
+            "release_declaration"
+          ]
+        },
+        {
+          "id": "REM-RESILIENCE",
+          "match": "marker S8",
+          "title": "Verify solution resilience scenarios",
+          "action": "Add tested degraded-mode, failover, recovery or disconnected/intermittent/limited connectivity scenarios.",
+          "evidence": [
+            "degraded_mode_scenario",
+            "resilience_test_result",
+            "recovery_evidence"
+          ]
+        }
+      ]
+    }
+  ],
+  "overall_status": "findings",
+  "notes": "Intaken automatically from downstream Architecture Runtime Governance run."
+}

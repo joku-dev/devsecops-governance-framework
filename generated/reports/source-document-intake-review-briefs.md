@@ -1,6 +1,6 @@
 # Source Document Intake Review Briefs
 
-Generated: `2026-07-15T11:34:39Z`
+Generated: `2026-07-17T17:54:01Z`
 
 ## Decision State
 

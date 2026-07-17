@@ -1,20 +1,83 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:45:02Z",
+  "generated_at": "2026-07-17T17:54:06Z",
   "summary": {
-    "repository_count": 1,
-    "result_count": 10,
+    "repository_count": 2,
+    "result_count": 11,
     "passing_results": 10,
-    "findings_results": 0,
-    "mainline_results": 7,
+    "findings_results": 1,
+    "mainline_results": 8,
     "branch_results": 2,
     "manual_results": 1,
     "trust_level_counts": {
-      "unverified": 9,
-      "integrity_verified": 1
+      "integrity_verified": 2,
+      "unverified": 9
     }
   },
   "repositories": [
+    {
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+      "results_path": "status/architecture-results/joku-dev__governance-framework-demo-consumer/",
+      "latest_result": {
+        "status": "findings",
+        "pipeline_run_id": "29434075225",
+        "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d",
+        "generated_at": "2026-07-15T16:50:47Z",
+        "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+        "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29434075225",
+        "branch": "main",
+        "pipeline_event": "push",
+        "source_file": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-50-47Z-run-29434075225.json",
+        "architecture_summary": {
+          "gate_count": 4,
+          "passed": 0,
+          "with_findings": 4,
+          "finding_count": 26
+        },
+        "trust": {
+          "effective_level": "integrity_verified",
+          "assessment_status": "evaluated",
+          "verified_at": "2026-07-17T17:53:43Z",
+          "replay": "pass",
+          "check_summary": {
+            "pass": 6,
+            "fail": 1,
+            "not_evaluated": 5
+          }
+        }
+      },
+      "history": [
+        {
+          "generated_at": "2026-07-15T16:50:47Z",
+          "status": "findings",
+          "pipeline_run_id": "29434075225",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29434075225",
+          "branch": "main",
+          "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d",
+          "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+          "architecture_summary": {
+            "gate_count": 4,
+            "passed": 0,
+            "with_findings": 4,
+            "finding_count": 26
+          },
+          "trust": {
+            "effective_level": "integrity_verified",
+            "assessment_status": "evaluated",
+            "verified_at": "2026-07-17T17:53:43Z",
+            "replay": "pass",
+            "check_summary": {
+              "pass": 6,
+              "fail": 1,
+              "not_evaluated": 5
+            }
+          },
+          "source_file": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-50-47Z-run-29434075225.json"
+        }
+      ]
+    },
     {
       "repository_id": "joku-dev/ha-CPsWMS",
       "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
