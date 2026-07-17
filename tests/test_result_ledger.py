@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from lib.result_ledger import (  # noqa: E402
     AppendOnlyConflictError,
     apply_replay_assessment,
+    write_collection_attempt_append_only,
     write_snapshot_append_only,
 )
 
@@ -196,6 +197,25 @@ class ResultLedgerTests(unittest.TestCase):
         self.assertIn("Intake Conflict Quarantine", section)
         self.assertIn("report_only", section)
         self.assertIn("status/results/owner__repo/result.json", section)
+
+    def test_collection_attempt_is_append_only_and_idempotent(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            root = Path(tempdir)
+            payload = {
+                "attempt_id": "attempt-1",
+                "attempted_at": "2026-07-17T12:00:00Z",
+                "status": "failed",
+            }
+            path = root / "attempts" / "attempt-1.json"
+            first = write_collection_attempt_append_only(path, payload, conflict_root=root / "conflicts")
+            second = write_collection_attempt_append_only(path, payload, conflict_root=root / "conflicts")
+            self.assertEqual(first, second)
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), payload)
+
+    def test_collection_attempt_example_validates(self):
+        schema = json.loads((ROOT / "schemas" / "evidence-collection-attempt.schema.json").read_text(encoding="utf-8"))
+        example = json.loads((ROOT / "docs" / "examples" / "evidence-collection-attempt.example.json").read_text(encoding="utf-8"))
+        Draft202012Validator(schema).validate(example)
 
 
 if __name__ == "__main__":

@@ -232,3 +232,44 @@ def write_snapshot_append_only(
         raise error
     print(f"warning: {error}", file=sys.stderr)
     return path
+
+
+def write_collection_attempt_append_only(
+    path: Path,
+    payload: dict,
+    *,
+    conflict_root: Path,
+) -> Path:
+    """Persist a failed/partial collection attempt without overwriting history."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    attempt_id = payload.get("attempt_id")
+    for existing_path in sorted(path.parent.glob("*.json")):
+        try:
+            existing = json.loads(existing_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if existing.get("attempt_id") == attempt_id:
+            if canonical_digest(existing) == canonical_digest(payload):
+                return existing_path
+            conflict_path = conflict_root / f"{path.stem}-conflict-{canonical_digest(payload)[:12]}.json"
+            if not conflict_path.exists():
+                _write_exclusive(conflict_path, {
+                    "schema_version": "1.0.0",
+                    "conflict_type": "append_only_snapshot_conflict",
+                    "enforcement": "report_only",
+                    "detected_at": payload.get("attempted_at", "unknown"),
+                    "target_path": _portable_status_path(existing_path),
+                    "existing_payload_sha256": canonical_digest(existing),
+                    "incoming_payload_sha256": canonical_digest(payload),
+                    "existing_evidence_identity": {"attempt_id": attempt_id},
+                    "incoming_evidence_identity": {"attempt_id": attempt_id},
+                })
+            return existing_path
+    if not path.exists():
+        _write_exclusive(path, payload)
+        return path
+    return write_collection_attempt_append_only(
+        path.with_name(f"{path.stem}-retry{path.suffix}"),
+        payload,
+        conflict_root=conflict_root,
+    )
