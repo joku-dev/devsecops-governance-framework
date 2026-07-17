@@ -30,6 +30,22 @@ class IntakeWorkflowConcurrencyTests(unittest.TestCase):
         content = (WORKFLOWS / "portfolio-status.yml").read_text(encoding="utf-8")
         self.assertIn("group: portfolio-status", content)
 
+    def test_all_intake_workflows_record_failures_before_failing(self):
+        for filename in (
+            "intake-governance-result.yml",
+            "intake-architecture-result.yml",
+            "intake-evidence-trust.yml",
+        ):
+            with self.subTest(workflow=filename):
+                content = (WORKFLOWS / filename).read_text(encoding="utf-8")
+                self.assertIn("id: intake", content)
+                self.assertIn("continue-on-error: true", content)
+                self.assertIn("Record failed collection attempt", content)
+                self.assertIn("status/collection-attempts", content)
+                self.assertIn("Fail workflow after recording collection attempt", content)
+                self.assertIn("steps.regenerate.outcome == 'success'", content)
+                self.assertIn("steps.validation.outcome == 'success'", content)
+
 
 if __name__ == "__main__":
     unittest.main()
