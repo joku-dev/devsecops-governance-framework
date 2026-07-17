@@ -101,6 +101,22 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
             self.assertEqual(payload, data)
             self.assertEqual(path, payload_path)
 
+    def test_find_report_accepts_consumer_baseline_gate_result(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            report_path = Path(tempdir) / "generated" / "evidence" / "baseline-gate-result.json"
+            report_path.parent.mkdir(parents=True)
+            report_path.write_text(json.dumps({"status": "fail"}), encoding="utf-8")
+            self.assertEqual(intake.find_report(Path(tempdir)), report_path)
+
+    def test_normalizes_consumer_report_only_gate_result(self):
+        report = intake.normalize_governance_report(
+            {"status": "fail", "governance_mode": "report-only", "errors": ["branch protection missing"]},
+            Path("baseline-gate-result.json"),
+        )
+        self.assertEqual(report["summary"]["fail"], 1)
+        self.assertEqual(report["summary"]["pass"], 0)
+        self.assertEqual(report["baseline_gate_result"]["governance_mode"], "report-only")
+
     def test_write_snapshot_includes_downloaded_artifact_metadata(self):
         with tempfile.TemporaryDirectory() as tempdir:
             temp_root = Path(tempdir)
