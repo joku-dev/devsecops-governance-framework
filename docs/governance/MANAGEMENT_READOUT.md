@@ -66,6 +66,11 @@ append-only failure remains available for audit. A matching successful snapshot
 resolves the operational collection failure without implying that the collected
 governance outcome passed or changing the official `latest_result`.
 
+Central intake workflows now also record a report-only operation event for
+every successful or failed execution. This creates the measurement foundation
+for future intake success-rate and latency reporting without changing results,
+Trust, or enforcement. Historical runs are not inferred or backfilled.
+
 For the consumer demo, the latest successful workflows use released baseline
 references `l1-baseline-v1.1.3` and `architecture-baseline-l1-v0.1.0`. The
 DevSecOps workflow produces the application, pipeline, and governance input
@@ -111,8 +116,9 @@ The following items are still open:
   are recorded in history while the latest `push` remains the mainline pointer
 - successful workflow completion currently coexists with report-only governance
   findings; this is expected while the consumer remains in report-only mode
-- collection retries are deliberately manual; automated retry policies, retry
-  budgets, and alert thresholds are not yet enabled
+- collection retries are deliberately manual; operation telemetry is now
+  captured, while automated retry policies, health thresholds, retry budgets,
+  and alerts are not yet enabled
 
 ## Recommended Next Priorities
 

@@ -78,6 +78,14 @@ The repository now also contains a normalized central results store:
 
 This allows the repository to record downstream governance outcomes in a structured and auditable way.
 
+Central intake operations are additionally recorded under:
+
+- `status/intake-events/`
+
+These append-only events include success, failure, and measured collection
+duration. They are operational telemetry for a later health projection and do
+not replace result snapshots or Collection Attempts.
+
 ### Viewer Layer
 
 The static viewer is generated at:

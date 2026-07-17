@@ -62,6 +62,10 @@ jobs:
         with:
           version: 1.18.2
 
+      - name: Start intake telemetry
+        id: telemetry_start
+        run: echo "started_at=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
+
       - name: Intake downstream run
         id: intake
         continue-on-error: true
@@ -90,6 +94,11 @@ jobs:
 
           python3 scripts/intake_github_actions_run.py "${args[@]}"
 
+      - name: Stop intake telemetry clock
+        id: telemetry_stop
+        if: always()
+        run: echo "completed_at=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
+
       - name: Record failed collection attempt
         if: steps.intake.outcome == 'failure'
         env:
@@ -107,6 +116,36 @@ jobs:
             --error-code devsecops_governance_intake_failed \
             --message "DevSecOps governance result intake failed; inspect the workflow log for the detailed cause." \
             --retryable
+
+      - name: Record intake telemetry
+        id: telemetry
+        if: always()
+        env:
+          REPOSITORY_ID: ${{ github.event.client_payload.repository_id || inputs.repository_id }}
+          RUN_ID: ${{ github.event.client_payload.run_id || inputs.run_id }}
+          ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name || inputs.artifact_name || 'governance-control-evaluation' }}
+          INTAKE_STATUS: ${{ steps.intake.outcome == 'success' && 'success' || 'failed' }}
+          STARTED_AT: ${{ steps.telemetry_start.outputs.started_at }}
+          COMPLETED_AT: ${{ steps.telemetry_stop.outputs.completed_at }}
+        run: |
+          args=(
+            --repository-id "${REPOSITORY_ID}"
+            --run-id "${RUN_ID}"
+            --evidence-type governance_result
+            --collector-id central-governance-intake
+            --artifact-name "${ARTIFACT_NAME}"
+            --intake-type devsecops_governance
+            --status "${INTAKE_STATUS}"
+            --started-at "${STARTED_AT}"
+            --completed-at "${COMPLETED_AT}"
+          )
+          if [ "${INTAKE_STATUS}" = "failed" ]; then
+            args+=(
+              --error-code devsecops_governance_intake_failed
+              --message "DevSecOps governance result intake failed; inspect the workflow log for the detailed cause."
+            )
+          fi
+          python3 scripts/record_intake_event.py "${args[@]}"
 
       - name: Regenerate status index and viewer
         id: regenerate
@@ -138,7 +177,7 @@ jobs:
             python3 scripts/generate_governance_graph.py
             python3 scripts/generate_status_viewer.py
 
-            git add status/results status/collection-attempts status/intake-conflicts status/repository-results-index.json generated/graph/governance-graph.json generated/viewer/status-viewer.html
+            git add status/results status/collection-attempts status/intake-events status/intake-conflicts status/repository-results-index.json generated/graph/governance-graph.json generated/viewer/status-viewer.html
             if git diff --cached --quiet; then
               echo "No governance result changes to commit."
               exit 0
@@ -162,6 +201,6 @@ jobs:
           echo "Could not push governance intake result after retries."
           exit 1
 
-      - name: Fail workflow after recording collection attempt
-        if: steps.intake.outcome == 'failure'
+      - name: Fail workflow after intake or telemetry failure
+        if: steps.intake.outcome == 'failure' || steps.telemetry.outcome == 'failure'
         run: exit 1

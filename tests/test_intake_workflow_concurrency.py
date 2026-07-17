@@ -42,7 +42,12 @@ class IntakeWorkflowConcurrencyTests(unittest.TestCase):
                 self.assertIn("continue-on-error: true", content)
                 self.assertIn("Record failed collection attempt", content)
                 self.assertIn("status/collection-attempts", content)
-                self.assertIn("Fail workflow after recording collection attempt", content)
+                self.assertIn("Start intake telemetry", content)
+                self.assertIn("Stop intake telemetry clock", content)
+                self.assertIn("Record intake telemetry", content)
+                self.assertIn("scripts/record_intake_event.py", content)
+                self.assertIn("status/intake-events", content)
+                self.assertIn("Fail workflow after intake or telemetry failure", content)
                 self.assertIn("steps.regenerate.outcome == 'success'", content)
                 self.assertIn("steps.validation.outcome == 'success'", content)
 
