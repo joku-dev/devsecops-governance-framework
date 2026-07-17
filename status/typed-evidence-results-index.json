@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T16:42:43Z",
+  "generated_at": "2026-07-17T16:45:02Z",
   "summary": {
     "repository_count": 1,
     "result_count": 1,
@@ -8,6 +8,7 @@
     "branch_results": 0,
     "manual_results": 0,
     "freshness_failures": 0,
+    "replay_failures": 0,
     "trust_level_counts": {
       "integrity_verified": 1
     }
@@ -39,10 +40,12 @@
         },
         "freshness": "pass",
         "content_integrity": "pass",
+        "replay": "not_evaluated",
         "trust": {
           "effective_level": "integrity_verified",
           "assessment_status": "evaluated",
           "verified_at": "2026-07-15T16:42:42Z",
+          "replay": "not_evaluated",
           "check_summary": {
             "pass": 6,
             "fail": 0,
@@ -75,10 +78,12 @@
           },
           "freshness": "pass",
           "content_integrity": "pass",
+          "replay": "not_evaluated",
           "trust": {
             "effective_level": "integrity_verified",
             "assessment_status": "evaluated",
             "verified_at": "2026-07-15T16:42:42Z",
+            "replay": "not_evaluated",
             "check_summary": {
               "pass": 6,
               "fail": 0,

@@ -8,11 +8,13 @@ from pathlib import Path
 import argparse
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
-from lib.json_io import load_json, write_json
+from lib.json_io import load_json
+from lib.result_ledger import write_snapshot_append_only
 
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_RESULTS = ROOT / "status" / "results"
+INTAKE_CONFLICTS = ROOT / "status" / "intake-conflicts" / "manual"
 
 
 def parse_bool(value: str) -> bool:
@@ -109,7 +111,7 @@ def main() -> int:
     repo_dir = STATUS_RESULTS / slugify_repository(args.repository_id)
     filename = f"{sanitize_timestamp(generated_at)}-run-{args.pipeline_run_id}.json"
     output_path = repo_dir / filename
-    write_json(output_path, payload)
+    write_snapshot_append_only(output_path, payload, conflict_root=INTAKE_CONFLICTS)
     print(output_path.relative_to(ROOT))
     return 0
 

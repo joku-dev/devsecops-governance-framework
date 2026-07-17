@@ -36,17 +36,17 @@ def main() -> int:
         results = sorted(repo_dir.glob("*.json"))
         if not results:
             continue
-        parsed = [load_json(path) for path in results]
-        parsed.sort(key=lambda item: item.get("generated_at", ""))
-        latest = parsed[-1]
+        parsed = [(load_json(path), path) for path in results]
+        parsed.sort(key=lambda pair: (pair[0].get("generated_at", ""), str(pair[1])))
+        latest = parsed[-1][0]
         latest_main = None
-        for item in reversed(parsed):
+        for item, _ in reversed(parsed):
             if item.get("repository", {}).get("branch") == "main" and item.get("pipeline", {}).get("event") == "push":
                 latest_main = item
                 break
         representative = latest_main or latest
         result_count += len(parsed)
-        for item in parsed:
+        for item, _ in parsed:
             level = project_trust(item)["effective_level"]
             trust_level_counts[level] = trust_level_counts.get(level, 0) + 1
             if item.get("overall_status") == "pass":
@@ -61,7 +61,7 @@ def main() -> int:
                 branch_results += 1
 
         history = []
-        for item, path in zip(parsed, results):
+        for item, path in parsed:
             history.append(
                 {
                     "generated_at": item.get("generated_at", ""),
@@ -94,7 +94,7 @@ def main() -> int:
                     "pipeline_event": representative.get("pipeline", {}).get("event", "unknown"),
                     "source_file": next(
                         str(path.relative_to(ROOT))
-                        for path, item in zip(results, parsed)
+                        for item, path in parsed
                         if item == representative
                     ),
                     "architecture_summary": representative.get("architecture_summary", {}),

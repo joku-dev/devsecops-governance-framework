@@ -45,6 +45,23 @@ or future-dated result creates a report-only failed Trust check; it does not
 change the governance outcome or latest-result selection. Historical
 snapshots are not rewritten and project as `unverified`.
 
+### Append-Only Result Ledger
+
+All central intake paths use append-only snapshot writes:
+
+- a new snapshot path is created once
+- re-intake with the same run context and subject digests is an idempotent no-op
+- different evidence for an existing snapshot path never overwrites the original
+- the conflicting identity and payload digests are stored under `status/intake-conflicts/`
+- conflict handling remains report-only and does not replace `latest_result`
+
+The central verifier also evaluates `replay_key_unique`. The replay identity
+binds repository, commit, workflow, run, run attempt, artifact, and subject
+digests. Digest reuse within the same repository, commit, and artifact context
+is compatible; reuse across an incompatible decision context is a report-only
+finding. Replay findings do not alter the independently derived integrity
+level or governance outcome.
+
 ## Typed Evidence Trust Intake
 
 For a GitHub Actions run containing an `application-evidence` artifact, use:
@@ -324,3 +341,4 @@ With this model, the viewer can now show:
 - baseline version changes across runs
 - evidence Trust independently from governance `pass`, `fail`, or `findings`
 - typed vulnerability Trust, scanner observations, Freshness, integrity, and subject binding without creating a governance outcome
+- append-only intake conflicts and replay findings without replacing official mainline state

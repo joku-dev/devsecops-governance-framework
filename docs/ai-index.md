@@ -184,6 +184,12 @@ python3 -m unittest discover -s tests
 | Governance graph generator | `scripts/generate_governance_graph.py` |
 | Governance graph output | `generated/graph/governance-graph.json` |
 | Governance graph guide | `docs/operations/status/governance-intelligence-graph-viewer.md` |
+| Append-only ledger and replay logic | `scripts/lib/result_ledger.py` |
+| Intake conflict quarantine | `status/intake-conflicts/` |
+| Intake conflict schema | `schemas/intake-conflict.schema.json` |
+| Append-only ledger and replay logic | `scripts/lib/result_ledger.py` |
+| Intake conflict quarantine | `status/intake-conflicts/` |
+| Intake conflict schema | `schemas/intake-conflict.schema.json` |
 | Agent usage snapshot | `docs/operations/agents/agent-usage-snapshot-latest.md` |
 | Agent usage summary | `generated/agent-usage/agent-usage-summary.json` |
 

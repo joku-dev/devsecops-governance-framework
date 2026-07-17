@@ -333,15 +333,20 @@ def project_trust(snapshot: dict) -> dict:
             "effective_level": "unverified",
             "assessment_status": "not_available",
             "verified_at": None,
+            "replay": "not_evaluated",
             "check_summary": {"pass": 0, "fail": 0, "not_evaluated": 0},
         }
     summary = {"pass": 0, "fail": 0, "not_evaluated": 0}
+    replay = "not_evaluated"
     for check in trust.get("checks", []):
         check_result = check.get("result", "not_evaluated")
         summary[check_result] = summary.get(check_result, 0) + 1
+        if check.get("id") == "replay_key_unique":
+            replay = check_result
     return {
         "effective_level": trust.get("effective_level", "unverified"),
         "assessment_status": trust.get("assessment_status", "not_evaluated"),
         "verified_at": trust.get("verified_at"),
+        "replay": replay,
         "check_summary": summary,
     }

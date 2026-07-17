@@ -51,6 +51,7 @@ def project_result(item: dict, source_file: Path) -> dict:
         },
         "freshness": check_result(trust, "freshness_evaluated"),
         "content_integrity": check_result(trust, "content_digest_verified"),
+        "replay": check_result(trust, "replay_key_unique"),
         "trust": project_trust(item),
         "source_file": str(source_file.relative_to(ROOT)),
     }
@@ -63,6 +64,7 @@ def main() -> int:
     branch_results = 0
     manual_results = 0
     freshness_failures = 0
+    replay_failures = 0
     trust_level_counts: dict[str, int] = {}
 
     if STATUS_RESULTS.exists():
@@ -84,6 +86,8 @@ def main() -> int:
             trust_level_counts[level] = trust_level_counts.get(level, 0) + 1
             if projection["freshness"] == "fail":
                 freshness_failures += 1
+            if projection["replay"] == "fail":
+                replay_failures += 1
             if projection["pipeline_event"] == "workflow_dispatch":
                 manual_results += 1
             elif projection["branch"] == "main" and projection["pipeline_event"] == "push":
@@ -118,6 +122,7 @@ def main() -> int:
             "branch_results": branch_results,
             "manual_results": manual_results,
             "freshness_failures": freshness_failures,
+            "replay_failures": replay_failures,
             "trust_level_counts": trust_level_counts,
         },
         "repositories": repositories,
