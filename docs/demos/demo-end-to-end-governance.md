@@ -491,6 +491,7 @@ Show these sections:
 | Evidence Trust | Confidence in the captured evidence, shown independently from the governance outcome |
 | Runtime Governance | End-to-end demo status, architecture gates and DevSecOps release result |
 | Repository Execution | Mainline history, branch validation, manual diagnostics and run links |
+| Collection Attempts | Open, resolved and permanent report-only intake failures |
 | Artifacts & Machine Data | Links to indexes, reports, lineage and generated machine-readable files |
 
 Expected interpretation:
@@ -498,6 +499,8 @@ Expected interpretation:
 - DevSecOps should show `pass` for baseline `l1-baseline-v1.1.3`.
 - Architecture should show `PASS` for baseline `architecture-baseline-l1-v0.1.0`.
 - Existing pre-Trust snapshots should show evidence Trust `unverified` without changing either governance result.
+- A resolved Collection Attempt proves only that collection later succeeded;
+  it does not upgrade or weaken the collected governance outcome.
 - The viewer is the demo cockpit: it makes the current governance state visible without opening every raw JSON file.
 
 ## Report-Only Versus Blocking

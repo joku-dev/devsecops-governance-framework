@@ -238,6 +238,58 @@ class ResultLedgerTests(unittest.TestCase):
         example = json.loads((ROOT / "docs" / "examples" / "evidence-collection-attempt.example.json").read_text(encoding="utf-8"))
         Draft202012Validator(schema).validate(example)
 
+    def test_collection_attempt_lifecycle_resolves_only_on_matching_snapshot(self):
+        attempt = {
+            "repository_id": "owner/repo",
+            "status": "failed",
+            "evidence_type": "governance_result",
+            "attempted_at": "2026-07-17T12:00:00Z",
+            "source": {"run_id": "42", "artifact_name": "governance-control-evaluation"},
+            "errors": [{"code": "intake_failed", "message": "failed", "retryable": True}],
+        }
+        matching_snapshot = {
+            "repository_id": "owner/repo",
+            "generated_at": "2026-07-17T12:05:00Z",
+            "overall_status": "fail",
+            "_source_file": "status/results/owner__repo/result.json",
+            "trust": {"capture": {"source": {
+                "run_id": "42",
+                "artifact_name": "governance-control-evaluation",
+            }}},
+        }
+        resolved = viewer.project_collection_attempt_lifecycle([attempt], [matching_snapshot])[0]
+        self.assertEqual(resolved["lifecycle"]["state"], "resolved")
+        self.assertEqual(resolved["lifecycle"]["resolved_at"], "2026-07-17T12:05:00Z")
+        self.assertEqual(
+            resolved["lifecycle"]["resolution_source"],
+            "status/results/owner__repo/result.json",
+        )
+
+        matching_snapshot["trust"]["capture"]["source"]["artifact_name"] = "different-artifact"
+        open_attempt = viewer.project_collection_attempt_lifecycle([attempt], [matching_snapshot])[0]
+        self.assertEqual(open_attempt["lifecycle"]["state"], "open")
+
+    def test_non_retryable_collection_attempt_is_permanent(self):
+        attempt = {
+            "repository_id": "owner/repo",
+            "source": {"run_id": "42", "artifact_name": "application-evidence"},
+            "errors": [{"code": "invalid", "message": "invalid", "retryable": False}],
+        }
+        projected = viewer.project_collection_attempt_lifecycle([attempt], [])[0]
+        self.assertEqual(projected["lifecycle"]["state"], "permanent")
+        self.assertFalse(projected["lifecycle"]["retryable"])
+
+    def test_collection_attempt_viewer_shows_lifecycle_counts(self):
+        attempts = [
+            {"lifecycle": {"state": "open"}, "errors": []},
+            {"lifecycle": {"state": "resolved", "resolved_at": "2026-07-17T12:05:00Z"}, "errors": []},
+            {"lifecycle": {"state": "permanent"}, "errors": []},
+        ]
+        section = viewer.build_collection_attempts_section(attempts)
+        self.assertIn("<h3>Open</h3><div class=\"value\">1</div>", section)
+        self.assertIn("<h3>Resolved</h3><div class=\"value\">1</div>", section)
+        self.assertIn("<h3>Permanent</h3><div class=\"value\">1</div>", section)
+
 
 if __name__ == "__main__":
     unittest.main()
