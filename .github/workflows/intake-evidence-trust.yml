@@ -26,7 +26,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: governance-state-writer
+  group: typed-evidence-trust-intake
   cancel-in-progress: false
 
 jobs:
