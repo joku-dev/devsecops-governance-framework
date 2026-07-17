@@ -15,9 +15,10 @@ description: Review OPA policy behavior, representative inputs, and report-only 
 
 ## Validation
 
-Run or request:
+Use the repository-pinned OPA version `1.18.2`. Run or request:
 
 ```bash
+opa version
 opa check policies/opa
 python3 scripts/validate_governance_repo.py
 python3 scripts/validate_runtime_governance.py
