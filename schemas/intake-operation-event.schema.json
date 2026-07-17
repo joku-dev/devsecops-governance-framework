@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Intake Operation Event",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "event_id",
+    "enforcement",
+    "status",
+    "intake_type",
+    "repository_id",
+    "evidence_type",
+    "collector",
+    "started_at",
+    "completed_at",
+    "duration_ms",
+    "source",
+    "intake",
+    "errors"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "record_type": { "const": "intake-operation-event" },
+    "event_id": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "enforcement": { "const": "report_only" },
+    "status": { "enum": ["success", "partial", "failed"] },
+    "intake_type": {
+      "enum": ["devsecops_governance", "architecture_governance", "typed_evidence"]
+    },
+    "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+    "evidence_type": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "collector": {
+      "type": "object",
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+      },
+      "additionalProperties": false
+    },
+    "started_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": "string", "format": "date-time" },
+    "duration_ms": { "type": "integer", "minimum": 0 },
+    "source": {
+      "type": "object",
+      "required": ["provider", "run_id", "artifact_name", "source_uri"],
+      "properties": {
+        "provider": { "const": "github_actions" },
+        "run_id": { "type": "string", "minLength": 1 },
+        "artifact_name": { "type": "string", "minLength": 1 },
+        "source_uri": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "intake": {
+      "type": "object",
+      "required": [
+        "provider",
+        "repository_id",
+        "workflow_name",
+        "run_id",
+        "run_attempt",
+        "trigger_event",
+        "source_uri"
+      ],
+      "properties": {
+        "provider": { "const": "github_actions" },
+        "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "workflow_name": { "type": "string", "minLength": 1 },
+        "run_id": { "type": "string", "minLength": 1 },
+        "run_attempt": { "type": "integer", "minimum": 1 },
+        "trigger_event": { "type": "string", "minLength": 1 },
+        "source_uri": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "message": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "success" } } },
+      "then": { "properties": { "errors": { "maxItems": 0 } } },
+      "else": { "properties": { "errors": { "minItems": 1 } } }
+    }
+  ],
+  "additionalProperties": false
+}
