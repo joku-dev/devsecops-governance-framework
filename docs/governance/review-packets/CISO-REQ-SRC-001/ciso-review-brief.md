@@ -11,6 +11,7 @@
 | Governance-Status | Candidate, nicht normativ |
 | Source-ID | `CISO-REQ-SRC-001` |
 | Change Request | `GCR-2026-047` |
+| Review-Paket | [`CISO-REQ-SRC-001`](README.md) |
 
 ## 1. Executive Summary
 
@@ -817,6 +818,8 @@ Die Analyse ist im Repository über folgende Artefakte nachvollziehbar:
 
 | Artefakt | Zweck |
 |---|---|
+| `docs/governance/review-packets/CISO-REQ-SRC-001/README.md` | Stabiler Einstieg und Lesereihenfolge des Review-Pakets |
+| `docs/governance/review-packets/CISO-REQ-SRC-001/harmonized-requirements-candidate.md` | Technische Beschreibung des Candidate-Modells und seiner Grenzen |
 | `model/requirements/harmonized-devsecops-requirements.yaml` | 44 harmonisierte Candidate-Anforderungen |
 | `model/traceability/standards-to-harmonized-requirements.yaml` | Zuordnung aller 233 eindeutigen Quellanforderungen |
 | `generated/reports/harmonized-requirements-coverage.md` | Lesbarer Coverage-Bericht |
