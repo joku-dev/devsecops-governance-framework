@@ -152,6 +152,36 @@ def validate_multi_consumer_readiness(errors):
         errors.append("Multi-consumer readiness contains failed isolation checks")
 
 
+def validate_evidence_attestation_pilot(errors):
+    attestation_path = ROOT / "docs" / "examples" / "evidence-attestation.example.json"
+    validate_schema(errors, ROOT / "schemas" / "evidence-attestation.schema.json", attestation_path)
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "evidence-trust-root-registry.schema.json",
+        ROOT / "model" / "evidence" / "evidence-trust-roots.yaml",
+    )
+    command = [
+        sys.executable,
+        str(ROOT / "scripts" / "verify_evidence_attestation.py"),
+        str(attestation_path),
+        "--output",
+        str(ROOT / "generated" / "reports" / "evidence-attestation-pilot.json"),
+        "--evaluated-at",
+        "2026-07-17T10:01:00Z",
+    ]
+    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        errors.append(f"Evidence attestation pilot failed: {result.stderr.strip() or result.stdout.strip()}")
+        return
+    report_path = ROOT / "generated" / "reports" / "evidence-attestation-pilot.json"
+    validate_schema(errors, ROOT / "schemas" / "evidence-attestation-assessment.schema.json", report_path)
+    report = load_json(report_path)
+    if report.get("status") != "pass" or report.get("candidate_level") != "attested":
+        errors.append("Evidence attestation pilot must verify the representative signed statement")
+    if report.get("enforcement") != "report_only" or report.get("effective_level") == "attested":
+        errors.append("Evidence attestation pilot must not activate attested Trust")
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -497,6 +527,7 @@ def main() -> int:
     validate_intake_events(errors)
     validate_intake_health(errors)
     validate_multi_consumer_readiness(errors)
+    validate_evidence_attestation_pilot(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)

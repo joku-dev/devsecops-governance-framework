@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Attestation Pilot Assessment",
+  "type": "object",
+  "required": ["schema_version", "assessment_type", "enforcement", "evaluated_at", "attestation_ref", "effective_level", "candidate_level", "status", "checks"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "assessment_type": { "const": "evidence-attestation-pilot" },
+    "enforcement": { "const": "report_only" },
+    "evaluated_at": { "type": "string", "format": "date-time" },
+    "attestation_ref": { "type": "string", "minLength": 1 },
+    "effective_level": { "enum": ["unverified", "integrity_verified", "provenance_verified"] },
+    "candidate_level": { "enum": ["none", "attested"] },
+    "status": { "enum": ["pass", "fail", "not_evaluated"] },
+    "checks": {
+      "type": "array", "minItems": 4, "maxItems": 4,
+      "items": {
+        "type": "object", "required": ["id", "result", "reason"],
+        "properties": {
+          "id": { "enum": ["trust_root_known", "attestation_signature_valid", "attestation_subject_matches", "attestation_context_matches"] },
+          "result": { "enum": ["pass", "fail", "not_evaluated"] },
+          "reason": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

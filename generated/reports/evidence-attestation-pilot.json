@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "assessment_type": "evidence-attestation-pilot",
+  "enforcement": "report_only",
+  "evaluated_at": "2026-07-17T10:01:00Z",
+  "attestation_ref": "/Users/joku/Development/devsecops-governance-framework/docs/examples/evidence-attestation.example.json",
+  "effective_level": "integrity_verified",
+  "candidate_level": "attested",
+  "status": "pass",
+  "checks": [
+    {
+      "id": "trust_root_known",
+      "result": "pass",
+      "reason": "Pilot issuer, key, and repository scope are registered."
+    },
+    {
+      "id": "attestation_signature_valid",
+      "result": "pass",
+      "reason": "Ed25519 signature is valid."
+    },
+    {
+      "id": "attestation_subject_matches",
+      "result": "pass",
+      "reason": "Attested subject identifier and digest match the collected subject."
+    },
+    {
+      "id": "attestation_context_matches",
+      "result": "pass",
+      "reason": "Repository, commit, run attempt, and artifact are bound to the attestation."
+    }
+  ]
+}
