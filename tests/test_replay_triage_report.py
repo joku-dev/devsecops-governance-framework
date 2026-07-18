@@ -42,11 +42,39 @@ class ReplayTriageReportTests(unittest.TestCase):
         schema = json.loads((ROOT / "schemas/replay-triage.schema.json").read_text())
         Draft202012Validator(schema).validate(report)
         self.assertEqual(report["enforcement"], "report_only")
-        self.assertEqual(report["summary"]["recorded_failures"], 3)
-        self.assertEqual(report["summary"]["recalculated_failures"], 1)
-        self.assertEqual(report["summary"]["legacy_assessments_superseded"], 2)
-        self.assertEqual(report["summary"]["official_latest_findings"], 1)
+        assessments = report["assessments"]
+        summary = report["summary"]
+        self.assertEqual(summary["assessments"], len(assessments))
+        self.assertEqual(summary["recorded_failures"], sum(row["recorded_result"] == "fail" for row in assessments))
+        self.assertEqual(summary["recalculated_failures"], sum(row["recalculated_result"] == "fail" for row in assessments))
+        self.assertEqual(
+            summary["legacy_assessments_superseded"],
+            sum(row["classification"] == "legacy_assessment_superseded" for row in assessments),
+        )
+        latest_findings = [
+            row["source_file"]
+            for row in assessments
+            if row["official_latest"] and row["recalculated_result"] == "fail"
+        ]
+        self.assertEqual(summary["official_latest_findings"], len(latest_findings))
+        self.assertEqual(report["official_latest_findings"], latest_findings)
         self.assertFalse(any(report["decision_boundary"].values()))
+
+    def test_all_intake_workflows_regenerate_and_commit_replay_triage(self):
+        for workflow_name in (
+            "intake-governance-result.yml",
+            "intake-architecture-result.yml",
+            "intake-evidence-trust.yml",
+        ):
+            content = (ROOT / ".github" / "workflows" / workflow_name).read_text(encoding="utf-8")
+            self.assertGreaterEqual(content.count("python3 scripts/generate_replay_triage_report.py"), 2)
+            self.assertGreaterEqual(content.count("python3 scripts/generate_status_viewer.py"), 2)
+            self.assertLess(
+                content.index("python3 scripts/generate_replay_triage_report.py"),
+                content.index("python3 scripts/generate_status_viewer.py"),
+            )
+            self.assertIn("generated/reports/replay-triage.json", content)
+            self.assertIn("generated/reports/replay-triage.md", content)
 
     def test_cross_commit_without_artifact_digest_remains_actionable(self):
         prior = row(generated_at="2026-07-17T10:00:00Z", source_file="status/results/prior.json",

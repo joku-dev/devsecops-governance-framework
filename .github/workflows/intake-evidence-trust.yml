@@ -133,6 +133,7 @@ jobs:
           python3 scripts/generate_typed_evidence_results_index.py
           python3 scripts/generate_intake_health.py
           python3 scripts/generate_governance_graph.py
+          python3 scripts/generate_replay_triage_report.py
           python3 scripts/generate_status_viewer.py
 
       - name: Validate generated state
@@ -158,9 +159,10 @@ jobs:
             python3 scripts/generate_typed_evidence_results_index.py
             python3 scripts/generate_intake_health.py
             python3 scripts/generate_governance_graph.py
+            python3 scripts/generate_replay_triage_report.py
             python3 scripts/generate_status_viewer.py
 
-            git add status/typed-evidence-results status/collection-attempts status/intake-events status/intake-conflicts status/intake-health.json status/typed-evidence-results-index.json generated/graph/governance-graph.json generated/viewer/status-viewer.html
+            git add status/typed-evidence-results status/collection-attempts status/intake-events status/intake-conflicts status/intake-health.json status/typed-evidence-results-index.json generated/graph/governance-graph.json generated/reports/replay-triage.json generated/reports/replay-triage.md generated/viewer/status-viewer.html
             if git diff --cached --quiet; then
               echo "No typed evidence changes to commit."
               exit 0
