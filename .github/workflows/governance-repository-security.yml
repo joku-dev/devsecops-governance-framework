@@ -1,0 +1,46 @@
+name: Governance Repository Self-Security
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: "31 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  governance-repository-security:
+    name: Governance Repository Security
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository and release tags
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.11"
+
+      - name: Install validation dependencies
+        run: python -m pip install -r requirements-validation.txt
+
+      - name: Assess live repository security posture
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/assess_governance_repository_security.py
+          cat generated/reports/governance-repository-security.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload self-security assessment
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: governance-repository-security
+          path: |
+            generated/reports/governance-repository-security.json
+            generated/reports/governance-repository-security.md
