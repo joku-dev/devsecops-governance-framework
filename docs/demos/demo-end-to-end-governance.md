@@ -546,6 +546,9 @@ The demo proves that:
 5. Governance repository intake can collect downstream results.
 6. A viewer can show mainline governance status for both DevSecOps and architecture.
 7. The Governance Graph can explain how repositories, runs, commits, baselines, evidence, Trust, snapshots, source documents, and derived artifacts relate.
+8. Multi-consumer readiness can be reproduced from the registry, isolated
+   result paths, portfolio projection, intake workflow concurrency, and
+   telemetry identities.
 
 ## What The Demo Does Not Yet Prove
 

@@ -118,6 +118,14 @@ findings do not block delivery while the demo remains report-only.
 
 This is the key proof point that the Governance-as-Code approach is operationally viable.
 
+The central platform is also structurally ready for multiple consumers. A
+deterministic readiness report validates three registered repositories, exact
+DevSecOps registry coverage, consumer-specific result paths, portfolio
+membership, scoped intake concurrency, telemetry identity, and Intake Health
+dimensions. All nine checks pass. Architecture is currently present for two
+consumers and Typed Evidence for one; optional evidence domains are not
+fabricated for consumers that do not produce them.
+
 ## Current Constraints
 
 The current state is intentionally limited to an initial L1 baseline.
@@ -128,7 +136,9 @@ The following items are still open:
   strategy and signed scanner attestations remain open
 - branch protection evidence must be made fully reliable for L2 usage
 - artifact signing must be introduced for L3 usage
-- additional repositories should be onboarded to prove repeatability at scale
+- additional repositories and a second live telemetry-producing consumer
+  should be onboarded to extend the current three-repository structural proof
+  with a broader operational sample
 - signed attestations, trust roots, and subject binding are not yet implemented
 - agent-to-Evidence provenance is available, but associations are currently
   recorded explicitly rather than inferred automatically
