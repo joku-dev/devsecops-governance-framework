@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T19:04:11Z",
+  "generated_at": "2026-07-18T10:45:05Z",
   "inputs": {
     "source_document_intake_status": "generated/reports/source-document-intake-status.json",
     "governance_change_impact": "generated/reports/governance-change-impact.json"
@@ -12,14 +12,15 @@
     "stricter_rules_enabled": false
   },
   "summary": {
-    "review_briefs": 10,
+    "review_briefs": 11,
     "focus_counts": {
+      "coexistence and derivation scope": 1,
       "lineage maintenance": 3,
       "replacement decision": 1,
       "similarity and source classification": 4,
       "source-of-truth and approval path": 2
     },
-    "human_decision_required": 10
+    "human_decision_required": 11
   },
   "review_briefs": [
     {
@@ -91,7 +92,7 @@
       "decision_template": {
         "source_document_id": "DEVSECOPS-POL-SRC-001",
         "source_document_title": "DevSecOps Policy Version 1 draft 3",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "governance-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -179,7 +180,7 @@
       "decision_template": {
         "source_document_id": "DEVSECOPS-DIR-SRC-001",
         "source_document_title": "DevSecOps Directive Version 0 draft 1",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "governance-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -277,7 +278,7 @@
       "decision_template": {
         "source_document_id": "ARCH-TPL-SRC-001",
         "source_document_title": "SDD Architecture Template and Checklists",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "architecture-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -376,7 +377,7 @@
       "decision_template": {
         "source_document_id": "ARCH-EA-SRC-001",
         "source_document_title": "SDD Enterprise Architecture Guidelines",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "architecture-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -475,7 +476,7 @@
       "decision_template": {
         "source_document_id": "ARCH-SA-SRC-001",
         "source_document_title": "SDD Solution Architecture Guidelines",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "architecture-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -574,7 +575,7 @@
       "decision_template": {
         "source_document_id": "ARCH-PA-SRC-001",
         "source_document_title": "SDD Product Architecture Guidelines",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "architecture-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -666,7 +667,7 @@
       "decision_template": {
         "source_document_id": "ARCH-GOV-SRC-002",
         "source_document_title": "SDD Architecture Governance Framework",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "architecture-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -731,7 +732,7 @@
       "decision_template": {
         "source_document_id": "DEVSECOPS-POL-REQ-001",
         "source_document_title": "DevSecOps Policy Requirements Extract",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "governance-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -795,7 +796,7 @@
       "decision_template": {
         "source_document_id": "DEVSECOPS-DIR-REQ-001",
         "source_document_title": "DevSecOps Directive Requirements Extract",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "governance-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -859,8 +860,99 @@
       "decision_template": {
         "source_document_id": "ARCH-SDD-REQ-001",
         "source_document_title": "Integrated SDD Architecture Governance Requirements Extract",
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": "architecture-owners",
+        "decision_date": "<YYYY-MM-DD>",
+        "rationale": "<why this decision is correct>",
+        "register_updates_required": "<yes/no and fields>",
+        "derived_artifacts_allowed": "<yes/no>",
+        "runtime_governance_change": "<yes/no>",
+        "release_decision": "no_release_by_default",
+        "validation_required": [
+          "python3 -m unittest discover -s tests",
+          "python3 scripts/validate_governance_repo.py",
+          "python3 scripts/validate_runtime_governance.py"
+        ]
+      },
+      "guardrails": [
+        "The agent must not promote the source document.",
+        "The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.",
+        "A human-owned change request must record the final decision."
+      ]
+    },
+    {
+      "brief_id": "SDI-REVIEW-CISO-REQ-SRC-001",
+      "prepared_by_agent": "source-document-intake",
+      "agent_scope": "decision_support_only",
+      "autonomous_decision": false,
+      "decision_authority": "governance-owners",
+      "review_focus": "coexistence and derivation scope",
+      "source_document": {
+        "id": "CISO-REQ-SRC-001",
+        "title": "CISO Standards Requirements Catalog Candidate",
+        "status": "candidate",
+        "owner": "governance-owners",
+        "version": "0.1",
+        "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+        "governance_domains": [
+          "devsecops",
+          "platform",
+          "architecture"
+        ],
+        "review_state": "candidate_related_source_review_required",
+        "similarity_assessment": "related_source",
+        "candidate_replacement_for": []
+      },
+      "agent_observations": [
+        "Current status is candidate.",
+        "Review state is candidate_related_source_review_required.",
+        "Operational artifact count is 0.",
+        "Impact release consideration is no_release_by_default."
+      ],
+      "required_inputs": [
+        "source document owner decision",
+        "change request with documented rationale",
+        "impact classification: documentation-only, model change, policy change, schema change, or release change",
+        "architecture owner or enterprise architect review"
+      ],
+      "decision_options": [
+        {
+          "option": "related_source_confirmed",
+          "meaning": "Accept the source as related material with explicit scope and coexistence boundaries.",
+          "register_updates": [
+            "move status to review or intake after approval",
+            "retain similarity assessment as related_source",
+            "record approved derivation scope in the change request"
+          ],
+          "derived_artifacts_allowed_after_decision": true,
+          "release_consideration": "depends on separately approved derived governance behavior"
+        },
+        {
+          "option": "keep_related_candidate",
+          "meaning": "Keep the related source visible for analysis without authorizing derivation.",
+          "register_updates": [
+            "keep status as candidate",
+            "record unresolved authority, applicability, or licensing questions"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        },
+        {
+          "option": "not_relevant_retire",
+          "meaning": "Close the source for future derivation while preserving the review history.",
+          "register_updates": [
+            "set status to retired",
+            "record the retirement rationale"
+          ],
+          "derived_artifacts_allowed_after_decision": false,
+          "release_consideration": "no release by default"
+        }
+      ],
+      "decision_template": {
+        "source_document_id": "CISO-REQ-SRC-001",
+        "source_document_title": "CISO Standards Requirements Catalog Candidate",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "decision_owner": "governance-owners",
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
         "register_updates_required": "<yes/no and fields>",

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-07-18T07:59:49Z",
+  "generated_at": "2026-07-18T10:43:34Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,8 +10,8 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 173,
-    "edge_count": 368,
+    "node_count": 174,
+    "edge_count": 379,
     "node_types": {
       "Artifact": 123,
       "Baseline": 3,
@@ -20,12 +20,12 @@
       "Repository": 3,
       "ResultSnapshot": 6,
       "Scanner": 1,
-      "SourceDocument": 20,
+      "SourceDocument": 21,
       "TrustAssessment": 6,
       "WorkflowRun": 6
     },
     "edge_types": {
-      "DERIVES": 338,
+      "DERIVES": 349,
       "EVALUATES_COMMIT": 5,
       "HAS_EVIDENCE": 1,
       "HAS_RESULT": 6,
@@ -1686,6 +1686,22 @@
       }
     },
     {
+      "id": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "type": "SourceDocument",
+      "label": "CISO Standards Requirements Catalog Candidate",
+      "properties": {
+        "path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+        "document_id": "CISO-REQ-SRC-001",
+        "status": "candidate",
+        "owner": "governance-owners",
+        "governance_domains": [
+          "devsecops",
+          "platform",
+          "architecture"
+        ]
+      }
+    },
+    {
       "id": "source:docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md",
       "type": "SourceDocument",
       "label": "DevSecOps Directive Version 0 draft 1",
@@ -3308,6 +3324,105 @@
       "id": "DERIVES:source:docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md->artifact:model/documents/source-document-register.yaml",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "target": "artifact:model/documents/source-document-register.yaml",
+      "properties": {
+        "role": "source_document_intake"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/architecture-source-replacement-assessment.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/architecture-source-replacement-assessment.json",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/architecture-source-replacement-assessment.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/architecture-source-replacement-assessment.md",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/governance-change-impact.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/governance-change-impact.json",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/governance-change-impact.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/governance-change-impact.md",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/source-document-intake-review-briefs.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/source-document-intake-review-briefs.json",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/source-document-intake-review-briefs.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/source-document-intake-review-briefs.md",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/source-document-intake-status.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/source-document-intake-status.json",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/source-document-intake-status.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/source-document-intake-status.md",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/source-document-requirement-delta.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/source-document-requirement-delta.json",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:generated/reports/source-document-requirement-delta.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target": "artifact:generated/reports/source-document-requirement-delta.md",
+      "properties": {
+        "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md->artifact:model/documents/source-document-register.yaml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
       "target": "artifact:model/documents/source-document-register.yaml",
       "properties": {
         "role": "source_document_intake"

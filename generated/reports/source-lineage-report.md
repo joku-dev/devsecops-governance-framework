@@ -1,12 +1,12 @@
 # Source Lineage Report
 
-Generated: `2026-07-17T19:04:12Z`
+Generated: `2026-07-18T10:45:05Z`
 
 ## Summary
 
-- Source documents: `20`
-- Source documents with lineage entries: `20`
-- Derived artifact links: `338`
+- Source documents: `21`
+- Source documents with lineage entries: `21`
+- Derived artifact links: `349`
 - Missing derived artifacts: `0`
 
 ## Source Documents
@@ -25,6 +25,7 @@ Generated: `2026-07-17T19:04:12Z`
 | `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/ARCH-TPL-SRC-001.public.md` | `true` | `11` |
 | `docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md` | `true` | `11` |
+| `docs/governance/source-documents/CISO-REQ-SRC-001.public.md` | `true` | `11` |
 | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md` | `true` | `13` |
 | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md` | `true` | `13` |
@@ -238,6 +239,22 @@ Generated: `2026-07-17T19:04:12Z`
 | `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
 
 ### `docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md`
+
+| Artifact | Type | Role | Exists |
+|---|---|---|---:|
+| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
+| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
+| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+
+### `docs/governance/source-documents/CISO-REQ-SRC-001.public.md`
 
 | Artifact | Type | Role | Exists |
 |---|---|---|---:|

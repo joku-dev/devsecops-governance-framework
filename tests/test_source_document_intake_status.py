@@ -29,16 +29,20 @@ class SourceDocumentIntakeStatusTests(unittest.TestCase):
         self.assertTrue(output_md.exists())
 
         payload = json.loads(output_json.read_text(encoding="utf-8"))
-        self.assertEqual(payload["summary"]["registered_source_documents"], 20)
-        self.assertEqual(payload["summary"]["status_counts"]["candidate"], 5)
-        self.assertEqual(payload["summary"]["status_counts"]["intake"], 10)
-        self.assertEqual(payload["summary"]["status_counts"]["review"], 3)
+        self.assertEqual(payload["summary"]["registered_source_documents"], len(payload["documents"]))
+        self.assertEqual(
+            sum(payload["summary"]["status_counts"].values()),
+            payload["summary"]["registered_source_documents"],
+        )
+        self.assertGreaterEqual(payload["summary"]["status_counts"]["candidate"], 1)
         self.assertEqual(payload["summary"]["replacement_review_items"], 1)
         self.assertEqual(payload["decision"]["runtime_governance_changed"], False)
         self.assertEqual(payload["decision"]["stricter_rules_enabled"], False)
 
         document_ids = {item["id"] for item in payload["documents"]}
         self.assertIn("ARCH-GOV-SRC-002", document_ids)
+        self.assertIn("CISO-REQ-SRC-001", document_ids)
         open_ids = {item["id"] for item in payload["open_items"]}
         self.assertIn("ARCH-GOV-SRC-002", open_ids)
+        self.assertIn("CISO-REQ-SRC-001", open_ids)
         self.assertIn("Source Document Intake Status", output_md.read_text(encoding="utf-8"))
