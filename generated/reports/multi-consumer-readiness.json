@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "report_id": "multi-consumer-readiness",
-  "generated_at": "2026-07-17T21:56:30Z",
+  "generated_at": "2026-07-18T07:59:49Z",
   "enforcement": "report_only",
   "ready": true,
   "summary": {
@@ -109,7 +109,7 @@
       "devsecops_result": true,
       "architecture_result": true,
       "typed_evidence_result": true,
-      "telemetry_events": 3
+      "telemetry_events": 4
     },
     {
       "repository_id": "joku-dev/ha-CPsWMS",

@@ -509,10 +509,10 @@ Expected interpretation:
 - DevSecOps should show `pass` for baseline `l1-baseline-v1.1.3`.
 - Architecture should show `PASS` for baseline `architecture-baseline-l1-v0.1.0`.
 - Existing pre-Trust snapshots should show evidence Trust `unverified` without changing either governance result.
-- Replay Triage should show three recorded failures, one current failure, two
-  superseded legacy assessments, and one official-latest finding. Explain that
-  the open demo-consumer finding requires new Evidence with an artifact digest;
-  it does not justify editing the existing snapshot or blocking delivery.
+- Replay Triage should show three recorded failures, one historical current-rule
+  failure, two superseded legacy assessments, and zero official-latest
+  findings. Run `29636320472` demonstrates safe deterministic report reuse with
+  an artifact digest while the earlier finding remains immutable.
 - A resolved Collection Attempt proves only that collection later succeeded;
   it does not upgrade or weaken the collected governance outcome.
 - Intake Health should show the three validated smoke-test executions, 100%

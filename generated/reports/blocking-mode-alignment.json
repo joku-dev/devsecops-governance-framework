@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "projection_type": "blocking-mode-alignment",
-  "generated_at": "2026-07-18T06:32:46.058441Z",
+  "generated_at": "2026-07-18T08:10:56.106278Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "alignment_status": "controlled",
@@ -49,9 +49,7 @@
         "intake_observation_sample",
         "minimum_trust_level",
         "no_intake_conflicts",
-        "replay_check_clean",
-        "stable_mainline_sample",
-        "trust_checks_clean"
+        "typed_evidence_current_and_clean"
       ],
       "risk_record_ref": null,
       "review_due": null,
