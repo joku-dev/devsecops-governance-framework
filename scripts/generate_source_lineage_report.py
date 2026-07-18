@@ -153,6 +153,7 @@ def devsecops_lineage(lineage: dict) -> None:
             "docs/operations/status/governance-intelligence-graph-viewer.md",
             "docs/operations/security/governance-repository-self-security.md",
             "docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
+            "docs/governance/change-requests/GCR-2026-049-current-governance-security-report.md",
             "docs/demos/demo-consumer-typed-evidence-trust.md",
             "docs/demos/presentation-guide-typed-evidence-trust-de.md",
             "docs/examples/evidence-trust-record.example.json",

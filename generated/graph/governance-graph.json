@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-07-18T16:08:49Z",
+  "generated_at": "2026-07-18T16:21:45Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,10 +10,10 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 189,
-    "edge_count": 396,
+    "node_count": 190,
+    "edge_count": 397,
     "node_types": {
-      "Artifact": 139,
+      "Artifact": 140,
       "Baseline": 3,
       "Commit": 4,
       "EvidenceRecord": 1,
@@ -25,7 +25,7 @@
       "WorkflowRun": 6
     },
     "edge_types": {
-      "DERIVES": 366,
+      "DERIVES": 367,
       "EVALUATES_COMMIT": 5,
       "HAS_EVIDENCE": 1,
       "HAS_RESULT": 6,
@@ -242,6 +242,16 @@
       "label": "docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
       "properties": {
         "path": "docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:docs/governance/change-requests/GCR-2026-049-current-governance-security-report.md",
+      "type": "Artifact",
+      "label": "docs/governance/change-requests/GCR-2026-049-current-governance-security-report.md",
+      "properties": {
+        "path": "docs/governance/change-requests/GCR-2026-049-current-governance-security-report.md",
         "artifact_type": "governance_model",
         "exists": true
       }
@@ -4018,6 +4028,15 @@
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
       "target": "artifact:docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/governance/change-requests/GCR-2026-049-current-governance-security-report.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:docs/governance/change-requests/GCR-2026-049-current-governance-security-report.md",
       "properties": {
         "role": "DSCB-STD-001"
       }
