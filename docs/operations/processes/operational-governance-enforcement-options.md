@@ -36,6 +36,15 @@ enforcement:
 
 Use `report-only` for new repositories until at least one branch or pull-request run has produced usable evidence. Move to `block-on-error` or `waiver-required` only after the repository has stable evidence generation and an agreed operating model.
 
+Before either blocking mode is introduced, use the stronger report-only
+Blocking Readiness assessment and migration runbook:
+
+- `docs/operations/status/blocking-readiness.md`
+- `docs/operations/processes/blocking-enforcement-migration-guide.md`
+
+A technically ready result is necessary but not sufficient. Accountable human
+approval and a separate consumer-scoped activation change remain mandatory.
+
 ### 1. Shared Pipeline Template
 
 The strongest operational pattern is to provide a central CI template and require teams to import it.

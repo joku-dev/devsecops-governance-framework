@@ -133,6 +133,15 @@ The result is intentionally only an `attested` candidate: operational Trust
 remains `integrity_verified`, no consumer workflow or released baseline was
 changed, and production issuer and key lifecycle approval remains open.
 
+A versioned Blocking Readiness assessment now makes the enforcement gap
+explicit without changing any repository mode. None of the three consumers
+currently satisfies the stronger technical bar. The existing
+`block-on-error` registration for `ha-CPsWMS` is flagged for review because it
+predates the new Trust, Typed Evidence, replay, and operational-sample criteria;
+the report does not weaken that existing gate. The demo consumer remains
+correctly report-only due to `integrity_verified` Trust, one replay failure, 25
+Architecture findings, only three intake events, and two retained conflicts.
+
 ## Current Constraints
 
 The current state is intentionally limited to an initial L1 baseline.
@@ -162,7 +171,8 @@ The following items are still open:
 
 ## Recommended Next Priorities
 
-1. Define measurable blocking-readiness criteria without enabling blocking.
+1. Close the measured Blocking Readiness gaps, beginning with provenance Trust,
+   replay resolution, Architecture findings, and a representative intake sample.
 2. Use Collection Attempt lifecycle, controlled retry, and provenance records
    in regular operational review and audit preparation.
 3. Validate and operationalize branch-protection-based controls for L2.
