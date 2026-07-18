@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blocking Mode Alignment Assessment",
+  "type": "object",
+  "required": ["schema_version", "projection_type", "generated_at", "enforcement", "enforcement_change_authorized", "alignment_status", "summary", "repositories", "orphaned_legacy_records"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "projection_type": { "const": "blocking-mode-alignment" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "enforcement": { "const": "report_only" },
+    "enforcement_change_authorized": { "const": false },
+    "alignment_status": { "enum": ["controlled", "review_required"] },
+    "summary": {
+      "type": "object",
+      "required": ["repositories", "nonblocking", "aligned_blocking", "legacy_risk_active", "unsafe_blocking", "orphaned_legacy_records"],
+      "properties": {
+        "repositories": { "type": "integer", "minimum": 0 },
+        "nonblocking": { "type": "integer", "minimum": 0 },
+        "aligned_blocking": { "type": "integer", "minimum": 0 },
+        "legacy_risk_active": { "type": "integer", "minimum": 0 },
+        "unsafe_blocking": { "type": "integer", "minimum": 0 },
+        "orphaned_legacy_records": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "repositories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["repository_id", "current_mode", "blocking", "technical_ready", "manual_approval", "alignment", "blocking_activation_valid", "gap_ids", "risk_record_ref", "review_due", "reason"],
+        "properties": {
+          "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+          "current_mode": { "type": "string", "minLength": 1 },
+          "blocking": { "type": "boolean" },
+          "technical_ready": { "type": "boolean" },
+          "manual_approval": { "enum": ["approved", "pending"] },
+          "alignment": { "enum": ["nonblocking", "aligned_blocking", "legacy_risk_active", "unapproved_blocking", "legacy_risk_expired", "legacy_risk_incomplete"] },
+          "blocking_activation_valid": { "type": "boolean" },
+          "gap_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" } },
+          "risk_record_ref": { "type": ["string", "null"] },
+          "review_due": { "type": ["string", "null"], "format": "date-time" },
+          "reason": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "orphaned_legacy_records": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[^/]+/[^/]+$" } }
+  },
+  "additionalProperties": false
+}

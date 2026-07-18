@@ -1,0 +1,34 @@
+schema_version: "0.1.0"
+registry_id: blocking-mode-alignment-v0.1
+status: active_report_only
+model_introduced_at: "2026-07-18T00:00:00Z"
+enforcement_change_authorized: false
+legacy_risk_records:
+  - repository_id: joku-dev/ha-CPsWMS
+    current_mode: block-on-error
+    record_type: preexisting_mode_risk
+    record_status: acknowledged_pending_review
+    mode_observed_at: "2026-07-15T08:14:21Z"
+    mode_provenance_ref: 38abeba851a964a428a2e4a4ea2cfac414a33862
+    recorded_at: "2026-07-18T00:00:00Z"
+    review_due: "2026-08-18T00:00:00Z"
+    owner: Repository Owner
+    action_owner: Governance Platform Lead
+    risk: Existing blocking predates provenance-level Trust, Typed Evidence, replay, and operational-sample readiness criteria.
+    disposition: preserve_without_new_approval
+    required_gap_ids:
+      - minimum_trust_level
+      - replay_check_clean
+      - typed_evidence_current_and_clean
+      - intake_observation_sample
+      - accountable_approval
+    required_review_roles:
+      - Repository Owner
+      - Governance Platform Lead
+      - Security
+      - Release Manager
+    evidence_refs:
+      - status/application-repository-integrations.yaml
+      - generated/reports/blocking-readiness.json
+      - docs/operations/processes/blocking-enforcement-migration-guide.md
+    enforcement_change_authorized: false
