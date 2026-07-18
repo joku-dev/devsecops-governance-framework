@@ -107,6 +107,8 @@ nav:
       - Agent Harness Usage: operations/agents/agent-harness-usage.md
       - Agent Usage Tracking: operations/agents/agent-usage-tracking.md
       - Agent Usage Snapshot Latest: operations/agents/agent-usage-snapshot-latest.md
+      - Security:
+          - Governance Repository Self-Security: operations/security/governance-repository-self-security.md
       - Status:
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md
           - Multi-Consumer Readiness: operations/status/multi-consumer-readiness.md

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T19:04:11Z",
+  "generated_at": "2026-07-18T16:08:53Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
@@ -8,7 +8,7 @@
   "summary": {
     "registered_source_documents": 20,
     "source_documents_with_lineage": 20,
-    "derived_artifact_links": 338,
+    "derived_artifact_links": 366,
     "domains": {
       "architecture": 12,
       "devsecops": 8,
@@ -24,13 +24,14 @@
     },
     "release_considerations": {
       "baseline_release_review": 2,
-      "no_release_by_default": 18
+      "no_release_by_default": 17,
+      "release_candidate_recommended": 1
     },
     "artifact_types": {
       "architecture_model": 8,
       "derived_artifact": 212,
       "governance_document": 4,
-      "governance_model": 85,
+      "governance_model": 113,
       "policy_as_code": 15,
       "release_document": 1,
       "release_metadata": 1,
@@ -45,7 +46,7 @@
       "platform-review": 2,
       "policy-as-code-review": 2,
       "release-review": 2,
-      "schema-review": 2,
+      "schema-review": 3,
       "viewer-status-review": 3
     }
   },
@@ -166,14 +167,18 @@
         "model/controls",
         "model/evidence",
         "policies/opa",
+        "schemas",
+        "scripts",
+        ".github/workflows",
+        "docs/operations/security",
         "releases/l1",
         "generated/reports"
       ],
-      "lineage_artifact_count": 82,
+      "lineage_artifact_count": 98,
       "lineage_artifact_types": {
         "derived_artifact": 10,
         "governance_document": 1,
-        "governance_model": 56,
+        "governance_model": 72,
         "policy_as_code": 11,
         "release_package": 3,
         "traceability_mapping": 1
@@ -199,16 +204,16 @@
       ],
       "change_request_required_for_source_update": true,
       "representative_artifacts": [
+        ".github/CODEOWNERS",
+        ".github/dependabot.yml",
+        ".github/workflows/codeql.yml",
+        ".github/workflows/dependency-review.yml",
+        ".github/workflows/governance-repository-security.yml",
+        "SECURITY.md",
         "docs/demos/demo-consumer-typed-evidence-trust.md",
         "docs/demos/presentation-guide-typed-evidence-trust-de.md",
         "docs/examples/evidence-collector-record.example.json",
-        "docs/examples/evidence-trust-record.example.json",
-        "docs/examples/vulnerability-scan-input.example.json",
-        "docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
-        "docs/operations/evidence/evidence-collector-contract.md",
-        "docs/operations/evidence/evidence-trust-model.md",
-        "docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
-        "docs/operations/evidence/vulnerability-scan-collector-usage.md"
+        "docs/examples/evidence-trust-record.example.json"
       ]
     },
     {
@@ -226,22 +231,25 @@
         "model/platform",
         "pipeline-baseline",
         "model/traceability",
+        ".github/workflows",
+        "docs/operations/security",
         "generated/reports",
         "generated/viewer"
       ],
-      "lineage_artifact_count": 29,
+      "lineage_artifact_count": 41,
       "lineage_artifact_types": {
         "derived_artifact": 16,
         "governance_document": 1,
-        "governance_model": 11,
+        "governance_model": 23,
         "traceability_mapping": 1
       },
       "review_lanes": [
         "devsecops-review",
         "platform-review",
+        "schema-review",
         "viewer-status-review"
       ],
-      "release_consideration": "no_release_by_default",
+      "release_consideration": "release_candidate_recommended",
       "source_state": "active_source",
       "candidate_replacement_for": [],
       "supersedes": null,
@@ -254,16 +262,16 @@
       ],
       "change_request_required_for_source_update": true,
       "representative_artifacts": [
+        ".github/CODEOWNERS",
+        ".github/dependabot.yml",
+        ".github/workflows/codeql.yml",
+        ".github/workflows/dependency-review.yml",
+        ".github/workflows/governance-repository-security.yml",
+        "SECURITY.md",
+        "docs/examples/governance-repository-security-observation.example.json",
         "docs/governance/source-documents/PRA-STD-SRC-001.public.md",
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/control-coverage-report.md",
-        "generated/reports/document-control-matrix.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json"
+        "docs/operations/security/governance-repository-self-security.md",
+        "generated/reports/architecture-source-replacement-assessment.json"
       ]
     },
     {

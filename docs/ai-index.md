@@ -36,6 +36,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Understand architecture baseline releases | `docs/releases/architecture-baseline-l1-v0.1.0.md` |
 | Understand intake and viewer | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
 | Operate Evidence- und Governance-Hardening | `docs/operations/guides/evidence-and-governance-hardening-guide.md` |
+| Assess governance repository self-security | `docs/operations/security/governance-repository-self-security.md`, `model/controls/governance-repository-security.yaml`, `scripts/assess_governance_repository_security.py`, `generated/reports/governance-repository-security.md` |
 | Operate the vulnerability-scan collector pilot | `docs/operations/evidence/vulnerability-scan-collector-usage.md`, `scripts/collect_vulnerability_scan_evidence.py` |
 | Understand portfolio adoption reporting | `docs/operations/status/portfolio-adoption-reporting.md`, `governance/portfolio-adoption-reporting.yaml` |
 | Implement Bamboo 12.1.9 adapter | `docs/operations/adapters/bitbucket-bamboo-governance-adapter.md`, `pipeline-baseline/templates/bamboo/bamboo-specs/bamboo.yaml` |
