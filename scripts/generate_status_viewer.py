@@ -656,6 +656,47 @@ def build_intake_health_section(health: dict) -> str:
     )
 
 
+def build_replay_triage_section(report: dict) -> str:
+    if not report:
+        return ""
+    summary = report.get("summary", {})
+    latest = [row for row in report.get("assessments", []) if row.get("official_latest")]
+    rows = []
+    for assessment in latest:
+        recorded = assessment.get("recorded_result", "not_evaluated")
+        current = assessment.get("recalculated_result", "not_evaluated")
+        classification = assessment.get("classification", "not_evaluated")
+        action = assessment.get("recommended_action", "none")
+        rows.append([
+            escape(assessment.get("domain", "unknown")),
+            f"<code>{escape(assessment.get('repository_id', 'unknown'))}</code>",
+            f"<code>{escape(assessment.get('run_id', 'unknown'))}</code>",
+            badge(recorded, "danger" if recorded == "fail" else "ok" if recorded == "pass" else "plain"),
+            badge(current, "danger" if current == "fail" else "ok" if current == "pass" else "plain"),
+            f"<code>{escape(classification)}</code>",
+            f"<code>{escape(action)}</code>",
+        ])
+    table = html_table(
+        ["Domain", "Repository", "Run", "Recorded", "Current Interpretation", "Classification", "Recommended Action"],
+        rows,
+    ) if rows else "<p>No official latest replay assessments are available.</p>"
+    return (
+        '<section id="replay-triage" class="viewer-section">'
+        '<div class="section-title"><h2>Replay Triage</h2>'
+        '<p>Report-only interpretation of recorded replay checks using the current rules. Historical Evidence, Trust levels, latest selection, and enforcement remain unchanged.</p></div>'
+        '<section class="cards">'
+        f'<section class="card"><h3>Assessments</h3><div class="value">{summary.get("assessments", 0)}</div><p>Trust-bearing snapshots reviewed</p></section>'
+        f'<section class="card"><h3>Recorded Failures</h3><div class="value">{summary.get("recorded_failures", 0)}</div><p>Immutable historical results</p></section>'
+        f'<section class="card"><h3>Current Findings</h3><div class="value">{summary.get("recalculated_failures", 0)}</div><p>Failures under current replay logic</p></section>'
+        f'<section class="card"><h3>Superseded</h3><div class="value">{summary.get("legacy_assessments_superseded", 0)}</div><p>Explained by later hardening</p></section>'
+        f'<section class="card"><h3>Latest Findings</h3><div class="value">{summary.get("official_latest_findings", 0)}</div><p>Actionable official-latest results</p></section>'
+        '</section>'
+        f'<section class="panel"><h2>Official Latest Replay Assessments</h2>{table}</section>'
+        '<p class="meta">Classification is diagnostic. See the Replay Triage report for the full history and relationships.</p>'
+        '</section>'
+    )
+
+
 def build_evidence_agent_provenance_section(index: dict) -> str:
     summary = index.get("summary", {})
     records = index.get("records", [])
@@ -1603,6 +1644,8 @@ def main() -> int:
     source_intake_review_briefs = load_json(source_intake_review_briefs_path) if source_intake_review_briefs_path.exists() else {}
     source_requirement_delta_path = ROOT / "generated" / "reports" / "source-document-requirement-delta.json"
     source_requirement_delta = load_json(source_requirement_delta_path) if source_requirement_delta_path.exists() else {}
+    replay_triage_path = ROOT / "generated" / "reports" / "replay-triage.json"
+    replay_triage = load_json(replay_triage_path) if replay_triage_path.exists() else {}
     latest_result_with_summary = None
     for repository in results_index.get("repositories", []):
         latest_summary = repository.get("latest_result", {}).get("control_evaluation_summary", {})
@@ -1800,6 +1843,8 @@ def main() -> int:
         payload["source_document_intake_summary"] = source_intake_status.get("summary", {})
     if source_requirement_delta:
         payload["source_document_requirement_delta_summary"] = source_requirement_delta.get("summary", {})
+    if replay_triage:
+        payload["replay_triage_summary"] = replay_triage.get("summary", {})
 
     control_rows = []
     if control_report:
@@ -1935,6 +1980,7 @@ def main() -> int:
         else ""
     )
     typed_evidence_trust_html = build_typed_evidence_trust_section(typed_evidence_index)
+    replay_triage_html = build_replay_triage_section(replay_triage)
     governance_graph_html = build_governance_graph_section(governance_graph)
     graph_script = governance_graph_script() if governance_graph_html else ""
     intake_conflicts_html = build_intake_conflicts_section(intake_conflicts)
@@ -2087,6 +2133,7 @@ def main() -> int:
       <a href="#governance-graph">Governance Graph</a>
       <a href="#runtime-governance">Runtime Governance</a>
       <a href="#evidence-trust">Evidence Trust</a>
+      <a href="#replay-triage">Replay Triage</a>
       <a href="#intake-health">Intake Health</a>
       <a href="#intake-conflicts">Intake Conflicts</a>
       <a href="#source-intake">Source Intake</a>
@@ -2119,6 +2166,8 @@ def main() -> int:
     {runtime_governance_html}
 
     {typed_evidence_trust_html}
+
+    {replay_triage_html}
 
     {intake_health_html}
 
@@ -2217,6 +2266,7 @@ def main() -> int:
             <li><a href="../reports/ai-native-engineering-factory-onboarding-readiness.md">AI-Native Engineering Factory Onboarding Readiness</a></li>
             <li><a href="../reports/portfolio-onboarding-status.md">Portfolio Onboarding Status</a></li>
             <li><a href="../reports/multi-consumer-readiness.md">Multi-Consumer Readiness</a></li>
+            <li><a href="../reports/replay-triage.md">Replay Triage Report</a></li>
             <li><a href="../documents/devsecops-pol-001.html">Rendered Policy</a></li>
             <li><a href="../documents/devsecops-dir-001.html">Rendered Directive</a></li>
             <li><a href="../control-evaluation-report.json">Control Evaluation Report JSON</a></li>

@@ -86,6 +86,7 @@ nav:
       - Evidence:
           - Governance Evidence Contract: operations/evidence/governance-evidence-contract.md
           - Evidence Trust Model: operations/evidence/evidence-trust-model.md
+          - Replay Triage: operations/evidence/replay-triage.md
           - Evidence Attestation Pilot: operations/evidence/evidence-attestation-pilot.md
           - Evidence Collector Contract: operations/evidence/evidence-collector-contract.md
           - Vulnerability Scan Collector Usage: operations/evidence/vulnerability-scan-collector-usage.md
