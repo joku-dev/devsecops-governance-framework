@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Repository Self-Security Assessment",
+  "type": "object",
+  "required": ["schema_version", "assessment_type", "profile_id", "profile_version", "repository_id", "observed_at", "enforcement", "enforcement_change_authorized", "overall_status", "summary", "criteria", "observation", "decision_boundary"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "assessment_type": { "const": "governance-repository-self-security" },
+    "profile_id": { "const": "governance-repository-self-security" },
+    "profile_version": { "type": "string", "minLength": 1 },
+    "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "enforcement": { "const": "report_only" },
+    "enforcement_change_authorized": { "const": false },
+    "overall_status": { "enum": ["pass", "findings"] },
+    "summary": {
+      "type": "object",
+      "required": ["criteria", "pass", "fail", "critical_failures", "high_failures"],
+      "properties": {
+        "criteria": { "type": "integer", "minimum": 1 },
+        "pass": { "type": "integer", "minimum": 0 },
+        "fail": { "type": "integer", "minimum": 0 },
+        "critical_failures": { "type": "integer", "minimum": 0 },
+        "high_failures": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "criteria": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["id", "key", "title", "severity", "status", "observed", "expected", "evidence_refs"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^GRS-[0-9]{3}$" },
+          "key": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "title": { "type": "string", "minLength": 1 },
+          "severity": { "enum": ["critical", "high", "medium", "low"] },
+          "status": { "enum": ["pass", "fail"] },
+          "observed": {},
+          "expected": { "const": true },
+          "evidence_refs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+        },
+        "additionalProperties": false
+      }
+    },
+    "observation": { "type": "object" },
+    "decision_boundary": {
+      "type": "object",
+      "required": ["blocks_pull_requests", "changes_repository_settings", "changes_released_baselines"],
+      "properties": {
+        "blocks_pull_requests": { "const": false },
+        "changes_repository_settings": { "const": false },
+        "changes_released_baselines": { "const": false }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
