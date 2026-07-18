@@ -56,7 +56,7 @@ The central viewer now also provides separate report-only views for typed
 Evidence Trust, Intake Health, the governance relationship graph, intake
 conflicts, failed or
 partial collection attempts, their derived `open`, `resolved`, or `permanent`
-lifecycle, and explicit agent participation in Evidence reviews.
+lifecycle, explicit agent participation in Evidence reviews, and Replay Triage.
 
 These views are projections of versioned JSON and do not replace the underlying
 Evidence source, digest, custody, or attestation data.
@@ -115,6 +115,15 @@ because the normalized control report digest was reused across runs; this does
 not affect the Typed Evidence projection. These results are intentionally
 visible in the central indexes and viewer; Architecture findings and replay
 findings do not block delivery while the demo remains report-only.
+
+Replay Triage now separates immutable recorded history from interpretation
+under the current hardened replay rules. Across 18 Trust-bearing snapshots it
+shows three recorded failures, of which two are legacy assessments superseded
+by later compatibility logic. One official-latest DevSecOps finding remains for
+demo-consumer run `29603835297`: the normalized control report crossed commits
+without an accepted artifact digest. The prescribed response is fresh Evidence
+with digest binding, not rewriting history. Trust, latest selection, governance
+outcomes, and enforcement remain unchanged.
 
 This is the key proof point that the Governance-as-Code approach is operationally viable.
 
@@ -176,6 +185,8 @@ The following items are still open:
 - collection retries are deliberately manual; operation telemetry is now
   captured, while automated retry policies, health thresholds, retry budgets,
   and alerts are not yet enabled
+- one official-latest replay finding still requires a fresh demo-consumer
+  Evidence run with artifact-digest binding
 
 ## Recommended Next Priorities
 

@@ -69,6 +69,13 @@ is compatible; reuse across an incompatible decision context is a report-only
 finding. Replay findings do not alter the independently derived integrity
 level or governance outcome.
 
+`scripts/generate_replay_triage_report.py` provides the operational
+interpretation layer over this immutable history. It records both the original
+check and its result under current rules, classifies the relationship, and
+recommends an action. It does not alter the snapshot, Trust, governance result,
+latest-state selection, or enforcement. See
+`docs/operations/evidence/replay-triage.md`.
+
 The governance, architecture, and typed-evidence workflows use concurrency
 groups scoped to intake type, consumer repository, and downstream run ID.
 Duplicate delivery of the same run is therefore serialized, while distinct
@@ -275,6 +282,12 @@ If PR-level central visibility is needed later, add explicit PR result intake an
 ## Part 2: Viewer Usage
 
 ## Mainline Versus Branch Results
+
+The viewer's **Replay Triage** section shows the official-latest assessment for
+each available domain. **Recorded** is the immutable snapshot value; **Current
+Interpretation** is a derived diagnostic result. Use the generated JSON report
+for full historical relationships and never remediate a triage finding by
+editing stored Evidence.
 
 The viewer now distinguishes between:
 

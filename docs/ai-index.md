@@ -187,6 +187,8 @@ python3 -m unittest discover -s tests
 | Governance graph output | `generated/graph/governance-graph.json` |
 | Governance graph guide | `docs/operations/status/governance-intelligence-graph-viewer.md` |
 | Append-only ledger and replay logic | `scripts/lib/result_ledger.py` |
+| Replay triage guide | `docs/operations/evidence/replay-triage.md` |
+| Replay triage generator and output | `scripts/generate_replay_triage_report.py`, `generated/reports/replay-triage.json` |
 | Intake conflict quarantine | `status/intake-conflicts/` |
 | Intake conflict schema | `schemas/intake-conflict.schema.json` |
 | Append-only ledger and replay logic | `scripts/lib/result_ledger.py` |

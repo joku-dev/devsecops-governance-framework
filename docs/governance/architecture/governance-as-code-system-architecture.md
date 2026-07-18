@@ -286,6 +286,12 @@ governance PASS to FAIL and does not independently lower byte-integrity Trust.
 The replay identity binds repository, commit, workflow, run, run attempt,
 artifact, and subject digest.
 
+Replay Triage is a derived interpretation layer over the immutable ledger. It
+replays the current compatibility rules against stored chronology, preserves
+the recorded result alongside the recalculated result, and exposes an operator
+classification and action. It cannot write snapshots, move latest pointers,
+change Trust, or authorize enforcement.
+
 Agent provenance is also independent. It records an explicitly asserted
 `selected`, `executed`, `reviewed`, or `approved` relationship to a known
 subject digest. It is not a cryptographic attestation and cannot raise the
@@ -407,6 +413,7 @@ not the governance contracts.
 | Current Trust generally stops at `integrity_verified` | Producer identity and authoritative provenance are not yet fully verified. |
 | Only a public-key demo issuer is registered | Signature and subject binding are proven report-only; production issuer lifecycle and operational `attested` promotion remain open. |
 | Freshness and replay are report-only | Operators must review findings; they are not automatic enforcement gates. |
+| Replay rules can evolve while Evidence remains immutable | Replay Triage explains superseded legacy assessments and current findings without retrospective rewriting. |
 | Collection lifecycle and health are projected from immutable events | There is no mutable operational job state or automatic retry scheduler. Health indicators are report-only and thresholds are not yet defined. |
 | Vulnerability scan is the current typed collector pilot | Additional evidence types still need contract-conformant adapters and tests. |
 | Some governance approvals remain organisational | Repository automation cannot substitute for the accountable governance forum. |
