@@ -6,6 +6,11 @@ This runbook describes how a single consumer can move from observation to a
 blocking governance gate after the report-only readiness projection passes.
 It does not authorize any current repository to change mode.
 
+Before activation, confirm that the Blocking Mode Alignment report contains no
+`unapproved_blocking`, `legacy_risk_incomplete`, or `legacy_risk_expired`
+state. A preexisting `legacy_risk_active` record is migration debt, not an
+activation precedent.
+
 ## Preconditions
 
 1. Generate `generated/reports/blocking-readiness.json` from current mainline

@@ -110,6 +110,7 @@ nav:
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md
           - Multi-Consumer Readiness: operations/status/multi-consumer-readiness.md
           - Blocking Readiness: operations/status/blocking-readiness.md
+          - Blocking Mode Alignment: operations/status/blocking-mode-alignment.md
           - Governance Intelligence Graph Viewer: operations/status/governance-intelligence-graph-viewer.md
           - Current Governance Platform State: operations/status/current-governance-platform-state.md
           - ha-CPsWMS Validation Status: operations/status/ha-cpswms-governance-validation-status.md

@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1.0",
+  "projection_type": "blocking-mode-alignment",
+  "generated_at": "2026-07-18T06:32:46.058441Z",
+  "enforcement": "report_only",
+  "enforcement_change_authorized": false,
+  "alignment_status": "controlled",
+  "summary": {
+    "repositories": 3,
+    "nonblocking": 2,
+    "aligned_blocking": 0,
+    "legacy_risk_active": 1,
+    "unsafe_blocking": 0,
+    "orphaned_legacy_records": 0
+  },
+  "repositories": [
+    {
+      "repository_id": "joku-dev/ai-native-engineering-factory",
+      "current_mode": "report-only",
+      "blocking": false,
+      "technical_ready": false,
+      "manual_approval": "pending",
+      "alignment": "nonblocking",
+      "blocking_activation_valid": false,
+      "gap_ids": [
+        "accountable_approval",
+        "intake_observation_sample",
+        "minimum_trust_level",
+        "released_baseline_pinned",
+        "replay_check_clean",
+        "stable_mainline_sample",
+        "typed_evidence_current_and_clean"
+      ],
+      "risk_record_ref": null,
+      "review_due": null,
+      "reason": "Current mode does not block and requires no legacy risk record."
+    },
+    {
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "current_mode": "report-only",
+      "blocking": false,
+      "technical_ready": false,
+      "manual_approval": "pending",
+      "alignment": "nonblocking",
+      "blocking_activation_valid": false,
+      "gap_ids": [
+        "accountable_approval",
+        "architecture_result_clean",
+        "intake_observation_sample",
+        "minimum_trust_level",
+        "no_intake_conflicts",
+        "replay_check_clean",
+        "stable_mainline_sample",
+        "trust_checks_clean"
+      ],
+      "risk_record_ref": null,
+      "review_due": null,
+      "reason": "Current mode does not block and requires no legacy risk record."
+    },
+    {
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "current_mode": "block-on-error",
+      "blocking": true,
+      "technical_ready": false,
+      "manual_approval": "pending",
+      "alignment": "legacy_risk_active",
+      "blocking_activation_valid": false,
+      "gap_ids": [
+        "accountable_approval",
+        "intake_observation_sample",
+        "minimum_trust_level",
+        "replay_check_clean",
+        "typed_evidence_current_and_clean"
+      ],
+      "risk_record_ref": "model/enforcement/blocking-mode-alignment.yaml#joku-dev/ha-CPsWMS",
+      "review_due": "2026-08-18T00:00:00Z",
+      "reason": "Preexisting blocking is visible under a time-bounded risk review; this is not a new approval."
+    }
+  ],
+  "orphaned_legacy_records": []
+}

@@ -375,6 +375,14 @@ approval signals. Its schema fixes `enforcement_change_authorized` to `false`;
 consumer workflow and branch-protection activation remains a separate reviewed
 change with release and migration analysis.
 
+Blocking Mode Alignment adds a guard around the integration registry. A newly
+blocking consumer is aligned only when technical readiness and accountable
+approval are both present. A demonstrably preexisting mode may be represented
+as `legacy_risk_active` until a fixed review date, but remains invalid as a new
+activation and cannot authorize policy, workflow, or branch-rule mutation.
+Unsafe, incomplete, expired, or orphaned alignment state fails central
+repository validation while leaving external consumer state untouched.
+
 ## Current Deployment Decision and Kubernetes
 
 The current architecture intentionally runs on GitHub Actions with static

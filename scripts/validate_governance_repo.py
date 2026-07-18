@@ -200,6 +200,28 @@ def validate_blocking_readiness(errors):
         errors.append("Blocking readiness must remain a non-authorizing report-only projection")
 
 
+def validate_blocking_mode_alignment(errors):
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "blocking-mode-alignment-model.schema.json",
+        ROOT / "model" / "enforcement" / "blocking-mode-alignment.yaml",
+    )
+    command = [sys.executable, str(ROOT / "scripts" / "generate_blocking_mode_alignment.py")]
+    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        errors.append(f"Blocking mode alignment generation failed: {result.stderr.strip() or result.stdout.strip()}")
+        return
+    report_path = ROOT / "generated" / "reports" / "blocking-mode-alignment.json"
+    validate_schema(errors, ROOT / "schemas" / "blocking-mode-alignment.schema.json", report_path)
+    report = load_json(report_path)
+    if report.get("enforcement_change_authorized") is not False or report.get("enforcement") != "report_only":
+        errors.append("Blocking mode alignment must never authorize an enforcement change")
+    if report.get("alignment_status") != "controlled":
+        errors.append("Blocking mode alignment requires review before repository validation can pass")
+    if report.get("summary", {}).get("unsafe_blocking", 0):
+        errors.append("Blocking mode alignment contains unsafe blocking registrations")
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -547,6 +569,7 @@ def main() -> int:
     validate_multi_consumer_readiness(errors)
     validate_evidence_attestation_pilot(errors)
     validate_blocking_readiness(errors)
+    validate_blocking_mode_alignment(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)
