@@ -53,6 +53,12 @@ or an integration mode. Activation is a separate consumer-scoped change.
 predates this stronger model. Operators must review it; the projection never
 weakens or strengthens enforcement automatically.
 
+The companion Blocking Mode Alignment projection now prevents that state from
+remaining an unstructured warning. It records the preexisting `ha-CPsWMS` mode
+as a time-bounded risk and rejects new unsafe Blocking registrations during
+repository validation. See
+`docs/operations/status/blocking-mode-alignment.md`.
+
 ## Generate And Validate
 
 ```bash

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blocking Mode Alignment Registry",
+  "type": "object",
+  "required": ["schema_version", "registry_id", "status", "model_introduced_at", "enforcement_change_authorized", "legacy_risk_records"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "registry_id": { "const": "blocking-mode-alignment-v0.1" },
+    "status": { "const": "active_report_only" },
+    "model_introduced_at": { "type": "string", "format": "date-time" },
+    "enforcement_change_authorized": { "const": false },
+    "legacy_risk_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["repository_id", "current_mode", "record_type", "record_status", "mode_observed_at", "mode_provenance_ref", "recorded_at", "review_due", "owner", "action_owner", "risk", "disposition", "required_gap_ids", "required_review_roles", "evidence_refs", "enforcement_change_authorized"],
+        "properties": {
+          "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+          "current_mode": { "enum": ["block-on-error", "waiver-required"] },
+          "record_type": { "const": "preexisting_mode_risk" },
+          "record_status": { "const": "acknowledged_pending_review" },
+          "mode_observed_at": { "type": "string", "format": "date-time" },
+          "mode_provenance_ref": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+          "recorded_at": { "type": "string", "format": "date-time" },
+          "review_due": { "type": "string", "format": "date-time" },
+          "owner": { "type": "string", "minLength": 1 },
+          "action_owner": { "type": "string", "minLength": 1 },
+          "risk": { "type": "string", "minLength": 1 },
+          "disposition": { "const": "preserve_without_new_approval" },
+          "required_gap_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" } },
+          "required_review_roles": { "type": "array", "minItems": 4, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "evidence_refs": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "enforcement_change_authorized": { "const": false }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

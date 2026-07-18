@@ -142,6 +142,14 @@ the report does not weaken that existing gate. The demo consumer remains
 correctly report-only due to `integrity_verified` Trust, one replay failure, 25
 Architecture findings, only three intake events, and two retained conflicts.
 
+The preexisting `ha-CPsWMS` Blocking mode is now governed by a separate
+Alignment projection. Git history proves that the mode predates the stronger
+readiness model. It is retained unchanged under an acknowledged, time-bounded
+risk review until 18 August 2026; this is neither a new approval nor proof that
+the activation satisfies today's criteria. Repository validation now rejects a
+new Blocking registration without technical readiness and accountable approval,
+as well as incomplete, orphaned, or expired legacy records.
+
 ## Current Constraints
 
 The current state is intentionally limited to an initial L1 baseline.
@@ -173,11 +181,13 @@ The following items are still open:
 
 1. Close the measured Blocking Readiness gaps, beginning with provenance Trust,
    replay resolution, Architecture findings, and a representative intake sample.
-2. Use Collection Attempt lifecycle, controlled retry, and provenance records
+2. Complete the accountable `ha-CPsWMS` mode review before 18 August 2026 and
+   record remediation, transition, or a formally approved exception.
+3. Use Collection Attempt lifecycle, controlled retry, and provenance records
    in regular operational review and audit preparation.
-3. Validate and operationalize branch-protection-based controls for L2.
-4. Introduce artifact signing, trust roots, and related release controls for L3.
-5. Onboard additional repositories using the same integration pattern.
+4. Validate and operationalize branch-protection-based controls for L2.
+5. Introduce artifact signing, trust roots, and related release controls for L3.
+6. Onboard additional repositories using the same integration pattern.
 
 ## Executive Statement
 

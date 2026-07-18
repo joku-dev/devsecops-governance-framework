@@ -45,6 +45,12 @@ Blocking Readiness assessment and migration runbook:
 A technically ready result is necessary but not sufficient. Accountable human
 approval and a separate consumer-scoped activation change remain mandatory.
 
+The central validator also generates
+`generated/reports/blocking-mode-alignment.json`. A new Blocking registration
+without both conditions fails validation. Preexisting Blocking can only be
+represented by a traceable, time-bounded risk record that predates the model;
+such a record is not an approval.
+
 ### 1. Shared Pipeline Template
 
 The strongest operational pattern is to provide a central CI template and require teams to import it.
