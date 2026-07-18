@@ -249,6 +249,14 @@ different repository, commit, or artifact context is recorded as a report-only
 finding. Re-intake of the identical key is idempotent. A conflicting payload
 for an existing snapshot path is quarantined without overwriting history.
 
+The derived Replay Triage projection in
+`generated/reports/replay-triage.json` applies current rules to the stored
+chronology without rewriting it. It keeps the recorded result separate from
+the current interpretation and classifies compatible reuse, deterministic
+report reuse, legacy supersession, and incompatible cross-context reuse. The
+operating model is documented in
+`docs/operations/evidence/replay-triage.md`.
+
 ## Migration Plan
 
 ### Phase 1: Model And Gap Assessment
@@ -273,6 +281,7 @@ for an existing snapshot path is quarantined without overwriting history.
 - evaluate governance-result freshness with provisional policy v0.1
 - evaluate replay identity and incompatible digest reuse centrally
 - expose trust separately from governance result in indexes and viewer
+- expose report-only replay triage without retrospective reclassification
 - keep findings report-only
 
 ### Phase 4: Attestation Pilot
