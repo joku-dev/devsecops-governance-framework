@@ -75,6 +75,21 @@ class ReplayTriageReportTests(unittest.TestCase):
             )
             self.assertIn("generated/reports/replay-triage.json", content)
             self.assertIn("generated/reports/replay-triage.md", content)
+            self.assertGreaterEqual(content.count("python3 scripts/generate_blocking_readiness.py"), 2)
+            self.assertIn("generated/reports/blocking-readiness.json", content)
+            self.assertGreaterEqual(content.count("python3 scripts/generate_blocking_mode_alignment.py"), 2)
+            self.assertIn("generated/reports/blocking-mode-alignment.json", content)
+            self.assertGreaterEqual(content.count("python3 scripts/generate_multi_consumer_readiness.py"), 2)
+            self.assertIn("generated/reports/multi-consumer-readiness.json", content)
+            self.assertIn("generated/reports/multi-consumer-readiness.md", content)
+            self.assertLess(
+                content.index("python3 scripts/generate_replay_triage_report.py"),
+                content.index("python3 scripts/generate_blocking_readiness.py"),
+            )
+            self.assertLess(
+                content.index("python3 scripts/generate_blocking_readiness.py"),
+                content.index("python3 scripts/generate_blocking_mode_alignment.py"),
+            )
 
     def test_cross_commit_without_artifact_digest_remains_actionable(self):
         prior = row(generated_at="2026-07-17T10:00:00Z", source_file="status/results/prior.json",

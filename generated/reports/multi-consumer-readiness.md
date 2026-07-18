@@ -1,6 +1,6 @@
 # Multi-Consumer Readiness
 
-Generated: `2026-07-17T21:56:30Z`
+Generated: `2026-07-18T07:59:49Z`
 
 Readiness: `PASS` (report-only)
 
@@ -27,7 +27,7 @@ Readiness: `PASS` (report-only)
 | Repository | Mode | DevSecOps | Architecture | Typed Evidence | Telemetry Events |
 |---|---|---:|---:|---:|---:|
 | `joku-dev/ai-native-engineering-factory` | `report-only` | True | False | False | 0 |
-| `joku-dev/governance-framework-demo-consumer` | `report-only` | True | True | True | 3 |
+| `joku-dev/governance-framework-demo-consumer` | `report-only` | True | True | True | 4 |
 | `joku-dev/ha-CPsWMS` | `block-on-error` | True | True | False | 0 |
 
 Readiness proves isolated central storage, indexing, concurrency, portfolio projection, and telemetry identity. It does not require every consumer to produce every optional evidence domain and does not change enforcement.

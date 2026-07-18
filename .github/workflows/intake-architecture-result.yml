@@ -133,8 +133,11 @@ jobs:
         run: |
           python3 scripts/generate_architecture_results_index.py
           python3 scripts/generate_intake_health.py
+          python3 scripts/generate_multi_consumer_readiness.py
           python3 scripts/generate_governance_graph.py
           python3 scripts/generate_replay_triage_report.py
+          python3 scripts/generate_blocking_readiness.py
+          python3 scripts/generate_blocking_mode_alignment.py
           python3 scripts/generate_status_viewer.py
 
       - name: Validate generated state
@@ -158,11 +161,14 @@ jobs:
             python3 scripts/generate_architecture_results_index.py
             python3 scripts/generate_repository_results_index.py
             python3 scripts/generate_intake_health.py
+            python3 scripts/generate_multi_consumer_readiness.py
             python3 scripts/generate_governance_graph.py
             python3 scripts/generate_replay_triage_report.py
+            python3 scripts/generate_blocking_readiness.py
+            python3 scripts/generate_blocking_mode_alignment.py
             python3 scripts/generate_status_viewer.py
 
-            git add status/architecture-results status/collection-attempts status/intake-events status/intake-conflicts status/intake-health.json status/architecture-results-index.json generated/graph/governance-graph.json generated/reports/replay-triage.json generated/reports/replay-triage.md generated/viewer/status-viewer.html
+            git add status/architecture-results status/collection-attempts status/intake-events status/intake-conflicts status/intake-health.json status/architecture-results-index.json generated/graph/governance-graph.json generated/reports/blocking-mode-alignment.json generated/reports/blocking-readiness.json generated/reports/multi-consumer-readiness.json generated/reports/multi-consumer-readiness.md generated/reports/replay-triage.json generated/reports/replay-triage.md generated/viewer/status-viewer.html
             if git diff --cached --quiet; then
               echo "No architecture result changes to commit."
               exit 0

@@ -104,26 +104,26 @@ Trivy `v0.70.0`, collector status `collected`, content integrity `pass`,
 Freshness `pass`, and effective Trust `integrity_verified`. This is a separate
 central intake projection and remains useful as the previous clean reference.
 
-The latest consumer push is now centrally intaken. Its normalized DevSecOps
-snapshot is `pass` with the branch-protection control satisfied, and its
-Architecture snapshot is `findings` with 25 report-only findings after adding
+The latest consumer DevSecOps push is now centrally intaken as run
+`29636320472`. Its normalized snapshot is `pass`, the artifact digest is bound,
+and replay passes. The latest centrally stored Architecture snapshot remains
+`findings` with 25 report-only findings after adding
 reviewed compatibility, resilience, observability, and feedback evidence. The
 latest Typed Evidence projection has zero scanner findings, passing content
 integrity and Freshness, and effective Trust `integrity_verified`. The
-DevSecOps governance projection also records a report-only replay finding
-because the normalized control report digest was reused across runs; this does
-not affect the Typed Evidence projection. These results are intentionally
-visible in the central indexes and viewer; Architecture findings and replay
-findings do not block delivery while the demo remains report-only.
+Earlier DevSecOps replay findings remain immutable history and do not affect
+the Typed Evidence projection. These results are intentionally visible in the
+central indexes and viewer; Architecture findings do not block delivery while
+the demo remains report-only.
 
 Replay Triage now separates immutable recorded history from interpretation
-under the current hardened replay rules. Across 18 Trust-bearing snapshots it
+under the current hardened replay rules. Across 19 Trust-bearing snapshots it
 shows three recorded failures, of which two are legacy assessments superseded
-by later compatibility logic. One official-latest DevSecOps finding remains for
-demo-consumer run `29603835297`: the normalized control report crossed commits
-without an accepted artifact digest. The prescribed response is fresh Evidence
-with digest binding, not rewriting history. Trust, latest selection, governance
-outcomes, and enforcement remain unchanged.
+by later compatibility logic. The remaining cross-commit finding belongs to
+historical run `29603835297`; current run `29636320472` proves safe
+deterministic reuse with artifact-digest binding. There are now zero
+official-latest replay findings. Trust, latest selection, governance outcomes,
+and enforcement remain unchanged.
 
 This is the key proof point that the Governance-as-Code approach is operationally viable.
 
@@ -148,8 +148,10 @@ currently satisfies the stronger technical bar. The existing
 `block-on-error` registration for `ha-CPsWMS` is flagged for review because it
 predates the new Trust, Typed Evidence, replay, and operational-sample criteria;
 the report does not weaken that existing gate. The demo consumer remains
-correctly report-only due to `integrity_verified` Trust, one replay failure, 25
-Architecture findings, only three intake events, and two retained conflicts.
+correctly report-only due to `integrity_verified` Trust, Typed Evidence not yet
+matching the newest commit, 25 Architecture findings, only four intake events,
+and two retained conflicts. Its latest replay check and three-run mainline
+sample now pass.
 
 The preexisting `ha-CPsWMS` Blocking mode is now governed by a separate
 Alignment projection. Git history proves that the mode predates the stronger
@@ -185,13 +187,14 @@ The following items are still open:
 - collection retries are deliberately manual; operation telemetry is now
   captured, while automated retry policies, health thresholds, retry budgets,
   and alerts are not yet enabled
-- one official-latest replay finding still requires a fresh demo-consumer
-  Evidence run with artifact-digest binding
+- Typed Evidence and Architecture intake still need a current snapshot for the
+  newest demo-consumer commit
 
 ## Recommended Next Priorities
 
-1. Close the measured Blocking Readiness gaps, beginning with provenance Trust,
-   replay resolution, Architecture findings, and a representative intake sample.
+1. Close the remaining Blocking Readiness gaps, beginning with provenance
+   Trust, current Typed Evidence, Architecture findings, and a representative
+   intake sample.
 2. Complete the accountable `ha-CPsWMS` mode review before 18 August 2026 and
    record remediation, transition, or a formally approved exception.
 3. Use Collection Attempt lifecycle, controlled retry, and provenance records
