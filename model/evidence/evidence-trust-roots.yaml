@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+registry_id: evidence-trust-roots-pilot
+status: pilot_report_only
+enforcement: report_only
+roots:
+  - key_id: demo-ed25519-2026-01
+    issuer: governance-demo-collector
+    algorithm: ed25519
+    status: pilot
+    valid_from: "2026-07-17T00:00:00Z"
+    public_key_pem: |
+      -----BEGIN PUBLIC KEY-----
+      MCowBQYDK2VwAyEAh9SNfv4nM5nX+NX0QacoLtPNDcAUiRQHrBhcSf8aOOk=
+      -----END PUBLIC KEY-----
+    permitted_repositories:
+      - joku-dev/governance-framework-demo-consumer
