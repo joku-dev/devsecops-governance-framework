@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "projection_type": "blocking-readiness",
-  "generated_at": "2026-07-17T21:05:01Z",
+  "generated_at": "2026-07-18T07:59:49Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "summary": {
@@ -212,11 +212,11 @@
         },
         {
           "id": "stable_mainline_sample",
-          "status": "fail",
+          "status": "pass",
           "required": true,
           "observed": {
             "sample": 3,
-            "passing": 2
+            "passing": 3
           },
           "expected": {
             "sample": 3,
@@ -238,9 +238,9 @@
         },
         {
           "id": "trust_checks_clean",
-          "status": "fail",
+          "status": "pass",
           "required": true,
-          "observed": 1,
+          "observed": 0,
           "expected": 0,
           "evidence_refs": [
             "status/repository-results-index.json"
@@ -248,9 +248,9 @@
         },
         {
           "id": "replay_check_clean",
-          "status": "fail",
+          "status": "pass",
           "required": true,
-          "observed": "fail",
+          "observed": "pass",
           "expected": "pass",
           "evidence_refs": [
             "status/repository-results-index.json"
@@ -258,11 +258,11 @@
         },
         {
           "id": "typed_evidence_current_and_clean",
-          "status": "pass",
+          "status": "fail",
           "required": true,
           "observed": {
             "available": true,
-            "same_commit": true,
+            "same_commit": false,
             "freshness": "pass"
           },
           "expected": {
@@ -289,7 +289,7 @@
           "status": "fail",
           "required": true,
           "observed": {
-            "events": 3,
+            "events": 4,
             "success_rate_pct": 100.0
           },
           "expected": {

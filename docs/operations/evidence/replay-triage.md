@@ -69,17 +69,17 @@ run, artifact, and shared subject identifiers where a relationship exists.
 
 ## Current Repository Interpretation
 
-The current projection reviews 18 Trust-bearing snapshots. Three immutable
+The current projection reviews 19 Trust-bearing snapshots. Three immutable
 snapshots contain a recorded replay failure. Under the current rules, two are
-classified as `legacy_assessment_superseded`; one remains an actionable
-official-latest finding.
+classified as `legacy_assessment_superseded`; one older cross-commit reuse
+remains visible in history. No official-latest replay finding remains open.
 
-That finding is the DevSecOps result for
-`joku-dev/governance-framework-demo-consumer`, run `29603835297`. The same
-normalized control-report digest crossed commits, but the accepted snapshot has
-no `artifact_digest`. The recommended remediation is to produce a fresh run
-whose collected artifact includes that digest. The existing snapshot must not
-be edited or deleted.
+The current DevSecOps result for
+`joku-dev/governance-framework-demo-consumer`, run `29636320472`, contains the
+GitHub artifact digest. Its recorded and recalculated replay checks pass, and
+the deterministic control-report reuse is classified as safe. Run
+`29603835297` remains unchanged as the historical finding that motivated the
+remediation.
 
 ## Operator Workflow
 

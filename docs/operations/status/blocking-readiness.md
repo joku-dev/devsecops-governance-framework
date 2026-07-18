@@ -16,11 +16,12 @@ switch. Its current result is:
 yet satisfy the stronger new bar. This is a visible migration risk, not an
 automatic rollback or mode change. Its current integration remains unchanged.
 
-The demo consumer is also correctly `not_ready`: its latest DevSecOps result
-passes and its Typed Evidence is current, but its Trust level remains
-`integrity_verified`, the DevSecOps replay check fails, Architecture has 25
-report-only findings, the observation sample contains only three intake events,
-and two retained conflicts remain visible.
+The demo consumer is also correctly `not_ready`: its latest DevSecOps result,
+three-run mainline sample, Trust checks, and replay check pass. Its Trust level
+remains `integrity_verified`, Typed Evidence has not yet been re-collected for
+the newest commit, Architecture has 25 report-only findings, the observation
+sample contains only four intake events, and two retained conflicts remain
+visible.
 
 ## Criteria
 
@@ -65,6 +66,10 @@ repository validation. See
 python3 scripts/generate_blocking_readiness.py
 python3 scripts/validate_governance_repo.py
 ```
+
+Every central intake path regenerates and commits the projection after updating
+its domain index and Intake Health. This keeps readiness criteria synchronized
+when Evidence closes or opens a technical gap.
 
 The source is `generated/reports/blocking-readiness.json` and conforms to
 `schemas/blocking-readiness.schema.json`.
