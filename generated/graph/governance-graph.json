@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-07-18T07:59:49Z",
+  "generated_at": "2026-07-18T16:08:49Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,10 +10,10 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 173,
-    "edge_count": 368,
+    "node_count": 189,
+    "edge_count": 396,
     "node_types": {
-      "Artifact": 123,
+      "Artifact": 139,
       "Baseline": 3,
       "Commit": 4,
       "EvidenceRecord": 1,
@@ -25,7 +25,7 @@
       "WorkflowRun": 6
     },
     "edge_types": {
-      "DERIVES": 338,
+      "DERIVES": 366,
       "EVALUATES_COMMIT": 5,
       "HAS_EVIDENCE": 1,
       "HAS_RESULT": 6,
@@ -36,6 +36,66 @@
     }
   },
   "nodes": [
+    {
+      "id": "artifact:.github/CODEOWNERS",
+      "type": "Artifact",
+      "label": ".github/CODEOWNERS",
+      "properties": {
+        "path": ".github/CODEOWNERS",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:.github/dependabot.yml",
+      "type": "Artifact",
+      "label": ".github/dependabot.yml",
+      "properties": {
+        "path": ".github/dependabot.yml",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:.github/workflows/codeql.yml",
+      "type": "Artifact",
+      "label": ".github/workflows/codeql.yml",
+      "properties": {
+        "path": ".github/workflows/codeql.yml",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:.github/workflows/dependency-review.yml",
+      "type": "Artifact",
+      "label": ".github/workflows/dependency-review.yml",
+      "properties": {
+        "path": ".github/workflows/dependency-review.yml",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:.github/workflows/governance-repository-security.yml",
+      "type": "Artifact",
+      "label": ".github/workflows/governance-repository-security.yml",
+      "properties": {
+        "path": ".github/workflows/governance-repository-security.yml",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:SECURITY.md",
+      "type": "Artifact",
+      "label": "SECURITY.md",
+      "properties": {
+        "path": "SECURITY.md",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
     {
       "id": "artifact:architecture/arch-gov.yaml",
       "type": "Artifact",
@@ -157,11 +217,31 @@
       }
     },
     {
+      "id": "artifact:docs/examples/governance-repository-security-observation.example.json",
+      "type": "Artifact",
+      "label": "docs/examples/governance-repository-security-observation.example.json",
+      "properties": {
+        "path": "docs/examples/governance-repository-security-observation.example.json",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
       "id": "artifact:docs/examples/vulnerability-scan-input.example.json",
       "type": "Artifact",
       "label": "docs/examples/vulnerability-scan-input.example.json",
       "properties": {
         "path": "docs/examples/vulnerability-scan-input.example.json",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
+      "type": "Artifact",
+      "label": "docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
+      "properties": {
+        "path": "docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
         "artifact_type": "governance_model",
         "exists": true
       }
@@ -247,6 +327,16 @@
       }
     },
     {
+      "id": "artifact:docs/operations/security/governance-repository-self-security.md",
+      "type": "Artifact",
+      "label": "docs/operations/security/governance-repository-self-security.md",
+      "properties": {
+        "path": "docs/operations/security/governance-repository-self-security.md",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
       "id": "artifact:docs/operations/status/governance-intelligence-graph-viewer.md",
       "type": "Artifact",
       "label": "docs/operations/status/governance-intelligence-graph-viewer.md",
@@ -323,6 +413,26 @@
       "properties": {
         "path": "generated/reports/governance-change-impact.md",
         "artifact_type": "derived_artifact",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:generated/reports/governance-repository-security.json",
+      "type": "Artifact",
+      "label": "generated/reports/governance-repository-security.json",
+      "properties": {
+        "path": "generated/reports/governance-repository-security.json",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:generated/reports/governance-repository-security.md",
+      "type": "Artifact",
+      "label": "generated/reports/governance-repository-security.md",
+      "properties": {
+        "path": "generated/reports/governance-repository-security.md",
+        "artifact_type": "governance_model",
         "exists": true
       }
     },
@@ -462,6 +572,16 @@
       "label": "model/controls/dscb-l3.yaml",
       "properties": {
         "path": "model/controls/dscb-l3.yaml",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:model/controls/governance-repository-security.yaml",
+      "type": "Artifact",
+      "label": "model/controls/governance-repository-security.yaml",
+      "properties": {
+        "path": "model/controls/governance-repository-security.yaml",
         "artifact_type": "governance_model",
         "exists": true
       }
@@ -967,6 +1087,26 @@
       }
     },
     {
+      "id": "artifact:schemas/governance-repository-security-model.schema.json",
+      "type": "Artifact",
+      "label": "schemas/governance-repository-security-model.schema.json",
+      "properties": {
+        "path": "schemas/governance-repository-security-model.schema.json",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:schemas/governance-repository-security-report.schema.json",
+      "type": "Artifact",
+      "label": "schemas/governance-repository-security-report.schema.json",
+      "properties": {
+        "path": "schemas/governance-repository-security-report.schema.json",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
       "id": "artifact:schemas/governance-results-index.schema.json",
       "type": "Artifact",
       "label": "schemas/governance-results-index.schema.json",
@@ -1012,6 +1152,16 @@
       "label": "schemas/vulnerability-scan-input.schema.json",
       "properties": {
         "path": "schemas/vulnerability-scan-input.schema.json",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:scripts/assess_governance_repository_security.py",
+      "type": "Artifact",
+      "label": "scripts/assess_governance_repository_security.py",
+      "properties": {
+        "path": "scripts/assess_governance_repository_security.py",
         "artifact_type": "governance_model",
         "exists": true
       }
@@ -1232,6 +1382,16 @@
       "label": "tests/test_governance_graph.py",
       "properties": {
         "path": "tests/test_governance_graph.py",
+        "artifact_type": "governance_model",
+        "exists": true
+      }
+    },
+    {
+      "id": "artifact:tests/test_governance_repository_security.py",
+      "type": "Artifact",
+      "label": "tests/test_governance_repository_security.py",
+      "properties": {
+        "path": "tests/test_governance_repository_security.py",
         "artifact_type": "governance_model",
         "exists": true
       }
@@ -3746,6 +3906,60 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:.github/CODEOWNERS",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:.github/CODEOWNERS",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:.github/dependabot.yml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:.github/dependabot.yml",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:.github/workflows/codeql.yml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:.github/workflows/codeql.yml",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:.github/workflows/dependency-review.yml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:.github/workflows/dependency-review.yml",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:.github/workflows/governance-repository-security.yml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:.github/workflows/governance-repository-security.yml",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:SECURITY.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:SECURITY.md",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/demos/demo-consumer-typed-evidence-trust.md",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
@@ -3782,10 +3996,28 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/examples/governance-repository-security-observation.example.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:docs/examples/governance-repository-security-observation.example.json",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/examples/vulnerability-scan-input.example.json",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
       "target": "artifact:docs/examples/vulnerability-scan-input.example.json",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md",
       "properties": {
         "role": "DSCB-STD-001"
       }
@@ -3836,6 +4068,15 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/operations/security/governance-repository-self-security.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:docs/operations/security/governance-repository-self-security.md",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:docs/operations/status/governance-intelligence-graph-viewer.md",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
@@ -3878,6 +4119,24 @@
       "target": "artifact:generated/reports/governance-change-impact.md",
       "properties": {
         "role": "governance_change_impact"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:generated/reports/governance-repository-security.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:generated/reports/governance-repository-security.json",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:generated/reports/governance-repository-security.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:generated/reports/governance-repository-security.md",
+      "properties": {
+        "role": "DSCB-STD-001"
       }
     },
     {
@@ -3984,6 +4243,15 @@
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
       "target": "artifact:model/controls/dscb-l3.yaml",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:model/controls/governance-repository-security.yaml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:model/controls/governance-repository-security.yaml",
       "properties": {
         "role": "DSCB-STD-001"
       }
@@ -4232,6 +4500,24 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:schemas/governance-repository-security-model.schema.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:schemas/governance-repository-security-model.schema.json",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:schemas/governance-repository-security-report.schema.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:schemas/governance-repository-security-report.schema.json",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:schemas/governance-results-index.schema.json",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
@@ -4272,6 +4558,15 @@
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
       "target": "artifact:schemas/vulnerability-scan-input.schema.json",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:scripts/assess_governance_repository_security.py",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:scripts/assess_governance_repository_security.py",
       "properties": {
         "role": "DSCB-STD-001"
       }
@@ -4457,6 +4752,15 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:tests/test_governance_repository_security.py",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "target": "artifact:tests/test_governance_repository_security.py",
+      "properties": {
+        "role": "DSCB-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md->artifact:tests/test_result_ledger.py",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
@@ -4583,10 +4887,82 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:.github/CODEOWNERS",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:.github/CODEOWNERS",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:.github/dependabot.yml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:.github/dependabot.yml",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:.github/workflows/codeql.yml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:.github/workflows/codeql.yml",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:.github/workflows/dependency-review.yml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:.github/workflows/dependency-review.yml",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:.github/workflows/governance-repository-security.yml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:.github/workflows/governance-repository-security.yml",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:SECURITY.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:SECURITY.md",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:docs/examples/governance-repository-security-observation.example.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:docs/examples/governance-repository-security-observation.example.json",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
       "target": "artifact:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:docs/operations/security/governance-repository-self-security.md",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:docs/operations/security/governance-repository-self-security.md",
       "properties": {
         "role": "PRA-STD-001"
       }
@@ -4727,6 +5103,15 @@
       }
     },
     {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:model/controls/governance-repository-security.yaml",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:model/controls/governance-repository-security.yaml",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
       "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:model/documents/source-document-register.yaml",
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
@@ -4830,6 +5215,33 @@
       "type": "DERIVES",
       "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
       "target": "artifact:pipeline-baseline/waiver-integration.yaml",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:schemas/governance-repository-security-model.schema.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:schemas/governance-repository-security-model.schema.json",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:schemas/governance-repository-security-report.schema.json",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:schemas/governance-repository-security-report.schema.json",
+      "properties": {
+        "role": "PRA-STD-001"
+      }
+    },
+    {
+      "id": "DERIVES:source:docs/governance/source-documents/PRA-STD-SRC-001.public.md->artifact:scripts/assess_governance_repository_security.py",
+      "type": "DERIVES",
+      "source": "source:docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "target": "artifact:scripts/assess_governance_repository_security.py",
       "properties": {
         "role": "PRA-STD-001"
       }

@@ -1,12 +1,12 @@
 # Source Lineage Report
 
-Generated: `2026-07-17T19:04:12Z`
+Generated: `2026-07-18T16:08:54Z`
 
 ## Summary
 
 - Source documents: `20`
 - Source documents with lineage entries: `20`
-- Derived artifact links: `338`
+- Derived artifact links: `366`
 - Missing derived artifacts: `0`
 
 ## Source Documents
@@ -29,9 +29,9 @@ Generated: `2026-07-17T19:04:12Z`
 | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `11` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md` | `true` | `13` |
 | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `82` |
+| `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `true` | `98` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/PRA-STD-SRC-001.public.md` | `true` | `29` |
+| `docs/governance/source-documents/PRA-STD-SRC-001.public.md` | `true` | `41` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md` | `true` | `11` |
 
 ## Lineage Details
@@ -336,22 +336,34 @@ Generated: `2026-07-17T19:04:12Z`
 | `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
 | `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` | `governance_document` | `DSCB-STD-001` | `true` |
+| `.github/CODEOWNERS` | `governance_model` | `DSCB-STD-001` | `true` |
+| `.github/dependabot.yml` | `governance_model` | `DSCB-STD-001` | `true` |
+| `.github/workflows/codeql.yml` | `governance_model` | `DSCB-STD-001` | `true` |
+| `.github/workflows/dependency-review.yml` | `governance_model` | `DSCB-STD-001` | `true` |
+| `.github/workflows/governance-repository-security.yml` | `governance_model` | `DSCB-STD-001` | `true` |
+| `SECURITY.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/demos/demo-consumer-typed-evidence-trust.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/demos/presentation-guide-typed-evidence-trust-de.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/examples/evidence-collector-record.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/examples/evidence-trust-record.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `docs/examples/governance-repository-security-observation.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/examples/vulnerability-scan-input.example.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `docs/governance/change-requests/GCR-2026-048-governance-repository-self-security.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/evidence-collector-contract.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/evidence-trust-model.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/evidence/vulnerability-scan-collector-usage.md` | `governance_model` | `DSCB-STD-001` | `true` |
+| `docs/operations/security/governance-repository-self-security.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `docs/operations/status/governance-intelligence-graph-viewer.md` | `governance_model` | `DSCB-STD-001` | `true` |
+| `generated/reports/governance-repository-security.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `generated/reports/governance-repository-security.md` | `governance_model` | `DSCB-STD-001` | `true` |
 | `generated/viewer/status-viewer.html` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/control-coverage.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/dscb-gov.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/dscb-l1.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/dscb-l2.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/dscb-l3.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
+| `model/controls/governance-repository-security.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
 | `model/evidence/evidence-collector-contract.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/evidence/evidence-freshness-policies.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -364,11 +376,14 @@ Generated: `2026-07-17T19:04:12Z`
 | `schemas/evidence-trust-model.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/evidence-trust-record.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/governance-graph.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `schemas/governance-repository-security-model.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `schemas/governance-repository-security-report.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/governance-results-index.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/intake-conflict.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/typed-evidence-result.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/typed-evidence-results-index.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
 | `schemas/vulnerability-scan-input.schema.json` | `governance_model` | `DSCB-STD-001` | `true` |
+| `scripts/assess_governance_repository_security.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `scripts/collect_vulnerability_scan_evidence.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `scripts/generate_architecture_results_index.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `scripts/generate_governance_graph.py` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -389,6 +404,7 @@ Generated: `2026-07-17T19:04:12Z`
 | `tests/test_evidence_trust_capture.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_evidence_trust_indexes.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_governance_graph.py` | `governance_model` | `DSCB-STD-001` | `true` |
+| `tests/test_governance_repository_security.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_result_ledger.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_typed_evidence_intake.py` | `governance_model` | `DSCB-STD-001` | `true` |
 | `tests/test_vulnerability_scan_collector.py` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -445,6 +461,15 @@ Generated: `2026-07-17T19:04:12Z`
 | `generated/xlsx/traceability_matrix.csv` | `derived_artifact` | `devsecops_baseline` | `true` |
 | `status/repository-results-index.json` | `derived_artifact` | `devsecops_baseline` | `true` |
 | `docs/governance/source-documents/PRA-STD-SRC-001.public.md` | `governance_document` | `PRA-STD-001` | `true` |
+| `.github/CODEOWNERS` | `governance_model` | `PRA-STD-001` | `true` |
+| `.github/dependabot.yml` | `governance_model` | `PRA-STD-001` | `true` |
+| `.github/workflows/codeql.yml` | `governance_model` | `PRA-STD-001` | `true` |
+| `.github/workflows/dependency-review.yml` | `governance_model` | `PRA-STD-001` | `true` |
+| `.github/workflows/governance-repository-security.yml` | `governance_model` | `PRA-STD-001` | `true` |
+| `SECURITY.md` | `governance_model` | `PRA-STD-001` | `true` |
+| `docs/examples/governance-repository-security-observation.example.json` | `governance_model` | `PRA-STD-001` | `true` |
+| `docs/operations/security/governance-repository-self-security.md` | `governance_model` | `PRA-STD-001` | `true` |
+| `model/controls/governance-repository-security.yaml` | `governance_model` | `PRA-STD-001` | `true` |
 | `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
 | `model/platform/platform-capabilities.yaml` | `governance_model` | `PRA-STD-001` | `true` |
 | `model/platform/pra-levels.yaml` | `governance_model` | `PRA-STD-001` | `true` |
@@ -456,6 +481,9 @@ Generated: `2026-07-17T19:04:12Z`
 | `pipeline-baseline/minimum-metadata.yaml` | `governance_model` | `PRA-STD-001` | `true` |
 | `pipeline-baseline/stages.yaml` | `governance_model` | `PRA-STD-001` | `true` |
 | `pipeline-baseline/waiver-integration.yaml` | `governance_model` | `PRA-STD-001` | `true` |
+| `schemas/governance-repository-security-model.schema.json` | `governance_model` | `PRA-STD-001` | `true` |
+| `schemas/governance-repository-security-report.schema.json` | `governance_model` | `PRA-STD-001` | `true` |
+| `scripts/assess_governance_repository_security.py` | `governance_model` | `PRA-STD-001` | `true` |
 | `model/traceability/document-to-control.yaml` | `traceability_mapping` | `PRA-STD-001` | `true` |
 
 ### `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md`

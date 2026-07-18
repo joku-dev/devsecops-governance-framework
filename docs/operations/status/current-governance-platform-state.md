@@ -21,6 +21,9 @@ The repository now acts as six things at the same time:
 4. a central index for normalized downstream governance results
 5. a static status viewer for DevSecOps, architecture and lineage status
 6. a generated governance intelligence graph for relationship exploration
+7. a report-only self-security subject whose repository protection, workflow
+   supply chain, ownership, and release integrity are assessed independently
+   from consumer outcomes
 
 ## What Exists Now
 
@@ -133,7 +136,11 @@ The governance repository validates successfully through:
 - tests
 - documentation build validation
 
-This means the repository can be treated as an operational baseline source and not only as static documentation.
+This proves functional consistency and buildability. It does not by itself
+prove that the governance authority is protected against unreviewed mutation,
+workflow supply-chain compromise, or unsigned release replacement. That
+separate posture is evaluated through the Governance Repository Self-Security
+profile.
 
 ### 3. Released L1 Baselines Exist
 

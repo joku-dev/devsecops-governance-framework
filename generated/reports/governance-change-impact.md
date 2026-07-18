@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-07-17T19:04:11Z`
+Generated: `2026-07-18T16:08:53Z`
 
 ## Inputs
 
@@ -11,7 +11,7 @@ Generated: `2026-07-17T19:04:11Z`
 
 - Registered source documents: `20`
 - Source documents with lineage: `20`
-- Derived artifact links: `338`
+- Derived artifact links: `366`
 
 ## Domain Coverage
 
@@ -28,7 +28,8 @@ Generated: `2026-07-17T19:04:11Z`
 | Consideration | Source documents |
 |---|---:|
 | `baseline_release_review` | `2` |
-| `no_release_by_default` | `18` |
+| `no_release_by_default` | `17` |
+| `release_candidate_recommended` | `1` |
 
 ## Review Lanes
 
@@ -40,7 +41,7 @@ Generated: `2026-07-17T19:04:11Z`
 | `platform-review` | `2` |
 | `policy-as-code-review` | `2` |
 | `release-review` | `2` |
-| `schema-review` | `2` |
+| `schema-review` | `3` |
 | `viewer-status-review` | `3` |
 
 ## Source Impact Details
@@ -127,7 +128,7 @@ Representative artifacts:
 - Owner: `devsecops-owners`
 - Version: `public-placeholder`
 - Domains: `devsecops`
-- Lineage artifacts: `82`
+- Lineage artifacts: `98`
 - Source state: `active_source`
 - Release consideration: `baseline_release_review`
 - Review lanes: `devsecops-review, policy-as-code-review, release-review, schema-review, viewer-status-review`
@@ -137,6 +138,10 @@ Derived artifact areas:
 - `model/controls`
 - `model/evidence`
 - `policies/opa`
+- `schemas`
+- `scripts`
+- `.github/workflows`
+- `docs/operations/security`
 - `releases/l1`
 - `generated/reports`
 
@@ -149,16 +154,16 @@ Suggested validation:
 
 Representative artifacts:
 
+- `.github/CODEOWNERS`
+- `.github/dependabot.yml`
+- `.github/workflows/codeql.yml`
+- `.github/workflows/dependency-review.yml`
+- `.github/workflows/governance-repository-security.yml`
+- `SECURITY.md`
 - `docs/demos/demo-consumer-typed-evidence-trust.md`
 - `docs/demos/presentation-guide-typed-evidence-trust-de.md`
 - `docs/examples/evidence-collector-record.example.json`
 - `docs/examples/evidence-trust-record.example.json`
-- `docs/examples/vulnerability-scan-input.example.json`
-- `docs/governance/source-documents/DSCB-STD-SRC-001.public.md`
-- `docs/operations/evidence/evidence-collector-contract.md`
-- `docs/operations/evidence/evidence-trust-model.md`
-- `docs/operations/evidence/governance-result-intake-and-viewer-usage.md`
-- `docs/operations/evidence/vulnerability-scan-collector-usage.md`
 
 ### `PRA-STD-SRC-001`
 
@@ -168,16 +173,18 @@ Representative artifacts:
 - Owner: `platform-owners`
 - Version: `public-placeholder`
 - Domains: `platform, devsecops`
-- Lineage artifacts: `29`
+- Lineage artifacts: `41`
 - Source state: `active_source`
-- Release consideration: `no_release_by_default`
-- Review lanes: `devsecops-review, platform-review, viewer-status-review`
+- Release consideration: `release_candidate_recommended`
+- Review lanes: `devsecops-review, platform-review, schema-review, viewer-status-review`
 
 Derived artifact areas:
 
 - `model/platform`
 - `pipeline-baseline`
 - `model/traceability`
+- `.github/workflows`
+- `docs/operations/security`
 - `generated/reports`
 - `generated/viewer`
 
@@ -189,16 +196,16 @@ Suggested validation:
 
 Representative artifacts:
 
+- `.github/CODEOWNERS`
+- `.github/dependabot.yml`
+- `.github/workflows/codeql.yml`
+- `.github/workflows/dependency-review.yml`
+- `.github/workflows/governance-repository-security.yml`
+- `SECURITY.md`
+- `docs/examples/governance-repository-security-observation.example.json`
 - `docs/governance/source-documents/PRA-STD-SRC-001.public.md`
+- `docs/operations/security/governance-repository-self-security.md`
 - `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/control-coverage-report.md`
-- `generated/reports/document-control-matrix.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
 
 ### `ARCH-SDD-SRC-001`
 

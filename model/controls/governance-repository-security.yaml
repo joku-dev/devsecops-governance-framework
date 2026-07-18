@@ -1,0 +1,108 @@
+schema_version: 0.1.0
+profile_id: governance-repository-self-security
+version: 0.1.0
+title: Governance Repository Self-Security Profile
+status: active_report_only
+repository_id: joku-dev/devsecops-governance-framework
+source_documents:
+  - docs/governance/source-documents/DSCB-STD-SRC-001.public.md
+  - docs/governance/source-documents/PRA-STD-SRC-001.public.md
+owner: governance-owners
+enforcement: report_only
+enforcement_change_authorized: false
+purpose: Protect the governance authority against unreviewed mutation, workflow supply-chain compromise, credential exposure, and unverifiable releases.
+principles:
+  - id: protect_the_authority
+    statement: Consumer governance is trustworthy only when the repository that defines and distributes it is independently protected.
+  - id: externalize_root_controls
+    statement: Branch rules, security features, and organization policies must remain effective even if repository content is modified.
+  - id: separate_normative_and_operational_writes
+    statement: Automated evidence intake must not receive unrestricted authority to change normative governance.
+  - id: fail_visible
+    statement: Missing or inaccessible repository-security evidence is a failed criterion, never an implicit pass.
+criteria:
+  - id: GRS-001
+    key: default_branch_protected
+    title: Default branch protected
+    severity: critical
+    expected: true
+  - id: GRS-002
+    key: pull_request_review_required
+    title: Pull request and approving review required
+    severity: critical
+    expected: true
+  - id: GRS-003
+    key: governance_ci_required
+    title: Governance CI is a required status check
+    severity: critical
+    expected: true
+  - id: GRS-004
+    key: destructive_branch_changes_blocked
+    title: Force pushes and branch deletion blocked
+    severity: critical
+    expected: true
+  - id: GRS-005
+    key: signed_changes_required
+    title: Signed changes required on the default branch
+    severity: high
+    expected: true
+  - id: GRS-006
+    key: secret_scanning_enabled
+    title: Secret scanning enabled
+    severity: critical
+    expected: true
+  - id: GRS-007
+    key: secret_push_protection_enabled
+    title: Secret push protection enabled
+    severity: critical
+    expected: true
+  - id: GRS-008
+    key: dependency_security_enabled
+    title: Dependency alerts and security updates enabled
+    severity: high
+    expected: true
+  - id: GRS-009
+    key: code_scanning_configured
+    title: Code scanning configured
+    severity: high
+    expected: true
+  - id: GRS-010
+    key: third_party_actions_sha_pinned
+    title: Third-party GitHub Actions pinned to full commit SHAs
+    severity: high
+    expected: true
+  - id: GRS-011
+    key: workflow_permissions_restricted
+    title: Default and explicit workflow permissions restricted
+    severity: high
+    expected: true
+  - id: GRS-012
+    key: critical_paths_owned
+    title: Critical governance paths have explicit owners
+    severity: high
+    expected: true
+  - id: GRS-013
+    key: automated_main_writes_absent
+    title: Automation cannot push operational data directly to the default branch
+    severity: critical
+    expected: true
+  - id: GRS-014
+    key: release_tags_verified
+    title: Governance release tags are cryptographically verified
+    severity: high
+    expected: true
+  - id: GRS-015
+    key: private_vulnerability_reporting_enabled
+    title: Private vulnerability reporting is enabled
+    severity: high
+    expected: true
+decision_boundary:
+  current_mode: report_only
+  blocks_pull_requests: false
+  changes_repository_settings: false
+  changes_released_baselines: false
+  blocking_requires:
+    - approved governance change
+    - protected replacement for automated intake writes
+    - successful observation period
+    - accountable owner approval

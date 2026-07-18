@@ -222,6 +222,31 @@ def validate_blocking_mode_alignment(errors):
         errors.append("Blocking mode alignment contains unsafe blocking registrations")
 
 
+def validate_governance_repository_security(errors):
+    model_path = MODEL / "controls" / "governance-repository-security.yaml"
+    report_path = ROOT / "generated" / "reports" / "governance-repository-security.json"
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "governance-repository-security-model.schema.json",
+        model_path,
+    )
+    if not report_path.exists():
+        errors.append("Governance repository self-security report is missing")
+        return
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "governance-repository-security-report.schema.json",
+        report_path,
+    )
+    report = load_json(report_path)
+    if report.get("enforcement") != "report_only":
+        errors.append("Governance repository self-security must remain report-only")
+    if report.get("enforcement_change_authorized") is not False:
+        errors.append("Governance repository self-security must not authorize enforcement changes")
+    if report.get("decision_boundary", {}).get("changes_repository_settings") is not False:
+        errors.append("Governance repository self-security assessment must not mutate repository settings")
+
+
 def validate_replay_triage(errors):
     command = [sys.executable, str(ROOT / "scripts" / "generate_replay_triage_report.py")]
     result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
@@ -584,6 +609,7 @@ def main() -> int:
     validate_evidence_attestation_pilot(errors)
     validate_blocking_readiness(errors)
     validate_blocking_mode_alignment(errors)
+    validate_governance_repository_security(errors)
     validate_replay_triage(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
