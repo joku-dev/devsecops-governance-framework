@@ -22,6 +22,14 @@ class HarmonizedRequirementsCandidateTests(unittest.TestCase):
         self.report = json.loads(
             (ROOT / "generated" / "reports" / "harmonized-requirements-coverage.json").read_text(encoding="utf-8")
         )
+        self.maturity_mapping = yaml.safe_load(
+            (ROOT / "model" / "traceability" / "harmonized-requirements-to-maturity-levels.yaml").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.maturity_report = json.loads(
+            (ROOT / "generated" / "reports" / "harmonized-requirements-maturity.json").read_text(encoding="utf-8")
+        )
 
     def test_candidate_cannot_authorize_runtime_governance(self):
         self.assertEqual(self.model["status"], "candidate")
@@ -99,6 +107,41 @@ class HarmonizedRequirementsCandidateTests(unittest.TestCase):
         )
         impact_item = next(entry for entry in impact["source_impacts"] if entry["id"] == "CISO-REQ-SRC-001")
         self.assertEqual(impact_item["source_state"], "candidate_related_source_review")
+
+    def test_every_harmonized_requirement_has_a_candidate_maturity_assignment(self):
+        known = {item["id"] for item in self.model["requirements"]}
+        assignments = self.maturity_mapping["mappings"]
+        assigned = {item["requirement_id"] for item in assignments}
+        self.assertEqual(assigned, known)
+        self.assertEqual(len(assignments), len(assigned))
+        self.assertTrue(all(item["review_status"] == "human_review_required" for item in assignments))
+
+    def test_maturity_paths_are_cumulative_and_governance_is_separate(self):
+        expected_paths = {
+            "L1": ["L1", "L2", "L3"],
+            "L2": ["L2", "L3"],
+            "L3": ["L3"],
+            "GOV": ["GOV"],
+        }
+        for item in self.maturity_mapping["mappings"]:
+            self.assertEqual(item["maturity_path"], expected_paths[item["minimum_level"]])
+            self.assertEqual(item["governance_overlay"], item["minimum_level"] == "GOV")
+
+    def test_maturity_report_is_derived_and_non_authorizing(self):
+        assignments = self.maturity_mapping["mappings"]
+        summary = self.maturity_report["summary"]
+        self.assertEqual(summary["harmonized_requirements"], len(assignments))
+        for level in ("L1", "L2", "L3", "GOV"):
+            self.assertEqual(
+                summary["minimum_level_counts"][level],
+                sum(item["minimum_level"] == level for item in assignments),
+            )
+            self.assertEqual(
+                summary["cumulative_level_counts"][level],
+                sum(level in item["maturity_path"] for item in assignments),
+            )
+        self.assertEqual(summary["human_review_required"], len(assignments))
+        self.assertFalse(any(self.maturity_report["decision_boundary"].values()))
 
 
 if __name__ == "__main__":

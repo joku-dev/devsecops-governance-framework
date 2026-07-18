@@ -10,8 +10,11 @@ The authoritative candidate artifacts are:
 
 - `model/requirements/harmonized-devsecops-requirements.yaml`
 - `model/traceability/standards-to-harmonized-requirements.yaml`
+- `model/traceability/harmonized-requirements-to-maturity-levels.yaml`
 - `generated/reports/harmonized-requirements-coverage.json`
 - `generated/reports/harmonized-requirements-coverage.md`
+- `generated/reports/harmonized-requirements-maturity.json`
+- `generated/reports/harmonized-requirements-maturity.md`
 
 ## Model Boundary
 
@@ -59,6 +62,25 @@ The weighted design-coverage percentage counts `covered` as 1.0, `partial` as
 0.5, and `gap` as 0.0. It is decision support only and must not be presented as
 audited or operational compliance.
 
+## Candidate Maturity Assignment
+
+Every harmonized requirement has a proposed minimum maturity level. The model
+is cumulative: L1 requirements remain active at L2 and L3, and L2 requirements
+remain active at L3. GOV is a separate cross-level overlay for lifecycle,
+applicability, roles, and controlled documentation.
+
+| Minimum level | Candidate requirements | Cumulative active |
+|---|---:|---:|
+| `L1` | 22 | 22 |
+| `L2` | 17 | 39 |
+| `L3` | 1 | 40 |
+| `GOV` | 4 | 4 |
+
+Maturity does not replace applicability. Risk-based, capability-based, and
+product-context conditions are evaluated independently. All 44 assignments are
+`human_review_required` and do not modify the released L1, L2, L3, or GOV
+control models.
+
 ## Public Hygiene
 
 The private workbook is not committed. Public outputs contain no workbook
@@ -83,7 +105,8 @@ cell text.
 ## Required Human Decisions
 
 - CISO/Governance Owner: authority, enterprise strength, and applicability
-- DevSecOps Baseline Owner: control-baseline mapping and gaps
+- DevSecOps Baseline Owner: proposed minimum maturity levels, control-baseline
+  mapping, and gaps
 - Enterprise Architect: architecture and product-security routing
 - Platform Owner: platform capability implications
 - Legal or License Compliance: retained standard identifiers and publication

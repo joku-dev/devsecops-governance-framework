@@ -5,6 +5,8 @@
 - Register the private standards-requirements catalog as a public-neutral
   candidate source placeholder.
 - Add a non-normative harmonized requirements candidate and source-ID mapping.
+- Add a non-normative L1-L3/GOV maturity assignment for all harmonized
+  requirements.
 - Add preliminary design-coverage reporting and public artifact hygiene
   validation.
 - Preserve existing controls, policies, evidence contracts, workflows,
@@ -50,6 +52,10 @@ replacement, or superseding status.
 | Harmonized candidate requirements | 44 |
 | Unmapped unique source requirements | 0 |
 | Preliminary weighted design coverage | 50.4% |
+| Proposed minimum L1 requirements | 22 |
+| Proposed minimum L2 requirements | 17 |
+| Proposed minimum L3 requirements | 1 |
+| Proposed GOV-overlay requirements | 4 |
 
 No source requirement text or Office metadata is included in the public
 candidate model or mapping.
@@ -68,6 +74,7 @@ The candidate does not authorize:
 ## Human Review Required
 
 - [ ] CISO confirms authority and intended enterprise applicability.
+- [ ] CISO confirms or adjusts the proposed minimum maturity levels.
 - [ ] Governance Owner confirms coexistence or replacement intent.
 - [ ] DevSecOps Baseline Owner reviews control mappings and gaps.
 - [ ] Enterprise Architect reviews architecture and product-security routing.
@@ -78,6 +85,7 @@ The candidate does not authorize:
 ## Validation Plan
 
 - [x] harmonized model and mapping schema validation
+- [x] maturity assignment and report schema validation
 - [x] mapping integrity and decision-boundary tests
 - [x] public artifact hygiene scan, including configured private terms
 - [x] source intake status and review brief regeneration

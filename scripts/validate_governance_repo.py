@@ -240,14 +240,28 @@ def validate_replay_triage(errors):
 def validate_harmonized_requirements_candidate(errors, source_document_register):
     model_path = MODEL / "requirements" / "harmonized-devsecops-requirements.yaml"
     mapping_path = MODEL / "traceability" / "standards-to-harmonized-requirements.yaml"
+    maturity_mapping_path = MODEL / "traceability" / "harmonized-requirements-to-maturity-levels.yaml"
     report_path = ROOT / "generated" / "reports" / "harmonized-requirements-coverage.json"
+    maturity_report_path = ROOT / "generated" / "reports" / "harmonized-requirements-maturity.json"
     validate_schema(errors, ROOT / "schemas" / "harmonized-requirements.schema.json", model_path)
     validate_schema(errors, ROOT / "schemas" / "standards-requirement-mapping.schema.json", mapping_path)
     validate_schema(errors, ROOT / "schemas" / "harmonized-requirements-coverage.schema.json", report_path)
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "harmonized-requirements-maturity-mapping.schema.json",
+        maturity_mapping_path,
+    )
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "harmonized-requirements-maturity-report.schema.json",
+        maturity_report_path,
+    )
 
     model = load_yaml(model_path)
     mapping = load_yaml(mapping_path)
     report = load_json(report_path)
+    maturity_mapping = load_yaml(maturity_mapping_path)
+    maturity_report = load_json(maturity_report_path)
     requirements = model.get("requirements", [])
     requirement_ids = [item.get("id") for item in requirements]
     if len(requirement_ids) != len(set(requirement_ids)):
@@ -297,6 +311,51 @@ def validate_harmonized_requirements_candidate(errors, source_document_register)
         errors.append("Harmonized candidate must not authorize governance or compliance changes")
     if model.get("normative") is not False or model.get("enforcement") != "none":
         errors.append("Harmonized requirements candidate must remain non-normative and non-enforcing")
+
+    maturity_assignments = maturity_mapping.get("mappings", [])
+    maturity_ids = [item.get("requirement_id") for item in maturity_assignments]
+    if len(maturity_ids) != len(set(maturity_ids)):
+        errors.append("Harmonized maturity candidate contains duplicate requirement assignments")
+    if set(maturity_ids) != known_requirements:
+        missing = sorted(known_requirements - set(maturity_ids))
+        unknown = sorted(set(maturity_ids) - known_requirements)
+        errors.append(f"Harmonized maturity assignment mismatch; missing={missing}, unknown={unknown}")
+
+    expected_paths = {
+        "L1": ["L1", "L2", "L3"],
+        "L2": ["L2", "L3"],
+        "L3": ["L3"],
+        "GOV": ["GOV"],
+    }
+    for item in maturity_assignments:
+        requirement_id = item.get("requirement_id")
+        minimum_level = item.get("minimum_level")
+        if item.get("maturity_path") != expected_paths.get(minimum_level):
+            errors.append(f"Harmonized maturity path is not cumulative for {requirement_id}")
+        if item.get("governance_overlay") != (minimum_level == "GOV"):
+            errors.append(f"Harmonized GOV overlay is inconsistent for {requirement_id}")
+        if item.get("review_status") != "human_review_required":
+            errors.append(f"Harmonized maturity assignment is not held for human review: {requirement_id}")
+    if any(maturity_mapping.get("decision_boundary", {}).values()):
+        errors.append("Harmonized maturity candidate must not authorize governance changes")
+
+    maturity_items = maturity_report.get("maturity_by_requirement", [])
+    if {item.get("requirement_id") for item in maturity_items} != known_requirements:
+        errors.append("Harmonized maturity report requirement set is stale")
+    maturity_summary = maturity_report.get("summary", {})
+    if maturity_summary.get("harmonized_requirements") != len(requirements):
+        errors.append("Harmonized maturity report requirement count is stale")
+    minimum_counts = Counter(item.get("minimum_level") for item in maturity_assignments)
+    for level in ("L1", "L2", "L3", "GOV"):
+        if maturity_summary.get("minimum_level_counts", {}).get(level) != minimum_counts.get(level, 0):
+            errors.append(f"Harmonized maturity report minimum {level} count is stale")
+        expected_cumulative = sum(level in item.get("maturity_path", []) for item in maturity_assignments)
+        if maturity_summary.get("cumulative_level_counts", {}).get(level) != expected_cumulative:
+            errors.append(f"Harmonized maturity report cumulative {level} count is stale")
+    if maturity_summary.get("human_review_required") != len(maturity_assignments):
+        errors.append("Harmonized maturity report must hold every assignment for human review")
+    if any(maturity_report.get("decision_boundary", {}).values()):
+        errors.append("Harmonized maturity report must not authorize governance changes")
 
     source_entry = next(
         (item for item in source_document_register.get("documents", []) if item.get("id") == "CISO-REQ-SRC-001"),
