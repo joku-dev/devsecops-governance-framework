@@ -85,6 +85,7 @@ nav:
       - Evidence:
           - Governance Evidence Contract: operations/evidence/governance-evidence-contract.md
           - Evidence Trust Model: operations/evidence/evidence-trust-model.md
+          - Evidence Attestation Pilot: operations/evidence/evidence-attestation-pilot.md
           - Evidence Collector Contract: operations/evidence/evidence-collector-contract.md
           - Vulnerability Scan Collector Usage: operations/evidence/vulnerability-scan-collector-usage.md
           - Governance Evidence Schema Versioning: operations/evidence/governance-evidence-schema-versioning.md

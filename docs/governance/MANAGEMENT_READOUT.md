@@ -126,6 +126,13 @@ dimensions. All nine checks pass. Architecture is currently present for two
 consumers and Typed Evidence for one; optional evidence domains are not
 fabricated for consumers that do not produce them.
 
+The next Trust step is now proven as a report-only technical pilot. A signed
+Ed25519 statement binds the demo issuer to the repository, commit, workflow run
+and attempt, artifact, and exact evidence digest. All four pilot checks pass.
+The result is intentionally only an `attested` candidate: operational Trust
+remains `integrity_verified`, no consumer workflow or released baseline was
+changed, and production issuer and key lifecycle approval remains open.
+
 ## Current Constraints
 
 The current state is intentionally limited to an initial L1 baseline.
@@ -139,7 +146,9 @@ The following items are still open:
 - additional repositories and a second live telemetry-producing consumer
   should be onboarded to extend the current three-repository structural proof
   with a broader operational sample
-- signed attestations, trust roots, and subject binding are not yet implemented
+- signed attestations, trust roots, and subject binding are technically proven
+  in a report-only demo; production issuer approval, key lifecycle, producer
+  emission, and operational Trust promotion remain open
 - agent-to-Evidence provenance is available, but associations are currently
   recorded explicitly rather than inferred automatically
 - the newest consumer workflow results and the centrally re-verified Typed
@@ -153,8 +162,7 @@ The following items are still open:
 
 ## Recommended Next Priorities
 
-1. Replace placeholder vulnerability evidence with a real scanner and complete
-   the attestation/subject-binding pilot.
+1. Define measurable blocking-readiness criteria without enabling blocking.
 2. Use Collection Attempt lifecycle, controlled retry, and provenance records
    in regular operational review and audit preparation.
 3. Validate and operationalize branch-protection-based controls for L2.

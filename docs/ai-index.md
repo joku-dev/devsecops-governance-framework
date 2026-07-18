@@ -198,6 +198,7 @@ python3 -m unittest discover -s tests
 | Intake operation telemetry | `docs/operations/evidence/intake-operation-telemetry.md`, `schemas/intake-operation-event.schema.json`, `scripts/record_intake_event.py`, `status/intake-events/` |
 | Intake Health projection | `docs/operations/evidence/intake-health-projection.md`, `schemas/intake-health.schema.json`, `scripts/generate_intake_health.py`, `status/intake-health.json` |
 | Multi-consumer readiness | `docs/operations/status/multi-consumer-readiness.md`, `schemas/multi-consumer-readiness.schema.json`, `scripts/generate_multi_consumer_readiness.py`, `generated/reports/multi-consumer-readiness.json` |
+| Evidence attestation pilot | `docs/operations/evidence/evidence-attestation-pilot.md`, `model/evidence/evidence-trust-roots.yaml`, `schemas/evidence-attestation.schema.json`, `scripts/verify_evidence_attestation.py`, `generated/reports/evidence-attestation-pilot.json` |
 | Controlled collection retry | `.github/workflows/retry-collection-attempt.yml`, `scripts/prepare_collection_attempt_retry.py` |
 | Collection-attempt lifecycle projection | `scripts/generate_status_viewer.py`, `generated/viewer/status-viewer.html` |
 | Evidence agent provenance | `schemas/evidence-agent-provenance.schema.json`, `scripts/record_evidence_agent_provenance.py`, `scripts/validate_evidence_agent_provenance.py`, `status/evidence-agent-provenance/` |

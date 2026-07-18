@@ -74,7 +74,7 @@ per-check results. The remaining Phase 3 capabilities are:
 - replay-key construction and duplicate or cross-subject reuse evaluation
 - freshness policies by evidence type and decision context
 - a normalized snapshot digest and transformation record
-- trusted issuer and attestation verification
+- production-approved issuer and attestation verification
 
 Existing snapshots remain valid historical evidence and are not retroactively
 promoted. Without an explicit trust assessment, their model default is
@@ -277,9 +277,13 @@ for an existing snapshot path is quarantined without overwriting history.
 
 ### Phase 4: Attestation Pilot
 
-- approve trust roots and issuer identities
-- select an attestation format and predicate
-- verify signatures and subject binding for representative repositories
+- complete as a report-only technical pilot
+- verify an Ed25519 signature against a public demo trust root
+- bind repository, commit, run, run attempt, artifact, subject identifier, and
+  SHA-256 digest in one canonical statement
+- expose `candidate_level: attested` without promoting operational Trust
+- retain production issuer approval, key lifecycle, producer emission, and
+  complete provenance prerequisites as explicit gaps
 
 ### Phase 5: Enforcement Decision
 
@@ -291,14 +295,15 @@ for an existing snapshot path is quarantined without overwriting history.
 
 | Decision | Required review |
 |---|---|
-| Trusted issuer and trust-root registry | Security, Platform, Governance |
+| Production issuer and trust-root registry | Security, Platform, Governance |
 | Approve or revise provisional freshness policy v0.1 | Control owners, Security, Operations |
 | Initial attestation format and predicate | Security, Platform, Architecture |
 | Trust requirements for protected mainline or release | Governance, Security, Release Manager |
 
 Approval of the provisional Freshness policy blocks completion of Phase 3,
-not its current report-only use. The other decisions block the later
-attestation and enforcement phases.
+not its current report-only use. The other decisions block operational
+attestation and enforcement. The local technical pilot is documented in
+`docs/operations/evidence/evidence-attestation-pilot.md`.
 
 ## Latest-State And Viewer Impact
 

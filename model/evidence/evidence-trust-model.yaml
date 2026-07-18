@@ -221,6 +221,17 @@ decision_rules:
     requirement: Trust-based blocking requires schema migration, representative evidence, policy tests, release review, and explicit maintainer approval.
 
 migration_gaps:
+  - id: attestation_pilot_not_operational
+    scope: shared
+    current_state: A report-only Ed25519 pilot verifies a registered demo issuer, exact collection context, subject digest, and signature without promoting operational Trust.
+    missing_capabilities:
+      - approved production trust roots and issuer lifecycle
+      - producer-side signed attestation emission
+      - complete provenance-level prerequisite verification
+      - key rotation and revocation operations
+    target_level: attested
+    priority: high
+    phase: attestation_pilot
   - id: shared_provenance_verification_pending
     scope: shared
     current_state: New intake and the vulnerability-scan pilot use versioned collector records, derive integrity trust centrally, evaluate applicable provisional Freshness policies, and keep Trust separate from governance outcomes.

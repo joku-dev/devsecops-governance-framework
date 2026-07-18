@@ -390,7 +390,7 @@ not the governance contracts.
 | Viewer is statically generated | Simple and portable, but not a live query or write-back application. |
 | GitHub Actions is the complete reference adapter | Other CI platforms require adapters that preserve the same contracts. |
 | Current Trust generally stops at `integrity_verified` | Producer identity and authoritative provenance are not yet fully verified. |
-| No trusted attestation issuer path is active | `attested` remains a future Trust level. |
+| Only a public-key demo issuer is registered | Signature and subject binding are proven report-only; production issuer lifecycle and operational `attested` promotion remain open. |
 | Freshness and replay are report-only | Operators must review findings; they are not automatic enforcement gates. |
 | Collection lifecycle and health are projected from immutable events | There is no mutable operational job state or automatic retry scheduler. Health indicators are report-only and thresholds are not yet defined. |
 | Vulnerability scan is the current typed collector pilot | Additional evidence types still need contract-conformant adapters and tests. |
@@ -404,7 +404,7 @@ introduced independently:
 1. observe Intake Health over a representative period, then define operational
    objectives and alerting
 2. add collector adapters for further evidence types
-3. pilot signed attestations and a trusted issuer policy
+3. move the signed-attestation pilot toward an approved issuer and key lifecycle
 4. formalize remaining approval and exception boundaries
 5. introduce a service, queue, database, or Kubernetes deployment only when
    measured scale or availability requirements justify it
