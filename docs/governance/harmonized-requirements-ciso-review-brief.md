@@ -272,6 +272,55 @@ Insbesondere sind noch nicht vollständig bewertet:
 Die 50,4 % dürfen daher nur als **vorläufige Design-Coverage** und nicht als
 offizielle Compliance-Kennzahl verwendet werden.
 
+### 6.4 Vorgeschlagene Zuordnung zu L1, L2, L3 und GOV
+
+Alle 44 harmonisierten Anforderungen wurden zusätzlich einem vorgeschlagenen
+Mindest-Maturity-Level zugeordnet. Die Zuordnung ist kumulativ:
+
+- Eine L1-Anforderung bleibt auf L2 und L3 aktiv.
+- Eine L2-Anforderung bleibt auf L3 aktiv.
+- Eine L3-Anforderung beschreibt eine High-Assurance-Mindestanforderung.
+- GOV ist ein separates, levelübergreifendes Overlay für Governance-Pflichten.
+
+| Level | Bedeutung | Neu auf diesem Level | Kumulativ aktiv |
+|---|---|---:|---:|
+| `L1` | Foundational – wiederholbare Mindestpraktiken und Evidences | 22 | 22 |
+| `L2` | Managed – zentrale Fähigkeiten, standardisierte Verifikation, Monitoring und Gates | 17 | 39 |
+| `L3` | High Assurance – Isolation, Provenance und kontinuierlich prüfbare Evidences | 1 | 40 |
+| `GOV` | Governance Overlay – Applicability, Rollen, Reviews und Lifecycle-Entscheidungen | 4 | 4 |
+
+Die vier GOV-Anforderungen betreffen Secure Development Lifecycle,
+risikobasierte Anwendbarkeit, Rollen und Kompetenz sowie kontrollierte
+Security-Dokumentation.
+
+Die Verteilung bedeutet nicht, dass L3 nur eine Anforderung enthält. Auf L3
+gelten kumulativ 40 fachliche Anforderungen. Lediglich eine Anforderung –
+reproduzierbare und isolierte Builds – beginnt ausschließlich auf L3. Weitere
+Anforderungen erhalten auf L3 zusätzliche High-Assurance-Ausprägungen, die bei
+einer späteren Control-Ableitung konkretisiert werden müssen.
+
+Die Maturity-Zuordnung ersetzt nicht die fachliche Anwendbarkeit. Beispielsweise
+gilt Session Security nur für Software mit Session-Funktion, File Handling nur
+für dateiverarbeitende Software und Penetration Testing risikobasiert für
+exponierte oder hochkritische Produkte.
+
+Die vorgeschlagenen Routing-Lanes verteilen sich wie folgt:
+
+| Review- und Ableitungsbereich | Anforderungen |
+|---|---:|
+| DevSecOps Baseline | 15 |
+| Product Security | 11 |
+| Architecture | 5 |
+| Governance | 4 |
+| Operations | 4 |
+| Evidence | 3 |
+| Platform | 2 |
+
+Die vollständige Zuordnung mit Begründung, bestehender Control-Referenz,
+Coverage-Status, Applicability und Review-Status steht im Report
+`generated/reports/harmonized-requirements-maturity.md`. Alle 44 Zuordnungen
+sind `human_review_required`.
+
 ## 7. Bestehende Stärken und wesentliche Lücken
 
 ### 7.1 Aktuelle Stärken
@@ -392,8 +441,9 @@ Als risikoarmer nächster Schritt wird empfohlen:
 2. den Candidate-Status des harmonisierten Modells vorerst beizubehalten;
 3. noch keine Runtime-Ableitung und kein Blocking Enforcement zu erlauben;
 4. die 44 harmonisierten Anforderungen und 233 Zuordnungen fachlich zu reviewen;
-5. die neun vollständigen Gaps und die kritischsten Partial Gaps zu priorisieren;
-6. anschließend einen separaten Change Request für die erste genehmigte
+5. die vorgeschlagenen L1-L3-/GOV-Mindestlevel zu bestätigen oder anzupassen;
+6. die neun vollständigen Gaps und die kritischsten Partial Gaps zu priorisieren;
+7. anschließend einen separaten Change Request für die erste genehmigte
    Control-/Evidence-Tranche zu erstellen.
 
 Diese Variante erkennt den fachlichen Wert der Liste an, ohne ungeprüfte Inhalte
@@ -409,6 +459,8 @@ direkt in operative Governance oder veröffentlichte Baselines zu übernehmen.
 - 29 doppelte Quellen-ID-Kombinationen bereinigen oder begründen;
 - alle 233 Mappings stichprobenbasiert und risikoorientiert reviewen;
 - 44 harmonisierte Formulierungen bestätigen oder korrigieren.
+- 44 vorgeschlagene Mindestlevel und sieben Routing-Lanes bestätigen oder
+  korrigieren.
 
 **Ergebnis:** fachlich bestätigtes Candidate-Modell mit dokumentierten
 Review-Entscheidungen.
@@ -462,10 +514,11 @@ Für einen fokussierten Termin wird folgende Agenda empfohlen:
 3. **Modellergebnis** – Was bedeuten 44 harmonisierte Anforderungen?
 4. **Coverage** – Warum sind 50,4 % keine offizielle Compliance-Aussage?
 5. **Top Gaps** – Welche neun Themen sind aktuell strukturell nicht abgedeckt?
-6. **Quellenentscheidung** – Related Source bestätigen oder Candidate belassen?
-7. **Geltungsbereich** – Für welche Produkte und Risikoklassen soll das Modell gelten?
-8. **Mandat für Phase 1** – Wer reviewed Mappings, Gaps und Publikationsgrenzen?
-9. **Nächster Entscheidungspunkt** – Wann wird über normative Ableitung entschieden?
+6. **Maturity-Modell** – Sind 22 L1, 17 L2, eine L3 und vier GOV-Einstufungen sachgerecht?
+7. **Quellenentscheidung** – Related Source bestätigen oder Candidate belassen?
+8. **Geltungsbereich** – Für welche Produkte und Risikoklassen soll das Modell gelten?
+9. **Mandat für Phase 1** – Wer reviewed Mappings, Level, Gaps und Publikationsgrenzen?
+10. **Nächster Entscheidungspunkt** – Wann wird über normative Ableitung entschieden?
 
 ## 13. Entscheidungsvorlage
 
@@ -484,6 +537,15 @@ Decision date:
 Enterprise applicability:
 Applicable products / risk classes:
 Excluded scope:
+
+Proposed maturity assignment:
+  [ ] confirm 22 L1 / 17 L2 / 1 L3 / 4 GOV
+  [ ] confirm with recorded adjustments
+  [ ] return for further analysis
+
+GOV overlay applies across adopted levels:
+  [ ] yes
+  [ ] no
 
 Derived artifacts currently allowed:
   [ ] no
@@ -512,6 +574,9 @@ Die Analyse ist im Repository über folgende Artefakte nachvollziehbar:
 | `model/traceability/standards-to-harmonized-requirements.yaml` | Zuordnung aller 233 eindeutigen Quellanforderungen |
 | `generated/reports/harmonized-requirements-coverage.md` | Lesbarer Coverage-Bericht |
 | `generated/reports/harmonized-requirements-coverage.json` | Maschinenlesbarer Coverage-Bericht |
+| `model/traceability/harmonized-requirements-to-maturity-levels.yaml` | Reviewpflichtige Zuordnung aller 44 Anforderungen zu L1-L3/GOV |
+| `generated/reports/harmonized-requirements-maturity.md` | Vollständiger lesbarer Maturity-Report mit Begründungen |
+| `generated/reports/harmonized-requirements-maturity.json` | Maschinenlesbarer Maturity-Report |
 | `docs/governance/source-documents/CISO-REQ-SRC-001.public.md` | Öffentliche neutrale Quellenbeschreibung |
 | `docs/governance/change-requests/GCR-2026-047-harmonized-requirements-candidate.md` | Governance Change Request |
 | `scripts/import_harmonized_requirements_workbook.py` | Reproduzierbarer lokaler Import |

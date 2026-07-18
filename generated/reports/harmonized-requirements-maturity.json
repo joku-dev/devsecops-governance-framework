@@ -1,0 +1,983 @@
+{
+  "schema_version": "0.1.0",
+  "report_id": "harmonized-requirements-candidate-maturity",
+  "status": "candidate",
+  "normative": false,
+  "enforcement": "none",
+  "source_document_id": "CISO-REQ-SRC-001",
+  "summary": {
+    "harmonized_requirements": 44,
+    "minimum_level_counts": {
+      "L1": 22,
+      "L2": 17,
+      "L3": 1,
+      "GOV": 4
+    },
+    "cumulative_level_counts": {
+      "L1": 22,
+      "L2": 39,
+      "L3": 40,
+      "GOV": 4
+    },
+    "routing_lane_counts": {
+      "architecture": 5,
+      "devsecops_baseline": 15,
+      "evidence": 3,
+      "governance": 4,
+      "operations": 4,
+      "platform": 2,
+      "product_security": 11
+    },
+    "human_review_required": 44
+  },
+  "level_definitions": {
+    "L1": {
+      "name": "Foundational",
+      "intent": "Establish repeatable minimum security practices and evidence for all applicable software."
+    },
+    "L2": {
+      "name": "Managed",
+      "intent": "Add centrally managed capabilities, standardized verification, monitoring, and enforceable gates."
+    },
+    "L3": {
+      "name": "High Assurance",
+      "intent": "Add isolation, provenance, continuous verification, and machine-readable high-assurance evidence."
+    },
+    "GOV": {
+      "name": "Governance Overlay",
+      "intent": "Govern applicability, accountability, review, deviations, and lifecycle decisions across all maturity levels."
+    }
+  },
+  "maturity_by_requirement": [
+    {
+      "requirement_id": "HREQ-GOV-001",
+      "title": "Secure development lifecycle",
+      "domain": "governance",
+      "applicability": "all_software",
+      "minimum_level": "GOV",
+      "maturity_path": [
+        "GOV"
+      ],
+      "governance_overlay": true,
+      "routing_lane": "governance",
+      "assignment_basis": "governance_scope",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DEVSECOPS-POL-SRC-001-REQ-020"
+      ],
+      "rationale": "Lifecycle governance sets the operating boundary for every adopted maturity level.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-GOV-002",
+      "title": "Risk-based applicability",
+      "domain": "governance",
+      "applicability": "all_software",
+      "minimum_level": "GOV",
+      "maturity_path": [
+        "GOV"
+      ],
+      "governance_overlay": true,
+      "routing_lane": "governance",
+      "assignment_basis": "governance_scope",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DEVSECOPS-POL-SRC-001-REQ-017"
+      ],
+      "rationale": "Applicability determines which product, risk, and maturity obligations apply.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-GOV-003",
+      "title": "Roles and competence",
+      "domain": "governance",
+      "applicability": "all_software",
+      "minimum_level": "GOV",
+      "maturity_path": [
+        "GOV"
+      ],
+      "governance_overlay": true,
+      "routing_lane": "governance",
+      "assignment_basis": "governance_scope",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DEVSECOPS-POL-SRC-001-REQ-014"
+      ],
+      "rationale": "Roles, competence, and reviewer independence are cross-level governance duties.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-GOV-004",
+      "title": "Controlled security documentation",
+      "domain": "governance",
+      "applicability": "all_software",
+      "minimum_level": "GOV",
+      "maturity_path": [
+        "GOV"
+      ],
+      "governance_overlay": true,
+      "routing_lane": "governance",
+      "assignment_basis": "governance_scope",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L1-REQ-001",
+        "P1"
+      ],
+      "rationale": "Controlled documentation and evidence governance support all maturity levels.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-RISK-001",
+      "title": "Asset and threat identification",
+      "domain": "security_risk",
+      "applicability": "risk_based",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "architecture",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "S5",
+        "P8",
+        "E6"
+      ],
+      "rationale": "Basic asset and threat identification is foundational when the risk-based applicability rule is triggered.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-RISK-002",
+      "title": "Threat modeling",
+      "domain": "security_risk",
+      "applicability": "risk_based",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "architecture",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "S5",
+        "P8"
+      ],
+      "rationale": "Maintained threat models require a managed design and review capability.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-RISK-003",
+      "title": "Risk treatment and reassessment",
+      "domain": "security_risk",
+      "applicability": "risk_based",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "architecture",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "AG-EXC-001",
+        "RG-RELEASE-READY"
+      ],
+      "rationale": "Risk treatment and reassessment require managed ownership, verification, and change triggers.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-RISK-004",
+      "title": "Security architecture review",
+      "domain": "security_risk",
+      "applicability": "risk_based",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "architecture",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "S5",
+        "P8",
+        "E6"
+      ],
+      "rationale": "Formal security architecture review is a managed assurance capability enhanced at L3.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-APP-001",
+      "title": "Authentication and authorization",
+      "domain": "application_security",
+      "applicability": "capability_based",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "S5",
+        "P8"
+      ],
+      "rationale": "Authentication and authorization are foundational for software that exposes identities or protected functions.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-APP-002",
+      "title": "Session security",
+      "domain": "application_security",
+      "applicability": "session_capable_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Session protection is a foundational requirement whenever session capability exists.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-APP-003",
+      "title": "Data and cryptographic protection",
+      "domain": "application_security",
+      "applicability": "sensitive_data_processing",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "S5",
+        "P8",
+        "E5"
+      ],
+      "rationale": "Sensitive-data protection begins at L1 and gains centrally managed cryptographic assurance at higher levels.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-APP-004",
+      "title": "Input validation and business logic",
+      "domain": "application_security",
+      "applicability": "input_processing_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Input, output, and business-rule validation are foundational for software that processes untrusted input.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-APP-005",
+      "title": "Secure file handling",
+      "domain": "application_security",
+      "applicability": "file_processing_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Safe file handling is foundational whenever file-processing capability exists.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-APP-006",
+      "title": "Application logging and error handling",
+      "domain": "application_security",
+      "applicability": "all_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L2-REQ-013",
+        "DSCB-L2-REQ-014",
+        "P11"
+      ],
+      "rationale": "Secure error handling and security-relevant application logging start at L1 and integrate with managed monitoring at L2.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-APP-007",
+      "title": "Secure defaults and hardening",
+      "domain": "application_security",
+      "applicability": "all_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L2-REQ-002",
+        "P8"
+      ],
+      "rationale": "Secure defaults are foundational while centrally managed hardening and verification mature at L2 and L3.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-DEV-001",
+      "title": "Source control and integrity",
+      "domain": "development",
+      "applicability": "all_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L1-REQ-002",
+        "DSCB-L1-REQ-003"
+      ],
+      "rationale": "Existing L1 controls already require approved version control, attributable history, and protected branches.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-DEV-002",
+      "title": "Secure coding practices",
+      "domain": "development",
+      "applicability": "source_developed_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L1-REQ-004"
+      ],
+      "rationale": "Secure coding practices are an existing foundational L1 control objective.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-DEV-003",
+      "title": "Code and implementation review",
+      "domain": "development",
+      "applicability": "source_developed_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L1-REQ-004"
+      ],
+      "rationale": "Basic code review and automated analysis extend the current L1 secure-coding objective.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-DEV-004",
+      "title": "Secure development environments",
+      "domain": "development",
+      "applicability": "source_developed_software",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "platform",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L2-REQ-001",
+        "DSCB-L2-REQ-002"
+      ],
+      "rationale": "Existing L2 controls require centrally managed and hardened development environments.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-DEV-005",
+      "title": "External component and supplier assurance",
+      "domain": "development",
+      "applicability": "third_party_components",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L2-REQ-005",
+        "DSCB-L3-REQ-005"
+      ],
+      "rationale": "Approved dependency sources start at L2 and verifiable supplier provenance strengthens at L3.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-001",
+      "title": "Controlled build execution",
+      "domain": "software_supply_chain",
+      "applicability": "built_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L1-REQ-007",
+        "DSCB-L1-REQ-008"
+      ],
+      "rationale": "Controlled automated builds and identifiable outputs are existing L1 objectives.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-002",
+      "title": "Reproducible and isolated builds",
+      "domain": "software_supply_chain",
+      "applicability": "high_assurance_software",
+      "minimum_level": "L3",
+      "maturity_path": [
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L3-REQ-001",
+        "DSCB-L3-REQ-002",
+        "DSCB-L3-REQ-003",
+        "DSCB-L3-REQ-004"
+      ],
+      "rationale": "Reproducible, isolated, and recreated build environments are existing high-assurance L3 objectives.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-003",
+      "title": "Artifact identity and integrity",
+      "domain": "software_supply_chain",
+      "applicability": "releasable_artifacts",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L1-REQ-011",
+        "DSCB-L1-REQ-012"
+      ],
+      "rationale": "Artifact identity and cryptographic integrity metadata are existing L1 objectives.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-004",
+      "title": "Artifact signing and key protection",
+      "domain": "software_supply_chain",
+      "applicability": "baseline_level_based",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L2-REQ-007",
+        "DSCB-L2-REQ-008",
+        "DSCB-L3-REQ-007",
+        "DSCB-L3-REQ-008"
+      ],
+      "rationale": "Artifact signing and protected keys start at L2; enterprise signing and central key management are L3 enhancements.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-005",
+      "title": "Trusted dependency sources and provenance",
+      "domain": "software_supply_chain",
+      "applicability": "third_party_components",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L2-REQ-005",
+        "DSCB-L2-REQ-006",
+        "DSCB-L3-REQ-005",
+        "DSCB-L3-REQ-006"
+      ],
+      "rationale": "Approved dependency sources are L2 objectives and verifiable provenance is an L3 enhancement.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-006",
+      "title": "SBOM generation",
+      "domain": "software_supply_chain",
+      "applicability": "releasable_artifacts",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L1-REQ-005",
+        "DSCB-L1-REQ-006"
+      ],
+      "rationale": "Dependency inventory and SBOM generation are existing L1 objectives.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-007",
+      "title": "SBOM component identity and relationships",
+      "domain": "software_supply_chain",
+      "applicability": "releasable_artifacts",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "evidence",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L1-REQ-005",
+        "DSCB-L1-REQ-006"
+      ],
+      "rationale": "Detailed SBOM identity and relationship validation requires managed evidence semantics beyond basic L1 generation.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-008",
+      "title": "SBOM integrity and source metadata",
+      "domain": "software_supply_chain",
+      "applicability": "releasable_artifacts",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "evidence",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L1-REQ-011",
+        "DSCB-L1-REQ-006"
+      ],
+      "rationale": "Component-level integrity and source metadata require managed evidence validation and stronger L3 provenance.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-009",
+      "title": "SBOM license metadata",
+      "domain": "software_supply_chain",
+      "applicability": "third_party_components",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "evidence",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Standardized license metadata is a managed supply-chain evidence capability.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-SC-010",
+      "title": "Component license compliance",
+      "domain": "software_supply_chain",
+      "applicability": "third_party_components",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Component license compliance requires managed policy, review, and evidence rather than basic inventory alone.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-TEST-001",
+      "title": "Test strategy and acceptance",
+      "domain": "verification",
+      "applicability": "all_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L1-REQ-001",
+        "RG-RELEASE-READY"
+      ],
+      "rationale": "A defined test strategy and acceptance evidence are foundational release inputs.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-TEST-002",
+      "title": "Functional, non-functional, and regression testing",
+      "domain": "verification",
+      "applicability": "all_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L1-REQ-001"
+      ],
+      "rationale": "Functional and regression verification are foundational, with broader automated assurance at higher levels.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-TEST-003",
+      "title": "Security requirements verification",
+      "domain": "verification",
+      "applicability": "risk_based",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "architecture",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "S5",
+        "P8",
+        "RG-RELEASE-READY"
+      ],
+      "rationale": "Applicable security requirements require verification from L1, with stronger traceability and evidence at higher levels.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-TEST-004",
+      "title": "Vulnerability testing",
+      "domain": "verification",
+      "applicability": "all_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L1-REQ-009",
+        "DSCB-L1-REQ-010"
+      ],
+      "rationale": "Automated vulnerability testing and release evaluation are existing L1 objectives.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-TEST-005",
+      "title": "Penetration testing",
+      "domain": "verification",
+      "applicability": "high_risk_or_exposed_software",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "S5",
+        "P8"
+      ],
+      "rationale": "Penetration testing requires managed scope and independence for exposed or high-risk software.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-TEST-006",
+      "title": "Independent and protected testing",
+      "domain": "verification",
+      "applicability": "risk_based",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Independent testing and protected test data require managed assurance, strengthened for L3 products.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-OPS-001",
+      "title": "Security release gates",
+      "domain": "operations",
+      "applicability": "releasable_artifacts",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "devsecops_baseline",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "covered",
+      "existing_refs": [
+        "DSCB-L1-REQ-013",
+        "DSCB-L1-REQ-014",
+        "DSCB-L2-REQ-011",
+        "DSCB-L2-REQ-012"
+      ],
+      "rationale": "Release authorization is foundational; enforceable security thresholds strengthen at L2.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-OPS-002",
+      "title": "Vulnerability triage and remediation",
+      "domain": "operations",
+      "applicability": "all_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "operations",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L1-REQ-010",
+        "DSCB-GOV-REQ-003"
+      ],
+      "rationale": "Vulnerabilities require release evaluation at L1 and managed remediation evidence at higher levels.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-OPS-003",
+      "title": "Security update management",
+      "domain": "operations",
+      "applicability": "maintained_software",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "operations",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Security update management requires a managed lifecycle, response ownership, and delivery capability.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-OPS-004",
+      "title": "Security monitoring and alerting",
+      "domain": "operations",
+      "applicability": "operational_software",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "operations",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L2-REQ-013",
+        "DSCB-L2-REQ-014",
+        "P11"
+      ],
+      "rationale": "Central security-event generation and forwarding are existing L2 monitoring objectives.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-OPS-005",
+      "title": "Deployment and configuration verification",
+      "domain": "operations",
+      "applicability": "deployed_software",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "platform",
+      "assignment_basis": "existing_control_alignment",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "DSCB-L2-REQ-002",
+        "DSCB-L2-REQ-009"
+      ],
+      "rationale": "Managed deployment and version-controlled configuration align with existing L2 platform objectives.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-OPS-006",
+      "title": "Secure operation guidance",
+      "domain": "operations",
+      "applicability": "distributed_or_operated_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "partial",
+      "existing_refs": [
+        "P1",
+        "RG-OPERATION-READY"
+      ],
+      "rationale": "Applicable software requires foundational secure installation and operation guidance.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-OPS-007",
+      "title": "Secure decommissioning and disposal",
+      "domain": "operations",
+      "applicability": "all_software",
+      "minimum_level": "L1",
+      "maturity_path": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "product_security",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Every maintained lifecycle needs a foundational retirement and secure-disposal outcome.",
+      "review_status": "human_review_required"
+    },
+    {
+      "requirement_id": "HREQ-OPS-008",
+      "title": "Product security response and health review",
+      "domain": "operations",
+      "applicability": "maintained_software",
+      "minimum_level": "L2",
+      "maturity_path": [
+        "L2",
+        "L3"
+      ],
+      "governance_overlay": false,
+      "routing_lane": "operations",
+      "assignment_basis": "risk_and_capability",
+      "current_coverage": "gap",
+      "existing_refs": [],
+      "rationale": "Product security response and periodic health review require managed ownership and operational capability.",
+      "review_status": "human_review_required"
+    }
+  ],
+  "decision_boundary": {
+    "control_changes_authorized": false,
+    "policy_changes_authorized": false,
+    "evidence_contract_changes_authorized": false,
+    "release_changes_authorized": false,
+    "enforcement_changes_authorized": false,
+    "consumer_compliance_claim_authorized": false
+  }
+}
