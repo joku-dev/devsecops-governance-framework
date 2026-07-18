@@ -6,6 +6,11 @@ The candidate model converts a private standards-requirements workbook into a
 public-neutral review model without publishing source requirement text or
 Office metadata.
 
+This document is part of the
+[`CISO-REQ-SRC-001` review packet](README.md). The packet index is the stable
+entry point for reviewers and links the candidate description, CISO brief,
+source placeholder, change request, models, and generated reports.
+
 The authoritative candidate artifacts are:
 
 - `model/requirements/harmonized-devsecops-requirements.yaml`

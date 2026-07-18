@@ -25,7 +25,8 @@ GCR-2026-047
 | Artifact | CISO standards requirements catalog and harmonized model |
 | Type | candidate source plus review-only governance model |
 | Public source path | `docs/governance/source-documents/CISO-REQ-SRC-001.public.md` |
-| Private workbook | withheld and excluded from Git |
+| Review packet | `docs/governance/review-packets/CISO-REQ-SRC-001/README.md` |
+| Private workbook | local-only under `.local/governance-sources/CISO-REQ-SRC-001/` and excluded from Git |
 | Owner | Governance Owner, subject to CISO confirmation |
 | Source Document Intake | required |
 | Runtime governance impact | none |

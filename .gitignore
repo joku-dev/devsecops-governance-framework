@@ -5,4 +5,4 @@ __pycache__/
 .venv-docs/
 .venv-docs-release/
 site/
-docs/governance/260717_DevSecOps_Requirements_from_Standards_Public_Neutral_v0.1.xlsx
+.local/governance-sources/
