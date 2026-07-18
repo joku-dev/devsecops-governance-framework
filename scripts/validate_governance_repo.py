@@ -133,6 +133,25 @@ def validate_intake_health(errors):
         validate_schema(errors, ROOT / "schemas" / "intake-health.schema.json", projection_path)
 
 
+def validate_multi_consumer_readiness(errors):
+    command = [sys.executable, str(ROOT / "scripts" / "generate_multi_consumer_readiness.py")]
+    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        errors.append(
+            "Multi-consumer readiness generation failed: "
+            f"{result.stderr.strip() or result.stdout.strip()}"
+        )
+        return
+    report_path = ROOT / "generated" / "reports" / "multi-consumer-readiness.json"
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "multi-consumer-readiness.schema.json",
+        report_path,
+    )
+    if not load_json(report_path).get("ready"):
+        errors.append("Multi-consumer readiness contains failed isolation checks")
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -477,6 +496,7 @@ def main() -> int:
     validate_intake_conflicts(errors)
     validate_intake_events(errors)
     validate_intake_health(errors)
+    validate_multi_consumer_readiness(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)
