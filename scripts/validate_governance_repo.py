@@ -222,6 +222,20 @@ def validate_blocking_mode_alignment(errors):
         errors.append("Blocking mode alignment contains unsafe blocking registrations")
 
 
+def validate_replay_triage(errors):
+    command = [sys.executable, str(ROOT / "scripts" / "generate_replay_triage_report.py")]
+    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        errors.append(f"Replay triage generation failed: {result.stderr.strip() or result.stdout.strip()}")
+        return
+    report_path = ROOT / "generated" / "reports" / "replay-triage.json"
+    validate_schema(errors, ROOT / "schemas" / "replay-triage.schema.json", report_path)
+    report = load_json(report_path)
+    boundary = report.get("decision_boundary", {})
+    if report.get("enforcement") != "report_only" or any(boundary.values()):
+        errors.append("Replay triage must not rewrite evidence, Trust, latest selection, or enforcement")
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -570,6 +584,7 @@ def main() -> int:
     validate_evidence_attestation_pilot(errors)
     validate_blocking_readiness(errors)
     validate_blocking_mode_alignment(errors)
+    validate_replay_triage(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)
