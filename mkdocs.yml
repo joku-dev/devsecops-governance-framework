@@ -79,6 +79,7 @@ nav:
           - Source Document Intake Process: operations/processes/source-document-intake-process.md
           - Source Document Intake Review Operating Model: operations/processes/source-document-intake-review-operating-model.md
           - Enforcement Options: operations/processes/operational-governance-enforcement-options.md
+          - Blocking Enforcement Migration: operations/processes/blocking-enforcement-migration-guide.md
           - Waiver Management Standard: operations/processes/waiver-management-standard.md
           - Application Repo Governance Timing: operations/processes/application-repo-governance-timing.md
           - Spot Check Governance Intake: operations/processes/spot-check-governance-intake.md
@@ -108,6 +109,7 @@ nav:
       - Status:
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md
           - Multi-Consumer Readiness: operations/status/multi-consumer-readiness.md
+          - Blocking Readiness: operations/status/blocking-readiness.md
           - Governance Intelligence Graph Viewer: operations/status/governance-intelligence-graph-viewer.md
           - Current Governance Platform State: operations/status/current-governance-platform-state.md
           - ha-CPsWMS Validation Status: operations/status/ha-cpswms-governance-validation-status.md

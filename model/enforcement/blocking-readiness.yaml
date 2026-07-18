@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+model_id: blocking-readiness-v0.1
+status: active_report_only
+enforcement_change_authorized: false
+thresholds:
+  minimum_mainline_successes: 3
+  minimum_intake_events: 10
+  minimum_intake_success_rate_pct: 99.0
+  minimum_trust_level: provenance_verified
+principles:
+  - blocking is a separate, explicitly approved release decision
+  - a passing governance result is insufficient without trustworthy evidence
+  - architecture findings must be resolved or explicitly waived before blocking
+  - rollback and waiver paths must be tested before activation
+  - readiness assessment never changes a consumer workflow or branch rule
+manual_approvals: {}

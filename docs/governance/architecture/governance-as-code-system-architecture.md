@@ -368,6 +368,13 @@ Evidence freshness, replay findings, intake conflicts, collection failures,
 agent provenance, graph relationships, and portfolio projections do not by
 themselves change an underlying governance outcome.
 
+Blocking Readiness is likewise a read-only decision projection. It combines
+released baseline pinning, mainline stability, Trust, replay, Typed Evidence,
+Architecture, intake health, conflict, waiver, rollback, and accountable
+approval signals. Its schema fixes `enforcement_change_authorized` to `false`;
+consumer workflow and branch-protection activation remains a separate reviewed
+change with release and migration analysis.
+
 ## Current Deployment Decision and Kubernetes
 
 The current architecture intentionally runs on GitHub Actions with static
@@ -421,6 +428,7 @@ Use this document as the orientation map, then update the authoritative area:
 | Enforcement behavior | report-only/blocking semantics, consumer migration, release decision |
 | Result intake or ledger | idempotency, conflict retention, concurrency, latest-state semantics |
 | Graph, report, or viewer | deterministic projection and unchanged source-of-truth boundaries |
+| Blocking readiness or activation | technical criteria, accountable approval, waiver tests, rollback, consumer migration and release decision |
 | Runtime platform | security, availability, state migration, contract preservation and operating ownership |
 
 ## Validation

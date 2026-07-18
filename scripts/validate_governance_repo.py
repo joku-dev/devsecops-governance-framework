@@ -182,6 +182,24 @@ def validate_evidence_attestation_pilot(errors):
         errors.append("Evidence attestation pilot must not activate attested Trust")
 
 
+def validate_blocking_readiness(errors):
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "blocking-readiness-model.schema.json",
+        ROOT / "model" / "enforcement" / "blocking-readiness.yaml",
+    )
+    command = [sys.executable, str(ROOT / "scripts" / "generate_blocking_readiness.py")]
+    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        errors.append(f"Blocking readiness generation failed: {result.stderr.strip() or result.stdout.strip()}")
+        return
+    report_path = ROOT / "generated" / "reports" / "blocking-readiness.json"
+    validate_schema(errors, ROOT / "schemas" / "blocking-readiness.schema.json", report_path)
+    report = load_json(report_path)
+    if report.get("enforcement_change_authorized") is not False or report.get("enforcement") != "report_only":
+        errors.append("Blocking readiness must remain a non-authorizing report-only projection")
+
+
 def run_opa_check(errors):
     opa = shutil.which("opa")
     if not opa:
@@ -528,6 +546,7 @@ def main() -> int:
     validate_intake_health(errors)
     validate_multi_consumer_readiness(errors)
     validate_evidence_attestation_pilot(errors)
+    validate_blocking_readiness(errors)
 
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)

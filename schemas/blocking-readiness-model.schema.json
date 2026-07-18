@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blocking Readiness Model",
+  "type": "object",
+  "required": ["schema_version", "model_id", "status", "enforcement_change_authorized", "thresholds", "principles", "manual_approvals"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "model_id": { "const": "blocking-readiness-v0.1" },
+    "status": { "const": "active_report_only" },
+    "enforcement_change_authorized": { "const": false },
+    "thresholds": {
+      "type": "object",
+      "required": ["minimum_mainline_successes", "minimum_intake_events", "minimum_intake_success_rate_pct", "minimum_trust_level"],
+      "properties": {
+        "minimum_mainline_successes": { "type": "integer", "minimum": 1 },
+        "minimum_intake_events": { "type": "integer", "minimum": 1 },
+        "minimum_intake_success_rate_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "minimum_trust_level": { "enum": ["provenance_verified", "attested"] }
+      },
+      "additionalProperties": false
+    },
+    "principles": { "type": "array", "minItems": 5, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "manual_approvals": {
+      "type": "object",
+      "patternProperties": {
+        "^[^/]+/[^/]+$": {
+          "type": "object",
+          "required": ["status", "decision_id", "approved_at", "approved_by_roles", "evidence_refs"],
+          "properties": {
+            "status": { "const": "approved" },
+            "decision_id": { "type": "string", "minLength": 1 },
+            "approved_at": { "type": "string", "format": "date-time" },
+            "approved_by_roles": { "type": "array", "minItems": 4, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "evidence_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
