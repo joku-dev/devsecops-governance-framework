@@ -1,0 +1,528 @@
+{
+  "schema_version": "0.1.0",
+  "projection_type": "blocking-readiness",
+  "generated_at": "2026-07-17T21:05:01Z",
+  "enforcement": "report_only",
+  "enforcement_change_authorized": false,
+  "summary": {
+    "repositories": 3,
+    "ready": 0,
+    "not_ready": 3,
+    "already_blocking_but_not_ready": 1
+  },
+  "repositories": [
+    {
+      "repository_id": "joku-dev/ai-native-engineering-factory",
+      "current_mode": "report-only",
+      "decision": "not_ready",
+      "technical_ready": false,
+      "manual_approval": "pending",
+      "mode_alignment": "aligned",
+      "criteria": [
+        {
+          "id": "released_baseline_pinned",
+          "status": "fail",
+          "required": true,
+          "observed": "main@34bdc66",
+          "expected": "l1-baseline-v*",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "latest_devsecops_result_clean",
+          "status": "pass",
+          "required": true,
+          "observed": "pass",
+          "expected": "pass",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "stable_mainline_sample",
+          "status": "fail",
+          "required": true,
+          "observed": {
+            "sample": 0,
+            "passing": 0
+          },
+          "expected": {
+            "sample": 3,
+            "passing": 3
+          },
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "minimum_trust_level",
+          "status": "fail",
+          "required": true,
+          "observed": "unverified",
+          "expected": "provenance_verified",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "trust_checks_clean",
+          "status": "pass",
+          "required": true,
+          "observed": 0,
+          "expected": 0,
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "replay_check_clean",
+          "status": "fail",
+          "required": true,
+          "observed": "not_evaluated",
+          "expected": "pass",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "typed_evidence_current_and_clean",
+          "status": "fail",
+          "required": true,
+          "observed": {
+            "available": false,
+            "same_commit": false,
+            "freshness": null
+          },
+          "expected": {
+            "available": true,
+            "same_commit": true,
+            "freshness": "pass"
+          },
+          "evidence_refs": [
+            "status/typed-evidence-results-index.json"
+          ]
+        },
+        {
+          "id": "architecture_result_clean",
+          "status": "not_applicable",
+          "required": false,
+          "observed": null,
+          "expected": "pass",
+          "evidence_refs": [
+            "status/architecture-results-index.json"
+          ]
+        },
+        {
+          "id": "intake_observation_sample",
+          "status": "fail",
+          "required": true,
+          "observed": {
+            "events": 0,
+            "success_rate_pct": 0
+          },
+          "expected": {
+            "minimum_events": 10,
+            "minimum_success_rate_pct": 99.0
+          },
+          "evidence_refs": [
+            "status/intake-health.json"
+          ]
+        },
+        {
+          "id": "no_intake_conflicts",
+          "status": "pass",
+          "required": true,
+          "observed": 0,
+          "expected": 0,
+          "evidence_refs": [
+            "status/intake-conflicts/"
+          ]
+        },
+        {
+          "id": "no_open_collection_attempts_global",
+          "status": "pass",
+          "required": true,
+          "observed": 0,
+          "expected": 0,
+          "evidence_refs": [
+            "status/intake-health.json"
+          ]
+        },
+        {
+          "id": "waiver_path_defined",
+          "status": "pass",
+          "required": true,
+          "observed": true,
+          "expected": true,
+          "evidence_refs": [
+            "schemas/waiver.schema.json",
+            "docs/operations/processes/waiver-management-standard.md"
+          ]
+        },
+        {
+          "id": "rollback_runbook_defined",
+          "status": "pass",
+          "required": true,
+          "observed": true,
+          "expected": true,
+          "evidence_refs": [
+            "docs/operations/processes/blocking-enforcement-migration-guide.md"
+          ]
+        },
+        {
+          "id": "accountable_approval",
+          "status": "manual_review",
+          "required": true,
+          "observed": "pending",
+          "expected": "approved",
+          "evidence_refs": [
+            "model/enforcement/blocking-readiness.yaml"
+          ]
+        }
+      ]
+    },
+    {
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "current_mode": "report-only",
+      "decision": "not_ready",
+      "technical_ready": false,
+      "manual_approval": "pending",
+      "mode_alignment": "aligned",
+      "criteria": [
+        {
+          "id": "released_baseline_pinned",
+          "status": "pass",
+          "required": true,
+          "observed": "l1-baseline-v1.1.3",
+          "expected": "l1-baseline-v*",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "latest_devsecops_result_clean",
+          "status": "pass",
+          "required": true,
+          "observed": "pass",
+          "expected": "pass",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "stable_mainline_sample",
+          "status": "fail",
+          "required": true,
+          "observed": {
+            "sample": 3,
+            "passing": 2
+          },
+          "expected": {
+            "sample": 3,
+            "passing": 3
+          },
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "minimum_trust_level",
+          "status": "fail",
+          "required": true,
+          "observed": "integrity_verified",
+          "expected": "provenance_verified",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "trust_checks_clean",
+          "status": "fail",
+          "required": true,
+          "observed": 1,
+          "expected": 0,
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "replay_check_clean",
+          "status": "fail",
+          "required": true,
+          "observed": "fail",
+          "expected": "pass",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "typed_evidence_current_and_clean",
+          "status": "pass",
+          "required": true,
+          "observed": {
+            "available": true,
+            "same_commit": true,
+            "freshness": "pass"
+          },
+          "expected": {
+            "available": true,
+            "same_commit": true,
+            "freshness": "pass"
+          },
+          "evidence_refs": [
+            "status/typed-evidence-results-index.json"
+          ]
+        },
+        {
+          "id": "architecture_result_clean",
+          "status": "fail",
+          "required": true,
+          "observed": "findings",
+          "expected": "pass",
+          "evidence_refs": [
+            "status/architecture-results-index.json"
+          ]
+        },
+        {
+          "id": "intake_observation_sample",
+          "status": "fail",
+          "required": true,
+          "observed": {
+            "events": 3,
+            "success_rate_pct": 100.0
+          },
+          "expected": {
+            "minimum_events": 10,
+            "minimum_success_rate_pct": 99.0
+          },
+          "evidence_refs": [
+            "status/intake-health.json"
+          ]
+        },
+        {
+          "id": "no_intake_conflicts",
+          "status": "fail",
+          "required": true,
+          "observed": 2,
+          "expected": 0,
+          "evidence_refs": [
+            "status/intake-conflicts/"
+          ]
+        },
+        {
+          "id": "no_open_collection_attempts_global",
+          "status": "pass",
+          "required": true,
+          "observed": 0,
+          "expected": 0,
+          "evidence_refs": [
+            "status/intake-health.json"
+          ]
+        },
+        {
+          "id": "waiver_path_defined",
+          "status": "pass",
+          "required": true,
+          "observed": true,
+          "expected": true,
+          "evidence_refs": [
+            "schemas/waiver.schema.json",
+            "docs/operations/processes/waiver-management-standard.md"
+          ]
+        },
+        {
+          "id": "rollback_runbook_defined",
+          "status": "pass",
+          "required": true,
+          "observed": true,
+          "expected": true,
+          "evidence_refs": [
+            "docs/operations/processes/blocking-enforcement-migration-guide.md"
+          ]
+        },
+        {
+          "id": "accountable_approval",
+          "status": "manual_review",
+          "required": true,
+          "observed": "pending",
+          "expected": "approved",
+          "evidence_refs": [
+            "model/enforcement/blocking-readiness.yaml"
+          ]
+        }
+      ]
+    },
+    {
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "current_mode": "block-on-error",
+      "decision": "not_ready",
+      "technical_ready": false,
+      "manual_approval": "pending",
+      "mode_alignment": "already_blocking_but_not_ready",
+      "criteria": [
+        {
+          "id": "released_baseline_pinned",
+          "status": "pass",
+          "required": true,
+          "observed": "l1-baseline-v1.1.3",
+          "expected": "l1-baseline-v*",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "latest_devsecops_result_clean",
+          "status": "pass",
+          "required": true,
+          "observed": "pass",
+          "expected": "pass",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "stable_mainline_sample",
+          "status": "pass",
+          "required": true,
+          "observed": {
+            "sample": 3,
+            "passing": 3
+          },
+          "expected": {
+            "sample": 3,
+            "passing": 3
+          },
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "minimum_trust_level",
+          "status": "fail",
+          "required": true,
+          "observed": "integrity_verified",
+          "expected": "provenance_verified",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "trust_checks_clean",
+          "status": "pass",
+          "required": true,
+          "observed": 0,
+          "expected": 0,
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "replay_check_clean",
+          "status": "fail",
+          "required": true,
+          "observed": "not_evaluated",
+          "expected": "pass",
+          "evidence_refs": [
+            "status/repository-results-index.json"
+          ]
+        },
+        {
+          "id": "typed_evidence_current_and_clean",
+          "status": "fail",
+          "required": true,
+          "observed": {
+            "available": false,
+            "same_commit": false,
+            "freshness": null
+          },
+          "expected": {
+            "available": true,
+            "same_commit": true,
+            "freshness": "pass"
+          },
+          "evidence_refs": [
+            "status/typed-evidence-results-index.json"
+          ]
+        },
+        {
+          "id": "architecture_result_clean",
+          "status": "pass",
+          "required": true,
+          "observed": "pass",
+          "expected": "pass",
+          "evidence_refs": [
+            "status/architecture-results-index.json"
+          ]
+        },
+        {
+          "id": "intake_observation_sample",
+          "status": "fail",
+          "required": true,
+          "observed": {
+            "events": 0,
+            "success_rate_pct": 0
+          },
+          "expected": {
+            "minimum_events": 10,
+            "minimum_success_rate_pct": 99.0
+          },
+          "evidence_refs": [
+            "status/intake-health.json"
+          ]
+        },
+        {
+          "id": "no_intake_conflicts",
+          "status": "pass",
+          "required": true,
+          "observed": 0,
+          "expected": 0,
+          "evidence_refs": [
+            "status/intake-conflicts/"
+          ]
+        },
+        {
+          "id": "no_open_collection_attempts_global",
+          "status": "pass",
+          "required": true,
+          "observed": 0,
+          "expected": 0,
+          "evidence_refs": [
+            "status/intake-health.json"
+          ]
+        },
+        {
+          "id": "waiver_path_defined",
+          "status": "pass",
+          "required": true,
+          "observed": true,
+          "expected": true,
+          "evidence_refs": [
+            "schemas/waiver.schema.json",
+            "docs/operations/processes/waiver-management-standard.md"
+          ]
+        },
+        {
+          "id": "rollback_runbook_defined",
+          "status": "pass",
+          "required": true,
+          "observed": true,
+          "expected": true,
+          "evidence_refs": [
+            "docs/operations/processes/blocking-enforcement-migration-guide.md"
+          ]
+        },
+        {
+          "id": "accountable_approval",
+          "status": "manual_review",
+          "required": true,
+          "observed": "pending",
+          "expected": "approved",
+          "evidence_refs": [
+            "model/enforcement/blocking-readiness.yaml"
+          ]
+        }
+      ]
+    }
+  ]
+}
