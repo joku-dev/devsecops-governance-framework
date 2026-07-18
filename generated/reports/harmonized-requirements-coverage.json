@@ -1,0 +1,580 @@
+{
+  "schema_version": "0.1.0",
+  "report_id": "harmonized-requirements-candidate-coverage",
+  "status": "candidate",
+  "normative": false,
+  "enforcement": "none",
+  "source_document_id": "CISO-REQ-SRC-001",
+  "summary": {
+    "harmonized_requirements": 44,
+    "covered": 9,
+    "partial": 26,
+    "gap": 9,
+    "source_requirements": 233,
+    "source_covered": 45,
+    "source_partial": 145,
+    "source_gap": 43,
+    "weighted_design_coverage_pct": 50.4
+  },
+  "coverage_by_requirement": [
+    {
+      "id": "HREQ-GOV-001",
+      "title": "Secure development lifecycle",
+      "domain": "governance",
+      "target_area": "policy",
+      "status": "partial",
+      "refs": [
+        "DEVSECOPS-POL-SRC-001-REQ-020"
+      ],
+      "gap": "Lifecycle exit and retirement criteria require explicit treatment.",
+      "mapped_source_requirements": 9
+    },
+    {
+      "id": "HREQ-GOV-002",
+      "title": "Risk-based applicability",
+      "domain": "governance",
+      "target_area": "policy",
+      "status": "partial",
+      "refs": [
+        "DEVSECOPS-POL-SRC-001-REQ-017"
+      ],
+      "gap": "A machine-readable applicability decision is not yet defined.",
+      "mapped_source_requirements": 14
+    },
+    {
+      "id": "HREQ-GOV-003",
+      "title": "Roles and competence",
+      "domain": "governance",
+      "target_area": "directive",
+      "status": "partial",
+      "refs": [
+        "DEVSECOPS-POL-SRC-001-REQ-014"
+      ],
+      "gap": "Competence and reviewer independence are not consistently evidenced.",
+      "mapped_source_requirements": 10
+    },
+    {
+      "id": "HREQ-GOV-004",
+      "title": "Controlled security documentation",
+      "domain": "governance",
+      "target_area": "evidence",
+      "status": "partial",
+      "refs": [
+        "DSCB-L1-REQ-001",
+        "P1"
+      ],
+      "gap": "Required document content and currency are not evaluated uniformly.",
+      "mapped_source_requirements": 35
+    },
+    {
+      "id": "HREQ-RISK-001",
+      "title": "Asset and threat identification",
+      "domain": "security_risk",
+      "target_area": "architecture",
+      "status": "partial",
+      "refs": [
+        "S5",
+        "P8",
+        "E6"
+      ],
+      "gap": "Runtime evidence does not require a structured asset and risk register.",
+      "mapped_source_requirements": 6
+    },
+    {
+      "id": "HREQ-RISK-002",
+      "title": "Threat modeling",
+      "domain": "security_risk",
+      "target_area": "architecture",
+      "status": "partial",
+      "refs": [
+        "S5",
+        "P8"
+      ],
+      "gap": "Threat-model currency and review evidence are not machine-validated.",
+      "mapped_source_requirements": 5
+    },
+    {
+      "id": "HREQ-RISK-003",
+      "title": "Risk treatment and reassessment",
+      "domain": "security_risk",
+      "target_area": "architecture",
+      "status": "partial",
+      "refs": [
+        "AG-EXC-001",
+        "RG-RELEASE-READY"
+      ],
+      "gap": "A structured risk-treatment evidence contract is missing.",
+      "mapped_source_requirements": 3
+    },
+    {
+      "id": "HREQ-RISK-004",
+      "title": "Security architecture review",
+      "domain": "security_risk",
+      "target_area": "architecture",
+      "status": "partial",
+      "refs": [
+        "S5",
+        "P8",
+        "E6"
+      ],
+      "gap": "Detailed review outcomes are not consistently captured as typed evidence.",
+      "mapped_source_requirements": 9
+    },
+    {
+      "id": "HREQ-APP-001",
+      "title": "Authentication and authorization",
+      "domain": "application_security",
+      "target_area": "product_architecture",
+      "status": "partial",
+      "refs": [
+        "S5",
+        "P8"
+      ],
+      "gap": "Application-level verification is not part of the current DevSecOps baseline.",
+      "mapped_source_requirements": 9
+    },
+    {
+      "id": "HREQ-APP-002",
+      "title": "Session security",
+      "domain": "application_security",
+      "target_area": "product_architecture",
+      "status": "gap",
+      "refs": [],
+      "gap": "No explicit session-security requirement exists.",
+      "mapped_source_requirements": 2
+    },
+    {
+      "id": "HREQ-APP-003",
+      "title": "Data and cryptographic protection",
+      "domain": "application_security",
+      "target_area": "product_architecture",
+      "status": "partial",
+      "refs": [
+        "S5",
+        "P8",
+        "E5"
+      ],
+      "gap": "Detailed data-protection verification is not represented in the current baseline.",
+      "mapped_source_requirements": 11
+    },
+    {
+      "id": "HREQ-APP-004",
+      "title": "Input validation and business logic",
+      "domain": "application_security",
+      "target_area": "product_architecture",
+      "status": "gap",
+      "refs": [],
+      "gap": "No atomic validation and business-logic requirement exists.",
+      "mapped_source_requirements": 4
+    },
+    {
+      "id": "HREQ-APP-005",
+      "title": "Secure file handling",
+      "domain": "application_security",
+      "target_area": "product_architecture",
+      "status": "gap",
+      "refs": [],
+      "gap": "No atomic secure file-handling requirement exists.",
+      "mapped_source_requirements": 2
+    },
+    {
+      "id": "HREQ-APP-006",
+      "title": "Application logging and error handling",
+      "domain": "application_security",
+      "target_area": "product_architecture",
+      "status": "partial",
+      "refs": [
+        "DSCB-L2-REQ-013",
+        "DSCB-L2-REQ-014",
+        "P11"
+      ],
+      "gap": "Application error behavior and log protection are not fully evaluated.",
+      "mapped_source_requirements": 10
+    },
+    {
+      "id": "HREQ-APP-007",
+      "title": "Secure defaults and hardening",
+      "domain": "application_security",
+      "target_area": "product_architecture",
+      "status": "partial",
+      "refs": [
+        "DSCB-L2-REQ-002",
+        "P8"
+      ],
+      "gap": "Product-level default-setting verification is missing.",
+      "mapped_source_requirements": 12
+    },
+    {
+      "id": "HREQ-DEV-001",
+      "title": "Source control and integrity",
+      "domain": "development",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L1-REQ-002",
+        "DSCB-L1-REQ-003"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 3
+    },
+    {
+      "id": "HREQ-DEV-002",
+      "title": "Secure coding practices",
+      "domain": "development",
+      "target_area": "control_baseline",
+      "status": "partial",
+      "refs": [
+        "DSCB-L1-REQ-004"
+      ],
+      "gap": "Language-specific applicability and training evidence are not defined.",
+      "mapped_source_requirements": 9
+    },
+    {
+      "id": "HREQ-DEV-003",
+      "title": "Code and implementation review",
+      "domain": "development",
+      "target_area": "control_baseline",
+      "status": "partial",
+      "refs": [
+        "DSCB-L1-REQ-004"
+      ],
+      "gap": "Review scope and independence are not consistently evidenced.",
+      "mapped_source_requirements": 6
+    },
+    {
+      "id": "HREQ-DEV-004",
+      "title": "Secure development environments",
+      "domain": "development",
+      "target_area": "platform",
+      "status": "partial",
+      "refs": [
+        "DSCB-L2-REQ-001",
+        "DSCB-L2-REQ-002"
+      ],
+      "gap": "Periodic cryptographic integrity verification is not defined.",
+      "mapped_source_requirements": 4
+    },
+    {
+      "id": "HREQ-DEV-005",
+      "title": "External component and supplier assurance",
+      "domain": "development",
+      "target_area": "control_baseline",
+      "status": "partial",
+      "refs": [
+        "DSCB-L2-REQ-005",
+        "DSCB-L3-REQ-005"
+      ],
+      "gap": "Supplier assurance and contractual verification are not explicit.",
+      "mapped_source_requirements": 10
+    },
+    {
+      "id": "HREQ-SC-001",
+      "title": "Controlled build execution",
+      "domain": "software_supply_chain",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L1-REQ-007",
+        "DSCB-L1-REQ-008"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 5
+    },
+    {
+      "id": "HREQ-SC-002",
+      "title": "Reproducible and isolated builds",
+      "domain": "software_supply_chain",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L3-REQ-001",
+        "DSCB-L3-REQ-002",
+        "DSCB-L3-REQ-003",
+        "DSCB-L3-REQ-004"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 3
+    },
+    {
+      "id": "HREQ-SC-003",
+      "title": "Artifact identity and integrity",
+      "domain": "software_supply_chain",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L1-REQ-011",
+        "DSCB-L1-REQ-012"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 3
+    },
+    {
+      "id": "HREQ-SC-004",
+      "title": "Artifact signing and key protection",
+      "domain": "software_supply_chain",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L2-REQ-007",
+        "DSCB-L2-REQ-008",
+        "DSCB-L3-REQ-007",
+        "DSCB-L3-REQ-008"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 9
+    },
+    {
+      "id": "HREQ-SC-005",
+      "title": "Trusted dependency sources and provenance",
+      "domain": "software_supply_chain",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L2-REQ-005",
+        "DSCB-L2-REQ-006",
+        "DSCB-L3-REQ-005",
+        "DSCB-L3-REQ-006"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 2
+    },
+    {
+      "id": "HREQ-SC-006",
+      "title": "SBOM generation",
+      "domain": "software_supply_chain",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L1-REQ-005",
+        "DSCB-L1-REQ-006"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 62
+    },
+    {
+      "id": "HREQ-SC-007",
+      "title": "SBOM component identity and relationships",
+      "domain": "software_supply_chain",
+      "target_area": "evidence",
+      "status": "partial",
+      "refs": [
+        "DSCB-L1-REQ-005",
+        "DSCB-L1-REQ-006"
+      ],
+      "gap": "SBOM presence is checked but detailed component fields are not.",
+      "mapped_source_requirements": 13
+    },
+    {
+      "id": "HREQ-SC-008",
+      "title": "SBOM integrity and source metadata",
+      "domain": "software_supply_chain",
+      "target_area": "evidence",
+      "status": "partial",
+      "refs": [
+        "DSCB-L1-REQ-011",
+        "DSCB-L1-REQ-006"
+      ],
+      "gap": "Component-level digest and source metadata are not validated.",
+      "mapped_source_requirements": 9
+    },
+    {
+      "id": "HREQ-SC-009",
+      "title": "SBOM license metadata",
+      "domain": "software_supply_chain",
+      "target_area": "evidence",
+      "status": "gap",
+      "refs": [],
+      "gap": "License metadata is not part of the current SBOM evidence contract.",
+      "mapped_source_requirements": 11
+    },
+    {
+      "id": "HREQ-SC-010",
+      "title": "Component license compliance",
+      "domain": "software_supply_chain",
+      "target_area": "control_baseline",
+      "status": "gap",
+      "refs": [],
+      "gap": "No component-license control or evidence type exists.",
+      "mapped_source_requirements": 2
+    },
+    {
+      "id": "HREQ-TEST-001",
+      "title": "Test strategy and acceptance",
+      "domain": "verification",
+      "target_area": "control_baseline",
+      "status": "partial",
+      "refs": [
+        "DSCB-L1-REQ-001",
+        "RG-RELEASE-READY"
+      ],
+      "gap": "Test planning and acceptance artifacts are not standardized.",
+      "mapped_source_requirements": 2
+    },
+    {
+      "id": "HREQ-TEST-002",
+      "title": "Functional, non-functional, and regression testing",
+      "domain": "verification",
+      "target_area": "control_baseline",
+      "status": "partial",
+      "refs": [
+        "DSCB-L1-REQ-001"
+      ],
+      "gap": "Test-category evidence and minimum expectations are not defined.",
+      "mapped_source_requirements": 6
+    },
+    {
+      "id": "HREQ-TEST-003",
+      "title": "Security requirements verification",
+      "domain": "verification",
+      "target_area": "architecture",
+      "status": "partial",
+      "refs": [
+        "S5",
+        "P8",
+        "RG-RELEASE-READY"
+      ],
+      "gap": "Security test evidence is not typed at requirement level.",
+      "mapped_source_requirements": 5
+    },
+    {
+      "id": "HREQ-TEST-004",
+      "title": "Vulnerability testing",
+      "domain": "verification",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L1-REQ-009",
+        "DSCB-L1-REQ-010"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 5
+    },
+    {
+      "id": "HREQ-TEST-005",
+      "title": "Penetration testing",
+      "domain": "verification",
+      "target_area": "architecture",
+      "status": "partial",
+      "refs": [
+        "S5",
+        "P8"
+      ],
+      "gap": "Scope, frequency, independence, and evidence are not defined.",
+      "mapped_source_requirements": 5
+    },
+    {
+      "id": "HREQ-TEST-006",
+      "title": "Independent and protected testing",
+      "domain": "verification",
+      "target_area": "directive",
+      "status": "gap",
+      "refs": [],
+      "gap": "No unified testing-independence and test-data requirement exists.",
+      "mapped_source_requirements": 2
+    },
+    {
+      "id": "HREQ-OPS-001",
+      "title": "Security release gates",
+      "domain": "operations",
+      "target_area": "control_baseline",
+      "status": "covered",
+      "refs": [
+        "DSCB-L1-REQ-013",
+        "DSCB-L1-REQ-014",
+        "DSCB-L2-REQ-011",
+        "DSCB-L2-REQ-012"
+      ],
+      "gap": null,
+      "mapped_source_requirements": 16
+    },
+    {
+      "id": "HREQ-OPS-002",
+      "title": "Vulnerability triage and remediation",
+      "domain": "operations",
+      "target_area": "control_baseline",
+      "status": "partial",
+      "refs": [
+        "DSCB-L1-REQ-010",
+        "DSCB-GOV-REQ-003"
+      ],
+      "gap": "Remediation timelines and closure evidence are not modeled.",
+      "mapped_source_requirements": 1
+    },
+    {
+      "id": "HREQ-OPS-003",
+      "title": "Security update management",
+      "domain": "operations",
+      "target_area": "control_baseline",
+      "status": "gap",
+      "refs": [],
+      "gap": "No complete security-update lifecycle control exists.",
+      "mapped_source_requirements": 14
+    },
+    {
+      "id": "HREQ-OPS-004",
+      "title": "Security monitoring and alerting",
+      "domain": "operations",
+      "target_area": "control_baseline",
+      "status": "partial",
+      "refs": [
+        "DSCB-L2-REQ-013",
+        "DSCB-L2-REQ-014",
+        "P11"
+      ],
+      "gap": "Log protection, retention, and alert-response evidence are incomplete.",
+      "mapped_source_requirements": 11
+    },
+    {
+      "id": "HREQ-OPS-005",
+      "title": "Deployment and configuration verification",
+      "domain": "operations",
+      "target_area": "platform",
+      "status": "partial",
+      "refs": [
+        "DSCB-L2-REQ-002",
+        "DSCB-L2-REQ-009"
+      ],
+      "gap": "Deployment verification evidence is not standardized.",
+      "mapped_source_requirements": 4
+    },
+    {
+      "id": "HREQ-OPS-006",
+      "title": "Secure operation guidance",
+      "domain": "operations",
+      "target_area": "product_architecture",
+      "status": "partial",
+      "refs": [
+        "P1",
+        "RG-OPERATION-READY"
+      ],
+      "gap": "Required secure-operation content is not defined.",
+      "mapped_source_requirements": 2
+    },
+    {
+      "id": "HREQ-OPS-007",
+      "title": "Secure decommissioning and disposal",
+      "domain": "operations",
+      "target_area": "product_architecture",
+      "status": "gap",
+      "refs": [],
+      "gap": "No end-to-end decommissioning requirement exists.",
+      "mapped_source_requirements": 3
+    },
+    {
+      "id": "HREQ-OPS-008",
+      "title": "Product security response and health review",
+      "domain": "operations",
+      "target_area": "directive",
+      "status": "gap",
+      "refs": [],
+      "gap": "Product security response is not represented as a complete governed capability.",
+      "mapped_source_requirements": 3
+    }
+  ],
+  "decision_boundary": {
+    "control_changes_authorized": false,
+    "policy_changes_authorized": false,
+    "release_changes_authorized": false,
+    "consumer_compliance_claim_authorized": false
+  }
+}

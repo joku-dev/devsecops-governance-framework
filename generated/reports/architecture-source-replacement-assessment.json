@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T19:04:12Z",
+  "generated_at": "2026-07-18T10:45:05Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml"
   },
   "summary": {
-    "architecture_source_documents": 12,
+    "architecture_source_documents": 13,
     "active_architecture_sources": 1,
-    "candidate_architecture_sources": 5,
-    "comparisons": 5,
+    "candidate_architecture_sources": 6,
+    "comparisons": 6,
     "likely_replacements": 1
   },
   "active_sources": [
@@ -124,6 +124,40 @@
           }
         ],
         "notes": "Public placeholder only; original source content is withheld from the public repository."
+      }
+    },
+    {
+      "id": "CISO-REQ-SRC-001",
+      "title": "CISO Standards Requirements Catalog Candidate",
+      "status": "candidate",
+      "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "version": "0.1",
+      "doc_id": "",
+      "detected_title": "CISO Standards Requirements Catalog Candidate",
+      "line_count": 39,
+      "word_count": 173,
+      "heading_count": 4,
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DSCB-STD-SRC-001",
+            "similarity": "high",
+            "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
+          },
+          {
+            "source_id": "PRA-STD-SRC-001",
+            "similarity": "medium",
+            "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
+          },
+          {
+            "source_id": "ARCH-SDD-SRC-001",
+            "similarity": "medium",
+            "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
+          }
+        ],
+        "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
       }
     }
   ],
@@ -244,6 +278,44 @@
           }
         ],
         "notes": "Public placeholder only; original source content is withheld from the public repository."
+      }
+    },
+    {
+      "candidate_id": "CISO-REQ-SRC-001",
+      "candidate_title": "CISO Standards Requirements Catalog Candidate",
+      "candidate_source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "target_id": "ARCH-SDD-SRC-001",
+      "target_title": "SDD Architecture Governance Framework",
+      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.167,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DSCB-STD-SRC-001",
+            "similarity": "high",
+            "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
+          },
+          {
+            "source_id": "PRA-STD-SRC-001",
+            "similarity": "medium",
+            "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
+          },
+          {
+            "source_id": "ARCH-SDD-SRC-001",
+            "similarity": "medium",
+            "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
+          }
+        ],
+        "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
       }
     }
   ],

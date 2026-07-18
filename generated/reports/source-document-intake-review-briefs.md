@@ -1,6 +1,6 @@
 # Source Document Intake Review Briefs
 
-Generated: `2026-07-17T19:04:11Z`
+Generated: `2026-07-18T10:45:05Z`
 
 ## Decision State
 
@@ -11,13 +11,14 @@ Generated: `2026-07-17T19:04:11Z`
 
 ## Summary
 
-- Review briefs: `10`
-- Human decisions required: `10`
+- Review briefs: `11`
+- Human decisions required: `11`
 
 ## Focus Counts
 
 | Focus | Count |
 |---|---:|
+| `coexistence and derivation scope` | `1` |
 | `lineage maintenance` | `3` |
 | `replacement decision` | `1` |
 | `similarity and source classification` | `4` |
@@ -59,7 +60,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `governance-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -106,7 +107,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `governance-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -154,7 +155,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `architecture-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -202,7 +203,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `architecture-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -250,7 +251,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `architecture-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -298,7 +299,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `architecture-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -346,7 +347,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `architecture-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -390,7 +391,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `governance-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -434,7 +435,7 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `governance-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
@@ -479,8 +480,55 @@ Decision options:
 
 Decision template:
 
-- Review decision: `<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
 - Decision owner: `architecture-owners`
+- Decision date: `<YYYY-MM-DD>`
+- Derived artifacts allowed: `<yes/no>`
+- Runtime governance change: `<yes/no>`
+- Release decision: `no_release_by_default`
+
+Guardrails:
+
+- The agent must not promote the source document.
+- The agent must not update derived controls, policies, schemas, releases, or runtime governance from a candidate.
+- A human-owned change request must record the final decision.
+
+### `SDI-REVIEW-CISO-REQ-SRC-001`
+
+- Prepared by agent: `source-document-intake`
+- Agent scope: `decision_support_only`
+- Autonomous decision: `false`
+- Decision authority: `governance-owners`
+- Review focus: `coexistence and derivation scope`
+- Source ID: `CISO-REQ-SRC-001`
+- Title: CISO Standards Requirements Catalog Candidate
+- Status: `candidate`
+- Source path: `docs/governance/source-documents/CISO-REQ-SRC-001.public.md`
+
+Agent observations:
+
+- Current status is candidate.
+- Review state is candidate_related_source_review_required.
+- Operational artifact count is 0.
+- Impact release consideration is no_release_by_default.
+
+Required inputs:
+
+- source document owner decision
+- change request with documented rationale
+- impact classification: documentation-only, model change, policy change, schema change, or release change
+- architecture owner or enterprise architect review
+
+Decision options:
+
+- `related_source_confirmed`: Accept the source as related material with explicit scope and coexistence boundaries.
+- `keep_related_candidate`: Keep the related source visible for analysis without authorizing derivation.
+- `not_relevant_retire`: Close the source for future derivation while preserving the review history.
+
+Decision template:
+
+- Review decision: `<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>`
+- Decision owner: `governance-owners`
 - Decision date: `<YYYY-MM-DD>`
 - Derived artifacts allowed: `<yes/no>`
 - Runtime governance change: `<yes/no>`

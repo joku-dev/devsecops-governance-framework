@@ -1,36 +1,36 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T19:04:11Z",
+  "generated_at": "2026-07-18T10:45:05Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
   },
   "summary": {
-    "registered_source_documents": 20,
-    "source_documents_with_lineage": 20,
-    "derived_artifact_links": 338,
+    "registered_source_documents": 21,
+    "source_documents_with_lineage": 21,
+    "derived_artifact_links": 349,
     "domains": {
-      "architecture": 12,
-      "devsecops": 8,
+      "architecture": 13,
+      "devsecops": 9,
       "directive": 2,
-      "platform": 2,
+      "platform": 3,
       "policy": 2
     },
     "statuses": {
-      "candidate": 5,
+      "candidate": 6,
       "draft": 2,
       "intake": 10,
       "review": 3
     },
     "release_considerations": {
       "baseline_release_review": 2,
-      "no_release_by_default": 18
+      "no_release_by_default": 19
     },
     "artifact_types": {
       "architecture_model": 8,
-      "derived_artifact": 212,
+      "derived_artifact": 222,
       "governance_document": 4,
-      "governance_model": 85,
+      "governance_model": 86,
       "policy_as_code": 15,
       "release_document": 1,
       "release_metadata": 1,
@@ -39,10 +39,10 @@
       "traceability_mapping": 4
     },
     "review_lanes": {
-      "architecture-review": 12,
-      "devsecops-review": 8,
+      "architecture-review": 13,
+      "devsecops-review": 9,
       "governance-review": 4,
-      "platform-review": 2,
+      "platform-review": 3,
       "policy-as-code-review": 2,
       "release-review": 2,
       "schema-review": 2,
@@ -540,7 +540,7 @@
         "architecture-review"
       ],
       "release_consideration": "no_release_by_default",
-      "source_state": "candidate_pending_similarity_review",
+      "source_state": "candidate_replacement_review",
       "candidate_replacement_for": [
         "ARCH-SDD-SRC-001"
       ],
@@ -1019,6 +1019,74 @@
       "supersedes": null,
       "superseded_by": null,
       "similarity_assessment": {},
+      "suggested_validation": [
+        "python3 -m unittest discover -s tests",
+        "python3 scripts/validate_governance_repo.py",
+        "python3 scripts/validate_runtime_governance.py"
+      ],
+      "change_request_required_for_source_update": true,
+      "representative_artifacts": [
+        "generated/reports/architecture-source-replacement-assessment.json",
+        "generated/reports/architecture-source-replacement-assessment.md",
+        "generated/reports/governance-change-impact.json",
+        "generated/reports/governance-change-impact.md",
+        "generated/reports/source-document-intake-review-briefs.json",
+        "generated/reports/source-document-intake-review-briefs.md",
+        "generated/reports/source-document-intake-status.json",
+        "generated/reports/source-document-intake-status.md",
+        "generated/reports/source-document-requirement-delta.json",
+        "generated/reports/source-document-requirement-delta.md"
+      ]
+    },
+    {
+      "id": "CISO-REQ-SRC-001",
+      "title": "CISO Standards Requirements Catalog Candidate",
+      "status": "candidate",
+      "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "owner": "governance-owners",
+      "version": "0.1",
+      "governance_domains": [
+        "devsecops",
+        "platform",
+        "architecture"
+      ],
+      "derived_artifact_areas": [],
+      "lineage_artifact_count": 11,
+      "lineage_artifact_types": {
+        "derived_artifact": 10,
+        "governance_model": 1
+      },
+      "review_lanes": [
+        "architecture-review",
+        "devsecops-review",
+        "platform-review"
+      ],
+      "release_consideration": "no_release_by_default",
+      "source_state": "candidate_related_source_review",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DSCB-STD-SRC-001",
+            "similarity": "high",
+            "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
+          },
+          {
+            "source_id": "PRA-STD-SRC-001",
+            "similarity": "medium",
+            "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
+          },
+          {
+            "source_id": "ARCH-SDD-SRC-001",
+            "similarity": "medium",
+            "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
+          }
+        ],
+        "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
+      },
       "suggested_validation": [
         "python3 -m unittest discover -s tests",
         "python3 scripts/validate_governance_repo.py",

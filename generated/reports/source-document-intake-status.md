@@ -1,6 +1,6 @@
 # Source Document Intake Status
 
-Generated: `2026-07-17T19:04:12Z`
+Generated: `2026-07-18T10:45:05Z`
 
 ## Decision State
 
@@ -10,17 +10,17 @@ Generated: `2026-07-17T19:04:12Z`
 
 ## Summary
 
-- Registered source documents: `20`
-- Open review items: `10`
+- Registered source documents: `21`
+- Open review items: `11`
 - Replacement review items: `1`
 - Documents with operational artifacts: `5`
-- Documents without operational artifacts: `15`
+- Documents without operational artifacts: `16`
 
 ## Status Counts
 
 | Status | Count |
 |---|---:|
-| `candidate` | `5` |
+| `candidate` | `6` |
 | `draft` | `2` |
 | `intake` | `10` |
 | `review` | `3` |
@@ -31,6 +31,7 @@ Generated: `2026-07-17T19:04:12Z`
 |---|---:|
 | `accepted_intake` | `10` |
 | `active_review_in_progress` | `3` |
+| `candidate_related_source_review_required` | `1` |
 | `candidate_replacement_review_required` | `1` |
 | `candidate_similarity_review_required` | `4` |
 | `draft_source_of_truth_decision_required` | `2` |
@@ -39,10 +40,10 @@ Generated: `2026-07-17T19:04:12Z`
 
 | Domain | Count |
 |---|---:|
-| `architecture` | `12` |
-| `devsecops` | `8` |
+| `architecture` | `13` |
+| `devsecops` | `9` |
 | `directive` | `2` |
-| `platform` | `2` |
+| `platform` | `3` |
 | `policy` | `2` |
 
 ## Open Intake Items
@@ -59,6 +60,7 @@ Generated: `2026-07-17T19:04:12Z`
 | `DEVSECOPS-POL-REQ-001` | `review` | `governance-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
 | `DEVSECOPS-DIR-REQ-001` | `review` | `governance-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
 | `ARCH-SDD-REQ-001` | `review` | `architecture-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
+| `CISO-REQ-SRC-001` | `candidate` | `governance-owners` | `candidate_related_source_review_required` | Confirm coexistence, scope boundaries, and approved derivation before promoting the related source. |
 
 ## Replacement Review Items
 
@@ -90,6 +92,7 @@ Generated: `2026-07-17T19:04:12Z`
 | `ARCH-SA-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
 | `ARCH-PA-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
 | `ARCH-GOV-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
+| `CISO-REQ-SRC-001` | `candidate` | `devsecops, platform, architecture` | `candidate_related_source_review_required` | `0` |
 
 ## Process Notes
 

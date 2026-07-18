@@ -106,6 +106,8 @@ def review_state(document: dict) -> str:
     status = document.get("status")
     if status == "candidate" and is_replacement_candidate(document):
         return "candidate_replacement_review_required"
+    if status == "candidate" and similarity_assessment(document) == "related_source":
+        return "candidate_related_source_review_required"
     if status == "candidate" and similarity_assessment(document) == "not_assessed":
         return "candidate_similarity_review_required"
     if status == "candidate":
@@ -140,6 +142,9 @@ def next_action(document: dict) -> str:
         ),
         "candidate_similarity_review_required": (
             "Complete similarity review and decide whether the source is new, duplicate, replacement, or not relevant."
+        ),
+        "candidate_related_source_review_required": (
+            "Confirm coexistence, scope boundaries, and approved derivation before promoting the related source."
         ),
         "candidate_decision_required": (
             "Complete candidate intake decision before deriving governance behavior."
