@@ -42,6 +42,12 @@ never writes back to the source snapshots.
 The report timestamp is deterministic: it uses the newest stored snapshot time,
 not the local execution time.
 
+All three central intake workflows regenerate Replay Triage before generating
+the viewer and commit both report formats with the accepted status projection.
+Tests validate report invariants rather than requiring a particular finding to
+remain open, so successful remediation can reduce the current finding count to
+zero without weakening the decision boundaries.
+
 ## Classifications
 
 | Classification | Meaning | Normal action |
