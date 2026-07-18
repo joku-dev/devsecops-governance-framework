@@ -147,6 +147,118 @@ Alle 233 eindeutigen Quellanforderungen sind zugeordnet. Jede Zuordnung ist mit
 `human_review_required` gekennzeichnet. Die technische Vollständigkeit des Mappings
 ist damit erreicht; seine fachliche Bestätigung ist noch offen.
 
+### 4.4 Traceability zum Ursprung
+
+Alle 44 harmonisierten Anforderungen können auf die zugrunde liegenden neutralen
+Standard- und Requirement-IDs zurückgeführt werden. Die Traceability ist technisch
+vollständig, aber bis zur fachlichen Bestätigung weiterhin Candidate-Material.
+
+| Traceability-Kennzahl | Ergebnis |
+|---|---:|
+| Harmonisierte Anforderungen | 44 |
+| Harmonisierte Anforderungen mit mindestens einer Herkunftszuordnung | 44 |
+| Eindeutige Quellanforderungen | 233 |
+| Zugeordnete eindeutige Quellanforderungen | 233 |
+| Nicht zugeordnete Quellanforderungen | 0 |
+| Zuordnungen mit Human-Review-Pflicht | 233 |
+
+Die Herkunftskette ist wie folgt aufgebaut:
+
+```text
+lokale Original-Excel
+        ↓
+neutraler Source-Alias und ursprüngliche Requirement-ID
+        ↓
+stabiler SRCREQ-Mapping-Eintrag
+        ↓
+eine oder mehrere harmonisierte HREQ-Anforderungen
+        ↓
+Coverage, vorgeschlagenes Maturity-Level und mögliche Impact-Bereiche
+```
+
+Das öffentliche Mapping wird in
+`model/traceability/standards-to-harmonized-requirements.yaml` geführt. Jeder
+Eintrag enthält:
+
+- eine stabile, aus dem Inhalt abgeleitete `SRCREQ-*`-ID;
+- neutrale Standard-IDs und ursprüngliche Requirement-IDs;
+- die Zahl der Vorkommen in der Excel-Liste;
+- erkannte Requirement Strengths;
+- eine oder mehrere zugeordnete harmonisierte HREQ-IDs;
+- die Mapping-Basis, beispielsweise Source Identifier oder Content Classification;
+- einen Confidence-Wert;
+- den Status `human_review_required`.
+
+Die Beziehung ist bewusst **many-to-many**:
+
+- Eine harmonisierte Anforderung kann aus mehreren Quellanforderungen und
+  Standards gebildet werden.
+- Eine Quellanforderung kann mehrere harmonisierte Kontrollziele unterstützen.
+- Harmonisierung entfernt deshalb keine Quellenreferenz, sondern konsolidiert
+  fachlich überlappende Aussagen auf einer stabilen Requirement-Ebene.
+
+Beispiel für eine über mehrere Standards harmonisierte Anforderung:
+
+```text
+HREQ-DEV-001 – Source Control and Integrity
+├── BSI-IT-GRUNDSCHUTZ / CON.8.A10
+├── NIST-SP-800-218 / PS.1.1
+└── OWASP-ASVS / V14.1.1
+```
+
+Beispiel für eine aus mehreren Requirements eines Standards konsolidierte
+Anforderung:
+
+```text
+HREQ-SC-009 – SBOM License Metadata
+└── 11 Requirement-Referenzen aus BSI-TR-03183-2
+```
+
+Beispiel für eine betriebliche Gap-Anforderung mit breiter Herkunft:
+
+```text
+HREQ-OPS-003 – Security Update Management
+├── 5 Requirement-Referenzen aus BSI-IT-GRUNDSCHUTZ
+├── 2 Requirement-Referenzen aus IEC-62443-4-1
+└── weitere neutrale Standard-Referenzen
+```
+
+#### Grenzen der öffentlichen Traceability
+
+Die öffentlichen Artefakte enthalten bewusst keine Originalformulierungen,
+Excel-Zellinhalte, Office-Metadaten oder organisationsspezifischen Bezeichnungen.
+Sie ermöglichen die Rückverfolgung bis zur neutralen Standard- und Requirement-ID,
+nicht jedoch die Veröffentlichung des jeweiligen Originaltexts.
+
+Weitere Datenqualitätsgrenzen sind:
+
+- 29 mehrfach vorkommende Kombinationen aus Source- und Requirement-ID;
+- zehn Quellanforderungen ohne ursprüngliche ID, die neutrale
+  `UNASSIGNED-*`-Review-IDs erhalten haben;
+- Zusammenführung identischer Beschreibungen unter Erhaltung der Referenzen und
+  Vorkommenszahlen;
+- keine öffentliche Zuordnung zu einer konkreten Excel-Zeilennummer nach der
+  Deduplizierung.
+
+Die Originaldatei kann lokal über ihren gespeicherten SHA-256-Digest als die für
+das Mapping verwendete Arbeitsgrundlage identifiziert werden. Der Digest bestätigt
+die Dateiversion, veröffentlicht aber weder Inhalt noch Metadaten.
+
+#### Erforderliche fachliche Bestätigung
+
+Für eine belastbare Governance- und spätere Audit-Nutzung sollten die Reviewer:
+
+1. die fachliche Richtigkeit der HREQ-Zuordnungen risikoorientiert prüfen;
+2. Low- und Medium-Confidence-Mappings priorisiert reviewen;
+3. die zehn `UNASSIGNED-*`-Einträge mit belastbaren Source-IDs ergänzen;
+4. die 29 mehrfachen Identifier-Kombinationen bereinigen oder begründen;
+5. bestätigen, welche Standardreferenzen öffentlich oder intern geführt werden
+   dürfen;
+6. die geprüften Zuordnungen mit Reviewer, Datum und Entscheidung dokumentieren.
+
+Damit ist zwischen **technisch vollständiger Traceability** und **fachlich
+freigegebener Traceability** klar unterschieden.
+
 ## 5. Ergebnis: Harmonisiertes Requirements-Modell
 
 ### 5.1 Governance und Risiko
@@ -626,15 +738,16 @@ Für einen fokussierten Termin wird folgende Agenda empfohlen:
 1. **Ziel und Herkunft** – Warum wurde die Liste harmonisiert?
 2. **Informationsschutz** – Welche Inhalte wurden bewusst nicht veröffentlicht?
 3. **Modellergebnis** – Was bedeuten 44 harmonisierte Anforderungen?
-4. **Coverage** – Warum sind 50,4 % keine offizielle Compliance-Aussage?
-5. **Top Gaps** – Welche neun Themen sind aktuell strukturell nicht abgedeckt?
-6. **Maturity-Modell** – Sind 22 L1, 17 L2, eine L3 und vier GOV-Einstufungen sachgerecht?
-7. **Impact-Transparenz** – Welche Auswirkungen bestehen auf Governance, Controls, PRA, Evidence, Product Security und Operations?
-8. **PRA-Abgrenzung** – Welche Themen sind Plattformverantwortung, Plattformunterstützung oder Produktverantwortung?
-9. **Quellenentscheidung** – Related Source bestätigen oder Candidate belassen?
-10. **Geltungsbereich** – Für welche Produkte und Risikoklassen soll das Modell gelten?
-11. **Mandat für Phase 1** – Wer reviewed Mappings, Level, Gaps und mögliche Auswirkungen?
-12. **Nächster Entscheidungspunkt** – Wann wird über normative Ableitung entschieden?
+4. **Traceability** – Sind 44/44 HREQs und 233/233 Source Requirements technisch nachvollziehbar, und wie erfolgt der fachliche Review?
+5. **Coverage** – Warum sind 50,4 % keine offizielle Compliance-Aussage?
+6. **Top Gaps** – Welche neun Themen sind aktuell strukturell nicht abgedeckt?
+7. **Maturity-Modell** – Sind 22 L1, 17 L2, eine L3 und vier GOV-Einstufungen sachgerecht?
+8. **Impact-Transparenz** – Welche Auswirkungen bestehen auf Governance, Controls, PRA, Evidence, Product Security und Operations?
+9. **PRA-Abgrenzung** – Welche Themen sind Plattformverantwortung, Plattformunterstützung oder Produktverantwortung?
+10. **Quellenentscheidung** – Related Source bestätigen oder Candidate belassen?
+11. **Geltungsbereich** – Für welche Produkte und Risikoklassen soll das Modell gelten?
+12. **Mandat für Phase 1** – Wer reviewed Mappings, Traceability, Level, Gaps und mögliche Auswirkungen?
+13. **Nächster Entscheidungspunkt** – Wann wird über normative Ableitung entschieden?
 
 ## 13. Entscheidungsvorlage
 
@@ -653,6 +766,15 @@ Decision date:
 Enterprise applicability:
 Applicable products / risk classes:
 Excluded scope:
+
+Traceability assessment:
+  [ ] technical traceability accepted as complete candidate evidence
+  [ ] mapping review required before source acceptance
+  [ ] source identifiers and duplicate findings require remediation
+
+Traceability publication boundary:
+  [ ] neutral source and requirement IDs may remain public
+  [ ] source references require additional legal or license review
 
 Proposed maturity assignment:
   [ ] confirm 22 L1 / 17 L2 / 1 L3 / 4 GOV
@@ -715,7 +837,7 @@ durchgeführt:
 - Runtime-Governance-Validierung;
 - Repository-Governance-Validierung;
 - Schema- und Mapping-Integritätsprüfung;
-- vollständige Unit-Test-Suite mit 194 erfolgreichen Tests;
+- vollständige Unit-Test-Suite mit 197 erfolgreichen Tests;
 - zusätzliche Candidate- und Intake-Tests;
 - strikter MkDocs-Dokumentations-Build;
 - Public-Hygiene-Scan über alle 35 Änderungsdateien;
