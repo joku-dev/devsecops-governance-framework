@@ -1,0 +1,2987 @@
+schema_version: 0.1.0
+mapping_id: CISO-STANDARDS-TO-HARMONIZED-REQUIREMENTS
+status: candidate
+normative: false
+source_document_id: CISO-REQ-SRC-001
+source_workbook_digest: sha256:dea266e3eafb54eb05c850ec90e11145e192668f8b9b43f06ffb74e4bbd14930
+public_source_text_included: false
+summary:
+  raw_rows: 264
+  unique_source_requirements: 233
+  duplicate_identifier_pairs: 29
+  missing_source_ids: 10
+  mapped_source_requirements: 233
+  unmapped_source_requirements: 0
+standards:
+- standard_id: BSI-IT-GRUNDSCHUTZ
+  source_label: BSI IT-Grundschutz
+  raw_rows: 41
+- standard_id: BSI-TR-03183-1
+  source_label: BSI TR-03183-1
+  raw_rows: 7
+- standard_id: BSI-TR-03183-2
+  source_label: BSI TR-03183-2
+  raw_rows: 83
+- standard_id: BWI-SEF-2025
+  source_label: BWI Software Engineering Framework 2025
+  raw_rows: 20
+- standard_id: IEC-62443-4-1
+  source_label: IEC 62443-4-1
+  raw_rows: 21
+- standard_id: NIST-SP-800-218
+  source_label: NIST SP 800-218
+  raw_rows: 18
+- standard_id: OWASP-ASVS
+  source_label: OWASP ASVS
+  raw_rows: 29
+- standard_id: OWASP-TOP-10-2025
+  source_label: OWASP Top 10 2025
+  raw_rows: 19
+- standard_id: PRIVATE-APPSEC-SANITIZED
+  source_label: Private application security source (sanitized)
+  raw_rows: 16
+- standard_id: PRIVATE-INFOSEC-SANITIZED
+  source_label: Private information security source (sanitized)
+  raw_rows: 1
+- standard_id: PRIVATE-SWSEC-SANITIZED
+  source_label: Private software security source (sanitized)
+  raw_rows: 9
+mappings:
+- id: SRCREQ-003E748FCBAC
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V8.1.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-001
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-01AE19588DCF
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.DEA.09
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-0444707D1957
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V2.1.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-004
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-06BB91EEF0CA
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SG-1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-0709B9F13649
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '3'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-08286078DE69
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A09-08
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-006
+  - HREQ-OPS-004
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-08BDA25C4536
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '40'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-0A0B87E9D833
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V2.1.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-004
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-0A299020A91A
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '22'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-0A4228EE8773
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.CLA.10
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-TEST-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-0B6DC3EED882
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A16
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-0DE97066459F
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '49'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  - HREQ-SC-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-0E0B463C42D2
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V15.2.4
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-SC-008
+  - HREQ-RISK-004
+  - HREQ-DEV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-0E4901F5A6AD
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '5'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-0FFDF708C975
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.1.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-RISK-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-101DAFFC02E8
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A09-10
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-006
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-117144EBC4B9
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '35'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-010
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-13218F01F606
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.8.1
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-TEST-003
+  - HREQ-TEST-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-13DC305048B2
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '7'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-168572BA771B
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '44'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-170A9CD84703
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '53'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  - HREQ-APP-006
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-17F1C7785730
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.CON.12
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-182249527C60
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.CON.10
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-1844B86A566C
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.3.A2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-1A493BCCB258
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A6
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-001
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-1B5E777BFB54
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SG-6
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-APP-001
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-1C4C0F46F7FE
+  source_refs:
+  - standard_id: PRIVATE-INFOSEC-SANITIZED
+    requirement_id: '550'
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-OPS-008
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-1C5303C558CE
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A06-07
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-TEST-002
+  - HREQ-TEST-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-1E6ADD83B28B
+  source_refs:
+  - standard_id: BSI-TR-03183-1
+    requirement_id: RH_UPD.1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-001
+  - HREQ-RISK-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-1F48B0726971
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.1.A5
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-1FE6CF616056
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V16.4.3
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-006
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-2023F6E93061
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-001
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-OPS-008
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-221147FCD1CB
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: PDI5-1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-22353546AA78
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A02-01
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-2253A0159024
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.TEC.06
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-250E8B967A94
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: POS2-4
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-005
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-252B172ACE66
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '6'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-262C76CFBFDC
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: PDI3-2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-2662841DEA8E
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.4.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-26E342367AFE
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SG-3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  - HREQ-OPS-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-277BAFE03A83
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: C7
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-001
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-27B7D08FB7F4
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.DEA.12
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-29E6BEBFABAD
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '9'
+  occurrence_count: 2
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-2A1CED0B156B
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SI-2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-002
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-2B50D946DD02
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-002
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-2C8C2FC8DB35
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SD-3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-2CAB2D200010
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A5
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-2D3FF490C0B0
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-003
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-RISK-001
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-2D61B9F15FB2
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '26'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-2D65DDF866D2
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.CLA.09
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-2E8A680F1132
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V15.1.4
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-002
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-2F5FA55CD3B5
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A08-04
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-3083EB4B80FB
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '16'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-010
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-30E3C455DF14
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SM-11
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-002
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-3140B8FC4BE2
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.7.A6
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-3520BF03E7A8
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.7.A3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-35C4E88D9F22
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '32'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-3DF5647AB274
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.7.A8
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-3E5F8618459B
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-004
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-3EC4EAA9A026
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: C5
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-004
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-3ECEFEED0AAB
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: PSW4-3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-3F5F2C2EBB93
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '33'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-3FA60DFC2920
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PS.3.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-SC-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-4003F79FC25C
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.ARC.14
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-GOV-004
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-40FEF5BAE577
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A06-01
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-003
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-41B55A59D962
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.8.A21
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-RISK-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-41D1EDE5B951
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A06-03
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-RISK-002
+  - HREQ-APP-004
+  - HREQ-APP-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-42A5232980E1
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A03-02
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-42B4AA89CBBE
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SVV-4
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-TEST-005
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-42E2B01CE52B
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '43'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-008
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-45332BB279C2
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '19'
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-46883FEE20A2
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.3.A13
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-TEST-002
+  - HREQ-OPS-003
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-46BA16128306
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '59'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-4749040D3654
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.AOV.02
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-474D24A7DF91
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '39'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-482BD718041B
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A03-09
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-4861B8611762
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '41'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-008
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-48762FF1B5FD
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.7.A1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-003
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-4BA57669D631
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '18'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-4C43A7F44152
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.8.A7
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-004
+  - HREQ-OPS-001
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-4E21DE93E577
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '30'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-008
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-501B5C545668
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V16.1.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-006
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-518B56450448
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.6.A13
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-51A63E79E379
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.CON.13
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-5249B3342B43
+  source_refs:
+  - standard_id: BSI-TR-03183-1
+    requirement_id: RH_RA.1.1.1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-52619920920B
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-005
+  occurrence_count: 1
+  source_strengths:
+  - may
+  harmonized_requirement_ids:
+  - HREQ-TEST-004
+  - HREQ-APP-007
+  - HREQ-OPS-005
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-52864D8BB406
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.7.A4
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-55D24517BD6D
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '24'
+  occurrence_count: 1
+  source_strengths:
+  - may
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-5696DC7EC834
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.1.A11
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-56AD742F1B9B
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.8.A20
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-58BAD38D20F8
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: PDI4-1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-APP-006
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-5A404B8CC22C
+  source_refs:
+  - standard_id: BSI-TR-03183-1
+    requirement_id: RH_RT.1.3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-5CB480234CE7
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.SEC.01
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-5E53FB53794A
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A03-01
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-OPS-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-5E96EFB03D3D
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V5.1.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-005
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-5F46BF7AC80D
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SUM-4
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-5FAFDC20B324
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.1.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-RISK-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-5FCD05232CE7
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '57'
+  occurrence_count: 2
+  source_strengths:
+  - may
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-008
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-5FD0B66C8030
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-5FDF1A316F77
+  source_refs:
+  - standard_id: BSI-TR-03183-1
+    requirement_id: RH_RA.1.2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-61AF2D400823
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.7.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-61F3E1F46591
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SG-2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-626C4071B0E3
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A10
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-TEST-001
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-644FCB83FE16
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.7.A5
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-659CA9BA2F78
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A7
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-DEV-004
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-6ACD924ABA56
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V13.1.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-6B269E8B6546
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.3.1.A22
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-TEST-005
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-6B6040959E8D
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.10.A11
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-003
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-6C1B2C23F38E
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '28'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-6CC93E63965F
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '37'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-6D674F0AD39C
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PS.1.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-001
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-70C41AE9768C
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.8.A10
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-71E0475F8868
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V8.1.4
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-001
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-73E9137C987B
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.5.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-002
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-7421485C6388
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-006
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-74A572D8E2D3
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '47'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-75F4D82E4AE5
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.3.A1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-76147C49A762
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.3.A3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-7712A3E0F382
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '51'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  - HREQ-SC-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-77CA414105A0
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A02-07
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-79A7C5466E4B
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A4
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-001
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-79F7CE4CD8E5
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A14
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-TEST-005
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-7B6C8AA5E480
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SG-5
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-7D28FDD78531
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-007
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-TEST-005
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-7E18DCF7760F
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.7.A2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-7E3CED35CB21
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: WO6
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-TEST-005
+  - HREQ-TEST-003
+  - HREQ-OPS-003
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-7EE264B5EF87
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: PDI2-2
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-7FD699C15698
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '21'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-80F00CC4A27E
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-008
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-OPS-005
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-826A44A9BDC5
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.CLA.04
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-83A76F8EE929
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V15.2.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-SC-007
+  - HREQ-RISK-004
+  - HREQ-DEV-002
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-8495B2024179
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A10-05
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-006
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-84D8BCC90F95
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.6.A12
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-007
+  - HREQ-GOV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-853315112C01
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SM-10
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-86031C947F7C
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '58'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-863FF72809CC
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.SQU.39
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-TEST-006
+  - HREQ-TEST-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-8753B412C1EC
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V15.1.3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-002
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-876497284D96
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A11
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-APP-003
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-89F9005CCDEB
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V14.1.2
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-APP-001
+  - HREQ-APP-003
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-8CD049A9C26F
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '31'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  - HREQ-SC-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-8CDEA1D9762D
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-TEST-001
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-8CE00F5C679B
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '54'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  - HREQ-APP-006
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-8D3C37D82C8E
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: APP.3.1.A20
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-8ED563044D46
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '34'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-90A6B113C487
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '50'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-924CF766ABC7
+  source_refs:
+  - standard_id: BSI-TR-03183-1
+    requirement_id: RH_RA.1.3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-93988D04CBF7
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '25'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-93A3162A0117
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V7.1.3
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-002
+  - HREQ-APP-001
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-94BC64D790DB
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V7.1.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-002
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-9514FE86565A
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.6.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-SC-001
+  - HREQ-SC-002
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-956CF2B756AC
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V13.1.1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-95DF0C5FAD3C
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.2.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-RISK-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-975315865D36
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A02-02
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-98BDD67FC77C
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '2'
+  occurrence_count: 1
+  source_strengths:
+  - may
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-9A7636446044
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-9C6565DE12A8
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '60'
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-9CBA4B09C041
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A06-05
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-9E55E3D4A153
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: UNASSIGNED-009
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-RISK-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-9FFDA9548277
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V15.1.5
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-002
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-A08AE47CDEF7
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SVV-1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-TEST-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-A221B8E91FA1
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: PDI3-3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  - HREQ-APP-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-A5300FFB35F2
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V15.1.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-DEV-002
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-A54D777E58B6
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.9.2
+  occurrence_count: 2
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-A67C28BEBCA1
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A02-08
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-A8257D32BBBC
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.DEA.07
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.SBA.12
+  occurrence_count: 2
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-TEST-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-A8AA4C0C7C34
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SUM-1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-AB318CDFA3F3
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.8.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-TEST-003
+  - HREQ-TEST-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-AC207DBD4B6C
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V13.4.4
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-006
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-AC3627AAD6FF
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '12'
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-AC38D8CA839B
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '17'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-ADE7754718E0
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SM-6
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-AE51ED08608F
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.DEA.10
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-AEBB191EC95B
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: PDI3-1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-B00AD7C01519
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A15
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-001
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-B1C13FEFB2A9
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.3.A12
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-B64915269C66
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '29'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-B73AA3B1698E
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.4.4
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-B7433EA31F51
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '38'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-B7A8FFC853A1
+  source_refs:
+  - standard_id: PRIVATE-SWSEC-SANITIZED
+    requirement_id: PDI2-7
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-B9C5F467F024
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PS.3.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-SC-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-BAB55FE988DD
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SM-7
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-BDA2936E8E69
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '10'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-008
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-BDB24065C063
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V2.1.3
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-004
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-BE3BE7E4C192
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V8.1.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-001
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-BE77C6DF6577
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V13.1.3
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-BEEB4FDAF1B2
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '56'
+  occurrence_count: 2
+  source_strengths:
+  - may
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-008
+  - HREQ-APP-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-BF6AEEC129EA
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SM-8
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-C1EFAD67616D
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '8'
+  occurrence_count: 1
+  source_strengths:
+  - may
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-C2D09AAC7823
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SVV-5
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-TEST-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-C2DE1B36C778
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.4.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-C48B6317B001
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SG-4
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-007
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-C56696CCB2C3
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.AOV.22
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-OPS-004
+  - HREQ-OPS-008
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-C83C2BEA017B
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V3.1.1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-CA7B8B89D029
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A12
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-CC4F83B69C5B
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: WO5
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-TEST-004
+  - HREQ-OPS-003
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-CF23C593140A
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '23'
+  - standard_id: BSI-TR-03183-2
+    requirement_id: UNASSIGNED-010
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-007
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-CF4B4B9E93F1
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A02-09
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  - HREQ-OPS-005
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-D0C3D2955E1E
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: OPS.1.1.6.A13
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-TEST-002
+  - HREQ-OPS-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-D49902E40E67
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '42'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-008
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-D7F5FB6F783D
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.8.A6
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-D927B14EC535
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SI-1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-DE55D3B00FAB
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '1'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-DF4CE4F360E4
+  source_refs:
+  - standard_id: BSI-TR-03183-1
+    requirement_id: RH_RA.1.1.2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-DF55233023A2
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '11'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-E227B5F8C5F4
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.6.2
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-SC-001
+  - HREQ-SC-002
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-E2F9620C0230
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: WO7
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-003
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E350A1BABEF2
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V14.1.1
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-001
+  - HREQ-APP-003
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E3853BADDB41
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: C3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E38BF9FE8317
+  source_refs:
+  - standard_id: BSI-TR-03183-1
+    requirement_id: RH_DOC.1
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-RISK-001
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E4134F546D2B
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.DEA.08
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-003
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E4479F95C857
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SM-9
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-DEV-005
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-E5750783B2A5
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.8.A19
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-DEV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E6A738398A8C
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.8.A2
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-GOV-002
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E7615819E350
+  source_refs:
+  - standard_id: NIST-SP-800-218
+    requirement_id: PW.7.1
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-DEV-003
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-E803F960740D
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A03-03
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-003
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E9CA46F6C69E
+  source_refs:
+  - standard_id: BSI-IT-GRUNDSCHUTZ
+    requirement_id: CON.8.A12
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-RISK-002
+  - HREQ-GOV-004
+  - HREQ-GOV-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-E9D235F0215D
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V5.4.3
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-005
+  - HREQ-SC-005
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-EA84AFA55E31
+  source_refs:
+  - standard_id: BWI-SEF-2025
+    requirement_id: 2025.DEA.11
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-EDA0F4998088
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '45'
+  occurrence_count: 2
+  source_strengths:
+  - may
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-EEBF7C40A897
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V16.4.2
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-006
+  - HREQ-OPS-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-F1BD4F49D2B6
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V15.2.3
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-RISK-004
+  - HREQ-DEV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-F1DD43E8B330
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '55'
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-F4C8E9D45487
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A08-03
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-DEV-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-F57FF9584F80
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '48'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-F61437B67324
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '20'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-F66A6B837ECA
+  source_refs:
+  - standard_id: IEC-62443-4-1
+    requirement_id: SVV-3
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-TEST-004
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-FA129EF0DE9D
+  source_refs:
+  - standard_id: OWASP-ASVS
+    requirement_id: V8.1.3
+  occurrence_count: 1
+  source_strengths:
+  - unclassified
+  harmonized_requirement_ids:
+  - HREQ-APP-001
+  - HREQ-GOV-004
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-FA134C8BC2D5
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '36'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-008
+  - HREQ-APP-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-FAE0B828524C
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '46'
+  occurrence_count: 2
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-009
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-FE1E4439C512
+  source_refs:
+  - standard_id: PRIVATE-APPSEC-SANITIZED
+    requirement_id: C6
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-005
+  - HREQ-GOV-002
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-FE4E8C43275A
+  source_refs:
+  - standard_id: OWASP-TOP-10-2025
+    requirement_id: A02-04
+  occurrence_count: 1
+  source_strengths:
+  - should
+  harmonized_requirement_ids:
+  - HREQ-APP-007
+  - HREQ-OPS-003
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required
+- id: SRCREQ-FE5D897C0A01
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '4'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  mapping_basis: source_identifier
+  confidence: high
+  review_status: human_review_required
+- id: SRCREQ-FF33972D59D1
+  source_refs:
+  - standard_id: BSI-TR-03183-2
+    requirement_id: '27'
+  occurrence_count: 1
+  source_strengths:
+  - must
+  harmonized_requirement_ids:
+  - HREQ-SC-006
+  - HREQ-SC-001
+  mapping_basis: content_classification
+  confidence: medium
+  review_status: human_review_required

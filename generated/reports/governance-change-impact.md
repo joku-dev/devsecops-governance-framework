@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-07-17T19:04:11Z`
+Generated: `2026-07-18T10:45:05Z`
 
 ## Inputs
 
@@ -9,18 +9,18 @@ Generated: `2026-07-17T19:04:11Z`
 
 ## Summary
 
-- Registered source documents: `20`
-- Source documents with lineage: `20`
-- Derived artifact links: `338`
+- Registered source documents: `21`
+- Source documents with lineage: `21`
+- Derived artifact links: `349`
 
 ## Domain Coverage
 
 | Domain | Source documents |
 |---|---:|
-| `architecture` | `12` |
-| `devsecops` | `8` |
+| `architecture` | `13` |
+| `devsecops` | `9` |
 | `directive` | `2` |
-| `platform` | `2` |
+| `platform` | `3` |
 | `policy` | `2` |
 
 ## Release Considerations
@@ -28,16 +28,16 @@ Generated: `2026-07-17T19:04:11Z`
 | Consideration | Source documents |
 |---|---:|
 | `baseline_release_review` | `2` |
-| `no_release_by_default` | `18` |
+| `no_release_by_default` | `19` |
 
 ## Review Lanes
 
 | Review lane | Source documents |
 |---|---:|
-| `architecture-review` | `12` |
-| `devsecops-review` | `8` |
+| `architecture-review` | `13` |
+| `devsecops-review` | `9` |
 | `governance-review` | `4` |
-| `platform-review` | `2` |
+| `platform-review` | `3` |
 | `policy-as-code-review` | `2` |
 | `release-review` | `2` |
 | `schema-review` | `2` |
@@ -408,7 +408,7 @@ Representative artifacts:
 - Version: `public-placeholder`
 - Domains: `architecture`
 - Lineage artifacts: `11`
-- Source state: `candidate_pending_similarity_review`
+- Source state: `candidate_replacement_review`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review`
 
@@ -775,6 +775,45 @@ Representative artifacts:
 Derived artifact areas:
 
 - `docs/governance/source-documents`
+
+Suggested validation:
+
+- `python3 -m unittest discover -s tests`
+- `python3 scripts/validate_governance_repo.py`
+- `python3 scripts/validate_runtime_governance.py`
+
+Representative artifacts:
+
+- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/architecture-source-replacement-assessment.md`
+- `generated/reports/governance-change-impact.json`
+- `generated/reports/governance-change-impact.md`
+- `generated/reports/source-document-intake-review-briefs.json`
+- `generated/reports/source-document-intake-review-briefs.md`
+- `generated/reports/source-document-intake-status.json`
+- `generated/reports/source-document-intake-status.md`
+- `generated/reports/source-document-requirement-delta.json`
+- `generated/reports/source-document-requirement-delta.md`
+
+### `CISO-REQ-SRC-001`
+
+- Title: CISO Standards Requirements Catalog Candidate
+- Source: `docs/governance/source-documents/CISO-REQ-SRC-001.public.md`
+- Status: `candidate`
+- Owner: `governance-owners`
+- Version: `0.1`
+- Domains: `devsecops, platform, architecture`
+- Lineage artifacts: `11`
+- Source state: `candidate_related_source_review`
+- Release consideration: `no_release_by_default`
+- Review lanes: `architecture-review, devsecops-review, platform-review`
+
+Derived artifact areas:
+
+
+Replacement and similarity:
+
+- Similarity assessment: `related_source`
 
 Suggested validation:
 

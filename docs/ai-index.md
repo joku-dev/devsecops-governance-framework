@@ -26,6 +26,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Audit the current documentation structure after migrations | `docs/operations/planning/document-structure-audit.md` |
 | Understand organisational DevSecOps governance responsibilities | `docs/governance/devsecops-governance-organisational-role-model.md` |
 | Understand source update impact | `generated/reports/governance-change-impact.md` |
+| Review the harmonized standards-requirements candidate | `docs/governance/review-packets/CISO-REQ-SRC-001/README.md`, `docs/governance/review-packets/CISO-REQ-SRC-001/harmonized-requirements-candidate.md`, `docs/governance/review-packets/CISO-REQ-SRC-001/ciso-review-brief.md`, `model/requirements/harmonized-devsecops-requirements.yaml`, `model/traceability/harmonized-requirements-to-maturity-levels.yaml`, `generated/reports/harmonized-requirements-coverage.md`, `generated/reports/harmonized-requirements-maturity.md` |
 | Assess architecture source replacements | `generated/reports/architecture-source-replacement-assessment.md` |
 | Route reviews by role | `docs/governance/governance-roles-and-agent-profiles.md` |
 | Use model-neutral agent contracts | `.agents/roles/`, `.agents/routing/governance-agent-routing.yaml`, `.agents/skills/`, `docs/operations/agents/agent-system-usage.md` |

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Harmonized Requirements Candidate Maturity Report",
+  "type": "object",
+  "required": ["schema_version", "report_id", "status", "normative", "enforcement", "source_document_id", "summary", "level_definitions", "maturity_by_requirement", "decision_boundary"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "report_id": { "const": "harmonized-requirements-candidate-maturity" },
+    "status": { "const": "candidate" },
+    "normative": { "const": false },
+    "enforcement": { "const": "none" },
+    "source_document_id": { "const": "CISO-REQ-SRC-001" },
+    "summary": {
+      "type": "object",
+      "required": ["harmonized_requirements", "minimum_level_counts", "cumulative_level_counts", "routing_lane_counts", "human_review_required"],
+      "properties": {
+        "harmonized_requirements": { "type": "integer", "minimum": 1 },
+        "minimum_level_counts": { "$ref": "#/$defs/levelCounts" },
+        "cumulative_level_counts": { "$ref": "#/$defs/levelCounts" },
+        "routing_lane_counts": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "integer", "minimum": 0 } },
+        "human_review_required": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "level_definitions": {
+      "type": "object",
+      "required": ["L1", "L2", "L3", "GOV"],
+      "properties": {
+        "L1": { "$ref": "#/$defs/levelDefinition" },
+        "L2": { "$ref": "#/$defs/levelDefinition" },
+        "L3": { "$ref": "#/$defs/levelDefinition" },
+        "GOV": { "$ref": "#/$defs/levelDefinition" }
+      },
+      "additionalProperties": false
+    },
+    "maturity_by_requirement": {
+      "type": "array",
+      "minItems": 44,
+      "items": {
+        "type": "object",
+        "required": ["requirement_id", "title", "domain", "applicability", "minimum_level", "maturity_path", "governance_overlay", "routing_lane", "assignment_basis", "current_coverage", "existing_refs", "rationale", "review_status"],
+        "properties": {
+          "requirement_id": { "type": "string", "pattern": "^HREQ-[A-Z]+-[0-9]{3}$" },
+          "title": { "type": "string", "minLength": 1 },
+          "domain": { "type": "string", "minLength": 1 },
+          "applicability": { "type": "string", "minLength": 1 },
+          "minimum_level": { "enum": ["L1", "L2", "L3", "GOV"] },
+          "maturity_path": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["L1", "L2", "L3", "GOV"] } },
+          "governance_overlay": { "type": "boolean" },
+          "routing_lane": { "type": "string", "minLength": 1 },
+          "assignment_basis": { "type": "string", "minLength": 1 },
+          "current_coverage": { "enum": ["covered", "partial", "gap"] },
+          "existing_refs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "rationale": { "type": "string", "minLength": 20 },
+          "review_status": { "const": "human_review_required" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "decision_boundary": {
+      "type": "object",
+      "required": ["control_changes_authorized", "policy_changes_authorized", "evidence_contract_changes_authorized", "release_changes_authorized", "enforcement_changes_authorized", "consumer_compliance_claim_authorized"],
+      "additionalProperties": { "const": false }
+    }
+  },
+  "$defs": {
+    "levelCounts": {
+      "type": "object",
+      "required": ["L1", "L2", "L3", "GOV"],
+      "properties": {
+        "L1": { "type": "integer", "minimum": 0 },
+        "L2": { "type": "integer", "minimum": 0 },
+        "L3": { "type": "integer", "minimum": 0 },
+        "GOV": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "levelDefinition": {
+      "type": "object",
+      "required": ["name", "intent"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "intent": { "type": "string", "minLength": 20 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

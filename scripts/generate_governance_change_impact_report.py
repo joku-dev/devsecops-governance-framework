@@ -88,7 +88,18 @@ def release_consideration(artifacts: list[dict]) -> str:
 def source_state(document: dict, artifacts: list[dict]) -> str:
     status = document.get("status")
     if status == "candidate":
-        return "candidate_pending_similarity_review"
+        assessment = document.get("similarity_assessment", {}).get("assessment", "not_assessed")
+        if assessment == "related_source":
+            return "candidate_related_source_review"
+        if document.get("candidate_replacement_for") or assessment in {
+            "possible_duplicate",
+            "replacement_candidate",
+            "supersedes_existing",
+        }:
+            return "candidate_replacement_review"
+        if assessment == "not_assessed":
+            return "candidate_pending_similarity_review"
+        return "candidate_decision_required"
     if status == "draft" and not artifacts:
         return "draft_registered_no_lineage_required"
     if status == "draft":

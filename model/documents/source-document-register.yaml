@@ -307,3 +307,31 @@ documents:
     derived_artifact_areas:
       - docs/governance/source-documents
     notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+  - id: CISO-REQ-SRC-001
+    title: CISO Standards Requirements Catalog Candidate
+    status: candidate
+    source_path: docs/governance/source-documents/CISO-REQ-SRC-001.public.md
+    governance_domains:
+      - devsecops
+      - platform
+      - architecture
+    owner: governance-owners
+    version: "0.1"
+    intake_date: "2026-07-18"
+    supersedes: null
+    candidate_replacement_for: []
+    similarity_assessment:
+      assessment: related_source
+      compared_to:
+        - source_id: DSCB-STD-SRC-001
+          similarity: high
+          notes: Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review.
+        - source_id: PRA-STD-SRC-001
+          similarity: medium
+          notes: Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement.
+        - source_id: ARCH-SDD-SRC-001
+          similarity: medium
+          notes: Product security, threat modeling, and verification topics overlap architecture governance and require routing review.
+      notes: Classified as a related and overlapping candidate without asserting duplicate or replacement status.
+    derived_artifact_areas: []
+    notes: Private workbook withheld. Candidate review artifacts are non-normative, contain no source requirement text, and must not influence controls, policies, schemas, workflows, releases, or baselines before human approval.

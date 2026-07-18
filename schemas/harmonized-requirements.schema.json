@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Harmonized DevSecOps Requirements Candidate",
+  "type": "object",
+  "required": ["schema_version", "model_id", "title", "status", "normative", "enforcement", "source_document_id", "derivation_policy", "coverage_method", "decision_required", "requirements"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "model_id": { "const": "CISO-HARMONIZED-DEVSECOPS-REQUIREMENTS" },
+    "title": { "type": "string", "minLength": 1 },
+    "status": { "const": "candidate" },
+    "normative": { "const": false },
+    "enforcement": { "const": "none" },
+    "source_document_id": { "const": "CISO-REQ-SRC-001" },
+    "derivation_policy": { "const": "review_only" },
+    "coverage_method": { "const": "preliminary_design_mapping" },
+    "decision_required": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "requirements": {
+      "type": "array",
+      "minItems": 40,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "statement", "strength", "domain", "target_area", "applicability", "source_topics", "coverage"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^HREQ-[A-Z]+-[0-9]{3}$" },
+          "title": { "type": "string", "minLength": 1 },
+          "statement": { "type": "string", "minLength": 20 },
+          "strength": { "enum": ["must", "should", "may"] },
+          "domain": { "enum": ["governance", "security_risk", "application_security", "development", "software_supply_chain", "verification", "operations", "platform", "evidence"] },
+          "target_area": { "enum": ["policy", "directive", "control_baseline", "platform", "architecture", "product_architecture", "evidence"] },
+          "applicability": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "source_topics": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }, "uniqueItems": true },
+          "coverage": {
+            "type": "object",
+            "required": ["status", "refs", "gap"],
+            "properties": {
+              "status": { "enum": ["covered", "partial", "gap"] },
+              "refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+              "gap": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

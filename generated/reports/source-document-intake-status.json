@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T19:04:12Z",
+  "generated_at": "2026-07-18T10:45:05Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json",
@@ -12,41 +12,42 @@
     "stricter_rules_enabled": false
   },
   "summary": {
-    "registered_source_documents": 20,
+    "registered_source_documents": 21,
     "status_counts": {
-      "candidate": 5,
+      "candidate": 6,
       "draft": 2,
       "intake": 10,
       "review": 3
     },
     "governance_domain_counts": {
-      "architecture": 12,
-      "devsecops": 8,
+      "architecture": 13,
+      "devsecops": 9,
       "directive": 2,
-      "platform": 2,
+      "platform": 3,
       "policy": 2
     },
     "owner_counts": {
       "architecture-owners": 12,
       "devsecops-owners": 2,
-      "governance-owners": 4,
+      "governance-owners": 5,
       "platform-owners": 2
     },
     "review_state_counts": {
       "accepted_intake": 10,
       "active_review_in_progress": 3,
+      "candidate_related_source_review_required": 1,
       "candidate_replacement_review_required": 1,
       "candidate_similarity_review_required": 4,
       "draft_source_of_truth_decision_required": 2
     },
     "attention_counts": {
-      "attention": 10,
+      "attention": 11,
       "ok": 10
     },
-    "open_review_items": 10,
+    "open_review_items": 11,
     "replacement_review_items": 1,
     "documents_with_operational_artifacts": 5,
-    "documents_without_operational_artifacts": 15
+    "documents_without_operational_artifacts": 16
   },
   "open_items": [
     {
@@ -128,6 +129,14 @@
       "owner": "architecture-owners",
       "review_state": "active_review_in_progress",
       "next_action": "Complete review and record the intake decision."
+    },
+    {
+      "id": "CISO-REQ-SRC-001",
+      "title": "CISO Standards Requirements Catalog Candidate",
+      "status": "candidate",
+      "owner": "governance-owners",
+      "review_state": "candidate_related_source_review_required",
+      "next_action": "Confirm coexistence, scope boundaries, and approved derivation before promoting the related source."
     }
   ],
   "replacement_review_items": [
@@ -716,6 +725,32 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
+      "replacement_review_items": []
+    },
+    {
+      "id": "CISO-REQ-SRC-001",
+      "title": "CISO Standards Requirements Catalog Candidate",
+      "status": "candidate",
+      "owner": "governance-owners",
+      "version": "0.1",
+      "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "governance_domains": [
+        "devsecops",
+        "platform",
+        "architecture"
+      ],
+      "intake_date": "2026-07-18",
+      "review_state": "candidate_related_source_review_required",
+      "attention": "attention",
+      "next_action": "Confirm coexistence, scope boundaries, and approved derivation before promoting the related source.",
+      "similarity_assessment": "related_source",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "lineage_artifact_count": 11,
+      "operational_artifact_count": 0,
+      "operational_artifact_types": {},
+      "derived_artifact_areas": [],
       "replacement_review_items": []
     }
   ],

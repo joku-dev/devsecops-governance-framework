@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T19:04:12Z",
+  "generated_at": "2026-07-18T10:45:05Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -49,6 +49,10 @@
     },
     {
       "path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "exists": true
+    },
+    {
+      "path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
       "exists": true
     },
     {
@@ -1018,6 +1022,77 @@
     },
     {
       "source_document": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "derived_artifacts": [
+        {
+          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/governance-change-impact.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/governance-change-impact.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-status.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-status.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-requirement-delta.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-requirement-delta.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "model/documents/source-document-register.yaml",
+          "artifact_type": "governance_model",
+          "role": "source_document_intake",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_document": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -2215,9 +2290,9 @@
     }
   ],
   "summary": {
-    "source_document_count": 20,
-    "lineage_source_count": 20,
-    "derived_artifact_count": 338,
+    "source_document_count": 21,
+    "lineage_source_count": 21,
+    "derived_artifact_count": 349,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []
