@@ -321,6 +321,120 @@ Coverage-Status, Applicability und Review-Status steht im Report
 `generated/reports/harmonized-requirements-maturity.md`. Alle 44 Zuordnungen
 sind `human_review_required`.
 
+### 6.5 Transparente Impact-Analyse ohne Änderungsfreigabe
+
+Die folgenden Auswirkungen sind eine Diskussions- und Entscheidungsgrundlage.
+Sie stellen keine Freigabe zur Änderung von Controls, PRA Requirements,
+Platform Capabilities, Evidences, Policies, Releases oder Consumer-Repositories
+dar.
+
+#### Gesamtwirkung nach Governance-Bereich
+
+| Bereich | Potenzieller Impact | Aktueller Status |
+|---|---|---|
+| Governance | Applicability, Rollen, Kompetenz, Reviews und Lifecycle-Entscheidungen präzisieren | Review erforderlich |
+| DevSecOps Controls | Bestehende L1-L3-Controls ergänzen oder präzisieren | Keine Änderung autorisiert |
+| Product Security | Anforderungen an Anwendungssicherheit und Produktbetrieb konkretisieren | Fachliches Routing erforderlich |
+| Architecture Governance | Threat Modeling, Risk Treatment und Security Architecture Reviews vertiefen | Architecture Review erforderlich |
+| PRA und Plattform | Unterstützende Platform Capabilities bewerten und gegebenenfalls erweitern | Impact-Analyse erforderlich |
+| Evidence | Neue Nachweistypen oder detailliertere maschinenlesbare Evidences prüfen | Keine Evidence-Änderung autorisiert |
+| Policy-as-Code | Geeignete Anforderungen später zunächst report-only prüfen | Kein Policy- oder Enforcement-Change |
+| Operations | Update Management, Remediation, Monitoring und Product Security Response bewerten | Operating-Model-Review erforderlich |
+| Release Management | Mögliche Baseline- und Migrationsauswirkungen bewerten | Separate Release-Entscheidung erforderlich |
+| Consumer-Repositories | Applicability und mögliche neue Evidences bewerten | Aktuell keine Consumer-Änderung |
+
+#### Beziehung zur Platform Reference Architecture
+
+Von den 44 harmonisierten Anforderungen besitzen 23 bereits einen Pfad über
+bestehende DSCB-Controls zu dokumentierten PRA Capabilities. Neun davon sind im
+aktuellen Design weitgehend abgedeckt; 14 sind nur teilweise abgedeckt. Weitere
+21 Anforderungen haben noch keinen direkten DSCB-/PRA-Pfad. Diese Zahl ist nicht
+gleichbedeutend mit 21 fehlenden Plattformanforderungen: Ein wesentlicher Teil
+liegt primär bei Product Security, Architecture, Governance oder Operations.
+
+Nur zwei Anforderungen sind derzeit unmittelbar zur Platform-Lane geroutet:
+
+| Requirement | Mindestlevel | Aktueller PRA-Bezug | Transparenter Impact |
+|---|---|---|---|
+| `HREQ-DEV-004` Secure Development Environments | `L2` | Zentrale Verwaltung, Configuration Baselines und Secure Developer Workspace vorhanden | Periodische Workspace- und Integritätsverifikation prüfen |
+| `HREQ-OPS-005` Deployment and Configuration Verification | `L2` | IaC Repository, Configuration Management und IaC Validation vorhanden | Deployment-State-Verifikation oder Attestation prüfen |
+
+Die bestehende PRA unterstützt bereits insbesondere:
+
+- Version Control, Branch Protection und Code Review;
+- automatisierte, kontrollierte Builds;
+- Artifact Identity, Integrity und Repository-Schutz;
+- Vulnerability Scanning und Assessment;
+- SBOM Generation und Evidence-Ablage;
+- Artifact Signing und Key Management;
+- kontrollierte Dependency-Quellen;
+- Security Gates und Monitoring-Integration;
+- reproduzierbare und isolierte Builds;
+- Provenance, Enterprise Trust und End-to-End Traceability;
+- Runtime Integrity und Continuous Compliance Evidence auf PRA-Level 3.
+
+Aus den neuen Anforderungen ergeben sich drei mögliche PRA-Impact-Kategorien:
+
+| Kategorie | Bedeutung | Beispiele |
+|---|---|---|
+| Bestehende Capability ausreichend | Vorhandene PRA-Fähigkeit unterstützt das Requirement bereits im Wesentlichen | Controlled Builds, Artifact Integrity, Vulnerability Scanning |
+| Capability-Präzisierung prüfen | Fähigkeit existiert, aber Detailtiefe oder Evidence-Vertrag könnte unzureichend sein | Workspace Integrity, SBOM Content Validation, Log Retention, Deployment Verification |
+| Neue Capability untersuchen | Noch keine eindeutig passende zentrale Plattformfähigkeit vorhanden | License Policy Evaluation, Security Update Workflow, Product Security Response Integration |
+
+Mögliche Kandidaten für eine spätere, separat zu genehmigende Untersuchung sind:
+
+- `workspace_integrity_verification`;
+- `deployment_state_verification` oder `configuration_attestation`;
+- `sbom_content_validation` und `sbom_license_analysis`;
+- `license_policy_evaluation`;
+- `vulnerability_remediation_tracking`;
+- `security_update_workflow` und Update-Provenance;
+- `test_evidence_intake` und `independent_review_metadata`;
+- `monitoring_retention_evidence`;
+- `product_security_response_integration`.
+
+Diese Liste ist keine Zielarchitektur und kein Implementierungsauftrag. Sie macht
+lediglich sichtbar, welche Capability-Fragen bei einer späteren Ableitung
+beantwortet werden müssten.
+
+#### Abgrenzung zwischen Plattform und Produkt
+
+Nicht jede Sicherheitsanforderung sollte automatisch zu einer zentralen
+Plattformanforderung werden. Insbesondere Session Security, Input Validation,
+Business Logic Security, Secure File Handling, fachliche Autorisierung, Secure
+Operation Guidance und Secure Decommissioning liegen primär in der Verantwortung
+des Produkts oder Entwicklungsteams.
+
+Die Plattform kann hierfür Scanner, Testausführung, Standard-Templates, Evidence
+Intake und Reporting bereitstellen. Sie kann aber nicht die fachlich korrekte
+Produktimplementierung ersetzen. Im Review ist deshalb für jedes Requirement zu
+entscheiden, ob die Plattform verantwortlich, unterstützend oder nicht betroffen
+ist.
+
+#### Transparenzmodell für die Einzelbewertung
+
+Für die spätere Detaildiskussion kann jede Anforderung einheitlich betrachtet
+werden:
+
+```yaml
+requirement_id: HREQ-SC-009
+minimum_level: L2
+current_coverage: gap
+impact:
+  governance: medium
+  control_baseline: new_control_candidate
+  product_security: medium
+  platform: new_capability_candidate
+  evidence: new_evidence_fields_candidate
+  policy_as_code: future_report_only_candidate
+  release: separate_decision_required
+decision_status: open
+human_review_required: true
+```
+
+Die Begriffe `candidate` und `open` sind dabei wesentlich: Sie beschreiben einen
+möglichen Impact, aber keine beschlossene Änderung.
+
 ## 7. Bestehende Stärken und wesentliche Lücken
 
 ### 7.1 Aktuelle Stärken
@@ -458,7 +572,7 @@ direkt in operative Governance oder veröffentlichte Baselines zu übernehmen.
 - zehn fehlende IDs mit der Quellliste klären;
 - 29 doppelte Quellen-ID-Kombinationen bereinigen oder begründen;
 - alle 233 Mappings stichprobenbasiert und risikoorientiert reviewen;
-- 44 harmonisierte Formulierungen bestätigen oder korrigieren.
+- 44 harmonisierte Formulierungen bestätigen oder korrigieren;
 - 44 vorgeschlagene Mindestlevel und sieben Routing-Lanes bestätigen oder
   korrigieren.
 
@@ -515,10 +629,12 @@ Für einen fokussierten Termin wird folgende Agenda empfohlen:
 4. **Coverage** – Warum sind 50,4 % keine offizielle Compliance-Aussage?
 5. **Top Gaps** – Welche neun Themen sind aktuell strukturell nicht abgedeckt?
 6. **Maturity-Modell** – Sind 22 L1, 17 L2, eine L3 und vier GOV-Einstufungen sachgerecht?
-7. **Quellenentscheidung** – Related Source bestätigen oder Candidate belassen?
-8. **Geltungsbereich** – Für welche Produkte und Risikoklassen soll das Modell gelten?
-9. **Mandat für Phase 1** – Wer reviewed Mappings, Level, Gaps und Publikationsgrenzen?
-10. **Nächster Entscheidungspunkt** – Wann wird über normative Ableitung entschieden?
+7. **Impact-Transparenz** – Welche Auswirkungen bestehen auf Governance, Controls, PRA, Evidence, Product Security und Operations?
+8. **PRA-Abgrenzung** – Welche Themen sind Plattformverantwortung, Plattformunterstützung oder Produktverantwortung?
+9. **Quellenentscheidung** – Related Source bestätigen oder Candidate belassen?
+10. **Geltungsbereich** – Für welche Produkte und Risikoklassen soll das Modell gelten?
+11. **Mandat für Phase 1** – Wer reviewed Mappings, Level, Gaps und mögliche Auswirkungen?
+12. **Nächster Entscheidungspunkt** – Wann wird über normative Ableitung entschieden?
 
 ## 13. Entscheidungsvorlage
 
@@ -546,6 +662,15 @@ Proposed maturity assignment:
 GOV overlay applies across adopted levels:
   [ ] yes
   [ ] no
+
+Impact assessment outcome:
+  [ ] transparency accepted; no implementation authorized
+  [ ] further platform and control analysis requested
+  [ ] selected impact areas prioritized for separate review
+
+PRA responsibility model:
+  [ ] distinguish platform responsibility, platform support, and product responsibility
+  [ ] return responsibility assignment for further analysis
 
 Derived artifacts currently allowed:
   [ ] no
