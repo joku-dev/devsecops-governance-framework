@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-07-17T19:16:34Z",
+  "generated_at": "2026-07-19T05:31:41Z",
   "summary": {
     "repository_count": 3,
     "stale_or_missing_count": 0,
@@ -71,11 +71,11 @@
       "target_devsecops_baseline": "l1-baseline-v1.1.3",
       "latest_devsecops": {
         "status": "pass",
-        "run_id": "29603835297",
-        "generated_at": "2026-07-17T18:27:18Z",
+        "run_id": "29636320472",
+        "generated_at": "2026-07-18T07:47:11Z",
         "freshness": {
           "status": "current",
-          "stale_after": "2026-08-16T18:27:18Z"
+          "stale_after": "2026-08-17T07:47:11Z"
         }
       },
       "architecture_in_scope": true,
