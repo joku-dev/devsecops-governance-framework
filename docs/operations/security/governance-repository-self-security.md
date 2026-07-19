@@ -44,6 +44,7 @@ The initial report-only profile evaluates:
 - dependency security and CodeQL;
 - private vulnerability reporting;
 - full-SHA pinning for third-party Actions;
+- restriction to approved GitHub Action sources;
 - workflow permission restrictions;
 - explicit ownership of critical paths;
 - direct automated writes to `main`;
@@ -77,11 +78,11 @@ enabled. The versioned change adds
 Dependabot configuration, CodeQL, dependency review, full-SHA Action pinning,
 expanded CODEOWNERS, and the report-only self-security workflow.
 
-The current live assessment reports 7 passing and 8 failing criteria. This is
+The current live assessment reports 7 passing and 9 failing criteria. This is
 an honest transition state, not a security attestation. Default-branch rules,
 required reviews and checks, signed changes, elimination of direct automated
 `main` writes, repository-level SHA enforcement, and verified release tags
-remain open.
+remain open. GitHub Actions are also not yet restricted to approved sources.
 
 ## Safe Activation Sequence
 
