@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-07-29T05:31:22Z",
+  "generated_at": "2026-08-15T03:04:25Z",
   "summary": {
     "repository_count": 3,
-    "stale_or_missing_count": 1,
+    "stale_or_missing_count": 2,
     "report_only_count": 2,
     "active_count": 1
   },
@@ -20,7 +20,7 @@
         "run_id": "29415015878",
         "generated_at": "2026-07-15T17:07:40Z",
         "freshness": {
-          "status": "current",
+          "status": "stale",
           "stale_after": "2026-08-14T17:07:40Z"
         }
       },
@@ -31,11 +31,11 @@
         "run_id": "29415015294",
         "generated_at": "2026-07-15T17:06:39Z",
         "freshness": {
-          "status": "current",
+          "status": "stale",
           "stale_after": "2026-08-14T17:06:39Z"
         }
       },
-      "stale_or_missing": false,
+      "stale_or_missing": true,
       "governance_mode": "block-on-error",
       "next_action": "Maintain accepted mainline evidence"
     },
