@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-08-15T03:04:25Z",
+  "generated_at": "2026-08-17T03:12:37Z",
   "summary": {
     "repository_count": 3,
     "stale_or_missing_count": 2,
@@ -85,7 +85,7 @@
         "run_id": "29603835105",
         "generated_at": "2026-07-17T18:27:02Z",
         "freshness": {
-          "status": "current",
+          "status": "stale",
           "stale_after": "2026-08-16T18:27:02Z"
         }
       },
