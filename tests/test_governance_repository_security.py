@@ -10,7 +10,7 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from assess_governance_repository_security import assess
+from assess_governance_repository_security import assess, render_markdown
 
 
 class GovernanceRepositorySecurityTests(unittest.TestCase):
@@ -41,6 +41,8 @@ class GovernanceRepositorySecurityTests(unittest.TestCase):
         Draft202012Validator(schema).validate(report)
         self.assertEqual(report["overall_status"], "pass")
         self.assertEqual(report["summary"]["fail"], 0)
+        self.assertEqual(report["schema_version"], "0.2.0")
+        self.assertEqual(report["next_steps"], [])
         self.assertFalse(report["enforcement_change_authorized"])
 
     def test_missing_root_controls_are_visible_findings(self):
@@ -61,6 +63,30 @@ class GovernanceRepositorySecurityTests(unittest.TestCase):
         self.assertIn("secret_scanning_enabled", failures)
         self.assertEqual(report["overall_status"], "findings")
         self.assertFalse(report["decision_boundary"]["blocks_pull_requests"])
+
+    def test_findings_include_prioritized_remediation_and_management_markdown(self):
+        observation = copy.deepcopy(self.observation)
+        observation["repository"]["branch_protected"] = False
+        observation["repository"]["required_approving_reviews"] = 0
+        observation["repository"]["required_status_checks"] = []
+        observation["actions"]["direct_main_write_workflows"] = [
+            ".github/workflows/intake-governance-result.yml"
+        ]
+        report = assess(self.model, observation)
+        steps = {item["title"]: item for item in report["next_steps"]}
+        migration = steps["Migrate automated writes away from direct main pushes"]
+        protection = steps["Protect the default branch as the governance authority"]
+        self.assertEqual(migration["priority"], "P0")
+        self.assertIn("GRS-013", protection["prerequisites"])
+        direct_write_finding = next(
+            item for item in report["criteria"] if item["id"] == "GRS-013"
+        )
+        self.assertIn("intake-governance-result.yml", direct_write_finding["detail"])
+        markdown = render_markdown(report)
+        self.assertIn("## Executive Assessment", markdown)
+        self.assertIn("## Open Findings", markdown)
+        self.assertIn("## Recommended Next Steps", markdown)
+        self.assertIn("## Release And Consumer Impact", markdown)
 
 
 if __name__ == "__main__":

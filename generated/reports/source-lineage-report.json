@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-18T16:08:54Z",
+  "generated_at": "2026-07-18T16:21:48Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
@@ -1543,6 +1543,12 @@
           "exists": true
         },
         {
+          "artifact_path": "docs/governance/change-requests/GCR-2026-049-current-governance-security-report.md",
+          "artifact_type": "governance_model",
+          "role": "DSCB-STD-001",
+          "exists": true
+        },
+        {
           "artifact_path": "docs/operations/evidence/evidence-collector-contract.md",
           "artifact_type": "governance_model",
           "role": "DSCB-STD-001",
@@ -2385,7 +2391,7 @@
   "summary": {
     "source_document_count": 20,
     "lineage_source_count": 20,
-    "derived_artifact_count": 366,
+    "derived_artifact_count": 367,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []

@@ -246,6 +246,7 @@ def evidence_refs(key: str) -> list[str]:
             "github:private-vulnerability-reporting",
             "SECURITY.md",
         ],
+        "approved_action_sources_restricted": ["github:actions/permissions"],
     }
     return mapping[key]
 
@@ -279,7 +280,146 @@ def observed_values(observation: dict) -> dict[str, object]:
         and not release.get("unverified_release_tags"),
         "private_vulnerability_reporting_enabled": security.get("private_vulnerability_reporting")
         is True,
+        "approved_action_sources_restricted": actions.get("allowed_actions") == "selected",
     }
+
+
+def criterion_detail(key: str, observation: dict) -> str:
+    repository = observation.get("repository", {})
+    security = observation.get("security_features", {})
+    actions = observation.get("actions", {})
+    ownership = observation.get("ownership", {})
+    release = observation.get("release_integrity", {})
+    details = {
+        "default_branch_protected": (
+            f"branch_protected={str(repository.get('branch_protected')).lower()}"
+        ),
+        "pull_request_review_required": (
+            f"required_approving_reviews={repository.get('required_approving_reviews', 0)}"
+        ),
+        "governance_ci_required": (
+            "required_status_checks=" + json.dumps(repository.get("required_status_checks", []))
+        ),
+        "destructive_branch_changes_blocked": (
+            f"force_push_blocked={str(repository.get('force_push_blocked')).lower()}, "
+            f"deletion_blocked={str(repository.get('deletion_blocked')).lower()}"
+        ),
+        "signed_changes_required": (
+            f"signed_changes_required={str(repository.get('signed_changes_required')).lower()}"
+        ),
+        "secret_scanning_enabled": f"secret_scanning={security.get('secret_scanning')}",
+        "secret_push_protection_enabled": (
+            f"secret_scanning_push_protection={security.get('secret_scanning_push_protection')}"
+        ),
+        "dependency_security_enabled": (
+            f"dependabot_security_updates={security.get('dependabot_security_updates')}, "
+            f"dependabot_config_present={str(security.get('dependabot_config_present')).lower()}"
+        ),
+        "code_scanning_configured": (
+            f"codeql_workflow_present={str(security.get('codeql_workflow_present')).lower()}"
+        ),
+        "third_party_actions_sha_pinned": (
+            f"unpinned_refs={len(actions.get('third_party_unpinned_refs', []))}, "
+            f"sha_pinning_required={str(actions.get('sha_pinning_required')).lower()}"
+        ),
+        "workflow_permissions_restricted": (
+            f"default={actions.get('default_workflow_permissions')}, explicit="
+            f"{actions.get('explicit_permissions_count')}/{actions.get('workflow_count')}"
+        ),
+        "critical_paths_owned": (
+            "missing_critical_paths=" + json.dumps(ownership.get("missing_critical_paths", []))
+        ),
+        "automated_main_writes_absent": (
+            "direct_main_write_workflows="
+            + json.dumps(actions.get("direct_main_write_workflows", []))
+        ),
+        "release_tags_verified": (
+            "unverified_release_tags=" + json.dumps(release.get("unverified_release_tags", []))
+        ),
+        "private_vulnerability_reporting_enabled": (
+            "private_vulnerability_reporting="
+            + str(security.get("private_vulnerability_reporting")).lower()
+        ),
+        "approved_action_sources_restricted": (
+            f"allowed_actions={actions.get('allowed_actions')}"
+        ),
+    }
+    return details[key]
+
+
+def remediation_steps(failed_ids: set[str]) -> list[dict]:
+    definitions = [
+        {
+            "priority": "P0",
+            "title": "Migrate automated writes away from direct main pushes",
+            "addresses": ["GRS-013"],
+            "prerequisites": [],
+            "action": (
+                "Replace intake and portfolio git pushes with reviewed bot pull requests or a "
+                "separately protected operational evidence store. Keep normative governance outside "
+                "the automation write authority."
+            ),
+            "acceptance_criteria": (
+                "No active workflow combines contents: write with git push to the default branch."
+            ),
+        },
+        {
+            "priority": "P0",
+            "title": "Enforce immutable GitHub Action references",
+            "addresses": ["GRS-010", "GRS-016"],
+            "prerequisites": [],
+            "action": (
+                "Verify all active workflow references remain pinned to reviewed full commit SHAs, "
+                "restrict Actions to approved publishers, then enable repository-level SHA pinning."
+            ),
+            "acceptance_criteria": (
+                "The workflow scan has no mutable third-party references, allowed_actions is selected, "
+                "and GitHub reports sha_pinning_required as true."
+            ),
+        },
+        {
+            "priority": "P1",
+            "title": "Protect the default branch as the governance authority",
+            "addresses": ["GRS-001", "GRS-002", "GRS-003", "GRS-004"],
+            "prerequisites": ["GRS-013"],
+            "action": (
+                "Activate a main ruleset requiring pull requests, at least one approving review, "
+                "Governance CI, resolved conversations, and protection from deletion and force push."
+            ),
+            "acceptance_criteria": (
+                "A non-bypass test pull request cannot merge without approval and required checks, "
+                "and direct force push or branch deletion is rejected."
+            ),
+        },
+        {
+            "priority": "P2",
+            "title": "Require signed changes on main",
+            "addresses": ["GRS-005"],
+            "prerequisites": ["GRS-013"],
+            "action": (
+                "Register accountable human and automation signing identities, validate recovery, "
+                "and add the signed-commit rule to the protected default branch."
+            ),
+            "acceptance_criteria": (
+                "Unsigned commits are rejected from main and authorized signed changes remain operable."
+            ),
+        },
+        {
+            "priority": "P2",
+            "title": "Introduce verified release publication",
+            "addresses": ["GRS-014"],
+            "prerequisites": ["GRS-005"],
+            "action": (
+                "Publish future baseline tags through an accountable signed release process with "
+                "verification evidence; do not rewrite historical released tags in place."
+            ),
+            "acceptance_criteria": (
+                "New governance baseline tags verify cryptographically and their release packages "
+                "retain valid checksums and provenance."
+            ),
+        },
+    ]
+    return [step for step in definitions if failed_ids.intersection(step["addresses"])]
 
 
 def assess(model: dict, observation: dict) -> dict:
@@ -292,12 +432,21 @@ def assess(model: dict, observation: dict) -> dict:
                 **definition,
                 "status": "pass" if observed is True else "fail",
                 "observed": observed,
+                "detail": criterion_detail(definition["key"], observation),
                 "evidence_refs": evidence_refs(definition["key"]),
             }
         )
     failures = [item for item in criteria if item["status"] == "fail"]
+    failed_ids = {item["id"] for item in failures}
+    risk_statement = (
+        "The repository has active scanning, dependency, permission, ownership, and private-reporting "
+        "controls, but it is not yet a protected governance authority because main remains unprotected, "
+        "automation can write directly to main, and release authenticity is not enforced."
+        if failures
+        else "All defined self-security criteria are currently evidenced as satisfied."
+    )
     return {
-        "schema_version": "0.1.0",
+        "schema_version": "0.2.0",
         "assessment_type": "governance-repository-self-security",
         "profile_id": model["profile_id"],
         "profile_version": model["version"],
@@ -313,7 +462,9 @@ def assess(model: dict, observation: dict) -> dict:
             "critical_failures": sum(item["severity"] == "critical" for item in failures),
             "high_failures": sum(item["severity"] == "high" for item in failures),
         },
+        "risk_statement": risk_statement,
         "criteria": criteria,
+        "next_steps": remediation_steps(failed_ids),
         "observation": observation,
         "decision_boundary": {
             "blocks_pull_requests": False,
@@ -325,10 +476,20 @@ def assess(model: dict, observation: dict) -> dict:
 
 def render_markdown(report: dict) -> str:
     summary = report["summary"]
+    failures = [item for item in report["criteria"] if item["status"] == "fail"]
+    passes = [item for item in report["criteria"] if item["status"] == "pass"]
     lines = [
         "# Governance Repository Self-Security Assessment",
         "",
         f"Observed: `{report['observed_at']}`",
+        "",
+        "## Executive Assessment",
+        "",
+        report["risk_statement"],
+        "",
+        "This is a point-in-time, report-only assessment of the repository that defines and",
+        "distributes governance. It is not a security certification or an authorization to",
+        "switch consumer or repository enforcement to blocking mode.",
         "",
         "## Decision State",
         "",
@@ -341,11 +502,65 @@ def render_markdown(report: dict) -> str:
         f"- Critical failures: `{summary['critical_failures']}`",
         f"- High failures: `{summary['high_failures']}`",
         "",
-        "## Criteria",
+        "## Controls Currently Evidenced",
+        "",
+    ]
+    if passes:
+        lines.extend(f"- `{item['id']}`: {item['title']}" for item in passes)
+    else:
+        lines.append("- None.")
+    lines.extend(
+        [
+        "",
+        "## Open Findings",
+        "",
+        "| ID | Severity | Finding | Current observation |",
+        "|---|---|---|---|",
+        ]
+    )
+    if failures:
+        lines.extend(
+            f"| `{item['id']}` | `{item['severity']}` | {item['title']} | "
+            f"`{item['detail']}` |" for item in failures
+        )
+    else:
+        lines.append("| - | - | No open findings. | - |")
+    lines.extend(
+        [
+        "",
+        "## Recommended Next Steps",
+        "",
+        ]
+    )
+    if report["next_steps"]:
+        for index, step in enumerate(report["next_steps"], start=1):
+            addresses = ", ".join(f"`{item}`" for item in step["addresses"])
+            prerequisites = (
+                ", ".join(f"`{item}`" for item in step["prerequisites"])
+                if step["prerequisites"]
+                else "none"
+            )
+            lines.extend(
+                [
+                    f"### {index}. {step['title']} (`{step['priority']}`)",
+                    "",
+                    f"- Addresses: {addresses}",
+                    f"- Prerequisites: {prerequisites}",
+                    f"- Action: {step['action']}",
+                    f"- Acceptance criteria: {step['acceptance_criteria']}",
+                    "",
+                ]
+            )
+    else:
+        lines.extend(["- No remediation steps are currently required.", ""])
+    lines.extend(
+        [
+        "## Complete Criteria",
         "",
         "| ID | Severity | Status | Criterion | Observed |",
         "|---|---|---|---|---|",
-    ]
+        ]
+    )
     for item in report["criteria"]:
         lines.append(
             f"| `{item['id']}` | `{item['severity']}` | `{item['status']}` | "
@@ -354,17 +569,21 @@ def render_markdown(report: dict) -> str:
     lines.extend(
         [
             "",
-            "## Current Gaps",
+            "## Evidence Quality And Limitations",
             "",
-        ]
-    )
-    failures = [item for item in report["criteria"] if item["status"] == "fail"]
-    if failures:
-        lines.extend(f"- `{item['id']}`: {item['title']}" for item in failures)
-    else:
-        lines.append("- None.")
-    lines.extend(
-        [
+            "- GitHub repository settings are collected live through the authenticated GitHub API.",
+            "- Workflow pinning, CODEOWNERS, direct writes, and release tags are inspected from the checkout.",
+            "- GitHub `404` responses for branch protection or required signatures corroborate a missing",
+            "  root control in this assessment; they are retained in the JSON observation for auditability.",
+            "- A passing workflow configuration criterion confirms configuration presence, not absence of",
+            "  every implementation vulnerability.",
+            "",
+            "## Release And Consumer Impact",
+            "",
+            "- Released DevSecOps and architecture baseline packages are unchanged.",
+            "- Consumer evidence contracts and enforcement modes are unchanged.",
+            "- Report schema `0.2.0` additively introduces a structured remediation plan.",
+            "- No baseline release is required for this reporting improvement.",
             "",
             "## Decision Boundary",
             "",
