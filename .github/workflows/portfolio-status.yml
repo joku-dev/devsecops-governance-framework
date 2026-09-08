@@ -44,6 +44,7 @@ jobs:
             git reset --mixed HEAD
             git pull --rebase --autostash origin main
             python3 scripts/generate_portfolio_onboarding_status.py
+            python3 -m unittest discover -s tests -p "test_portfolio_onboarding_status.py"
             git add generated/reports/portfolio-onboarding-status.json generated/reports/portfolio-onboarding-status.md
             if git diff --cached --quiet; then
               echo "No semantic portfolio status changes."
