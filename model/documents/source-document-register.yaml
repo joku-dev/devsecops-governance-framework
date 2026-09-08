@@ -46,6 +46,10 @@ documents:
       - model/controls
       - model/evidence
       - policies/opa
+      - schemas
+      - scripts
+      - .github/workflows
+      - docs/operations/security
       - releases/l1
       - generated/reports
     notes: Public placeholder only. Original source content is withheld from the public repository.
@@ -64,6 +68,8 @@ documents:
       - model/platform
       - pipeline-baseline
       - model/traceability
+      - .github/workflows
+      - docs/operations/security
       - generated/reports
       - generated/viewer
     notes: Public placeholder only. Original source content is withheld from the public repository.
