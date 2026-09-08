@@ -1,10 +1,10 @@
 # Governance Repository Self-Security Assessment
 
-Observed: `2026-07-18T16:20:29Z`
+Observed: `2026-09-08T16:57:42Z`
 
 ## Executive Assessment
 
-The repository has active scanning, dependency, permission, ownership, and private-reporting controls, but it is not yet a protected governance authority because main remains unprotected, automation can write directly to main, and release authenticity is not enforced.
+9 of 16 self-security criteria are not evidenced as satisfied: GRS-001 (Default branch protected); GRS-002 (Pull request and approving review required); GRS-003 (Governance CI is a required status check); GRS-004 (Force pushes and branch deletion blocked); GRS-005 (Signed changes required on the default branch); GRS-010 (Third-party GitHub Actions pinned to full commit SHAs); GRS-013 (Automation cannot push operational data directly to the default branch); GRS-014 (Governance release tags are cryptographically verified); GRS-016 (GitHub Actions restricted to approved sources). Review the observations and remediation steps below.
 
 This is a point-in-time, report-only assessment of the repository that defines and
 distributes governance. It is not a security certification or an authorization to
