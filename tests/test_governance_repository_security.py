@@ -88,6 +88,18 @@ class GovernanceRepositorySecurityTests(unittest.TestCase):
         self.assertIn("## Recommended Next Steps", markdown)
         self.assertIn("## Release And Consumer Impact", markdown)
 
+    def test_isolated_scanning_gap_has_accurate_summary_and_remediation(self):
+        observation = copy.deepcopy(self.observation)
+        observation["security_features"]["secret_scanning"] = "disabled"
+        report = assess(self.model, observation)
+        self.assertEqual(report["summary"]["fail"], 1)
+        self.assertIn("GRS-006", report["risk_statement"])
+        self.assertNotIn("main remains unprotected", report["risk_statement"])
+        self.assertNotIn("GRS-001", report["risk_statement"])
+        self.assertEqual(len(report["next_steps"]), 1)
+        self.assertEqual(report["next_steps"][0]["addresses"], ["GRS-006"])
+        self.assertNotIn("No remediation steps", render_markdown(report))
+
 
 if __name__ == "__main__":
     unittest.main()

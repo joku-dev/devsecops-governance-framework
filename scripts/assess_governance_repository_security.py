@@ -347,7 +347,8 @@ def criterion_detail(key: str, observation: dict) -> str:
     return details[key]
 
 
-def remediation_steps(failed_ids: set[str]) -> list[dict]:
+def remediation_steps(failures: list[dict]) -> list[dict]:
+    failed_ids = {item["id"] for item in failures}
     definitions = [
         {
             "priority": "P0",
@@ -419,7 +420,25 @@ def remediation_steps(failed_ids: set[str]) -> list[dict]:
             ),
         },
     ]
-    return [step for step in definitions if failed_ids.intersection(step["addresses"])]
+    steps = [step for step in definitions if failed_ids.intersection(step["addresses"])]
+    addressed = {criterion for step in steps for criterion in step["addresses"]}
+    for item in failures:
+        if item["id"] not in addressed:
+            steps.append({
+                "priority": "P1" if item["severity"] in {"critical", "high"} else "P2",
+                "title": f"Restore criterion: {item['title']}",
+                "addresses": [item["id"]],
+                "prerequisites": [],
+                "action": (
+                    f"Review {', '.join(item['evidence_refs'])}, remediate the observed gap "
+                    f"({item['detail']}), and collect a fresh assessment."
+                ),
+                "acceptance_criteria": (
+                    f"A fresh observation satisfies {item['id']} ({item['title']}) "
+                    "and the criterion reports pass."
+                ),
+            })
+    return sorted(steps, key=lambda step: step["priority"])
 
 
 def assess(model: dict, observation: dict) -> dict:
@@ -437,11 +456,10 @@ def assess(model: dict, observation: dict) -> dict:
             }
         )
     failures = [item for item in criteria if item["status"] == "fail"]
-    failed_ids = {item["id"] for item in failures}
     risk_statement = (
-        "The repository has active scanning, dependency, permission, ownership, and private-reporting "
-        "controls, but it is not yet a protected governance authority because main remains unprotected, "
-        "automation can write directly to main, and release authenticity is not enforced."
+        f"{len(failures)} of {len(criteria)} self-security criteria are not evidenced as satisfied: "
+        + "; ".join(f"{item['id']} ({item['title']})" for item in failures)
+        + ". Review the observations and remediation steps below."
         if failures
         else "All defined self-security criteria are currently evidenced as satisfied."
     )
@@ -464,7 +482,7 @@ def assess(model: dict, observation: dict) -> dict:
         },
         "risk_statement": risk_statement,
         "criteria": criteria,
-        "next_steps": remediation_steps(failed_ids),
+        "next_steps": remediation_steps(failures),
         "observation": observation,
         "decision_boundary": {
             "blocks_pull_requests": False,

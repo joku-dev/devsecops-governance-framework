@@ -71,6 +71,8 @@ This change does not:
 
 ## Validation
 
+Initial validation on 18 July 2026:
+
 - [x] live self-security assessment generated
 - [x] self-security report schema validation
 - [x] focused self-security tests
@@ -78,6 +80,19 @@ This change does not:
 - [x] complete unit test suite
 - [x] strict documentation build
 - [x] diff and repository hygiene review
+
+### Review update on 8 September 2026
+
+- Refreshed the live assessment: 7 passing and 9 failing criteria.
+- Derived the executive summary from actual failed criteria and added a
+  remediation fallback so an isolated finding cannot report that no action is
+  required.
+- Five focused self-security tests pass, including the isolated secret-scanning
+  regression case.
+- Pinned runtime validation passes. Full repository validation remains blocked
+  by the expired `ha-CPsWMS` legacy blocking-risk review due on 18 August 2026.
+- No risk extension, enforcement approval, or repository-setting change is
+  included in this review update.
 
 ## Release Decision
 
