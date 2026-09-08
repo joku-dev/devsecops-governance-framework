@@ -1,6 +1,6 @@
 # Source Document Intake Status
 
-Generated: `2026-07-18T10:45:05Z`
+Generated: `2026-09-08T16:59:36Z`
 
 ## Decision State
 
@@ -74,8 +74,8 @@ Generated: `2026-07-18T10:45:05Z`
 |---|---|---|---|---:|
 | `DEVSECOPS-POL-SRC-001` | `draft` | `policy, devsecops` | `draft_source_of_truth_decision_required` | `2` |
 | `DEVSECOPS-DIR-SRC-001` | `draft` | `directive, devsecops` | `draft_source_of_truth_decision_required` | `2` |
-| `DSCB-STD-SRC-001` | `intake` | `devsecops` | `accepted_intake` | `71` |
-| `PRA-STD-SRC-001` | `intake` | `platform, devsecops` | `accepted_intake` | `18` |
+| `DSCB-STD-SRC-001` | `intake` | `devsecops` | `accepted_intake` | `87` |
+| `PRA-STD-SRC-001` | `intake` | `platform, devsecops` | `accepted_intake` | `30` |
 | `ARCH-SDD-SRC-001` | `intake` | `architecture` | `accepted_intake` | `25` |
 | `ARCH-TPL-SRC-001` | `candidate` | `architecture` | `candidate_similarity_review_required` | `0` |
 | `ARCH-EA-SRC-001` | `candidate` | `architecture` | `candidate_similarity_review_required` | `0` |

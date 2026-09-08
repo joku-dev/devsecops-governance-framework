@@ -1,0 +1,47 @@
+{
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "observed_at": "2026-07-18T16:00:00Z",
+  "api_errors": [],
+  "repository": {
+    "visibility": "public",
+    "default_branch": "main",
+    "branch_protected": true,
+    "required_approving_reviews": 1,
+    "required_status_checks": [
+      "validate-and-report",
+      "governance-repository-security"
+    ],
+    "force_push_blocked": true,
+    "deletion_blocked": true,
+    "signed_changes_required": true
+  },
+  "security_features": {
+    "secret_scanning": "enabled",
+    "secret_scanning_push_protection": "enabled",
+    "dependabot_security_updates": "enabled",
+    "dependabot_config_present": true,
+    "codeql_workflow_present": true,
+    "private_vulnerability_reporting": true
+  },
+  "actions": {
+    "allowed_actions": "selected",
+    "sha_pinning_required": true,
+    "default_workflow_permissions": "read",
+    "can_approve_pull_request_reviews": false,
+    "workflow_count": 16,
+    "explicit_permissions_count": 16,
+    "third_party_unpinned_refs": [],
+    "direct_main_write_workflows": []
+  },
+  "ownership": {
+    "present": true,
+    "missing_critical_paths": []
+  },
+  "release_integrity": {
+    "release_tags": [
+      "architecture-baseline-l1-v0.1.0",
+      "l1-baseline-v1.1.3"
+    ],
+    "unverified_release_tags": []
+  }
+}

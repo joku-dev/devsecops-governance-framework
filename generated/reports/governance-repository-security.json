@@ -1,0 +1,272 @@
+{
+  "schema_version": "0.1.0",
+  "assessment_type": "governance-repository-self-security",
+  "profile_id": "governance-repository-self-security",
+  "profile_version": "0.1.0",
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "observed_at": "2026-07-18T16:07:41Z",
+  "enforcement": "report_only",
+  "enforcement_change_authorized": false,
+  "overall_status": "findings",
+  "summary": {
+    "criteria": 15,
+    "pass": 7,
+    "fail": 8,
+    "critical_failures": 5,
+    "high_failures": 3
+  },
+  "criteria": [
+    {
+      "id": "GRS-001",
+      "key": "default_branch_protected",
+      "title": "Default branch protected",
+      "severity": "critical",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "evidence_refs": [
+        "github:branches/main/protection",
+        "github:rulesets"
+      ]
+    },
+    {
+      "id": "GRS-002",
+      "key": "pull_request_review_required",
+      "title": "Pull request and approving review required",
+      "severity": "critical",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "evidence_refs": [
+        "github:branches/main/protection",
+        "github:rulesets"
+      ]
+    },
+    {
+      "id": "GRS-003",
+      "key": "governance_ci_required",
+      "title": "Governance CI is a required status check",
+      "severity": "critical",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "evidence_refs": [
+        "github:branches/main/protection",
+        ".github/workflows/governance-ci.yml"
+      ]
+    },
+    {
+      "id": "GRS-004",
+      "key": "destructive_branch_changes_blocked",
+      "title": "Force pushes and branch deletion blocked",
+      "severity": "critical",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "evidence_refs": [
+        "github:branches/main/protection",
+        "github:rulesets"
+      ]
+    },
+    {
+      "id": "GRS-005",
+      "key": "signed_changes_required",
+      "title": "Signed changes required on the default branch",
+      "severity": "high",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "evidence_refs": [
+        "github:branches/main/protection/required_signatures",
+        "github:rulesets"
+      ]
+    },
+    {
+      "id": "GRS-006",
+      "key": "secret_scanning_enabled",
+      "title": "Secret scanning enabled",
+      "severity": "critical",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "evidence_refs": [
+        "github:repository/security_and_analysis"
+      ]
+    },
+    {
+      "id": "GRS-007",
+      "key": "secret_push_protection_enabled",
+      "title": "Secret push protection enabled",
+      "severity": "critical",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "evidence_refs": [
+        "github:repository/security_and_analysis"
+      ]
+    },
+    {
+      "id": "GRS-008",
+      "key": "dependency_security_enabled",
+      "title": "Dependency alerts and security updates enabled",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "evidence_refs": [
+        "github:repository/security_and_analysis",
+        ".github/dependabot.yml"
+      ]
+    },
+    {
+      "id": "GRS-009",
+      "key": "code_scanning_configured",
+      "title": "Code scanning configured",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "evidence_refs": [
+        ".github/workflows/codeql.yml"
+      ]
+    },
+    {
+      "id": "GRS-010",
+      "key": "third_party_actions_sha_pinned",
+      "title": "Third-party GitHub Actions pinned to full commit SHAs",
+      "severity": "high",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "evidence_refs": [
+        ".github/workflows/",
+        "github:actions/permissions"
+      ]
+    },
+    {
+      "id": "GRS-011",
+      "key": "workflow_permissions_restricted",
+      "title": "Default and explicit workflow permissions restricted",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "evidence_refs": [
+        "github:actions/permissions/workflow",
+        ".github/workflows/"
+      ]
+    },
+    {
+      "id": "GRS-012",
+      "key": "critical_paths_owned",
+      "title": "Critical governance paths have explicit owners",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "evidence_refs": [
+        ".github/CODEOWNERS"
+      ]
+    },
+    {
+      "id": "GRS-013",
+      "key": "automated_main_writes_absent",
+      "title": "Automation cannot push operational data directly to the default branch",
+      "severity": "critical",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "evidence_refs": [
+        ".github/workflows/"
+      ]
+    },
+    {
+      "id": "GRS-014",
+      "key": "release_tags_verified",
+      "title": "Governance release tags are cryptographically verified",
+      "severity": "high",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "evidence_refs": [
+        "git:release-tags",
+        "releases/"
+      ]
+    },
+    {
+      "id": "GRS-015",
+      "key": "private_vulnerability_reporting_enabled",
+      "title": "Private vulnerability reporting is enabled",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "evidence_refs": [
+        "github:private-vulnerability-reporting",
+        "SECURITY.md"
+      ]
+    }
+  ],
+  "observation": {
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "observed_at": "2026-07-18T16:07:41Z",
+    "api_errors": [
+      "gh: Branch not protected (HTTP 404)",
+      "gh: Branch not protected (HTTP 404)"
+    ],
+    "repository": {
+      "visibility": "public",
+      "default_branch": "main",
+      "branch_protected": false,
+      "required_approving_reviews": 0,
+      "required_status_checks": [],
+      "force_push_blocked": false,
+      "deletion_blocked": false,
+      "signed_changes_required": false
+    },
+    "security_features": {
+      "secret_scanning": "enabled",
+      "secret_scanning_push_protection": "enabled",
+      "dependabot_security_updates": "enabled",
+      "dependabot_config_present": true,
+      "codeql_workflow_present": true,
+      "private_vulnerability_reporting": true
+    },
+    "actions": {
+      "allowed_actions": "all",
+      "sha_pinning_required": false,
+      "default_workflow_permissions": "read",
+      "can_approve_pull_request_reviews": false,
+      "workflow_count": 17,
+      "explicit_permissions_count": 17,
+      "third_party_unpinned_refs": [],
+      "direct_main_write_workflows": [
+        ".github/workflows/intake-architecture-result.yml",
+        ".github/workflows/intake-evidence-trust.yml",
+        ".github/workflows/intake-governance-result.yml",
+        ".github/workflows/portfolio-status.yml"
+      ]
+    },
+    "ownership": {
+      "present": true,
+      "missing_critical_paths": []
+    },
+    "release_integrity": {
+      "release_tags": [
+        "architecture-baseline-l1-v0.1.0",
+        "l1-baseline-v1.1.3",
+        "v0.1.0-public-adoption"
+      ],
+      "unverified_release_tags": [
+        "architecture-baseline-l1-v0.1.0",
+        "l1-baseline-v1.1.3",
+        "v0.1.0-public-adoption"
+      ]
+    }
+  },
+  "decision_boundary": {
+    "blocks_pull_requests": false,
+    "changes_repository_settings": false,
+    "changes_released_baselines": false
+  }
+}

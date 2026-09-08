@@ -57,7 +57,7 @@ permissions:
 jobs:
   released-l1-baseline:
     name: Released DevSecOps L1 Baseline v1.0.0
-    uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@l1-baseline-v1.0.0
+    uses: joku-dev/devsecops-governance-as-code/.github/workflows/devsecops-baseline-reusable.yml@288c9cc79c8508149394c7802c79b8eb543ec441 # l1-baseline-v1.0.0
     with:
       level: L1
       max_allowed_severity: ${{ inputs.max_allowed_severity }}

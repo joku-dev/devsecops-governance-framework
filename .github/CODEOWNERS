@@ -14,6 +14,11 @@
 /docs/publishing/ @joku-dev
 
 # Governance model and validation surface
+/model/controls/ @joku-dev
+/model/evidence/ @joku-dev
+/model/platform/ @joku-dev
+/model/traceability/ @joku-dev
+/policies/opa/ @joku-dev
 /schemas/ @joku-dev
 /scripts/ @joku-dev
 /.github/workflows/ @joku-dev
