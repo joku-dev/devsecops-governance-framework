@@ -296,7 +296,7 @@ Recommended sequence:
 3. Add signature evidence for application artifacts.
 4. Add identity evidence for Bamboo plan execution.
 5. Add branch permission and merge-check evidence from Bitbucket.
-6. Only then consider blocking behavior for missing signatures.
+6. Only then consider blocking behavior for missing signatures, subject to accountable approval, platform-specific readiness, and documented waiver/rollback paths. Evidence capability alone does not authorize enforcement.
 
 Potential signing evidence paths:
 

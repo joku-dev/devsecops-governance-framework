@@ -86,7 +86,7 @@ The reference plan uses Bamboo variables so each application repository can adop
 | `bitbucket.direct.push.allowed` | empty | Optional boolean once Bitbucket branch permissions are queried. |
 | `bitbucket.review.required` | empty | Optional boolean once Bitbucket merge checks are queried. |
 
-Use `report-only` first. Switch to `block-on-error` only after the repository produces stable evidence and Bitbucket branch-permission lookup is reliable.
+Use `report-only` first. Any switch to `block-on-error` additionally requires accountable approval, a validated platform-specific readiness assessment, and agreed waiver/rollback paths. Stable evidence and reliable Bitbucket permission lookup alone are insufficient. Use [Blocking Readiness](../status/blocking-readiness.md) as the central criteria reference and explicitly validate or record unsupported platform capabilities.
 
 ## Normalized Evidence Outputs
 
@@ -155,7 +155,7 @@ python3 scripts/intake_ci_artifact_bundle.py \
 
 10. Add Bitbucket branch-permission and merge-check lookup.
 11. Replace placeholder SBOM and vulnerability evidence with real scanner outputs.
-12. Move selected repositories from `report-only` to `block-on-error` or `waiver-required`.
+12. After the readiness assessment and accountable approval, move selected repositories from `report-only` to `block-on-error` or `waiver-required`.
 
 ## Safety Rules
 

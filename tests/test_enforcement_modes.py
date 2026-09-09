@@ -109,6 +109,7 @@ class EnforcementModeTests(unittest.TestCase):
 
     def test_demo_and_onboarding_consumers_select_report_only_explicitly(self):
         devsecops_consumers = (
+            "adoption-package/workflows/devsecops-baseline.yml",
             "examples/github-actions/workflows/application-devsecops-baseline-template.yml",
             "examples/github-actions/workflows/application-devsecops-baseline-with-governance-input-template.yml",
         )
