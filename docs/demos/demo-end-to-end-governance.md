@@ -1,5 +1,13 @@
 # End-to-End Governance Demo Runbook
 
+The result IDs in this runbook are retained July 2026 reference evidence. For
+current operations, use the [operations handbook](../operations/guides/governance-repository-operations-handbook.md).
+The existing ha-CPsWMS DevSecOps integration is a preserved legacy blocking risk,
+with review due 12 December 2026; see [mode alignment](../operations/status/blocking-mode-alignment.md).
+Explicitly select report-only for a diagnostic demonstration and inspect the
+consumer trigger configuration before starting a live run. This runbook does not
+authorize changing its registered mode or introducing new blocking.
+
 ## Purpose
 
 This runbook describes the live demo for the governance-as-code repository with the
@@ -57,7 +65,8 @@ Why this matters:
 
 ## Current Mainline Results
 
-These values are the known-good state after the current end-to-end test.
+These values are the retained known-good observations from 15 July 2026, not a
+fresh evaluation of the application today.
 
 | Domain | Repository | Status | Baseline | Last mainline run | Commit | Generated |
 |---|---|---|---|---|---|---|
@@ -73,8 +82,8 @@ Expected summaries:
 
 Interpretation:
 
-- The current `ha-CPsWMS` mainline is demo-ready for both governance domains.
-- The result does not mean formal production approval. It means the repository passes the currently released report-only governance checks.
+- The recorded `ha-CPsWMS` mainline evidence demonstrates both governance domains at that revision.
+- The result is not production approval or evidence of current freshness. A passing result alone does not establish the enforcement mode of a later run.
 
 ## Public Source Placeholders
 
@@ -374,7 +383,7 @@ In `joku-dev/ha-CPsWMS`, show these GitHub Actions workflows:
 | Workflow | Purpose | Expected demo behavior |
 |---|---|---|
 | `DevSecOps Baseline` | Runs the released DevSecOps baseline | Passes on mainline |
-| `DevSecOps Governance` | Runs DevSecOps governance with selectable mode | Report-only by default for demo |
+| `DevSecOps Governance` | Runs DevSecOps governance with selectable mode | Explicit report-only for diagnostics; inspect the actual main-push mode |
 | `Architecture Runtime Governance` | Runs architecture governance against `architecture-baseline-l1-v0.1.0` | Passes on mainline |
 
 Explain:
@@ -388,8 +397,8 @@ Explain:
 
 Expected interpretation:
 
-- The demo is safe to run live because findings can be reported without blocking.
-- The same mechanics can later be hardened into mandatory gates.
+- Inspect the selected trigger and mode before a live run; the existing mainline integration must not be assumed nonblocking.
+- New mandatory gates require readiness, accountable approval and a separate consumer change.
 
 ## Demo Step 5: Trigger A Live Mainline Refresh
 
@@ -445,7 +454,7 @@ Expected interpretation:
 
 - If a pull-request workflow succeeds, the proposed change has report evidence in the app repository, but the central viewer is not expected to update.
 - If a `main` push workflow succeeds and the viewer updates, the downstream-to-governance loop is working.
-- If a `main` push workflow succeeds but the viewer does not update, inspect the governance intake workflow.
+- If a `main` push workflow succeeds but the viewer does not update, inspect intake, its bot PR review/merge, and Pages publication.
 
 ## Demo Step 7: Observe Governance Intake
 
@@ -469,11 +478,9 @@ status/architecture-results-index.json
 generated/viewer/status-viewer.html
 ```
 
-- The intake workflows regenerate indexes and the viewer before committing.
-- Distinct consumer runs retain separate concurrency identities, and commit
-  retries reconcile near-simultaneous updates to shared projections.
-- Failed collections are stored append-only before the intake workflow ends in
-  failure. A retryable record can be routed back through the matching existing
+- The intake workflows regenerate indexes and the viewer before proposing scoped bot PRs. Official main state changes after review and merge.
+- Distinct consumer runs retain separate concurrency identities. Concurrent PR conflicts require reconciliation of all accepted records and regenerated shared projections before final review.
+- Failed collections are prepared as append-only records and proposed through the publication path before the intake workflow ends in failure. A failed publication remains visible in Actions and still needs recovery; unmerged records are not yet accepted main state. A retryable record can be routed back through the matching existing
   intake with `Retry Collection Attempt`.
 
 Expected interpretation:
@@ -532,7 +539,7 @@ The demo should run report-only unless a blocking gate is intentionally demonstr
 Why:
 
 - Report-only mode is the safest way to demonstrate rollout.
-- Blocking mode is useful after teams agree on evidence quality, exceptions and remediation paths.
+- New blocking requires the current readiness assessment, accountable approval and a separate consumer change; agreement on evidence paths alone is insufficient.
 - Both modes should use the same evidence and policy logic so the governance result remains comparable.
 
 Interpretation:
@@ -655,12 +662,12 @@ Use the viewer's `Collection Attempts` section to distinguish an `open`,
    authentication, availability, or artifact cause.
 3. Start `Retry Collection Attempt` and provide that repository-relative path.
 4. Follow the newly dispatched intake workflow.
-5. Regenerate or refresh the viewer after the successful intake commit; the
+5. Review and merge the successful intake PR, then verify the published viewer; the
    lifecycle should become `resolved` while the original failure remains.
 
 Do not retry a `permanent` attempt without correcting and producing new source
-evidence. Concurrent Git push conflicts are handled by the intake workflows'
-rebase-and-retry loop and are separate from Collection Attempt recovery.
+evidence. Concurrent operational PR conflicts require branch reconciliation and
+regeneration before review/merge; this is separate from Collection Attempt recovery.
 
 ### GitHub Authentication Fails
 
