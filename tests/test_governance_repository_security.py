@@ -3,6 +3,8 @@ import copy
 import json
 import sys
 import unittest
+from unittest.mock import patch
+import tempfile
 
 import yaml
 from jsonschema import Draft202012Validator
@@ -10,10 +12,35 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from assess_governance_repository_security import assess, render_markdown
+from assess_governance_repository_security import assess, render_markdown, active_rulesets, scan_workflows
 
 
 class GovernanceRepositorySecurityTests(unittest.TestCase):
+    def test_only_rules_applicable_to_main_are_observed(self):
+        with patch("assess_governance_repository_security.gh_api", return_value=([], None)) as api:
+            self.assertEqual(active_rulesets("owner/repo"), ([], []))
+            api.assert_called_once_with("repos/owner/repo/rules/branches/main")
+        rules = [{"type": "pull_request", "parameters": {"required_approving_review_count": 1}}]
+        with patch("assess_governance_repository_security.gh_api", return_value=(rules, None)):
+            self.assertEqual(active_rulesets("owner/repo"), ([{"rules": rules}], []))
+        with patch("assess_governance_repository_security.gh_api", return_value=(None, "denied")):
+            self.assertEqual(active_rulesets("owner/repo"), ([], ["denied"]))
+
+    def test_unknown_write_capability_is_not_assumed_safe(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            workflows = root / ".github/workflows"
+            workflows.mkdir(parents=True)
+            (workflows / "unknown.yml").write_text("permissions:\n  contents: write\n")
+            (workflows / "review.yml").write_text(
+                "permissions:\n  contents: write\nsteps:\n"
+                "  - run: python3 scripts/publish_operational_update.py --scope portfolio\n"
+            )
+            with patch("assess_governance_repository_security.ROOT", root):
+                observation = scan_workflows()
+            self.assertEqual(observation["direct_main_write_workflows"], [".github/workflows/unknown.yml"])
+            self.assertEqual(observation["operational_review_workflows"], [".github/workflows/review.yml"])
+
     @classmethod
     def setUpClass(cls):
         cls.model = yaml.safe_load(

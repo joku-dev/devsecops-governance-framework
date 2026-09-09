@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
+  actions: write # Dispatch required checks for GITHUB_TOKEN-created PRs.
 
 concurrency:
   group: portfolio-status
@@ -14,10 +16,13 @@ concurrency:
 
 jobs:
   refresh:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Check out governance repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -35,28 +40,7 @@ jobs:
       - name: Validate portfolio status
         run: python3 -m unittest discover -s tests -p "test_portfolio_onboarding_status.py"
 
-      - name: Commit refreshed portfolio status
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          for attempt in 1 2 3; do
-            git reset --mixed HEAD
-            git pull --rebase --autostash origin main
-            python3 scripts/generate_portfolio_onboarding_status.py
-            python3 -m unittest discover -s tests -p "test_portfolio_onboarding_status.py"
-            git add generated/reports/portfolio-onboarding-status.json generated/reports/portfolio-onboarding-status.md
-            if git diff --cached --quiet; then
-              echo "No semantic portfolio status changes."
-              exit 0
-            fi
-            git commit -m "Refresh portfolio onboarding status"
-            if git push; then
-              exit 0
-            fi
-            git reset --soft HEAD~1
-            sleep $((attempt * 2))
-          done
-
-          echo "Could not push portfolio status after retries."
-          exit 1
+      - name: Open operational review PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/publish_operational_update.py --scope portfolio
