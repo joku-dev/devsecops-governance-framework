@@ -56,14 +56,23 @@ def workflow_files() -> list[Path]:
 def scan_workflows() -> dict:
     unpinned = []
     write_workflows = []
+    review_workflows = []
     explicit_permissions = []
     for path in workflow_files():
         relative = str(path.relative_to(ROOT))
         content = path.read_text(encoding="utf-8")
         if re.search(r"(?m)^permissions:\s*$", content):
             explicit_permissions.append(relative)
-        if re.search(r"(?m)^\s*contents:\s*write\s*$", content) and "git push" in content:
-            write_workflows.append(relative)
+        if re.search(r"(?m)^\s*contents:\s*write\s*$", content):
+            reviewed_writer = re.search(
+                r"scripts/publish_operational_update\.py --scope (devsecops|architecture|typed-evidence|portfolio)\b",
+                content,
+            )
+            if reviewed_writer and "git push" not in content:
+                review_workflows.append(relative)
+            else:
+                # An unknown write-capable workflow is not evidence of a safe route.
+                write_workflows.append(relative)
         for action, ref in USES_REF.findall(content):
             if action.startswith("./") or action.startswith("joku-dev/"):
                 continue
@@ -74,6 +83,7 @@ def scan_workflows() -> dict:
         "explicit_permissions_count": len(explicit_permissions),
         "third_party_unpinned_refs": unpinned,
         "direct_main_write_workflows": write_workflows,
+        "operational_review_workflows": review_workflows,
     }
 
 
@@ -98,20 +108,12 @@ def tag_verification() -> dict:
 
 
 def active_rulesets(repository: str) -> tuple[list[dict], list[str]]:
-    summaries, error = gh_api(f"repos/{repository}/rulesets")
-    if error or not isinstance(summaries, list):
-        return [], [error or "Ruleset response was not a list"]
-    rulesets = []
-    errors = []
-    for summary in summaries:
-        if summary.get("enforcement") != "active":
-            continue
-        detail, detail_error = gh_api(f"repos/{repository}/rulesets/{summary['id']}")
-        if detail_error or not isinstance(detail, dict):
-            errors.append(detail_error or f"Ruleset {summary['id']} response was not an object")
-            continue
-        rulesets.append(detail)
-    return rulesets, errors
+    # GitHub resolves inclusion/exclusion and inherited rules for the actual branch.
+    # Rules protecting a test or release branch must not make main appear protected.
+    rules, error = gh_api(f"repos/{repository}/rules/branches/main")
+    if error or not isinstance(rules, list):
+        return [], [error or "Applicable branch rules response was not a list"]
+    return ([{"rules": rules}] if rules else []), []
 
 
 def ruleset_rule(rulesets: list[dict], rule_type: str) -> list[dict]:

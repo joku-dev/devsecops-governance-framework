@@ -1,177 +1,102 @@
 # Public Repository Quickstart
 
-## Purpose
+## Goal And Safe Defaults
 
-This quickstart shows how an application repository can consume the public DevSecOps Governance Framework without copying governance logic into the application repository.
+Start a consumer pilot with the released DevSecOps L1 baseline
+`l1-baseline-v1.1.3` and, if in scope, Architecture L1
+`architecture-baseline-l1-v0.1.0`.
 
-Use this repository as the central baseline:
+All new pilot runs use `report-only`, including pushes to `main`. The released
+DevSecOps wrapper still defaults to `block-on-error`, so explicitly supply
+`governance_mode: report-only`. Architecture uses `fail_on_findings: false`.
+A successful job proves execution; inspect the findings and source evidence.
 
-```text
-joku-dev/devsecops-governance-framework
+Use the [pilot runbook](pilot-runbook.md) for roles, scope and exit decisions,
+and the [central operations handbook](../operations/guides/governance-repository-operations-handbook.md)
+for intake, reviews, daily reporting and recovery.
+
+## 1. Select A Reviewed Adoption Template
+
+The complete copyable workflows are maintained in `adoption-package/workflows/`.
+Use that package from the current reviewed repository revision and record its
+commit SHA. Copies in old release tags describe their historical defaults and
+must be reviewed before use; copying an old template does not apply later fixes.
+The reusable workflows called by the template remain pinned to released baselines.
+
+From a local checkout of the governance repository:
+
+```bash
+git rev-parse HEAD
 ```
 
-The application repository remains responsible for building its own artifact, producing evidence, and deciding when governance should become blocking.
+In the application repository, create a feature branch and copy:
 
-## Recommended Adoption Path
+| Source | Application destination |
+|---|---|
+| `adoption-package/workflows/devsecops-baseline.yml` | `.github/workflows/devsecops-baseline.yml` |
+| `adoption-package/workflows/architecture-governance.yml` (optional) | `.github/workflows/architecture-governance.yml` |
 
-1. Start with `report-only` on pull requests and manual runs.
-2. Keep `block-on-error` only for protected `main` release or integration runs.
-3. Upload evidence as GitHub Actions artifacts.
-4. Review generated reports before making the workflow a required check.
-5. Replace placeholder evidence with real SBOM, vulnerability, static-analysis, traceability, and architecture evidence.
-
-## Copyable Adoption Package
-
-Use the repository adoption package when you want file-based templates instead of copying from this page:
-
-```text
-adoption-package/
-```
-
-It contains ready-to-copy GitHub Actions workflows, minimal evidence examples, optional architecture evidence placeholders, and a first-adoption checklist.
-
-## Minimal DevSecOps Baseline Workflow
-
-Create this file in the application repository:
-
-```text
-.github/workflows/devsecops-baseline.yml
-```
+The DevSecOps call must retain this explicit input for every pilot trigger:
 
 ```yaml
-name: DevSecOps Baseline
-
-on:
-  pull_request:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  actions: read
-  pull-requests: read
-
-jobs:
-  prepare-evidence:
-    name: Prepare Evidence
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout application repository
-        uses: actions/checkout@v4
-
-      - name: Build artifact and evidence
-        run: |
-          mkdir -p dist security governance
-          echo "replace with real build output" > dist/application-artifact.txt
-
-          cat > security/sbom.cyclonedx.json <<'JSON'
-          {
-            "bomFormat": "CycloneDX",
-            "specVersion": "1.5",
-            "version": 1,
-            "components": []
-          }
-          JSON
-
-          cat > security/vulnerability-scan.json <<'JSON'
-          {
-            "scanner": "placeholder",
-            "max_severity": "none",
-            "findings": []
-          }
-          JSON
-
-          cat > governance/governance-run-input.json <<'JSON'
-          {
-            "release_candidate": true,
-            "required_platform_level": "PRA-Level 1"
-          }
-          JSON
-
-      - name: Upload application evidence
-        uses: actions/upload-artifact@v4
-        with:
-          name: application-evidence
-          path: |
-            dist/application-artifact.txt
-            security/sbom.cyclonedx.json
-            security/vulnerability-scan.json
-            governance/governance-run-input.json
-
-  devsecops-baseline:
-    name: Central DevSecOps Baseline
-    needs: prepare-evidence
-    uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
-    with:
-      governance_mode: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'block-on-error' || 'report-only' }}
-      max_allowed_severity: high
-      artifact_path: dist/application-artifact.txt
-      sbom_path: security/sbom.cyclonedx.json
-      vulnerability_scan_path: security/vulnerability-scan.json
-      governance_run_input_path: governance/governance-run-input.json
-      application_evidence_artifact_name: application-evidence
-      generate_demo_evidence: false
+governance_mode: report-only
 ```
 
-## Minimal Architecture Governance Workflow
+Do not add an event-based expression that enables blocking on the first main
+push. Use the adoption package's complete workflow rather than combining partial
+JSON or YAML snippets from historical examples.
 
-Create this file in the application repository when architecture runtime evidence should also be evaluated:
+## 2. Produce Evidence
 
-```text
-.github/workflows/architecture-governance.yml
-```
+Replace the package's first-run placeholders with application-owned outputs:
 
-```yaml
-name: Architecture Governance
+| File in `application-evidence` | Purpose |
+|---|---|
+| `dist/application-source.tar.gz` or adjusted artifact path | Actual application build/source artifact |
+| `security/sbom.cyclonedx.json` | Generated SBOM |
+| `security/vulnerability-scan.json` | Real scan data matching the consumed contract |
+| `governance/governance-run-input.json` | Structured input based on actual repository/pipeline context |
 
-on:
-  pull_request:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+Keep uploaded paths and workflow inputs aligned. Placeholder records may prove
+wiring only and must be labelled in the pilot decision. They are not accepted
+compliance evidence. See the [evidence contract](../operations/evidence/governance-evidence-contract.md).
 
-permissions:
-  contents: read
+## 3. Run And Inspect
 
-jobs:
-  architecture-governance:
-    name: Architecture L1 Baseline
-    uses: joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0
-    with:
-      release_id: ${{ github.sha }}
-      solution_baseline: example-solution-baseline
-      application_path: .
-      upload_evidence: true
-      fail_on_findings: false
-```
+1. Open the application PR and run the workflow in report-only mode.
+2. Inspect job summaries and download the artifacts.
+3. After review, merge through the application's normal protections and inspect
+   its mainline run. The governance mode remains report-only.
+4. Record run URL, source commit, baseline pin, real versus placeholder evidence
+   and findings in the adoption decision record.
 
-## Evidence Files
+Expected artifact names from the released DevSecOps workflow include
+`application-evidence` and `devsecops-pipeline-evidence`, plus
+`devsecops-governance-run-input` when structured governance input is supplied.
+Central intake derives control-evaluation reports from the collected input;
+these are not an additional producer artifact promised by this wrapper.
 
-The first DevSecOps baseline run needs these files in the uploaded `application-evidence` artifact:
+Technical exceptions can still fail a report-only workflow. Report-only changes
+how governance findings affect exit status; it does not guarantee every job succeeds.
 
-| File | Purpose |
-| --- | --- |
-| `dist/application-artifact.txt` | Build artifact or package metadata. |
-| `security/sbom.cyclonedx.json` | Machine-readable SBOM. |
-| `security/vulnerability-scan.json` | Vulnerability scan summary with `max_severity`. |
-| `governance/governance-run-input.json` | Optional structured control-evaluation input. |
+## 4. Review Central Intake
 
-For production adoption, replace placeholders with real tool output.
+The central [intake guide](../operations/evidence/governance-result-intake-and-viewer-usage.md)
+explains manual or producer-triggered intake. The central collector creates a
+bot PR. Official indexes and the viewer update after that PR is reviewed and
+merged, not merely after collection succeeds. Token setup is documented in
+[GitHub access maintenance](../operations/security/github-access-and-token-maintenance.md).
 
-## Expected Result
+## 5. Record The Pilot Decision
 
-A successful first integration should produce:
+Complete `adoption-package/checklists/first-adoption-checklist.md` and
+`adoption-package/templates/adoption-decision-record.md`. Assign owners to gaps.
 
-- `application-evidence`
-- `devsecops-pipeline-evidence`
-- optional architecture governance evidence
-- a GitHub Actions job summary with governance status
+Continue report-only until the separate
+[blocking migration procedure](../operations/processes/blocking-enforcement-migration-guide.md)
+is satisfied. It requires current readiness evidence and accountable approval;
+several green jobs alone are insufficient. Verify actual GitHub check names
+before introducing any required-check binding.
 
-Pull requests should normally run `report-only` first. After evidence is stable and branch protection is configured, make the baseline a required check and keep `block-on-error` for `main`.
-
-## Working Reference
-
-The `joku-dev/governance-framework-demo-consumer` repository is the neutral public reference consumer. Its governance workflows demonstrate the public baseline consumption pattern.
+The existing `ha-CPsWMS` blocking mode is a documented legacy exception, not the
+new-pilot default. See [blocking alignment](../operations/status/blocking-mode-alignment.md).

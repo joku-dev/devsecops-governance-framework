@@ -60,28 +60,35 @@ class ReplayTriageReportTests(unittest.TestCase):
         self.assertEqual(report["official_latest_findings"], latest_findings)
         self.assertFalse(any(report["decision_boundary"].values()))
 
-    def test_all_intake_workflows_regenerate_and_commit_replay_triage(self):
+    def test_all_intake_workflows_regenerate_and_propose_replay_triage(self):
+        from publish_operational_update import allowed
         for workflow_name in (
             "intake-governance-result.yml",
             "intake-architecture-result.yml",
             "intake-evidence-trust.yml",
         ):
             content = (ROOT / ".github" / "workflows" / workflow_name).read_text(encoding="utf-8")
-            self.assertGreaterEqual(content.count("python3 scripts/generate_replay_triage_report.py"), 2)
-            self.assertGreaterEqual(content.count("python3 scripts/generate_status_viewer.py"), 2)
+            self.assertGreaterEqual(content.count("python3 scripts/generate_replay_triage_report.py"), 1)
+            self.assertGreaterEqual(content.count("python3 scripts/generate_status_viewer.py"), 1)
             self.assertLess(
                 content.index("python3 scripts/generate_replay_triage_report.py"),
                 content.index("python3 scripts/generate_status_viewer.py"),
             )
-            self.assertIn("generated/reports/replay-triage.json", content)
-            self.assertIn("generated/reports/replay-triage.md", content)
-            self.assertGreaterEqual(content.count("python3 scripts/generate_blocking_readiness.py"), 2)
-            self.assertIn("generated/reports/blocking-readiness.json", content)
-            self.assertGreaterEqual(content.count("python3 scripts/generate_blocking_mode_alignment.py"), 2)
-            self.assertIn("generated/reports/blocking-mode-alignment.json", content)
-            self.assertGreaterEqual(content.count("python3 scripts/generate_multi_consumer_readiness.py"), 2)
-            self.assertIn("generated/reports/multi-consumer-readiness.json", content)
-            self.assertIn("generated/reports/multi-consumer-readiness.md", content)
+            self.assertTrue(all(allowed("generated/reports/replay-triage.json", scope)
+                                for scope in ("devsecops", "architecture", "typed-evidence")))
+            self.assertTrue(all(allowed("generated/reports/replay-triage.md", scope)
+                                for scope in ("devsecops", "architecture", "typed-evidence")))
+            self.assertGreaterEqual(content.count("python3 scripts/generate_blocking_readiness.py"), 1)
+            self.assertTrue(all(allowed("generated/reports/blocking-readiness.json", scope)
+                                for scope in ("devsecops", "architecture", "typed-evidence")))
+            self.assertGreaterEqual(content.count("python3 scripts/generate_blocking_mode_alignment.py"), 1)
+            self.assertTrue(all(allowed("generated/reports/blocking-mode-alignment.json", scope)
+                                for scope in ("devsecops", "architecture", "typed-evidence")))
+            self.assertGreaterEqual(content.count("python3 scripts/generate_multi_consumer_readiness.py"), 1)
+            self.assertTrue(all(allowed("generated/reports/multi-consumer-readiness.json", scope)
+                                for scope in ("devsecops", "architecture", "typed-evidence")))
+            self.assertTrue(all(allowed("generated/reports/multi-consumer-readiness.md", scope)
+                                for scope in ("devsecops", "architecture", "typed-evidence")))
             self.assertLess(
                 content.index("python3 scripts/generate_replay_triage_report.py"),
                 content.index("python3 scripts/generate_blocking_readiness.py"),

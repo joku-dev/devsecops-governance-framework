@@ -61,7 +61,7 @@ Use this repository as a minimal reference when onboarding another application r
 2. Keep first runs in `report-only`.
 3. Replace placeholder SBOM and vulnerability evidence with real tool output.
 4. Add or approve application-specific architecture evidence.
-5. Enable blocking behavior only after branch protection and evidence quality are stable.
+5. Enable blocking only after the current [readiness assessment](../operations/status/blocking-readiness.md), accountable approval and a separate consumer change.
 
 ## Related Entry Points
 
