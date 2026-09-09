@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-08-17T03:12:37Z",
+  "generated_at": "2026-09-09T06:12:04Z",
   "summary": {
     "repository_count": 3,
-    "stale_or_missing_count": 2,
+    "stale_or_missing_count": 3,
     "report_only_count": 2,
     "active_count": 1
   },
@@ -74,7 +74,7 @@
         "run_id": "29636320472",
         "generated_at": "2026-07-18T07:47:11Z",
         "freshness": {
-          "status": "current",
+          "status": "stale",
           "stale_after": "2026-08-17T07:47:11Z"
         }
       },
@@ -89,7 +89,7 @@
           "stale_after": "2026-08-16T18:27:02Z"
         }
       },
-      "stale_or_missing": false,
+      "stale_or_missing": true,
       "governance_mode": "report-only",
       "next_action": "Review report-only findings"
     }

@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-09-08T16:59:36Z`
+Generated: `2026-09-09T06:10:47Z`
 
 ## Inputs
 
@@ -11,7 +11,7 @@ Generated: `2026-09-08T16:59:36Z`
 
 - Registered source documents: `21`
 - Source documents with lineage: `21`
-- Derived artifact links: `377`
+- Derived artifact links: `378`
 
 ## Domain Coverage
 
@@ -128,7 +128,7 @@ Representative artifacts:
 - Owner: `devsecops-owners`
 - Version: `public-placeholder`
 - Domains: `devsecops`
-- Lineage artifacts: `98`
+- Lineage artifacts: `99`
 - Source state: `active_source`
 - Release consideration: `baseline_release_review`
 - Review lanes: `devsecops-review, policy-as-code-review, release-review, schema-review, viewer-status-review`

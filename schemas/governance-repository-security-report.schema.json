@@ -2,9 +2,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Governance Repository Self-Security Assessment",
   "type": "object",
-  "required": ["schema_version", "assessment_type", "profile_id", "profile_version", "repository_id", "observed_at", "enforcement", "enforcement_change_authorized", "overall_status", "summary", "criteria", "observation", "decision_boundary"],
+  "required": ["schema_version", "assessment_type", "profile_id", "profile_version", "repository_id", "observed_at", "enforcement", "enforcement_change_authorized", "overall_status", "summary", "risk_statement", "criteria", "next_steps", "observation", "decision_boundary"],
   "properties": {
-    "schema_version": { "const": "0.1.0" },
+    "schema_version": { "const": "0.2.0" },
     "assessment_type": { "const": "governance-repository-self-security" },
     "profile_id": { "const": "governance-repository-self-security" },
     "profile_version": { "type": "string", "minLength": 1 },
@@ -25,12 +25,13 @@
       },
       "additionalProperties": false
     },
+    "risk_statement": { "type": "string", "minLength": 1 },
     "criteria": {
       "type": "array",
       "minItems": 10,
       "items": {
         "type": "object",
-        "required": ["id", "key", "title", "severity", "status", "observed", "expected", "evidence_refs"],
+        "required": ["id", "key", "title", "severity", "status", "observed", "detail", "expected", "evidence_refs"],
         "properties": {
           "id": { "type": "string", "pattern": "^GRS-[0-9]{3}$" },
           "key": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
@@ -38,8 +39,25 @@
           "severity": { "enum": ["critical", "high", "medium", "low"] },
           "status": { "enum": ["pass", "fail"] },
           "observed": {},
+          "detail": { "type": "string", "minLength": 1 },
           "expected": { "const": true },
           "evidence_refs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+        },
+        "additionalProperties": false
+      }
+    },
+    "next_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["priority", "title", "addresses", "prerequisites", "action", "acceptance_criteria"],
+        "properties": {
+          "priority": { "enum": ["P0", "P1", "P2"] },
+          "title": { "type": "string", "minLength": 1 },
+          "addresses": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^GRS-[0-9]{3}$" }, "uniqueItems": true },
+          "prerequisites": { "type": "array", "items": { "type": "string", "pattern": "^GRS-[0-9]{3}$" }, "uniqueItems": true },
+          "action": { "type": "string", "minLength": 1 },
+          "acceptance_criteria": { "type": "string", "minLength": 1 }
         },
         "additionalProperties": false
       }
