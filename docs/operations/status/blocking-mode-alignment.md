@@ -33,8 +33,15 @@ The time-bounded record:
 - lists the five unresolved readiness gaps
 - requires review by Repository Owner, Governance Platform Lead, Security, and
   Release Manager
-- expires for validation purposes after 18 August 2026
+- expires for validation purposes at the end of 12 December 2026 in Europe/Berlin
+  (`2026-12-12T22:59:59Z`)
 - never counts as valid activation under the new model
+
+On 9 September 2026 the maintainer explicitly extended the previous 18 August
+review deadline through 12 December 2026. The decision is recorded in
+[GCR-2026-050](../../governance/change-requests/GCR-2026-050-blocking-risk-review-extension.md).
+The five readiness gaps and required review roles remain open. This extension
+does not approve blocking activation or retroactively clear the expired period.
 
 ## Alignment States
 
