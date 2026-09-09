@@ -1,5 +1,11 @@
 # Adoption Decision Record
 
+A successful report-only pilot does not authorize blocking. Before selecting a
+controlled blocking pilot, attach the current [Blocking Readiness assessment](../../docs/operations/status/blocking-readiness.md),
+including Trust, replay, current Typed Evidence, observation sample, waiver and
+rollback paths, and the accountable approval. The checklist below supplements
+that assessment; it does not replace it.
+
 ## Decision Metadata
 
 | Field | Value |

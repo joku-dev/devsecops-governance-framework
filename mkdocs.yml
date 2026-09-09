@@ -70,6 +70,7 @@ nav:
       - Historical ha-CPsWMS Demo Guide: demos/demo-guide-2026-07-02-ha-cpswms.md
   - Operations:
       - Guides:
+          - Operations Handbook: operations/guides/governance-repository-operations-handbook.md
           - Overview: operations/guides/index.md
           - How To Use This Repo: operations/guides/how-to-use-this-repo.md
           - Beginner Guide: operations/guides/beginner-step-by-step-operations-guide.md
@@ -79,6 +80,7 @@ nav:
           - Updating Baseline Input Documents: operations/guides/how-to-update-baseline-input-documents.md
           - MkDocs And GitHub Pages Step By Step: operations/guides/mkdocs-and-github-pages-step-by-step.md
       - Processes:
+          - Backup And Recovery: operations/processes/governance-repository-backup-and-recovery.md
           - Overview: operations/processes/index.md
           - New Artifact Intake Process: operations/processes/new-artifact-intake-process.md
           - Source Document Intake Process: operations/processes/source-document-intake-process.md
@@ -113,8 +115,10 @@ nav:
       - Agent Usage Tracking: operations/agents/agent-usage-tracking.md
       - Agent Usage Snapshot Latest: operations/agents/agent-usage-snapshot-latest.md
       - Security:
+          - GitHub Access And Token Maintenance: operations/security/github-access-and-token-maintenance.md
           - Governance Repository Self-Security: operations/security/governance-repository-self-security.md
       - Status:
+          - Daily Governance Operations: operations/status/daily-governance-operations.md
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md
           - Multi-Consumer Readiness: operations/status/multi-consumer-readiness.md
           - Blocking Readiness: operations/status/blocking-readiness.md

@@ -1,5 +1,9 @@
 # Pilot Runbook
 
+For operation of the central repository, use the
+[operations handbook](../operations/guides/governance-repository-operations-handbook.md),
+including its end-to-end pilot acceptance tests. This page covers the consumer team.
+
 ## Purpose
 
 This runbook describes how to run a controlled first adoption of the public DevSecOps Governance Framework in an application repository.
@@ -83,7 +87,9 @@ adoption-package/checklists/first-adoption-checklist.md
 
 ## Step 3: Keep First Runs Report-Only
 
-The first pilot runs should not block pull requests or releases.
+All initial PR, main-branch push and manual pilot runs explicitly use `report-only`
+(architecture: `fail_on_findings: false`). The released DevSecOps wrapper defaults
+to blocking when the mode is omitted; always pass the override.
 
 Expected first mode:
 
@@ -91,7 +97,9 @@ Expected first mode:
 report-only
 ```
 
-Blocking mode may be considered only after:
+Blocking mode requires the current [Blocking Readiness assessment](../operations/status/blocking-readiness.md),
+accountable approval and a separate consumer change. The following operational
+checks supplement that assessment:
 
 - evidence paths are stable,
 - findings are understood,
@@ -156,7 +164,7 @@ Recommended decision states:
 | State | When to use |
 | --- | --- |
 | Continue report-only | Wiring works, but evidence or findings are not mature enough for blocking. |
-| Controlled blocking pilot | Evidence is stable and selected checks can become required in a limited scope. |
+| Controlled blocking pilot | Readiness criteria pass, accountable approval is recorded, and activation is a separate scoped consumer change. |
 | Not ready | Blocking issues prevent meaningful adoption until resolved. |
 
 ## Step 8: Follow Up

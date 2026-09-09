@@ -1,5 +1,12 @@
 # Official Entrypoints
 
+For current pilot and central operations, start with the
+[operations handbook](operations/guides/governance-repository-operations-handbook.md).
+It links the [daily report](operations/status/daily-governance-operations.md),
+[access maintenance](operations/security/github-access-and-token-maintenance.md),
+and [backup and recovery](operations/processes/governance-repository-backup-and-recovery.md).
+Dated reference runs and released documentation remain historical evidence.
+
 ## Purpose
 
 This page provides a single navigation point for the most important official documents in this repository.

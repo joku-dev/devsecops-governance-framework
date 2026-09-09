@@ -1,404 +1,150 @@
 # Beginner Step-By-Step Operations Guide
 
-## What This Repository Is
+## Choose Your Task
 
-This repository is not a normal application server.
+For daily observation, start with the
+[operations handbook](governance-repository-operations-handbook.md) and
+[daily report](../status/daily-governance-operations.md).
+For adding an application, use the [consumer quickstart](../../onboarding/public-repo-quickstart.md).
+This page explains a reviewed change to the central governance repository.
 
-You do not start it like a web backend or a database. Instead, you use it as an **operational governance workspace**.
+## Step 1: Prepare The Checkout And Tools
 
-That means:
-
-- you maintain governance content,
-- you validate that content,
-- you generate reports and rendered documents,
-- you evaluate governance rules,
-- you review the outputs,
-- and only then do you approve or change governance decisions.
-
-## What You Need Before You Start
-
-Open a terminal and go into the repository:
+In a clone of `joku-dev/devsecops-governance-framework`, inspect the worktree
+before changing branches. Keep unrelated local work separate.
 
 ```bash
-cd /workspace/devsecops-governance-framework
+git status --short
+git switch main
+git pull --ff-only origin main
+git switch -c docs/example-governance-change
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh --check-tools
 ```
 
-Useful tools:
+Use an unused branch name for the actual change. The bootstrap installs pinned
+Python dependencies and OPA into `.venv-validation`; no global pip installation
+is needed. See [local validation](local-validation-toolchain.md) for prerequisites,
+custom paths and checksum failures. The commands below assume the default path.
 
-- `python3`
-- `opa`
-- optionally `jsonschema` and `pyyaml` in your Python environment
+## Step 2: Classify And Edit The Source
 
-If you want the full local schema validation without warnings, install:
+Follow the [artifact intake process](../processes/new-artifact-intake-process.md)
+and record governance intent before deriving behavior from a new source.
+
+| Change | Primary paths |
+|---|---|
+| Control requirements | `model/controls/` |
+| Policy/directive rendering inputs | `docs/governance/`, `model/documents/` |
+| Platform and traceability | `model/platform/`, `model/traceability/` |
+| OPA behavior | `policies/opa/` plus representative tests |
+| Evidence contract | `schemas/`, `model/evidence/` plus existing examples/tests |
+| Operational documentation | `docs/operations/` and navigation |
+
+Edit the relevant source, not generated reports or historical result snapshots.
+Released packages/tags require an explicit release flow; a candidate source
+cannot authorize control or policy changes before its review decision.
+
+## Step 3: Validate And Regenerate Relevant Outputs
+
+Run full validation:
 
 ```bash
-python3 -m pip install jsonschema pyyaml
+./scripts/validate_all.sh
 ```
 
-## The Operational Big Picture
+This includes schema/model checks, runtime governance, OPA syntax and unit tests.
+Missing dependencies are a setup failure, not permission to skip validation.
 
-Operationally, the repository is used in this order:
-
-1. Open or update the governance source files.
-2. Validate that the repository is internally consistent.
-3. Generate governance artifacts and reports.
-4. Render `Policy` and `Directive`.
-5. Review the status viewer and reports.
-6. Run tests and policy checks.
-7. If needed, run the demo environment.
-8. Review results and commit changes.
-
-The rest of this guide explains each step in detail.
-
-## Step 1: Understand What You Are Editing
-
-Before changing anything, know where each type of information lives.
-
-### Controls
-
-Files in `model/controls/` contain the structured governance requirements.
-
-Examples:
-
-- `model/controls/dscb-l1.yaml`
-- `model/controls/dscb-l2.yaml`
-- `model/controls/dscb-l3.yaml`
-- `model/controls/dscb-gov.yaml`
-
-### Governance Documents
-
-These define the higher-level governance structure:
-
-- `docs/governance/devsecops-policy.md`
-- `docs/governance/devsecops-directive.md`
-- `model/documents/governance-documents.yaml`
-- `model/documents/governance-document-rendering.yaml`
-
-### Platform Capabilities
-
-These describe which platform functions support the controls:
-
-- `model/platform/platform-capabilities.yaml`
-- `model/platform/pra-levels.yaml`
-
-### Traceability
-
-These files explain how things relate:
-
-- `model/traceability/control-to-platform.yaml`
-- `model/traceability/document-to-control.yaml`
-
-### Rules
-
-Executable governance checks live here:
-
-- `policies/opa/`
-
-### Outputs
-
-Generated artifacts are written here:
-
-- `generated/xlsx/`
-- `generated/reports/`
-- `generated/documents/`
-- `generated/viewer/`
-- `generated/demo/`
-
-## Step 2: Make Your Governance Change
-
-Now edit the source files you actually want to change.
-
-Typical examples:
-
-- change a control requirement in `model/controls/`
-- update `Policy` or `Directive` text in `docs/`
-- add or adjust a platform capability in `model/platform/`
-- change traceability in `model/traceability/`
-- update approval or waiver logic in `model/waivers/`
-- update OPA rules in `policies/opa/`
-
-### What this step does
-
-This step changes the **governance source of truth**.
-
-At this point nothing has been validated or regenerated yet.
-
-## Step 3: Validate The Repository
-
-Run:
+Regenerate only outputs affected by your change. Examples:
 
 ```bash
-python3 scripts/validate_governance_repo.py
+.venv-validation/bin/python scripts/generate_traceability_csv.py
+.venv-validation/bin/python scripts/generate_document_control_matrix.py
+.venv-validation/bin/python scripts/generate_open_gap_report.py
+.venv-validation/bin/python scripts/render_governance_documents.py
+.venv-validation/bin/python scripts/generate_governance_graph.py
+.venv-validation/bin/python scripts/generate_status_viewer.py
 ```
 
-### What this step does
+These produce traceability CSV, document/control and gap reports, Policy and
+Directive renderings, the graph and viewer. The intake workflows regenerate
+scope-specific result projections automatically before proposing their PRs;
+see the [intake guide](../evidence/governance-result-intake-and-viewer-usage.md).
 
-This command checks whether the repository still makes sense after your change.
+If source changes after validation, rerun the affected checks and the full
+required validation before committing. Pure generated timestamp noise does not
+belong in a source-change commit; inspect the diff before omitting it.
 
-It validates things such as:
-
-- control structure,
-- traceability references,
-- known evidence types,
-- known platform capabilities,
-- governance document references,
-- OPA rule availability and syntax.
-
-### What you should expect
-
-If everything is fine, you should see:
-
-```text
-Validation passed
-```
-
-If you see warnings about `jsonschema`, the repo still works, but local schema validation is being skipped because the Python package is not installed.
-
-## Step 4: Generate The Core Governance Reports
-
-Run:
+## Step 4: Build And Inspect Documentation
 
 ```bash
-python3 scripts/generate_traceability_csv.py
-python3 scripts/generate_document_control_matrix.py
-python3 scripts/generate_open_gap_report.py
+python3 -m venv .venv-docs
+.venv-docs/bin/python -m pip install -r requirements-docs.txt
+.venv-docs/bin/mkdocs build --strict
 ```
 
-### What this step does
+Inspect the changed prose, navigation and relevant generated reports. A passing
+MkDocs build checks buildability and configured links; it does not prove that
+instructions or paths displayed as code are semantically correct.
 
-These scripts convert the governance source model into reviewable artifacts.
-
-### What each script creates
-
-#### `generate_traceability_csv.py`
-
-Creates:
-
-- `generated/xlsx/traceability_matrix.csv`
-
-Use it to understand:
-
-- which controls map to which platform capabilities,
-- which evidence is expected,
-- which controls are policy candidates,
-- which authority documents apply.
-
-#### `generate_document_control_matrix.py`
-
-Creates:
-
-- `generated/xlsx/document_control_matrix.csv`
-- `generated/reports/document-control-matrix.md`
-
-Use it to understand:
-
-- which governance documents authorize which controls,
-- how `Policy`, `Directive`, and `Standards` connect to the detailed requirements.
-
-#### `generate_open_gap_report.py`
-
-Creates:
-
-- `generated/xlsx/open_gap_report.csv`
-- `generated/reports/open-gap-report.md`
-
-Use it to understand:
-
-- what is still incomplete,
-- what remains only a draft,
-- what should be automated next,
-- where governance follow-up is needed.
-
-## Step 5: Render Policy And Directive
-
-Run:
+For an optional local demonstration, use the pinned tools:
 
 ```bash
-python3 scripts/render_governance_documents.py
+PATH="$PWD/.venv-validation/bin:$PATH" .venv-validation/bin/python scripts/run_demo.py
 ```
 
-### What this step does
+Generated demo results demonstrate representative cases; they do not replace
+real consumer evidence. Review and exclude unrelated demo output from the commit.
 
-This command creates review-ready files from the maintained `Policy` and `Directive`.
-
-### What it creates
-
-- `generated/documents/devsecops-pol-001.rendered.md`
-- `generated/documents/devsecops-pol-001.html`
-- `generated/documents/devsecops-dir-001.rendered.md`
-- `generated/documents/devsecops-dir-001.html`
-
-### What you use them for
-
-These are the files you can show to reviewers, governance stakeholders, or use as intermediate deliverables for later DOCX/PDF rendering.
-
-## Step 6: Generate The Status Viewer
-
-Run:
+## Step 5: Commit A Focused Change And Open A PR
 
 ```bash
-python3 scripts/generate_status_viewer.py
+git status --short
+git diff --check
+git diff --stat
 ```
 
-### What this step does
-
-This creates a static HTML dashboard that summarizes the current state of the repository.
-
-### What it creates
-
-- `generated/viewer/status-viewer.html`
-
-### What you see there
-
-The viewer shows:
-
-- current governance document status,
-- number of controls,
-- number of policy candidates,
-- current open gaps,
-- selected traceability and authority mappings,
-- links to generated reports and rendered documents.
-
-## Step 7: Run The Automated Tests
-
-Run:
+Stage the intended files explicitly. For example, for an actual change to the
+existing docs landing page:
 
 ```bash
-python3 -m unittest discover -s tests
+git add -- docs/index.md
+git diff --cached
+git commit -m "Clarify documentation entry points"
+git push -u origin HEAD
+gh pr create --base main
 ```
 
-### What this step does
+Replace the example file/message with the real scope. Include meaningful
+generated changes when required, not unrelated timestamps, `.DS_Store` files
+or editor artifacts. If commit signing is configured, use the configured valid
+key; resolve a signing failure deliberately rather than silently changing the
+repository's signing setup.
 
-This checks whether the repository scripts still work as expected.
+The PR should explain behavior, validation, release impact and known limits.
+PRs are required even when the source change is only documentation.
 
-The tests cover things like:
+## Step 6: Review, Merge And Verify
 
-- validation,
-- report generation,
-- document rendering,
-- status viewer generation,
-- demo execution.
+Check the PR's **Checks** and **Files changed** tabs. Main currently requires
+`validate-and-report`, `Analyze Python`, and `Governance Repository Security`,
+a current branch, resolved conversations, and one approval.
 
-### What success looks like
+The approval must come from another authorized account when you authored the
+PR. For a bot-authored operational PR, the maintainer can review it. Approving
+workflow execution is separate from approving the PR. Do not treat a prior
+one-off administrative exception as a standing review bypass.
 
-You should see something like:
-
-```text
-Ran 9 tests in ...
-OK
-```
-
-## Step 8: Check The OPA Rules Directly
-
-Run:
+After approval and successful checks, merge using GitHub. Then:
 
 ```bash
-opa check policies/opa
+git switch main
+git pull --ff-only origin main
+gh run list --branch main --limit 10
 ```
 
-### What this step does
-
-This verifies the syntax and loadability of the OPA/Rego rules.
-
-Use this especially when you changed files in `policies/opa/`.
-
-## Step 9: Run The Demo Environment
-
-Run:
-
-```bash
-python3 scripts/run_demo.py
-```
-
-### What this step does
-
-This runs a complete end-to-end demonstration.
-
-It:
-
-- validates the repo,
-- regenerates the governance artifacts,
-- evaluates a compliant release candidate,
-- evaluates a non-compliant release candidate,
-- writes demo summaries.
-
-### What it creates
-
-- `generated/demo/demo-run.md`
-- `generated/demo/green-summary.json`
-- `generated/demo/green-summary.md`
-- `generated/demo/red-summary.json`
-- `generated/demo/red-summary.md`
-
-### What you learn from it
-
-You can immediately demonstrate:
-
-- a passing governance case,
-- a failing governance case,
-- which OPA rules trigger in the failing scenario.
-
-## Step 10: Review The Results
-
-At this point, open the most important outputs:
-
-- `generated/reports/open-gap-report.md`
-- `generated/reports/document-control-matrix.md`
-- `generated/viewer/status-viewer.html`
-- `generated/documents/devsecops-pol-001.html`
-- `generated/documents/devsecops-dir-001.html`
-- `generated/demo/demo-run.md`
-
-### What this step does
-
-This is the operational review step.
-
-You now decide:
-
-- Is the governance change correct?
-- Did any new gaps appear?
-- Did the Policy or Directive rendering still look right?
-- Did any policy checks fail?
-- Does the demo still behave as expected?
-
-## Step 11: Commit And Push
-
-If the results are correct, commit your changes:
-
-```bash
-git status
-git add .
-git commit -m "Describe the governance change"
-git push origin main
-```
-
-### What this step does
-
-This makes the governance change operationally visible and reproducible for everyone else.
-
-## Fast Daily Command Sequence
-
-If you just want the normal operational sequence, use:
-
-```bash
-python3 scripts/validate_governance_repo.py
-python3 scripts/generate_traceability_csv.py
-python3 scripts/generate_document_control_matrix.py
-python3 scripts/generate_open_gap_report.py
-python3 scripts/render_governance_documents.py
-python3 scripts/generate_status_viewer.py
-python3 -m unittest discover -s tests
-opa check policies/opa
-```
-
-## Full Demonstration Sequence
-
-If you want to demonstrate the repository end-to-end, use:
-
-```bash
-python3 scripts/run_demo.py
-```
-
-## In One Sentence
-
-Operationally, this repository is used by **editing governance sources, validating them, generating artifacts, rendering documents, reviewing the viewer and reports, testing the automation, and then publishing the resulting governance state**.
+Confirm the relevant main workflows and Pages publication succeed. The viewer
+reflects accepted evidence; the daily report is a separate Actions artifact.
+See [documentation publishing](mkdocs-and-github-pages-step-by-step.md) for
+publication paths and troubleshooting.
