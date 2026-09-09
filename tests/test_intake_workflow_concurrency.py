@@ -41,17 +41,16 @@ class IntakeWorkflowConcurrencyTests(unittest.TestCase):
                 self.assertIn("id: intake", content)
                 self.assertIn("continue-on-error: true", content)
                 self.assertIn("Record failed collection attempt", content)
-                self.assertIn("status/collection-attempts", content)
                 self.assertIn("Start intake telemetry", content)
                 self.assertIn("Stop intake telemetry clock", content)
                 self.assertIn("Record intake telemetry", content)
                 self.assertIn("scripts/record_intake_event.py", content)
-                self.assertIn("status/intake-events", content)
-                self.assertGreaterEqual(
-                    content.count("scripts/generate_intake_health.py"),
-                    2,
-                )
-                self.assertIn("status/intake-health.json", content)
+                self.assertIn("scripts/generate_intake_health.py", content)
+                self.assertIn("scripts/publish_operational_update.py", content)
+                self.assertLess(content.index("Record intake telemetry"),
+                                content.index("Open operational review PR"))
+                self.assertLess(content.index("Open operational review PR"),
+                                content.index("Fail workflow after intake or telemetry failure"))
                 self.assertIn("Fail workflow after intake or telemetry failure", content)
                 self.assertIn("steps.regenerate.outcome == 'success'", content)
                 self.assertIn("steps.validation.outcome == 'success'", content)
