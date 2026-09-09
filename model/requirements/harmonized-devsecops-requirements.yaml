@@ -1,0 +1,412 @@
+schema_version: "0.1.0"
+model_id: CISO-HARMONIZED-DEVSECOPS-REQUIREMENTS
+title: Harmonized DevSecOps Requirements Candidate
+status: candidate
+normative: false
+enforcement: none
+source_document_id: CISO-REQ-SRC-001
+derivation_policy: review_only
+coverage_method: preliminary_design_mapping
+decision_required:
+  - Confirm source authority and intended applicability.
+  - Confirm enterprise strength for each harmonized requirement.
+  - Confirm the split between DevSecOps, platform, architecture, product security, and operations.
+  - Confirm licensing permits the retained source references.
+  - Approve control, evidence, policy, and release derivation separately.
+requirements:
+  - id: HREQ-GOV-001
+    title: Secure development lifecycle
+    statement: Software shall be developed, released, operated, and retired through a defined lifecycle that integrates security activities.
+    strength: must
+    domain: governance
+    target_area: policy
+    applicability: all_software
+    source_topics: [lifecycle, development_process, governance]
+    coverage: {status: partial, refs: [DEVSECOPS-POL-SRC-001-REQ-020], gap: Lifecycle exit and retirement criteria require explicit treatment.}
+  - id: HREQ-GOV-002
+    title: Risk-based applicability
+    statement: Security requirements shall be selected and scaled using documented system context, exposure, criticality, and risk.
+    strength: must
+    domain: governance
+    target_area: policy
+    applicability: all_software
+    source_topics: [applicability, security_level, risk_classification]
+    coverage: {status: partial, refs: [DEVSECOPS-POL-SRC-001-REQ-017], gap: A machine-readable applicability decision is not yet defined.}
+  - id: HREQ-GOV-003
+    title: Roles and competence
+    statement: Security responsibilities, required competence, and independent review duties shall be assigned for the software lifecycle.
+    strength: must
+    domain: governance
+    target_area: directive
+    applicability: all_software
+    source_topics: [roles, competence, independence]
+    coverage: {status: partial, refs: [DEVSECOPS-POL-SRC-001-REQ-014], gap: Competence and reviewer independence are not consistently evidenced.}
+  - id: HREQ-GOV-004
+    title: Controlled security documentation
+    statement: Security requirements, architecture, interfaces, configuration, verification, and operating information shall be controlled and maintained.
+    strength: must
+    domain: governance
+    target_area: evidence
+    applicability: all_software
+    source_topics: [documentation, architecture, configuration, verification]
+    coverage: {status: partial, refs: [DSCB-L1-REQ-001, P1], gap: Required document content and currency are not evaluated uniformly.}
+  - id: HREQ-RISK-001
+    title: Asset and threat identification
+    statement: Security-relevant assets, threats, affected components, likelihood, and impact shall be identified and recorded.
+    strength: must
+    domain: security_risk
+    target_area: architecture
+    applicability: risk_based
+    source_topics: [assets, threats, likelihood, impact]
+    coverage: {status: partial, refs: [S5, P8, E6], gap: Runtime evidence does not require a structured asset and risk register.}
+  - id: HREQ-RISK-002
+    title: Threat modeling
+    statement: Threat modeling shall be performed during design and updated when architecture or risk context changes.
+    strength: must
+    domain: security_risk
+    target_area: architecture
+    applicability: risk_based
+    source_topics: [threat_model, design, risk_context]
+    coverage: {status: partial, refs: [S5, P8], gap: Threat-model currency and review evidence are not machine-validated.}
+  - id: HREQ-RISK-003
+    title: Risk treatment and reassessment
+    statement: Unaccepted security risks shall be treated, verified, and reassessed when the product or threat context changes.
+    strength: must
+    domain: security_risk
+    target_area: architecture
+    applicability: risk_based
+    source_topics: [risk_treatment, reassessment, control_effectiveness]
+    coverage: {status: partial, refs: [AG-EXC-001, RG-RELEASE-READY], gap: A structured risk-treatment evidence contract is missing.}
+  - id: HREQ-RISK-004
+    title: Security architecture review
+    statement: Security architecture shall be reviewed for trust boundaries, dependencies, defense in depth, and environmental assumptions.
+    strength: must
+    domain: security_risk
+    target_area: architecture
+    applicability: risk_based
+    source_topics: [security_architecture, trust_boundary, defense_in_depth]
+    coverage: {status: partial, refs: [S5, P8, E6], gap: Detailed review outcomes are not consistently captured as typed evidence.}
+  - id: HREQ-APP-001
+    title: Authentication and authorization
+    statement: Applications shall enforce documented authentication, authorization, least-privilege, and account-management rules.
+    strength: must
+    domain: application_security
+    target_area: product_architecture
+    applicability: capability_based
+    source_topics: [authentication, authorization, account_management]
+    coverage: {status: partial, refs: [S5, P8], gap: Application-level verification is not part of the current DevSecOps baseline.}
+  - id: HREQ-APP-002
+    title: Session security
+    statement: Applications that maintain sessions shall protect session creation, identifiers, expiry, invalidation, and concurrent use.
+    strength: must
+    domain: application_security
+    target_area: product_architecture
+    applicability: session_capable_software
+    source_topics: [session_management]
+    coverage: {status: gap, refs: [], gap: No explicit session-security requirement exists.}
+  - id: HREQ-APP-003
+    title: Data and cryptographic protection
+    statement: Sensitive data shall have documented confidentiality, integrity, retention, deletion, and cryptographic protection requirements.
+    strength: must
+    domain: application_security
+    target_area: product_architecture
+    applicability: sensitive_data_processing
+    source_topics: [data_protection, cryptography, retention]
+    coverage: {status: partial, refs: [S5, P8, E5], gap: Detailed data-protection verification is not represented in the current baseline.}
+  - id: HREQ-APP-004
+    title: Input validation and business logic
+    statement: Inputs, outputs, and business workflows shall be validated against documented security and integrity rules.
+    strength: must
+    domain: application_security
+    target_area: product_architecture
+    applicability: input_processing_software
+    source_topics: [input_validation, output_encoding, business_logic]
+    coverage: {status: gap, refs: [], gap: No atomic validation and business-logic requirement exists.}
+  - id: HREQ-APP-005
+    title: Secure file handling
+    statement: File upload, storage, processing, and download shall enforce type, size, authorization, integrity, and safe-content controls.
+    strength: must
+    domain: application_security
+    target_area: product_architecture
+    applicability: file_processing_software
+    source_topics: [file_upload, file_download, file_handling]
+    coverage: {status: gap, refs: [], gap: No atomic secure file-handling requirement exists.}
+  - id: HREQ-APP-006
+    title: Application logging and error handling
+    statement: Applications shall produce security-relevant logs and shall handle errors without exposing sensitive implementation information.
+    strength: must
+    domain: application_security
+    target_area: product_architecture
+    applicability: all_software
+    source_topics: [logging, alerting, error_handling]
+    coverage: {status: partial, refs: [DSCB-L2-REQ-013, DSCB-L2-REQ-014, P11], gap: Application error behavior and log protection are not fully evaluated.}
+  - id: HREQ-APP-007
+    title: Secure defaults and hardening
+    statement: Software shall be delivered with secure defaults, documented hardening guidance, and controlled configuration settings.
+    strength: must
+    domain: application_security
+    target_area: product_architecture
+    applicability: all_software
+    source_topics: [secure_defaults, hardening, configuration]
+    coverage: {status: partial, refs: [DSCB-L2-REQ-002, P8], gap: Product-level default-setting verification is missing.}
+  - id: HREQ-DEV-001
+    title: Source control and integrity
+    statement: Source code and changes shall be maintained in approved version control with attributable history and protected branches.
+    strength: must
+    domain: development
+    target_area: control_baseline
+    applicability: all_software
+    source_topics: [source_control, integrity, branch_protection]
+    coverage: {status: covered, refs: [DSCB-L1-REQ-002, DSCB-L1-REQ-003], gap: null}
+  - id: HREQ-DEV-002
+    title: Secure coding practices
+    statement: Development teams shall apply maintained secure-coding standards appropriate to the language, framework, and risk.
+    strength: must
+    domain: development
+    target_area: control_baseline
+    applicability: source_developed_software
+    source_topics: [secure_coding, coding_standard]
+    coverage: {status: partial, refs: [DSCB-L1-REQ-004], gap: Language-specific applicability and training evidence are not defined.}
+  - id: HREQ-DEV-003
+    title: Code and implementation review
+    statement: Security-relevant code and implementation changes shall undergo review and appropriate automated analysis.
+    strength: must
+    domain: development
+    target_area: control_baseline
+    applicability: source_developed_software
+    source_topics: [code_review, static_analysis, implementation_review]
+    coverage: {status: partial, refs: [DSCB-L1-REQ-004], gap: Review scope and independence are not consistently evidenced.}
+  - id: HREQ-DEV-004
+    title: Secure development environments
+    statement: Development environments shall be managed, hardened, access-controlled, monitored, and periodically checked for integrity.
+    strength: must
+    domain: development
+    target_area: platform
+    applicability: source_developed_software
+    source_topics: [development_environment, integrity, hardening]
+    coverage: {status: partial, refs: [DSCB-L2-REQ-001, DSCB-L2-REQ-002], gap: Periodic cryptographic integrity verification is not defined.}
+  - id: HREQ-DEV-005
+    title: External component and supplier assurance
+    statement: Externally developed components and suppliers shall meet documented security, integrity, provenance, and issue-management requirements.
+    strength: must
+    domain: development
+    target_area: control_baseline
+    applicability: third_party_components
+    source_topics: [supplier, external_component, acquisition]
+    coverage: {status: partial, refs: [DSCB-L2-REQ-005, DSCB-L3-REQ-005], gap: Supplier assurance and contractual verification are not explicit.}
+  - id: HREQ-SC-001
+    title: Controlled build execution
+    statement: Software builds shall execute through controlled automated pipelines with recorded configuration and outputs.
+    strength: must
+    domain: software_supply_chain
+    target_area: control_baseline
+    applicability: built_software
+    source_topics: [build, pipeline, configuration]
+    coverage: {status: covered, refs: [DSCB-L1-REQ-007, DSCB-L1-REQ-008], gap: null}
+  - id: HREQ-SC-002
+    title: Reproducible and isolated builds
+    statement: Higher-assurance builds shall be reproducible and execute in isolated, recreated environments using versioned configuration.
+    strength: must
+    domain: software_supply_chain
+    target_area: control_baseline
+    applicability: high_assurance_software
+    source_topics: [reproducible_build, isolated_build]
+    coverage: {status: covered, refs: [DSCB-L3-REQ-001, DSCB-L3-REQ-002, DSCB-L3-REQ-003, DSCB-L3-REQ-004], gap: null}
+  - id: HREQ-SC-003
+    title: Artifact identity and integrity
+    statement: Release artifacts shall be uniquely identified and protected with verifiable cryptographic integrity metadata.
+    strength: must
+    domain: software_supply_chain
+    target_area: control_baseline
+    applicability: releasable_artifacts
+    source_topics: [artifact, identity, checksum, integrity]
+    coverage: {status: covered, refs: [DSCB-L1-REQ-011, DSCB-L1-REQ-012], gap: null}
+  - id: HREQ-SC-004
+    title: Artifact signing and key protection
+    statement: Applicable release artifacts shall be signed using controlled signing services and protected key-management practices.
+    strength: must
+    domain: software_supply_chain
+    target_area: control_baseline
+    applicability: baseline_level_based
+    source_topics: [artifact_signing, private_key, key_management]
+    coverage: {status: covered, refs: [DSCB-L2-REQ-007, DSCB-L2-REQ-008, DSCB-L3-REQ-007, DSCB-L3-REQ-008], gap: null}
+  - id: HREQ-SC-005
+    title: Trusted dependency sources and provenance
+    statement: Dependencies shall originate from approved sources and shall retain verifiable source and provenance information.
+    strength: must
+    domain: software_supply_chain
+    target_area: control_baseline
+    applicability: third_party_components
+    source_topics: [dependency, trusted_source, provenance]
+    coverage: {status: covered, refs: [DSCB-L2-REQ-005, DSCB-L2-REQ-006, DSCB-L3-REQ-005, DSCB-L3-REQ-006], gap: null}
+  - id: HREQ-SC-006
+    title: SBOM generation
+    statement: Every releasable software artifact shall have an associated machine-readable software bill of materials.
+    strength: must
+    domain: software_supply_chain
+    target_area: control_baseline
+    applicability: releasable_artifacts
+    source_topics: [sbom, component_inventory]
+    coverage: {status: covered, refs: [DSCB-L1-REQ-005, DSCB-L1-REQ-006], gap: null}
+  - id: HREQ-SC-007
+    title: SBOM component identity and relationships
+    statement: An SBOM shall identify components, versions, creators, file identity, containment, and direct dependency relationships.
+    strength: must
+    domain: software_supply_chain
+    target_area: evidence
+    applicability: releasable_artifacts
+    source_topics: [sbom, component_identity, dependency_relationship]
+    coverage: {status: partial, refs: [DSCB-L1-REQ-005, DSCB-L1-REQ-006], gap: SBOM presence is checked but detailed component fields are not.}
+  - id: HREQ-SC-008
+    title: SBOM integrity and source metadata
+    statement: An SBOM shall carry applicable component hashes, source or package identifiers, and integrity-relevant metadata.
+    strength: must
+    domain: software_supply_chain
+    target_area: evidence
+    applicability: releasable_artifacts
+    source_topics: [sbom, checksum, source_uri, package_identifier]
+    coverage: {status: partial, refs: [DSCB-L1-REQ-011, DSCB-L1-REQ-006], gap: Component-level digest and source metadata are not validated.}
+  - id: HREQ-SC-009
+    title: SBOM license metadata
+    statement: An SBOM shall record component license identifiers or expressions using an approved normalized syntax.
+    strength: must
+    domain: software_supply_chain
+    target_area: evidence
+    applicability: third_party_components
+    source_topics: [sbom, license, license_identifier]
+    coverage: {status: gap, refs: [], gap: License metadata is not part of the current SBOM evidence contract.}
+  - id: HREQ-SC-010
+    title: Component license compliance
+    statement: Component licenses shall be identified, evaluated, and approved against organizational usage and distribution policy.
+    strength: must
+    domain: software_supply_chain
+    target_area: control_baseline
+    applicability: third_party_components
+    source_topics: [license, approval, distribution]
+    coverage: {status: gap, refs: [], gap: No component-license control or evidence type exists.}
+  - id: HREQ-TEST-001
+    title: Test strategy and acceptance
+    statement: Projects shall define security-aware test plans, acceptance criteria, responsibilities, and release approval evidence.
+    strength: must
+    domain: verification
+    target_area: control_baseline
+    applicability: all_software
+    source_topics: [test_plan, acceptance, approval]
+    coverage: {status: partial, refs: [DSCB-L1-REQ-001, RG-RELEASE-READY], gap: Test planning and acceptance artifacts are not standardized.}
+  - id: HREQ-TEST-002
+    title: Functional, non-functional, and regression testing
+    statement: Functional, non-functional, and regression tests shall verify requirements and prevent reintroduction of defects.
+    strength: must
+    domain: verification
+    target_area: control_baseline
+    applicability: all_software
+    source_topics: [functional_test, non_functional_test, regression_test]
+    coverage: {status: partial, refs: [DSCB-L1-REQ-001], gap: Test-category evidence and minimum expectations are not defined.}
+  - id: HREQ-TEST-003
+    title: Security requirements verification
+    statement: Applicable security requirements and controls shall be verified using documented positive and negative test cases.
+    strength: must
+    domain: verification
+    target_area: architecture
+    applicability: risk_based
+    source_topics: [security_test, negative_test, control_verification]
+    coverage: {status: partial, refs: [S5, P8, RG-RELEASE-READY], gap: Security test evidence is not typed at requirement level.}
+  - id: HREQ-TEST-004
+    title: Vulnerability testing
+    statement: Automated and risk-appropriate manual vulnerability testing shall be performed during build or test stages.
+    strength: must
+    domain: verification
+    target_area: control_baseline
+    applicability: all_software
+    source_topics: [vulnerability_scan, dynamic_analysis]
+    coverage: {status: covered, refs: [DSCB-L1-REQ-009, DSCB-L1-REQ-010], gap: null}
+  - id: HREQ-TEST-005
+    title: Penetration testing
+    statement: Risk-appropriate penetration testing shall assess realistic compromise paths before release and after material change.
+    strength: must
+    domain: verification
+    target_area: architecture
+    applicability: high_risk_or_exposed_software
+    source_topics: [penetration_test]
+    coverage: {status: partial, refs: [S5, P8], gap: "Scope, frequency, independence, and evidence are not defined."}
+  - id: HREQ-TEST-006
+    title: Independent and protected testing
+    statement: Testing shall use appropriately independent personnel, separated environments, and protected or anonymized test data where required.
+    strength: must
+    domain: verification
+    target_area: directive
+    applicability: risk_based
+    source_topics: [tester_independence, test_environment, test_data]
+    coverage: {status: gap, refs: [], gap: No unified testing-independence and test-data requirement exists.}
+  - id: HREQ-OPS-001
+    title: Security release gates
+    statement: Releases and deployments shall require authorized approval and shall not proceed when defined security thresholds are exceeded.
+    strength: must
+    domain: operations
+    target_area: control_baseline
+    applicability: releasable_artifacts
+    source_topics: [release_gate, approval, threshold]
+    coverage: {status: covered, refs: [DSCB-L1-REQ-013, DSCB-L1-REQ-014, DSCB-L2-REQ-011, DSCB-L2-REQ-012], gap: null}
+  - id: HREQ-OPS-002
+    title: Vulnerability triage and remediation
+    statement: Identified security issues shall be assessed, prioritized, remediated, accepted, or waived within documented risk-based timelines.
+    strength: must
+    domain: operations
+    target_area: control_baseline
+    applicability: all_software
+    source_topics: [vulnerability_management, remediation, risk_acceptance]
+    coverage: {status: partial, refs: [DSCB-L1-REQ-010, DSCB-GOV-REQ-003], gap: Remediation timelines and closure evidence are not modeled.}
+  - id: HREQ-OPS-003
+    title: Security update management
+    statement: Security updates shall be qualified, delivered securely, documented, and made available within risk-based timelines.
+    strength: must
+    domain: operations
+    target_area: control_baseline
+    applicability: maintained_software
+    source_topics: [security_update, patch, delivery]
+    coverage: {status: gap, refs: [], gap: No complete security-update lifecycle control exists.}
+  - id: HREQ-OPS-004
+    title: Security monitoring and alerting
+    statement: Operational software shall generate, protect, forward, and monitor security-relevant events and actionable alerts.
+    strength: must
+    domain: operations
+    target_area: control_baseline
+    applicability: operational_software
+    source_topics: [monitoring, logging, alerting]
+    coverage: {status: partial, refs: [DSCB-L2-REQ-013, DSCB-L2-REQ-014, P11], gap: "Log protection, retention, and alert-response evidence are incomplete."}
+  - id: HREQ-OPS-005
+    title: Deployment and configuration verification
+    statement: Installation, deployment, and security configuration shall be verified against approved baselines before operational use.
+    strength: must
+    domain: operations
+    target_area: platform
+    applicability: deployed_software
+    source_topics: [deployment, configuration, baseline]
+    coverage: {status: partial, refs: [DSCB-L2-REQ-002, DSCB-L2-REQ-009], gap: Deployment verification evidence is not standardized.}
+  - id: HREQ-OPS-006
+    title: Secure operation guidance
+    statement: Maintained software shall provide current guidance for secure installation, configuration, account management, operation, and recovery.
+    strength: must
+    domain: operations
+    target_area: product_architecture
+    applicability: distributed_or_operated_software
+    source_topics: [operation_guidance, hardening, recovery]
+    coverage: {status: partial, refs: [P1, RG-OPERATION-READY], gap: Required secure-operation content is not defined.}
+  - id: HREQ-OPS-007
+    title: Secure decommissioning and disposal
+    statement: Software, data, credentials, and cryptographic material shall be securely removed or transferred when systems are retired.
+    strength: must
+    domain: operations
+    target_area: product_architecture
+    applicability: all_software
+    source_topics: [decommissioning, disposal, key_destruction]
+    coverage: {status: gap, refs: [], gap: No end-to-end decommissioning requirement exists.}
+  - id: HREQ-OPS-008
+    title: Product security response and health review
+    statement: Maintained software shall support vulnerability disclosure, security issue response, periodic security health review, and reassessment.
+    strength: must
+    domain: operations
+    target_area: directive
+    applicability: maintained_software
+    source_topics: [vulnerability_disclosure, incident_response, health_check]
+    coverage: {status: gap, refs: [], gap: Product security response is not represented as a complete governed capability.}

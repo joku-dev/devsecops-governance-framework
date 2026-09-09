@@ -5,3 +5,4 @@ __pycache__/
 .venv-docs/
 .venv-docs-release/
 site/
+.local/governance-sources/

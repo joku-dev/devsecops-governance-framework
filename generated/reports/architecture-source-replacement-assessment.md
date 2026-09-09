@@ -1,13 +1,13 @@
 # Architecture Source Replacement Assessment
 
-Generated: `2026-07-17T19:04:12Z`
+Generated: `2026-07-18T10:45:05Z`
 
 ## Summary
 
-- Architecture source documents: `12`
+- Architecture source documents: `13`
 - Active architecture sources: `1`
-- Candidate architecture sources: `5`
-- Comparisons: `5`
+- Candidate architecture sources: `6`
+- Comparisons: `6`
 - Likely replacements: `1`
 
 ## Decision State
@@ -31,6 +31,7 @@ Generated: `2026-07-17T19:04:12Z`
 | `ARCH-SA-SRC-001` | SDD Solution Architecture Guidelines | `public-placeholder` | `docs/governance/source-documents/ARCH-SA-SRC-001.public.md` |
 | `ARCH-PA-SRC-001` | SDD Product Architecture Guidelines | `public-placeholder` | `docs/governance/source-documents/ARCH-PA-SRC-001.public.md` |
 | `ARCH-GOV-SRC-002` | SDD Architecture Governance Framework | `public-placeholder` | `docs/governance/source-documents/ARCH-GOV-SRC-002.public.md` |
+| `CISO-REQ-SRC-001` | CISO Standards Requirements Catalog Candidate | `0.1` | `docs/governance/source-documents/CISO-REQ-SRC-001.public.md` |
 
 ## Comparisons
 
@@ -104,6 +105,20 @@ Generated: `2026-07-17T19:04:12Z`
 
 - Registered similarity assessment: `replacement_candidate`
 - Registered candidate replacement for: `ARCH-SDD-SRC-001`
+
+### `CISO-REQ-SRC-001` versus `ARCH-SDD-SRC-001`
+
+- Candidate: `docs/governance/source-documents/CISO-REQ-SRC-001.public.md`
+- Target: `docs/governance/source-documents/ARCH-SDD-SRC-001.public.md`
+- Candidate Doc ID: `unknown`
+- Target Doc ID: `unknown`
+- Title overlap: `0.0`
+- Content overlap: `0.167`
+- Shared headings: `0`
+- Classification: `independent_candidate`
+- Recommendation: Keep as candidate or classify as separate source; no replacement action recommended yet.
+
+- Registered similarity assessment: `related_source`
 
 ## Review Guidance
 

@@ -32,14 +32,18 @@ class SourceDocumentIntakeReviewBriefTests(unittest.TestCase):
         self.assertEqual(payload["decision"]["current_state"], "decision_support_only")
         self.assertEqual(payload["decision"]["autonomous_decisions_enabled"], False)
         self.assertEqual(payload["decision"]["runtime_governance_changed"], False)
-        self.assertEqual(payload["summary"]["review_briefs"], 10)
-        self.assertEqual(payload["summary"]["human_decision_required"], 10)
+        self.assertEqual(payload["summary"]["review_briefs"], len(payload["review_briefs"]))
+        self.assertEqual(
+            payload["summary"]["human_decision_required"],
+            payload["summary"]["review_briefs"],
+        )
 
         briefs_by_source = {
             brief["source_document"]["id"]: brief
             for brief in payload["review_briefs"]
         }
         self.assertIn("ARCH-SDD-REQ-001", briefs_by_source)
+        self.assertIn("CISO-REQ-SRC-001", briefs_by_source)
         self.assertNotIn("ARCH-GOV-REQ-001", briefs_by_source)
         replacement_brief = briefs_by_source["ARCH-GOV-SRC-002"]
         self.assertEqual(replacement_brief["prepared_by_agent"], "source-document-intake")
@@ -50,4 +54,12 @@ class SourceDocumentIntakeReviewBriefTests(unittest.TestCase):
         self.assertIn("replacement_confirmed", option_ids)
         self.assertIn("related_source_keep_candidate", option_ids)
         self.assertIn("duplicate_or_not_relevant_retire", option_ids)
+
+        related_brief = briefs_by_source["CISO-REQ-SRC-001"]
+        self.assertEqual(related_brief["review_focus"], "coexistence and derivation scope")
+        related_options = {option["option"] for option in related_brief["decision_options"]}
+        self.assertEqual(
+            related_options,
+            {"related_source_confirmed", "keep_related_candidate", "not_relevant_retire"},
+        )
         self.assertIn("Source Document Intake Review Briefs", output_md.read_text(encoding="utf-8"))
