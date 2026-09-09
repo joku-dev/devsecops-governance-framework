@@ -78,11 +78,15 @@ enabled. The versioned change adds
 Dependabot configuration, CodeQL, dependency review, full-SHA Action pinning,
 expanded CODEOWNERS, and the report-only self-security workflow.
 
-The current live assessment reports 7 passing and 9 failing criteria. This is
-an honest transition state, not a security attestation. Default-branch rules,
-required reviews and checks, signed changes, elimination of direct automated
-`main` writes, repository-level SHA enforcement, and verified release tags
-remain open. GitHub Actions are also not yet restricted to approved sources.
+The initial assessment recorded 7 passing and 9 failing criteria. Consult the
+latest workflow assessment artifact for the current live settings; the versioned
+report is a dated observation, not a security attestation.
+
+GCR-2026-051 authorizes the next rollout: four operational writers now propose
+review PRs using scope-specific allowlists and immutable historical evidence.
+The desired GitHub configuration is versioned in `.github/main-ruleset.json`.
+Committing that file does not activate it: apply it through GitHub only after
+the migration is merged and its publication path has been exercised.
 
 ## Safe Activation Sequence
 
@@ -96,19 +100,29 @@ Apply protections in this order:
    `main`;
 4. replace direct intake and portfolio pushes with a reviewed bot-PR path or a
    separately protected evidence store;
-5. create a `main` ruleset that requires PRs, approvals, CODEOWNER review,
-   Governance CI, conversation resolution, signed changes, and protection from
-   deletion or force push;
+5. apply the versioned `main` ruleset: one approving review, stale approval
+   dismissal, resolved conversations, an up-to-date branch, and required
+   `validate-and-report`, `Analyze Python`, and `Governance Repository Security`
+   checks from GitHub Actions; prohibit deletion and force push, with no bypass;
 6. restrict Actions to approved publishers and require full commit-SHA pinning;
-7. publish new signed baseline tags and attestations through a separate release
-   change;
+7. establish independent CODEOWNER review and commit signing, then publish new
+   signed baseline tags and attestations through separate changes;
 8. after a successful observation period and accountable approval, consider
    making selected self-security criteria blocking.
 
-Do not activate step 5 before step 4. The current intake workflows use scoped
-file staging and validation but still require `contents: write` and direct
-pushes to `main`. Enabling branch protection first would either break intake or
-create an overly broad bypass.
+Do not activate step 5 before step 4. First merge the workflow migration and
+enable Actions PR creation while preserving read-only default token permissions.
+Exercise a real intake, verify that it opens a PR without moving main, and check
+the three explicitly dispatched validations. Test the proposed rules on a
+disposable branch before applying them to main. Read back the effective rules
+for main and rerun the live assessment after activation.
+
+There is no automatic approval, merge, or administrator bypass. A maintainer can
+review bot-authored PRs; a maintainer-authored PR needs another authorized person.
+At rollout preparation only `joku-dev` is a collaborator, so independent reviewer
+onboarding remains necessary for those PRs. Do not impersonate that reviewer or
+weaken protection to complete a merge. Conflicting operational PRs need
+reconciliation and regenerated projections before their final review.
 
 ## Normative And Operational Write Separation
 
