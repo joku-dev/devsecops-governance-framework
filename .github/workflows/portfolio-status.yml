@@ -27,18 +27,13 @@ jobs:
       - name: Install validation dependencies
         run: python -m pip install -r requirements-validation.txt
 
-      - name: Set up OPA
-        uses: open-policy-agent/setup-opa@b2b258e089860efaadaaf71bf6e3aecb4a3eeff1 # v2.4.0
-        with:
-          version: 1.18.2
-
       - name: Regenerate portfolio status
         run: python3 scripts/generate_portfolio_onboarding_status.py
 
-      - name: Validate generated state
-        run: |
-          python3 scripts/validate_governance_repo.py
-          python3 -m unittest discover -s tests
+      # This maintenance workflow validates only the projection it regenerates.
+      # Full repository validation remains enforced by governance-ci.yml.
+      - name: Validate portfolio status
+        run: python3 -m unittest discover -s tests -p "test_portfolio_onboarding_status.py"
 
       - name: Commit refreshed portfolio status
         run: |
@@ -49,6 +44,7 @@ jobs:
             git reset --mixed HEAD
             git pull --rebase --autostash origin main
             python3 scripts/generate_portfolio_onboarding_status.py
+            python3 -m unittest discover -s tests -p "test_portfolio_onboarding_status.py"
             git add generated/reports/portfolio-onboarding-status.json generated/reports/portfolio-onboarding-status.md
             if git diff --cached --quiet; then
               echo "No semantic portfolio status changes."
