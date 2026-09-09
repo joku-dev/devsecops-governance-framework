@@ -1,6 +1,6 @@
 schema_version: 0.1.0
 profile_id: governance-repository-self-security
-version: 0.1.0
+version: 0.2.0
 title: Governance Repository Self-Security Profile
 status: active_report_only
 repository_id: joku-dev/devsecops-governance-framework
@@ -94,6 +94,11 @@ criteria:
   - id: GRS-015
     key: private_vulnerability_reporting_enabled
     title: Private vulnerability reporting is enabled
+    severity: high
+    expected: true
+  - id: GRS-016
+    key: approved_action_sources_restricted
+    title: GitHub Actions restricted to approved sources
     severity: high
     expected: true
 decision_boundary:

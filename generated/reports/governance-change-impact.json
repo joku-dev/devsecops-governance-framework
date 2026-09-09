@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-18T16:08:53Z",
+  "generated_at": "2026-07-18T16:21:48Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
@@ -8,7 +8,7 @@
   "summary": {
     "registered_source_documents": 20,
     "source_documents_with_lineage": 20,
-    "derived_artifact_links": 366,
+    "derived_artifact_links": 367,
     "domains": {
       "architecture": 12,
       "devsecops": 8,
@@ -31,7 +31,7 @@
       "architecture_model": 8,
       "derived_artifact": 212,
       "governance_document": 4,
-      "governance_model": 113,
+      "governance_model": 114,
       "policy_as_code": 15,
       "release_document": 1,
       "release_metadata": 1,
@@ -174,11 +174,11 @@
         "releases/l1",
         "generated/reports"
       ],
-      "lineage_artifact_count": 98,
+      "lineage_artifact_count": 99,
       "lineage_artifact_types": {
         "derived_artifact": 10,
         "governance_document": 1,
-        "governance_model": 72,
+        "governance_model": 73,
         "policy_as_code": 11,
         "release_package": 3,
         "traceability_mapping": 1
