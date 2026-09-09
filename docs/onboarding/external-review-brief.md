@@ -50,7 +50,7 @@ The demo consumer successfully runs:
 4. Replace placeholder evidence with real tool output.
 5. Review generated findings and artifacts.
 6. Add architecture governance if runtime architecture evidence is in scope.
-7. Move to blocking mode only after branch protection and evidence quality are stable.
+7. Move to blocking only after the current [readiness assessment](../operations/status/blocking-readiness.md), accountable approval and a separate consumer change.
 
 ## Review Entry Points
 
@@ -70,8 +70,8 @@ The demo consumer successfully runs:
 - Placeholder SBOM and vulnerability examples are not production evidence.
 - Draft architecture evidence is not approved release evidence.
 - Downstream repositories remain responsible for branch protection, review rules, scanner configuration and release decisions.
-- Historical documents may describe older internal or baseline history; current public adoption starts with `v0.1.0-public-adoption`.
+- Historical documents may describe older internal or baseline history; `v0.1.0-public-adoption` is a historical release. New pilots use the current reviewed template revision and frozen baseline pins described in the [quickstart](public-repo-quickstart.md).
 
 ## Evaluation Recommendation
 
-Use the neutral demo consumer first. Then apply the adoption package to one non-critical application repository in `report-only` mode. After findings are understood and evidence generation is stable, decide whether selected checks should become required branch-protection checks.
+Use the neutral demo consumer first. Then apply the adoption package to one non-critical application repository in `report-only` mode. Stable evidence and understood findings are prerequisites; require the current readiness assessment and accountable approval before any separate required-check activation.

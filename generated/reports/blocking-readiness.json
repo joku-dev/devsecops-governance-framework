@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "projection_type": "blocking-readiness",
-  "generated_at": "2026-07-18T07:59:49Z",
+  "generated_at": "2026-09-09T08:18:36Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "summary": {
@@ -289,8 +289,8 @@
           "status": "fail",
           "required": true,
           "observed": {
-            "events": 4,
-            "success_rate_pct": 100.0
+            "events": 0,
+            "success_rate_pct": 0
           },
           "expected": {
             "minimum_events": 10,
@@ -460,8 +460,8 @@
           "status": "fail",
           "required": true,
           "observed": {
-            "events": 0,
-            "success_rate_pct": 0
+            "events": 1,
+            "success_rate_pct": 100.0
           },
           "expected": {
             "minimum_events": 10,
