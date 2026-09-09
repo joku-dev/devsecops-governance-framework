@@ -11,7 +11,7 @@ legacy_risk_records:
     mode_observed_at: "2026-07-15T08:14:21Z"
     mode_provenance_ref: 38abeba851a964a428a2e4a4ea2cfac414a33862
     recorded_at: "2026-07-18T00:00:00Z"
-    review_due: "2026-08-18T00:00:00Z"
+    review_due: "2026-12-12T22:59:59Z"
     owner: Repository Owner
     action_owner: Governance Platform Lead
     risk: Existing blocking predates provenance-level Trust, Typed Evidence, replay, and operational-sample readiness criteria.
@@ -28,6 +28,7 @@ legacy_risk_records:
       - Security
       - Release Manager
     evidence_refs:
+      - docs/governance/change-requests/GCR-2026-050-blocking-risk-review-extension.md
       - status/application-repository-integrations.yaml
       - generated/reports/blocking-readiness.json
       - docs/operations/processes/blocking-enforcement-migration-guide.md
