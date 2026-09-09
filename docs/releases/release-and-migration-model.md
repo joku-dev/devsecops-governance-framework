@@ -85,7 +85,7 @@ Example upgrade:
 Typical consumer action:
 
 ```yaml
-uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.2.yml@main
+uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.2.yml@l1-baseline-v1.1.2
 ```
 
 ## Repository Identity Migration

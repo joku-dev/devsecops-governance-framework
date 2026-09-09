@@ -1,5 +1,11 @@
 # How To Use This Repo
 
+For daily operation and pilot acceptance, start with the
+[operations handbook](governance-repository-operations-handbook.md).
+The change cycle below covers maintenance of governance content. Run
+`./scripts/bootstrap_validation_env.sh` first and use the pinned environment
+(`source .venv-validation/bin/activate`) for the Python commands below.
+
 ## Purpose
 
 This repository is a governance-as-code workspace for DevSecOps policy, directive, control, platform, evidence, waiver, and traceability modeling.
