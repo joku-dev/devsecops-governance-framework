@@ -83,9 +83,15 @@ runs from the same or different consumers can remain queued and execute. This
 avoids GitHub replacing an older pending multi-consumer intake event with a
 newer one. The recomputable portfolio projection retains its own static group.
 
-All commit steps reconcile with the current `main` branch and retry failed
-pushes. Concurrent intake runs therefore converge the shared graph, viewer,
-indexes, and portfolio projection without discarding distinct events.
+Each execution proposes its changes on a separate
+`automation/<scope>/<run-id>-<attempt>` branch through
+`scripts/publish_operational_update.py`. Publication requires a workflow running
+from `main`, permits only scope-specific operational paths, and rejects changes
+to existing append-only evidence. It opens a PR without approving or merging it.
+Official indexes and the published viewer change only after review and merge.
+Concurrent PRs retain their distinct events; if main advances, reconcile the
+branch and regenerate its projections before review and required checks. Do not
+resolve conflicts by discarding evidence or force-pushing over another run.
 
 Failed DevSecOps, architecture, and typed-evidence collection attempts are
 written append-only under `status/collection-attempts/` before the workflow is
@@ -346,7 +352,7 @@ Use this order:
 2. regenerate `status/repository-results-index.json`
 3. regenerate `generated/viewer/status-viewer.html`
 4. validate the governance repository
-5. commit the updated result and viewer state
+5. commit the updated result and viewer state on a branch and submit a reviewed PR
 
 ## Automated Intake Workflow
 
@@ -368,7 +374,7 @@ The workflow then:
 3. regenerates `status/repository-results-index.json`
 4. regenerates `generated/viewer/status-viewer.html`
 5. validates the repository
-6. commits and pushes the updated central status
+6. opens an operational review PR for the proposed central status
 
 For cross-repository artifact access, configure a repository secret:
 
@@ -376,7 +382,19 @@ For cross-repository artifact access, configure a repository secret:
 
 The token should have read access to the downstream repository's GitHub Actions artifacts.
 
-The workflow uses this governance repository's `GITHUB_TOKEN` to commit the updated normalized status files back to the governance repository.
+The workflow uses this governance repository's `GITHUB_TOKEN` to push its
+automation branch, create a PR, and explicitly dispatch Governance CI, CodeQL,
+and repository self-security checks for that branch. It needs `contents: write`,
+`pull-requests: write`, and `actions: write`. Enable GitHub's combined setting
+allowing Actions to create and approve pull requests; this implementation only
+creates PRs and never approves them. Repository-wide default permissions remain
+read-only. If GitHub also queues PR workflows for approval, a maintainer must
+approve those workflow runs. Required human PR review is a separate step.
+
+Failed collection attempts and operation events follow the same review path,
+even when the intake workflow ultimately reports failure. A publication failure
+must be investigated in the workflow logs; a branch or PR already created before
+the failure remains available for recovery. No-change runs create no PR.
 
 The same workflow also accepts `repository_dispatch` events of type:
 
@@ -413,7 +431,7 @@ Expected dispatch payload:
 For cross-repository artifact access, configure `GH_RESULT_INTAKE_TOKEN` with
 Actions read access to the producer repository. The workflow centrally
 verifies the evidence, regenerates only the typed index and shared viewer,
-validates the repository, and commits the new typed snapshot. Producer-side
+validates the repository, and proposes the new typed snapshot in a review PR. Producer-side
 automatic dispatch is optional; manual workflow dispatch remains sufficient
 for the demo.
 
