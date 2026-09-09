@@ -1,0 +1,12 @@
+{
+  "repository": "joku-dev/devsecops-governance-framework",
+  "evidence_max_age_days": 30,
+  "review_warning_hours": 24,
+  "run_warning_hours": 2,
+  "intake_failure_window_hours": 24,
+  "scheduled_workflows": {
+    "portfolio-status.yml": 36,
+    "governance-repository-security.yml": 36,
+    "codeql.yml": 192
+  }
+}
