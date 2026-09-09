@@ -75,6 +75,7 @@
                 "enum": [
                   "not_assessed",
                   "new_source",
+                  "related_source",
                   "possible_duplicate",
                   "replacement_candidate",
                   "supersedes_existing",

@@ -1,0 +1,388 @@
+schema_version: "0.1.0"
+mapping_id: CISO-HARMONIZED-REQUIREMENTS-TO-MATURITY-LEVELS
+title: Harmonized Requirements Candidate Maturity Assignment
+status: candidate
+normative: false
+enforcement: none
+source_document_id: CISO-REQ-SRC-001
+requirements_model_id: CISO-HARMONIZED-DEVSECOPS-REQUIREMENTS
+cumulative_levels: true
+derivation_policy: review_only
+level_definitions:
+  L1:
+    name: Foundational
+    intent: Establish repeatable minimum security practices and evidence for all applicable software.
+  L2:
+    name: Managed
+    intent: Add centrally managed capabilities, standardized verification, monitoring, and enforceable gates.
+  L3:
+    name: High Assurance
+    intent: Add isolation, provenance, continuous verification, and machine-readable high-assurance evidence.
+  GOV:
+    name: Governance Overlay
+    intent: Govern applicability, accountability, review, deviations, and lifecycle decisions across all maturity levels.
+decision_required:
+  - Confirm the minimum maturity level for every harmonized requirement.
+  - Confirm risk-based and capability-based applicability independently of maturity.
+  - Confirm whether governance-overlay requirements apply to every adopted level.
+  - Approve any derived control, evidence, policy, or release change separately.
+mappings:
+  - requirement_id: HREQ-GOV-001
+    minimum_level: GOV
+    maturity_path: [GOV]
+    governance_overlay: true
+    routing_lane: governance
+    assignment_basis: governance_scope
+    rationale: Lifecycle governance sets the operating boundary for every adopted maturity level.
+    review_status: human_review_required
+  - requirement_id: HREQ-GOV-002
+    minimum_level: GOV
+    maturity_path: [GOV]
+    governance_overlay: true
+    routing_lane: governance
+    assignment_basis: governance_scope
+    rationale: Applicability determines which product, risk, and maturity obligations apply.
+    review_status: human_review_required
+  - requirement_id: HREQ-GOV-003
+    minimum_level: GOV
+    maturity_path: [GOV]
+    governance_overlay: true
+    routing_lane: governance
+    assignment_basis: governance_scope
+    rationale: Roles, competence, and reviewer independence are cross-level governance duties.
+    review_status: human_review_required
+  - requirement_id: HREQ-GOV-004
+    minimum_level: GOV
+    maturity_path: [GOV]
+    governance_overlay: true
+    routing_lane: governance
+    assignment_basis: governance_scope
+    rationale: Controlled documentation and evidence governance support all maturity levels.
+    review_status: human_review_required
+  - requirement_id: HREQ-RISK-001
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: architecture
+    assignment_basis: risk_and_capability
+    rationale: Basic asset and threat identification is foundational when the risk-based applicability rule is triggered.
+    review_status: human_review_required
+  - requirement_id: HREQ-RISK-002
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: architecture
+    assignment_basis: risk_and_capability
+    rationale: Maintained threat models require a managed design and review capability.
+    review_status: human_review_required
+  - requirement_id: HREQ-RISK-003
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: architecture
+    assignment_basis: risk_and_capability
+    rationale: Risk treatment and reassessment require managed ownership, verification, and change triggers.
+    review_status: human_review_required
+  - requirement_id: HREQ-RISK-004
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: architecture
+    assignment_basis: risk_and_capability
+    rationale: Formal security architecture review is a managed assurance capability enhanced at L3.
+    review_status: human_review_required
+  - requirement_id: HREQ-APP-001
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Authentication and authorization are foundational for software that exposes identities or protected functions.
+    review_status: human_review_required
+  - requirement_id: HREQ-APP-002
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Session protection is a foundational requirement whenever session capability exists.
+    review_status: human_review_required
+  - requirement_id: HREQ-APP-003
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Sensitive-data protection begins at L1 and gains centrally managed cryptographic assurance at higher levels.
+    review_status: human_review_required
+  - requirement_id: HREQ-APP-004
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Input, output, and business-rule validation are foundational for software that processes untrusted input.
+    review_status: human_review_required
+  - requirement_id: HREQ-APP-005
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Safe file handling is foundational whenever file-processing capability exists.
+    review_status: human_review_required
+  - requirement_id: HREQ-APP-006
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Secure error handling and security-relevant application logging start at L1 and integrate with managed monitoring at L2.
+    review_status: human_review_required
+  - requirement_id: HREQ-APP-007
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Secure defaults are foundational while centrally managed hardening and verification mature at L2 and L3.
+    review_status: human_review_required
+  - requirement_id: HREQ-DEV-001
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Existing L1 controls already require approved version control, attributable history, and protected branches.
+    review_status: human_review_required
+  - requirement_id: HREQ-DEV-002
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Secure coding practices are an existing foundational L1 control objective.
+    review_status: human_review_required
+  - requirement_id: HREQ-DEV-003
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Basic code review and automated analysis extend the current L1 secure-coding objective.
+    review_status: human_review_required
+  - requirement_id: HREQ-DEV-004
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: platform
+    assignment_basis: existing_control_alignment
+    rationale: Existing L2 controls require centrally managed and hardened development environments.
+    review_status: human_review_required
+  - requirement_id: HREQ-DEV-005
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Approved dependency sources start at L2 and verifiable supplier provenance strengthens at L3.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-001
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Controlled automated builds and identifiable outputs are existing L1 objectives.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-002
+    minimum_level: L3
+    maturity_path: [L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Reproducible, isolated, and recreated build environments are existing high-assurance L3 objectives.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-003
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Artifact identity and cryptographic integrity metadata are existing L1 objectives.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-004
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Artifact signing and protected keys start at L2; enterprise signing and central key management are L3 enhancements.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-005
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Approved dependency sources are L2 objectives and verifiable provenance is an L3 enhancement.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-006
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Dependency inventory and SBOM generation are existing L1 objectives.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-007
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: evidence
+    assignment_basis: risk_and_capability
+    rationale: Detailed SBOM identity and relationship validation requires managed evidence semantics beyond basic L1 generation.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-008
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: evidence
+    assignment_basis: risk_and_capability
+    rationale: Component-level integrity and source metadata require managed evidence validation and stronger L3 provenance.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-009
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: evidence
+    assignment_basis: risk_and_capability
+    rationale: Standardized license metadata is a managed supply-chain evidence capability.
+    review_status: human_review_required
+  - requirement_id: HREQ-SC-010
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: risk_and_capability
+    rationale: Component license compliance requires managed policy, review, and evidence rather than basic inventory alone.
+    review_status: human_review_required
+  - requirement_id: HREQ-TEST-001
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: A defined test strategy and acceptance evidence are foundational release inputs.
+    review_status: human_review_required
+  - requirement_id: HREQ-TEST-002
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: risk_and_capability
+    rationale: Functional and regression verification are foundational, with broader automated assurance at higher levels.
+    review_status: human_review_required
+  - requirement_id: HREQ-TEST-003
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: architecture
+    assignment_basis: risk_and_capability
+    rationale: Applicable security requirements require verification from L1, with stronger traceability and evidence at higher levels.
+    review_status: human_review_required
+  - requirement_id: HREQ-TEST-004
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Automated vulnerability testing and release evaluation are existing L1 objectives.
+    review_status: human_review_required
+  - requirement_id: HREQ-TEST-005
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Penetration testing requires managed scope and independence for exposed or high-risk software.
+    review_status: human_review_required
+  - requirement_id: HREQ-TEST-006
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Independent testing and protected test data require managed assurance, strengthened for L3 products.
+    review_status: human_review_required
+  - requirement_id: HREQ-OPS-001
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: devsecops_baseline
+    assignment_basis: existing_control_alignment
+    rationale: Release authorization is foundational; enforceable security thresholds strengthen at L2.
+    review_status: human_review_required
+  - requirement_id: HREQ-OPS-002
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: operations
+    assignment_basis: existing_control_alignment
+    rationale: Vulnerabilities require release evaluation at L1 and managed remediation evidence at higher levels.
+    review_status: human_review_required
+  - requirement_id: HREQ-OPS-003
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: operations
+    assignment_basis: risk_and_capability
+    rationale: Security update management requires a managed lifecycle, response ownership, and delivery capability.
+    review_status: human_review_required
+  - requirement_id: HREQ-OPS-004
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: operations
+    assignment_basis: existing_control_alignment
+    rationale: Central security-event generation and forwarding are existing L2 monitoring objectives.
+    review_status: human_review_required
+  - requirement_id: HREQ-OPS-005
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: platform
+    assignment_basis: existing_control_alignment
+    rationale: Managed deployment and version-controlled configuration align with existing L2 platform objectives.
+    review_status: human_review_required
+  - requirement_id: HREQ-OPS-006
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Applicable software requires foundational secure installation and operation guidance.
+    review_status: human_review_required
+  - requirement_id: HREQ-OPS-007
+    minimum_level: L1
+    maturity_path: [L1, L2, L3]
+    governance_overlay: false
+    routing_lane: product_security
+    assignment_basis: risk_and_capability
+    rationale: Every maintained lifecycle needs a foundational retirement and secure-disposal outcome.
+    review_status: human_review_required
+  - requirement_id: HREQ-OPS-008
+    minimum_level: L2
+    maturity_path: [L2, L3]
+    governance_overlay: false
+    routing_lane: operations
+    assignment_basis: risk_and_capability
+    rationale: Product security response and periodic health review require managed ownership and operational capability.
+    review_status: human_review_required
+decision_boundary:
+  control_changes_authorized: false
+  policy_changes_authorized: false
+  evidence_contract_changes_authorized: false
+  release_changes_authorized: false
+  enforcement_changes_authorized: false
+  consumer_compliance_claim_authorized: false

@@ -34,6 +34,11 @@ nav:
       - Policy: governance/devsecops-policy.md
       - Directive: governance/devsecops-directive.md
       - Policy/Directive/Baseline Explained: governance/policy-directive-baseline-verification-and-governance-as-code-explained.md
+      - Review Packets:
+          - CISO Requirements Candidate:
+              - Overview: governance/review-packets/CISO-REQ-SRC-001/README.md
+              - Candidate Model: governance/review-packets/CISO-REQ-SRC-001/harmonized-requirements-candidate.md
+              - CISO Review Brief: governance/review-packets/CISO-REQ-SRC-001/ciso-review-brief.md
   - Platform:
       - Control Baseline and Platform Architecture: platform/control-baseline-and-platform-architecture-relationship-explained.md
   - Controls:

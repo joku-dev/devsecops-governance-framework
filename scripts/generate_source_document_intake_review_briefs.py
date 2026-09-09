@@ -154,6 +154,40 @@ def decision_options(document: dict) -> list[dict]:
                 "release_consideration": "no release by default",
             },
         ]
+    if review_state == "candidate_related_source_review_required":
+        return [
+            {
+                "option": "related_source_confirmed",
+                "meaning": "Accept the source as related material with explicit scope and coexistence boundaries.",
+                "register_updates": [
+                    "move status to review or intake after approval",
+                    "retain similarity assessment as related_source",
+                    "record approved derivation scope in the change request",
+                ],
+                "derived_artifacts_allowed_after_decision": True,
+                "release_consideration": "depends on separately approved derived governance behavior",
+            },
+            {
+                "option": "keep_related_candidate",
+                "meaning": "Keep the related source visible for analysis without authorizing derivation.",
+                "register_updates": [
+                    "keep status as candidate",
+                    "record unresolved authority, applicability, or licensing questions",
+                ],
+                "derived_artifacts_allowed_after_decision": False,
+                "release_consideration": "no release by default",
+            },
+            {
+                "option": "not_relevant_retire",
+                "meaning": "Close the source for future derivation while preserving the review history.",
+                "register_updates": [
+                    "set status to retired",
+                    "record the retirement rationale",
+                ],
+                "derived_artifacts_allowed_after_decision": False,
+                "release_consideration": "no release by default",
+            },
+        ]
     if review_state == "draft_source_of_truth_decision_required":
         return [
             {
@@ -202,7 +236,7 @@ def decision_template(document: dict, impact: dict) -> dict:
     return {
         "source_document_id": document["id"],
         "source_document_title": document["title"],
-        "review_decision": "<new_independent_source|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
+        "review_decision": "<new_independent_source|related_source_confirmed|keep_related_candidate|possible_duplicate|replacement_candidate|replacement_confirmed|not_relevant|keep_draft>",
         "decision_owner": document["owner"],
         "decision_date": "<YYYY-MM-DD>",
         "rationale": "<why this decision is correct>",
@@ -219,6 +253,7 @@ def review_focus(document: dict) -> str:
     focus = {
         "candidate_replacement_review_required": "replacement decision",
         "candidate_similarity_review_required": "similarity and source classification",
+        "candidate_related_source_review_required": "coexistence and derivation scope",
         "draft_source_of_truth_decision_required": "source-of-truth and approval path",
     }
     return focus.get(state, "lineage maintenance")
