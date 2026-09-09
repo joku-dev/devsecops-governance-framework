@@ -132,7 +132,7 @@ See `docs/operations/status/multi-consumer-readiness.md`.
 
 The `Refresh Portfolio Onboarding Status` workflow runs this projection daily
 and can also be started manually. It validates the generated state before
-committing a changed portfolio snapshot. The output is semantically stable:
+proposing a changed portfolio snapshot through a scoped bot PR. The snapshot becomes official after review and merge to protected `main`. The output is semantically stable:
 the timestamp is preserved while repository states and freshness categories
 remain unchanged. A new commit is created only when a status changes, a result
 is added, or a freshness threshold is crossed.

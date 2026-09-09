@@ -7,7 +7,8 @@ Use this checklist before making the public governance baseline a required check
 - [ ] `workflows/devsecops-baseline.yml` is copied to `.github/workflows/devsecops-baseline.yml`.
 - [ ] The workflow calls `joku-dev/devsecops-governance-framework`.
 - [ ] Pull requests and manual runs use `report-only`.
-- [ ] Protected `main` runs are the only `block-on-error` path.
+- [ ] PR, protected `main` push and manual pilot runs all explicitly use `report-only`.
+- [ ] Any later blocking change follows [Blocking Readiness](../../docs/operations/status/blocking-readiness.md), accountable approval and a separate consumer PR.
 - [ ] GitHub Actions artifacts are retained long enough for review.
 
 ## Evidence

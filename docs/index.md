@@ -1,5 +1,12 @@
 # DevSecOps Governance Framework
 
+For current pilot and central operations, start with the
+[operations handbook](operations/guides/governance-repository-operations-handbook.md).
+It links the [daily report](operations/status/daily-governance-operations.md),
+[access maintenance](operations/security/github-access-and-token-maintenance.md),
+and [backup and recovery](operations/processes/governance-repository-backup-and-recovery.md).
+Dated reference runs and released documentation remain historical evidence.
+
 This documentation space is the entry point for the public DevSecOps Governance Framework: reusable DevSecOps and architecture governance baselines, machine-readable evidence, released baselines, onboarding guidance, and CI/CD platform integration.
 
 Application repositories can consume this framework from CI/CD without copying the governance logic into every project.
