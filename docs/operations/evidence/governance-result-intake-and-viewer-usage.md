@@ -1,5 +1,9 @@
 # Governance Result Intake And Viewer Usage
 
+For credential setup and rotation, see [GitHub access maintenance](../security/github-access-and-token-maintenance.md).
+For daily checks, failure handling and pilot acceptance, see the
+[operations handbook](../guides/governance-repository-operations-handbook.md).
+
 ## Purpose
 
 This guide explains two operational capabilities of this repository:

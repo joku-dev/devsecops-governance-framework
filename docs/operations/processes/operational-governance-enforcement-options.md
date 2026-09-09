@@ -34,7 +34,7 @@ enforcement:
   mode_reason: Candidate repository is being onboarded before mainline enforcement.
 ```
 
-Use `report-only` for new repositories until at least one branch or pull-request run has produced usable evidence. Move to `block-on-error` or `waiver-required` only after the repository has stable evidence generation and an agreed operating model.
+Use explicit `report-only` for every new pilot trigger, including main pushes. A first usable run proves wiring only. Stable evidence and an operating model are prerequisites, not authorization to enable blocking; apply the assessment and approval procedure below.
 
 Before either blocking mode is introduced, use the stronger report-only
 Blocking Readiness assessment and migration runbook:

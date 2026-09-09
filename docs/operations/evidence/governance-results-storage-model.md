@@ -91,7 +91,7 @@ python3 scripts/intake_github_actions_run.py \
 
 This keeps raw artifacts in GitHub Actions while storing only the normalized governance snapshot in Git.
 
-The workflow `.github/workflows/intake-governance-result.yml` wraps this script and can commit the updated result snapshot, central index, and status viewer automatically.
+The workflow `.github/workflows/intake-governance-result.yml` wraps this script and proposes updated snapshots, indexes and projections through a scoped bot PR. They become official on protected `main` only after review, required checks and merge.
 
 Architecture runtime governance follows the same model with:
 

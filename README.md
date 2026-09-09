@@ -1,5 +1,12 @@
 # DevSecOps Governance Framework
 
+For current pilot and central operations, start with the
+[operations handbook](docs/operations/guides/governance-repository-operations-handbook.md).
+It links the [daily report](docs/operations/status/daily-governance-operations.md),
+[access maintenance](docs/operations/security/github-access-and-token-maintenance.md),
+and [backup and recovery](docs/operations/processes/governance-repository-backup-and-recovery.md).
+Dated reference runs and released documentation remain historical evidence.
+
 This public repository provides reusable DevSecOps and architecture governance baselines that application repositories can consume from CI/CD without copying governance logic into every project.
 
 It combines governance-as-code, policy-as-code, machine-readable evidence, released baselines, runtime architecture governance, onboarding guidance, and CI/CD adapter patterns for GitHub Actions, Bamboo/Bitbucket, Jenkins, and GitLab CI.

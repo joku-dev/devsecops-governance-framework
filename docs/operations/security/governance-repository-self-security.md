@@ -82,15 +82,23 @@ The initial assessment recorded 7 passing and 9 failing criteria. Consult the
 latest workflow assessment artifact for the current live settings; the versioned
 report is a dated observation, not a security attestation.
 
-GCR-2026-051 authorizes the next rollout: four operational writers now propose
+GCR-2026-051 authorized the implemented writer migration: four operational writers now propose
 review PRs using scope-specific allowlists and immutable historical evidence.
 The desired GitHub configuration is versioned in `.github/main-ruleset.json`.
-Committing that file does not activate it: apply it through GitHub only after
-the migration is merged and its publication path has been exercised.
+The live ruleset was verified active on 9 September 2026 after the migration:
+one required approving review, three strict required checks, resolved threads,
+stale approval dismissal, no force push/deletion and no bypass. PR #60 exercised
+the real intake publication path. PR #61 used a separately authorized temporary
+review exception and restored the one-review rule immediately afterward; that
+exception is not a standing permission. See the
+[operations handbook](../guides/governance-repository-operations-handbook.md).
 
 ## Safe Activation Sequence
 
-Apply protections in this order:
+The sequence below explains activation dependencies. Steps 1–5 are implemented
+on the central repository as of 9 September 2026; steps 6–8 remain separate
+hardening decisions. When setting up a replacement repository, verify each
+step instead of assuming versioned configuration has activated live settings:
 
 1. merge the self-security profile, evaluator, SHA-pinned Actions, Dependabot,
    CodeQL, dependency review, CODEOWNERS expansion, and security policy;
@@ -119,7 +127,7 @@ for main and rerun the live assessment after activation.
 
 There is no automatic approval, merge, or administrator bypass. A maintainer can
 review bot-authored PRs; a maintainer-authored PR needs another authorized person.
-At rollout preparation only `joku-dev` is a collaborator, so independent reviewer
+At the 9 September observation only `joku-dev` is a collaborator, so independent reviewer
 onboarding remains necessary for those PRs. Do not impersonate that reviewer or
 weaken protection to complete a merge. Conflicting operational PRs need
 reconciliation and regenerated projections before their final review.

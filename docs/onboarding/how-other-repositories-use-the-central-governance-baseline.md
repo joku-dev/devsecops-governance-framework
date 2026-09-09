@@ -112,6 +112,7 @@ jobs:
     needs: prepare-devsecops-evidence
     uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
     with:
+      governance_mode: report-only
       level: L1
       max_allowed_severity: high
       artifact_path: dist/application-artifact.txt
@@ -254,12 +255,17 @@ That payload should follow:
 For a successful L1 integration, you usually want to see:
 
 - pipeline status is `success`
-- security gates are enforced
+- the governance mode is explicitly `report-only` and the gate result has `blocks_merge: false`
 - an artifact exists
 - an SBOM exists
 - a vulnerability scan evidence file exists
 - no waiver is needed
 - no threshold exceedance is reported
+
+The pipeline evidence field `security_gates.enforced` records execution of the
+security evaluation; it does not mean that findings block merge. Read the mode,
+gate result and actual branch protection together. A green job with placeholder
+evidence is a wiring result, not a compliance approval.
 
 ## Step 12: Make The Check Operational
 
@@ -267,7 +273,7 @@ Once the workflow is stable, make it part of normal repository operations.
 
 Recommended next actions:
 
-1. require the baseline workflow in pull requests
+1. keep all pilot events explicitly `report-only`; require checks or enable blocking only after the [readiness assessment](../operations/status/blocking-readiness.md) and accountable approval
 2. stop using placeholder SBOM generation
 3. stop using placeholder vulnerability scan evidence
 4. define who reviews failures

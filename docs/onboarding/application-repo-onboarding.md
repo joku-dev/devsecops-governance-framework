@@ -82,7 +82,7 @@ jobs:
       - name: Build source artifact
         run: |
           mkdir -p dist security
-          tar --exclude='.git' -czf dist/application-source.tar.gz .
+          tar --exclude='.git' --exclude='./dist' -czf dist/application-source.tar.gz .
 
       - name: Generate placeholder SBOM
         run: |
@@ -119,6 +119,7 @@ jobs:
     needs: prepare-devsecops-evidence
     uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3
     with:
+      governance_mode: report-only
       level: L1
       max_allowed_severity: high
       artifact_path: dist/application-source.tar.gz
@@ -229,16 +230,14 @@ Recommended examples:
 | Vulnerability scan | Trivy, Grype, CodeQL, Snyk, GitHub Dependabot |
 | Artifact signing | cosign, Sigstore, internal signing service |
 
-### Step 7: Make It A Required Check
+### Step 7: Review Readiness Before Requiring The Check
 
-After the workflow is stable:
-
-1. Go to the application repository settings.
-2. Open branch protection rules for `main`.
-3. Require pull request checks.
-4. Add `Central DevSecOps Baseline` as required status check.
-
-Do this only after the workflow has been green on multiple pull requests.
+Keep initial PR, main push and manual runs explicitly `report-only`.
+Green wiring tests alone do not authorize enforcement. Complete the current
+[Blocking Readiness assessment](../operations/status/blocking-readiness.md),
+record accountable approval and implement any approved mode and protection
+change in a separate consumer PR. Select the actual check contexts emitted by
+the reusable workflow in GitHub; do not guess them from the caller's job name.
 
 ## Definition Of Done For L1 Onboarding
 
@@ -282,7 +281,7 @@ Use this rollout order:
 1. Pilot one repository with L1.
 2. Replace placeholder evidence with real SBOM and vulnerability tooling.
 3. Stabilize the workflow on several pull requests.
-4. Make the baseline check required for the pilot repository.
+4. Review Blocking Readiness and obtain accountable approval before any required-check or blocking activation.
 5. Roll out the same pattern to additional repositories.
 6. Only then increase strictness to L2 and L3.
 

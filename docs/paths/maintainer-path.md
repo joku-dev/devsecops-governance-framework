@@ -1,5 +1,12 @@
 # Maintainer Path
 
+For current pilot and central operations, start with the
+[operations handbook](../operations/guides/governance-repository-operations-handbook.md).
+It links the [daily report](../operations/status/daily-governance-operations.md),
+[access maintenance](../operations/security/github-access-and-token-maintenance.md),
+and [backup and recovery](../operations/processes/governance-repository-backup-and-recovery.md).
+Dated reference runs and released documentation remain historical evidence.
+
 ## Who This Is For
 
 Use this path if you maintain the governance repository itself.
