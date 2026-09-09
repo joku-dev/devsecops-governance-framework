@@ -1,8 +1,11 @@
 from datetime import datetime, timezone
 from pathlib import Path
 import importlib.util
+import json
 import sys
 import unittest
+
+import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,6 +75,39 @@ class PortfolioOnboardingStatusTests(unittest.TestCase):
         self.assertNotEqual(stale["generated_at"], current["generated_at"])
         self.assertTrue(stale["repositories"][0]["stale_or_missing"])
         self.assertEqual(stale["repositories"][0]["latest_devsecops"]["freshness"]["status"], "stale")
+
+    def test_generated_projection_matches_registry_and_summary(self):
+        registry = yaml.safe_load(
+            (ROOT / "status/application-repository-integrations.yaml").read_text(encoding="utf-8")
+        )
+        payload = json.loads(
+            (ROOT / "generated/reports/portfolio-onboarding-status.json").read_text(encoding="utf-8")
+        )
+        markdown = (ROOT / "generated/reports/portfolio-onboarding-status.md").read_text(encoding="utf-8")
+        rows = payload["repositories"]
+        summary = payload["summary"]
+
+        self.assertEqual(payload["schema_version"], "2.0.0")
+        self.assertEqual(
+            [row["repository_id"] for row in rows],
+            [entry["repository"] for entry in registry["integrations"]],
+        )
+        self.assertEqual(summary["repository_count"], len(rows))
+        self.assertEqual(
+            summary["stale_or_missing_count"],
+            sum(row["stale_or_missing"] for row in rows),
+        )
+        self.assertEqual(
+            summary["report_only_count"],
+            sum(row["governance_mode"] == "report-only" for row in rows),
+        )
+        self.assertEqual(summary["active_count"], sum(row["adoption_state"] == "active" for row in rows))
+        for row in rows:
+            self.assertIn(f"`{row['repository_id']}`", markdown)
+        self.assertIn(
+            "This report is informational and does not approve waivers or change enforcement modes.",
+            markdown,
+        )
 
 
 if __name__ == "__main__":
