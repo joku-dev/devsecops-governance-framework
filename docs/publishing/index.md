@@ -10,6 +10,13 @@ Publishing documents are not source documents unless they are explicitly moved
 through the source-document intake process. They are communication artifacts
 derived from, or aligned with, the governed repository content.
 
+## Executive briefing
+
+The German [whitepaper and presentation for executive management](executive-briefing/README.md)
+explain benefits, evidence limits and a controlled pilot, based on the reviewed
+9 September 2026 repository snapshot. Editable files and presentation notes are
+included.
+
 ## Documents
 
 | Document | Purpose |
