@@ -17,6 +17,12 @@ explain benefits, evidence limits and a controlled pilot, based on the reviewed
 9 September 2026 repository snapshot. Editable files and presentation notes are
 included.
 
+## Repository walkthrough
+
+The German [repository function presentation](repository-walkthrough/README.md)
+explains source intake, executable controls, application runs and reviewed result
+publication through a concrete SBOM example.
+
 ## Documents
 
 | Document | Purpose |
