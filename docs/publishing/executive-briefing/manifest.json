@@ -1,0 +1,14 @@
+{
+  "publication_version": "1.0",
+  "date": "9. September 2026",
+  "audience": "Geschäftsführung mit Schwerpunkt Nutzen und Einführung",
+  "source_commit": "689357712b8eaaa91968a6810c7f056adb6f6555",
+  "content_sha256": "3a45dc1243b6eac7d4d7312165efc7985f80236c015c28c9c38bdac44f159801",
+  "whitepaper_pages": 8,
+  "presentation_slides": 12,
+  "files": {
+    "engineering-governance-presentation.pptx": "37f27420f2f2b864d57291f3af3340c2835b30907193b2f46e2273805f9f8e99",
+    "engineering-governance-whitepaper.docx": "ee552d8ac74ca82245c3f224ef061bf865747671b8107375419586ba5bac4412",
+    "engineering-governance-whitepaper.pdf": "7f8c097aa8f33fcea9090d1991ea83c5b4af2be44f77ff0dcba5f4d5cb31e7ab"
+  }
+}

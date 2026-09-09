@@ -51,6 +51,9 @@ nav:
       - Artifact Intake Checklist Template: examples/artifact-intake-checklist.template.md
   - Publishing:
       - Overview: publishing/index.md
+      - Executive Whitepaper And Presentation: publishing/executive-briefing/README.md
+      - Executive Whitepaper: publishing/executive-briefing/whitepaper.md
+      - Executive Presentation Notes: publishing/executive-briefing/presentation.md
       - Confluence Governance Repo Article: publishing/confluence-governance-repo-artikel.md
   - Onboarding:
       - External Review Brief: onboarding/external-review-brief.md
