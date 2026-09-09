@@ -89,6 +89,23 @@ class BlockingModeAlignmentTests(unittest.TestCase):
         self.assertEqual(result["repositories"][0]["alignment"], "legacy_risk_expired")
         self.assertEqual(result["alignment_status"], "review_required")
 
+    def test_extended_review_expires_after_12_december_in_berlin(self):
+        integrations = yaml.safe_load((ROOT / "status/application-repository-integrations.yaml").read_text())
+        registry = yaml.safe_load((ROOT / "model/enforcement/blocking-mode-alignment.yaml").read_text())
+        current_readiness = json.loads((ROOT / "generated/reports/blocking-readiness.json").read_text())
+        for as_of, expected in (
+            ("2026-12-12T23:59:59+01:00", "legacy_risk_active"),
+            ("2026-12-13T00:00:00+01:00", "legacy_risk_expired"),
+        ):
+            with self.subTest(as_of=as_of):
+                result = assess(integrations=integrations, readiness=current_readiness,
+                                alignment_model=registry, as_of=as_of)
+                row = next(item for item in result["repositories"]
+                           if item["repository_id"] == "joku-dev/ha-CPsWMS")
+                self.assertEqual(row["alignment"], expected)
+                self.assertFalse(row["blocking_activation_valid"])
+                self.assertFalse(result["enforcement_change_authorized"])
+
     def test_ready_and_approved_blocking_is_aligned_without_legacy_record(self):
         repo = "owner/ready-repo"
         result = assess(
