@@ -10,7 +10,7 @@ docs/demos/demo-end-to-end-governance.md
 
 Use this document when the demo audience wants to go deeper into the architecture runtime governance part only.
 
-## Current Demo State
+## Retained Demo State
 
 | Field | Value |
 |---|---|
@@ -25,9 +25,9 @@ Use this document when the demo audience wants to go deeper into the architectur
 
 Interpretation:
 
-- The architecture checks are demo-ready on mainline.
+- These are the retained 15 July 2026 mainline observations, not proof of current freshness.
 - The checks are currently used report-only for the demo.
-- A `PASS` means the current evidence satisfies the released L1 architecture governance checks. It is not a formal production approval.
+- A `PASS` means the recorded evidence satisfies the released L1 architecture governance checks. It is not a formal production approval.
 
 ## Demo Flow
 
@@ -390,3 +390,6 @@ The architecture framework has been moved into the same operating model as the D
 8. Viewer status.
 
 This is the bridge from document-oriented architecture governance to runtime governance as code.
+
+For current intake, review and pilot operation, use the
+[operations handbook](../operations/guides/governance-repository-operations-handbook.md).

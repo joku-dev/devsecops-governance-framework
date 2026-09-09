@@ -28,10 +28,10 @@ joku-dev/devsecops-governance-framework
 1. Copy `workflows/devsecops-baseline.yml` into the application repository.
 2. Replace the placeholder artifact build with the real build output.
 3. Replace placeholder SBOM and vulnerability scan data with real tool output.
-4. Keep pull requests and manual runs in `report-only`.
-5. Switch protected `main` runs to `block-on-error` only after evidence is stable.
+4. Record the reviewed template commit separately from the released baseline pins.
+5. Keep PR, main-branch push and manual runs explicitly `report-only`. Any later blocking activation requires the [readiness assessment](../docs/operations/status/blocking-readiness.md), accountable approval and a separate consumer PR.
 6. Add `workflows/architecture-governance.yml` when architecture runtime evidence should be evaluated.
-7. Use the checklist before making the workflow a required branch-protection check.
+7. Complete the first-adoption checklist; it supplements the readiness assessment and does not itself authorize a required-check change.
 8. Record the pilot outcome with `templates/adoption-decision-record.md`.
 
 ## Expected First Result
@@ -40,7 +40,7 @@ The first successful wiring run should produce these GitHub Actions artifacts:
 
 - `application-evidence`
 - `devsecops-pipeline-evidence`
-- `governance-run-input`
+- `devsecops-governance-run-input`
 - optionally `architecture-governance-evidence`
 
 The first run is allowed to be diagnostic. A green report-only run means the wiring works; it does not automatically mean the repository is ready for blocking release governance.
