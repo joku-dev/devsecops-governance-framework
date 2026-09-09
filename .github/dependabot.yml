@@ -13,6 +13,18 @@ updates:
       - security
   - package-ecosystem: github-actions
     directory: /
+    # CodeQL init and analyze must use the same action version.
+    groups:
+      codeql:
+        applies-to: version-updates
+        patterns:
+          - "github/codeql-action"
+          - "github/codeql-action/*"
+      codeql-security:
+        applies-to: security-updates
+        patterns:
+          - "github/codeql-action"
+          - "github/codeql-action/*"
     schedule:
       interval: weekly
       day: monday
