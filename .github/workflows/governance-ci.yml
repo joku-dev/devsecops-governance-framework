@@ -1,6 +1,7 @@
 name: Governance CI
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
