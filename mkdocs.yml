@@ -115,6 +115,7 @@ nav:
       - Security:
           - Governance Repository Self-Security: operations/security/governance-repository-self-security.md
       - Status:
+          - Daily Governance Operations: operations/status/daily-governance-operations.md
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md
           - Multi-Consumer Readiness: operations/status/multi-consumer-readiness.md
           - Blocking Readiness: operations/status/blocking-readiness.md
