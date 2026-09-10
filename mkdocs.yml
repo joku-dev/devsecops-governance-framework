@@ -75,6 +75,7 @@ nav:
       - Historical ha-CPsWMS Demo Guide: demos/demo-guide-2026-07-02-ha-cpswms.md
   - Operations:
       - Guides:
+          - Detailed Function Catalog: operations/guides/repository-function-catalog.md
           - Operations Handbook: operations/guides/governance-repository-operations-handbook.md
           - Overview: operations/guides/index.md
           - How To Use This Repo: operations/guides/how-to-use-this-repo.md
