@@ -25,21 +25,31 @@ The consumer repository calls the public governance framework directly:
 | `DevSecOps Baseline` | `joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3` |
 | `Architecture Governance` | `joku-dev/devsecops-governance-framework/.github/workflows/architecture-baseline-l1-v0.1.0.yml@architecture-baseline-l1-v0.1.0` |
 
-The repository intentionally starts in `report-only` mode. This demonstrates first adoption without requiring production branch protection or mature evidence on day one.
+The repository explicitly uses `report-only` for all pilot triggers. Its main
+branch has review protection; a successful report-only workflow can still
+contain governance findings.
 
-## Validation Run
+## Accepted Mainline Validation On 11 September 2026
 
 | Check | Result | Run |
 | --- | --- | --- |
-| CI | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29410866381` |
-| DevSecOps Baseline | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29410867001` |
-| Architecture Governance | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29410866951` |
+| CI | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820033` |
+| DevSecOps Baseline | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820493` |
+| Architecture Governance | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820390` |
 
 Validated commit:
 
 ```text
-d8f35c68da909ad7471c0350427e5be80b2d3a67
+7d6a4f67c5e8441e1067405cc2da17218dc256fd
 ```
+
+The accepted DevSecOps result is `pass`, represented by a one-gate fallback
+summary rather than the full control catalog. Architecture has **25 findings**
+across four gates despite technical workflow success. Typed vulnerability
+evidence from the same DevSecOps run has zero scanner findings, passing recorded
+integrity/Freshness checks and Trust `integrity_verified`. Both source and
+central accepted state bind to the commit above. Blocking Readiness remains
+`not_ready`; these are dated observations, not a production approval.
 
 ## Produced Artifacts
 
@@ -59,7 +69,9 @@ Use this repository as a minimal reference when onboarding another application r
 
 1. Copy the workflow structure.
 2. Keep first runs in `report-only`.
-3. Replace placeholder SBOM and vulnerability evidence with real tool output.
+3. Adapt evidence generation to your application. The reference includes a real
+   Trivy scan; a minimal/example SBOM must be replaced with application-specific
+   tool output before claiming coverage.
 4. Add or approve application-specific architecture evidence.
 5. Enable blocking only after the current [readiness assessment](../operations/status/blocking-readiness.md), accountable approval and a separate consumer change.
 

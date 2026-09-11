@@ -1,5 +1,11 @@
 # Documentation Structure Audit
 
+> Planning/reference context: completed migration steps and earlier proposals
+> below are retained for traceability. Current implementation and remaining work
+> are described in the [platform state](../status/current-governance-platform-state.md)
+> and [roadmap](../../roadmap.md). CI validation and strict MkDocs publishing
+> are already implemented; new blocking requires the current readiness process.
+
 ## Purpose
 
 This document records the current state of the documentation structure after the

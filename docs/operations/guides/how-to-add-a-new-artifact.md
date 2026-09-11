@@ -124,9 +124,8 @@ Do not hand-edit status indexes when an intake or generator script exists.
 For documentation-only artifact intake, run:
 
 ```bash
-python3 scripts/validate_runtime_governance.py
-python3 scripts/validate_governance_repo.py
-python3 -m unittest discover -s tests
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
 .venv-docs/bin/mkdocs build --strict
 ```
 

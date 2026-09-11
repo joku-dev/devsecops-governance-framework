@@ -1,6 +1,6 @@
 # Engineering Governance Präsentation für die Geschäftsführung
 
-Quellstand: `689357712b8eaaa91968a6810c7f056adb6f6555`. Vorgesehene Vortragsdauer etwa 15 Minuten.
+Quellstand: `4abe88294f299d7f801c74ff0161df234960c092`. Vorgesehene Vortragsdauer etwa 15 Minuten.
 
 ## Folie 1 Engineering Governance
 
@@ -8,9 +8,9 @@ Nutzen und Einführung für die Geschäftsführung
 
 ### Sprechernotizen
 
-Ziel ist eine Entscheidung über einen kontrollierten Testbetrieb. Die Plattform verbindet fachliche Vorgaben mit ausgewählten automatisierten Prüfungen. Der Vortrag beschreibt den Stand vom 9. September 2026 und keine bestätigte unternehmensweite Betriebsreife.
+Ziel ist eine Entscheidung über einen kontrollierten Testbetrieb. Die Plattform verbindet fachliche Vorgaben mit ausgewählten automatisierten Prüfungen. Der Vortrag beschreibt den Stand vom 11. September 2026 und keine bestätigte unternehmensweite Betriebsreife.
 
-Quellen: [1](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/05_CURRENT_DIRECTION.md), [5](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md)
+Quellen: [1](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/05_CURRENT_DIRECTION.md), [5](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md)
 
 ## Folie 2 Entscheidung über einen begrenzten Pilot
 
@@ -26,7 +26,7 @@ Ein bis zwei Anwendungen, vorgeschlagen zwei Wochen
 
 Die zwei Wochen sind ein Vorschlag für die Beobachtung nach der Vorbereitung. Es gibt noch keine Aufwandsschätzung oder Budgetfreigabe. Ein Pilotbeschluss erlaubt keine neuen verbindlichen Lieferstopps.
 
-Quellen: [5](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md), [7](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/generated/reports/blocking-readiness.json)
+Quellen: [5](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md), [7](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/blocking-readiness.json)
 
 ## Folie 3 Geschäftlicher Ausgangspunkt
 
@@ -42,7 +42,7 @@ Softwareentscheidungen brauchen nachvollziehbare Nachweise
 
 Das ist die Problemstellung des Projekts. Die konkrete Ausgangslage und der heutige Aufwand müssen für die Pilotanwendungen noch erhoben werden.
 
-Quellen: [1](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/05_CURRENT_DIRECTION.md), [3](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/02_CONSTITUTION.md), [4](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-evidence-contract.md)
+Quellen: [1](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/05_CURRENT_DIRECTION.md), [3](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/02_CONSTITUTION.md), [4](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-evidence-contract.md)
 
 ## Folie 4 Erwarteter Nutzen und Messung
 
@@ -59,7 +59,7 @@ Der Pilot prüft den Nutzen statt Einsparungen vorauszusetzen
 
 Es liegen keine belastbaren ROI- oder Einsparungswerte vor. Dieselben ausgewählten Aufgaben sollen vor und während der Erprobung beobachtet werden. Eine kleine Stichprobe liefert eine erste Einschätzung.
 
-Quellen: [4](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-evidence-contract.md), [5](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md), [9](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/daily-governance-operations.md)
+Quellen: [4](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-evidence-contract.md), [5](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md), [9](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/daily-governance-operations.md)
 
 ## Folie 5 Funktionsweise im Überblick
 
@@ -76,7 +76,7 @@ Anwendungsteams liefern Nachweise, die Zentrale prüft und bündelt
 
 Diese vier Ebenen beschreiben die Architektur. Heute bilden GitHub Actions und OPA die Referenzimplementierung. Plattformunabhängigkeit ist das Ziel, keine Zusage bereits gleichwertig erprobter Adapter.
 
-Quellen: [2](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/04_REFERENCE_ARCHITECTURE.md), [4](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-evidence-contract.md), [6](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-result-intake-and-viewer-usage.md)
+Quellen: [2](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/04_REFERENCE_ARCHITECTURE.md), [4](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-evidence-contract.md), [6](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-result-intake-and-viewer-usage.md)
 
 ## Folie 6 Menschliche Verantwortung
 
@@ -92,7 +92,7 @@ Automatisierte Befunde unterstützen die Entscheidung
 
 Individuelle Personen und Stellvertretungen müssen vor Pilotbeginn benannt werden. Ein erfolgreicher automatisierter Lauf bedeutet keine pauschale Sicherheits-, Compliance- oder Produktionsfreigabe.
 
-Quellen: [3](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/02_CONSTITUTION.md), [5](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md), [11](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/security/github-access-and-token-maintenance.md)
+Quellen: [3](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/02_CONSTITUTION.md), [5](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md), [11](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/security/github-access-and-token-maintenance.md)
 
 ## Folie 7 Belegter Entwicklungsstand
 
@@ -101,29 +101,31 @@ Die Referenzimplementierung ist vorhanden
 | Vorhanden | Noch im Pilot zu belegen |
 |---|---|
 | Versionierte Regeln und Prüfungen | Eignung für ausgewählte Anwendungen |
-| Aufnahme und zentrale Statusanzeige | Neue reale Anwendungsergebnisse |
+| Aktuelle Ergebnisse für drei Consumer | Wiederholbarkeit und Befundbearbeitung |
 | Betriebsbericht und Anleitungen | Verlässliche Bearbeitung im Alltag |
 | Lokale Git-Wiederherstellung | Vollständiger Wiederanlauf mit Zugängen |
 
 ### Sprechernotizen
 
-Der Quellstand 6893577 enthält veröffentlichte Baselines, geschützte PR-Abläufe und tägliche Betriebsberichte. Die Hauptworkflows einschließlich Dokumentationsveröffentlichung waren an diesem Commit erfolgreich. Die Tabelle trennt Verfügbarkeit von Betriebserprobung.
+Der Quellstand 4abe882 enthält veröffentlichte Baselines, geschützte PR-Abläufe und tägliche Betriebsberichte. Governance CI, CodeQL, Self-Security und Dokumentationsveröffentlichung waren erfolgreich. Neue reale Ergebnisse für drei Consumer sind angenommen. Die Tabelle trennt technische Verfügbarkeit von längerfristiger Betriebserprobung.
 
-Quellen: [5](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md), [8](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/current-governance-platform-state.md), [9](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/daily-governance-operations.md), [13](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545699), [14](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545693), [15](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545772), [16](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545695)
+Quellen: [5](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md), [8](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/repository-results-index.json), [9](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/daily-governance-operations.md), [13](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502655), [14](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502609), [15](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502982), [16](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502768), [18](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/portfolio-onboarding-status.json)
 
-## Folie 8 Aussagekraft der Referenzläufe
+## Folie 8 Angenommene Anwendungsergebnisse
 
-ha-CPsWMS am 15. Juli 2026
+ha-CPsWMS am 11. September 2026
 
-- **16 von 16:** DevSecOps-Kontrollen bestanden
+- **16 von 16:** Anwendbare DevSecOps-Kontrollen bestanden
 
 - **4 von 4:** Architekturgates bestanden
 
+Separater Replay-Befund bleibt offen · keine Produktionsfreigabe
+
 ### Sprechernotizen
 
-Historische Läufe: DevSecOps 29415015878, Architektur 29415015294. Beide beziehen sich auf Commit 716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c. Die Juli-Ergebnisse belegen die damalige Integration. Eine erneute Aufnahme im September macht sie nicht aktuell. Es liegt dadurch keine neue Bewertung der Anwendung vor.
+Neue main-push-Läufe: DevSecOps 34602002201, Architektur 34602001140, Consumer-Commit 6976bb2af2b9d47d2934273c444b6c9b62a81ea2. 16 von 16 anwendbaren Controls bestehen, 30 weitere sind nicht anwendbar. Architektur: vier von vier Gates, null Befunde. Der separate DevSecOps-Replay-Check bleibt fehlgeschlagen. Die Factory meldet einen Branchschutz-Befund, der neutrale Demo-Consumer 25 Architektur-Befunde. Dessen DevSecOps-pass ist ein einzelnes zusammengefasstes Baseline-Gate. Das Portfolio enthält drei Consumer ohne veraltete oder fehlende Ergebnisse im Beobachtungszeitpunkt. Diese Nachweise sind keine Produktionsfreigabe.
 
-Quellen: [8](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/current-governance-platform-state.md)
+Quellen: [8](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/repository-results-index.json), [17](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/architecture-results-index.json), [18](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/portfolio-onboarding-status.json)
 
 ## Folie 9 Voraussetzungen für verbindliche Prüfungen
 
@@ -137,9 +139,9 @@ Die gespeicherte Bewertung sieht keine der drei Integrationen bereit
 
 ### Sprechernotizen
 
-Bewertungsstand: generated_at 2026-09-09T08:18:36Z, drei Integrationen, null ready, drei not_ready und eine bereits blockierende Integration unterhalb der neuen Anforderungen. Der Bestandsmodus ist keine Freigabe für neues Blocking. Ein erfolgreicher Workflow allein genügt nicht.
+Bewertungsstand: generated_at 2026-09-11T14:34:14Z, drei Integrationen, null ready, drei not_ready und eine bereits blockierende Integration unterhalb der neuen Anforderungen. Aktuelle Typed Evidence des neutralen Consumers ist angenommen, weitere Trust-, Architektur- und Betriebskriterien bleiben offen. Der Bestandsmodus ist keine Freigabe für neues Blocking. Ein erfolgreicher Workflow allein genügt nicht.
 
-Quellen: [7](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/generated/reports/blocking-readiness.json), [12](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/blocking-mode-alignment.md)
+Quellen: [7](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/blocking-readiness.json), [12](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/blocking-mode-alignment.md)
 
 ## Folie 10 Vorgeschlagener Ablauf
 
@@ -156,7 +158,7 @@ Vorbereitung und zwei Wochen Beobachtung
 
 Die Vorbereitung muss vor Beginn der Beobachtung abgeschlossen sein. Absichtliche Fehler werden in einem vereinbarten isolierten Kontext getestet. Produktive Nachweise dürfen nicht zur Simulation umgeschrieben werden.
 
-Quellen: [5](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md), [6](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-result-intake-and-viewer-usage.md), [10](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/processes/governance-repository-backup-and-recovery.md)
+Quellen: [5](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md), [6](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-result-intake-and-viewer-usage.md), [10](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/processes/governance-repository-backup-and-recovery.md)
 
 ## Folie 11 Betriebsaufwand und Grenzen
 
@@ -172,7 +174,7 @@ Der Nutzen setzt eine verbindliche Bearbeitung voraus
 
 Für den aktuellen Pilot ist keine zusätzliche Datenbank erforderlich. Die Aufwände sind noch nicht für das Unternehmen beziffert. Der Bericht läuft täglich um 06:43 UTC und sendet selbst keine Warnmeldungen. Zugangspflege, externe Sicherung und Stellvertretung bleiben Aufgaben des Betriebs.
 
-Quellen: [5](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md), [9](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/daily-governance-operations.md), [10](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/processes/governance-repository-backup-and-recovery.md), [11](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/security/github-access-and-token-maintenance.md)
+Quellen: [5](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md), [9](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/daily-governance-operations.md), [10](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/processes/governance-repository-backup-and-recovery.md), [11](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/security/github-access-and-token-maintenance.md)
 
 ## Folie 12 Nächste Entscheidung
 
@@ -188,4 +190,4 @@ Kontrollierte Erprobung mit klarer Auswertung
 
 Empfehlung: begrenzten Pilot vorbereiten, keine pauschale Produktionsfreigabe. Die vollständigen Quellen und die ausführliche Einordnung stehen im begleitenden Whitepaper. Alle Quellen dieser Präsentation sind zusätzlich in den jeweiligen Sprechernotizen verlinkt.
 
-Quellen: [1](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/05_CURRENT_DIRECTION.md), [3](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/02_CONSTITUTION.md), [5](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md), [7](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/generated/reports/blocking-readiness.json)
+Quellen: [1](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/05_CURRENT_DIRECTION.md), [3](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/02_CONSTITUTION.md), [5](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md), [7](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/blocking-readiness.json)

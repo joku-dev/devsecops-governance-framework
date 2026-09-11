@@ -33,14 +33,17 @@ Wichtig ist die Trennung dieser drei Signale:
 
 ## Validierter Referenzzustand
 
-Die Präsentation verwendet standardmäßig diesen unveränderlichen Referenzlauf:
+Die Präsentation verwendet den am 11. September 2026 angenommenen,
+unveränderlichen Referenzlauf. Freshness bezeichnet die Bewertung bei der
+Verifikation. Vor einem späteren Vortrag die aktuelle Indexauswahl prüfen;
+ein neuerer angenommener Lauf kann diesen Referenzlauf ablösen:
 
 | Feld | Referenzwert |
 |---|---|
 | Consumer | `joku-dev/governance-framework-demo-consumer` |
-| Consumer-Commit | `4ec2b2bd53560e010ebb1c078c4d3bd41b0bfcc6` |
+| Consumer-Commit | `7d6a4f67c5e8441e1067405cc2da17218dc256fd` |
 | Workflow | `DevSecOps Baseline` |
-| Workflow-Lauf | `29432884108` |
+| Workflow-Lauf | `34606820493` |
 | Event und Branch | `push` auf `main` |
 | Scanner | Trivy `v0.70.0` |
 | Findings | `0`, maximale Severity `none` |
@@ -78,7 +81,7 @@ Sprechtext:
 ```bash
 export GOV_REPO=/Users/joku/Development/devsecops-governance-framework
 export CONSUMER_REPO=/Users/joku/Development/governance-framework-demo-consumer
-export REFERENCE_RUN=29432884108
+export REFERENCE_RUN=34606820493
 ```
 
 Wenn die Repositories an einem anderen Ort liegen, passe nur die ersten beiden
@@ -173,7 +176,9 @@ jq '.repositories[] |
 
 Prüfe insbesondere:
 
-- `pipeline_run_id` ist `29432884108`
+- `pipeline_run_id` ist am festgehaltenen Stand `34606820493`; bei einem
+  neueren angenommenen Lauf dessen Kontext prüfen oder gezielt den gespeicherten
+  Referenzsnapshot öffnen
 - `pipeline_event` ist `push`
 - `branch` ist `main`
 - `content_integrity` ist `pass`
@@ -235,14 +240,14 @@ Werte zeigt:
 | Freshness | `pass` |
 | Findings | `0 · none` |
 | Subject Binding | `co_collected`, scanner attested: `no` |
-| Run | `29432884108` |
+| Run | `34606820493` |
 
 ### Schritt 9: Browser-Tabs Vorbereiten
 
 Öffne die Tabs in dieser Reihenfolge:
 
 1. Consumer-README oder Consumer-Workflow
-2. GitHub-Actions-Referenzlauf `29432884108`
+2. GitHub-Actions-Referenzlauf `34606820493`
 3. lokal heruntergeladene normalisierte Scan-Datei
 4. lokal heruntergeladener producer-seitiger Trust Record
 5. zentraler Snapshot im Governance-Repository
@@ -253,13 +258,13 @@ Werte zeigt:
 GitHub-URL des Referenzlaufs:
 
 ```text
-https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29432884108
+https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820493
 ```
 
 Relevante lokale Governance-Dateien:
 
 ```text
-status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-33-38Z-run-29432884108-vulnerability-scan.json
+status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json
 status/typed-evidence-results-index.json
 generated/viewer/status-viewer.html
 ```
@@ -333,7 +338,7 @@ Wichtiger Hinweis:
 
 Zeit: etwa 3 Minuten.
 
-Öffne den Referenzlauf `29432884108` und zeige:
+Öffne den Referenzlauf `34606820493` und zeige:
 
 1. Event `push`
 2. Branch `main`
@@ -477,7 +482,7 @@ jq '{
       select(.id == "content_digest_verified" or
              .id == "freshness_evaluated")]
   }
-}' "$GOV_REPO/status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-33-38Z-run-29432884108-vulnerability-scan.json"
+}' "$GOV_REPO/status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json"
 ```
 
 Hebe hervor:
@@ -788,7 +793,7 @@ Nutze für die Präsentation andernfalls die vorbereitete Kopie unter `/tmp`.
 
 Ein historischer GitHub-Lauf verändert sich nicht. Ein neu gestarteter Trivy-
 Lauf kann aber wegen einer aktualisierten Vulnerability-Datenbank andere
-Findings liefern. Kehre zum Referenzlauf `29432884108` und dessen committed
+Findings liefern. Kehre zum Referenzlauf `34606820493` und dessen committed
 zentralem Snapshot zurück.
 
 ### Freshness Ist Bei Einer Wiederholten Intake `fail`
@@ -874,7 +879,7 @@ Runbooks, aber ändere keine Governance-Policy unmittelbar während des Termins.
 - [ ] Netzwerk und Bildschirmfreigabe geprüft
 - [ ] Viewer gestartet
 - [ ] Viewer-Bereich **Typed Evidence Trust** sichtbar
-- [ ] Referenzlauf `29432884108` geöffnet
+- [ ] Referenzlauf `34606820493` geöffnet
 - [ ] Terminal im richtigen Verzeichnis
 - [ ] Benachrichtigungen deaktiviert
 

@@ -121,7 +121,11 @@ If they are present as untracked files, leave them alone unless explicitly asked
 
 ## Report-Only Versus Blocking
 
-The current demo should remain report-only unless explicitly changed.
+New consumer demos must explicitly remain report-only unless a scoped change
+authorizes blocking. The existing ha-CPsWMS DevSecOps integration is a recorded
+legacy blocking risk, with review due 12 December 2026, 23:59:59 Europe/Berlin.
+Its architecture evaluation remains report-only. See
+`docs/operations/status/blocking-mode-alignment.md`.
 
 - Report-only means findings are visible in reports, artifacts, indexes and the viewer.
 - Blocking means the workflow fails on findings.

@@ -45,8 +45,7 @@ Eine grundlegende Aenderung am Governance-Kern ist erst fertig, wenn mindestens 
 
 | Pruefung | Erwartung |
 |---|---|
-| Lokale Tests | `python3 -m pytest` ist erfolgreich. |
-| Repo-Validierung | `python3 scripts/validate_governance_repo.py` ist erfolgreich. |
+| Lokale Tests und Repo-Validierung | `./scripts/bootstrap_validation_env.sh` und `./scripts/validate_all.sh` sind erfolgreich; OPA, Runtime, Repo und Unit-Tests werden vollstaendig geprueft. |
 | Dokumentationsbuild | `mkdocs build --strict` ist erfolgreich, wenn Dokumentation oder Navigation geaendert wurde. |
 | GitHub CI | Der Pull Request gegen `main` hat gruene GitHub Checks. |
 | GitHub-Kompatibilitaet | Bestehende GitHub Actions Templates, Reusable Workflows und Intake-Skripte bleiben nutzbar. |

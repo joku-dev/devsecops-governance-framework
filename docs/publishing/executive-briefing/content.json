@@ -1,102 +1,114 @@
 {
   "title": "Engineering Governance für verlässliche Softwareentscheidungen",
   "subtitle": "Whitepaper für die Geschäftsführung",
-  "date": "9. September 2026",
-  "version": "1.0",
-  "source_commit": "689357712b8eaaa91968a6810c7f056adb6f6555",
+  "date": "11. September 2026",
+  "version": "1.1",
+  "source_commit": "4abe88294f299d7f801c74ff0161df234960c092",
   "audience": "Geschäftsführung mit Schwerpunkt Nutzen und Einführung",
   "sources": [
     {
       "id": "1",
       "title": "Vision und aktuelle Ausrichtung",
       "path": "docs/foundation/05_CURRENT_DIRECTION.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/05_CURRENT_DIRECTION.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/05_CURRENT_DIRECTION.md"
     },
     {
       "id": "2",
       "title": "Architektur und Schnittstellen",
       "path": "docs/foundation/04_REFERENCE_ARCHITECTURE.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/04_REFERENCE_ARCHITECTURE.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/04_REFERENCE_ARCHITECTURE.md"
     },
     {
       "id": "3",
       "title": "Architektonische Grundsätze und menschliche Verantwortung",
       "path": "docs/foundation/02_CONSTITUTION.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/02_CONSTITUTION.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/02_CONSTITUTION.md"
     },
     {
       "id": "4",
       "title": "Vertrag für Nachweise",
       "path": "docs/operations/evidence/governance-evidence-contract.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-evidence-contract.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-evidence-contract.md"
     },
     {
       "id": "5",
       "title": "Betriebshandbuch und Pilotkriterien",
       "path": "docs/operations/guides/governance-repository-operations-handbook.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md"
     },
     {
       "id": "6",
       "title": "Ergebnisaufnahme und Statusanzeige",
       "path": "docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-result-intake-and-viewer-usage.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-result-intake-and-viewer-usage.md"
     },
     {
       "id": "7",
       "title": "Voraussetzungen für verbindliche Prüfungen",
       "path": "generated/reports/blocking-readiness.json",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/generated/reports/blocking-readiness.json"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/blocking-readiness.json"
     },
     {
       "id": "8",
-      "title": "Stand und datierte Referenznachweise",
-      "path": "docs/operations/status/current-governance-platform-state.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/current-governance-platform-state.md"
+      "title": "Angenommene DevSecOps-Ergebnisse und Trust-Kontext",
+      "path": "status/repository-results-index.json",
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/repository-results-index.json"
     },
     {
       "id": "9",
       "title": "Täglicher Betriebsbericht",
       "path": "docs/operations/status/daily-governance-operations.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/daily-governance-operations.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/daily-governance-operations.md"
     },
     {
       "id": "10",
       "title": "Sicherung und Wiederherstellung",
       "path": "docs/operations/processes/governance-repository-backup-and-recovery.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/processes/governance-repository-backup-and-recovery.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/processes/governance-repository-backup-and-recovery.md"
     },
     {
       "id": "11",
       "title": "Zugänge und Tokenpflege",
       "path": "docs/operations/security/github-access-and-token-maintenance.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/security/github-access-and-token-maintenance.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/security/github-access-and-token-maintenance.md"
     },
     {
       "id": "12",
       "title": "Umgang mit dem bestehenden Blocking-Risiko",
       "path": "docs/operations/status/blocking-mode-alignment.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/blocking-mode-alignment.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/blocking-mode-alignment.md"
     },
     {
       "id": "13",
       "title": "Governance CI am betrachteten main-Stand",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545699"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502655"
     },
     {
       "id": "14",
       "title": "CodeQL am betrachteten main-Stand",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545693"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502609"
     },
     {
       "id": "15",
       "title": "Dokumentationsveröffentlichung am betrachteten main-Stand",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545772"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502982"
     },
     {
       "id": "16",
       "title": "Repository-Sicherheitsprüfung am betrachteten main-Stand",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545695"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502768"
+    },
+    {
+      "id": "17",
+      "title": "Angenommene Architektur-Ergebnisse",
+      "path": "status/architecture-results-index.json",
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/architecture-results-index.json"
+    },
+    {
+      "id": "18",
+      "title": "Portfolio am 11. September 2026",
+      "path": "generated/reports/portfolio-onboarding-status.json",
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/portfolio-onboarding-status.json"
     }
   ],
   "pages": [
@@ -107,7 +119,7 @@
         "Die Empfehlung lautet, einen kontrollierten Testbetrieb mit ein bis zwei geeigneten Anwendungen vorzubereiten. Die technische Referenzimplementierung und die Betriebsanleitungen sind vorhanden. Ob sie im Alltag Aufwand verringern und Entscheidungen beschleunigen, muss der Testbetrieb erst zeigen. Eine belastbare Aussage über Einsparungen, unternehmensweite Betriebsreife oder vollständige Compliance lässt sich aus dem aktuellen Stand nicht ableiten. [1, 5, 8]",
         "Für den Einstieg melden die Prüfungen ihre Ergebnisse, ohne Lieferungen allein wegen eines fachlichen Befunds automatisch zu stoppen. Verantwortliche Personen beurteilen Risiken und Ausnahmen weiterhin selbst. Ein späterer verbindlicher Einsatz benötigt aktuelle Nachweise und eine gesonderte Freigabe. [3, 5]",
         "Die Geschäftsführung entscheidet zunächst über Umfang, Zuständigkeiten und verfügbare Kapazität für die Erprobung. Die Ausweitung folgt erst, wenn der Pilot zuverlässige Ergebnisse, einen tragfähigen Betrieb und einen erkennbaren Nutzen belegt. Vorgeschlagene Dauer und Kennzahlen in diesem Dokument sind Planungsgrößen, keine bereits erteilten Zusagen.",
-        "Leseführung: Die folgenden Seiten behandeln Nutzen, Funktionsweise, Aussagekraft der Nachweise, belegten Stand und Einführung. Quellen und Begriffe stehen am Ende. Grundlage ist der Repository-Stand vom 9. September 2026, Commit 6893577. Spätere Änderungen sind nicht Bestandteil dieser Ausgabe."
+        "Leseführung: Die folgenden Seiten behandeln Nutzen, Funktionsweise, Aussagekraft der Nachweise, belegten Stand und Einführung. Quellen und Begriffe stehen am Ende. Grundlage ist der angenommene Repository-Stand vom 11. September 2026, Commit 4abe882. Spätere Änderungen sind nicht Bestandteil dieser Ausgabe."
       ]
     },
     {
@@ -188,7 +200,7 @@
       "title": "Belegter Stand und verbleibende Nachweislücken",
       "paragraphs": [
         "Der betrachtete Stand enthält veröffentlichte Regelsätze für DevSecOps L1 und Architektur L1, eine Aufnahme zentraler Ergebnisse, geschützte Änderungsabläufe sowie eine statische Statusanzeige. Ein täglicher Betriebsbericht beobachtet zusätzlich Ausführungen, veraltete Nachweise, die Prüfwarteschlange und die Sicherheitseinstellungen des zentralen Repositorys. Die vier Hauptworkflows am betrachteten main-Commit haben erfolgreich abgeschlossen. [5, 8, 9, 13–16]",
-        "Die gespeicherten Referenzläufe von ha-CPsWMS stammen vom 15. Juli 2026. Damals bestanden 16 von 16 DevSecOps-Kontrollen und vier von vier Architekturgates. Die Laufnummern 29415015878 und 29415015294 machen diese Aussage überprüfbar. Die Ergebnisse belegen die Integration zum damaligen Zeitpunkt. Sie belegen keine aktuelle Bewertung der Anwendung im September. [8]",
+        "Am 11. September 2026 wurden neue reale Consumer-Ergebnisse angenommen. ha-CPsWMS besteht 16 von 16 anwendbaren DevSecOps-Kontrollen und vier von vier Architekturgates in den Läufen 34602002201 und 34602001140. Ein separater DevSecOps-Replay-Befund bleibt offen. Das Portfolio umfasst drei Consumer ohne veraltete oder fehlende Ergebnisse zum Beobachtungszeitpunkt. Die Factory meldet einen Branchschutz-Befund; der neutrale Demo-Consumer zeigt 25 Architektur-Befunde. Dessen bestandenes DevSecOps-Gate ist eine zusammengefasste Auswertung, kein vollständiger Kontrollkatalog. [8, 17, 18]",
         "Die aktuelle Bereitschaft für einen breiten Produktivbetrieb ist damit nicht nachgewiesen. Unter anderem fehlen eine längere Beobachtung unter realer Last, bestätigte individuelle Zuständigkeiten für den ausgewählten Pilot und eine vollständig erprobte Wiederherstellung der Betriebsumgebung. Vorhandene Anleitungen sind eine Voraussetzung für Betrieb, aber noch kein Nachweis ihrer zuverlässigen Ausführung. [5, 10, 11]",
         "Die zentrale Plattform prüft sich zusätzlich selbst. Dazu gehören die Validierung ihrer Modelle und Regeln sowie Sicherheits- und Dokumentationsworkflows. Diese Kontrollen begrenzen Fehler in der Governance-Infrastruktur. Sie ersetzen weder eine unabhängige Sicherheitsbegutachtung noch einen Nachweis über die vollständige Einhaltung externer Anforderungen. Auch ein erfolgreicher Betriebsbericht kann weiterhin offene Befunde oder nicht einsehbare Einstellungen enthalten. [9]"
       ],
@@ -205,8 +217,8 @@
         ],
         [
           "Ergebnisfluss",
-          "Sammlung, Review und zentrale Anzeige",
-          "Aktuelle reale Anwendungsergebnisse"
+          "Frische Ergebnisse für drei Consumer angenommen",
+          "Wiederholbarkeit und Befundbearbeitung im Alltag"
         ],
         [
           "Betrieb",
@@ -266,7 +278,7 @@
     {
       "title": "Begriffe und Quellen",
       "paragraphs": [
-        "Diese Ausgabe ist eine abgeleitete Veröffentlichung für die Geschäftsführung. Sie ändert keine fachlichen Vorgaben und erteilt keine Betriebs-, Risiko- oder Budgetfreigabe. Quellen beziehen sich auf den festgehaltenen Repository-Stand. Ergebnisse vom Juli bleiben als historische Nachweise gekennzeichnet."
+        "Diese Ausgabe ist eine abgeleitete Veröffentlichung für die Geschäftsführung. Sie ändert keine fachlichen Vorgaben und erteilt keine Betriebs-, Risiko- oder Budgetfreigabe. Quellen beziehen sich auf den festgehaltenen Repository-Stand. Die dargestellten Anwendungsergebnisse wurden am 11. September 2026 angenommen."
       ],
       "table": [
         [
@@ -309,7 +321,7 @@
         "1",
         "5"
       ],
-      "notes": "Ziel ist eine Entscheidung über einen kontrollierten Testbetrieb. Die Plattform verbindet fachliche Vorgaben mit ausgewählten automatisierten Prüfungen. Der Vortrag beschreibt den Stand vom 9. September 2026 und keine bestätigte unternehmensweite Betriebsreife.",
+      "notes": "Ziel ist eine Entscheidung über einen kontrollierten Testbetrieb. Die Plattform verbindet fachliche Vorgaben mit ausgewählten automatisierten Prüfungen. Der Vortrag beschreibt den Stand vom 11. September 2026 und keine bestätigte unternehmensweite Betriebsreife.",
       "layout": "cover"
     },
     {
@@ -465,9 +477,10 @@
         "13",
         "14",
         "15",
-        "16"
+        "16",
+        "18"
       ],
-      "notes": "Der Quellstand 6893577 enthält veröffentlichte Baselines, geschützte PR-Abläufe und tägliche Betriebsberichte. Die Hauptworkflows einschließlich Dokumentationsveröffentlichung waren an diesem Commit erfolgreich. Die Tabelle trennt Verfügbarkeit von Betriebserprobung.",
+      "notes": "Der Quellstand 4abe882 enthält veröffentlichte Baselines, geschützte PR-Abläufe und tägliche Betriebsberichte. Governance CI, CodeQL, Self-Security und Dokumentationsveröffentlichung waren erfolgreich. Neue reale Ergebnisse für drei Consumer sind angenommen. Die Tabelle trennt technische Verfügbarkeit von längerfristiger Betriebserprobung.",
       "layout": "table",
       "table": [
         [
@@ -479,8 +492,8 @@
           "Eignung für ausgewählte Anwendungen"
         ],
         [
-          "Aufnahme und zentrale Statusanzeige",
-          "Neue reale Anwendungsergebnisse"
+          "Aktuelle Ergebnisse für drei Consumer",
+          "Wiederholbarkeit und Befundbearbeitung"
         ],
         [
           "Betriebsbericht und Anleitungen",
@@ -493,12 +506,12 @@
       ]
     },
     {
-      "title": "Aussagekraft der Referenzläufe",
-      "lead": "ha-CPsWMS am 15. Juli 2026",
+      "title": "Angenommene Anwendungsergebnisse",
+      "lead": "ha-CPsWMS am 11. September 2026",
       "items": [
         [
           "16 von 16",
-          "DevSecOps-Kontrollen bestanden"
+          "Anwendbare DevSecOps-Kontrollen bestanden"
         ],
         [
           "4 von 4",
@@ -506,10 +519,13 @@
         ]
       ],
       "refs": [
-        "8"
+        "8",
+        "17",
+        "18"
       ],
-      "notes": "Historische Läufe: DevSecOps 29415015878, Architektur 29415015294. Beide beziehen sich auf Commit 716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c. Die Juli-Ergebnisse belegen die damalige Integration. Eine erneute Aufnahme im September macht sie nicht aktuell. Es liegt dadurch keine neue Bewertung der Anwendung vor.",
-      "layout": "evidence"
+      "notes": "Neue main-push-Läufe: DevSecOps 34602002201, Architektur 34602001140, Consumer-Commit 6976bb2af2b9d47d2934273c444b6c9b62a81ea2. 16 von 16 anwendbaren Controls bestehen, 30 weitere sind nicht anwendbar. Architektur: vier von vier Gates, null Befunde. Der separate DevSecOps-Replay-Check bleibt fehlgeschlagen. Die Factory meldet einen Branchschutz-Befund, der neutrale Demo-Consumer 25 Architektur-Befunde. Dessen DevSecOps-pass ist ein einzelnes zusammengefasstes Baseline-Gate. Das Portfolio enthält drei Consumer ohne veraltete oder fehlende Ergebnisse im Beobachtungszeitpunkt. Diese Nachweise sind keine Produktionsfreigabe.",
+      "layout": "evidence",
+      "note": "Separater Replay-Befund bleibt offen · keine Produktionsfreigabe"
     },
     {
       "title": "Voraussetzungen für verbindliche Prüfungen",
@@ -532,7 +548,7 @@
         "7",
         "12"
       ],
-      "notes": "Bewertungsstand: generated_at 2026-09-09T08:18:36Z, drei Integrationen, null ready, drei not_ready und eine bereits blockierende Integration unterhalb der neuen Anforderungen. Der Bestandsmodus ist keine Freigabe für neues Blocking. Ein erfolgreicher Workflow allein genügt nicht.",
+      "notes": "Bewertungsstand: generated_at 2026-09-11T14:34:14Z, drei Integrationen, null ready, drei not_ready und eine bereits blockierende Integration unterhalb der neuen Anforderungen. Aktuelle Typed Evidence des neutralen Consumers ist angenommen, weitere Trust-, Architektur- und Betriebskriterien bleiben offen. Der Bestandsmodus ist keine Freigabe für neues Blocking. Ein erfolgreicher Workflow allein genügt nicht.",
       "layout": "list"
     },
     {

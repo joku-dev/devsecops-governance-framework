@@ -1,325 +1,206 @@
 # DevSecOps Governance Repository: Zweck, Nutzen und Funktionsweise
 
+Stand: **11. September 2026**, geprüfter Implementierungs- und Ergebnisstand
+`4abe88294f299d7f801c74ff0161df234960c092`.
+Dieser Artikel erläutert die vorhandenen Funktionen. Für den laufenden Betrieb
+sind das [Betriebshandbuch](../operations/guides/governance-repository-operations-handbook.md)
+und die jeweils angenommenen Ergebnisse maßgeblich.
+
 ## Kurzfassung
 
-Das Repository `devsecops-governance-framework` ist der zentrale Ort, an dem DevSecOps-Governance nicht nur als Dokumentation, sondern als versionierbare, prüfbare und teilweise automatisierbare Steuerungslogik gepflegt wird.
+Das Repository `devsecops-governance-framework` verbindet fachliche Vorgaben mit
+strukturierten Kontrollmodellen, ausführbaren Prüfungen und nachvollziehbaren
+Ergebnissen aus Anwendungs-Repositories. Es unterstützt damit Entscheidungen
+über Softwarelieferungen und deren Nachweise.
 
-Es verbindet klassische Governance-Artefakte wie Policy, Directive, Standards und Architekturvorgaben mit maschinenlesbaren Modellen, Policy-as-Code-Regeln, Evidenzanforderungen und wiederverwendbaren CI/CD-Prüfungen.
+Governance-Verantwortliche entscheiden, welche Anforderungen gelten. Das
+Framework prüft die technisch auswertbaren Teile, dokumentiert Befunde und
+stellt sie für Review, Audit und Betrieb bereit. Seine Referenzimplementierung
+verwendet Git, GitHub Actions, Python, JSON-Schemas und OPA/Rego. Die Architektur
+trennt diese Werkzeuge von den fachlichen Governance-Modellen.
 
-Das Ziel ist nicht, ein weiteres Tool oder einen dauerlaufenden Service bereitzustellen. Das Repository ist vielmehr die kontrollierte Governance-Quelle: Teams pflegen dort die Baseline, generieren daraus Review- und Audit-Artefakte und stellen wiederverwendbare Prüfmechanismen für Anwendungs- und Plattform-Repositories bereit.
+Für den derzeitigen Testbetrieb ist keine zusätzliche Datenbank und kein
+Anwendungsserver erforderlich. Git hält strukturierte Modelle und normalisierte
+Ergebnisse; ein statischer Viewer zeigt daraus abgeleitete Übersichten.
 
-## Warum gibt es dieses Repository?
+## Welches Problem löst das Repository?
 
-In vielen Organisationen existiert Governance hauptsächlich in Word-, PDF- oder Confluence-Dokumenten. Diese Form ist wichtig für Reviews, Audits und formale Freigaben, hat aber operative Grenzen:
+Vorgaben in Word, PDF oder Confluence bleiben wichtige fachliche Referenzen.
+Im Lieferprozess müssen Teams daraus jedoch konkrete Fragen beantworten:
+Welche Kontrollen gelten, welche Nachweise sind erforderlich, zu welchem
+Softwarestand gehören sie und wer entscheidet über Abweichungen?
 
-- Anforderungen sind schwer automatisch prüfbar.
-- Nachweise aus Pipelines sind nicht einheitlich strukturiert.
-- Traceability zwischen Policy, Controls, Plattformfähigkeiten und Evidenz ist oft manuell.
-- Abweichungen und Waiver sind schwer über Releases hinweg nachzuverfolgen.
-- Teams kopieren Regeln oder Workflows in einzelne Repositories, wodurch Inkonsistenzen entstehen.
+Das Framework verbindet diese Informationen über stabile Identitäten und
+versionierte Beziehungen. Wiederverwendbare Baselines vermeiden mehrfach
+gepflegte Prüflogik. Ergebnisformate und Quellenverweise erleichtern gemeinsame
+Reviews. Ob dadurch Aufwand und Entscheidungszeiten sinken, muss der Testbetrieb
+messen; bisher gibt es dafür keine belastbaren Einsparungszahlen.
 
-Das Governance Repository adressiert genau diese Lücke. Es macht Governance zu einem versionierten Arbeitsmodell, das sowohl von Menschen gelesen als auch von Automatisierung verarbeitet werden kann.
+## Aufbau des Repositories
 
-## Was ist im Governance Repository enthalten?
-
-Das Repository trennt die Governance-Inhalte in mehrere klar abgegrenzte Bereiche:
-
-| Bereich | Zweck |
+| Bereich | Aufgabe |
 |---|---|
-| `docs/` | Lesbare Erklärungen, Betriebsanleitungen, Onboarding-Guides und Governance-Dokumentation. |
-| `docs/governance/source-documents/` | Importierte oder referenzierte Quelldokumente, z. B. Policy-, Directive- oder Architekturvorgaben. |
-| `governance/` | Strukturierte Governance-Regeln, Rollen, Reporting-, Waiver- und Adoption-Vorgaben. |
-| `architecture/` | Maschinenlesbare Architektur-Governance, Guardrails, Review Gates, Quality Marker und Architekturlevel. |
-| `pipeline-baseline/` | Tool-unabhängige CI/CD Pipeline Control Baseline, inklusive Stages, Gates, Evidenzverträgen und Control Placement. |
-| `policies/opa/` | Ausführbare Policy-as-Code-Regeln auf Basis von OPA/Rego. |
-| `schemas/` | JSON Schemas für maschinenlesbare Governance-, Evidenz- und Ergebnisformate. |
-| `scripts/` | Generatoren und Validatoren für Reports, Traceability, Status-Viewer und Governance-Ergebnisse. |
-| `status/` | Zentral normalisierte Ergebnisse aus angebundenen Repositories und Governance-Läufen. |
-| `generated/` | Generierte Reports, Matrizen, Viewer-Ausgaben und maschinenlesbare Ergebnisse. |
-| `releases/` | Versionierte Baseline-Pakete für kontrollierte Nutzung durch andere Repositories. |
+| `docs/` | Erklärungen, Betriebsanleitungen, Onboarding und Veröffentlichungen. |
+| `docs/governance/source-documents/` | Öffentliche Platzhalter für Quellenherkunft und Review-Status; Originalquellen sind teilweise zurückgehalten. |
+| `model/` | Quellenregister, Anforderungen, Controls, Plattformzuordnungen, Evidenzverträge, Trust- und Enforcement-Modelle. |
+| `governance/` | Rollen-, Reporting-, Waiver- und Adoption-Regeln. |
+| `architecture/` | Architekturlevel, Guardrails, Quality Marker und Review Gates. |
+| `pipeline-baseline/` | Toolunabhängige Pipeline-Baseline und Integrationsvorlagen. |
+| `policies/opa/` und `schemas/` | Ausführbare Prüfregeln und zulässige Datenstrukturen. |
+| `.github/workflows/` und `scripts/` | Wiederverwendbare Prüfungen, Intake, Generatoren und Validierung. |
+| `.agents/`, `.codex/` und `tests/agent_harness/` | Rollenverträge, Agentenadapter und deterministische Routing-Prüfungen. |
+| `status/` | Angenommene Ergebnissnapshots, Historie, Intake-Ereignisse und Indizes. |
+| `generated/` | Abgeleitete Berichte, Governance-Graph und Status-Viewer. |
+| `releases/` | Veröffentlichte, kontrolliert versionierte Baseline-Pakete. |
 
-Damit bildet das Repository die Brücke zwischen Governance-Dokumenten, technischen Prüfungen und nachvollziehbaren Pipeline-Ergebnissen.
+Die freigegebenen Baselines sind **DevSecOps L1 `l1-baseline-v1.1.3`** und
+**Architecture L1 `architecture-baseline-l1-v0.1.0`**. Modellierte L2-/L3-Inhalte
+bedeuten noch keine entsprechende freigegebene Betriebsreife.
 
-## Welche Governance-Fragen beantwortet das Repository?
+## Funktionsweise in sechs Schritten
 
-Das Repository hilft unter anderem bei folgenden Fragen:
+### 1. Quellen aufnehmen und fachlich entscheiden
 
-- Welche DevSecOps-Anforderungen gelten für ein Repository oder Release?
-- Welche Evidenz muss eine Pipeline erzeugen?
-- Welche Controls können automatisch geprüft werden?
-- Welche Controls brauchen manuelle Prüfung oder Governance-Entscheidung?
-- Welche Plattformfähigkeiten unterstützen welche Controls?
-- Welche Architektur-Guardrails gelten für Runtime, Integration, Release und Betrieb?
-- Welche Waiver oder Exceptions sind erlaubt, befristet und nachvollziehbar?
-- Welche Repositories erfüllen die zentrale Baseline bereits?
-- Welche Gaps sind noch offen?
+Neue Artefakte werden zuerst eingeordnet. Mögliche neue oder ersetzende
+Governance-Quellen werden als Kandidaten registriert. Menschen prüfen
+Gültigkeit, Überschneidungen und Auswirkungen, bevor daraus aktive Kontrollen
+oder Baselines abgeleitet werden. Ein Governance Change Request dokumentiert
+die Änderung. Herkunfts-, Impact- und Delta-Berichte unterstützen das Review.
 
-Die Antwort liegt nicht nur in Textdokumenten, sondern in strukturierten Modellen, generierten Reports und ausführbaren Prüfungen.
+### 2. Modelle und Regeln pflegen und validieren
 
-## Zentrale Vorteile
+Fachliche Anforderungen werden mit Controls, erwarteten Nachweisen,
+Plattformfähigkeiten und OPA-Regeln verknüpft. Architekturmodelle ergänzen
+Guardrails, Marker und Gates. Automatische Prüfungen betreffen die objektiv
+auswertbaren Angaben; fachliche Freigaben bleiben menschliche Entscheidungen.
 
-### 1. Eine zentrale Governance-Quelle
-
-Das Repository verhindert, dass Governance-Logik in vielen Projekten dupliziert wird. Die Baseline liegt zentral und kann versioniert, reviewed und kontrolliert veröffentlicht werden.
-
-Anwendungs-Repositories kopieren nicht das gesamte Governance Repository. Sie erzeugen eigene Evidenz und rufen die zentrale Baseline über wiederverwendbare Workflows auf.
-
-### 2. Governance wird prüfbar
-
-Governance-Anforderungen werden in maschinenlesbare Strukturen und Policy-as-Code-Regeln übersetzt. Dadurch können Pipeline-Artefakte, SBOMs, Vulnerability-Scans, Signaturen, Branch Protection, Waiver und Release-Evidenz automatisiert geprüft werden.
-
-Nicht jede Governance-Regel muss automatisiert werden. Das Repository unterscheidet bewusst zwischen:
-
-- objektiv prüfbaren Regeln,
-- Regeln mit Warn- oder Review-Charakter,
-- manuellen Governance-Entscheidungen,
-- kontrollierten Ausnahmen.
-
-### 3. Bessere Traceability
-
-Ein wichtiger Nutzen ist die Nachvollziehbarkeit zwischen:
-
-- Policy und Directive,
-- Control Baseline,
-- Plattformarchitektur,
-- Pipeline-Gates,
-- Evidenztypen,
-- Waivern,
-- generierten Reports,
-- Repository-Ergebnissen.
-
-Dadurch wird sichtbar, warum eine Prüfung existiert, auf welches Governance-Ziel sie einzahlt und welche Evidenz für Compliance benötigt wird.
-
-### 4. Wiederverwendbare CI/CD Governance
-
-Das Repository stellt wiederverwendbare GitHub Actions Workflows und Pipeline-Baselines bereit. Ein Anwendungsteam muss nur ein eigenes Workflow-File ergänzen, Evidenz erzeugen und die zentrale Baseline aufrufen.
-
-Typische Evidenz eines Anwendungs-Repositories ist:
-
-- ein Build- oder Source-Artefakt,
-- eine SBOM,
-- ein Vulnerability-Scan,
-- optional Signatur- oder zusätzliche Governance-Evidenz,
-- Pipeline-Metadaten.
-
-Die zentrale Baseline bewertet diese Evidenz und erzeugt maschinenlesbare Governance-Ergebnisse.
-
-### 5. Audit- und Review-Fähigkeit
-
-Aus strukturierten Quellen können Reports, Matrizen und Viewer erzeugt werden. Das unterstützt:
-
-- Governance Board Reviews,
-- Architektur-Reviews,
-- Audit-Vorbereitung,
-- Release-Readiness-Entscheidungen,
-- Gap-Analysen,
-- Diskussionen zwischen Governance, Security, Plattform und Produktteams.
-
-### 6. Kontrollierte Weiterentwicklung
-
-Änderungen an der Governance werden wie Code behandelt:
-
-- Branch,
-- Review,
-- Validierung,
-- Regression Checks,
-- nachvollziehbarer Commit,
-- versionierte Baseline.
-
-Damit werden Governance-Änderungen transparenter und weniger abhängig von informellen Dokumentversionen.
-
-## Wie funktioniert es?
-
-Das Repository folgt einem Governance-as-Code-Ansatz. Der Ablauf lässt sich in sechs Schritten beschreiben.
-
-### Schritt 1: Governance wird strukturiert gepflegt
-
-Governance Owner, Plattform Owner, Security Engineers und Architekturverantwortliche pflegen die relevanten Inhalte in YAML, JSON, Markdown und Rego.
-
-Beispiele:
-
-- Controls und Anforderungen,
-- Governance-Rollen,
-- Architektur-Guardrails,
-- Quality Marker,
-- Review Gates,
-- Pipeline-Stages,
-- Evidenzverträge,
-- Waiver-Regeln,
-- Policy-as-Code-Regeln.
-
-Diese Dateien sind versioniert und können per Pull Request geprüft werden.
-
-### Schritt 2: Das Repository validiert sich selbst
-
-Validatoren prüfen, ob die Governance-Quellen konsistent sind. Dazu gehören unter anderem:
-
-- JSON-Schema-Prüfungen,
-- Konsistenz von Traceability-Mappings,
-- bekannte Evidenztypen,
-- bekannte Plattformfähigkeiten,
-- vorhandene Governance-Dokumentpfade,
-- Syntax der OPA/Rego Policies.
-
-Ein zentraler lokaler Check ist:
+Vor einem Commit werden die vollständigen Prüfungen mit der festgelegten
+Toolchain ausgeführt:
 
 ```bash
-python3 scripts/validate_governance_repo.py
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
 ```
 
-Ergänzend können Regression Tests und OPA-Prüfungen ausgeführt werden:
+Dazu gehören OPA-, Runtime-, Schema-, Konsistenz-, Provenance- und Regressionstests.
+Für Dokumentationsänderungen wird zusätzlich der strenge MkDocs-Build geprüft.
 
-```bash
-python3 -m unittest discover -s tests
-opa check policies/opa
-```
+### 3. Identifizierbare Baselines veröffentlichen
 
-### Schritt 3: Reports und Review-Artefakte werden generiert
+Ein Release bindet Modelle, Regeln, Schemas und Metadaten an einen festgelegten
+Prüfstand. Consumer verwenden einen veröffentlichten Tag oder einen geprüften
+Commit. Änderungen an einer bestehenden Release-Datei dürfen die Bedeutung einer
+bereits verwendeten Baseline nicht nachträglich verändern.
 
-Aus den strukturierten Quellen werden Artefakte erzeugt, zum Beispiel:
+### 4. Nachweise im Anwendungs-Repository erzeugen
 
-- Traceability-Matrix,
-- Document-Control-Matrix,
-- Open-Gap-Report,
-- Control-Evaluation-Report,
-- Source-Lineage-Report,
-- Governance-Status-Viewer,
-- Architektur-Governance-Reports,
-- End-to-End-Governance-Reports.
+Das Anwendungsteam erstellt Build-Artefakte, SBOMs, Schwachstellenberichte und
+gegebenenfalls Architektur- und weitere Governance-Nachweise. Ein
+wiederverwendbarer Workflow bewertet die Eingaben anhand der gewählten Baseline.
 
-Diese Artefakte können für Reviews, Audits oder Confluence-Dokumentation verwendet werden.
+Die Auswertung gehört zu einem konkreten Repository, Commit, Lauf und Ereignis.
+Ein vollständiger Control-Report und ein zusammengefasster Baseline-Gate-Report
+haben unterschiedliche Aussagekraft. Ein bestandenes einzelnes Gate belegt
+nicht automatisch die Prüfung des gesamten Kontrollkatalogs.
 
-### Schritt 4: Andere Repositories erzeugen Evidenz
+### 5. Ergebnisse sammeln, verifizieren und reviewen
 
-Ein angebundenes Anwendungs-Repository bleibt fachlich für seine eigene Evidenz verantwortlich. Es baut oder paketiert sein Artefakt, erzeugt eine SBOM und stellt Scan-Ergebnisse bereit.
+Ein Consumer-Ereignis oder manueller Workflow-Aufruf startet den zentralen
+Intake. Dieser lädt Laufmetadaten und Artefakte, normalisiert das Ergebnis und
+prüft den verfügbaren Trust-Kontext. DevSecOps verwendet einen
+`control-evaluation-report.json` oder als Fallback einen
+`baseline-gate-result.json`; Architektur und typisierte Evidenz haben eigene
+Intake-Pfade. `pipeline-evidence.json` ist ein ergänzender Nachweis und ersetzt
+nicht diese ausgewerteten Ergebnisse.
 
-Beispielhafte Evidenz:
+Die Automation eröffnet einen begrenzten Bot-PR. Erst erfolgreiche Checks,
+Review und Merge übernehmen die Daten offiziell nach `main`. Derselbe Snapshot
+bleibt bei einer identischen Wiederholung unverändert; abweichende Daten zur
+gleichen Identität werden als Konflikt erhalten. Fehlgeschlagene Sammlungen und
+Intake-Ereignisse bleiben nachvollziehbar. Zulässige Wiederholungen werden
+kontrolliert durch einen Operator ausgelöst.
 
-| Evidenz | Beispielpfad | Zweck |
+### 6. Ergebnisse anzeigen und Maßnahmen verfolgen
+
+Generatoren erstellen Domänenindizes, Portfolio-Berichte, Readiness-Projektionen,
+den Governance-Graph und den Viewer. Der Graph macht Beziehungen zwischen
+Quellen, Kontrollen, Baselines, Anwendungen, Läufen und Nachweisen untersuchbar.
+Er ist eine abgeleitete Ansicht und verändert keine Entscheidungen.
+
+Die offizielle Auswahl bevorzugt vorhandene `push`-Ergebnisse auf `main`.
+Branch-, PR- und manuelle Diagnoseläufe bleiben in der Historie sichtbar.
+Ein täglicher Betriebsbericht ergänzt die angenommenen Daten um Beobachtungen
+zu Workflows, PRs, Evidenzalter, Intake und Repository-Sicherheit. Er erzeugt
+selbst keine Aufgaben oder Warnmeldungen; Verantwortliche müssen ihn auswerten.
+
+## Drei getrennte Aussagen lesen
+
+| Signal | Bedeutung |
+|---|---|
+| Workflow-Status | Ist die technische Ausführung erfolgreich abgeschlossen? |
+| Governance-Ergebnis | Welche ausgewerteten Anforderungen bestehen oder erzeugen Befunde? |
+| Evidence Trust | Wie weit sind Identität, Integrität, Herkunft, Aktualität und Wiederverwendung der Nachweise geprüft? |
+
+Ein erfolgreicher Workflow kann fachliche Befunde enthalten. `integrity_verified`
+belegt geprüfte Integrität innerhalb des vorhandenen Kontexts und ist keine
+allgemeine Compliance- oder Produktionsfreigabe. Typisierte Schwachstellenevidenz
+wird separat verifiziert. Der Attestierungsmechanismus ist als technischer Pilot
+vorhanden; die Freigabe produktiver Aussteller und Schlüsselprozesse bleibt offen.
+
+## Report-only und verpflichtende Gates
+
+Neue Consumer-Piloten wählen ausdrücklich `governance_mode: report-only` für
+alle Trigger und `fail_on_findings: false` für Architektur. Der veröffentlichte
+DevSecOps-Wrapper hat dagegen standardmäßig `block-on-error`; deshalb muss der
+Pilotmodus im Consumer gesetzt werden.
+
+Report-only zeigt fachliche Befunde, ohne allein deshalb den Lauf scheitern zu
+lassen. Technische Fehler können weiterhin zum Abbruch führen. Blocking lässt
+relevante Befunde den Lauf fehlschlagen. Erst die konkrete Branchschutzregel
+bestimmt zusätzlich, ob ein solcher Lauf einen Merge verhindert. Ein als
+Required Check eingetragener Report-only-Lauf erzwingt keine Befundfreiheit.
+
+Neue verbindliche Gates benötigen erfüllte Readiness-Kriterien, eine
+verantwortliche Freigabe und eine separate Consumer-Umstellung. Das ältere
+DevSecOps-Blocking von `ha-CPsWMS` bleibt ein dokumentiertes Bestandsrisiko mit
+Review-Frist **12.12.2026, 23:59:59 Europe/Berlin**.
+
+## Belegter Stand am 11. September 2026
+
+| Consumer | Angenommenes Ergebnis | Einordnung |
 |---|---|---|
-| Build- oder Source-Artefakt | `dist/application-source.tar.gz` | Das zu prüfende Lieferobjekt. |
-| SBOM | `security/sbom.cyclonedx.json` | Software Bill of Materials. |
-| Vulnerability Scan | `security/vulnerability-scan.json` | Maschinenlesbare Security-Ergebnisse. |
-| Governance Run Input | `governance/governance-run-input.json` | Erweiterte Control- und Evidenzdaten. |
+| `ha-CPsWMS` | DevSecOps: 16/16 anwendbare Controls bestanden; Architektur: 4/4 Gates, 0 Befunde. | Separater DevSecOps-Replay-Befund bleibt offen. |
+| `ai-native-engineering-factory` | DevSecOps-Baseline-Gate fehlgeschlagen wegen gemeldetem erlaubtem Direkt-Push. | Report-only; zusammengefasste Gate-Auswertung. |
+| `governance-framework-demo-consumer` | DevSecOps-Gate bestanden; Architektur: 25 Befunde; typisierte Evidenz mit geprüfter Integrität. | Report-only; Gate-Ergebnis ist kein vollständiger Kontrollkatalog. |
 
-### Schritt 5: Die zentrale Baseline bewertet die Evidenz
+Das Portfolio enthält drei Consumer und zum festgehaltenen Beobachtungszeitpunkt
+keine veralteten oder fehlenden in den Bericht einbezogenen Nachweise. Die
+Blocking-Readiness bleibt **0 von 3**. Neue Läufe oder das Alter der Nachweise
+können diese Aussagen verändern. Lauf-IDs und Quellen stehen im
+[aktuellen Plattformstand](../operations/status/current-governance-platform-state.md).
 
-Das Anwendungs-Repository ruft einen wiederverwendbaren Workflow aus dem Governance Repository auf. Dadurch wird die zentrale Baseline angewendet, ohne dass die Governance-Logik in das Anwendungs-Repository kopiert wird.
+## Einführung und Verantwortlichkeiten
 
-Das Ergebnis ist ein Pipeline- und Governance-Nachweis, zum Beispiel:
+1. Sponsor, Maintainer, Stellvertretung, Consumer-Eigentümer und Reviewer benennen.
+2. Pilotumfang, Baseline-Pins, Zeitraum und Entscheidungstermin festhalten.
+3. Consumer-Workflows mit explizitem Report-only-Modus integrieren.
+4. Echte Nachweise erzeugen und ihren vollständigen Weg durch Intake, Review und Veröffentlichung prüfen.
+5. Fehlerfälle, Wiederholungen, Zugänge und Wiederherstellung im vereinbarten Testkontext erproben.
+6. Den täglichen Bericht auswerten und Befunde mit Eigentümern und Maßnahmen verfolgen.
+7. Nutzen, Aufwand und offene Risiken dokumentieren und über die Fortsetzung entscheiden.
+8. Neue Blocking-Gates erst nach dem gesonderten Readiness- und Freigabeverfahren aktivieren.
 
-```text
-generated/evidence/pipeline-evidence.json
-```
+Governance Owner verantworten Vorgaben und Ausnahmen. Security und Architektur
+prüfen die fachlichen Aussagen. Plattformverantwortliche betreiben die zentralen
+Mechanismen. Anwendungsteams erzeugen geeignete Nachweise. Auditoren und
+Management nutzen die dokumentierten Beziehungen und Ergebnisse für ihre Reviews.
 
-Dieses Ergebnis kann später zentral eingelesen, normalisiert und im Status-Viewer sichtbar gemacht werden.
+## Weiterführende Dokumentation
 
-### Schritt 6: Ergebnisse werden zentral sichtbar
-
-Governance-Ergebnisse aus Downstream-Repositories können in das Governance Repository übernommen werden. Dadurch entsteht ein zentraler Überblick darüber, welche Repositories integriert sind und welche Baseline-Ergebnisse vorliegen.
-
-Das ist besonders hilfreich für:
-
-- Portfolio-Übersicht,
-- Governance Reporting,
-- Nachweisführung gegenüber Audit und Management,
-- Erkennung von wiederkehrenden Gaps.
-
-## Beispiel: Onboarding eines Anwendungs-Repositories
-
-Ein Team integriert sein Repository typischerweise so:
-
-1. Workflow-Datei `.github/workflows/devsecops-baseline.yml` erstellen.
-2. Build- oder Source-Artefakt erzeugen.
-3. SBOM erzeugen.
-4. Vulnerability Scan erzeugen.
-5. Evidenz als GitHub Actions Artifact hochladen.
-6. Zentralen Governance Workflow aufrufen.
-7. Ergebnis prüfen.
-8. Nach Stabilisierung den Governance Check als Required Check für `main` aktivieren.
-
-Das Anwendungsteam bleibt für den Inhalt der Evidenz verantwortlich. Das Governance Repository stellt die Baseline, die Bewertungslogik und die einheitlichen Ergebnisformate bereit.
-
-## Rolle der Architektur-Governance
-
-Neben DevSecOps Controls enthält das Repository auch eine Runtime- und Architektur-Governance. Diese basiert auf strukturierten Architekturartefakten wie:
-
-- Guardrails,
-- Quality Markers,
-- Review Gates,
-- Architekturlevel L1 bis L3,
-- Architektur-Governance-Regeln,
-- Release-Readiness-Prüfungen,
-- Integration-Readiness-Prüfungen,
-- Operation-Readiness-Prüfungen.
-
-Damit kann nicht nur geprüft werden, ob eine Pipeline Sicherheitsartefakte erzeugt, sondern auch, ob ein Produkt oder Release architektonische Mindestanforderungen erfüllt.
-
-Beispiele für Architekturfragen:
-
-- Ist die Runtime-Architektur dokumentiert?
-- Sind Deployment- und Rollback-Annahmen geprüft?
-- Sind Schnittstellen und Datenverträge versioniert?
-- Gibt es eine Release Compatibility Declaration?
-- Sind Architektur-Ausnahmen dokumentiert, befristet und genehmigt?
-
-## Rolle der Pipeline Baseline
-
-Die Pipeline Baseline beschreibt tool-unabhängig, welche Governance-Prüfungen in einer CI/CD Pipeline stattfinden sollen.
-
-Sie definiert:
-
-- verpflichtende und bedingte Pipeline-Stages,
-- Gate-Semantik wie Pass, Warn, Fail, Waiver und Manual Review,
-- Mindestanforderungen an Evidenz,
-- erforderliche Metadaten für Traceability,
-- Zuordnung von Controls zu Pipeline-Orten,
-- Referenzmappings für GitHub Actions, GitLab CI und Jenkins.
-
-Dadurch bleibt die Governance nicht an ein einzelnes CI/CD-Tool gebunden.
-
-## Was ist bewusst nicht Ziel des Repositories?
-
-Das Repository ist kein Ersatz für Produktverantwortung, Security Engineering oder Architekturarbeit.
-
-Es erzeugt auch keine echte Compliance allein durch seine Existenz. Compliance entsteht erst, wenn:
-
-- Anforderungen gepflegt sind,
-- Teams valide Evidenz erzeugen,
-- Pipelines die Baseline ausführen,
-- Findings bearbeitet werden,
-- Waiver kontrolliert und befristet bleiben,
-- Governance-Ergebnisse regelmäßig reviewed werden.
-
-Das Repository stellt dafür den kontrollierten Rahmen und die Automatisierung bereit.
-
-## Wer arbeitet mit dem Repository?
-
-| Rolle | Typische Verantwortung |
-|---|---|
-| Governance Owner | Pflegt Controls, Policies, Directives, Waiver-Modell und Governance-Änderungen. |
-| Platform Owner | Verknüpft Plattformfähigkeiten mit Controls und Baseline-Leveln. |
-| Security / Policy Engineer | Entwickelt und testet Policy-as-Code-Regeln. |
-| Architect / Architecture Board | Pflegt Guardrails, Quality Marker, Review Gates und Architekturentscheidungen. |
-| Application Team | Erzeugt Evidenz und bindet die zentrale Baseline in die eigene Pipeline ein. |
-| Audit / Compliance Reviewer | Nutzt Reports, Matrizen und Nachweise für Reviews und Audits. |
-
-## Erfolgsbild
-
-Das Governance Repository ist erfolgreich eingesetzt, wenn:
-
-- Governance-Anforderungen zentral versioniert sind,
-- Anwendungs-Repositories die zentrale Baseline wiederverwenden,
-- Pipeline-Evidenz maschinenlesbar erzeugt wird,
-- Ergebnisse zentral sichtbar sind,
-- Reviews auf Traceability und Evidenz statt auf manuelle Dokumentensuche zurückgreifen,
-- Ausnahmen kontrolliert, befristet und nachvollziehbar bleiben,
-- Governance-Änderungen nachvollziehbar reviewed und released werden.
-
-## Fazit
-
-Das DevSecOps Governance Repository macht Governance operativ nutzbar. Es übersetzt Anforderungen aus Policy, Directive, Standards und Architekturvorgaben in strukturierte Modelle, wiederverwendbare Pipeline-Prüfungen, Policy-as-Code und nachvollziehbare Evidenz.
-
-Der wichtigste Vorteil ist die Verbindung von menschlicher Governance und technischer Automatisierung: Governance bleibt erklärbar und auditierbar, wird aber gleichzeitig in CI/CD-Prozesse eingebettet. Dadurch entsteht ein gemeinsames Arbeitsmodell für Governance Owner, Plattformteams, Security Engineers, Architekten und Anwendungsteams.
-
-Kurz gesagt: Das Repository ist der zentrale Governance-Baseline-Hub für DevSecOps und Architektur-Readiness. Es sorgt dafür, dass Anforderungen nicht nur dokumentiert, sondern auch überprüfbar, wiederverwendbar und nachweisbar werden.
+- [Detaillierter Funktionskatalog](../operations/guides/repository-function-catalog.md)
+- [Betriebshandbuch](../operations/guides/governance-repository-operations-handbook.md)
+- [Consumer-Pilot](../onboarding/pilot-runbook.md)
+- [Evidence Trust](../operations/evidence/evidence-trust-model.md)
+- [Ergebnisaufnahme und Viewer](../operations/evidence/governance-result-intake-and-viewer-usage.md)
+- [Blocking Readiness](../operations/status/blocking-readiness.md)
+- [Whitepaper und Präsentation für die Geschäftsführung](executive-briefing/README.md)

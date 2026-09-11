@@ -82,10 +82,11 @@ Edit the relevant YAML or Markdown files in:
 
 ### 2. Validate Repository Consistency
 
-Run:
+Prepare the pinned toolchain and run the complete validation:
 
 ```bash
-python3 scripts/validate_governance_repo.py
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
 ```
 
 This checks:
@@ -144,13 +145,13 @@ Important outputs:
 - `generated/control-evaluation-report.md`
 - `generated/viewer/status-viewer.html`
 
-### 4. Run Regression Checks
+### 4. Revalidate After Generation
 
-Run:
+The complete command includes runtime checks, OPA and regression tests. Run it
+again if report generation or source edits changed the proposed result:
 
 ```bash
-python3 -m unittest discover -s tests
-opa check policies/opa
+./scripts/validate_all.sh
 ```
 
 ### 5. Review And Commit
@@ -197,13 +198,13 @@ Typical gap categories include:
 ### Full Local Check
 
 ```bash
-python3 scripts/validate_governance_repo.py
-python3 scripts/generate_traceability_csv.py
-python3 scripts/generate_document_control_matrix.py
-python3 scripts/generate_open_gap_report.py
-python3 -m unittest discover -s tests
-opa check policies/opa
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
 ```
+
+The validators regenerate the required projections. Use the pinned environment
+for focused commands below (`source .venv-validation/bin/activate`) and keep
+only intentional generated changes in the proposed PR.
 
 ### Demo Run
 
@@ -246,14 +247,20 @@ opa eval -f pretty \
   'data.devsecops.branch_protection.deny'
 ```
 
-## Recommended CI Integration
+## Implemented CI Integration
 
-At minimum, CI should run:
+The Governance CI workflow uses the pinned bootstrap and `validate_all.sh`,
+which includes runtime, repository, provenance, OPA and regression checks.
+It generates and retains review artifacts. CodeQL and repository self-security
+are separate required checks. Documentation publication performs a strict
+MkDocs build; see the operations handbook for current check names.
+
+For a local reproduction:
 
 ```bash
-python3 scripts/validate_governance_repo.py
-python3 -m unittest discover -s tests
-opa check policies/opa
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
 ```
 
-Optionally, CI can also generate the reports and publish them as pipeline artifacts for governance review.
+Operational result intake and portfolio workflows propose reviewed bot PRs.
+They do not publish accepted state by writing directly to protected main.

@@ -201,9 +201,6 @@ python3 -m unittest discover -s tests
 | Replay triage generator and output | `scripts/generate_replay_triage_report.py`, `generated/reports/replay-triage.json` |
 | Intake conflict quarantine | `status/intake-conflicts/` |
 | Intake conflict schema | `schemas/intake-conflict.schema.json` |
-| Append-only ledger and replay logic | `scripts/lib/result_ledger.py` |
-| Intake conflict quarantine | `status/intake-conflicts/` |
-| Intake conflict schema | `schemas/intake-conflict.schema.json` |
 | Agent usage snapshot | `docs/operations/agents/agent-usage-snapshot-latest.md` |
 | Agent usage summary | `generated/agent-usage/agent-usage-summary.json` |
 | Evidence collection attempts | `schemas/evidence-collection-attempt.schema.json`, `scripts/record_collection_attempt.py`, `status/collection-attempts/` |
@@ -236,12 +233,13 @@ python3 scripts/generate_status_viewer.py
 | DevSecOps historical demo guide | `docs/demos/demo-guide-2026-07-02-ha-cpswms.md` |
 | Viewer | `generated/viewer/status-viewer.html` |
 
-Current known-good ha-CPsWMS runs:
+Accepted ha-CPsWMS mainline runs on 11 September 2026 (control outcomes;
+the separate DevSecOps replay finding remains open):
 
 | Domain | Run | Expected |
 |---|---:|---|
-| DevSecOps Baseline | `29415015878` | pass, `16/16` controls |
-| Architecture Runtime Governance | `29415015294` | PASS, `4/4` gates |
+| DevSecOps Baseline | `34602002201` | pass, `16/16` controls |
+| Architecture Runtime Governance | `34602001140` | PASS, `4/4` gates |
 
 ## Release Map
 
@@ -264,9 +262,8 @@ When creating a new release, update:
 Run:
 
 ```bash
-python3 scripts/validate_runtime_governance.py
-python3 scripts/validate_governance_repo.py
-python3 -m unittest discover -s tests
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
 git status --short
 ```
 

@@ -44,8 +44,9 @@ clock; regenerating it does not create a new consumer evaluation.
 | Existing `ha-CPsWMS` mode | Preserved legacy blocking risk; accountable review due 12 December 2026, 23:59:59 Europe/Berlin; not a precedent for new blocking |
 | Operational updates | Bot PRs with allowlisted paths and immutable historical records; official indexes/viewer change after merge |
 
-The one-off administrative exception used to merge PR #61 was restored and
-recorded in that PR. It is not permission to disable review on subsequent PRs.
+The one-off administrative exceptions, including central PRs #64 and #67
+on 11 September, were restored and audited in their PRs. The demo-consumer
+PR #4 exception was also restored. None authorizes subsequent exceptions.
 A bot PR can be reviewed by the maintainer. A PR authored under that maintainer's
 account needs another authorized reviewer under the normal rules.
 

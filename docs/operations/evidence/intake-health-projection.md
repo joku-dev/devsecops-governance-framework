@@ -22,9 +22,11 @@ change Evidence Trust, select `latest_result`, or block delivery.
 | Conflict source | `status/intake-conflicts/` |
 | Latest-result sources | the three result indexes under `status/` |
 
-The three central intake workflows regenerate and commit the projection after
-recording an operation event. Concurrent workflows recalculate it from the
-complete Git-backed event history after rebasing on `main`.
+The three central intake workflows regenerate the projection after recording
+an operation event, validate the result and propose it on an automation branch
+through `scripts/publish_operational_update.py`. Review and merge make the
+change official. When concurrent proposals overlap, reconcile and regenerate
+their projections from the combined accepted history before merging.
 
 ## Observation Window
 
@@ -80,9 +82,14 @@ runs succeeded, not a production SLO baseline. Thresholds, alerts, retry
 budgets, and blocking effects require a separate governance decision after a
 representative operating period.
 
-The committed projection currently records the validated three-path smoke
-test: three successes, no failed or partial events, p50 2 seconds, p95 3
-seconds, no Collection Attempts, and two retained report-only conflicts.
+At the committed observation of **11 September 2026, 14:34:14 UTC**, the
+30-day window records six successes, no failed or partial accepted events,
+p50 3 seconds, p95 4 seconds, no Collection Attempts, and two retained
+report-only conflicts. Telemetry covers ha-CPsWMS and the neutral demo;
+Factory's manual intake is not converted into synthetic telemetry. These
+accepted records do not include every Actions execution: Daily Operations
+can still show a failed workflow attempt that produced no accepted event.
+See [current platform state](../status/current-governance-platform-state.md).
 
 ## Viewer
 
