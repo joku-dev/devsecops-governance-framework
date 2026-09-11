@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "report_id": "multi-consumer-readiness",
-  "generated_at": "2026-09-11T13:02:02Z",
+  "generated_at": "2026-09-11T13:07:40Z",
   "enforcement": "report_only",
   "ready": true,
   "summary": {
