@@ -245,6 +245,7 @@ the separate DevSecOps replay finding remains open):
 
 | Domain | Current release | Key files |
 |---|---|---|
+| Repository adoption/operations | `v0.2.0-public-adoption`; publication established by signed tag and GitHub Release | `docs/releases/v0.2.0-public-adoption.md` |
 | DevSecOps L1 | `l1-baseline-v1.1.3` | `docs/releases/l1-baseline-v1.1.3.md`, `releases/l1/v1.1.3/` |
 | Architecture L1 | `architecture-baseline-l1-v0.1.0` | `docs/releases/architecture-baseline-l1-v0.1.0.md`, `releases/architecture/l1/v0.1.0/` |
 

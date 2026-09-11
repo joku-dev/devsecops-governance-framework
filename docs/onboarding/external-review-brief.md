@@ -19,7 +19,10 @@ The framework is intended to help application repositories consume shared govern
 
 ## Current Validation State
 
-The public release `v0.1.0-public-adoption` has been validated with:
+The September repository state packaged for `v0.2.0-public-adoption` is
+described in the [release statement](../releases/v0.2.0-public-adoption.md).
+Its signed tag and published GitHub Release establish publication. Validation
+includes:
 
 - repository model validation,
 - runtime governance validation,
@@ -61,7 +64,7 @@ The demo consumer successfully runs:
 | What is the fastest way to try it? | `docs/onboarding/public-repo-quickstart.md` |
 | What files can I copy? | `adoption-package/README.md` |
 | Has a clean consumer been validated? | `docs/onboarding/validated-demo-consumer.md` |
-| What release should I evaluate? | `docs/releases/v0.1.0-public-adoption.md` |
+| What release should I evaluate? | `docs/releases/v0.2.0-public-adoption.md` |
 | What does the viewer show? | `generated/viewer/status-viewer.html` |
 
 ## Boundaries And Known Limitations

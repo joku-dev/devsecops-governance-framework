@@ -1,6 +1,13 @@
 # Releases
 
-This section contains the published baseline package documentation.
+This section contains repository release statements and baseline package documentation.
+
+The current adoption/operations release line is
+[Operational Pilot v0.2.0](v0.2.0-public-adoption.md), tagged
+`v0.2.0-public-adoption`. Its signed tag and published GitHub Release establish
+publication; a preparation branch or draft alone does not. This repository
+release keeps DevSecOps L1 `l1-baseline-v1.1.3` and Architecture L1
+`architecture-baseline-l1-v0.1.0` as the separate supported baseline pins.
 
 The intended release model is:
 
@@ -20,12 +27,13 @@ The currently documented release set in the repository is:
 - `L1 baseline v1.1.3`
 - `Architecture L1 baseline v0.1.0`
 - `Public adoption release v0.1.0`
+- `Operational pilot repository release v0.2.0`
 
-The latest prepared L1 package is:
+The latest prepared packages by release line are:
 
 - `L1 baseline v1.1.3`
 - `Architecture L1 baseline v0.1.0`
-- `Public adoption release v0.1.0`
+- `Operational pilot repository release v0.2.0`
 
 The working source still remains in `model/`, while approved frozen release packages are published under `releases/`.
 
@@ -36,6 +44,7 @@ To understand how releases should evolve and how downstream repositories should 
 ## Available Release Packages
 
 - `Release publication checklist`: `release-publication-checklist.md`
+- [Operational pilot repository release v0.2.0](v0.2.0-public-adoption.md)
 - `Public adoption release v0.1.0`: `v0.1.0-public-adoption.md`
 - `L1 baseline v1.0.0`: `l1-baseline-v1.0.0.md`
 - `L1 baseline v1.0.0 release statement`: `l1-baseline-v1.0.0-release-statement.md`
