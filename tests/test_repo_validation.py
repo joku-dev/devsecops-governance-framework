@@ -126,7 +126,19 @@ class RepoValidationTests(unittest.TestCase):
         self.assertIn("Recorded Failures", content)
         self.assertIn("Current Interpretation", content)
         self.assertIn("Official Latest Replay Assessments", content)
-        self.assertIn("Evidence: unverified", content)
+        # Fresh intake can leave no unverified result in the latest cards.
+        # Assert that the viewer reflects the actual latest Trust projections.
+        levels = set()
+        for index_name in ("repository-results-index.json", "architecture-results-index.json"):
+            index = json.loads((ROOT / "status" / index_name).read_text(encoding="utf-8"))
+            for repository in index["repositories"]:
+                latest = repository.get("latest_result") or {}
+                if latest:
+                    levels.add((latest.get("trust") or {}).get("effective_level", "unverified"))
+        self.assertTrue(levels, "Expected at least one latest result in the real repository fixture")
+        for level in levels:
+            with self.subTest(trust_level=level):
+                self.assertTrue(f"Evidence: {level}" in content, f"Missing latest Trust badge: {level}")
         self.assertIn("Architecture Runtime Gates", content)
         self.assertIn("architecture-baseline-l1-v0.1.0", content)
         self.assertIn("Source Document Intake", content)
@@ -256,7 +268,7 @@ class RepoValidationTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
             payload = json.loads(output.read_text(encoding="utf-8"))
-            self.assertEqual(payload["governance_repo"], "devsecops-governance-framework")
+            self.assertEqual(payload["governance_repo"], ROOT.name)
             self.assertIn("execution", payload)
             self.assertIn("policy_evaluations", payload)
             self.assertIn("artifacts", payload)

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "projection_type": "blocking-readiness",
-  "generated_at": "2026-09-11T13:02:02Z",
+  "generated_at": "2026-09-11T13:07:39Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "summary": {
@@ -23,7 +23,7 @@
           "id": "released_baseline_pinned",
           "status": "fail",
           "required": true,
-          "observed": "main@34bdc66",
+          "observed": "31914e88b0669e0f6caed5bb9d0db71f762c2126",
           "expected": "l1-baseline-v*",
           "evidence_refs": [
             "status/repository-results-index.json"
@@ -31,9 +31,9 @@
         },
         {
           "id": "latest_devsecops_result_clean",
-          "status": "pass",
+          "status": "fail",
           "required": true,
-          "observed": "pass",
+          "observed": "fail",
           "expected": "pass",
           "evidence_refs": [
             "status/repository-results-index.json"
@@ -44,7 +44,7 @@
           "status": "fail",
           "required": true,
           "observed": {
-            "sample": 0,
+            "sample": 1,
             "passing": 0
           },
           "expected": {
@@ -59,7 +59,7 @@
           "id": "minimum_trust_level",
           "status": "fail",
           "required": true,
-          "observed": "unverified",
+          "observed": "integrity_verified",
           "expected": "provenance_verified",
           "evidence_refs": [
             "status/repository-results-index.json"
@@ -77,9 +77,9 @@
         },
         {
           "id": "replay_check_clean",
-          "status": "fail",
+          "status": "pass",
           "required": true,
-          "observed": "not_evaluated",
+          "observed": "pass",
           "expected": "pass",
           "evidence_refs": [
             "status/repository-results-index.json"
@@ -409,9 +409,9 @@
         },
         {
           "id": "trust_checks_clean",
-          "status": "pass",
+          "status": "fail",
           "required": true,
-          "observed": 0,
+          "observed": 1,
           "expected": 0,
           "evidence_refs": [
             "status/repository-results-index.json"
@@ -421,7 +421,7 @@
           "id": "replay_check_clean",
           "status": "fail",
           "required": true,
-          "observed": "not_evaluated",
+          "observed": "fail",
           "expected": "pass",
           "evidence_refs": [
             "status/repository-results-index.json"
