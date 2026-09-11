@@ -30,7 +30,8 @@ The time-bounded record:
 
 - preserves the current mode without changing it
 - names Repository Owner and Governance Platform Lead
-- lists the five unresolved readiness gaps
+- lists six unresolved readiness criterion IDs (including the aggregate Trust
+  failure caused by the existing replay finding)
 - requires review by Repository Owner, Governance Platform Lead, Security, and
   Release Manager
 - expires for validation purposes at the end of 12 December 2026 in Europe/Berlin
@@ -42,6 +43,12 @@ review deadline through 12 December 2026. The decision is recorded in
 [GCR-2026-050](../../governance/change-requests/GCR-2026-050-blocking-risk-review-extension.md).
 The five readiness gaps and required review roles remain open. This extension
 does not approve blocking activation or retroactively clear the expired period.
+
+On 11 September, the fresh mainline intake exposed a replay failure that also
+fails the aggregate `trust_checks_clean` criterion. The
+[operational refresh amendment](../../governance/change-requests/GCR-2026-057-september-operational-evidence-refresh.md)
+adds that sixth criterion ID explicitly. Both replay and aggregate Trust remain
+failed in readiness; the record continues to be acknowledged pending review.
 
 ## Alignment States
 
