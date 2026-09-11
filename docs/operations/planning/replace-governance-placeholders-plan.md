@@ -1,5 +1,11 @@
 # Plan zum Ersetzen der Governance-Platzhalter in ha-CPsWMS
 
+> Planning/reference context: completed migration steps and earlier proposals
+> below are retained for traceability. Current implementation and remaining work
+> are described in the [platform state](../status/current-governance-platform-state.md)
+> and [roadmap](../../roadmap.md). CI validation and strict MkDocs publishing
+> are already implemented; new blocking requires the current readiness process.
+
 Dieses Dokument beschreibt die erforderlichen Schritte, um die noch vorhandenen Platzhalter-Belege in `ha-CPsWMS` durch echte Governance-Evidence zu ersetzen.
 
 ## Ziel

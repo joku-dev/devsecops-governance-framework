@@ -1,5 +1,8 @@
 # Official Entrypoints
 
+Accepted consumer evidence on 11 September 2026 and remaining findings are
+recorded in the [current platform state](operations/status/current-governance-platform-state.md).
+
 For current pilot and central operations, start with the
 [operations handbook](operations/guides/governance-repository-operations-handbook.md).
 It links the [daily report](operations/status/daily-governance-operations.md),
@@ -27,7 +30,7 @@ It is intended for:
 - Pilot runbook: `docs/onboarding/pilot-runbook.md`
 - Public quickstart: `docs/onboarding/public-repo-quickstart.md`
 - Validated neutral demo consumer: `docs/onboarding/validated-demo-consumer.md`
-- Public adoption release: `docs/releases/v0.1.0-public-adoption.md`
+- Adoption/operations release: `docs/releases/v0.2.0-public-adoption.md`
 - Reading compass for new team members: `docs/lesekompass.md`
 - Role-based documentation paths: `docs/paths/index.md`
 - AI navigation index: `docs/ai-index.md`
@@ -123,6 +126,7 @@ It is intended for:
 ## Release Documents
 
 - Release overview: `docs/releases/index.md`
+- Operational pilot repository release v0.2.0: `docs/releases/v0.2.0-public-adoption.md`
 - Public adoption release v0.1.0: `docs/releases/v0.1.0-public-adoption.md`
 - Release and migration model: `docs/releases/release-and-migration-model.md`
 - Release publication checklist: `docs/releases/release-publication-checklist.md`

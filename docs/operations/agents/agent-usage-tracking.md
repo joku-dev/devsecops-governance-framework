@@ -1,5 +1,12 @@
 # Agent Usage Tracking
 
+
+The published `agent-usage-snapshot-latest.md` is the latest recorded usage-log
+snapshot, not an assertion that an agent executed today. Its July timestamps
+remain meaningful because no later usage event is inferred from documentation
+maintenance. For current repository operation use the
+[operations handbook](../guides/governance-repository-operations-handbook.md).
+
 ## Purpose
 
 Agent usage tracking records which governance roles and skills were selected or executed during a dispatch or provider-backed review.

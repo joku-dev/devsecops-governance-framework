@@ -1,5 +1,13 @@
 # Ablauf im Applikationsrepo bis zur Architektur-Evidence
 
+> Betriebsstand vom 11. September 2026: Der zentrale Intake schlägt Änderungen
+> in einem Bot-PR vor. Checks, Review und Merge übernehmen sie in die offiziellen
+> Indizes; anschließend veröffentlicht Pages den Viewer. Die Diagramme zeigen
+> diesen fachlichen Ergebnisfluss. Den vollständigen Ablauf beschreibt das
+> [Betriebshandbuch](../guides/governance-repository-operations-handbook.md).
+> Neue Consumer wählen ausdrücklich report-only; der veröffentlichte
+> DevSecOps-Wrapper verwendet sonst standardmäßig block-on-error.
+
 Dieses Dokument erklärt Schritt für Schritt, was in einem Applikationsrepo beim Thema Architektur-Governance passiert, bis die Architektur-Nachweise als JSON-Reports abgelegt werden.
 
 Der Ablauf ist dem DevSecOps-Evidence-Flow ähnlich. Der Unterschied liegt in der Art der Nachweise:
@@ -626,7 +634,8 @@ summary.finding_count
 
 Verantwortlich:
 
-- Governance oder Release Management entscheidet, ab wann Findings blockieren.
+- Governance oder Release Management entscheidet anhand der Blocking-Readiness,
+  mit verantwortlicher Freigabe und separater Consumer-Umstellung über Blocking.
 - Application Team und Architekturrollen arbeiten Findings ab.
 
 ## Schritt 18: Optionaler Intake ins Governance-Repository
@@ -646,7 +655,7 @@ Beispiel:
 ```bash
 python3 scripts/intake_architecture_github_actions_run.py \
   --repository-id joku-dev/ha-CPsWMS \
-  --run-id 28592256765 \
+  --run-id 34602001140 \
   --architecture-baseline-ref architecture-baseline-l1-v0.1.0
 ```
 
@@ -658,7 +667,9 @@ Das Skript macht folgende Dinge:
 4. Es liest `architecture-release-input.json`.
 5. Es liest `architecture-governance-report.json`.
 6. Es prüft, ob der Branch geschützt ist.
-7. Es schreibt einen normalisierten Architektur-Status-Snapshot.
+7. Es prüft Trust und Replay und schreibt einen Snapshot append-only.
+8. Der Workflow erzeugt Projektionen und eröffnet einen Bot-PR. Checks, Review
+   und Merge übernehmen den Stand, anschließend veröffentlicht Pages den Viewer.
 
 Verantwortlich:
 
@@ -677,7 +688,7 @@ status/architecture-results/<owner>__<repo>/<timestamp>-run-<run-id>.json
 Beispiel:
 
 ```text
-status/architecture-results/joku-dev__ha-CPsWMS/2026-07-02T13-05-12Z-run-28592256765.json
+status/architecture-results/joku-dev__ha-CPsWMS/2026-09-11T13-01-50Z-run-34602001140.json
 ```
 
 Diese Datei ist nicht dasselbe wie `architecture-release-input.json` oder `architecture-governance-report.json`.

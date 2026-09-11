@@ -1,8 +1,8 @@
 # Engineering Governance für verlässliche Softwareentscheidungen
 
-Whitepaper für die Geschäftsführung · Ausgabe 1.0 · 9. September 2026
+Whitepaper für die Geschäftsführung · Ausgabe 1.1 · 11. September 2026
 
-Quellstand: `689357712b8eaaa91968a6810c7f056adb6f6555`
+Quellstand: `4abe88294f299d7f801c74ff0161df234960c092`
 
 Das vorliegende Framework verbindet freigegebene Vorgaben mit wiederholbaren technischen Prüfungen und nachvollziehbaren Ergebnissen. Damit schafft es eine gemeinsame Grundlage für Entscheidungen über Softwarelieferungen. Dieses Whitepaper erläutert den geschäftlichen Nutzen, den belegten Entwicklungsstand und einen begrenzten Einführungsweg für die Geschäftsführung.
 
@@ -12,7 +12,7 @@ Für den Einstieg melden die Prüfungen ihre Ergebnisse, ohne Lieferungen allein
 
 Die Geschäftsführung entscheidet zunächst über Umfang, Zuständigkeiten und verfügbare Kapazität für die Erprobung. Die Ausweitung folgt erst, wenn der Pilot zuverlässige Ergebnisse, einen tragfähigen Betrieb und einen erkennbaren Nutzen belegt. Vorgeschlagene Dauer und Kennzahlen in diesem Dokument sind Planungsgrößen, keine bereits erteilten Zusagen.
 
-Leseführung: Die folgenden Seiten behandeln Nutzen, Funktionsweise, Aussagekraft der Nachweise, belegten Stand und Einführung. Quellen und Begriffe stehen am Ende. Grundlage ist der Repository-Stand vom 9. September 2026, Commit 6893577. Spätere Änderungen sind nicht Bestandteil dieser Ausgabe.
+Leseführung: Die folgenden Seiten behandeln Nutzen, Funktionsweise, Aussagekraft der Nachweise, belegten Stand und Einführung. Quellen und Begriffe stehen am Ende. Grundlage ist der angenommene Repository-Stand vom 11. September 2026, Commit 4abe882. Spätere Änderungen sind nicht Bestandteil dieser Ausgabe.
 
 ## Geschäftlicher Nutzen und seine Messung
 
@@ -68,7 +68,7 @@ Für Führungskräfte empfiehlt sich deshalb eine getrennte Betrachtung: Ist der
 
 Der betrachtete Stand enthält veröffentlichte Regelsätze für DevSecOps L1 und Architektur L1, eine Aufnahme zentraler Ergebnisse, geschützte Änderungsabläufe sowie eine statische Statusanzeige. Ein täglicher Betriebsbericht beobachtet zusätzlich Ausführungen, veraltete Nachweise, die Prüfwarteschlange und die Sicherheitseinstellungen des zentralen Repositorys. Die vier Hauptworkflows am betrachteten main-Commit haben erfolgreich abgeschlossen. [5, 8, 9, 13–16]
 
-Die gespeicherten Referenzläufe von ha-CPsWMS stammen vom 15. Juli 2026. Damals bestanden 16 von 16 DevSecOps-Kontrollen und vier von vier Architekturgates. Die Laufnummern 29415015878 und 29415015294 machen diese Aussage überprüfbar. Die Ergebnisse belegen die Integration zum damaligen Zeitpunkt. Sie belegen keine aktuelle Bewertung der Anwendung im September. [8]
+Am 11. September 2026 wurden neue reale Consumer-Ergebnisse angenommen. ha-CPsWMS besteht 16 von 16 anwendbaren DevSecOps-Kontrollen und vier von vier Architekturgates in den Läufen 34602002201 und 34602001140. Ein separater DevSecOps-Replay-Befund bleibt offen. Das Portfolio umfasst drei Consumer ohne veraltete oder fehlende Ergebnisse zum Beobachtungszeitpunkt. Die Factory meldet einen Branchschutz-Befund; der neutrale Demo-Consumer zeigt 25 Architektur-Befunde. Dessen bestandenes DevSecOps-Gate ist eine zusammengefasste Auswertung, kein vollständiger Kontrollkatalog. [8, 17, 18]
 
 Die aktuelle Bereitschaft für einen breiten Produktivbetrieb ist damit nicht nachgewiesen. Unter anderem fehlen eine längere Beobachtung unter realer Last, bestätigte individuelle Zuständigkeiten für den ausgewählten Pilot und eine vollständig erprobte Wiederherstellung der Betriebsumgebung. Vorhandene Anleitungen sind eine Voraussetzung für Betrieb, aber noch kein Nachweis ihrer zuverlässigen Ausführung. [5, 10, 11]
 
@@ -77,7 +77,7 @@ Die zentrale Plattform prüft sich zusätzlich selbst. Dazu gehören die Validie
 | Bereich | Belegt | Offen für den Pilot |
 |---|---|---|
 | Regeln und Auswertung | Versionierte Baselines und automatisierte Prüfungen | Eignung für die ausgewählten Anwendungen |
-| Ergebnisfluss | Sammlung, Review und zentrale Anzeige | Aktuelle reale Anwendungsergebnisse |
+| Ergebnisfluss | Frische Ergebnisse für drei Consumer angenommen | Wiederholbarkeit und Befundbearbeitung im Alltag |
 | Betrieb | Täglicher Bericht und sichtbare Informationslücken | Verlässliche tägliche Bearbeitung durch benannte Personen |
 | Wiederherstellung | Anleitung und lokale Git-Wiederherstellungsprobe | Externe Sicherung, Zugänge und vollständiger Wiederanlauf |
 
@@ -116,7 +116,7 @@ Für die Investitionsentscheidung sollte der Abschlussbericht zwischen einmalige
 
 ## Begriffe und Quellen
 
-Diese Ausgabe ist eine abgeleitete Veröffentlichung für die Geschäftsführung. Sie ändert keine fachlichen Vorgaben und erteilt keine Betriebs-, Risiko- oder Budgetfreigabe. Quellen beziehen sich auf den festgehaltenen Repository-Stand. Ergebnisse vom Juli bleiben als historische Nachweise gekennzeichnet.
+Diese Ausgabe ist eine abgeleitete Veröffentlichung für die Geschäftsführung. Sie ändert keine fachlichen Vorgaben und erteilt keine Betriebs-, Risiko- oder Budgetfreigabe. Quellen beziehen sich auf den festgehaltenen Repository-Stand. Die dargestellten Anwendungsergebnisse wurden am 11. September 2026 angenommen.
 
 | Begriff | Bedeutung |
 |---|---|
@@ -129,34 +129,38 @@ Diese Ausgabe ist eine abgeleitete Veröffentlichung für die Geschäftsführung
 
 ### Quellen zum festgehaltenen Stand
 
-- [1] [Vision und aktuelle Ausrichtung](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/05_CURRENT_DIRECTION.md)
+- [1] [Vision und aktuelle Ausrichtung](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/05_CURRENT_DIRECTION.md)
 
-- [2] [Architektur und Schnittstellen](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/04_REFERENCE_ARCHITECTURE.md)
+- [2] [Architektur und Schnittstellen](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/04_REFERENCE_ARCHITECTURE.md)
 
-- [3] [Architektonische Grundsätze und menschliche Verantwortung](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/foundation/02_CONSTITUTION.md)
+- [3] [Architektonische Grundsätze und menschliche Verantwortung](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/02_CONSTITUTION.md)
 
-- [4] [Vertrag für Nachweise](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-evidence-contract.md)
+- [4] [Vertrag für Nachweise](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-evidence-contract.md)
 
-- [5] [Betriebshandbuch und Pilotkriterien](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/guides/governance-repository-operations-handbook.md)
+- [5] [Betriebshandbuch und Pilotkriterien](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md)
 
-- [6] [Ergebnisaufnahme und Statusanzeige](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/evidence/governance-result-intake-and-viewer-usage.md)
+- [6] [Ergebnisaufnahme und Statusanzeige](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-result-intake-and-viewer-usage.md)
 
-- [7] [Voraussetzungen für verbindliche Prüfungen](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/generated/reports/blocking-readiness.json)
+- [7] [Voraussetzungen für verbindliche Prüfungen](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/blocking-readiness.json)
 
-- [8] [Stand und datierte Referenznachweise](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/current-governance-platform-state.md)
+- [8] [Angenommene DevSecOps-Ergebnisse und Trust-Kontext](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/repository-results-index.json)
 
-- [9] [Täglicher Betriebsbericht](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/daily-governance-operations.md)
+- [9] [Täglicher Betriebsbericht](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/daily-governance-operations.md)
 
-- [10] [Sicherung und Wiederherstellung](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/processes/governance-repository-backup-and-recovery.md)
+- [10] [Sicherung und Wiederherstellung](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/processes/governance-repository-backup-and-recovery.md)
 
-- [11] [Zugänge und Tokenpflege](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/security/github-access-and-token-maintenance.md)
+- [11] [Zugänge und Tokenpflege](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/security/github-access-and-token-maintenance.md)
 
-- [12] [Umgang mit dem bestehenden Blocking-Risiko](https://github.com/joku-dev/devsecops-governance-framework/blob/689357712b8eaaa91968a6810c7f056adb6f6555/docs/operations/status/blocking-mode-alignment.md)
+- [12] [Umgang mit dem bestehenden Blocking-Risiko](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/blocking-mode-alignment.md)
 
-- [13] [Governance CI am betrachteten main-Stand](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545699)
+- [13] [Governance CI am betrachteten main-Stand](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502655)
 
-- [14] [CodeQL am betrachteten main-Stand](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545693)
+- [14] [CodeQL am betrachteten main-Stand](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502609)
 
-- [15] [Dokumentationsveröffentlichung am betrachteten main-Stand](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545772)
+- [15] [Dokumentationsveröffentlichung am betrachteten main-Stand](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502982)
 
-- [16] [Repository-Sicherheitsprüfung am betrachteten main-Stand](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34339545695)
+- [16] [Repository-Sicherheitsprüfung am betrachteten main-Stand](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/34611502768)
+
+- [17] [Angenommene Architektur-Ergebnisse](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/architecture-results-index.json)
+
+- [18] [Portfolio am 11. September 2026](https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/generated/reports/portfolio-onboarding-status.json)

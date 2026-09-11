@@ -1,208 +1,101 @@
 # Management Readout
 
-## Summary
+## Assessment
 
-The central repository `devsecops-governance-framework` is now operationally usable as an executable DevSecOps governance baseline.
+The framework supports a controlled test operation with reviewed evidence intake,
+versioned DevSecOps and architecture baselines, and a published status viewer.
+Three consumers have accepted results from 11 September 2026. These demonstrate
+the integration and expose remaining findings; they are not a production or
+enterprise-wide compliance approval.
 
-The application repository `ha-CPsWMS` has been successfully integrated with this central baseline.
-
-The governance check runs automatically through GitHub Actions and produces machine-readable compliance evidence.
-
-An end-to-end proof has been successfully completed: artifact evidence, SBOM evidence, vulnerability evidence, and pipeline evidence were generated and evaluated by the central governance baseline.
-
-This establishes a credible L1 minimum operational state for Governance as Code.
-
-The current `main` line is green and includes the governance intelligence graph,
-append-only evidence intake protection, persisted failed collection attempts,
-controlled manual retry and lifecycle projection for those attempts, explicit
-agent-to-evidence provenance, and a pinned validation toolchain.
-
-The current demo consumer `joku-dev/governance-framework-demo-consumer` is also
-clean on `main` at commit `60ff24cd94a010feb468aab9a48ac8ead4bf96ad`. Its CI,
-DevSecOps Baseline, and Architecture Governance workflows completed
-successfully in the latest push (`29603209364`, `29603210148`, and
-`29603209915`). The `main` branch now requires pull-request review and rejects
-direct pushes.
+Observation baseline: `4abe88294f299d7f801c74ff0161df234960c092`, 11 September
+2026. The [current platform state](../operations/status/current-governance-platform-state.md)
+records producer runs, consumer commits, operating observations and their limits.
+The [operations handbook](../operations/guides/governance-repository-operations-handbook.md)
+is the entry point for day-to-day work.
 
 ## Business Meaning
 
-Governance is no longer present only as a document set. It is now implemented as a reusable and centrally managed control mechanism.
+The framework connects approved requirements to repeatable technical checks and
+traceable evidence. Teams can reuse the baseline and investigate why a finding
+exists. Management can review evidence coverage, age and unresolved decisions
+across consumers. Reduced review effort and shorter decision times are expected
+benefits to measure in the pilot, not proven savings.
 
-This means:
+Human owners remain accountable for source approval, evidence quality, exceptions,
+risk acceptance and enforcement. Neither a green workflow nor a generated report
+makes those decisions automatically.
 
-- governance requirements can be executed, not only described
-- repository onboarding can follow a repeatable model
-- evidence is produced in a machine-readable format
-- compliance checks are easier to track and audit
-- control logic can be improved centrally and reused across repositories
+## Accepted Consumer Evidence
 
-## Current Maturity
+| Consumer | Evidence accepted on 11 September | Remaining interpretation |
+|---|---|---|
+| `ha-CPsWMS` | DevSecOps: 16/16 applicable controls pass; architecture: 4/4 gates pass, zero findings | Separate DevSecOps replay finding remains open; legacy blocking risk retained |
+| `ai-native-engineering-factory` | Fresh mainline rerun, baseline gate `fail` | Direct-push allowance reported; report-only, one-gate summary |
+| `governance-framework-demo-consumer` | DevSecOps gate `pass`; architecture has 25 findings; current typed vulnerability evidence is `integrity_verified` | Report-only; successful workflow execution does not clear architecture findings |
 
-- L1 operational: achieved
-- Pilot operation: possible
-- Broader rollout: ready for preparation
-- L2 and L3 maturity: not yet achieved
+The portfolio reports **three consumers, zero stale or missing results** at its
+11 September observation time. Coverage and freshness must be checked again when
+making a later decision. **Zero of three consumers meet Blocking Readiness.**
+A baseline-gate summary must not be presented as evaluation of all controls.
 
-## Operational Outcome
+## Implemented Capabilities
 
-The successful integration with `ha-CPsWMS` demonstrates that:
+- Source registration, candidate review briefs, lineage, impact and requirement deltas.
+- Structured control and architecture models, schemas, OPA policies and released L1 baselines.
+- Separate DevSecOps, architecture and typed-evidence intake with central Trust verification.
+- Immutable snapshots, idempotent repeated intake, retained conflicts and replay triage.
+- Failed-collection records, controlled manual retries and intake operation telemetry.
+- Reviewed bot PRs for operational updates, portfolio reports, readiness projections,
+  a read-only governance graph and static viewer.
+- Model-neutral agent roles, adapters, deterministic routing checks and explicit
+  agent-to-evidence provenance.
+- Pinned validation, strict documentation publishing, repository self-security
+  assessment and a daily report at 06:43 UTC.
+- A signed-attestation technical pilot; operational Trust promotion and production
+  issuer/key lifecycle approval remain separate work.
 
-- an application repository can generate required evidence
-- a central governance repository can evaluate that evidence
-- a GitHub Actions workflow can enforce the baseline
-- a machine-readable governance result can be stored as audit-relevant evidence
+The data remains versioned in Git. A database or application server is not
+required for the present pilot. Original producer artifacts need appropriate
+retention and backup outside the normalized result history.
 
-The central viewer now also provides separate report-only views for typed
-Evidence Trust, Intake Health, the governance relationship graph, intake
-conflicts, failed or
-partial collection attempts, their derived `open`, `resolved`, or `permanent`
-lifecycle, explicit agent participation in Evidence reviews, and Replay Triage.
+## Operating Conditions And Limits
 
-These views are projections of versioned JSON and do not replace the underlying
-Evidence source, digest, custody, or attestation data.
+New pilots explicitly use report-only for every trigger. Released DevSecOps
+wrappers default to `block-on-error` if the mode is omitted. Architecture uses
+`fail_on_findings: false` for the pilot. A Required Check alone does not enforce
+absence of findings when its workflow remains report-only.
 
-Operators can retry an attempt only through the explicit `Retry Collection
-Attempt` workflow and only when every recorded error is retryable. The original
-append-only failure remains available for audit. A matching successful snapshot
-resolves the operational collection failure without implying that the collected
-governance outcome passed or changing the official `latest_result`.
+The preexisting ha-CPsWMS blocking registration is an acknowledged risk awaiting
+review by **12 December 2026, 23:59:59 Europe/Berlin**. It is not an approval for
+new blocking. New activation needs the readiness criteria, accountable approval
+and a separate consumer change.
 
-Central intake workflows now also record a report-only operation event for
-every successful or failed execution. This creates the measurement foundation
-for future intake success-rate and latency reporting without changing results,
-Trust, or enforcement. Historical runs are not inferred or backfilled.
+The central repository requires one approving review and strict checks on main.
+The authorized one-off exceptions were restored. The bot cannot approve its own
+proposals; maintainer-authored changes require another authorized reviewer under
+the normal rule.
 
-The telemetry integration was smoke-tested across all three central paths on
-2026-07-17. DevSecOps, Architecture, and Typed Evidence intake completed
-successfully in runs `29613365725`, `29613411052`, and `29613460601`, recording
-collection durations of 2, 3, and 2 seconds. No Collection Attempt was created
-and the semantic latest-state projections remained unchanged. The test exposed
-one legacy snapshot without an artifact digest; compatibility hardening now
-accepts the otherwise identical enriched identity without weakening conflict
-detection when two present artifact digests differ. The historical report-only
-conflict remains available for audit.
+The latest recorded daily report is `attention`: consumer findings, the earlier
+failed intake in the observation window, administrative observation limits and
+self-security gaps remain visible. Four administrative hardening gaps were
+confirmed: signed-change enforcement, repository-wide SHA-pinning enforcement,
+signed release tags and restriction of Actions sources. Historical tags are not
+rewritten as a documentation maintenance action.
 
-Those events now feed a versioned, report-only Intake Health projection. Its
-current 30-day observation contains three successful executions, no partial or
-failed execution, p50 collection duration of 2 seconds, p95 of 3 seconds, no
-Collection Attempts, and two retained append-only conflicts. These figures are
-an operational observation rather than an approved SLO; they do not alter
-Trust, governance outcomes, latest-state selection, or enforcement.
-The viewer exposes the same committed projection with dimensional event counts
-and latest-result age; it does not independently recalculate or reinterpret the
-metrics.
+## Next Decisions
 
-For the consumer demo, the latest successful workflows use released baseline
-references `l1-baseline-v1.1.3` and `architecture-baseline-l1-v0.1.0`. The
-DevSecOps workflow produces the application, pipeline, and governance input
-evidence; the Architecture workflow validates and uploads its release input and
-governance evidence. Both remain report-only for the demo.
+1. Name the operating owner, deputy, reviewers and owners of open findings; record
+   the pilot scope, duration, decision date and acceptance evidence.
+2. Investigate Factory branch-protection evidence, the demo consumer's architecture
+   findings and ha-CPsWMS replay provenance. Produce new evidence for remediation.
+3. Exercise access recovery and the selected backup scope; maintain daily triage.
+   Independent alerting for a missing report is still open.
+4. Collect representative operating samples and close the remaining Trust and
+   readiness gaps before proposing new blocking.
+5. Complete the ha-CPsWMS risk review before its December deadline. Plan signing,
+   approved Actions sources and production attestation as separately reviewed changes.
 
-The earlier centrally re-verified Typed Evidence reference was run
-`29432884108` from consumer commit `4ec2b2bd53560e010ebb1c078c4d3bd41b0bfcc6`:
-Trivy `v0.70.0`, collector status `collected`, content integrity `pass`,
-Freshness `pass`, and effective Trust `integrity_verified`. This is a separate
-central intake projection and remains useful as the previous clean reference.
-
-The latest consumer DevSecOps push is now centrally intaken as run
-`29636320472`. Its normalized snapshot is `pass`, the artifact digest is bound,
-and replay passes. The latest centrally stored Architecture snapshot remains
-`findings` with 25 report-only findings after adding
-reviewed compatibility, resilience, observability, and feedback evidence. The
-latest Typed Evidence projection has zero scanner findings, passing content
-integrity and Freshness, and effective Trust `integrity_verified`. The
-Earlier DevSecOps replay findings remain immutable history and do not affect
-the Typed Evidence projection. These results are intentionally visible in the
-central indexes and viewer; Architecture findings do not block delivery while
-the demo remains report-only.
-
-Replay Triage now separates immutable recorded history from interpretation
-under the current hardened replay rules. Across 19 Trust-bearing snapshots it
-shows three recorded failures, of which two are legacy assessments superseded
-by later compatibility logic. The remaining cross-commit finding belongs to
-historical run `29603835297`; current run `29636320472` proves safe
-deterministic reuse with artifact-digest binding. There are now zero
-official-latest replay findings. Trust, latest selection, governance outcomes,
-and enforcement remain unchanged.
-
-This is the key proof point that the Governance-as-Code approach is operationally viable.
-
-The central platform is also structurally ready for multiple consumers. A
-deterministic readiness report validates three registered repositories, exact
-DevSecOps registry coverage, consumer-specific result paths, portfolio
-membership, scoped intake concurrency, telemetry identity, and Intake Health
-dimensions. All nine checks pass. Architecture is currently present for two
-consumers and Typed Evidence for one; optional evidence domains are not
-fabricated for consumers that do not produce them.
-
-The next Trust step is now proven as a report-only technical pilot. A signed
-Ed25519 statement binds the demo issuer to the repository, commit, workflow run
-and attempt, artifact, and exact evidence digest. All four pilot checks pass.
-The result is intentionally only an `attested` candidate: operational Trust
-remains `integrity_verified`, no consumer workflow or released baseline was
-changed, and production issuer and key lifecycle approval remains open.
-
-A versioned Blocking Readiness assessment now makes the enforcement gap
-explicit without changing any repository mode. None of the three consumers
-currently satisfies the stronger technical bar. The existing
-`block-on-error` registration for `ha-CPsWMS` is flagged for review because it
-predates the new Trust, Typed Evidence, replay, and operational-sample criteria;
-the report does not weaken that existing gate. The demo consumer remains
-correctly report-only due to `integrity_verified` Trust, Typed Evidence not yet
-matching the newest commit, 25 Architecture findings, only four intake events,
-and two retained conflicts. Its latest replay check and three-run mainline
-sample now pass.
-
-The preexisting `ha-CPsWMS` Blocking mode is now governed by a separate
-Alignment projection. Git history proves that the mode predates the stronger
-readiness model. It is retained unchanged under an acknowledged, time-bounded
-risk review until 18 August 2026; this is neither a new approval nor proof that
-the activation satisfies today's criteria. Repository validation now rejects a
-new Blocking registration without technical readiness and accountable approval,
-as well as incomplete, orphaned, or expired legacy records.
-
-## Current Constraints
-
-The current state is intentionally limited to an initial L1 baseline.
-
-The following items are still open:
-
-- the demo now uses a real Trivy scan; a broader production scanner-adapter
-  strategy and signed scanner attestations remain open
-- branch protection evidence must be made fully reliable for L2 usage
-- artifact signing must be introduced for L3 usage
-- additional repositories and a second live telemetry-producing consumer
-  should be onboarded to extend the current three-repository structural proof
-  with a broader operational sample
-- signed attestations, trust roots, and subject binding are technically proven
-  in a report-only demo; production issuer approval, key lifecycle, producer
-  emission, and operational Trust promotion remain open
-- agent-to-Evidence provenance is available, but associations are currently
-  recorded explicitly rather than inferred automatically
-- the newest consumer workflow results and the centrally re-verified Typed
-  Evidence snapshots are intentionally tracked by event type; manual reruns
-  are recorded in history while the latest `push` remains the mainline pointer
-- successful workflow completion currently coexists with report-only governance
-  findings; this is expected while the consumer remains in report-only mode
-- collection retries are deliberately manual; operation telemetry is now
-  captured, while automated retry policies, health thresholds, retry budgets,
-  and alerts are not yet enabled
-- Typed Evidence and Architecture intake still need a current snapshot for the
-  newest demo-consumer commit
-
-## Recommended Next Priorities
-
-1. Close the remaining Blocking Readiness gaps, beginning with provenance
-   Trust, current Typed Evidence, Architecture findings, and a representative
-   intake sample.
-2. Complete the accountable `ha-CPsWMS` mode review before 18 August 2026 and
-   record remediation, transition, or a formally approved exception.
-3. Use Collection Attempt lifecycle, controlled retry, and provenance records
-   in regular operational review and audit preparation.
-4. Validate and operationalize branch-protection-based controls for L2.
-5. Introduce artifact signing, trust roots, and related release controls for L3.
-6. Onboard additional repositories using the same integration pattern.
-
-## Executive Statement
-
-Governance as Code is no longer only a concept in this environment. It is now operationally usable, centrally reusable, and technically demonstrable through a successful application repository integration.
+Broader platform validation and released L2/L3 adoption remain future work.
+The [executive briefing](../publishing/executive-briefing/README.md) explains the
+proposed introduction and how to evaluate its benefit.

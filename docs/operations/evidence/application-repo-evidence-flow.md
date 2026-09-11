@@ -1,5 +1,13 @@
 # Ablauf im Applikationsrepo bis zur Evidence-JSON
 
+> Betriebsstand vom 11. September 2026: Der zentrale Intake schlägt Änderungen
+> in einem Bot-PR vor. Checks, Review und Merge übernehmen sie in die offiziellen
+> Indizes; anschließend veröffentlicht Pages den Viewer. Die Diagramme zeigen
+> diesen fachlichen Ergebnisfluss. Den vollständigen Ablauf beschreibt das
+> [Betriebshandbuch](../guides/governance-repository-operations-handbook.md).
+> Neue Consumer wählen ausdrücklich report-only; der veröffentlichte
+> DevSecOps-Wrapper verwendet sonst standardmäßig block-on-error.
+
 Dieses Dokument erklärt Schritt für Schritt, was in einem Applikationsrepo passiert, bis die DevSecOps-Evidence als JSON-Datei abgelegt wird.
 
 Es beschreibt zwei Ebenen:
@@ -656,7 +664,7 @@ Es bekommt mindestens:
 ```bash
 python3 scripts/intake_github_actions_run.py \
   --repository-id joku-dev/ha-CPsWMS \
-  --run-id 28592257991 \
+  --run-id 34602002201 \
   --baseline-level L1 \
   --governance-baseline-ref l1-baseline-v1.1.3
 ```
@@ -667,10 +675,14 @@ Das Skript macht folgende Dinge:
 2. Es liest die Jobs des Runs.
 3. Es liest die Artifacts des Runs.
 4. Es lädt relevante Artifacts herunter.
-5. Es sucht nach `control-evaluation-report.json`.
+5. Es sucht nach `control-evaluation-report.json` oder nutzt einen
+   `baseline-gate-result.json` als zusammengefassten Fallback.
 6. Es sucht optional nach `governance-run-input.json`.
 7. Es prüft erneut, ob der Branch geschützt ist.
-8. Es schreibt eine normalisierte Statusdatei.
+8. Es prüft Trust-Kontext und Replay und schreibt den Snapshot append-only.
+9. Der Workflow schlägt Snapshot, Ereignisse und Projektionen in einem Bot-PR
+   vor. Erst Checks, Review und Merge übernehmen sie offiziell; die lokalen
+   Skriptbefehle allein veröffentlichen keinen angenommenen zentralen Stand.
 
 Zielpfad im Governance-Repository:
 
@@ -681,7 +693,7 @@ status/results/<owner>__<repo>/<timestamp>-run-<run-id>.json
 Beispiel:
 
 ```text
-status/results/joku-dev__ha-CPsWMS/2026-07-02T13-05-30Z-run-28592257991.json
+status/results/joku-dev__ha-CPsWMS/2026-09-11T13-02-37Z-run-34602002201.json
 ```
 
 Diese Datei ist nicht dieselbe wie `pipeline-evidence.json`.

@@ -78,7 +78,8 @@ Telemetry is integrated into:
 
 Each workflow captures a start timestamp immediately before collection, runs
 the existing intake, then records the operation outcome before regeneration,
-validation, and commit. The commit step includes `status/intake-events/`.
+validation, and an operational PR. The proposed commit includes
+`status/intake-events/`; review and merge publish accepted telemetry on `main`.
 
 If collection fails, the workflow records both:
 
@@ -86,7 +87,9 @@ If collection fails, the workflow records both:
 2. an intake operation event for operational measurement
 
 The workflow still ends as failed after those report-only records have been
-persisted. A telemetry recorder failure also makes the workflow fail visibly.
+proposed for review, when recording and validation succeeded. A telemetry
+recorder failure also makes the workflow fail visibly. The workflow-run
+history can therefore contain failures absent from accepted event history.
 
 ## Manual Recorder Example
 
@@ -135,6 +138,11 @@ resulting report-only conflict remains immutable audit history. Subsequent
 intake treats this one-field legacy enrichment as idempotent when core context
 and subject digests are unchanged, while different present artifact digests
 remain conflicts.
+
+The July runs above are historical smoke evidence. The accepted projection
+of 11 September 2026 contains six successful events in its 30-day window,
+covering ha-CPsWMS and the neutral demo. See the
+[Intake Health projection](intake-health-projection.md) for the dated metrics.
 
 ## Current Limits
 

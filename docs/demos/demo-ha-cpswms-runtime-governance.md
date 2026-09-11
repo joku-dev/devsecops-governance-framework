@@ -18,14 +18,14 @@ Use this document when the demo audience wants to go deeper into the architectur
 | Application branch | `main` |
 | Architecture governance baseline | `architecture-baseline-l1-v0.1.0` |
 | Solution baseline | `ha-CPsWMS-demo-baseline` |
-| Latest mainline run | `29415015294` |
-| Latest mainline commit | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` |
-| Generated | `2026-07-15T17:06:39Z` |
+| Latest mainline run | `34602001140` |
+| Latest mainline commit | `6976bb2af2b9d47d2934273c444b6c9b62a81ea2` |
+| Generated | `2026-09-11T13:01:50Z` |
 | Current result | `PASS`, `4/4 gates`, `0 findings` |
 
 Interpretation:
 
-- These are the retained 15 July 2026 mainline observations, not proof of current freshness.
+- These are the accepted 11 September 2026 mainline observations, not proof of current freshness.
 - The checks are currently used report-only for the demo.
 - A `PASS` means the recorded evidence satisfies the released L1 architecture governance checks. It is not a formal production approval.
 
@@ -278,6 +278,12 @@ Open the generated input when you want to show the exact policy payload:
 generated/current-main/ha-cpswms/architecture-release-input.json
 ```
 
+The tracked `generated/current-main/ha-cpswms/` files are retained local
+explanatory artifacts for commit `4a86f0c`. Despite the directory name, they
+are not the accepted September mainline result. Use the indexed producer
+snapshots and run artifacts for the current result; use this local input only
+to explain the collector/report format.
+
 Key interpretation:
 
 - The app evidence is the raw claim and review record.
@@ -320,7 +326,7 @@ Expected current gate summary:
 Current known-good architecture run:
 
 ```text
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/29415015294
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/34602001140
 ```
 
 Expected interpretation:
@@ -352,7 +358,7 @@ Expected current viewer values:
 | Repository | `joku-dev/ha-CPsWMS` |
 | Status | `PASS` |
 | Baseline | `architecture-baseline-l1-v0.1.0` |
-| Last Mainline Run | `29415015294` |
+| Last Mainline Run | `34602001140` |
 | Summary | `4/4 gates pass`, `0 findings` |
 | Evidence Trust | `integrity_verified` after central re-verification |
 

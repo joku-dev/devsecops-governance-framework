@@ -7,8 +7,9 @@
 | Document type | Current-state, as-built system architecture |
 | Status | Current explanatory architecture |
 | Effective date | 2026-07-17 |
+| Last implementation review | 2026-09-11, repository `4abe882` |
 | Owner | Governance Platform Maintainers |
-| Change request | `GCR-2026-035` |
+| Change request | `GCR-2026-035`; documentation refresh `GCR-2026-058` |
 | Governance effect | None; documentation-only |
 | Released baseline effect | None |
 | Source Document Intake | Not required; no new governance source |
@@ -233,14 +234,19 @@ consumer run
    -> evaluate Trust, freshness and replay
    -> append snapshot or quarantine conflict
    -> regenerate indexes, graph and viewer
-   -> validate, rebase and commit projection changes
+   -> validate and commit allowlisted changes on an automation branch
+   -> open operational PR and run required checks
+   -> independent review and merge
+   -> publish accepted indexes and static viewer
 ```
 
 The intake workflows use an event-specific concurrency group containing the
 repository and run identity. This serializes duplicate work for the same run
-without globally blocking unrelated consumers. Before committing, they rebase
-and regenerate projections so concurrent results can converge on current
-`main`.
+without globally blocking unrelated consumers. The publisher checks ancestry
+against remote `main`, restricts changed paths and pushes only an automation
+branch. Concurrent PRs may overlap: reconcile their append-only records and
+regenerate projections from combined history before merge. The publisher does
+not automatically rebase or merge proposals.
 
 ### 4. Failed Collection and Retry
 
@@ -310,8 +316,8 @@ The central evidence store follows four rules:
 
 Git provides versioning and optimistic concurrency rather than database
 transactions. Intake workflows mitigate concurrent updates with scoped
-concurrency groups, pull/rebase/regenerate retry loops, deterministic
-generators, and schema validation. This is suitable for the current event rate,
+concurrency groups, allowlisted PR publication, deterministic generators,
+schema validation and reviewed reconciliation. This is suitable for the current event rate,
 but it is a deliberate scalability boundary.
 
 ## Runtime Context and Latest-State Semantics
@@ -341,7 +347,7 @@ an initial accepted run, central intake, and ownership of follow-up findings.
 | Governance maintainer to released consumer contract | reviewed release, version pin, checksums, branch protection |
 | Consumer repository to central intake | explicit dispatch, named artifact, repository/run identity, scoped token |
 | Downloaded bytes to accepted subject | schema validation, SHA-256 binding, Trust checks, replay evaluation |
-| Automated writer to Git history | least-required workflow permissions, scoped concurrency, validation, append-only ledger |
+| Automated writer to Git history | least-required permissions, scoped concurrency, allowlisted automation branch, validation, append-only ledger and reviewed PR |
 | Generated view to governance decision | read-only projection, source links, human accountability |
 | AI agent to evidence | explicit provenance record; no inferred authority and no automatic Trust elevation |
 

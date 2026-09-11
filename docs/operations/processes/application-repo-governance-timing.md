@@ -1,5 +1,12 @@
 # Application Repo To Governance Repo Timing
 
+> Current operating boundary (11 September 2026): central intake proposes a
+> reviewed bot PR; official indexes and the published viewer change only after
+> merge. Diagrams describe that logical result flow, not a direct write to main.
+> Use the [operations handbook](../guides/governance-repository-operations-handbook.md) for the complete review/publication path.
+> New consumers explicitly select report-only; the released DevSecOps wrapper
+> otherwise defaults to block-on-error.
+
 ## Purpose
 
 This document shows the complete timing of a governance run across an application repository and the central governance repository.
@@ -67,10 +74,12 @@ sequenceDiagram
         AppCI->>GovIntake: Trigger intake with repository id and run id
         GovIntake->>AppArtifacts: Read run metadata, jobs, and artifacts
         GovIntake->>GovIntake: Normalize DevSecOps and architecture result snapshots
-        GovIntake->>GovStatus: Write status/results or status/architecture-results
+        GovIntake->>GovStatus: Propose append-only snapshots on an automation branch
         GovIntake->>GovStatus: Regenerate result indexes
         GovIntake->>Viewer: Regenerate status-viewer.html
-        GovIntake->>GovStatus: Commit central status update
+        GovIntake->>Dev: Open scoped operational PR for checks and review
+        Dev->>GovStatus: Merge reviewed PR into protected main
+        GovStatus->>Viewer: Publish accepted projections through Pages
         Viewer-->>Dev: Show official mainline governance status
     end
 ```
@@ -178,7 +187,7 @@ generated/viewer/status-viewer.html
 |---|---:|---:|---:|---:|---:|
 | Pull request | yes | yes | yes | no by default | no |
 | Manual workflow dispatch | yes | yes | yes | no by default | no |
-| Push to `main` | yes | yes | yes | yes, when configured | yes |
+| Push to `main` | yes | yes | yes | yes, when configured | after intake review, merge and publication |
 
 The separation is intentional.
 
@@ -193,7 +202,9 @@ In GitHub, the connection is usually:
 3. Application workflow uploads evidence artifacts.
 4. On `push` to `main`, application workflow triggers `repository_dispatch` into the governance repo.
 5. Governance intake workflow reads the application run by `run_id`.
-6. Governance repo writes central status snapshots, indexes, and viewer output.
+6. Governance intake proposes snapshots, indexes and viewer output in a bot PR.
+7. Required checks, review and merge accept the proposed state.
+8. Pages publishes the accepted projections.
 
 Relevant governance repo workflows and scripts:
 

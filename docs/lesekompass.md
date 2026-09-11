@@ -23,10 +23,15 @@ The current demo target is `joku-dev/ha-CPsWMS`.
 
 | Domain | Current baseline | Current mainline demo status |
 |---|---|---|
-| DevSecOps L1 | `l1-baseline-v1.1.3` | `pass`, run `29415015878`, `16/16` applicable controls |
-| Architecture L1 | `architecture-baseline-l1-v0.1.0` | `PASS`, run `29415015294`, `4/4` gates |
+| DevSecOps L1 | `l1-baseline-v1.1.3` | `pass`, run `34602002201`, `16/16` applicable controls |
+| Architecture L1 | `architecture-baseline-l1-v0.1.0` | `PASS`, run `34602001140`, `4/4` gates |
 
-The demo is intentionally report-only. Findings should be visible in reports, artifacts, indexes and the viewer unless a consuming workflow explicitly enables blocking behavior.
+New consumer demos are report-only. ha-CPsWMS architecture remains report-only,
+while its preexisting DevSecOps blocking is a recorded legacy risk with review
+due 12 December 2026. Its passing controls coexist with a separate replay finding.
+The table reflects accepted evidence on 11 September 2026; consult the
+[current platform state](operations/status/current-governance-platform-state.md)
+and indexes for subsequent changes.
 
 ## First 30 Minutes
 
@@ -100,9 +105,8 @@ Avoid hand-editing generated outputs unless the change is explicitly scoped and 
 Before committing governance behavior, schemas, generated reports, viewer data, or docs that describe current results, run:
 
 ```bash
-python3 scripts/validate_runtime_governance.py
-python3 scripts/validate_governance_repo.py
-python3 -m unittest discover -s tests
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
 ```
 
 Expected healthy result:
@@ -127,8 +131,10 @@ OK
 
 For a new team member, the safest first contributions are:
 
-1. run the three validation commands locally
-2. read the current demo runbook and compare it with the generated current-main reports
+1. prepare the pinned toolchain and run the complete validation locally
+2. read the current demo runbook and compare it with accepted status indexes and
+   their producer snapshots; retained local `generated/current-main` examples
+   are a separate explanatory context
 3. inspect the source lineage report for one DevSecOps source and one architecture source
 4. follow the operator path for a downstream repository onboarding scenario
 5. review the architecture source replacement assessment before proposing architecture baseline changes

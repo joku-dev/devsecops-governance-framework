@@ -18,8 +18,10 @@ automatic rollback or mode change. Its current integration remains unchanged.
 
 These numbers describe the stored projection, not a fresh evaluation of producer
 runs. Inspect `generated/reports/blocking-readiness.json` and its source timestamps
-for the latest committed detail. The retained demo evidence has gaps in provenance,
-current Typed Evidence and architecture findings. Intake event counts are evaluated
+for the latest committed detail. At the 11 September 2026 observation, the
+neutral demo consumer has current Typed Evidence for its accepted mainline
+commit. Provenance, architecture findings, operating samples and other
+consumer-specific gaps remain. Intake event counts are evaluated
 inside the configured observation window; retained historical events are not
 necessarily recent samples. Regeneration does not make old producer evidence fresh.
 

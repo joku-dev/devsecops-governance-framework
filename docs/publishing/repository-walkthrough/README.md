@@ -10,7 +10,7 @@ Die Folien behandeln die vier Architektur-Ebenen, Quellenaufnahme, Kontrollen,
 ein konkretes SBOM-Beispiel, Baselines, Anwendungsläufe, Ergebnisaufnahme,
 Review, Historie, Statusanzeige und Betriebsmodi. Sprechernotizen enthalten
 Erläuterungen und Quellen zum festgehaltenen Stand
-`80ba315e56828f5186303045cc2792b576396c26` vom 9. September 2026.
+`4abe88294f299d7f801c74ff0161df234960c092` vom 11. September 2026.
 
 - [Folieninhalt und Sprechernotizen](presentation.md)
 - [Redaktionelle Quelle](content.json)

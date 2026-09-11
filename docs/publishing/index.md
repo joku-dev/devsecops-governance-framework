@@ -14,7 +14,7 @@ derived from, or aligned with, the governed repository content.
 
 The German [whitepaper and presentation for executive management](executive-briefing/README.md)
 explain benefits, evidence limits and a controlled pilot, based on the reviewed
-9 September 2026 repository snapshot. Editable files and presentation notes are
+11 September 2026 repository snapshot. Editable files and presentation notes are
 included.
 
 ## Repository walkthrough
