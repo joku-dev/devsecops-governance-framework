@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "projection_type": "replay-triage",
-  "generated_at": "2026-09-11T13:01:50Z",
+  "generated_at": "2026-09-11T13:02:37Z",
   "enforcement": "report_only",
   "decision_boundary": {
     "historical_snapshots_rewritten": false,
@@ -10,20 +10,23 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 20,
-    "recorded_failures": 3,
-    "recalculated_failures": 1,
+    "assessments": 27,
+    "recorded_failures": 4,
+    "recalculated_failures": 2,
     "legacy_assessments_superseded": 2,
-    "official_latest_findings": 0,
+    "official_latest_findings": 1,
     "classification_counts": {
-      "compatible_reuse": 2,
-      "cross_commit_reuse": 1,
-      "deterministic_report_reuse": 2,
+      "compatible_reuse": 3,
+      "cross_commit_reuse": 2,
+      "cross_repository_reuse": 1,
+      "deterministic_report_reuse": 3,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 13
+      "new_evidence": 16
     }
   },
-  "official_latest_findings": [],
+  "official_latest_findings": [
+    "status/results/joku-dev__ha-CPsWMS/2026-09-11T13-02-37Z-run-34602002201.json"
+  ],
   "assessments": [
     {
       "domain": "typed_evidence",
@@ -130,7 +133,7 @@
       "artifact_name": "governance-control-evaluation",
       "artifact_digest_available": false,
       "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-15T17-07-40Z-run-29415015878.json",
-      "official_latest": true,
+      "official_latest": false,
       "recorded_result": "not_evaluated",
       "recalculated_result": "pass",
       "classification": "new_evidence",
@@ -600,6 +603,232 @@
     },
     {
       "domain": "architecture",
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "generated_at": "2026-09-11T12:56:22Z",
+      "run_id": "34601519946",
+      "event": "workflow_dispatch",
+      "commit_id": "bec6504cac36f1f93f5e6a0ecafb4cc84802ed9c",
+      "artifact_name": "architecture-governance-evidence",
+      "artifact_digest_available": false,
+      "source_file": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-11T12-56-22Z-run-34601519946.json",
+      "official_latest": false,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "9415abda6a70149224de1ad58ce8f7ee60540f544a2ea23c3dc1770b1d26418e",
+      "relationships": []
+    },
+    {
+      "domain": "architecture",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-09-11T12:56:24Z",
+      "run_id": "34601511855",
+      "event": "workflow_dispatch",
+      "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+      "artifact_name": "architecture-governance-evidence",
+      "artifact_digest_available": false,
+      "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-11T12-56-24Z-run-34601511855.json",
+      "official_latest": false,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "compatible_reuse",
+      "recommended_action": "none",
+      "explanation": "Digest reuse remains inside the same decision context.",
+      "replay_key": "cecb69153b38ad8d66fc4998165a9502cf64e91a9efd4cbc9f324c2f897292b0",
+      "relationships": [
+        {
+          "classification": "compatible_reuse",
+          "replay_key": "180c032877300c4059667ddf54341ea67dfc93c814b525e172e26628c73c2d14",
+          "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T17-06-39Z-run-29415015294.json",
+          "repository_id": "joku-dev/ha-CPsWMS",
+          "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+          "run_id": "29415015294",
+          "artifact_name": "architecture-governance-evidence",
+          "shared_subject_ids": [
+            "architecture_governance_report",
+            "architecture_release_input"
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "devsecops",
+      "repository_id": "joku-dev/ai-native-engineering-factory",
+      "generated_at": "2026-09-11T12:56:37Z",
+      "run_id": "34503074356",
+      "event": "push",
+      "commit_id": "371251fe17c6923a810ab437a6c27fc7bfb624ed",
+      "artifact_name": "devsecops-pipeline-evidence",
+      "artifact_digest_available": true,
+      "source_file": "status/results/joku-dev__ai-native-engineering-factory/2026-09-11T12-56-37Z-run-34503074356.json",
+      "official_latest": true,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "cross_repository_reuse",
+      "recommended_action": "investigate_cross_repository_provenance",
+      "explanation": "A subject digest crosses repository boundaries and requires provenance review.",
+      "replay_key": "7ebf3873800da737250c14ce3bca414f62609237a5ef09ec1e8801fc6c256262",
+      "relationships": [
+        {
+          "classification": "cross_repository_reuse",
+          "replay_key": "9feb66def5fa89dcdacb6364c8c4431dd64895035cc8e3a896224a57627c7eef",
+          "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-15T16-51-04Z-run-29434075358.json",
+          "repository_id": "joku-dev/governance-framework-demo-consumer",
+          "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d",
+          "run_id": "29434075358",
+          "artifact_name": "devsecops-pipeline-evidence",
+          "shared_subject_ids": [
+            "control_evaluation_report"
+          ]
+        },
+        {
+          "classification": "cross_repository_reuse",
+          "replay_key": "ac0fcf31481494e21204a9842ad77a02052cab673cbe45a392827c55187772d6",
+          "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-06-29Z-run-29602535363.json",
+          "repository_id": "joku-dev/governance-framework-demo-consumer",
+          "commit_id": "894f05f8031772f32dc0ea5e7bdfe827146f229d",
+          "run_id": "29602535363",
+          "artifact_name": "devsecops-pipeline-evidence",
+          "shared_subject_ids": [
+            "control_evaluation_report"
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "devsecops",
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "generated_at": "2026-09-11T12:56:55Z",
+      "run_id": "34601516334",
+      "event": "workflow_dispatch",
+      "commit_id": "bec6504cac36f1f93f5e6a0ecafb4cc84802ed9c",
+      "artifact_name": "devsecops-pipeline-evidence",
+      "artifact_digest_available": true,
+      "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-09-11T12-56-55Z-run-34601516334.json",
+      "official_latest": false,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "deterministic_report_reuse",
+      "recommended_action": "none",
+      "explanation": "Only the deterministic control report is reused while artifact identity distinguishes the runs.",
+      "replay_key": "f9be07bf35b1e77555b3faa1d04e6df6ca706d121dcef53ec152550f36d5b139",
+      "relationships": [
+        {
+          "classification": "deterministic_report_reuse",
+          "replay_key": "952ebb8c6a02f802dfac3a3fadb58ecaedf9c9fcee7c0d57681925426299479a",
+          "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-16-57Z-run-29603210148.json",
+          "repository_id": "joku-dev/governance-framework-demo-consumer",
+          "commit_id": "7eae4298bc6f84b3920847e16eb38d1a72194a06",
+          "run_id": "29603210148",
+          "artifact_name": "devsecops-pipeline-evidence",
+          "shared_subject_ids": [
+            "control_evaluation_report"
+          ]
+        },
+        {
+          "classification": "deterministic_report_reuse",
+          "replay_key": "d0771c340a281a2d7ec776dc4bf2edb1bef34774b7001f407ebf20e4debbd65c",
+          "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-18Z-run-29603835297.json",
+          "repository_id": "joku-dev/governance-framework-demo-consumer",
+          "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+          "run_id": "29603835297",
+          "artifact_name": "devsecops-pipeline-evidence",
+          "shared_subject_ids": [
+            "control_evaluation_report"
+          ]
+        },
+        {
+          "classification": "deterministic_report_reuse",
+          "replay_key": "7628564675756c0bd9370095837e92b4278c683b7996a2e3b9947628ab0cc67e",
+          "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-37-18Z-run-29604463127.json",
+          "repository_id": "joku-dev/governance-framework-demo-consumer",
+          "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+          "run_id": "29604463127",
+          "artifact_name": "devsecops-pipeline-evidence",
+          "shared_subject_ids": [
+            "control_evaluation_report"
+          ]
+        },
+        {
+          "classification": "deterministic_report_reuse",
+          "replay_key": "e128ca93bf3437dff78473352945fc6a5f24c60848d5715e321d20ff2e4068f4",
+          "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-39-52Z-run-29604581672.json",
+          "repository_id": "joku-dev/governance-framework-demo-consumer",
+          "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+          "run_id": "29604581672",
+          "artifact_name": "devsecops-pipeline-evidence",
+          "shared_subject_ids": [
+            "control_evaluation_report"
+          ]
+        },
+        {
+          "classification": "deterministic_report_reuse",
+          "replay_key": "1de5c1a51739f03f8bf3fa1033290f5a75f009c070b18bdec081f19883d24263",
+          "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-43-35Z-run-29604841360.json",
+          "repository_id": "joku-dev/governance-framework-demo-consumer",
+          "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+          "run_id": "29604841360",
+          "artifact_name": "devsecops-pipeline-evidence",
+          "shared_subject_ids": [
+            "control_evaluation_report"
+          ]
+        },
+        {
+          "classification": "deterministic_report_reuse",
+          "replay_key": "beb29de06665067a6d325df22647a55cda6b955b99675f47adbc3ea714af8f74",
+          "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-07-18T07-47-11Z-run-29636320472.json",
+          "repository_id": "joku-dev/governance-framework-demo-consumer",
+          "commit_id": "bec6504cac36f1f93f5e6a0ecafb4cc84802ed9c",
+          "run_id": "29636320472",
+          "artifact_name": "devsecops-pipeline-evidence",
+          "shared_subject_ids": [
+            "control_evaluation_report"
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "typed_evidence",
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "generated_at": "2026-09-11T12:56:55Z",
+      "run_id": "34601516334",
+      "event": "workflow_dispatch",
+      "commit_id": "bec6504cac36f1f93f5e6a0ecafb4cc84802ed9c",
+      "artifact_name": "application-evidence",
+      "artifact_digest_available": false,
+      "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T12-56-55Z-run-34601516334-vulnerability-scan.json",
+      "official_latest": false,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "78d07282d9eab72f61e319ecaded148905b714b206f403bf4774b91812b0ed2b",
+      "relationships": []
+    },
+    {
+      "domain": "devsecops",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-09-11T12:56:58Z",
+      "run_id": "34601508976",
+      "event": "workflow_dispatch",
+      "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+      "artifact_name": "governance-control-evaluation",
+      "artifact_digest_available": true,
+      "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-11T12-56-58Z-run-34601508976.json",
+      "official_latest": false,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "50cc6a2944ef1d2f3c198bf729e0282eaae16ccf97dc5fdfbc600ce513a2c676",
+      "relationships": []
+    },
+    {
+      "domain": "architecture",
       "repository_id": "joku-dev/ha-CPsWMS",
       "generated_at": "2026-09-11T13:01:50Z",
       "run_id": "34602001140",
@@ -616,6 +845,39 @@
       "explanation": "No earlier digest reuse or conflicting replay identity was found.",
       "replay_key": "02568574fc4e95eb8c8287103f824a2246e260eb9ab08cfe1509174543f6f22e",
       "relationships": []
+    },
+    {
+      "domain": "devsecops",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-09-11T13:02:37Z",
+      "run_id": "34602002201",
+      "event": "push",
+      "commit_id": "6976bb2af2b9d47d2934273c444b6c9b62a81ea2",
+      "artifact_name": "governance-control-evaluation",
+      "artifact_digest_available": true,
+      "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-11T13-02-37Z-run-34602002201.json",
+      "official_latest": true,
+      "recorded_result": "fail",
+      "recalculated_result": "fail",
+      "classification": "cross_commit_reuse",
+      "recommended_action": "reverify_with_artifact_digest",
+      "explanation": "The same subject digest crosses commits without sufficient artifact binding to prove deterministic reuse.",
+      "replay_key": "3af629042e04c7a1f189eb74d9c00ac4217377b71d6741e8373d81ef7908e571",
+      "relationships": [
+        {
+          "classification": "cross_commit_reuse",
+          "replay_key": "1630134e423076dbf99b181f06e278131ac84785b205e5af4ebbefffe8b0ffe6",
+          "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-15T17-07-40Z-run-29415015878.json",
+          "repository_id": "joku-dev/ha-CPsWMS",
+          "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+          "run_id": "29415015878",
+          "artifact_name": "governance-control-evaluation",
+          "shared_subject_ids": [
+            "control_evaluation_report",
+            "governance_run_input"
+          ]
+        }
+      ]
     }
   ]
 }

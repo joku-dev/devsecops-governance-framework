@@ -18,6 +18,8 @@ legacy_risk_records:
     disposition: preserve_without_new_approval
     required_gap_ids:
       - minimum_trust_level
+      # The observed replay failure also fails the aggregate Trust criterion.
+      - trust_checks_clean
       - replay_check_clean
       - typed_evidence_current_and_clean
       - intake_observation_sample
@@ -28,6 +30,7 @@ legacy_risk_records:
       - Security
       - Release Manager
     evidence_refs:
+      - docs/governance/change-requests/GCR-2026-057-september-operational-evidence-refresh.md
       - docs/governance/change-requests/GCR-2026-050-blocking-risk-review-extension.md
       - status/application-repository-integrations.yaml
       - generated/reports/blocking-readiness.json

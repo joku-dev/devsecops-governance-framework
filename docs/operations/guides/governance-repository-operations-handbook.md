@@ -11,6 +11,11 @@ The repository is operated through Git, validated workflows, reviewed evidence
 PRs, and generated reports. A database or application server is not required for
 the current pilot.
 
+The [11 September 2026 maintenance record](../reference-runs/2026-09-11-operational-evidence-refresh.md)
+documents a consumer evidence refresh, administrative security observations and
+branch cleanup. It is a dated reference, not a replacement for current Actions
+results or the accepted indexes.
+
 ## Authority And Reading Rules
 
 | Question | Authoritative input / operating guide |
