@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-09-11T13:07:40Z",
+  "generated_at": "2026-09-11T14:37:35Z",
   "summary": {
     "repository_count": 3,
-    "stale_or_missing_count": 1,
+    "stale_or_missing_count": 0,
     "report_only_count": 2,
     "active_count": 1
   },
@@ -71,25 +71,25 @@
       "target_devsecops_baseline": "l1-baseline-v1.1.3",
       "latest_devsecops": {
         "status": "pass",
-        "run_id": "29636320472",
-        "generated_at": "2026-07-18T07:47:11Z",
+        "run_id": "34606820493",
+        "generated_at": "2026-09-11T13:53:03Z",
         "freshness": {
-          "status": "stale",
-          "stale_after": "2026-08-17T07:47:11Z"
+          "status": "current",
+          "stale_after": "2026-10-11T13:53:03Z"
         }
       },
       "architecture_in_scope": true,
       "target_architecture_baseline": "architecture-baseline-l1-v0.1.0",
       "latest_architecture": {
         "status": "findings",
-        "run_id": "29603835105",
-        "generated_at": "2026-07-17T18:27:02Z",
+        "run_id": "34606820390",
+        "generated_at": "2026-09-11T13:52:46Z",
         "freshness": {
-          "status": "stale",
-          "stale_after": "2026-08-16T18:27:02Z"
+          "status": "current",
+          "stale_after": "2026-10-11T13:52:46Z"
         }
       },
-      "stale_or_missing": true,
+      "stale_or_missing": false,
       "governance_mode": "report-only",
       "next_action": "Review report-only findings"
     }
