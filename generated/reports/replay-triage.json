@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "projection_type": "replay-triage",
-  "generated_at": "2026-09-11T13:02:37Z",
+  "generated_at": "2026-09-11T13:52:46Z",
   "enforcement": "report_only",
   "decision_boundary": {
     "historical_snapshots_rewritten": false,
@@ -10,7 +10,7 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 27,
+    "assessments": 28,
     "recorded_failures": 4,
     "recalculated_failures": 2,
     "legacy_assessments_superseded": 2,
@@ -21,7 +21,7 @@
       "cross_repository_reuse": 1,
       "deterministic_report_reuse": 3,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 16
+      "new_evidence": 17
     }
   },
   "official_latest_findings": [
@@ -293,7 +293,7 @@
       "artifact_name": "architecture-governance-evidence",
       "artifact_digest_available": false,
       "source_file": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-02Z-run-29603835105.json",
-      "official_latest": true,
+      "official_latest": false,
       "recorded_result": "pass",
       "recalculated_result": "pass",
       "classification": "new_evidence",
@@ -878,6 +878,25 @@
           ]
         }
       ]
+    },
+    {
+      "domain": "architecture",
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "generated_at": "2026-09-11T13:52:46Z",
+      "run_id": "34606820390",
+      "event": "push",
+      "commit_id": "7d6a4f67c5e8441e1067405cc2da17218dc256fd",
+      "artifact_name": "architecture-governance-evidence",
+      "artifact_digest_available": false,
+      "source_file": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-52-46Z-run-34606820390.json",
+      "official_latest": true,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "cc4f9f238e6bb99a5c05fe36926a5c381cc47fbe9ee410adfdb599de6af5b6b7",
+      "relationships": []
     }
   ]
 }
