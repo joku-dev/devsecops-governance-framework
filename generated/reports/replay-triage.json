@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "projection_type": "replay-triage",
-  "generated_at": "2026-07-18T07:47:11Z",
+  "generated_at": "2026-09-11T13:01:50Z",
   "enforcement": "report_only",
   "decision_boundary": {
     "historical_snapshots_rewritten": false,
@@ -10,7 +10,7 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 19,
+    "assessments": 20,
     "recorded_failures": 3,
     "recalculated_failures": 1,
     "legacy_assessments_superseded": 2,
@@ -20,7 +20,7 @@
       "cross_commit_reuse": 1,
       "deterministic_report_reuse": 2,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 12
+      "new_evidence": 13
     }
   },
   "official_latest_findings": [],
@@ -111,7 +111,7 @@
       "artifact_name": "architecture-governance-evidence",
       "artifact_digest_available": false,
       "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-07-15T17-06-39Z-run-29415015294.json",
-      "official_latest": true,
+      "official_latest": false,
       "recorded_result": "not_evaluated",
       "recalculated_result": "pass",
       "classification": "new_evidence",
@@ -597,6 +597,25 @@
           ]
         }
       ]
+    },
+    {
+      "domain": "architecture",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-09-11T13:01:50Z",
+      "run_id": "34602001140",
+      "event": "push",
+      "commit_id": "6976bb2af2b9d47d2934273c444b6c9b62a81ea2",
+      "artifact_name": "architecture-governance-evidence",
+      "artifact_digest_available": false,
+      "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-11T13-01-50Z-run-34602001140.json",
+      "official_latest": true,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "02568574fc4e95eb8c8287103f824a2246e260eb9ab08cfe1509174543f6f22e",
+      "relationships": []
     }
   ]
 }
