@@ -41,8 +41,8 @@ Reine Dokumentationsaenderungen ohne Workflow-, Schema- oder Script-Aenderung be
 Im Governance-Repo:
 
 ```bash
-python3 -m pytest
-python3 scripts/validate_governance_repo.py
+./scripts/bootstrap_validation_env.sh
+./scripts/validate_all.sh
 ```
 
 Wenn Dokumentation oder Navigation geaendert wurde:
@@ -99,7 +99,10 @@ Erwartung:
 
 ## Schritt 5: Intake Im Governance-Repo Pruefen
 
-Nach einem erfolgreichen Push auf `main` in `ha-CPsWMS` sollen im Governance-Repo neue oder aktualisierte Statusdaten sichtbar sein.
+Nach einem erfolgreichen Push auf `main` in `ha-CPsWMS` erzeugt der zentrale
+Intake einen Vorschlag auf einem Automation-Branch. Die neuen Statusdaten
+werden nach erfolgreichen Checks, unabhaengigem Review und Merge des Intake-PRs
+auf `main` offiziell; danach aktualisiert der Pages-Workflow die Anzeige.
 
 DevSecOps-Ergebnisse:
 

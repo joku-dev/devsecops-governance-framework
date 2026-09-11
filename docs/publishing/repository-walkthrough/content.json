@@ -1,8 +1,8 @@
 {
   "title": "Wie das Repository arbeitet",
-  "date": "9. September 2026",
-  "source_commit": "80ba315e56828f5186303045cc2792b576396c26",
-  "version": "1.0",
+  "date": "11. September 2026",
+  "source_commit": "4abe88294f299d7f801c74ff0161df234960c092",
+  "version": "1.1",
   "slides": [
     {
       "title": "Wie das Repository arbeitet",
@@ -401,13 +401,15 @@
           "Kontrolle und Policy über die dokumentierte Herkunft auf die Vorgabe zurückführen."
         ]
       ],
-      "notes": "Zum Abschluss kann der Vortragende den Viewer, einen Ergebnis-Snapshot, die Baseline, DSCB-L1-REQ-006 und sbom_required.rego öffnen. Der Demo-Runbook enthält dafür historische ha-CPsWMS-Läufe vom 15. Juli 2026. Diese sind Referenzbelege und keine aktuelle Anwendungsevaluation. Der Nutzen des Systems liegt darin, genau diese Zuordnung nachvollziehbar zu machen und Änderungen kontrolliert fortzuschreiben.",
+      "notes": "Zum Abschluss den Viewer, einen Ergebnis-Snapshot, die Baseline, DSCB-L1-REQ-006 und sbom_required.rego öffnen. Der Demo-Runbook verwendet die angenommenen ha-CPsWMS-mainline-Läufe vom 11. September 2026: DevSecOps 34602002201 und Architektur 34602001140. Die 16 anwendbaren Controls und vier Architekturgates bestehen, ein separater DevSecOps-Replay-Befund bleibt offen. Vor einem späteren Vortrag die aktuelle Indexauswahl und Zeitstempel prüfen. Die Zuordnung zur Quelle bleibt der zentrale Nutzen des Rundgangs.",
       "refs": [
         2,
         3,
         4,
         6,
-        13
+        13,
+        17,
+        18
       ]
     }
   ],
@@ -416,97 +418,109 @@
       "id": 1,
       "title": "Referenzarchitektur",
       "path": "docs/foundation/04_REFERENCE_ARCHITECTURE.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/docs/foundation/04_REFERENCE_ARCHITECTURE.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/foundation/04_REFERENCE_ARCHITECTURE.md"
     },
     {
       "id": 2,
       "title": "Governance Change Lifecycle",
       "path": "docs/governance/governance-change-lifecycle.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/docs/governance/governance-change-lifecycle.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/governance/governance-change-lifecycle.md"
     },
     {
       "id": 3,
       "title": "DevSecOps L1 Controls",
       "path": "model/controls/dscb-l1.yaml",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/model/controls/dscb-l1.yaml"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/model/controls/dscb-l1.yaml"
     },
     {
       "id": 4,
       "title": "SBOM Policy",
       "path": "policies/opa/sbom_required.rego",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/policies/opa/sbom_required.rego"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/policies/opa/sbom_required.rego"
     },
     {
       "id": 5,
       "title": "Evidence Contract",
       "path": "docs/operations/evidence/governance-evidence-contract.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/docs/operations/evidence/governance-evidence-contract.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-evidence-contract.md"
     },
     {
       "id": 6,
       "title": "Result Intake und Viewer",
       "path": "docs/operations/evidence/governance-result-intake-and-viewer-usage.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/docs/operations/evidence/governance-result-intake-and-viewer-usage.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/governance-result-intake-and-viewer-usage.md"
     },
     {
       "id": 7,
       "title": "Architektur-Workflow",
       "path": ".github/workflows/architecture-baseline-l1-v0.1.0.yml",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/.github/workflows/architecture-baseline-l1-v0.1.0.yml"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/.github/workflows/architecture-baseline-l1-v0.1.0.yml"
     },
     {
       "id": 8,
       "title": "Architecture Review Gates",
       "path": "architecture/review-gates.yaml",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/architecture/review-gates.yaml"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/architecture/review-gates.yaml"
     },
     {
       "id": 9,
       "title": "DevSecOps Baseline",
       "path": "releases/l1/v1.1.3/baseline-package.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/releases/l1/v1.1.3/baseline-package.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/releases/l1/v1.1.3/baseline-package.md"
     },
     {
       "id": 10,
       "title": "Architecture Baseline",
       "path": "releases/architecture/l1/v0.1.0/baseline-package.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/releases/architecture/l1/v0.1.0/baseline-package.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/releases/architecture/l1/v0.1.0/baseline-package.md"
     },
     {
       "id": 11,
       "title": "Intake Workflow",
       "path": ".github/workflows/intake-governance-result.yml",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/.github/workflows/intake-governance-result.yml"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/.github/workflows/intake-governance-result.yml"
     },
     {
       "id": 12,
       "title": "Betriebshandbuch",
       "path": "docs/operations/guides/governance-repository-operations-handbook.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/docs/operations/guides/governance-repository-operations-handbook.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/guides/governance-repository-operations-handbook.md"
     },
     {
       "id": 13,
       "title": "Demo mit historischen Referenzläufen",
       "path": "docs/demos/demo-end-to-end-governance.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/docs/demos/demo-end-to-end-governance.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/demos/demo-end-to-end-governance.md"
     },
     {
       "id": 14,
       "title": "Evidence Trust",
       "path": "docs/operations/evidence/evidence-trust-model.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/docs/operations/evidence/evidence-trust-model.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/evidence/evidence-trust-model.md"
     },
     {
       "id": 15,
       "title": "Täglicher Betriebsbericht",
       "path": "docs/operations/status/daily-governance-operations.md",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/docs/operations/status/daily-governance-operations.md"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/docs/operations/status/daily-governance-operations.md"
     },
     {
       "id": 16,
       "title": "DevSecOps Workflow",
       "path": ".github/workflows/devsecops-baseline-reusable.yml",
-      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/80ba315e56828f5186303045cc2792b576396c26/.github/workflows/devsecops-baseline-reusable.yml"
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/.github/workflows/devsecops-baseline-reusable.yml"
+    },
+    {
+      "id": 17,
+      "title": "Angenommene DevSecOps-Ergebnisse",
+      "path": "status/repository-results-index.json",
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/repository-results-index.json"
+    },
+    {
+      "id": 18,
+      "title": "Angenommene Architektur-Ergebnisse",
+      "path": "status/architecture-results-index.json",
+      "url": "https://github.com/joku-dev/devsecops-governance-framework/blob/4abe88294f299d7f801c74ff0161df234960c092/status/architecture-results-index.json"
     }
   ]
 }

@@ -19,7 +19,7 @@ The adapter does not create a separate Bamboo governance system. Bamboo is the e
 | Bamboo configuration model | Bamboo YAML Specs |
 | Recommended application repository path | `bamboo-specs/bamboo.yaml` |
 | Governance mode at first rollout | `report-only` |
-| Blocking mode after evidence stabilization | `block-on-error` or `waiver-required` |
+| Blocking mode after readiness review and accountable approval | `block-on-error` or `waiver-required` |
 
 Atlassian documents that Bamboo YAML Specs are processed from repository-stored Specs, and Bamboo looks for YAML Specs before Java Specs. The documented repository path is `bamboo-specs/bamboo.yml` or `bamboo-specs/bamboo.yaml`. Bamboo 12.x also requires Java 21 for server nodes and agents, so the adapter avoids custom Bamboo plugins and uses plain YAML Specs with shell tasks.
 

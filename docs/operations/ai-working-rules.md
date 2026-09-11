@@ -66,11 +66,11 @@ The key report is:
 generated/reports/source-lineage-report.md
 ```
 
-The healthy demo state is:
+The source-lineage observation at repository `4abe882` on 11 September 2026 is:
 
 ```text
-Source documents: 20
-Derived artifact links: 289
+Source documents: 21
+Derived artifact links: 378
 Missing derived artifacts: 0
 ```
 
@@ -130,7 +130,7 @@ Do not reintroduce old demo assumptions that architecture is expected to produce
 
 ## Report-Only And Blocking
 
-Default demo posture:
+Default posture for new consumer demos:
 
 ```text
 report-only
@@ -149,7 +149,12 @@ Blocking means:
 - the same evidence and policy logic are used
 - enforcement is stricter, but the governance model is not different
 
-Only change enforcement behavior when the maintainer explicitly asks.
+ha-CPsWMS retains its preexisting DevSecOps blocking as a documented legacy
+risk until accountable review, due 12 December 2026, 23:59:59 Europe/Berlin.
+Its passing controls do not clear its separate replay finding. Architecture
+remains report-only. New blocking also needs the readiness assessment and
+accountable approval before the separate consumer configuration change.
+Only change enforcement behavior within that explicitly authorized scope.
 
 ## Release Discipline
 

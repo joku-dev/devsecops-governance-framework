@@ -103,6 +103,7 @@ def main():
     for i,s in enumerate(data['slides'],1):
         slide_md += [f"## Folie {i} {s['title']}",s['lead']]
         slide_md += [f"- **{title}:** {body}" for title,body in s['items']]
+        if s.get('note'):slide_md.append(s['note'])
         if 'table' in s:slide_md.append('\n'.join(['| '+' | '.join(s['table'][0])+' |','|---|---|']+['| '+' | '.join(r)+' |' for r in s['table'][1:]]))
         slide_md += ['### Sprechernotizen',s['notes'],'Quellen: '+', '.join('['+r+']('+next(x['url'] for x in data['sources'] if x['id']==r)+')' for r in s['refs'])]
     (args.content.parent/'presentation.md').write_text('\n\n'.join(slide_md)+'\n')

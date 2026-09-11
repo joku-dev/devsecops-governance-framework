@@ -1,5 +1,8 @@
 # DevSecOps Governance Framework
 
+Accepted consumer evidence on 11 September 2026 and remaining findings are
+recorded in the [current platform state](docs/operations/status/current-governance-platform-state.md).
+
 For current pilot and central operations, start with the
 [operations handbook](docs/operations/guides/governance-repository-operations-handbook.md).
 It links the [daily report](docs/operations/status/daily-governance-operations.md),
@@ -30,7 +33,7 @@ The repository models a governance stack where a `Policy` defines mandatory inte
 
 1. Copy the workflows from `adoption-package/workflows/` into an application repository.
 2. Keep the first runs in `report-only` and review the generated artifacts.
-3. Replace placeholder evidence with real scanner, SBOM, repository-control and architecture evidence before enabling blocking checks.
+3. Replace placeholder evidence with real scanner, SBOM, repository-control and architecture evidence. New blocking additionally requires the [readiness assessment](docs/operations/status/blocking-readiness.md), accountable approval and a separate consumer change.
 
 ## Purpose
 
@@ -51,7 +54,7 @@ The repository separates these concerns:
 | `model/waivers` | Waiver model and approval authority structure. |
 | `schemas` | JSON Schemas for validating structured governance data. |
 | `status` | Normalized downstream governance and architecture result snapshots. |
-| `generated` | Generated DOCX, PDF, HTML, and XLSX outputs. |
+| `generated` | Derived reports, traceability, graph and viewer; generated document exports where configured. |
 | `releases` | Versioned baseline packages for controlled publication. |
 
 ## Target Model
@@ -74,7 +77,7 @@ The initial scope is based on:
 - DevSecOps Control Baseline Standard aligned with Platform Levels
 - DevSecOps Platform Reference Architecture Standard aligned with Control Baseline
 
-The first implementation should focus on:
+The initial implementation established:
 
 - Level 1 controls as complete structured data
 - Platform Reference Architecture levels 1 to 3
@@ -159,6 +162,12 @@ Prepare the pinned local validation toolchain and run all required checks:
 
 See `docs/operations/guides/local-validation-toolchain.md` for supported
 platforms, custom installation paths, pinned dependencies, and troubleshooting.
+
+For the focused commands below, activate the prepared environment first:
+
+```bash
+source .venv-validation/bin/activate
+```
 
 Validate repository consistency:
 
@@ -419,7 +428,9 @@ python3 scripts/generate_devsecops_governance_report.py \
   --output-md generated/demo/demo-consumer-devsecops-governance-report.md
 ```
 
-By default, this is report-only. Add `--fail-on-findings` when the same check should behave as a blocking gate.
+By default, this local report is report-only. `--fail-on-findings` is the technical
+blocking switch; use it in a consumer only after readiness review and accountable
+approval. The released DevSecOps wrapper has a separate default of `block-on-error`.
 
 Generate the combined end-to-end demo report:
 
@@ -436,7 +447,7 @@ Intake a downstream Architecture Runtime Governance GitHub Actions run and refre
 ```bash
 python3 scripts/intake_architecture_github_actions_run.py \
   --repository-id joku-dev/governance-framework-demo-consumer \
-  --run-id 29410866951 \
+  --run-id 34606820390 \
   --architecture-baseline-ref architecture-baseline-l1-v0.1.0
 
 python3 scripts/generate_architecture_results_index.py

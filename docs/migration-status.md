@@ -29,5 +29,5 @@ The current model is a complete MVP, not yet a fully approved enterprise baselin
 - exact waiver authority per control
 - mapping to concrete tool integrations such as GitLab, GitHub Enterprise, Artifactory, Nexus, SonarQube, Dependency-Track, DefectDojo, or ALM systems
 - executable policy input model per selected platform
-- generated DOCX/PDF production pipeline
-- signed attestation and manifest verification over captured result digests
+- enterprise approval and maintenance of the implemented DOCX/PDF rendering pipeline
+- production issuer/key lifecycle and operational Trust promotion beyond the implemented signed-attestation pilot

@@ -1,5 +1,8 @@
 # DevSecOps Governance Framework
 
+Accepted consumer evidence on 11 September 2026 and remaining findings are
+recorded in the [current platform state](operations/status/current-governance-platform-state.md).
+
 For current pilot and central operations, start with the
 [operations handbook](operations/guides/governance-repository-operations-handbook.md).
 It links the [daily report](operations/status/daily-governance-operations.md),

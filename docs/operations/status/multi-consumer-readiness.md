@@ -55,7 +55,7 @@ The current report passes all nine checks:
 | Consumers with DevSecOps results | 3 |
 | Consumers with Architecture results | 2 |
 | Consumers with Typed Evidence results | 1 |
-| Consumers with post-instrumentation telemetry | 1 |
+| Consumers with post-instrumentation telemetry | 2 |
 | Isolation checks | 9 pass / 0 fail |
 
 Current consumers are:
@@ -69,12 +69,11 @@ Evidence are optional consumer capabilities; readiness does not fabricate
 missing domains. All registered consumers currently have an isolated accepted
 DevSecOps latest-state projection.
 
-Only the demo consumer has Intake Operation Events because telemetry was added
-after the older consumer results were captured. Historical events are not
-backfilled. A second live telemetry-producing consumer remains useful future
-operational evidence, but it is not required to prove that storage, indexes,
-portfolio reporting, workflow concurrency, and identifiers are multi-consumer
-safe.
+On 11 September 2026, both ha-CPsWMS and the neutral demo consumer have
+accepted Intake Operation Events. Factory evidence was collected through the
+authenticated manual path; no historic workflow telemetry was fabricated.
+The current report proves structural isolation, not sustained throughput or
+production reliability. Continue collecting representative operating samples.
 
 ## Failure Interpretation
 

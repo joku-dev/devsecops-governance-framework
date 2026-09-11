@@ -1,55 +1,51 @@
 # Roadmap
 
-## Current State
+Reviewed against `4abe88294f299d7f801c74ff0161df234960c092` on 11 September 2026.
+This roadmap distinguishes implemented capabilities from remaining decisions.
+The [current platform state](operations/status/current-governance-platform-state.md)
+contains the dated evidence, and the [operations handbook](operations/guides/governance-repository-operations-handbook.md)
+defines the controlled pilot procedure.
 
-The original MVP roadmap has largely been completed for the current DevSecOps L1/L2/L3/GOV model and the first Architecture L1 runtime governance baseline.
+## Completed Technical Foundation
 
-Current validated state:
+- 46 DevSecOps controls and their control-to-platform mappings are represented.
+- DevSecOps L1 `l1-baseline-v1.1.3` and Architecture L1
+  `architecture-baseline-l1-v0.1.0` are released.
+- Three consumers have accepted mainline results from 11 September. Architecture
+  is present for two and typed vulnerability evidence for one.
+- Result snapshots, digests, manifests, append-only intake, conflict retention,
+  replay triage, Trust verification and a signed-attestation pilot are implemented.
+- Operational updates use reviewed bot PRs. Intake telemetry, controlled retry,
+  portfolio, graph, viewer and readiness projections are available.
+- Pinned validation, daily operations, self-security, documentation publication,
+  backup/recovery procedures and management communication artifacts are available.
 
-- `46` DevSecOps controls are represented in structured YAML.
-- `46` control-to-platform traceability mappings exist.
-- DevSecOps L1 is released as `l1-baseline-v1.1.3`.
-- Architecture L1 runtime governance is released as `architecture-baseline-l1-v0.1.0`.
-- The `ha-CPsWMS` mainline demo is green for DevSecOps and architecture runtime governance.
-- Source lineage, governance change impact, architecture source replacement assessment, result indexes and the status viewer exist.
+Implementation does not prove operating acceptance, enterprise compliance,
+production Trust promotion or released L2/L3 readiness.
 
-This roadmap therefore tracks the next professionalization steps, not the initial migration.
+## Next Operating Work
 
-## Step 1: Review Architecture Source Replacement
+1. Record pilot ownership, scope, dates and acceptance tests; keep consumer evidence
+   fresh and review the daily report, including observation gaps.
+2. Resolve the Factory direct-push finding, the neutral demo's 25 architecture
+   findings and the ha-CPsWMS DevSecOps replay finding through new evidence.
+3. Verify credential recovery, backups and agreed recovery scope. Introduce
+   independent missing-report alerting only through a separately scoped change.
+4. Collect representative intake samples. The second consumer already produces
+   telemetry; broader samples and platform validation remain useful.
 
-Manually review the likely architecture source replacement candidate identified in:
+## Governance And Release Decisions
 
-- `generated/reports/architecture-source-replacement-assessment.md`
-
-If replacement is confirmed, update source register status, lineage, architecture YAML `source_document` fields and release planning together.
-
-## Step 2: Onboard A Second Repository
-
-Repeat the `ha-CPsWMS` onboarding and result-intake pattern for another repository.
-
-This should prove that the governance baseline, evidence contract, result intake and viewer are reusable beyond the current demo target.
-
-## Step 3: Harden Result Integrity
-
-Strengthen revision protection for stored downstream results:
-
-- append-only result handling
-- per-result digests
-- manifest generation
-- clearer intake rules for milestone, branch, manual and release-relevant runs
-
-## Step 4: Review Verification Requirements
-
-Review verification requirements with Security, Quality, Platform Owner, Architecture and program representatives.
-
-The review should confirm that each verification requirement is technically checkable, audit-relevant and does not weaken the original normative requirement.
-
-## Step 5: Decide Enforcement Progression
-
-Keep the current demo report-only unless explicitly changed.
-
-After at least one additional repository is onboarded, decide which DevSecOps and architecture checks should remain report-only and which should become blocking gates in consuming workflows.
-
-## Step 6: Decide Long-Term Source-Of-Truth Model
-
-Decide whether YAML becomes the formal master source or remains synchronized with an external BMS/document management system.
+- Review candidate source replacement and verification requirements with the
+  accountable source owners before deriving or replacing approved artifacts.
+- Complete the ha-CPsWMS legacy-blocking risk review by 12 December 2026,
+  23:59:59 Europe/Berlin. New pilots remain report-only. New blocking needs
+  technical readiness, accountable approval and a separate consumer migration;
+  currently none of the three consumers meets the readiness bar.
+- Establish production issuer/key lifecycle and producer emission before
+  promoting the signed-attestation pilot into operational Trust.
+- Plan signed changes/releases, repository-wide SHA-pinning enforcement and
+  approved Actions sources without rewriting historical released tags.
+- Validate additional CI/CD platforms and decide future L2/L3 release scope.
+- Decide long-term source-master and archival arrangements from actual operating
+  needs. The current pilot does not require a database.

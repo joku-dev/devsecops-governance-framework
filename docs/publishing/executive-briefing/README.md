@@ -2,8 +2,8 @@
 
 Dieses Paket erläutert Nutzen, belegten Stand und eine kontrollierte Einführung
 des Engineering Governance Frameworks. Es richtet sich an die Geschäftsführung
-und verwendet den geprüften Quellstand `689357712b8eaaa91968a6810c7f056adb6f6555`
-vom 9. September 2026.
+und verwendet den geprüften Quellstand `4abe88294f299d7f801c74ff0161df234960c092`
+vom 11. September 2026.
 
 ## Unterlagen
 
@@ -19,8 +19,9 @@ Pilotanwendungen, Verantwortliche und verfügbare Kapazität festlegen. Die
 Unterlagen schlagen einen begrenzten Pilot vor; sie erteilen keine Betriebs-,
 Budget- oder Blocking-Freigabe.
 
-Erwartete Vorteile sind als Nutzenhypothesen formuliert. Historische Ergebnisse
-vom Juli 2026 belegen keine aktuelle Freigabe der Anwendungen. Die Quellen
+Erwartete Vorteile sind als Nutzenhypothesen formuliert. Neue angenommene
+Ergebnisse vom 11. September 2026 dokumentieren den betrachteten Stand; offene
+Befunde und die fehlende Freigabe für neues Blocking bleiben sichtbar. Die Quellen
 verweisen auf den festgehaltenen Commit beziehungsweise konkrete Workflow-Läufe.
 
 ## Pflege

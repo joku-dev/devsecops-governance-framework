@@ -120,13 +120,13 @@ generated/reports/source-lineage-report.md
 generated/reports/source-lineage-report.json
 ```
 
-Current expected summary:
+Expected summary at repository `4abe882` on 11 September 2026:
 
 | Metric | Value |
 |---|---:|
-| Source documents | `20` |
-| Source documents with lineage entries | `20` |
-| Derived artifact links | `289` |
+| Source documents | `21` |
+| Source documents with lineage entries | `21` |
+| Derived artifact links | `378` |
 | Missing derived artifacts | `0` |
 
 Interpretation:
@@ -332,6 +332,12 @@ How to explain this in the demo:
 - `feedback-evidence.json` shows that operational or benchmark feedback can feed back into architecture improvement.
 - The collector turns these files plus referenced repository artifacts into `generated/current-main/ha-cpswms/architecture-release-input.json`.
 
+The tracked `generated/current-main/ha-cpswms/` files are retained local
+explanatory artifacts for commit `4a86f0c`. Despite the directory name, they
+are not the accepted September mainline result. Use the indexed producer
+snapshots and run artifacts for the current result; use this local input only
+to explain the collector/report format.
+
 ### What The DevSecOps Evidence Looks Like
 
 The DevSecOps demo uses:
@@ -518,20 +524,24 @@ Expected interpretation:
 - DevSecOps should show `pass` for baseline `l1-baseline-v1.1.3`.
 - Architecture should show `PASS` for baseline `architecture-baseline-l1-v0.1.0`.
 - Existing pre-Trust snapshots should show evidence Trust `unverified` without changing either governance result.
-- Replay Triage should show three recorded failures, one historical current-rule
-  failure, two superseded legacy assessments, and zero official-latest
-  findings. Run `29636320472` demonstrates safe deterministic report reuse with
-  an artifact digest while the earlier finding remains immutable.
+- At the 11 September 2026 accepted state, Replay Triage shows four recorded
+  failures, two current-rule failures and two superseded legacy assessments.
+  One official-latest finding belongs to ha-CPsWMS DevSecOps run `34602002201`.
+  Passing controls do not clear that separate Trust finding.
 - A resolved Collection Attempt proves only that collection later succeeded;
   it does not upgrade or weaken the collected governance outcome.
-- Intake Health should show the three validated smoke-test executions, 100%
-  observed success, p50 2 seconds, and p95 3 seconds. Explain that three runs
-  are not a production SLO baseline and do not enable blocking.
+- Intake Health reports six accepted executions, 100% observed success,
+  p50 3 seconds and p95 4 seconds in its committed observation window. That
+  limited accepted telemetry is not a production SLO and differs from the daily
+  report's live Actions observation, which still includes an earlier failed run.
+
 - The viewer is the demo cockpit: it makes the current governance state visible without opening every raw JSON file.
 
 ## Report-Only Versus Blocking
 
-The demo should run report-only unless a blocking gate is intentionally demonstrated.
+Use report-only for new demo consumers. Do not change the actual ha-CPsWMS
+legacy mode for a presentation; any new blocking demonstration needs a scoped
+readiness review, approval and separate consumer configuration change.
 
 | Domain | Report-only behavior | Blocking behavior |
 |---|---|---|
