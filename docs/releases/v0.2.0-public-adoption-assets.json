@@ -1,0 +1,32 @@
+{
+  "format": "governance-publication-assets-v1",
+  "release_tag": "v0.2.0-public-adoption",
+  "publication_source_commit": "becaa1aef98708d99704d47c518a8d4961f1afe7",
+  "editorial_source_commit": "4abe88294f299d7f801c74ff0161df234960c092",
+  "assets": [
+    {
+      "filename": "engineering-governance-whitepaper.pdf",
+      "source_path": "docs/publishing/executive-briefing/files/engineering-governance-whitepaper.pdf",
+      "size_bytes": 177427,
+      "sha256": "c295db6f2f4c55e5e9463d69150129c17a7d2cb8fb2f216d2792e6a7fc940a90"
+    },
+    {
+      "filename": "engineering-governance-whitepaper.docx",
+      "source_path": "docs/publishing/executive-briefing/files/engineering-governance-whitepaper.docx",
+      "size_bytes": 47680,
+      "sha256": "e195f36fa24806013654875b24c9d9ef85a9884e191e535145972ff2c79a88ba"
+    },
+    {
+      "filename": "engineering-governance-presentation.pptx",
+      "source_path": "docs/publishing/executive-briefing/files/engineering-governance-presentation.pptx",
+      "size_bytes": 50032,
+      "sha256": "0a9b794a1c30c09777bc7edeaeb4ae766f6f3ea7cf817e5ba8233ebe701a71c2"
+    },
+    {
+      "filename": "repository-funktionsweise.pptx",
+      "source_path": "docs/publishing/repository-walkthrough/files/repository-funktionsweise.pptx",
+      "size_bytes": 64848,
+      "sha256": "c89456f1cc230502bfcda31f516c49dd93c5943db731c2c0ad3b729769ba3e60"
+    }
+  ]
+}

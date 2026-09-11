@@ -43,7 +43,7 @@ Use this guide to check:
 | Quickstart | `docs/onboarding/public-repo-quickstart.md` |
 | Adoption package | `adoption-package/README.md` |
 | Demo consumer | `https://github.com/joku-dev/governance-framework-demo-consumer` |
-| Public release | `docs/releases/v0.1.0-public-adoption.md` |
+| Adoption/operations release | `docs/releases/v0.2.0-public-adoption.md` |
 
 ## What To Verify
 
