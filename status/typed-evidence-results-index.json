@@ -1,16 +1,16 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-11T13:07:39Z",
+  "generated_at": "2026-09-11T14:34:14Z",
   "summary": {
     "repository_count": 1,
-    "result_count": 6,
-    "mainline_results": 4,
+    "result_count": 7,
+    "mainline_results": 5,
     "branch_results": 0,
     "manual_results": 2,
     "freshness_failures": 1,
     "replay_failures": 0,
     "trust_level_counts": {
-      "integrity_verified": 6
+      "integrity_verified": 7
     }
   },
   "repositories": [
@@ -18,13 +18,13 @@
       "repository_id": "joku-dev/governance-framework-demo-consumer",
       "results_path": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/",
       "latest_result": {
-        "generated_at": "2026-07-17T18:27:18Z",
+        "generated_at": "2026-09-11T13:53:03Z",
         "evidence_type": "vulnerability_scan",
-        "pipeline_run_id": "29603835297",
+        "pipeline_run_id": "34606820493",
         "pipeline_event": "push",
-        "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/29603835297",
+        "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820493",
         "branch": "main",
-        "commit_id": "60ff24cd94a010feb468aab9a48ac8ead4bf96ad",
+        "commit_id": "7d6a4f67c5e8441e1067405cc2da17218dc256fd",
         "collector_status": "collected",
         "enforcement": "report_only",
         "scanner": {
@@ -44,7 +44,7 @@
         "trust": {
           "effective_level": "integrity_verified",
           "assessment_status": "evaluated",
-          "verified_at": "2026-07-17T18:28:27Z",
+          "verified_at": "2026-09-11T14:34:14Z",
           "replay": "pass",
           "check_summary": {
             "pass": 7,
@@ -52,7 +52,7 @@
             "not_evaluated": 5
           }
         },
-        "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-18Z-run-29603835297-vulnerability-scan.json"
+        "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json"
       },
       "history": [
         {
@@ -276,6 +276,43 @@
             }
           },
           "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T12-56-55Z-run-34601516334-vulnerability-scan.json"
+        },
+        {
+          "generated_at": "2026-09-11T13:53:03Z",
+          "evidence_type": "vulnerability_scan",
+          "pipeline_run_id": "34606820493",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820493",
+          "branch": "main",
+          "commit_id": "7d6a4f67c5e8441e1067405cc2da17218dc256fd",
+          "collector_status": "collected",
+          "enforcement": "report_only",
+          "scanner": {
+            "name": "trivy",
+            "version": "v0.70.0"
+          },
+          "finding_count": 0,
+          "max_severity": "none",
+          "severity_consistent": true,
+          "subject_binding": {
+            "mode": "co_collected",
+            "scanner_attested": false
+          },
+          "freshness": "pass",
+          "content_integrity": "pass",
+          "replay": "pass",
+          "trust": {
+            "effective_level": "integrity_verified",
+            "assessment_status": "evaluated",
+            "verified_at": "2026-09-11T14:34:14Z",
+            "replay": "pass",
+            "check_summary": {
+              "pass": 7,
+              "fail": 0,
+              "not_evaluated": 5
+            }
+          },
+          "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json"
         }
       ]
     }

@@ -10,7 +10,7 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 29,
+    "assessments": 30,
     "recorded_failures": 4,
     "recalculated_failures": 2,
     "legacy_assessments_superseded": 2,
@@ -21,7 +21,7 @@
       "cross_repository_reuse": 1,
       "deterministic_report_reuse": 4,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 17
+      "new_evidence": 18
     }
   },
   "official_latest_findings": [
@@ -344,7 +344,7 @@
       "artifact_name": "application-evidence",
       "artifact_digest_available": false,
       "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-07-17T18-27-18Z-run-29603835297-vulnerability-scan.json",
-      "official_latest": true,
+      "official_latest": false,
       "recorded_result": "pass",
       "recalculated_result": "pass",
       "classification": "new_evidence",
@@ -1001,6 +1001,25 @@
           ]
         }
       ]
+    },
+    {
+      "domain": "typed_evidence",
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "generated_at": "2026-09-11T13:53:03Z",
+      "run_id": "34606820493",
+      "event": "push",
+      "commit_id": "7d6a4f67c5e8441e1067405cc2da17218dc256fd",
+      "artifact_name": "application-evidence",
+      "artifact_digest_available": false,
+      "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json",
+      "official_latest": true,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "40eb9f6e611e18c2dbc799cfe2ad0cba681a288cad409a3c9f3a87bbccb39b3e",
+      "relationships": []
     }
   ]
 }
