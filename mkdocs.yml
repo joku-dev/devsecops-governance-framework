@@ -53,6 +53,8 @@ nav:
       - Overview: publishing/index.md
       - Executive Whitepaper And Presentation: publishing/executive-briefing/README.md
       - Executive Whitepaper: publishing/executive-briefing/whitepaper.md
+      - Repository Function Presentation: publishing/repository-walkthrough/README.md
+      - Repository Walkthrough Notes: publishing/repository-walkthrough/presentation.md
       - Executive Presentation Notes: publishing/executive-briefing/presentation.md
       - Confluence Governance Repo Article: publishing/confluence-governance-repo-artikel.md
   - Onboarding:
