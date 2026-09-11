@@ -65,13 +65,15 @@ Why this matters:
 
 ## Current Mainline Results
 
-These values are the retained known-good observations from 15 July 2026, not a
-fresh evaluation of the application today.
+These values record the 11 September 2026 mainline refresh. The dated
+[maintenance record](../operations/reference-runs/2026-09-11-operational-evidence-refresh.md)
+explains collection, review and the separate Trust findings. The July results
+remain in the immutable history; this table is not a production approval.
 
 | Domain | Repository | Status | Baseline | Last mainline run | Commit | Generated |
 |---|---|---|---|---|---|---|
-| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `29415015878` | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` | `2026-07-15T17:07:40Z` |
-| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `29415015294` | `716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c` | `2026-07-15T17:06:39Z` |
+| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `34602002201` | `6976bb2af2b9d47d2934273c444b6c9b62a81ea2` | `2026-09-11T13:02:37Z` |
+| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `34602001140` | `6976bb2af2b9d47d2934273c444b6c9b62a81ea2` | `2026-09-11T13:01:50Z` |
 
 Expected summaries:
 
@@ -432,16 +434,16 @@ Current known-good app runs:
 
 | Workflow | Run | Expected status |
 |---|---:|---|
-| Architecture Runtime Governance | `29415015294` | Success |
-| DevSecOps Baseline | `29415015878` | Success |
-| DevSecOps Governance | `29415015241` | Success |
-| CI | `29415015336` | Success |
+| Architecture Runtime Governance | `34602001140` | Success |
+| DevSecOps Baseline | `34602002201` | Success |
+| DevSecOps Governance | `34602001019` | Success |
+| CI | `34602001068` | Success |
 
 Open the run URLs:
 
 ```text
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/29415015294
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/29415015878
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/34602001140
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/34602002201
 ```
 
 Explain:
