@@ -93,6 +93,25 @@ review exception and restored the one-review rule immediately afterward; that
 exception is not a standing permission. See the
 [operations handbook](../guides/governance-repository-operations-handbook.md).
 
+## Administrative Observation On 11 September 2026
+
+The restored protection still requires one review, strict checks and no standing
+bypass. Central PRs #64 and #67 used separately authorized exceptions that were
+restored and audited immediately after their merges.
+
+The authenticated assessment confirmed 12 of 16 criteria and four gaps:
+`GRS-005` signed-change enforcement, `GRS-010` repository-level SHA-pinning
+requirements, `GRS-014` signatures on the three historical release tags and
+`GRS-016` restriction of Actions sources. All active workflow references are
+already SHA-pinned. Secret scanning, push protection, Dependabot security
+updates and read-only default workflow permissions were verified enabled.
+
+The scheduled token cannot observe every administrative setting. Its unknown
+values are not proof that a setting is disabled. Preserve those observation
+limits and read the [current platform state](../status/current-governance-platform-state.md)
+for the dated report context. Future signed releases need a separate process;
+do not rewrite existing released tags to clear historical findings.
+
 ## Safe Activation Sequence
 
 The sequence below explains activation dependencies. Steps 1–5 are implemented

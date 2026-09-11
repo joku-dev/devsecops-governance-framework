@@ -1,5 +1,11 @@
 # ha-CPsWMS Governance Lessons Learned
 
+> Historical rollout record from June/July 2026. The run IDs and rollout
+> conclusions below retain their original context. For current accepted results
+> and modes use [current platform state](current-governance-platform-state.md);
+> new integrations follow the [pilot runbook](../../onboarding/pilot-runbook.md),
+> including readiness review before new blocking.
+
 ## Purpose
 
 This document records the practical lessons learned from integrating `joku-dev/ha-CPsWMS` with the central repository then named `joku-dev/devsecops-governance-as-code`. The current repository identity is `joku-dev/devsecops-governance-framework`.

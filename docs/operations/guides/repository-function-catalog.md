@@ -10,11 +10,11 @@ Interne Hilfsfunktionen werden ihrem jeweiligen Funktionsbereich zugeordnet.
 
 | Merkmal | Wert |
 | --- | --- |
-| Dokumentstand | 9. September 2026 |
-| Betrachteter Quellstand | `80ba315e56828f5186303045cc2792b576396c26` |
+| Dokumentstand | 11. September 2026 |
+| Betrachteter Quellstand | `4abe88294f299d7f801c74ff0161df234960c092` |
 | Zielgruppe | Geschäftsführung, Governance-Verantwortliche, Architektur, Security, Plattformbetrieb und Anwendungsteams |
 | Dokumenttyp | Erläuternder Funktionskatalog |
-| Änderungsnachweis | [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md) |
+| Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierung: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md) |
 
 Der Katalog beschreibt vorhandene Fähigkeiten zum genannten Quellstand. Er
 bestätigt keine aktuelle Betriebsbereitschaft einer Anwendung und erzeugt keine

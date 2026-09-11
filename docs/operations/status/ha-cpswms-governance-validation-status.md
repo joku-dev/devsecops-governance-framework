@@ -1,5 +1,11 @@
 # ha-CPsWMS Governance Validation Status
 
+> Historical rollout record from June/July 2026. The run IDs and rollout
+> conclusions below retain their original context. For current accepted results
+> and modes use [current platform state](current-governance-platform-state.md);
+> new integrations follow the [pilot runbook](../../onboarding/pilot-runbook.md),
+> including readiness review before new blocking.
+
 ## Purpose
 
 This document records the successful end-to-end validation of the repository then named `devsecops-governance-as-code` against the application repository `ha-CPsWMS`. The current repository identity is `devsecops-governance-framework`.

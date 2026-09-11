@@ -59,7 +59,7 @@ This step catches cases where the run claims to be complete but the artifact upl
 
 ### How the current repo supports this
 
-`docs/operations/processes/spot-check-governance-intake.md` should document that the intake snapshot now stores:
+The intake snapshot stores:
 
 - `artifact_metadata.artifact_names`
 - `artifact_metadata.artifact_sizes`
@@ -124,12 +124,14 @@ This step catches intake normalization errors, wrong repository mapping, or snap
 ## Example Spot-Check Workflow
 
 1. Identify a downstream mainline governance run that should be ingested.
-2. Run the intake script:
+2. Run the intake script in a working branch for the selected run. The accepted
+   ha-CPsWMS reference as of 11 September 2026 is shown below; select a newer
+   accepted mainline run when performing a future spot check:
 
 ```bash
 python3 scripts/intake_github_actions_run.py \
   --repository-id joku-dev/ha-CPsWMS \
-  --run-id 28314109954 \
+  --run-id 34602002201 \
   --baseline-level L1 \
   --governance-baseline-ref l1-baseline-v1.1.3 \
   --notes "Spot check: verify actual governance artifact and metadata."
@@ -140,6 +142,9 @@ python3 scripts/intake_github_actions_run.py \
 5. Recompute checksums locally if needed.
 6. Confirm the `governance_run_input` artifact contents match reported evidence flags.
 7. Regenerate the viewer if necessary and review the resulting file.
+8. Run the pinned bootstrap and full validation. Submit any new evidence or
+   projection changes through a reviewed PR; a local intake does not publish
+   accepted central state. An identical retry may correctly produce no change.
 
 ## Automation Ideas
 

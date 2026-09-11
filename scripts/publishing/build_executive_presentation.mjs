@@ -50,7 +50,7 @@ for(const [i,item] of content.slides.entries()){
     text(slide,number,84+k*590,270,520,120,76,C.teal,true);
     text(slide,label,88+k*590,412,505,80,29,C.ink);
    }
-   text(slide,'Historische Ergebnisse belegen keine aktuelle Freigabe',86,562,1100,52,27,C.muted);
+   text(slide,item.note ?? 'Ergebnisse ersetzen keine verantwortliche Freigabe',86,562,1100,52,27,C.muted);
   }else{
    for(const [k,[label,body]]of item.items.entries()){
     const y=262+k*115;

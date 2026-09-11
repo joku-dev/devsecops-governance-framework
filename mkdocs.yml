@@ -140,6 +140,7 @@ nav:
           - GitHub Reference Path: operations/adapters/github-reference-path.md
           - GitHub Reference Validation Runbook: operations/adapters/github-reference-validation-runbook.md
       - Reference Runs:
+          - 2026-09-11 Documentation Currency Review: operations/reference-runs/2026-09-11-documentation-currency-review.md
           - 2026-07-04 ha-CPsWMS GitHub Reference Run: operations/reference-runs/2026-07-04-ha-cpswms-github-reference-run.md
       - Planning:
           - Replace Governance Placeholders Plan: operations/planning/replace-governance-placeholders-plan.md
@@ -152,6 +153,7 @@ nav:
       - Overview: releases/index.md
       - Release And Migration Model: releases/release-and-migration-model.md
       - Release Publication Checklist: releases/release-publication-checklist.md
+      - Operational Pilot v0.2.0: releases/v0.2.0-public-adoption.md
       - Public Adoption v0.1.0: releases/v0.1.0-public-adoption.md
       - L1 Baseline v1.0.0: releases/l1-baseline-v1.0.0.md
       - L1 Baseline v1.0.0 Release Statement: releases/l1-baseline-v1.0.0-release-statement.md
