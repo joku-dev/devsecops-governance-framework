@@ -1,6 +1,6 @@
 name = "architecture-runtime-governance"
 description = "Codex adapter for architecture runtime governance review."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/architecture-runtime-governance.yaml and the workflow in .agents/skills/architecture-runtime-governance/SKILL.md.

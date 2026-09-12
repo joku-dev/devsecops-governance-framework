@@ -1,6 +1,6 @@
 name = "evidence-and-intake"
 description = "Codex adapter for evidence intake, result indexes, run contexts, and viewer state."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/evidence-and-intake.yaml and the workflow in .agents/skills/evidence-and-intake/SKILL.md.

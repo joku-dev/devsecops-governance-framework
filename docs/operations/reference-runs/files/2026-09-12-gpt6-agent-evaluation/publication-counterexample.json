@@ -1,0 +1,13 @@
+{
+  "reviewed_commit": "f992b64c60229b688647815f8002550bd74b634b",
+  "precondition": "A synthetic .DS_Store is force-staged in an isolated temporary repository; normal gitignore can exclude an untracked file.",
+  "new_staged_local_artifact_selected": [
+    "status/results/.DS_Store"
+  ],
+  "timestamp_only_report_selected": [
+    "generated/reports/replay-triage.json"
+  ],
+  "publication_executed": false,
+  "github_calls": 0,
+  "interpretation": "Local artifact selection is reproduced under the staged-file precondition. Timestamp selection is reproduced but whether it is unwanted requires operational intent; it is not counted as a confirmed defect."
+}

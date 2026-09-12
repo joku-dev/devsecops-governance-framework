@@ -1,6 +1,6 @@
 name = "demo-readiness"
 description = "Codex adapter for demo consistency and ha-CPsWMS current-main readiness."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/demo-readiness.yaml and the workflow in .agents/skills/demo-readiness/SKILL.md.

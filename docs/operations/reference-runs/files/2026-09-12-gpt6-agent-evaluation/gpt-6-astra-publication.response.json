@@ -1,0 +1,36 @@
+{
+  "case_id": "publication",
+  "summary": "Bounded review of commit f992b64c60229b688647815f8002550bd74b634b using the supplied Repo Steward contract. The change replaces direct main publication with scoped review PRs. Two repository-hygiene gaps remain; commit readiness is not established by the supplied packet.",
+  "classification": "Changes requested",
+  "safeguards": [
+    "The intake workflow restricts execution and checkout to main and gates publication on successful regeneration and validation outcomes.",
+    "publish() checks that HEAD belongs to origin/main ancestry and pushes without force to an explicit automation branch; it requests a PR without approving or merging it.",
+    "selected_paths() rejects out-of-scope non-generated changes, symlinks, and modifications or deletions of ledger entries present at HEAD; publish() verifies the staged path set.",
+    "The supplied ruleset declares one approving review, stale-review dismissal, strict required checks, and no bypass actors. The publisher explicitly dispatches three check workflows."
+  ],
+  "findings": [
+    {
+      "severity": "medium",
+      "path": "scripts/publish_operational_update.py:42-68",
+      "evidence": "allowed() accepts every descendant of allowlisted directories. selected_paths() checks scope, symlinks, and prior ledger existence, but never rejects local-artifact names or types.",
+      "explanation": "A newly staged status/results/.DS_Store or status/results/__pycache__/local.pyc passes these checks and is committed by publish() at lines 95-102. Staged artifacts are discovered through git diff regardless of ignore rules. The publisher therefore lacks the Repo Steward contract's explicit local-artifact rejection."
+    },
+    {
+      "severity": "low",
+      "path": "scripts/publish_operational_update.py:46-69,86-102",
+      "evidence": "Selection uses changed filenames, and publication proceeds whenever that list is nonempty. tests/test_operational_review_publication.py:57-69 covers exclusion of an unrelated generated report only.",
+      "explanation": "A timestamp-only change inside an allowlisted generated report is selected and published as a new commit and PR without a substantive-change check or explicit intent signal. Excluding unrelated generated paths does not prevent the timestamp-only commit noise addressed by the role contract."
+    }
+  ],
+  "uncertainties": [
+    "No execution logs, working-tree status, complete PR diff, AGENTS.md, working rules, or role source-of-truth document were supplied. Actual validation success, full change scope, and historical steward participation cannot be established.",
+    "The ruleset file does not prove live enforcement. Dispatch acceptance, resulting check names and commit association, and successful review enforcement require operational evidence; their absence is not a demonstrated code defect.",
+    "Upstream validator implementations and report generators are absent. They may provide additional artifact or timestamp controls; the packet does not establish that either identified publication path occurred historically."
+  ],
+  "required_validation": [
+    "Obtain historical results for git status --short, git diff --check, python3 scripts/validate_runtime_governance.py, python3 scripts/validate_governance_repo.py, and python3 -m unittest discover -s tests against the reviewed revision.",
+    "Add focused regression coverage for newly staged local artifacts under ledger directories and timestamp-only changes within allowlisted generated reports.",
+    "Confirm historical ruleset deployment and successful execution of all three required checks on the proposed commit; inspect the complete historical diff before declaring commit readiness."
+  ],
+  "tests_executed": false
+}
