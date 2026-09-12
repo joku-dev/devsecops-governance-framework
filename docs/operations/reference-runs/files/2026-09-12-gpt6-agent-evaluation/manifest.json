@@ -1,0 +1,111 @@
+{
+  "repository": "joku-dev/devsecops-governance-framework",
+  "contract_revision": "5311182c220548474fcd90b04c38dc46b144937a",
+  "models": [
+    "gpt-5.5",
+    "gpt-6-astra"
+  ],
+  "reasoning_effort": "high",
+  "baseline_note": "The configured gpt-5-codex is unavailable with this ChatGPT account. GPT-5.5 is a comparison reference, not the previous runtime.",
+  "cases": [
+    {
+      "case_id": "replay",
+      "commit": "22f5c836c327fa882115908038981c9adade6dca",
+      "pull_request": 16,
+      "role": "evidence-and-intake",
+      "prompt_file": "replay.prompt.json",
+      "prompt_sha256": "e52987dca70754e02c73136bd945749a2ef6bf5100da2663d6659f6c11e90f55",
+      "context_files": [
+        {
+          "path": "scripts/lib/result_ledger.py",
+          "start_line": 1,
+          "end_line": 289,
+          "full_blob_sha256": "133a68b4a94d1ad7c5d390a7a910d09139867487aa79c7f06569357e7a03f220"
+        },
+        {
+          "path": "tests/test_result_ledger.py",
+          "start_line": 1,
+          "end_line": 243,
+          "full_blob_sha256": "6e78cf446d8e20505a0c5c3c3715657dac1268c037e62df76ac401bbafbf5ec6"
+        }
+      ],
+      "diff_paths": [
+        "scripts/lib/result_ledger.py",
+        "tests/test_result_ledger.py",
+        "schemas/evidence-trust-record.schema.json"
+      ],
+      "stored_file_sha256": "cb760dff216e467265e45358d9bacd1210c67bc4ec54829d7b61f7026e1f56ad"
+    },
+    {
+      "case_id": "candidate",
+      "commit": "35de4d47df30a1b7bd0ecc91059f8e670bb93119",
+      "pull_request": 43,
+      "role": "source-document-intake",
+      "prompt_file": "candidate.prompt.json",
+      "prompt_sha256": "72d8a7e6cc20b814feffd635a1438d1f94e27e103a9e1e1e907af6ba93dda57a",
+      "context_files": [
+        {
+          "path": "docs/governance/change-requests/GCR-2026-047-harmonized-requirements-candidate.md",
+          "start_line": 1,
+          "end_line": 92,
+          "full_blob_sha256": "518ed020c7efd5cb1de751be75d581c233fdb092b386fddd496f0c609466dcc6"
+        },
+        {
+          "path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+          "start_line": 1,
+          "end_line": 39,
+          "full_blob_sha256": "01c72fbadebc0fcff5be58703c01d7672c28befc0242edf7c8a1ae90fac1b293"
+        },
+        {
+          "path": "model/requirements/harmonized-devsecops-requirements.yaml",
+          "start_line": 1,
+          "end_line": 16,
+          "full_blob_sha256": "b8e854277f784b70f9e399bb5c13edb25baf3aad3fade832ab9a5f33cb0da473"
+        },
+        {
+          "path": "tests/test_harmonized_requirements.py",
+          "start_line": 1,
+          "end_line": 105,
+          "full_blob_sha256": "279716ba7355427339e429aeb8919a54f48106197ab3303438e8d6288f0f35cd"
+        }
+      ],
+      "diff_paths": [
+        "model/documents/source-document-register.yaml"
+      ],
+      "stored_file_sha256": "f8d224aca39dc490903923b580be6d882ff618748345798f516f38e97c99f006"
+    },
+    {
+      "case_id": "publication",
+      "commit": "f992b64c60229b688647815f8002550bd74b634b",
+      "pull_request": 59,
+      "role": "repo-steward",
+      "prompt_file": "publication.prompt.json",
+      "prompt_sha256": "7a0f78276244648af35c2055a302db37f51d82301a87c3fdb0c796a8fcdbe6f9",
+      "context_files": [
+        {
+          "path": "scripts/publish_operational_update.py",
+          "start_line": 1,
+          "end_line": 146,
+          "full_blob_sha256": "9ce6fc6e619bccbdcb448bbf6e302f3fca8c7c64993d365f1d27a947a37db7d5"
+        },
+        {
+          "path": ".github/main-ruleset.json",
+          "start_line": 1,
+          "end_line": 35,
+          "full_blob_sha256": "b4c4d027ec400b9730a24adf256d70ff4f5ad0c9fed12619768c428c39ec3c7c"
+        },
+        {
+          "path": "tests/test_operational_review_publication.py",
+          "start_line": 1,
+          "end_line": 160,
+          "full_blob_sha256": "84ab72ab401dbc008e59b9b574d22932fe6f7dc57090af251263f19d167b6166"
+        }
+      ],
+      "diff_paths": [
+        ".github/workflows/intake-governance-result.yml"
+      ],
+      "stored_file_sha256": "2019cf8d14a328bbcac3650e61b4c0067473a8e2cddc70a660ed4c13620ed7a2"
+    }
+  ],
+  "prompt_storage": "UTF-8 JSON object with text; prompt_sha256 hashes decoded text encoded as UTF-8, not JSON container bytes."
+}

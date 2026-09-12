@@ -1,0 +1,36 @@
+{
+  "case_id": "replay",
+  "summary": "Bounded review of supplied code at 22f5c836c327fa882115908038981c9adade6dca, later included in PR #16. Two replay-assessment defects are supported. This manual evidence warrants no official latest-state update; actual viewer impact and affected production repositories are unverified.",
+  "classification": "manual",
+  "safeguards": [
+    "apply_replay_assessment deep-copies its input and marks replay findings report_only without changing effective_level (scripts/lib/result_ledger.py:85–97,164–174).",
+    "Exact replay keys remain idempotent, and conflicting subjects still fail when the full extended context matches (scripts/lib/result_ledger.py:115–120,148–156).",
+    "Snapshot writes use exclusive creation, preserve existing evidence, and record identity conflicts separately, with optional exception propagation (scripts/lib/result_ledger.py:187–190,200–248).",
+    "The schema patch constrains artifact_digest, when supplied, to 64 lowercase hexadecimal characters; this validates format, not provenance."
+  ],
+  "findings": [
+    {
+      "severity": "medium",
+      "path": "scripts/lib/result_ledger.py:128–159",
+      "evidence": "apply_replay_assessment accepts deterministic_report_reuse solely when the current reused subject IDs equal {\"control_evaluation_report\"} and artifact digests differ; line 139 ORs this with decision-context equality.",
+      "explanation": "A matching report digest from another repository or artifact name can therefore pass. Prior subject IDs are also unchecked. The resulting reason falsely claims reuse stayed within the same repository, commit, and artifact. Constrain the exception to compatible repositories, artifacts, and corresponding report subjects while allowing intended cross-commit reuse."
+    },
+    {
+      "severity": "medium",
+      "path": "scripts/lib/result_ledger.py:46–51,118–123,148–162",
+      "evidence": "replay_context now includes artifact_digest, and apply_replay_assessment uses that entire context for same-run conflict detection at line 118.",
+      "explanation": "Two records with identical repository, commit, workflow, run, attempt, and artifact name but different artifact and subject digests no longer trigger context_conflicts. If no subject digest overlaps, the assessment returns pass. Compare stable run identity separately from artifact content so changed evidence for the same run remains detectable."
+    }
+  ],
+  "uncertainties": [
+    "The role source-of-truth document and operational usage guide are referenced but absent; review uses the supplied contract and workflow excerpts.",
+    "Intake callers, latest-result selectors, and viewer implementation are absent. Mainline, branch, and pull_request isolation and any actual official-state overwrite cannot be established from this packet.",
+    "Artifact-digest computation, authenticity, historical runtime outcomes, and affected production repositories are not supplied. These are evidence gaps, not additional defects."
+  ],
+  "required_validation": [
+    "Request regression tests for cross-repository reuse, changed artifact names, mismatched prior subject IDs, and same-run changes to both artifact and subject digests; retain the intended same-repository cross-commit deterministic-report case.",
+    "Request historical-checkout validation with python3 scripts/generate_repository_results_index.py, python3 scripts/generate_architecture_results_index.py, python3 scripts/generate_typed_evidence_results_index.py, python3 scripts/generate_status_viewer.py, python3 scripts/validate_governance_repo.py, and python3 -m unittest discover -s tests.",
+    "Inspect historical intake and viewer paths to verify branch, pull_request, and manual evidence cannot replace official mainline latest state unless explicitly intended. No validation commands were executed."
+  ],
+  "tests_executed": false
+}

@@ -1,0 +1,73 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "summary",
+    "classification",
+    "safeguards",
+    "findings",
+    "uncertainties",
+    "required_validation",
+    "tests_executed"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "classification": {
+      "type": "string"
+    },
+    "safeguards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "severity",
+          "path",
+          "evidence",
+          "explanation"
+        ],
+        "properties": {
+          "severity": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_validation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tests_executed": {
+      "type": "boolean"
+    }
+  }
+}

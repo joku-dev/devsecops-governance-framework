@@ -41,6 +41,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Use model-neutral agent contracts | `.agents/roles/`, `.agents/routing/governance-agent-routing.yaml`, `.agents/skills/`, `docs/operations/agents/agent-system-usage.md` |
 | Use Codex agent adapters | `.codex/agents/`, `.github/codex/prompts/`, `docs/operations/agents/agent-system-usage.md` |
 | Check deterministic agent routing | `docs/operations/agents/agent-harness-usage.md`, `tests/agent_harness/` |
+| Inspect Codex model selection and its measured limitations | `docs/operations/agents/agent-system-usage.md`, `docs/operations/reference-runs/2026-09-12-gpt6-agent-evaluation.md` |
 | Inspect agent usage | `docs/operations/agents/agent-usage-snapshot-latest.md`, `generated/agent-usage/agent-usage-summary.json` |
 | Understand DevSecOps baseline releases | `docs/releases/index.md`, `docs/releases/l1-baseline-v1.1.3.md` |
 | Understand architecture baseline releases | `docs/releases/architecture-baseline-l1-v0.1.0.md` |
