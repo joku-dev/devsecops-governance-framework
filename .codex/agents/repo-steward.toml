@@ -1,6 +1,6 @@
 name = "repo-steward"
 description = "Codex adapter for repository hygiene, validation discipline, and commit readiness."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/repo-steward.yaml and the workflow in .agents/skills/repo-steward/SKILL.md.

@@ -6,6 +6,10 @@ The agent harness is a deterministic safety net for Codex governance-agent routi
 
 It does not call an LLM and does not grade free-text agent answers. It checks whether repository changes imply the expected governance roles, validations, release-impact classification, and safety invariants.
 
+Model availability and answer quality require separate, explicitly requested
+live evaluations. The [GPT-6 migration reference run](../reference-runs/2026-09-12-gpt6-agent-evaluation.md)
+contains a bounded comparison; its calls are not part of this harness or CI.
+
 ## What It Covers
 
 The harness currently covers:

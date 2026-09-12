@@ -1,0 +1,100 @@
+{
+  "assessor": "Coordinating coding agent; not an independent human reviewer",
+  "basis": "Fixed rubric plus direct inspection of supplied historical code; counterexamples were executed by the coordinating agent, not the evaluated models.",
+  "findings": [
+    {
+      "model": "gpt-5.5",
+      "case": "replay",
+      "finding": 1,
+      "assessment": "supported_behavior",
+      "reason": "Same run identity with different artifact and subject digests returns pass; reproduced in replay-counterexample.json."
+    },
+    {
+      "model": "gpt-5.5",
+      "case": "replay",
+      "finding": 2,
+      "assessment": "supported_behavior_with_qualification",
+      "reason": "Cross-repository and changed-artifact-name report reuse pass and receive an inaccurate same-context reason. This does not prove an operational evidence attack or official-latest overwrite."
+    },
+    {
+      "model": "gpt-5.5",
+      "case": "replay",
+      "finding": 3,
+      "assessment": "supported_behavior",
+      "reason": "A different prior subject ID is accepted by the report exception; reproduced. Severity and intended compatibility need separate policy review."
+    },
+    {
+      "model": "gpt-6-astra",
+      "case": "replay",
+      "finding": 1,
+      "assessment": "supported_behavior_with_qualification",
+      "reason": "Combines cross-repository/artifact reuse, unchecked prior subject identity and inaccurate reason; reproduced. No operational incident established."
+    },
+    {
+      "model": "gpt-6-astra",
+      "case": "replay",
+      "finding": 2,
+      "assessment": "supported_behavior",
+      "reason": "Same-run change to artifact and subject digests bypasses context conflict; reproduced."
+    },
+    {
+      "model": "gpt-5.5",
+      "case": "candidate",
+      "finding": 1,
+      "assessment": "false_alarm",
+      "reason": "The supplied model and GCR expressly authorize only candidate review support and prohibit runtime derivation. The role supports review briefs and requirement deltas. File placement alone proves no forbidden runtime derivation."
+    },
+    {
+      "model": "gpt-5.5",
+      "case": "candidate",
+      "finding": 2,
+      "assessment": "false_alarm",
+      "reason": "The supplied GCR explicitly names the Release Manager in its human review checklist and requires a separate release assessment. No omitted reviewer is demonstrated."
+    },
+    {
+      "model": "gpt-5.5",
+      "case": "publication",
+      "finding": 1,
+      "assessment": "false_alarm_as_defect",
+      "reason": "The publisher deliberately opens review PRs, not ready-to-merge updates. Strict required checks, ancestry protection and explicit reconciliation instructions handle main advancing; the packet does not demonstrate a merge bypass."
+    },
+    {
+      "model": "gpt-5.5",
+      "case": "publication",
+      "finding": 2,
+      "assessment": "false_alarm_as_defect",
+      "reason": "Omitting unrelated generated paths is explicit scope isolation. The packet establishes neither loss of required in-scope evidence nor a requirement to publish unrelated outputs."
+    },
+    {
+      "model": "gpt-5.5",
+      "case": "publication",
+      "finding": 3,
+      "assessment": "unconfirmed_improvement",
+      "reason": "A check-to-workflow mapping regression test could help, but the packet does not establish incorrect required check names or dispatch behavior."
+    },
+    {
+      "model": "gpt-6-astra",
+      "case": "publication",
+      "finding": 1,
+      "assessment": "supported_behavior_with_precondition",
+      "reason": "An already force-staged synthetic .DS_Store under an allowed ledger path is selected. Reproduced in a temporary repo without calling publish or GitHub. Normal ignore rules can exclude untracked artifacts."
+    },
+    {
+      "model": "gpt-6-astra",
+      "case": "publication",
+      "finding": 2,
+      "assessment": "unconfirmed_improvement",
+      "reason": "Timestamp-only report selection is reproduced, but intentional freshness updates may be valid. Operational intent must be established before calling it a defect."
+    }
+  ],
+  "other_observations": [
+    "GPT-5.5 replay response incorrectly says the full role YAML is absent; that YAML is included in the fixed prompt.",
+    "Both models used no tools and reported tests_executed=false.",
+    "GPT-6 candidate reported no findings; zero findings is not evidence of a complete or correct full PR."
+  ],
+  "limits": [
+    "One run per model/case, three roles only, selected historical excerpts, no blind scoring.",
+    "No overall accuracy percentage or cost advantage is inferred.",
+    "gpt-5-codex was unavailable; GPT-5.5 is a comparison reference, not the old configured runtime."
+  ]
+}

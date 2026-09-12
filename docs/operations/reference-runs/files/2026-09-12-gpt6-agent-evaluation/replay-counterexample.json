@@ -1,0 +1,32 @@
+[
+  {
+    "case": "different_repository",
+    "result": "pass",
+    "reason": "Digest reuse is confined to the same repository, commit, and artifact context.",
+    "trust_level": "integrity_verified"
+  },
+  {
+    "case": "different_artifact_name",
+    "result": "pass",
+    "reason": "Digest reuse is confined to the same repository, commit, and artifact context.",
+    "trust_level": "integrity_verified"
+  },
+  {
+    "case": "ordinary_subject",
+    "result": "fail",
+    "reason": "A subject digest was reused across an incompatible repository, commit, or artifact context.",
+    "trust_level": "integrity_verified"
+  },
+  {
+    "case": "same_run_changed_artifact_and_subject",
+    "result": "pass",
+    "reason": "No prior replay key or incompatible digest reuse was found.",
+    "trust_level": "integrity_verified"
+  },
+  {
+    "case": "different_prior_subject_id",
+    "result": "pass",
+    "reason": "Digest reuse is confined to the same repository, commit, and artifact context.",
+    "trust_level": "integrity_verified"
+  }
+]
