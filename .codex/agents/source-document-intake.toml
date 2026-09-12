@@ -1,6 +1,6 @@
 name = "source-document-intake"
 description = "Codex adapter for source document intake, human decision briefs, and candidate-source protection."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/source-document-intake.yaml and the workflow in .agents/skills/source-document-intake/SKILL.md.
