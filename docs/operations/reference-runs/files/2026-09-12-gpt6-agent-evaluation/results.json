@@ -1,0 +1,122 @@
+[
+  {
+    "requested_model": "gpt-5.5",
+    "case_id": "replay",
+    "started_at": "2026-09-12T13:51:07.244025+00:00",
+    "elapsed_seconds": 29.76,
+    "returncode": 0,
+    "prompt_sha256": "e52987dca70754e02c73136bd945749a2ef6bf5100da2663d6659f6c11e90f55",
+    "usage": {
+      "input_tokens": 21038,
+      "cached_input_tokens": 1408,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1354,
+      "reasoning_output_tokens": 516
+    },
+    "tool_actions": [],
+    "response_valid_json": true,
+    "response_sha256": "f428c86fe1b69982dca20c5691f0f2743b7d00ffb64fd3e30b346b02d2278154",
+    "reported_findings": 3,
+    "claims_tests_executed": false
+  },
+  {
+    "requested_model": "gpt-6-astra",
+    "case_id": "replay",
+    "started_at": "2026-09-12T13:51:07.245128+00:00",
+    "elapsed_seconds": 41.62,
+    "returncode": 0,
+    "prompt_sha256": "e52987dca70754e02c73136bd945749a2ef6bf5100da2663d6659f6c11e90f55",
+    "usage": {
+      "input_tokens": 22755,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1023,
+      "reasoning_output_tokens": 209
+    },
+    "tool_actions": [],
+    "response_valid_json": true,
+    "response_sha256": "431e143613783a922ed482a9ef4adbd88d2ab25c82163337c508ee54c56120f7",
+    "reported_findings": 2,
+    "claims_tests_executed": false
+  },
+  {
+    "requested_model": "gpt-5.5",
+    "case_id": "candidate",
+    "started_at": "2026-09-12T13:51:37.009281+00:00",
+    "elapsed_seconds": 30.16,
+    "returncode": 0,
+    "prompt_sha256": "72d8a7e6cc20b814feffd635a1438d1f94e27e103a9e1e1e907af6ba93dda57a",
+    "usage": {
+      "input_tokens": 17727,
+      "cached_input_tokens": 1408,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1354,
+      "reasoning_output_tokens": 516
+    },
+    "tool_actions": [],
+    "response_valid_json": true,
+    "response_sha256": "997068fa2bf2e224070cddb70e9fd064aeb462335d96513fb87f29f29fd59192",
+    "reported_findings": 2,
+    "claims_tests_executed": false
+  },
+  {
+    "requested_model": "gpt-6-astra",
+    "case_id": "candidate",
+    "started_at": "2026-09-12T13:51:48.870033+00:00",
+    "elapsed_seconds": 40.41,
+    "returncode": 0,
+    "prompt_sha256": "72d8a7e6cc20b814feffd635a1438d1f94e27e103a9e1e1e907af6ba93dda57a",
+    "usage": {
+      "input_tokens": 19444,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 978,
+      "reasoning_output_tokens": 263
+    },
+    "tool_actions": [],
+    "response_valid_json": true,
+    "response_sha256": "60b4683138ec2149ca3ec2083a0ccaca97abb15efba90d129f07c2365ee702ec",
+    "reported_findings": 0,
+    "claims_tests_executed": false
+  },
+  {
+    "requested_model": "gpt-5.5",
+    "case_id": "publication",
+    "started_at": "2026-09-12T13:52:07.166335+00:00",
+    "elapsed_seconds": 28.27,
+    "returncode": 0,
+    "prompt_sha256": "7a0f78276244648af35c2055a302db37f51d82301a87c3fdb0c796a8fcdbe6f9",
+    "usage": {
+      "input_tokens": 19335,
+      "cached_input_tokens": 1408,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1262,
+      "reasoning_output_tokens": 516
+    },
+    "tool_actions": [],
+    "response_valid_json": true,
+    "response_sha256": "297a5c1162ce018907486b98e0b6a54139b66fca02047f0a1f74f9d5db2de494",
+    "reported_findings": 3,
+    "claims_tests_executed": false
+  },
+  {
+    "requested_model": "gpt-6-astra",
+    "case_id": "publication",
+    "started_at": "2026-09-12T13:52:29.283219+00:00",
+    "elapsed_seconds": 57.4,
+    "returncode": 0,
+    "prompt_sha256": "7a0f78276244648af35c2055a302db37f51d82301a87c3fdb0c796a8fcdbe6f9",
+    "usage": {
+      "input_tokens": 21052,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1277,
+      "reasoning_output_tokens": 516
+    },
+    "tool_actions": [],
+    "response_valid_json": true,
+    "response_sha256": "2cfa25396ad9401aa4756acf09adbcc6c0d95be920a93cf530918aba5cffc239",
+    "reported_findings": 2,
+    "claims_tests_executed": false
+  }
+]

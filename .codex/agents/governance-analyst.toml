@@ -1,6 +1,6 @@
 name = "governance-analyst"
 description = "Codex adapter for governance intent analysis and affected-artifact mapping."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/governance-analyst.yaml and the workflow in .agents/skills/governance-analysis/SKILL.md.

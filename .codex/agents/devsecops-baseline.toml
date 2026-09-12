@@ -1,6 +1,6 @@
 name = "devsecops-baseline"
 description = "Codex adapter for DevSecOps control baseline and evidence model review."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/devsecops-baseline.yaml and the workflow in .agents/skills/devsecops-baseline/SKILL.md.

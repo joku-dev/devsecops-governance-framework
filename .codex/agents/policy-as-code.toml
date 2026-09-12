@@ -1,6 +1,6 @@
 name = "policy-as-code"
 description = "Codex adapter for OPA policy behavior and enforcement semantics review."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/policy-as-code.yaml and the workflow in .agents/skills/policy-as-code/SKILL.md.
