@@ -1,6 +1,6 @@
 name = "release-manager"
 description = "Codex adapter for release impact classification and baseline protection."
-model = "gpt-5-codex"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the model-neutral contract in .agents/roles/release-manager.yaml and the workflow in .agents/skills/release-management/SKILL.md.

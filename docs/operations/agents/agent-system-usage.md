@@ -49,6 +49,33 @@ Use this layer for:
 
 Codex agent files should point back to `.agents/roles/` and `.agents/skills/` instead of duplicating detailed governance logic.
 
+### Current Codex Model
+
+The nine project role adapters explicitly request `gpt-6-astra` with
+`model_reasoning_effort = "high"`. This migration replaces `gpt-5-codex` while
+preserving the existing role instructions, neutral contracts, routing and
+validation expectations. The role files are the place to inspect the requested
+model; the model selected for a parent conversation is not evidence of the
+model configured for each role.
+
+The [12 September 2026 model evaluation](../reference-runs/2026-09-12-gpt6-agent-evaluation.md)
+records availability, three historical review packets, a GPT-5.5 comparison,
+measured usage and limitations. GPT-5-Codex was unavailable with the tested
+ChatGPT account. GPT-5.5 is a comparison reference, not the former configured
+runtime. The sample supports a GPT-6 pilot, not a general quality or cost claim.
+
+Start with one model and the existing reasoning effort to isolate the change.
+Evaluate a less expensive model for routine roles separately using the same
+review packets and additional representative cases. Do not silently fall back
+when a requested model is unavailable; record the failure and the selected
+alternative explicitly.
+
+After merging an adapter update, open the updated checkout in a new Codex
+session and verify the selected role and model. Model-generated reviews remain
+review evidence; they do not supply independent human approval or governance
+decision authority. The deterministic agent harness does not measure LLM
+answer quality or prove account-specific model availability.
+
 ## Future Provider And Platform Adapters
 
 Future adapters should stay additive:
