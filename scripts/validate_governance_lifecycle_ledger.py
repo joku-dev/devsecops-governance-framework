@@ -10,12 +10,13 @@ from lib.governance_lifecycle.contracts import ROOT, require, timestamp
 from lib.governance_lifecycle.kernel import project, replay
 from lib.governance_lifecycle.store import load_transactions
 from lib.governance_lifecycle.live_preparation import PREPARATION_PATH, validate_preparation
+from lib.governance_lifecycle.live_admission import OPERATING_PATH, VALIDATION_LEDGER, verify_new_receipts
 from generate_governance_lifecycle_index import DEFAULT_LEDGER, DEFAULT_INDEX, DEFAULT_PROFILE
 
 LEDGER_PATH = "governance/lifecycle/synthetic"
 PILOT_LEDGER_PATH = "governance/lifecycle/synthetic-closure"
 EXCEPTION_LEDGER_PATH = "governance/lifecycle/synthetic-exceptions"
-LEDGER_PATHS = (LEDGER_PATH, PILOT_LEDGER_PATH, EXCEPTION_LEDGER_PATH)
+LEDGER_PATHS = (LEDGER_PATH, PILOT_LEDGER_PATH, EXCEPTION_LEDGER_PATH, VALIDATION_LEDGER)
 EXCEPTION_PROFILE_PATH = "model/governance/lifecycle/synthetic-exception-profile.json"
 PROFILE_PATH = "model/governance/lifecycle/synthetic-grs002-profile.json"
 
@@ -41,7 +42,7 @@ def check_accepted_prefix(repo, base_ref):
         path = Path(repo) / name
         require(path.is_file() and not path.is_symlink(), "Accepted transaction deleted or replaced")
         require(git(repo, "hash-object", "--", str(path)).strip() == digest, "Accepted transaction modified")
-    if entries:
+    if any(name.split("\t", 1)[1].startswith((LEDGER_PATH + "/", PILOT_LEDGER_PATH + "/", EXCEPTION_LEDGER_PATH + "/")) for name in entries):
         before = git(repo, "rev-parse", base_ref + ":" + PROFILE_PATH).strip()
         after = git(repo, "hash-object", "--", PROFILE_PATH).strip()
         require(before == after, "Accepted profile requires an explicit versioned migration")
@@ -52,7 +53,7 @@ def check_accepted_prefix(repo, base_ref):
         before = git(repo, "rev-parse", base_ref + ":" + EXCEPTION_PROFILE_PATH).strip()
         require(git(repo, "hash-object", "--", str(path)).strip() == before, "Exception profile requires a versioned migration")
     # Appointments and profile preparations are versioned separately from evidence.
-    for entry in git(repo, "ls-tree", "-r", base_ref, "--", PREPARATION_PATH).splitlines():
+    for entry in git(repo, "ls-tree", "-r", base_ref, "--", PREPARATION_PATH, OPERATING_PATH).splitlines():
         metadata, name = entry.split("\t", 1)
         mode, kind, digest = metadata.split()
         require(mode == "100644" and kind == "blob", "Unexpected accepted preparation file type")
@@ -99,6 +100,7 @@ def validate_exceptions(repo=ROOT):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-ref")
+    parser.add_argument("--verify-new-provider", action="store_true")
     args = parser.parse_args()
     if args.base_ref:
         count = check_accepted_prefix(ROOT, args.base_ref)
@@ -106,6 +108,11 @@ def main():
     require(all(tx["schema_version"] != "0.4.0" for tx in load_transactions(DEFAULT_LEDGER)),
             "Exceptions require their separate scenario")
     validate_preparation()
+    from generate_lifecycle_pilot_validation import validate as validate_live_pilot
+    validate_live_pilot()
+    if args.verify_new_provider:
+        require(bool(args.base_ref), "Provider verification requires an accepted base")
+        print(f"Independently checked {verify_new_receipts(ROOT, args.base_ref)} new pilot receipts against GitHub.")
     index = validate_current()
     pilot = validate_pilot()
     exceptions = validate_exceptions()

@@ -46,6 +46,9 @@ implementiert eine versionierte Rollenbindung und ein deaktiviertes Live-Profil
 (PR #85 gemergt). Der [lesende Evidenzprüfer](../evidence/governance-lifecycle-live-evidence-preflight.md)
 prüft echte Mainline-Artefakte gegen die festgelegten Producer-Dateien; sein
 diagnostischer PASS ist noch keine akzeptierte Lifecycle-Beobachtung.
+Das bestätigte [Betriebsprofil mit dauerhaftem Pilot-Intake](../evidence/governance-lifecycle-durable-pilot-intake.md)
+ergänzt unveränderliche Capture-Transaktionen, Frische, Replay und Quarantäne.
+Persönliche Freigabeverifikation und Betriebsabnahme bleiben offen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.

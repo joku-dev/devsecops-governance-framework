@@ -40,6 +40,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Decide the next live CLG pilot step | `docs/operations/evidence/governance-lifecycle-live-decision-brief.md` (pilot roles confirmed; operating acceptance remains open) |
 | Inspect confirmed CLG pilot roles and disabled live profile | `docs/operations/evidence/governance-lifecycle-live-preparation.md`, `model/governance/lifecycle/live-pilot/` (appointment is not personal runtime consent) |
 | Verify an explicit Self-Security run before live admission | `docs/operations/evidence/governance-lifecycle-live-evidence-preflight.md`, `scripts/preflight_lifecycle_live_evidence.py` (read-only capture and offline replay; no acceptance) |
+| Retain and replay pilot intake under confirmed operating values | `docs/operations/evidence/governance-lifecycle-durable-pilot-intake.md`, `scripts/intake_lifecycle_pilot_run.py` (durable validation receipts; no live activation) |
 | Open CLG-06.2 read-only scenario viewer | `docs/operations/evidence/governance-lifecycle-viewer.md`, `scripts/generate_governance_lifecycle_viewer.py` (synthetic; separate from official status) |
 | Inspect CLG-06.1 synthetic scenario metrics | `docs/operations/evidence/governance-lifecycle-overview.md`, `scripts/generate_governance_lifecycle_overview.py` (separate histories; no portfolio totals) |
 | Inspect CLG-05 synthetic exceptions | `docs/operations/evidence/governance-lifecycle-exceptions.md`, `scripts/generate_governance_lifecycle_exceptions.py` (observation coverage; no live waiver authority) |
