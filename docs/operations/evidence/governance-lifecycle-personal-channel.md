@@ -2,11 +2,14 @@
 
 The confirmed pilot channel now has a read-only verifier and a concrete request
 for `joku-dev` (`github-user:81616324`). The first real GET check on
-13 September 2026 returned `waiting_for_personal_statement`.
+13 September 2026 returned `waiting_for_personal_statement`. The maintainer then
+personally issued [comment 5653982008](https://github.com/joku-dev/devsecops-governance-framework/pull/87#issuecomment-5653982008)
+at 14:47:39 UTC. The subsequent retained provider capture confirms the channel.
+See the [generated evidence report](https://github.com/joku-dev/devsecops-governance-framework/blob/main/generated/reports/lifecycle-personal-channel-evidence.md).
 [GCR-2026-074](../../governance/change-requests/GCR-2026-074-lifecycle-personal-channel-probe.md)
 classifies this bounded implementation.
 
-## Personal step
+## Personal step (first confirmation completed)
 
 Open [PR #87](https://github.com/joku-dev/devsecops-governance-framework/pull/87)
 and personally post the entire text from the
@@ -31,17 +34,19 @@ explicit `approve` can confirm again by referencing that predecessor.
 Run from the repository root with authenticated read access to GitHub:
 
 ```bash
-.venv-validation/bin/python scripts/check_lifecycle_personal_channel.py --output generated/reports/lifecycle-personal-channel/001.json
-.venv-validation/bin/python scripts/check_lifecycle_personal_channel.py --replay generated/reports/lifecycle-personal-channel/001.json
-.venv-validation/bin/python scripts/check_lifecycle_personal_channel.py --previous-capture generated/reports/lifecycle-personal-channel/001.json --output generated/reports/lifecycle-personal-channel/002.json
+.venv-validation/bin/python scripts/check_lifecycle_personal_channel.py --replay generated/reports/lifecycle-personal-channel/00000001.json
+.venv-validation/bin/python scripts/check_lifecycle_personal_channel.py --previous-capture generated/reports/lifecycle-personal-channel/00000001.json --output generated/reports/lifecycle-personal-channel/00000002.json
 ```
 
 Retain every capture and always pass the latest one to a recheck. The command
 carries earlier statement identities forward, so deletion or alteration remains
 visible across subsequent captures. Without a prior capture, the provider cannot
 prove that a previously issued comment was deleted. Captures cannot be overwritten.
-These diagnostic files are not an accepted consent ledger; publishing the first
-actual result requires a focused change with validation and provider recheck.
+These diagnostic files are not an accepted consent ledger. Accepted captures are
+protected against later changes by the Git-prefix validation. New captures are
+independently rechecked against GitHub in required PR CI before publication.
+After a new capture, run `scripts/generate_personal_channel_evidence.py` to rebuild
+the report. Use consecutive eight-digit file names; retain the prior capture.
 
 The verifier fetches all supported comment pages twice and rejects a changing
 snapshot. It checks stable account ID, user type, absence of a reported GitHub app,
@@ -60,11 +65,12 @@ whether a personal token was used by automation. The result therefore records
 is insufficient. Offline replay verifies consistency of retained bytes and the
 projection, not their independent provider authenticity.
 
-The ten targeted tests cover valid confirmation, wrong account/app/bot, missing
+The targeted tests cover valid confirmation, wrong account/app/bot, missing
 personal assertion, changed digest, edited or misplaced comments, chronology,
 rejection/revocation/reconfirmation, deleted history and provider metadata races.
-The real positive channel test still requires the person's comment. Subsequent
-work must integrate retained consent evidence with action-specific decision and
+GitHub returned the valid comment with CRLF line endings. Parsing accepts CRLF
+and LF equivalently while retaining raw bytes for later edit/deletion detection.
+The real positive channel test is now recorded. Subsequent work must integrate retained consent evidence with action-specific decision and
 closure revisions, role withdrawal and the live acceptance flow. A channel probe
 cannot substitute for that implementation or the separate LD-07 operating
 acceptance. The [decision brief](governance-lifecycle-live-decision-brief.md)

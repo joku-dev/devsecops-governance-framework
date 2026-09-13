@@ -49,7 +49,7 @@ diagnostischer PASS ist noch keine akzeptierte Lifecycle-Beobachtung.
 Das bestätigte [Betriebsprofil mit dauerhaftem Pilot-Intake](../evidence/governance-lifecycle-durable-pilot-intake.md)
 ergänzt unveränderliche Capture-Transaktionen, Frische, Replay und Quarantäne
 (PR #87 gemergt). Der [persönliche GitHub-Kanaltest](../evidence/governance-lifecycle-personal-channel.md)
-ist vorbereitet und benötigt jetzt die persönlich abgegebene Erklärung auf PR #87.
+ist mit dem persönlich abgegebenen Kommentar auf PR #87 erfolgreich nachgewiesen.
 Aktionsbezogene Freigabeverifikation und Betriebsabnahme bleiben offen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
@@ -282,9 +282,9 @@ Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
 
 ## Nächster konkreter Arbeitsauftrag
 
-**Persönlichen Kanal nachweisen:** `joku-dev` gibt die vorbereitete Erklärung auf
-PR #87 selbst ab. Der lesende Prüfer erfasst und prüft anschließend den echten
-Nachweis. Es handelt sich ausschließlich um einen Kanaltest.
+**Persönlicher Kanal nachgewiesen:** Der Kommentar von `joku-dev` auf PR #87 ist
+verifiziert und als diagnostischer Nachweis gespeichert. Er erteilt keine
+aktionsbezogene Freigabe.
 
 **Live-Zustimmung integrieren und CLG-04 abnehmen:** Nach diesem Nachweis folgen
 die aktionsbezogene Freigabe-/Widerrufs-/Abschlussintegration und deren Negativfälle.

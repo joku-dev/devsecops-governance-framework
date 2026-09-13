@@ -42,13 +42,13 @@ die verifizierte Live-Rollenverwaltung bleibt Teil der technischen Abnahme.
 
 Rollen, GitHub-Kanal als Umsetzungsrichtung und Betriebswerte sind bestätigt.
 Der [persönliche GitHub-Kanaltest](governance-lifecycle-personal-channel.md) ist
-vorbereitet. Als nächster Schritt muss `joku-dev` die gebundene Erklärung selbst
-auf PR #87 abgeben. Danach folgen die aktionsbezogene Zustimmungsverifikation
+mit dem persönlich abgegebenen Kommentar auf PR #87 erfolgreich nachgewiesen.
+Als nächste Schritte folgen die aktionsbezogene Zustimmungsverifikation
 und die abschließende Betriebsabnahme.
 
 | Entscheidung | Vorschlag | Folge / noch erforderlicher Nachweis |
 |---|---|---|
-| LD-02: bewusste, authentifizierte Zustimmung | Eigener Review eines unveränderlichen Entscheidungsdatensatzes mit Inhaltsdigest und erwarteter Finding-Revision | Kanal und persönliche Abgabe sind bestätigt. Der vorbereitete Kanaltest prüft Identität, Inhaltsdigest, Disposition und Widerruf. Die persönliche Erklärung und danach die aktionsbezogene Integration stehen noch aus. |
+| LD-02: bewusste, authentifizierte Zustimmung | Eigener Review eines unveränderlichen Entscheidungsdatensatzes mit Inhaltsdigest und erwarteter Finding-Revision | Kanal und persönliche Abgabe sind bestätigt. Der vorbereitete Kanaltest prüft Identität, Inhaltsdigest, Disposition und Widerruf. Die persönliche Erklärung ist verifiziert; die aktionsbezogene Integration steht noch aus. |
 | LD-07: Live-Abnahme | Zuerst lesenden Evidenz-Intake prüfen, danach Freigabe-/Widerrufs-/Abschluss-Negativfälle und Betriebs-Runbook abnehmen | Benannte Verantwortliche dokumentieren die Abnahme einschließlich Korrektur und Widerruf nach einem Abschluss. Erst anschließend Live-Aktivierung im bestätigten Umfang. |
 
 ## Was diese Entscheidung freigibt
