@@ -1,6 +1,6 @@
 # Live-Pilot: konkrete Entscheidungen vor der Anbindung
 
-Status: **Entscheidungsvorlage, keine Live-Freigabe.** Die technische
+Status: **Rollen am 13. September 2026 bestätigt; keine Live-Freigabe.** Die technische
 Review-Ausnahme des Maintainers gilt für Implementierungs-PRs. Sie erteilt keine
 Lifecycle-Behebungs-, Abschluss- oder Ausnahmefreigabe.
 
@@ -21,23 +21,22 @@ Die nächste Live-Anbindung benötigt die Entscheidungen aus dem
   Abschlussentscheidungen brauchen zusätzlich eine überprüfbare menschliche
   Freigabe. Ein erfolgreicher Code-PR genügt dafür nicht.
 
-## Zuerst erforderlich: Personen und Rollen (LD-01 / LD-03)
+## Bestätigt: Personen und Rollen (LD-01 / LD-03)
 
-Diese Felder können nicht aus Repository-Adminrechten oder einem Tool-Login
-abgeleitet werden. Sie sind vor Umsetzung der verbindlichen Rollenbindung vom
-Maintainer mit den zuständigen Governance-Verantwortlichen zu bestätigen.
+Der Maintainer hat die vorgeschlagene Mehrfachrolle mit „ja ich bestätige“
+bestätigt. Alle drei Rollen sind für `joku-dev` (GitHub-ID `81616324`, öffentlicher
+Anzeigename `joku`) im beschriebenen Piloten festgehalten:
 
-| Rolle im begrenzten Piloten | Benötigte Angabe | Status |
-|---|---|---|
-| Behebungsentscheidung freigeben und widerrufen | Name, authentifiziertes Konto, freigegebener Geltungsbereich | Offen |
-| Evidenzgebundenen Abschluss freigeben | Name, authentifiziertes Konto, freigegebener Geltungsbereich | Offen |
-| Rollenbindungen verwalten und entziehen | Name, authentifiziertes Konto, Zuständigkeit für Änderungen | Offen |
+| Rolle | Zuordnung |
+|---|---|
+| Behebungsentscheidung freigeben und widerrufen | `github-user:81616324` |
+| Evidenzgebundenen Abschluss freigeben | `github-user:81616324` |
+| Rollenbindungen verwalten und entziehen | `github-user:81616324` |
 
-Der technische Vertrag trennt die Rollen. Ob dieselbe Person mehrere Rollen
-übernehmen darf, muss die verantwortliche Stelle für diesen Piloten ausdrücklich
-festhalten; die Implementierung erfindet weder eine neue Trennungspflicht noch
-eine Ausnahme davon. Waiver-Autoritäten werden nicht automatisch auf diese
-Rollen übertragen.
+Die Mehrfachrolle ist ausdrücklich auf diesen Piloten begrenzt. Die
+[versionierte Vorbereitung](governance-lifecycle-live-preparation.md) hält sie
+getrennt von persönlichen Einzelfreigaben fest. Die Rollenbindung ist bestätigt;
+die verifizierte Live-Rollenverwaltung bleibt Teil der technischen Abnahme.
 
 ## Weitere entscheidungsreife Vorschläge
 
@@ -53,8 +52,9 @@ Genehmigungen. Ihre Umsetzung kann nach der Rollenentscheidung abgegrenzt werden
 
 ## Was diese Entscheidung freigibt
 
-Nach bestätigten Rollen und Freigabekanal lässt sich ein eigener Live-Profil- und
-Provider-Adapter-PR konkret umsetzen. Das synthetische Profil wird dafür nicht
+Die Rollen sind bestätigt, der persönliche GitHub-Freigabekanal ist als
+Umsetzungsrichtung bestätigt. Ein eigenes deaktiviertes Live-Profil liegt vor;
+Provider- und Zustimmungsverifikation folgen als gesonderte Implementierung. Das synthetische Profil wird dafür nicht
 umgeschaltet oder umgeschrieben. Zunächst bleiben Live-Verarbeitung und
 Veröffentlichung deaktiviert, bis die vereinbarten Prüfungen und Abnahme vorliegen.
 

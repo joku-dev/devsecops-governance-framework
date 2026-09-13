@@ -1,0 +1,185 @@
+{
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-pilot-role-binding.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assignments": {
+      "additionalProperties": false,
+      "properties": {
+        "closure_approver": {
+          "pattern": "^github-user:[1-9][0-9]*$",
+          "type": "string"
+        },
+        "remediation_decider": {
+          "pattern": "^github-user:[1-9][0-9]*$",
+          "type": "string"
+        },
+        "role_registry_owner": {
+          "pattern": "^github-user:[1-9][0-9]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "remediation_decider",
+        "closure_approver",
+        "role_registry_owner"
+      ],
+      "type": "object"
+    },
+    "authorization": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "const": "maintainer_conversation"
+        },
+        "confirmed_on": {
+          "format": "date",
+          "type": "string"
+        },
+        "decision_ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "runtime_consent_proof": {
+          "const": false
+        },
+        "statement": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "channel",
+        "confirmed_on",
+        "statement",
+        "decision_ref",
+        "runtime_consent_proof"
+      ],
+      "type": "object"
+    },
+    "binding_id": {
+      "const": "binding:clg-live-grs002"
+    },
+    "multiple_roles_confirmed": {
+      "type": "boolean"
+    },
+    "previous_ref": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "digest": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "revision": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "revision",
+            "digest"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "record_type": {
+      "const": "lifecycle-pilot-role-binding"
+    },
+    "recorded_at": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+      "type": "string"
+    },
+    "revision": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "scope": {
+      "const": {
+        "domain": "governance_repository_security",
+        "enforcement": "report_only",
+        "github_repository_id": 1301369468,
+        "pilot_only": true,
+        "repository_id": "joku-dev/devsecops-governance-framework",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "status": {
+      "enum": [
+        "confirmed",
+        "withdrawn"
+      ]
+    },
+    "subjects": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "display_name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "login": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "profile_url": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "provider": {
+            "const": "github"
+          },
+          "provider_user_id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "subject_id": {
+            "pattern": "^github-user:[1-9][0-9]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "subject_id",
+          "provider",
+          "provider_user_id",
+          "login",
+          "display_name",
+          "profile_url"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "validity": {
+      "const": "pilot_only_until_replacement_or_withdrawal"
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "binding_id",
+    "revision",
+    "previous_ref",
+    "recorded_at",
+    "status",
+    "scope",
+    "subjects",
+    "assignments",
+    "multiple_roles_confirmed",
+    "authorization",
+    "validity"
+  ],
+  "title": "Confirmed pilot appointment; not live consent",
+  "type": "object"
+}
