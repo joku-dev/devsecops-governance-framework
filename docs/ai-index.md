@@ -31,8 +31,9 @@ Use it as the first navigation point after `AGENTS.md`.
 | Explain the repository as an answer to software industrialisation problems | `docs/governance/architecture/software-industrialisation-problem-capability-map.md` |
 | Compare governance with central repository versus without central repository | `docs/governance/architecture/governance-repository-architecture-comparison.md` |
 | Classify documentation and plan safe docs restructuring | `docs/operations/planning/document-structure-model.md` |
-| Plan the closed-loop finding, decision and remediation pilot | `docs/operations/planning/closed-loop-governance-implementation-plan.md` (planned; not implemented) |
+| Plan the closed-loop finding, decision and remediation pilot | `docs/operations/planning/closed-loop-governance-implementation-plan.md` (staged plan; synthetic CLG-02 implemented) |
 | Inspect CLG-01 contracts and open pilot decisions | `docs/operations/evidence/governance-lifecycle-contract.md`, `docs/operations/evidence/governance-lifecycle-pilot-decisions.md` (offline contracts; no live runtime) |
+| Use the CLG-02 synthetic finding/event kernel | `docs/operations/evidence/governance-lifecycle-kernel.md`, `scripts/intake_governance_lifecycle_observation.py`, `status/governance-lifecycle-synthetic-index.json` (synthetic only) |
 | Audit the current documentation structure after migrations | `docs/operations/planning/document-structure-audit.md` |
 | Understand organisational DevSecOps governance responsibilities | `docs/governance/devsecops-governance-organisational-role-model.md` |
 | Understand source update impact | `generated/reports/governance-change-impact.md` |
