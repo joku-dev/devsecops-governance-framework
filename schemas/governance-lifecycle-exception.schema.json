@@ -1,0 +1,143 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "exception"
+    },
+    "record_id": {
+      "type": "string",
+      "pattern": "^exception:[a-zA-Z0-9._-]+$"
+    },
+    "environment": {
+      "const": "synthetic"
+    },
+    "profile_ref": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/versioned_ref"
+    },
+    "finding": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/finding"
+    },
+    "recorded_at": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "waiver_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/resource_ref"
+        },
+        "covered_observation_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "valid_from": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+        },
+        "expires_at": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+        },
+        "supersedes_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+        }
+      },
+      "required": [
+        "expected_revision",
+        "waiver_ref",
+        "covered_observation_refs",
+        "valid_from",
+        "expires_at"
+      ],
+      "additionalProperties": false
+    },
+    "approval": {
+      "type": "object",
+      "properties": {
+        "target_digest": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/digest"
+        },
+        "finding_id": {
+          "type": "string",
+          "pattern": "^finding:[a-f0-9]{64}$"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "subject_type": {
+          "const": "human"
+        },
+        "exception_profile_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/versioned_ref"
+        },
+        "channel": {
+          "const": "synthetic_fixture"
+        },
+        "issued_at": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+        },
+        "disposition": {
+          "enum": [
+            "approve",
+            "reject",
+            "revoke"
+          ]
+        },
+        "proof_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/resource_ref"
+        }
+      },
+      "required": [
+        "target_digest",
+        "finding_id",
+        "expected_revision",
+        "authority",
+        "subjects",
+        "subject_type",
+        "exception_profile_ref",
+        "channel",
+        "issued_at",
+        "disposition",
+        "proof_ref"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "record_id",
+    "environment",
+    "profile_ref",
+    "finding",
+    "recorded_at",
+    "body",
+    "approval"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-exception.schema.json"
+}
