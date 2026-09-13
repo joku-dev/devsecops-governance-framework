@@ -40,7 +40,9 @@ CLG-06.3b ergänzt Architektur-Gate-Kandidaten mit unveränderter Granularität 
 Tests gegen den tatsächlichen Report-Generator. Beide Adapter bleiben diagnostisch;
 Live-Intake und Architektur-Ausnahmezuordnungen sind weiterhin offen.
 Die [konkrete Live-Entscheidungsvorlage](../evidence/governance-lifecycle-live-decision-brief.md)
-enthält die benötigten Rollen und entscheidungsreifen Betriebsvorschläge.
+enthält die am 13. September 2026 bestätigte Mehrfachrolle für `joku-dev`
+und die verbleibenden Betriebsvorschläge. Die [Live-Vorbereitung](../evidence/governance-lifecycle-live-preparation.md)
+implementiert eine versionierte Rollenbindung und ein deaktiviertes Live-Profil.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.

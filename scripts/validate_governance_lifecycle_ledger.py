@@ -9,6 +9,7 @@ from lib.governance_lifecycle.adapter import strict_json
 from lib.governance_lifecycle.contracts import ROOT, require, timestamp
 from lib.governance_lifecycle.kernel import project, replay
 from lib.governance_lifecycle.store import load_transactions
+from lib.governance_lifecycle.live_preparation import PREPARATION_PATH, validate_preparation
 from generate_governance_lifecycle_index import DEFAULT_LEDGER, DEFAULT_INDEX, DEFAULT_PROFILE
 
 LEDGER_PATH = "governance/lifecycle/synthetic"
@@ -50,6 +51,14 @@ def check_accepted_prefix(repo, base_ref):
         require(path.is_file() and not path.is_symlink(), "Accepted exception profile deleted or replaced")
         before = git(repo, "rev-parse", base_ref + ":" + EXCEPTION_PROFILE_PATH).strip()
         require(git(repo, "hash-object", "--", str(path)).strip() == before, "Exception profile requires a versioned migration")
+    # Appointments and profile preparations are versioned separately from evidence.
+    for entry in git(repo, "ls-tree", "-r", base_ref, "--", PREPARATION_PATH).splitlines():
+        metadata, name = entry.split("\t", 1)
+        mode, kind, digest = metadata.split()
+        require(mode == "100644" and kind == "blob", "Unexpected accepted preparation file type")
+        path = Path(repo) / name
+        require(path.is_file() and not path.is_symlink(), "Accepted preparation deleted or replaced")
+        require(git(repo, "hash-object", "--", str(path)).strip() == digest, "Accepted preparation requires a new immutable revision")
     return len(entries)
 
 
@@ -96,6 +105,7 @@ def main():
         print(f"Preserved {count} accepted lifecycle blobs from {args.base_ref}.")
     require(all(tx["schema_version"] != "0.4.0" for tx in load_transactions(DEFAULT_LEDGER)),
             "Exceptions require their separate scenario")
+    validate_preparation()
     index = validate_current()
     pilot = validate_pilot()
     exceptions = validate_exceptions()
