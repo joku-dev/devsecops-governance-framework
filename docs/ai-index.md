@@ -35,6 +35,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Inspect CLG-01 contracts and open pilot decisions | `docs/operations/evidence/governance-lifecycle-contract.md`, `docs/operations/evidence/governance-lifecycle-pilot-decisions.md` (offline contracts; no live runtime) |
 | Use the CLG-02 synthetic finding/event kernel | `docs/operations/evidence/governance-lifecycle-kernel.md`, `scripts/intake_governance_lifecycle_observation.py`, `status/governance-lifecycle-synthetic-index.json` (synthetic only) |
 | Use CLG-03 synthetic decision and remediation intake | `docs/operations/evidence/governance-lifecycle-decisions.md`, `scripts/intake_governance_lifecycle_action.py` (test consent; live authority remains open) |
+| Run the CLG-04 synthetic closure pilot | `docs/demos/demo-governance-lifecycle-pilot.md`, `docs/operations/evidence/governance-lifecycle-closure.md` (live acceptance pending) |
 | Audit the current documentation structure after migrations | `docs/operations/planning/document-structure-audit.md` |
 | Understand organisational DevSecOps governance responsibilities | `docs/governance/devsecops-governance-organisational-role-model.md` |
 | Understand source update impact | `generated/reports/governance-change-impact.md` |
