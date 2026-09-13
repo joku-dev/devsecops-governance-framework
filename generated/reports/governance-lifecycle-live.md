@@ -1,8 +1,8 @@
 # GitHub Lifecycle Pilot Operation
 
-Operating acceptance: **waiting_for_personal_acceptance**. Effective: **false**.
+Operating acceptance: **confirmed**. Effective: **true**.
 Implementation matches the acceptance request: `true`.
-Finding state: `inactive`. Pilot state as of `2026-09-13T13:19:32Z`; evidence as of `2026-09-13T13:19:32Z`.
+Finding state: `no_finding`. Pilot state as of `2026-09-13T16:42:42Z`; evidence as of `2026-09-13T13:19:32Z`.
 Receipts: 1; action records: 0.
 
 The report reflects retained captures. Recheck GitHub before any new operational proposal.
