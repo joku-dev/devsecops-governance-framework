@@ -9,7 +9,7 @@ nicht implementiert. Die Planung ist in
 [GCR-2026-060](../../governance/change-requests/GCR-2026-060-closed-loop-governance-plan.md)
 klassifiziert.
 
-## Fortschritt CLG-01 bis CLG-05
+## Fortschritt CLG-01 bis CLG-06.2
 
 CLG-01 wurde mit PR #76 gemergt. Der
 [Vertragsstand 0.1.0](../evidence/governance-lifecycle-contract.md) enthält
@@ -29,7 +29,10 @@ Ausnahmen mit beobachtungsbezogener Teilabdeckung, Ablauf, Widerruf und
 erneuter Entscheidung. Der technische CLG-05-PR #80 ist gemergt.
 [CLG-06.1](../evidence/governance-lifecycle-overview.md) bereitet als ersten
 Ausbauschritt eine getrennte Szenarioübersicht mit reproduzierbaren Kennzahlen
-vor; der eigene technische PR ist noch zu mergen.
+vor; der technische PR #81 ist gemergt.
+[CLG-06.2](../evidence/governance-lifecycle-viewer.md) ergänzt die getrennte lesende
+Szenarioansicht mit Zustandsübersicht, Ereignisfiltern und Referenzdetails.
+Der eigene technische PR ist noch zu mergen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.
@@ -237,7 +240,7 @@ der Aktionskatalog `architecture/remediation-actions.yaml`. Der Aktionskatalog
 beschreibt Vorschläge; konkrete Behebungsfälle erhalten eigene Instanzen.
 
 `scripts/publish_operational_update.py` unterstützt inzwischen den getrennten
-synthetischen Abschluss-Piloten mit dessen Index/Bericht und der CLG-06.1-Übersicht.
+synthetischen Abschluss-Piloten mit dessen Index/Bericht, der CLG-06.1-Übersicht und dem CLG-06.2-Viewer.
 Weitere Ledger- oder Live-Pfade benötigen einen eigenen eng begrenzten Schreibumfang.
 Automatisierte Beobachtungen und vorgeschlagene Entscheidungen werden von
 akzeptierten menschlichen Entscheidungen getrennt validiert. Ein Pfad in einer
