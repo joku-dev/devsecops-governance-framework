@@ -51,8 +51,8 @@ ergänzt unveränderliche Capture-Transaktionen, Frische, Replay und Quarantäne
 (PR #87 gemergt). Der [persönliche GitHub-Kanaltest](../evidence/governance-lifecycle-personal-channel.md)
 ist mit dem persönlich abgegebenen Kommentar auf PR #87 erfolgreich nachgewiesen.
 Die [aktionsbezogene Freigabeprüfung](../evidence/governance-lifecycle-action-consent.md)
-ergänzt eine eigene unveränderliche Pilotvalidierung. Betriebs-Publisher und
-verantwortliche Betriebsabnahme bleiben offen.
+ergänzt eine eigene unveränderliche Pilotvalidierung. Der [begrenzte Betriebs-Publisher](../evidence/governance-lifecycle-live-operation.md)
+ist vorbereitet; die verantwortliche persönliche Betriebsabnahme LD-07 bleibt offen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.
@@ -289,7 +289,8 @@ verifiziert und als diagnostischer Nachweis gespeichert. Er erteilt keine
 aktionsbezogene Freigabe.
 
 **Live-Zustimmung integrieren und CLG-04 abnehmen:** Nach diesem Nachweis folgen
-der begrenzte Betriebs-Publisher und der konkrete LD-07-Nachweis.
+die persönliche LD-07-Abnahme des vorbereiteten Betriebsleitfadens und die
+erste geprüfte Pilotveröffentlichung über den begrenzten Betriebs-Publisher.
 Die aktionsbezogene Freigabe-/Widerrufs-/Abschlussvalidierung und deren Negativfälle
 sind als eigener technischer Schritt umgesetzt.
 Anschließend dokumentiert der benannte Verantwortliche die Betriebsabnahme LD-07.

@@ -257,7 +257,7 @@ def project_actions(repo=ROOT):
         'revision':len(receipts)+len(actions),'receipt_head_ref':transaction_ref(receipts[-1]) if receipts else None,
         'action_head_ref':transaction_ref(actions[-1]) if actions else None,'finding_state':status,'roles_active':state['roles_active'],
         'active_decision_ref':transaction_ref(state['decision']) if state['decision'] else None,
-        'active_closure_ref':transaction_ref(state['closure']) if state['closure'] else None,
+        'active_closure_ref':transaction_ref(state['closure']) if state['closure'] and not conflicted else None,
         'counts':{'receipts':len(receipts),'actions':len(actions),'failures':len(failures),'quarantined':sum(r['outcome']=='quarantined' for r in receipts)},
         'action_refs':[transaction_ref(a) for a in actions],
         'limitation':'Action eligibility validation only. LD-07 and an explicitly scoped operational publisher remain required.'}

@@ -54,7 +54,7 @@ def check_accepted_prefix(repo, base_ref):
         before = git(repo, "rev-parse", base_ref + ":" + EXCEPTION_PROFILE_PATH).strip()
         require(git(repo, "hash-object", "--", str(path)).strip() == before, "Exception profile requires a versioned migration")
     # Appointments and profile preparations are versioned separately from evidence.
-    for entry in git(repo, "ls-tree", "-r", base_ref, "--", PREPARATION_PATH, OPERATING_PATH, "model/governance/lifecycle/personal-channel", "generated/reports/lifecycle-personal-channel").splitlines():
+    for entry in git(repo, "ls-tree", "-r", base_ref, "--", PREPARATION_PATH, OPERATING_PATH, "model/governance/lifecycle/personal-channel", "generated/reports/lifecycle-personal-channel", "model/governance/lifecycle/operating-acceptance", "model/governance/lifecycle/action-requests", "generated/reports/lifecycle-operating-acceptance").splitlines():
         metadata, name = entry.split("\t", 1)
         mode, kind, digest = metadata.split()
         require(mode == "100644" and kind == "blob", "Unexpected accepted preparation file type")
@@ -117,11 +117,14 @@ def main():
     validate_channel_evidence()
     from generate_lifecycle_pilot_actions import validate as validate_pilot_actions
     validate_pilot_actions()
+    from lib.governance_lifecycle.operating_acceptance import validate as validate_operating, verify_new_captures as verify_operating
+    validate_operating()
     if args.verify_new_provider:
         require(bool(args.base_ref), "Provider verification requires an accepted base")
         print(f"Independently checked {verify_new_receipts(ROOT, args.base_ref)} new pilot receipts against GitHub.")
         print(f"Independently checked {verify_new_captures(ROOT, args.base_ref)} new personal-channel captures against GitHub.")
         print(f"Independently checked {verify_new_actions(ROOT, args.base_ref)} new action proofs against GitHub.")
+        print(f"Independently checked {verify_operating(ROOT, args.base_ref)} new operating acceptance captures against GitHub.")
     index = validate_current()
     pilot = validate_pilot()
     exceptions = validate_exceptions()

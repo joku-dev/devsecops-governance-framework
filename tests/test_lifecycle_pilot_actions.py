@@ -169,6 +169,13 @@ class PilotActionTests(unittest.TestCase):
         self.assertTrue(state_at(self.receipts,self.actions)['reopened'])
         self.assertIsNone(state_at(self.receipts,self.actions)['decision'])
 
+    def test_quarantined_evidence_hides_active_closure_until_clarified(self):
+        self.closed();conflict=self.receipt('fail',self.clock+1);conflict['outcome']='quarantined'
+        with patch('lib.governance_lifecycle.pilot_actions.load_context',return_value=(self.profile,self.binding,self.receipts,self.actions)):
+            index=project_actions()
+            self.assertEqual(index['finding_state'],'needs_clarification')
+            self.assertIsNone(index['active_closure_ref'])
+
     def test_stale_evidence_and_quarantine_prevent_grants(self):
         request=self.decision()
         with self.assertRaisesRegex(ContractError,'stale or future'):
