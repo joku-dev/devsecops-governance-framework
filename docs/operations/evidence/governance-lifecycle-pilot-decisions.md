@@ -136,3 +136,13 @@ rejection, progress, closure and post-closure withdrawal, with independent provi
 checks for new proof and prerequisites. Positive failure/action sequences remain
 injected test fixtures; real PASS creates no finding or fabricated action. The
 bounded operational publisher and accountable LD-07 acceptance remain pending.
+
+## Concrete LD-07 operating request, 13 September 2026
+
+The [bounded manual GitHub workflow and operating runbook](governance-lifecycle-live-operation.md)
+are prepared. A separate digest-bound request asks the named maintainer to accept
+this report-only GRS-002 pilot. The personal channel test and technical merges do
+not satisfy this request. No operating acceptance capture exists yet; effective
+activation remains false. After personal acceptance, the first provider-checked
+publication PR records activation. Portfolio, other consumers and Bitbucket
+operation remain outside this request.

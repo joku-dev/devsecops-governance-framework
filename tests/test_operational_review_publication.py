@@ -68,6 +68,25 @@ class OperationalPublicationTests(unittest.TestCase):
             self.assertTrue(endpoint.endswith(f"/{workflow}/dispatches"))
             self.assertEqual(payload, {"ref": "automation/portfolio/123-1"})
 
+    def test_lifecycle_pilot_requires_acceptance_gate_and_only_pushes_review_branch(self):
+        self.write("status/governance-lifecycle-live.json", '{"official_state":false}\n')
+        with patch('lib.governance_lifecycle.operating_acceptance.validate_publication',side_effect=ValueError('Operating acceptance absent')):
+            with self.assertRaisesRegex(ValueError,'acceptance absent'):self.publish('lifecycle-pilot')
+        self.assertEqual(self.calls,[])
+        with patch('lib.governance_lifecycle.operating_acceptance.validate_publication') as validate:
+            self.publish('lifecycle-pilot');validate.assert_called_once()
+        self.assertEqual(self.git("ls-remote", "origin", "refs/heads/main").split()[0],self.base)
+        self.assertEqual(self.git("diff", "--name-only", self.base, "HEAD").splitlines(),['status/governance-lifecycle-live.json'])
+
+    def test_lifecycle_pilot_cannot_rewrite_acceptance_or_publish_role_configuration(self):
+        path='generated/reports/lifecycle-operating-acceptance/00000001.json'
+        self.write(path,'{"original":true}\n');self.git('add',path);self.git('commit','-m','Retained fixture')
+        self.write(path,'{"original":false}\n')
+        with self.assertRaisesRegex(ValueError,'append-only'):selected_paths(self.root,'lifecycle-pilot')
+        self.git('restore',path)
+        self.write('model/governance/lifecycle/operating-acceptance/00000001.json','{}\n')
+        with self.assertRaisesRegex(ValueError,'out-of-scope'):selected_paths(self.root,'lifecycle-pilot')
+
     def test_no_change_opens_no_pr(self):
         self.assertIsNone(self.publish())
         self.assertEqual(self.calls, [])
