@@ -39,9 +39,9 @@ def require(condition: bool, message: str) -> None:
         raise ContractError(message)
 
 
-@lru_cache(maxsize=6)
+@lru_cache(maxsize=8)
 def schema_validator(kind: str) -> Draft202012Validator:
-    require(kind in (*KINDS, "profile"), "Unknown lifecycle schema kind")
+    require(kind in (*KINDS, "profile", "transaction", "index"), "Unknown lifecycle schema kind")
     resources = []
     for path in sorted((ROOT / "schemas").glob("governance-lifecycle-*.schema.json")):
         schema = json.loads(path.read_text(encoding="utf-8"))
