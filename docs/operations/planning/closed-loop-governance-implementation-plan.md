@@ -9,7 +9,7 @@ nicht implementiert. Die Planung ist in
 [GCR-2026-060](../../governance/change-requests/GCR-2026-060-closed-loop-governance-plan.md)
 klassifiziert.
 
-## Fortschritt CLG-01 bis CLG-06.2
+## Fortschritt CLG-01 bis CLG-06.3
 
 CLG-01 wurde mit PR #76 gemergt. Der
 [Vertragsstand 0.1.0](../evidence/governance-lifecycle-contract.md) enthält
@@ -32,7 +32,10 @@ Ausbauschritt eine getrennte Szenarioübersicht mit reproduzierbaren Kennzahlen
 vor; der technische PR #81 ist gemergt.
 [CLG-06.2](../evidence/governance-lifecycle-viewer.md) ergänzt die getrennte lesende
 Szenarioansicht mit Zustandsübersicht, Ereignisfiltern und Referenzdetails.
-Der eigene technische PR ist noch zu mergen.
+Der technische PR #82 ist gemergt.
+[CLG-06.3a](../evidence/governance-lifecycle-input-candidates.md) bereitet
+DevSecOps-Control-Ergebnisse als ungeprüfte Eingabekandidaten vor.
+Der eigene technische PR ist noch zu mergen; Live-Intake bleibt offen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.

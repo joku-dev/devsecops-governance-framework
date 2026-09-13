@@ -36,6 +36,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Use the CLG-02 synthetic finding/event kernel | `docs/operations/evidence/governance-lifecycle-kernel.md`, `scripts/intake_governance_lifecycle_observation.py`, `status/governance-lifecycle-synthetic-index.json` (synthetic only) |
 | Use CLG-03 synthetic decision and remediation intake | `docs/operations/evidence/governance-lifecycle-decisions.md`, `scripts/intake_governance_lifecycle_action.py` (test consent; live authority remains open) |
 | Run the CLG-04 synthetic closure pilot | `docs/demos/demo-governance-lifecycle-pilot.md`, `docs/operations/evidence/governance-lifecycle-closure.md` (live acceptance pending) |
+| Prepare CLG-06.3 DevSecOps input candidates | `docs/operations/evidence/governance-lifecycle-input-candidates.md`, `scripts/prepare_lifecycle_devsecops_candidates.py` (unverified declarations; no lifecycle intake) |
 | Open CLG-06.2 read-only scenario viewer | `docs/operations/evidence/governance-lifecycle-viewer.md`, `scripts/generate_governance_lifecycle_viewer.py` (synthetic; separate from official status) |
 | Inspect CLG-06.1 synthetic scenario metrics | `docs/operations/evidence/governance-lifecycle-overview.md`, `scripts/generate_governance_lifecycle_overview.py` (separate histories; no portfolio totals) |
 | Inspect CLG-05 synthetic exceptions | `docs/operations/evidence/governance-lifecycle-exceptions.md`, `scripts/generate_governance_lifecycle_exceptions.py` (observation coverage; no live waiver authority) |
