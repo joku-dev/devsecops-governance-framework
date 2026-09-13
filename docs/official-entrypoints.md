@@ -110,6 +110,7 @@ It is intended for:
 - Closed-loop governance durable pilot intake: `docs/operations/evidence/governance-lifecycle-durable-pilot-intake.md`
 - Closed-loop governance personal channel probe: `docs/operations/evidence/governance-lifecycle-personal-channel.md`
 - Closed-loop governance action consent: `docs/operations/evidence/governance-lifecycle-action-consent.md`
+- Closed-loop governance GitHub pilot operation: `docs/operations/evidence/governance-lifecycle-live-operation.md`
 - Closed-loop governance live evidence preflight: `docs/operations/evidence/governance-lifecycle-live-evidence-preflight.md`
 - Closed-loop governance confirmed pilot roles and disabled profile: `docs/operations/evidence/governance-lifecycle-live-preparation.md`
 - Closed-loop governance live decision brief: `docs/operations/evidence/governance-lifecycle-live-decision-brief.md`

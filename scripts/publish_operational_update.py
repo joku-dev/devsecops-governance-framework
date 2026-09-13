@@ -13,6 +13,8 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 LEDGERS = (
+    "governance/lifecycle/live-validation/transactions/", "governance/lifecycle/pilot-actions/transactions/",
+    "generated/reports/lifecycle-operating-acceptance/",
     "governance/lifecycle/synthetic-closure/transactions/",
     "status/results/", "status/architecture-results/", "status/typed-evidence-results/",
     "status/collection-attempts/", "status/intake-events/", "status/intake-conflicts/",
@@ -26,6 +28,15 @@ COMMON = (
     "generated/viewer/status-viewer.html",
 )
 SCOPES = {
+    "lifecycle-pilot": ("governance/lifecycle/live-validation/transactions/",
+                        "governance/lifecycle/pilot-actions/transactions/",
+                        "generated/reports/lifecycle-operating-acceptance/",
+                        "status/governance-lifecycle-live-validation.json",
+                        "generated/reports/governance-lifecycle-live-validation.md",
+                        "status/governance-lifecycle-pilot-actions.json",
+                        "generated/reports/governance-lifecycle-pilot-actions.md",
+                        "status/governance-lifecycle-live.json",
+                        "generated/reports/governance-lifecycle-live.md"),
     "lifecycle-synthetic": ("governance/lifecycle/synthetic-closure/transactions/",
                             "status/governance-lifecycle-closure-index.json",
                             "generated/reports/governance-lifecycle-pilot.md",
@@ -97,6 +108,9 @@ def publish(root: Path, *, scope: str, repository: str, run_id: str, attempt: st
     git(root, "fetch", "origin", "main")
     # Never carry an unreviewed workflow or normative commit into the PR ancestry.
     git(root, "merge-base", "--is-ancestor", "HEAD", "refs/remotes/origin/main")
+    if scope == "lifecycle-pilot":
+        from lib.governance_lifecycle.operating_acceptance import validate_publication
+        validate_publication(root, git(root, "rev-parse", "refs/remotes/origin/main").strip())
     if scope == "lifecycle-synthetic":
         from validate_governance_lifecycle_ledger import check_accepted_prefix, validate_pilot
         check_accepted_prefix(root, git(root, "rev-parse", "refs/remotes/origin/main").strip())
@@ -127,6 +141,8 @@ def publish(root: Path, *, scope: str, repository: str, run_id: str, attempt: st
             f"Scope: `{scope}`. Proposed commit: `{head}`.\n\n" +
             ("Synthetic lifecycle proposal only; fixture consent is not human authentication and live activation remains disabled. "
              if scope == "lifecycle-synthetic" else "") +
+            ("Scoped report-only GRS-002 pilot; effective LD-07 and action-specific consent are checked independently. "
+             if scope == "lifecycle-pilot" else "") +
             "Only allowlisted operational evidence and projections are included. "
             "The official indexes and viewer change only after review and merge. "
             "No automatic approval or merge is performed.\n\n"

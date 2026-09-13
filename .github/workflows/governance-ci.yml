@@ -42,13 +42,16 @@ jobs:
         run: python3 scripts/validate_governance_repo.py
 
       - name: Validate accepted lifecycle history
-        if: github.event_name == 'pull_request' || github.event_name == 'push'
+        if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         env:
           GH_TOKEN: ${{ github.token }}
           LIFECYCLE_EVENT: ${{ github.event_name }}
           LIFECYCLE_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
-          if [ "$LIFECYCLE_EVENT" = "pull_request" ]; then
+          if [ "$LIFECYCLE_EVENT" = "workflow_dispatch" ]; then
+            LIFECYCLE_BASE_SHA="$(git rev-parse refs/remotes/origin/main)"
+          fi
+          if [ "$LIFECYCLE_EVENT" = "pull_request" ] || [ "$LIFECYCLE_EVENT" = "workflow_dispatch" ]; then
             python3 scripts/validate_governance_lifecycle_ledger.py --base-ref "$LIFECYCLE_BASE_SHA" --verify-new-provider
           else
             python3 scripts/validate_governance_lifecycle_ledger.py --base-ref "$LIFECYCLE_BASE_SHA"
