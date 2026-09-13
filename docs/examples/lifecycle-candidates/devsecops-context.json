@@ -1,0 +1,16 @@
+{
+  "baseline_ref": "synthetic-baseline",
+  "branch": "main",
+  "commit_id": "1111111111111111111111111111111111111111",
+  "event": "push",
+  "observed_at": "2026-09-13T12:00:00Z",
+  "policy_revision": "2222222222222222222222222222222222222222",
+  "producer_id": "fixture:control-evaluation",
+  "purpose": "diagnostic",
+  "release_context": false,
+  "report_sha256": "fb9d1dcfdfae8fe5ae61cddca6e8d0d66a86d94d28697570803b811785f60abe",
+  "repository_id": "synthetic/lifecycle-adapters",
+  "run_attempt": 1,
+  "run_id": "11",
+  "synthetic": true
+}
