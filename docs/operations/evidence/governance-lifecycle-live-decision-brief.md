@@ -44,13 +44,15 @@ Rollen, GitHub-Kanal als Umsetzungsrichtung und Betriebswerte sind bestätigt.
 Der [persönliche GitHub-Kanaltest](governance-lifecycle-personal-channel.md) ist
 mit dem persönlich abgegebenen Kommentar auf PR #87 erfolgreich nachgewiesen.
 Die [aktionsbezogene Zustimmungsverifikation](governance-lifecycle-action-consent.md)
-ist als getrennte Pilotvalidierung umgesetzt. Als nächste Schritte folgen der
-begrenzte Betriebs-Publisher und die abschließende Betriebsabnahme.
+ist als getrennte Pilotvalidierung umgesetzt (PR #90 gemergt). Der
+[begrenzte Betriebs-Publisher und Abnahmeantrag](governance-lifecycle-live-operation.md)
+sind vorbereitet. Der nächste erforderliche menschliche Schritt ist LD-07: die
+persönliche Abnahme des konkret beschriebenen manuellen Report-only-Piloten.
 
 | Entscheidung | Vorschlag | Folge / noch erforderlicher Nachweis |
 |---|---|---|
 | LD-02: bewusste, authentifizierte Zustimmung | Eigener Review eines unveränderlichen Entscheidungsdatensatzes mit Inhaltsdigest und erwarteter Finding-Revision | Kanal und persönliche Abgabe sind bestätigt. Der vorbereitete Kanaltest prüft Identität, Inhaltsdigest, Disposition und Widerruf. Die persönliche Erklärung ist verifiziert; die aktionsbezogene Pilotvalidierung bindet Entscheidungen, Fortschritt, Abschluss und Widerruf. Operative Annahme bleibt von LD-07 abhängig. |
-| LD-07: Live-Abnahme | Zuerst lesenden Evidenz-Intake prüfen, danach Freigabe-/Widerrufs-/Abschluss-Negativfälle und Betriebs-Runbook abnehmen | Benannte Verantwortliche dokumentieren die Abnahme einschließlich Korrektur und Widerruf nach einem Abschluss. Erst anschließend Live-Aktivierung im bestätigten Umfang. |
+| LD-07: Live-Abnahme | Vorbereiteten Betriebsleitfaden und gebundenen Antrag für den manuellen GRS-002-Piloten prüfen | `joku-dev` gibt die eigene Erklärung auf PR #91 ab. Der Workflow erfasst sie und öffnet einen geprüften PR; erst dessen Merge aktiviert die separate Pilotansicht. Einzelfreigaben und Widerruf bleiben erforderlich. |
 
 ## Was diese Entscheidung freigibt
 

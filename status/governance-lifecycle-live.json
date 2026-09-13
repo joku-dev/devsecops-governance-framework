@@ -1,0 +1,39 @@
+{
+  "active_closure_ref": null,
+  "active_decision_ref": null,
+  "as_of": "2026-09-13T13:19:32Z",
+  "candidate_projection_digest": "bc87297146d80fc6646c518ae0a54c2276df78e5cc9dc0af26454e6bc9b5f562",
+  "counts": {
+    "actions": 0,
+    "failures": 0,
+    "quarantined": 0,
+    "receipts": 1
+  },
+  "enforcement": "report_only",
+  "evidence_as_of": "2026-09-13T13:19:32Z",
+  "finding_state": "inactive",
+  "index_type": "governance-lifecycle-live-pilot",
+  "limitation": "Manual report-only pilot. No automatic remediation, baseline change or other consumer state update.",
+  "live_activation_approved": false,
+  "official_state": false,
+  "operating_acceptance": {
+    "capture_digest": null,
+    "captured_at": null,
+    "effective": false,
+    "implementation_matches": true,
+    "request_digest": "0ac280399f7ef5fb1af490dd0f9ca02be356ddac38cba2ae192c6ec82185114a",
+    "roles_active": true,
+    "status": "waiting_for_personal_acceptance"
+  },
+  "promotion_basis": "Explicit LD-07 acceptance of the separate pilot validation projection; source receipts remain unchanged",
+  "schema_version": "0.1.0",
+  "scope": {
+    "domain": "governance_repository_security",
+    "enforcement": "report_only",
+    "github_repository_id": 1301369468,
+    "pilot_only": true,
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "resource": "refs/heads/main",
+    "rule_id": "GRS-002"
+  }
+}
