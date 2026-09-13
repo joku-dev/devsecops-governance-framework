@@ -71,3 +71,12 @@ whole remediation plan, validates test consent against the fixed role binding,
 and persists rejection, withdrawal and progress. LD-01–05 and LD-07 remain open;
 fixture consistency is not authenticated human consent. LD-06 also covers action
 transactions through the shared revision, atomic append and Git-prefix checks.
+
+## CLG-04 technical preparation
+
+The [closure implementation](governance-lifecycle-closure.md) and
+[pilot runbook](../../demos/demo-governance-lifecycle-pilot.md) now exercise
+synthetic closure/reopening, explicit-time reports and a bounded review-PR
+publisher scope. The separately dated live observation is not accepted lifecycle
+evidence. LD-01–05 and LD-07 remain open, including accountable acceptance and
+post-closure correction/withdrawal procedure. No runtime release is approved.

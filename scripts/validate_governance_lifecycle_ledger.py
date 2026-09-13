@@ -12,6 +12,8 @@ from lib.governance_lifecycle.store import load_transactions
 from generate_governance_lifecycle_index import DEFAULT_LEDGER, DEFAULT_INDEX, DEFAULT_PROFILE
 
 LEDGER_PATH = "governance/lifecycle/synthetic"
+PILOT_LEDGER_PATH = "governance/lifecycle/synthetic-closure"
+LEDGER_PATHS = (LEDGER_PATH, PILOT_LEDGER_PATH)
 PROFILE_PATH = "model/governance/lifecycle/synthetic-grs002-profile.json"
 
 
@@ -24,11 +26,11 @@ def check_accepted_prefix(repo, base_ref):
     require(re.fullmatch(r"[a-f0-9]{40}", base_ref) is not None, "Base must be an immutable Git SHA")
     require(base_ref != "0" * 40, "An existing accepted base is required")
     git(repo, "cat-file", "-e", base_ref + "^{commit}")
-    tracked = git(repo, "ls-files", "--", LEDGER_PATH).splitlines()
+    tracked = git(repo, "ls-files", "--", *LEDGER_PATHS).splitlines()
     for name in tracked:
-        require(re.fullmatch(re.escape(LEDGER_PATH) + r"/transactions/[0-9]{8,}-[a-f0-9]{64}\.json", name)
+        require(re.fullmatch("(?:" + "|".join(re.escape(p) for p in LEDGER_PATHS) + r")/transactions/[0-9]{8,}-[a-f0-9]{64}\.json", name)
                 is not None, "Only published transactions may be tracked in the ledger")
-    entries = git(repo, "ls-tree", "-r", base_ref, "--", LEDGER_PATH).splitlines()
+    entries = git(repo, "ls-tree", "-r", base_ref, "--", *LEDGER_PATHS).splitlines()
     for entry in entries:
         metadata, name = entry.split("\t", 1)
         mode, kind, digest = metadata.split()
@@ -55,6 +57,16 @@ def validate_current(ledger=DEFAULT_LEDGER, index_path=DEFAULT_INDEX, profile_pa
     return expected
 
 
+def validate_pilot(repo=ROOT):
+    from generate_governance_lifecycle_pilot import render_report
+    root = Path(repo)
+    index = validate_current(root / PILOT_LEDGER_PATH, root / "status/governance-lifecycle-closure-index.json",
+                             root / PROFILE_PATH)
+    report = root / "generated/reports/governance-lifecycle-pilot.md"
+    require(report.read_text() == render_report(index), "Lifecycle pilot report differs from projection")
+    return index
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-ref")
@@ -63,7 +75,8 @@ def main():
         count = check_accepted_prefix(ROOT, args.base_ref)
         print(f"Preserved {count} accepted lifecycle blobs from {args.base_ref}.")
     index = validate_current()
-    print(f"Lifecycle: valid synthetic ledger and index; {index['counts']}; no live closure.")
+    pilot = validate_pilot()
+    print(f"Lifecycle: original scenario {index['counts']}; synthetic closure pilot {pilot['counts']}; no live activation.")
 
 
 if __name__ == "__main__":

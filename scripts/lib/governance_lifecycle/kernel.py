@@ -1,4 +1,4 @@
-"""Deterministic synthetic lifecycle reduction; live authority and closure are unavailable."""
+"""Deterministic synthetic lifecycle reduction; live authority is unavailable."""
 from copy import deepcopy
 import base64
 
@@ -27,7 +27,7 @@ def transaction_name(transaction):
 
 def empty_state():
     return {"transactions": [], "observations": {}, "deliveries": {}, "events": {}, "conflicts": [],
-            "actions": {}, "decision_status": {}, "remediation_heads": {}}
+            "actions": {}, "decision_status": {}, "remediation_heads": {}, "closures": {}, "active_closures": {}}
 
 
 def current_revision(state, finding):
@@ -62,6 +62,10 @@ def make_event(observation, state, reason):
     if not events and (conflict or observation["body"]["result"] != "fail"):
         return None
     event_type = "clarification_required" if conflict else ("observation_added" if events else "finding_opened")
+    if not conflict and state["active_closures"]:
+        from .closure import reopens
+        if reopens(observation, state):
+            event_type = "finding_reopened"
     source = observation
     if conflict:
         # Quarantined input is retained in its transaction, not accepted as an event source.
@@ -120,6 +124,14 @@ def prepare_transaction(observation, resources, profile, state, *, expected_revi
 
 
 def apply_transaction(transaction, state):
+    if transaction["schema_version"] == "0.3.0":
+        record = transaction["record"]
+        state["transactions"].append(transaction)
+        state["closures"][record["record_id"]] = record
+        fid = record["finding"]["finding_id"]
+        state["active_closures"][fid] = record
+        state["events"][fid].append(transaction["event"])
+        return
     if transaction["schema_version"] == "0.2.0":
         from .decisions import apply_action
         state["transactions"].append(transaction)
@@ -137,6 +149,8 @@ def apply_transaction(transaction, state):
     if transaction["event"]:
         fid = observation["finding"]["finding_id"]
         state["events"].setdefault(fid, []).append(transaction["event"])
+        if transaction["event"]["body"]["event_type"] == "finding_reopened":
+            state["active_closures"].pop(fid)
 
 
 def replay(transactions, profile):
@@ -145,9 +159,14 @@ def replay(transactions, profile):
     state = empty_state()
     for transaction in transactions:
         action = transaction.get("schema_version") == "0.2.0"
-        schema_validator("action-transaction" if action else "transaction").validate(transaction)
+        closure = transaction.get("schema_version") == "0.3.0"
+        schema_validator("closure-transaction" if closure else "action-transaction" if action else "transaction").validate(transaction)
         resources = {uri: base64.b64decode(data, validate=True) for uri, data in transaction["resources"].items()}
-        if action:
+        if closure:
+            from .closure import prepare_closure_transaction
+            expected = prepare_closure_transaction(transaction["record"], resources, profile, state,
+                                                   expected_revision=transaction["expected_revision"])
+        elif action:
             from .decisions import prepare_action_transaction
             expected = prepare_action_transaction(transaction["record"], resources, profile, state,
                                                   expected_revision=transaction["expected_revision"])
@@ -190,5 +209,8 @@ def project(transactions, profile, *, as_of):
     if state["actions"]:
         from .decisions import add_action_projection
         add_action_projection(index, state, as_of)
-    schema_validator("action-index" if state["actions"] else "index").validate(index)
+    if state["closures"]:
+        from .closure import add_closure_projection
+        add_closure_projection(index, state)
+    schema_validator("closure-index" if state["closures"] else "action-index" if state["actions"] else "index").validate(index)
     return index

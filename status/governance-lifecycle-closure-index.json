@@ -1,0 +1,120 @@
+{
+  "as_of": "2026-09-13T14:20:00Z",
+  "conflict_refs": [],
+  "counts": {
+    "closures": 1,
+    "conflicts": 0,
+    "decisions": 1,
+    "events": 9,
+    "findings": 1,
+    "observations": 4,
+    "remediations": 3,
+    "transactions": 9
+  },
+  "enforcement": "report_only",
+  "environment": "synthetic",
+  "findings": [
+    {
+      "active_closure_ref": null,
+      "active_decision_ref": {
+        "digest": "f44f62a1bdb9f97eb923ebe0eb2823e26e0bf8aa3ab1a697d9a4e7241c356fb6",
+        "id": "decision:closure-demo"
+      },
+      "closure_refs": [
+        {
+          "digest": "a04c6fb27aa25ba3491f3bf90f16bc2dd184598227789fdbcaedbc84b23dbad1",
+          "id": "closure:demo"
+        }
+      ],
+      "closure_supported": true,
+      "conflict_refs": [],
+      "decision_records": [
+        {
+          "disposition": "approve",
+          "effective_status": "approved",
+          "record_ref": {
+            "digest": "f44f62a1bdb9f97eb923ebe0eb2823e26e0bf8aa3ab1a697d9a4e7241c356fb6",
+            "id": "decision:closure-demo"
+          }
+        }
+      ],
+      "evidence_status": "fail",
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "first_failure_ref": {
+        "digest": "aa69260af42d7d41550b2b982a58e38e8976e117307aa96ab32333cac3e7a1a9",
+        "id": "observation:d6a69a42ac15d7de3ce0d2db9c37eedb04bfadfeb1ea0abe9c1e511e004b8386"
+      },
+      "identity": {
+        "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+        "fingerprint_version": "1",
+        "key": {
+          "domain": "governance_repository_security",
+          "finding_type": "criterion_failure",
+          "repository_id": "synthetic/governance-lifecycle",
+          "resource": "refs/heads/main",
+          "rule_id": "GRS-002"
+        }
+      },
+      "last_event_ref": {
+        "digest": "4cbdc2a2084c56224da9d15dbcc2b4e58d04c1b7cc84abef3cf985ac1aa5bb1d",
+        "id": "event:798eaa7dfa2a443e9a9fac930d97a4cc72d90827a77b3557643f0d4090a2ca15"
+      },
+      "latest_observation_ref": {
+        "digest": "4e752b6ee38f2506ae2358d1d459319744b5de6001c2d043d408a1c5cfa88bb3",
+        "id": "observation:2e26ef791456a0dcb70777b4b2cd86084a50af19a3ca0579172e51f8e6aaa771"
+      },
+      "observation_refs": [
+        {
+          "digest": "4e752b6ee38f2506ae2358d1d459319744b5de6001c2d043d408a1c5cfa88bb3",
+          "id": "observation:2e26ef791456a0dcb70777b4b2cd86084a50af19a3ca0579172e51f8e6aaa771"
+        },
+        {
+          "digest": "041fa05f1855d64776d1299e267489075288f73fdef9030d4f5725ccdb7f46a3",
+          "id": "observation:3d54c56a812d60b29b8a54484435584425892d6cae3f906967d5453286e15383"
+        },
+        {
+          "digest": "f804d2a76c755c0abee10f211ce282f46aa863575c31a1423427ef3a98a91818",
+          "id": "observation:489b30e6dcca548dd6ab2b61ce56a4107743fb6a8dbd68f0ef8915c5597115c4"
+        },
+        {
+          "digest": "aa69260af42d7d41550b2b982a58e38e8976e117307aa96ab32333cac3e7a1a9",
+          "id": "observation:d6a69a42ac15d7de3ce0d2db9c37eedb04bfadfeb1ea0abe9c1e511e004b8386"
+        }
+      ],
+      "occurrences": 3,
+      "remediation_cases": [
+        {
+          "authorization_status": "approved",
+          "decision_ref": {
+            "digest": "f44f62a1bdb9f97eb923ebe0eb2823e26e0bf8aa3ab1a697d9a4e7241c356fb6",
+            "id": "decision:closure-demo"
+          },
+          "latest_record_ref": {
+            "digest": "d4f73f68da8d824966c067bf6894a2fdfdbdae88763d74cd8ee175d07861ec75",
+            "id": "remediation:closure-demo-completed"
+          },
+          "overdue": false,
+          "owner_id": "test-human:remediation-owner",
+          "progress": "completed",
+          "remediation_id": "remediation-case:closure-demo",
+          "target_at": "2026-09-14T12:00:00Z"
+        }
+      ],
+      "reopen_count": 1,
+      "revision": 9,
+      "state": "open"
+    }
+  ],
+  "index_type": "governance-lifecycle-synthetic",
+  "ledger_head_ref": {
+    "digest": "824e2f92fd4d4fccce5e2836853767c00e2f8914a54973ec3ac94b4a3673e565",
+    "id": "transaction:b66f44dec649cc8710e31797838a1ace8734439c69c12f6e7682026157c33d8a"
+  },
+  "official_state": false,
+  "profile_ref": {
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0"
+  },
+  "schema_version": "0.3.0"
+}
