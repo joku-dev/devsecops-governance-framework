@@ -54,3 +54,21 @@ def remediation_packet(decision, decision_resources, *, record_id, revision, at,
     uri = body["work_ref"]["uri"]
     resources[uri] = decision_resources[uri]
     return record, resources
+
+
+def closure_packet(profile, failing, passing, remediation, *, record_id, revision, at):
+    body = {"expected_revision": revision, "reason": "remediated", "remediation_ref": record_ref(remediation),
+            "failing_observation_ref": record_ref(failing), "passing_observation_ref": record_ref(passing),
+            "as_of": at, "rationale": "Synthetic closure consent only; not operational approval."}
+    record = {"schema_version": "0.2.0", "record_type": "closure", "record_id": record_id,
+              "environment": "synthetic", "profile_ref": versioned_ref(profile, "profile_id"),
+              "finding": deepcopy(failing["finding"]), "recorded_at": at, "body": body}
+    binding = profile["role_binding"]
+    approval = {"target_digest": approval_target(record), "finding_id": record["finding"]["finding_id"],
+                "expected_revision": revision, "subject_id": binding["assignments"]["closure_approver"],
+                "subject_type": "human", "role": "closure_approver", "role_binding_ref": versioned_ref(binding),
+                "channel": "synthetic_fixture", "issued_at": at, "disposition": "approve"}
+    proof, resources = resource({"environment": "synthetic", "approval": deepcopy(approval)})
+    approval["proof_ref"] = proof
+    record["approval"] = approval
+    return record, resources

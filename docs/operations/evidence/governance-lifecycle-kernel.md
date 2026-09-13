@@ -9,7 +9,8 @@ The kernel persists accepted **synthetic** observations and derived events,
 quarantines conflicting packets, and rebuilds one finding index from immutable
 transactions. The CLG-02 observation interface does not accept decisions or
 remediation; [CLG-03](governance-lifecycle-decisions.md) adds a separate synthetic
-action interface. Live evidence, closure and waivers remain unsupported. A PASS updates the latest evidence result; the finding stays
+action interface. [CLG-04](governance-lifecycle-closure.md) adds a separate
+synthetic closure scenario. Live evidence and waivers remain unsupported. A PASS updates the latest evidence result; the finding stays
 open until a later package implements the complete approved closure chain.
 
 ## Storage and identity
