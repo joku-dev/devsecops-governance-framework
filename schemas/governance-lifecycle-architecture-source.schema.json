@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-architecture-source.schema.json",
+  "title": "Architecture gate report legacy-shape-v1 candidate input",
+  "type": "object",
+  "properties": {
+    "target": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{7,40}$"
+        }
+      },
+      "required": [
+        "commit"
+      ],
+      "additionalProperties": true
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "findings"
+            ]
+          },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "remediations": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "status",
+          "findings",
+          "remediations"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "detailed_evidence": {
+      "type": "object"
+    },
+    "advisories": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "gate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "passed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "with_findings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "finding_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "gate_count",
+        "passed",
+        "with_findings",
+        "finding_count"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "target",
+    "gates",
+    "detailed_evidence",
+    "advisories",
+    "summary"
+  ],
+  "additionalProperties": false
+}
