@@ -50,7 +50,9 @@ Das bestätigte [Betriebsprofil mit dauerhaftem Pilot-Intake](../evidence/govern
 ergänzt unveränderliche Capture-Transaktionen, Frische, Replay und Quarantäne
 (PR #87 gemergt). Der [persönliche GitHub-Kanaltest](../evidence/governance-lifecycle-personal-channel.md)
 ist mit dem persönlich abgegebenen Kommentar auf PR #87 erfolgreich nachgewiesen.
-Aktionsbezogene Freigabeverifikation und Betriebsabnahme bleiben offen.
+Die [aktionsbezogene Freigabeprüfung](../evidence/governance-lifecycle-action-consent.md)
+ergänzt eine eigene unveränderliche Pilotvalidierung. Betriebs-Publisher und
+verantwortliche Betriebsabnahme bleiben offen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.
@@ -287,7 +289,9 @@ verifiziert und als diagnostischer Nachweis gespeichert. Er erteilt keine
 aktionsbezogene Freigabe.
 
 **Live-Zustimmung integrieren und CLG-04 abnehmen:** Nach diesem Nachweis folgen
-die aktionsbezogene Freigabe-/Widerrufs-/Abschlussintegration und deren Negativfälle.
+der begrenzte Betriebs-Publisher und der konkrete LD-07-Nachweis.
+Die aktionsbezogene Freigabe-/Widerrufs-/Abschlussvalidierung und deren Negativfälle
+sind als eigener technischer Schritt umgesetzt.
 Anschließend dokumentiert der benannte Verantwortliche die Betriebsabnahme LD-07.
 Rollen und LD-04/05-Betriebswerte sind bereits bestätigt. Portfolio (CLG-06.4) und
 optionale KI-Unterstützung (CLG-06.5) bleiben nachgelagerte Erweiterungen.
