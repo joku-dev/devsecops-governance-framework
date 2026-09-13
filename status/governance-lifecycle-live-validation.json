@@ -1,15 +1,15 @@
 {
-  "as_of": "2026-09-13T13:19:32Z",
+  "as_of": "2026-09-13T16:50:22Z",
   "counts": {
-    "eligible": 1,
+    "eligible": 2,
     "failures": 0,
     "quarantined": 0,
-    "receipts": 1
+    "receipts": 2
   },
   "enforcement": "report_only",
   "head_ref": {
-    "digest": "b95d0644d894b43ef062125abe2b1303879fc9a80d52be593a090fa4d01dc127",
-    "id": "transaction:b34824612c5aa66f6002ae34e0b8aa7b0d95a066c576e91affcbedc3817cf171"
+    "digest": "b2d4f3fc20da8c21655b7286faafc4160afbf742c196f8f6411f2846776d1318",
+    "id": "transaction:9a78d28ede025da43c5f57dcb3e71ebedce96830b2269a4ca5d0afd5fc732631"
   },
   "index_type": "lifecycle-live-pilot-validation",
   "latest_criterion_result": "pass",
@@ -25,6 +25,10 @@
     {
       "digest": "b95d0644d894b43ef062125abe2b1303879fc9a80d52be593a090fa4d01dc127",
       "id": "transaction:b34824612c5aa66f6002ae34e0b8aa7b0d95a066c576e91affcbedc3817cf171"
+    },
+    {
+      "digest": "b2d4f3fc20da8c21655b7286faafc4160afbf742c196f8f6411f2846776d1318",
+      "id": "transaction:9a78d28ede025da43c5f57dcb3e71ebedce96830b2269a4ca5d0afd5fc732631"
     }
   ],
   "schema_version": "0.1.0"
