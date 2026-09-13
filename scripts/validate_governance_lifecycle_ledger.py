@@ -100,7 +100,9 @@ def main():
     pilot = validate_pilot()
     exceptions = validate_exceptions()
     from generate_governance_lifecycle_overview import validate_overview
-    validate_overview()
+    overview = validate_overview()
+    from generate_governance_lifecycle_viewer import validate_viewer
+    validate_viewer(overview=overview)
     print(f"Lifecycle: exceptions {exceptions['counts']}; original scenario {index['counts']}; synthetic closure pilot {pilot['counts']}; no live activation.")
 
 

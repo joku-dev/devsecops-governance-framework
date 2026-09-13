@@ -88,14 +88,16 @@ human approval.
 - `status/governance-lifecycle-closure-index.json`;
 - `generated/reports/governance-lifecycle-pilot.md`;
 - `status/governance-lifecycle-overview.json` and
-  `generated/reports/governance-lifecycle-overview.md` (CLG-06.1 derived reporting).
+  `generated/reports/governance-lifecycle-overview.md` (CLG-06.1 derived reporting);
+- `generated/viewer/governance-lifecycle-viewer.html` (CLG-06.2 read-only presentation).
 
 The publisher rejects modifications/deletions of accepted evidence, changes to
 the profile, scripts, original scenario or consumer indexes, and symlink paths.
 After fetching main it checks ancestry, the accepted prefix, complete replay,
-current index, pilot report and scenario overview equality before creating its
+current index, pilot report, scenario overview and viewer equality before creating its
 branch or pushing. Regenerate the [overview](governance-lifecycle-overview.md)
-after appending history, using an explicit `as_of` that covers all three scenarios.
+after appending history, using an explicit `as_of` that covers all three scenarios,
+then regenerate the [viewer](governance-lifecycle-viewer.md).
 Publication produces an `automation/lifecycle-synthetic/<run>-<attempt>` review
 PR and dispatches the existing required workflows. It never approves, merges,
 changes main or authenticates fixture consent. If main advances during this

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-@@SCRIPT_HASH@@'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Lifecycle scenarios · Governance Lab</title>
+<style>
+:root{color-scheme:light;--ink:#173333;--muted:#506464;--line:#d8e3de;--paper:#fff;--ground:#f3f6f2;--green:#176653;--amber:#87531a;--red:#a23c37}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--green)}h1,h2,h3,p{margin:0}h1{font-size:clamp(30px,4vw,46px);letter-spacing:-1.5px;line-height:1.14}h2{font-size:21px;letter-spacing:-.5px}h3{font-size:16px}button,input,select{font:inherit;color:inherit}button,select,input{border:1px solid #9cafaa;border-radius:8px;padding:10px 12px;background:white}button{cursor:pointer}button:hover{background:#edf4ef}input{min-width:0;width:100%}:focus-visible{outline:3px solid #1a7869;outline-offset:3px}.skip{position:absolute;top:-60px;left:20px;z-index:5;background:white;padding:12px}.skip:focus{top:10px}.shell{max-width:1320px;margin:auto;padding:0 32px}.topbar{border-bottom:1px solid var(--line);background:#fff}.topbar .shell{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px}.brand{font-weight:750;letter-spacing:.04em}.brand span{display:inline-grid;place-items:center;background:var(--ink);color:white;border-radius:7px;width:30px;height:30px;margin-right:10px;font-size:15px}.tag{display:inline-block;border-radius:999px;padding:4px 10px;background:#e4efe8;color:#245743;font-size:12px;font-weight:700;letter-spacing:.03em}.tag.amber{background:#faecd5;color:#77501e}.muted{color:var(--muted)}.small{font-size:13px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--green);font-weight:750;margin-bottom:12px}.intro{padding:40px 0 26px;display:flex;align-items:end;justify-content:space-between;gap:26px}.intro p{max-width:670px;margin-top:14px;color:var(--muted)}.stamp{white-space:nowrap;text-align:right}.stamp strong{display:block;font-size:14px;margin-top:6px;font-variant-numeric:tabular-nums}.notice{background:#fff7e9;border:1px solid #ead4b1;border-radius:10px;padding:14px 18px;color:#714b20;margin-bottom:24px}.notice strong{font-weight:750}.selector{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 24px;background:var(--ink);color:white;border-radius:12px}.selector label{display:block;font-size:12px;color:#c4d8d2;margin-bottom:7px;font-weight:650}.selector select{min-width:280px;font-weight:600;color:var(--ink)}.selector p{max-width:620px;color:#dfebe6}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:20px 0}.card,.panel{background:var(--paper);border:1px solid var(--line);border-radius:12px}.card{padding:22px}.card h2{font-size:12px;color:var(--muted);font-weight:650;text-transform:uppercase;letter-spacing:.075em}.value{font-size:26px;letter-spacing:-.6px;font-weight:700;line-height:1.25;margin:12px 0 8px}.card p{font-size:13px;color:var(--muted)}.panel{padding:24px;margin-bottom:20px}.panel-head{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:20px}.panel-head p{margin-top:5px}.findings{display:grid;gap:14px}.finding{border-top:1px solid var(--line);padding-top:16px}.finding:first-child{border:0;padding-top:0}.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:16px 0}.fact dt{font-size:12px;color:var(--muted);margin-bottom:4px}.fact dd{margin:0;font-weight:600;overflow-wrap:anywhere}.status{font-weight:650}.status.open{color:var(--amber)}.status.closed{color:var(--green)}.status.needs_clarification,.status.revoked,.status.expired{color:var(--red)}.columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}.columns .panel{min-width:0}.item{padding:16px 0;border-top:1px solid var(--line)}.item:first-child{padding-top:0;border:0}.item p{margin-top:5px}details{margin-top:12px;font-size:13px}summary{cursor:pointer;color:var(--green);font-weight:600}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6f3;border-radius:6px;padding:12px;font-size:11px;line-height:1.65;max-width:100%;overflow:auto}.filters{display:grid;grid-template-columns:220px minmax(160px,1fr) auto;align-items:end;gap:12px;margin-bottom:16px}.filters label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}.filters select{width:100%}.table-scroll{overflow:auto}table{width:100%;border-collapse:collapse;text-align:left}th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:650;padding:12px;border-bottom:1px solid var(--line);white-space:nowrap}td{padding:15px 12px;border-bottom:1px solid #e6ece8;vertical-align:top;font-size:13px}tbody tr:last-child td{border-bottom:0}.revision{font-size:12px;border-radius:6px;background:#edf2ee;padding:5px 8px;display:inline-block}.time{white-space:nowrap;font-variant-numeric:tabular-nums;font-size:12px}.event-cell{min-width:205px;max-width:430px}td details{max-width:400px}.empty{padding:22px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);text-align:center}.footer{padding:8px 0 34px;color:var(--muted);font-size:12px}.footer p+p{margin-top:6px}[hidden]{display:none!important}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:1fr}.selector{align-items:start;flex-direction:column}.intro{align-items:start;flex-direction:column}.stamp{text-align:left}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.shell{padding:0 16px}.topbar .shell{gap:8px}.brand{font-size:12px}.topbar .small{font-size:11px}.intro{padding-top:28px}.cards{gap:10px}.card{padding:16px}.value{font-size:21px}.selector,.panel{padding:18px}.selector select{min-width:0;width:100%}.selector>div{width:100%}.filters{grid-template-columns:1fr}.filters button{width:100%}.panel-head{flex-direction:column}.notice{font-size:13px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to scenarios</a>
+<header class="topbar"><div class="shell"><div class="brand"><span>G</span>GOVERNANCE LAB</div><div class="small muted">CLG-06.2 <span class="tag">Read-only</span></div></div></header>
+<main class="shell" id="main">
+<section class="intro" aria-labelledby="page-title"><div><div class="eyebrow">Closed-loop governance</div><h1 id="page-title">Lifecycle scenarios</h1><p>Follow the evidence, decisions and treatment of a finding through three independent test histories.</p></div><div class="stamp small muted">Synthetic evaluation instant<strong id="as-of">Loading snapshot…</strong></div></section>
+<div class="notice"><strong>Synthetic · Report-only · No official state.</strong> These scenarios share a test finding identity. Live acceptance is pending; fixture consent does not establish human authority.</div>
+<noscript><div class="notice">Enable JavaScript to inspect this offline snapshot, or read the generated governance-lifecycle-overview.md report.</div></noscript>
+<div id="load-error" class="notice" role="alert" hidden>Unable to display this snapshot. Regenerate and validate the viewer before using it.</div>
+<div id="app-content" hidden>
+<section class="selector" aria-label="Scenario selection"><div><label for="scenario">Explore a scenario</label><select id="scenario"></select></div><p id="scenario-description"></p></section>
+<div id="scenario-status" class="small muted" role="status" aria-live="polite"></div>
+<section class="cards" aria-label="Selected scenario summary">
+<article class="card"><h2>Current findings</h2><div class="value" id="state-value"></div><p id="state-note"></p></article>
+<article class="card"><h2>Accepted evidence</h2><div class="value" id="evidence-value"></div><p id="evidence-note"></p></article>
+<article class="card"><h2>Closure history</h2><div class="value" id="history-value"></div><p id="history-note"></p></article>
+<article class="card"><h2>Exception coverage</h2><div class="value" id="coverage-value"></div><p id="coverage-note"></p></article>
+</section>
+<section class="panel"><div class="panel-head"><div><h2>Finding snapshot</h2><p class="small muted">Current state and latest evidence are independent. PASS alone does not close a finding.</p></div><span class="tag">GRS-002 · main</span></div><div id="findings" class="findings"></div></section>
+<div class="columns">
+<section class="panel"><div class="panel-head"><div><h2>Remediation</h2><p class="small muted">Latest work per case, including retained cases with withdrawn authorization.</p></div></div><div id="work"></div></section>
+<section class="panel"><div class="panel-head"><div><h2>Exceptions</h2><p class="small muted">Coverage applies to explicit failing observations. Risk acceptance does not count as closure.</p></div></div><div id="exceptions"></div></section>
+</div>
+<section class="panel" aria-labelledby="timeline-title"><div class="panel-head"><div><h2 id="timeline-title">Event history</h2><p class="small muted">Accepted recording order. An older effective time can indicate late-arriving evidence.</p></div><span class="tag" id="event-count" role="status" aria-live="polite"></span></div>
+<div class="filters"><div><label for="event-type">Event type</label><select id="event-type"><option value="">All event types</option></select></div><div><label for="event-search">Search this scenario</label><input id="event-search" type="search" placeholder="Event, finding ID, revision or UTC time" autocomplete="off"></div><button id="reset-filters" type="button">Reset filters</button></div>
+<div class="table-scroll"><table id="event-table"><caption class="small muted" style="text-align:left;padding-bottom:8px">Each row retains its event and transaction digest.</caption><thead><tr><th scope="col">Revision</th><th scope="col">Event</th><th scope="col">Recorded (UTC)</th><th scope="col">Effective (UTC)</th></tr></thead><tbody id="events"></tbody></table></div><p id="no-events" class="empty" hidden>No events match these filters.</p>
+</section>
+</div>
+<footer class="footer"><p>One scenario at a time. No portfolio totals or production performance claims.</p><p>Snapshot time is fixed. Filters change the display only; expiry and overdue status are evaluated by the kernel before this page is generated.</p><p>Live decisions LD-01–05 and LD-07 remain open. The official consumer status viewer is separate.</p></footer>
+</main>
+<script id="lifecycle-data" type="application/json">@@DATA@@</script>
+<script id="app">
+"use strict";
+(() => {
+  const $ = id => document.getElementById(id);
+  const labels = {synthetic:"Evidence conflict", "synthetic-closure":"Closure & reopening", "synthetic-exceptions":"Time-limited exceptions"};
+  const descriptions = {synthetic:"A passing observation coexists with unresolved conflicting evidence and withdrawn work authorization.", "synthetic-closure":"A completed remediation is followed by closure, a late older failure and a newer failure that reopens the finding.", "synthetic-exceptions":"Partial coverage, expiry and renewed approval treat accepted failures while the finding remains open."};
+  const names = {finding_opened:"Finding opened", observation_added:"Observation added", clarification_required:"Clarification required", decision_recorded:"Decision recorded", remediation_recorded:"Remediation recorded", finding_closed:"Finding closed", finding_reopened:"Finding reopened", exception_recorded:"Exception recorded", needs_clarification:"Needs clarification", not_evaluated:"Not evaluated", not_applicable:"Not applicable", withdrawal_recorded:"Withdrawal recorded", in_progress:"In progress"};
+  const label = value => names[value] || (value ? value.charAt(0).toUpperCase() + value.slice(1).replaceAll("_", " ") : "None");
+  const el = (tag, text, cls) => {const node=document.createElement(tag); if(text !== undefined) node.textContent=text; if(cls) node.className=cls; return node;};
+  const details = (title, value) => {const node=el("details"); node.append(el("summary",title),el("pre",JSON.stringify(value,null,2)));return node;};
+  const empty = text => el("p",text,"empty");
+  const utc = value => value.replace("T"," ").replace("Z","");
+  const facts = entries => {const dl=el("dl",undefined,"facts");for(const [key,value] of entries){const box=el("div",undefined,"fact");box.append(el("dt",key),el("dd",value));dl.append(box);}return dl;};
+  let overview, selected;
+  function renderEvents() {
+    const type=$("event-type").value, query=$("event-search").value.trim().toLowerCase();
+    const events=selected.events.filter(event => (!type || event.event_type===type) &&
+      (!query || (JSON.stringify(event)+" "+label(event.event_type)).toLowerCase().includes(query)));
+    $("events").replaceChildren();
+    for(const event of events){
+      const row=el("tr"), revision=el("td"), info=el("td",undefined,"event-cell");
+      revision.append(el("span",String(event.revision),"revision"));
+      info.append(el("strong",label(event.event_type)),details("Inspect references",{finding_id:event.finding_id,event_ref:event.event_ref,transaction_ref:event.transaction_ref}));
+      row.append(revision,info,el("td",utc(event.recorded_at),"time"),el("td",utc(event.effective_at),"time"));$("events").append(row);
+    }
+    $("event-count").textContent=`${events.length} of ${selected.events.length} events`;
+    $("event-table").hidden=events.length===0;$("no-events").hidden=events.length!==0;
+  }
+  function renderScenario() {
+    selected=overview.scenarios.find(s => s.scenario_id===$("scenario").value);
+    const m=selected.metrics, projection=selected.projection, findings=projection.findings;
+    $("scenario-description").textContent=descriptions[selected.scenario_id];
+    $("scenario-status").textContent=`Showing ${labels[selected.scenario_id]} · ${findings.length} finding${findings.length===1?"":"s"} in this scenario`;
+    const states=Object.entries(m.current_finding_states).filter(([,n])=>n);
+    $("state-value").textContent=states.length===1?label(states[0][0]):`${findings.length} findings`;
+    $("state-value").className="value status "+(states.length===1?states[0][0]:"");
+    $("state-note").textContent=states.map(([s,n])=>`${n} ${label(s).toLowerCase()}`).join(" · ")||"No finding at this evaluation instant.";
+    $("evidence-value").textContent=`${m.accepted_observation_results.fail} FAIL / ${m.accepted_observation_results.pass} PASS`;
+    $("evidence-note").textContent=`${m.records.conflicts} quarantined inputs, counted separately.`;
+    $("history-value").textContent=`${m.event_types.finding_closed} closed / ${m.event_types.finding_reopened} reopened`;
+    $("history-note").textContent="Historical events; current state is shown separately.";
+    const coverage=Object.entries(m.current_coverage_by_finding).filter(([,n])=>n);
+    $("coverage-value").textContent=coverage.length===1?label(coverage[0][0]):coverage.length?"Mixed":"No findings";
+    $("coverage-note").textContent=coverage.map(([c,n])=>`${n} ${label(c).toLowerCase()}`).join(" · ")||"No coverage to display.";
+    $("findings").replaceChildren();$("work").replaceChildren();$("exceptions").replaceChildren();
+    for(const finding of findings){
+      const box=el("article",undefined,"finding"), key=finding.identity.key;
+      box.append(el("h3",`${key.rule_id} · ${key.resource}`),el("p",key.repository_id,"small muted"),facts([["Finding state",label(finding.state)],["Latest evidence",finding.evidence_status.toUpperCase()],["Revision",String(finding.revision)],["Accepted failures",String(finding.occurrences)]]));
+      box.append(details("Finding, evidence and ledger references",{scenario_id:selected.scenario_id,finding_id:finding.finding_id,latest_observation_ref:finding.latest_observation_ref,active_decision_ref:finding.active_decision_ref||null,active_closure_ref:finding.active_closure_ref||null,conflict_refs:finding.conflict_refs,ledger_head_ref:projection.ledger_head_ref}));
+      $("findings").append(box);
+      for(const work of finding.remediation_cases||[]){const item=el("article",undefined,"item");item.append(el("h3",label(work.progress)),el("p",`Authorization: ${label(work.authorization_status)}`,"status "+work.authorization_status),el("p",`Owner: ${work.owner_id}`,"small"),el("p",`Target: ${utc(work.target_at)} UTC · ${work.overdue?"Overdue":"Not overdue"}`,"small muted"),details("Case and decision references",{finding_id:finding.finding_id,...work}));$("work").append(item);}
+      const treatment=finding.exception_treatment;
+      if(treatment){const item=el("article",undefined,"item");item.append(el("h3",`${label(treatment.coverage)} coverage`),el("p",`${treatment.covered_observation_refs.length} covered / ${treatment.uncovered_observation_refs.length} uncovered accepted failing observations`,"small"),el("p",`Renewed decision required: ${treatment.renewed_decision_required?"Yes":"No"}`,"small"),details("Covered and uncovered observation references",{finding_id:finding.finding_id,covered:treatment.covered_observation_refs,uncovered:treatment.uncovered_observation_refs}));$("exceptions").append(item);
+        for(const record of treatment.exception_records){const grant=el("article",undefined,"item");grant.append(el("h3",label(record.status),"status "+record.status),el("p",record.waiver_id,"small"),el("p",`${utc(record.valid_from)} → ${utc(record.expires_at)} UTC (end exclusive)`,"small muted"),details("Exception record",record));$("exceptions").append(grant);}
+      }
+    }
+    if(!findings.length)$("findings").append(empty("No finding at this evaluation instant."));
+    if(!$("work").children.length)$("work").append(empty("No recorded remediation case in this scenario."));
+    if(!$("exceptions").children.length)$("exceptions").append(empty("Exception treatment is not evaluated in this projection."));
+    $("event-type").replaceChildren();const all=el("option","All event types");all.value="";$("event-type").append(all);
+    for(const type of [...new Set(selected.events.map(e=>e.event_type))]){const option=el("option",label(type));option.value=type;$("event-type").append(option);}
+    $("event-search").value="";renderEvents();
+  }
+  try {
+    overview=JSON.parse($("lifecycle-data").textContent);
+    if(overview.environment!=="synthetic" || overview.official_state!==false || overview.enforcement!=="report_only" || overview.aggregation!=="separate_scenarios")throw new Error("Unexpected context");
+    $("as-of").textContent=utc(overview.as_of)+" UTC";
+    for(const scenario of overview.scenarios){const option=el("option",labels[scenario.scenario_id]);option.value=scenario.scenario_id;$("scenario").append(option);}
+    $("scenario").value="synthetic-closure";renderScenario();
+    $("scenario").addEventListener("change",renderScenario);
+    $("event-type").addEventListener("change",renderEvents);$("event-search").addEventListener("input",renderEvents);
+    $("reset-filters").addEventListener("click",()=>{$("event-type").value="";$("event-search").value="";renderEvents();});
+    $("app-content").hidden=false;
+  } catch(error) {$("load-error").hidden=false;$("app-content").hidden=true;}
+})();
+</script>
+</body>
+</html>
