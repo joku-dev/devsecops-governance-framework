@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from generate_governance_lifecycle_index import DEFAULT_PROFILE
 from generate_governance_lifecycle_pilot import generate
+from generate_governance_lifecycle_overview import generate as generate_overview, OUTPUT as OVERVIEW_OUTPUT
 from lib.governance_lifecycle.adapter import json_bytes, strict_json
 from lib.governance_lifecycle.contracts import ContractError
 from lib.governance_lifecycle.kernel import replay
@@ -30,6 +31,8 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
         self.profile = strict_json(DEFAULT_PROFILE.read_bytes())
         self.ledger = self.root / "governance/lifecycle/synthetic-closure"
         seed(self.ledger)
+        for scenario in ("synthetic", "synthetic-exceptions"):
+            shutil.copytree(ROOT / "governance/lifecycle" / scenario, self.root / "governance/lifecycle" / scenario)
         self.write("model/governance/lifecycle/synthetic-grs002-profile.json", DEFAULT_PROFILE.read_text())
         self.write(".gitignore", ".append.lock\n.pending-*\n")
         self.index = self.root / "status/governance-lifecycle-closure-index.json"
@@ -45,6 +48,7 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
 
     def generate(self):
         generate(self.ledger, self.index, self.report, as_of="2026-09-13T14:00:00Z")
+        generate_overview(self.root, as_of="2026-09-14T00:10:00Z")
 
     def append(self):
         append_closure(self.ledger, self.closure, self.resources, self.profile, expected_revision=6)
@@ -60,8 +64,8 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
         self.assertEqual(self.calls[0][1]["head"], "automation/lifecycle-synthetic/123-1")
         self.assertIn("fixture consent is not human authentication", self.calls[0][1]["body"])
         self.assertEqual(len(self.calls), 4)
-        self.assertEqual(check_accepted_prefix(self.root, self.base), 6)
-        self.assertEqual(len(self.git("diff", "--name-only", self.base, "HEAD").splitlines()), 3)
+        self.assertEqual(check_accepted_prefix(self.root, self.base), 24)
+        self.assertEqual(len(self.git("diff", "--name-only", self.base, "HEAD").splitlines()), 5)
 
     def test_stale_index_or_forged_report_is_rejected_before_publication(self):
         append_closure(self.ledger, self.closure, self.resources, self.profile, expected_revision=6)
@@ -70,6 +74,19 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
         self.generate()
         self.report.write_text("This is live and approved.\n")
         with self.assertRaisesRegex(ContractError, "report differs"):
+            self.publish()
+        self.assertEqual(self.calls, [])
+
+    def test_stale_or_forged_overview_is_rejected_before_publication(self):
+        old_overview = (self.root / OVERVIEW_OUTPUT).read_bytes()
+        self.append()
+        (self.root / OVERVIEW_OUTPUT).write_bytes(old_overview)
+        with self.assertRaisesRegex(ContractError, "overview differs"):
+            self.publish()
+        self.generate()
+        report = self.root / "generated/reports/governance-lifecycle-overview.md"
+        report.write_text("Production compliance: 100%\n")
+        with self.assertRaisesRegex(ContractError, "overview report differs"):
             self.publish()
         self.assertEqual(self.calls, [])
 
@@ -122,7 +139,7 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
         self.git("commit", "-m", "Propose new failure")
         replay(load_transactions(self.ledger), self.profile)
         self.git("merge", "--no-edit", "closure-proposal")
-        self.assertEqual(check_accepted_prefix(self.root, closure_head), 7)
+        self.assertEqual(check_accepted_prefix(self.root, closure_head), 25)
         with self.assertRaises(ContractError):
             replay(load_transactions(self.ledger), self.profile)
 

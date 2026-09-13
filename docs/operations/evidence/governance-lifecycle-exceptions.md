@@ -135,7 +135,8 @@ The demo uses a third separate synthetic ledger,
 and closure pilot scenarios remain unchanged. The required CI accepted-prefix
 check protects all three histories and both accepted profiles.
 
-The existing publisher's closure-only scope is not widened: it rejects
+The publisher accepts closure history and its derived reports, including the
+CLG-06.1 overview. Exception history remains outside its scope: it rejects
 exception transactions, even if placed under its allowed transaction directory.
 There is no new live/scheduled publisher workflow. Propose the exception
 scenario through an ordinary reviewed implementation/evidence PR with current

@@ -1,0 +1,1052 @@
+{
+  "aggregation": "separate_scenarios",
+  "as_of": "2026-09-14T00:10:00Z",
+  "enforcement": "report_only",
+  "environment": "synthetic",
+  "official_state": false,
+  "report_type": "governance-lifecycle-synthetic-overview",
+  "scenarios": [
+    {
+      "events": [
+        {
+          "effective_at": "2026-09-13T10:00:00Z",
+          "event_ref": {
+            "digest": "eecfd6c3ae8f1e5e91df63213ce6db52ca5b892cc9b3ede7476055ce17130d87",
+            "id": "event:510abe02969c14c0896bbe6b00de74350871bb6f7f02074d65df4ad5f3cb2d42"
+          },
+          "event_type": "finding_opened",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T10:00:00Z",
+          "revision": 1,
+          "transaction_ref": {
+            "digest": "201cd4ec5d1cd603a181860beeaad5a6865a6e9ee0adbdb82a86e7e3fb93f14c",
+            "id": "transaction:aa5d862e09fc8a3506226161408397b665641d5042e14e0d663132e6717c0f8e"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T10:10:00Z",
+          "event_ref": {
+            "digest": "7817b07fc9e3df63576e90526ae6251aa7ccb1273bfadf959383a00a31a0e412",
+            "id": "event:3f3d372e0a8fabca361631c3a5ffe565064e382f8dfccabe8e029c3f4cf186fe"
+          },
+          "event_type": "observation_added",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T10:10:00Z",
+          "revision": 2,
+          "transaction_ref": {
+            "digest": "10f596a0044ef5fb635655c3ebf8694082abc15fdadbb7998836a543e6f0b9fd",
+            "id": "transaction:27ae9c4f5b0366cab89b4abffdbcc175d46a66c5a14d8162d677a9fe901fc6f3"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T11:00:00Z",
+          "event_ref": {
+            "digest": "b4d9725fd5dc885e9f2e7066653d6cdd4d915906fcf1b732f106b994fb6034b8",
+            "id": "event:0db67b0f251252f98ffcdd208a50186ea6cf456b1fd611a2fda959341caa8b1f"
+          },
+          "event_type": "observation_added",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T11:00:00Z",
+          "revision": 3,
+          "transaction_ref": {
+            "digest": "29d7a3986a4e0c544636066381401307b60c645595069c01849666ecafc5f041",
+            "id": "transaction:28b04c9688cc600a3f12c323fdd9551cefa232a504b834c8f17385978cd65069"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T10:05:00Z",
+          "event_ref": {
+            "digest": "6948029d0265e91d8f37b875a607b5f26b373bafa171cd57ad7bf0030aaa44c6",
+            "id": "event:4cd137043106abd234250b1258949bea2fde51265ba401a890362b2d85193159"
+          },
+          "event_type": "observation_added",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T11:10:00Z",
+          "revision": 4,
+          "transaction_ref": {
+            "digest": "404bffb9c1f5a9b05321300afea5776329b005c08d2189650e0ba8b0d68c4336",
+            "id": "transaction:9f4d5b6377e1de17aab6f3aa19d0bd597394054f2e990a4f16667da10dc318fb"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T11:00:00Z",
+          "event_ref": {
+            "digest": "136c895492963b93de74c55b8204fd4f6ac51a9b2f4264d8d68ccd0511ca1ade",
+            "id": "event:0062a9546030c39c6c13cebebf33279da96170a73b9cd893c5c2040c7b66f0d1"
+          },
+          "event_type": "clarification_required",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T11:20:00Z",
+          "revision": 5,
+          "transaction_ref": {
+            "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
+            "id": "transaction:5377f0cb324f5c83189c818ca748da7c6de9f4a7c8ca5663a450d03106378652"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T11:40:00Z",
+          "event_ref": {
+            "digest": "1a42b670af75929951d27205e9cfc02d0fd6fee1b0ff67efdcb3f595426852b7",
+            "id": "event:99c1f4cdc4aeb2a2f468d4aeb8c000caf047078265c67de8d24ae8a80b3db2f7"
+          },
+          "event_type": "decision_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T11:40:00Z",
+          "revision": 6,
+          "transaction_ref": {
+            "digest": "6aa3c05d6faa943e18e9f783879fbdbd12db089f913bdac3f77ca28dfa67b494",
+            "id": "transaction:bfb784a25220f4bc68d57849fa2e185c6b58f302de2ade2f484d12123aff6adf"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T11:50:00Z",
+          "event_ref": {
+            "digest": "f6a262e26cd3424bfe8868183aa4dda553d0a0561edaa166027df2c25f618fbe",
+            "id": "event:08c18f6889435823e557a133b27f3f3248677eb93d4ded8d3558fedaa69ba0c7"
+          },
+          "event_type": "remediation_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T11:50:00Z",
+          "revision": 7,
+          "transaction_ref": {
+            "digest": "e82603f51823eb73f3bb6547f1eba2f9f59b681eab35f546c8ccba668ff45bb4",
+            "id": "transaction:043d0ac64d1de23efc34564683343fbb2c086f82ffb44772b8911db21c4746d2"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T12:00:00Z",
+          "event_ref": {
+            "digest": "564b08729d8e18e515f29b484ba817d6e4d28b4ce26c9b84da0e022fe9fce1ff",
+            "id": "event:39a03e24d6dd746d92621e608a738dd3c9ca7ec043ac0cd38fc0f08a4164a638"
+          },
+          "event_type": "remediation_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T12:00:00Z",
+          "revision": 8,
+          "transaction_ref": {
+            "digest": "e5e6542d379010669f1caeccfdb94d3af94bff0fc83ca88ff959708309994999",
+            "id": "transaction:658d59fe244fb3a5851376974eff63798fd29d442ad9bbc363e5bcfb2ab1a36f"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T12:10:00Z",
+          "event_ref": {
+            "digest": "2126d65ce184b53284b7d551e8bb959f2425cfedbf204c17a25537a0bc18f56b",
+            "id": "event:cde4fa87197609ea4ee11f0d463ac13e6dfe57b4473c21634d3069c5e976ea46"
+          },
+          "event_type": "decision_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T12:10:00Z",
+          "revision": 9,
+          "transaction_ref": {
+            "digest": "49d5dcbe4a89521200a2b5a42259d7035d3d5ab9a95b4e284fef640bca45e681",
+            "id": "transaction:04b2daf556f0a9fd472aeb44e22b0fb73b5f9d8fca4593e142588299b774efab"
+          }
+        }
+      ],
+      "ledger_path": "governance/lifecycle/synthetic",
+      "metrics": {
+        "accepted_observation_results": {
+          "fail": 3,
+          "pass": 1
+        },
+        "current_coverage_by_finding": {
+          "full": 0,
+          "none": 0,
+          "not_applicable": 0,
+          "not_evaluated": 1,
+          "partial": 0
+        },
+        "current_exception_statuses": {
+          "active": 0,
+          "expired": 0,
+          "rejected": 0,
+          "revoked": 0,
+          "scheduled": 0,
+          "withdrawal_recorded": 0
+        },
+        "current_finding_states": {
+          "closed": 0,
+          "needs_clarification": 1,
+          "open": 0
+        },
+        "current_findings_needing_renewed_decision": 0,
+        "current_overdue_cases": 0,
+        "current_remediation_progress": {
+          "completed": 0,
+          "in_progress": 1,
+          "planned": 0
+        },
+        "event_types": {
+          "clarification_required": 1,
+          "decision_recorded": 2,
+          "exception_recorded": 0,
+          "finding_closed": 0,
+          "finding_opened": 1,
+          "finding_reopened": 0,
+          "observation_added": 3,
+          "remediation_recorded": 2
+        },
+        "records": {
+          "closures": 0,
+          "conflicts": 1,
+          "decisions": 2,
+          "events": 9,
+          "exceptions": 0,
+          "observations": 4,
+          "remediations": 2,
+          "transactions": 9
+        }
+      },
+      "projection": {
+        "as_of": "2026-09-14T00:10:00Z",
+        "conflict_refs": [
+          {
+            "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
+            "id": "transaction:5377f0cb324f5c83189c818ca748da7c6de9f4a7c8ca5663a450d03106378652"
+          }
+        ],
+        "counts": {
+          "conflicts": 1,
+          "decisions": 2,
+          "events": 9,
+          "findings": 1,
+          "observations": 4,
+          "remediations": 2,
+          "transactions": 9
+        },
+        "enforcement": "report_only",
+        "environment": "synthetic",
+        "findings": [
+          {
+            "active_decision_ref": null,
+            "closure_supported": false,
+            "conflict_refs": [
+              {
+                "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
+                "id": "transaction:5377f0cb324f5c83189c818ca748da7c6de9f4a7c8ca5663a450d03106378652"
+              }
+            ],
+            "decision_records": [
+              {
+                "disposition": "approve",
+                "effective_status": "revoked",
+                "record_ref": {
+                  "digest": "fdb248fa69ad8a853b05b827bb72e11ec55fc0e45bb071ebcf72fbeb06046775",
+                  "id": "decision:demo-approve"
+                }
+              },
+              {
+                "disposition": "revoke",
+                "effective_status": "withdrawal_recorded",
+                "record_ref": {
+                  "digest": "faeb13f61b16d6c2eaa7e061f94ccda5a346b0682db6cf5b549a21b247198171",
+                  "id": "decision:demo-revoke"
+                }
+              }
+            ],
+            "evidence_status": "pass",
+            "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+            "first_failure_ref": {
+              "digest": "994d3208cf40d19ca4b0ada21c12390c36dac29c1aa83e83c0a59c7eb07d67b6",
+              "id": "observation:b248afcb2c5bbb584b7f2b4ee0d850f6c6f9b057bd49e878449a4078517a35c3"
+            },
+            "identity": {
+              "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+              "fingerprint_version": "1",
+              "key": {
+                "domain": "governance_repository_security",
+                "finding_type": "criterion_failure",
+                "repository_id": "synthetic/governance-lifecycle",
+                "resource": "refs/heads/main",
+                "rule_id": "GRS-002"
+              }
+            },
+            "last_event_ref": {
+              "digest": "2126d65ce184b53284b7d551e8bb959f2425cfedbf204c17a25537a0bc18f56b",
+              "id": "event:cde4fa87197609ea4ee11f0d463ac13e6dfe57b4473c21634d3069c5e976ea46"
+            },
+            "latest_observation_ref": {
+              "digest": "4fa5fd5557cb9abdab93de5cf95f1c77610c18afbb8760a8a6b747f0c3b904d9",
+              "id": "observation:88ba4e7d48509eee13bb2bc78932d5a2b658faad850f90dcae32f6ebce0e1382"
+            },
+            "observation_refs": [
+              {
+                "digest": "10bdf5832f3504a49ddba8f0924657263bacc45a6b240f2c22f398739e7e9ae7",
+                "id": "observation:33ec04979ee1f3f04d708c2ec3c357288577740f031d4a7f6165d119debdd8bd"
+              },
+              {
+                "digest": "67a0692238f13cfd7fbd2ea12b113bb80bf393a35bd980ec11674c659497507c",
+                "id": "observation:4d6bbf6445220a2ef6bd2d454c78e3fe1611ead046b455a2c9ac2b97703ba196"
+              },
+              {
+                "digest": "4fa5fd5557cb9abdab93de5cf95f1c77610c18afbb8760a8a6b747f0c3b904d9",
+                "id": "observation:88ba4e7d48509eee13bb2bc78932d5a2b658faad850f90dcae32f6ebce0e1382"
+              },
+              {
+                "digest": "994d3208cf40d19ca4b0ada21c12390c36dac29c1aa83e83c0a59c7eb07d67b6",
+                "id": "observation:b248afcb2c5bbb584b7f2b4ee0d850f6c6f9b057bd49e878449a4078517a35c3"
+              }
+            ],
+            "occurrences": 3,
+            "remediation_cases": [
+              {
+                "authorization_status": "revoked",
+                "decision_ref": {
+                  "digest": "fdb248fa69ad8a853b05b827bb72e11ec55fc0e45bb071ebcf72fbeb06046775",
+                  "id": "decision:demo-approve"
+                },
+                "latest_record_ref": {
+                  "digest": "59989f9b51640452537ffac4b32f131215a5e532a6dc0f31f0cc694177a8d410",
+                  "id": "remediation:demo-progress"
+                },
+                "overdue": false,
+                "owner_id": "test-human:remediation-owner",
+                "progress": "in_progress",
+                "remediation_id": "remediation-case:demo-1",
+                "target_at": "2026-09-14T12:00:00Z"
+              }
+            ],
+            "revision": 9,
+            "state": "needs_clarification"
+          }
+        ],
+        "index_type": "governance-lifecycle-synthetic",
+        "ledger_head_ref": {
+          "digest": "49d5dcbe4a89521200a2b5a42259d7035d3d5ab9a95b4e284fef640bca45e681",
+          "id": "transaction:04b2daf556f0a9fd472aeb44e22b0fb73b5f9d8fca4593e142588299b774efab"
+        },
+        "official_state": false,
+        "profile_ref": {
+          "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+          "id": "profile:clg-synthetic-grs002",
+          "version": "0.1.0"
+        },
+        "schema_version": "0.2.0"
+      },
+      "scenario_id": "synthetic"
+    },
+    {
+      "events": [
+        {
+          "effective_at": "2026-09-13T13:00:00Z",
+          "event_ref": {
+            "digest": "5e145f167a00de67c9172b7239e11d35f5daec7a13d2f42ff3c6746df2e3a356",
+            "id": "event:cadf06400ddc5f5d4b6091ff7057133d156262649d0c1daca3e79ef219adfc13"
+          },
+          "event_type": "finding_opened",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T13:00:00Z",
+          "revision": 1,
+          "transaction_ref": {
+            "digest": "8d6a41d96f6be3a9da8b609f03847d51861e78f117a04a24d73c7aa292059b8d",
+            "id": "transaction:3ebc0bb36e48b9a3948476ab4243f0982ed0bf1c428a68f7a39f439d7c248c99"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T13:10:00Z",
+          "event_ref": {
+            "digest": "d71b9a3a1015b11cabe46b84edc92493dff5770cb444f4523de2bf4d533e676a",
+            "id": "event:dc6135e9c3eaf75271f50dca29dc28986e0b5d1b20bd73e859d9bb2b3ac17fa2"
+          },
+          "event_type": "decision_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T13:10:00Z",
+          "revision": 2,
+          "transaction_ref": {
+            "digest": "58fb67a73f42f2e81d9668d019c6994fc9b26c112c45d04b653194d179a152b2",
+            "id": "transaction:e0c9427a824d75060c1289e51f7e3bb7e9e20b1e34afa9e65367c8480792011d"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T13:20:00Z",
+          "event_ref": {
+            "digest": "bb4f098d0983d7570fdfbe6545d951d30b5d71e114d1a880a8d3b30d09fa371f",
+            "id": "event:edc9ebfc4ae056b72dc51257f0772be716329479968bbc0578943cfd975f92a8"
+          },
+          "event_type": "remediation_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T13:20:00Z",
+          "revision": 3,
+          "transaction_ref": {
+            "digest": "035364c171d1da76a2eaadc4ac6473d6ae0ccc1f3921ec41e15239ae5ded5947",
+            "id": "transaction:72567a1bf00ff8fb639f807b03fdffe58e08e58df2236f62f0afaec225890f70"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T13:30:00Z",
+          "event_ref": {
+            "digest": "f8031dc5ee7203552e78c2fa7f74bbbfe8b062ee045846e160f588d8efb88173",
+            "id": "event:72551f9e3082aa31b12e52e79d8c1cf0180cbcb26dd8e7f368fe217a5dc0fe58"
+          },
+          "event_type": "remediation_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T13:30:00Z",
+          "revision": 4,
+          "transaction_ref": {
+            "digest": "bd1c1ecc584662b40edac65480b118f80eea05ad545491bc8bd9e2f2cbe30f09",
+            "id": "transaction:9fdac2012a139bf27219e22953cc2ad9e4782ee554d2d4e6ce99685e5380a319"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T13:40:00Z",
+          "event_ref": {
+            "digest": "a04b0f204e1b5c0fc8793fb61e57d6eff7dd534caaf0cc17e33e8a3297cf6488",
+            "id": "event:04552664e1ac40986b2e1461e0389945f2c493e94f0749c2225efc4405c8230d"
+          },
+          "event_type": "remediation_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T13:40:00Z",
+          "revision": 5,
+          "transaction_ref": {
+            "digest": "c06ff973f8f90e67bd382e0db014d761a79a4e1d7b0af23aa67a4266d7c29370",
+            "id": "transaction:37102915dc49654d0c547c4472bdf8d12a4f8ffcbff6ac4a8906f4236d352b8c"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T13:50:00Z",
+          "event_ref": {
+            "digest": "4fd7a121d757226535de2f4324c9c719de87688c41df557ff2c7b032939604e4",
+            "id": "event:41503c0d028d2168a1138b35016ac71cd48accf2037f41c57bc7bb3194cfa145"
+          },
+          "event_type": "observation_added",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T13:50:00Z",
+          "revision": 6,
+          "transaction_ref": {
+            "digest": "13015f46f69892d0096be97c0e9b21e3093d25165337d708218762839ddc17a4",
+            "id": "transaction:9ab84d0229c27bb9a52a1a59de0fe6fc135b41841a9478b15fc3d05e231175b8"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T14:00:00Z",
+          "event_ref": {
+            "digest": "7a3bb12c376501813ef947f04eb9799ac154b74309d2b122caa168bb900595a5",
+            "id": "event:0c2f69ef714d9841b410cacd6ce7ad554152e26d244324b852784e6e22687584"
+          },
+          "event_type": "finding_closed",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T14:00:00Z",
+          "revision": 7,
+          "transaction_ref": {
+            "digest": "d1a99eca6c773d7967999e15ee97f0481aa5684ecab90586adbda10116d578fb",
+            "id": "transaction:28744f090f7f7b2e2a4006c66334bc4bb74d5f7d972429fa8e4f1b1ee835ba28"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T13:05:00Z",
+          "event_ref": {
+            "digest": "d7e91fd05a236ef3de2818bae03eb6d42a9d009ac054901dc567b0a15391011c",
+            "id": "event:872a64885ffe59f4703e4b7ca40709d3f54a8ae5976f0a4a4aaf6aab8f5c6be4"
+          },
+          "event_type": "observation_added",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T14:10:00Z",
+          "revision": 8,
+          "transaction_ref": {
+            "digest": "1404df5cd1b9aad6beeaf287020077c6b7e94641c702aee1aad6833129b0c8f3",
+            "id": "transaction:65e8235ce7d0f801dd9a42989f5d1c244ab4fedb9cf06bb6ea13ae6d074a1b25"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T14:20:00Z",
+          "event_ref": {
+            "digest": "4cbdc2a2084c56224da9d15dbcc2b4e58d04c1b7cc84abef3cf985ac1aa5bb1d",
+            "id": "event:798eaa7dfa2a443e9a9fac930d97a4cc72d90827a77b3557643f0d4090a2ca15"
+          },
+          "event_type": "finding_reopened",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T14:20:00Z",
+          "revision": 9,
+          "transaction_ref": {
+            "digest": "824e2f92fd4d4fccce5e2836853767c00e2f8914a54973ec3ac94b4a3673e565",
+            "id": "transaction:b66f44dec649cc8710e31797838a1ace8734439c69c12f6e7682026157c33d8a"
+          }
+        }
+      ],
+      "ledger_path": "governance/lifecycle/synthetic-closure",
+      "metrics": {
+        "accepted_observation_results": {
+          "fail": 3,
+          "pass": 1
+        },
+        "current_coverage_by_finding": {
+          "full": 0,
+          "none": 0,
+          "not_applicable": 0,
+          "not_evaluated": 1,
+          "partial": 0
+        },
+        "current_exception_statuses": {
+          "active": 0,
+          "expired": 0,
+          "rejected": 0,
+          "revoked": 0,
+          "scheduled": 0,
+          "withdrawal_recorded": 0
+        },
+        "current_finding_states": {
+          "closed": 0,
+          "needs_clarification": 0,
+          "open": 1
+        },
+        "current_findings_needing_renewed_decision": 0,
+        "current_overdue_cases": 0,
+        "current_remediation_progress": {
+          "completed": 1,
+          "in_progress": 0,
+          "planned": 0
+        },
+        "event_types": {
+          "clarification_required": 0,
+          "decision_recorded": 1,
+          "exception_recorded": 0,
+          "finding_closed": 1,
+          "finding_opened": 1,
+          "finding_reopened": 1,
+          "observation_added": 2,
+          "remediation_recorded": 3
+        },
+        "records": {
+          "closures": 1,
+          "conflicts": 0,
+          "decisions": 1,
+          "events": 9,
+          "exceptions": 0,
+          "observations": 4,
+          "remediations": 3,
+          "transactions": 9
+        }
+      },
+      "projection": {
+        "as_of": "2026-09-14T00:10:00Z",
+        "conflict_refs": [],
+        "counts": {
+          "closures": 1,
+          "conflicts": 0,
+          "decisions": 1,
+          "events": 9,
+          "findings": 1,
+          "observations": 4,
+          "remediations": 3,
+          "transactions": 9
+        },
+        "enforcement": "report_only",
+        "environment": "synthetic",
+        "findings": [
+          {
+            "active_closure_ref": null,
+            "active_decision_ref": {
+              "digest": "f44f62a1bdb9f97eb923ebe0eb2823e26e0bf8aa3ab1a697d9a4e7241c356fb6",
+              "id": "decision:closure-demo"
+            },
+            "closure_refs": [
+              {
+                "digest": "a04c6fb27aa25ba3491f3bf90f16bc2dd184598227789fdbcaedbc84b23dbad1",
+                "id": "closure:demo"
+              }
+            ],
+            "closure_supported": true,
+            "conflict_refs": [],
+            "decision_records": [
+              {
+                "disposition": "approve",
+                "effective_status": "approved",
+                "record_ref": {
+                  "digest": "f44f62a1bdb9f97eb923ebe0eb2823e26e0bf8aa3ab1a697d9a4e7241c356fb6",
+                  "id": "decision:closure-demo"
+                }
+              }
+            ],
+            "evidence_status": "fail",
+            "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+            "first_failure_ref": {
+              "digest": "aa69260af42d7d41550b2b982a58e38e8976e117307aa96ab32333cac3e7a1a9",
+              "id": "observation:d6a69a42ac15d7de3ce0d2db9c37eedb04bfadfeb1ea0abe9c1e511e004b8386"
+            },
+            "identity": {
+              "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+              "fingerprint_version": "1",
+              "key": {
+                "domain": "governance_repository_security",
+                "finding_type": "criterion_failure",
+                "repository_id": "synthetic/governance-lifecycle",
+                "resource": "refs/heads/main",
+                "rule_id": "GRS-002"
+              }
+            },
+            "last_event_ref": {
+              "digest": "4cbdc2a2084c56224da9d15dbcc2b4e58d04c1b7cc84abef3cf985ac1aa5bb1d",
+              "id": "event:798eaa7dfa2a443e9a9fac930d97a4cc72d90827a77b3557643f0d4090a2ca15"
+            },
+            "latest_observation_ref": {
+              "digest": "4e752b6ee38f2506ae2358d1d459319744b5de6001c2d043d408a1c5cfa88bb3",
+              "id": "observation:2e26ef791456a0dcb70777b4b2cd86084a50af19a3ca0579172e51f8e6aaa771"
+            },
+            "observation_refs": [
+              {
+                "digest": "4e752b6ee38f2506ae2358d1d459319744b5de6001c2d043d408a1c5cfa88bb3",
+                "id": "observation:2e26ef791456a0dcb70777b4b2cd86084a50af19a3ca0579172e51f8e6aaa771"
+              },
+              {
+                "digest": "041fa05f1855d64776d1299e267489075288f73fdef9030d4f5725ccdb7f46a3",
+                "id": "observation:3d54c56a812d60b29b8a54484435584425892d6cae3f906967d5453286e15383"
+              },
+              {
+                "digest": "f804d2a76c755c0abee10f211ce282f46aa863575c31a1423427ef3a98a91818",
+                "id": "observation:489b30e6dcca548dd6ab2b61ce56a4107743fb6a8dbd68f0ef8915c5597115c4"
+              },
+              {
+                "digest": "aa69260af42d7d41550b2b982a58e38e8976e117307aa96ab32333cac3e7a1a9",
+                "id": "observation:d6a69a42ac15d7de3ce0d2db9c37eedb04bfadfeb1ea0abe9c1e511e004b8386"
+              }
+            ],
+            "occurrences": 3,
+            "remediation_cases": [
+              {
+                "authorization_status": "approved",
+                "decision_ref": {
+                  "digest": "f44f62a1bdb9f97eb923ebe0eb2823e26e0bf8aa3ab1a697d9a4e7241c356fb6",
+                  "id": "decision:closure-demo"
+                },
+                "latest_record_ref": {
+                  "digest": "d4f73f68da8d824966c067bf6894a2fdfdbdae88763d74cd8ee175d07861ec75",
+                  "id": "remediation:closure-demo-completed"
+                },
+                "overdue": false,
+                "owner_id": "test-human:remediation-owner",
+                "progress": "completed",
+                "remediation_id": "remediation-case:closure-demo",
+                "target_at": "2026-09-14T12:00:00Z"
+              }
+            ],
+            "reopen_count": 1,
+            "revision": 9,
+            "state": "open"
+          }
+        ],
+        "index_type": "governance-lifecycle-synthetic",
+        "ledger_head_ref": {
+          "digest": "824e2f92fd4d4fccce5e2836853767c00e2f8914a54973ec3ac94b4a3673e565",
+          "id": "transaction:b66f44dec649cc8710e31797838a1ace8734439c69c12f6e7682026157c33d8a"
+        },
+        "official_state": false,
+        "profile_ref": {
+          "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+          "id": "profile:clg-synthetic-grs002",
+          "version": "0.1.0"
+        },
+        "schema_version": "0.3.0"
+      },
+      "scenario_id": "synthetic-closure"
+    },
+    {
+      "events": [
+        {
+          "effective_at": "2026-09-13T15:00:00Z",
+          "event_ref": {
+            "digest": "05916b58ab4f097fa25d2ba56a0276fa24065144d6e85eb0906b8fd9f823b0dd",
+            "id": "event:54a56eeb27ba82a5b8ceb4df15216ffe3fce3bbd45d9f63a0df8e7153d89b552"
+          },
+          "event_type": "finding_opened",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T15:00:00Z",
+          "revision": 1,
+          "transaction_ref": {
+            "digest": "9a7e4d15a4783bb315a65bc6bcce888415f7f56d3958ef6a4fc28ea9a8f51af5",
+            "id": "transaction:92aa49e886e105b2894117345b223b3595407c5ec3414f1bd130f147e8ae6801"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T15:10:00Z",
+          "event_ref": {
+            "digest": "4ddece98af7a8484b5bb88b0b23cb57f68512fa8ade9c79d59a0fa4f44a10aea",
+            "id": "event:8df59397378cd8d8c037300aaeadb9e24cf6597c320914e4748a95d02497ef11"
+          },
+          "event_type": "observation_added",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T15:10:00Z",
+          "revision": 2,
+          "transaction_ref": {
+            "digest": "c799b350fc9ca62809c885f6b53083952f364dbb5d8c007366b71d4280824da7",
+            "id": "transaction:48731823644911707932a3b92beeaab81c6557303c7b1799770dd3928e056e52"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T15:20:00Z",
+          "event_ref": {
+            "digest": "0ded9f6155234f9f97a6b2e7922e4354b7fed2e81502c9443bd062d2bee01eb5",
+            "id": "event:8aaf8bafb09cb6a137664f0f4af443ac0871183f86f3962ed8d9fac96ec376e0"
+          },
+          "event_type": "decision_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T15:20:00Z",
+          "revision": 3,
+          "transaction_ref": {
+            "digest": "ca119433a3dba6000ac464cd47c7ec99bf27447b9f4e0365980f2898042a77c5",
+            "id": "transaction:d4642cc30743899203e7fa6408f8d16e433d5d29d4a537bb1355766e6eca8baa"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T15:30:00Z",
+          "event_ref": {
+            "digest": "b475a9558bf19980a67d027346def677840e231a80fcb19f321d26ffb1be24c7",
+            "id": "event:ed275931632e9818ec3c70ddd2a34ade63d6c9c76a4a1ab4d7bf5a35ef4188f9"
+          },
+          "event_type": "remediation_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T15:30:00Z",
+          "revision": 4,
+          "transaction_ref": {
+            "digest": "fd0178ca46ef1c1bbabf7afcfa2b199be867dd61930be6a92b7b8cc3ad943d69",
+            "id": "transaction:7a2e1ed64f089cde6dc1fff4ae388bf194261a989cbd23fdf0a7f3beba7ad61a"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T16:00:00Z",
+          "event_ref": {
+            "digest": "27a8c8ec8de5c571ff98becac533eb8941a8c68d3b85768a9fdc9b7a2d74fa00",
+            "id": "event:d37bd16dc5564fc01f523c1023d60ced95d491b6124b41564ab096b1ab17ee65"
+          },
+          "event_type": "exception_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T16:00:00Z",
+          "revision": 5,
+          "transaction_ref": {
+            "digest": "9d11f4c56647c96455655fe2903a35d8bca15960b4940aade4dbe32b4e8f86e6",
+            "id": "transaction:0c7774467683c27a01ca0a4b2ee077562dd0038fb547783f6212214901dcec15"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T16:10:00Z",
+          "event_ref": {
+            "digest": "e17b34253a11e5af507c3f2bea9f51aa562884c8807a323496a1445a4e2ff9cd",
+            "id": "event:bd98ce0b33599865c1281c63b85f396ae97727c069d0707dd8a95ebd2c0da333"
+          },
+          "event_type": "exception_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T16:10:00Z",
+          "revision": 6,
+          "transaction_ref": {
+            "digest": "7b08ef4fff4947bf3d4f3ba53582662c77ec20a2b30a970890e57b634eb5c0cb",
+            "id": "transaction:6b258897737408f3037b1a69407aca3707feed8851a850854c439b7ab5d8b56a"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T16:20:00Z",
+          "event_ref": {
+            "digest": "443da0a0f4a29334c8eaebda45d598f6aa118290bdcc7d7c92a431478222ab88",
+            "id": "event:5cc59628a16b1f7324132e652cae37c60d340a161df7b286d9ee6ef4dfdf8b9b"
+          },
+          "event_type": "observation_added",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T16:20:00Z",
+          "revision": 7,
+          "transaction_ref": {
+            "digest": "ed30524ddaf32f335225c362ac6a597bd7a787959dbed6e2735f0bd9414b342d",
+            "id": "transaction:eb5408d41dc87e54697805c7a6c978bfbbaa427952cf8a9af94b9909a23cab81"
+          }
+        },
+        {
+          "effective_at": "2026-09-13T16:30:00Z",
+          "event_ref": {
+            "digest": "14b0feb6fec88b39523d112855702c6e3b0275bb8e7168a2886051d34888869b",
+            "id": "event:164fd267b54eb5e7bb0dcd3448fd8f12eb3e51284a8357eb0b1ec9e46cfd58bc"
+          },
+          "event_type": "exception_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-13T16:30:00Z",
+          "revision": 8,
+          "transaction_ref": {
+            "digest": "39b2985faa742260b72066f122d8ba7b46484456a604dd4fbc3b053547f91015",
+            "id": "transaction:fd92184abff15951f3f34545fd9996748b58c28890f3ff746bc641c0df224c07"
+          }
+        },
+        {
+          "effective_at": "2026-09-14T00:10:00Z",
+          "event_ref": {
+            "digest": "64c037315ca42e5378bac76b232cfafc17b8a1adade40ceebacc4c6a59276ff4",
+            "id": "event:1ab2157c465ba3ac2f58a608d2e609df67c5f86a2dd4b95eec1b422613c7c30d"
+          },
+          "event_type": "exception_recorded",
+          "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+          "recorded_at": "2026-09-14T00:10:00Z",
+          "revision": 9,
+          "transaction_ref": {
+            "digest": "82d457d09b20a545e61222e9ab2eba7ff1c75fd8aca11a6093153cfd179682ff",
+            "id": "transaction:402749bbe4008ea7f935d5b385e650510858fb28e48fc491b7f4545f92211373"
+          }
+        }
+      ],
+      "ledger_path": "governance/lifecycle/synthetic-exceptions",
+      "metrics": {
+        "accepted_observation_results": {
+          "fail": 3,
+          "pass": 0
+        },
+        "current_coverage_by_finding": {
+          "full": 1,
+          "none": 0,
+          "not_applicable": 0,
+          "not_evaluated": 0,
+          "partial": 0
+        },
+        "current_exception_statuses": {
+          "active": 1,
+          "expired": 1,
+          "rejected": 0,
+          "revoked": 1,
+          "scheduled": 0,
+          "withdrawal_recorded": 1
+        },
+        "current_finding_states": {
+          "closed": 0,
+          "needs_clarification": 0,
+          "open": 1
+        },
+        "current_findings_needing_renewed_decision": 0,
+        "current_overdue_cases": 0,
+        "current_remediation_progress": {
+          "completed": 0,
+          "in_progress": 0,
+          "planned": 1
+        },
+        "event_types": {
+          "clarification_required": 0,
+          "decision_recorded": 1,
+          "exception_recorded": 4,
+          "finding_closed": 0,
+          "finding_opened": 1,
+          "finding_reopened": 0,
+          "observation_added": 2,
+          "remediation_recorded": 1
+        },
+        "records": {
+          "closures": 0,
+          "conflicts": 0,
+          "decisions": 1,
+          "events": 9,
+          "exceptions": 4,
+          "observations": 3,
+          "remediations": 1,
+          "transactions": 9
+        }
+      },
+      "projection": {
+        "as_of": "2026-09-14T00:10:00Z",
+        "conflict_refs": [],
+        "counts": {
+          "closures": 0,
+          "conflicts": 0,
+          "decisions": 1,
+          "events": 9,
+          "exceptions": 4,
+          "findings": 1,
+          "observations": 3,
+          "remediations": 1,
+          "transactions": 9
+        },
+        "enforcement": "report_only",
+        "environment": "synthetic",
+        "findings": [
+          {
+            "active_closure_ref": null,
+            "active_decision_ref": {
+              "digest": "0da5d4749d9697d49a1c0c6546b9c55884e3afe5ba15e9c683af7d3794b62e2c",
+              "id": "decision:exception-demo"
+            },
+            "closure_refs": [],
+            "closure_supported": true,
+            "conflict_refs": [],
+            "decision_records": [
+              {
+                "disposition": "approve",
+                "effective_status": "approved",
+                "record_ref": {
+                  "digest": "0da5d4749d9697d49a1c0c6546b9c55884e3afe5ba15e9c683af7d3794b62e2c",
+                  "id": "decision:exception-demo"
+                }
+              }
+            ],
+            "evidence_status": "fail",
+            "exception_treatment": {
+              "coverage": "full",
+              "covered_observation_refs": [
+                {
+                  "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+                  "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+                },
+                {
+                  "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+                  "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+                },
+                {
+                  "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+                  "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+                }
+              ],
+              "exception_records": [
+                {
+                  "covered_observation_refs": [
+                    {
+                      "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+                      "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+                    }
+                  ],
+                  "disposition": "approve",
+                  "expires_at": "2026-09-14T00:00:00Z",
+                  "record_ref": {
+                    "digest": "67455c43c20f117c7e85837600a3065220c527d8134d47d52e6d42adce2affaf",
+                    "id": "exception:partial"
+                  },
+                  "risk_classification": "medium",
+                  "status": "revoked",
+                  "valid_from": "2026-09-13T16:00:00Z",
+                  "waiver_id": "synthetic-waiver:partial"
+                },
+                {
+                  "covered_observation_refs": [
+                    {
+                      "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+                      "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+                    }
+                  ],
+                  "disposition": "approve",
+                  "expires_at": "2026-09-14T00:00:00Z",
+                  "record_ref": {
+                    "digest": "ff6cb204a108da4b5f97238da73bd02f03f98496162a638cb58ed86b6a305848",
+                    "id": "exception:remaining"
+                  },
+                  "risk_classification": "medium",
+                  "status": "expired",
+                  "valid_from": "2026-09-13T16:10:00Z",
+                  "waiver_id": "synthetic-waiver:remaining"
+                },
+                {
+                  "covered_observation_refs": [
+                    {
+                      "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+                      "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+                    }
+                  ],
+                  "disposition": "revoke",
+                  "expires_at": "2026-09-14T00:00:00Z",
+                  "record_ref": {
+                    "digest": "98e370db5289a81499da8766bff3aaac191d6fae77b624bdb1c47ea6a8a7adc2",
+                    "id": "exception:withdraw"
+                  },
+                  "risk_classification": "medium",
+                  "status": "withdrawal_recorded",
+                  "valid_from": "2026-09-13T16:00:00Z",
+                  "waiver_id": "synthetic-waiver:partial"
+                },
+                {
+                  "covered_observation_refs": [
+                    {
+                      "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+                      "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+                    },
+                    {
+                      "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+                      "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+                    },
+                    {
+                      "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+                      "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+                    }
+                  ],
+                  "disposition": "approve",
+                  "expires_at": "2026-09-15T00:00:00Z",
+                  "record_ref": {
+                    "digest": "6f83d6330dc5a257bbd8e4a1cb82dbf918573461041d597c3d2d4b2a08beca82",
+                    "id": "exception:renewal"
+                  },
+                  "risk_classification": "medium",
+                  "status": "active",
+                  "valid_from": "2026-09-14T00:10:00Z",
+                  "waiver_id": "synthetic-waiver:renewal"
+                }
+              ],
+              "renewed_decision_required": false,
+              "uncovered_observation_refs": []
+            },
+            "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+            "first_failure_ref": {
+              "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+              "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+            },
+            "identity": {
+              "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+              "fingerprint_version": "1",
+              "key": {
+                "domain": "governance_repository_security",
+                "finding_type": "criterion_failure",
+                "repository_id": "synthetic/governance-lifecycle",
+                "resource": "refs/heads/main",
+                "rule_id": "GRS-002"
+              }
+            },
+            "last_event_ref": {
+              "digest": "64c037315ca42e5378bac76b232cfafc17b8a1adade40ceebacc4c6a59276ff4",
+              "id": "event:1ab2157c465ba3ac2f58a608d2e609df67c5f86a2dd4b95eec1b422613c7c30d"
+            },
+            "latest_observation_ref": {
+              "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+              "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+            },
+            "observation_refs": [
+              {
+                "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+                "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+              },
+              {
+                "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+                "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+              },
+              {
+                "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+                "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+              }
+            ],
+            "occurrences": 3,
+            "remediation_cases": [
+              {
+                "authorization_status": "approved",
+                "decision_ref": {
+                  "digest": "0da5d4749d9697d49a1c0c6546b9c55884e3afe5ba15e9c683af7d3794b62e2c",
+                  "id": "decision:exception-demo"
+                },
+                "latest_record_ref": {
+                  "digest": "6265527ef34ac3e2e992c50685c9eee0fa527c02a3c53668a5af61347a2c8cac",
+                  "id": "remediation:exception-demo-planned"
+                },
+                "overdue": false,
+                "owner_id": "test-human:remediation-owner",
+                "progress": "planned",
+                "remediation_id": "remediation-case:exception-demo",
+                "target_at": "2026-09-14T12:00:00Z"
+              }
+            ],
+            "reopen_count": 0,
+            "revision": 9,
+            "state": "open"
+          }
+        ],
+        "index_type": "governance-lifecycle-synthetic",
+        "ledger_head_ref": {
+          "digest": "82d457d09b20a545e61222e9ab2eba7ff1c75fd8aca11a6093153cfd179682ff",
+          "id": "transaction:402749bbe4008ea7f935d5b385e650510858fb28e48fc491b7f4545f92211373"
+        },
+        "official_state": false,
+        "profile_ref": {
+          "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+          "id": "profile:clg-synthetic-grs002",
+          "version": "0.1.0"
+        },
+        "schema_version": "0.4.0"
+      },
+      "scenario_id": "synthetic-exceptions"
+    }
+  ],
+  "schema_version": "0.1.0"
+}

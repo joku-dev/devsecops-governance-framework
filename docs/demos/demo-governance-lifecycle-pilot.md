@@ -63,7 +63,7 @@ also race closure against a new failure in two real processes and merge two
 competing Git proposals to verify semantic rejection.
 
 Publisher tests exercise the narrow synthetic scope against a local remote,
-including stale/forged projections, accepted-history changes and out-of-scope
+including stale/forged pilot and CLG-06.1 overview projections, accepted-history changes and out-of-scope
 profile or consumer changes. They verify that only a review branch is pushed
 and no approval/merge endpoint is called.
 
