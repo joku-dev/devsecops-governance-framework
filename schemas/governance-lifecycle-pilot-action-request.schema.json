@@ -1,0 +1,405 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-pilot-action-request.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "request_type": {
+      "const": "lifecycle-pilot-action"
+    },
+    "environment": {
+      "const": "live_pilot_validation"
+    },
+    "repository_id": {
+      "const": "joku-dev/devsecops-governance-framework"
+    },
+    "scope": {
+      "const": {
+        "domain": "governance_repository_security",
+        "enforcement": "report_only",
+        "github_repository_id": 1301369468,
+        "pilot_only": true,
+        "repository_id": "joku-dev/devsecops-governance-framework",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "operating_profile_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "revision",
+        "digest"
+      ]
+    },
+    "role_binding_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "revision",
+        "digest"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "discussion_number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "required_role": {
+      "enum": [
+        "remediation_decider",
+        "closure_approver",
+        "role_registry_owner"
+      ]
+    },
+    "required_subject_id": {
+      "type": "string",
+      "pattern": "^github-user:[1-9][0-9]*$"
+    },
+    "expected_receipt_head": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^transaction:[a-f0-9]{64}$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "digest"
+      ]
+    },
+    "expected_action_head": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^transaction:[a-f0-9]{64}$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "digest"
+          ]
+        }
+      ]
+    },
+    "expected_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "body": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "decision"
+            },
+            "failure_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^transaction:[a-f0-9]{64}$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "digest"
+              ]
+            },
+            "plan": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "owner_id": {
+                  "type": "string",
+                  "pattern": "^github-user:[1-9][0-9]*$"
+                },
+                "target_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "work_url": {
+                  "type": "string",
+                  "pattern": "^https://github.com/joku-dev/devsecops-governance-framework/(issues|pull)/[1-9][0-9]*$"
+                }
+              },
+              "required": [
+                "action",
+                "owner_id",
+                "target_at",
+                "work_url"
+              ]
+            },
+            "supersedes_ref": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^transaction:[a-f0-9]{64}$"
+                    },
+                    "digest": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "digest"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "failure_ref",
+            "plan",
+            "supersedes_ref"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "progress"
+            },
+            "decision_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^transaction:[a-f0-9]{64}$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "digest"
+              ]
+            },
+            "progress": {
+              "enum": [
+                "in_progress",
+                "completed"
+              ]
+            },
+            "evidence_note": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "decision_ref",
+            "progress",
+            "evidence_note"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "closure"
+            },
+            "decision_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^transaction:[a-f0-9]{64}$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "digest"
+              ]
+            },
+            "progress_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^transaction:[a-f0-9]{64}$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "digest"
+              ]
+            },
+            "passing_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^transaction:[a-f0-9]{64}$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "digest"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "decision_ref",
+            "progress_ref",
+            "passing_ref"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "withdrawal"
+            },
+            "target_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^transaction:[a-f0-9]{64}$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "digest"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "target_ref",
+            "reason"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "role_withdrawal"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "reason"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_type",
+    "environment",
+    "repository_id",
+    "scope",
+    "operating_profile_ref",
+    "role_binding_ref",
+    "created_at",
+    "discussion_number",
+    "required_role",
+    "required_subject_id",
+    "expected_receipt_head",
+    "expected_action_head",
+    "expected_revision",
+    "body"
+  ]
+}

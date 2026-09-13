@@ -1,0 +1,34 @@
+{
+  "action_head_ref": null,
+  "action_refs": [],
+  "active_closure_ref": null,
+  "active_decision_ref": null,
+  "as_of": "2026-09-13T13:19:32Z",
+  "counts": {
+    "actions": 0,
+    "failures": 0,
+    "quarantined": 0,
+    "receipts": 1
+  },
+  "enforcement": "report_only",
+  "finding_state": "no_finding",
+  "index_type": "lifecycle-pilot-action-validation",
+  "limitation": "Action eligibility validation only. LD-07 and an explicitly scoped operational publisher remain required.",
+  "live_activation_approved": false,
+  "official_state": false,
+  "profile_ref": {
+    "digest": "8f72bbc7a9258005b130c1725dc6957e18ef80c78571c07497b0733aebfb31dd",
+    "revision": 1
+  },
+  "receipt_head_ref": {
+    "digest": "b95d0644d894b43ef062125abe2b1303879fc9a80d52be593a090fa4d01dc127",
+    "id": "transaction:b34824612c5aa66f6002ae34e0b8aa7b0d95a066c576e91affcbedc3817cf171"
+  },
+  "revision": 1,
+  "role_binding_ref": {
+    "digest": "937efa993a2de218f7754927c81a5db8e92c44e1555bb22efd88ccbf2cc82cd5",
+    "revision": 1
+  },
+  "roles_active": true,
+  "schema_version": "0.1.0"
+}

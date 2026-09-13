@@ -11,12 +11,13 @@ from lib.governance_lifecycle.kernel import project, replay
 from lib.governance_lifecycle.store import load_transactions
 from lib.governance_lifecycle.live_preparation import PREPARATION_PATH, validate_preparation
 from lib.governance_lifecycle.live_admission import OPERATING_PATH, VALIDATION_LEDGER, verify_new_receipts
+from lib.governance_lifecycle.pilot_actions import ACTION_LEDGER, verify_new_actions
 from generate_governance_lifecycle_index import DEFAULT_LEDGER, DEFAULT_INDEX, DEFAULT_PROFILE
 
 LEDGER_PATH = "governance/lifecycle/synthetic"
 PILOT_LEDGER_PATH = "governance/lifecycle/synthetic-closure"
 EXCEPTION_LEDGER_PATH = "governance/lifecycle/synthetic-exceptions"
-LEDGER_PATHS = (LEDGER_PATH, PILOT_LEDGER_PATH, EXCEPTION_LEDGER_PATH, VALIDATION_LEDGER)
+LEDGER_PATHS = (LEDGER_PATH, PILOT_LEDGER_PATH, EXCEPTION_LEDGER_PATH, VALIDATION_LEDGER, ACTION_LEDGER)
 EXCEPTION_PROFILE_PATH = "model/governance/lifecycle/synthetic-exception-profile.json"
 PROFILE_PATH = "model/governance/lifecycle/synthetic-grs002-profile.json"
 
@@ -114,10 +115,13 @@ def main():
     validate_personal_probe()
     from generate_personal_channel_evidence import validate as validate_channel_evidence, verify_new_captures
     validate_channel_evidence()
+    from generate_lifecycle_pilot_actions import validate as validate_pilot_actions
+    validate_pilot_actions()
     if args.verify_new_provider:
         require(bool(args.base_ref), "Provider verification requires an accepted base")
         print(f"Independently checked {verify_new_receipts(ROOT, args.base_ref)} new pilot receipts against GitHub.")
         print(f"Independently checked {verify_new_captures(ROOT, args.base_ref)} new personal-channel captures against GitHub.")
+        print(f"Independently checked {verify_new_actions(ROOT, args.base_ref)} new action proofs against GitHub.")
     index = validate_current()
     pilot = validate_pilot()
     exceptions = validate_exceptions()
