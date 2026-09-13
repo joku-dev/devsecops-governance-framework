@@ -9,7 +9,7 @@ nicht implementiert. Die Planung ist in
 [GCR-2026-060](../../governance/change-requests/GCR-2026-060-closed-loop-governance-plan.md)
 klassifiziert.
 
-## Fortschritt CLG-01 bis CLG-03
+## Fortschritt CLG-01 bis CLG-04
 
 CLG-01 wurde mit PR #76 gemergt. Der
 [Vertragsstand 0.1.0](../evidence/governance-lifecycle-contract.md) enthält
@@ -19,8 +19,11 @@ GRS-002-Intake, unveränderliche Transaktionen, Ereignisse, Konfliktbehandlung
 und eine reproduzierbare Projektion. CLG-02 wurde mit PR #77 gemergt.
 [CLG-03](../evidence/governance-lifecycle-decisions.md) ergänzt synthetische,
 inhalts- und revisionsgebundene Entscheidungen, Ablehnung, Widerruf und
-Behebungsverlauf mit Owner und Zieltermin. Sein PR muss vor Paketabschluss
-gemergt sein.
+Behebungsverlauf mit Owner und Zieltermin. CLG-03 wurde mit PR #78 gemergt.
+[CLG-04](../evidence/governance-lifecycle-closure.md) ergänzt synthetischen
+Abschluss und Wiedereröffnung, einen separaten Pilotbericht und begrenzte
+Publisher-Unterstützung. Technischer PR-Merge und verantwortliche Live-Abnahme
+sind für den vollständigen Paketabschluss noch offen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.
@@ -230,14 +233,14 @@ Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
 
 ## Nächster konkreter Arbeitsauftrag
 
-**CLG-03 prüfen und abschließen:** Gebundene Testentscheidungen, Ablehnung,
-Widerruf, Behebungsplanung und Fortschritt im eigenen PR prüfen. Der
-[Leitfaden](../evidence/governance-lifecycle-decisions.md) dokumentiert die
-synthetische Grenze, Vertragsversion 0.2.0 und ausführbare Abnahmefälle.
+**CLG-04 technisch prüfen:** Abschluss, Wiedereröffnung, Replay und Publisher-
+Schreibgrenzen im eigenen PR prüfen. Das [Pilot-Runbook](../../demos/demo-governance-lifecycle-pilot.md)
+trennt den vollständigen synthetischen Ablauf von der datierten Live-Beobachtung.
 
-**Nach dessen Merge CLG-04 umsetzen:** Evidenzgebundenen Abschluss und
-Wiedereröffnung, kleinen Bericht, Pilot-Runbook und begrenzte Publisher-Anbindung
-entwickeln. Live-Nutzung setzt die bestätigten Betriebszuordnungen voraus.
+**CLG-04 fachlich abnehmen:** Nach technischem Merge die offenen Betriebsrollen,
+Freigabenachweise und LD-01–05/07 klären und die verantwortliche Abnahme samt
+Release-Entscheidung dokumentieren. Erst danach gilt der Meilenstein als fertig.
+CLG-05 mit befristeten Ausnahmen bleibt das nachfolgende Paket.
 
 Der Maintainer koordiniert anschließend die Benennung der Entscheidungs- und
 Abschlussverantwortlichen mit den zuständigen Governance-Rollen. Der technische

@@ -67,6 +67,7 @@ nav:
       - Central Governance Baseline Guide: onboarding/how-other-repositories-use-the-central-governance-baseline.md
       - Governance Repo Usage by Other Repos: onboarding/how-other-repos-use-this-governance-repo.md
   - Demos:
+      - Governance Lifecycle Pilot: demos/demo-governance-lifecycle-pilot.md
       - End-to-End Governance Demo: demos/demo-end-to-end-governance.md
       - Demo Consumer Typed Evidence Trust: demos/demo-consumer-typed-evidence-trust.md
       - Präsentationsanleitung Typed Evidence Trust: demos/presentation-guide-typed-evidence-trust-de.md
@@ -97,6 +98,7 @@ nav:
           - Application Repo Governance Timing: operations/processes/application-repo-governance-timing.md
           - Spot Check Governance Intake: operations/processes/spot-check-governance-intake.md
       - Evidence:
+          - Governance Lifecycle Closure: operations/evidence/governance-lifecycle-closure.md
           - Governance Lifecycle Decisions: operations/evidence/governance-lifecycle-decisions.md
           - Governance Lifecycle Kernel: operations/evidence/governance-lifecycle-kernel.md
           - Governance Lifecycle Contract: operations/evidence/governance-lifecycle-contract.md
