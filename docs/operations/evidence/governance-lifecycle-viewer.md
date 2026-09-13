@@ -82,7 +82,9 @@ points to the generated Markdown report instead of claiming a displayed state.
 The same synthetic finding identity occurs in three independent histories.
 The page shows one scenario at a time and computes no portfolio total. It embeds
 the unchanged verified overview. Presentation text never upgrades fixture consent
-to authenticated human approval; LD-01–05 and LD-07 remain open.
+to authenticated human approval. The later
+[accepted GitHub pilot](../status/governance-lifecycle-current-state.md) has its own
+state and does not turn this scenario viewer into an operational write interface.
 
 The generator safely encodes JSON and the page creates data-derived DOM content
 as text. A Content Security Policy allows only the exact embedded application

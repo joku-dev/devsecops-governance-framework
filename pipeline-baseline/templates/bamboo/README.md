@@ -2,7 +2,10 @@
 
 This folder contains a Bamboo-oriented reference mapping for the tool-agnostic CI/CD Pipeline Control Baseline.
 
-The current target version is Bamboo Data Center 12.1.9. New application-repository adoption should start from the repository-stored YAML Specs template under:
+The template was authored against a Bamboo Data Center 12.1.9 assumption. The
+maintainer's intended environment is Bitbucket Data Center with Bamboo, but its
+actual versions and agent capabilities remain unconfirmed. Validate compatibility
+before adoption. The repository-stored YAML Specs starting point is:
 
 ```text
 pipeline-baseline/templates/bamboo/bamboo-specs/bamboo.yaml

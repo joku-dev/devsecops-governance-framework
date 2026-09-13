@@ -1,5 +1,10 @@
 # Live Evidence Preflight
 
+Current operating context: the separate [GitHub GRS-002 pilot](../status/governance-lifecycle-current-state.md)
+is accepted after PRs #92/#93. This guide describes the scope of its own
+contract or adapter; synthetic, diagnostic and preparation records retain their
+original labels and do not independently authorize operation.
+
 The read-only adapter checks a Self-Security run against the pinned producer in
 the [disabled live preparation](governance-lifecycle-live-preparation.md).
 [GCR-2026-072](../../governance/change-requests/GCR-2026-072-lifecycle-live-evidence-preflight.md)

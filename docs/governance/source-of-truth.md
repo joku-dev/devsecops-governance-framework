@@ -2,7 +2,7 @@
 
 ## Current State
 
-The public repository contains only source-document placeholders:
+Original source documents are withheld. The public source register includes placeholders; the foundational examples are:
 
 - `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md`
 - `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md`

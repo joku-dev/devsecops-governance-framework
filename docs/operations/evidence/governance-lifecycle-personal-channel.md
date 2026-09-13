@@ -1,5 +1,10 @@
 # Personal GitHub Channel Probe
 
+Current operating context: the separate [GitHub GRS-002 pilot](../status/governance-lifecycle-current-state.md)
+is accepted after PRs #92/#93. This guide describes the scope of its own
+contract or adapter; synthetic, diagnostic and preparation records retain their
+original labels and do not independently authorize operation.
+
 The confirmed pilot channel now has a read-only verifier and a concrete request
 for `joku-dev` (`github-user:81616324`). The first real GET check on
 13 September 2026 returned `waiting_for_personal_statement`. The maintainer then

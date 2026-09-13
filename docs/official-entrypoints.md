@@ -1,5 +1,11 @@
 # Official Entrypoints
 
+Aktueller Funktionsumfang: [detaillierter Katalog mit 21 Bereichen](operations/guides/repository-function-catalog.md)
+und [vollständige technische Funktionsliste](operations/guides/repository-technical-function-inventory.md).
+Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-state.md)
+ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
+13. September 2026 aktiv, manuell und report-only.
+
 Accepted consumer evidence on 11 September 2026 and remaining findings are
 recorded in the [current platform state](operations/status/current-governance-platform-state.md).
 
@@ -122,7 +128,7 @@ It is intended for:
 - Closed-loop governance decisions (CLG-03, synthetic): `docs/operations/evidence/governance-lifecycle-decisions.md`
 - Closed-loop governance kernel (CLG-02, synthetic): `docs/operations/evidence/governance-lifecycle-kernel.md`
 - Closed-loop governance contracts (CLG-01, offline): `docs/operations/evidence/governance-lifecycle-contract.md`
-- Closed-loop governance implementation plan (planned): `docs/operations/planning/closed-loop-governance-implementation-plan.md`
+- Closed-loop governance implementation progress and remaining work: `docs/operations/planning/closed-loop-governance-implementation-plan.md`
 
 ## Platform Explanation
 

@@ -66,6 +66,7 @@ nav:
       - Application Repo Onboarding: onboarding/application-repo-onboarding.md
       - Central Governance Baseline Guide: onboarding/how-other-repositories-use-the-central-governance-baseline.md
       - Governance Repo Usage by Other Repos: onboarding/how-other-repos-use-this-governance-repo.md
+  - Documentation Review: operations/reference-runs/2026-09-13-documentation-currency-review.md
   - Demos:
       - Governance Lifecycle Pilot: demos/demo-governance-lifecycle-pilot.md
       - End-to-End Governance Demo: demos/demo-end-to-end-governance.md
@@ -77,6 +78,7 @@ nav:
   - Operations:
       - Guides:
           - Detailed Function Catalog: operations/guides/repository-function-catalog.md
+          - Complete Technical Function Inventory: operations/guides/repository-technical-function-inventory.md
           - Operations Handbook: operations/guides/governance-repository-operations-handbook.md
           - Overview: operations/guides/index.md
           - How To Use This Repo: operations/guides/how-to-use-this-repo.md
@@ -109,7 +111,8 @@ nav:
           - Governance Lifecycle Durable Pilot Intake: operations/evidence/governance-lifecycle-durable-pilot-intake.md
           - Governance Lifecycle Personal Channel: operations/evidence/governance-lifecycle-personal-channel.md
           - Governance Lifecycle Action Consent: operations/evidence/governance-lifecycle-action-consent.md
-          - Governance Lifecycle Live Operation: operations/evidence/governance-lifecycle-live-operation.md
+          - Current Accepted GitHub Pilot: operations/status/governance-lifecycle-current-state.md
+          - Governance Lifecycle Accepted Runbook: operations/evidence/governance-lifecycle-live-operation.md
           - Governance Lifecycle Live Evidence Preflight: operations/evidence/governance-lifecycle-live-evidence-preflight.md
           - Governance Lifecycle Live Preparation: operations/evidence/governance-lifecycle-live-preparation.md
           - Governance Lifecycle Live Decision Brief: operations/evidence/governance-lifecycle-live-decision-brief.md

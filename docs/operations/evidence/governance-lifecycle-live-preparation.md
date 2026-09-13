@@ -1,5 +1,10 @@
 # CLG Live Pilot Preparation
 
+Current operating context: the separate [GitHub GRS-002 pilot](../status/governance-lifecycle-current-state.md)
+is accepted after PRs #92/#93. This guide describes the scope of its own
+contract or adapter; synthetic, diagnostic and preparation records retain their
+original labels and do not independently authorize operation.
+
 The maintainer confirmed the three-role proposal on 13 September 2026 with
 `ja ich bestätige`. [GCR-2026-071](../../governance/change-requests/GCR-2026-071-lifecycle-live-pilot-roles.md)
 records the decision and classification. GitHub's public account lookup supplied

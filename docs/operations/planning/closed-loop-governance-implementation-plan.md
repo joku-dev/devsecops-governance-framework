@@ -1,11 +1,12 @@
 # Closed-Loop Governance: Umsetzungsplan
 
-Stand: 12. September 2026. Geprüfter Ausgangspunkt: Repository-Commit
-`5311182c220548474fcd90b04c38dc46b144937a`.
+Stand: 13. September 2026. Ursprünglicher Planungsstand: `5311182c220548474fcd90b04c38dc46b144937a`.
+Aktueller Implementierungsabgleich: `8df643db37ec4d6da7196b94aaa77b5e0e0844d8` (nach PR #93).
 
 Status: Die Umsetzungsrichtung wurde vom Maintainer bestätigt. Dieses Dokument
-plant die technische Umsetzung; die vollständige Live-Laufzeit ist noch
-nicht implementiert. Die Planung ist in
+dokumentiert die technische Umsetzung und verbleibenden Ausbau. Der begrenzte
+manuelle GitHub-GRS-002-Pilot ist persönlich abgenommen und aktiv; weitere
+Consumer, Live-Waiver und Lifecycle-Portfolio bleiben separate Arbeitspakete. Die Planung ist in
 [GCR-2026-060](../../governance/change-requests/GCR-2026-060-closed-loop-governance-plan.md)
 klassifiziert.
 
@@ -23,7 +24,7 @@ Behebungsverlauf mit Owner und Zieltermin. CLG-03 wurde mit PR #78 gemergt.
 [CLG-04](../evidence/governance-lifecycle-closure.md) ergänzt synthetischen
 Abschluss und Wiedereröffnung, einen separaten Pilotbericht und begrenzte
 Publisher-Unterstützung. Der technische CLG-04-PR #79 ist gemergt; die
-verantwortliche Live-Abnahme bleibt offen.
+begrenzte Live-Betriebsabnahme ist mit PR #92 veröffentlicht.
 [CLG-05](../evidence/governance-lifecycle-exceptions.md) ergänzt synthetische
 Ausnahmen mit beobachtungsbezogener Teilabdeckung, Ablauf, Widerruf und
 erneuter Entscheidung. Der technische CLG-05-PR #80 ist gemergt.
@@ -38,7 +39,7 @@ DevSecOps-Control-Ergebnisse als ungeprüfte Eingabekandidaten vor.
 Der technische PR #83 ist gemergt.
 CLG-06.3b ergänzt Architektur-Gate-Kandidaten mit unveränderter Granularität und
 Tests gegen den tatsächlichen Report-Generator. Beide Adapter bleiben diagnostisch;
-Live-Intake und Architektur-Ausnahmezuordnungen sind weiterhin offen.
+Live-Intake für diese zusätzlichen Domänen und Architektur-Ausnahmezuordnungen bleiben offen.
 Die [konkrete Live-Entscheidungsvorlage](../evidence/governance-lifecycle-live-decision-brief.md)
 enthält die am 13. September 2026 bestätigte Mehrfachrolle für `joku-dev`
 und die verbleibenden Betriebsvorschläge. Die [Live-Vorbereitung](../evidence/governance-lifecycle-live-preparation.md)
@@ -52,10 +53,13 @@ ergänzt unveränderliche Capture-Transaktionen, Frische, Replay und Quarantäne
 ist mit dem persönlich abgegebenen Kommentar auf PR #87 erfolgreich nachgewiesen.
 Die [aktionsbezogene Freigabeprüfung](../evidence/governance-lifecycle-action-consent.md)
 ergänzt eine eigene unveränderliche Pilotvalidierung. Der [begrenzte Betriebs-Publisher](../evidence/governance-lifecycle-live-operation.md)
-ist vorbereitet; die verantwortliche persönliche Betriebsabnahme LD-07 bleibt offen.
+ist implementiert und mit der persönlichen LD-07-Erklärung auf PR #91 sowie
+den echten Veröffentlichungen #92/#93 nachgewiesen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
-hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
-Pilotabnahme folgen in CLG-04.
+hält die bestätigten Pilotentscheidungen und die übrigen Grenzen fest. Der
+[aktuelle Betriebsstand](../status/governance-lifecycle-current-state.md) trennt
+die erfolgreiche begrenzte Betriebsabnahme von der bislang nur getesteten
+Fehler-/Behebungs-/Abschlussfolge und einer noch separaten Release-Entscheidung.
 
 ## Ziel und erster Pilot
 
@@ -118,8 +122,8 @@ Die bisherigen Piloten zeigen, dass aktueller Finding-Zustand, historische
 Abschlüsse, Behebungsfortschritt und Ausnahmeabdeckung unabhängig sichtbar sein
 müssen. Deshalb beginnt CLG-06 mit Reporting aus dem vorhandenen Verlauf.
 Die folgenden Schritte werden jeweils separat geprüft und als eigener PR
-umgesetzt; die spätere Live-Aktivierung braucht weiterhin die offenen
-Betriebsentscheidungen aus CLG-04.
+umgesetzt. Die begrenzte GitHub-Aktivierung ist nachgewiesen; zusätzliche
+Domänen und Consumer benötigen ihre eigenen Betriebsentscheidungen.
 
 | Schritt | Abgegrenztes Ergebnis | Voraussetzung / Abnahme |
 |---|---|---|
@@ -284,18 +288,18 @@ Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
 
 ## Nächster konkreter Arbeitsauftrag
 
-**Persönlicher Kanal nachgewiesen:** Der Kommentar von `joku-dev` auf PR #87 ist
-verifiziert und als diagnostischer Nachweis gespeichert. Er erteilt keine
-aktionsbezogene Freigabe.
+**Begrenzter GitHub-Pilot aktiv:** Persönlicher Kanal, aktionsbezogene Prüfung,
+LD-07-Betriebsabnahme und erste echte Publikation sind mit PRs #89–93 nachgewiesen.
+Zwei zulässige GRS-002-PASS-Receipts ergeben kein offenes Finding und keine Maßnahme.
 
-**Live-Zustimmung integrieren und CLG-04 abnehmen:** Nach diesem Nachweis folgen
-die persönliche LD-07-Abnahme des vorbereiteten Betriebsleitfadens und die
-erste geprüfte Pilotveröffentlichung über den begrenzten Betriebs-Publisher.
-Die aktionsbezogene Freigabe-/Widerrufs-/Abschlussvalidierung und deren Negativfälle
-sind als eigener technischer Schritt umgesetzt.
-Anschließend dokumentiert der benannte Verantwortliche die Betriebsabnahme LD-07.
-Rollen und LD-04/05-Betriebswerte sind bereits bestätigt. Portfolio (CLG-06.4) und
-optionale KI-Unterstützung (CLG-06.5) bleiben nachgelagerte Erweiterungen.
+**Nächste Aufgaben:** Betriebserfahrung anhand tatsächlicher neuer Beobachtungen
+sammeln; bei einem echten Fehler persönliche Entscheidung und Verlauf aufnehmen.
+Die Pilot-/Release-Bewertung muss zwischen bestandenen synthetischen Negativfällen,
+echtem PASS-Betrieb und einer noch nicht real durchlaufenen Fehlerfolge unterscheiden.
+Ein Runtime-Release oder eine Erweiterung der Abnahme wird separat entschieden.
+CLG-06.4 benötigt zugelassene Lifecycle-Consumer und eine bestätigte Grundgesamtheit;
+CLG-06.5 bleibt optionale KI-Unterstützung. Bitbucket Data Center/Bamboo wird erst
+nach Vorliegen der aktuellen Firmenumgebung konkretisiert.
 
 Jeder Implementierungs-PR enthält die eigene Intake-/Impact-Klassifikation und
 passende Tests. Vor dem Commit laufen

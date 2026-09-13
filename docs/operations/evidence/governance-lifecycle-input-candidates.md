@@ -1,5 +1,10 @@
 # Lifecycle Input Candidates (CLG-06.3)
 
+Current operating context: the separate [GitHub GRS-002 pilot](../status/governance-lifecycle-current-state.md)
+is accepted after PRs #92/#93. This guide describes the scope of its own
+contract or adapter; synthetic, diagnostic and preparation records retain their
+original labels and do not independently authorize operation.
+
 The additional adapters prepare **diagnostic DevSecOps control and architecture
 gate candidates** from existing producer reports. They do not submit observations to
 the lifecycle kernel. The [implementation plan](../planning/closed-loop-governance-implementation-plan.md)

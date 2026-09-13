@@ -1,5 +1,10 @@
 # Governance Lifecycle Contract — CLG-01
 
+Current operating context: the separate [GitHub GRS-002 pilot](../status/governance-lifecycle-current-state.md)
+is accepted after PRs #92/#93. This guide describes the scope of its own
+contract or adapter; synthetic, diagnostic and preparation records retain their
+original labels and do not independently authorize operation.
+
 Version: **0.1.0**, 13 September 2026. Scope: executable record contracts and
 synthetic offline examples for the [closed-loop pilot](../planning/closed-loop-governance-implementation-plan.md).
 Change classification: [GCR-2026-062](../../governance/change-requests/GCR-2026-062-governance-lifecycle-contracts.md).

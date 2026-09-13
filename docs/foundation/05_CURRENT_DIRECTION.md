@@ -37,6 +37,8 @@ Trust
 - Versioned governance baselines
 - Application repository integration
 - Result intake
+- Bounded finding, decision, remediation and closure lifecycle with personal authority
+- Separate synthetic scenarios and an accepted manual GitHub GRS-002 pilot
 - Traceability
 - Governance reporting
 - Multi-platform adapter patterns

@@ -1,5 +1,10 @@
 # Governance Repository Operations Handbook
 
+The separately accepted [GitHub GRS-002 lifecycle pilot](../status/governance-lifecycle-current-state.md)
+is active after PRs #92/#93. Its manual `acceptance`, `observe`, `action` and
+`refresh` operations use the scoped PR publisher. Consumer onboarding and
+enterprise operating acceptance retain the separate requirements below.
+
 ## Start Here
 
 This is the operating entry point for the central governance repository and its

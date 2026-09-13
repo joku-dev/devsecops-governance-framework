@@ -2,8 +2,8 @@
 
 ## Observation Scope
 
-This page describes the implemented operating model as checked on 11 September
-2026. For daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
+This page describes the implemented operating model as checked on 13 September
+2026 at `8df643d`. Consumer observations below retain their 11 September dates. For daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
 For live observations use the latest main workflow artifacts and
 [daily operations report](daily-governance-operations.md). A dated document or
 successful workflow is not a current compliance attestation.
@@ -17,7 +17,8 @@ successful workflow is not a current compliance attestation.
 | Released baselines | DevSecOps `l1-baseline-v1.1.3`; architecture `architecture-baseline-l1-v0.1.0`; frozen packages under `releases/` |
 | Accepted results | Append-only snapshots and digests, manifests, domain indexes and collection-attempt records under `status/` |
 | Intake telemetry | Append-only `status/intake-events/` feeds Intake Health, readiness and daily operating observations |
-| Operational publication | Four intake/portfolio writers propose scoped bot PRs; accepted state changes on protected main after review and merge |
+| Operational publication | Intake, portfolio and the manual lifecycle workflow propose scoped bot PRs; six publisher scopes; accepted state changes on protected main after checked merge |
+| Closed-loop lifecycle | Personally accepted manual GRS-002 pilot; two real PASS receipts, no finding/actions; separate synthetic exception/scenario support |
 | Status viewer and graph | Script-generated `generated/viewer/status-viewer.html` and `generated/graph/governance-graph.json`; read-only projections |
 | Documentation publication | `.github/workflows/publish-docs.yml` builds MkDocs strictly and deploys Pages, including generated assets |
 | Self-security | Report-only assessment of this repository, independently of consumer governance results |
@@ -28,18 +29,29 @@ to their retention settings and selected archival. The current pilot requires no
 database. See the [storage model](../evidence/governance-results-storage-model.md)
 and [backup procedure](../processes/governance-repository-backup-and-recovery.md).
 
+## GitHub lifecycle update, 13 September 2026
+
+The [current lifecycle state](governance-lifecycle-current-state.md) records personal
+LD-07 acceptance on #91, activation via #92 and fresh evidence publication via #93.
+The pilot is manual/report-only and limited to this repository's GRS-002/main.
+It does not update consumer results, authorize live waivers or create a release.
+The [21-area function catalog](../guides/repository-function-catalog.md) and
+[technical inventory](../guides/repository-technical-function-inventory.md) cover
+both established capabilities and this addition.
+
 ## Protection And Enforcement
 
-The live main ruleset was read back on 11 September 2026: active, no bypass,
+The live main ruleset was read back after the #93 merge on 13 September 2026: active, no bypass,
 one approving review, stale approval dismissal, resolved conversations, strict
 required checks, and prohibited force pushes/deletion. The required GitHub
 Actions checks are `validate-and-report`, `Analyze Python`, and
 `Governance Repository Security`. Configuration is versioned in
 `.github/main-ruleset.json`; changing that file alone does not change GitHub.
 
-The one-off review exceptions, including central PRs #64 and #67 on
-11 September, were restored and audited in their PRs. They are not standing
-operating permission.
+The earlier #64/#67 exceptions and the maintainer-authorized technical CLG
+merge exceptions, including #92/#93, restore the original ruleset after each
+merge. The standing conversation authorization covers technical implementation
+merges, not personal lifecycle decisions, live waivers or general operating authority.
 Maintainer-authored PRs need another authorized reviewer under the normal rules.
 See [self-security](../security/governance-repository-self-security.md).
 

@@ -5,16 +5,18 @@
 Dieser Katalog beschreibt die fachlichen und betrieblichen Funktionen von
 `joku-dev/devsecops-governance-framework`. Er erklärt, welche Aufgaben das
 Repository übernimmt, wie Daten verarbeitet werden und welche Ergebnisse
-entstehen. Die Gliederung umfasst die zwanzig Bereiche der Funktionsübersicht.
+entstehen. Die Gliederung umfasst 21 Funktionsbereiche einschließlich des GitHub-Lifecycle-Piloten.
 Interne Hilfsfunktionen werden ihrem jeweiligen Funktionsbereich zugeordnet.
+Die [technische Funktionsliste](repository-technical-function-inventory.md) erfasst
+zusätzlich alle Skripte, Bibliotheksmodule, Workflows und OPA-Module des Quellstands.
 
 | Merkmal | Wert |
 | --- | --- |
-| Dokumentstand | 11. September 2026 |
-| Betrachteter Quellstand | `4abe88294f299d7f801c74ff0161df234960c092` |
+| Dokumentstand | 13. September 2026 |
+| Betrachteter Quellstand | `8df643db37ec4d6da7196b94aaa77b5e0e0844d8` |
 | Zielgruppe | Geschäftsführung, Governance-Verantwortliche, Architektur, Security, Plattformbetrieb und Anwendungsteams |
 | Dokumenttyp | Erläuternder Funktionskatalog |
-| Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierung: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md) |
+| Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierungen: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md), [GCR-2026-078](../../governance/change-requests/GCR-2026-078-documentation-and-function-audit.md) |
 
 Der Katalog beschreibt vorhandene Fähigkeiten zum genannten Quellstand. Er
 bestätigt keine aktuelle Betriebsbereitschaft einer Anwendung und erzeugt keine
@@ -40,6 +42,7 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 5. Der zentrale Intake übernimmt Ergebnisse in normalisierte Datensätze.
 6. Ein überprüfter PR bringt diese Datensätze und ihre Projektionen nach `main`.
 7. Berichte und Viewer unterstützen die Bewertung und Bearbeitung offener Punkte.
+8. Der abgegrenzte Lifecycle-Pilot verbindet akzeptierte Beobachtungen mit persönlich freigegebenen Maßnahmen, Fortschritt, Abschluss und Widerruf.
 
 Die technische Umsetzung verbindet Git, YAML- und JSON-Modelle, Python-Skripte,
 OPA/Rego, GitHub Actions und einen statischen Viewer. Eine dauerhaft laufende
@@ -496,7 +499,10 @@ Stand nach `main`.
 anschließend, bei Annahme, aktualisierte offizielle Indizes und Viewer-Daten.
 
 **Implementierungsstellen:** `scripts/publish_operational_update.py`, die drei
-Intake-Workflows und `.github/workflows/portfolio-status.yml`.
+Intake-Workflows, `.github/workflows/portfolio-status.yml` und
+`.github/workflows/lifecycle-pilot-update.yml`. Der Publisher unterscheidet
+sechs Umfänge: DevSecOps, Architektur, typisierte Evidenz, Portfolio, synthetischer
+Lifecycle und der abgenommene GitHub-Lifecycle-Pilot.
 
 **Einordnung und Grenzen:** Implementiert. Der Bot genehmigt oder merged seine
 PRs nicht selbst. Parallele Intake-Läufe besitzen getrennte Identitäten. Bei
@@ -657,6 +663,48 @@ Kandidatenanforderungen werden durch den Import nicht genehmigt.
 Publishing-Builder benötigen ihre eigene Artefaktumgebung; sie sind keine
 Laufzeitabhängigkeit der Governance-Prüfung.
 
+## 21. Findings, Entscheidungen und Maßnahmen im Lifecycle verfolgen
+
+**Zweck:** Einen Governance-Befund vom nachgewiesenen Fehler über eine bewusste
+menschliche Entscheidung und Behebung bis zum evidenzgebundenen Abschluss verfolgen.
+
+**Eingaben:** Zulässige GRS-002-Beobachtungen mit vollständigem Capture-Paket,
+versioniertes Betriebsprofil und Rollenbindung, persönliche GitHub-Erklärungen
+zu unveränderlichen Anträgen sowie erwartete Verlaufsrevisionen.
+
+| Teilfunktion | Verarbeitung und Ergebnis | Geltungsbereich |
+|---|---|---|
+| Verträge und synthetischer Kern | Schemas, kanonische Digests, Ereignisse, Findings, vollständiger Replay | CLG-01/02; drei getrennte synthetische Historien |
+| Echte Beobachtungen | GitHub-Lauf, Commit, Versuch, Artefakt, Producer-Dateien und Frische prüfen; unveränderliche Receipts | Nur freigegebenes GRS-002/main im Governance-Repository |
+| Wiederholung und Konflikt | Identische erneute Zustellung ohne neue Wirkung; abweichende Herkunft/Inhalte quarantänisieren | Keine Überschreibung angenommener Geschichte |
+| Persönliche Betriebsabnahme | Identität, Inhalt und unveränderte Implementierung prüfen; separate offizielle Pilotprojektion freischalten | LD-07 persönlich bestätigt, PR #92 gemergt |
+| Behebungsentscheidung | Reales FAIL, vollständigen Plan, benannten Owner, Zieltermin, Arbeitsreferenz und Einzelfreigabe prüfen | Keine automatische Behebung |
+| Fortschritt | Persönlich bestätigte Zustände `in_progress` und `completed` mit Nachweisnotiz aufnehmen | Kein unabhängiger Beweis, dass ein referenziertes Ticket erledigt wurde |
+| Abschluss und Wiedereröffnung | Aktive Entscheidung, abgeschlossene Behebung, neueres frisches PASS und eigene Abschlussfreigabe verbinden; neueres FAIL wieder öffnen | PASS allein schließt kein Finding |
+| Widerruf und Korrektur | Erklärungswiderruf, geänderte/gelöschte Erklärungen und Rollenentzug berücksichtigen; abhängige Freigaben ungültig machen | Historische Entscheidungen/Abschlüsse bleiben nachvollziehbar |
+| Befristete Ausnahmen | Teilabdeckung, Überlappung, Ablauf und Widerruf mit explizitem Auswertungszeitpunkt | CLG-05 nur synthetisch; kein Live-Waiver freigegeben |
+| Szenarioübersicht und Viewer | Getrennte Testhistorien, Zustände, Kennzahlen, Ereignisfilter und Referenzen anzeigen | CLG-06.1/06.2 lesend; keine realen Portfolioquoten |
+| Weitere Ergebnisadapter | DevSecOps-Control- und Architektur-Gate-Kandidaten samt Herkunft und Granularität aufbereiten | CLG-06.3 diagnostisch; keine automatische Lifecycle-Annahme |
+| Betriebsvorschlag | `acceptance`, `observe`, `action`, `refresh` auf `main`; begrenzten PR erzeugen und Provider unabhängig nachprüfen | Manuell, report-only, keine automatische Freigabe oder Merge |
+
+**Ergebnisse:** Unveränderliche Transaktionen, technische Zulässigkeitsindizes,
+separate wirksame Live-Ansicht, JSON-/Markdown-Berichte und synthetischer Viewer.
+Am geprüften Stand sind zwei reale PASS-Receipts angenommen, null Findings und
+null Maßnahmen vorhanden. Die vollständige Fehlerfolge ist durch Tests belegt;
+sie wird nicht als tatsächlich abgeschlossene Live-Behebung ausgegeben.
+
+**Implementierungsstellen:** `scripts/lib/governance_lifecycle/`,
+`scripts/run_lifecycle_pilot_update.py`, `scripts/prepare_lifecycle_pilot_action.py`,
+`scripts/intake_lifecycle_pilot_action.py`, `scripts/validate_governance_lifecycle_ledger.py`,
+`.github/workflows/lifecycle-pilot-update.yml`, `model/governance/lifecycle/`,
+`governance/lifecycle/` und `status/governance-lifecycle-live.json`.
+
+**Einordnung und Grenzen:** Der [begrenzte GitHub-Pilot ist aktiv](../status/governance-lifecycle-current-state.md).
+Die Einzelfreigaben bleiben erforderlich. Es gibt keine kontinuierliche
+Providerüberwachung, keinen automatischen Remediation-Executor und keinen
+zugelassenen Bitbucket-Lifecycle-Adapter. Weitere Consumer, Live-Waiver,
+Lifecycle-Portfolio und optionale KI-Unterstützung bleiben außerhalb der Abnahme.
+
 ## Berichte und Exporte im Überblick
 
 | Ausgabegruppe | Zweck | Wesentliche Generatoren unter `scripts/` |
@@ -679,6 +727,7 @@ Laufzeitabhängigkeit der Governance-Prüfung.
 | Betrieb und Sicherheit | Operativen Handlungsbedarf erkennen | `generate_intake_health.py`, `generate_operations_report.py`, `assess_governance_repository_security.py` |
 | Indizes und Graph | Daten für die Statusanzeige projizieren | Die Generatoren aus Abschnitt 17 |
 | Agentennutzung | Routing-Nutzung und Beteiligung darstellen | `generate_agent_usage_snapshot.py`, `generate_evidence_agent_provenance_index.py` |
+| Lifecycle | Echte Pilotansicht, Zulässigkeit, synthetische Ereignisse und Szenarien | `run_lifecycle_pilot_update.py`, `generate_lifecycle_pilot_validation.py`, `generate_lifecycle_pilot_actions.py`, `generate_governance_lifecycle_overview.py`, `generate_governance_lifecycle_viewer.py` |
 | Dokumente und Kommunikation | Inhalte für Leser und Vorträge ausgeben | `render_governance_documents.py`, Builder unter `scripts/publishing/` |
 
 Nicht jeder Bericht erzeugt dasselbe Dateiformat. Die jeweiligen Generatoren
@@ -694,7 +743,8 @@ Anwendungsnachweise zu unterscheiden.
 | Allgemeines CI-Artefaktbundle | Validierung und normalisierte Übernahme | Producer muss das definierte Bundle liefern |
 | GitLab CI | Governance-Check-Vorlage | Keine pauschal belegte Betriebsintegration |
 | Jenkins | Pipeline-Vorlagen für DevSecOps und Architektur | Anpassung und Erprobung beim Betreiber |
-| Bitbucket und Bamboo | Pipeline- und Adapterunterlagen | Plattformumgebung und Nachweiserzeugung gesondert einrichten |
+| Bitbucket Data Center und Bamboo | Bamboo-Specs und Adapterunterlagen | Firmenversionen noch unbekannt, nicht live validiert; GitHub-Pilotabnahme gilt hier nicht |
+| Bitbucket Cloud | Bitbucket-Pipelines-Vorlage | Eigener Cloud-Pfad, kein ausführbares Data-Center-Pipelineformat |
 | Agentenprovider | Modellneutrale Verträge und Codex-/Mistral-Adapter | Kein automatischer Ersatz menschlicher Entscheidungszuständigkeit |
 | Darstellung | Statischer Viewer, Graph und Dokumentationssite | Kein interaktiver Schreibzugriff auf Governance-Daten |
 

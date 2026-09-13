@@ -1,6 +1,11 @@
 # End-to-End Governance Demo Runbook
 
-The result IDs in this runbook are retained July 2026 reference evidence. For
+The separate [GRS-002 lifecycle pilot](../operations/status/governance-lifecycle-current-state.md)
+now has personal operating acceptance. It does not change the ha-CPsWMS results
+or demonstrate a real consumer remediation/closure.
+
+This runbook contains accepted September mainline results and older, explicitly
+dated reference examples. For
 current operations, use the [operations handbook](../operations/guides/governance-repository-operations-handbook.md).
 The existing ha-CPsWMS DevSecOps integration is a preserved legacy blocking risk,
 with review due 12 December 2026; see [mode alignment](../operations/status/blocking-mode-alignment.md).
