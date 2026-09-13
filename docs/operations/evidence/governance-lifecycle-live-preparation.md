@@ -69,3 +69,10 @@ The [decision sheet](governance-lifecycle-pilot-decisions.md) and
 [live decision brief](governance-lifecycle-live-decision-brief.md) distinguish
 confirmed appointments from the remaining trust, operating-policy and live
 acceptance decisions. LD-05 values are not inherited from synthetic test constants.
+
+## Subsequent confirmed operating profile
+
+The initial preparation above remains immutable. The maintainer subsequently
+confirmed the pilot operating values. A [separate operating profile and durable
+receipt store](governance-lifecycle-durable-pilot-intake.md) implements that
+decision without rewriting this preparation or activating live lifecycle state.
