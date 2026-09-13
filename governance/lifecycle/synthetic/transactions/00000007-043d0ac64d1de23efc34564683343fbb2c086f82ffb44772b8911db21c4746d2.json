@@ -1,0 +1,106 @@
+{
+  "environment": "synthetic",
+  "event": {
+    "body": {
+      "effective_at": "2026-09-13T11:50:00Z",
+      "event_type": "remediation_recorded",
+      "expected_revision": 6,
+      "policy_version": "0.1.0",
+      "previous_event_ref": {
+        "digest": "1a42b670af75929951d27205e9cfc02d0fd6fee1b0ff67efdcb3f595426852b7",
+        "id": "event:99c1f4cdc4aeb2a2f468d4aeb8c000caf047078265c67de8d24ae8a80b3db2f7"
+      },
+      "revision": 7,
+      "source_refs": [
+        {
+          "digest": "3dbc7720b0d0b42bbaf2eaa029f0ba6e9cddc51a24a95c96c138c2fcd666ca35",
+          "id": "remediation:demo-planned"
+        }
+      ]
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "event:08c18f6889435823e557a133b27f3f3248677eb93d4ded8d3558fedaa69ba0c7",
+    "record_type": "event",
+    "recorded_at": "2026-09-13T11:50:00Z",
+    "schema_version": "0.1.0"
+  },
+  "expected_revision": 6,
+  "outcome": "accepted",
+  "previous_ref": {
+    "digest": "6aa3c05d6faa943e18e9f783879fbdbd12db089f913bdac3f77ca28dfa67b494",
+    "id": "transaction:bfb784a25220f4bc68d57849fa2e185c6b58f302de2ade2f484d12123aff6adf"
+  },
+  "profile_ref": {
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0"
+  },
+  "reason": "remediation_recorded",
+  "record": {
+    "body": {
+      "action": "Investigate and restore the synthetic GRS-002 review requirement.",
+      "decision_ref": {
+        "digest": "fdb248fa69ad8a853b05b827bb72e11ec55fc0e45bb071ebcf72fbeb06046775",
+        "id": "decision:demo-approve"
+      },
+      "expected_revision": 6,
+      "owner_id": "test-human:remediation-owner",
+      "progress": "planned",
+      "progress_evidence_ref": {
+        "digest": "5eabc9269441a95292baf4f18062cda0e3fcdaae12e93297fb6cdcdf97135f67",
+        "uri": "fixture://action-5eabc9269441a95292baf4f18062cda0e3fcdaae12e93297fb6cdcdf97135f67.json"
+      },
+      "remediation_id": "remediation-case:demo-1",
+      "target_at": "2026-09-14T12:00:00Z",
+      "work_ref": {
+        "digest": "a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d",
+        "uri": "fixture://action-a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d.json"
+      }
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "remediation:demo-planned",
+    "record_type": "remediation",
+    "recorded_at": "2026-09-13T11:50:00Z",
+    "schema_version": "0.2.0"
+  },
+  "recorded_at": "2026-09-13T11:50:00Z",
+  "resources": {
+    "fixture://action-5eabc9269441a95292baf4f18062cda0e3fcdaae12e93297fb6cdcdf97135f67.json": "ewogICJlbnZpcm9ubWVudCI6ICJzeW50aGV0aWMiLAogICJyZW1lZGlhdGlvbl9yZWNvcmRfZGlnZXN0IjogIjE1MDViZmFhNjBlNjc0YzRlYzA1M2I3NmRlMzAyMGNjZWFkZTNiNTM0YTMzOWY2ZTBlZmYwODhhODk0MWI3NDAiCn0K",
+    "fixture://action-a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d.json": "ewogICJjYXNlX2lkIjogInJlbWVkaWF0aW9uLWNhc2U6ZGVtby0xIiwKICAiZW52aXJvbm1lbnQiOiAic3ludGhldGljIiwKICAid29ya19pdGVtIjogIlN5bnRoZXRpYyByZW1lZGlhdGlvbiB3b3JrIgp9Cg=="
+  },
+  "schema_version": "0.2.0",
+  "sequence": 7,
+  "transaction_id": "transaction:043d0ac64d1de23efc34564683343fbb2c086f82ffb44772b8911db21c4746d2"
+}

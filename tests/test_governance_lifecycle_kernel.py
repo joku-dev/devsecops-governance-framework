@@ -261,9 +261,9 @@ class LifecycleKernelTests(unittest.TestCase):
     def test_demo_rebuild_matches_checked_in_ledger_and_projection(self):
         output = self.root / "index.json"
         result = run_demo(self.ledger, output)
-        expected = strict_json((ROOT / "status/governance-lifecycle-synthetic-index.json").read_bytes())
+        expected = strict_json((ROOT / "tests/fixtures/governance-lifecycle/clg02-index.json").read_bytes())
         self.assertEqual(result, expected)
-        self.assertEqual(load_transactions(self.ledger), load_transactions(ROOT / "governance/lifecycle/synthetic"))
+        self.assertEqual(load_transactions(self.ledger), load_transactions(ROOT / "governance/lifecycle/synthetic")[:5])
         self.assertEqual(result["findings"][0]["state"], "needs_clarification")
         self.assertEqual(result["findings"][0]["evidence_status"], "pass")
         self.assertEqual(result["findings"][0]["occurrences"], 3)
