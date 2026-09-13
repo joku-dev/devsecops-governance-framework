@@ -67,3 +67,26 @@ Ziele zum Lebenszyklus; Gate-Nachrichten liefern diese Zuordnung nicht.
 CLG-06.5 bleibt optional. Für einen funktionierenden Live-Piloten ist kein LLM
 erforderlich. Diese optionale Erweiterung soll die Rollen- und Evidenzentscheidung
 nicht verzögern.
+
+## Nächste verbindliche Entscheidung: Betriebsprofil für den ersten Live-Intake
+
+Die Rollenbindung ist mit PR #85 gemergt. Der lesende Evidenzprüfer hat den
+[echten Referenzlauf](../reference-runs/2026-09-13-clg-live-evidence-preflight.md)
+mit zehn bestandenen Prüfungen erfasst und offline reproduziert. GRS-002 war
+zum Beobachtungszeitpunkt PASS. Damit liegen konkrete Prüfergebnisse für die
+folgende Entscheidung vor; eine Rollenbestätigung genehmigt diese Betriebswerte
+noch nicht.
+
+| Punkt | Vorschlag zur Bestätigung | Konkrete Wirkung |
+|---|---|---|
+| LD-04: Trust-Wurzel und Producer | Authentifizierte GET-Abfragen der offiziellen GitHub.com-API plus die fünf im Vorbereitungsprofil festgelegten Producer-Dateien; nur erfolgreich abgeschlossener Mainline-Push, Versuch 1 | Andere Provider, veränderte Producer-Dateien, Branch-/PR-/manuelle/geplante Läufe und Wiederholungsversuche werden nicht zugelassen. Der GitHub-Provider ist die benannte Vertrauenswurzel; offline gespeicherte Metadaten allein begründen keine neue Vertrauensentscheidung. |
+| LD-05: Frische und Zeitversatz | Höchstens 24 Stunden alte Beobachtung; kein zukünftiger Zeitversatz | Ältere Beobachtungen liefern keinen frischen Nachweis für eine neue Entscheidung oder einen Abschluss. Bestehende Historie bleibt erhalten. Ohne passenden neuen Mainline-Push kann die Evidenz veralten; es wird kein PASS erfunden und kein künstlicher Push erzeugt. |
+| LD-04: Aufbewahrung | Vollständige Capture-Pakete, Akzeptanznachweise und Entscheidungsreferenzen während des Piloten unveränderlich aufbewahren; keine automatische Löschung, Aufbewahrungsentscheidung beim Pilotabschluss | Der künftige dauerhafte Pilot-Speicher muss vor Live-Annahme eingerichtet und getestet sein. Ein lokales `/tmp`-Paket oder GitHub-Artefakt mit Ablaufdatum reicht dafür nicht. Diese Freigabe wäre keine allgemeine Unternehmens-Aufbewahrungsrichtlinie. |
+| LD-05: Replay und Konflikte | Gleiche Herkunftsidentität plus gleicher Inhalt ist eine Wiederholung ohne neue Wirkung; abweichender Inhalt bei gleicher Identität wird quarantänisiert | Keine Überschreibung akzeptierter Evidenz; Live-Speicher, konkurrierende Annahme und vollständige Konfliktprüfung müssen dies vor Aktivierung nachweisen. |
+
+Diese Bestätigung würde das konkrete Live-Akzeptanzprofil und seine dauerhafte
+Speicherung umsetzbar machen. Danach folgen die inhaltsgebundene persönliche
+Freigabeverifikation und der vollständige Betriebsnachweis. Die separate
+Live-Abnahme (LD-07) bleibt bis zur Vorlage dieses Nachweises offen. Persönliche
+Behebungs- und Abschlussfreigaben werden weiterhin vom benannten Menschen
+selbst erteilt.
