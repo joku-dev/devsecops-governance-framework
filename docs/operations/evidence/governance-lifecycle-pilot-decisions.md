@@ -80,3 +80,14 @@ synthetic closure/reopening, explicit-time reports and a bounded review-PR
 publisher scope. The separately dated live observation is not accepted lifecycle
 evidence. LD-01–05 and LD-07 remain open, including accountable acceptance and
 post-closure correction/withdrawal procedure. No runtime release is approved.
+
+## CLG-05 technical preparation
+
+[Synthetic exceptions](governance-lifecycle-exceptions.md) reuse the existing
+DevSecOps waiver authority map through an immutable test profile. Observation
+coverage, expiry and withdrawal remain separate from finding/remediation state.
+The critical test fixture names both required subjects; this does not prove real
+joint consent or appoint people. LD-01–05 and LD-07 remain open. Live waiver
+activation also requires accountable confirmation of the adapter's scope/date
+mapping and real authority verification. Architecture exceptions need a separate
+adapter and are not inferred from GRS-002.

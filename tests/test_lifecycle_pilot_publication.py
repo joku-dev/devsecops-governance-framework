@@ -83,6 +83,18 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
             if original is None: (self.root / path).unlink()
             else: (self.root / path).write_bytes(original)
 
+    def test_exception_cannot_enter_existing_closure_publisher_scope(self):
+        from lib.governance_lifecycle.store import append_exception
+        from lib.governance_lifecycle.synthetic_exceptions import exception_packet
+        observation = load_transactions(self.ledger)[0]["observation"]
+        packet = exception_packet(self.profile, [observation], record_id="exception:wrong-publisher", revision=6,
+                                  at="2026-09-13T14:00:00Z")
+        append_exception(self.ledger, *packet, self.profile, expected_revision=6)
+        self.generate()
+        with self.assertRaisesRegex(ContractError, "separate scenario"):
+            self.publish()
+        self.assertEqual(self.calls, [])
+
     def test_pilot_history_cannot_be_modified_or_deleted(self):
         path = sorted((self.ledger / "transactions").glob("*.json"))[0]
         original = path.read_bytes()

@@ -9,7 +9,7 @@ nicht implementiert. Die Planung ist in
 [GCR-2026-060](../../governance/change-requests/GCR-2026-060-closed-loop-governance-plan.md)
 klassifiziert.
 
-## Fortschritt CLG-01 bis CLG-04
+## Fortschritt CLG-01 bis CLG-05
 
 CLG-01 wurde mit PR #76 gemergt. Der
 [Vertragsstand 0.1.0](../evidence/governance-lifecycle-contract.md) enthält
@@ -22,8 +22,11 @@ inhalts- und revisionsgebundene Entscheidungen, Ablehnung, Widerruf und
 Behebungsverlauf mit Owner und Zieltermin. CLG-03 wurde mit PR #78 gemergt.
 [CLG-04](../evidence/governance-lifecycle-closure.md) ergänzt synthetischen
 Abschluss und Wiedereröffnung, einen separaten Pilotbericht und begrenzte
-Publisher-Unterstützung. Technischer PR-Merge und verantwortliche Live-Abnahme
-sind für den vollständigen Paketabschluss noch offen.
+Publisher-Unterstützung. Der technische CLG-04-PR #79 ist gemergt; die
+verantwortliche Live-Abnahme bleibt offen.
+[CLG-05](../evidence/governance-lifecycle-exceptions.md) ergänzt synthetische
+Ausnahmen mit beobachtungsbezogener Teilabdeckung, Ablauf, Widerruf und
+erneuter Entscheidung. Der eigene technische PR ist noch zu mergen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.
@@ -233,14 +236,16 @@ Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
 
 ## Nächster konkreter Arbeitsauftrag
 
-**CLG-04 technisch prüfen:** Abschluss, Wiedereröffnung, Replay und Publisher-
-Schreibgrenzen im eigenen PR prüfen. Das [Pilot-Runbook](../../demos/demo-governance-lifecycle-pilot.md)
-trennt den vollständigen synthetischen Ablauf von der datierten Live-Beobachtung.
+**CLG-05 technisch prüfen:** Bestehende Waiver-Verträge und Autoritäten,
+beobachtungsbezogene Teilabdeckung, Ablauf, Widerruf und erneute Zustimmung im
+eigenen PR prüfen. Der [Leitfaden](../evidence/governance-lifecycle-exceptions.md)
+beschreibt den synthetischen Umfang und die weiterhin offene Live-Grenze.
 
-**CLG-04 fachlich abnehmen:** Nach technischem Merge die offenen Betriebsrollen,
-Freigabenachweise und LD-01–05/07 klären und die verantwortliche Abnahme samt
-Release-Entscheidung dokumentieren. Erst danach gilt der Meilenstein als fertig.
-CLG-05 mit befristeten Ausnahmen bleibt das nachfolgende Paket.
+**CLG-04 fachlich abnehmen:** Die offenen Betriebsrollen, Freigabenachweise und
+LD-01–05/07 klären und die verantwortliche Abnahme samt Release-Entscheidung
+dokumentieren. Die technische Fortsetzung mit CLG-05 ersetzt diese Abnahme nicht.
+CLG-06 bleibt ein zu priorisierender Backlog mit einzeln abzugrenzenden Adaptern,
+Berichten und Viewer-Erweiterungen.
 
 Der Maintainer koordiniert anschließend die Benennung der Entscheidungs- und
 Abschlussverantwortlichen mit den zuständigen Governance-Rollen. Der technische

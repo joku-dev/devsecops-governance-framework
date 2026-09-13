@@ -39,9 +39,9 @@ def require(condition: bool, message: str) -> None:
         raise ContractError(message)
 
 
-@lru_cache(maxsize=16)
+@lru_cache(maxsize=24)
 def schema_validator(kind: str) -> Draft202012Validator:
-    require(kind in (*KINDS, "profile", "transaction", "index", "decision-v0.2", "remediation-v0.2", "action-transaction", "action-index", "closure-v0.2", "closure-transaction", "closure-index"), "Unknown lifecycle schema kind")
+    require(kind in (*KINDS, "profile", "transaction", "index", "decision-v0.2", "remediation-v0.2", "action-transaction", "action-index", "closure-v0.2", "closure-transaction", "closure-index", "exception", "exception-profile", "exception-transaction", "exception-index", "event-v0.2"), "Unknown lifecycle schema kind")
     resources = []
     for path in sorted((ROOT / "schemas").glob("governance-lifecycle-*.schema.json")):
         schema = json.loads(path.read_text(encoding="utf-8"))
@@ -81,7 +81,7 @@ def observation_identity(record: dict) -> str:
 
 def validate_record(record: dict) -> None:
     kind = record.get("record_type")
-    schema_kind = kind + "-v0.2" if kind in ("decision", "remediation", "closure") and record.get("schema_version") == "0.2.0" else kind
+    schema_kind = kind + "-v0.2" if kind in ("decision", "remediation", "closure", "event") and record.get("schema_version") == "0.2.0" else kind
     schema_validator(schema_kind).validate(record)
     require(record["finding"]["finding_id"] == finding_id(record["finding"]["key"]), "Finding fingerprint mismatch")
     body = record["body"]
@@ -243,7 +243,7 @@ def check_event_references(event: dict, records: dict[str, dict]) -> None:
         require(timestamp(previous["recorded_at"]) <= timestamp(event["recorded_at"]), "Event predecessor recorded later")
     kinds = {"finding_opened": "observation", "observation_added": "observation",
              "decision_recorded": "decision", "remediation_recorded": "remediation",
-             "finding_closed": "closure", "finding_reopened": "observation"}
+             "finding_closed": "closure", "finding_reopened": "observation", "exception_recorded": "exception"}
     for reference in body["source_refs"]:
         if body["event_type"] == "clarification_required":
             require(reference["id"] in records, "Missing clarification source")
