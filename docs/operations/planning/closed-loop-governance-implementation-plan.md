@@ -4,10 +4,19 @@ Stand: 12. September 2026. Geprüfter Ausgangspunkt: Repository-Commit
 `5311182c220548474fcd90b04c38dc46b144937a`.
 
 Status: Die Umsetzungsrichtung wurde vom Maintainer bestätigt. Dieses Dokument
-plant die technische Umsetzung; die beschriebenen neuen Fähigkeiten sind noch
+plant die technische Umsetzung; die beschriebenen neuen Laufzeitfähigkeiten sind noch
 nicht implementiert. Die Planung ist in
 [GCR-2026-060](../../governance/change-requests/GCR-2026-060-closed-loop-governance-plan.md)
 klassifiziert.
+
+## Fortschritt CLG-01
+
+Der [Vertragsstand 0.1.0](../evidence/governance-lifecycle-contract.md) enthält
+additive Schemas, synthetische Beispiele und ausführbare Offline-Prüfungen.
+Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
+hält offene Live-Zuordnungen fest. Die vollständige Lifecycle-Laufzeit ist
+weiterhin nicht implementiert. CLG-01 ist erst nach erfolgreicher Validierung
+und Merge seines PRs abgeschlossen; danach folgt CLG-02 mit Kern und Adapter.
 
 ## Ziel und erster Pilot
 
@@ -214,12 +223,17 @@ Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
 
 ## Nächster konkreter Arbeitsauftrag
 
-**CLG-01 umsetzen:** Das Vertragsdokument, die kleinste zusammenhängende
-Schema-Gruppe und die zugehörigen Beispiele erstellen. Dabei die obigen
-Testfälle als ausführbare Vertragsprüfungen vorbereiten und ein technisches
-Entscheidungsblatt für Freigabekanal, Rollenbindung und Evidenz-Akzeptanzprofil
-beilegen. Synthetische Identitäten werden ausschließlich für Tests verwendet.
-Ungeklärte Betriebszuordnungen bleiben ausdrücklich offen.
+**CLG-01 prüfen und abschließen:** Den Vertragsstand, die Schema-Gruppe,
+Beispiele, Negativtests und das Entscheidungsblatt im eigenen PR prüfen.
+Die ausführbare Abdeckung und noch ausstehenden Runtime-Prüfungen stehen im
+[Vertragsdokument](../evidence/governance-lifecycle-contract.md).
+
+**Nach dessen Merge CLG-02 umsetzen:** Deterministischen Finding-/Ereigniskern,
+GRS-002-Adapter, unveränderliche Speicherung und daraus erzeugten Index bauen.
+Abnahmefälle sind insbesondere persistente Idempotenz, Konflikte und
+Merge-Revisionen sowie reproduzierbare Projektion mit festem `as_of`.
+Synthetische Identitäten bleiben ausschließlich für Tests bestimmt;
+ungeklärte Betriebszuordnungen bleiben ausdrücklich offen.
 
 Der Maintainer koordiniert anschließend die Benennung der Entscheidungs- und
 Abschlussverantwortlichen mit den zuständigen Governance-Rollen. Der technische

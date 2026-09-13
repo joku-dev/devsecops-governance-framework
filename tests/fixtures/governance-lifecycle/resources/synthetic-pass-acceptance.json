@@ -1,0 +1,14 @@
+{
+  "environment": "synthetic",
+  "observation_digest": "14cc67480f6f4a833e04cee23c7c6f731082ca84859e53ab32d9fdae976fd772",
+  "assessment": {
+    "evaluated_at": "2026-09-13T11:00:00Z",
+    "profile_ref": {
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0",
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986"
+    },
+    "outcome": "accepted",
+    "verifier_id": "synthetic-contract-verifier"
+  }
+}

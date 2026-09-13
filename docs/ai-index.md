@@ -32,6 +32,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Compare governance with central repository versus without central repository | `docs/governance/architecture/governance-repository-architecture-comparison.md` |
 | Classify documentation and plan safe docs restructuring | `docs/operations/planning/document-structure-model.md` |
 | Plan the closed-loop finding, decision and remediation pilot | `docs/operations/planning/closed-loop-governance-implementation-plan.md` (planned; not implemented) |
+| Inspect CLG-01 contracts and open pilot decisions | `docs/operations/evidence/governance-lifecycle-contract.md`, `docs/operations/evidence/governance-lifecycle-pilot-decisions.md` (offline contracts; no live runtime) |
 | Audit the current documentation structure after migrations | `docs/operations/planning/document-structure-audit.md` |
 | Understand organisational DevSecOps governance responsibilities | `docs/governance/devsecops-governance-organisational-role-model.md` |
 | Understand source update impact | `generated/reports/governance-change-impact.md` |

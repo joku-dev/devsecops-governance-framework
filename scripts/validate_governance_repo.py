@@ -656,6 +656,12 @@ def validate_waiver_authority(errors, waiver, waiver_authorities, source_label: 
 
 def main() -> int:
     errors = []
+    lifecycle_check = subprocess.run(
+        [sys.executable, str(ROOT / "scripts/validate_governance_lifecycle_contracts.py")],
+        cwd=ROOT, capture_output=True, text=True, check=False,
+    )
+    if lifecycle_check.returncode:
+        errors.append("Lifecycle contract validation failed: " + (lifecycle_check.stderr or lifecycle_check.stdout).strip())
     controls = []
     capabilities = load_yaml(MODEL / "platform" / "platform-capabilities.yaml")
     evidence_catalog = load_yaml(MODEL / "evidence" / "evidence-types.yaml")

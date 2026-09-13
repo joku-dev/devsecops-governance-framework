@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "remediation",
+  "record_id": "remediation:synthetic-001",
+  "environment": "synthetic",
+  "profile_ref": {
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0",
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986"
+  },
+  "finding": {
+    "fingerprint_version": "1",
+    "key": {
+      "repository_id": "synthetic/governance-lifecycle",
+      "domain": "governance_repository_security",
+      "rule_id": "GRS-002",
+      "finding_type": "criterion_failure",
+      "resource": "refs/heads/main"
+    },
+    "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a"
+  },
+  "recorded_at": "2026-09-13T10:30:00Z",
+  "body": {
+    "expected_revision": 2,
+    "decision_ref": {
+      "id": "decision:synthetic-001",
+      "digest": "2494d99c1ce651f2ffa57bed8fd82376bc5defecd2e34a4777450b0322976fbc"
+    },
+    "owner_id": "test-human:remediation-owner",
+    "target_at": "2026-09-14T10:30:00Z",
+    "action": "Restore one required approving review in the synthetic repository fixture.",
+    "work_ref": {
+      "uri": "fixture://remediation-work.json",
+      "digest": "acc9e67a25dd59b649de1c0719fd804f6ce0749c3ede098ad21be5deff376823"
+    },
+    "progress": "completed"
+  }
+}

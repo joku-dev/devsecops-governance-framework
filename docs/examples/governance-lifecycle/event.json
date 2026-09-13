@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "event",
+  "record_id": "event:synthetic-opened",
+  "environment": "synthetic",
+  "profile_ref": {
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0",
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986"
+  },
+  "finding": {
+    "fingerprint_version": "1",
+    "key": {
+      "repository_id": "synthetic/governance-lifecycle",
+      "domain": "governance_repository_security",
+      "rule_id": "GRS-002",
+      "finding_type": "criterion_failure",
+      "resource": "refs/heads/main"
+    },
+    "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a"
+  },
+  "recorded_at": "2026-09-13T10:00:00Z",
+  "body": {
+    "event_type": "finding_opened",
+    "revision": 1,
+    "expected_revision": 0,
+    "previous_event_ref": null,
+    "effective_at": "2026-09-13T10:00:00Z",
+    "policy_version": "0.1.0",
+    "source_refs": [
+      {
+        "id": "observation:synthetic-fail",
+        "digest": "e0025ae97851f7ecc8c2d8b04ce730c36e644e3d7ac20832f8e35c959ad55581"
+      }
+    ]
+  }
+}

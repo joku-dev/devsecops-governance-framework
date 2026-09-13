@@ -1,0 +1,171 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "observation",
+  "record_id": "observation:synthetic-fail",
+  "environment": "synthetic",
+  "profile_ref": {
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0",
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986"
+  },
+  "finding": {
+    "fingerprint_version": "1",
+    "key": {
+      "repository_id": "synthetic/governance-lifecycle",
+      "domain": "governance_repository_security",
+      "rule_id": "GRS-002",
+      "finding_type": "criterion_failure",
+      "resource": "refs/heads/main"
+    },
+    "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a"
+  },
+  "recorded_at": "2026-09-13T10:00:00Z",
+  "body": {
+    "observed_at": "2026-09-13T10:00:00Z",
+    "result": "fail",
+    "rule_key": "pull_request_review_required",
+    "granularity": "criterion",
+    "profile_version": "0.2.0",
+    "policy_version": "0.1.0",
+    "source_schema": "governance-repository-security-report.schema.json@0.2.0",
+    "source_context": {
+      "kind": "test",
+      "repository_id": "synthetic/governance-lifecycle",
+      "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "producer_id": "synthetic-grs002-fixture",
+      "run_id": "synthetic-fail",
+      "run_attempt": 1
+    },
+    "trust": {
+      "model_id": "evidence-trust-model-v1",
+      "capture_phase": "additive_capture",
+      "effective_level": "provenance_verified",
+      "assessment_status": "evaluated",
+      "verifier": "synthetic-contract-verifier",
+      "verified_at": "2026-09-13T10:00:00Z",
+      "checks": [
+        {
+          "id": "subject_identity_complete",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        },
+        {
+          "id": "content_digest_verified",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        },
+        {
+          "id": "producer_run_resolved",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        },
+        {
+          "id": "commit_matches_run",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        },
+        {
+          "id": "artifact_belongs_to_run",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        },
+        {
+          "id": "baseline_ref_resolved",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        },
+        {
+          "id": "freshness_evaluated",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        },
+        {
+          "id": "replay_key_unique",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        },
+        {
+          "id": "custody_recorded",
+          "result": "pass",
+          "evidence_refs": [
+            "fixture://synthetic-fail-report.json"
+          ]
+        }
+      ],
+      "capture": {
+        "collector": "synthetic-contract-fixture",
+        "captured_at": "2026-09-13T10:00:00Z",
+        "source": {
+          "repository_id": "synthetic/governance-lifecycle",
+          "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "workflow_name": "synthetic-grs002-fixture",
+          "run_id": "synthetic-fail",
+          "run_attempt": 1,
+          "artifact_name": "synthetic-grs002-report",
+          "source_uri": "fixture://synthetic-fail-report.json"
+        },
+        "subjects": [
+          {
+            "id": "governance_repository_security_report",
+            "evidence_ref": "fixture://synthetic-fail-report.json",
+            "algorithm": "sha256",
+            "digest": "ac95a5a6ec2247266b3f376bb11aafb8311f9b705eb1c0acaa793f5fde8a0e82",
+            "size_bytes": 6692
+          }
+        ],
+        "custody": [
+          {
+            "sequence": 1,
+            "action": "download",
+            "actor": "synthetic-contract-fixture",
+            "at": "2026-09-13T10:00:00Z",
+            "source_uri": "fixture://synthetic-fail-report.json",
+            "output_refs": [
+              "fixture://synthetic-fail-report.json"
+            ]
+          },
+          {
+            "sequence": 2,
+            "action": "extract_and_hash",
+            "actor": "synthetic-contract-fixture",
+            "at": "2026-09-13T10:00:00Z",
+            "source_uri": "fixture://synthetic-fail-report.json",
+            "output_refs": [
+              "fixture://synthetic-fail-report.json"
+            ]
+          }
+        ]
+      }
+    },
+    "acceptance": {
+      "evaluated_at": "2026-09-13T10:00:00Z",
+      "profile_ref": {
+        "id": "profile:clg-synthetic-grs002",
+        "version": "0.1.0",
+        "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986"
+      },
+      "outcome": "accepted",
+      "verifier_id": "synthetic-contract-verifier",
+      "proof_ref": {
+        "uri": "fixture://synthetic-fail-acceptance.json",
+        "digest": "75718e969fe014734b7d56f174d1ca4b9ebcefa5551d33e25f89e071bee2ddbd"
+      }
+    }
+  }
+}
