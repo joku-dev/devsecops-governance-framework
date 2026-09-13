@@ -39,9 +39,9 @@ def require(condition: bool, message: str) -> None:
         raise ContractError(message)
 
 
-@lru_cache(maxsize=8)
+@lru_cache(maxsize=12)
 def schema_validator(kind: str) -> Draft202012Validator:
-    require(kind in (*KINDS, "profile", "transaction", "index"), "Unknown lifecycle schema kind")
+    require(kind in (*KINDS, "profile", "transaction", "index", "decision-v0.2", "remediation-v0.2", "action-transaction", "action-index"), "Unknown lifecycle schema kind")
     resources = []
     for path in sorted((ROOT / "schemas").glob("governance-lifecycle-*.schema.json")):
         schema = json.loads(path.read_text(encoding="utf-8"))
@@ -81,7 +81,8 @@ def observation_identity(record: dict) -> str:
 
 def validate_record(record: dict) -> None:
     kind = record.get("record_type")
-    schema_validator(kind).validate(record)
+    schema_kind = kind + "-v0.2" if kind in ("decision", "remediation") and record.get("schema_version") == "0.2.0" else kind
+    schema_validator(schema_kind).validate(record)
     require(record["finding"]["finding_id"] == finding_id(record["finding"]["key"]), "Finding fingerprint mismatch")
     body = record["body"]
     if kind in ("decision", "closure"):

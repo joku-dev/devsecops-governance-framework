@@ -1,0 +1,110 @@
+{
+  "environment": "synthetic",
+  "event": {
+    "body": {
+      "effective_at": "2026-09-13T12:00:00Z",
+      "event_type": "remediation_recorded",
+      "expected_revision": 7,
+      "policy_version": "0.1.0",
+      "previous_event_ref": {
+        "digest": "f6a262e26cd3424bfe8868183aa4dda553d0a0561edaa166027df2c25f618fbe",
+        "id": "event:08c18f6889435823e557a133b27f3f3248677eb93d4ded8d3558fedaa69ba0c7"
+      },
+      "revision": 8,
+      "source_refs": [
+        {
+          "digest": "59989f9b51640452537ffac4b32f131215a5e532a6dc0f31f0cc694177a8d410",
+          "id": "remediation:demo-progress"
+        }
+      ]
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "event:39a03e24d6dd746d92621e608a738dd3c9ca7ec043ac0cd38fc0f08a4164a638",
+    "record_type": "event",
+    "recorded_at": "2026-09-13T12:00:00Z",
+    "schema_version": "0.1.0"
+  },
+  "expected_revision": 7,
+  "outcome": "accepted",
+  "previous_ref": {
+    "digest": "e82603f51823eb73f3bb6547f1eba2f9f59b681eab35f546c8ccba668ff45bb4",
+    "id": "transaction:043d0ac64d1de23efc34564683343fbb2c086f82ffb44772b8911db21c4746d2"
+  },
+  "profile_ref": {
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0"
+  },
+  "reason": "remediation_recorded",
+  "record": {
+    "body": {
+      "action": "Investigate and restore the synthetic GRS-002 review requirement.",
+      "decision_ref": {
+        "digest": "fdb248fa69ad8a853b05b827bb72e11ec55fc0e45bb071ebcf72fbeb06046775",
+        "id": "decision:demo-approve"
+      },
+      "expected_revision": 7,
+      "owner_id": "test-human:remediation-owner",
+      "progress": "in_progress",
+      "progress_evidence_ref": {
+        "digest": "43ab3bce4611803b6b057626444e02932c54edc044ad65d807fdd5f2d62de607",
+        "uri": "fixture://action-43ab3bce4611803b6b057626444e02932c54edc044ad65d807fdd5f2d62de607.json"
+      },
+      "remediation_id": "remediation-case:demo-1",
+      "supersedes_ref": {
+        "digest": "3dbc7720b0d0b42bbaf2eaa029f0ba6e9cddc51a24a95c96c138c2fcd666ca35",
+        "id": "remediation:demo-planned"
+      },
+      "target_at": "2026-09-14T12:00:00Z",
+      "work_ref": {
+        "digest": "a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d",
+        "uri": "fixture://action-a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d.json"
+      }
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "remediation:demo-progress",
+    "record_type": "remediation",
+    "recorded_at": "2026-09-13T12:00:00Z",
+    "schema_version": "0.2.0"
+  },
+  "recorded_at": "2026-09-13T12:00:00Z",
+  "resources": {
+    "fixture://action-43ab3bce4611803b6b057626444e02932c54edc044ad65d807fdd5f2d62de607.json": "ewogICJlbnZpcm9ubWVudCI6ICJzeW50aGV0aWMiLAogICJyZW1lZGlhdGlvbl9yZWNvcmRfZGlnZXN0IjogIjY0ODdhOTE0ZWVmZDE4ZDZmYzk3YTQyOWM3NjExOGNiZjlkZDQ1MDc5ODk0NDdlYzk1MzVjNDhjYTRlYTkyOWQiCn0K",
+    "fixture://action-a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d.json": "ewogICJjYXNlX2lkIjogInJlbWVkaWF0aW9uLWNhc2U6ZGVtby0xIiwKICAiZW52aXJvbm1lbnQiOiAic3ludGhldGljIiwKICAid29ya19pdGVtIjogIlN5bnRoZXRpYyByZW1lZGlhdGlvbiB3b3JrIgp9Cg=="
+  },
+  "schema_version": "0.2.0",
+  "sequence": 8,
+  "transaction_id": "transaction:658d59fe244fb3a5851376974eff63798fd29d442ad9bbc363e5bcfb2ab1a36f"
+}

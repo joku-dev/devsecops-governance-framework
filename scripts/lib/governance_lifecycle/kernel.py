@@ -1,4 +1,4 @@
-"""Deterministic synthetic observation/event reduction; no decision or closure intake."""
+"""Deterministic synthetic lifecycle reduction; live authority and closure are unavailable."""
 from copy import deepcopy
 import base64
 
@@ -26,7 +26,8 @@ def transaction_name(transaction):
 
 
 def empty_state():
-    return {"transactions": [], "observations": {}, "deliveries": {}, "events": {}, "conflicts": []}
+    return {"transactions": [], "observations": {}, "deliveries": {}, "events": {}, "conflicts": [],
+            "actions": {}, "decision_status": {}, "remediation_heads": {}}
 
 
 def current_revision(state, finding):
@@ -119,6 +120,13 @@ def prepare_transaction(observation, resources, profile, state, *, expected_revi
 
 
 def apply_transaction(transaction, state):
+    if transaction["schema_version"] == "0.2.0":
+        from .decisions import apply_action
+        state["transactions"].append(transaction)
+        apply_action(transaction, state)
+        fid = transaction["record"]["finding"]["finding_id"]
+        state["events"].setdefault(fid, []).append(transaction["event"])
+        return
     observation = transaction["observation"]
     state["transactions"].append(transaction)
     if transaction["outcome"] == "accepted":
@@ -136,11 +144,17 @@ def replay(transactions, profile):
     validate_test_profile(profile)
     state = empty_state()
     for transaction in transactions:
-        schema_validator("transaction").validate(transaction)
+        action = transaction.get("schema_version") == "0.2.0"
+        schema_validator("action-transaction" if action else "transaction").validate(transaction)
         resources = {uri: base64.b64decode(data, validate=True) for uri, data in transaction["resources"].items()}
-        expected = prepare_transaction(transaction["observation"], resources, profile, state,
-                                       expected_revision=transaction["expected_revision"])
-        require(expected is not None, "Duplicate observation/quarantine was persisted")
+        if action:
+            from .decisions import prepare_action_transaction
+            expected = prepare_action_transaction(transaction["record"], resources, profile, state,
+                                                  expected_revision=transaction["expected_revision"])
+        else:
+            expected = prepare_transaction(transaction["observation"], resources, profile, state,
+                                           expected_revision=transaction["expected_revision"])
+        require(expected is not None, "Duplicate lifecycle packet was persisted")
         require(transaction == expected, "Transaction chain, content, sequence or event mismatch")
         apply_transaction(transaction, state)
     return state
@@ -173,5 +187,8 @@ def project(transactions, profile, *, as_of):
                         "events": sum(len(es) for es in state["events"].values()),
                         "conflicts": len(state["conflicts"]), "findings": len(findings)},
              "findings": findings, "conflict_refs": [transaction_ref(tx) for tx in state["conflicts"]]}
-    schema_validator("index").validate(index)
+    if state["actions"]:
+        from .decisions import add_action_projection
+        add_action_projection(index, state, as_of)
+    schema_validator("action-index" if state["actions"] else "index").validate(index)
     return index

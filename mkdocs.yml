@@ -97,6 +97,7 @@ nav:
           - Application Repo Governance Timing: operations/processes/application-repo-governance-timing.md
           - Spot Check Governance Intake: operations/processes/spot-check-governance-intake.md
       - Evidence:
+          - Governance Lifecycle Decisions: operations/evidence/governance-lifecycle-decisions.md
           - Governance Lifecycle Kernel: operations/evidence/governance-lifecycle-kernel.md
           - Governance Lifecycle Contract: operations/evidence/governance-lifecycle-contract.md
           - Governance Lifecycle Pilot Decisions: operations/evidence/governance-lifecycle-pilot-decisions.md

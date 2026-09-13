@@ -63,3 +63,11 @@ closed operational finding, trusted human approval or complete P01–P10 runtime
 acceptance. Canonicalization and record versions are explicit so CLG-02 can
 build against reviewable contracts. Later contract changes require version and
 example/test updates rather than silent changes to accepted record meaning.
+
+## CLG-03 technical status
+
+The [synthetic action intake](governance-lifecycle-decisions.md) now binds the
+whole remediation plan, validates test consent against the fixed role binding,
+and persists rejection, withdrawal and progress. LD-01–05 and LD-07 remain open;
+fixture consistency is not authenticated human consent. LD-06 also covers action
+transactions through the shared revision, atomic append and Git-prefix checks.

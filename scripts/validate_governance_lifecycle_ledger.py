@@ -63,7 +63,7 @@ def main():
         count = check_accepted_prefix(ROOT, args.base_ref)
         print(f"Preserved {count} accepted lifecycle blobs from {args.base_ref}.")
     index = validate_current()
-    print(f"CLG-02: valid synthetic ledger and index; {index['counts']}; no live closure.")
+    print(f"Lifecycle: valid synthetic ledger and index; {index['counts']}; no live closure.")
 
 
 if __name__ == "__main__":

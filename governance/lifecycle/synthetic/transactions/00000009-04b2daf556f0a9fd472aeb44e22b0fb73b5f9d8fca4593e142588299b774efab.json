@@ -1,0 +1,130 @@
+{
+  "environment": "synthetic",
+  "event": {
+    "body": {
+      "effective_at": "2026-09-13T12:10:00Z",
+      "event_type": "decision_recorded",
+      "expected_revision": 8,
+      "policy_version": "0.1.0",
+      "previous_event_ref": {
+        "digest": "564b08729d8e18e515f29b484ba817d6e4d28b4ce26c9b84da0e022fe9fce1ff",
+        "id": "event:39a03e24d6dd746d92621e608a738dd3c9ca7ec043ac0cd38fc0f08a4164a638"
+      },
+      "revision": 9,
+      "source_refs": [
+        {
+          "digest": "faeb13f61b16d6c2eaa7e061f94ccda5a346b0682db6cf5b549a21b247198171",
+          "id": "decision:demo-revoke"
+        }
+      ]
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "event:cde4fa87197609ea4ee11f0d463ac13e6dfe57b4473c21634d3069c5e976ea46",
+    "record_type": "event",
+    "recorded_at": "2026-09-13T12:10:00Z",
+    "schema_version": "0.1.0"
+  },
+  "expected_revision": 8,
+  "outcome": "accepted",
+  "previous_ref": {
+    "digest": "e5e6542d379010669f1caeccfdb94d3af94bff0fc83ca88ff959708309994999",
+    "id": "transaction:658d59fe244fb3a5851376974eff63798fd29d442ad9bbc363e5bcfb2ab1a36f"
+  },
+  "profile_ref": {
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0"
+  },
+  "reason": "decision_recorded",
+  "record": {
+    "approval": {
+      "channel": "synthetic_fixture",
+      "disposition": "revoke",
+      "expected_revision": 8,
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "issued_at": "2026-09-13T12:10:00Z",
+      "proof_ref": {
+        "digest": "57905839abf6bc22927adbf0227128e7b572028dc68df4c547cdb1fce5a5f941",
+        "uri": "fixture://action-57905839abf6bc22927adbf0227128e7b572028dc68df4c547cdb1fce5a5f941.json"
+      },
+      "role": "remediation_decider",
+      "role_binding_ref": {
+        "digest": "4573ad89ade34232d1b1941664a4694040e2c556f48220d5dd11cb8004c37394",
+        "id": "binding:clg-synthetic",
+        "version": "0.1.0"
+      },
+      "subject_id": "test-human:decision-owner",
+      "subject_type": "human",
+      "target_digest": "118822e4b42934453d2f2d8ac4ed3cce9c1bb9edf5b2595575274825c6c5c1a0"
+    },
+    "body": {
+      "action": "Investigate and restore the synthetic GRS-002 review requirement.",
+      "expected_revision": 8,
+      "observation_ref": {
+        "digest": "994d3208cf40d19ca4b0ada21c12390c36dac29c1aa83e83c0a59c7eb07d67b6",
+        "id": "observation:b248afcb2c5bbb584b7f2b4ee0d850f6c6f9b057bd49e878449a4078517a35c3"
+      },
+      "purpose": "remediate",
+      "rationale": "Synthetic consent only.",
+      "remediation_plan": {
+        "action": "Investigate and restore the synthetic GRS-002 review requirement.",
+        "owner_id": "test-human:remediation-owner",
+        "remediation_id": "remediation-case:demo-1",
+        "target_at": "2026-09-14T12:00:00Z",
+        "work_ref": {
+          "digest": "a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d",
+          "uri": "fixture://action-a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d.json"
+        }
+      },
+      "supersedes_ref": {
+        "digest": "fdb248fa69ad8a853b05b827bb72e11ec55fc0e45bb071ebcf72fbeb06046775",
+        "id": "decision:demo-approve"
+      }
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "decision:demo-revoke",
+    "record_type": "decision",
+    "recorded_at": "2026-09-13T12:10:00Z",
+    "schema_version": "0.2.0"
+  },
+  "recorded_at": "2026-09-13T12:10:00Z",
+  "resources": {
+    "fixture://action-57905839abf6bc22927adbf0227128e7b572028dc68df4c547cdb1fce5a5f941.json": "ewogICJhcHByb3ZhbCI6IHsKICAgICJjaGFubmVsIjogInN5bnRoZXRpY19maXh0dXJlIiwKICAgICJkaXNwb3NpdGlvbiI6ICJyZXZva2UiLAogICAgImV4cGVjdGVkX3JldmlzaW9uIjogOCwKICAgICJmaW5kaW5nX2lkIjogImZpbmRpbmc6N2Q0YzVjNTIyMjU1N2QzY2FkMDRkNGUxZTVlYmI1YTEwMTVjYjM5NGY3ODYyYjE0YThlMjU3YmZjYzg1YjI2YSIsCiAgICAiaXNzdWVkX2F0IjogIjIwMjYtMDktMTNUMTI6MTA6MDBaIiwKICAgICJyb2xlIjogInJlbWVkaWF0aW9uX2RlY2lkZXIiLAogICAgInJvbGVfYmluZGluZ19yZWYiOiB7CiAgICAgICJkaWdlc3QiOiAiNDU3M2FkODlhZGUzNDIzMmQxYjE5NDE2NjRhNDY5NDA0MGUyYzU1NmY0ODIyMGQ1ZGQxMWNiODAwNGMzNzM5NCIsCiAgICAgICJpZCI6ICJiaW5kaW5nOmNsZy1zeW50aGV0aWMiLAogICAgICAidmVyc2lvbiI6ICIwLjEuMCIKICAgIH0sCiAgICAic3ViamVjdF9pZCI6ICJ0ZXN0LWh1bWFuOmRlY2lzaW9uLW93bmVyIiwKICAgICJzdWJqZWN0X3R5cGUiOiAiaHVtYW4iLAogICAgInRhcmdldF9kaWdlc3QiOiAiMTE4ODIyZTRiNDI5MzQ0NTNkMmYyZDhhYzRlZDNjY2U5YzFiYjllZGY1YjI1OTU1NzUyNzQ4MjVjNmM1YzFhMCIKICB9LAogICJlbnZpcm9ubWVudCI6ICJzeW50aGV0aWMiCn0K",
+    "fixture://action-a071bbf9c3429ad0014b54a8fe31fd2222bcb0566896e8f7bbe33e0432805f0d.json": "ewogICJjYXNlX2lkIjogInJlbWVkaWF0aW9uLWNhc2U6ZGVtby0xIiwKICAiZW52aXJvbm1lbnQiOiAic3ludGhldGljIiwKICAid29ya19pdGVtIjogIlN5bnRoZXRpYyByZW1lZGlhdGlvbiB3b3JrIgp9Cg=="
+  },
+  "schema_version": "0.2.0",
+  "sequence": 9,
+  "transaction_id": "transaction:04b2daf556f0a9fd472aeb44e22b0fb73b5f9d8fca4593e142588299b774efab"
+}
