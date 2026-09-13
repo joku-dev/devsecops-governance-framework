@@ -50,7 +50,8 @@ changed report text or missing scenario directory. An empty historical
 projection is legitimate when its cutoff predates the first event. Generated
 output cannot target immutable history or source models, including through a
 symlink. The existing `lifecycle-synthetic` publisher carries the two new
-explicit overview paths and validates them before creating a review branch.
+explicit overview paths and the CLG-06.2 viewer, validating them before creating
+a review branch.
 After appending pilot history, regenerate the pilot index/report and this
 overview before validation and publication. Choose an explicit `as_of` at or
 after the last recorded transaction across all three scenarios. Other ledger
@@ -104,4 +105,5 @@ late failure versus reopening, quarantine, completion versus closure, expiry
 without invented events, retained revoked work, reproducible bytes, schema
 boundaries, protected output paths and rejection of stale/tampered output.
 Run pinned full validation and the strict MkDocs build before publication.
-The next bounded step is a read-only viewer for these separate scenarios.
+[CLG-06.2](governance-lifecycle-viewer.md) provides a separate read-only viewer
+for these scenarios. Regenerate that viewer after updating this overview.

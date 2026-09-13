@@ -9,6 +9,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from generate_governance_lifecycle_index import DEFAULT_PROFILE
 from generate_governance_lifecycle_pilot import generate
 from generate_governance_lifecycle_overview import generate as generate_overview, OUTPUT as OVERVIEW_OUTPUT
+from generate_governance_lifecycle_viewer import generate as generate_viewer, OUTPUT as VIEWER_OUTPUT
 from lib.governance_lifecycle.adapter import json_bytes, strict_json
 from lib.governance_lifecycle.contracts import ContractError
 from lib.governance_lifecycle.kernel import replay
@@ -49,6 +50,7 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
     def generate(self):
         generate(self.ledger, self.index, self.report, as_of="2026-09-13T14:00:00Z")
         generate_overview(self.root, as_of="2026-09-14T00:10:00Z")
+        generate_viewer(self.root)
 
     def append(self):
         append_closure(self.ledger, self.closure, self.resources, self.profile, expected_revision=6)
@@ -65,7 +67,7 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
         self.assertIn("fixture consent is not human authentication", self.calls[0][1]["body"])
         self.assertEqual(len(self.calls), 4)
         self.assertEqual(check_accepted_prefix(self.root, self.base), 24)
-        self.assertEqual(len(self.git("diff", "--name-only", self.base, "HEAD").splitlines()), 5)
+        self.assertEqual(len(self.git("diff", "--name-only", self.base, "HEAD").splitlines()), 6)
 
     def test_stale_index_or_forged_report_is_rejected_before_publication(self):
         append_closure(self.ledger, self.closure, self.resources, self.profile, expected_revision=6)
@@ -87,6 +89,18 @@ class LifecyclePilotPublicationTests(unittest.TestCase):
         report = self.root / "generated/reports/governance-lifecycle-overview.md"
         report.write_text("Production compliance: 100%\n")
         with self.assertRaisesRegex(ContractError, "overview report differs"):
+            self.publish()
+        self.assertEqual(self.calls, [])
+
+    def test_stale_or_forged_viewer_is_rejected_before_publication(self):
+        before = (self.root / VIEWER_OUTPUT).read_bytes()
+        self.append()
+        (self.root / VIEWER_OUTPUT).write_bytes(before)
+        with self.assertRaisesRegex(ContractError, "viewer differs"):
+            self.publish()
+        self.generate()
+        (self.root / VIEWER_OUTPUT).write_text("<h1>Live approval granted</h1>")
+        with self.assertRaisesRegex(ContractError, "viewer differs"):
             self.publish()
         self.assertEqual(self.calls, [])
 

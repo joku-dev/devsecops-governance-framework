@@ -98,6 +98,7 @@ nav:
           - Application Repo Governance Timing: operations/processes/application-repo-governance-timing.md
           - Spot Check Governance Intake: operations/processes/spot-check-governance-intake.md
       - Evidence:
+          - Governance Lifecycle Scenario Viewer: operations/evidence/governance-lifecycle-viewer.md
           - Governance Lifecycle Overview: operations/evidence/governance-lifecycle-overview.md
           - Governance Lifecycle Exceptions: operations/evidence/governance-lifecycle-exceptions.md
           - Governance Lifecycle Closure: operations/evidence/governance-lifecycle-closure.md
