@@ -86,12 +86,16 @@ human approval.
 
 - new files in `governance/lifecycle/synthetic-closure/transactions/`;
 - `status/governance-lifecycle-closure-index.json`;
-- `generated/reports/governance-lifecycle-pilot.md`.
+- `generated/reports/governance-lifecycle-pilot.md`;
+- `status/governance-lifecycle-overview.json` and
+  `generated/reports/governance-lifecycle-overview.md` (CLG-06.1 derived reporting).
 
 The publisher rejects modifications/deletions of accepted evidence, changes to
 the profile, scripts, original scenario or consumer indexes, and symlink paths.
 After fetching main it checks ancestry, the accepted prefix, complete replay,
-current index and report equality before creating its branch or pushing.
+current index, pilot report and scenario overview equality before creating its
+branch or pushing. Regenerate the [overview](governance-lifecycle-overview.md)
+after appending history, using an explicit `as_of` that covers all three scenarios.
 Publication produces an `automation/lifecycle-synthetic/<run>-<attempt>` review
 PR and dispatches the existing required workflows. It never approves, merges,
 changes main or authenticates fixture consent. If main advances during this
