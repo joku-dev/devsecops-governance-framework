@@ -118,6 +118,7 @@ def prepare_action_transaction(record, resources, profile, state, *, expected_re
         # No new acceptance: in particular, retrying a revoked approval cannot reactivate it.
         return None
     fid = record["finding"]["finding_id"]
+    require(fid not in state["active_closures"], "Finding is closed; a new failure is required before further actions")
     revision = current_revision(state, fid)
     require(revision > 0, "An accepted open finding is required")
     require(type(expected_revision) is int and expected_revision == body["expected_revision"] == revision,

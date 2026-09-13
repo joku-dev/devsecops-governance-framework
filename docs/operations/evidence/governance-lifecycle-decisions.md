@@ -81,7 +81,8 @@ progress per case, authorization status and whether unfinished work is overdue
 at the explicit `as_of` instant. `completed` does not close the finding. Neither
 approval nor progress clears quarantined evidence or `needs_clarification`.
 New accepted observations continue to advance the shared finding revision.
-Closure, reopening, waiver treatment and live publication remain later packages.
+[CLG-04](governance-lifecycle-closure.md) adds synthetic closure/reopening.
+Waiver treatment and live publication remain later work.
 
 ## Reproduce and inspect
 
@@ -132,8 +133,8 @@ race. The existing competing-Git-proposal and accepted-prefix checks apply to
 the complete mixed transaction history.
 
 CLG-03 supplies the synthetic decision/remediation portion of P08 and P10; it
-does not claim live human-authentication acceptance. CLG-04 follows with
-closure/reopening, pilot reporting and the bounded publisher integration.
+does not claim live human-authentication acceptance. [CLG-04](governance-lifecycle-closure.md) adds synthetic closure/reopening,
+pilot reporting and bounded publisher integration.
 Confirm real role appointments, authenticated consent and the acceptance profile
 before activating any live portion. Merge of this implementation PR is required
 before the package is marked complete in the plan.
