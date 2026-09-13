@@ -107,6 +107,7 @@ It is intended for:
 - Operational governance enforcement options: `docs/operations/processes/operational-governance-enforcement-options.md`
 - Documentation structure model: `docs/operations/planning/document-structure-model.md`
 - Documentation structure audit: `docs/operations/planning/document-structure-audit.md`
+- Closed-loop governance implementation plan (planned): `docs/operations/planning/closed-loop-governance-implementation-plan.md`
 
 ## Platform Explanation
 
