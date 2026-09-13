@@ -1,0 +1,213 @@
+{
+  "as_of": "2026-09-14T00:10:00Z",
+  "conflict_refs": [],
+  "counts": {
+    "closures": 0,
+    "conflicts": 0,
+    "decisions": 1,
+    "events": 9,
+    "exceptions": 4,
+    "findings": 1,
+    "observations": 3,
+    "remediations": 1,
+    "transactions": 9
+  },
+  "enforcement": "report_only",
+  "environment": "synthetic",
+  "findings": [
+    {
+      "active_closure_ref": null,
+      "active_decision_ref": {
+        "digest": "0da5d4749d9697d49a1c0c6546b9c55884e3afe5ba15e9c683af7d3794b62e2c",
+        "id": "decision:exception-demo"
+      },
+      "closure_refs": [],
+      "closure_supported": true,
+      "conflict_refs": [],
+      "decision_records": [
+        {
+          "disposition": "approve",
+          "effective_status": "approved",
+          "record_ref": {
+            "digest": "0da5d4749d9697d49a1c0c6546b9c55884e3afe5ba15e9c683af7d3794b62e2c",
+            "id": "decision:exception-demo"
+          }
+        }
+      ],
+      "evidence_status": "fail",
+      "exception_treatment": {
+        "coverage": "full",
+        "covered_observation_refs": [
+          {
+            "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+            "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+          },
+          {
+            "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+            "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+          },
+          {
+            "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+            "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+          }
+        ],
+        "exception_records": [
+          {
+            "covered_observation_refs": [
+              {
+                "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+                "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+              }
+            ],
+            "disposition": "approve",
+            "expires_at": "2026-09-14T00:00:00Z",
+            "record_ref": {
+              "digest": "67455c43c20f117c7e85837600a3065220c527d8134d47d52e6d42adce2affaf",
+              "id": "exception:partial"
+            },
+            "risk_classification": "medium",
+            "status": "revoked",
+            "valid_from": "2026-09-13T16:00:00Z",
+            "waiver_id": "synthetic-waiver:partial"
+          },
+          {
+            "covered_observation_refs": [
+              {
+                "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+                "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+              }
+            ],
+            "disposition": "approve",
+            "expires_at": "2026-09-14T00:00:00Z",
+            "record_ref": {
+              "digest": "ff6cb204a108da4b5f97238da73bd02f03f98496162a638cb58ed86b6a305848",
+              "id": "exception:remaining"
+            },
+            "risk_classification": "medium",
+            "status": "expired",
+            "valid_from": "2026-09-13T16:10:00Z",
+            "waiver_id": "synthetic-waiver:remaining"
+          },
+          {
+            "covered_observation_refs": [
+              {
+                "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+                "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+              }
+            ],
+            "disposition": "revoke",
+            "expires_at": "2026-09-14T00:00:00Z",
+            "record_ref": {
+              "digest": "98e370db5289a81499da8766bff3aaac191d6fae77b624bdb1c47ea6a8a7adc2",
+              "id": "exception:withdraw"
+            },
+            "risk_classification": "medium",
+            "status": "withdrawal_recorded",
+            "valid_from": "2026-09-13T16:00:00Z",
+            "waiver_id": "synthetic-waiver:partial"
+          },
+          {
+            "covered_observation_refs": [
+              {
+                "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+                "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+              },
+              {
+                "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+                "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+              },
+              {
+                "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+                "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+              }
+            ],
+            "disposition": "approve",
+            "expires_at": "2026-09-15T00:00:00Z",
+            "record_ref": {
+              "digest": "6f83d6330dc5a257bbd8e4a1cb82dbf918573461041d597c3d2d4b2a08beca82",
+              "id": "exception:renewal"
+            },
+            "risk_classification": "medium",
+            "status": "active",
+            "valid_from": "2026-09-14T00:10:00Z",
+            "waiver_id": "synthetic-waiver:renewal"
+          }
+        ],
+        "renewed_decision_required": false,
+        "uncovered_observation_refs": []
+      },
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "first_failure_ref": {
+        "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+        "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+      },
+      "identity": {
+        "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+        "fingerprint_version": "1",
+        "key": {
+          "domain": "governance_repository_security",
+          "finding_type": "criterion_failure",
+          "repository_id": "synthetic/governance-lifecycle",
+          "resource": "refs/heads/main",
+          "rule_id": "GRS-002"
+        }
+      },
+      "last_event_ref": {
+        "digest": "64c037315ca42e5378bac76b232cfafc17b8a1adade40ceebacc4c6a59276ff4",
+        "id": "event:1ab2157c465ba3ac2f58a608d2e609df67c5f86a2dd4b95eec1b422613c7c30d"
+      },
+      "latest_observation_ref": {
+        "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+        "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+      },
+      "observation_refs": [
+        {
+          "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+          "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+        },
+        {
+          "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+          "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+        },
+        {
+          "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+          "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+        }
+      ],
+      "occurrences": 3,
+      "remediation_cases": [
+        {
+          "authorization_status": "approved",
+          "decision_ref": {
+            "digest": "0da5d4749d9697d49a1c0c6546b9c55884e3afe5ba15e9c683af7d3794b62e2c",
+            "id": "decision:exception-demo"
+          },
+          "latest_record_ref": {
+            "digest": "6265527ef34ac3e2e992c50685c9eee0fa527c02a3c53668a5af61347a2c8cac",
+            "id": "remediation:exception-demo-planned"
+          },
+          "overdue": false,
+          "owner_id": "test-human:remediation-owner",
+          "progress": "planned",
+          "remediation_id": "remediation-case:exception-demo",
+          "target_at": "2026-09-14T12:00:00Z"
+        }
+      ],
+      "reopen_count": 0,
+      "revision": 9,
+      "state": "open"
+    }
+  ],
+  "index_type": "governance-lifecycle-synthetic",
+  "ledger_head_ref": {
+    "digest": "82d457d09b20a545e61222e9ab2eba7ff1c75fd8aca11a6093153cfd179682ff",
+    "id": "transaction:402749bbe4008ea7f935d5b385e650510858fb28e48fc491b7f4545f92211373"
+  },
+  "official_state": false,
+  "profile_ref": {
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0"
+  },
+  "schema_version": "0.4.0"
+}

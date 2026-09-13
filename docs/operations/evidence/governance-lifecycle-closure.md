@@ -109,4 +109,5 @@ technical preparation is reviewable; package completion still needs its PR
 merge and the documented accountable acceptance for any live portion. LD-01–05
 and LD-07 remain open. Confirm role appointments, authenticated consent, Trust
 sources, freshness/replay limits and withdrawal handling before live use.
-CLG-05 waiver integration remains a subsequent package.
+[CLG-05](governance-lifecycle-exceptions.md) adds a separate synthetic exception
+scenario; live waiver integration remains unapproved.

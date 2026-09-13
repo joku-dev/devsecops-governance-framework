@@ -13,7 +13,9 @@ from generate_governance_lifecycle_index import DEFAULT_LEDGER, DEFAULT_INDEX, D
 
 LEDGER_PATH = "governance/lifecycle/synthetic"
 PILOT_LEDGER_PATH = "governance/lifecycle/synthetic-closure"
-LEDGER_PATHS = (LEDGER_PATH, PILOT_LEDGER_PATH)
+EXCEPTION_LEDGER_PATH = "governance/lifecycle/synthetic-exceptions"
+LEDGER_PATHS = (LEDGER_PATH, PILOT_LEDGER_PATH, EXCEPTION_LEDGER_PATH)
+EXCEPTION_PROFILE_PATH = "model/governance/lifecycle/synthetic-exception-profile.json"
 PROFILE_PATH = "model/governance/lifecycle/synthetic-grs002-profile.json"
 
 
@@ -42,6 +44,12 @@ def check_accepted_prefix(repo, base_ref):
         before = git(repo, "rev-parse", base_ref + ":" + PROFILE_PATH).strip()
         after = git(repo, "hash-object", "--", PROFILE_PATH).strip()
         require(before == after, "Accepted profile requires an explicit versioned migration")
+    snapshot = subprocess.run(["git", "cat-file", "-e", base_ref + ":" + EXCEPTION_PROFILE_PATH], cwd=repo, capture_output=True)
+    if snapshot.returncode == 0:
+        path = Path(repo) / EXCEPTION_PROFILE_PATH
+        require(path.is_file() and not path.is_symlink(), "Accepted exception profile deleted or replaced")
+        before = git(repo, "rev-parse", base_ref + ":" + EXCEPTION_PROFILE_PATH).strip()
+        require(git(repo, "hash-object", "--", str(path)).strip() == before, "Exception profile requires a versioned migration")
     return len(entries)
 
 
@@ -60,10 +68,22 @@ def validate_current(ledger=DEFAULT_LEDGER, index_path=DEFAULT_INDEX, profile_pa
 def validate_pilot(repo=ROOT):
     from generate_governance_lifecycle_pilot import render_report
     root = Path(repo)
+    require(all(tx["schema_version"] != "0.4.0" for tx in load_transactions(root / PILOT_LEDGER_PATH)),
+            "Exceptions require their separate scenario; closure publisher scope is unchanged")
     index = validate_current(root / PILOT_LEDGER_PATH, root / "status/governance-lifecycle-closure-index.json",
                              root / PROFILE_PATH)
     report = root / "generated/reports/governance-lifecycle-pilot.md"
     require(report.read_text() == render_report(index), "Lifecycle pilot report differs from projection")
+    return index
+
+
+def validate_exceptions(repo=ROOT):
+    from generate_governance_lifecycle_exceptions import render_report
+    root = Path(repo)
+    index = validate_current(root / EXCEPTION_LEDGER_PATH, root / "status/governance-lifecycle-exception-index.json",
+                             root / PROFILE_PATH)
+    require((root / "generated/reports/governance-lifecycle-exceptions.md").read_text() == render_report(index),
+            "Exception report differs from projection")
     return index
 
 
@@ -74,9 +94,12 @@ def main():
     if args.base_ref:
         count = check_accepted_prefix(ROOT, args.base_ref)
         print(f"Preserved {count} accepted lifecycle blobs from {args.base_ref}.")
+    require(all(tx["schema_version"] != "0.4.0" for tx in load_transactions(DEFAULT_LEDGER)),
+            "Exceptions require their separate scenario")
     index = validate_current()
     pilot = validate_pilot()
-    print(f"Lifecycle: original scenario {index['counts']}; synthetic closure pilot {pilot['counts']}; no live activation.")
+    exceptions = validate_exceptions()
+    print(f"Lifecycle: exceptions {exceptions['counts']}; original scenario {index['counts']}; synthetic closure pilot {pilot['counts']}; no live activation.")
 
 
 if __name__ == "__main__":

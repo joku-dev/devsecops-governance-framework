@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1.0",
+  "profile_id": "profile:clg-synthetic-exceptions",
+  "version": "0.1.0",
+  "environment": "synthetic",
+  "live_intake_enabled": false,
+  "source_path": "model/waivers/waiver-authorities.yaml",
+  "source_digest": "44747d8eb3178530dcfdd8a928d53b21e45b44461ca5870f17245659d79da0a2",
+  "authority_model": "authorities:\n  low:\n    approval_authority: DevSecOps Governance Board\n  medium:\n    approval_authority: DevSecOps Governance Board\n  high_cybersecurity:\n    approval_authority: CISO\n  high_safety:\n    approval_authority: Safety Authority\n  critical:\n    approval_authority: CDO and CSCSO jointly\n",
+  "bindings": {
+    "low": {
+      "authority": "DevSecOps Governance Board",
+      "subjects": [
+        "test-human:waiver-board"
+      ]
+    },
+    "medium": {
+      "authority": "DevSecOps Governance Board",
+      "subjects": [
+        "test-human:waiver-board"
+      ]
+    },
+    "high_cybersecurity": {
+      "authority": "CISO",
+      "subjects": [
+        "test-human:ciso"
+      ]
+    },
+    "high_safety": {
+      "authority": "Safety Authority",
+      "subjects": [
+        "test-human:safety-authority"
+      ]
+    },
+    "critical": {
+      "authority": "CDO and CSCSO jointly",
+      "subjects": [
+        "test-human:cdo",
+        "test-human:cscso"
+      ]
+    }
+  }
+}
