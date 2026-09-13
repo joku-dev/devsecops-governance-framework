@@ -8,14 +8,14 @@ from lib.governance_lifecycle.contracts import ROOT, require
 from lib.governance_lifecycle.devsecops_candidates import adapt_devsecops
 
 
-def write_candidates(report, context, output, *, evaluated_at):
+def write_candidates(report, context, output, *, evaluated_at, adapter=adapt_devsecops):
     report, context, output = Path(report), Path(context), Path(output)
     require(output.resolve() not in (report.resolve(), context.resolve()), "Output cannot overwrite adapter inputs")
     if output.resolve().is_relative_to(ROOT):
         require(any(output.resolve().is_relative_to((ROOT / path).resolve()) for path in
                     ("generated/reports/lifecycle-candidates", "docs/examples/lifecycle-candidates")),
                 "Candidate outputs require a dedicated diagnostic path")
-    result = adapt_devsecops(report.read_bytes(), strict_json(context.read_bytes()), evaluated_at=evaluated_at)
+    result = adapter(report.read_bytes(), strict_json(context.read_bytes()), evaluated_at=evaluated_at)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_bytes(json_bytes(result))
     return result

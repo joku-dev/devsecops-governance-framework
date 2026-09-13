@@ -35,7 +35,12 @@ Szenarioansicht mit Zustandsübersicht, Ereignisfiltern und Referenzdetails.
 Der technische PR #82 ist gemergt.
 [CLG-06.3a](../evidence/governance-lifecycle-input-candidates.md) bereitet
 DevSecOps-Control-Ergebnisse als ungeprüfte Eingabekandidaten vor.
-Der eigene technische PR ist noch zu mergen; Live-Intake bleibt offen.
+Der technische PR #83 ist gemergt.
+CLG-06.3b ergänzt Architektur-Gate-Kandidaten mit unveränderter Granularität und
+Tests gegen den tatsächlichen Report-Generator. Beide Adapter bleiben diagnostisch;
+Live-Intake und Architektur-Ausnahmezuordnungen sind weiterhin offen.
+Die [konkrete Live-Entscheidungsvorlage](../evidence/governance-lifecycle-live-decision-brief.md)
+enthält die benötigten Rollen und entscheidungsreifen Betriebsvorschläge.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.
