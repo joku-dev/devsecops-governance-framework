@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-closure.schema.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "record_id",
+    "environment",
+    "profile_ref",
+    "finding",
+    "recorded_at",
+    "body",
+    "approval"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "closure"
+    },
+    "record_id": {
+      "type": "string",
+      "pattern": "^closure:[a-zA-Z0-9._-]+$"
+    },
+    "environment": {
+      "enum": [
+        "synthetic",
+        "live"
+      ]
+    },
+    "profile_ref": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/versioned_ref"
+    },
+    "finding": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/finding"
+    },
+    "recorded_at": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "expected_revision",
+        "reason",
+        "remediation_ref",
+        "failing_observation_ref",
+        "passing_observation_ref",
+        "as_of",
+        "rationale"
+      ],
+      "properties": {
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "const": "remediated"
+        },
+        "remediation_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+        },
+        "failing_observation_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+        },
+        "passing_observation_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+        },
+        "as_of": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supersedes_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+        }
+      },
+      "additionalProperties": false
+    },
+    "approval": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/approval"
+    }
+  },
+  "additionalProperties": false,
+  "title": "Governance Lifecycle Closure (pilot 0.1.0)",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "environment": {
+            "const": "synthetic"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "approval": {
+            "properties": {
+              "channel": {
+                "const": "synthetic_fixture"
+              },
+              "subject_id": {
+                "type": "string",
+                "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "approval": {
+            "properties": {
+              "channel": {
+                "const": "external_review"
+              },
+              "subject_id": {
+                "not": {
+                  "type": "string",
+                  "pattern": "^test-human:"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "approval": {
+            "properties": {
+              "disposition": {
+                "const": "revoke"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "body": {
+            "required": [
+              "supersedes_ref"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

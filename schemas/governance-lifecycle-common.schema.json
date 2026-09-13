@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-common.schema.json",
+  "title": "Governance Lifecycle Common Definitions (pilot 0.1.0)",
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*:[a-zA-Z0-9._-]+$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "record_ref": {
+      "type": "object",
+      "required": [
+        "id",
+        "digest"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*:[a-zA-Z0-9._-]+$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "versioned_ref": {
+      "type": "object",
+      "required": [
+        "id",
+        "version",
+        "digest"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*:[a-zA-Z0-9._-]+$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "resource_ref": {
+      "type": "object",
+      "required": [
+        "uri",
+        "digest"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "finding": {
+      "type": "object",
+      "required": [
+        "fingerprint_version",
+        "key",
+        "finding_id"
+      ],
+      "properties": {
+        "fingerprint_version": {
+          "const": "1"
+        },
+        "key": {
+          "type": "object",
+          "required": [
+            "repository_id",
+            "domain",
+            "rule_id",
+            "finding_type",
+            "resource"
+          ],
+          "properties": {
+            "repository_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._-]*/[a-z0-9][a-z0-9._-]*$"
+            },
+            "domain": {
+              "const": "governance_repository_security"
+            },
+            "rule_id": {
+              "const": "GRS-002"
+            },
+            "finding_type": {
+              "const": "criterion_failure"
+            },
+            "resource": {
+              "const": "refs/heads/main"
+            }
+          },
+          "additionalProperties": false
+        },
+        "finding_id": {
+          "type": "string",
+          "pattern": "^finding:[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "approval": {
+      "type": "object",
+      "required": [
+        "target_digest",
+        "finding_id",
+        "expected_revision",
+        "subject_id",
+        "subject_type",
+        "role",
+        "role_binding_ref",
+        "channel",
+        "issued_at",
+        "disposition",
+        "proof_ref"
+      ],
+      "properties": {
+        "target_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "finding_id": {
+          "type": "string",
+          "pattern": "^finding:[a-f0-9]{64}$"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "subject_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*:[a-zA-Z0-9._-]+$"
+        },
+        "subject_type": {
+          "const": "human"
+        },
+        "role": {
+          "enum": [
+            "remediation_decider",
+            "closure_approver"
+          ]
+        },
+        "role_binding_ref": {
+          "type": "object",
+          "required": [
+            "id",
+            "version",
+            "digest"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]*:[a-zA-Z0-9._-]+$"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "channel": {
+          "enum": [
+            "synthetic_fixture",
+            "external_review"
+          ]
+        },
+        "issued_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "disposition": {
+          "enum": [
+            "approve",
+            "reject",
+            "revoke"
+          ]
+        },
+        "proof_ref": {
+          "type": "object",
+          "required": [
+            "uri",
+            "digest"
+          ],
+          "properties": {
+            "uri": {
+              "type": "string",
+              "minLength": 1
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

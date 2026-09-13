@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-profile.schema.json",
+  "title": "Governance Lifecycle Offline Test Profile",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "profile_id",
+    "version",
+    "environment",
+    "status",
+    "live_intake_enabled",
+    "enforcement",
+    "repository_id",
+    "allowed_contexts",
+    "allowed_producers",
+    "minimum_trust_level",
+    "required_checks",
+    "maximum_age_seconds",
+    "maximum_future_skew_seconds",
+    "version_comparison",
+    "replay_policy",
+    "approval_channel",
+    "role_binding"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "profile_id": {
+      "const": "profile:clg-synthetic-grs002"
+    },
+    "version": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/version"
+    },
+    "environment": {
+      "const": "synthetic"
+    },
+    "status": {
+      "const": "test_only"
+    },
+    "live_intake_enabled": {
+      "const": false
+    },
+    "enforcement": {
+      "const": "report_only"
+    },
+    "repository_id": {
+      "const": "synthetic/governance-lifecycle"
+    },
+    "allowed_contexts": {
+      "const": [
+        "test"
+      ]
+    },
+    "allowed_producers": {
+      "const": [
+        "synthetic-grs002-fixture"
+      ]
+    },
+    "minimum_trust_level": {
+      "const": "provenance_verified"
+    },
+    "required_checks": {
+      "const": [
+        "subject_identity_complete",
+        "content_digest_verified",
+        "producer_run_resolved",
+        "commit_matches_run",
+        "artifact_belongs_to_run",
+        "baseline_ref_resolved",
+        "freshness_evaluated",
+        "replay_key_unique",
+        "custody_recorded"
+      ]
+    },
+    "maximum_age_seconds": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "maximum_future_skew_seconds": {
+      "const": 0
+    },
+    "version_comparison": {
+      "const": "exact"
+    },
+    "replay_policy": {
+      "const": "same_identity_same_digest_only"
+    },
+    "approval_channel": {
+      "const": "synthetic_fixture"
+    },
+    "role_binding": {
+      "type": "object",
+      "required": [
+        "id",
+        "version",
+        "environment",
+        "repository_id",
+        "assignments"
+      ],
+      "properties": {
+        "id": {
+          "const": "binding:clg-synthetic"
+        },
+        "version": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/version"
+        },
+        "environment": {
+          "const": "synthetic"
+        },
+        "repository_id": {
+          "const": "synthetic/governance-lifecycle"
+        },
+        "assignments": {
+          "type": "object",
+          "required": [
+            "remediation_decider",
+            "closure_approver"
+          ],
+          "properties": {
+            "remediation_decider": {
+              "type": "string",
+              "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+            },
+            "closure_approver": {
+              "type": "string",
+              "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
