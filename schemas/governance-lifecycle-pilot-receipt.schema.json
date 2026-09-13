@@ -1,0 +1,158 @@
+{
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-pilot-receipt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "age_seconds_at_receipt": {
+      "maximum": 86400,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "capture": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "minProperties": 1,
+      "type": "object"
+    },
+    "conflicts_with": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "digest": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "id": {
+              "pattern": "^transaction:[a-f0-9]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "digest"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "criterion": {
+      "type": "object"
+    },
+    "environment": {
+      "const": "live_pilot_validation"
+    },
+    "expected_sequence": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "live_activation_approved": {
+      "const": false
+    },
+    "official_state": {
+      "const": false
+    },
+    "origin_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "outcome": {
+      "enum": [
+        "eligible_for_pilot",
+        "quarantined"
+      ]
+    },
+    "previous_ref": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "digest": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "id": {
+              "pattern": "^transaction:[a-f0-9]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "digest"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "producer_fingerprint": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "profile_ref": {
+      "type": "object"
+    },
+    "provider_authentication": {
+      "const": "new_receipt_requires_independent_PR_check"
+    },
+    "reason": {
+      "enum": [
+        "verified_capture_within_operating_policy",
+        "producer_conflict",
+        "ambiguous_time"
+      ]
+    },
+    "record_type": {
+      "const": "lifecycle-pilot-eligibility-receipt"
+    },
+    "recorded_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "sequence": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "source": {
+      "type": "object"
+    },
+    "transaction_id": {
+      "pattern": "^transaction:[a-f0-9]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "environment",
+    "official_state",
+    "live_activation_approved",
+    "provider_authentication",
+    "sequence",
+    "expected_sequence",
+    "previous_ref",
+    "profile_ref",
+    "recorded_at",
+    "origin_key",
+    "producer_fingerprint",
+    "outcome",
+    "reason",
+    "conflicts_with",
+    "capture",
+    "criterion",
+    "source",
+    "age_seconds_at_receipt",
+    "transaction_id"
+  ],
+  "title": "Durable pilot validation receipt; no live activation",
+  "type": "object"
+}
