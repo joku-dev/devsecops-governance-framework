@@ -1,97 +1,58 @@
-# Live-Pilot: konkrete Entscheidungen vor der Anbindung
+# Live-Pilot: bestätigte Entscheidungen und verbleibender Ausbau
 
-Status: **Rollen und Betriebsprofil am 13. September 2026 bestätigt; Live-Abnahme offen.** Die technische
-Review-Ausnahme des Maintainers gilt für Implementierungs-PRs. Sie erteilt keine
-Lifecycle-Behebungs-, Abschluss- oder Ausnahmefreigabe.
+Stand: **13. September 2026, nach PR #93**. Rollen, Betriebsprofil und persönliche
+Betriebsabnahme LD-07 sind für den begrenzten manuellen GRS-002-Piloten bestätigt.
+Die wirksame Aktivierung und echte Workflow-Nachweise stehen im
+[aktuellen Betriebsstand](../status/governance-lifecycle-current-state.md).
+Technische Review-Ausnahmen ersetzen keine persönlichen Einzelentscheidungen.
 
-Die CLG-Testlaufzeit, Kennzahlen und der Viewer sind umgesetzt. Die zusätzlichen
-DevSecOps-/Architektur-Adapter bereiten nachvollziehbare Eingabekandidaten vor.
-Ihre Ausgaben bleiben ungeprüft und gelangen nicht in den akzeptierten Verlauf.
-Die nächste Live-Anbindung benötigt die Entscheidungen aus dem
-[Pilot-Entscheidungsblatt](governance-lifecycle-pilot-decisions.md).
+## Freigegebener Geltungsbereich
 
-## Bereits festgelegter erster Pilot
+- Regel GRS-002 `pull_request_review_required`, Ressource `refs/heads/main`.
+- Repository `joku-dev/devsecops-governance-framework`, GitHub.com als Provider.
+- Manuell gestarteter Report-only-Betrieb; Veröffentlichung über begrenzte PRs.
+- Bei PASS entsteht kein künstliches Finding. Fehler-/Behebungs-/Abschlussfolgen
+  sind bislang mit synthetischen und injizierten Testdaten nachgewiesen.
 
-- Regel: GRS-002, `pull_request_review_required`.
-- Repository: `joku-dev/devsecops-governance-framework`, Ressource `refs/heads/main`.
-- Betriebsart: report-only.
-- Keine künstlich erzeugte Live-Abweichung: Bei PASS wird kein offenes Finding
-  erfunden. Fehler-, Behebungs- und Abschlussfolgen bleiben dann synthetische Tests.
-- Der erste Live-Schritt nimmt Beobachtungen an; spätere Behebungs- und
-  Abschlussentscheidungen brauchen zusätzlich eine überprüfbare menschliche
-  Freigabe. Ein erfolgreicher Code-PR genügt dafür nicht.
+## Bestätigte Entscheidungen
 
-## Bestätigt: Personen und Rollen (LD-01 / LD-03)
-
-Der Maintainer hat die vorgeschlagene Mehrfachrolle mit „ja ich bestätige“
-bestätigt. Alle drei Rollen sind für `joku-dev` (GitHub-ID `81616324`, öffentlicher
-Anzeigename `joku`) im beschriebenen Piloten festgehalten:
-
-| Rolle | Zuordnung |
-|---|---|
-| Behebungsentscheidung freigeben und widerrufen | `github-user:81616324` |
-| Evidenzgebundenen Abschluss freigeben | `github-user:81616324` |
-| Rollenbindungen verwalten und entziehen | `github-user:81616324` |
-
-Die Mehrfachrolle ist ausdrücklich auf diesen Piloten begrenzt. Die
-[versionierte Vorbereitung](governance-lifecycle-live-preparation.md) hält sie
-getrennt von persönlichen Einzelfreigaben fest. Die Rollenbindung ist bestätigt;
-die verifizierte Live-Rollenverwaltung bleibt Teil der technischen Abnahme.
-
-## Noch offene Verifikation und Abnahme
-
-Rollen, GitHub-Kanal als Umsetzungsrichtung und Betriebswerte sind bestätigt.
-Der [persönliche GitHub-Kanaltest](governance-lifecycle-personal-channel.md) ist
-mit dem persönlich abgegebenen Kommentar auf PR #87 erfolgreich nachgewiesen.
-Die [aktionsbezogene Zustimmungsverifikation](governance-lifecycle-action-consent.md)
-ist als getrennte Pilotvalidierung umgesetzt (PR #90 gemergt). Der
-[begrenzte Betriebs-Publisher und Abnahmeantrag](governance-lifecycle-live-operation.md)
-sind vorbereitet. Der nächste erforderliche menschliche Schritt ist LD-07: die
-persönliche Abnahme des konkret beschriebenen manuellen Report-only-Piloten.
-
-| Entscheidung | Vorschlag | Folge / noch erforderlicher Nachweis |
+| Entscheidung | Nachweis und Wirkung | Grenze |
 |---|---|---|
-| LD-02: bewusste, authentifizierte Zustimmung | Eigener Review eines unveränderlichen Entscheidungsdatensatzes mit Inhaltsdigest und erwarteter Finding-Revision | Kanal und persönliche Abgabe sind bestätigt. Der vorbereitete Kanaltest prüft Identität, Inhaltsdigest, Disposition und Widerruf. Die persönliche Erklärung ist verifiziert; die aktionsbezogene Pilotvalidierung bindet Entscheidungen, Fortschritt, Abschluss und Widerruf. Operative Annahme bleibt von LD-07 abhängig. |
-| LD-07: Live-Abnahme | Vorbereiteten Betriebsleitfaden und gebundenen Antrag für den manuellen GRS-002-Piloten prüfen | `joku-dev` gibt die eigene Erklärung auf PR #91 ab. Der Workflow erfasst sie und öffnet einen geprüften PR; erst dessen Merge aktiviert die separate Pilotansicht. Einzelfreigaben und Widerruf bleiben erforderlich. |
+| LD-01: Entscheidungs- und Abschlussrollen | `joku-dev`, GitHub-ID `81616324`, versionierte Rollenbindung in PR #85; ausdrücklich bestätigte Mehrfachrolle | Nur dieser Pilot; jede Maßnahme benötigt eigene inhaltsgebundene Zustimmung |
+| LD-02: Persönlicher Kanal | Persönlicher Kanaltest auf PR #87, verifiziert in PR #89; aktionsbezogene Prüfung in PR #90 | GitHub belegt Kontoidentität; persönliche Anwesenheit bleibt ausdrücklich selbst erklärt |
+| LD-03: Rollenverwaltung/Widerruf | Registry-Owner ebenfalls `github-user:81616324`; Rollenentzug und Widerruf werden als neue Datensätze geprüft | Wiederherstellung oder neue Zuordnung braucht eine eigene versionierte Migration |
+| LD-04: Quelle/Aufbewahrung | Offizielle GitHub-API, festgelegte Producer-Dateien, erfolgreicher Mainline-Push, Versuch 1; vollständige unveränderliche Pilot-Captures | Keine allgemeine Unternehmens-Aufbewahrungsrichtlinie; keine automatische Löschung |
+| LD-05: Frische/Replay | 24 Stunden maximale Evidenzalterung, kein zukünftiger Zeitversatz, identischer Replay ohne neue Wirkung, Konflikte in Quarantäne | Alte Historie bleibt erhalten, erneutes Projizieren erneuert ihre Frische nicht |
+| LD-06: Annahme/Revisionsschutz | Lokale atomische Speicherung, vollständiger Replay, unveränderte angenommene Historie und unabhängige Providerchecks in erforderlicher CI; echte Publisher-Läufe #92/#93 | Parallele oder veraltete Vorschläge gegen aktuelles main abgleichen und neu prüfen |
+| LD-07: Betriebsabnahme | Persönlicher Kommentar `5654604937` auf PR #91, Erfassung und Aktivierung durch #92, anschließende Beobachtung durch #93 | Bindet genau den Antrag und dessen Implementierungs-/Leitfaden-Digests |
 
-## Was diese Entscheidung freigibt
+Die [Abnahmeunterlagen](governance-lifecycle-live-operation.md) bleiben in ihrem
+beantragten Wortlaut erhalten. Der dortige Vorbereitungsstatus wird durch den
+späteren [Veröffentlichungsnachweis](../status/governance-lifecycle-current-state.md)
+ergänzt. Das deaktivierte ursprüngliche Vorbereitungsprofil und die synthetischen
+Profile werden nicht umgeschaltet. Eine separate offizielle Pilotprojektion
+weist die wirksame Betriebsabnahme aus.
 
-Die Rollen sind bestätigt, der persönliche GitHub-Freigabekanal ist als
-Umsetzungsrichtung bestätigt. Ein eigenes deaktiviertes Live-Profil liegt vor;
-Provider-Verifikation und dauerhafte Pilotablage sind mit PR #87 umgesetzt; der persönliche Kanal ist mit PR #89 bestätigt. Die aktionsbezogene Verifikation liegt als eigene Pilotvalidierung vor. Das synthetische Profil wird dafür nicht
-umgeschaltet oder umgeschrieben. Zunächst bleiben Live-Verarbeitung und
-Veröffentlichung deaktiviert, bis die vereinbarten Prüfungen und Abnahme vorliegen.
+## Tatsächlicher Nachweis und notwendige Einzelfreigaben
 
-CLG-06.4 braucht anschließend zugelassene Lifecycle-Consumer und eine definierte
-Grundgesamtheit. Bestehende Consumer-Gesamtergebnisse oder mehrfach verwendete
-Testidentitäten ergeben keine belastbare Lifecycle-Portfolioquote. Architektur-
-Ausnahmen benötigen zusätzlich eine bestätigte Zuordnung ihrer Marker-/Regel-
-Ziele zum Lebenszyklus; Gate-Nachrichten liefern diese Zuordnung nicht.
+Zwei echte zulässige GRS-002-PASS-Receipts sind gespeichert; das jüngste stammt
+aus Lauf `34769053225`. Es gibt keine echte Fehlerbeobachtung und keine persönliche
+Behebungs- oder Abschlussentscheidung im Verlauf. Das ist ein gültiger Pilotstand.
+Die [aktionsbezogene Verifikation](governance-lifecycle-action-consent.md) prüft
+bei Bedarf Entscheidungen, Fortschritt, Abschluss und nachträglichen Widerruf.
 
-CLG-06.5 bleibt optional. Für einen funktionierenden Live-Piloten ist kein LLM
-erforderlich. Diese optionale Erweiterung soll die Rollen- und Evidenzentscheidung
-nicht verzögern.
+## Noch nicht freigegebener Ausbau
 
-## Bestätigt: Betriebsprofil für den ersten Live-Intake
-
-Die Rollenbindung ist mit PR #85 gemergt. Der lesende Evidenzprüfer hat den
-[echten Referenzlauf](../reference-runs/2026-09-13-clg-live-evidence-preflight.md)
-mit zehn bestandenen Prüfungen erfasst und offline reproduziert. GRS-002 war
-zum Beobachtungszeitpunkt PASS. Damit liegen konkrete Prüfergebnisse für die
-Betriebsentscheidung vor. Der Maintainer hat das untenstehende Profil anschließend
-mit „ja“ bestätigt; es ist in der [dauerhaften Pilotvalidierung](governance-lifecycle-durable-pilot-intake.md)
-als eigene unveränderliche Version umgesetzt.
-
-| Punkt | Bestätigtes Betriebsprofil | Konkrete Wirkung |
-|---|---|---|
-| LD-04: Trust-Wurzel und Producer | Authentifizierte GET-Abfragen der offiziellen GitHub.com-API plus die fünf im Vorbereitungsprofil festgelegten Producer-Dateien; nur erfolgreich abgeschlossener Mainline-Push, Versuch 1 | Andere Provider, veränderte Producer-Dateien, Branch-/PR-/manuelle/geplante Läufe und Wiederholungsversuche werden nicht zugelassen. Der GitHub-Provider ist die benannte Vertrauenswurzel; offline gespeicherte Metadaten allein begründen keine neue Vertrauensentscheidung. |
-| LD-05: Frische und Zeitversatz | Höchstens 24 Stunden alte Beobachtung; kein zukünftiger Zeitversatz | Ältere Beobachtungen liefern keinen frischen Nachweis für eine neue Entscheidung oder einen Abschluss. Bestehende Historie bleibt erhalten. Ohne passenden neuen Mainline-Push kann die Evidenz veralten; es wird kein PASS erfunden und kein künstlicher Push erzeugt. |
-| LD-04: Aufbewahrung | Vollständige Capture-Pakete, Akzeptanznachweise und Entscheidungsreferenzen während des Piloten unveränderlich aufbewahren; keine automatische Löschung, Aufbewahrungsentscheidung beim Pilotabschluss | Der künftige dauerhafte Pilot-Speicher muss vor Live-Annahme eingerichtet und getestet sein. Ein lokales `/tmp`-Paket oder GitHub-Artefakt mit Ablaufdatum reicht dafür nicht. Diese Freigabe wäre keine allgemeine Unternehmens-Aufbewahrungsrichtlinie. |
-| LD-05: Replay und Konflikte | Gleiche Herkunftsidentität plus gleicher Inhalt ist eine Wiederholung ohne neue Wirkung; abweichender Inhalt bei gleicher Identität wird quarantänisiert | Keine Überschreibung akzeptierter Evidenz; Live-Speicher, konkurrierende Annahme und vollständige Konfliktprüfung müssen dies vor Aktivierung nachweisen. |
-
-Die Bestätigung ist erfasst. Das konkrete Betriebsprofil und die dauerhafte
-Pilot-Speicherung sind umgesetzt. Danach folgen die inhaltsgebundene persönliche
-Freigabeverifikation und der vollständige Betriebsnachweis. Die separate
-Live-Abnahme (LD-07) bleibt bis zur Vorlage dieses Nachweises offen. Persönliche
-Behebungs- und Abschlussfreigaben werden weiterhin vom benannten Menschen
-selbst erteilt.
+- **Live-Waiver:** Die synthetische CLG-05-Ausnahmeprüfung erteilt keine echte
+  Waiver-Autorität. Architektur-Ausnahmen brauchen zusätzlich bestätigte
+  Zuordnungen von Marker-/Regelzielen zum Lifecycle.
+- **Weitere Consumer und Adapter:** CLG-06.3 bereitet DevSecOps-Control- und
+  Architektur-Gate-Kandidaten vor. Ihre Ausgaben bleiben diagnostisch.
+- **Lifecycle-Portfolio (CLG-06.4):** Erst zugelassene Lifecycle-Consumer und eine
+  bestätigte Grundgesamtheit erlauben aussagekräftige Quoten. Vorhandene
+  Consumer-Gesamtergebnisse oder wiederverwendete Testidentitäten genügen nicht.
+- **Optionale KI-Unterstützung (CLG-06.5):** Kein LLM ist für den Kernbetrieb nötig.
+- **Runtime-Release und Pilotabschluss:** Die begrenzte Betriebsabnahme ist keine
+  neue Baseline-, Release-, Aufbewahrungsabschluss- oder Unternehmensfreigabe.
+- **Bitbucket Data Center/Bamboo:** Firmenversionen und Integrationsdaten fehlen;
+  die Umsetzung bleibt gemäß Maintainerentscheidung zunächst auf GitHub.

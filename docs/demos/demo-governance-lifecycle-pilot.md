@@ -80,19 +80,18 @@ No real branch protection was disabled to manufacture a pilot failure. The
 existing ha-CPsWMS demo, released baselines, consumer enforcement and official
 viewer remain governed by their existing runbooks.
 
-## Accountable acceptance still required
+## Separate accepted GitHub operation
 
-The technical pilot can be reviewed now. Before any live acceptance, responsible
-humans must record LD-01–05 and LD-07 in the
-[pilot decision sheet](../operations/evidence/governance-lifecycle-pilot-decisions.md):
-actual role assignments, authenticated deliberate consent, registry control,
-accepted producers and Trust checks, freshness/replay limits, and operational
-acceptance including correction/withdrawal handling. This document does not fill
-those slots or infer authority from a GitHub account or PR merge.
+The [current GitHub pilot](../operations/status/governance-lifecycle-current-state.md)
+records the later LD-01–07 decisions and actual acceptance/observation workflows
+merged through PRs #92/#93. The synthetic sequence above remains a test. Two real
+PASS receipts establish no real finding or completed remediation. Personal
+consent for each future decision/progress/closure remains mandatory.
 
-After the technical PR is merged, record the accountable acceptance and explicit
-release decision before marking the full CLG-04 milestone complete. CLG-05 then
-adds scoped, expiring exceptions under the existing waiver authority contracts.
+The original [dated observation](../operations/reference-runs/2026-09-13-clg04-live-observation.md)
+is retained as historical diagnostic evidence. The separate operational receipts
+provide the current pilot's provider-checked evidence. Live waivers and a new
+runtime release are outside the operating acceptance.
 
 The separate [lifecycle scenario viewer](../operations/evidence/governance-lifecycle-viewer.md)
 provides a read-only walkthrough of these test histories and their event references.

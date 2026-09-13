@@ -1,5 +1,11 @@
 # CI/CD Platform Adapter Strategy
 
+Platform clarification, 13 September 2026: Bitbucket Cloud Pipelines and the
+Bitbucket Data Center/Bamboo path below are separate adapters. The maintainer's
+company target is Data Center with Bamboo; actual versions remain unconfirmed
+and implementation continues on GitHub. See the
+[company target path](company-bitbucket-bamboo-mistral-target-path.md).
+
 This document defines how the governance baseline can run across multiple CI/CD platforms without rewriting the governance core for every tool.
 
 The target platforms are:
@@ -198,7 +204,7 @@ scripts/platform/
 
 The existing GitHub intake scripts can remain where they are until shared helper modules are introduced. The first goal is to avoid breaking the current GitHub path.
 
-## Bitbucket Pipelines Adapter
+## Bitbucket Cloud Pipelines Adapter
 
 ### Responsibility
 

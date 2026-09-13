@@ -1,7 +1,11 @@
 # CLG-01 Pilot Decision Sheet
 
 13 September 2026. Technical contract preparation for
-[CLG-01](governance-lifecycle-contract.md). **Live activation is not approved.**
+[CLG-01](governance-lifecycle-contract.md). **Current update: the limited manual
+GRS-002 pilot is accepted and active after PRs #92/#93.**
+See the [current operating state](../status/governance-lifecycle-current-state.md).
+The original decision table and delivery updates below retain their historical
+status; they are superseded for this bounded pilot by the final update.
 This document records implementation choices and the decisions needed before
 live intake. It does not appoint people, establish new governance authorities,
 approve sources or create an SLA.
@@ -18,7 +22,7 @@ approve sources or create an SLA.
 | Compatibility | Exact source-schema/profile/policy versions | No implicit interpretation across changed rules |
 | Enforcement | Report-only lifecycle design; no publisher or consumer integration | No operational writes in CLG-01 |
 
-## Decisions requiring accountable human confirmation
+## Original decision register before operating acceptance
 
 | ID | Decision to record before live use | Proposed starting point | Status / required evidence |
 |---|---|---|---|
@@ -146,3 +150,15 @@ not satisfy this request. No operating acceptance capture exists yet; effective
 activation remains false. After personal acceptance, the first provider-checked
 publication PR records activation. Portfolio, other consumers and Bitbucket
 operation remain outside this request.
+
+## Effective operating acceptance — 13 September 2026, after PR #93
+
+LD-01–07 are recorded for the manual GitHub GRS-002/main pilot. The personal
+LD-07 statement is comment `5654604937` on PR #91; #92 captures and publishes
+acceptance, and #93 adds a verified observation through the actual workflow.
+The [current decision brief](governance-lifecycle-live-decision-brief.md) maps each
+LD decision to its implementation and limits. The [operating state](../status/governance-lifecycle-current-state.md)
+records the exact runs, digests and two retained PASS receipts. No real finding,
+remediation or closure is fabricated. Live waivers, additional consumers,
+portfolio denominators, Bitbucket operation and a runtime release remain outside
+this acceptance. Original preparation and synthetic records remain unchanged.

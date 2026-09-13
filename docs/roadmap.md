@@ -1,6 +1,6 @@
 # Roadmap
 
-Reviewed against `4abe88294f299d7f801c74ff0161df234960c092` on 11 September 2026.
+Reviewed against `8df643db37ec4d6da7196b94aaa77b5e0e0844d8` on 13 September 2026.
 This roadmap distinguishes implemented capabilities from remaining decisions.
 The [current platform state](operations/status/current-governance-platform-state.md)
 contains the dated evidence, and the [operations handbook](operations/guides/governance-repository-operations-handbook.md)
@@ -22,6 +22,17 @@ defines the controlled pilot procedure.
 
 Implementation does not prove operating acceptance, enterprise compliance,
 production Trust promotion or released L2/L3 readiness.
+
+## Accepted bounded lifecycle pilot
+
+CLG-01–06.3 provides synthetic contracts, finding/action/closure/exception histories,
+scenario reporting/viewer and diagnostic additional adapters. The real GitHub
+GRS-002 pilot has personal LD-07 acceptance and successful manual publication
+runs (#92/#93), with two PASS receipts and no actual finding or remediation.
+See the [current lifecycle state](operations/status/governance-lifecycle-current-state.md).
+Live waivers, other lifecycle consumers, a defined portfolio denominator,
+optional AI assistance and a runtime release remain separate decisions.
+Bitbucket Data Center/Bamboo implementation waits for actual company versions.
 
 ## Next Operating Work
 
