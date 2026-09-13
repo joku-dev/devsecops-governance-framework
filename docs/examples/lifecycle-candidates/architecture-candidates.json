@@ -1,0 +1,109 @@
+{
+  "acceptance_gaps": [
+    "producer_authentication",
+    "baseline_and_policy_resolution",
+    "approved_scope_and_trust_profile",
+    "approved_freshness_and_replay_policy",
+    "accountable_live_acceptance"
+  ],
+  "acceptance_status": "not_evaluated",
+  "adapter": {
+    "id": "architecture-gate-candidates",
+    "source_contract": "architecture-gate-report@legacy-shape-v1",
+    "version": "0.1.0"
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate:359a4f1009a16b326f4ab704da8f986052e6331d6fd9e40258978699828141ee",
+      "granularity": "gate",
+      "result": "findings",
+      "source_messages": [
+        "Synthetic E6-related text without a structured marker outcome",
+        "Synthetic second diagnostic message"
+      ],
+      "source_pointer": "/gates/0",
+      "subject": {
+        "domain": "architecture",
+        "repository_id": "synthetic/lifecycle-adapters",
+        "resource": "repository",
+        "rule_id": "architecture_readiness"
+      }
+    },
+    {
+      "candidate_id": "candidate:9d7c478556e39bfc2468dd9ff062d8095c040b72d26554850e5e7e01c5bb9016",
+      "granularity": "gate",
+      "result": "pass",
+      "source_messages": [],
+      "source_pointer": "/gates/1",
+      "subject": {
+        "domain": "architecture",
+        "repository_id": "synthetic/lifecycle-adapters",
+        "resource": "repository",
+        "rule_id": "integration_readiness"
+      }
+    },
+    {
+      "candidate_id": "candidate:6a79d9218bf3e6bae6fa1e883bb9a019bc8694d3f97fc941e6ab17924ddde8fa",
+      "granularity": "gate",
+      "result": "pass",
+      "source_messages": [],
+      "source_pointer": "/gates/2",
+      "subject": {
+        "domain": "architecture",
+        "repository_id": "synthetic/lifecycle-adapters",
+        "resource": "repository",
+        "rule_id": "operation_readiness"
+      }
+    },
+    {
+      "candidate_id": "candidate:67a22fbc15e9323b54dca55eb08dd2645191c1cfa6c0073b67283787ff98448b",
+      "granularity": "gate",
+      "result": "findings",
+      "source_messages": [
+        "Synthetic release finding"
+      ],
+      "source_pointer": "/gates/3",
+      "subject": {
+        "domain": "architecture",
+        "repository_id": "synthetic/lifecycle-adapters",
+        "resource": "repository",
+        "rule_id": "release_readiness"
+      }
+    }
+  ],
+  "counts": {
+    "fail": 0,
+    "findings": 2,
+    "not_applicable": 0,
+    "not_tested": 0,
+    "pass": 2
+  },
+  "enforcement": "report_only",
+  "environment": "diagnostic",
+  "evaluated_at": "2026-09-13T12:01:00Z",
+  "official_state": false,
+  "record_type": "lifecycle-input-candidates",
+  "schema_version": "0.1.0",
+  "source": {
+    "age_seconds": 60,
+    "context": {
+      "baseline_ref": "synthetic-baseline",
+      "branch": "main",
+      "commit_id": "1111111111111111111111111111111111111111",
+      "event": "push",
+      "observed_at": "2026-09-13T12:00:00Z",
+      "policy_revision": "2222222222222222222222222222222222222222",
+      "producer_id": "fixture:architecture-gates",
+      "purpose": "diagnostic",
+      "release_context": false,
+      "report_sha256": "d6e67b0cbb737e83e9324ed84ae5e8e8ae7ebe76b99466e60f3541c4662bc003",
+      "repository_id": "synthetic/lifecycle-adapters",
+      "run_attempt": 1,
+      "run_id": "12",
+      "synthetic": true
+    },
+    "declared_context_kind": "test",
+    "size_bytes": 1109
+  },
+  "trust_status": "unverified"
+}

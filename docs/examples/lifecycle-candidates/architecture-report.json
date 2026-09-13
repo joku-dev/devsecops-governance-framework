@@ -1,0 +1,50 @@
+{
+  "advisories": [],
+  "detailed_evidence": {},
+  "gates": [
+    {
+      "findings": [
+        "Synthetic E6-related text without a structured marker outcome",
+        "Synthetic second diagnostic message"
+      ],
+      "id": "architecture_readiness",
+      "remediations": [],
+      "status": "findings",
+      "title": "Architecture Readiness"
+    },
+    {
+      "findings": [],
+      "id": "integration_readiness",
+      "remediations": [],
+      "status": "pass",
+      "title": "Integration Readiness"
+    },
+    {
+      "findings": [],
+      "id": "operation_readiness",
+      "remediations": [],
+      "status": "pass",
+      "title": "Operation Readiness"
+    },
+    {
+      "findings": [
+        "Synthetic release finding"
+      ],
+      "id": "release_readiness",
+      "remediations": [],
+      "status": "findings",
+      "title": "Release Readiness"
+    }
+  ],
+  "summary": {
+    "finding_count": 3,
+    "gate_count": 4,
+    "passed": 2,
+    "with_findings": 2
+  },
+  "target": {
+    "commit": "1111111",
+    "path": "synthetic/lifecycle-adapters",
+    "release_id": "synthetic-release"
+  }
+}
