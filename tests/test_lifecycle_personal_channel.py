@@ -57,6 +57,16 @@ class PersonalChannelTests(unittest.TestCase):
         self.assertFalse(result['official_state'])
         self.assertEqual(result['human_presence'],'explicitly_self_attested_not_provider_attested')
 
+    def test_github_crlf_is_equivalent_but_raw_comment_edits_remain_visible(self):
+        comment=self.comment(); comment['body']=comment['body'].replace('\n','\r\n')
+        result=self.assess([comment])
+        self.assertEqual(result['status'],'confirmed')
+        self.assertEqual(result['relevant_comments'][0]['body'],comment['body'])
+        edited=deepcopy(comment); edited['body']=edited['body'].replace('\r\n','\n')
+        self.assertEqual(self.assess([edited],previous=[comment])['status'],'needs_clarification')
+        wrong=deepcopy(comment); wrong['body']=wrong['body'].replace(STATEMENT,'approved')
+        self.assertEqual(self.assess([wrong])['status'],'needs_clarification')
+
     def test_identity_alone_or_unrelated_approval_is_insufficient(self):
         c=self.comment();c['body']='Approved, please merge'
         self.assertEqual(self.assess([c])['status'],'waiting_for_personal_statement')
@@ -121,6 +131,19 @@ class PersonalChannelTests(unittest.TestCase):
         changed=deepcopy(snapshot);changed['result']['live_activation_approved']=True
         with self.assertRaisesRegex(ContractError,'projection'):
             replay_probe_snapshot(changed)
+
+    def test_retained_channel_capture_replays_and_provider_disagreement_fails(self):
+        from generate_personal_channel_evidence import validate as validate_evidence, verify_new_captures
+        captures=validate_evidence(); snapshot=captures[-1]
+        with patch('generate_personal_channel_evidence.subprocess.check_output',return_value=''):
+            self.assertEqual(verify_new_captures(ROOT,'fixture-base',collector=lambda *a,**k:snapshot),len(captures))
+            changed=deepcopy(snapshot);changed['result']['status']='revoked'
+            with self.assertRaisesRegex(ContractError,'provider state differs'):
+                verify_new_captures(ROOT,'fixture-base',collector=lambda *a,**k:changed)
+        with patch('generate_personal_channel_evidence.subprocess.check_output',return_value='generated/reports/lifecycle-personal-channel/00000001.json\n'):
+            with patch('generate_personal_channel_evidence.collect_probe') as forbidden:
+                self.assertEqual(verify_new_captures(ROOT,'fixture-base',collector=forbidden),0)
+                forbidden.assert_not_called()
 
     def test_provider_race_is_rejected(self):
         calls=0;initial=self.fake_fetch([self.comment()])

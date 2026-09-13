@@ -1,0 +1,108 @@
+{
+  "capture_method": "github_api_get_via_gh",
+  "comment_pages_after": [
+    "[{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5653982008\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/87#issuecomment-5653982008\",\"issue_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87\",\"id\":5653982008,\"node_id\":\"IC_kwDOTZFSfM8AAAABUQDrOA\",\"user\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"created_at\":\"2026-09-13T14:47:39Z\",\"updated_at\":\"2026-09-13T14:47:39Z\",\"body\":\"CLG-PERSONAL-CONSENT/1\\r\\n{\\r\\n  \\\"disposition\\\": \\\"approve\\\",\\r\\n  \\\"request_digest\\\": \\\"ad1ab390a6a0a85d6af9dcd12b6fca7dc2276ccf474b977e196977b94b318f07\\\",\\r\\n  \\\"statement\\\": \\\"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\\\",\\r\\n  \\\"supersedes_comment_id\\\": null\\r\\n}\\r\\n\",\"author_association\":\"OWNER\",\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5653982008/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"performed_via_github_app\":null,\"minimized\":null}]"
+  ],
+  "comment_pages_before": [
+    "[{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5653982008\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/87#issuecomment-5653982008\",\"issue_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87\",\"id\":5653982008,\"node_id\":\"IC_kwDOTZFSfM8AAAABUQDrOA\",\"user\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"created_at\":\"2026-09-13T14:47:39Z\",\"updated_at\":\"2026-09-13T14:47:39Z\",\"body\":\"CLG-PERSONAL-CONSENT/1\\r\\n{\\r\\n  \\\"disposition\\\": \\\"approve\\\",\\r\\n  \\\"request_digest\\\": \\\"ad1ab390a6a0a85d6af9dcd12b6fca7dc2276ccf474b977e196977b94b318f07\\\",\\r\\n  \\\"statement\\\": \\\"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\\\",\\r\\n  \\\"supersedes_comment_id\\\": null\\r\\n}\\r\\n\",\"author_association\":\"OWNER\",\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5653982008/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"performed_via_github_app\":null,\"minimized\":null}]"
+  ],
+  "issue_response": "{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87\",\"repository_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework\",\"labels_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87/labels{/name}\",\"comments_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87/comments\",\"events_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87/events\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/87\",\"id\":5440354018,\"node_id\":\"PR_kwDOTZFSfM8AAAABDVlgwg\",\"number\":87,\"title\":\"CLG pilot: Retain evidence under the confirmed operating profile\",\"user\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"labels\":[],\"state\":\"closed\",\"locked\":false,\"assignees\":[],\"milestone\":null,\"comments\":1,\"created_at\":\"2026-09-13T13:32:32Z\",\"updated_at\":\"2026-09-13T14:47:39Z\",\"closed_at\":\"2026-09-13T13:38:40Z\",\"assignee\":null,\"author_association\":\"OWNER\",\"active_lock_reason\":null,\"draft\":false,\"pull_request\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/pulls/87\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/87\",\"diff_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/87.diff\",\"patch_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/87.patch\",\"merged_at\":\"2026-09-13T13:38:40Z\"},\"body\":\"## Summary\\n\\n- Record the maintainer-confirmed operating profile: selected GitHub producer, 24-hour age, zero future skew, immutable pilot retention and replay/quarantine semantics.\\n- Retain complete capture packages in content-addressed, append-only pilot-validation receipts with deterministic replay, sequence checks and a separate diagnostic projection.\\n- Require independent GitHub re-verification of newly proposed receipts in PR CI; preserve existing accepted bytes without re-fetching expired historical artifacts.\\n\\n## Change Type\\n\\n- [x] Governance change request\\n- [x] Evidence contract update\\n- [x] Policy-as-code or workflow update\\n- [x] New artifact intake or relocation\\n\\n## Why This Change Is Needed\\n\\nThe maintainer confirmed the concrete operating profile with `ja`. The previous capture existed only outside the durable repository history. This change retains all raw evidence, enforces the confirmed limits and prepares reproducible pilot operation while leaving personal consent and final live acceptance separate.\\n\\n## Affected Areas\\n\\nOperating profile/schemas; durable eligibility store/CLI/generator; separate `governance/lifecycle/live-validation` history and diagnostic status/report; accepted-prefix validator; read-only Governance CI provider check; tests and operating docs.\\n\\n## Source Document And Change Governance\\n\\n- [x] New artifact classified with `docs/operations/processes/new-artifact-intake-process.md`\\n- [x] No source document impact\\n- [x] Governance Change Request added under `docs/governance/change-requests/`\\n- [x] Source lineage regenerated or confirmed unchanged\\n\\nGCR-2026-073 records the explicitly confirmed limited pilot decision. This does not create enterprise retention policy, change waiver authority or rewrite the prior preparation.\\n\\n## Governance Behavior\\n\\n- [x] Report-only behavior\\n\\nReceipts indicate `eligible_for_pilot` or quarantine, with official state/live activation false. Exact redelivery is a no-op and cannot renew freshness. Conflicting origin/content or contradictory equal-time results remain quarantined. PASS cannot invent or close a Finding. Required PR integrity CI re-fetches new provider evidence; Actions permission is read-only and PR review exceptions do not skip that verification.\\n\\n## Downstream Impact\\n\\n- [x] No downstream impact\\n\\nNo consumer/producer workflow, official viewer, publisher scope, OPA or enforcement change.\\n\\n## Evidence Contract Impact\\n\\n- [x] Additive optional evidence change\\n\\nFull raw ZIP, API responses, source files, profile and manifest are embedded in immutable Git-tracked receipts. Existing synthetic records/profiles are preserved; the new operating profile and receipts have separate schemas and deterministic semantic replay.\\n\\n## Release Impact\\n\\n- [x] No release update needed\\n\\nReleased packages and tags are unchanged. Operational lifecycle activation remains pending personal-channel verification and LD-07 acceptance.\\n\\n## Validation\\n\\n- [x] Pinned bootstrap and `./scripts/validate_all.sh`\\n- [x] Full suite: 429 tests\\n- [x] Strict MkDocs\\n- [x] Nine targeted tests: retention after source removal, corruption, stale/future evidence, idempotency, conflicts, equal-time ambiguity, PASS without closure, concurrent append and independent provider disagreement\\n- [x] Real retained source run `34759063986`, attempt 1, GRS-002 PASS; one durable eligibility receipt, no Finding\\n- [x] Independent provider recheck against GitHub using mainline base `81727b42ab60d2827865c234bac5ed929a9cb5fa`\\n\\nThe existing 27 accepted synthetic transactions, role binding and preparation remain unchanged. Timestamp/local-path generated noise was compared and excluded.\\n\\n## Reviewer Checklist\\n\\nAuthor review lenses: governance analysis, evidence/intake, release management and repository stewardship. Technical PR review exception is explicitly authorized for this sequence; no independent GitHub review or personal lifecycle consent is claimed.\\n\",\"closed_by\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"timeline_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87/timeline\",\"performed_via_github_app\":null,\"state_reason\":null}",
+  "previous_comments": [],
+  "request": {
+    "challenge": "36dfa388a30b6d764caf5588bf2b26cd",
+    "created_at": "2026-09-13T13:32:39Z",
+    "discussion_number": 87,
+    "live_activation_authorized": false,
+    "operating_profile_ref": {
+      "digest": "8f72bbc7a9258005b130c1725dc6957e18ef80c78571c07497b0733aebfb31dd",
+      "revision": 1
+    },
+    "purpose": "prove_personal_github_channel_without_authorizing_lifecycle_actions",
+    "receipt_head_ref": {
+      "digest": "b95d0644d894b43ef062125abe2b1303879fc9a80d52be593a090fa4d01dc127",
+      "id": "transaction:b34824612c5aa66f6002ae34e0b8aa7b0d95a066c576e91affcbedc3817cf171"
+    },
+    "remediation_or_closure_authorized": false,
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "request_id": "probe:clg-personal-channel-001",
+    "request_type": "personal-github-channel-probe",
+    "required_role": "role_registry_owner",
+    "required_subject_id": "github-user:81616324",
+    "role_binding_ref": {
+      "digest": "937efa993a2de218f7754927c81a5db8e92c44e1555bb22efd88ccbf2cc82cd5",
+      "revision": 1
+    },
+    "schema_version": "0.1.0",
+    "scope": {
+      "domain": "governance_repository_security",
+      "enforcement": "report_only",
+      "github_repository_id": 1301369468,
+      "pilot_only": true,
+      "repository_id": "joku-dev/devsecops-governance-framework",
+      "resource": "refs/heads/main",
+      "rule_id": "GRS-002"
+    }
+  },
+  "result": {
+    "captured_at": "2026-09-13T14:49:29Z",
+    "human_presence": "explicitly_self_attested_not_provider_attested",
+    "issues": [],
+    "last_statement_id": 5653982008,
+    "live_activation_approved": false,
+    "official_state": false,
+    "record_type": "lifecycle-personal-channel-probe-result",
+    "relevant_comments": [
+      {
+        "author_association": "OWNER",
+        "body": "CLG-PERSONAL-CONSENT/1\r\n{\r\n  \"disposition\": \"approve\",\r\n  \"request_digest\": \"ad1ab390a6a0a85d6af9dcd12b6fca7dc2276ccf474b977e196977b94b318f07\",\r\n  \"statement\": \"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\",\r\n  \"supersedes_comment_id\": null\r\n}\r\n",
+        "created_at": "2026-09-13T14:47:39Z",
+        "html_url": "https://github.com/joku-dev/devsecops-governance-framework/pull/87#issuecomment-5653982008",
+        "id": 5653982008,
+        "issue_url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/87",
+        "minimized": null,
+        "node_id": "IC_kwDOTZFSfM8AAAABUQDrOA",
+        "performed_via_github_app": null,
+        "reactions": {
+          "+1": 0,
+          "-1": 0,
+          "confused": 0,
+          "eyes": 0,
+          "heart": 0,
+          "hooray": 0,
+          "laugh": 0,
+          "rocket": 0,
+          "total_count": 0,
+          "url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5653982008/reactions"
+        },
+        "updated_at": "2026-09-13T14:47:39Z",
+        "url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5653982008",
+        "user": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/81616324?v=4",
+          "events_url": "https://api.github.com/users/joku-dev/events{/privacy}",
+          "followers_url": "https://api.github.com/users/joku-dev/followers",
+          "following_url": "https://api.github.com/users/joku-dev/following{/other_user}",
+          "gists_url": "https://api.github.com/users/joku-dev/gists{/gist_id}",
+          "gravatar_id": "",
+          "html_url": "https://github.com/joku-dev",
+          "id": 81616324,
+          "login": "joku-dev",
+          "node_id": "MDQ6VXNlcjgxNjE2MzI0",
+          "organizations_url": "https://api.github.com/users/joku-dev/orgs",
+          "received_events_url": "https://api.github.com/users/joku-dev/received_events",
+          "repos_url": "https://api.github.com/users/joku-dev/repos",
+          "site_admin": false,
+          "starred_url": "https://api.github.com/users/joku-dev/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/joku-dev/subscriptions",
+          "type": "User",
+          "url": "https://api.github.com/users/joku-dev",
+          "user_view_type": "public"
+        }
+      }
+    ],
+    "remediation_or_closure_authorized": false,
+    "request_digest": "ad1ab390a6a0a85d6af9dcd12b6fca7dc2276ccf474b977e196977b94b318f07",
+    "schema_version": "0.1.0",
+    "status": "confirmed",
+    "unauthorized_comment_ids": []
+  }
+}
