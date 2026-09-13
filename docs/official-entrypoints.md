@@ -107,6 +107,7 @@ It is intended for:
 - Operational governance enforcement options: `docs/operations/processes/operational-governance-enforcement-options.md`
 - Documentation structure model: `docs/operations/planning/document-structure-model.md`
 - Documentation structure audit: `docs/operations/planning/document-structure-audit.md`
+- Closed-loop governance kernel (CLG-02, synthetic): `docs/operations/evidence/governance-lifecycle-kernel.md`
 - Closed-loop governance contracts (CLG-01, offline): `docs/operations/evidence/governance-lifecycle-contract.md`
 - Closed-loop governance implementation plan (planned): `docs/operations/planning/closed-loop-governance-implementation-plan.md`
 

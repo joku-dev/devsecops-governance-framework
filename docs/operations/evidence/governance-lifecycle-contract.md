@@ -4,6 +4,11 @@ Version: **0.1.0**, 13 September 2026. Scope: executable record contracts and
 synthetic offline examples for the [closed-loop pilot](../planning/closed-loop-governance-implementation-plan.md).
 Change classification: [GCR-2026-062](../../governance/change-requests/GCR-2026-062-governance-lifecycle-contracts.md).
 
+The [CLG-02 kernel](governance-lifecycle-kernel.md) now implements synthetic
+observation storage, derived events, quarantine and replay on these contracts.
+The CLG-01 coverage notes below describe the original contract package; consult
+the kernel guide for the current persistence and Git-acceptance boundary.
+
 CLG-01 supplies schemas, content/reference checks and closure packet prerequisites.
 It does **not** supply a lifecycle state machine, append-only store, mainline
 intake, authenticated human approval verifier or operational closure. Successful
@@ -105,8 +110,8 @@ CLG-02 must check the expected revision against the **accepted merge-time head**
 Two valid PRs based on the same head cannot both advance it. Tests of one
 revision edge here do not demonstrate that concurrency control. Persisted
 observations, decisions, remediations, closures and events are immutable. Current
-state belongs only in a generated projection. The proposed lifecycle storage
-paths and publisher permissions remain unimplemented.
+state belongs only in a generated projection. CLG-02 implements storage in a separate synthetic transaction namespace.
+Live storage and publisher permissions remain unimplemented.
 
 Record schema version, acceptance-profile version, source security-profile
 version and lifecycle policy version are separate. Version compatibility in the

@@ -1,0 +1,238 @@
+{
+  "environment": "synthetic",
+  "event": {
+    "body": {
+      "effective_at": "2026-09-13T11:00:00Z",
+      "event_type": "observation_added",
+      "expected_revision": 2,
+      "policy_version": "0.1.0",
+      "previous_event_ref": {
+        "digest": "7817b07fc9e3df63576e90526ae6251aa7ccb1273bfadf959383a00a31a0e412",
+        "id": "event:3f3d372e0a8fabca361631c3a5ffe565064e382f8dfccabe8e029c3f4cf186fe"
+      },
+      "revision": 3,
+      "source_refs": [
+        {
+          "digest": "4fa5fd5557cb9abdab93de5cf95f1c77610c18afbb8760a8a6b747f0c3b904d9",
+          "id": "observation:88ba4e7d48509eee13bb2bc78932d5a2b658faad850f90dcae32f6ebce0e1382"
+        }
+      ]
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "event:0db67b0f251252f98ffcdd208a50186ea6cf456b1fd611a2fda959341caa8b1f",
+    "record_type": "event",
+    "recorded_at": "2026-09-13T11:00:00Z",
+    "schema_version": "0.1.0"
+  },
+  "expected_revision": 2,
+  "observation": {
+    "body": {
+      "acceptance": {
+        "evaluated_at": "2026-09-13T11:00:00Z",
+        "outcome": "accepted",
+        "profile_ref": {
+          "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+          "id": "profile:clg-synthetic-grs002",
+          "version": "0.1.0"
+        },
+        "proof_ref": {
+          "digest": "50e71f4ef2a923b4389f99c1cdb4dd8734f03cd3c83f587386edbe53c679f321",
+          "uri": "fixture://acceptance-50e71f4ef2a923b4389f99c1cdb4dd8734f03cd3c83f587386edbe53c679f321.json"
+        },
+        "verifier_id": "synthetic-contract-verifier"
+      },
+      "granularity": "criterion",
+      "observed_at": "2026-09-13T11:00:00Z",
+      "policy_version": "0.1.0",
+      "profile_version": "0.2.0",
+      "result": "pass",
+      "rule_key": "pull_request_review_required",
+      "snapshot_ref": {
+        "digest": "ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506",
+        "uri": "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+      },
+      "source_context": {
+        "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "kind": "test",
+        "producer_id": "synthetic-grs002-fixture",
+        "repository_id": "synthetic/governance-lifecycle",
+        "run_attempt": 1,
+        "run_id": "demo-3"
+      },
+      "source_schema": "governance-repository-security-report.schema.json@0.2.0",
+      "trust": {
+        "assessment_status": "evaluated",
+        "capture": {
+          "captured_at": "2026-09-13T11:00:00Z",
+          "collector": "synthetic-contract-fixture",
+          "custody": [
+            {
+              "action": "download",
+              "actor": "synthetic-contract-fixture",
+              "at": "2026-09-13T11:00:00Z",
+              "output_refs": [
+                "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+              ],
+              "sequence": 1,
+              "source_uri": "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            },
+            {
+              "action": "extract_and_hash",
+              "actor": "synthetic-contract-fixture",
+              "at": "2026-09-13T11:00:00Z",
+              "output_refs": [
+                "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+              ],
+              "sequence": 2,
+              "source_uri": "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            }
+          ],
+          "source": {
+            "artifact_name": "synthetic-grs002-report",
+            "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "repository_id": "synthetic/governance-lifecycle",
+            "run_attempt": 1,
+            "run_id": "demo-3",
+            "source_uri": "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json",
+            "workflow_name": "synthetic-grs002-fixture"
+          },
+          "subjects": [
+            {
+              "algorithm": "sha256",
+              "digest": "ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506",
+              "evidence_ref": "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json",
+              "id": "governance_repository_security_report",
+              "size_bytes": 6687
+            }
+          ]
+        },
+        "capture_phase": "additive_capture",
+        "checks": [
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "subject_identity_complete",
+            "result": "pass"
+          },
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "content_digest_verified",
+            "result": "pass"
+          },
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "producer_run_resolved",
+            "result": "pass"
+          },
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "commit_matches_run",
+            "result": "pass"
+          },
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "artifact_belongs_to_run",
+            "result": "pass"
+          },
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "baseline_ref_resolved",
+            "result": "pass"
+          },
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "freshness_evaluated",
+            "result": "pass"
+          },
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "replay_key_unique",
+            "result": "pass"
+          },
+          {
+            "evidence_refs": [
+              "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json"
+            ],
+            "id": "custody_recorded",
+            "result": "pass"
+          }
+        ],
+        "effective_level": "provenance_verified",
+        "model_id": "evidence-trust-model-v1",
+        "verified_at": "2026-09-13T11:00:00Z",
+        "verifier": "synthetic-contract-verifier"
+      }
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "observation:88ba4e7d48509eee13bb2bc78932d5a2b658faad850f90dcae32f6ebce0e1382",
+    "record_type": "observation",
+    "recorded_at": "2026-09-13T11:00:00Z",
+    "schema_version": "0.1.0"
+  },
+  "outcome": "accepted",
+  "previous_ref": {
+    "digest": "10f596a0044ef5fb635655c3ebf8694082abc15fdadbb7998836a543e6f0b9fd",
+    "id": "transaction:27ae9c4f5b0366cab89b4abffdbcc175d46a66c5a14d8162d677a9fe901fc6f3"
+  },
+  "profile_ref": {
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0"
+  },
+  "reason": "new_observation",
+  "recorded_at": "2026-09-13T11:00:00Z",
+  "resources": {
+    "fixture://acceptance-50e71f4ef2a923b4389f99c1cdb4dd8734f03cd3c83f587386edbe53c679f321.json": "ewogICJhc3Nlc3NtZW50IjogewogICAgImV2YWx1YXRlZF9hdCI6ICIyMDI2LTA5LTEzVDExOjAwOjAwWiIsCiAgICAib3V0Y29tZSI6ICJhY2NlcHRlZCIsCiAgICAicHJvZmlsZV9yZWYiOiB7CiAgICAgICJkaWdlc3QiOiAiMjJjNjdjODRjZjA5MzRmM2E0Y2M3MWU1NzgzYTVjYzE2NmI0YWJjMDQ5NDExMWMwNTBkOTlkOTdjNWI2ZDk4NiIsCiAgICAgICJpZCI6ICJwcm9maWxlOmNsZy1zeW50aGV0aWMtZ3JzMDAyIiwKICAgICAgInZlcnNpb24iOiAiMC4xLjAiCiAgICB9LAogICAgInZlcmlmaWVyX2lkIjogInN5bnRoZXRpYy1jb250cmFjdC12ZXJpZmllciIKICB9LAogICJlbnZpcm9ubWVudCI6ICJzeW50aGV0aWMiLAogICJvYnNlcnZhdGlvbl9kaWdlc3QiOiAiNmI2ODcyYWZkYWFmOGViMjQ1NGJhOTQ0OTAwNWU3Njg2ZWI2YzllMWNhMWY5MmI2YWNjZjdiMTI5YzE4ZGJjMCIKfQo=",
+    "fixture://report-ab989252b78754d46f11571eb2445d7519117524c31115e89d39d61e4124c506.json": "ewogICJhc3Nlc3NtZW50X3R5cGUiOiAiZ292ZXJuYW5jZS1yZXBvc2l0b3J5LXNlbGYtc2VjdXJpdHkiLAogICJjcml0ZXJpYSI6IFsKICAgIHsKICAgICAgImRldGFpbCI6ICJTeW50aGV0aWMgZml4dHVyZSBvbmx5LiIsCiAgICAgICJldmlkZW5jZV9yZWZzIjogWwogICAgICAgICJmaXh0dXJlOi8vc3ludGhldGljLXJlcG9zaXRvcnktc2V0dGluZ3MiCiAgICAgIF0sCiAgICAgICJleHBlY3RlZCI6IHRydWUsCiAgICAgICJpZCI6ICJHUlMtMDAxIiwKICAgICAgImtleSI6ICJkZWZhdWx0X2JyYW5jaF9wcm90ZWN0ZWQiLAogICAgICAib2JzZXJ2ZWQiOiB0cnVlLAogICAgICAic2V2ZXJpdHkiOiAiY3JpdGljYWwiLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiRGVmYXVsdCBicmFuY2ggcHJvdGVjdGVkIgogICAgfSwKICAgIHsKICAgICAgImRldGFpbCI6ICJTeW50aGV0aWMgZml4dHVyZSBvbmx5LiIsCiAgICAgICJldmlkZW5jZV9yZWZzIjogWwogICAgICAgICJmaXh0dXJlOi8vc3ludGhldGljLXJlcG9zaXRvcnktc2V0dGluZ3MiCiAgICAgIF0sCiAgICAgICJleHBlY3RlZCI6IHRydWUsCiAgICAgICJpZCI6ICJHUlMtMDAyIiwKICAgICAgImtleSI6ICJwdWxsX3JlcXVlc3RfcmV2aWV3X3JlcXVpcmVkIiwKICAgICAgIm9ic2VydmVkIjogdHJ1ZSwKICAgICAgInNldmVyaXR5IjogImNyaXRpY2FsIiwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIlB1bGwgcmVxdWVzdCBhbmQgYXBwcm92aW5nIHJldmlldyByZXF1aXJlZCIKICAgIH0sCiAgICB7CiAgICAgICJkZXRhaWwiOiAiU3ludGhldGljIGZpeHR1cmUgb25seS4iLAogICAgICAiZXZpZGVuY2VfcmVmcyI6IFsKICAgICAgICAiZml4dHVyZTovL3N5bnRoZXRpYy1yZXBvc2l0b3J5LXNldHRpbmdzIgogICAgICBdLAogICAgICAiZXhwZWN0ZWQiOiB0cnVlLAogICAgICAiaWQiOiAiR1JTLTAwMyIsCiAgICAgICJrZXkiOiAiZ292ZXJuYW5jZV9jaV9yZXF1aXJlZCIsCiAgICAgICJvYnNlcnZlZCI6IHRydWUsCiAgICAgICJzZXZlcml0eSI6ICJjcml0aWNhbCIsCiAgICAgICJzdGF0dXMiOiAicGFzcyIsCiAgICAgICJ0aXRsZSI6ICJHb3Zlcm5hbmNlIENJIGlzIGEgcmVxdWlyZWQgc3RhdHVzIGNoZWNrIgogICAgfSwKICAgIHsKICAgICAgImRldGFpbCI6ICJTeW50aGV0aWMgZml4dHVyZSBvbmx5LiIsCiAgICAgICJldmlkZW5jZV9yZWZzIjogWwogICAgICAgICJmaXh0dXJlOi8vc3ludGhldGljLXJlcG9zaXRvcnktc2V0dGluZ3MiCiAgICAgIF0sCiAgICAgICJleHBlY3RlZCI6IHRydWUsCiAgICAgICJpZCI6ICJHUlMtMDA0IiwKICAgICAgImtleSI6ICJkZXN0cnVjdGl2ZV9icmFuY2hfY2hhbmdlc19ibG9ja2VkIiwKICAgICAgIm9ic2VydmVkIjogdHJ1ZSwKICAgICAgInNldmVyaXR5IjogImNyaXRpY2FsIiwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkZvcmNlIHB1c2hlcyBhbmQgYnJhbmNoIGRlbGV0aW9uIGJsb2NrZWQiCiAgICB9LAogICAgewogICAgICAiZGV0YWlsIjogIlN5bnRoZXRpYyBmaXh0dXJlIG9ubHkuIiwKICAgICAgImV2aWRlbmNlX3JlZnMiOiBbCiAgICAgICAgImZpeHR1cmU6Ly9zeW50aGV0aWMtcmVwb3NpdG9yeS1zZXR0aW5ncyIKICAgICAgXSwKICAgICAgImV4cGVjdGVkIjogdHJ1ZSwKICAgICAgImlkIjogIkdSUy0wMDUiLAogICAgICAia2V5IjogInNpZ25lZF9jaGFuZ2VzX3JlcXVpcmVkIiwKICAgICAgIm9ic2VydmVkIjogdHJ1ZSwKICAgICAgInNldmVyaXR5IjogImhpZ2giLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiU2lnbmVkIGNoYW5nZXMgcmVxdWlyZWQgb24gdGhlIGRlZmF1bHQgYnJhbmNoIgogICAgfSwKICAgIHsKICAgICAgImRldGFpbCI6ICJTeW50aGV0aWMgZml4dHVyZSBvbmx5LiIsCiAgICAgICJldmlkZW5jZV9yZWZzIjogWwogICAgICAgICJmaXh0dXJlOi8vc3ludGhldGljLXJlcG9zaXRvcnktc2V0dGluZ3MiCiAgICAgIF0sCiAgICAgICJleHBlY3RlZCI6IHRydWUsCiAgICAgICJpZCI6ICJHUlMtMDA2IiwKICAgICAgImtleSI6ICJzZWNyZXRfc2Nhbm5pbmdfZW5hYmxlZCIsCiAgICAgICJvYnNlcnZlZCI6IHRydWUsCiAgICAgICJzZXZlcml0eSI6ICJjcml0aWNhbCIsCiAgICAgICJzdGF0dXMiOiAicGFzcyIsCiAgICAgICJ0aXRsZSI6ICJTZWNyZXQgc2Nhbm5pbmcgZW5hYmxlZCIKICAgIH0sCiAgICB7CiAgICAgICJkZXRhaWwiOiAiU3ludGhldGljIGZpeHR1cmUgb25seS4iLAogICAgICAiZXZpZGVuY2VfcmVmcyI6IFsKICAgICAgICAiZml4dHVyZTovL3N5bnRoZXRpYy1yZXBvc2l0b3J5LXNldHRpbmdzIgogICAgICBdLAogICAgICAiZXhwZWN0ZWQiOiB0cnVlLAogICAgICAiaWQiOiAiR1JTLTAwNyIsCiAgICAgICJrZXkiOiAic2VjcmV0X3B1c2hfcHJvdGVjdGlvbl9lbmFibGVkIiwKICAgICAgIm9ic2VydmVkIjogdHJ1ZSwKICAgICAgInNldmVyaXR5IjogImNyaXRpY2FsIiwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIlNlY3JldCBwdXNoIHByb3RlY3Rpb24gZW5hYmxlZCIKICAgIH0sCiAgICB7CiAgICAgICJkZXRhaWwiOiAiU3ludGhldGljIGZpeHR1cmUgb25seS4iLAogICAgICAiZXZpZGVuY2VfcmVmcyI6IFsKICAgICAgICAiZml4dHVyZTovL3N5bnRoZXRpYy1yZXBvc2l0b3J5LXNldHRpbmdzIgogICAgICBdLAogICAgICAiZXhwZWN0ZWQiOiB0cnVlLAogICAgICAiaWQiOiAiR1JTLTAwOCIsCiAgICAgICJrZXkiOiAiZGVwZW5kZW5jeV9zZWN1cml0eV9lbmFibGVkIiwKICAgICAgIm9ic2VydmVkIjogdHJ1ZSwKICAgICAgInNldmVyaXR5IjogImhpZ2giLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiRGVwZW5kZW5jeSBhbGVydHMgYW5kIHNlY3VyaXR5IHVwZGF0ZXMgZW5hYmxlZCIKICAgIH0sCiAgICB7CiAgICAgICJkZXRhaWwiOiAiU3ludGhldGljIGZpeHR1cmUgb25seS4iLAogICAgICAiZXZpZGVuY2VfcmVmcyI6IFsKICAgICAgICAiZml4dHVyZTovL3N5bnRoZXRpYy1yZXBvc2l0b3J5LXNldHRpbmdzIgogICAgICBdLAogICAgICAiZXhwZWN0ZWQiOiB0cnVlLAogICAgICAiaWQiOiAiR1JTLTAwOSIsCiAgICAgICJrZXkiOiAiY29kZV9zY2FubmluZ19jb25maWd1cmVkIiwKICAgICAgIm9ic2VydmVkIjogdHJ1ZSwKICAgICAgInNldmVyaXR5IjogImhpZ2giLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiQ29kZSBzY2FubmluZyBjb25maWd1cmVkIgogICAgfSwKICAgIHsKICAgICAgImRldGFpbCI6ICJTeW50aGV0aWMgZml4dHVyZSBvbmx5LiIsCiAgICAgICJldmlkZW5jZV9yZWZzIjogWwogICAgICAgICJmaXh0dXJlOi8vc3ludGhldGljLXJlcG9zaXRvcnktc2V0dGluZ3MiCiAgICAgIF0sCiAgICAgICJleHBlY3RlZCI6IHRydWUsCiAgICAgICJpZCI6ICJHUlMtMDEwIiwKICAgICAgImtleSI6ICJ0aGlyZF9wYXJ0eV9hY3Rpb25zX3NoYV9waW5uZWQiLAogICAgICAib2JzZXJ2ZWQiOiB0cnVlLAogICAgICAic2V2ZXJpdHkiOiAiaGlnaCIsCiAgICAgICJzdGF0dXMiOiAicGFzcyIsCiAgICAgICJ0aXRsZSI6ICJUaGlyZC1wYXJ0eSBHaXRIdWIgQWN0aW9ucyBwaW5uZWQgdG8gZnVsbCBjb21taXQgU0hBcyIKICAgIH0sCiAgICB7CiAgICAgICJkZXRhaWwiOiAiU3ludGhldGljIGZpeHR1cmUgb25seS4iLAogICAgICAiZXZpZGVuY2VfcmVmcyI6IFsKICAgICAgICAiZml4dHVyZTovL3N5bnRoZXRpYy1yZXBvc2l0b3J5LXNldHRpbmdzIgogICAgICBdLAogICAgICAiZXhwZWN0ZWQiOiB0cnVlLAogICAgICAiaWQiOiAiR1JTLTAxMSIsCiAgICAgICJrZXkiOiAid29ya2Zsb3dfcGVybWlzc2lvbnNfcmVzdHJpY3RlZCIsCiAgICAgICJvYnNlcnZlZCI6IHRydWUsCiAgICAgICJzZXZlcml0eSI6ICJoaWdoIiwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkRlZmF1bHQgYW5kIGV4cGxpY2l0IHdvcmtmbG93IHBlcm1pc3Npb25zIHJlc3RyaWN0ZWQiCiAgICB9LAogICAgewogICAgICAiZGV0YWlsIjogIlN5bnRoZXRpYyBmaXh0dXJlIG9ubHkuIiwKICAgICAgImV2aWRlbmNlX3JlZnMiOiBbCiAgICAgICAgImZpeHR1cmU6Ly9zeW50aGV0aWMtcmVwb3NpdG9yeS1zZXR0aW5ncyIKICAgICAgXSwKICAgICAgImV4cGVjdGVkIjogdHJ1ZSwKICAgICAgImlkIjogIkdSUy0wMTIiLAogICAgICAia2V5IjogImNyaXRpY2FsX3BhdGhzX293bmVkIiwKICAgICAgIm9ic2VydmVkIjogdHJ1ZSwKICAgICAgInNldmVyaXR5IjogImhpZ2giLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiQ3JpdGljYWwgZ292ZXJuYW5jZSBwYXRocyBoYXZlIGV4cGxpY2l0IG93bmVycyIKICAgIH0sCiAgICB7CiAgICAgICJkZXRhaWwiOiAiU3ludGhldGljIGZpeHR1cmUgb25seS4iLAogICAgICAiZXZpZGVuY2VfcmVmcyI6IFsKICAgICAgICAiZml4dHVyZTovL3N5bnRoZXRpYy1yZXBvc2l0b3J5LXNldHRpbmdzIgogICAgICBdLAogICAgICAiZXhwZWN0ZWQiOiB0cnVlLAogICAgICAiaWQiOiAiR1JTLTAxMyIsCiAgICAgICJrZXkiOiAiYXV0b21hdGVkX21haW5fd3JpdGVzX2Fic2VudCIsCiAgICAgICJvYnNlcnZlZCI6IHRydWUsCiAgICAgICJzZXZlcml0eSI6ICJjcml0aWNhbCIsCiAgICAgICJzdGF0dXMiOiAicGFzcyIsCiAgICAgICJ0aXRsZSI6ICJBdXRvbWF0aW9uIGNhbm5vdCBwdXNoIG9wZXJhdGlvbmFsIGRhdGEgZGlyZWN0bHkgdG8gdGhlIGRlZmF1bHQgYnJhbmNoIgogICAgfSwKICAgIHsKICAgICAgImRldGFpbCI6ICJTeW50aGV0aWMgZml4dHVyZSBvbmx5LiIsCiAgICAgICJldmlkZW5jZV9yZWZzIjogWwogICAgICAgICJmaXh0dXJlOi8vc3ludGhldGljLXJlcG9zaXRvcnktc2V0dGluZ3MiCiAgICAgIF0sCiAgICAgICJleHBlY3RlZCI6IHRydWUsCiAgICAgICJpZCI6ICJHUlMtMDE0IiwKICAgICAgImtleSI6ICJyZWxlYXNlX3RhZ3NfdmVyaWZpZWQiLAogICAgICAib2JzZXJ2ZWQiOiB0cnVlLAogICAgICAic2V2ZXJpdHkiOiAiaGlnaCIsCiAgICAgICJzdGF0dXMiOiAicGFzcyIsCiAgICAgICJ0aXRsZSI6ICJHb3Zlcm5hbmNlIHJlbGVhc2UgdGFncyBhcmUgY3J5cHRvZ3JhcGhpY2FsbHkgdmVyaWZpZWQiCiAgICB9LAogICAgewogICAgICAiZGV0YWlsIjogIlN5bnRoZXRpYyBmaXh0dXJlIG9ubHkuIiwKICAgICAgImV2aWRlbmNlX3JlZnMiOiBbCiAgICAgICAgImZpeHR1cmU6Ly9zeW50aGV0aWMtcmVwb3NpdG9yeS1zZXR0aW5ncyIKICAgICAgXSwKICAgICAgImV4cGVjdGVkIjogdHJ1ZSwKICAgICAgImlkIjogIkdSUy0wMTUiLAogICAgICAia2V5IjogInByaXZhdGVfdnVsbmVyYWJpbGl0eV9yZXBvcnRpbmdfZW5hYmxlZCIsCiAgICAgICJvYnNlcnZlZCI6IHRydWUsCiAgICAgICJzZXZlcml0eSI6ICJoaWdoIiwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIlByaXZhdGUgdnVsbmVyYWJpbGl0eSByZXBvcnRpbmcgaXMgZW5hYmxlZCIKICAgIH0sCiAgICB7CiAgICAgICJkZXRhaWwiOiAiU3ludGhldGljIGZpeHR1cmUgb25seS4iLAogICAgICAiZXZpZGVuY2VfcmVmcyI6IFsKICAgICAgICAiZml4dHVyZTovL3N5bnRoZXRpYy1yZXBvc2l0b3J5LXNldHRpbmdzIgogICAgICBdLAogICAgICAiZXhwZWN0ZWQiOiB0cnVlLAogICAgICAiaWQiOiAiR1JTLTAxNiIsCiAgICAgICJrZXkiOiAiYXBwcm92ZWRfYWN0aW9uX3NvdXJjZXNfcmVzdHJpY3RlZCIsCiAgICAgICJvYnNlcnZlZCI6IHRydWUsCiAgICAgICJzZXZlcml0eSI6ICJoaWdoIiwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkdpdEh1YiBBY3Rpb25zIHJlc3RyaWN0ZWQgdG8gYXBwcm92ZWQgc291cmNlcyIKICAgIH0KICBdLAogICJkZWNpc2lvbl9ib3VuZGFyeSI6IHsKICAgICJibG9ja3NfcHVsbF9yZXF1ZXN0cyI6IGZhbHNlLAogICAgImNoYW5nZXNfcmVsZWFzZWRfYmFzZWxpbmVzIjogZmFsc2UsCiAgICAiY2hhbmdlc19yZXBvc2l0b3J5X3NldHRpbmdzIjogZmFsc2UKICB9LAogICJlbmZvcmNlbWVudCI6ICJyZXBvcnRfb25seSIsCiAgImVuZm9yY2VtZW50X2NoYW5nZV9hdXRob3JpemVkIjogZmFsc2UsCiAgIm5leHRfc3RlcHMiOiBbXSwKICAib2JzZXJ2YXRpb24iOiB7CiAgICAic3ludGhldGljIjogdHJ1ZQogIH0sCiAgIm9ic2VydmVkX2F0IjogIjIwMjYtMDktMTNUMTE6MDA6MDBaIiwKICAib3ZlcmFsbF9zdGF0dXMiOiAicGFzcyIsCiAgInByb2ZpbGVfaWQiOiAiZ292ZXJuYW5jZS1yZXBvc2l0b3J5LXNlbGYtc2VjdXJpdHkiLAogICJwcm9maWxlX3ZlcnNpb24iOiAiMC4yLjAiLAogICJyZXBvc2l0b3J5X2lkIjogInN5bnRoZXRpYy9nb3Zlcm5hbmNlLWxpZmVjeWNsZSIsCiAgInJpc2tfc3RhdGVtZW50IjogIlN5bnRoZXRpYyB0ZXN0OyBubyBsaXZlIHJlcG9zaXRvcnkgc2V0dGluZ3Mgd2VyZSBjaGFuZ2VkLiIsCiAgInNjaGVtYV92ZXJzaW9uIjogIjAuMi4wIiwKICAic3VtbWFyeSI6IHsKICAgICJjcml0ZXJpYSI6IDE2LAogICAgImNyaXRpY2FsX2ZhaWx1cmVzIjogMCwKICAgICJmYWlsIjogMCwKICAgICJoaWdoX2ZhaWx1cmVzIjogMCwKICAgICJwYXNzIjogMTYKICB9Cn0K"
+  },
+  "schema_version": "0.1.0",
+  "sequence": 3,
+  "transaction_id": "transaction:28b04c9688cc600a3f12c323fdd9551cefa232a504b834c8f17385978cd65069"
+}
