@@ -47,8 +47,10 @@ implementiert eine versionierte Rollenbindung und ein deaktiviertes Live-Profil
 prüft echte Mainline-Artefakte gegen die festgelegten Producer-Dateien; sein
 diagnostischer PASS ist noch keine akzeptierte Lifecycle-Beobachtung.
 Das bestätigte [Betriebsprofil mit dauerhaftem Pilot-Intake](../evidence/governance-lifecycle-durable-pilot-intake.md)
-ergänzt unveränderliche Capture-Transaktionen, Frische, Replay und Quarantäne.
-Persönliche Freigabeverifikation und Betriebsabnahme bleiben offen.
+ergänzt unveränderliche Capture-Transaktionen, Frische, Replay und Quarantäne
+(PR #87 gemergt). Der [persönliche GitHub-Kanaltest](../evidence/governance-lifecycle-personal-channel.md)
+ist vorbereitet und benötigt jetzt die persönlich abgegebene Erklärung auf PR #87.
+Aktionsbezogene Freigabeverifikation und Betriebsabnahme bleiben offen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.
@@ -280,23 +282,15 @@ Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
 
 ## Nächster konkreter Arbeitsauftrag
 
-**CLG-05 technisch prüfen:** Bestehende Waiver-Verträge und Autoritäten,
-beobachtungsbezogene Teilabdeckung, Ablauf, Widerruf und erneute Zustimmung im
-eigenen PR prüfen. Der [Leitfaden](../evidence/governance-lifecycle-exceptions.md)
-beschreibt den synthetischen Umfang und die weiterhin offene Live-Grenze.
+**Persönlichen Kanal nachweisen:** `joku-dev` gibt die vorbereitete Erklärung auf
+PR #87 selbst ab. Der lesende Prüfer erfasst und prüft anschließend den echten
+Nachweis. Es handelt sich ausschließlich um einen Kanaltest.
 
-**CLG-04 fachlich abnehmen:** Die offenen Betriebsrollen, Freigabenachweise und
-LD-01–05/07 klären und die verantwortliche Abnahme samt Release-Entscheidung
-dokumentieren. Die technische Fortsetzung mit CLG-05 ersetzt diese Abnahme nicht.
-CLG-06 bleibt ein zu priorisierender Backlog mit einzeln abzugrenzenden Adaptern,
-Berichten und Viewer-Erweiterungen.
-
-Der Maintainer koordiniert anschließend die Benennung der Entscheidungs- und
-Abschlussverantwortlichen mit den zuständigen Governance-Rollen. Der technische
-Vertragsentwurf und die Offline-Tests können schon vorher entstehen. Der
-Live-Intake benötigt die dokumentierten Zuordnungen und den bestätigten
-Freigabenachweis. Die Beispielsrollen im ursprünglichen Workpackage ersetzen
-diese Klärung nicht.
+**Live-Zustimmung integrieren und CLG-04 abnehmen:** Nach diesem Nachweis folgen
+die aktionsbezogene Freigabe-/Widerrufs-/Abschlussintegration und deren Negativfälle.
+Anschließend dokumentiert der benannte Verantwortliche die Betriebsabnahme LD-07.
+Rollen und LD-04/05-Betriebswerte sind bereits bestätigt. Portfolio (CLG-06.4) und
+optionale KI-Unterstützung (CLG-06.5) bleiben nachgelagerte Erweiterungen.
 
 Jeder Implementierungs-PR enthält die eigene Intake-/Impact-Klassifikation und
 passende Tests. Vor dem Commit laufen
