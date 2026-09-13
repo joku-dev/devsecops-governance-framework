@@ -127,3 +127,12 @@ comment bytes. A CRLF parsing correction handles GitHub's actual transport forma
 raw-byte edit detection remains intact. Required PR CI rechecks new captures
 against the provider. This closes the first positive channel test, while
 action-specific consent integration and LD-07 remain pending.
+
+## Action consent validation, 13 September 2026
+
+The [GitHub action validator](governance-lifecycle-action-consent.md) binds individual
+requests to the appointed role, exact plan, evidence and state revision. It retains
+rejection, progress, closure and post-closure withdrawal, with independent provider
+checks for new proof and prerequisites. Positive failure/action sequences remain
+injected test fixtures; real PASS creates no finding or fabricated action. The
+bounded operational publisher and accountable LD-07 acceptance remain pending.

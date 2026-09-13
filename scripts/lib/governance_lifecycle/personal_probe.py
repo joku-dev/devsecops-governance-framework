@@ -39,13 +39,12 @@ def comment_identity(comment):
         'user':{k:comment['user'].get(k) for k in ('id','type')}}
 
 
-def assess_comments(request, comments, *, captured_at, previous_comments=()):
+def assess_bound_comments(request, comments, *, captured_at, previous_comments=()):
     """Verify captured provider fields and the person's explicit self-attestation.
 
     GitHub authenticates an account, not physical human presence. This probe
     establishes no remediation/closure approval and cannot activate runtime.
     """
-    schema_validator('personal-channel-probe').validate(request)
     expected_id=int(request['required_subject_id'].split(':')[1])
     issue_url=f"https://api.github.com/repos/{request['repository_id']}/issues/{request['discussion_number']}"
     page_url=f"https://github.com/{request['repository_id']}/pull/{request['discussion_number']}"
@@ -104,8 +103,18 @@ def assess_comments(request, comments, *, captured_at, previous_comments=()):
         'remediation_or_closure_authorized':False,'human_presence':'explicitly_self_attested_not_provider_attested'}
 
 
+def assess_comments(request, comments, *, captured_at, previous_comments=()):
+    schema_validator('personal-channel-probe').validate(request)
+    return assess_bound_comments(request,comments,captured_at=captured_at,previous_comments=previous_comments)
+
+
 def collect_probe(request, *, repo, previous_comments=(), fetch=github_get, captured_at=None):
     validate_request(request,repo)
+    return collect_bound(request,assessor=assess_comments,previous_comments=previous_comments,fetch=fetch,captured_at=captured_at)
+
+
+def collect_bound(request, *, assessor, previous_comments=(), fetch=github_get, captured_at=None):
+    """Capture provider bytes; the owning adapter validates its request beforehand."""
     endpoint=f"repos/{request['repository_id']}/issues/{request['discussion_number']}"
     issue_bytes=fetch(endpoint); issue=strict_json(issue_bytes)
     require(issue['number']==request['discussion_number'] and issue['html_url']==f"https://github.com/{request['repository_id']}/pull/{request['discussion_number']}"
@@ -122,13 +131,17 @@ def collect_probe(request, *, repo, previous_comments=(), fetch=github_get, capt
     before,raw_before=read_comments(); after,raw_after=read_comments()
     require(before==after,'Personal discussion changed during capture')
     at=captured_at or datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
-    result=assess_comments(request,after,captured_at=at,previous_comments=previous_comments)
+    result=assessor(request,after,captured_at=at,previous_comments=previous_comments)
     return {'request':request,'result':result,'issue_response':issue_bytes.decode(),
         'comment_pages_before':raw_before,'comment_pages_after':raw_after,'previous_comments':list(previous_comments),
         'capture_method':'github_api_get_via_gh' if fetch is github_get else 'injected_test_transport'}
 
 
 def replay_probe_snapshot(snapshot):
+    return replay_bound_snapshot(snapshot,assessor=assess_comments)
+
+
+def replay_bound_snapshot(snapshot, *, assessor):
     request=snapshot['request']
     before=[c for page in snapshot['comment_pages_before'] for c in strict_json(page)]
     after=[c for page in snapshot['comment_pages_after'] for c in strict_json(page)]
@@ -136,7 +149,7 @@ def replay_probe_snapshot(snapshot):
     issue=strict_json(snapshot['issue_response'])
     require(issue['number']==request['discussion_number'] and issue['html_url']==f"https://github.com/{request['repository_id']}/pull/{request['discussion_number']}"
             and bool(issue.get('pull_request')), 'Stored probe discussion differs')
-    expected=assess_comments(request,after,captured_at=snapshot['result']['captured_at'],
+    expected=assessor(request,after,captured_at=snapshot['result']['captured_at'],
         previous_comments=snapshot.get('previous_comments',[]))
     require(snapshot['result']==expected,'Stored probe projection differs')
     return expected
