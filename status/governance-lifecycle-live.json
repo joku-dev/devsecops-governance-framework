@@ -1,16 +1,16 @@
 {
   "active_closure_ref": null,
   "active_decision_ref": null,
-  "as_of": "2026-09-13T16:42:42Z",
-  "candidate_projection_digest": "bc87297146d80fc6646c518ae0a54c2276df78e5cc9dc0af26454e6bc9b5f562",
+  "as_of": "2026-09-13T16:50:22Z",
+  "candidate_projection_digest": "2e456bdd6349f342c4c6a5dbb0ae901eebc5200f32b0548012da49f6e009b6e5",
   "counts": {
     "actions": 0,
     "failures": 0,
     "quarantined": 0,
-    "receipts": 1
+    "receipts": 2
   },
   "enforcement": "report_only",
-  "evidence_as_of": "2026-09-13T13:19:32Z",
+  "evidence_as_of": "2026-09-13T16:50:22Z",
   "finding_state": "no_finding",
   "index_type": "governance-lifecycle-live-pilot",
   "limitation": "Manual report-only pilot. No automatic remediation, baseline change or other consumer state update.",
