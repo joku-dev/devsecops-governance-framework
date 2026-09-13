@@ -1,0 +1,35 @@
+{
+  "challenge": "36dfa388a30b6d764caf5588bf2b26cd",
+  "created_at": "2026-09-13T13:32:39Z",
+  "discussion_number": 87,
+  "live_activation_authorized": false,
+  "operating_profile_ref": {
+    "digest": "8f72bbc7a9258005b130c1725dc6957e18ef80c78571c07497b0733aebfb31dd",
+    "revision": 1
+  },
+  "purpose": "prove_personal_github_channel_without_authorizing_lifecycle_actions",
+  "receipt_head_ref": {
+    "digest": "b95d0644d894b43ef062125abe2b1303879fc9a80d52be593a090fa4d01dc127",
+    "id": "transaction:b34824612c5aa66f6002ae34e0b8aa7b0d95a066c576e91affcbedc3817cf171"
+  },
+  "remediation_or_closure_authorized": false,
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "request_id": "probe:clg-personal-channel-001",
+  "request_type": "personal-github-channel-probe",
+  "required_role": "role_registry_owner",
+  "required_subject_id": "github-user:81616324",
+  "role_binding_ref": {
+    "digest": "937efa993a2de218f7754927c81a5db8e92c44e1555bb22efd88ccbf2cc82cd5",
+    "revision": 1
+  },
+  "schema_version": "0.1.0",
+  "scope": {
+    "domain": "governance_repository_security",
+    "enforcement": "report_only",
+    "github_repository_id": 1301369468,
+    "pilot_only": true,
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "resource": "refs/heads/main",
+    "rule_id": "GRS-002"
+  }
+}

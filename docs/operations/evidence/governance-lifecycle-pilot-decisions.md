@@ -110,3 +110,11 @@ immutable retention with no automatic deletion and explicit replay/quarantine.
 The [durable intake validation](governance-lifecycle-durable-pilot-intake.md)
 implements these values. Older package-status paragraphs retain their dated
 context. Personal consent verification and LD-07 operating acceptance remain open.
+
+## Personal channel probe, 13 September 2026
+
+The [bound GitHub channel probe](governance-lifecycle-personal-channel.md) now
+provides a read-only verifier, a concrete personal statement on PR #87 and negative
+tests for identity, content and withdrawal history. The first real GET check is
+waiting for that personal statement. Confirmation proves this limited channel
+test only; action-specific live consent integration and LD-07 remain pending.

@@ -1,0 +1,94 @@
+{
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-personal-channel-probe.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "challenge": {
+      "pattern": "^[a-f0-9]{32}$",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "discussion_number": {
+      "const": 87
+    },
+    "live_activation_authorized": {
+      "const": false
+    },
+    "operating_profile_ref": {
+      "const": {
+        "digest": "8f72bbc7a9258005b130c1725dc6957e18ef80c78571c07497b0733aebfb31dd",
+        "revision": 1
+      }
+    },
+    "purpose": {
+      "const": "prove_personal_github_channel_without_authorizing_lifecycle_actions"
+    },
+    "receipt_head_ref": {
+      "const": {
+        "digest": "b95d0644d894b43ef062125abe2b1303879fc9a80d52be593a090fa4d01dc127",
+        "id": "transaction:b34824612c5aa66f6002ae34e0b8aa7b0d95a066c576e91affcbedc3817cf171"
+      }
+    },
+    "remediation_or_closure_authorized": {
+      "const": false
+    },
+    "repository_id": {
+      "const": "joku-dev/devsecops-governance-framework"
+    },
+    "request_id": {
+      "const": "probe:clg-personal-channel-001"
+    },
+    "request_type": {
+      "const": "personal-github-channel-probe"
+    },
+    "required_role": {
+      "const": "role_registry_owner"
+    },
+    "required_subject_id": {
+      "const": "github-user:81616324"
+    },
+    "role_binding_ref": {
+      "const": {
+        "digest": "937efa993a2de218f7754927c81a5db8e92c44e1555bb22efd88ccbf2cc82cd5",
+        "revision": 1
+      }
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "scope": {
+      "const": {
+        "domain": "governance_repository_security",
+        "enforcement": "report_only",
+        "github_repository_id": 1301369468,
+        "pilot_only": true,
+        "repository_id": "joku-dev/devsecops-governance-framework",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_type",
+    "request_id",
+    "repository_id",
+    "scope",
+    "discussion_number",
+    "required_role",
+    "required_subject_id",
+    "operating_profile_ref",
+    "role_binding_ref",
+    "receipt_head_ref",
+    "purpose",
+    "live_activation_authorized",
+    "remediation_or_closure_authorized",
+    "challenge",
+    "created_at"
+  ],
+  "title": "Bound personal-channel test, not lifecycle consent",
+  "type": "object"
+}
