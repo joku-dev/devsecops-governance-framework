@@ -26,7 +26,10 @@ Publisher-Unterstützung. Der technische CLG-04-PR #79 ist gemergt; die
 verantwortliche Live-Abnahme bleibt offen.
 [CLG-05](../evidence/governance-lifecycle-exceptions.md) ergänzt synthetische
 Ausnahmen mit beobachtungsbezogener Teilabdeckung, Ablauf, Widerruf und
-erneuter Entscheidung. Der eigene technische PR ist noch zu mergen.
+erneuter Entscheidung. Der technische CLG-05-PR #80 ist gemergt.
+[CLG-06.1](../evidence/governance-lifecycle-overview.md) bereitet als ersten
+Ausbauschritt eine getrennte Szenarioübersicht mit reproduzierbaren Kennzahlen
+vor; der eigene technische PR ist noch zu mergen.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
 hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
 Pilotabnahme folgen in CLG-04.
@@ -85,6 +88,27 @@ CLG-01 bis CLG-04 bilden den ersten Meilenstein. CLG-06 ist ein nachgelagerter
 Backlog, der vor seiner Umsetzung in einzelne Adapter-, Reporting- und
 KI-Änderungen zerlegt wird. Umfang und Aufwand werden nach CLG-01 anhand der
 festgelegten Verträge neu eingeschätzt; Kalendertermine sind noch nicht zugesagt.
+
+## CLG-06 in einzelne Schritte zerlegt
+
+Die bisherigen Piloten zeigen, dass aktueller Finding-Zustand, historische
+Abschlüsse, Behebungsfortschritt und Ausnahmeabdeckung unabhängig sichtbar sein
+müssen. Deshalb beginnt CLG-06 mit Reporting aus dem vorhandenen Verlauf.
+Die folgenden Schritte werden jeweils separat geprüft und als eigener PR
+umgesetzt; die spätere Live-Aktivierung braucht weiterhin die offenen
+Betriebsentscheidungen aus CLG-04.
+
+| Schritt | Abgegrenztes Ergebnis | Voraussetzung / Abnahme |
+|---|---|---|
+| **CLG-06.1: Synthetische Übersicht und Kennzahlen** | JSON/Markdown aus den drei getrennten Testhistorien mit gemeinsamem explizitem `as_of`, Ereignisreferenzen, historischen Zählern und aktuellem Zustand | Vollständiger Replay; Quarantäne, Wiedereröffnung und Ablauf korrekt; keine Portfolio-Summen aus mehrfach verwendeten Testidentitäten |
+| **CLG-06.2: Lesender Szenario-Viewer** | Eigene lesende Ansicht der CLG-06.1-Daten mit Szenarioauswahl und Ereignisverlauf | CLG-06.1; sichtbarer synthetischer Kontext, getrennt vom offiziellen Consumer-Status |
+| **CLG-06.3: Weitere Ergebnisadapter** | Je ein eigener PR pro Domäne und konkreter Granularität; Architektur-Ausnahmen separat abbilden | Eingabe-/Identitäts-/Trust-/Kontextvertrag und Negativfälle vor Intake; keine Findings aus bloßen Summenergebnissen erfinden |
+| **CLG-06.4: Portfolio und Betriebskennzahlen** | Vergleichbare, ereignisgebundene Kennzahlen über zugelassene Consumer-Kontexte | Passende Adapter, genehmigte Live-Profile und Betriebszuordnungen; Zeitbasis, Nenner und unbekannte Daten ausdrücklich definieren |
+| **CLG-06.5: Optionale KI-Unterstützung** | Modellneutrale, nachvollziehbare Vorschläge als separate Integration | Funktionierender deterministischer Kern; Vorschläge verleihen weder Freigabeautorität noch Evidenzakzeptanz |
+
+CLG-06.1 ist technische Vorbereitung auf Basis der synthetischen Piloterfahrung.
+Die Reihenfolge der weiteren Adapter und des Live-Ausbaus wird nach diesem
+Reporting-Schritt konkretisiert; das gesamte CLG-06-Paket ist damit nicht fertig.
 
 ## Verträge für CLG-01
 
@@ -212,8 +236,9 @@ aus `scripts/lib/result_ledger.py`, vorhandene Evidence-Trust-Verträge,
 der Aktionskatalog `architecture/remediation-actions.yaml`. Der Aktionskatalog
 beschreibt Vorschläge; konkrete Behebungsfälle erhalten eigene Instanzen.
 
-`scripts/publish_operational_update.py` unterstützt die neuen Pfade bisher
-nicht. Seine Erweiterung benötigt einen eigenen eng begrenzten Schreibumfang.
+`scripts/publish_operational_update.py` unterstützt inzwischen den getrennten
+synthetischen Abschluss-Piloten mit dessen Index/Bericht und der CLG-06.1-Übersicht.
+Weitere Ledger- oder Live-Pfade benötigen einen eigenen eng begrenzten Schreibumfang.
 Automatisierte Beobachtungen und vorgeschlagene Entscheidungen werden von
 akzeptierten menschlichen Entscheidungen getrennt validiert. Ein Pfad in einer
 Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
