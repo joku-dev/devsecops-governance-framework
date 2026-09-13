@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-13T12:10:00Z",
+  "as_of": "2026-09-13T11:30:00Z",
   "conflict_refs": [
     {
       "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
@@ -8,41 +8,20 @@
   ],
   "counts": {
     "conflicts": 1,
-    "decisions": 2,
-    "events": 9,
+    "events": 5,
     "findings": 1,
     "observations": 4,
-    "remediations": 2,
-    "transactions": 9
+    "transactions": 5
   },
   "enforcement": "report_only",
   "environment": "synthetic",
   "findings": [
     {
-      "active_decision_ref": null,
       "closure_supported": false,
       "conflict_refs": [
         {
           "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
           "id": "transaction:5377f0cb324f5c83189c818ca748da7c6de9f4a7c8ca5663a450d03106378652"
-        }
-      ],
-      "decision_records": [
-        {
-          "disposition": "approve",
-          "effective_status": "revoked",
-          "record_ref": {
-            "digest": "fdb248fa69ad8a853b05b827bb72e11ec55fc0e45bb071ebcf72fbeb06046775",
-            "id": "decision:demo-approve"
-          }
-        },
-        {
-          "disposition": "revoke",
-          "effective_status": "withdrawal_recorded",
-          "record_ref": {
-            "digest": "faeb13f61b16d6c2eaa7e061f94ccda5a346b0682db6cf5b549a21b247198171",
-            "id": "decision:demo-revoke"
-          }
         }
       ],
       "evidence_status": "pass",
@@ -63,8 +42,8 @@
         }
       },
       "last_event_ref": {
-        "digest": "2126d65ce184b53284b7d551e8bb959f2425cfedbf204c17a25537a0bc18f56b",
-        "id": "event:cde4fa87197609ea4ee11f0d463ac13e6dfe57b4473c21634d3069c5e976ea46"
+        "digest": "136c895492963b93de74c55b8204fd4f6ac51a9b2f4264d8d68ccd0511ca1ade",
+        "id": "event:0062a9546030c39c6c13cebebf33279da96170a73b9cd893c5c2040c7b66f0d1"
       },
       "latest_observation_ref": {
         "digest": "4fa5fd5557cb9abdab93de5cf95f1c77610c18afbb8760a8a6b747f0c3b904d9",
@@ -89,32 +68,14 @@
         }
       ],
       "occurrences": 3,
-      "remediation_cases": [
-        {
-          "authorization_status": "revoked",
-          "decision_ref": {
-            "digest": "fdb248fa69ad8a853b05b827bb72e11ec55fc0e45bb071ebcf72fbeb06046775",
-            "id": "decision:demo-approve"
-          },
-          "latest_record_ref": {
-            "digest": "59989f9b51640452537ffac4b32f131215a5e532a6dc0f31f0cc694177a8d410",
-            "id": "remediation:demo-progress"
-          },
-          "overdue": false,
-          "owner_id": "test-human:remediation-owner",
-          "progress": "in_progress",
-          "remediation_id": "remediation-case:demo-1",
-          "target_at": "2026-09-14T12:00:00Z"
-        }
-      ],
-      "revision": 9,
+      "revision": 5,
       "state": "needs_clarification"
     }
   ],
   "index_type": "governance-lifecycle-synthetic",
   "ledger_head_ref": {
-    "digest": "49d5dcbe4a89521200a2b5a42259d7035d3d5ab9a95b4e284fef640bca45e681",
-    "id": "transaction:04b2daf556f0a9fd472aeb44e22b0fb73b5f9d8fca4593e142588299b774efab"
+    "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
+    "id": "transaction:5377f0cb324f5c83189c818ca748da7c6de9f4a7c8ca5663a450d03106378652"
   },
   "official_state": false,
   "profile_ref": {
@@ -122,5 +83,5 @@
     "id": "profile:clg-synthetic-grs002",
     "version": "0.1.0"
   },
-  "schema_version": "0.2.0"
+  "schema_version": "0.1.0"
 }

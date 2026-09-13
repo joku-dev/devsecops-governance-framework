@@ -9,17 +9,21 @@ nicht implementiert. Die Planung ist in
 [GCR-2026-060](../../governance/change-requests/GCR-2026-060-closed-loop-governance-plan.md)
 klassifiziert.
 
-## Fortschritt CLG-01 und CLG-02
+## Fortschritt CLG-01 bis CLG-03
 
 CLG-01 wurde mit PR #76 gemergt. Der
 [Vertragsstand 0.1.0](../evidence/governance-lifecycle-contract.md) enthält
 additive Schemas, synthetische Beispiele und ausführbare Offline-Prüfungen.
 Der [CLG-02-Kern](../evidence/governance-lifecycle-kernel.md) ergänzt synthetischen
 GRS-002-Intake, unveränderliche Transaktionen, Ereignisse, Konfliktbehandlung
-und eine reproduzierbare Projektion. Sein PR muss vor Paketabschluss gemergt sein.
+und eine reproduzierbare Projektion. CLG-02 wurde mit PR #77 gemergt.
+[CLG-03](../evidence/governance-lifecycle-decisions.md) ergänzt synthetische,
+inhalts- und revisionsgebundene Entscheidungen, Ablehnung, Widerruf und
+Behebungsverlauf mit Owner und Zieltermin. Sein PR muss vor Paketabschluss
+gemergt sein.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
-hält die weiterhin offenen Live-Zuordnungen fest. Entscheidungen, Behebungen
-und operativer Abschluss folgen in CLG-03/04.
+hält die weiterhin offenen Live-Zuordnungen fest. Operativer Abschluss und
+Pilotabnahme folgen in CLG-04.
 
 ## Ziel und erster Pilot
 
@@ -226,16 +230,14 @@ Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
 
 ## Nächster konkreter Arbeitsauftrag
 
-**CLG-02 prüfen und abschließen:** Synthetischen Kern, Adapter, atomare
-Speicherung, Git-Übernahmeprüfung und generierten Index im eigenen PR prüfen.
-Abnahmefälle und Betriebsannahmen stehen im
-[Kernleitfaden](../evidence/governance-lifecycle-kernel.md).
+**CLG-03 prüfen und abschließen:** Gebundene Testentscheidungen, Ablehnung,
+Widerruf, Behebungsplanung und Fortschritt im eigenen PR prüfen. Der
+[Leitfaden](../evidence/governance-lifecycle-decisions.md) dokumentiert die
+synthetische Grenze, Vertragsversion 0.2.0 und ausführbare Abnahmefälle.
 
-**Nach dessen Merge CLG-03 umsetzen:** Intake gebundener menschlicher
-Entscheidungen und Zuordnung konkreter Behebungen mit Owner und Zieltermin.
-Rollen-/Freigabenachweis, Inhaltsänderungen, Ablehnung und Widerruf prüfen.
-Synthetische Identitäten bleiben ausschließlich für Tests bestimmt;
-ungeklärte Betriebszuordnungen bleiben ausdrücklich offen.
+**Nach dessen Merge CLG-04 umsetzen:** Evidenzgebundenen Abschluss und
+Wiedereröffnung, kleinen Bericht, Pilot-Runbook und begrenzte Publisher-Anbindung
+entwickeln. Live-Nutzung setzt die bestätigten Betriebszuordnungen voraus.
 
 Der Maintainer koordiniert anschließend die Benennung der Entscheidungs- und
 Abschlussverantwortlichen mit den zuständigen Governance-Rollen. Der technische

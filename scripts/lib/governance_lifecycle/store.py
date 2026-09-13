@@ -77,3 +77,15 @@ def append_observation(root, observation, resources, profile, *, expected_revisi
             return {"outcome": "duplicate", "transaction_ref": None}
         publish_transaction(Path(root) / "transactions", transaction)
         return {"outcome": transaction["outcome"], "transaction_ref": transaction_ref(transaction)}
+
+
+def append_action(root, record, resources, profile, *, expected_revision):
+    from .decisions import prepare_action_transaction
+    with writer_lock(root):
+        state = replay(load_transactions(root), profile)
+        transaction = prepare_action_transaction(record, resources, profile, state,
+                                                  expected_revision=expected_revision)
+        if transaction is None:
+            return {"outcome": "duplicate", "transaction_ref": None}
+        publish_transaction(Path(root) / "transactions", transaction)
+        return {"outcome": transaction["outcome"], "transaction_ref": transaction_ref(transaction)}
