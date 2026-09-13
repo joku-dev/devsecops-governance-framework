@@ -1,0 +1,5 @@
+{
+  "environment": "synthetic",
+  "action": "Restore one required approving review in the synthetic repository fixture.",
+  "result": "completed"
+}
