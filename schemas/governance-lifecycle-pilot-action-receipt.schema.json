@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-pilot-action-receipt.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "lifecycle-pilot-action-receipt"
+    },
+    "environment": {
+      "const": "live_pilot_validation"
+    },
+    "official_state": {
+      "const": false
+    },
+    "live_activation_approved": {
+      "const": false
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "previous_ref": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^transaction:[a-f0-9]{64}$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "digest"
+          ]
+        }
+      ]
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "request": {
+      "$ref": "governance-lifecycle-pilot-action-request.schema.json"
+    },
+    "snapshot": {
+      "type": "object"
+    },
+    "outcome": {
+      "enum": [
+        "eligible_for_pilot",
+        "rejected",
+        "withdrawn",
+        "needs_clarification"
+      ]
+    },
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^transaction:[a-f0-9]{64}$"
+    },
+    "receipt_head_at_recording": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^transaction:[a-f0-9]{64}$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "digest"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "environment",
+    "official_state",
+    "live_activation_approved",
+    "sequence",
+    "previous_ref",
+    "recorded_at",
+    "request",
+    "snapshot",
+    "outcome",
+    "transaction_id",
+    "receipt_head_at_recording"
+  ]
+}

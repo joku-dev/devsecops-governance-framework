@@ -43,19 +43,20 @@ die verifizierte Live-Rollenverwaltung bleibt Teil der technischen Abnahme.
 Rollen, GitHub-Kanal als Umsetzungsrichtung und Betriebswerte sind bestätigt.
 Der [persönliche GitHub-Kanaltest](governance-lifecycle-personal-channel.md) ist
 mit dem persönlich abgegebenen Kommentar auf PR #87 erfolgreich nachgewiesen.
-Als nächste Schritte folgen die aktionsbezogene Zustimmungsverifikation
-und die abschließende Betriebsabnahme.
+Die [aktionsbezogene Zustimmungsverifikation](governance-lifecycle-action-consent.md)
+ist als getrennte Pilotvalidierung umgesetzt. Als nächste Schritte folgen der
+begrenzte Betriebs-Publisher und die abschließende Betriebsabnahme.
 
 | Entscheidung | Vorschlag | Folge / noch erforderlicher Nachweis |
 |---|---|---|
-| LD-02: bewusste, authentifizierte Zustimmung | Eigener Review eines unveränderlichen Entscheidungsdatensatzes mit Inhaltsdigest und erwarteter Finding-Revision | Kanal und persönliche Abgabe sind bestätigt. Der vorbereitete Kanaltest prüft Identität, Inhaltsdigest, Disposition und Widerruf. Die persönliche Erklärung ist verifiziert; die aktionsbezogene Integration steht noch aus. |
+| LD-02: bewusste, authentifizierte Zustimmung | Eigener Review eines unveränderlichen Entscheidungsdatensatzes mit Inhaltsdigest und erwarteter Finding-Revision | Kanal und persönliche Abgabe sind bestätigt. Der vorbereitete Kanaltest prüft Identität, Inhaltsdigest, Disposition und Widerruf. Die persönliche Erklärung ist verifiziert; die aktionsbezogene Pilotvalidierung bindet Entscheidungen, Fortschritt, Abschluss und Widerruf. Operative Annahme bleibt von LD-07 abhängig. |
 | LD-07: Live-Abnahme | Zuerst lesenden Evidenz-Intake prüfen, danach Freigabe-/Widerrufs-/Abschluss-Negativfälle und Betriebs-Runbook abnehmen | Benannte Verantwortliche dokumentieren die Abnahme einschließlich Korrektur und Widerruf nach einem Abschluss. Erst anschließend Live-Aktivierung im bestätigten Umfang. |
 
 ## Was diese Entscheidung freigibt
 
 Die Rollen sind bestätigt, der persönliche GitHub-Freigabekanal ist als
 Umsetzungsrichtung bestätigt. Ein eigenes deaktiviertes Live-Profil liegt vor;
-Die Provider-Verifikation und dauerhafte Pilotablage sind mit PR #87 umgesetzt; die persönliche Kanalprüfung und aktionsbezogene Zustimmungsverifikation folgen. Das synthetische Profil wird dafür nicht
+Provider-Verifikation und dauerhafte Pilotablage sind mit PR #87 umgesetzt; der persönliche Kanal ist mit PR #89 bestätigt. Die aktionsbezogene Verifikation liegt als eigene Pilotvalidierung vor. Das synthetische Profil wird dafür nicht
 umgeschaltet oder umgeschrieben. Zunächst bleiben Live-Verarbeitung und
 Veröffentlichung deaktiviert, bis die vereinbarten Prüfungen und Abnahme vorliegen.
 
