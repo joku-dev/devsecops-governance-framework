@@ -25,8 +25,8 @@ approve sources or create an SLA.
 | LD-01 | Who can authorize remediation and who can approve closure, for which repositories/resources? | Explicit named role bindings controlled separately from proposed decisions | **Appointment confirmed, 13 September 2026.** `joku-dev` / GitHub ID `81616324` holds the three separate pilot roles with explicitly confirmed role combination; versioned binding and pilot-only validity recorded in the [live preparation](governance-lifecycle-live-preparation.md). Personal live consent verification remains pending |
 | LD-02 | Which channel proves deliberate consent and authenticated identity? | A review of an immutable decision digest through an authenticated provider adapter | **Design direction confirmed:** personal GitHub decision statement; Codex prepares, the person issues consent. Content/identity/time binding, rejection/withdrawal and verifier acceptance remain pending; PR merge alone is insufficient |
 | LD-03 | Who controls role bindings and can withdraw approvals? | Separately reviewed role registry and immutable withdrawal evidence | **Registry owner confirmed:** `joku-dev`; numbered replacement/withdrawal history is prepared separately from proposal records. Authenticated live administration remains pending |
-| LD-04 | Which evidence sources and checks are accepted? | Named producer/workflow, immutable commit/run/attempt/artifact, integrity and provenance checks | **Open.** Confirm allowlist, trust roots, independent check implementation and snapshot retention |
-| LD-05 | What are freshness, clock-skew and replay limits? | Evaluate the offline 24-hour/zero-skew boundary against real execution cadence | **Open.** Confirm production values, context approval and conflicting/late evidence handling; test constants are not binding policy |
+| LD-04 | Which evidence sources and checks are accepted? | Named producer/workflow, immutable commit/run/attempt/artifact, integrity and provenance checks | **Confirmed operating scope, 13 September 2026:** official GitHub API, pinned Self-Security source/mainline attempt 1 and complete immutable pilot retention without automatic deletion. Independent provider recheck and durable receipts implemented; accountable operating acceptance remains pending |
+| LD-05 | What are freshness, clock-skew and replay limits? | Evaluate the offline 24-hour/zero-skew boundary against real execution cadence | **Confirmed limited pilot policy:** 24-hour maximum evidence age, zero future skew, exact replay no-op and conflicting origin/content quarantine. Durable implementation and negative tests are documented in the [pilot intake guide](governance-lifecycle-durable-pilot-intake.md) |
 | LD-06 | Where is merge-time revision acceptance serialized? | Local atomic append plus complete merged-chain and accepted-prefix validation in required CI | **Implemented for the synthetic pilot** in [ADR-CLG-002](governance-lifecycle-kernel.md#git-acceptance-and-competing-prs-adr-clg-002). Multiprocess and competing-Git-branch tests pass. Strict required checks remain a deployment assumption; live publisher acceptance is still pending |
 | LD-07 | What qualifies the pilot for live operation? | CLG-04 runbook with complete synthetic failure sequence plus separately labeled current live observation | **Open.** Named operational acceptance, confirmed LD-01–05, tested negative cases and scoped publisher review |
 
@@ -101,3 +101,12 @@ including the pilot-only multiple-role arrangement for `joku-dev`.
 binding and disabled profile. LD-02/03 live verification, LD-04 trust/retention,
 LD-05 operating values and LD-07 acceptance remain incomplete. No live activation
 or individual remediation/closure consent follows from this appointment.
+
+## Confirmed operating-profile update — 13 September 2026
+
+The maintainer's subsequent `ja` confirms the concrete LD-04/05 pilot proposal:
+GitHub trust root and pinned source, 24-hour age, zero future skew, complete
+immutable retention with no automatic deletion and explicit replay/quarantine.
+The [durable intake validation](governance-lifecycle-durable-pilot-intake.md)
+implements these values. Older package-status paragraphs retain their dated
+context. Personal consent verification and LD-07 operating acceptance remain open.

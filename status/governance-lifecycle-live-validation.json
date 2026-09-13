@@ -1,0 +1,31 @@
+{
+  "as_of": "2026-09-13T13:19:32Z",
+  "counts": {
+    "eligible": 1,
+    "failures": 0,
+    "quarantined": 0,
+    "receipts": 1
+  },
+  "enforcement": "report_only",
+  "head_ref": {
+    "digest": "b95d0644d894b43ef062125abe2b1303879fc9a80d52be593a090fa4d01dc127",
+    "id": "transaction:b34824612c5aa66f6002ae34e0b8aa7b0d95a066c576e91affcbedc3817cf171"
+  },
+  "index_type": "lifecycle-live-pilot-validation",
+  "latest_criterion_result": "pass",
+  "limitation": "Eligibility validation only; personal decisions and LD-07 are required before operational lifecycle use",
+  "live_activation_approved": false,
+  "official_state": false,
+  "pilot_finding": null,
+  "profile_ref": {
+    "digest": "8f72bbc7a9258005b130c1725dc6957e18ef80c78571c07497b0733aebfb31dd",
+    "revision": 1
+  },
+  "receipt_refs": [
+    {
+      "digest": "b95d0644d894b43ef062125abe2b1303879fc9a80d52be593a090fa4d01dc127",
+      "id": "transaction:b34824612c5aa66f6002ae34e0b8aa7b0d95a066c576e91affcbedc3817cf171"
+    }
+  ],
+  "schema_version": "0.1.0"
+}

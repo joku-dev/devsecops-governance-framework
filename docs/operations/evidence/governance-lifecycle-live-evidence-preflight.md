@@ -82,8 +82,9 @@ is an observation at that time; it does not prove uninterrupted branch protectio
 throughout a commit's history. Source API errors remain in the original report.
 No artificial FAIL is created when the selected run reports PASS.
 
-Before live admission, confirm trust roots and retention (LD-04), freshness/skew
-and replay policy (LD-05), implement durable live acceptance and personal consent
-verification, and obtain the accountable operating acceptance (LD-07).
+The maintainer has now confirmed trust roots, retention, freshness/skew and
+replay policy (LD-04/05). The [durable pilot intake](governance-lifecycle-durable-pilot-intake.md)
+applies them in a separate retained validation flow. Personal consent verification
+and accountable operating acceptance (LD-07) remain prerequisites for live use.
 The [dated live reference](../reference-runs/2026-09-13-clg-live-evidence-preflight.md)
 records the actual first capture separately from official state.

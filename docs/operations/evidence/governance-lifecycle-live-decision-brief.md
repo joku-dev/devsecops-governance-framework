@@ -1,6 +1,6 @@
 # Live-Pilot: konkrete Entscheidungen vor der Anbindung
 
-Status: **Rollen am 13. September 2026 bestätigt; keine Live-Freigabe.** Die technische
+Status: **Rollen und Betriebsprofil am 13. September 2026 bestätigt; Live-Abnahme offen.** Die technische
 Review-Ausnahme des Maintainers gilt für Implementierungs-PRs. Sie erteilt keine
 Lifecycle-Behebungs-, Abschluss- oder Ausnahmefreigabe.
 
@@ -38,16 +38,15 @@ Die Mehrfachrolle ist ausdrücklich auf diesen Piloten begrenzt. Die
 getrennt von persönlichen Einzelfreigaben fest. Die Rollenbindung ist bestätigt;
 die verifizierte Live-Rollenverwaltung bleibt Teil der technischen Abnahme.
 
-## Weitere entscheidungsreife Vorschläge
+## Noch offene Verifikation und Abnahme
 
-Die folgenden Vorschläge sind konkrete Ausgangspunkte, keine angenommenen
-Genehmigungen. Ihre Umsetzung kann nach der Rollenentscheidung abgegrenzt werden.
+Rollen, GitHub-Kanal als Umsetzungsrichtung und Betriebswerte sind bestätigt.
+Die persönliche Zustimmungsverifikation und die abschließende Betriebsabnahme
+stehen noch aus.
 
 | Entscheidung | Vorschlag | Folge / noch erforderlicher Nachweis |
 |---|---|---|
 | LD-02: bewusste, authentifizierte Zustimmung | Eigener Review eines unveränderlichen Entscheidungsdatensatzes mit Inhaltsdigest und erwarteter Finding-Revision | Provider-Adapter prüft Identität, genaue Review-Revision, Disposition und Widerruf. Bot-/Tool-Aktionen dürfen keine menschliche Zustimmung vortäuschen. Freigabekanal und Umgang mit Werkzeugnutzung ausdrücklich bestätigen. |
-| LD-04: erste Evidenzquelle | Self-Security-Workflow `governance-repository-security.yml` dieses Repositorys, Mainline-Push, Artefakt `governance-repository-security` | Producer, Workflowrevision, voller Commit, Lauf/Versuch, Artefaktzugehörigkeit, Digest und Baseline unabhängig überprüfen; Trust-Wurzeln und Aufbewahrung bestätigen. Diagnose-, PR- und Branch-Läufe bleiben getrennt. |
-| LD-05: Frische und Replay | Die bisherigen Testwerte 24 Stunden / kein zukünftiger Zeitversatz als zu prüfenden Startpunkt verwenden | Verantwortlich bestätigte Betriebswerte anhand tatsächlicher Laufhäufigkeit; keine automatische Übernahme als SLA oder Produktionspolicy. Replay-/Konfliktbehandlung bleibt explizit. |
 | LD-07: Live-Abnahme | Zuerst lesenden Evidenz-Intake prüfen, danach Freigabe-/Widerrufs-/Abschluss-Negativfälle und Betriebs-Runbook abnehmen | Benannte Verantwortliche dokumentieren die Abnahme einschließlich Korrektur und Widerruf nach einem Abschluss. Erst anschließend Live-Aktivierung im bestätigten Umfang. |
 
 ## Was diese Entscheidung freigibt
@@ -68,24 +67,25 @@ CLG-06.5 bleibt optional. Für einen funktionierenden Live-Piloten ist kein LLM
 erforderlich. Diese optionale Erweiterung soll die Rollen- und Evidenzentscheidung
 nicht verzögern.
 
-## Nächste verbindliche Entscheidung: Betriebsprofil für den ersten Live-Intake
+## Bestätigt: Betriebsprofil für den ersten Live-Intake
 
 Die Rollenbindung ist mit PR #85 gemergt. Der lesende Evidenzprüfer hat den
 [echten Referenzlauf](../reference-runs/2026-09-13-clg-live-evidence-preflight.md)
 mit zehn bestandenen Prüfungen erfasst und offline reproduziert. GRS-002 war
 zum Beobachtungszeitpunkt PASS. Damit liegen konkrete Prüfergebnisse für die
-folgende Entscheidung vor; eine Rollenbestätigung genehmigt diese Betriebswerte
-noch nicht.
+Betriebsentscheidung vor. Der Maintainer hat das untenstehende Profil anschließend
+mit „ja“ bestätigt; es ist in der [dauerhaften Pilotvalidierung](governance-lifecycle-durable-pilot-intake.md)
+als eigene unveränderliche Version umgesetzt.
 
-| Punkt | Vorschlag zur Bestätigung | Konkrete Wirkung |
+| Punkt | Bestätigtes Betriebsprofil | Konkrete Wirkung |
 |---|---|---|
 | LD-04: Trust-Wurzel und Producer | Authentifizierte GET-Abfragen der offiziellen GitHub.com-API plus die fünf im Vorbereitungsprofil festgelegten Producer-Dateien; nur erfolgreich abgeschlossener Mainline-Push, Versuch 1 | Andere Provider, veränderte Producer-Dateien, Branch-/PR-/manuelle/geplante Läufe und Wiederholungsversuche werden nicht zugelassen. Der GitHub-Provider ist die benannte Vertrauenswurzel; offline gespeicherte Metadaten allein begründen keine neue Vertrauensentscheidung. |
 | LD-05: Frische und Zeitversatz | Höchstens 24 Stunden alte Beobachtung; kein zukünftiger Zeitversatz | Ältere Beobachtungen liefern keinen frischen Nachweis für eine neue Entscheidung oder einen Abschluss. Bestehende Historie bleibt erhalten. Ohne passenden neuen Mainline-Push kann die Evidenz veralten; es wird kein PASS erfunden und kein künstlicher Push erzeugt. |
 | LD-04: Aufbewahrung | Vollständige Capture-Pakete, Akzeptanznachweise und Entscheidungsreferenzen während des Piloten unveränderlich aufbewahren; keine automatische Löschung, Aufbewahrungsentscheidung beim Pilotabschluss | Der künftige dauerhafte Pilot-Speicher muss vor Live-Annahme eingerichtet und getestet sein. Ein lokales `/tmp`-Paket oder GitHub-Artefakt mit Ablaufdatum reicht dafür nicht. Diese Freigabe wäre keine allgemeine Unternehmens-Aufbewahrungsrichtlinie. |
 | LD-05: Replay und Konflikte | Gleiche Herkunftsidentität plus gleicher Inhalt ist eine Wiederholung ohne neue Wirkung; abweichender Inhalt bei gleicher Identität wird quarantänisiert | Keine Überschreibung akzeptierter Evidenz; Live-Speicher, konkurrierende Annahme und vollständige Konfliktprüfung müssen dies vor Aktivierung nachweisen. |
 
-Diese Bestätigung würde das konkrete Live-Akzeptanzprofil und seine dauerhafte
-Speicherung umsetzbar machen. Danach folgen die inhaltsgebundene persönliche
+Die Bestätigung ist erfasst. Das konkrete Betriebsprofil und die dauerhafte
+Pilot-Speicherung sind umgesetzt. Danach folgen die inhaltsgebundene persönliche
 Freigabeverifikation und der vollständige Betriebsnachweis. Die separate
 Live-Abnahme (LD-07) bleibt bis zur Vorlage dieses Nachweises offen. Persönliche
 Behebungs- und Abschlussfreigaben werden weiterhin vom benannten Menschen

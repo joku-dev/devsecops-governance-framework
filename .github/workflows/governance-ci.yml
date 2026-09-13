@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   validate-and-report:
@@ -42,8 +43,15 @@ jobs:
       - name: Validate accepted lifecycle history
         if: github.event_name == 'pull_request' || github.event_name == 'push'
         env:
+          GH_TOKEN: ${{ github.token }}
+          LIFECYCLE_EVENT: ${{ github.event_name }}
           LIFECYCLE_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: python3 scripts/validate_governance_lifecycle_ledger.py --base-ref "$LIFECYCLE_BASE_SHA"
+        run: |
+          if [ "$LIFECYCLE_EVENT" = "pull_request" ]; then
+            python3 scripts/validate_governance_lifecycle_ledger.py --base-ref "$LIFECYCLE_BASE_SHA" --verify-new-provider
+          else
+            python3 scripts/validate_governance_lifecycle_ledger.py --base-ref "$LIFECYCLE_BASE_SHA"
+          fi
 
       - name: Run regression tests
         run: python3 -m unittest discover -s tests
