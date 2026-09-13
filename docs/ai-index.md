@@ -37,7 +37,8 @@ Use it as the first navigation point after `AGENTS.md`.
 | Use CLG-03 synthetic decision and remediation intake | `docs/operations/evidence/governance-lifecycle-decisions.md`, `scripts/intake_governance_lifecycle_action.py` (test consent; live authority remains open) |
 | Run the CLG-04 synthetic closure pilot | `docs/demos/demo-governance-lifecycle-pilot.md`, `docs/operations/evidence/governance-lifecycle-closure.md` (live acceptance pending) |
 | Prepare CLG-06.3 DevSecOps/architecture input candidates | `docs/operations/evidence/governance-lifecycle-input-candidates.md`, `scripts/prepare_lifecycle_devsecops_candidates.py`, `scripts/prepare_lifecycle_architecture_candidates.py` (unverified declarations; no lifecycle intake) |
-| Decide the next live CLG pilot step | `docs/operations/evidence/governance-lifecycle-live-decision-brief.md` (named roles required; proposals are not live approval) |
+| Decide the next live CLG pilot step | `docs/operations/evidence/governance-lifecycle-live-decision-brief.md` (pilot roles confirmed; operating acceptance remains open) |
+| Inspect confirmed CLG pilot roles and disabled live profile | `docs/operations/evidence/governance-lifecycle-live-preparation.md`, `model/governance/lifecycle/live-pilot/` (appointment is not personal runtime consent) |
 | Open CLG-06.2 read-only scenario viewer | `docs/operations/evidence/governance-lifecycle-viewer.md`, `scripts/generate_governance_lifecycle_viewer.py` (synthetic; separate from official status) |
 | Inspect CLG-06.1 synthetic scenario metrics | `docs/operations/evidence/governance-lifecycle-overview.md`, `scripts/generate_governance_lifecycle_overview.py` (separate histories; no portfolio totals) |
 | Inspect CLG-05 synthetic exceptions | `docs/operations/evidence/governance-lifecycle-exceptions.md`, `scripts/generate_governance_lifecycle_exceptions.py` (observation coverage; no live waiver authority) |

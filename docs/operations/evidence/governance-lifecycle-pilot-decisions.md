@@ -22,9 +22,9 @@ approve sources or create an SLA.
 
 | ID | Decision to record before live use | Proposed starting point | Status / required evidence |
 |---|---|---|---|
-| LD-01 | Who can authorize remediation and who can approve closure, for which repositories/resources? | Explicit named role bindings controlled separately from proposed decisions | **Open.** Confirm actual people, role owner, scope, version, validity and revocation process; maintainer coordinates with governance roles |
-| LD-02 | Which channel proves deliberate consent and authenticated identity? | A review of an immutable decision digest through an authenticated provider adapter | **Open.** Demonstrate content/identity/time binding, rejection, withdrawal and a policy for bot/tool-mediated actions; PR merge alone is insufficient |
-| LD-03 | Who controls role bindings and can withdraw approvals? | Separately reviewed role registry and immutable withdrawal evidence | **Open.** Confirm registry owner, authorized changes and separation from proposal writers |
+| LD-01 | Who can authorize remediation and who can approve closure, for which repositories/resources? | Explicit named role bindings controlled separately from proposed decisions | **Appointment confirmed, 13 September 2026.** `joku-dev` / GitHub ID `81616324` holds the three separate pilot roles with explicitly confirmed role combination; versioned binding and pilot-only validity recorded in the [live preparation](governance-lifecycle-live-preparation.md). Personal live consent verification remains pending |
+| LD-02 | Which channel proves deliberate consent and authenticated identity? | A review of an immutable decision digest through an authenticated provider adapter | **Design direction confirmed:** personal GitHub decision statement; Codex prepares, the person issues consent. Content/identity/time binding, rejection/withdrawal and verifier acceptance remain pending; PR merge alone is insufficient |
+| LD-03 | Who controls role bindings and can withdraw approvals? | Separately reviewed role registry and immutable withdrawal evidence | **Registry owner confirmed:** `joku-dev`; numbered replacement/withdrawal history is prepared separately from proposal records. Authenticated live administration remains pending |
 | LD-04 | Which evidence sources and checks are accepted? | Named producer/workflow, immutable commit/run/attempt/artifact, integrity and provenance checks | **Open.** Confirm allowlist, trust roots, independent check implementation and snapshot retention |
 | LD-05 | What are freshness, clock-skew and replay limits? | Evaluate the offline 24-hour/zero-skew boundary against real execution cadence | **Open.** Confirm production values, context approval and conflicting/late evidence handling; test constants are not binding policy |
 | LD-06 | Where is merge-time revision acceptance serialized? | Local atomic append plus complete merged-chain and accepted-prefix validation in required CI | **Implemented for the synthetic pilot** in [ADR-CLG-002](governance-lifecycle-kernel.md#git-acceptance-and-competing-prs-adr-clg-002). Multiprocess and competing-Git-branch tests pass. Strict required checks remain a deployment assumption; live publisher acceptance is still pending |
@@ -91,3 +91,13 @@ joint consent or appoint people. LD-01–05 and LD-07 remain open. Live waiver
 activation also requires accountable confirmation of the adapter's scope/date
 mapping and real authority verification. Architecture exceptions need a separate
 adapter and are not inferred from GRS-002.
+
+## Confirmed appointment update — 13 September 2026
+
+The earlier CLG-03–05 status paragraphs above describe those packages at delivery.
+The maintainer has now confirmed LD-01 appointments and the LD-03 registry owner,
+including the pilot-only multiple-role arrangement for `joku-dev`.
+[Live preparation](governance-lifecycle-live-preparation.md) records the exact
+binding and disabled profile. LD-02/03 live verification, LD-04 trust/retention,
+LD-05 operating values and LD-07 acceptance remain incomplete. No live activation
+or individual remediation/closure consent follows from this appointment.

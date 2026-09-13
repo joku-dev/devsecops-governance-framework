@@ -1,0 +1,61 @@
+{
+  "consent_design": {
+    "agent_may_issue_personal_consent": false,
+    "agent_may_prepare": true,
+    "channel": "personal_github_decision_statement",
+    "implementation_status": "pending_verifier"
+  },
+  "consent_intake_enabled": false,
+  "environment": "live_preparation",
+  "live_intake_enabled": false,
+  "official_publish_enabled": false,
+  "operating_policy": {
+    "approval_status": "pending",
+    "maximum_age_seconds": null,
+    "maximum_future_skew_seconds": null,
+    "retention_days": null
+  },
+  "pending_decisions": [
+    "LD-02-verifier-acceptance",
+    "LD-03-live-administration-verification",
+    "LD-04-trust-and-retention",
+    "LD-05-freshness-and-replay",
+    "LD-07-live-acceptance"
+  ],
+  "previous_ref": null,
+  "profile_id": "profile:clg-live-grs002-preparation",
+  "record_type": "lifecycle-live-profile-preparation",
+  "revision": 1,
+  "role_binding_ref": {
+    "digest": "937efa993a2de218f7754927c81a5db8e92c44e1555bb22efd88ccbf2cc82cd5",
+    "revision": 1
+  },
+  "schema_version": "0.1.0",
+  "scope": {
+    "domain": "governance_repository_security",
+    "enforcement": "report_only",
+    "github_repository_id": 1301369468,
+    "pilot_only": true,
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "resource": "refs/heads/main",
+    "rule_id": "GRS-002"
+  },
+  "source": {
+    "allowed_branch": "main",
+    "allowed_event": "push",
+    "api_origin": "https://api.github.com",
+    "artifact_name": "governance-repository-security",
+    "provider": "github",
+    "reference_commit": "026e437fe2bab471e4c2c1eb3b01ad8105de4b1b",
+    "reference_files": {
+      ".github/workflows/governance-repository-security.yml": "c66e4aecb3b161cee6e5f6d27a6914b2e96ab1ceb776b31f4b2c3f902e751d75",
+      "model/controls/governance-repository-security.yaml": "10909f3d26e23b1fab0ba3284131754e9a117024cf798a4e3abc812aaafe5031",
+      "requirements-validation.txt": "d554f9277aa3f1508e1c6c4d9f8ebca01d88a3d1867945effaf57e0550255748",
+      "schemas/governance-repository-security-report.schema.json": "ad3af768f8fdf2adb2f8053a6c6a5316048d0d0733e1a97a8e6a446673933026",
+      "scripts/assess_governance_repository_security.py": "1c14b2cf7715c229080bd0dc1faa54fda7c366678527deb48cfd322954c2cf7c"
+    },
+    "report_path": "governance-repository-security.json",
+    "workflow_path": ".github/workflows/governance-repository-security.yml"
+  },
+  "status": "awaiting_operational_acceptance"
+}
