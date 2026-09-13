@@ -6,3 +6,7 @@ __pycache__/
 .venv-docs-release/
 site/
 .local/governance-sources/
+
+# Local lifecycle append coordination and unpublished transactions.
+governance/lifecycle/**/.append.lock
+governance/lifecycle/**/.pending-*

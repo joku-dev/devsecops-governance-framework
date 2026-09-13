@@ -4,19 +4,22 @@ Stand: 12. September 2026. Geprüfter Ausgangspunkt: Repository-Commit
 `5311182c220548474fcd90b04c38dc46b144937a`.
 
 Status: Die Umsetzungsrichtung wurde vom Maintainer bestätigt. Dieses Dokument
-plant die technische Umsetzung; die beschriebenen neuen Laufzeitfähigkeiten sind noch
+plant die technische Umsetzung; die vollständige Live-Laufzeit ist noch
 nicht implementiert. Die Planung ist in
 [GCR-2026-060](../../governance/change-requests/GCR-2026-060-closed-loop-governance-plan.md)
 klassifiziert.
 
-## Fortschritt CLG-01
+## Fortschritt CLG-01 und CLG-02
 
-Der [Vertragsstand 0.1.0](../evidence/governance-lifecycle-contract.md) enthält
+CLG-01 wurde mit PR #76 gemergt. Der
+[Vertragsstand 0.1.0](../evidence/governance-lifecycle-contract.md) enthält
 additive Schemas, synthetische Beispiele und ausführbare Offline-Prüfungen.
+Der [CLG-02-Kern](../evidence/governance-lifecycle-kernel.md) ergänzt synthetischen
+GRS-002-Intake, unveränderliche Transaktionen, Ereignisse, Konfliktbehandlung
+und eine reproduzierbare Projektion. Sein PR muss vor Paketabschluss gemergt sein.
 Das [Entscheidungsblatt](../evidence/governance-lifecycle-pilot-decisions.md)
-hält offene Live-Zuordnungen fest. Die vollständige Lifecycle-Laufzeit ist
-weiterhin nicht implementiert. CLG-01 ist erst nach erfolgreicher Validierung
-und Merge seines PRs abgeschlossen; danach folgt CLG-02 mit Kern und Adapter.
+hält die weiterhin offenen Live-Zuordnungen fest. Entscheidungen, Behebungen
+und operativer Abschluss folgen in CLG-03/04.
 
 ## Ziel und erster Pilot
 
@@ -223,15 +226,14 @@ Allowlist oder ein akzeptierter Bot-PR verleiht keine Entscheidungsbefugnis.
 
 ## Nächster konkreter Arbeitsauftrag
 
-**CLG-01 prüfen und abschließen:** Den Vertragsstand, die Schema-Gruppe,
-Beispiele, Negativtests und das Entscheidungsblatt im eigenen PR prüfen.
-Die ausführbare Abdeckung und noch ausstehenden Runtime-Prüfungen stehen im
-[Vertragsdokument](../evidence/governance-lifecycle-contract.md).
+**CLG-02 prüfen und abschließen:** Synthetischen Kern, Adapter, atomare
+Speicherung, Git-Übernahmeprüfung und generierten Index im eigenen PR prüfen.
+Abnahmefälle und Betriebsannahmen stehen im
+[Kernleitfaden](../evidence/governance-lifecycle-kernel.md).
 
-**Nach dessen Merge CLG-02 umsetzen:** Deterministischen Finding-/Ereigniskern,
-GRS-002-Adapter, unveränderliche Speicherung und daraus erzeugten Index bauen.
-Abnahmefälle sind insbesondere persistente Idempotenz, Konflikte und
-Merge-Revisionen sowie reproduzierbare Projektion mit festem `as_of`.
+**Nach dessen Merge CLG-03 umsetzen:** Intake gebundener menschlicher
+Entscheidungen und Zuordnung konkreter Behebungen mit Owner und Zieltermin.
+Rollen-/Freigabenachweis, Inhaltsänderungen, Ablehnung und Widerruf prüfen.
 Synthetische Identitäten bleiben ausschließlich für Tests bestimmt;
 ungeklärte Betriebszuordnungen bleiben ausdrücklich offen.
 

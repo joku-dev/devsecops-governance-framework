@@ -1,0 +1,87 @@
+{
+  "as_of": "2026-09-13T11:30:00Z",
+  "conflict_refs": [
+    {
+      "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
+      "id": "transaction:5377f0cb324f5c83189c818ca748da7c6de9f4a7c8ca5663a450d03106378652"
+    }
+  ],
+  "counts": {
+    "conflicts": 1,
+    "events": 5,
+    "findings": 1,
+    "observations": 4,
+    "transactions": 5
+  },
+  "enforcement": "report_only",
+  "environment": "synthetic",
+  "findings": [
+    {
+      "closure_supported": false,
+      "conflict_refs": [
+        {
+          "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
+          "id": "transaction:5377f0cb324f5c83189c818ca748da7c6de9f4a7c8ca5663a450d03106378652"
+        }
+      ],
+      "evidence_status": "pass",
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "first_failure_ref": {
+        "digest": "994d3208cf40d19ca4b0ada21c12390c36dac29c1aa83e83c0a59c7eb07d67b6",
+        "id": "observation:b248afcb2c5bbb584b7f2b4ee0d850f6c6f9b057bd49e878449a4078517a35c3"
+      },
+      "identity": {
+        "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+        "fingerprint_version": "1",
+        "key": {
+          "domain": "governance_repository_security",
+          "finding_type": "criterion_failure",
+          "repository_id": "synthetic/governance-lifecycle",
+          "resource": "refs/heads/main",
+          "rule_id": "GRS-002"
+        }
+      },
+      "last_event_ref": {
+        "digest": "136c895492963b93de74c55b8204fd4f6ac51a9b2f4264d8d68ccd0511ca1ade",
+        "id": "event:0062a9546030c39c6c13cebebf33279da96170a73b9cd893c5c2040c7b66f0d1"
+      },
+      "latest_observation_ref": {
+        "digest": "4fa5fd5557cb9abdab93de5cf95f1c77610c18afbb8760a8a6b747f0c3b904d9",
+        "id": "observation:88ba4e7d48509eee13bb2bc78932d5a2b658faad850f90dcae32f6ebce0e1382"
+      },
+      "observation_refs": [
+        {
+          "digest": "10bdf5832f3504a49ddba8f0924657263bacc45a6b240f2c22f398739e7e9ae7",
+          "id": "observation:33ec04979ee1f3f04d708c2ec3c357288577740f031d4a7f6165d119debdd8bd"
+        },
+        {
+          "digest": "67a0692238f13cfd7fbd2ea12b113bb80bf393a35bd980ec11674c659497507c",
+          "id": "observation:4d6bbf6445220a2ef6bd2d454c78e3fe1611ead046b455a2c9ac2b97703ba196"
+        },
+        {
+          "digest": "4fa5fd5557cb9abdab93de5cf95f1c77610c18afbb8760a8a6b747f0c3b904d9",
+          "id": "observation:88ba4e7d48509eee13bb2bc78932d5a2b658faad850f90dcae32f6ebce0e1382"
+        },
+        {
+          "digest": "994d3208cf40d19ca4b0ada21c12390c36dac29c1aa83e83c0a59c7eb07d67b6",
+          "id": "observation:b248afcb2c5bbb584b7f2b4ee0d850f6c6f9b057bd49e878449a4078517a35c3"
+        }
+      ],
+      "occurrences": 3,
+      "revision": 5,
+      "state": "needs_clarification"
+    }
+  ],
+  "index_type": "governance-lifecycle-synthetic",
+  "ledger_head_ref": {
+    "digest": "06476f2345824e2ceda898eee62f1b704340121ba268c798b680f223ebe5387c",
+    "id": "transaction:5377f0cb324f5c83189c818ca748da7c6de9f4a7c8ca5663a450d03106378652"
+  },
+  "official_state": false,
+  "profile_ref": {
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0"
+  },
+  "schema_version": "0.1.0"
+}
