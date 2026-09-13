@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-candidates.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "lifecycle-input-candidates"
+    },
+    "environment": {
+      "const": "diagnostic"
+    },
+    "official_state": {
+      "const": false
+    },
+    "enforcement": {
+      "const": "report_only"
+    },
+    "acceptance_status": {
+      "const": "not_evaluated"
+    },
+    "trust_status": {
+      "const": "unverified"
+    },
+    "evaluated_at": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+    },
+    "adapter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "const": "0.1.0"
+        },
+        "source_contract": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "source_contract"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "$ref": "governance-lifecycle-candidate-context.schema.json"
+        },
+        "declared_context_kind": {
+          "enum": [
+            "test",
+            "mainline",
+            "branch",
+            "pull_request",
+            "manual",
+            "release"
+          ]
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "age_seconds": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "context",
+        "declared_context_kind",
+        "size_bytes",
+        "age_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "pass": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fail": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_tested": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_applicable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "findings": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "pass",
+        "fail",
+        "not_tested",
+        "not_applicable",
+        "findings"
+      ],
+      "additionalProperties": false
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "pattern": "^candidate:[a-f0-9]{64}$"
+          },
+          "subject": {
+            "type": "object",
+            "properties": {
+              "repository_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "domain": {
+                "enum": [
+                  "devsecops",
+                  "architecture"
+                ]
+              },
+              "rule_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "resource": {
+                "const": "repository"
+              }
+            },
+            "required": [
+              "repository_id",
+              "domain",
+              "rule_id",
+              "resource"
+            ],
+            "additionalProperties": false
+          },
+          "granularity": {
+            "enum": [
+              "control",
+              "gate"
+            ]
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "not_tested",
+              "not_applicable",
+              "findings"
+            ]
+          },
+          "source_pointer": {
+            "type": "string",
+            "pattern": "^/(controls|gates)/[0-9]+$"
+          },
+          "source_messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "candidate_id",
+          "subject",
+          "granularity",
+          "result",
+          "source_pointer",
+          "source_messages"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "acceptance_gaps": {
+      "const": [
+        "producer_authentication",
+        "baseline_and_policy_resolution",
+        "approved_scope_and_trust_profile",
+        "approved_freshness_and_replay_policy",
+        "accountable_live_acceptance"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "environment",
+    "official_state",
+    "enforcement",
+    "acceptance_status",
+    "trust_status",
+    "evaluated_at",
+    "adapter",
+    "source",
+    "counts",
+    "candidates",
+    "acceptance_gaps"
+  ],
+  "additionalProperties": false
+}

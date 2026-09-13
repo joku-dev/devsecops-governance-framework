@@ -1,0 +1,112 @@
+{
+  "acceptance_gaps": [
+    "producer_authentication",
+    "baseline_and_policy_resolution",
+    "approved_scope_and_trust_profile",
+    "approved_freshness_and_replay_policy",
+    "accountable_live_acceptance"
+  ],
+  "acceptance_status": "not_evaluated",
+  "adapter": {
+    "id": "devsecops-control-candidates",
+    "source_contract": "control-evaluation-report@1.0.0",
+    "version": "0.1.0"
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate:a35522c18e05d43f3031a9e2810b1968a6e4eeef6568a67089b11d983b5c424d",
+      "granularity": "control",
+      "result": "pass",
+      "source_messages": [
+        "Synthetic declared outcome; not a live control evaluation."
+      ],
+      "source_pointer": "/controls/0",
+      "subject": {
+        "domain": "devsecops",
+        "repository_id": "synthetic/lifecycle-adapters",
+        "resource": "repository",
+        "rule_id": "DSCB-L1-REQ-001"
+      }
+    },
+    {
+      "candidate_id": "candidate:e09dba8d9f5c5aa790610ef9af301b2c14fe73a72c37fea105cf723d31745305",
+      "granularity": "control",
+      "result": "fail",
+      "source_messages": [
+        "Synthetic declared outcome; not a live control evaluation."
+      ],
+      "source_pointer": "/controls/1",
+      "subject": {
+        "domain": "devsecops",
+        "repository_id": "synthetic/lifecycle-adapters",
+        "resource": "repository",
+        "rule_id": "DSCB-L1-REQ-002"
+      }
+    },
+    {
+      "candidate_id": "candidate:705be0f45d1bdfe41c66c0eeb00e91ad9de0914413d2283592adae8a3390dc67",
+      "granularity": "control",
+      "result": "not_tested",
+      "source_messages": [
+        "Synthetic declared outcome; not a live control evaluation."
+      ],
+      "source_pointer": "/controls/2",
+      "subject": {
+        "domain": "devsecops",
+        "repository_id": "synthetic/lifecycle-adapters",
+        "resource": "repository",
+        "rule_id": "DSCB-L1-REQ-003"
+      }
+    },
+    {
+      "candidate_id": "candidate:7fe13a35df207cda4ec1aaaa5600d8dd78c2cf2780b3bae32d635c955cd80bd6",
+      "granularity": "control",
+      "result": "not_applicable",
+      "source_messages": [
+        "Synthetic declared outcome; not a live control evaluation."
+      ],
+      "source_pointer": "/controls/3",
+      "subject": {
+        "domain": "devsecops",
+        "repository_id": "synthetic/lifecycle-adapters",
+        "resource": "repository",
+        "rule_id": "DSCB-L1-REQ-004"
+      }
+    }
+  ],
+  "counts": {
+    "fail": 1,
+    "findings": 0,
+    "not_applicable": 1,
+    "not_tested": 1,
+    "pass": 1
+  },
+  "enforcement": "report_only",
+  "environment": "diagnostic",
+  "evaluated_at": "2026-09-13T12:01:00Z",
+  "official_state": false,
+  "record_type": "lifecycle-input-candidates",
+  "schema_version": "0.1.0",
+  "source": {
+    "age_seconds": 60,
+    "context": {
+      "baseline_ref": "synthetic-baseline",
+      "branch": "main",
+      "commit_id": "1111111111111111111111111111111111111111",
+      "event": "push",
+      "observed_at": "2026-09-13T12:00:00Z",
+      "policy_revision": "2222222222222222222222222222222222222222",
+      "producer_id": "fixture:control-evaluation",
+      "purpose": "diagnostic",
+      "release_context": false,
+      "report_sha256": "fb9d1dcfdfae8fe5ae61cddca6e8d0d66a86d94d28697570803b811785f60abe",
+      "repository_id": "synthetic/lifecycle-adapters",
+      "run_attempt": 1,
+      "run_id": "11",
+      "synthetic": true
+    },
+    "declared_context_kind": "test",
+    "size_bytes": 1069
+  },
+  "trust_status": "unverified"
+}
