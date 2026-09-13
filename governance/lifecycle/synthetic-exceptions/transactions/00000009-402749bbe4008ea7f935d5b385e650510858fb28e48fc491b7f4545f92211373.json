@@ -1,0 +1,131 @@
+{
+  "environment": "synthetic",
+  "event": {
+    "body": {
+      "effective_at": "2026-09-14T00:10:00Z",
+      "event_type": "exception_recorded",
+      "expected_revision": 8,
+      "policy_version": "0.1.0",
+      "previous_event_ref": {
+        "digest": "14b0feb6fec88b39523d112855702c6e3b0275bb8e7168a2886051d34888869b",
+        "id": "event:164fd267b54eb5e7bb0dcd3448fd8f12eb3e51284a8357eb0b1ec9e46cfd58bc"
+      },
+      "revision": 9,
+      "source_refs": [
+        {
+          "digest": "6f83d6330dc5a257bbd8e4a1cb82dbf918573461041d597c3d2d4b2a08beca82",
+          "id": "exception:renewal"
+        }
+      ]
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "event:1ab2157c465ba3ac2f58a608d2e609df67c5f86a2dd4b95eec1b422613c7c30d",
+    "record_type": "event",
+    "recorded_at": "2026-09-14T00:10:00Z",
+    "schema_version": "0.2.0"
+  },
+  "expected_revision": 8,
+  "outcome": "accepted",
+  "previous_ref": {
+    "digest": "39b2985faa742260b72066f122d8ba7b46484456a604dd4fbc3b053547f91015",
+    "id": "transaction:fd92184abff15951f3f34545fd9996748b58c28890f3ff746bc641c0df224c07"
+  },
+  "profile_ref": {
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0"
+  },
+  "reason": "exception_recorded",
+  "record": {
+    "approval": {
+      "authority": "DevSecOps Governance Board",
+      "channel": "synthetic_fixture",
+      "disposition": "approve",
+      "exception_profile_ref": {
+        "digest": "c2e0bab6ad7d806cb177ca46b234d6c1bfa028a96ada6a16971eed7c3c245eec",
+        "id": "profile:clg-synthetic-exceptions",
+        "version": "0.1.0"
+      },
+      "expected_revision": 8,
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "issued_at": "2026-09-14T00:10:00Z",
+      "proof_ref": {
+        "digest": "738f57f29d59b7b145bef726f5598a17e6801b65d55969edf717be5376381644",
+        "uri": "fixture://action-738f57f29d59b7b145bef726f5598a17e6801b65d55969edf717be5376381644.json"
+      },
+      "subject_type": "human",
+      "subjects": [
+        "test-human:waiver-board"
+      ],
+      "target_digest": "58d40b993a134431b63b4c33b3adca9f469d6224249d581b64430c801b4a44ac"
+    },
+    "body": {
+      "covered_observation_refs": [
+        {
+          "digest": "dc65f8ada5495aa212b96948e8098ae4dbdc82c6db18092d2c259cea78ddcbd1",
+          "id": "observation:25785064391eff5da6873c2d0b1086727691af22dd8f49212b21246fbdf8fc38"
+        },
+        {
+          "digest": "bb7903e59a8fe284442f39e0a615c59487575ed47ab3daec44fbeb0522363bac",
+          "id": "observation:85ccb2e03bcd793ca0e0f632ba21b68d147bfa2630fbecf1a4351047bce18a72"
+        },
+        {
+          "digest": "d8695638aa6aec849144a4eaea832e5764153c776869b2893bc01e6e87be7d1c",
+          "id": "observation:e90565bcbcd4cdf22c9d02234d10628bff2dadf59e70aa637c23747c7069fbdc"
+        }
+      ],
+      "expected_revision": 8,
+      "expires_at": "2026-09-15T00:00:00Z",
+      "valid_from": "2026-09-14T00:10:00Z",
+      "waiver_ref": {
+        "digest": "dd31545e550d9750fc245e66f82e2fd0e55b49cf0733a270e845e6a6c1d8b004",
+        "uri": "fixture://action-dd31545e550d9750fc245e66f82e2fd0e55b49cf0733a270e845e6a6c1d8b004.json"
+      }
+    },
+    "environment": "synthetic",
+    "finding": {
+      "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+      "fingerprint_version": "1",
+      "key": {
+        "domain": "governance_repository_security",
+        "finding_type": "criterion_failure",
+        "repository_id": "synthetic/governance-lifecycle",
+        "resource": "refs/heads/main",
+        "rule_id": "GRS-002"
+      }
+    },
+    "profile_ref": {
+      "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986",
+      "id": "profile:clg-synthetic-grs002",
+      "version": "0.1.0"
+    },
+    "record_id": "exception:renewal",
+    "record_type": "exception",
+    "recorded_at": "2026-09-14T00:10:00Z",
+    "schema_version": "0.1.0"
+  },
+  "recorded_at": "2026-09-14T00:10:00Z",
+  "resources": {
+    "fixture://action-738f57f29d59b7b145bef726f5598a17e6801b65d55969edf717be5376381644.json": "ewogICJhcHByb3ZhbCI6IHsKICAgICJhdXRob3JpdHkiOiAiRGV2U2VjT3BzIEdvdmVybmFuY2UgQm9hcmQiLAogICAgImNoYW5uZWwiOiAic3ludGhldGljX2ZpeHR1cmUiLAogICAgImRpc3Bvc2l0aW9uIjogImFwcHJvdmUiLAogICAgImV4Y2VwdGlvbl9wcm9maWxlX3JlZiI6IHsKICAgICAgImRpZ2VzdCI6ICJjMmUwYmFiNmFkN2Q4MDZjYjE3N2NhNDZiMjM0ZDZjMWJmYTAyOGE5NmFkYTZhMTY5NzFlZWQ3YzNjMjQ1ZWVjIiwKICAgICAgImlkIjogInByb2ZpbGU6Y2xnLXN5bnRoZXRpYy1leGNlcHRpb25zIiwKICAgICAgInZlcnNpb24iOiAiMC4xLjAiCiAgICB9LAogICAgImV4cGVjdGVkX3JldmlzaW9uIjogOCwKICAgICJmaW5kaW5nX2lkIjogImZpbmRpbmc6N2Q0YzVjNTIyMjU1N2QzY2FkMDRkNGUxZTVlYmI1YTEwMTVjYjM5NGY3ODYyYjE0YThlMjU3YmZjYzg1YjI2YSIsCiAgICAiaXNzdWVkX2F0IjogIjIwMjYtMDktMTRUMDA6MTA6MDBaIiwKICAgICJzdWJqZWN0X3R5cGUiOiAiaHVtYW4iLAogICAgInN1YmplY3RzIjogWwogICAgICAidGVzdC1odW1hbjp3YWl2ZXItYm9hcmQiCiAgICBdLAogICAgInRhcmdldF9kaWdlc3QiOiAiNThkNDBiOTkzYTEzNDQzMWI2M2I0YzMzYjNhZGNhOWY0NjlkNjIyNDI0OWQ1ODFiNjQ0MzBjODAxYjRhNDRhYyIKICB9LAogICJlbnZpcm9ubWVudCI6ICJzeW50aGV0aWMiCn0K",
+    "fixture://action-dd31545e550d9750fc245e66f82e2fd0e55b49cf0733a270e845e6a6c1d8b004.json": "ewogICJhZmZlY3RlZF9yZXF1aXJlbWVudHMiOiBbCiAgICAiR1JTLTAwMiIKICBdLAogICJhcHByb3ZhbF9hdXRob3JpdHkiOiAiRGV2U2VjT3BzIEdvdmVybmFuY2UgQm9hcmQiLAogICJhcHByb3ZlZF9ieSI6ICJ0ZXN0LWh1bWFuOndhaXZlci1ib2FyZCIsCiAgImFwcHJvdmVkX29uIjogIjIwMjYtMDktMTQiLAogICJjb21wZW5zYXRpbmdfY29udHJvbHMiOiBbCiAgICAiU3ludGhldGljIG1hbnVhbCByZXZpZXcgZXZpZGVuY2UgcmV0YWluZWQuIgogIF0sCiAgImVudmlyb25tZW50IjogInN5bnRoZXRpYyIsCiAgImV4cGlyZWQiOiBmYWxzZSwKICAiZXhwaXJ5IjogIjIwMjYtMDktMTQiLAogICJpZCI6ICJzeW50aGV0aWMtd2FpdmVyOnJlbmV3YWwiLAogICJqdXN0aWZpY2F0aW9uIjogIlN5bnRoZXRpYyB0ZW1wb3JhcnkgcmlzayBhY2NlcHRhbmNlIGZvciBuYW1lZCBvYnNlcnZhdGlvbnMgb25seS4iLAogICJvYmplY3RfaWQiOiAiZmluZGluZzo3ZDRjNWM1MjIyNTU3ZDNjYWQwNGQ0ZTFlNWViYjVhMTAxNWNiMzk0Zjc4NjJiMTRhOGUyNTdiZmNjODViMjZhIiwKICAicmlza19jbGFzc2lmaWNhdGlvbiI6ICJtZWRpdW0iLAogICJzY29wZSI6ICJyZWZzL2hlYWRzL21haW4iLAogICJzdGF0dXMiOiAiYXBwcm92ZWQiCn0K"
+  },
+  "schema_version": "0.4.0",
+  "sequence": 9,
+  "transaction_id": "transaction:402749bbe4008ea7f935d5b385e650510858fb28e48fc491b7f4545f92211373"
+}

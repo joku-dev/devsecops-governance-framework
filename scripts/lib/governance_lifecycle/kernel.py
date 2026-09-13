@@ -27,7 +27,8 @@ def transaction_name(transaction):
 
 def empty_state():
     return {"transactions": [], "observations": {}, "deliveries": {}, "events": {}, "conflicts": [],
-            "actions": {}, "decision_status": {}, "remediation_heads": {}, "closures": {}, "active_closures": {}}
+            "actions": {}, "decision_status": {}, "remediation_heads": {}, "closures": {}, "active_closures": {},
+            "exceptions": {}, "exception_waivers": {}, "revoked_exceptions": set()}
 
 
 def current_revision(state, finding):
@@ -124,6 +125,12 @@ def prepare_transaction(observation, resources, profile, state, *, expected_revi
 
 
 def apply_transaction(transaction, state):
+    if transaction["schema_version"] == "0.4.0":
+        from .exceptions import apply_exception
+        state["transactions"].append(transaction)
+        apply_exception(transaction, state)
+        state["events"][transaction["record"]["finding"]["finding_id"]].append(transaction["event"])
+        return
     if transaction["schema_version"] == "0.3.0":
         record = transaction["record"]
         state["transactions"].append(transaction)
@@ -160,9 +167,14 @@ def replay(transactions, profile):
     for transaction in transactions:
         action = transaction.get("schema_version") == "0.2.0"
         closure = transaction.get("schema_version") == "0.3.0"
-        schema_validator("closure-transaction" if closure else "action-transaction" if action else "transaction").validate(transaction)
+        exception = transaction.get("schema_version") == "0.4.0"
+        schema_validator("exception-transaction" if exception else "closure-transaction" if closure else "action-transaction" if action else "transaction").validate(transaction)
         resources = {uri: base64.b64decode(data, validate=True) for uri, data in transaction["resources"].items()}
-        if closure:
+        if exception:
+            from .exceptions import prepare_exception_transaction
+            expected = prepare_exception_transaction(transaction["record"], resources, profile, state,
+                                                     expected_revision=transaction["expected_revision"])
+        elif closure:
             from .closure import prepare_closure_transaction
             expected = prepare_closure_transaction(transaction["record"], resources, profile, state,
                                                    expected_revision=transaction["expected_revision"])
@@ -212,5 +224,8 @@ def project(transactions, profile, *, as_of):
     if state["closures"]:
         from .closure import add_closure_projection
         add_closure_projection(index, state)
-    schema_validator("closure-index" if state["closures"] else "action-index" if state["actions"] else "index").validate(index)
+    if state["exceptions"]:
+        from .exceptions import add_exception_projection
+        add_exception_projection(index, state, as_of)
+    schema_validator("exception-index" if state["exceptions"] else "closure-index" if state["closures"] else "action-index" if state["actions"] else "index").validate(index)
     return index

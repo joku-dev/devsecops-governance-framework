@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Intake an explicit synthetic decision/remediation/closure packet; never approve a real decision."""
+"""Intake an explicit synthetic decision/remediation/closure/exception packet; never approve a real decision."""
 import argparse
 from pathlib import Path
 
 from lib.governance_lifecycle.adapter import json_bytes, strict_json
 from lib.governance_lifecycle.contracts import require
-from lib.governance_lifecycle.store import append_action, append_closure
+from lib.governance_lifecycle.store import append_action, append_closure, append_exception
 from generate_governance_lifecycle_index import DEFAULT_PROFILE
 
 
@@ -19,7 +19,9 @@ def main():
     args = parser.parse_args()
     record = strict_json(args.record.read_bytes())
     body = record["body"]
-    if record["record_type"] == "closure":
+    if record["record_type"] == "exception":
+        refs = [record["approval"]["proof_ref"], body["waiver_ref"]]
+    elif record["record_type"] == "closure":
         refs = [record["approval"]["proof_ref"]]
     elif record["record_type"] == "decision":
         refs = [record["approval"]["proof_ref"], body["remediation_plan"]["work_ref"]]
@@ -36,7 +38,7 @@ def main():
         path = args.resources / name
         require(not path.is_symlink(), "Fixture resource cannot be a symlink")
         resources[uri] = path.read_bytes()
-    append = append_closure if record["record_type"] == "closure" else append_action
+    append = append_exception if record["record_type"] == "exception" else append_closure if record["record_type"] == "closure" else append_action
     result = append(args.ledger, record, resources, strict_json(DEFAULT_PROFILE.read_bytes()),
                            expected_revision=args.expected_revision)
     print(json_bytes(result).decode(), end="")
