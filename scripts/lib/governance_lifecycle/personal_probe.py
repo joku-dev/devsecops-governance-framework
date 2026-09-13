@@ -61,10 +61,15 @@ def assess_comments(request, comments, *, captured_at, previous_comments=()):
     previous_time=None
     for comment in sorted(comments,key=lambda c:c['id']):
         body=comment.get('body','')
-        if not isinstance(body,str) or not body.startswith(MARKER):
+        if not isinstance(body,str):
+            continue
+        # GitHub's web comment form emits CRLF. Normalize only parsing input;
+        # retained provider bytes and edit/deletion identity stay untouched.
+        parse_body=body.replace('\r\n','\n')
+        if not parse_body.startswith(MARKER):
             continue
         try:
-            payload=strict_json(body[len(MARKER):])
+            payload=strict_json(parse_body[len(MARKER):])
         except (ValueError,TypeError):
             if comment.get('user',{}).get('id')==expected_id:
                 relevant.append(comment); issues.append({'comment_id':comment['id'],'reason':'malformed_personal_statement'})
