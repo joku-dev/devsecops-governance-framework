@@ -84,3 +84,10 @@ separate Erweiterungen beziehungsweise Entscheidungen. Die vollständige echte
 Fehler-/Behebungs-/Abschlussfolge ist mangels echtem GRS-002-Fehler nicht durchlaufen;
 für diese Folge liegen synthetische und injizierte Negativtests vor.
 Bitbucket Data Center/Bamboo bleibt bis zur Klärung der Firmenumgebung zurückgestellt.
+
+## Consumer-Vorbereitung nach der Betriebsabnahme
+
+Die [Consumer-Revalidierung vom 13. September](../reference-runs/2026-09-13-consumer-revalidation.md)
+und der [konkrete Operation-Readiness-Fall](../evidence/consumer-lifecycle-operation-readiness.md)
+ergänzen echte Diagnose-Evidenz und Behebungsvorbereitung. Diese Arbeit aktiviert
+keinen weiteren Lifecycle-Consumer und ändert die bestehende GRS-002-Abnahme nicht.

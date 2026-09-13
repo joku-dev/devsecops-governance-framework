@@ -1,0 +1,16 @@
+{
+  "repository_id": "joku-dev/governance-framework-demo-consumer",
+  "branch": "main",
+  "commit_id": "915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
+  "producer_id": "Architecture Governance",
+  "run_id": "34778861076",
+  "run_attempt": 1,
+  "baseline_ref": "architecture-baseline-l1-v0.1.0",
+  "policy_revision": "19e281d323eb69be26bdb2cbf4368caadfbccaa7",
+  "event": "push",
+  "purpose": "release",
+  "release_context": true,
+  "synthetic": false,
+  "observed_at": "2026-09-13T19:49:41Z",
+  "report_sha256": "7ed38aa95072dbc80726ec48cdf29737c3f1965dfa629e6adcd695becf8084eb"
+}
