@@ -7,8 +7,9 @@ Change: [GCR-2026-063](../../governance/change-requests/GCR-2026-063-governance-
 
 The kernel persists accepted **synthetic** observations and derived events,
 quarantines conflicting packets, and rebuilds one finding index from immutable
-transactions. It does not accept live evidence, human decisions, remediation,
-closure or waivers. A PASS updates the latest evidence result; the finding stays
+transactions. The CLG-02 observation interface does not accept decisions or
+remediation; [CLG-03](governance-lifecycle-decisions.md) adds a separate synthetic
+action interface. Live evidence, closure and waivers remain unsupported. A PASS updates the latest evidence result; the finding stays
 open until a later package implements the complete approved closure chain.
 
 ## Storage and identity
@@ -183,7 +184,7 @@ Use an empty directory; the demo refuses to reset existing history:
 cmp /tmp/clg02-demo/index.json /tmp/clg02-demo/rebuilt.json
 ```
 
-The deterministic seven deliveries produce **five transactions, four accepted
+The standalone CLG-02 demo (before the appended CLG-03 actions) produces **five transactions, four accepted
 observations, five events, one quarantined conflict and one finding**. The
 finding has three occurrences, revision five, latest evidence PASS and state
 `needs_clarification`. Two duplicate deliveries create no records. The late
@@ -220,7 +221,7 @@ late observation ordering and deterministic replay. P02, P03 and the observation
 portion of P10 have executable persistence tests. P04/P05 cover ordering and
 latest-evidence selection, not post-closure reopening.
 
-CLG-03 is next: intake of content-bound human decisions, role/consent verification
-and remediation assignment. CLG-04 supplies operational closure/reopening and
+[CLG-03](governance-lifecycle-decisions.md) extends this kernel with synthetic
+content-bound decisions, test role/consent verification and remediation assignment. CLG-04 supplies operational closure/reopening and
 live pilot acceptance; CLG-05 supplies exceptions. None of those authorities or
 transitions is implied by the synthetic index.
