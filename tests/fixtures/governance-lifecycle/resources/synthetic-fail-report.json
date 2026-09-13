@@ -1,0 +1,238 @@
+{
+  "schema_version": "0.2.0",
+  "assessment_type": "governance-repository-self-security",
+  "profile_id": "governance-repository-self-security",
+  "profile_version": "0.2.0",
+  "repository_id": "synthetic/governance-lifecycle",
+  "observed_at": "2026-09-13T10:00:00Z",
+  "enforcement": "report_only",
+  "enforcement_change_authorized": false,
+  "overall_status": "findings",
+  "summary": {
+    "criteria": 16,
+    "pass": 15,
+    "fail": 1,
+    "critical_failures": 1,
+    "high_failures": 0
+  },
+  "risk_statement": "Synthetic test; no live repository settings were changed.",
+  "criteria": [
+    {
+      "id": "GRS-001",
+      "key": "default_branch_protected",
+      "title": "Default branch protected",
+      "severity": "critical",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-002",
+      "key": "pull_request_review_required",
+      "title": "Pull request and approving review required",
+      "severity": "critical",
+      "expected": true,
+      "status": "fail",
+      "observed": false,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-003",
+      "key": "governance_ci_required",
+      "title": "Governance CI is a required status check",
+      "severity": "critical",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-004",
+      "key": "destructive_branch_changes_blocked",
+      "title": "Force pushes and branch deletion blocked",
+      "severity": "critical",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-005",
+      "key": "signed_changes_required",
+      "title": "Signed changes required on the default branch",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-006",
+      "key": "secret_scanning_enabled",
+      "title": "Secret scanning enabled",
+      "severity": "critical",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-007",
+      "key": "secret_push_protection_enabled",
+      "title": "Secret push protection enabled",
+      "severity": "critical",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-008",
+      "key": "dependency_security_enabled",
+      "title": "Dependency alerts and security updates enabled",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-009",
+      "key": "code_scanning_configured",
+      "title": "Code scanning configured",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-010",
+      "key": "third_party_actions_sha_pinned",
+      "title": "Third-party GitHub Actions pinned to full commit SHAs",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-011",
+      "key": "workflow_permissions_restricted",
+      "title": "Default and explicit workflow permissions restricted",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-012",
+      "key": "critical_paths_owned",
+      "title": "Critical governance paths have explicit owners",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-013",
+      "key": "automated_main_writes_absent",
+      "title": "Automation cannot push operational data directly to the default branch",
+      "severity": "critical",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-014",
+      "key": "release_tags_verified",
+      "title": "Governance release tags are cryptographically verified",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-015",
+      "key": "private_vulnerability_reporting_enabled",
+      "title": "Private vulnerability reporting is enabled",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    },
+    {
+      "id": "GRS-016",
+      "key": "approved_action_sources_restricted",
+      "title": "GitHub Actions restricted to approved sources",
+      "severity": "high",
+      "expected": true,
+      "status": "pass",
+      "observed": true,
+      "detail": "Synthetic fixture only.",
+      "evidence_refs": [
+        "fixture://synthetic-repository-settings"
+      ]
+    }
+  ],
+  "next_steps": [],
+  "observation": {
+    "synthetic": true
+  },
+  "decision_boundary": {
+    "blocks_pull_requests": false,
+    "changes_repository_settings": false,
+    "changes_released_baselines": false
+  }
+}

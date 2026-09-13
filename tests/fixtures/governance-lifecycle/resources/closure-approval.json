@@ -1,0 +1,19 @@
+{
+  "environment": "synthetic",
+  "approval": {
+    "target_digest": "3404bfe96857d274a0b6bd3d2249e02fd612d55f1e2af254cc5126001d2e51b8",
+    "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+    "expected_revision": 4,
+    "subject_id": "test-human:closure-owner",
+    "subject_type": "human",
+    "role": "closure_approver",
+    "role_binding_ref": {
+      "id": "binding:clg-synthetic",
+      "version": "0.1.0",
+      "digest": "4573ad89ade34232d1b1941664a4694040e2c556f48220d5dd11cb8004c37394"
+    },
+    "channel": "synthetic_fixture",
+    "issued_at": "2026-09-13T11:10:00Z",
+    "disposition": "approve"
+  }
+}

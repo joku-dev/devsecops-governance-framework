@@ -1,0 +1,32 @@
+[
+  {
+    "file": "observation-missing-snapshot-ref.json",
+    "kind": "observation",
+    "missing_path": "body/snapshot_ref",
+    "expected_validator": "required"
+  },
+  {
+    "file": "decision-missing-proof-ref.json",
+    "kind": "decision",
+    "missing_path": "approval/proof_ref",
+    "expected_validator": "required"
+  },
+  {
+    "file": "remediation-missing-owner-id.json",
+    "kind": "remediation",
+    "missing_path": "body/owner_id",
+    "expected_validator": "required"
+  },
+  {
+    "file": "closure-missing-passing-observation-ref.json",
+    "kind": "closure",
+    "missing_path": "body/passing_observation_ref",
+    "expected_validator": "required"
+  },
+  {
+    "file": "event-missing-previous-event-ref.json",
+    "kind": "event",
+    "missing_path": "body/previous_event_ref",
+    "expected_validator": "required"
+  }
+]

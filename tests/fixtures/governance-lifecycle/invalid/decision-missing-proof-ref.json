@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "decision",
+  "record_id": "decision:synthetic-001",
+  "environment": "synthetic",
+  "profile_ref": {
+    "id": "profile:clg-synthetic-grs002",
+    "version": "0.1.0",
+    "digest": "22c67c84cf0934f3a4cc71e5783a5cc166b4abc0494111c050d99d97c5b6d986"
+  },
+  "finding": {
+    "fingerprint_version": "1",
+    "key": {
+      "repository_id": "synthetic/governance-lifecycle",
+      "domain": "governance_repository_security",
+      "rule_id": "GRS-002",
+      "finding_type": "criterion_failure",
+      "resource": "refs/heads/main"
+    },
+    "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a"
+  },
+  "recorded_at": "2026-09-13T10:10:00Z",
+  "body": {
+    "expected_revision": 1,
+    "purpose": "remediate",
+    "observation_ref": {
+      "id": "observation:synthetic-fail",
+      "digest": "e0025ae97851f7ecc8c2d8b04ce730c36e644e3d7ac20832f8e35c959ad55581"
+    },
+    "action": "Restore one required approving review in the synthetic repository fixture.",
+    "rationale": "Test decision for GRS-002 only."
+  },
+  "approval": {
+    "target_digest": "f2193380527808bbbdbd90904f8302f976feb6de433b8dbe8ad7d656951ac7b8",
+    "finding_id": "finding:7d4c5c5222557d3cad04d4e1e5ebb5a1015cb394f7862b14a8e257bfcc85b26a",
+    "expected_revision": 1,
+    "subject_id": "test-human:decision-owner",
+    "subject_type": "human",
+    "role": "remediation_decider",
+    "role_binding_ref": {
+      "id": "binding:clg-synthetic",
+      "version": "0.1.0",
+      "digest": "4573ad89ade34232d1b1941664a4694040e2c556f48220d5dd11cb8004c37394"
+    },
+    "channel": "synthetic_fixture",
+    "issued_at": "2026-09-13T10:10:00Z",
+    "disposition": "approve"
+  }
+}

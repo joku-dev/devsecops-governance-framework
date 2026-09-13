@@ -97,6 +97,8 @@ nav:
           - Application Repo Governance Timing: operations/processes/application-repo-governance-timing.md
           - Spot Check Governance Intake: operations/processes/spot-check-governance-intake.md
       - Evidence:
+          - Governance Lifecycle Contract: operations/evidence/governance-lifecycle-contract.md
+          - Governance Lifecycle Pilot Decisions: operations/evidence/governance-lifecycle-pilot-decisions.md
           - Governance Evidence Contract: operations/evidence/governance-evidence-contract.md
           - Evidence Trust Model: operations/evidence/evidence-trust-model.md
           - Replay Triage: operations/evidence/replay-triage.md
