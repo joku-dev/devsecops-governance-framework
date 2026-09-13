@@ -29,18 +29,18 @@ The repository explicitly uses `report-only` for all pilot triggers. Its main
 branch has review protection; a successful report-only workflow can still
 contain governance findings.
 
-## Accepted Mainline Validation On 11 September 2026
+## Accepted Mainline Validation On 13 September 2026
 
 | Check | Result | Run |
 | --- | --- | --- |
-| CI | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820033` |
-| DevSecOps Baseline | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820493` |
-| Architecture Governance | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820390` |
+| CI | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34778860861` |
+| DevSecOps Baseline | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34778861276` |
+| Architecture Governance | `success` | `https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34778861076` |
 
 Validated commit:
 
 ```text
-7d6a4f67c5e8441e1067405cc2da17218dc256fd
+915aeed2507ba3cc60fad5cd6a7b2415505a1ac9
 ```
 
 The accepted DevSecOps result is `pass`, represented by a one-gate fallback

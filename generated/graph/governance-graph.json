@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-09-11T14:34:39Z",
+  "generated_at": "2026-09-13T19:56:31Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -1473,12 +1473,12 @@
       }
     },
     {
-      "id": "commit:joku-dev/governance-framework-demo-consumer:7d6a4f67c5e8441e1067405cc2da17218dc256fd",
+      "id": "commit:joku-dev/governance-framework-demo-consumer:915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
       "type": "Commit",
-      "label": "7d6a4f67c5e8",
+      "label": "915aeed2507b",
       "properties": {
         "repository_id": "joku-dev/governance-framework-demo-consumer",
-        "commit_id": "7d6a4f67c5e8441e1067405cc2da17218dc256fd"
+        "commit_id": "915aeed2507ba3cc60fad5cd6a7b2415505a1ac9"
       }
     },
     {
@@ -1491,7 +1491,7 @@
       }
     },
     {
-      "id": "evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z",
+      "id": "evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "type": "EvidenceRecord",
       "label": "vulnerability_scan",
       "properties": {
@@ -1533,17 +1533,17 @@
       }
     },
     {
-      "id": "run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
+      "id": "run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
       "type": "WorkflowRun",
-      "label": "architecture: 34606820390",
+      "label": "architecture: 34778861076",
       "properties": {
         "domain": "architecture",
-        "run_id": "34606820390",
+        "run_id": "34778861076",
         "status": "findings",
-        "generated_at": "2026-09-11T13:52:46Z",
+        "generated_at": "2026-09-13T19:49:41Z",
         "event": "push",
         "branch": "main",
-        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820390"
+        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34778861076"
       }
     },
     {
@@ -1575,17 +1575,17 @@
       }
     },
     {
-      "id": "run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "id": "run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "WorkflowRun",
-      "label": "devsecops: 34606820493",
+      "label": "devsecops: 34778861276",
       "properties": {
         "domain": "devsecops",
-        "run_id": "34606820493",
+        "run_id": "34778861276",
         "status": "pass",
-        "generated_at": "2026-09-11T13:53:03Z",
+        "generated_at": "2026-09-13T19:49:58Z",
         "event": "push",
         "branch": "main",
-        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820493"
+        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34778861276"
       }
     },
     {
@@ -1603,16 +1603,16 @@
       }
     },
     {
-      "id": "run:typed-evidence:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "id": "run:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "WorkflowRun",
-      "label": "typed evidence: 34606820493",
+      "label": "typed evidence: 34778861276",
       "properties": {
         "domain": "typed_evidence",
-        "run_id": "34606820493",
+        "run_id": "34778861276",
         "event": "push",
         "branch": "main",
-        "generated_at": "2026-09-11T13:53:03Z",
-        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34606820493"
+        "generated_at": "2026-09-13T19:49:58Z",
+        "url": "https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/34778861276"
       }
     },
     {
@@ -1625,11 +1625,11 @@
       }
     },
     {
-      "id": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-52-46Z-run-34606820390.json",
+      "id": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-41Z-run-34778861076.json",
       "type": "ResultSnapshot",
-      "label": "2026-09-11T13-52-46Z-run-34606820390.json",
+      "label": "2026-09-13T19-49-41Z-run-34778861076.json",
       "properties": {
-        "path": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-52-46Z-run-34606820390.json",
+        "path": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-41Z-run-34778861076.json",
         "domain": "architecture"
       }
     },
@@ -1652,11 +1652,11 @@
       }
     },
     {
-      "id": "snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493.json",
+      "id": "snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276.json",
       "type": "ResultSnapshot",
-      "label": "2026-09-11T13-53-03Z-run-34606820493.json",
+      "label": "2026-09-13T19-49-58Z-run-34778861276.json",
       "properties": {
-        "path": "status/results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493.json",
+        "path": "status/results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276.json",
         "domain": "devsecops"
       }
     },
@@ -1670,11 +1670,11 @@
       }
     },
     {
-      "id": "snapshot:status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json",
+      "id": "snapshot:status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
       "type": "ResultSnapshot",
-      "label": "2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json",
+      "label": "2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
       "properties": {
-        "path": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json",
+        "path": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
         "domain": "typed_evidence"
       }
     },
@@ -1981,14 +1981,14 @@
       }
     },
     {
-      "id": "trust:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
+      "id": "trust:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
       "type": "TrustAssessment",
       "label": "integrity_verified",
       "properties": {
         "domain": "architecture",
         "effective_level": "integrity_verified",
         "assessment_status": "evaluated",
-        "verified_at": "2026-09-11T13:57:57Z",
+        "verified_at": "2026-09-13T19:54:12Z",
         "check_summary": {
           "pass": 7,
           "fail": 0,
@@ -2029,14 +2029,14 @@
       }
     },
     {
-      "id": "trust:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "id": "trust:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "TrustAssessment",
       "label": "integrity_verified",
       "properties": {
         "domain": "devsecops",
         "effective_level": "integrity_verified",
         "assessment_status": "evaluated",
-        "verified_at": "2026-09-11T14:01:15Z",
+        "verified_at": "2026-09-13T19:54:16Z",
         "check_summary": {
           "pass": 7,
           "fail": 0,
@@ -2061,14 +2061,14 @@
       }
     },
     {
-      "id": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "id": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "TrustAssessment",
       "label": "integrity_verified",
       "properties": {
         "domain": "typed_evidence",
         "effective_level": "integrity_verified",
         "assessment_status": "evaluated",
-        "verified_at": "2026-09-11T14:34:14Z",
+        "verified_at": "2026-09-13T19:54:20Z",
         "check_summary": {
           "pass": 7,
           "fail": 0,
@@ -5481,10 +5481,10 @@
       }
     },
     {
-      "id": "EVALUATES_COMMIT:run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z->commit:joku-dev/governance-framework-demo-consumer:7d6a4f67c5e8441e1067405cc2da17218dc256fd",
+      "id": "EVALUATES_COMMIT:run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z->commit:joku-dev/governance-framework-demo-consumer:915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
       "type": "EVALUATES_COMMIT",
-      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
-      "target": "commit:joku-dev/governance-framework-demo-consumer:7d6a4f67c5e8441e1067405cc2da17218dc256fd",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
+      "target": "commit:joku-dev/governance-framework-demo-consumer:915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
       "properties": {}
     },
     {
@@ -5502,10 +5502,10 @@
       "properties": {}
     },
     {
-      "id": "EVALUATES_COMMIT:run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z->commit:joku-dev/governance-framework-demo-consumer:7d6a4f67c5e8441e1067405cc2da17218dc256fd",
+      "id": "EVALUATES_COMMIT:run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z->commit:joku-dev/governance-framework-demo-consumer:915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
       "type": "EVALUATES_COMMIT",
-      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
-      "target": "commit:joku-dev/governance-framework-demo-consumer:7d6a4f67c5e8441e1067405cc2da17218dc256fd",
+      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
+      "target": "commit:joku-dev/governance-framework-demo-consumer:915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
       "properties": {}
     },
     {
@@ -5516,10 +5516,10 @@
       "properties": {}
     },
     {
-      "id": "HAS_EVIDENCE:run:typed-evidence:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z->evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z",
+      "id": "HAS_EVIDENCE:run:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z->evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "type": "HAS_EVIDENCE",
-      "source": "run:typed-evidence:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
-      "target": "evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z",
+      "source": "run:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
+      "target": "evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "properties": {}
     },
     {
@@ -5533,30 +5533,30 @@
       }
     },
     {
-      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
+      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
       "type": "HAS_RESULT",
       "source": "repository:joku-dev/governance-framework-demo-consumer",
-      "target": "run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
+      "target": "run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
       "properties": {
         "domain": "architecture",
         "latest": true
       }
     },
     {
-      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "HAS_RESULT",
       "source": "repository:joku-dev/governance-framework-demo-consumer",
-      "target": "run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "target": "run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "properties": {
         "domain": "devsecops",
         "latest": true
       }
     },
     {
-      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:typed-evidence:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "id": "HAS_RESULT:repository:joku-dev/governance-framework-demo-consumer->run:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "HAS_RESULT",
       "source": "repository:joku-dev/governance-framework-demo-consumer",
-      "target": "run:typed-evidence:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "target": "run:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "properties": {
         "domain": "typed_evidence",
         "latest": true
@@ -5583,17 +5583,17 @@
       }
     },
     {
-      "id": "HAS_TRUST_ASSESSMENT:evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z->trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "id": "HAS_TRUST_ASSESSMENT:evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z->trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "HAS_TRUST_ASSESSMENT",
-      "source": "evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z",
-      "target": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "source": "evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
+      "target": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "properties": {}
     },
     {
-      "id": "HAS_TRUST_ASSESSMENT:run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z->trust:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
+      "id": "HAS_TRUST_ASSESSMENT:run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z->trust:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
       "type": "HAS_TRUST_ASSESSMENT",
-      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
-      "target": "trust:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
+      "target": "trust:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
       "properties": {}
     },
     {
@@ -5611,10 +5611,10 @@
       "properties": {}
     },
     {
-      "id": "HAS_TRUST_ASSESSMENT:run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z->trust:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "id": "HAS_TRUST_ASSESSMENT:run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z->trust:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "HAS_TRUST_ASSESSMENT",
-      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
-      "target": "trust:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
+      "target": "trust:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "properties": {}
     },
     {
@@ -5625,24 +5625,24 @@
       "properties": {}
     },
     {
-      "id": "PRODUCED_BY:evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z->scanner:trivy:v0.70.0",
+      "id": "PRODUCED_BY:evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z->scanner:trivy:v0.70.0",
       "type": "PRODUCED_BY",
-      "source": "evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z",
+      "source": "evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "target": "scanner:trivy:v0.70.0",
       "properties": {}
     },
     {
-      "id": "RECORDED_IN:evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z->snapshot:status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json",
+      "id": "RECORDED_IN:evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z->snapshot:status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
       "type": "RECORDED_IN",
-      "source": "evidence:joku-dev/governance-framework-demo-consumer:34606820493:vulnerability_scan:2026-09-11T13:53:03Z",
-      "target": "snapshot:status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493-vulnerability-scan.json",
+      "source": "evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
+      "target": "snapshot:status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
       "properties": {}
     },
     {
-      "id": "RECORDED_IN:run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z->snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-52-46Z-run-34606820390.json",
+      "id": "RECORDED_IN:run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z->snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-41Z-run-34778861076.json",
       "type": "RECORDED_IN",
-      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
-      "target": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-52-46Z-run-34606820390.json",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
+      "target": "snapshot:status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-41Z-run-34778861076.json",
       "properties": {}
     },
     {
@@ -5660,10 +5660,10 @@
       "properties": {}
     },
     {
-      "id": "RECORDED_IN:run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z->snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493.json",
+      "id": "RECORDED_IN:run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z->snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276.json",
       "type": "RECORDED_IN",
-      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
-      "target": "snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-09-11T13-53-03Z-run-34606820493.json",
+      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
+      "target": "snapshot:status/results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276.json",
       "properties": {}
     },
     {
@@ -5674,9 +5674,9 @@
       "properties": {}
     },
     {
-      "id": "USES_BASELINE:run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z->baseline:architecture:architecture-baseline-l1-v0.1.0",
+      "id": "USES_BASELINE:run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z->baseline:architecture:architecture-baseline-l1-v0.1.0",
       "type": "USES_BASELINE",
-      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:34606820390:2026-09-11T13:52:46Z",
+      "source": "run:architecture:joku-dev/governance-framework-demo-consumer:34778861076:2026-09-13T19:49:41Z",
       "target": "baseline:architecture:architecture-baseline-l1-v0.1.0",
       "properties": {}
     },
@@ -5695,9 +5695,9 @@
       "properties": {}
     },
     {
-      "id": "USES_BASELINE:run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z->baseline:devsecops:l1-baseline-v1.1.3",
+      "id": "USES_BASELINE:run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z->baseline:devsecops:l1-baseline-v1.1.3",
       "type": "USES_BASELINE",
-      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:34606820493:2026-09-11T13:53:03Z",
+      "source": "run:devsecops:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "target": "baseline:devsecops:l1-baseline-v1.1.3",
       "properties": {}
     },

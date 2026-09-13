@@ -69,13 +69,13 @@ run, artifact, and shared subject identifiers where a relationship exists.
 
 ## Current Repository Interpretation
 
-At accepted base `4abe882` on 11 September 2026 the projection reviews 30
-Trust-bearing snapshots: four recorded failures, two failures under the current
+After consumer revalidation on 13 September 2026 the projection reviews 39
+Trust-bearing snapshots: five recorded failures, three failures under the current
 rules and two superseded legacy assessments. One official-latest finding remains,
 in ha-CPsWMS DevSecOps run `34602002201`. Its passing control outcome does not
 clear the separate replay check.
 
-The neutral demo's current DevSecOps run `34606820493` has passing recorded
+The neutral demo's current DevSecOps run `34778861276` has passing recorded
 and recalculated replay checks. Historical run `29636320472` still demonstrates
 safe deterministic report reuse with artifact binding, while `29603835297`
 retains the earlier cross-commit finding. No historical snapshot was changed.
