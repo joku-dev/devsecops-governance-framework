@@ -1,0 +1,352 @@
+{
+  "target": {
+    "path": "/home/runner/work/governance-framework-demo-consumer/governance-framework-demo-consumer/application",
+    "commit": "915aeed",
+    "release_id": "915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
+    "detected_services": 0
+  },
+  "gates": [
+    {
+      "id": "architecture_readiness",
+      "title": "Architecture Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-ARCH-READY: Architecture-readiness marker B3 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker P3 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker P7 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker S1 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker S2 requires score 3 or a valid exception; current score is 1."
+      ],
+      "remediations": []
+    },
+    {
+      "id": "integration_readiness",
+      "title": "Integration Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-INTEGRATION-READY: Integration-readiness marker E3 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker E5 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker P5 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker P6 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker S3 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker S4 requires score 3 or a valid exception; current score is 1."
+      ],
+      "remediations": []
+    },
+    {
+      "id": "operation_readiness",
+      "title": "Operation Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 3.",
+        "RG-OPERATION-READY: Operation-readiness marker P11 requires score 4 or a valid exception; current score is 3."
+      ],
+      "remediations": [
+        {
+          "id": "REM-FEEDBACK-LOOP",
+          "match": "marker B5",
+          "title": "Strengthen architecture feedback loop",
+          "action": "Link operational findings, demo findings or benchmark trends to owned improvement actions, technical debt items or architecture runway.",
+          "evidence": [
+            "operational_finding",
+            "improvement_backlog_item",
+            "technical_debt_item"
+          ]
+        },
+        {
+          "id": "REM-OBSERVABILITY",
+          "match": "marker P11",
+          "title": "Verify observability evidence",
+          "action": "Add runtime metrics, health indicators, monitoring dashboard evidence or operational diagnostics that prove observability works.",
+          "evidence": [
+            "monitoring_dashboard",
+            "runtime_metric",
+            "health_indicator"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "release_readiness",
+      "title": "Release Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-RELEASE-READY: Release compatibility declaration must be approved.",
+        "RG-RELEASE-READY: Release-critical architecture marker E6 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P10 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P13 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P5 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker P6 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker P8 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P9 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker S3 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker S5 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker S6 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker S8 requires score 4 or a valid exception; current score is 3."
+      ],
+      "remediations": [
+        {
+          "id": "REM-REL-DECL",
+          "match": "release compatibility declaration",
+          "title": "Create release compatibility declaration",
+          "action": "Create and approve a release compatibility declaration that identifies the supported solution baseline, interface versions, data versions, deployment assumptions, security assumptions, known limitations and approval roles.",
+          "evidence": [
+            "release_compatibility_declaration",
+            "product_compatibility_matrix",
+            "approval_record"
+          ]
+        },
+        {
+          "id": "REM-SECURITY-VERIFY",
+          "match": "marker E6",
+          "title": "Verify enterprise security guardrail evidence",
+          "action": "Add verified security evidence such as threat model review, vulnerability scan result, crypto/security review or security architecture review.",
+          "evidence": [
+            "security_architecture_review",
+            "vulnerability_scan_result",
+            "security_test_evidence"
+          ]
+        },
+        {
+          "id": "REM-PRODUCT-RESILIENCE",
+          "match": "marker P10",
+          "title": "Verify product resilience behavior",
+          "action": "Add failure-mode, restart, recovery, degraded-mode or DIL behavior tests.",
+          "evidence": [
+            "failure_mode_test",
+            "recovery_test_result",
+            "degraded_mode_evidence"
+          ]
+        },
+        {
+          "id": "REM-PRODUCT-COMPATIBILITY",
+          "match": "marker P13",
+          "title": "Declare product release compatibility",
+          "action": "Add a product release compatibility declaration showing supported baselines, interface versions, data versions, deployment assumptions, exceptions and approvals.",
+          "evidence": [
+            "product_release_compatibility_declaration",
+            "compatibility_evidence",
+            "release_review_record"
+          ]
+        },
+        {
+          "id": "REM-PRODUCT-SECURITY",
+          "match": "marker P8",
+          "title": "Verify product security implementation",
+          "action": "Add product-level security verification evidence for authentication, authorization, crypto usage, logging and vulnerability handling.",
+          "evidence": [
+            "product_security_concept",
+            "vulnerability_scan_result",
+            "security_test_evidence"
+          ]
+        },
+        {
+          "id": "REM-SOLUTION-SECURITY",
+          "match": "marker S5",
+          "title": "Verify solution security evidence",
+          "action": "Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.",
+          "evidence": [
+            "solution_threat_model",
+            "trust_zone_model",
+            "security_test_evidence"
+          ]
+        },
+        {
+          "id": "REM-RELEASE-ARCHITECTURE",
+          "match": "marker S6",
+          "title": "Complete release architecture evidence",
+          "action": "Link the solution baseline to compatible product releases, interface versions, data contracts and deployment assumptions.",
+          "evidence": [
+            "solution_release_baseline",
+            "product_compatibility_matrix",
+            "release_declaration"
+          ]
+        },
+        {
+          "id": "REM-RESILIENCE",
+          "match": "marker S8",
+          "title": "Verify solution resilience scenarios",
+          "action": "Add tested degraded-mode, failover, recovery or disconnected/intermittent/limited connectivity scenarios.",
+          "evidence": [
+            "degraded_mode_scenario",
+            "resilience_test_result",
+            "recovery_evidence"
+          ]
+        }
+      ]
+    }
+  ],
+  "detailed_evidence": {
+    "report_only": true,
+    "declared_types": [
+      "compatibility_matrix",
+      "feedback_evidence",
+      "observability_evidence",
+      "operation_evidence",
+      "release_compatibility_declaration",
+      "resilience_evidence",
+      "security_evidence",
+      "solution_baseline"
+    ],
+    "by_type": {
+      "compatibility_matrix": {
+        "coarse_type": "release_compatibility_declaration",
+        "status": "reviewed",
+        "owner": "Product Architect",
+        "path": ".governance/architecture/compatibility-matrix.json",
+        "evidence_refs": [
+          ".governance/architecture/compatibility-matrix.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      "feedback_evidence": {
+        "coarse_type": "feedback_evidence",
+        "status": "reviewed",
+        "owner": "Architecture Review Owner",
+        "path": ".governance/architecture/feedback-evidence.json",
+        "evidence_refs": [
+          ".governance/architecture/feedback-evidence.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEMO.md",
+          "docs/OPERATION_READINESS_ACTION.md"
+        ]
+      },
+      "observability_evidence": {
+        "coarse_type": "operation_evidence",
+        "status": "reviewed",
+        "owner": "Operations Owner",
+        "path": ".governance/architecture/observability-evidence.json",
+        "evidence_refs": [
+          ".governance/architecture/observability-evidence.json",
+          "docs/DEPLOYMENT.md",
+          ".github/workflows/ci.yml",
+          ".github/workflows/architecture-governance.yml",
+          "docs/OPERATION_READINESS_ACTION.md",
+          "src/demo_app/diagnostics.py",
+          "scripts/run_runtime_diagnostics.py",
+          "tests/test_diagnostics.py"
+        ]
+      },
+      "operation_evidence": {
+        "coarse_type": "operation_evidence",
+        "status": "reviewed",
+        "owner": "Operations Owner",
+        "path": ".governance/architecture/operation-evidence.json",
+        "evidence_refs": [
+          ".governance/architecture/operation-evidence.json",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      "release_compatibility_declaration": {
+        "coarse_type": "release_compatibility_declaration",
+        "status": "reviewed",
+        "owner": "Product Architect",
+        "path": ".governance/architecture/release-compatibility-declaration.json",
+        "evidence_refs": [
+          ".governance/architecture/release-compatibility-declaration.json",
+          "docs/ARCHITECTURE.md"
+        ]
+      },
+      "resilience_evidence": {
+        "coarse_type": "resilience_evidence",
+        "status": "reviewed",
+        "owner": "Solution Architect",
+        "path": ".governance/architecture/resilience-evidence.json",
+        "evidence_refs": [
+          ".governance/architecture/resilience-evidence.json",
+          "docs/ARCHITECTURE.md",
+          "tests/test_service.py",
+          "docs/DEPLOYMENT.md"
+        ]
+      },
+      "security_evidence": {
+        "coarse_type": "security_evidence",
+        "status": "reviewed",
+        "owner": "Security Owner",
+        "path": ".governance/architecture/security-evidence.json",
+        "evidence_refs": [
+          ".governance/architecture/security-evidence.json",
+          "security/vulnerability-scan.json"
+        ]
+      },
+      "solution_baseline": {
+        "coarse_type": "solution_baseline",
+        "status": "reviewed",
+        "owner": "Solution Architect",
+        "path": ".governance/architecture/solution-baseline.json",
+        "evidence_refs": [
+          ".governance/architecture/solution-baseline.json",
+          "docs/ARCHITECTURE.md",
+          "docs/DEPLOYMENT.md"
+        ]
+      }
+    },
+    "by_coarse_type": {
+      "feedback_evidence": [
+        "feedback_evidence"
+      ],
+      "operation_evidence": [
+        "observability_evidence",
+        "operation_evidence"
+      ],
+      "release_compatibility_declaration": [
+        "compatibility_matrix",
+        "release_compatibility_declaration"
+      ],
+      "resilience_evidence": [
+        "resilience_evidence"
+      ],
+      "security_evidence": [
+        "security_evidence"
+      ],
+      "solution_baseline": [
+        "solution_baseline"
+      ]
+    }
+  },
+  "advisories": [
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "threat_model",
+      "coarse_type": "security_evidence",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `threat_model` is not declared.",
+      "reason": "Security assumptions and mitigations are easier to review when a threat model is explicit."
+    },
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "interface_contract",
+      "coarse_type": "release_compatibility_declaration",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `interface_contract` is not declared.",
+      "reason": "Integration readiness depends on explicit interface ownership, versioning, and compatibility."
+    },
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "deployment_manifest",
+      "coarse_type": "deployment_evidence",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `deployment_manifest` is not declared.",
+      "reason": "Deployment readiness is stronger when runtime configuration is linked as evidence."
+    },
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "model_based_architecture",
+      "coarse_type": "solution_baseline",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `model_based_architecture` is not declared.",
+      "reason": "Model-based evidence is useful for complex or release-critical systems without mandating a vendor tool."
+    }
+  ],
+  "summary": {
+    "gate_count": 4,
+    "passed": 0,
+    "with_findings": 4,
+    "finding_count": 25
+  }
+}

@@ -1,5 +1,11 @@
 # Präsentationsanleitung: Typed Evidence Trust
 
+Der hier festgehaltene Referenzlauf vom 11. September bleibt als historischer
+Präsentations-Fallback erhalten. Der [aktuelle Demo-Startpunkt](demo-consumer-typed-evidence-trust.md)
+verwendet nach der Revalidierung Mainline-Lauf `34778861276` vom 13. September;
+der Viewer zeigt diesen neueren Lauf. Für die historische Vorführung die im
+Leitfaden genannten gespeicherten Snapshots verwenden.
+
 ## Zweck
 
 Diese Anleitung beschreibt Schritt für Schritt, wie das Zusammenspiel aus

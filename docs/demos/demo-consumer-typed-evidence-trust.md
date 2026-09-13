@@ -14,13 +14,13 @@ troubleshooting, and Q&A guide, use:
 docs/demos/presentation-guide-typed-evidence-trust-de.md
 ```
 
-## Validated Starting Point On 11 September 2026
+## Validated Starting Point On 13 September 2026
 
 | Component | Validated state |
 |---|---|
 | Consumer | `joku-dev/governance-framework-demo-consumer` |
-| Consumer commit | `7d6a4f67c5e8441e1067405cc2da17218dc256fd` |
-| Workflow run | `34606820493` on `main` |
+| Consumer commit | `915aeed2507ba3cc60fad5cd6a7b2415505a1ac9` |
+| Workflow run | `34778861276` on `main` |
 | Scanner | Trivy `v0.70.0` |
 | Findings | `0` |
 | Central integrity | `pass` |
@@ -48,7 +48,7 @@ From the governance repository:
 ```bash
 python3 scripts/intake_evidence_trust_github_actions_run.py \
   --repository-id joku-dev/governance-framework-demo-consumer \
-  --run-id 34606820493
+  --run-id 34778861276
 python3 scripts/generate_typed_evidence_results_index.py
 python3 scripts/generate_status_viewer.py
 ```
