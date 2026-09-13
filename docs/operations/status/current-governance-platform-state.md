@@ -66,19 +66,20 @@ with review due 12 December 2026, 23:59:59 Europe/Berlin. It does not authorize
 new blocking. [Blocking alignment](blocking-mode-alignment.md) and the
 [readiness assessment](blocking-readiness.md) explain the decision boundary.
 
-## Accepted Results On 11 September 2026
+## Accepted Mainline Results After Consumer Revalidation
 
-Observation baseline: `4abe88294f299d7f801c74ff0161df234960c092`.
-The accepted indexes contain new consumer evaluations from 11 September 2026:
+The [13 September revalidation](../reference-runs/2026-09-13-consumer-revalidation.md)
+refreshes diagnostic history for all three consumers and official mainline evidence
+for the demo consumer after its operation-readiness preparation:
 
 | Consumer | Domain | Producer run | Recorded outcome |
 |---|---|---|---|
 | `ha-CPsWMS` | DevSecOps L1 | `34602002201` | `pass`; 16/16 applicable controls, 30 not applicable |
 | `ha-CPsWMS` | Architecture L1 | `34602001140` | `pass`; 4/4 gates, zero findings |
 | `ai-native-engineering-factory` | DevSecOps | `34503074356`, attempt 2 | `fail`; baseline gate reports direct pushes allowed |
-| `governance-framework-demo-consumer` | DevSecOps L1 | `34606820493` | `pass`; one-gate fallback summary |
-| `governance-framework-demo-consumer` | Architecture L1 | `34606820390` | `findings`; 25 findings across four gates |
-| `governance-framework-demo-consumer` | Typed vulnerability evidence | `34606820493` | integrity and Freshness pass at verification; `integrity_verified` |
+| `governance-framework-demo-consumer` | DevSecOps L1 | `34778861276` | `pass`; one-gate fallback summary |
+| `governance-framework-demo-consumer` | Architecture L1 | `34778861076` | `findings`; 25 findings across four gates |
+| `governance-framework-demo-consumer` | Typed vulnerability evidence | `34778861276` | integrity and Freshness pass at verification; `integrity_verified` |
 
 The Factory and demo-consumer DevSecOps snapshots summarize a baseline gate,
 not a full control-catalog evaluation. Factory pins implementation commit
@@ -88,13 +89,14 @@ not a full control-catalog evaluation. Factory pins implementation commit
 
 The accepted consumer commits are `6976bb2af2b9d47d2934273c444b6c9b62a81ea2`
 for ha-CPsWMS, `371251fe17c6923a810ab437a6c27fc7bfb624ed` for Factory, and
-`7d6a4f67c5e8441e1067405cc2da17218dc256fd` for the neutral demo consumer.
+`915aeed2507ba3cc60fad5cd6a7b2415505a1ac9` for the neutral demo consumer.
 
 Sources are the committed `status/repository-results-index.json`,
 `status/architecture-results-index.json`, `status/typed-evidence-results-index.json`
-and their immutable snapshots. The portfolio report at 14:37:35 UTC contains
-three consumers and zero stale or missing results in its assessed scope.
-These timestamps describe the observation, not a permanent freshness guarantee.
+and their immutable snapshots. The separately retained portfolio report at
+14:37:35 UTC on 11 September contains three consumers and zero stale or missing
+results at that assessment time; it was not refreshed by these individual intakes.
+These timestamps describe observations, not a permanent freshness guarantee.
 
 Trust remains separate from outcome: ha-CPsWMS DevSecOps has an open replay
 finding despite its passing controls. All three consumers remain below the

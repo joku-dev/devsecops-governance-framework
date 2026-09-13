@@ -1,0 +1,133 @@
+{
+  "acceptance_gaps": [
+    "producer_authentication",
+    "baseline_and_policy_resolution",
+    "approved_scope_and_trust_profile",
+    "approved_freshness_and_replay_policy",
+    "accountable_live_acceptance"
+  ],
+  "acceptance_status": "not_evaluated",
+  "adapter": {
+    "id": "architecture-gate-candidates",
+    "source_contract": "architecture-gate-report@legacy-shape-v1",
+    "version": "0.1.0"
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate:4b0d0e90d521ec872f7de72f2ac9fb06cb1930adeca8af76a2ac342c8cd74118",
+      "granularity": "gate",
+      "result": "findings",
+      "source_messages": [
+        "RG-ARCH-READY: Architecture-readiness marker B3 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker P3 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker P7 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker S1 requires score 3 or a valid exception; current score is 1.",
+        "RG-ARCH-READY: Architecture-readiness marker S2 requires score 3 or a valid exception; current score is 1."
+      ],
+      "source_pointer": "/gates/0",
+      "subject": {
+        "domain": "architecture",
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "resource": "repository",
+        "rule_id": "architecture_readiness"
+      }
+    },
+    {
+      "candidate_id": "candidate:5a6a272481d72d38fbd9ddf7d43a6e2579385cba4bd3a06e891d129f6ac82431",
+      "granularity": "gate",
+      "result": "findings",
+      "source_messages": [
+        "RG-INTEGRATION-READY: Integration-readiness marker E3 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker E5 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker P5 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker P6 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker S3 requires score 3 or a valid exception; current score is 1.",
+        "RG-INTEGRATION-READY: Integration-readiness marker S4 requires score 3 or a valid exception; current score is 1."
+      ],
+      "source_pointer": "/gates/1",
+      "subject": {
+        "domain": "architecture",
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "resource": "repository",
+        "rule_id": "integration_readiness"
+      }
+    },
+    {
+      "candidate_id": "candidate:12eb1629141b27f52f59a5fe1d53bfcf3d7229a0656d6ac3584c9d3198e37c6b",
+      "granularity": "gate",
+      "result": "findings",
+      "source_messages": [
+        "RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 3.",
+        "RG-OPERATION-READY: Operation-readiness marker P11 requires score 4 or a valid exception; current score is 3."
+      ],
+      "source_pointer": "/gates/2",
+      "subject": {
+        "domain": "architecture",
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "resource": "repository",
+        "rule_id": "operation_readiness"
+      }
+    },
+    {
+      "candidate_id": "candidate:3c58b0d3ff3e5d2ea702709ecda513b7092fca38dd6c0981845e386f94b0395c",
+      "granularity": "gate",
+      "result": "findings",
+      "source_messages": [
+        "RG-RELEASE-READY: Release compatibility declaration must be approved.",
+        "RG-RELEASE-READY: Release-critical architecture marker E6 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P10 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P13 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P5 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker P6 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker P8 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker P9 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker S3 requires score 4 or a valid exception; current score is 1.",
+        "RG-RELEASE-READY: Release-critical architecture marker S5 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker S6 requires score 4 or a valid exception; current score is 3.",
+        "RG-RELEASE-READY: Release-critical architecture marker S8 requires score 4 or a valid exception; current score is 3."
+      ],
+      "source_pointer": "/gates/3",
+      "subject": {
+        "domain": "architecture",
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "resource": "repository",
+        "rule_id": "release_readiness"
+      }
+    }
+  ],
+  "counts": {
+    "fail": 0,
+    "findings": 4,
+    "not_applicable": 0,
+    "not_tested": 0,
+    "pass": 0
+  },
+  "enforcement": "report_only",
+  "environment": "diagnostic",
+  "evaluated_at": "2026-09-13T19:54:21Z",
+  "official_state": false,
+  "record_type": "lifecycle-input-candidates",
+  "schema_version": "0.1.0",
+  "source": {
+    "age_seconds": 280,
+    "context": {
+      "baseline_ref": "architecture-baseline-l1-v0.1.0",
+      "branch": "main",
+      "commit_id": "915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
+      "event": "push",
+      "observed_at": "2026-09-13T19:49:41Z",
+      "policy_revision": "19e281d323eb69be26bdb2cbf4368caadfbccaa7",
+      "producer_id": "Architecture Governance",
+      "purpose": "release",
+      "release_context": true,
+      "report_sha256": "7ed38aa95072dbc80726ec48cdf29737c3f1965dfa629e6adcd695becf8084eb",
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "run_attempt": 1,
+      "run_id": "34778861076",
+      "synthetic": false
+    },
+    "declared_context_kind": "mainline",
+    "size_bytes": 14715
+  },
+  "trust_status": "unverified"
+}

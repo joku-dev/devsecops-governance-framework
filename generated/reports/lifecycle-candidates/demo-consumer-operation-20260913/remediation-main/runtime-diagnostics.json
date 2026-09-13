@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "evidence_type": "demo_runtime_diagnostics",
+  "scope": "local Python function in CI; no deployed service",
+  "commit_id": "915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
+  "run_id": "34778860861",
+  "observed_at": "2026-09-13T19:49:31.584702+00:00",
+  "status": "pass",
+  "checks": [
+    {
+      "id": "valid_release",
+      "status": "pass",
+      "duration_ns": 2444,
+      "observed_error_type": null
+    },
+    {
+      "id": "empty_name",
+      "status": "pass",
+      "duration_ns": 1312,
+      "observed_error_type": "ValueError"
+    },
+    {
+      "id": "empty_version",
+      "status": "pass",
+      "duration_ns": 701,
+      "observed_error_type": "ValueError"
+    }
+  ]
+}
