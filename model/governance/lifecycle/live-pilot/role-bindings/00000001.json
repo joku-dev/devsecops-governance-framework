@@ -1,0 +1,42 @@
+{
+  "assignments": {
+    "closure_approver": "github-user:81616324",
+    "remediation_decider": "github-user:81616324",
+    "role_registry_owner": "github-user:81616324"
+  },
+  "authorization": {
+    "channel": "maintainer_conversation",
+    "confirmed_on": "2026-09-13",
+    "decision_ref": "docs/governance/change-requests/GCR-2026-071-lifecycle-live-pilot-roles.md",
+    "runtime_consent_proof": false,
+    "statement": "ja ich best\u00e4tige"
+  },
+  "binding_id": "binding:clg-live-grs002",
+  "multiple_roles_confirmed": true,
+  "previous_ref": null,
+  "record_type": "lifecycle-pilot-role-binding",
+  "recorded_at": "2026-09-13T12:43:31Z",
+  "revision": 1,
+  "schema_version": "0.1.0",
+  "scope": {
+    "domain": "governance_repository_security",
+    "enforcement": "report_only",
+    "github_repository_id": 1301369468,
+    "pilot_only": true,
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "resource": "refs/heads/main",
+    "rule_id": "GRS-002"
+  },
+  "status": "confirmed",
+  "subjects": [
+    {
+      "display_name": "joku",
+      "login": "joku-dev",
+      "profile_url": "https://github.com/joku-dev",
+      "provider": "github",
+      "provider_user_id": 81616324,
+      "subject_id": "github-user:81616324"
+    }
+  ],
+  "validity": "pilot_only_until_replacement_or_withdrawal"
+}
