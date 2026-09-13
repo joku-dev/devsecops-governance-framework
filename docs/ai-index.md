@@ -31,19 +31,21 @@ Use it as the first navigation point after `AGENTS.md`.
 | Explain the repository as an answer to software industrialisation problems | `docs/governance/architecture/software-industrialisation-problem-capability-map.md` |
 | Compare governance with central repository versus without central repository | `docs/governance/architecture/governance-repository-architecture-comparison.md` |
 | Classify documentation and plan safe docs restructuring | `docs/operations/planning/document-structure-model.md` |
-| Plan the closed-loop finding, decision and remediation pilot | `docs/operations/planning/closed-loop-governance-implementation-plan.md` (staged plan; synthetic CLG-02 implemented) |
-| Inspect CLG-01 contracts and open pilot decisions | `docs/operations/evidence/governance-lifecycle-contract.md`, `docs/operations/evidence/governance-lifecycle-pilot-decisions.md` (offline contracts; no live runtime) |
+| Plan the closed-loop finding, decision and remediation pilot | `docs/operations/planning/closed-loop-governance-implementation-plan.md` (CLG-01–06.3 implementation and accepted limited GitHub pilot) |
+| Inspect CLG-01 contracts and open pilot decisions | `docs/operations/evidence/governance-lifecycle-contract.md`, `docs/operations/evidence/governance-lifecycle-pilot-decisions.md` (offline contracts; separate accepted live pilot) |
 | Use the CLG-02 synthetic finding/event kernel | `docs/operations/evidence/governance-lifecycle-kernel.md`, `scripts/intake_governance_lifecycle_observation.py`, `status/governance-lifecycle-synthetic-index.json` (synthetic only) |
-| Use CLG-03 synthetic decision and remediation intake | `docs/operations/evidence/governance-lifecycle-decisions.md`, `scripts/intake_governance_lifecycle_action.py` (test consent; live authority remains open) |
-| Run the CLG-04 synthetic closure pilot | `docs/demos/demo-governance-lifecycle-pilot.md`, `docs/operations/evidence/governance-lifecycle-closure.md` (live acceptance pending) |
+| Use CLG-03 synthetic decision and remediation intake | `docs/operations/evidence/governance-lifecycle-decisions.md`, `scripts/intake_governance_lifecycle_action.py` (test consent; separate personal live action path) |
+| Run the CLG-04 synthetic closure pilot | `docs/demos/demo-governance-lifecycle-pilot.md`, `docs/operations/evidence/governance-lifecycle-closure.md` (separate GRS-002 operating acceptance confirmed) |
 | Prepare CLG-06.3 DevSecOps/architecture input candidates | `docs/operations/evidence/governance-lifecycle-input-candidates.md`, `scripts/prepare_lifecycle_devsecops_candidates.py`, `scripts/prepare_lifecycle_architecture_candidates.py` (unverified declarations; no lifecycle intake) |
-| Decide the next live CLG pilot step | `docs/operations/evidence/governance-lifecycle-live-decision-brief.md` (pilot roles confirmed; operating acceptance remains open) |
+| Decide the next live CLG pilot step | `docs/operations/evidence/governance-lifecycle-live-decision-brief.md` (pilot roles and limited operating acceptance confirmed) |
 | Inspect confirmed CLG pilot roles and disabled live profile | `docs/operations/evidence/governance-lifecycle-live-preparation.md`, `model/governance/lifecycle/live-pilot/` (appointment is not personal runtime consent) |
 | Verify an explicit Self-Security run before live admission | `docs/operations/evidence/governance-lifecycle-live-evidence-preflight.md`, `scripts/preflight_lifecycle_live_evidence.py` (read-only capture and offline replay; no acceptance) |
 | Retain and replay pilot intake under confirmed operating values | `docs/operations/evidence/governance-lifecycle-durable-pilot-intake.md`, `scripts/intake_lifecycle_pilot_run.py` (durable validation receipts; no live activation) |
 | Verify the personal GitHub channel probe | `docs/operations/evidence/governance-lifecycle-personal-channel.md`, `scripts/check_lifecycle_personal_channel.py` (personal statement required; no lifecycle authorization) |
-| Validate action-specific GitHub consent | `docs/operations/evidence/governance-lifecycle-action-consent.md`, `scripts/intake_lifecycle_pilot_action.py` (pilot eligibility; LD-07 remains required) |
-| Inspect or operate the GitHub pilot after LD-07 | `docs/operations/evidence/governance-lifecycle-live-operation.md`, `scripts/run_lifecycle_pilot_update.py` (inactive until personal acceptance) |
+| Validate action-specific GitHub consent | `docs/operations/evidence/governance-lifecycle-action-consent.md`, `scripts/intake_lifecycle_pilot_action.py` (pilot eligibility; effective LD-07 gates official publication) |
+| Read the complete technical function inventory | `docs/operations/guides/repository-technical-function-inventory.md` |
+| Inspect the accepted live pilot state | `docs/operations/status/governance-lifecycle-current-state.md`, `status/governance-lifecycle-live.json` |
+| Inspect or operate the GitHub pilot after LD-07 | `docs/operations/evidence/governance-lifecycle-live-operation.md`, `scripts/run_lifecycle_pilot_update.py` (personal acceptance captured and merged; manual report-only pilot) |
 | Open CLG-06.2 read-only scenario viewer | `docs/operations/evidence/governance-lifecycle-viewer.md`, `scripts/generate_governance_lifecycle_viewer.py` (synthetic; separate from official status) |
 | Inspect CLG-06.1 synthetic scenario metrics | `docs/operations/evidence/governance-lifecycle-overview.md`, `scripts/generate_governance_lifecycle_overview.py` (separate histories; no portfolio totals) |
 | Inspect CLG-05 synthetic exceptions | `docs/operations/evidence/governance-lifecycle-exceptions.md`, `scripts/generate_governance_lifecycle_exceptions.py` (observation coverage; no live waiver authority) |

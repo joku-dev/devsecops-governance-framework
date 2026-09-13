@@ -1,5 +1,13 @@
 # Funktionsweise des Governance-Repositories
 
+The delivered edition 1.1 Word/PDF/PowerPoint files and their editorial sources
+are retained publications of the 11 September 2026 snapshot. They do not include
+the later CLG implementation. For the maintained current description use the
+[function catalog](../../operations/guides/repository-function-catalog.md),
+[technical inventory](../../operations/guides/repository-technical-function-inventory.md)
+and [accepted GitHub pilot state](../../operations/status/governance-lifecycle-current-state.md).
+The dated exports are not relabelled as current implementation evidence.
+
 [PowerPoint herunterladen](files/repository-funktionsweise.pptx)
 
 Diese Präsentation erklärt das Repository auf Deutsch in 16 Folien für etwa

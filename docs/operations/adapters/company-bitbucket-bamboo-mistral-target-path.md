@@ -1,4 +1,17 @@
-# Company Target Path: Bitbucket, Bamboo, And Mistral
+# Company Target Path: Bitbucket Data Center, Bamboo, And Mistral
+
+Target clarification, 13 September 2026: the maintainer specified **Bitbucket
+Data Center with Bamboo**. Installed versions, endpoints, permissions and agent
+capabilities are not yet available; implementation continues on GitHub meanwhile.
+Bamboo 12.1.9 in the existing template is a reference assumption, not a verified
+company version. Mistral remains an optional provider-adapter description.
+
+Bitbucket Pipelines belongs to the Cloud path; Data Center integrates with Bamboo
+or Jenkins. See [Atlassian's feature comparison](https://www.atlassian.com/migration/assess/compare-cloud-data-center/bitbucket).
+The Cloud files under `pipeline-baseline/templates/bitbucket/` are alternative
+examples and are not the CI configuration for this Data Center target.
+The accepted GitHub lifecycle requires new provider/evidence/consent adapters
+and explicit scoped acceptance before it can operate in the company environment.
 
 ## Purpose
 
@@ -14,7 +27,7 @@ The goal is to keep the same governance core and replace only provider and platf
 Application repository in Bitbucket
         |
         v
-Bamboo plan or Bitbucket pipeline
+Bamboo plan
         |
         v
 Normalized evidence artifacts
@@ -69,9 +82,9 @@ The same concepts must stay stable:
 | Prototype path | Company target path | Notes |
 |---|---|---|
 | GitHub repository | Bitbucket repository | Application source lives in Bitbucket. |
-| GitHub Actions workflow | Bamboo plan or Bitbucket Pipelines | Platform syntax changes only. |
+| GitHub Actions workflow | Bamboo plan with repository-stored Specs | Platform syntax changes only. |
 | GitHub reusable workflow | Shared scripts, Bamboo Specs, or controlled template | Governance logic still comes from this repo. |
-| GitHub artifacts | Bamboo artifacts or Bitbucket artifacts | Artifact names and download APIs change. |
+| GitHub artifacts | Bamboo plan artifacts | Artifact names and download APIs change. |
 | GitHub Branch Protection API | Bitbucket Branch Permissions and Merge Checks API | Normalize into the same platform context fields. |
 | GitHub PR metadata | Bitbucket PR metadata | Normalize event, source branch, target branch, and PR id. |
 | GitHub repository_dispatch intake | Bamboo or Bitbucket-triggered intake | Use artifact bundle or platform API adapter. |
@@ -206,22 +219,24 @@ sequenceDiagram
 
 | Normalized field | Bitbucket or Bamboo source |
 |---|---|
-| `repository_id` | Bitbucket workspace/project and repository slug |
+| `repository_id` | Bitbucket Data Center project key and repository slug |
 | `branch` | Bamboo linked repository branch or Bitbucket branch |
 | `target_branch` | Bitbucket pull request destination branch |
 | `commit_id` | Bamboo linked repository revision or Bitbucket commit |
-| `pipeline_id` | Bamboo plan key or Bitbucket pipeline UUID |
-| `pipeline_run_id` | Bamboo build result key or Bitbucket build number |
-| `pipeline_url` | Bamboo result URL or Bitbucket pipeline URL |
+| `pipeline_id` | Bamboo plan key |
+| `pipeline_run_id` | Bamboo build result key |
+| `pipeline_url` | Bamboo result URL |
 | `event` | pull request, branch build, mainline push, manual, scheduled |
-| `status` | Bamboo build state or Bitbucket pipeline result |
+| `status` | Bamboo build state |
 | `branch_protected` | Bitbucket Branch Permissions lookup |
 | `review_required` | Bitbucket Merge Checks or project policy |
 | `direct_push_allowed` | Bitbucket Branch Permissions lookup |
 
 ## Minimum First Company Prototype
 
-Start small and non-blocking. For Bamboo Data Center 12.1.9, use repository-stored Bamboo YAML Specs and copy the template to the application repository as:
+Start small and report-only. After checking the actual company versions against
+the existing Bamboo 12.1.9 reference assumption, adapt repository-stored YAML
+Specs and copy the template to the application repository as:
 
 ```text
 bamboo-specs/bamboo.yaml

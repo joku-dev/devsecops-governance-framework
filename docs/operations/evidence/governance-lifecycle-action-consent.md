@@ -4,8 +4,10 @@ The personal channel test proved one explicit statement from the appointed
 account. This implementation now binds each individual decision, progress update,
 closure and withdrawal to its own complete request and the current pilot state.
 [GCR-2026-076](../../governance/change-requests/GCR-2026-076-lifecycle-action-consent.md)
-records the additive scope. It remains **pilot validation**, with operational
-activation and official publication disabled pending LD-07.
+records the additive scope. Action records retain their **pilot validation**
+labels. Since PRs #92/#93, effective LD-07 acceptance permits the separate
+[official pilot projection](../status/governance-lifecycle-current-state.md).
+Each action still needs its own personal statement and independent checks.
 
 ## Current result
 
@@ -67,6 +69,14 @@ post comments, change repository protection or execute the remediation. The
 transaction embeds the complete request, raw comment captures and disposition.
 A local candidate remains provisional until the required PR check independently
 retrieves its personal proof and verifies the relevant active prerequisites.
+
+For the accepted workflow path, commit the prepared request under
+`model/governance/lifecycle/action-requests/` through a checked PR, then run
+**Lifecycle Pilot Update**, branch `main`, operation `action`, with that path.
+The request's evidence/action heads must still match at intake; if they changed,
+prepare a new request and obtain a new personal statement. The workflow verifies
+operating consent, appends the action proof and proposes the resulting state in
+a separate publication PR. The local commands above prepare candidates only.
 
 ## Withdrawal and correction
 

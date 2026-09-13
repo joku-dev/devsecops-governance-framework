@@ -1,5 +1,18 @@
 # Agent Instructions
 
+## Current Lifecycle Pilot
+
+As of 13 September 2026, PRs #92/#93 publish the personally accepted manual
+GRS-002 report-only pilot for this repository/main only. Use
+`docs/operations/status/governance-lifecycle-current-state.md` and
+`status/governance-lifecycle-live.json` for its effective state. Preserve all
+files fingerprinted in `model/governance/lifecycle/operating-acceptance/00000001.json`;
+editing them invalidates effective acceptance and needs a versioned follow-up.
+Personal action consent, other consumers, live waivers and releases remain separate.
+The complete capability and technical inventories are in
+`docs/operations/guides/repository-function-catalog.md` and
+`docs/operations/guides/repository-technical-function-inventory.md`.
+
 ## Purpose
 
 This file gives Codex and other AI agents the minimum operating context for this repository.

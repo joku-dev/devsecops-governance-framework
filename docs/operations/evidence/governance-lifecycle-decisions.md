@@ -9,8 +9,9 @@ consent; it persists approvals, rejections, withdrawals and remediation progress
 as immutable transactions. **All inputs and outputs remain synthetic and
 report-only.** The fixture verifier checks consistency, not real human identity
 or conscious consent. A bot can generate these test fixtures; doing so grants no
-operational authority. Live intake remains disabled pending
-[LD-01–05 and LD-07](governance-lifecycle-pilot-decisions.md).
+operational authority. These synthetic entrypoints never accept live consent.
+The separate [GitHub action path](governance-lifecycle-action-consent.md) operates
+under the [accepted pilot](../status/governance-lifecycle-current-state.md).
 
 ## Bound plan and authorization — ADR-CLG-003
 

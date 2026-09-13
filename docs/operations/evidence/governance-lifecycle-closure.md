@@ -3,7 +3,8 @@
 13 September 2026. Technical synthetic implementation following PR #78.
 See [GCR-2026-065](../../governance/change-requests/GCR-2026-065-governance-lifecycle-closure.md)
 and the [pilot runbook](../../demos/demo-governance-lifecycle-pilot.md).
-**Live activation and accountable operational acceptance remain pending.**
+The synthetic package remains separate from the later
+[accepted GitHub operating pilot](../status/governance-lifecycle-current-state.md).
 
 The kernel accepts a closure only after the accepted history proves the complete
 synthetic chain. An accepted closure emits `finding_closed`. A genuinely newer
@@ -23,9 +24,10 @@ Its approval must come from the fixed synthetic `closure_approver` binding and
 bind the complete closure, finding, revision, role, subject and time. Fixture
 consistency is not authentication of a real human or conscious consent.
 Rejection, claimed revocation, old-contract and live closure packets cannot
-create a closure. Post-closure withdrawal/correction is not an implemented
-transition; do not rewrite a closure to simulate one. Live activation must
-resolve that operating procedure in the accountable acceptance review.
+create a closure. Post-closure withdrawal/correction is not a transition in
+this synthetic closure contract. The separate
+[GitHub action validator](governance-lifecycle-action-consent.md) now implements
+that operating procedure without rewriting historical closures.
 
 | Required check | Acceptance rule |
 |---|---|
@@ -112,8 +114,9 @@ Git remote with a fake API, so its tests do not create external PRs.
 This package changes only the synthetic pilot. It does not mutate a released
 baseline, change consumer contracts or justify a runtime release. CLG-04's
 technical preparation is reviewable; package completion still needs its PR
-merge and the documented accountable acceptance for any live portion. LD-01–05
-and LD-07 remain open. Confirm role appointments, authenticated consent, Trust
-sources, freshness/replay limits and withdrawal handling before live use.
+merge and accountable acceptance for any live portion. The later limited
+GitHub pilot records LD-01–07 and actual publication runs in the
+[current operating state](../status/governance-lifecycle-current-state.md).
+That acceptance does not create a new runtime release.
 [CLG-05](governance-lifecycle-exceptions.md) adds a separate synthetic exception
 scenario; live waiver integration remains unapproved.

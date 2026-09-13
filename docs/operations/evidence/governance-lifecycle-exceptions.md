@@ -2,8 +2,8 @@
 
 13 September 2026. Synthetic technical continuation after #79, classified in
 [GCR-2026-066](../../governance/change-requests/GCR-2026-066-governance-lifecycle-exceptions.md).
-The [CLG-04 live acceptance decisions](governance-lifecycle-pilot-decisions.md)
-remain open. This implementation does not activate a live waiver or change a
+The [limited GitHub pilot acceptance](../status/governance-lifecycle-current-state.md)
+excludes live waivers; this exception adapter remains synthetic. This implementation does not activate a live waiver or change a
 repository rule, OPA result, released baseline or consumer's enforcement.
 
 The exception intake binds temporary risk acceptance to explicit accepted
@@ -187,7 +187,7 @@ renewal, closed episodes, concurrent writers, replay, prefix protection and the
 publisher boundary. Run pinned `validate_all.sh` and a strict MkDocs build.
 
 This prepares the synthetic CLG-05 technical package. It does not complete the
-open live CLG-04 acceptance, add real appointments or authorize a runtime
+separate live-waiver acceptance, add real appointments or authorize a runtime
 release. CLG-06 remains a prioritization backlog for additional adapters,
 reporting and viewer work; select a bounded follow-up after review rather than
 implicitly enabling architecture or live waiver behavior.

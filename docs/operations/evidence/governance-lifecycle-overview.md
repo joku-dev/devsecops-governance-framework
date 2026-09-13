@@ -96,8 +96,8 @@ coverage is risk treatment, not a successful remediation or closure.
 The overview is a reporting contract, not a new lifecycle transition or input
 adapter. Existing synthetic profiles, ledgers, authority models and consumer
 results retain their meaning. The official status viewer is not fed by this
-report. Live appointments and accountable acceptance in
-[LD-01–05 and LD-07](governance-lifecycle-pilot-decisions.md) remain open.
+report. The later [accepted live pilot](../status/governance-lifecycle-current-state.md)
+has its own projection and does not promote these synthetic metrics.
 The kernel and reporting run without network access or an LLM.
 
 Tests cover the recorded-time cutoff, validation of a corrupt future suffix,

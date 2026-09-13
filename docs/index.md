@@ -1,5 +1,11 @@
 # DevSecOps Governance Framework
 
+Aktueller Funktionsumfang: [detaillierter Katalog mit 21 Bereichen](operations/guides/repository-function-catalog.md)
+und [vollständige technische Funktionsliste](operations/guides/repository-technical-function-inventory.md).
+Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-state.md)
+ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
+13. September 2026 aktiv, manuell und report-only.
+
 The [v0.2.0 adoption/operations release](releases/v0.2.0-public-adoption.md)
 packages the controlled pilot state and publication downloads; its release
 statement explains publication status and separate baseline pins.

@@ -7,9 +7,9 @@
 | Document type | Current-state, as-built system architecture |
 | Status | Current explanatory architecture |
 | Effective date | 2026-07-17 |
-| Last implementation review | 2026-09-11, repository `4abe882` |
+| Last implementation review | 2026-09-13, repository `8df643d` |
 | Owner | Governance Platform Maintainers |
-| Change request | `GCR-2026-035`; documentation refresh `GCR-2026-058` |
+| Change request | `GCR-2026-035`; documentation refreshes `GCR-2026-058`, `GCR-2026-078` |
 | Governance effect | None; documentation-only |
 | Released baseline effect | None |
 | Source Document Intake | Not required; no new governance source |
@@ -55,6 +55,30 @@ Out of scope:
 - Kubernetes as the current runtime platform
 - automatic approval by an AI agent
 - enterprise-wide approval workflows outside this repository
+
+## Implemented closed-loop pilot
+
+The [manual GitHub GRS-002 pilot](../../operations/status/governance-lifecycle-current-state.md)
+extends the as-built runtime with immutable evidence receipts, action-bound
+personal consent, remediation progress, evidence-bound closure/reopening and
+withdrawal handling. Versioned roles and operating values remain separate from
+individual statements. Effective LD-07 acceptance binds implementation digests;
+changed/withdrawn consent or a changed implementation prevents new valid operation.
+
+The manual `lifecycle-pilot-update.yml` workflow captures acceptance, observations
+or action statements, or refreshes projections. Its `lifecycle-pilot` publisher
+scope creates PRs with independently checked provider proof. A separate
+`status/governance-lifecycle-live.json` projection records official pilot state;
+technical validation records and synthetic histories keep their original labels.
+Actual #92/#93 workflow publications prove the acceptance/PASS path. No real
+remediation or closure is claimed. Consumer indexes and the main status viewer
+retain their existing scope; the separate scenario viewer remains synthetic.
+
+There is no scheduled lifecycle daemon, automatic remediation executor, live-waiver
+adapter, cross-consumer lifecycle portfolio or Bitbucket personal-consent adapter.
+The [function catalog](../../operations/guides/repository-function-catalog.md) and
+[technical inventory](../../operations/guides/repository-technical-function-inventory.md)
+provide the complete implementation entrypoints.
 
 ## Architecture Drivers
 
