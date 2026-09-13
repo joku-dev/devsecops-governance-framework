@@ -121,7 +121,7 @@ OK
 
 | Pitfall | How to avoid it |
 |---|---|
-| Confusing historical releases with the current release | Treat `v1.1.3` as current DevSecOps L1 and `architecture/l1/v0.1.0` as current Architecture L1. Older release docs are historical. |
+| Confusing historical releases with the current release | Treat `v1.1.3` as current DevSecOps L1 and `releases/architecture/l1/v0.1.0/` as current Architecture L1. Older release docs are historical. |
 | Confusing the architecture governance baseline with the application solution baseline | `architecture-baseline-l1-v0.1.0` is the reusable governance baseline. `ha-CPsWMS-demo-baseline` is app evidence. |
 | Confusing PR results with official status | The viewer's latest result prefers `push` results on `main`. Branch and PR runs stay in history. |
 | Treating report-only findings as approval blockers | Report-only findings are visible but do not fail the workflow unless blocking is explicitly enabled. |

@@ -1,5 +1,10 @@
 # Operations Guides
 
+Current capability reference: [function catalog](repository-function-catalog.md)
+and [technical inventory](repository-technical-function-inventory.md).
+For the accepted manual GRS-002 pilot, use the
+[current lifecycle operating state](../status/governance-lifecycle-current-state.md).
+
 ## Purpose
 
 This folder contains practical guidance for people who operate, maintain or

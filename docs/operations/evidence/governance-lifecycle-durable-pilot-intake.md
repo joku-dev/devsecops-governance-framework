@@ -1,5 +1,10 @@
 # Durable CLG Pilot Intake Validation
 
+Current operating context: the separate [GitHub GRS-002 pilot](../status/governance-lifecycle-current-state.md)
+is accepted after PRs #92/#93. This guide describes the scope of its own
+contract or adapter; synthetic, diagnostic and preparation records retain their
+original labels and do not independently authorize operation.
+
 The maintainer confirmed the proposed operating profile with `ja` on
 13 September 2026. [GCR-2026-073](../../governance/change-requests/GCR-2026-073-lifecycle-durable-pilot-intake.md)
 records this decision. The immutable model is

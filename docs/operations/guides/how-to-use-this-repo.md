@@ -1,5 +1,10 @@
 # How To Use This Repo
 
+Current capability reference: [function catalog](repository-function-catalog.md)
+and [technical inventory](repository-technical-function-inventory.md).
+For the accepted manual GRS-002 pilot, use the
+[current lifecycle operating state](../status/governance-lifecycle-current-state.md).
+
 For daily operation and pilot acceptance, start with the
 [operations handbook](governance-repository-operations-handbook.md).
 The change cycle below covers maintenance of governance content. Run

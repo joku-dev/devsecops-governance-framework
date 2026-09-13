@@ -2,7 +2,7 @@
 
 ## Source-of-Truth Strategy
 
-During the pilot, the structured YAML files in this repository should be treated as the working source for governance-as-code. The DOCX files in `docs/governance/source-documents` remain the authoritative baseline for comparison until the organization formally decides to make the structured model the master source.
+During the pilot, the structured YAML files in this repository should be treated as the working source for governance-as-code. The original governance source documents remain private comparison and review inputs; the public files under `docs/governance/source-documents/` are registered placeholders, not the original DOCX files. Formal master-source authority follows the source register and recorded organisational decisions.
 
 The working source includes not only structured controls and platform mappings, but also the governance document catalog in `model/documents/governance-documents.yaml`. This makes the relationship between Policy, Directive, and Standards explicit and reviewable.
 

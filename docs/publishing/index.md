@@ -1,5 +1,13 @@
 # Publishing Documents
 
+The delivered edition 1.1 Word/PDF/PowerPoint files and their editorial sources
+are retained publications of the 11 September 2026 snapshot. They do not include
+the later CLG implementation. For the maintained current description use the
+[function catalog](../operations/guides/repository-function-catalog.md),
+[technical inventory](../operations/guides/repository-technical-function-inventory.md)
+and [accepted GitHub pilot state](../operations/status/governance-lifecycle-current-state.md).
+The dated exports are not relabelled as current implementation evidence.
+
 ## Purpose
 
 This folder contains publication-oriented documents that can be reused outside

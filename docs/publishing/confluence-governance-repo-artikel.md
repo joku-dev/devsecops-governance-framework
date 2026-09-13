@@ -1,7 +1,7 @@
 # DevSecOps Governance Repository: Zweck, Nutzen und Funktionsweise
 
-Stand: **11. September 2026**, geprüfter Implementierungs- und Ergebnisstand
-`4abe88294f299d7f801c74ff0161df234960c092`.
+Stand: **13. September 2026**, geprüfter Implementierungsstand
+`8df643db37ec4d6da7196b94aaa77b5e0e0844d8`. Die datierten Consumer-Ergebnisse vom 11. September bleiben unverändert.
 Dieser Artikel erläutert die vorhandenen Funktionen. Für den laufenden Betrieb
 sind das [Betriebshandbuch](../operations/guides/governance-repository-operations-handbook.md)
 und die jeweils angenommenen Ergebnisse maßgeblich.
@@ -132,6 +132,20 @@ Branch-, PR- und manuelle Diagnoseläufe bleiben in der Historie sichtbar.
 Ein täglicher Betriebsbericht ergänzt die angenommenen Daten um Beobachtungen
 zu Workflows, PRs, Evidenzalter, Intake und Repository-Sicherheit. Er erzeugt
 selbst keine Aufgaben oder Warnmeldungen; Verantwortliche müssen ihn auswerten.
+
+## Findings und persönliche Entscheidungen nachverfolgen
+
+Der begrenzte [GitHub-Lifecycle-Pilot](../operations/status/governance-lifecycle-current-state.md)
+ist nach persönlicher Betriebsabnahme und den geprüften Veröffentlichungen #92/#93
+aktiv. Er nimmt echte GRS-002-Beobachtungen auf, prüft persönliche Entscheidungen,
+Fortschritt, Abschluss und Widerruf und veröffentlicht den Zustand über PRs.
+Zwei echte PASS-Receipts ergeben bislang kein Finding und keine Maßnahme.
+Fehler-/Behebungs-/Abschlussfolgen sind als Tests nachgewiesen. Live-Waiver,
+weitere Consumer und automatische Behebung sind nicht freigegeben.
+
+Der [aktuelle Funktionskatalog](../operations/guides/repository-function-catalog.md)
+erläutert 21 Bereiche; die [technische Liste](../operations/guides/repository-technical-function-inventory.md)
+erfasst alle Skripte, Module, Workflows und OPA-Module.
 
 ## Drei getrennte Aussagen lesen
 

@@ -1,5 +1,12 @@
 # Bitbucket And Bamboo Governance Adapter
 
+Current target clarification (13 September 2026): company deployment is
+**Bitbucket Data Center with Bamboo**, with installed versions still unknown.
+The `12.1.9` references below describe the existing template assumption, not a
+verified installation or compatibility test. Continue the working GitHub reference
+path until the company details are available. The GitHub GRS-002 operating
+acceptance does not authorize a Bitbucket lifecycle deployment.
+
 ## Purpose
 
 This document describes the first concrete adapter path for running the central DevSecOps Governance-as-Code baseline from Bitbucket-hosted application repositories through Bamboo Data Center 12.1.9.
@@ -11,7 +18,7 @@ workflows, releases or baselines.
 
 The adapter does not create a separate Bamboo governance system. Bamboo is the execution platform. The governance repository remains the owner of controls, schemas, evidence contracts, OPA policies, architecture markers, reports and release packages.
 
-## Target Version
+## Template Reference Version — Company Version Unconfirmed
 
 | Component | Target |
 |---|---|
@@ -21,7 +28,7 @@ The adapter does not create a separate Bamboo governance system. Bamboo is the e
 | Governance mode at first rollout | `report-only` |
 | Blocking mode after readiness review and accountable approval | `block-on-error` or `waiver-required` |
 
-Atlassian documents that Bamboo YAML Specs are processed from repository-stored Specs, and Bamboo looks for YAML Specs before Java Specs. The documented repository path is `bamboo-specs/bamboo.yml` or `bamboo-specs/bamboo.yaml`. Bamboo 12.x also requires Java 21 for server nodes and agents, so the adapter avoids custom Bamboo plugins and uses plain YAML Specs with shell tasks.
+Atlassian documents that Bamboo YAML Specs are processed from repository-stored Specs, and Bamboo looks for YAML Specs before Java Specs. The documented repository path is `bamboo-specs/bamboo.yml` or `bamboo-specs/bamboo.yaml`. [Bamboo 12.0 upgrade notes](https://confluence.atlassian.com/bambooreleases/bamboo-12-0-upgrade-notes-1671463218.html) require Java 21 for server nodes and agents (the 12.1 reference remains subject to the [supported-platform matrix](https://confluence.atlassian.com/bamboo/supported-platforms-289276764.html)), so the adapter avoids custom Bamboo plugins and uses plain YAML Specs with shell tasks.
 
 ## Adapter Files
 

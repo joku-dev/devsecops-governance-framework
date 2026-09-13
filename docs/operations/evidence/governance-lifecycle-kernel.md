@@ -1,5 +1,10 @@
 # Governance Lifecycle Kernel — CLG-02
 
+Current operating context: the separate [GitHub GRS-002 pilot](../status/governance-lifecycle-current-state.md)
+is accepted after PRs #92/#93. This guide describes the scope of its own
+contract or adapter; synthetic, diagnostic and preparation records retain their
+original labels and do not independently authorize operation.
+
 13 September 2026. Implements the synthetic finding/event package from the
 [closed-loop plan](../planning/closed-loop-governance-implementation-plan.md),
 using the [CLG-01 record contracts](governance-lifecycle-contract.md).
@@ -101,7 +106,8 @@ The latest evidence is selected by **observation time**, with record ID as a
 stable tie breaker only where results are consistent. A delayed older FAIL
 contributes to history and occurrence count but cannot replace newer PASS
 coverage. A genuinely newer FAIL becomes the latest evidence. Neither is called
-“reopening” in CLG-02 because operational closure is not yet implemented.
+“reopening” in the CLG-02 observation-only interface; the later closure and
+GitHub action interfaces implement their own closure/reopening transitions.
 
 `recorded_at` must be nondecreasing across published transactions, and the
 contract requires observation/verification/acceptance times to be consistent.
