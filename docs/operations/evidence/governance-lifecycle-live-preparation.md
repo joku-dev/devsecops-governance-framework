@@ -54,9 +54,9 @@ withdrawal. No publisher path is added.
 
 ## Next implementation and acceptance
 
-The next adapter reads GitHub run/artifact metadata and exact report bytes,
-checks their binding to the selected producer and source revision, and reports
-what was verified. It cannot accept live lifecycle observations while the
+The [read-only evidence preflight](governance-lifecycle-live-evidence-preflight.md)
+reads GitHub run/artifact metadata and exact report bytes, checks their binding
+to the selected producer and source revision, and reports what was verified. It cannot accept live lifecycle observations while the
 operating profile and acceptance decisions remain incomplete.
 
 The selected personal GitHub statement channel still needs a verifier binding
