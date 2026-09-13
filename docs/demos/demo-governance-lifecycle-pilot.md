@@ -63,7 +63,7 @@ also race closure against a new failure in two real processes and merge two
 competing Git proposals to verify semantic rejection.
 
 Publisher tests exercise the narrow synthetic scope against a local remote,
-including stale/forged pilot and CLG-06.1 overview projections, accepted-history changes and out-of-scope
+including stale/forged pilot, CLG-06.1 overview and CLG-06.2 viewer projections, accepted-history changes and out-of-scope
 profile or consumer changes. They verify that only a review branch is pushed
 and no approval/merge endpoint is called.
 
@@ -93,3 +93,6 @@ those slots or infer authority from a GitHub account or PR merge.
 After the technical PR is merged, record the accountable acceptance and explicit
 release decision before marking the full CLG-04 milestone complete. CLG-05 then
 adds scoped, expiring exceptions under the existing waiver authority contracts.
+
+The separate [lifecycle scenario viewer](../operations/evidence/governance-lifecycle-viewer.md)
+provides a read-only walkthrough of these test histories and their event references.

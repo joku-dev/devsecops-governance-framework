@@ -30,7 +30,8 @@ SCOPES = {
                             "status/governance-lifecycle-closure-index.json",
                             "generated/reports/governance-lifecycle-pilot.md",
                             "status/governance-lifecycle-overview.json",
-                            "generated/reports/governance-lifecycle-overview.md"),
+                            "generated/reports/governance-lifecycle-overview.md",
+                            "generated/viewer/governance-lifecycle-viewer.html"),
     "devsecops": COMMON + ("status/results/", "status/repository-results-index.json"),
     "architecture": COMMON + ("status/architecture-results/", "status/architecture-results-index.json"),
     "typed-evidence": COMMON + ("status/typed-evidence-results/", "status/typed-evidence-results-index.json"),
@@ -101,7 +102,9 @@ def publish(root: Path, *, scope: str, repository: str, run_id: str, attempt: st
         check_accepted_prefix(root, git(root, "rev-parse", "refs/remotes/origin/main").strip())
         validate_pilot(root)
         from generate_governance_lifecycle_overview import validate_overview
-        validate_overview(root)
+        overview = validate_overview(root)
+        from generate_governance_lifecycle_viewer import validate_viewer
+        validate_viewer(root, overview=overview)
     branch = f"automation/{scope}/{run_id}-{attempt}"
     git(root, "switch", "-c", branch)
     git(root, "reset", "--mixed", "HEAD")
