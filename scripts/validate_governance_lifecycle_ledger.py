@@ -53,7 +53,7 @@ def check_accepted_prefix(repo, base_ref):
         before = git(repo, "rev-parse", base_ref + ":" + EXCEPTION_PROFILE_PATH).strip()
         require(git(repo, "hash-object", "--", str(path)).strip() == before, "Exception profile requires a versioned migration")
     # Appointments and profile preparations are versioned separately from evidence.
-    for entry in git(repo, "ls-tree", "-r", base_ref, "--", PREPARATION_PATH, OPERATING_PATH, "model/governance/lifecycle/personal-channel").splitlines():
+    for entry in git(repo, "ls-tree", "-r", base_ref, "--", PREPARATION_PATH, OPERATING_PATH, "model/governance/lifecycle/personal-channel", "generated/reports/lifecycle-personal-channel").splitlines():
         metadata, name = entry.split("\t", 1)
         mode, kind, digest = metadata.split()
         require(mode == "100644" and kind == "blob", "Unexpected accepted preparation file type")
@@ -112,9 +112,12 @@ def main():
     validate_live_pilot()
     from generate_personal_channel_probe import validate as validate_personal_probe
     validate_personal_probe()
+    from generate_personal_channel_evidence import validate as validate_channel_evidence, verify_new_captures
+    validate_channel_evidence()
     if args.verify_new_provider:
         require(bool(args.base_ref), "Provider verification requires an accepted base")
         print(f"Independently checked {verify_new_receipts(ROOT, args.base_ref)} new pilot receipts against GitHub.")
+        print(f"Independently checked {verify_new_captures(ROOT, args.base_ref)} new personal-channel captures against GitHub.")
     index = validate_current()
     pilot = validate_pilot()
     exceptions = validate_exceptions()

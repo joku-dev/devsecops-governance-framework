@@ -118,3 +118,12 @@ provides a read-only verifier, a concrete personal statement on PR #87 and negat
 tests for identity, content and withdrawal history. The first real GET check is
 waiting for that personal statement. Confirmation proves this limited channel
 test only; action-specific live consent integration and LD-07 remain pending.
+
+## Personal channel confirmation, 13 September 2026
+
+The maintainer personally issued comment `5653982008` on PR #87. The retained
+provider capture confirms the bound request and account, with unchanged original
+comment bytes. A CRLF parsing correction handles GitHub's actual transport format;
+raw-byte edit detection remains intact. Required PR CI rechecks new captures
+against the provider. This closes the first positive channel test, while
+action-specific consent integration and LD-07 remain pending.
