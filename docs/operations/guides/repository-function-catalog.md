@@ -822,3 +822,13 @@ Dokumentations-PR.
 - [Governance-Graph](../status/governance-intelligence-graph-viewer.md)
 - [Agentensystem](../agents/agent-system-usage.md)
 - [Veröffentlichte Baselines](../../releases/index.md)
+
+## Gemessene Container-Schwachstellen im Viewer
+
+Der Bereich **Container Security** zeigt echte ha-CPsWMS-Image-Scans, Schweregrade,
+Vorher-/Nachher-Zahlen, Image-IDs und filterbare HIGH-/CRITICAL-Details. Der
+Intake `scripts/intake_measured_security.py` prüft erfolgreiche Main-Runs,
+Producer-Manifeste, Rohdatei-Hashes und Scan-Zuordnung und schreibt append-only
+Snapshots. Aktualisierung erfolgt durch erneuten Intake, Validierung und Merge;
+keine Live-Abfrage oder automatische Compliance-Freigabe. Ablauf und Grenzen:
+[L1 measured evidence](../evidence/l1-measured-evidence-ha-cpswms.md).
