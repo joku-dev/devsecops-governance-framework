@@ -10,3 +10,5 @@ site/
 # Local lifecycle append coordination and unpublished transactions.
 governance/lifecycle/**/.append.lock
 governance/lifecycle/**/.pending-*
+governance/consumer-lifecycle/**/.append.lock
+governance/consumer-lifecycle/**/.pending-*
