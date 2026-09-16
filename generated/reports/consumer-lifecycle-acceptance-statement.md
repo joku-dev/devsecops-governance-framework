@@ -8,7 +8,7 @@ Diskussion: https://github.com/joku-dev/devsecops-governance-framework/pull/101
 CLG-PERSONAL-CONSENT/1
 {
   "disposition": "approve",
-  "request_digest": "37439f85229d208970138e3cd594564beb2daa39ecbcc375c2665356aa2df0e2",
+  "request_digest": "8f2ea542869a364cb7d774cd2772276608824f2e5100a9ff22cc370c2fc8b753",
   "statement": "Ich habe diese Anfrage persönlich geprüft und gebe diese Erklärung selbst ab; keine Automation handelt dabei für mich.",
   "supersedes_comment_id": null
 }

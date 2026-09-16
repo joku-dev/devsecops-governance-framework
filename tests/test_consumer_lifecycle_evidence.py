@@ -6,6 +6,7 @@ import base64
 import hashlib
 import io
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -26,6 +27,15 @@ CAPTURE=ROOT/'generated/reports/consumer-lifecycle-preflight/main-run-3477886107
 
 
 class ConsumerEvidenceTests(unittest.TestCase):
+    def test_evidence_read_token_does_not_replace_publisher_write_token(self):
+        from lib.governance_lifecycle.consumer_evidence import github_get
+        with patch.dict(os.environ,{'GH_TOKEN':'publisher-test-token','CONSUMER_EVIDENCE_TOKEN':'reader-test-token'}):
+            with patch('lib.governance_lifecycle.consumer_evidence.subprocess.check_output',return_value=b'{}') as call:
+                self.assertEqual(github_get('repos/fixture/consumer',raw=True),b'{}')
+                self.assertEqual(call.call_args.kwargs['env']['GH_TOKEN'],'reader-test-token')
+                self.assertEqual(call.call_args.args[0][:6],['gh','api','--hostname','github.com','--method','GET'])
+                self.assertEqual(os.environ['GH_TOKEN'],'publisher-test-token')
+
     @classmethod
     def setUpClass(cls):
         cls.profile=load_operating()
