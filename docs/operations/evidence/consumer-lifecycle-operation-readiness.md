@@ -1,7 +1,7 @@
 # Erster Consumer-Lifecycle-Fall: Operation Readiness
 
 Stand: 16. September 2026. **Rollen und begrenzter Evidenzumfang vom Maintainer bestätigt;
-Consumer-Lifecycle persönlich abgenommen und aktiviert; Einzelaktionen ausstehend.**
+Consumer-Lifecycle aktiviert, Behebung persönlich entschieden; Fortschritt und Abschluss ausstehend.**
 
 ## Konkreter Fall und Nachweise
 
@@ -37,9 +37,10 @@ fehlende Eingabeablehnung. Das Diagnoseergebnis ist report-only.
 Dies belegt lokale Funktionsausführung im CI-Runner. Es gibt keinen deployten
 Dienst, keinen produktiven Health-Endpunkt, keine Verfügbarkeit oder SLO-Zusage.
 Der Maintainer hat diesen Umfang für den nicht deployten Demo-Consumer als
-Observability-Nachweis bestätigt. Die Consumer-Dateien bleiben zunächst `reviewed`,
-bis der neue Lifecycle-Betrieb den Ausgangsbefund und die Behebungsentscheidung
-erfasst hat. Die Aussage wird nicht zu einer Produktionsfreigabe erweitert.
+Observability-Nachweis bestätigt. Die Freigabe der beiden Consumer-Dateien von
+`reviewed` auf `approved` erfolgt gemäß der inzwischen erfassten persönlichen
+Behebungsentscheidung über Consumer-PR #7. Der Umfang bleibt auf das nicht
+deployte Demo begrenzt.
 
 Der bestehende Kandidatenadapter wurde auf den echten Ausgangsbericht angewendet.
 Unter `generated/reports/lifecycle-candidates/demo-consumer-operation-20260913/`
@@ -64,21 +65,38 @@ und [CI-Lauf 35107861865](https://github.com/joku-dev/governance-framework-demo-
 
 Der Consumer-Collector nahm das Gate am 16. September um 14:21:30 UTC auf.
 GitHub-Artefaktzeit: 14:20:45 UTC. Die unabhängige OPA-Neuberechnung bestätigt
-die beiden B5/P11-Nachrichten. Der eigene Lifecycle-Zustand ist **open**:
-ein angenommener Fehlernachweis, null Aktionsfreigaben. Der alte Diagnosekandidat
+die beiden B5/P11-Nachrichten. Die erste Aufnahme erzeugte den Zustand **open**
+mit einem Fehlernachweis und zunächst null Aktionsfreigaben. Der alte Diagnosekandidat
 wurde nicht rückwirkend angenommen. Die allgemeinen Consumer-Ergebnisindizes
 bleiben eine getrennte Darstellung mit ihren eigenen Aufnahmeläufen.
 
-Der vorbereitete Behebungsantrag
+Der inzwischen persönlich bestätigte Behebungsantrag
 `model/governance/lifecycle/consumer-operation/action-requests/00000001.json`
-bindet genau diesen Nachweis und Revision 1. Er schlägt `joku-dev` als Bearbeiter
-und den 23. September 2026, 23:59:59 Europe/Berlin, als Frist vor. Geplant sind
+bindet genau diesen Nachweis und Revision 1. Er benennt `joku-dev` als Bearbeiter
+und den 23. September 2026, 23:59:59 Europe/Berlin, als Frist. Geplant sind
 die konkrete Evidenzfreigabe für Feedback und CI-lokale Observability,
 persönliche Fortschrittsmeldungen und ein frischer Mainline-PASS nach dem
 abgeschlossenen Fortschritt. Anschließend folgt eine eigene Abschlussentscheidung.
-Die vorbereitete Erklärung liegt in
-`generated/reports/consumer-lifecycle-decision-statement.md` für PR #102.
-Bis zu ihrer persönlichen Abgabe bleibt der Plan ein Vorschlag.
+Die persönliche Erklärung in
+[Kommentar 5700249154](https://github.com/joku-dev/devsecops-governance-framework/pull/102#issuecomment-5700249154)
+wurde am 16. September um 15:42:03 UTC unabhängig erfasst. Der Plan ist angenommen;
+der Zustand bleibt **open**, nun mit einer angenommenen Behebungsentscheidung.
+
+## Umsetzung und nächster persönlicher Fortschritt
+
+[Consumer-PR #7](https://github.com/joku-dev/governance-framework-demo-consumer/pull/7)
+setzt die eng begrenzte Evidenzfreigabe um. Der CI-Nachweis aus Lauf `35107861865`
+wurde tatsächlich heruntergeladen und gegen Run, Commit und Artefaktdigest geprüft:
+drei erfolgreiche Funktionsdiagnosen. Details und Hashes stehen im Consumer-
+Maßnahmenprotokoll. Die Consumer-Änderung wird nach Veröffentlichung der zentralen
+Entscheidungsaufnahme gemergt; ihre vier PR-Prüfungen sind erfolgreich.
+
+`action-requests/00000002.json` bindet die erste Entscheidung und Revision 2
+für den Fortschritt `in_progress`. Die vorbereitete persönliche Erklärung liegt
+in `generated/reports/consumer-lifecycle-progress-statement.md` für PR #103.
+Es gibt noch keinen angenommenen Fortschritt. Ein PASS aus der technischen
+Umsetzung allein schließt den Fall nicht: Nach persönlichem `completed` wird ein
+zeitlich neuer Mainline-PASS benötigt, anschließend eine eigene Abschlussentscheidung.
 
 ## Bestätigte Rollen und Evidenzentscheidung
 
@@ -107,9 +125,9 @@ weiterhin über eigene inhalts- und revisionsgebundene Anträge.
    bleiben erhalten; notwendige gemeinsame Änderungen benötigen neue Abnahme.
 3. **Erledigt:** Implementierung und Leitfaden persönlich abgenommen und erfasst.
    Der vorliegende manuelle Diagnosekandidat wird dadurch nicht rückwirkend angenommen.
-4. **Befund aufgenommen; Entscheidung ausstehend:** persönliche, inhaltsgebundene
-   Behebungsentscheidung und Fortschritt mit den konkreten Artefakten erfassen.
-   Nach tatsächlicher fachlicher Freigabe Evidenzstatus separat aktualisieren.
+4. **Befund und Entscheidung erfasst:** die persönlich autorisierte Evidenzfreigabe
+   über Consumer-PR #7 umsetzen und die separaten Fortschritte anhand ihrer
+   konkreten Nachweise persönlich erfassen.
 5. Architekturprüfung nach Behebung auf `main` ausführen. Für Abschluss zählt nur
    ein frisches `operation_readiness=pass`, bei beiden Maßnahmen vollständig und
    nach ihrem Abschlusszeitpunkt. Danach persönliche Abschlussentscheidung erfassen.
