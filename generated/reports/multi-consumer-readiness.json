@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "report_id": "multi-consumer-readiness",
-  "generated_at": "2026-09-11T14:34:14Z",
+  "generated_at": "2026-09-16T17:28:13Z",
   "enforcement": "report_only",
   "ready": true,
   "summary": {
@@ -117,7 +117,7 @@
       "devsecops_result": true,
       "architecture_result": true,
       "typed_evidence_result": false,
-      "telemetry_events": 3
+      "telemetry_events": 4
     }
   ]
 }
