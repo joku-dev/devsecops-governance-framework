@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "intake-operation-event",
+  "event_id": "5e2b50e6c8e7b96dd2f3b727c1d634ee1f1ed9890d7e3db70ac55b78eaf81857",
+  "enforcement": "report_only",
+  "status": "success",
+  "intake_type": "architecture_governance",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "evidence_type": "governance_result",
+  "collector": {
+    "id": "central-governance-intake",
+    "version": "0.1.0"
+  },
+  "started_at": "2026-09-16T16:43:50Z",
+  "completed_at": "2026-09-16T16:43:52Z",
+  "duration_ms": 2000,
+  "source": {
+    "provider": "github_actions",
+    "run_id": "35123705622",
+    "artifact_name": "architecture-governance-evidence",
+    "source_uri": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35123705622"
+  },
+  "intake": {
+    "provider": "github_actions",
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "workflow_name": "Intake Downstream Architecture Result",
+    "run_id": "35123729670",
+    "run_attempt": 1,
+    "trigger_event": "repository_dispatch",
+    "source_uri": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/35123729670"
+  },
+  "errors": []
+}
