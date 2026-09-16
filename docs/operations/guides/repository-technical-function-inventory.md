@@ -18,7 +18,7 @@ Quellsprache der Module; unvollständige Paketbeschreibungen wurden fachlich pr�
 ## Consumer-Lifecycle-Ergänzungen (GCR-2026-080)
 
 Der separate Operation-Readiness-Pilot ist implementiert; seine persönliche
-Betriebsabnahme steht aus. Die folgenden neun Dateien ergänzen den unten
+Betriebsabnahme vom 16. September ist erfasst. Die folgenden neun Dateien ergänzen den unten
 aufgeführten ursprünglichen Bestand.
 
 | Datei | Aufgabe |

@@ -93,7 +93,18 @@ ergänzen echte Diagnose-Evidenz und Behebungsvorbereitung. Diese Arbeit aktivie
 keinen weiteren Lifecycle-Consumer und ändert die bestehende GRS-002-Abnahme nicht.
 
 Die anschließende Bestätigung des Maintainers erfasst Rollen und begrenzten
-Demo-Evidenzumfang in GCR-2026-080. Der separate Consumer-Annahme-/Aktionsweg
-ist implementiert; `status/governance-consumer-lifecycle.json` bleibt bis zur
-eigenen persönlichen Betriebsabnahme inaktiv. Der [Consumer-Betriebsleitfaden](../evidence/consumer-lifecycle-operation.md)
-enthält dessen genaue Bedingungen.
+Demo-Evidenzumfang in GCR-2026-080. Die eigene
+[persönliche Betriebsabnahme vom 16. September](https://github.com/joku-dev/devsecops-governance-framework/pull/101#issuecomment-5698945870)
+wurde um 14:16:03 UTC unabhängig erfasst. `status/governance-consumer-lifecycle.json`
+zeigt den separaten Consumer-Piloten als aktiviert. Die erste unabhängig
+verifizierte Mainline-Beobachtung aus Lauf `35107862511` wurde um 14:21:30 UTC
+aufgenommen: `operation_readiness=fail`, ein offener Fall mit den zwei
+Quellnachrichten B5/P11. Es gibt noch keine angenommene Einzelaktion.
+Der [Consumer-Betriebsleitfaden](../evidence/consumer-lifecycle-operation.md)
+enthält dessen genaue Bedingungen. Der repositoryübergreifende Lesetoken ist
+seit 16. September als Secret hinterlegt; der erforderliche Consumer-Guard
+prüft die neue Quelle vor Veröffentlichung unabhängig mit diesem Token.
+Der erste Behebungsantrag liegt unter
+`model/governance/lifecycle/consumer-operation/action-requests/00000001.json`.
+Er ist ein vorbereiteter Vorschlag und entfaltet ohne persönliche Erklärung
+keine Entscheidungswirkung.

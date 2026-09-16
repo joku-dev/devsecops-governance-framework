@@ -1,29 +1,29 @@
 {
   "active_closure_ref": null,
   "active_decision_ref": null,
-  "as_of": null,
-  "candidate_projection_digest": "abbe6cb50f0058b9fa6d478b766b6b8f58fba71e6901701ef6eb7d5d948b3855",
+  "as_of": "2026-09-16T14:21:30Z",
+  "candidate_projection_digest": "813c6d0a2073a0a14da41bb42b74236e34627583ccdfe7873c152199ddaf6a57",
   "counts": {
     "actions": 0,
-    "failures": 0,
+    "failures": 1,
     "quarantined": 0,
-    "receipts": 0
+    "receipts": 1
   },
   "enforcement": "report_only",
-  "evidence_as_of": null,
-  "finding_state": "inactive",
+  "evidence_as_of": "2026-09-16T14:21:30Z",
+  "finding_state": "open",
   "index_type": "governance-consumer-lifecycle-pilot",
   "limitation": "Manual report-only operation_readiness pilot for the neutral demo only; no automatic remediation, waivers or baseline changes.",
-  "live_activation_approved": false,
-  "official_state": false,
+  "live_activation_approved": true,
+  "official_state": true,
   "operating_acceptance": {
-    "capture_digest": null,
-    "captured_at": null,
-    "effective": false,
+    "capture_digest": "78bedcef600d52afa562698772746f48784fbf4404f82ba4ce6ff0aa4aed556b",
+    "captured_at": "2026-09-16T14:16:03Z",
+    "effective": true,
     "implementation_matches": true,
     "request_digest": "8f2ea542869a364cb7d774cd2772276608824f2e5100a9ff22cc370c2fc8b753",
     "roles_active": true,
-    "status": "waiting_for_personal_acceptance"
+    "status": "confirmed"
   },
   "promotion_basis": "Explicit consumer operating acceptance of the separate pilot validation projection; source receipts remain unchanged",
   "schema_version": "0.1.0",

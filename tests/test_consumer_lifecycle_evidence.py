@@ -149,12 +149,21 @@ class ConsumerEvidenceTests(unittest.TestCase):
         self.assertIn('consumer-lifecycle-guard.yml',publisher.CHECK_WORKFLOWS)
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary);subprocess.run(['git','init','-q',str(root)],check=True)
+            (root/'.gitignore').write_bytes((ROOT/'.gitignore').read_bytes())
             path=root/'governance/consumer-lifecycle/acceptance/00000001.json';path.parent.mkdir(parents=True);path.write_text('{}\n')
             subprocess.run(['git','add','.'],cwd=root,check=True)
             subprocess.run(['git','-c','user.name=fixture','-c','user.email=fixture@example.invalid','-c','commit.gpgsign=false','commit','-qm','fixture'],cwd=root,check=True)
             path.write_text('{"changed":true}\n')
             with self.assertRaisesRegex(ValueError,'append-only'):publisher.selected_paths(root,'consumer-lifecycle')
             with self.assertRaisesRegex(ContractError,'rewritten'):check_prefix(root,'HEAD')
+            path.write_text('{}\n')
+            for ledger in ('observations','actions'):
+                directory=root/'governance/consumer-lifecycle'/ledger
+                (directory/'transactions').mkdir(parents=True)
+                (directory/'.append.lock').touch()
+                (directory/'transactions/.pending-fixture').touch()
+            new=path.with_name('00000002.json');new.write_text('{}\n')
+            self.assertEqual(publisher.selected_paths(root,'consumer-lifecycle'),[str(new.relative_to(root))])
 
 
 if __name__=='__main__':unittest.main()
