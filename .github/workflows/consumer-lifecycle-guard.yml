@@ -1,0 +1,64 @@
+name: Consumer Lifecycle Guard
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Governance CI]
+    types: [completed]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  dispatch-operational-guard:
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'workflow_dispatch' &&
+      github.event.workflow_run.head_branch != 'main' &&
+      github.event.workflow_run.head_repository.id == github.event.repository.id
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - name: Dispatch guard for the validated operational branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GUARD_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          GUARD_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          [[ "$GUARD_HEAD_BRANCH" =~ ^[A-Za-z0-9][A-Za-z0-9_./-]*$ ]]
+          current_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$GUARD_HEAD_BRANCH" --jq .object.sha)"
+          [ "$current_sha" = "$GUARD_HEAD_SHA" ]
+          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/consumer-lifecycle-guard.yml/dispatches" -f "ref=$GUARD_HEAD_BRANCH"
+  verify-consumer:
+    if: github.event_name != 'workflow_run'
+    name: Consumer Lifecycle Guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.11'
+      - name: Bootstrap pinned validation
+        run: ./scripts/bootstrap_validation_env.sh
+      - name: Verify consumer history and provider
+        env:
+          GH_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
+          CONSUMER_EVENT: ${{ github.event_name }}
+          CONSUMER_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          export PATH="$PWD/.venv-validation/bin:$PATH"
+          if [ "$CONSUMER_EVENT" = workflow_dispatch ]; then
+            CONSUMER_BASE_SHA="$(git rev-parse refs/remotes/origin/main)"
+          fi
+          args=(--operation validate --base-ref "$CONSUMER_BASE_SHA")
+          if [ "$CONSUMER_EVENT" != push ]; then
+            args+=(--verify-provider)
+          fi
+          python scripts/run_consumer_lifecycle.py "${args[@]}"

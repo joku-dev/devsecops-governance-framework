@@ -1,0 +1,59 @@
+{
+  "capture": {
+    "method": "github_api_get_via_gh",
+    "snapshot_sha256": {
+      "artifact-after.json": "571626f09974ca2d127d3471f40f9db75561b7ff4c881df87e7f37bb7eff8bb1",
+      "artifact-before.json": "571626f09974ca2d127d3471f40f9db75561b7ff4c881df87e7f37bb7eff8bb1",
+      "artifact.zip": "f78e6c004dbb3cf3977634a5bc1164e1232fcd30e6a1598ffe572a3ca74de7da",
+      "baseline-ref.json": "b4da28d0508b4174c2b6305b460eccd223aae129398c55ef8a1bf12bf9855b34",
+      "baseline-tag.json": "6fec60632fbccdcc2d4a71d200da3a42479fbffe6ce2afce46f2c9eee41aee05",
+      "consumer-workflow.yml": "54c292e56967c4a3c33eb6845def5806ec5d21eee1a6cf595db8ae20605562e4",
+      "producer/.github/workflows/architecture-baseline-l1-v0.1.0.yml": "e3ee0c5c694b4226f50828fc5b8f3cdde4f8171a34fa9bff92e20e48d03ecd92",
+      "producer/policies/opa/architecture_operation_readiness.rego": "7fd4dbfeb08aea67600b7e083363cfdff1dc93d2e0d457c90d6ca2b0b1a44fda",
+      "producer/schemas/architecture-release-candidate.schema.json": "02154f5147784504f54324b3e9f7d48482c9f3699ac69d311d9bc618fd7f4882",
+      "producer/scripts/collect_architecture_release_input.py": "75855e8d40f507d898692f829cc0c4f42074566476fbb6247b47f8105c03922e",
+      "producer/scripts/generate_architecture_governance_report.py": "adfc6ca7eabd24f41f9c34779f6cb9ef91444749e2f59ea8482ed6aabfeaf7f4",
+      "repository.json": "f2b3a603830c636ed5a70506e453be116c8b6ce5b7eebea267642bf03b68cf79",
+      "run-after.json": "556d440b204c49502abc5a4f46bebc0cd77106b4eef83c958fb49506f8f5104f",
+      "run-before.json": "556d440b204c49502abc5a4f46bebc0cd77106b4eef83c958fb49506f8f5104f",
+      "workflow.json": "4f9556756860f5d11b135aff25e0ffaec0b5fa6c6cd7b2ecc0fafb6a50015683"
+    }
+  },
+  "captured_at": "2026-09-13T20:12:51Z",
+  "criterion": {
+    "granularity": "gate",
+    "id": "operation_readiness",
+    "resource": "repository",
+    "source_messages": [
+      "RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 3.",
+      "RG-OPERATION-READY: Operation-readiness marker P11 requires score 4 or a valid exception; current score is 3."
+    ],
+    "source_status": "findings",
+    "status": "fail"
+  },
+  "profile_ref": {
+    "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541",
+    "revision": 1
+  },
+  "repository_id": "joku-dev/governance-framework-demo-consumer",
+  "source": {
+    "artifact_id": 10324585321,
+    "artifact_sha256": "f78e6c004dbb3cf3977634a5bc1164e1232fcd30e6a1598ffe572a3ca74de7da",
+    "commit_id": "915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
+    "input_sha256": "2c748c7f4c44912c361a7f6b30569da2d3463ea20f39ec354ada14d1ae40cd17",
+    "observed_at": "2026-09-13T19:49:38Z",
+    "policy_revision": "19e281d323eb69be26bdb2cbf4368caadfbccaa7",
+    "report_sha256": "7ed38aa95072dbc80726ec48cdf29737c3f1965dfa629e6adcd695becf8084eb",
+    "run_attempt": 1,
+    "run_id": 34778861076,
+    "verified_file_digests": {
+      ".github/workflows/architecture-baseline-l1-v0.1.0.yml": "e3ee0c5c694b4226f50828fc5b8f3cdde4f8171a34fa9bff92e20e48d03ecd92",
+      "policies/opa/architecture_operation_readiness.rego": "7fd4dbfeb08aea67600b7e083363cfdff1dc93d2e0d457c90d6ca2b0b1a44fda",
+      "schemas/architecture-release-candidate.schema.json": "02154f5147784504f54324b3e9f7d48482c9f3699ac69d311d9bc618fd7f4882",
+      "scripts/collect_architecture_release_input.py": "75855e8d40f507d898692f829cc0c4f42074566476fbb6247b47f8105c03922e",
+      "scripts/generate_architecture_governance_report.py": "adfc6ca7eabd24f41f9c34779f6cb9ef91444749e2f59ea8482ed6aabfeaf7f4"
+    },
+    "workflow_id": 313654643,
+    "workflow_path": ".github/workflows/architecture-governance.yml"
+  }
+}
