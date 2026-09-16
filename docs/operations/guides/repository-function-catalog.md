@@ -708,7 +708,8 @@ Lifecycle-Portfolio und optionale KI-Unterstützung bleiben außerhalb der Abnah
 Der [separate Consumer-Lifecycle](../evidence/consumer-lifecycle-operation.md)
 ist für genau `governance-framework-demo-consumer` / `operation_readiness`
 technisch implementiert. Rollen und Demo-Evidenzumfang sind bestätigt;
-Betriebsabnahme und Einzelaktionen stehen aus. `run_consumer_lifecycle.py`
+Die persönliche Betriebsabnahme vom 16. September ist erfasst; einzelne
+Behebungs-/Fortschritts-/Abschlussfreigaben stehen aus. `run_consumer_lifecycle.py`
 prüft GitHub-Artefakt/Commit/Baseline und berechnet das Gate mit OPA neu;
 `publish_consumer_lifecycle.py` erzeugt ausschließlich Consumer-PRs.
 Die neuen Workflows `consumer-lifecycle-update.yml` und
