@@ -1,12 +1,14 @@
 # Persönliche Consumer-Behebungsentscheidung
 
+Status: Persönlich bestätigt und am 2026-09-16T15:42:03Z erfasst; diese ursprüngliche Erklärung muss nicht erneut abgegeben werden. Der nächste Antrag ist `consumer-lifecycle-progress-statement.md` (PR #103).
+
 Antrag: `model/governance/lifecycle/consumer-operation/action-requests/00000001.json`.
 
 Bitte den vollständigen Antrag und den Fallbericht vor der persönlichen Erklärung prüfen.
 
 Scope: Demo-Consumer, Architektur-Gate `operation_readiness` (B5/P11). Bearbeiter: `joku-dev`. Frist: 23. September 2026, 23:59:59 Europe/Berlin.
 
-Ausgangslauf: [35107862511](https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/35107862511). Zustand: offener Fehler, keine angenommene Behebungsentscheidung.
+Ausgangslauf: [35107862511](https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/35107862511). Antragsstand vor Annahme: offener Fehler, damals noch keine angenommene Behebungsentscheidung.
 
 Diese Erklärung autorisiert nur den gebundenen Behebungsplan. Fortschritt und Abschluss benötigen eigene persönliche Erklärungen.
 
