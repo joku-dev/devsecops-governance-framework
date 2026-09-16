@@ -99,12 +99,18 @@ wurde um 14:16:03 UTC unabhängig erfasst. `status/governance-consumer-lifecycle
 zeigt den separaten Consumer-Piloten als aktiviert. Die erste unabhängig
 verifizierte Mainline-Beobachtung aus Lauf `35107862511` wurde um 14:21:30 UTC
 aufgenommen: `operation_readiness=fail`, ein offener Fall mit den zwei
-Quellnachrichten B5/P11. Es gibt noch keine angenommene Einzelaktion.
+Quellnachrichten B5/P11. Die erste persönliche Behebungsentscheidung wurde am
+16. September um 15:42:03 UTC erfasst; der Fall bleibt offen. Es gibt einen
+Beobachtungsnachweis und eine angenommene Aktion, noch keinen Fortschritt oder Abschluss.
 Der [Consumer-Betriebsleitfaden](../evidence/consumer-lifecycle-operation.md)
 enthält dessen genaue Bedingungen. Der repositoryübergreifende Lesetoken ist
 seit 16. September als Secret hinterlegt; der erforderliche Consumer-Guard
 prüft die neue Quelle vor Veröffentlichung unabhängig mit diesem Token.
-Der erste Behebungsantrag liegt unter
-`model/governance/lifecycle/consumer-operation/action-requests/00000001.json`.
-Er ist ein vorbereiteter Vorschlag und entfaltet ohne persönliche Erklärung
-keine Entscheidungswirkung.
+Der erste Behebungsantrag unter
+`model/governance/lifecycle/consumer-operation/action-requests/00000001.json`
+ist durch [Kommentar 5700249154](https://github.com/joku-dev/devsecops-governance-framework/pull/102#issuecomment-5700249154)
+bestätigt. Die Umsetzung ist in
+[Consumer-PR #7](https://github.com/joku-dev/governance-framework-demo-consumer/pull/7)
+dokumentiert. Der Folgeantrag `action-requests/00000002.json` bereitet ausschließlich
+die persönliche Fortschrittsmeldung `in_progress` für Revision 2 vor. Ohne deren
+eigene Erklärung entsteht keine weitere Aktionswirkung.
