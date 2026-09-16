@@ -705,6 +705,17 @@ Providerüberwachung, keinen automatischen Remediation-Executor und keinen
 zugelassenen Bitbucket-Lifecycle-Adapter. Weitere Consumer, Live-Waiver,
 Lifecycle-Portfolio und optionale KI-Unterstützung bleiben außerhalb der Abnahme.
 
+Der [separate Consumer-Lifecycle](../evidence/consumer-lifecycle-operation.md)
+ist für genau `governance-framework-demo-consumer` / `operation_readiness`
+technisch implementiert. Rollen und Demo-Evidenzumfang sind bestätigt;
+Betriebsabnahme und Einzelaktionen stehen aus. `run_consumer_lifecycle.py`
+prüft GitHub-Artefakt/Commit/Baseline und berechnet das Gate mit OPA neu;
+`publish_consumer_lifecycle.py` erzeugt ausschließlich Consumer-PRs.
+Die neuen Workflows `consumer-lifecycle-update.yml` und
+`consumer-lifecycle-guard.yml` übernehmen manuellen Betrieb und unabhängige
+Providerprüfung. Die eigene Projektion `status/governance-consumer-lifecycle.json`
+verhindert eine Vermischung mit dem bestehenden GRS-002-Piloten.
+
 ## Berichte und Exporte im Überblick
 
 | Ausgabegruppe | Zweck | Wesentliche Generatoren unter `scripts/` |

@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "consumer-lifecycle-role-binding",
+  "binding_id": "binding:demo-operation-readiness",
+  "revision": 1,
+  "previous_ref": null,
+  "recorded_at": "2026-09-13T20:09:26Z",
+  "status": "confirmed",
+  "scope": {
+    "domain": "architecture",
+    "enforcement": "report_only",
+    "github_repository_id": 1301526448,
+    "pilot_only": true,
+    "repository_id": "joku-dev/governance-framework-demo-consumer",
+    "resource": "repository",
+    "rule_id": "operation_readiness"
+  },
+  "multiple_roles_confirmed": true,
+  "assignments": {
+    "remediation_decider": "github-user:81616324",
+    "evidence_approver": "github-user:81616324",
+    "closure_approver": "github-user:81616324",
+    "role_registry_owner": "github-user:81616324"
+  },
+  "subjects": [
+    {
+      "subject_id": "github-user:81616324",
+      "provider": "github",
+      "provider_user_id": 81616324,
+      "login": "joku-dev",
+      "display_name": "joku",
+      "profile_url": "https://github.com/joku-dev"
+    }
+  ],
+  "authorization": {
+    "channel": "maintainer_conversation",
+    "confirmed_on": "2026-09-13",
+    "statement": "ich bestätige",
+    "decision_ref": "docs/governance/change-requests/GCR-2026-080-consumer-lifecycle-admission.md",
+    "runtime_consent_proof": false
+  },
+  "evidence_sufficiency": {
+    "confirmed": true,
+    "scope": "CI-local diagnostics and linked feedback action for the non-deployed demo function only",
+    "source_ci_run": "34778860861",
+    "source_commit": "915aeed2507ba3cc60fad5cd6a7b2415505a1ac9",
+    "production_readiness_approved": false
+  }
+}

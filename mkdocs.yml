@@ -100,6 +100,7 @@ nav:
           - Application Repo Governance Timing: operations/processes/application-repo-governance-timing.md
           - Spot Check Governance Intake: operations/processes/spot-check-governance-intake.md
       - Evidence:
+          - Consumer Lifecycle Operation: operations/evidence/consumer-lifecycle-operation.md
           - Consumer Lifecycle Case: operations/evidence/consumer-lifecycle-operation-readiness.md
           - Governance Lifecycle Input Candidates: operations/evidence/governance-lifecycle-input-candidates.md
           - Governance Lifecycle Scenario Viewer: operations/evidence/governance-lifecycle-viewer.md
