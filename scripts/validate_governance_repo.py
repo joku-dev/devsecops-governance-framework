@@ -745,6 +745,11 @@ def main() -> int:
             typed_evidence_index_path,
         )
     validate_typed_evidence_results(errors)
+    from lib.measured_security import load_snapshots
+    try:
+        load_snapshots(ROOT / "status/measured-security-results")
+    except Exception as exc:
+        errors.append(f"Measured security snapshot validation: {exc}")
     validate_intake_conflicts(errors)
     validate_intake_events(errors)
     validate_intake_health(errors)
