@@ -1,7 +1,7 @@
 # Erster Consumer-Lifecycle-Fall: Operation Readiness
 
 Stand: 16. September 2026. **Rollen und begrenzter Evidenzumfang vom Maintainer bestätigt;
-Consumer-Lifecycle technisch implementiert, Betriebsabnahme und Einzelaktionen ausstehend.**
+Consumer-Lifecycle persönlich abgenommen und aktiviert; Einzelaktionen ausstehend.**
 
 ## Konkreter Fall und Nachweise
 
@@ -53,6 +53,33 @@ die zwei offenen Gate-Nachrichten bei erfolgreich ausgeführten Diagnosen.
 Die separate zentrale Ergebnisaufnahme prüft Bytes und Herkunft im bestehenden
 Consumer-Intake; sie erteilt keine Lifecycle-Annahme.
 
+## Erste Consumer-Lifecycle-Beobachtung
+
+Nach der persönlichen Betriebsabnahme dokumentiert
+[Consumer-PR #6](https://github.com/joku-dev/governance-framework-demo-consumer/pull/6)
+die inzwischen bestätigten Rollen und den verbleibenden Ablauf. Sein Mainline-
+Commit `5da284d0a3e7d526df644266451206e09084a556` erzeugte den echten
+[Architekturlauf 35107862511](https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/35107862511)
+und [CI-Lauf 35107861865](https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/35107861865).
+
+Der Consumer-Collector nahm das Gate am 16. September um 14:21:30 UTC auf.
+GitHub-Artefaktzeit: 14:20:45 UTC. Die unabhängige OPA-Neuberechnung bestätigt
+die beiden B5/P11-Nachrichten. Der eigene Lifecycle-Zustand ist **open**:
+ein angenommener Fehlernachweis, null Aktionsfreigaben. Der alte Diagnosekandidat
+wurde nicht rückwirkend angenommen. Die allgemeinen Consumer-Ergebnisindizes
+bleiben eine getrennte Darstellung mit ihren eigenen Aufnahmeläufen.
+
+Der vorbereitete Behebungsantrag
+`model/governance/lifecycle/consumer-operation/action-requests/00000001.json`
+bindet genau diesen Nachweis und Revision 1. Er schlägt `joku-dev` als Bearbeiter
+und den 23. September 2026, 23:59:59 Europe/Berlin, als Frist vor. Geplant sind
+die konkrete Evidenzfreigabe für Feedback und CI-lokale Observability,
+persönliche Fortschrittsmeldungen und ein frischer Mainline-PASS nach dem
+abgeschlossenen Fortschritt. Anschließend folgt eine eigene Abschlussentscheidung.
+Die vorbereitete Erklärung liegt in
+`generated/reports/consumer-lifecycle-decision-statement.md` für PR #102.
+Bis zu ihrer persönlichen Abgabe bleibt der Plan ein Vorschlag.
+
 ## Bestätigte Rollen und Evidenzentscheidung
 
 Der Maintainer bestätigte ausdrücklich mit **„ich bestätige“** die vorgeschlagenen
@@ -64,10 +91,11 @@ nur für diesen Pilotfall und bescheinigt keine Produktionsreife.
 [GCR-2026-080](../../governance/change-requests/GCR-2026-080-consumer-lifecycle-admission.md)
 und `model/governance/lifecycle/consumer-operation/roles.json` halten diese
 Gesprächsentscheidung fest. Der [separate Betriebsleitfaden](consumer-lifecycle-operation.md)
-beschreibt den implementierten Annahme- und Aktionsweg. Eine persönliche
-Implementierungs-/Betriebsabnahme sowie spätere einzelne Aktionsfreigaben sind
-damit noch nicht erklärt; hierfür wird der bestehende persönliche GitHub-Kanal
-mit einem eigenen Antragsdigest verwendet.
+beschreibt den implementierten Annahme- und Aktionsweg. Die separate
+[persönliche Betriebsabnahme](https://github.com/joku-dev/devsecops-governance-framework/pull/101#issuecomment-5698945870)
+vom 16. September wurde um 14:16:03 UTC erfasst; Implementierung und Rollen
+stimmen mit dem angenommenen Antrag überein. Einzelne Aktionsfreigaben folgen
+weiterhin über eigene inhalts- und revisionsgebundene Anträge.
 
 ## Anschließender Ablauf und Abschlusskriterien
 
@@ -77,9 +105,9 @@ mit einem eigenen Antragsdigest verwendet.
    Schemas, 24 Stunden maximale Frische, kein Zukunftsversatz, idempotenter Replay,
    Konfliktquarantäne und unveränderliche Historie. Bestehende LD-07-Dateidigests
    bleiben erhalten; notwendige gemeinsame Änderungen benötigen neue Abnahme.
-3. Implementierung und Leitfaden an eine neue persönliche Betriebsabnahme binden.
+3. **Erledigt:** Implementierung und Leitfaden persönlich abgenommen und erfasst.
    Der vorliegende manuelle Diagnosekandidat wird dadurch nicht rückwirkend angenommen.
-4. Frischen Mainline-Befund aufnehmen; eine persönliche, inhaltsgebundene
+4. **Befund aufgenommen; Entscheidung ausstehend:** persönliche, inhaltsgebundene
    Behebungsentscheidung und Fortschritt mit den konkreten Artefakten erfassen.
    Nach tatsächlicher fachlicher Freigabe Evidenzstatus separat aktualisieren.
 5. Architekturprüfung nach Behebung auf `main` ausführen. Für Abschluss zählt nur

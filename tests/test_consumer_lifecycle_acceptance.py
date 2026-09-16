@@ -101,7 +101,10 @@ class ConsumerAcceptanceTests(unittest.TestCase):
                 with self.assertRaisesRegex(ContractError,'strict required'):op.verify_provider(fetch=fetch)
 
     def test_activation_without_evidence_does_not_claim_observed_health(self):
-        self.assertEqual(self.original_projection()['finding_state'],'not_observed')
+        from lib.governance_lifecycle import consumer_actions
+        profile,binding,_,_=consumer_actions.load_context()
+        with patch.object(consumer_actions,'load_context',return_value=(profile,binding,[],[])):
+            self.assertEqual(self.original_projection()['finding_state'],'not_observed')
 
     def test_channel_probe_or_changed_operating_scope_cannot_authorize_activation(self):
         from lib.governance_lifecycle.adapter import strict_json
