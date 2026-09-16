@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 import hashlib
 import io
+import os
 import re
 import subprocess
 import tempfile
@@ -12,11 +13,21 @@ from .adapter import strict_json, json_bytes
 from .contracts import ROOT, FORMAT_CHECKER, require, timestamp
 from .consumer_contracts import load_operating, schema_validator
 from .live_preparation import revision_ref
-from .live_evidence import github_get, positive_id
+from .live_evidence import positive_id
 from .architecture_candidates import adapt_architecture
 
 MAX_BYTES = 10 * 1024 * 1024
 sha = lambda b: hashlib.sha256(b).hexdigest()
+
+
+def github_get(endpoint, *, raw=False):
+    """Read cross-repository evidence without changing the publisher's write token."""
+    command=['gh','api','--hostname','github.com','--method','GET',endpoint]
+    if raw:command.extend(['-H','Accept: application/vnd.github.raw+json'])
+    environment=os.environ.copy()
+    if environment.get('CONSUMER_EVIDENCE_TOKEN'):
+        environment['GH_TOKEN']=environment['CONSUMER_EVIDENCE_TOKEN']
+    return subprocess.check_output(command,env=environment,timeout=90)
 
 
 def verify_capture(profile, snapshots, *, captured_at):

@@ -56,4 +56,5 @@ jobs:
       - name: Open operational review PR
         env:
           GH_TOKEN: ${{ github.token }}
+          CONSUMER_EVIDENCE_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
         run: .venv-validation/bin/python scripts/publish_consumer_lifecycle.py

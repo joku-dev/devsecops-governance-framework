@@ -96,6 +96,14 @@ Alle Änderungen gelangen über einen begrenzten PR auf `main`. Der dedizierte
 Publisher darf ausschließlich neue Consumer-Nachweise und die eigene Projektion
 schreiben. Er prüft Herkunft, unveränderte Historie und Zustimmung erneut und
 startet Governance CI, CodeQL, Self-Security sowie **Consumer Lifecycle Guard**.
+Für repositoryübergreifende Artefaktabfragen verwendet er das konfigurierte
+`GH_RESULT_INTAKE_TOKEN`; Branch- und PR-Schreibzugriffe nutzen `GITHUB_TOKEN`.
+Vor der ersten Aufnahme muss `GH_RESULT_INTAKE_TOKEN` als Actions-Secret im
+zentralen Repository hinterlegt sein. Der Token benötigt `Actions: read` und
+`Contents: read` für Demo-Consumer und Governance-Repository; Schreibrechte
+sind für diesen Lesezugriff nicht nötig. Das repositorygebundene `GITHUB_TOKEN`
+ersetzt diese repositoryübergreifende Berechtigung nicht. Tokenwerte gehören
+ausschließlich in die Secret-Verwaltung, nicht in PR-Kommentare oder Chat.
 Für bestehende automatisierte Publisher startet der Guard zusätzlich nach
 erfolgreicher manuell ausgelöster Governance CI auf derselben internen Branch-
 Revision. Dieser Dispatcher führt keinen Code aus dem Quellbranch aus.

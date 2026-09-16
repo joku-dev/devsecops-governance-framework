@@ -49,6 +49,11 @@ successful checks. Add Consumer Lifecycle Guard to the existing required checks;
 retain the other checks and restore review count 1 after the scoped merge.
 Do not post the generated personal statement for the maintainer.
 
+The repository-secret inventory checked on 16 September 2026 is empty.
+Before cross-repository observation intake, the maintainer must configure
+`GH_RESULT_INTAKE_TOKEN` with the read-only access described in the operating
+guide. No existing local personal credential is copied into repository secrets.
+
 After technical publication, the remaining decision is the new personal
 implementation-bound operating acceptance. The generated statement and request
 point to the actual publication PR. Its later capture activates only this scope;
