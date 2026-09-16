@@ -1,16 +1,19 @@
 {
   "active_closure_ref": null,
-  "active_decision_ref": null,
-  "as_of": "2026-09-16T14:21:30Z",
-  "candidate_projection_digest": "813c6d0a2073a0a14da41bb42b74236e34627583ccdfe7873c152199ddaf6a57",
+  "active_decision_ref": {
+    "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7",
+    "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
+  },
+  "as_of": "2026-09-16T15:42:03Z",
+  "candidate_projection_digest": "efc9b8f512d99f7d5e71fbf855289276eb9f1aec724741357e91d4f77a29b32f",
   "counts": {
-    "actions": 0,
+    "actions": 1,
     "failures": 1,
     "quarantined": 0,
     "receipts": 1
   },
   "enforcement": "report_only",
-  "evidence_as_of": "2026-09-16T14:21:30Z",
+  "evidence_as_of": "2026-09-16T15:42:03Z",
   "finding_state": "open",
   "index_type": "governance-consumer-lifecycle-pilot",
   "limitation": "Manual report-only operation_readiness pilot for the neutral demo only; no automatic remediation, waivers or baseline changes.",
