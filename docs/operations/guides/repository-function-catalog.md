@@ -531,7 +531,9 @@ untersuchbar. Der Governance-Graph verknüpft Quellen, Artefakte, Repositories,
 Läufe, Commits, Baselines, Trust und Nachweise. Er projiziert die von den Indizes
 ausgewählten aktuellen Ergebnisse, nicht die gesamte Historie.
 
-**Ergebnisse:** Ein statischer HTML-Viewer, strukturierte Indizes und ein
+**Ergebnisse:** Eine eigenständige [Viewer-Anwendung](governance-viewer-app.md)
+mit Übersicht, Repository-Details, filterbaren Container-Befunden und Nachweisen;
+zusätzlich der bisherige technische HTML-Viewer, strukturierte Indizes und ein
 maschinenlesbarer Graph. Im Graph lassen sich Knoten suchen, Typen filtern und
 Beziehungen untersuchen. Weitere Ansichten zeigen Befunde, Trust, Replay und
 Sammlungsfehler.
@@ -540,7 +542,8 @@ Sammlungsfehler.
 `scripts/generate_architecture_results_index.py`,
 `scripts/generate_typed_evidence_results_index.py`,
 `scripts/generate_governance_graph.py`, `scripts/generate_status_viewer.py`,
-`generated/viewer/status-viewer.html`, `generated/graph/governance-graph.json`.
+`generated/viewer/status-viewer.html`, `generated/graph/governance-graph.json`,
+`apps/governance-viewer/`, `scripts/lib/viewer_app.py`, `generated/viewer/app/`.
 
 **Einordnung und Grenzen:** Implementiert und lesend. Der Viewer verändert keine
 Nachweise, Regeln oder Freigaben. Seine Daten sind abgeleitete Sichten.

@@ -1,0 +1,99 @@
+"""Protect official selection, missing evidence and the presentation build boundary."""
+from copy import deepcopy
+import json
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+from jsonschema import ValidationError
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts'))
+from lib.viewer_app import project, build
+from lib.measured_security import load_snapshots
+from publish_operational_update import allowed
+
+
+class ViewerAppTests(unittest.TestCase):
+    def setUp(self):
+        self.dev = json.loads((ROOT / 'status/repository-results-index.json').read_text())
+        self.arch = json.loads((ROOT / 'status/architecture-results-index.json').read_text())
+        self.scans = load_snapshots(ROOT / 'status/measured-security-results')
+
+    def test_official_latest_is_not_inferred_from_history(self):
+        official = deepcopy(self.dev['repositories'][0]['latest_result'])
+        self.dev['repositories'][0]['history'].append({'status':'pass','generated_at':'2099-01-01T00:00:00Z','pipeline_event':'pull_request'})
+        data = project(self.dev, self.arch, self.scans)
+        repo = next(r for r in data['repositories'] if r['id']==self.dev['repositories'][0]['repository_id'])
+        self.assertEqual(official, repo['devsecops'])
+
+    def test_missing_results_are_not_pass_or_zero_scan(self):
+        data = project({'repositories':[{'repository_id':'org/empty','history':[]}]}, {'repositories':[]}, [])
+        repo = data['repositories'][0]
+        self.assertIsNone(repo['devsecops'])
+        self.assertIsNone(repo['architecture'])
+        self.assertIsNone(repo['security'])
+        self.assertEqual([], repo['findings'])
+
+    def test_measured_history_sorted_and_attempts_preserved(self):
+        first = deepcopy(self.scans[0]); later = deepcopy(self.scans[-1])
+        attempt = deepcopy(later); attempt['run']['attempt'] += 1
+        data = project({'repositories':[]}, {'repositories':[]}, [attempt, first, later])
+        repo = data['repositories'][0]
+        self.assertEqual(attempt, repo['security'])
+        self.assertEqual([attempt['run'],later['run'],first['run']], [s['run'] for s in repo['security_history']])
+
+    def test_scan_selection_uses_instants_not_timestamp_strings(self):
+        earlier = deepcopy(self.scans[0]); later = deepcopy(self.scans[-1])
+        earlier['run']['created_at'] = '2026-09-16T12:00:00+02:00'
+        later['run']['created_at'] = '2026-09-16T11:00:00Z'
+        data = project({'repositories':[]}, {'repositories':[]}, [later, earlier])
+        self.assertEqual(later, data['repositories'][0]['security'])
+
+    def test_occurrences_and_distinct_ids_are_different(self):
+        data = project(self.dev,self.arch,self.scans)
+        repo = next(r for r in data['repositories'] if r['id']=='joku-dev/ha-CPsWMS')
+        total = repo['security']['counts']['HIGH'] + repo['security']['counts']['CRITICAL']
+        self.assertEqual(total, sum(f['occurrences'] for f in repo['findings']))
+        self.assertLess(len({f['id'] for f in repo['findings']}),total)
+        self.assertEqual('CRITICAL',repo['findings'][0]['severity'])
+        self.assertTrue(any(len(f['images'])>1 for f in repo['findings']))
+
+    def test_projection_does_not_change_inputs(self):
+        before = deepcopy((self.dev,self.arch,self.scans))
+        project(self.dev,self.arch,self.scans)
+        self.assertEqual(before,(self.dev,self.arch,self.scans))
+
+    def test_deterministic_build_and_separate_assets(self):
+        import shutil
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            shutil.copytree(ROOT/'apps/governance-viewer',root/'apps/governance-viewer')
+            (root/'status').mkdir()
+            for name,data in [('repository-results-index.json',self.dev),('architecture-results-index.json',self.arch)]:
+                (root/'status'/name).write_text(json.dumps(data))
+            shutil.copytree(ROOT/'status/measured-security-results',root/'status/measured-security-results')
+            build(root)
+            first={p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()}
+            build(root)
+            self.assertEqual(first,{p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()})
+            self.assertEqual({'index.html','app.css','app.js','data.json'},set(first))
+            self.assertIn(b"script-src 'self'",first['index.html'])
+
+    def test_operational_intake_cannot_publish_application_artifacts(self):
+        for scope in ('devsecops','architecture','typed-evidence'):
+            self.assertFalse(allowed('generated/viewer/app/data.json',scope))
+            for name in ('app.js','app.css','index.html'):
+                self.assertFalse(allowed('generated/viewer/app/'+name,scope))
+            self.assertFalse(allowed('apps/governance-viewer/app.js',scope))
+
+    def test_build_rejects_invalid_security_evidence(self):
+        import shutil
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);(root/'status/measured-security-results/org').mkdir(parents=True)
+            for name,data in [('repository-results-index.json',self.dev),('architecture-results-index.json',self.arch)]:
+                (root/'status'/name).write_text(json.dumps(data))
+            invalid=deepcopy(self.scans[0]);invalid['official_compliance_result']=True
+            (root/'status/measured-security-results/org/run-invalid.json').write_text(json.dumps(invalid))
+            with self.assertRaises(ValidationError): build(root)
+            self.assertFalse((root/'generated/viewer/app/data.json').exists())
