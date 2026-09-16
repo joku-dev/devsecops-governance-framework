@@ -1,0 +1,45 @@
+{
+  "body": {
+    "decision_ref": {
+      "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7",
+      "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
+    },
+    "evidence_note": "Remediation work has started under the personally approved decision in PR #102 (comment 5700249154). Consumer PR #7, head 1e7c5e442388887b144a36227c6c18f7e1508e48, implements the scoped feedback/observability approval and passed all four PR checks. Actual mainline diagnostics from run 35107861865 on 5da284d0a3e7d526df644266451206e09084a556 were verified: three passing function checks, artifact 10451300942, ZIP SHA-256 5faea99d5ff3ebb73c06d6b15898f9412625cccd6e02a517486c4e15c033ea72, report SHA-256 20e75015645d02a2f7bbbfbbef108a4342b4db61bee09bc250529b46ea094dbb. This statement records in_progress only. Completion, a mainline PASS observed after the completed record, and personal closure remain separate steps.",
+    "kind": "progress",
+    "progress": "in_progress"
+  },
+  "created_at": "2026-09-16T15:47:09Z",
+  "discussion_number": 103,
+  "environment": "live_pilot_validation",
+  "expected_action_head": {
+    "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7",
+    "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
+  },
+  "expected_receipt_head": {
+    "digest": "32d15df680deedb2880403f3034efe1af853df7cf23e4cda2a89d3eb15493c11",
+    "id": "transaction:a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2"
+  },
+  "expected_revision": 2,
+  "operating_profile_ref": {
+    "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541",
+    "revision": 1
+  },
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "request_type": "consumer-lifecycle-action",
+  "required_role": "remediation_decider",
+  "required_subject_id": "github-user:81616324",
+  "role_binding_ref": {
+    "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95",
+    "revision": 1
+  },
+  "schema_version": "0.1.0",
+  "scope": {
+    "domain": "architecture",
+    "enforcement": "report_only",
+    "github_repository_id": 1301526448,
+    "pilot_only": true,
+    "repository_id": "joku-dev/governance-framework-demo-consumer",
+    "resource": "repository",
+    "rule_id": "operation_readiness"
+  }
+}
