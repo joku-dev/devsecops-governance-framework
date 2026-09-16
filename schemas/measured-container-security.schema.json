@@ -1,0 +1,321 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "result_type": {
+      "const": "measured-container-security"
+    },
+    "repository_id": {
+      "const": "joku-dev/ha-CPsWMS"
+    },
+    "run": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9]+$"
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "branch": {
+          "const": "main"
+        },
+        "event": {
+          "const": "push"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "attempt",
+        "commit",
+        "branch",
+        "event",
+        "created_at",
+        "updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "enforcement": {
+      "const": "report-only"
+    },
+    "official_compliance_result": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "verification": {
+      "const": "github_run_context_and_raw_file_hashes_and_image_binding"
+    },
+    "independent_attestation": {
+      "const": false
+    },
+    "detail_severities": {
+      "const": [
+        "CRITICAL",
+        "HIGH"
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "CRITICAL": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "HIGH": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "MEDIUM": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "LOW": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "UNKNOWN": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "INFO": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "UNKNOWN",
+        "INFO"
+      ],
+      "additionalProperties": false
+    },
+    "unique_cves": {
+      "type": "object",
+      "properties": {
+        "CRITICAL": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "HIGH": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "MEDIUM": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "LOW": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "UNKNOWN": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "INFO": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "UNKNOWN",
+        "INFO"
+      ],
+      "additionalProperties": false
+    },
+    "tests_passed": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "images": {
+      "type": "object",
+      "properties": {
+        "ha-sync": {
+          "$ref": "#/$defs/image"
+        },
+        "query-api": {
+          "$ref": "#/$defs/image"
+        },
+        "semantic-enrichment": {
+          "$ref": "#/$defs/image"
+        },
+        "world-model-chat": {
+          "$ref": "#/$defs/image"
+        },
+        "neo4j": {
+          "$ref": "#/$defs/image"
+        }
+      },
+      "required": [
+        "ha-sync",
+        "query-api",
+        "semantic-enrichment",
+        "world-model-chat",
+        "neo4j"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "result_type",
+    "repository_id",
+    "run",
+    "enforcement",
+    "official_compliance_result",
+    "risk_acceptance",
+    "verification",
+    "independent_attestation",
+    "detail_severities",
+    "counts",
+    "unique_cves",
+    "tests_passed",
+    "images"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Measured container security snapshot (report-only)",
+  "$defs": {
+    "image": {
+      "type": "object",
+      "properties": {
+        "image_id": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "counts": {
+          "type": "object",
+          "properties": {
+            "CRITICAL": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "HIGH": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "MEDIUM": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "LOW": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "UNKNOWN": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "INFO": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "UNKNOWN",
+            "INFO"
+          ],
+          "additionalProperties": false
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "severity": {
+                "enum": [
+                  "CRITICAL",
+                  "HIGH"
+                ]
+              },
+              "package": {
+                "type": "string",
+                "minLength": 1
+              },
+              "installed_version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "fixed_version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "severity",
+              "package",
+              "installed_version",
+              "fixed_version"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "scan_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[0-9]+$"
+        },
+        "artifact_digest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "archive_digest_verified": {
+          "const": false
+        }
+      },
+      "required": [
+        "image_id",
+        "counts",
+        "findings",
+        "scan_sha256",
+        "manifest_sha256",
+        "artifact_id",
+        "artifact_digest",
+        "archive_digest_verified"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
