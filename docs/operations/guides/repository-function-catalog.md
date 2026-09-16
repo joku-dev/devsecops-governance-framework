@@ -157,6 +157,12 @@ jeder Anwendung aktiv ist. Die verwendete Baseline bestimmt den konkreten Umfang
 
 ## 5. DevSecOps-Kontrollen auswerten
 
+Ergänzend erhebt `ha-CPsWMS` [gemessene L1-Nachweise](../evidence/l1-measured-evidence-ha-cpswms.md)
+mit Anwendungstests, echter HTTP-/Neo4j-Integration, Image-SBOMs und Scans.
+Die Abdeckungsmatrix aller 16 Kontrollen unterscheidet gemessene Nachweise,
+Teilabdeckung, Befunde und Lücken. Sie ersetzt keinen freigegebenen
+Compliance-Bericht und erteilt keine Deployment-Freigabe.
+
 **Zweck:** Aus strukturierten Anwendungsnachweisen verständliche Ergebnisse je
 Kontrolle und für den gesamten betrachteten Lauf erzeugen.
 
