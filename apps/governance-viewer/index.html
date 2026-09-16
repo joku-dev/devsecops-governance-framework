@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+  <meta name="description" content="Governance-Ergebnisse, Sicherheitsbefunde und Nachweise im Überblick.">
+  <title>Governance Workspace</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">Zum Inhalt</a>
+  <aside class="sidebar">
+    <a class="brand" href="#overview"><span class="brand-mark">G</span><span>Governance<small>WORKSPACE</small></span></a>
+    <div class="nav-label">ARBEITSBEREICH</div>
+    <nav aria-label="Hauptnavigation">
+      <a href="#overview" data-nav="overview"><span aria-hidden="true">◫</span>Übersicht</a>
+      <a href="#repositories" data-nav="repositories"><span aria-hidden="true">▣</span>Repositories</a>
+      <a href="#findings" data-nav="findings"><span aria-hidden="true">◇</span>Befunde</a>
+      <a href="#evidence" data-nav="evidence"><span aria-hidden="true">▤</span>Nachweise</a>
+    </nav>
+    <div class="sidebar-bottom"><p>Weitere Ansichten</p><a href="../status-viewer.html">Technischer Viewer ↗</a><small>Modelle · Intake · Lifecycle</small><div class="readonly">● &nbsp; Lesender Zugriff</div></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span>Governance / <strong id="breadcrumb">Übersicht</strong></span><span class="snapshot-label">Gespeicherte Ergebnisse</span></header>
+    <main id="content" tabindex="-1"><div class="empty" role="status">Ergebnisse werden geladen …</div></main>
+    <footer>Aktualisierung nach Intake und Veröffentlichung. Keine Live-Abfrage der Consumer-Repositories. <a href="../status-viewer.html">Technischer Viewer ↗</a></footer>
+  </div>
+  <noscript><p>Diese Anwendung benötigt JavaScript. <a href="../status-viewer.html">Technischen Viewer öffnen</a>.</p></noscript>
+</body>
+</html>

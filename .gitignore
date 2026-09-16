@@ -12,3 +12,6 @@ governance/lifecycle/**/.append.lock
 governance/lifecycle/**/.pending-*
 governance/consumer-lifecycle/**/.append.lock
 governance/consumer-lifecycle/**/.pending-*
+
+# Viewer presentation data is rebuilt from versioned evidence for Pages/local use.
+/generated/viewer/app/data.json

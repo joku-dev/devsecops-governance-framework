@@ -206,6 +206,7 @@ python3 -m unittest discover -s tests
 | DevSecOps result history | `status/results/` |
 | Architecture result index | `status/architecture-results-index.json` |
 | Architecture result history | `status/architecture-results/` |
+| Viewer application | `apps/governance-viewer/`, `scripts/lib/viewer_app.py`, `generated/viewer/app/index.html`; guide: `docs/operations/guides/governance-viewer-app.md` |
 | Viewer generator | `scripts/generate_status_viewer.py` |
 | Viewer output | `generated/viewer/status-viewer.html` |
 | Intake docs | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |

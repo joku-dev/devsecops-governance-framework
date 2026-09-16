@@ -4,6 +4,11 @@ For credential setup and rotation, see [GitHub access maintenance](../security/g
 For daily checks, failure handling and pilot acceptance, see the
 [operations handbook](../guides/governance-repository-operations-handbook.md).
 
+For the new overview, repository details, container findings and evidence navigation,
+open the [Governance Workspace application](../guides/governance-viewer-app.md).
+The technical viewer remains available for graph, intake, lifecycle and models.
+Both are built by `scripts/generate_status_viewer.py`.
+
 ## Purpose
 
 This guide explains two operational capabilities of this repository:

@@ -127,6 +127,7 @@ nav:
           - Evidence Collector Contract: operations/evidence/evidence-collector-contract.md
           - Vulnerability Scan Collector Usage: operations/evidence/vulnerability-scan-collector-usage.md
           - Governance Evidence Schema Versioning: operations/evidence/governance-evidence-schema-versioning.md
+          - Governance Workspace App: operations/guides/governance-viewer-app.md
           - Governance Result Intake And Viewer Usage: operations/evidence/governance-result-intake-and-viewer-usage.md
           - Intake Operation Telemetry: operations/evidence/intake-operation-telemetry.md
           - Intake Health Projection: operations/evidence/intake-health-projection.md

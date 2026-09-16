@@ -1,5 +1,7 @@
 # Official Entrypoints
 
+[Governance Workspace öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html) · [Bedienung und Datenherkunft](operations/guides/governance-viewer-app.md)
+
 Aktueller Funktionsumfang: [detaillierter Katalog mit 21 Bereichen](operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](operations/guides/repository-technical-function-inventory.md).
 Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-state.md)

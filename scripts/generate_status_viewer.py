@@ -10,6 +10,7 @@ import json
 
 import yaml
 
+from lib.viewer_app import build as build_viewer_app
 from lib.collection_attempts import project_collection_attempt_lifecycle
 from lib.measured_security import load_snapshots
 from lib.measured_security_view import render as render_measured_security
@@ -2133,6 +2134,7 @@ def main() -> int:
   </style>
 </head>
 <body>
+  <div style="padding:12px 24px;background:#e8f4ef"><a href="app/index.html"><strong>Neue Viewer-Anwendung öffnen →</strong></a> · Übersicht, Repositories, Befunde und Nachweise</div>
   <header>
     <h1>Governance Status Viewer</h1>
     <p class="meta">Operational snapshot of downstream governance results, released baselines, runtime architecture status, traceability coverage, and open governance work.</p>
@@ -2385,7 +2387,8 @@ def main() -> int:
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(html, encoding="utf-8")
-    print(f"Wrote {OUT.relative_to(ROOT)}")
+    build_viewer_app(ROOT)
+    print(f"Wrote {OUT.relative_to(ROOT)} and viewer app")
     return 0
 
 
