@@ -1,7 +1,7 @@
 # Erster Consumer-Lifecycle-Fall: Operation Readiness
 
-Stand: 13. September 2026. **Technisch vorbereitet; keine angenommene
-Lifecycle-Beobachtung, Rollenübertragung, Evidenzfreigabe oder Schließung.**
+Stand: 16. September 2026. **Rollen und begrenzter Evidenzumfang vom Maintainer bestätigt;
+Consumer-Lifecycle technisch implementiert, Betriebsabnahme und Einzelaktionen ausstehend.**
 
 ## Konkreter Fall und Nachweise
 
@@ -36,9 +36,10 @@ fehlende Eingabeablehnung. Das Diagnoseergebnis ist report-only.
 
 Dies belegt lokale Funktionsausführung im CI-Runner. Es gibt keinen deployten
 Dienst, keinen produktiven Health-Endpunkt, keine Verfügbarkeit oder SLO-Zusage.
-Ob dieser Umfang für den nicht deployten Demo-Consumer als Observability-Evidenz
-ausreicht, ist eine fachliche Entscheidung. Die Evidenzdateien bleiben
-`reviewed`; ein grüner Testlauf setzt sie nicht auf `approved`.
+Der Maintainer hat diesen Umfang für den nicht deployten Demo-Consumer als
+Observability-Nachweis bestätigt. Die Consumer-Dateien bleiben zunächst `reviewed`,
+bis der neue Lifecycle-Betrieb den Ausgangsbefund und die Behebungsentscheidung
+erfasst hat. Die Aussage wird nicht zu einer Produktionsfreigabe erweitert.
 
 Der bestehende Kandidatenadapter wurde auf den echten Ausgangsbericht angewendet.
 Unter `generated/reports/lifecycle-candidates/demo-consumer-operation-20260913/`
@@ -52,28 +53,26 @@ die zwei offenen Gate-Nachrichten bei erfolgreich ausgeführten Diagnosen.
 Die separate zentrale Ergebnisaufnahme prüft Bytes und Herkunft im bestehenden
 Consumer-Intake; sie erteilt keine Lifecycle-Annahme.
 
-## Entscheidungsvorlage für den Maintainer
+## Bestätigte Rollen und Evidenzentscheidung
 
-Vorgeschlagen ist genau dieser eine manuelle Report-only-Fall auf GitHub.com.
-`joku-dev` / GitHub-ID `81616324` übernimmt ausdrücklich die Rollen für
-Consumer-Lifecycle-Entscheidung, fachliche Evidenzabnahme, Abschluss und
-Rollenverwaltung. Die Mehrfachrolle gilt nur für diesen Demo-Piloten.
+Der Maintainer bestätigte ausdrücklich mit **„ich bestätige“** die vorgeschlagenen
+Entscheidungs-, Evidenzabnahme-, Abschluss- und Verwaltungsrollen von `joku-dev`
+(GitHub-ID `81616324`) sowie Maßnahmenprotokoll und CI-lokale Diagnosen als
+hinreichenden Nachweis für dieses nicht deployte Demo. Die Mehrfachrolle gilt
+nur für diesen Pilotfall und bescheinigt keine Produktionsreife.
 
-Zusätzlich ist zu entscheiden, ob das offene Maßnahmenprotokoll und die
-CI-lokalen Funktionsdiagnosen für B5/P11 dieses nicht deployten Demos als
-Behebungsnachweise ausreichen. Diese Entscheidung bescheinigt keine
-Produktionsreife. Die genauen Mainline-Läufe und Artefakte stehen im
-[Referenzprotokoll](../reference-runs/2026-09-13-consumer-revalidation.md).
-
-**Noch nicht erklärt oder angenommen:** Diese Vorlage enthält keine persönliche
-Erklärung des Maintainers. Die frühere GRS-002-Rollenbindung gilt für das zentrale
-Repository; sie darf nicht auf diesen Consumer übertragen werden. Die technische
-PR-Review-Ausnahme ersetzt diese fachliche Zuordnung und Abnahme nicht.
+[GCR-2026-080](../../governance/change-requests/GCR-2026-080-consumer-lifecycle-admission.md)
+und `model/governance/lifecycle/consumer-operation/roles.json` halten diese
+Gesprächsentscheidung fest. Der [separate Betriebsleitfaden](consumer-lifecycle-operation.md)
+beschreibt den implementierten Annahme- und Aktionsweg. Eine persönliche
+Implementierungs-/Betriebsabnahme sowie spätere einzelne Aktionsfreigaben sind
+damit noch nicht erklärt; hierfür wird der bestehende persönliche GitHub-Kanal
+mit einem eigenen Antragsdigest verwendet.
 
 ## Anschließender Ablauf und Abschlusskriterien
 
-1. Rollen, enger Umfang und ausreichende Demo-Evidenz ausdrücklich bestätigen.
-2. Einen separaten versionierten Consumer-Annahmeweg implementieren und testen:
+1. **Erledigt:** Rollen, enger Umfang und ausreichende Demo-Evidenz bestätigt.
+2. **Implementiert:** separater versionierter Consumer-Annahme- und Aktionsweg:
    Provider-Run/Artifact/Commit, aufgelöste Policy, genau dieses Gate, geschlossene
    Schemas, 24 Stunden maximale Frische, kein Zukunftsversatz, idempotenter Replay,
    Konfliktquarantäne und unveränderliche Historie. Bestehende LD-07-Dateidigests
