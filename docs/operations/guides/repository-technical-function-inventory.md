@@ -15,6 +15,21 @@ Einträge wurden aus den versionierten Dateien, Python-Modulbeschreibungen und
 Workflow-Definitionen ermittelt. Englische Beschreibungen übernehmen die
 Quellsprache der Module; unvollständige Paketbeschreibungen wurden fachlich präzisiert.
 
+## Viewer-Ergänzungen (GCR-2026-084/085)
+
+Diese Dateien ergänzen den unten datierten Bestand. Die
+[Viewer-Anwendung](governance-viewer-app.md) beschreibt Bedienung und Datenherkunft.
+
+| Datei | Aufgabe |
+|---|---|
+| `scripts/intake_measured_security.py` | Nimmt echte Container-Scans mit Run-, Rohdatei- und Image-Prüfung auf. |
+| `scripts/lib/measured_security.py` | Validiert und speichert separate unveränderliche Container-Sicherheitsnachweise. |
+| `scripts/lib/measured_security_view.py` | Erzeugt den Sicherheitsbereich im technischen Viewer. |
+| `scripts/lib/viewer_app.py` | Projiziert offizielle Governance-Indizes und validierte Scans in die eigenständige Anwendung. |
+| `apps/governance-viewer/index.html` | Anwendungseinstieg, Navigation und Content Security Policy. |
+| `apps/governance-viewer/app.js` | Lesende Ansichten, Hash-Routing, Suche, Filter, Vergleich und Seitennavigation. |
+| `apps/governance-viewer/app.css` | Responsive Gestaltung für Desktop und Mobilgeräte. |
+
 ## Consumer-Lifecycle-Ergänzungen (GCR-2026-080)
 
 Der separate Operation-Readiness-Pilot ist implementiert; seine persönliche
