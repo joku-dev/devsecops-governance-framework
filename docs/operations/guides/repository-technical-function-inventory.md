@@ -1,6 +1,7 @@
 # Technische Funktionsliste des Repositories
 
-Stand: 13. September 2026, Quellstand `8df643db37ec4d6da7196b94aaa77b5e0e0844d8`.
+Stand: 16. September 2026, Bestand aus der Dokumentationsprüfung plus
+Consumer-Lifecycle-Erweiterung GCR-2026-080 auf Basis `762a67d`.
 
 Dies ist die vollständige Dateiliste der implementierten Skripte und Bibliotheksmodule
 unter `scripts/`, der GitHub-Workflows und der OPA-Module am genannten Stand.
@@ -8,11 +9,29 @@ Der [fachliche Katalog](repository-function-catalog.md) erläutert die 21 Aufgab
 mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbole
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
-Umfang: **120 Skripte/Module**, **19 Workflows**, **15 OPA-Module**.
+Umfang: **127 Skripte/Module**, **21 Workflows**, **15 OPA-Module**.
 
 Einträge wurden aus den versionierten Dateien, Python-Modulbeschreibungen und
 Workflow-Definitionen ermittelt. Englische Beschreibungen übernehmen die
 Quellsprache der Module; unvollständige Paketbeschreibungen wurden fachlich präzisiert.
+
+## Consumer-Lifecycle-Ergänzungen (GCR-2026-080)
+
+Der separate Operation-Readiness-Pilot ist implementiert; seine persönliche
+Betriebsabnahme steht aus. Die folgenden neun Dateien ergänzen den unten
+aufgeführten ursprünglichen Bestand.
+
+| Datei | Aufgabe |
+|---|---|
+| [scripts/lib/governance_lifecycle/consumer_acceptance.py](https://github.com/joku-dev/devsecops-governance-framework/blob/main/scripts/lib/governance_lifecycle/consumer_acceptance.py) | Separate personal operating acceptance for demo operation-readiness. |
+| [scripts/lib/governance_lifecycle/consumer_actions.py](https://github.com/joku-dev/devsecops-governance-framework/blob/main/scripts/lib/governance_lifecycle/consumer_actions.py) | Personally bound actions for the single operation-readiness consumer pilot. |
+| [scripts/lib/governance_lifecycle/consumer_admission.py](https://github.com/joku-dev/devsecops-governance-framework/blob/main/scripts/lib/governance_lifecycle/consumer_admission.py) | Durable operation-readiness receipts; operating acceptance remains separate. |
+| [scripts/lib/governance_lifecycle/consumer_contracts.py](https://github.com/joku-dev/devsecops-governance-framework/blob/main/scripts/lib/governance_lifecycle/consumer_contracts.py) | Versioned contracts for the single confirmed demo-consumer architecture scope. |
+| [scripts/lib/governance_lifecycle/consumer_evidence.py](https://github.com/joku-dev/devsecops-governance-framework/blob/main/scripts/lib/governance_lifecycle/consumer_evidence.py) | GitHub GET capture and offline verification for operation_readiness only. |
+| [scripts/publish_consumer_lifecycle.py](https://github.com/joku-dev/devsecops-governance-framework/blob/main/scripts/publish_consumer_lifecycle.py) | Publish allowlisted operational changes as a reviewed PR, never to main. |
+| [scripts/run_consumer_lifecycle.py](https://github.com/joku-dev/devsecops-governance-framework/blob/main/scripts/run_consumer_lifecycle.py) | Prepare, verify or operate the bounded consumer lifecycle through reviewed PRs. |
+| [.github/workflows/consumer-lifecycle-guard.yml](https://github.com/joku-dev/devsecops-governance-framework/blob/main/.github/workflows/consumer-lifecycle-guard.yml) | Erforderliche unabhängige Consumer-Prüfung von Historie, GitHub-Evidenz und persönlichen Freigaben. |
+| [.github/workflows/consumer-lifecycle-update.yml](https://github.com/joku-dev/devsecops-governance-framework/blob/main/.github/workflows/consumer-lifecycle-update.yml) | Manueller Betrieb für den benannten Consumer nach eigener Betriebsabnahme; ausschließlich PR-Vorschläge. |
 
 ## Ausführung und Seiteneffekte
 

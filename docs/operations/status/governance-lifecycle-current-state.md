@@ -91,3 +91,9 @@ Die [Consumer-Revalidierung vom 13. September](../reference-runs/2026-09-13-cons
 und der [konkrete Operation-Readiness-Fall](../evidence/consumer-lifecycle-operation-readiness.md)
 ergänzen echte Diagnose-Evidenz und Behebungsvorbereitung. Diese Arbeit aktiviert
 keinen weiteren Lifecycle-Consumer und ändert die bestehende GRS-002-Abnahme nicht.
+
+Die anschließende Bestätigung des Maintainers erfasst Rollen und begrenzten
+Demo-Evidenzumfang in GCR-2026-080. Der separate Consumer-Annahme-/Aktionsweg
+ist implementiert; `status/governance-consumer-lifecycle.json` bleibt bis zur
+eigenen persönlichen Betriebsabnahme inaktiv. Der [Consumer-Betriebsleitfaden](../evidence/consumer-lifecycle-operation.md)
+enthält dessen genaue Bedingungen.
