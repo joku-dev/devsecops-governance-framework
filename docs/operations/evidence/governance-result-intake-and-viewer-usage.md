@@ -21,6 +21,12 @@ Typed evidence such as vulnerability scans uses a separate snapshot store and
 index. This prevents an evidence-quality signal from being mistaken for a
 governance outcome.
 
+Measured ha-CPsWMS container findings have a separate **Container Security**
+viewer section and append-only intake. See
+[L1 measured evidence and viewer intake](l1-measured-evidence-ha-cpswms.md).
+It exposes actual severities and image identities without changing compliance
+results, Evidence Trust levels, or lifecycle state.
+
 ## Part 1: Result Intake
 
 ### Goal
