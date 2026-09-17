@@ -30,7 +30,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install validation dependencies
-        run: python -m pip install -r requirements-validation.txt
+        run: python -m pip install --require-hashes -r requirements-validation.lock
 
       - name: Regenerate portfolio status
         run: python3 scripts/generate_portfolio_onboarding_status.py

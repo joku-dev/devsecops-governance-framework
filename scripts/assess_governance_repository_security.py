@@ -29,6 +29,16 @@ CRITICAL_CODEOWNER_PATHS = (
     "/scripts/",
     "/releases/",
 )
+REVIEWED_PUBLISHER_COMMANDS = (
+    re.compile(
+        r"scripts/publish_operational_update\.py\s+--scope\s+"
+        r"(?:devsecops|architecture|lifecycle-pilot|portfolio)\b"
+    ),
+    re.compile(
+        r"scripts/publish_typed_evidence_assurance_update\.py\s+--scope\s+typed-evidence\b"
+    ),
+    re.compile(r"scripts/publish_consumer_lifecycle\.py\b"),
+)
 
 
 def utc_now() -> str:
@@ -64,10 +74,7 @@ def scan_workflows() -> dict:
         if re.search(r"(?m)^permissions:\s*$", content):
             explicit_permissions.append(relative)
         if re.search(r"(?m)^\s*contents:\s*write\s*$", content):
-            reviewed_writer = re.search(
-                r"scripts/publish_operational_update\.py --scope (devsecops|architecture|typed-evidence|portfolio)\b",
-                content,
-            )
+            reviewed_writer = any(pattern.search(content) for pattern in REVIEWED_PUBLISHER_COMMANDS)
             if reviewed_writer and "git push" not in content:
                 review_workflows.append(relative)
             else:
@@ -150,6 +157,14 @@ def collect_live(repository: str, observed_at: str) -> dict:
         [review_count]
         + [rule.get("parameters", {}).get("required_approving_review_count", 0) for rule in pull_request_rules]
     )
+    code_owner_review_required = any(
+        rule.get("parameters", {}).get("require_code_owner_review") is True
+        for rule in pull_request_rules
+    )
+    last_push_approval_required = any(
+        rule.get("parameters", {}).get("require_last_push_approval") is True
+        for rule in pull_request_rules
+    )
     required_checks = []
     for check in (protection.get("required_status_checks") or {}).get("checks", []):
         required_checks.append(check.get("context"))
@@ -199,6 +214,8 @@ def collect_live(repository: str, observed_at: str) -> dict:
             "default_branch": metadata.get("default_branch"),
             "branch_protected": branch_protected,
             "required_approving_reviews": review_count,
+            "code_owner_review_required": code_owner_review_required,
+            "last_push_approval_required": last_push_approval_required,
             "required_status_checks": required_checks,
             "force_push_blocked": force_push_blocked,
             "deletion_blocked": deletion_blocked,
@@ -261,7 +278,9 @@ def observed_values(observation: dict) -> dict[str, object]:
     release = observation.get("release_integrity", {})
     return {
         "default_branch_protected": repository.get("branch_protected") is True,
-        "pull_request_review_required": repository.get("required_approving_reviews", 0) >= 1,
+        "pull_request_review_required": repository.get("required_approving_reviews", 0) >= 2
+        and repository.get("code_owner_review_required") is True
+        and repository.get("last_push_approval_required") is True,
         "governance_ci_required": "validate-and-report" in repository.get("required_status_checks", []),
         "destructive_branch_changes_blocked": repository.get("force_push_blocked") is True
         and repository.get("deletion_blocked") is True,
@@ -297,7 +316,11 @@ def criterion_detail(key: str, observation: dict) -> str:
             f"branch_protected={str(repository.get('branch_protected')).lower()}"
         ),
         "pull_request_review_required": (
-            f"required_approving_reviews={repository.get('required_approving_reviews', 0)}"
+            f"required_approving_reviews={repository.get('required_approving_reviews', 0)}, "
+            f"code_owner_review_required="
+            f"{str(repository.get('code_owner_review_required')).lower()}, "
+            f"last_push_approval_required="
+            f"{str(repository.get('last_push_approval_required')).lower()}"
         ),
         "governance_ci_required": (
             "required_status_checks=" + json.dumps(repository.get("required_status_checks", []))
@@ -386,12 +409,14 @@ def remediation_steps(failures: list[dict]) -> list[dict]:
             "addresses": ["GRS-001", "GRS-002", "GRS-003", "GRS-004"],
             "prerequisites": ["GRS-013"],
             "action": (
-                "Activate a main ruleset requiring pull requests, at least one approving review, "
-                "Governance CI, resolved conversations, and protection from deletion and force push."
+                "Activate a main ruleset requiring pull requests, two independent approving reviews, "
+                "CODEOWNER and last-push approval, Governance CI, resolved conversations, and "
+                "protection from deletion and force push."
             ),
             "acceptance_criteria": (
-                "A non-bypass test pull request cannot merge without approval and required checks, "
-                "and direct force push or branch deletion is rejected."
+                "A non-bypass test pull request cannot merge without two independent approvals, "
+                "CODEOWNER and last-push approval, and required checks; direct force push or branch "
+                "deletion is rejected."
             ),
         },
         {

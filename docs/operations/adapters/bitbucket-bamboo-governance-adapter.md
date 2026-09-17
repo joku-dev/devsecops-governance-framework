@@ -7,6 +7,15 @@ verified installation or compatibility test. Continue the working GitHub referen
 path until the company details are available. The GitHub GRS-002 operating
 acceptance does not authorize a Bitbucket lifecycle deployment.
 
+Repository-security hardening remains portable. The GitHub ruleset, selected
+Action publishers and token model implement platform-neutral objectives that
+must be mapped to Bitbucket branch permissions/merge checks, Bamboo build
+statuses, controlled Specs/tasks and separate least-privilege service
+identities. Preserve the same dependency locks, OPA checksums, normalized
+evidence bundles and reviewed publication boundary. See the
+[17 September hardening record](../security/repository-security-hardening-2026-09-17.md)
+for the control-by-control mapping and remaining prerequisites.
+
 ## Purpose
 
 This document describes the first concrete adapter path for running the central DevSecOps Governance-as-Code baseline from Bitbucket-hosted application repositories through Bamboo Data Center 12.1.9.

@@ -2,7 +2,8 @@
 
 ## Current Publishing Path
 
-The repository uses `mkdocs.yml`, pinned `requirements-docs.txt`, and a single
+The repository uses `mkdocs.yml`, version inputs in `requirements-docs.txt`,
+hash-locked installation through `requirements-docs.lock`, and a single
 Pages publishing workflow, `.github/workflows/publish-docs.yml`. There is no
 active `static.yml` workflow to configure. The workflow builds the documentation,
 generates the governance graph/viewer, copies `generated/` into `site/generated/`,
@@ -24,7 +25,7 @@ From the repository root:
 ./scripts/bootstrap_validation_env.sh
 ./scripts/validate_all.sh
 python3 -m venv .venv-docs
-.venv-docs/bin/python -m pip install -r requirements-docs.txt
+.venv-docs/bin/python -m pip install --require-hashes -r requirements-docs.lock
 .venv-validation/bin/python scripts/generate_governance_graph.py
 .venv-validation/bin/python scripts/generate_status_viewer.py
 .venv-docs/bin/mkdocs build --strict

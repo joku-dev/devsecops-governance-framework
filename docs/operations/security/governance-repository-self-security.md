@@ -112,6 +112,34 @@ limits and read the [current platform state](../status/current-governance-platfo
 for the dated report context. Future signed releases need a separate process;
 do not rewrite existing released tags to clear historical findings.
 
+## Hardening Update On 17 September 2026
+
+GCR-2026-094 activated repository-level full-SHA enforcement and selected
+Action sources. GitHub-owned Actions and the explicitly required
+`open-policy-agent/setup-opa` Action are allowed. Dependency Review is now a
+required main check, CODEOWNER review and last-push approval are active, and
+the versioned ruleset includes all five effective checks.
+
+The evaluator now recognizes every reviewed PR publisher and no longer reports
+the consumer lifecycle, lifecycle pilot or typed-evidence assurance publishers
+as direct `main` writers. Intake, operations, portfolio, retry and documentation
+publication installations use reviewed hash locks. Governance CI,
+Self-Security and the local bootstrap retain exact version pins until a new
+personal lifecycle operating-acceptance revision authorizes their manifest
+change.
+
+The GRS-002 target has been raised to two independent approvals plus CODEOWNER
+and last-push approval. Only one human collaborator currently exists, so the
+live approval count remains one and GRS-002 is an explicit open finding. Signed
+changes, signed future releases, a short-lived GitHub App collector identity and
+off-site recovery remain separate prerequisites. See the complete
+[hardening record](repository-security-hardening-2026-09-17.md).
+
+The accepted lifecycle source profile still pins Self-Security `0.2.0` and its
+earlier evaluator. Historical receipts remain immutable. A new lifecycle
+`observe` operation for `0.3.0` requires a new preparation/operating revision
+and personal acceptance first.
+
 ## Safe Activation Sequence
 
 The sequence below explains activation dependencies. Steps 1–5 are implemented
@@ -132,7 +160,7 @@ step instead of assuming versioned configuration has activated live settings:
    `validate-and-report`, `Analyze Python`, and `Governance Repository Security`
    checks from GitHub Actions; prohibit deletion and force push, with no bypass;
 6. restrict Actions to approved publishers and require full commit-SHA pinning;
-7. establish independent CODEOWNER review and commit signing, then publish new
+7. establish two independent reviewers and commit signing, then publish new
    signed baseline tags and attestations through separate changes;
 8. after a successful observation period and accountable approval, consider
    making selected self-security criteria blocking.
@@ -146,7 +174,7 @@ for main and rerun the live assessment after activation.
 
 There is no automatic approval, merge, or administrator bypass. A maintainer can
 review bot-authored PRs; a maintainer-authored PR needs another authorized person.
-At the 9 September observation only `joku-dev` is a collaborator, so independent reviewer
+At the 17 September observation only `joku-dev` is a collaborator, so independent reviewer
 onboarding remains necessary for those PRs. Do not impersonate that reviewer or
 weaken protection to complete a merge. Conflicting operational PRs need
 reconciliation and regenerated projections before their final review.

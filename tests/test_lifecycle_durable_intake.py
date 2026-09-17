@@ -107,7 +107,9 @@ class DurableIntakeTests(unittest.TestCase):
         self.source.report=assess(model,observation); self.source.repack()
         failed=self.root/'failed'; self.collect(failed)
         self.append(failed)
-        observation['repository']['required_approving_reviews']=1
+        observation['repository']['required_approving_reviews']=2
+        observation['repository']['code_owner_review_required']=True
+        observation['repository']['last_push_approval_required']=True
         self.source.run['id']=124; self.source.artifact['id']=457
         self.source.artifact['workflow_run']['id']=124
         self.source.report=assess(model,observation); self.source.repack()
