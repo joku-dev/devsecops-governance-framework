@@ -31,11 +31,12 @@ class IntakeWorkflowConcurrencyTests(unittest.TestCase):
         self.assertIn("group: portfolio-status", content)
 
     def test_all_intake_workflows_record_failures_before_failing(self):
-        for filename in (
-            "intake-governance-result.yml",
-            "intake-architecture-result.yml",
-            "intake-evidence-trust.yml",
-        ):
+        workflows = {
+            "intake-governance-result.yml": "scripts/publish_operational_update.py",
+            "intake-architecture-result.yml": "scripts/publish_operational_update.py",
+            "intake-evidence-trust.yml": "scripts/publish_typed_evidence_assurance_update.py",
+        }
+        for filename, publisher in workflows.items():
             with self.subTest(workflow=filename):
                 content = (WORKFLOWS / filename).read_text(encoding="utf-8")
                 self.assertIn("id: intake", content)
@@ -46,7 +47,7 @@ class IntakeWorkflowConcurrencyTests(unittest.TestCase):
                 self.assertIn("Record intake telemetry", content)
                 self.assertIn("scripts/record_intake_event.py", content)
                 self.assertIn("scripts/generate_intake_health.py", content)
-                self.assertIn("scripts/publish_operational_update.py", content)
+                self.assertIn(publisher, content)
                 self.assertLess(content.index("Record intake telemetry"),
                                 content.index("Open operational review PR"))
                 self.assertLess(content.index("Open operational review PR"),

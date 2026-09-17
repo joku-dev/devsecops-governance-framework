@@ -755,6 +755,17 @@ def main() -> int:
         load_l1_snapshots(ROOT / "status/measured-l1-results")
     except Exception as exc:
         errors.append(f"Measured L1 assessment validation: {exc}")
+    from lib.control_evidence_assurance import (
+        load_profile as load_assurance_profile,
+        load_snapshots as load_assurance_snapshots,
+        validate_assurance_source,
+    )
+    try:
+        load_assurance_profile()
+        for assurance in load_assurance_snapshots(ROOT / "status/control-evidence-assurance"):
+            validate_assurance_source(assurance)
+    except Exception as exc:
+        errors.append(f"Control evidence assurance validation: {exc}")
     validate_intake_conflicts(errors)
     validate_intake_events(errors)
     validate_intake_health(errors)

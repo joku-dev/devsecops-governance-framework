@@ -1,7 +1,7 @@
 # Technische Funktionsliste des Repositories
 
-Stand: 16. September 2026, Bestand aus der Dokumentationsprüfung plus
-Consumer-Lifecycle-Erweiterung GCR-2026-080 auf Basis `762a67d`.
+Stand: 17. September 2026, Bestand aus der Dokumentationsprüfung einschließlich
+Kontrollnachweis-Assurance GCR-2026-092.
 
 Dies ist die vollständige Dateiliste der implementierten Skripte und Bibliotheksmodule
 unter `scripts/`, der GitHub-Workflows und der OPA-Module am genannten Stand.
@@ -9,7 +9,7 @@ Der [fachliche Katalog](repository-function-catalog.md) erläutert die 21 Aufgab
 mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbole
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
-Umfang: **127 Skripte/Module**, **21 Workflows**, **15 OPA-Module**.
+Umfang: **138 Skripte/Module**, **21 Workflows**, **15 OPA-Module**.
 
 Einträge wurden aus den versionierten Dateien, Python-Modulbeschreibungen und
 Workflow-Definitionen ermittelt. Englische Beschreibungen übernehmen die
@@ -32,6 +32,18 @@ Diese Dateien ergänzen den unten datierten Bestand. Die
 | `apps/governance-viewer/index.html` | Anwendungseinstieg, Navigation und Content Security Policy. |
 | `apps/governance-viewer/app.js` | Lesende Ansichten, Hash-Routing, Suche, Filter, Vergleich und Seitennavigation. |
 | `apps/governance-viewer/app.css` | Responsive Gestaltung für Desktop und Mobilgeräte. |
+
+## Kontrollnachweis-Assurance (GCR-2026-092)
+
+| Datei | Aufgabe |
+|---|---|
+| `model/evidence/control-evidence-assurance-profile.yaml` | Ordnet allen 16 L1-Kontrollen Nachweistyp, Freshness-Policy, Entscheidungskontext und Subjektbindung zu. |
+| `scripts/lib/control_evidence_assurance.py` | Erzeugt, bindet, validiert und speichert konservative report-only Assurance je Kontrolle. |
+| `schemas/control-evidence-assurance.schema.json` | Geschlossener Vertrag für Kontrollabdeckung, Trust-Dimensionen, Nachweisgruppen und Zusammenfassung. |
+| `status/control-evidence-assurance/` | Append-only Lauf-/Versuchs-Snapshots der Kontroll-Assurance. |
+| `scripts/intake_measured_l1.py` | Erzeugt nach dem zentralen Rohdatencheck zusätzlich die Assurance und übernimmt passende typisierte SBOM-/Scan-Prüfungen. |
+| `.github/workflows/intake-evidence-trust.yml` | Führt typisierten ha-CPsWMS-Intake und gemessene L1-/Assurance-Aufnahme in einem operativen Aktualisierungslauf aus. |
+| `scripts/publish_typed_evidence_assurance_update.py` | Erweitert ausschließlich diesen Intake um die beiden append-only L1-Speicher, ohne die persönlich abgenommene Lifecycle-Publikationslogik zu verändern. |
 
 ## Consumer-Lifecycle-Ergänzungen (GCR-2026-080)
 
@@ -167,6 +179,7 @@ Artefaktumgebung. Kein Werkzeug pauschal ausführen, um nur seine Funktion zu er
 | [scripts/lib/collection_attempts.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/collection_attempts.py) | Shared lifecycle projection for append-only evidence collection attempts. |
 | [scripts/lib/evidence_attestation.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/evidence_attestation.py) | Report-only public-key verification for the evidence attestation pilot. |
 | [scripts/lib/evidence_trust.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/evidence_trust.py) | Shared helpers for additive, report-only evidence trust capture. |
+| `scripts/lib/control_evidence_assurance.py` | Control-level Trust/Freshness projection with conservative missing-evidence aggregation and append-only storage. |
 | [scripts/lib/governance_lifecycle/__init__.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/governance_lifecycle/__init__.py) | Paketmarker des Lifecycle-Moduls; konkrete synthetische und Live-Funktionen liegen in den nachfolgenden Untermodulen. |
 | [scripts/lib/governance_lifecycle/adapter.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/governance_lifecycle/adapter.py) | GRS-002 adapter for explicitly synthetic report/trust packets only. |
 | [scripts/lib/governance_lifecycle/architecture_candidates.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/governance_lifecycle/architecture_candidates.py) | Candidate gate outcomes from the current unversioned architecture report shape. |
@@ -278,7 +291,7 @@ git ls-files 'scripts/*.py' 'scripts/*.sh' 'scripts/*.mjs' '.github/workflows/*.
 Die [Dokumentationsprüfung vom 13. September](../reference-runs/2026-09-13-documentation-currency-review.md)
 beschreibt den geprüften Umfang und die getrennten historischen Artefakte.
 
-## Additive zentrale L1-Messbewertung (17. September 2026)
+## Additive zentrale L1-Messbewertung und Assurance (17. September 2026)
 
 | Baustein | Funktion |
 |---|---|
@@ -286,8 +299,12 @@ beschreibt den geprüften Umfang und die getrennten historischen Artefakte.
 | `scripts/lib/measured_l1.py` | Kontext-/Hash-/Image-Prüfung, zentrale konservative Bewertung aller 16 L1-Kontrollen, Schema- und Append-only-Prüfung |
 | `schemas/measured-l1-assessment.schema.json` | Additiver Report-only-Vertrag mit Beobachtungen, Nachweisreferenzen, Bewertungsprofil und expliziten Prüfgrenzen |
 | `status/measured-l1-results/` | Unveränderliche Snapshots je Lauf und Versuch; Auswahl nach Quellzeit |
+| `model/evidence/control-evidence-assurance-profile.yaml` | Vollständige Zuordnung der 16 Kontrollen zu Nachweistyp, Freshness und Bindung |
+| `scripts/lib/control_evidence_assurance.py` | Kontrollweise Trust-/Freshness-Bewertung; fehlender Pflichtumfang bleibt `unverified` |
+| `schemas/control-evidence-assurance.schema.json`, `status/control-evidence-assurance/` | Additiver Vertrag und unveränderliche Assurance-Snapshots |
 | `scripts/lib/viewer_app.py`, `apps/governance-viewer/app.js` | Getrennte L1-Projektion, Kontrollsuche, Statusfilter, Quelldateien und Laufvergleich zur offiziellen Baseline |
 | `tests/test_measured_l1.py`, `tests/browser/check_viewer_l1.py` | Manipulation, falsche Kontexte, unzulässige Freigaben, Rohdatenvergleich, Historie und Browserdarstellung prüfen |
 
-Keine automatische Aufnahme, Baseline-Änderung oder Live-Freigabe.
+Automatische Aufnahme nach erfolgreichem Consumer-Mainline-Lauf; keine
+Baseline-Änderung oder Live-Freigabe.
 [Details](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle).

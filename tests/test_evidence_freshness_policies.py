@@ -48,6 +48,9 @@ class EvidenceFreshnessPolicyTests(unittest.TestCase):
         self.assertEqual(policies["freshness-runtime-evidence-30m"]["maximum_age_seconds"], 1800)
         self.assertEqual(policies["freshness-architecture-review-180d"]["maximum_age_seconds"], 15552000)
         self.assertEqual(policies["freshness-sbom-subject-bound"]["evaluation_mode"], "subject_bound")
+        self.assertEqual(policies["freshness-control-evidence-commit-bound"]["evaluation_mode"], "subject_bound")
+        self.assertEqual(policies["freshness-artifact-subject-bound"]["evaluation_mode"], "subject_bound")
+        self.assertEqual(policies["freshness-repository-configuration-24h"]["maximum_age_seconds"], 86400)
         self.assertEqual(
             policies["freshness-release-approval-candidate-bound"]["evaluation_mode"],
             "release_candidate_bound",
