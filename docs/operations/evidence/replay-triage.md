@@ -69,19 +69,24 @@ run, artifact, and shared subject identifiers where a relationship exists.
 
 ## Current Repository Interpretation
 
-After consumer revalidation on 13 September 2026 the projection reviews 39
-Trust-bearing snapshots: five recorded failures, three failures under the current
-rules and two superseded legacy assessments. One official-latest finding remains,
-in ha-CPsWMS DevSecOps run `34602002201`. Its passing control outcome does not
-clear the separate replay check.
+At the 17 September 2026 projection the ledger contains 44 Trust-bearing
+assessments: six recorded failures, five failures under the current rules and
+two superseded legacy assessments. Two official-latest findings remain. The
+ha-CPsWMS DevSecOps result `35131186298` has cross-commit reuse without enough
+artifact binding. Typed vulnerability result `35241262722` is also flagged
+because vulnerability and SBOM records in the same run bind different typed
+subject content. Their passing control or integrity outcomes do not clear the
+separate replay interpretation.
 
 The neutral demo's current DevSecOps run `34778861276` has passing recorded
 and recalculated replay checks. Historical run `29636320472` still demonstrates
 safe deterministic report reuse with artifact binding, while `29603835297`
 retains the earlier cross-commit finding. No historical snapshot was changed.
 
-Use the JSON projection and its source timestamp for later observations rather
-than assuming these counts remain constant.
+The typed-evidence relationship requires operator review of the replay subject
+model; it is not proof that either verified artifact was altered. Use the JSON
+projection and its source timestamp for later observations rather than assuming
+these counts remain constant.
 
 ## Operator Workflow
 

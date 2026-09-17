@@ -10,8 +10,9 @@ The [v0.2.0 adoption/operations release](docs/releases/v0.2.0-public-adoption.md
 packages the controlled pilot state and publication downloads; its release
 statement explains publication status and separate baseline pins.
 
-Accepted consumer evidence on 11 September 2026 and remaining findings are
-recorded in the [current platform state](docs/operations/status/current-governance-platform-state.md).
+The current accepted governance results from 16 September and the measured
+ha-CPsWMS evidence from 17 September 2026 are recorded in the
+[current platform state](docs/operations/status/current-governance-platform-state.md).
 
 For current pilot and central operations, start with the
 [operations handbook](docs/operations/guides/governance-repository-operations-handbook.md).
@@ -36,7 +37,9 @@ The repository models a governance stack where a `Policy` defines mandatory inte
 | Try the framework in an application repo | `docs/onboarding/public-repo-quickstart.md` |
 | Copy ready-to-use templates | `adoption-package/README.md` |
 | Inspect the validated neutral consumer | `docs/onboarding/validated-demo-consumer.md` |
-| Review the current public release | `docs/releases/v0.1.0-public-adoption.md` |
+| Review the current public release | `docs/releases/v0.2.0-public-adoption.md` |
+| Inspect current repository capabilities | `docs/operations/guides/repository-function-catalog.md` |
+| Open the governance viewer | `https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html` |
 | Open the published documentation | `https://joku-dev.github.io/devsecops-governance-framework/` |
 
 ## Use In Three Steps
@@ -135,10 +138,23 @@ The addendum keeps the original framework document as the normative reference an
 - `L1` is now available as a released and revision-protected baseline package via `l1-baseline-v1.1.3`.
 - The current `L1 v1.1.3` package adds run-context-aware evaluation for release, pull-request, branch-validation, and diagnostic runs.
 - `architecture-baseline-l1-v0.1.0` is available as the released architecture runtime governance baseline.
-- GitHub Pages documentation publishing is active.
-- A normalized central results index exists in `status/repository-results-index.json`.
+- GitHub Pages publishes the documentation and the read-only Governance Workspace with repository, finding, evidence, governance and operations views.
+- Central intake stores append-only DevSecOps, architecture, typed evidence, measured L1 and control-assurance snapshots under `status/`; reviewed operational PRs update the official indexes.
+- Evidence Trust records integrity, provenance, freshness, replay, custody and attestation without turning evidence quality into a compliance or release decision.
+- The ha-CPsWMS pilot produces real tests, SAST, five container builds, CycloneDX SBOMs, Trivy scans and HTTP/Neo4j integration evidence. Its latest measured L1 assessment covers all 16 controls and leaves missing or partial evidence explicit.
+- The manual closed-loop lifecycle pilot can record observations, decisions, actions, receipts, closure and revocation for its narrowly accepted scope. It remains report-only and subject to personal action consent.
 - `governance-framework-demo-consumer` is the neutral public reference consumer for first adoption validation.
-- A draft CI/CD adapter model exists for extending the same governance core beyond GitHub Actions to Bamboo/Bitbucket and Jenkins.
+- Platform-neutral evidence generation, validation and bundle intake support adapter paths for GitHub Actions, Bamboo with Bitbucket Data Center, Bitbucket Pipelines, Jenkins and GitLab CI. The non-GitHub paths are reference implementations that require environment-specific integration and validation.
+
+Current accepted ha-CPsWMS governance runs are DevSecOps
+[`35131186298`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131186298)
+and architecture
+[`35131185047`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185047).
+The separate measured-evidence run
+[`35241262722`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35241262722)
+contains 58 passing tests, typed vulnerability and SBOM evidence, and the
+per-control assurance projection. A governance PASS remains distinct from open
+scanner findings, replay deviations and production approval.
 
 ## AI And Agent Navigation
 

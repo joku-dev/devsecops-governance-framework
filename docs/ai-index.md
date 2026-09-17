@@ -210,7 +210,7 @@ python3 -m unittest discover -s tests
 | L1 control evidence assurance | `model/evidence/control-evidence-assurance-profile.yaml`, `scripts/lib/control_evidence_assurance.py`, `schemas/control-evidence-assurance.schema.json`, `status/control-evidence-assurance/`; viewer repository tabs `l1` and `trust` |
 | Viewer application | `apps/governance-viewer/`, `scripts/lib/viewer_app.py`, `scripts/lib/viewer_technical.py`, `generated/viewer/app/index.html`; guide: `docs/operations/guides/governance-viewer-app.md` |
 | Viewer generator | `scripts/generate_status_viewer.py` |
-| Viewer output | `generated/viewer/status-viewer.html` |
+| Viewer outputs | `generated/viewer/app/index.html` (primary application), `generated/viewer/status-viewer.html` (technical fallback) |
 | Intake docs | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
 | Vulnerability collector guide | `docs/operations/evidence/vulnerability-scan-collector-usage.md` |
 | Typed evidence result index | `status/typed-evidence-results-index.json` |
@@ -235,7 +235,7 @@ python3 -m unittest discover -s tests
 | Blocking mode alignment | `docs/operations/status/blocking-mode-alignment.md`, `model/enforcement/blocking-mode-alignment.yaml`, `scripts/generate_blocking_mode_alignment.py`, `generated/reports/blocking-mode-alignment.json` |
 | Evidence attestation pilot | `docs/operations/evidence/evidence-attestation-pilot.md`, `model/evidence/evidence-trust-roots.yaml`, `schemas/evidence-attestation.schema.json`, `scripts/verify_evidence_attestation.py`, `generated/reports/evidence-attestation-pilot.json` |
 | Controlled collection retry | `.github/workflows/retry-collection-attempt.yml`, `scripts/prepare_collection_attempt_retry.py` |
-| Collection-attempt lifecycle projection | `scripts/generate_status_viewer.py`, `generated/viewer/status-viewer.html` |
+| Collection-attempt lifecycle projection | `scripts/generate_status_viewer.py`, both viewer outputs |
 | Evidence agent provenance | `schemas/evidence-agent-provenance.schema.json`, `scripts/record_evidence_agent_provenance.py`, `scripts/validate_evidence_agent_provenance.py`, `status/evidence-agent-provenance/` |
 
 Regenerate viewer:
@@ -255,15 +255,16 @@ python3 scripts/generate_status_viewer.py
 | Architecture-only demo | `docs/demos/demo-ha-cpswms-runtime-governance.md` |
 | Architecture result explanation | `docs/demos/ha-cpswms-architecture-governance-results.md` |
 | DevSecOps historical demo guide | `docs/demos/demo-guide-2026-07-02-ha-cpswms.md` |
-| Viewer | `generated/viewer/status-viewer.html` |
+| Viewer | `generated/viewer/app/index.html`; technical fallback: `generated/viewer/status-viewer.html` |
 
-Accepted ha-CPsWMS mainline runs on 11 September 2026 (control outcomes;
-the separate DevSecOps replay finding remains open):
+Accepted ha-CPsWMS governance mainline runs on 16 September 2026 (control
+outcomes; the separate DevSecOps replay finding remains open):
 
 | Domain | Run | Expected |
 |---|---:|---|
-| DevSecOps Baseline | `34602002201` | pass, `16/16` controls |
-| Architecture Runtime Governance | `34602001140` | PASS, `4/4` gates |
+| DevSecOps Baseline | `35131186298` | pass, `16/16` controls |
+| Architecture Runtime Governance | `35131185047` | PASS, `4/4` gates |
+| Measured L1 and typed evidence | `35241262722` | report-only; 58 tests, vulnerability/SBOM Trust and assurance for 16 controls |
 
 ## Release Map
 

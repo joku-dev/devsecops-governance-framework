@@ -65,7 +65,7 @@ The demo consumer successfully runs:
 | What files can I copy? | `adoption-package/README.md` |
 | Has a clean consumer been validated? | `docs/onboarding/validated-demo-consumer.md` |
 | What release should I evaluate? | `docs/releases/v0.2.0-public-adoption.md` |
-| What does the viewer show? | `generated/viewer/status-viewer.html` |
+| What does the viewer show? | `generated/viewer/app/index.html`; technical fallback: `generated/viewer/status-viewer.html` |
 
 ## Boundaries And Known Limitations
 

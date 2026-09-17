@@ -55,7 +55,7 @@ Prefer these sources when changing behavior:
 | Schemas | `schemas/` |
 | Result indexes | `status/` |
 | Release packages | `releases/` and `docs/releases/` |
-| Viewer | `generated/viewer/status-viewer.html` |
+| Viewer | `generated/viewer/app/index.html` (primary) and `generated/viewer/status-viewer.html` (technical fallback) |
 | AI navigation | `docs/ai-index.md` |
 
 Generated reports under `generated/` should normally be updated by scripts, not by manual editing, except for narrowly scoped timestamp cleanup after validation noise.
@@ -79,6 +79,11 @@ The `ha-CPsWMS` mainline demo state is:
 |---|---|---|---|
 | DevSecOps | `pass` | `l1-baseline-v1.1.3` | `35131186298` |
 | Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `35131185047` |
+
+The separate measured-evidence run `35241262722` is report-only. It records
+typed vulnerability and SBOM evidence, a measured assessment of all 16 L1
+controls, and per-control assurance; it is not an official compliance result or
+production approval.
 
 Use `docs/demos/demo-end-to-end-governance.md` as the primary demo runbook.
 

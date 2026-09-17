@@ -23,13 +23,16 @@ The current demo target is `joku-dev/ha-CPsWMS`.
 
 | Domain | Current baseline | Current mainline demo status |
 |---|---|---|
-| DevSecOps L1 | `l1-baseline-v1.1.3` | `pass`, run `34602002201`, `16/16` applicable controls |
-| Architecture L1 | `architecture-baseline-l1-v0.1.0` | `PASS`, run `34602001140`, `4/4` gates |
+| DevSecOps L1 | `l1-baseline-v1.1.3` | `pass`, run `35131186298`, `16/16` applicable controls |
+| Architecture L1 | `architecture-baseline-l1-v0.1.0` | `PASS`, run `35131185047`, `4/4` gates |
+| Measured L1 evidence | report-only pilot profile | run `35241262722`: 5 measured, 6 partial, 2 findings, 3 gaps |
+| Control evidence assurance | `control-evidence-assurance-v1` | run `35241262722`: 7 complete/integrity-verified, 9 partial or missing/unverified |
 
 New consumer demos are report-only. ha-CPsWMS architecture remains report-only,
 while its preexisting DevSecOps blocking is a recorded legacy risk with review
 due 12 December 2026. Its passing controls coexist with a separate replay finding.
-The table reflects accepted evidence on 11 September 2026; consult the
+The table reflects accepted governance evidence from 16 September and measured
+evidence from 17 September 2026; consult the
 [current platform state](operations/status/current-governance-platform-state.md)
 and indexes for subsequent changes.
 
@@ -64,6 +67,7 @@ After that, choose the path that matches your role:
 | How does an app repo consume governance? | `docs/onboarding/application-repo-onboarding.md` |
 | What evidence does an app repo need? | `docs/operations/evidence/governance-evidence-contract.md` |
 | How are results ingested and shown? | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
+| Where are real tests, SBOMs and control-level Trust shown? | `docs/operations/evidence/l1-measured-evidence-ha-cpswms.md` and the Governance Workspace |
 | Where did a control or marker come from? | `generated/reports/source-lineage-report.md` |
 | What changed or could change from source documents? | `generated/reports/governance-change-impact.md` |
 | Which architecture source may replace the current one? | `generated/reports/architecture-source-replacement-assessment.md` |
