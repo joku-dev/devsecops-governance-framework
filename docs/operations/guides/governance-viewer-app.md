@@ -42,9 +42,9 @@ Ansicht abgebildet. `#overview` öffnet die neue Übersicht.
 Die globale Ansicht **Nachweise → Evidence Trust** zeigt zuerst **Latest Governance
 Evidence Trust** für die offiziellen DevSecOps- und Architektur-Ergebnisse aller
 erfassten Repositories, einschließlich ha-CPsWMS. **Latest Typed Evidence** ist eine
-separate Tabelle für den Typed-Evidence-Intake. Aktuell enthält sie nur den
-Demo-Consumer; für ha-CPsWMS liegt noch kein solcher Eintrag vor. Die Ansicht nennt
-diese Lücke ausdrücklich. Die vorhandenen L1-Messberichte und Container-Scans sind
+separate Tabelle für den Typed-Evidence-Intake. Das ha-CPsWMS-Profil erfasst alle
+fünf Container-Images mit zentral geprüften Archiven. Solange für ein Repository
+kein Eintrag aufgenommen wurde, nennt die Ansicht diese Lücke ausdrücklich. Die vorhandenen L1-Messberichte und Container-Scans sind
 separat erfasst und erhalten dadurch keine zusätzliche Trust-Einstufung.
 
 Unter **Repositories → ha-CPsWMS → Evidence Trust** stehen die gespeicherten

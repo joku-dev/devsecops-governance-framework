@@ -197,6 +197,15 @@ The resulting snapshot validates against
 `schemas/typed-evidence-results-index.schema.json` and feeds the dedicated
 viewer section.
 
+The fixed `ha-cpswms-container-trust-v1` profile extends this central intake for
+the five images produced by ha-CPsWMS. It requires the complete set in one
+successful mainline run and rehashes every full Docker archive. Docker config,
+source revision label, every uncompressed layer, Trivy output, image ID,
+producer manifest and GitHub run/artifact metadata must agree. The profile is
+implemented by `scripts/intake_ha_container_trust.py` and
+`scripts/lib/container_typed_evidence.py`. It remains co-collected report-only
+evidence and does not claim scanner attestation, approval or risk acceptance.
+
 This adoption is additive:
 
 - existing collector and Trust records remain valid

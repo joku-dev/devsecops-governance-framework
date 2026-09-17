@@ -9,7 +9,7 @@ on:
         default: joku-dev/governance-framework-demo-consumer
         type: string
       run_id:
-        description: GitHub Actions run ID containing application-evidence.
+        description: Completed run containing application-evidence or ha-CPsWMS l1-control-coverage.
         required: true
         type: string
       artifact_name:
@@ -34,6 +34,7 @@ jobs:
   intake-evidence-trust:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check out governance repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -72,10 +73,15 @@ jobs:
             echo "repository_id and run_id are required"
             exit 1
           fi
-          python3 scripts/intake_evidence_trust_github_actions_run.py \
-            --repository-id "${REPOSITORY_ID}" \
-            --run-id "${RUN_ID}" \
-            --artifact-name "${ARTIFACT_NAME}"
+          if [ "${REPOSITORY_ID}" = "joku-dev/ha-CPsWMS" ] && [ "${ARTIFACT_NAME}" = "l1-control-coverage" ]; then
+            export GH_TOKEN="${GH_RESULT_INTAKE_TOKEN}"
+            python3 scripts/intake_ha_container_trust.py --run-id "${RUN_ID}"
+          else
+            python3 scripts/intake_evidence_trust_github_actions_run.py \
+              --repository-id "${REPOSITORY_ID}" \
+              --run-id "${RUN_ID}" \
+              --artifact-name "${ARTIFACT_NAME}"
+          fi
 
       - name: Stop intake telemetry clock
         id: telemetry_stop

@@ -31,7 +31,7 @@ def project_result(item: dict, source_file: Path) -> dict:
     capture = trust.get("capture", {})
     observations = capture.get("observations", {})
     binding = observations.get("subject_binding", {})
-    return {
+    projection = {
         "generated_at": item.get("generated_at", ""),
         "evidence_type": item.get("evidence_type", "unknown"),
         "pipeline_run_id": item.get("pipeline", {}).get("pipeline_run_id", "unknown"),
@@ -55,6 +55,9 @@ def project_result(item: dict, source_file: Path) -> dict:
         "trust": project_trust(item),
         "source_file": str(source_file.relative_to(ROOT)),
     }
+    if observations.get('profile') == 'ha-cpswms-container-trust-v1':
+        projection['container_images'] = observations['container_images']
+    return projection
 
 
 def main() -> int:
