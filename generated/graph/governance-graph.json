@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-09-17T07:34:12Z",
+  "generated_at": "2026-09-17T14:21:47Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,28 +10,28 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 190,
-    "edge_count": 408,
+    "node_count": 195,
+    "edge_count": 413,
     "node_types": {
       "Artifact": 140,
       "Baseline": 3,
       "Commit": 3,
-      "EvidenceRecord": 1,
+      "EvidenceRecord": 2,
       "Repository": 3,
-      "ResultSnapshot": 6,
-      "Scanner": 1,
+      "ResultSnapshot": 7,
+      "Scanner": 2,
       "SourceDocument": 21,
-      "TrustAssessment": 6,
-      "WorkflowRun": 6
+      "TrustAssessment": 7,
+      "WorkflowRun": 7
     },
     "edge_types": {
       "DERIVES": 378,
       "EVALUATES_COMMIT": 5,
-      "HAS_EVIDENCE": 1,
-      "HAS_RESULT": 6,
-      "HAS_TRUST_ASSESSMENT": 6,
-      "PRODUCED_BY": 1,
-      "RECORDED_IN": 6,
+      "HAS_EVIDENCE": 2,
+      "HAS_RESULT": 7,
+      "HAS_TRUST_ASSESSMENT": 7,
+      "PRODUCED_BY": 2,
+      "RECORDED_IN": 7,
       "USES_BASELINE": 5
     }
   },
@@ -1509,6 +1509,24 @@
       }
     },
     {
+      "id": "evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
+      "type": "EvidenceRecord",
+      "label": "vulnerability_scan",
+      "properties": {
+        "evidence_type": "vulnerability_scan",
+        "collector_status": "collected",
+        "enforcement": "report_only",
+        "finding_count": 1993,
+        "max_severity": "critical",
+        "freshness": "pass",
+        "content_integrity": "pass",
+        "subject_binding": {
+          "mode": "co_collected",
+          "scanner_attested": false
+        }
+      }
+    },
+    {
       "id": "repository:joku-dev/ai-native-engineering-factory",
       "type": "Repository",
       "label": "joku-dev/ai-native-engineering-factory",
@@ -1616,6 +1634,28 @@
       }
     },
     {
+      "id": "run:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "type": "WorkflowRun",
+      "label": "typed evidence: 35232313852",
+      "properties": {
+        "domain": "typed_evidence",
+        "run_id": "35232313852",
+        "event": "push",
+        "branch": "main",
+        "generated_at": "2026-09-17T14:18:04Z",
+        "url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35232313852"
+      }
+    },
+    {
+      "id": "scanner:trivy:0.70.0",
+      "type": "Scanner",
+      "label": "trivy:0.70.0",
+      "properties": {
+        "name": "trivy",
+        "version": "0.70.0"
+      }
+    },
+    {
       "id": "scanner:trivy:v0.70.0",
       "type": "Scanner",
       "label": "trivy:v0.70.0",
@@ -1675,6 +1715,15 @@
       "label": "2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
       "properties": {
         "path": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
+        "domain": "typed_evidence"
+      }
+    },
+    {
+      "id": "snapshot:status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T14-18-04Z-run-35232313852-vulnerability-scan.json",
+      "type": "ResultSnapshot",
+      "label": "2026-09-17T14-18-04Z-run-35232313852-vulnerability-scan.json",
+      "properties": {
+        "path": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T14-18-04Z-run-35232313852-vulnerability-scan.json",
         "domain": "typed_evidence"
       }
     },
@@ -2069,6 +2118,22 @@
         "effective_level": "integrity_verified",
         "assessment_status": "evaluated",
         "verified_at": "2026-09-13T19:54:20Z",
+        "check_summary": {
+          "pass": 7,
+          "fail": 0,
+          "not_evaluated": 5
+        }
+      }
+    },
+    {
+      "id": "trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "type": "TrustAssessment",
+      "label": "integrity_verified",
+      "properties": {
+        "domain": "typed_evidence",
+        "effective_level": "integrity_verified",
+        "assessment_status": "evaluated",
+        "verified_at": "2026-09-17T14:18:35.483735Z",
         "check_summary": {
           "pass": 7,
           "fail": 0,
@@ -5523,6 +5588,13 @@
       "properties": {}
     },
     {
+      "id": "HAS_EVIDENCE:run:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z->evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
+      "type": "HAS_EVIDENCE",
+      "source": "run:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "target": "evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
+      "properties": {}
+    },
+    {
       "id": "HAS_RESULT:repository:joku-dev/ai-native-engineering-factory->run:devsecops:joku-dev/ai-native-engineering-factory:34503074356:2026-09-11T12:56:37Z",
       "type": "HAS_RESULT",
       "source": "repository:joku-dev/ai-native-engineering-factory",
@@ -5583,10 +5655,27 @@
       }
     },
     {
+      "id": "HAS_RESULT:repository:joku-dev/ha-CPsWMS->run:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "type": "HAS_RESULT",
+      "source": "repository:joku-dev/ha-CPsWMS",
+      "target": "run:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "properties": {
+        "domain": "typed_evidence",
+        "latest": true
+      }
+    },
+    {
       "id": "HAS_TRUST_ASSESSMENT:evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z->trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
       "type": "HAS_TRUST_ASSESSMENT",
       "source": "evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "target": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
+      "properties": {}
+    },
+    {
+      "id": "HAS_TRUST_ASSESSMENT:evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z->trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "type": "HAS_TRUST_ASSESSMENT",
+      "source": "evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
+      "target": "trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
       "properties": {}
     },
     {
@@ -5632,10 +5721,24 @@
       "properties": {}
     },
     {
+      "id": "PRODUCED_BY:evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z->scanner:trivy:0.70.0",
+      "type": "PRODUCED_BY",
+      "source": "evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
+      "target": "scanner:trivy:0.70.0",
+      "properties": {}
+    },
+    {
       "id": "RECORDED_IN:evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z->snapshot:status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
       "type": "RECORDED_IN",
       "source": "evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "target": "snapshot:status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json",
+      "properties": {}
+    },
+    {
+      "id": "RECORDED_IN:evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z->snapshot:status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T14-18-04Z-run-35232313852-vulnerability-scan.json",
+      "type": "RECORDED_IN",
+      "source": "evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
+      "target": "snapshot:status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T14-18-04Z-run-35232313852-vulnerability-scan.json",
       "properties": {}
     },
     {

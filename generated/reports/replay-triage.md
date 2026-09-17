@@ -1,10 +1,10 @@
 # Replay Triage Report
 
-Generated from latest stored snapshot time: `2026-09-16T17:57:22Z`
+Generated from latest stored snapshot time: `2026-09-17T14:18:04Z`
 
 ## Summary
 
-- Assessments: 41
+- Assessments: 42
 - Stored replay failures: 6
 - Failures under current report-only interpretation: 4
 - Superseded legacy assessments: 2
@@ -22,6 +22,7 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 | `typed_evidence` | `joku-dev/governance-framework-demo-consumer` | `34778861276` | `pass` | `pass` | `new_evidence` | `none` |
 | `architecture` | `joku-dev/ha-CPsWMS` | `35131185047` | `pass` | `pass` | `new_evidence` | `none` |
 | `devsecops` | `joku-dev/ha-CPsWMS` | `35131186298` | `fail` | `fail` | `cross_commit_reuse` | `reverify_with_artifact_digest` |
+| `typed_evidence` | `joku-dev/ha-CPsWMS` | `35232313852` | `pass` | `pass` | `new_evidence` | `none` |
 
 ## Classification Counts
 
@@ -32,4 +33,4 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 | `cross_repository_reuse` | 2 |
 | `deterministic_report_reuse` | 6 |
 | `legacy_assessment_superseded` | 2 |
-| `new_evidence` | 22 |
+| `new_evidence` | 23 |
