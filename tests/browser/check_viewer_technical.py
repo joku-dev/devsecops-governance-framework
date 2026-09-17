@@ -1,7 +1,7 @@
 """Browser acceptance for integrated technical views. Same setup as check_viewer_app.py."""
 import sys
 from urllib.parse import urljoin
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 
 URL=sys.argv[1] if len(sys.argv)>1 else 'http://127.0.0.1:8771/generated/viewer/app/index.html'
 with sync_playwright() as p:
@@ -17,7 +17,7 @@ with sync_playwright() as p:
     data=page.request.get(urljoin(URL,'data.json')).json()
     for section in data['technical']['sections']:
         go(section['group']+'/'+section['tab'])
-        assert page.locator('h1').inner_text()==section['title']
+        expect(page.locator('h1')).to_have_text(section['title'])
         if section['available']:
             assert page.locator('.technical .viewer-section').count()==1
         else:
@@ -29,6 +29,20 @@ with sync_playwright() as p:
     for invalid in ('governance/summary','operations/summary','evidence/nonexistent'):
         go(invalid)
         assert page.locator('h1').inner_text()=='Ansicht nicht gefunden'
+    go('evidence/trust')
+    governance=page.locator('.panel').filter(has=page.get_by_role('heading',name='Latest Governance Evidence Trust',exact=True))
+    ha=governance.locator('tbody tr').filter(has_text='joku-dev/ha-CPsWMS')
+    assert ha.count()==2
+    assert all('integrity_verified' in text for text in ha.all_text_contents())
+    assert 'replay fail' in ha.filter(has_text='DevSecOps').inner_text()
+    assert 'replay pass' in ha.filter(has_text='Architecture').inner_text()
+    typed=page.locator('.panel').filter(has=page.get_by_role('heading',name='Latest Typed Evidence',exact=True))
+    assert typed.locator('tbody tr').count()==1
+    assert 'governance-framework-demo-consumer' in typed.inner_text()
+    assert 'ha-CPsWMS' not in typed.inner_text()
+    coverage=page.locator('.panel').filter(has=page.get_by_role('heading',name='Typed Evidence: Abdeckung',exact=True))
+    assert 'Kein Typed-Evidence-Eintrag für:' in coverage.inner_text() and 'ha-CPsWMS' in coverage.inner_text()
+    page.screenshot(path='/tmp/viewer-global-trust.png',full_page=True)
     go('evidence/replay')
     assert 'cross_commit_reuse' in page.locator('.technical').inner_text()
     assert 'FAIL' in page.locator('.notice').inner_text()

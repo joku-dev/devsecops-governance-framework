@@ -39,6 +39,14 @@ Ansicht abgebildet. `#overview` öffnet die neue Übersicht.
 
 ## Evidence Trust je Repository
 
+Die globale Ansicht **Nachweise → Evidence Trust** zeigt zuerst **Latest Governance
+Evidence Trust** für die offiziellen DevSecOps- und Architektur-Ergebnisse aller
+erfassten Repositories, einschließlich ha-CPsWMS. **Latest Typed Evidence** ist eine
+separate Tabelle für den Typed-Evidence-Intake. Aktuell enthält sie nur den
+Demo-Consumer; für ha-CPsWMS liegt noch kein solcher Eintrag vor. Die Ansicht nennt
+diese Lücke ausdrücklich. Die vorhandenen L1-Messberichte und Container-Scans sind
+separat erfasst und erhalten dadurch keine zusätzliche Trust-Einstufung.
+
 Unter **Repositories → ha-CPsWMS → Evidence Trust** stehen die gespeicherten
 Trust-Stufen für DevSecOps und Architektur mit Prüfzeitpunkt, Commit, Replay,
 Anzahl bestandener/fehlgeschlagener/nicht bewerteter Einzelprüfungen und Links
