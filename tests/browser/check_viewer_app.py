@@ -32,6 +32,14 @@ with sync_playwright() as p:
     assert page.locator('a[href*="35131185047"]').count() > 0
     assert 'FAIL' in page.locator('main').inner_text() # replay is not hidden by governance PASS
     page.screenshot(path='/tmp/viewer-app-repo.png',full_page=True)
+    page.locator('nav[aria-label="Repository-Ansichten"]').get_by_role('link',name='Evidence Trust',exact=True).click()
+    page.wait_for_selector('[data-trust-domain="devsecops"]')
+    dev=page.locator('[data-trust-domain="devsecops"]');arch=page.locator('[data-trust-domain="architecture"]')
+    assert 'integrity_verified' in dev.inner_text() and 'FAIL' in dev.inner_text()
+    assert 'integrity_verified' in arch.inner_text() and 'PASS' in arch.inner_text()
+    assert dev.locator('tbody td:nth-child(2)').all_text_contents()==['6','1','5']
+    assert arch.locator('tbody td:nth-child(2)').all_text_contents()==['7','0','5']
+    page.screenshot(path='/tmp/viewer-repository-trust.png',full_page=True)
     go(REPO+'security')
     assert page.locator('tbody tr').count()==5
     assert '13 → 1' in page.locator('main').inner_text()
@@ -66,7 +74,7 @@ with sync_playwright() as p:
     go(REPO+'summary');page.reload();page.wait_for_selector('.tabs')
     for width in (390, 720, 1024):
         page.set_viewport_size({'width':width,'height':844})
-        for hash in ('#overview', REPO+'summary', REPO+'findings', '#evidence'):
+        for hash in ('#overview', REPO+'summary', REPO+'findings', REPO+'trust', '#evidence'):
             go(hash)
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(width,hash)
         go(REPO+'summary')
@@ -96,6 +104,12 @@ with sync_playwright() as p:
     mixed=browser.new_page();mixed.route('**/data.json',lambda route:route.fulfill(json=mismatch))
     mixed.goto(URL+REPO+'summary');mixed.wait_for_selector('.tabs')
     assert 'unterschiedliche Commits' in mixed.locator('main').inner_text()
+    missing_trust=json.loads(json.dumps(original))
+    next(r for r in missing_trust['repositories'] if r['id']=='joku-dev/ha-CPsWMS')['devsecops'].pop('trust')
+    absent=browser.new_page();absent.route('**/data.json',lambda route:route.fulfill(json=missing_trust))
+    absent.goto(URL+REPO+'trust');absent.wait_for_selector('.trust-card')
+    assert 'Kein Evidence-Trust-Status erfasst' in absent.locator('.trust-card').first.inner_text()
+    assert absent.locator('.trust-card').first.locator('.badge.pass').count()==0
     empty=browser.new_page();empty.route('**/data.json',lambda route:route.fulfill(json={'version':1,'repositories':[]}))
     empty.goto(URL);empty.wait_for_selector('h1')
     assert empty.locator('.metric .value').all_text_contents()==['0','—','—','0']
