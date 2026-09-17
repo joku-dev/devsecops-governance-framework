@@ -244,7 +244,7 @@ def build_governance_trust_panel(results_index: dict, architecture_index: dict) 
 def build_evidence_trust_section(typed_evidence_index: dict, results_index: dict, architecture_index: dict) -> str:
     repositories = typed_evidence_index.get("repositories", [])
     governance_html = build_governance_trust_panel(results_index, architecture_index)
-    typed_repos = {r["repository_id"] for r in repositories if r.get("latest_result")}
+    typed_repos = {r["repository_id"] for r in repositories if r.get("latest_results") or r.get("latest_result")}
     governance_repos = {r["repository_id"] for index in (results_index, architecture_index) for r in index.get("repositories", [])}
     missing = sorted(governance_repos - typed_repos)
     coverage = (
@@ -271,36 +271,53 @@ def build_evidence_trust_section(typed_evidence_index: dict, results_index: dict
     )
     rows = []
     for repository in repositories:
-        latest = repository.get("latest_result", {})
-        scanner = latest.get("scanner", {})
-        scanner_text = scanner.get("name", "unknown")
-        if scanner.get("version"):
-            scanner_text = f"{scanner_text} {scanner['version']}"
-        trust = latest.get("trust", {})
-        freshness = latest.get("freshness", "not_evaluated")
-        integrity = latest.get("content_integrity", "not_evaluated")
-        replay = latest.get("replay", "not_evaluated")
-        binding = latest.get("subject_binding", {})
-        container_images = latest.get("container_images", [])
-        container_detail = ''.join(
-            f'<span class="cell-detail">{escape(i["service"])} · archive verified · '
-            f'{escape(i["image_id"][:19])} · {i["counts"]["CRITICAL"]} critical / {i["counts"]["HIGH"]} high</span>'
-            for i in container_images
-        )
-        rows.append(
-            [
-                f"<code>{escape(repository.get('repository_id', 'unknown'))}</code>",
-                f"<code>{escape(latest.get('evidence_type', 'unknown'))}</code>" + container_detail,
-                escape(scanner_text),
-                trust_badge(trust) + f"<span class=\"cell-detail\">{escape(trust_detail(trust))}</span>",
-                badge(integrity, "ok" if integrity == "pass" else "warn"),
-                badge(freshness, "ok" if freshness == "pass" else "warn"),
-                badge(replay, "ok" if replay == "pass" else "warn"),
-                f"{escape(str(latest.get('finding_count', 0)))} · {badge(latest.get('max_severity', 'unknown'), status_tone('warn' if latest.get('finding_count', 0) else 'success'))}",
-                f"<code>{escape(binding.get('mode', 'unknown'))}</code><span class=\"cell-detail\">scanner attested: {escape(format_bool_flag(binding.get('scanner_attested')))}</span>",
-                run_link(latest.get("pipeline_run_id", "unknown"), latest.get("pipeline_url", "")),
-            ]
-        )
+        latest_results = repository.get("latest_results") or ([repository["latest_result"]] if repository.get("latest_result") else [])
+        for latest in latest_results:
+            producer = latest.get("producer", latest.get("scanner", {}))
+            producer_text = producer.get("name", "unknown")
+            if producer.get("version"):
+                producer_text = f"{producer_text} {producer['version']}"
+            trust = latest.get("trust", {})
+            freshness = latest.get("freshness", "not_evaluated")
+            integrity = latest.get("content_integrity", "not_evaluated")
+            replay = latest.get("replay", "not_evaluated")
+            binding = latest.get("subject_binding", {})
+            container_images = latest.get("container_images", [])
+            if latest.get("evidence_type") == "sbom":
+                container_detail = ''.join(
+                    f'<span class="cell-detail">{escape(i["service"])} · SBOM verified · '
+                    f'{escape(i["image_id"][:19])} · {i["component_count"]} components</span>'
+                    for i in container_images
+                )
+                format_data = latest.get("format", {})
+                evidence_summary = (
+                    f'{escape(str(latest.get("component_count", 0)))} components · '
+                    f'{escape(format_data.get("name", "unknown"))} {escape(format_data.get("version", ""))}'
+                )
+            else:
+                container_detail = ''.join(
+                    f'<span class="cell-detail">{escape(i["service"])} · archive verified · '
+                    f'{escape(i["image_id"][:19])} · {i["counts"]["CRITICAL"]} critical / {i["counts"]["HIGH"]} high</span>'
+                    for i in container_images
+                )
+                evidence_summary = (
+                    f"{escape(str(latest.get('finding_count', 0)))} · "
+                    f"{badge(latest.get('max_severity', 'unknown'), status_tone('warn' if latest.get('finding_count', 0) else 'success'))}"
+                )
+            rows.append(
+                [
+                    f"<code>{escape(repository.get('repository_id', 'unknown'))}</code>",
+                    f"<code>{escape(latest.get('evidence_type', 'unknown'))}</code>" + container_detail,
+                    escape(producer_text),
+                    trust_badge(trust) + f"<span class=\"cell-detail\">{escape(trust_detail(trust))}</span>",
+                    badge(integrity, "ok" if integrity == "pass" else "warn"),
+                    badge(freshness, "ok" if freshness == "pass" else "warn"),
+                    badge(replay, "ok" if replay == "pass" else "warn"),
+                    evidence_summary,
+                    f"<code>{escape(binding.get('mode', 'unknown'))}</code><span class=\"cell-detail\">producer attested: {escape(format_bool_flag(binding.get('producer_attested', binding.get('scanner_attested'))))}</span>",
+                    run_link(latest.get("pipeline_run_id", "unknown"), latest.get("pipeline_url", "")),
+                ]
+            )
     return (
         "<section id=\"evidence-trust\" class=\"viewer-section\">"
         "<div class=\"section-title\"><h2>Evidence Trust</h2>"
@@ -313,7 +330,7 @@ def build_evidence_trust_section(typed_evidence_index: dict, results_index: dict
         f"<section class=\"cards\">{card_html}</section>"
         "<section class=\"panel\"><h2>Latest Typed Evidence</h2>"
         + (html_table(
-            ["Repository", "Evidence", "Scanner", "Trust", "Integrity", "Freshness", "Replay", "Findings", "Subject Binding", "Run"],
+            ["Repository", "Evidence", "Tool", "Trust", "Integrity", "Freshness", "Replay", "Evidence Summary", "Subject Binding", "Run"],
             rows,
         ) if rows else "<p>Keine Typed Evidence erfasst.</p>")
         + "</section></section>"

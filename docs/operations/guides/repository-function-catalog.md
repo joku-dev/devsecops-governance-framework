@@ -378,7 +378,8 @@ aktualisierbare Projektionen.
 passende Formate sind notwendig. Ein erfolgreicher Download oder lokaler Intake
 macht die Daten noch nicht zum offiziellen veröffentlichten `main`-Stand.
 Das feste ha-CPsWMS-Profil nimmt fünf vollständige Container-Archive gemeinsam
-auf und verwirft unvollständige, veraltete oder widersprüchlich gebundene Läufe.
+auf, verifiziert Vulnerability-Scan und CycloneDX-SBOM getrennt und verwirft
+unvollständige, veraltete oder widersprüchlich gebundene Läufe.
 
 ## 12. Ergebnisgeschichte schützen
 

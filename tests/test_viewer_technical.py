@@ -51,9 +51,15 @@ class TechnicalViewerTests(unittest.TestCase):
         self.assertIn('org/&lt;script&gt;', source)
 
     def test_typed_coverage_is_not_inferred_from_governance(self):
-        typed = {'repositories': [{'repository_id': 'org/demo', 'latest_result': {
-            'evidence_type': 'vulnerability_scan', 'trust': {'effective_level': 'integrity_verified'},
-        }}]}
+        vulnerability = {'evidence_type': 'vulnerability_scan',
+            'producer': {'name': 'trivy', 'version': '0.70.0'},
+            'trust': {'effective_level': 'integrity_verified'}, 'finding_count': 1, 'max_severity': 'high'}
+        sbom = {'evidence_type': 'sbom', 'producer': {'name': 'trivy', 'version': '0.70.0'},
+            'trust': {'effective_level': 'integrity_verified'}, 'component_count': 42,
+            'format': {'name': 'CycloneDX', 'version': '1.6'},
+            'container_images': [{'service': 'api', 'image_id': 'sha256:'+'a'*64, 'component_count': 42}]}
+        typed = {'repositories': [{'repository_id': 'org/demo', 'latest_result': vulnerability,
+            'latest_results': [vulnerability, sbom]}]}
         dev = {'repositories': [{'repository_id': name, 'latest_result': {}} for name in ['org/demo', 'org/application']]}
         source = build_evidence_trust_section(typed, dev, {})
         coverage = source.split('Kein Typed-Evidence-Eintrag für:', 1)[1].split('</p>', 1)[0]
@@ -62,6 +68,10 @@ class TechnicalViewerTests(unittest.TestCase):
         typed_table = source.split('<h2>Latest Typed Evidence</h2>', 1)[1]
         self.assertIn('org/demo', typed_table)
         self.assertNotIn('org/application', typed_table)
+        self.assertIn('vulnerability_scan', typed_table)
+        self.assertIn('sbom', typed_table)
+        self.assertIn('42 components', typed_table)
+        self.assertIn('SBOM verified', typed_table)
 
     def test_all_existing_sections_have_destinations(self):
         data=project_technical((ROOT/'generated/viewer/status-viewer.html').read_text())

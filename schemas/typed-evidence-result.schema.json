@@ -17,7 +17,7 @@
     "schema_version": { "const": "1.0.0" },
     "result_type": { "const": "typed-evidence-trust" },
     "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
-    "evidence_type": { "const": "vulnerability_scan" },
+    "evidence_type": { "enum": ["vulnerability_scan", "sbom"] },
     "generated_at": { "type": "string", "format": "date-time" },
     "pipeline": {
       "type": "object",
