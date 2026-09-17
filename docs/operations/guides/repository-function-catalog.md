@@ -367,6 +367,8 @@ aktualisierbare Projektionen.
 `scripts/intake_github_actions_run.py`,
 `scripts/intake_architecture_github_actions_run.py`,
 `scripts/intake_evidence_trust_github_actions_run.py`,
+`scripts/intake_ha_container_trust.py`,
+`scripts/lib/container_typed_evidence.py`,
 `scripts/intake_ci_artifact_bundle.py`, `scripts/validate_ci_artifact_bundle.py`,
 `.github/workflows/intake-governance-result.yml`,
 `.github/workflows/intake-architecture-result.yml`,
@@ -375,6 +377,8 @@ aktualisierbare Projektionen.
 **Einordnung und Grenzen:** Implementiert. Zugänge, vorhandene Laufartefakte und
 passende Formate sind notwendig. Ein erfolgreicher Download oder lokaler Intake
 macht die Daten noch nicht zum offiziellen veröffentlichten `main`-Stand.
+Das feste ha-CPsWMS-Profil nimmt fünf vollständige Container-Archive gemeinsam
+auf und verwirft unvollständige, veraltete oder widersprüchlich gebundene Läufe.
 
 ## 12. Ergebnisgeschichte schützen
 
@@ -422,7 +426,8 @@ sichtbaren Grenzen, etwa `unverified` oder `integrity_verified`.
 `model/evidence/evidence-trust-model.yaml`,
 `model/evidence/evidence-freshness-policies.yaml`,
 `model/evidence/evidence-collector-contract.yaml`,
-`scripts/generate_typed_evidence_results_index.py`.
+`scripts/generate_typed_evidence_results_index.py`,
+`scripts/lib/container_typed_evidence.py`.
 
 **Einordnung und Grenzen:** Implementiert und report-only. Ein korrekter Hash
 belegt für sich keine fachliche Wahrheit oder unabhängig bestätigte Herkunft.
