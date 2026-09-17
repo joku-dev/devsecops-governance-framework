@@ -25,7 +25,7 @@ with sync_playwright() as p:
         assert page.locator('iframe').count()==0
         assert page.locator('.sidebar [aria-current=page]').count()==1
     go('repository/joku-dev%2Fha-CPsWMS/summary')
-    assert page.locator('nav[aria-label="Repository-Ansichten"] a').count()==4
+    assert page.locator('nav[aria-label="Repository-Ansichten"] a').count()==5
     for invalid in ('governance/summary','operations/summary','evidence/nonexistent'):
         go(invalid)
         assert page.locator('h1').inner_text()=='Ansicht nicht gefunden'

@@ -1,0 +1,566 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/measured-l1-assessment.schema.json",
+  "title": "Measured L1 assessment (report-only)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "result_type",
+    "profile",
+    "repository_id",
+    "reference_baseline",
+    "run",
+    "enforcement",
+    "official_compliance_result",
+    "production_approval",
+    "risk_acceptance",
+    "verification",
+    "sources",
+    "observations",
+    "controls",
+    "summary",
+    "evidence_binding"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "result_type": {
+      "const": "measured-l1-assessment"
+    },
+    "profile": {
+      "const": "ha-cpswms-l1-measured-v1"
+    },
+    "repository_id": {
+      "const": "joku-dev/ha-CPsWMS"
+    },
+    "reference_baseline": {
+      "const": "l1-baseline-v1.1.3"
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "attempt",
+        "commit",
+        "branch",
+        "event",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$"
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "branch": {
+          "const": "main"
+        },
+        "event": {
+          "const": "push"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "enforcement": {
+      "const": "report-only"
+    },
+    "official_compliance_result": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selected_raw_files_verified",
+        "archive_digest_verified",
+        "independent_attestation"
+      ],
+      "properties": {
+        "selected_raw_files_verified": {
+          "const": true
+        },
+        "archive_digest_verified": {
+          "const": false
+        },
+        "independent_attestation": {
+          "const": false
+        }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes",
+          "artifact_id",
+          "verification"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "artifact_id": {
+            "type": "string",
+            "pattern": "^(repository|[1-9][0-9]*)$"
+          },
+          "verification": {
+            "enum": [
+              "manifest_sha256",
+              "github_artifact_context",
+              "git_commit_content"
+            ]
+          }
+        }
+      },
+      "propertyNames": {
+        "pattern": "^(source|platform|runtime|image-[a-z0-9-]+|report|repository)/[A-Za-z0-9_./-]+$"
+      }
+    },
+    "observations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tests",
+        "traceability",
+        "static_analysis",
+        "component_count",
+        "vulnerability_counts",
+        "platform",
+        "images"
+      ],
+      "properties": {
+        "tests": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "runtime"
+          ],
+          "properties": {
+            "source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "passed",
+                "failed",
+                "skipped",
+                "execution_ok"
+              ],
+              "properties": {
+                "passed": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "failed": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "skipped": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "execution_ok": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "runtime": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "passed",
+                "failed",
+                "skipped",
+                "execution_ok"
+              ],
+              "properties": {
+                "passed": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "failed": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "skipped": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "execution_ok": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "traceability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirements",
+            "matched",
+            "links"
+          ],
+          "properties": {
+            "requirements": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "matched": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "cases",
+                  "passed"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "cases": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "passed": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "static_analysis": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "bandit",
+            "ruff",
+            "execution_ok"
+          ],
+          "properties": {
+            "bandit": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "ruff": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "execution_ok": {
+              "type": "boolean"
+            }
+          }
+        },
+        "component_count": {
+          "type": "integer",
+          "minimum": 5
+        },
+        "vulnerability_counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "UNKNOWN",
+            "INFO"
+          ],
+          "properties": {
+            "CRITICAL": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "HIGH": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "MEDIUM": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "LOW": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "UNKNOWN": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "INFO": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "platform": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "author_identified",
+            "protection_http",
+            "rules_http",
+            "environments_http"
+          ],
+          "properties": {
+            "author_identified": {
+              "type": "boolean"
+            },
+            "protection_http": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 599
+            },
+            "rules_http": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 599
+            },
+            "environments_http": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 599
+            }
+          }
+        },
+        "images": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ha-sync",
+            "query-api",
+            "semantic-enrichment",
+            "world-model-chat",
+            "neo4j"
+          ],
+          "properties": {
+            "ha-sync": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "image_id",
+                "archive_sha256_declared"
+              ],
+              "properties": {
+                "image_id": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$"
+                },
+                "archive_sha256_declared": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            },
+            "query-api": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "image_id",
+                "archive_sha256_declared"
+              ],
+              "properties": {
+                "image_id": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$"
+                },
+                "archive_sha256_declared": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            },
+            "semantic-enrichment": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "image_id",
+                "archive_sha256_declared"
+              ],
+              "properties": {
+                "image_id": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$"
+                },
+                "archive_sha256_declared": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            },
+            "world-model-chat": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "image_id",
+                "archive_sha256_declared"
+              ],
+              "properties": {
+                "image_id": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$"
+                },
+                "archive_sha256_declared": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            },
+            "neo4j": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "image_id",
+                "archive_sha256_declared"
+              ],
+              "properties": {
+                "image_id": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$"
+                },
+                "archive_sha256_declared": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "control_id",
+          "title",
+          "assessment",
+          "tools",
+          "observation",
+          "remaining",
+          "evidence_refs"
+        ],
+        "properties": {
+          "control_id": {
+            "type": "string",
+            "pattern": "^DSCB-L1-REQ-0(0[1-9]|1[0-6])$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "assessment": {
+            "enum": [
+              "measured",
+              "partial",
+              "findings",
+              "gap"
+            ]
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "observation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "remaining": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 16,
+      "maxItems": 16
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "measured",
+        "partial",
+        "findings",
+        "gap"
+      ],
+      "properties": {
+        "measured": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "partial": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "findings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "gap": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "evidence_binding": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
