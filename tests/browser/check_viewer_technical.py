@@ -37,11 +37,20 @@ with sync_playwright() as p:
     assert 'replay fail' in ha.filter(has_text='DevSecOps').inner_text()
     assert 'replay pass' in ha.filter(has_text='Architecture').inner_text()
     typed=page.locator('.panel').filter(has=page.get_by_role('heading',name='Latest Typed Evidence',exact=True))
-    assert typed.locator('tbody tr').count()==1
+    assert typed.locator('tbody tr').count()==2
     assert 'governance-framework-demo-consumer' in typed.inner_text()
-    assert 'ha-CPsWMS' not in typed.inner_text()
+    ha_typed=typed.locator('tbody tr').filter(has_text='joku-dev/ha-CPsWMS')
+    assert ha_typed.count()==1
+    ha_typed_text=ha_typed.inner_text()
+    assert 'integrity_verified' in ha_typed_text
+    assert '1993' in ha_typed_text and 'critical' in ha_typed_text
+    assert ha_typed_text.count('archive verified')==5
+    for image in ('ha-sync','query-api','semantic-enrichment','world-model-chat','neo4j'):
+        assert image in ha_typed_text
     coverage=page.locator('.panel').filter(has=page.get_by_role('heading',name='Typed Evidence: Abdeckung',exact=True))
-    assert 'Kein Typed-Evidence-Eintrag für:' in coverage.inner_text() and 'ha-CPsWMS' in coverage.inner_text()
+    coverage_text=coverage.inner_text()
+    assert 'Kein Typed-Evidence-Eintrag für:' in coverage_text
+    assert 'ai-native-engineering-factory' in coverage_text and 'ha-CPsWMS' not in coverage_text
     page.screenshot(path='/tmp/viewer-global-trust.png',full_page=True)
     go('evidence/replay')
     assert 'cross_commit_reuse' in page.locator('.technical').inner_text()
