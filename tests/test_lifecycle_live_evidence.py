@@ -22,8 +22,19 @@ REPO = "joku-dev/devsecops-governance-framework"
 class LiveEvidenceTests(unittest.TestCase):
     def setUp(self):
         self.profile = validate_preparation()["profile"]
-        self.files = {p:(ROOT / p).read_bytes() for p in self.profile["source"]["reference_files"]}
-        self.report = strict_json((ROOT / "generated/reports/governance-repository-security.json").read_bytes())
+        reference_commit = self.profile["source"]["reference_commit"]
+
+        def historical(path):
+            return subprocess.check_output(
+                ["git", "show", f"{reference_commit}:{path}"], cwd=ROOT
+            )
+
+        self.files = {
+            path: historical(path) for path in self.profile["source"]["reference_files"]
+        }
+        self.report = strict_json(
+            historical("generated/reports/governance-repository-security.json")
+        )
         self.report["observed_at"] = "2026-09-13T12:59:05Z"
         self.report["observation"]["observed_at"] = self.report["observed_at"]
         self.repository = {"id":1301369468, "full_name":REPO, "default_branch":"main"}

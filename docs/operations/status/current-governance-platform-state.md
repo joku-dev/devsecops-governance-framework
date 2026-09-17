@@ -3,7 +3,8 @@
 ## Observation Scope
 
 This page describes the implemented operating model as checked on 17 September
-2026 at `a74e067`. The ha-CPsWMS governance observations were updated for its
+2026, including the live settings recorded by GCR-2026-094. The ha-CPsWMS
+governance observations were updated for its
 16 September runs and its measured/typed evidence for run `35241262722` on
 17 September; other consumer observations retain their individual dates. For
 daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
@@ -39,17 +40,21 @@ The [current lifecycle state](governance-lifecycle-current-state.md) records per
 LD-07 acceptance on #91, activation via #92 and fresh evidence publication via #93.
 The pilot is manual/report-only and limited to this repository's GRS-002/main.
 It does not update consumer results, authorize live waivers or create a release.
+Its accepted source profile remains pinned to Self-Security `0.2.0`; retained
+receipts remain valid, while new `0.3.0` observations await a separately accepted
+profile revision.
 The [21-area function catalog](../guides/repository-function-catalog.md) and
 [technical inventory](../guides/repository-technical-function-inventory.md) cover
 both established capabilities and this addition.
 
 ## Protection And Enforcement
 
-The live main ruleset was read back after the #93 merge on 13 September 2026: active, no bypass,
-one approving review, stale approval dismissal, resolved conversations, strict
-required checks, and prohibited force pushes/deletion. The required GitHub
-Actions checks are `validate-and-report`, `Analyze Python`, and
-`Governance Repository Security`. Configuration is versioned in
+The live main ruleset was read back during GCR-2026-094 on 17 September 2026:
+active, no bypass, one approving review, required CODEOWNER and last-push
+approval, stale approval dismissal, resolved conversations, strict required
+checks, and prohibited force pushes/deletion. The required GitHub Actions checks
+are `validate-and-report`, `Analyze Python`, `Governance Repository Security`,
+`Consumer Lifecycle Guard`, and `Dependency Review`. Configuration is versioned in
 `.github/main-ruleset.json`; changing that file alone does not change GitHub.
 
 The earlier #64/#67 exceptions and the maintainer-authorized technical CLG
@@ -148,16 +153,17 @@ report generation worked. The report retains the earlier failed intake within
 its observation window even though a later retry succeeded. It also exposes
 an API result cap and administrative settings unavailable to the workflow token.
 
-An authenticated administrative observation on 11 September distinguished
-four confirmed self-security gaps: signed changes are not required, the
-repository-level SHA-pinning switch is off, the three historical release tags
-are unsigned, and Actions sources are unrestricted. Active workflow references
-are SHA-pinned. Secret scanning, push protection, Dependabot security updates,
-private vulnerability reporting and read-only default workflow permissions were
-verified enabled. Unknown scheduled-token observations must not be represented
-as proof that those controls are disabled. See the
-[maintenance record](../reference-runs/2026-09-11-operational-evidence-refresh.md)
-and [self-security procedure](../security/governance-repository-self-security.md).
+The 17 September hardening closed the repository-level SHA-pinning and unrestricted
+Action-source gaps and made Dependency Review mandatory. The corrected evaluator
+also recognizes all reviewed PR publishers. Remaining findings include the
+second independent reviewer, signed changes, three historical unsigned release
+tags and the future signed-release process. Secret scanning, push protection,
+Dependabot security updates, private vulnerability reporting and read-only
+default workflow permissions remain enabled. Enhanced non-provider patterns and
+validity checks remained disabled after an API enablement request and therefore
+are not claimed as active. See the
+[hardening record](../security/repository-security-hardening-2026-09-17.md) and
+[self-security procedure](../security/governance-repository-self-security.md).
 
 No permanent review bypass remains. Intake PRs #68–71 and portfolio PR #72 were
 reviewed and merged normally after the explicitly scoped exceptions were restored.

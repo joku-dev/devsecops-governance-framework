@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import re
 import subprocess
 import tempfile
 import unittest
@@ -54,6 +55,53 @@ class ValidationToolchainTests(unittest.TestCase):
         for requirement in requirements:
             with self.subTest(requirement=requirement):
                 self.assertRegex(requirement, r"^[A-Za-z0-9_.-]+==[^=\s]+$")
+
+    def test_dependency_locks_cover_inputs_with_artifact_hashes(self):
+        for source_name, lock_name in (
+            ("requirements-validation.txt", "requirements-validation.lock"),
+            ("requirements-docs.txt", "requirements-docs.lock"),
+        ):
+            source = (ROOT / source_name).read_text(encoding="utf-8").splitlines()
+            lock = (ROOT / lock_name).read_text(encoding="utf-8")
+            self.assertNotIn("git+", lock)
+            self.assertNotIn(" -e ", lock)
+            self.assertRegex(
+                lock,
+                r"(?ms)^typing-extensions==4\.16\.0 \\\n(?:    --hash=sha256:[0-9a-f]{64}(?: \\\n)?)+",
+                msg=f"{lock_name} must cover the Python 3.11 referencing dependency",
+            )
+            for requirement in source:
+                if not requirement or requirement.startswith(("#", "-r ")):
+                    continue
+                package, version = requirement.split("==", 1)
+                normalized = re.sub(r"[-_.]+", "-", package).lower()
+                pattern = rf"(?ms)^{re.escape(normalized)}=={re.escape(version)} \\\n(?:    --hash=sha256:[0-9a-f]{{64}}(?: \\\n)?)+"
+                with self.subTest(lock=lock_name, requirement=requirement):
+                    self.assertRegex(lock, pattern)
+
+    def test_operational_workflows_install_from_hash_locks(self):
+        validation_workflows = (
+            "governance-operations.yml",
+            "intake-architecture-result.yml",
+            "intake-evidence-trust.yml",
+            "intake-governance-result.yml",
+            "portfolio-status.yml",
+            "retry-collection-attempt.yml",
+        )
+        for name in validation_workflows:
+            workflow = (ROOT / ".github" / "workflows" / name).read_text(encoding="utf-8")
+            with self.subTest(workflow=name):
+                self.assertIn(
+                    "python -m pip install --require-hashes -r requirements-validation.lock",
+                    workflow,
+                )
+        docs_workflow = (ROOT / ".github" / "workflows" / "publish-docs.yml").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            "python -m pip install --require-hashes -r requirements-docs.lock",
+            docs_workflow,
+        )
 
     def test_governance_ci_uses_the_pinned_validation_toolchain(self):
         workflow = (ROOT / ".github" / "workflows" / "governance-ci.yml").read_text(encoding="utf-8")
