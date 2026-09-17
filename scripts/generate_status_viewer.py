@@ -281,10 +281,16 @@ def build_evidence_trust_section(typed_evidence_index: dict, results_index: dict
         integrity = latest.get("content_integrity", "not_evaluated")
         replay = latest.get("replay", "not_evaluated")
         binding = latest.get("subject_binding", {})
+        container_images = latest.get("container_images", [])
+        container_detail = ''.join(
+            f'<span class="cell-detail">{escape(i["service"])} · archive verified · '
+            f'{escape(i["image_id"][:19])} · {i["counts"]["CRITICAL"]} critical / {i["counts"]["HIGH"]} high</span>'
+            for i in container_images
+        )
         rows.append(
             [
                 f"<code>{escape(repository.get('repository_id', 'unknown'))}</code>",
-                f"<code>{escape(latest.get('evidence_type', 'unknown'))}</code>",
+                f"<code>{escape(latest.get('evidence_type', 'unknown'))}</code>" + container_detail,
                 escape(scanner_text),
                 trust_badge(trust) + f"<span class=\"cell-detail\">{escape(trust_detail(trust))}</span>",
                 badge(integrity, "ok" if integrity == "pass" else "warn"),
