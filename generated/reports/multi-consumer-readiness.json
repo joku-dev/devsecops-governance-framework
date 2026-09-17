@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0.0",
   "report_id": "multi-consumer-readiness",
-  "generated_at": "2026-09-17T07:29:20Z",
+  "generated_at": "2026-09-17T14:18:38Z",
   "enforcement": "report_only",
   "ready": true,
   "summary": {
     "registered_consumers": 3,
     "devsecops_consumers": 3,
     "architecture_consumers": 2,
-    "typed_evidence_consumers": 1,
+    "typed_evidence_consumers": 2,
     "telemetry_consumers": 2,
     "passed_checks": 9,
     "failed_checks": 0
@@ -116,8 +116,8 @@
       "governance_mode": "block-on-error",
       "devsecops_result": true,
       "architecture_result": true,
-      "typed_evidence_result": false,
-      "telemetry_events": 5
+      "typed_evidence_result": true,
+      "telemetry_events": 6
     }
   ]
 }
