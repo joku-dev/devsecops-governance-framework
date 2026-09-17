@@ -80,7 +80,7 @@ belong in a source-change commit; inspect the diff before omitting it.
 
 ```bash
 python3 -m venv .venv-docs
-.venv-docs/bin/python -m pip install -r requirements-docs.txt
+.venv-docs/bin/python -m pip install --require-hashes -r requirements-docs.lock
 .venv-docs/bin/mkdocs build --strict
 ```
 

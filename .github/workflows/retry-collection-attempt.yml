@@ -26,8 +26,7 @@ jobs:
 
       - name: Install validation dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements-validation.txt
+          python -m pip install --require-hashes -r requirements-validation.lock
 
       - name: Validate attempt and prepare retry
         id: retry

@@ -101,7 +101,8 @@ Lokale und zentrale Prüfungen sollen dieselben Tool-Versionen verwenden.
 
 Festgelegt sind:
 
-- Python-Abhängigkeiten: `requirements-validation.txt`
+- Python-Versionsvorgaben: `requirements-validation.txt`
+- Installations-Lock mit Artefakt-Hashes: `requirements-validation.lock`
 - OPA-Version und Checksums: `scripts/validation-toolchain.env`
 - Bootstrap: `scripts/bootstrap_validation_env.sh`
 - Vollständige Prüfung: `scripts/validate_all.sh`

@@ -6,7 +6,9 @@
     "visibility": "public",
     "default_branch": "main",
     "branch_protected": true,
-    "required_approving_reviews": 1,
+    "required_approving_reviews": 2,
+    "code_owner_review_required": true,
+    "last_push_approval_required": true,
     "required_status_checks": [
       "validate-and-report",
       "governance-repository-security"

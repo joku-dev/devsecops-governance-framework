@@ -36,10 +36,26 @@ class GovernanceRepositorySecurityTests(unittest.TestCase):
                 "permissions:\n  contents: write\nsteps:\n"
                 "  - run: python3 scripts/publish_operational_update.py --scope portfolio\n"
             )
+            (workflows / "consumer-review.yml").write_text(
+                "permissions:\n  contents: write\nsteps:\n"
+                "  - run: python3 scripts/publish_consumer_lifecycle.py\n"
+            )
+            (workflows / "typed-review.yml").write_text(
+                "permissions:\n  contents: write\nsteps:\n"
+                "  - run: python3 scripts/publish_typed_evidence_assurance_update.py "
+                "--scope typed-evidence\n"
+            )
             with patch("assess_governance_repository_security.ROOT", root):
                 observation = scan_workflows()
             self.assertEqual(observation["direct_main_write_workflows"], [".github/workflows/unknown.yml"])
-            self.assertEqual(observation["operational_review_workflows"], [".github/workflows/review.yml"])
+            self.assertEqual(
+                observation["operational_review_workflows"],
+                [
+                    ".github/workflows/consumer-review.yml",
+                    ".github/workflows/review.yml",
+                    ".github/workflows/typed-review.yml",
+                ],
+            )
 
     @classmethod
     def setUpClass(cls):
@@ -76,6 +92,8 @@ class GovernanceRepositorySecurityTests(unittest.TestCase):
         observation = copy.deepcopy(self.observation)
         observation["repository"]["branch_protected"] = False
         observation["repository"]["required_approving_reviews"] = 0
+        observation["repository"]["code_owner_review_required"] = False
+        observation["repository"]["last_push_approval_required"] = False
         observation["repository"]["required_status_checks"] = []
         observation["actions"]["direct_main_write_workflows"] = [
             ".github/workflows/intake-governance-result.yml"
@@ -95,6 +113,8 @@ class GovernanceRepositorySecurityTests(unittest.TestCase):
         observation = copy.deepcopy(self.observation)
         observation["repository"]["branch_protected"] = False
         observation["repository"]["required_approving_reviews"] = 0
+        observation["repository"]["code_owner_review_required"] = False
+        observation["repository"]["last_push_approval_required"] = False
         observation["repository"]["required_status_checks"] = []
         observation["actions"]["direct_main_write_workflows"] = [
             ".github/workflows/intake-governance-result.yml"
