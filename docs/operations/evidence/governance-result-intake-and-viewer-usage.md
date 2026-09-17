@@ -4,6 +4,13 @@ For credential setup and rotation, see [GitHub access maintenance](../security/g
 For daily checks, failure handling and pilot acceptance, see the
 [operations handbook](../guides/governance-repository-operations-handbook.md).
 
+For the new overview, repository details, container findings and evidence navigation,
+open the [Governance Workspace application](../guides/governance-viewer-app.md).
+Graph, controls, models, source intake and operational views are integrated into
+the application under Governance, Evidence and Operations. The old static viewer
+remains available as a compatibility fallback.
+Both are built by `scripts/generate_status_viewer.py`.
+
 ## Purpose
 
 This guide explains two operational capabilities of this repository:
@@ -20,6 +27,12 @@ Trust as a separate report-only signal.
 Typed evidence such as vulnerability scans uses a separate snapshot store and
 index. This prevents an evidence-quality signal from being mistaken for a
 governance outcome.
+
+Measured ha-CPsWMS container findings have a separate **Container Security**
+viewer section and append-only intake. See
+[L1 measured evidence and viewer intake](l1-measured-evidence-ha-cpswms.md).
+It exposes actual severities and image identities without changing compliance
+results, Evidence Trust levels, or lifecycle state.
 
 ## Part 1: Result Intake
 

@@ -10,7 +10,10 @@ import json
 
 import yaml
 
+from lib.viewer_app import build as build_viewer_app
 from lib.collection_attempts import project_collection_attempt_lifecycle
+from lib.measured_security import load_snapshots
+from lib.measured_security_view import render as render_measured_security
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1569,6 +1572,7 @@ def build_source_document_intake_section(
 
 
 def main() -> int:
+    measured_security_html = render_measured_security(load_snapshots(ROOT / "status/measured-security-results"))
     controls = []
     for path in sorted((MODEL / "controls").glob("dscb-*.yaml")):
         data = load_yaml(path)
@@ -2024,7 +2028,7 @@ def main() -> int:
     .section-nav-inner {{ max-width: 1440px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 8px; }}
     .section-nav a {{ color: var(--accent); background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 0.42rem 0.62rem; font-size: 0.9rem; text-decoration: none; }}
     .section-nav a:hover {{ text-decoration: none; border-color: var(--accent); background: var(--accent-soft); }}
-    .viewer-section {{ margin: 0 0 32px; scroll-margin-top: 72px; }}
+    .viewer-section {{ margin: 0 0 32px; scroll-margin-top: 132px; }}
     .viewer-section + .viewer-section {{ padding-top: 8px; }}
     .section-title {{ margin: 0 0 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }}
     .section-title h2 {{ margin: 0; font-size: 1.35rem; letter-spacing: 0; }}
@@ -2057,6 +2061,11 @@ def main() -> int:
     .panel-heading {{ display: flex; justify-content: space-between; gap: 16px; margin-bottom: 12px; }}
     .panel-heading p {{ margin: 5px 0 0; color: var(--muted); }}
     .table-scroll {{ overflow-x: auto; }}
+    #measured-security code {{ overflow-wrap: anywhere; }}
+    #measured-security .panel {{ margin-bottom: 16px; }}
+    #measured-security [hidden] {{ display: none; }}
+    .security-filters {{ display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 16px 0; }}
+    .security-filters input, .security-filters select {{ padding: 8px; border: 1px solid var(--border); border-radius: 6px; }}
     table {{ width: 100%; border-collapse: collapse; }}
     th, td {{ border-bottom: 1px solid var(--border); text-align: left; padding: 10px 9px; vertical-align: top; }}
     th {{ color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; background: var(--panel-soft); }}
@@ -2118,11 +2127,14 @@ def main() -> int:
       .latest-grid {{ grid-template-columns: 1fr; }}
       .section-heading {{ display: block; }}
       table {{ min-width: 760px; }}
-      .section-nav-inner {{ padding: 8px 16px; }}
+      .section-nav-inner {{ padding: 8px 16px; flex-wrap: nowrap; overflow-x: auto; }}
+      .section-nav a {{ flex: 0 0 auto; }}
+      .viewer-section {{ scroll-margin-top: 72px; }}
     }}
   </style>
 </head>
 <body>
+  <div style="padding:12px 24px;background:#e8f4ef"><a href="app/index.html"><strong>Neue Viewer-Anwendung öffnen →</strong></a> · Übersicht, Repositories, Befunde und Nachweise</div>
   <header>
     <h1>Governance Status Viewer</h1>
     <p class="meta">Operational snapshot of downstream governance results, released baselines, runtime architecture status, traceability coverage, and open governance work.</p>
@@ -2130,6 +2142,7 @@ def main() -> int:
   <nav class="section-nav" aria-label="Viewer sections">
     <div class="section-nav-inner">
       <a href="#overview">Overview</a>
+      <a href="#measured-security">Container Security</a>
       <a href="#governance-graph">Governance Graph</a>
       <a href="#runtime-governance">Runtime Governance</a>
       <a href="#evidence-trust">Evidence Trust</a>
@@ -2151,6 +2164,7 @@ def main() -> int:
         <h2>Operational Overview</h2>
         <p>Current governed state across DevSecOps and Architecture Runtime Governance, with one row per downstream repository.</p>
       </div>
+      <p><a href="#measured-security">Echte Container-Scans und offene Schwachstellen</a> · Governance-PASS ist keine Aussage zur Schwachstellenfreiheit.</p>
       <div class="overview-grid">
         {build_repository_status_board(results_index, architecture_index)}
         <div>
@@ -2160,6 +2174,8 @@ def main() -> int:
         </div>
       </div>
     </section>
+
+    {measured_security_html}
 
     {governance_graph_html}
 
@@ -2371,7 +2387,8 @@ def main() -> int:
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(html, encoding="utf-8")
-    print(f"Wrote {OUT.relative_to(ROOT)}")
+    build_viewer_app(ROOT, html)
+    print(f"Wrote {OUT.relative_to(ROOT)} and viewer app")
     return 0
 
 
