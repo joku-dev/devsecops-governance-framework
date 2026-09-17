@@ -33,8 +33,10 @@
       return `<tr><td><a class="repo-name" href="${route(repo)}">${esc(repo.id.split('/')[1])} →</a><small>${esc(repo.id.split('/')[0])}</small></td><td>${badge(repo.devsecops?.status)}</td><td>${badge(repo.architecture?.status)}</td><td>${s ? `${badge(s.counts.CRITICAL ? 'critical' : s.counts.HIGH ? 'high' : 'Keine hohen / kritischen Meldungen')}<small>${count(s.counts.CRITICAL)} kritisch · ${count(s.counts.HIGH)} hoch</small>` : '<span class="muted">Nicht erfasst</span>'}</td><td><small>Governance: ${date(repo.devsecops?.generated_at || repo.architecture?.generated_at)}</small><small>Scan: ${date(s?.run.updated_at)}</small></td></tr>`;
     }));
   }
-  function actions(repos) {
+  function actions(repos, includeRepositorySecurity = false) {
     const items = [];
+    const repositorySecurity = state.data.repository_security;
+    if (includeRepositorySecurity && repositorySecurity?.summary?.fail) items.push({title:'Governance-Repository: Security-Anforderungen bearbeiten', text:`${repositorySecurity.summary.fail} von ${repositorySecurity.summary.criteria} Kriterien offen · ${repositorySecurity.summary.critical_failures} kritisch · ${repositorySecurity.summary.high_failures} hoch.`, url:'#repository-security', label:'Repository Security öffnen'});
     for (const repo of repos) {
       if (repo.l1_assessment) items.push({title:`${repo.id.split('/')[1]}: L1-Nachweislücken bearbeiten`, text:`${repo.l1_assessment.summary.gap} Kontrollen mit fehlenden Nachweisen · ${repo.l1_assessment.summary.partial} teilweise belegt.`, url:route(repo,'l1'), label:'Kontrollen und Nachweise öffnen'});
       if (repo.security && (repo.security.counts.CRITICAL || repo.security.counts.HIGH)) items.push({title:`${repo.id.split('/')[1]}: Sicherheitsbefunde bewerten`, text:`${repo.security.counts.CRITICAL} kritische und ${repo.security.counts.HIGH} hohe Image-/Paketmeldungen. Technische Bewertung ist keine Risikofreigabe.`, url:route(repo,'findings'), label:'Befunde untersuchen'});
@@ -49,7 +51,7 @@
     const affected = repos.filter(r => ['devsecops','architecture'].some(d => ['fail','findings'].includes(String(r[d]?.status).toLowerCase()))).length;
     content.innerHTML = heading('Portfolio · gespeicherter Stand', 'Governance im Überblick', 'Ergebnisse einordnen, offene Befunde erkennen und den passenden Nachweis finden.', primary ? `<a class="button primary" href="${route(primary)}">${esc(primary.id.split('/')[1])} öffnen →</a>` : '') +
       `<div class="metrics">${metric('Repositories', repos.length, `${measured.length} mit gemessenen Container-Scans`)}${metric('Kritische Meldungen', measured.length ? critical : null, 'Nur erfasste Container-Scans', 'critical')}${metric('Hohe Meldungen', measured.length ? high : null, 'Image-/Paketmeldungen, nicht eindeutige CVEs','high')}${metric('Governance mit Befunden', affected, 'Repositories mit FAIL oder FINDINGS')}</div>
-      <div class="grid-two"><section class="panel"><div class="panel-head"><h2>Was Aufmerksamkeit braucht</h2><span class="badge">Aus Ergebnissen abgeleitet</span></div>${actions(repos)}</section><section class="panel"><h2>Den Stand richtig lesen</h2><ul class="scope-list"><li><div>Governance<small>Bewertung gegen die jeweilige Baseline</small></div><span class="badge">Eigener Status</span></li><li><div>Container-Sicherheit<small>Tatsächliche Scanner-Meldungen</small></div><span class="badge">Report-only</span></li><li><div>Nachweisqualität<small>Integrität und Replay separat prüfen</small></div><span class="badge">Eigene Prüfung</span></li></ul><div class="notice">Ein Governance-PASS bedeutet nicht schwachstellenfrei oder für Produktion freigegeben.</div><p class="muted">Es werden gespeicherte Ergebnisse gezeigt. Fehlende Scans zählen nicht als null Befunde.</p></section></div>
+      <div class="grid-two"><section class="panel"><div class="panel-head"><h2>Was Aufmerksamkeit braucht</h2><span class="badge">Aus Ergebnissen abgeleitet</span></div>${actions(repos,true)}</section><section class="panel"><h2>Den Stand richtig lesen</h2><ul class="scope-list"><li><div>Governance<small>Bewertung gegen die jeweilige Baseline</small></div><span class="badge">Eigener Status</span></li><li><div>Repository Security<small>Schutz des Governance-Repositories</small></div><span class="badge">Report-only</span></li><li><div>Container-Sicherheit<small>Tatsächliche Scanner-Meldungen</small></div><span class="badge">Report-only</span></li><li><div>Nachweisqualität<small>Integrität und Replay separat prüfen</small></div><span class="badge">Eigene Prüfung</span></li></ul><div class="notice">Ein Governance-PASS bedeutet nicht schwachstellenfrei oder für Produktion freigegeben.</div><p class="muted">Es werden gespeicherte Ergebnisse gezeigt. Fehlende Scans zählen nicht als null Befunde.</p></section></div>
       <section class="panel"><div class="panel-head"><h2>Repositories im Vergleich</h2><a href="#repositories">Alle ansehen →</a></div>${repositoryTable(repos)}</section>`;
   }
   function repositories() {
@@ -157,6 +159,23 @@
     const q=assuranceFor(repo,repo.l1_assessment);
     return `<div class="notice">Evidence Trust bewertet Herkunft und Integrität der Nachweise. Governance-Ergebnis, Replay und nicht bewertete Prüfungen bleiben eigenständige Signale.</div><div class="grid-two">${cards}</div><section class="panel"><div class="panel-head"><h2>Assurance der 16 L1-Kontrollen</h2>${q?'<span class="badge">Report-only</span>':''}</div>${q?`<p><strong>${count(q.summary.trust_levels.integrity_verified)}</strong> integrity_verified · <strong>${count(q.summary.trust_levels.unverified)}</strong> unverified · <strong>${count(q.summary.freshness.pass)}</strong> Freshness-Prüfungen bestanden</p><p class="muted">Stand ${date(q.verified_at)} · Run ${esc(q.run.id)} · fehlende Nachweisanteile stufen die jeweilige Kontrolle konservativ auf unverified zurück.</p><p><a href="${route(repo,'l1')}">Assurance je Kontrolle öffnen →</a> · <a href="${sourceURL(assurancePath(repo,q.run))}">Assurance-Snapshot ↗</a></p>`:'<p>Für den aktuellen gemessenen L1-Lauf ist noch keine Assurance pro Kontrolle erfasst. Fehlende Prüfungen gelten nicht als bestanden.</p>'}<p><a href="${route(repo,'evidence')}">Quelldaten und Scan-Historie →</a> · <a href="#evidence/trust">Evidence Trust aller Repositories →</a></p></section>`;
   }
+  function repositorySecurity() {
+    const report=state.data.repository_security;
+    if(!report) {
+      content.innerHTML=heading('Sicherheit','Repository Security','Schutzstatus des zentralen Governance-Repositories.')+'<section class="panel"><div class="notice warn">Kein validierter Self-Security-Bericht erfasst. Fehlende Daten gelten nicht als bestandene Anforderungen.</div></section>';
+      return;
+    }
+    const failed=report.criteria.filter(item=>item.status==='fail');
+    const criteriaRows=report.criteria.map(item=>`<tr data-security-criterion="${esc(item.id)}"><td><strong>${esc(item.id)}</strong><small>${esc(item.key)}</small></td><td>${esc(item.title)}<small>${esc(item.detail)}</small></td><td>${badge(item.severity)}</td><td>${badge(item.status)}</td><td>${item.evidence_refs.map(ref=>`<code>${esc(ref)}</code>`).join('<br>')}</td></tr>`);
+    const openItems=failed.map(item=>`<article class="security-finding"><div class="panel-head"><h3>${esc(item.id)} · ${esc(item.title)}</h3>${badge(item.severity)}</div><p>${esc(item.detail)}</p><small>Nachweise: ${esc(item.evidence_refs.join(', '))}</small></article>`).join('');
+    const nextSteps=report.next_steps.map(step=>`<article class="action"><span class="action-number">${esc(step.priority)}</span><div><h3>${esc(step.title)}</h3><p>${esc(step.action)}</p><p><strong>Abnahme:</strong> ${esc(step.acceptance_criteria)}</p><small>Adressiert ${esc(step.addresses.join(', '))}${step.prerequisites.length?` · Voraussetzung ${esc(step.prerequisites.join(', '))}`:''}</small></div></article>`).join('');
+    content.innerHTML=heading('Sicherheit · zentraler Stand','Repository Security','Self-Security des Governance-Repositories mit Kriterien, Beobachtungen und offenen Maßnahmen.',`<a class="button" href="${sourceURL(report.human_report)}">Vollständigen Bericht öffnen ↗</a>`)+
+      `<div class="metrics repository-security-metrics">${metric('Erfüllt',report.summary.pass,`${report.summary.criteria} Kriterien insgesamt`,'good')}${metric('Offen',report.summary.fail,'Weitere Bearbeitung erforderlich','critical')}${metric('Kritisch offen',report.summary.critical_failures,'Fehlgeschlagene kritische Kriterien','critical')}${metric('Hoch offen',report.summary.high_failures,'Fehlgeschlagene hohe Kriterien','high')}</div>
+      <div class="notice warn"><strong>${badge(report.overall_status)}</strong> ${esc(report.risk_statement)}</div>
+      <div class="grid-two repository-security-overview"><section class="panel"><div class="panel-head"><h2>Bewertungsrahmen</h2><span class="badge">${esc(report.enforcement)}</span></div><dl><dt>Repository</dt><dd>${esc(report.repository_id)}</dd><dt>Beobachtet</dt><dd>${date(report.observed_at)} · ${age(report.observed_at)}</dd><dt>Profil</dt><dd><code>${esc(report.profile_version)}</code></dd><dt>Wirkung</dt><dd>Report-only; keine automatische Freigabe oder Einstellungsänderung</dd></dl><p><a href="${sourceURL(report.source_file)}">Validierten JSON-Bericht öffnen ↗</a></p></section><section class="panel"><h2>Offene Kriterien</h2>${openItems||'<p class="muted">Keine offenen Kriterien im gespeicherten Bericht.</p>'}</section></div>
+      <section class="panel"><div class="panel-head"><h2>Alle Self-Security-Kriterien</h2><span class="badge">${count(report.criteria.length)} Kriterien</span></div>${table(['ID','Anforderung / Beobachtung','Schweregrad','Status','Nachweisquellen'],criteriaRows)}</section>
+      <section class="panel"><div class="panel-head"><h2>Dokumentierte nächste Schritte</h2><span class="badge">Aus dem Bericht</span></div>${nextSteps||'<p class="muted">Keine nächsten Schritte erfasst.</p>'}<div class="notice">Die Ansicht zeigt einen gespeicherten Zeitpunkt. Änderungen an GitHub-Einstellungen werden erst nach einer neuen Self-Security-Bewertung sichtbar.</div></section>`;
+  }
   function repository(repo, tab) {
     const tabs={summary:'Zusammenfassung',trust:'Evidence Trust',l1:'L1-Nachweise',security:'Container-Sicherheit',findings:'Befunde',evidence:'Nachweise'};
     if(!tabs[tab])tab='summary';
@@ -199,7 +218,7 @@
     try { parts=(location.hash.slice(1)||'overview').split('/').map(decodeURIComponent); } catch { parts=['invalid']; }
     const alias=(state.data.technical?.sections || []).find(s=>s.id===parts[0]);
     if(alias && parts[0]!=='overview' && !parts[1]) parts=[alias.group,alias.tab];
-    const view=parts[0], names={overview:'Übersicht',repositories:'Repositories',repository:'Repositories',findings:'Befunde',evidence:'Nachweise',governance:'Governance',operations:'Betrieb'};
+    const view=parts[0], names={overview:'Übersicht',repositories:'Repositories',repository:'Repositories',findings:'Befunde','repository-security':'Repository Security',evidence:'Nachweise',governance:'Governance',operations:'Betrieb'};
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===(view==='repository'?'repositories':view))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     document.getElementById('breadcrumb').textContent=names[view]||'Seite nicht gefunden';
     document.title=(names[view]||'Seite nicht gefunden')+' · Governance Workspace';
@@ -208,6 +227,7 @@
     else if(view==='repositories')repositories();
     else if(view==='repository') {const repo=state.data.repositories.find(r=>r.id===parts[1]);if(repo)repository(repo,parts[2]||'summary');else notFound();}
     else if(view==='findings'){content.innerHTML=heading('Sicherheit','Befunde','Gemessene Container-Befunde durchsuchen und die weitere Prüfung vorbereiten.')+findings(state.data.repositories);bindFindings(state.data.repositories);}
+    else if(view==='repository-security')repositorySecurity();
     else if(view==='evidence')technicalView(view,parts[1]||'summary');
     else if(view==='governance')technicalView(view,parts[1]||'controls');
     else if(view==='operations')technicalView(view,parts[1]||'intake');
