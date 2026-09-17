@@ -89,3 +89,35 @@ policies:
       - release
     subject_claim: evidence.release_approval.release_candidate_id
     rationale: A release approval is current only for the exact release candidate it authorizes.
+  - id: freshness-control-evidence-commit-bound
+    evidence_type: control_evidence
+    evaluation_mode: subject_bound
+    applies_to:
+      - devsecops_evidence
+    decision_contexts:
+      - mainline
+      - release
+    subject_claim: evidence.control.commit_id
+    rationale: Tests, analysis, traceability, builds and pipeline records are current only for the exact evaluated commit and run.
+  - id: freshness-artifact-subject-bound
+    evidence_type: artifact_evidence
+    evaluation_mode: subject_bound
+    applies_to:
+      - devsecops_evidence
+    decision_contexts:
+      - release
+      - mainline
+    subject_claim: evidence.artifact.subject_digest
+    rationale: Artifact identity and integrity evidence is current only while bound to the exact immutable artifact evaluated by the control.
+  - id: freshness-repository-configuration-24h
+    evidence_type: repository_configuration
+    evaluation_mode: max_age
+    maximum_age_seconds: 86400
+    applies_to:
+      - devsecops_evidence
+    decision_contexts:
+      - mainline
+      - release
+    produced_at_claim: evidence.repository_configuration.observed_at
+    evaluated_at_claim: assurance.verified_at
+    rationale: Mutable repository protection and review settings should be observed within one day of the governance decision.

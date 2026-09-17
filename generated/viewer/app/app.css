@@ -758,4 +758,17 @@ h1 {
 .l1-partial,.l1-findings {background:#fff3d9;color:#815409}
 .l1-gap {background:#fce9ec;color:#ad2940}
 .l1-metrics .value {font-size:2rem}
+.assurance-overview {display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px;margin:18px 0;background:#f5f8fa;border:1px solid var(--line,#dce5eb);border-radius:10px}
+.badge-pair {display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.assurance-integrity_verified {background:#e6f4ed;color:#066449}
+.assurance-provenance_verified,.assurance-attested {background:#dff1ff;color:#135d84}
+.assurance-unverified {background:#fce9ec;color:#ad2940}
+.assurance-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+.assurance-grid div {padding:10px;background:#f5f8fa;border-radius:8px;overflow-wrap:anywhere}
+.assurance-grid strong,.assurance-grid span,.assurance-evidence small,.assurance-evidence a {display:block}
+.assurance-grid span,.assurance-evidence small {margin-top:4px;color:var(--muted,#506577)}
+.assurance-evidence article {padding:12px 0;border-top:1px solid var(--line,#dce5eb)}
+.assurance-evidence a {margin-top:7px}
 @media(max-width:600px) {.l1-control-heading {align-items:flex-start;flex-direction:column;gap:8px}}
+@media(max-width:900px) {.assurance-grid {grid-template-columns:repeat(2,minmax(0,1fr))}.assurance-overview {align-items:flex-start;flex-direction:column}}
+@media(max-width:600px) {.assurance-grid {grid-template-columns:1fr}.badge-pair {justify-content:flex-start}}

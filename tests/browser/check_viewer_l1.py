@@ -19,6 +19,14 @@ with sync_playwright() as p:
     assert page.locator('.l1-metrics .value').all_text_contents()==['5','6','2','3']
     assert 'denselben Commit' in page.locator('main').inner_text()
     assert '16 Kontrollen bestanden' in page.locator('main').inner_text()
+    ha=next(r for r in data['repositories'] if r['id']=='joku-dev/ha-CPsWMS')
+    if ha.get('control_assurance'):
+        assert page.locator('.assurance-overview').count()==1
+        assert page.locator('.assurance-integrity_verified,.assurance-unverified').count()==16
+        first=page.locator('.l1-control').first
+        first.locator('.l1-control-heading').click()
+        assert first.locator('.assurance-grid').count()==1
+        assert 'Freshness' in first.inner_text() and 'Subjektbindung' in first.inner_text()
     page.locator('#l1-status').select_option('gap');assert page.locator('.l1-control').count()==3
     page.locator('#l1-query').fill('013');assert page.locator('.l1-control').count()==1
     assert 'Deployment autorisieren' in page.locator('.l1-control').inner_text()

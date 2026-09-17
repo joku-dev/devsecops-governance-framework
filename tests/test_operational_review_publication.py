@@ -152,8 +152,13 @@ class OperationalPublicationTests(unittest.TestCase):
 
 class OperationalWorkflowTests(unittest.TestCase):
     def test_writers_only_publish_review_prs_from_main(self):
-        for name in ("intake-governance-result.yml", "intake-architecture-result.yml",
-                     "intake-evidence-trust.yml", "portfolio-status.yml"):
+        workflows = {
+            "intake-governance-result.yml": "scripts/publish_operational_update.py --scope",
+            "intake-architecture-result.yml": "scripts/publish_operational_update.py --scope",
+            "intake-evidence-trust.yml": "scripts/publish_typed_evidence_assurance_update.py --scope",
+            "portfolio-status.yml": "scripts/publish_operational_update.py --scope",
+        }
+        for name, publisher_command in workflows.items():
             with self.subTest(workflow=name):
                 text = (ROOT / ".github/workflows" / name).read_text()
                 workflow = yaml.load(text, Loader=yaml.BaseLoader)
@@ -164,7 +169,7 @@ class OperationalWorkflowTests(unittest.TestCase):
                 steps = job["steps"]
                 self.assertEqual(steps[0]["with"]["ref"], "main")
                 publisher = next(step for step in steps if step["name"] == "Open operational review PR")
-                self.assertIn("scripts/publish_operational_update.py --scope", publisher["run"])
+                self.assertIn(publisher_command, publisher["run"])
                 self.assertEqual(publisher["env"]["GH_TOKEN"], "${{ github.token }}")
                 self.assertEqual(workflow["permissions"]["pull-requests"], "write")
                 self.assertEqual(workflow["permissions"]["actions"], "write")

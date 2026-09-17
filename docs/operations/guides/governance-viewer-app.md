@@ -44,8 +44,10 @@ Evidence Trust** für die offiziellen DevSecOps- und Architektur-Ergebnisse alle
 erfassten Repositories, einschließlich ha-CPsWMS. **Latest Typed Evidence** ist eine
 separate Tabelle für den Typed-Evidence-Intake. Das ha-CPsWMS-Profil erfasst alle
 fünf Container-Images mit zentral geprüften Archiven. Solange für ein Repository
-kein Eintrag aufgenommen wurde, nennt die Ansicht diese Lücke ausdrücklich. Die vorhandenen L1-Messberichte und Container-Scans sind
-separat erfasst und erhalten dadurch keine zusätzliche Trust-Einstufung.
+kein Eintrag aufgenommen wurde, nennt die Ansicht diese Lücke ausdrücklich. Die
+gemessene L1-Bewertung erhält über ihren eigenen Kontroll-Assurance-Vertrag eine
+Trust- und Freshness-Aussage je Kontrolle; diese wird nicht aus einem
+Governance-Ergebnis geerbt.
 
 Unter **Repositories → ha-CPsWMS → Evidence Trust** stehen die gespeicherten
 Trust-Stufen für DevSecOps und Architektur mit Prüfzeitpunkt, Commit, Replay,
@@ -57,14 +59,18 @@ die L1-Ansicht verlinken diesen Bereich direkt.
 `integrity_verified` kann neben Replay `FAIL` stehen: Es bestätigt die geprüfte
 Integrität, hebt aber offene Replay-Befunde oder nicht bewertete Dimensionen nicht
 auf. Fehlender Trust bleibt ausdrücklich nicht erfasst. Die Trust-Stufen der
-offiziellen Governance-Ergebnisse werden nicht auf die separaten L1-Messberichte
-oder Container-Scans übertragen; dort gelten die jeweils dokumentierten Prüfgrenzen.
+offiziellen Governance-Ergebnisse werden nicht auf andere Ergebnisarten
+übertragen. Typisierte SBOM-/Scan-Nachweise und Kontroll-Assurance verwenden ihre
+jeweils dokumentierten Prüfgrenzen.
 
 ## L1-Nachweise je Repository
 
 Unter **Repositories → ha-CPsWMS → L1-Nachweise** stehen 16 zentrale
 Report-only-Bewertungen aus tatsächlichen Prüfungen. Jede Kontrolle nennt
 Messwerte, Werkzeuge, verbleibende Lücken und die Originaldateien mit Prüfsummen.
+Zusätzlich zeigt sie Abdeckung, Trust, Freshness-Policy, Integrität, Provenienz,
+Replay, Custody, Attestation, Entscheidungskontext und Subjektbindung. Vorhandene
+und fehlende Nachweisgruppen bleiben getrennt sichtbar.
 Kontrollzeilen für Details aufklappen, nach Kontroll-ID, Werkzeug oder Text
 suchen und nach Nachweisstatus filtern.
 Die Zusammenfassung verlinkt diese Ansicht; die offizielle Baseline bleibt daneben
@@ -80,6 +86,9 @@ als eigener Status sichtbar. Fehlende Messungen ergeben keinen PASS.
   Branch- oder manuellen Ergebnisse als offiziellen Stand aus.
 - L1-Nachweise stammen aus validierten `status/measured-l1-results/`-Snapshots.
   Sie verändern weder offizielle Ergebnisse noch historische Replay-Befunde.
+- Kontroll-Assurance stammt aus validierten, append-only gespeicherten
+  `status/control-evidence-assurance/`-Snapshots. Fehlende erforderliche
+  Nachweisanteile führen für die betreffende Kontrolle zu `unverified`.
 - Container-Sicherheit stammt aus den validierten, separat aufgenommenen
   `status/measured-security-results/`-Snapshots. Diese sind report-only.
 - HIGH/CRITICAL-Meldungen zählen Image-/Paketvorkommen. CVE-IDs werden zusätzlich
@@ -108,7 +117,9 @@ Quellen der Anwendung: `apps/governance-viewer/index.html`, `app.css`, `app.js`,
 `technical.css` und `technical.js`.
 Es handelt sich um eine eigenständige Browser-Anwendung mit lokalem Routing,
 Filtern und Seitennavigation, ohne externe JavaScript- oder CSS-Abhängigkeiten.
-Die Python-Projektion `scripts/lib/viewer_app.py` erzeugt ein internes
+Die Python-Projektion `scripts/lib/viewer_app.py` validiert und verbindet die
+gemessene Bewertung mit der Kontroll-Assurance nur bei identischem Repository,
+Run, Versuch und Commit. Sie erzeugt ein internes
 Darstellungsformat (`version: 1`), keinen neuen Consumer-Evidence-Vertrag.
 
 `scripts/generate_status_viewer.py` baut beide Viewer. Die Anwendung liegt danach

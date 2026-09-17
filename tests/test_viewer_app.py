@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from lib.viewer_app import project, build
 from lib.measured_security import load_snapshots
+from lib.control_evidence_assurance import build_assurance
 from publish_operational_update import allowed
 
 
@@ -63,6 +64,15 @@ class ViewerAppTests(unittest.TestCase):
         before = deepcopy((self.dev,self.arch,self.scans))
         project(self.dev,self.arch,self.scans)
         self.assertEqual(before,(self.dev,self.arch,self.scans))
+
+    def test_control_assurance_is_selected_separately_from_l1_assessment(self):
+        measured=json.loads(next((ROOT/'status/measured-l1-results/joku-dev__ha-CPsWMS').glob('*.json')).read_text())
+        assurance=build_assurance(measured,[],measured_source_file='status/measured-l1-results/joku-dev__ha-CPsWMS/run-35131185085-attempt-1.json',verified_at='2026-09-16T18:00:00Z')
+        data=project(self.dev,self.arch,self.scans,[measured],[assurance])
+        repo=next(row for row in data['repositories'] if row['id']=='joku-dev/ha-CPsWMS')
+        self.assertEqual(measured,repo['l1_assessment'])
+        self.assertEqual(assurance,repo['control_assurance'])
+        self.assertEqual(16,repo['control_assurance']['summary']['total_controls'])
 
     def test_deterministic_build_and_separate_assets(self):
         import shutil
