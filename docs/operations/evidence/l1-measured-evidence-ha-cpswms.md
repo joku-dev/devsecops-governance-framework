@@ -66,7 +66,8 @@ Ihr `16/16 pass` ist deshalb kein Ersatz für den neuen Bericht über tatsächli
 vorliegende Nachweise. Historische Berichte bleiben unverändert erhalten.
 
 Die ergänzende Abdeckungsanalyse bleibt ein eigener Consumer-Artefakttyp.
-Eine zentrale, aus ausgewählten Rohdaten neu berechnete Bewertung ist zusätzlich
+Eine zentrale, aus ausgewählten Rohdaten neu berechnete Bewertung und eine
+separate Nachweis-Assurance je Kontrolle sind zusätzlich
 unter **Repositories → ha-CPsWMS → L1-Nachweise** verfügbar (siehe unten).
 Der Viewer zeigt Container-Schwachstellen jetzt in einem separaten Bereich
 **Container Security**. Das verändert weder den offiziellen Compliance-PASS noch
@@ -97,7 +98,7 @@ Die Hinweise im Viewer sind technische Prüfansätze, keine VEX-Freigabe,
 Risikobilligung oder Bestätigung tatsächlicher Ausnutzbarkeit. Insbesondere ist
 ein Linux-Headerpaket kein Nachweis über den Kernel einer späteren Staging-VM.
 
-## Wiederholbarer Intake
+## Automatischer und wiederholbarer Intake
 
 Der neue, ausdrücklich auf `joku-dev/ha-CPsWMS` und dessen fünf Images begrenzte
 Pilot verwendet `scripts/intake_measured_security.py`. Voraussetzungen:
@@ -112,10 +113,13 @@ GitHub CLI mit Leserechten für Actions und die gepinnte Validierungsumgebung.
 
 Bei einem externen `VALIDATION_VENV` dessen Python-Pfad einsetzen. Anschließend
 die neuen Snapshots und den generierten Viewer über den normalen PR-/Merge-Weg
-veröffentlichen. **Kein automatischer Refresh ist eingerichtet.** Die Seite
-bezeichnet den Stand ausdrücklich als erfassten Snapshot; neuere Consumer-Runs
-erscheinen erst nach erneutem Intake und Merge. Der Pages-Workflow generiert den
-Viewer beim Veröffentlichen erneut aus den eingecheckten Snapshots.
+veröffentlichen. Ein erfolgreicher `main`-Lauf sendet über
+`.github/workflows/typed-evidence-intake.yml` automatisch genau einen Intake-
+Dispatch an das zentrale Repository. Der zentrale Workflow prüft zuerst die
+typisierten SBOM- und Schwachstellennachweise und erzeugt danach die gemessene
+L1-Bewertung samt Kontroll-Assurance. Er eröffnet einen begrenzten operativen PR;
+erst dessen Merge aktualisiert den offiziellen gespeicherten Stand und Pages.
+Der CLI-Aufruf bleibt als kontrollierter Backfill verfügbar.
 
 Der Intake lässt ausschließlich erfolgreiche, abgeschlossene `push/main`-Runs
 von `.github/workflows/l1-measured-evidence.yml` zu. PRs, Branch-Runs, manuelle
@@ -189,6 +193,28 @@ sie neben das offizielle Baseline-Ergebnis; eine gemeinsame Commit-Zuordnung
 wird nur angezeigt, wenn sie tatsächlich vorliegt. Suche und Statusfilter helfen
 bei der Bearbeitung. Alte erfasste Bewertungen bleiben über ihre Snapshots zugänglich.
 
+### Assurance für alle 16 Kontrollen
+
+Das Profil `model/evidence/control-evidence-assurance-profile.yaml` ordnet jede
+L1-Kontrolle einem katalogisierten Nachweistyp, Freshness-Verfahren,
+Entscheidungskontext und einer Subjektbindung zu. Der additive Vertrag
+`schemas/control-evidence-assurance.schema.json` speichert für jede Kontrolle:
+
+- Abdeckung (`complete`, `partial`, `missing`),
+- effektive Trust-Stufe,
+- Inhaltsintegrität, Provenienz und Freshness,
+- Replay, Custody und Attestation,
+- vorhandene und fehlende Nachweisgruppen.
+
+Ein `findings`-Ergebnis kann einen verlässlich gebundenen Nachweis haben; der
+Befund ändert dessen Trust nicht. Umgekehrt macht ein verifiziertes SBOM fehlende
+Freigabe- oder Deployment-Nachweise nicht wett. Sobald ein erforderlicher Teil
+fehlt, bleibt die aggregierte Trust-Stufe der betroffenen Kontrolle
+`unverified`; vorhandene Teilnachweise behalten ihre einzeln geprüfte Stufe.
+Nicht bewertete Dimensionen werden ausdrücklich als `not_evaluated` gespeichert.
+Diese Assurance bleibt report-only und ändert weder Kontrollstatus noch Baseline,
+Blocking-Modus, Produktionsfreigabe oder Risikoakzeptanz.
+
 ### Prüfgrenze und Aufbewahrung
 
 Der Intake prüft GitHub-Repository, erfolgreichen `push/main`-Lauf, Workflow,
@@ -205,16 +231,18 @@ bleiben ausdrücklich Producer-Angaben. Auch ein gültiges Manifest beweist kein
 unabhängige Attestation oder die Vertrauenswürdigkeit des Producers. Die
 Nachweisbindung ist eine deterministische Kontext-/Hash-Zuordnung, keine Signatur.
 
-`schemas/measured-l1-assessment.schema.json` validiert die neuen additiven
-Snapshots unter `status/measured-l1-results/`. Wiederholung ist idempotent;
+`schemas/measured-l1-assessment.schema.json` validiert die gemessene Bewertung;
+`schemas/control-evidence-assurance.schema.json` validiert die getrennte Assurance.
+Die Snapshots liegen unter `status/measured-l1-results/` und
+`status/control-evidence-assurance/`. Wiederholung ist idempotent;
 abweichende Inhalte derselben Lauf-/Versuchsidentität überschreiben keine Historie.
 Rohdateien verbleiben bei GitHub für die Consumer-Aufbewahrungsfrist; normalisierte
 Beobachtungen und Hashes bleiben im Repository. Geheimnisse, signierte Download-URLs
-und vollständige Rohlogs werden nicht eingecheckt. Der CLI-Intake wird über einen
-geprüften PR veröffentlicht; **ein automatischer Refresh ist weiterhin nicht eingerichtet**.
+und vollständige Rohlogs werden nicht eingecheckt. Automatischer und manueller
+Intake verwenden denselben geprüften PR-Weg.
 
 Diese Bewertung entfernt keine historischen Replay-Findings und ändert keine
-Trust-Stufen. Der alte Baseline-Workflow hat weiter seine eigenen Eingaben. Für
+Trust-Stufen anderer Ergebnisarten. Der alte Baseline-Workflow hat weiter seine eigenen Eingaben. Für
 seine Umstellung auf gemessene Kontrollergebnisse ist ein gesonderter
 Baseline-/Migrationsschritt erforderlich. Ein neu erfasster Bericht ist weder
 Deployment-Zustimmung noch Risikoakzeptanz. L1-013/014 und Teile von L1-016 bleiben

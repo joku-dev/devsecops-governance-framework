@@ -76,6 +76,7 @@ jobs:
           if [ "${REPOSITORY_ID}" = "joku-dev/ha-CPsWMS" ] && [ "${ARTIFACT_NAME}" = "l1-control-coverage" ]; then
             export GH_TOKEN="${GH_RESULT_INTAKE_TOKEN}"
             python3 scripts/intake_ha_container_trust.py --run-id "${RUN_ID}"
+            python3 scripts/intake_measured_l1.py --run-id "${RUN_ID}"
           else
             python3 scripts/intake_evidence_trust_github_actions_run.py \
               --repository-id "${REPOSITORY_ID}" \
@@ -161,7 +162,7 @@ jobs:
         if: always() && steps.regenerate.outcome == 'success' && steps.validation.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 scripts/publish_operational_update.py --scope typed-evidence
+        run: python3 scripts/publish_typed_evidence_assurance_update.py --scope typed-evidence
 
       - name: Fail workflow after intake or telemetry failure
         if: steps.intake.outcome == 'failure' || steps.telemetry.outcome == 'failure'

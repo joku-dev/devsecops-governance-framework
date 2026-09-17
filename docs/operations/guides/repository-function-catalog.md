@@ -12,8 +12,8 @@ zusätzlich alle Skripte, Bibliotheksmodule, Workflows und OPA-Module des Quells
 
 | Merkmal | Wert |
 | --- | --- |
-| Dokumentstand | 13. September 2026 |
-| Betrachteter Quellstand | `8df643db37ec4d6da7196b94aaa77b5e0e0844d8` |
+| Dokumentstand | 17. September 2026 |
+| Betrachteter Quellstand | `34e5dfff439fd5033cc2efd5a3ccc3b92c8d0aa2` plus GCR-2026-092 |
 | Zielgruppe | Geschäftsführung, Governance-Verantwortliche, Architektur, Security, Plattformbetrieb und Anwendungsteams |
 | Dokumenttyp | Erläuternder Funktionskatalog |
 | Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierungen: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md), [GCR-2026-078](../../governance/change-requests/GCR-2026-078-documentation-and-function-audit.md) |
@@ -436,6 +436,15 @@ Freshness-Grenzen unterscheiden sich nach Nachweistyp und Verwendungszweck.
 Trust verändert weder das fachliche Ergebnis noch automatisch die Auswahl des
 letzten offiziellen Ergebnisses.
 
+Für die gemessene ha-CPsWMS-L1-Bewertung ordnet ein eigenes Profil allen 16
+Kontrollen Nachweistyp, Freshness, Entscheidungskontext und Subjektbindung zu.
+Vorhandene und fehlende Nachweisgruppen werden getrennt bewertet; fehlender
+Pflichtumfang setzt den aggregierten Kontroll-Trust konservativ auf `unverified`.
+Implementiert in `model/evidence/control-evidence-assurance-profile.yaml`,
+`scripts/lib/control_evidence_assurance.py`,
+`schemas/control-evidence-assurance.schema.json` und
+`status/control-evidence-assurance/`.
+
 ## 14. Replay und Attestierungen untersuchen
 
 **Zweck:** Unpassende Wiederverwendung von Nachweisen erkennen und eine
@@ -545,6 +554,8 @@ maschinenlesbarer Graph. Im Graph lassen sich Knoten suchen, Typen filtern und
 Beziehungen untersuchen. Integrierte Ansichten zeigen Befunde, Trust, Replay, Laufhistorie,
 Sammlungsfehler, Modelle und Agent-Nutzung. Technische Tabellen unterstützen
 Suche und Seitennavigation; auf Mobilgeräten werden Unterbereiche ausgewählt.
+Die L1-Detailansicht zeigt für jede der 16 Kontrollen zusätzlich Trust, Freshness,
+Integrität, Provenienz, Replay, Custody, Attestation und fehlende Nachweisgruppen.
 
 **Implementierungsstellen:** `scripts/generate_repository_results_index.py`,
 `scripts/generate_architecture_results_index.py`,

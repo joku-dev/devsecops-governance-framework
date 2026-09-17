@@ -200,7 +200,9 @@ the DevSecOps and architecture indexes first, including ha-CPsWMS. Its **Latest
 Typed Evidence** table remains scoped to this separate typed index. The coverage
 notice identifies governance repositories with no latest typed entry. Measured
 L1 and container-security snapshots do not qualify as typed evidence merely by
-appearing in the viewer. No Trust level is inferred across these stores.
+appearing in the viewer. Die separate Kontroll-Assurance übernimmt nur explizite,
+exakt an denselben Run, Versuch und Commit gebundene typisierte Prüfresultate;
+andere Trust-Stufen werden nicht zwischen Speichern vererbt.
 
 The current typed index contains the demo consumer and `joku-dev/ha-CPsWMS`.
 For ha-CPsWMS, the latest entry expands the five verified image archives and
@@ -247,9 +249,29 @@ The consumer's `Notify Typed Evidence Intake` completion workflow sends
 `typed-evidence-trust-ready` with artifact name `l1-control-coverage` using its
 existing `GH_RESULT_INTAKE_TOKEN`. PR/manual producer runs are excluded. The
 central intake opens an operational PR; the public viewer updates after merge
-and Pages publication. Other measured L1/security stores retain their own intake
-and timestamps. Existing demo-consumer contracts and historical snapshots remain
-valid; no released baseline is changed.
+and Pages publication. Derselbe zentrale Lauf führt danach
+`scripts/intake_measured_l1.py` aus und schreibt die gemessene L1-Bewertung sowie
+die Kontroll-Assurance in denselben begrenzten operativen PR. Existing
+demo-consumer contracts and historical snapshots remain valid; no released
+baseline is changed.
+
+## Control Evidence Assurance
+
+`control-evidence-assurance-v1` erzeugt für alle 16 DevSecOps-L1-Kontrollen eine
+eigene report-only Aussage über Abdeckung, Trust, Freshness, Integrität,
+Provenienz, Replay, Custody und Attestation. Die Zuordnung liegt in
+`model/evidence/control-evidence-assurance-profile.yaml`; Schema und append-only
+Ergebnisse liegen unter `schemas/control-evidence-assurance.schema.json` und
+`status/control-evidence-assurance/`.
+
+Die Assurance verwendet die zentral validierte gemessene L1-Bewertung als
+Ausgangspunkt. Für SBOM und Schwachstellenscan werden passende typisierte
+Snapshots nur übernommen, wenn Repository, Run, Versuch und Commit identisch
+sind. Ein fehlender erforderlicher Nachweisanteil bleibt als eigene Gruppe
+sichtbar und setzt den aggregierten Kontroll-Trust auf `unverified`. Findings
+ändern die Nachweisqualität nicht; Trust ändert umgekehrt weder Kontrollstatus
+noch Governance-Ergebnis, Blocking-Modus, Produktionsfreigabe oder
+Risikoakzeptanz.
 
 ## Intake Script
 
