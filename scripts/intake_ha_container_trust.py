@@ -15,12 +15,18 @@ import zipfile
 
 from intake_measured_security import gh_json, NoRedirect
 from intake_evidence_trust_github_actions_run import write_snapshot, TRUST_RESULT_ROOTS
-from lib.container_typed_evidence import NAMES, MAX_IMAGE, verify_bundle
+from lib.container_typed_evidence import PROFILE, NAMES, VULNERABILITY_NAMES, MAX_IMAGE, verify_bundle
 from lib.measured_security import REPOSITORY, SERVICES, check_run
 from lib.result_ledger import apply_replay_assessment, load_snapshot_payloads
 
 MAX_ZIP = 1024**3
 MAX_SMALL = 32 * 1024**2
+
+
+def prior_for_evidence_type(snapshots, evidence_type):
+    """Prevent distinct evidence types from becoming replay conflicts for one run."""
+    return [snapshot for snapshot in snapshots
+            if snapshot.get('trust', snapshot).get('capture', {}).get('evidence_type') == evidence_type]
 
 
 def bind_artifact(artifacts, name, run):
@@ -102,27 +108,36 @@ def capture(run_id):
         download(coverage, root/'coverage', ['l1-coverage.json', 'typed-evidence-manifest.json'], token)
         report = json.loads((root/'coverage/l1-coverage.json').read_text())
         declaration = json.loads((root/'coverage/typed-evidence-manifest.json').read_text())
+        names = NAMES if declaration.get('profile') == PROFILE else VULNERABILITY_NAMES
         bundles, paths = {}, {}
         for service in SERVICES:
             artifact = bind_artifact(artifacts, 'l1-image-' + service, run)
             path = root/service
-            download(artifact, path, ['manifest.json', *NAMES], token)
-            raw = {name: (path/name).read_bytes() for name in ('manifest.json','subject.json','vulnerabilities.json','vulnerabilities.execution.json')}
+            download(artifact, path, ['manifest.json', *names], token)
+            raw_names = ('manifest.json', 'subject.json', 'vulnerabilities.json', 'vulnerabilities.execution.json')
+            raw = {name: (path/name).read_bytes() for name in raw_names}
             bundles[service], paths[service] = (raw, artifact), path
             print('Downloaded full image evidence: ' + service, flush=True)
         verified_at = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
-        trust = verify_bundle(run, report, declaration, bundles, paths, verified_at)
-        trust['capture']['source']['artifact_digest'] = coverage['verified_zip_sha256']
-        trust = apply_replay_assessment(trust, load_snapshot_payloads(TRUST_RESULT_ROOTS))
-        return write_snapshot(repository_id=REPOSITORY, run=run, artifact=coverage, trust=trust,
-                              archive_sha256=coverage['verified_zip_sha256'])
+        trusts = verify_bundle(run, report, declaration, bundles, paths, verified_at)
+        prior = load_snapshot_payloads(TRUST_RESULT_ROOTS)
+        outputs = []
+        for trust in trusts.values():
+            trust['capture']['source']['artifact_digest'] = coverage['verified_zip_sha256']
+            evidence_type = trust['capture']['evidence_type']
+            same_type_prior = prior_for_evidence_type(prior, evidence_type)
+            trust = apply_replay_assessment(trust, same_type_prior)
+            outputs.append(write_snapshot(repository_id=REPOSITORY, run=run, artifact=coverage, trust=trust,
+                archive_sha256=coverage['verified_zip_sha256']))
+        return outputs
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run-id', required=True, type=int)
     args = parser.parse_args()
-    print(capture(args.run_id))
+    for output in capture(args.run_id):
+        print(output)
 
 
 if __name__ == '__main__':

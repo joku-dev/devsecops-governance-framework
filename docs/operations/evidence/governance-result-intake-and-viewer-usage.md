@@ -208,10 +208,12 @@ their Critical and High finding counts directly in the table.
 
 ## ha-CPsWMS container Typed Evidence
 
-The additive `ha-cpswms-container-trust-v1` profile accepts only a completed,
+The additive `ha-cpswms-container-evidence-v2` profile accepts only a completed,
 successful `push` to `main` from `.github/workflows/l1-measured-evidence.yml` in
 `joku-dev/ha-CPsWMS`. Its `l1-control-coverage` artifact includes a
 `typed-evidence-manifest.json` declaration binding exactly five named images.
+The earlier `ha-cpswms-container-trust-v1` declaration remains readable for
+historical vulnerability-only replay.
 
 ```bash
 python3 scripts/intake_ha_container_trust.py --run-id RUN_ID
@@ -223,17 +225,23 @@ The central verifier downloads all five complete image ZIP artifacts and checks
 GitHub artifact/run/repository/commit metadata, ZIP size and available provider
 digest, producer file SHA-256/size, image archive SHA-256, Docker config digest,
 source revision label and every layer's uncompressed digest. Raw Trivy results,
-execution status, scanner version, image identity and coverage totals must agree.
+CycloneDX SBOMs, execution status, scanner version, image identity, component
+counts and vulnerability totals must agree.
 Archives are parsed without extraction to arbitrary paths and never executed.
 A missing image, failed tool, stale run binding or altered bytes prevents a
 complete snapshot. Intake failures enter the existing collection-attempt records.
 
-A single typed snapshot holds all five images and their independently checked
-archive hashes; the viewer shows each service and its critical/high counts.
+A successful v2 intake writes separate `vulnerability_scan` and `sbom` snapshots.
+Each snapshot holds all five images and independently checked archive hashes.
+The viewer shows critical/high counts for the scan and verified component counts
+for the SBOM. The index retains `latest_result` for compatibility and adds
+`latest_results` so each evidence type has an official mainline selection.
 Freshness uses the oldest producer image-evidence completion timestamp, not the
-central download time. Integrity verification is separate from vulnerabilities,
-Freshness and Replay; findings stay report-only. The binding remains
-`co_collected`, without independent scanner attestation or deployment approval.
+central download time. Vulnerability freshness uses the existing 24-hour window;
+SBOM freshness is subject-bound and passes only after the central verifier binds
+the CycloneDX document and complete archive to the same immutable image. Integrity
+verification is separate from content findings, Freshness and Replay. The binding
+remains `co_collected`, without independent producer attestation or deployment approval.
 
 The consumer's `Notify Typed Evidence Intake` completion workflow sends
 `typed-evidence-trust-ready` with artifact name `l1-control-coverage` using its

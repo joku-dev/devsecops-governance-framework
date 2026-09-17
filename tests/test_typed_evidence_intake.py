@@ -1,4 +1,5 @@
 from pathlib import Path
+from copy import deepcopy
 import importlib.util
 import json
 import sys
@@ -146,8 +147,28 @@ class TypedEvidenceIntakeTests(unittest.TestCase):
                     "pipeline_url": "https://github.test/owner/repo/actions/runs/43",
                 },
             }
+            sbom_trust = deepcopy(trust)
+            sbom_trust["capture"]["evidence_type"] = "sbom"
+            sbom_trust["capture"]["observations"] = {
+                "generator": {"name": "trivy", "version": "0.70.0"},
+                "format": {"name": "CycloneDX", "version": "1.6"},
+                "component_count": 12,
+                "subject_binding": {"mode": "co_collected", "producer_attested": False},
+            }
+            sbom = {
+                **common,
+                "evidence_type": "sbom",
+                "generated_at": "2026-07-15T16:02:00Z",
+                "pipeline": {
+                    "pipeline_run_id": "42",
+                    "event": "push",
+                    "pipeline_url": run["html_url"],
+                },
+                "trust": sbom_trust,
+            }
             (results / "1-main.json").write_text(json.dumps(main), encoding="utf-8")
             (results / "2-manual.json").write_text(json.dumps(manual), encoding="utf-8")
+            (results / "3-sbom.json").write_text(json.dumps(sbom), encoding="utf-8")
             old_values = typed_index.ROOT, typed_index.STATUS_RESULTS, typed_index.INDEX_PATH
             typed_index.ROOT, typed_index.STATUS_RESULTS, typed_index.INDEX_PATH = root, root / "results", root / "index.json"
             try:
@@ -157,8 +178,11 @@ class TypedEvidenceIntakeTests(unittest.TestCase):
                 typed_index.ROOT, typed_index.STATUS_RESULTS, typed_index.INDEX_PATH = old_values
 
         self.assertEqual(payload["repositories"][0]["latest_result"]["pipeline_run_id"], "42")
-        self.assertEqual(payload["summary"]["mainline_results"], 1)
+        self.assertEqual([item["evidence_type"] for item in payload["repositories"][0]["latest_results"]],
+                         ["vulnerability_scan", "sbom"])
+        self.assertEqual(payload["summary"]["mainline_results"], 2)
         self.assertEqual(payload["summary"]["manual_results"], 1)
+        self.assertEqual(payload["summary"]["evidence_type_counts"], {"vulnerability_scan": 2, "sbom": 1})
         schema = json.loads((ROOT / "schemas" / "typed-evidence-results-index.schema.json").read_text(encoding="utf-8"))
         Draft202012Validator(schema).validate(payload)
 

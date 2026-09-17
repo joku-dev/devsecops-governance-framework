@@ -73,12 +73,24 @@ def _parse_timestamp(value: str | None) -> datetime | None:
         return None
 
 
-def evaluate_freshness(policy: dict, *, produced_at: str | None, evaluated_at: str) -> dict:
+def evaluate_freshness(
+    policy: dict,
+    *,
+    produced_at: str | None,
+    evaluated_at: str,
+    subject_bound: bool | None = None,
+) -> dict:
     defaults = policy["defaults"]
+    mode = policy.get("evaluation_mode")
+    evidence_refs = (
+        [policy["subject_claim"]]
+        if mode == "subject_bound"
+        else [policy.get("produced_at_claim", "trust.capture.produced_at"), policy.get("evaluated_at_claim", "trust.verified_at")]
+    )
     check = {
         "id": "freshness_evaluated",
         "result": defaults["missing_metadata_result"],
-        "evidence_refs": [policy["produced_at_claim"], policy["evaluated_at_claim"]],
+        "evidence_refs": evidence_refs,
         "policy_id": policy["id"],
         "policy_version": policy["policy_version"],
         "policy_status": policy["policy_status"],
@@ -88,9 +100,18 @@ def evaluate_freshness(policy: dict, *, produced_at: str | None, evaluated_at: s
         "finding_effect": defaults["finding_effect"],
         "reason": "Required freshness timestamps are missing or invalid.",
     }
+    if mode == "subject_bound":
+        if subject_bound is not None:
+            check["result"] = "pass" if subject_bound else "fail"
+            check["reason"] = (
+                "Evidence is bound to the centrally verified immutable subject."
+                if subject_bound
+                else "Evidence is not bound to the centrally verified immutable subject."
+            )
+        return check
     produced = _parse_timestamp(produced_at)
     evaluated = _parse_timestamp(evaluated_at)
-    if policy.get("evaluation_mode") != "max_age" or produced is None or evaluated is None:
+    if mode != "max_age" or produced is None or evaluated is None:
         return check
     age_seconds = int((evaluated - produced).total_seconds())
     check["age_seconds"] = age_seconds
@@ -247,6 +268,7 @@ def verify_trust_capture(
     verified_at: str,
     freshness_policy: dict | None = None,
     produced_at: str | None = None,
+    freshness_subject_bound: bool | None = None,
     verifier_id: str = VERIFIER_ID,
 ) -> dict:
     """Evaluate only checks supported by authoritative intake-time material."""
@@ -307,6 +329,7 @@ def verify_trust_capture(
             freshness_policy,
             produced_at=produced_at,
             evaluated_at=verified_at,
+            subject_bound=freshness_subject_bound,
         )
 
     integrity_verified = all(

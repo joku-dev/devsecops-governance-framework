@@ -69,6 +69,14 @@ class EvidenceCollectorContractTests(unittest.TestCase):
         freshness_ids = {policy["id"] for policy in freshness["policies"]}
         self.assertIn(profile["freshness_policy"], freshness_ids)
 
+    def test_ha_sbom_profile_uses_subject_bound_freshness(self):
+        profile = next(item for item in self.model["profiles"] if item["evidence_type"] == "sbom")
+        self.assertEqual("pilot", profile["state"])
+        self.assertEqual("freshness-sbom-subject-bound", profile["freshness_policy"])
+        self.assertEqual("co_collected", profile["subject_binding_mode"])
+        for implementation_path in profile["implementation_paths"]:
+            self.assertTrue((ROOT / implementation_path).is_file())
+
     def test_documented_collector_record_validates(self):
         example = json.loads(EXAMPLE_PATH.read_text(encoding="utf-8"))
         jsonschema.Draft202012Validator(self.record_schema).validate(example)

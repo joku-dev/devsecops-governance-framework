@@ -141,7 +141,8 @@ def write_snapshot(
         "trust": trust,
     }
     output_dir = STATUS_RESULTS / slugify_repository(repository_id)
-    output_path = output_dir / f"{sanitize_timestamp(generated_at)}-run-{run.get('id')}-vulnerability-scan.json"
+    evidence_slug = str(payload["evidence_type"]).replace("_", "-")
+    output_path = output_dir / f"{sanitize_timestamp(generated_at)}-run-{run.get('id')}-{evidence_slug}.json"
     write_snapshot_append_only(output_path, payload, conflict_root=INTAKE_CONFLICTS)
     return output_path
 
