@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-09-17T14:21:47Z",
+  "generated_at": "2026-09-17T15:25:40Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -1504,7 +1504,7 @@
         "content_integrity": "pass",
         "subject_binding": {
           "mode": "co_collected",
-          "scanner_attested": false
+          "producer_attested": false
         }
       }
     },
@@ -1522,7 +1522,7 @@
         "content_integrity": "pass",
         "subject_binding": {
           "mode": "co_collected",
-          "scanner_attested": false
+          "producer_attested": false
         }
       }
     },
@@ -2110,7 +2110,7 @@
       }
     },
     {
-      "id": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
+      "id": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "type": "TrustAssessment",
       "label": "integrity_verified",
       "properties": {
@@ -2126,7 +2126,7 @@
       }
     },
     {
-      "id": "trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "id": "trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
       "type": "TrustAssessment",
       "label": "integrity_verified",
       "properties": {
@@ -5665,17 +5665,17 @@
       }
     },
     {
-      "id": "HAS_TRUST_ASSESSMENT:evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z->trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
+      "id": "HAS_TRUST_ASSESSMENT:evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z->trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "type": "HAS_TRUST_ASSESSMENT",
       "source": "evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
-      "target": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:2026-09-13T19:49:58Z",
+      "target": "trust:typed-evidence:joku-dev/governance-framework-demo-consumer:34778861276:vulnerability_scan:2026-09-13T19:49:58Z",
       "properties": {}
     },
     {
-      "id": "HAS_TRUST_ASSESSMENT:evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z->trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "id": "HAS_TRUST_ASSESSMENT:evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z->trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
       "type": "HAS_TRUST_ASSESSMENT",
       "source": "evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
-      "target": "trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:2026-09-17T14:18:04Z",
+      "target": "trust:typed-evidence:joku-dev/ha-CPsWMS:35232313852:vulnerability_scan:2026-09-17T14:18:04Z",
       "properties": {}
     },
     {

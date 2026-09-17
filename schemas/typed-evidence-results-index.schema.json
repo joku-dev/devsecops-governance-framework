@@ -15,7 +15,8 @@
         "branch_results",
         "manual_results",
         "freshness_failures",
-        "trust_level_counts"
+        "trust_level_counts",
+        "evidence_type_counts"
       ],
       "properties": {
         "repository_count": { "type": "integer", "minimum": 0 },
@@ -28,6 +29,10 @@
         "trust_level_counts": {
           "type": "object",
           "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "evidence_type_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
         }
       },
       "additionalProperties": false
@@ -36,11 +41,16 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["repository_id", "results_path", "latest_result", "history"],
+        "required": ["repository_id", "results_path", "latest_result", "latest_results", "history"],
         "properties": {
           "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
           "results_path": { "type": "string", "minLength": 1 },
           "latest_result": { "$ref": "#/$defs/resultProjection" },
+          "latest_results": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/resultProjection" }
+          },
           "history": {
             "type": "array",
             "items": { "$ref": "#/$defs/resultProjection" }
@@ -84,10 +94,7 @@
         "commit_id",
         "collector_status",
         "enforcement",
-        "scanner",
-        "finding_count",
-        "max_severity",
-        "severity_consistent",
+        "producer",
         "subject_binding",
         "freshness",
         "content_integrity",
@@ -96,7 +103,7 @@
       ],
       "properties": {
         "generated_at": { "type": "string", "format": "date-time" },
-        "evidence_type": { "const": "vulnerability_scan" },
+        "evidence_type": { "enum": ["vulnerability_scan", "sbom"] },
         "pipeline_run_id": { "type": "string", "minLength": 1 },
         "pipeline_event": { "type": "string", "minLength": 1 },
         "pipeline_url": { "type": "string", "minLength": 1 },
@@ -104,7 +111,7 @@
         "commit_id": { "type": "string", "minLength": 1 },
         "collector_status": { "enum": ["collected", "partial", "failed", "unknown"] },
         "enforcement": { "const": "report_only" },
-        "scanner": {
+        "producer": {
           "type": "object",
           "required": ["name"],
           "properties": {
@@ -118,10 +125,10 @@
         "severity_consistent": { "type": "boolean" },
         "subject_binding": {
           "type": "object",
-          "required": ["mode", "scanner_attested"],
+          "required": ["mode", "producer_attested"],
           "properties": {
             "mode": { "enum": ["co_collected", "scanner_attested", "unknown"] },
-            "scanner_attested": { "type": "boolean" }
+            "producer_attested": { "type": "boolean" }
           },
           "additionalProperties": false
         },
@@ -129,6 +136,16 @@
         "content_integrity": { "enum": ["pass", "fail", "not_evaluated"] },
         "replay": { "enum": ["pass", "fail", "not_evaluated"] },
         "trust": { "$ref": "#/$defs/trustProjection" },
+        "format": {
+          "type": "object",
+          "required": ["name", "version"],
+          "properties": {
+            "name": { "const": "CycloneDX" },
+            "version": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "component_count": { "type": "integer", "minimum": 1 },
         "container_images": {
           "type": "array",
           "minItems": 5,
@@ -143,8 +160,7 @@
               "artifact_archive_sha256",
               "archive_sha256",
               "archive_digest_verified",
-              "image_layers_verified",
-              "counts"
+              "image_layers_verified"
             ],
             "properties": {
               "service": {
@@ -180,6 +196,17 @@
                 "const": true
               },
               "image_layers_verified": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "sbom_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "sbom_digest_verified": {
+                "const": true
+              },
+              "component_count": {
                 "type": "integer",
                 "minimum": 1
               },
@@ -227,6 +254,30 @@
         },
         "source_file": { "type": "string", "minLength": 1 }
       },
+      "allOf": [
+        {
+          "if": { "properties": { "evidence_type": { "const": "vulnerability_scan" } } },
+          "then": {
+            "required": ["finding_count", "max_severity", "severity_consistent"],
+            "properties": {
+              "container_images": {
+                "items": { "required": ["counts"] }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "evidence_type": { "const": "sbom" } } },
+          "then": {
+            "required": ["format", "component_count"],
+            "properties": {
+              "container_images": {
+                "items": { "required": ["sbom_sha256", "sbom_digest_verified", "component_count"] }
+              }
+            }
+          }
+        }
+      ],
       "additionalProperties": false
     }
   },
