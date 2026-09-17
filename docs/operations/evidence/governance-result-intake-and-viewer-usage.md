@@ -202,6 +202,10 @@ notice identifies governance repositories with no latest typed entry. Measured
 L1 and container-security snapshots do not qualify as typed evidence merely by
 appearing in the viewer. No Trust level is inferred across these stores.
 
+The current typed index contains the demo consumer and `joku-dev/ha-CPsWMS`.
+For ha-CPsWMS, the latest entry expands the five verified image archives and
+their Critical and High finding counts directly in the table.
+
 ## ha-CPsWMS container Typed Evidence
 
 The additive `ha-cpswms-container-trust-v1` profile accepts only a completed,
