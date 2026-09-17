@@ -618,7 +618,11 @@ Erfolgs- und Fehlerraten sowie Laufzeitkennzahlen und differenziert nach Kontext
 Der tägliche Betriebsbericht sammelt Beobachtungen zu Workflows, Publikation,
 PR-Warteschlange, Nachweisen und Sicherheit. Die Self-Security-Bewertung untersucht
 beobachtbare Repository-Schutzmaßnahmen. Separate Workflows führen CodeQL und
-Dependency Review aus. Artefakthygiene prüft öffentliche Veröffentlichungsinhalte.
+Dependency Review aus. GitHub erzwingt vollständige Action-SHAs, beschränkt
+Action-Quellen und verlangt Dependency Review auf `main`. Hash-Locks schützen
+die Python-Installation der nicht durch die bestehende Lifecycle-Abnahme
+gebundenen Betriebs- und Publikationsworkflows. Artefakthygiene prüft öffentliche
+Veröffentlichungsinhalte.
 
 **Ergebnisse:** Intake Health, Betriebsbericht, Sicherheitsassessment und
 CI-Sicherheitsbefunde. Nicht verfügbare Informationen bleiben als fehlende

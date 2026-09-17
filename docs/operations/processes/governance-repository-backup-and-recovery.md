@@ -169,7 +169,7 @@ From the recovered checkout:
 ./scripts/bootstrap_validation_env.sh
 ./scripts/validate_all.sh
 python3 -m venv .venv-docs
-.venv-docs/bin/python -m pip install -r requirements-docs.txt
+.venv-docs/bin/python -m pip install --require-hashes -r requirements-docs.lock
 .venv-docs/bin/mkdocs build --strict
 .venv-validation/bin/python scripts/generate_governance_graph.py
 .venv-validation/bin/python scripts/generate_status_viewer.py

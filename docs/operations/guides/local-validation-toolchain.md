@@ -34,6 +34,13 @@ The script creates `.venv-validation`, installs the exact versions from
 `scripts/validation-toolchain.env`, and verifies the platform-specific SHA-256
 checksum before installing the binary.
 
+Hash-locked files are used by intake, operations, portfolio, retry and
+documentation publication workflows. The bootstrap, Governance CI and
+Self-Security workflow remain inside the personally accepted lifecycle
+implementation manifest. Changing their install command requires a new
+operating-acceptance revision; the current accepted pilot must not be silently
+invalidated to improve dependency-installation coverage.
+
 The directory is ignored by Git and can be deleted and recreated at any time.
 
 ## Run Complete Validation
@@ -78,13 +85,15 @@ Use the same `VALIDATION_VENV` value for bootstrap and validation.
 Treat dependency changes as an intentional maintenance change:
 
 1. Update exact Python versions in `requirements-validation.txt`.
-2. Update the OPA version and all four official asset checksums in
+2. Regenerate `requirements-validation.lock` and `requirements-docs.lock` with
+   `pip-compile --generate-hashes`, and review the version and hash changes.
+3. Update the OPA version and all four official asset checksums in
    `scripts/validation-toolchain.env`.
-3. Align all governance workflows that install Python or OPA with the pinned
+4. Align all governance workflows that install Python or OPA with the pinned
    requirements and version (`governance-ci`, intake workflows, and the
    architecture baseline workflow).
-4. Recreate the local environment and run complete validation.
-5. Review and commit only intentional source changes; omit generated
+5. Recreate the local environment and run complete validation.
+6. Review and commit only intentional source changes; omit generated
    timestamp-only noise.
 
 Do not replace a pinned OPA version with `latest`. The bootstrap rejects a

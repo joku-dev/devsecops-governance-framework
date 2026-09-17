@@ -1,10 +1,10 @@
 # Governance Repository Self-Security Assessment
 
-Observed: `2026-09-11T13:12:05Z`
+Observed: `2026-09-17T20:22:13Z`
 
 ## Executive Assessment
 
-4 of 16 self-security criteria are not evidenced as satisfied: GRS-005 (Signed changes required on the default branch); GRS-010 (Third-party GitHub Actions pinned to full commit SHAs); GRS-014 (Governance release tags are cryptographically verified); GRS-016 (GitHub Actions restricted to approved sources). Review the observations and remediation steps below.
+3 of 16 self-security criteria are not evidenced as satisfied: GRS-002 (Pull request and two independent approvals required); GRS-005 (Signed changes required on the default branch); GRS-014 (Governance release tags are cryptographically verified). Review the observations and remediation steps below.
 
 This is a point-in-time, report-only assessment of the repository that defines and
 distributes governance. It is not a security certification or an authorization to
@@ -16,43 +16,43 @@ switch consumer or repository enforcement to blocking mode.
 - Enforcement: `report_only`
 - Enforcement change authorized: `false`
 - Criteria: `16`
-- Passed: `12`
-- Failed: `4`
-- Critical failures: `0`
-- High failures: `4`
+- Passed: `13`
+- Failed: `3`
+- Critical failures: `1`
+- High failures: `2`
 
 ## Controls Currently Evidenced
 
 - `GRS-001`: Default branch protected
-- `GRS-002`: Pull request and approving review required
 - `GRS-003`: Governance CI is a required status check
 - `GRS-004`: Force pushes and branch deletion blocked
 - `GRS-006`: Secret scanning enabled
 - `GRS-007`: Secret push protection enabled
 - `GRS-008`: Dependency alerts and security updates enabled
 - `GRS-009`: Code scanning configured
+- `GRS-010`: Third-party GitHub Actions pinned to full commit SHAs
 - `GRS-011`: Default and explicit workflow permissions restricted
 - `GRS-012`: Critical governance paths have explicit owners
 - `GRS-013`: Automation cannot push operational data directly to the default branch
 - `GRS-015`: Private vulnerability reporting is enabled
+- `GRS-016`: GitHub Actions restricted to approved sources
 
 ## Open Findings
 
 | ID | Severity | Finding | Current observation |
 |---|---|---|---|
+| `GRS-002` | `critical` | Pull request and two independent approvals required | `required_approving_reviews=1, code_owner_review_required=true, last_push_approval_required=true` |
 | `GRS-005` | `high` | Signed changes required on the default branch | `signed_changes_required=false` |
-| `GRS-010` | `high` | Third-party GitHub Actions pinned to full commit SHAs | `unpinned_refs=0, sha_pinning_required=false` |
 | `GRS-014` | `high` | Governance release tags are cryptographically verified | `unverified_release_tags=["architecture-baseline-l1-v0.1.0", "l1-baseline-v1.1.3", "v0.1.0-public-adoption"]` |
-| `GRS-016` | `high` | GitHub Actions restricted to approved sources | `allowed_actions=all` |
 
 ## Recommended Next Steps
 
-### 1. Enforce immutable GitHub Action references (`P0`)
+### 1. Protect the default branch as the governance authority (`P1`)
 
-- Addresses: `GRS-010`, `GRS-016`
-- Prerequisites: none
-- Action: Verify all active workflow references remain pinned to reviewed full commit SHAs, restrict Actions to approved publishers, then enable repository-level SHA pinning.
-- Acceptance criteria: The workflow scan has no mutable third-party references, allowed_actions is selected, and GitHub reports sha_pinning_required as true.
+- Addresses: `GRS-001`, `GRS-002`, `GRS-003`, `GRS-004`
+- Prerequisites: `GRS-013`
+- Action: Activate a main ruleset requiring pull requests, two independent approving reviews, CODEOWNER and last-push approval, Governance CI, resolved conversations, and protection from deletion and force push.
+- Acceptance criteria: A non-bypass test pull request cannot merge without two independent approvals, CODEOWNER and last-push approval, and required checks; direct force push or branch deletion is rejected.
 
 ### 2. Require signed changes on main (`P2`)
 
@@ -73,7 +73,7 @@ switch consumer or repository enforcement to blocking mode.
 | ID | Severity | Status | Criterion | Observed |
 |---|---|---|---|---|
 | `GRS-001` | `critical` | `pass` | Default branch protected | `true` |
-| `GRS-002` | `critical` | `pass` | Pull request and approving review required | `true` |
+| `GRS-002` | `critical` | `fail` | Pull request and two independent approvals required | `false` |
 | `GRS-003` | `critical` | `pass` | Governance CI is a required status check | `true` |
 | `GRS-004` | `critical` | `pass` | Force pushes and branch deletion blocked | `true` |
 | `GRS-005` | `high` | `fail` | Signed changes required on the default branch | `false` |
@@ -81,13 +81,13 @@ switch consumer or repository enforcement to blocking mode.
 | `GRS-007` | `critical` | `pass` | Secret push protection enabled | `true` |
 | `GRS-008` | `high` | `pass` | Dependency alerts and security updates enabled | `true` |
 | `GRS-009` | `high` | `pass` | Code scanning configured | `true` |
-| `GRS-010` | `high` | `fail` | Third-party GitHub Actions pinned to full commit SHAs | `false` |
+| `GRS-010` | `high` | `pass` | Third-party GitHub Actions pinned to full commit SHAs | `true` |
 | `GRS-011` | `high` | `pass` | Default and explicit workflow permissions restricted | `true` |
 | `GRS-012` | `high` | `pass` | Critical governance paths have explicit owners | `true` |
 | `GRS-013` | `critical` | `pass` | Automation cannot push operational data directly to the default branch | `true` |
 | `GRS-014` | `high` | `fail` | Governance release tags are cryptographically verified | `false` |
 | `GRS-015` | `high` | `pass` | Private vulnerability reporting is enabled | `true` |
-| `GRS-016` | `high` | `fail` | GitHub Actions restricted to approved sources | `false` |
+| `GRS-016` | `high` | `pass` | GitHub Actions restricted to approved sources | `true` |
 
 ## Evidence Quality And Limitations
 
