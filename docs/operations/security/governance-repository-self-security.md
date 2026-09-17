@@ -66,6 +66,12 @@ generated/reports/governance-repository-security.json
 generated/reports/governance-repository-security.md
 ```
 
+Der Governance Workspace zeigt den schema-validierten Stand zusätzlich im
+eigenen Bereich [Repository Security](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository-security).
+Die Ansicht übernimmt Gesamtstatus, Kriterien, Beobachtungsdetails und
+dokumentierte Maßnahmen aus dem gespeicherten Bericht. Sie fragt GitHub nicht
+live ab und ändert keine Schutzregel.
+
 The GitHub workflow runs the same assessment for pull requests, `main`, daily,
 and on manual dispatch. Findings remain report-only during the initial
 observation period.

@@ -9,7 +9,7 @@ from jsonschema import ValidationError
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from lib.viewer_app import project, build
+from lib.viewer_app import project, build, load_repository_security
 from lib.measured_security import load_snapshots
 from lib.control_evidence_assurance import build_assurance
 from publish_operational_update import allowed
@@ -74,6 +74,22 @@ class ViewerAppTests(unittest.TestCase):
         self.assertEqual(assurance,repo['control_assurance'])
         self.assertEqual(16,repo['control_assurance']['summary']['total_controls'])
 
+    def test_repository_security_report_is_validated_and_projected(self):
+        report = load_repository_security(ROOT)
+        self.assertEqual('joku-dev/devsecops-governance-framework', report['repository_id'])
+        self.assertEqual(16, report['summary']['criteria'])
+        self.assertEqual(13, report['summary']['pass'])
+        self.assertEqual(3, report['summary']['fail'])
+        self.assertEqual(
+            ['GRS-002', 'GRS-005', 'GRS-014'],
+            [item['id'] for item in report['criteria'] if item['status'] == 'fail'],
+        )
+        self.assertNotIn('observation', report)
+        self.assertEqual(
+            'generated/reports/governance-repository-security.json',
+            report['source_file'],
+        )
+
     def test_deterministic_build_and_separate_assets(self):
         import shutil
         with tempfile.TemporaryDirectory() as d:
@@ -83,12 +99,20 @@ class ViewerAppTests(unittest.TestCase):
             for name,data in [('repository-results-index.json',self.dev),('architecture-results-index.json',self.arch)]:
                 (root/'status'/name).write_text(json.dumps(data))
             shutil.copytree(ROOT/'status/measured-security-results',root/'status/measured-security-results')
+            shutil.copytree(ROOT/'generated/reports',root/'generated/reports')
+            (root/'schemas').mkdir()
+            shutil.copyfile(
+                ROOT/'schemas/governance-repository-security-report.schema.json',
+                root/'schemas/governance-repository-security-report.schema.json',
+            )
             build(root)
             first={p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()}
             build(root)
             self.assertEqual(first,{p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()})
             self.assertEqual({'index.html','app.css','app.js','technical.js','technical.css','data.json'},set(first))
             self.assertIn(b"script-src 'self'",first['index.html'])
+            payload=json.loads(first['data.json'])
+            self.assertEqual(13,payload['repository_security']['summary']['pass'])
 
     def test_operational_intake_cannot_publish_application_artifacts(self):
         for scope in ('devsecops','architecture','typed-evidence'):
@@ -107,3 +131,21 @@ class ViewerAppTests(unittest.TestCase):
             (root/'status/measured-security-results/org/run-invalid.json').write_text(json.dumps(invalid))
             with self.assertRaises(ValidationError): build(root)
             self.assertFalse((root/'generated/viewer/app/data.json').exists())
+
+    def test_repository_security_projection_rejects_invalid_report(self):
+        import shutil
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            shutil.copytree(ROOT/'generated/reports',root/'generated/reports')
+            (root/'schemas').mkdir()
+            shutil.copyfile(
+                ROOT/'schemas/governance-repository-security-report.schema.json',
+                root/'schemas/governance-repository-security-report.schema.json',
+            )
+            report_path=root/'generated/reports/governance-repository-security.json'
+            report=json.loads(report_path.read_text())
+            report['overall_status']='pass'
+            report['summary']['fail']=-1
+            report_path.write_text(json.dumps(report))
+            with self.assertRaises(ValidationError):
+                load_repository_security(root)

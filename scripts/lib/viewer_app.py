@@ -5,11 +5,32 @@ from pathlib import Path
 import json
 import shutil
 
+from jsonschema import Draft202012Validator, FormatChecker
+
 from lib.measured_security import load_snapshots
 from lib.measured_l1 import load_snapshots as load_l1_snapshots
 from lib.control_evidence_assurance import load_snapshots as load_assurance_snapshots
 from lib.viewer_technical import project_technical
 from lib.measured_security_view import assessment
+
+
+def load_repository_security(root: Path):
+    report_path = root / 'generated/reports/governance-repository-security.json'
+    schema_path = root / 'schemas/governance-repository-security-report.schema.json'
+    report = json.loads(report_path.read_text(encoding='utf-8'))
+    schema = json.loads(schema_path.read_text(encoding='utf-8'))
+    Draft202012Validator(schema, format_checker=FormatChecker()).validate(report)
+    return {
+        key: report[key]
+        for key in (
+            'repository_id', 'observed_at', 'profile_version', 'enforcement',
+            'overall_status', 'summary', 'risk_statement', 'criteria',
+            'next_steps', 'decision_boundary',
+        )
+    } | {
+        'source_file': 'generated/reports/governance-repository-security.json',
+        'human_report': 'generated/reports/governance-repository-security.md',
+    }
 
 
 def project(devsecops, architecture, snapshots, l1_snapshots=(), assurance_snapshots=()):
@@ -69,6 +90,7 @@ def build(root: Path, technical_html=None):
                    load_snapshots(root / 'status/measured-security-results'),
                    load_l1_snapshots(root / 'status/measured-l1-results'),
                    load_assurance_snapshots(root / 'status/control-evidence-assurance'))
+    data['repository_security'] = load_repository_security(root)
     if technical_html is None:
         legacy = root / 'generated/viewer/status-viewer.html'
         technical_html = legacy.read_text(encoding='utf-8') if legacy.exists() else ''
