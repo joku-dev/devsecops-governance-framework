@@ -750,6 +750,11 @@ def main() -> int:
         load_snapshots(ROOT / "status/measured-security-results")
     except Exception as exc:
         errors.append(f"Measured security snapshot validation: {exc}")
+    from lib.measured_l1 import load_snapshots as load_l1_snapshots
+    try:
+        load_l1_snapshots(ROOT / "status/measured-l1-results")
+    except Exception as exc:
+        errors.append(f"Measured L1 assessment validation: {exc}")
     validate_intake_conflicts(errors)
     validate_intake_events(errors)
     validate_intake_health(errors)

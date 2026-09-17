@@ -206,6 +206,7 @@ python3 -m unittest discover -s tests
 | DevSecOps result history | `status/results/` |
 | Architecture result index | `status/architecture-results-index.json` |
 | Architecture result history | `status/architecture-results/` |
+| Measured L1 control assessment | `scripts/intake_measured_l1.py`, `scripts/lib/measured_l1.py`, `schemas/measured-l1-assessment.schema.json`, `status/measured-l1-results/`; viewer repository tab `l1` |
 | Viewer application | `apps/governance-viewer/`, `scripts/lib/viewer_app.py`, `scripts/lib/viewer_technical.py`, `generated/viewer/app/index.html`; guide: `docs/operations/guides/governance-viewer-app.md` |
 | Viewer generator | `scripts/generate_status_viewer.py` |
 | Viewer output | `generated/viewer/status-viewer.html` |

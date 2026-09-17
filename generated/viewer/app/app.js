@@ -36,6 +36,7 @@
   function actions(repos) {
     const items = [];
     for (const repo of repos) {
+      if (repo.l1_assessment) items.push({title:`${repo.id.split('/')[1]}: L1-Nachweislücken bearbeiten`, text:`${repo.l1_assessment.summary.gap} Kontrollen mit fehlenden Nachweisen · ${repo.l1_assessment.summary.partial} teilweise belegt.`, url:route(repo,'l1'), label:'Kontrollen und Nachweise öffnen'});
       if (repo.security && (repo.security.counts.CRITICAL || repo.security.counts.HIGH)) items.push({title:`${repo.id.split('/')[1]}: Sicherheitsbefunde bewerten`, text:`${repo.security.counts.CRITICAL} kritische und ${repo.security.counts.HIGH} hohe Image-/Paketmeldungen. Technische Bewertung ist keine Risikofreigabe.`, url:route(repo,'findings'), label:'Befunde untersuchen'});
       if (['devsecops','architecture'].some(d => repo[d]?.trust?.replay === 'fail')) items.push({title:`${repo.id.split('/')[1]}: Replay-Befund prüfen`, text:'Das Governance-Ergebnis und die Prüfung der Nachweisherkunft sind getrennte Signale.', url:'#evidence/replay', label:'Replay-Prüfung öffnen'});
       if (['devsecops','architecture'].some(d => ['fail','findings'].includes(String(repo[d]?.status).toLowerCase()))) items.push({title:`${repo.id.split('/')[1]}: Governance-Befunde bearbeiten`, text:'Mindestens ein erfasster Governance-Bereich enthält Befunde.', url:route(repo), label:'Ergebnisse ansehen'});
@@ -69,7 +70,38 @@
     const s = repo.security;
     return `<div class="grid-two">${governanceCard(repo,'devsecops','DevSecOps')}${governanceCard(repo,'architecture','Architektur')}</div>
       <section class="panel"><div class="panel-head"><h2>Gemessene Container-Sicherheit</h2><a href="${route(repo,'security')}">Images &amp; Vergleich →</a></div>${s ? `<p class="muted">${date(s.run.updated_at)} · Commit <code>${short(s.run.commit)}</code> · Report-only</p>` : ''}${securityCards(repo)}${s && [repo.devsecops,repo.architecture].some(r=>r && r.commit_id!==s.run.commit) ? '<div class="notice warn">Governance und Scan beziehen sich auf unterschiedliche Commits. Sie bilden keine gemeinsame Freigabe dieses Softwarestands.</div>' : ''}</section>
-      <section class="panel"><h2>Nächste Prüfungen</h2>${actions([repo])}</section>`;
+      ${l1Summary(repo)}<section class="panel"><h2>Nächste Prüfungen</h2>${actions([repo])}</section>`;
+  }
+  const l1Names = {measured:'Technisch belegt', partial:'Teilweise belegt', findings:'Befunde offen', gap:'Nachweis fehlt'};
+  const l1Path = (repo, run) => `status/measured-l1-results/${repo.id.replace('/', '__')}/run-${run.id}-attempt-${run.attempt}.json`;
+  const l1Badge = status => `<span class="badge l1-${Object.hasOwn(l1Names,status)?status:'gap'}">${esc(l1Names[status] || 'Unbekannt')}</span>`;
+  function l1Summary(repo) {
+    const a=repo.l1_assessment;
+    if(!a) return `<section class="panel"><h2>L1-Nachweise</h2><p class="muted">Keine gemessene L1-Bewertung erfasst.</p></section>`;
+    return `<section class="panel l1-summary"><div class="panel-head"><h2>L1-Nachweise aus echten Prüfungen</h2><a href="${route(repo,'l1')}">Alle 16 Kontrollen →</a></div><p>${Object.entries(l1Names).map(([key,label])=>`<strong>${count(a.summary[key])}</strong> ${esc(label.toLowerCase())}`).join(' · ')}</p><p class="muted">${date(a.run.updated_at)} · Commit <code>${short(a.run.commit)}</code>. Separate Report-only-Bewertung; technisch belegt bedeutet keine vollständige Kontrollfreigabe.</p></section>`;
+  }
+  function l1View(repo) {
+    const a=repo.l1_assessment;
+    if(!a) return '<section class="panel"><h2>L1-Nachweise</h2><p>Keine gemessene L1-Bewertung erfasst. Fehlende Daten gelten nicht als bestandene Kontrolle.</p></section>';
+    const matching=repo.devsecops?.commit_id===a.run.commit;
+    return `<div class="notice">Zentrale Bewertung ausgewählter Rohdaten: Tests, SAST, SBOMs, Scans und Plattformabfragen. Report-only; keine Produktionsfreigabe, Risikoakzeptanz oder Änderung der offiziellen Baseline.</div>
+      <section class="panel"><div class="panel-head"><h2>L1-Nachweise</h2><a href="${sourceURL(l1Path(repo,a.run))}">Bewertung als JSON ↗</a></div><p>${date(a.run.updated_at)} · <a href="${runURL(repo.id,a.run.id)}">Run ${esc(a.run.id)} ↗</a> · Versuch ${a.run.attempt} · Commit <code>${short(a.run.commit)}</code></p><p>${matching ? `Offizielle Baseline: ${badge(repo.devsecops.status)} · ${count(repo.devsecops.control_evaluation_summary?.pass)} Kontrollen bestanden für denselben Commit.` : 'Die offizielle Baseline und diese Bewertung haben keinen bestätigten gemeinsamen Commit.'} Die offizielle Bewertung verwendet eigene Eingaben und deckt Nachweislücken dieser Messung nicht automatisch ab.</p>
+      <div class="metrics l1-metrics">${Object.entries(l1Names).map(([key,label])=>metric(label,a.summary[key],key==='measured'?'Für den beschriebenen technischen Umfang':'Weitere Prüfung erforderlich',key==='gap'?'critical':'')).join('')}</div>
+      <div class="filters"><label class="search">Kontrolle suchen<input id="l1-query" type="search" placeholder="Kontrolle, Werkzeug oder offener Punkt"></label><label>Nachweisstatus<select id="l1-status"><option value="all">Alle Kontrollen</option>${Object.entries(l1Names).map(([key,label])=>`<option value="${key}">${esc(label)}</option>`).join('')}</select></label></div><p id="l1-count" role="status"></p><div id="l1-controls"></div></section>
+      <section class="panel"><h2>Herkunft und Grenzen</h2><p>Repository, Commit, Lauf, Versuch und ausgewählte Datei-Hashes wurden geprüft. Die Runtime-Tests nutzen die gescannten Query-API-/Neo4j-Image-IDs in kurzlebiger CI. Vollständige Image-Archive wurden zentral nicht erneut gehasht; keine unabhängige Attestation.</p><p>Dieser Bericht ersetzt weder Evidence Trust noch Replay. Frühere Replay-Befunde bleiben erhalten. <a href="#evidence/replay">Replay-Prüfung öffnen →</a></p><details><summary>Technische Nachweisbindung</summary><dl><dt>Bewertungsprofil</dt><dd>${esc(a.profile)}</dd><dt>Nachweisbindung SHA-256</dt><dd><code>${esc(a.evidence_binding)}</code></dd></dl></details><h3>Erfasste Bewertungen</h3>${(repo.l1_history||[]).map(h=>`<p><a href="${sourceURL(l1Path(repo,h.run))}">Run ${esc(h.run.id)}, Versuch ${h.run.attempt} ↗</a> · ${date(h.run.updated_at)} · Commit <code>${short(h.run.commit)}</code></p>`).join('')}</section>`;
+  }
+  function bindL1(repo) {
+    const a=repo.l1_assessment;
+    if(!a)return;
+    function draw() {
+      const query=document.getElementById('l1-query').value.toLowerCase(), status=document.getElementById('l1-status').value;
+      const rows=a.controls.filter(c=>(status==='all'||c.assessment===status)&&`${c.control_id} ${c.title} ${c.tools.join(' ')} ${c.observation} ${c.remaining}`.toLowerCase().includes(query));
+      document.getElementById('l1-count').textContent=`${rows.length} / ${a.controls.length} Kontrollen`;
+      document.getElementById('l1-controls').innerHTML=rows.map(c=>`<details class="l1-control"><summary class="l1-control-heading"><span class="l1-control-title"><span class="muted">${esc(c.control_id)}</span> · ${esc(c.title)}</span>${l1Badge(c.assessment)}</summary><p>${esc(c.observation)}</p><p><strong>Offen / Geltungsbereich:</strong> ${esc(c.remaining)}</p><p class="muted">Prüfmittel: ${esc(c.tools.join(', '))}</p><details><summary>Nachweise und Prüfsummen (${c.evidence_refs.length})</summary><p><a href="${sourceURL('model/controls/dscb-l1.yaml')}">Kontrollanforderung im Modell ↗</a></p><ul class="l1-sources">${c.evidence_refs.map(ref=>{const raw=a.sources[ref];const url=raw.artifact_id==='repository'?`${repoURL(repo.id)}/blob/${encodeURIComponent(a.run.commit)}/quality/traceability.json`:`${runURL(repo.id,a.run.id)}/artifacts/${encodeURIComponent(raw.artifact_id)}`;return `<li><a href="${url}">${esc(ref)} ↗</a><small>${raw.bytes} Bytes · ${esc(raw.verification)}</small><code>${esc(raw.sha256)}</code></li>`;}).join('')}</ul><p class="muted">Originale Actions-Artefakte können ablaufen oder eine Anmeldung erfordern. Die gespeicherte Bewertung behält Identitäten und Hashes.</p></details></details>`).join('')||'<p class="empty">Keine passenden Kontrollen.</p>';
+    }
+    document.getElementById('l1-query').addEventListener('input',draw);
+    document.getElementById('l1-status').addEventListener('change',draw);
+    draw();
   }
   function security(repo) {
     const s = repo.security;
@@ -103,10 +135,11 @@
     return `<div class="notice">Herkunft, Commit und Erfassungszeit gehören zu jedem Ergebnis. Scan-Intake prüft Rohdatei-Hashes gegen Producer-Manifeste und die Image-Zuordnung; keine unabhängige Attestation und keine erneute Prüfung kompletter Image-Archive. Originalartefakte können ablaufen.</div>` + repos.map(repo=>`<section class="panel"><h2>${esc(repo.id)}</h2>${['devsecops','architecture'].map(key=>{const r=repo[key];return r?`<article class="evidence-item"><div class="panel-head"><h3>${key==='devsecops'?'DevSecOps':'Architektur'} · offizieller Mainline-Stand</h3>${badge(r.status)}</div><p class="muted">${date(r.generated_at)} · Commit <code>${short(r.commit_id)}</code></p><a href="${runURL(repo.id,r.pipeline_run_id)}">Run ${esc(r.pipeline_run_id)} ↗</a> · <a href="${sourceURL(r.source_file)}">Gespeicherten Snapshot öffnen ↗</a></article>`:'';}).join('')}${(repo.security_history||[]).map(s=>`<article class="evidence-item"><div class="panel-head"><h3>Gemessene Container-Sicherheit · ${esc(s.run.branch)}</h3><span class="badge">Report-only</span></div><p class="muted">${date(s.run.updated_at)} · Commit <code>${short(s.run.commit)}</code> · Versuch ${s.run.attempt}</p><p>${s.counts.CRITICAL} kritisch · ${s.counts.HIGH} hoch · ${s.tests_passed} erfolgreiche Tests</p><a href="${runURL(repo.id,s.run.id)}">Run ${esc(s.run.id)} &amp; Scan-/SBOM-Artefakte ↗</a> · <a href="${sourceURL(snapshotPath(repo,s))}">Gespeicherten Snapshot öffnen ↗</a></article>`).join('')}${!repo.security?'<p class="muted">Keine gemessenen Container-Scans erfasst.</p>':''}</section>`).join('') + '<p class="muted">Hier: offizielle Governance-Stände und erfasste Scan-Historie. Weitere Branch-, PR- und manuelle Läufe im <a href="#evidence/history">Bereich Laufhistorie</a>.</p>';
   }
   function repository(repo, tab) {
-    const tabs={summary:'Zusammenfassung',security:'Container-Sicherheit',findings:'Befunde',evidence:'Nachweise'};
+    const tabs={summary:'Zusammenfassung',l1:'L1-Nachweise',security:'Container-Sicherheit',findings:'Befunde',evidence:'Nachweise'};
     if(!tabs[tab])tab='summary';
-    content.innerHTML=heading(repo.id.split('/')[0],repo.id.split('/')[1],'Erfasste Ergebnisse mit ihrem jeweiligen Softwarestand.',`<a class="button" href="${repoURL(repo.id)}">Repository auf GitHub ↗</a>`)+`<nav class="tabs" aria-label="Repository-Ansichten">${Object.entries(tabs).map(([key,label])=>`<a href="${route(repo,key)}" ${tab===key?'aria-current="page"':''}>${label}</a>`).join('')}</nav>`+(tab==='summary'?summary(repo):tab==='security'?security(repo):tab==='findings'?findings([repo],true):evidence([repo]));
+    content.innerHTML=heading(repo.id.split('/')[0],repo.id.split('/')[1],'Erfasste Ergebnisse mit ihrem jeweiligen Softwarestand.',`<a class="button" href="${repoURL(repo.id)}">Repository auf GitHub ↗</a>`)+`<nav class="tabs" aria-label="Repository-Ansichten">${Object.entries(tabs).map(([key,label])=>`<a href="${route(repo,key)}" ${tab===key?'aria-current="page"':''}>${label}</a>`).join('')}</nav>`+(tab==='summary'?summary(repo):tab==='l1'?l1View(repo):tab==='security'?security(repo):tab==='findings'?findings([repo],true):evidence([repo]));
     if(tab==='findings')bindFindings([repo]);
+    if(tab==='l1')bindL1(repo);
   }
   const groupNames = {evidence:'Nachweise', governance:'Governance', operations:'Betrieb'};
   const groupDescriptions = {

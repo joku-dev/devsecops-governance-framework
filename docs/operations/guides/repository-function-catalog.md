@@ -837,3 +837,14 @@ Producer-Manifeste, Rohdatei-Hashes und Scan-Zuordnung und schreibt append-only
 Snapshots. Aktualisierung erfolgt durch erneuten Intake, Validierung und Merge;
 keine Live-Abfrage oder automatische Compliance-Freigabe. Ablauf und Grenzen:
 [L1 measured evidence](../evidence/l1-measured-evidence-ha-cpswms.md).
+
+## Zentrale L1-Bewertung aus Messdaten
+
+Der neue Viewer zeigt unter **Repositories → ha-CPsWMS → L1-Nachweise** alle
+16 bestehenden L1-Kontrollen mit tatsächlichen Prüfergebnissen, Werkzeugen,
+Nachweis-Hashes und offenen Punkten. Ein separater Intake prüft JUnit, SAST,
+SBOMs, Scans, Image-IDs und Plattformdaten und bewertet die technische Abdeckung
+zentral. Deklarierte Freigaben werden nicht als Messung übernommen. Der offizielle
+Baseline-Status und Replay bleiben unverändert daneben sichtbar.
+Vertrag, Grenzen und wiederholbare Aufnahme:
+[L1-Nachweise](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle).

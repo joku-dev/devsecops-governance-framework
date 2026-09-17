@@ -1,6 +1,6 @@
 # L1 mit gemessenen Nachweisen in ha-CPsWMS
 
-Stand: 16. September 2026. Referenz ist die unveränderte DevSecOps-Baseline
+Stand: 17. September 2026. Referenz ist die unveränderte DevSecOps-Baseline
 `l1-baseline-v1.1.3` mit 16 Kontrollen. Die Erweiterung ist in
 [ha-CPsWMS PR #16](https://github.com/joku-dev/ha-CPsWMS/pull/16) umgesetzt.
 
@@ -66,6 +66,8 @@ Ihr `16/16 pass` ist deshalb kein Ersatz für den neuen Bericht über tatsächli
 vorliegende Nachweise. Historische Berichte bleiben unverändert erhalten.
 
 Die ergänzende Abdeckungsanalyse bleibt ein eigener Consumer-Artefakttyp.
+Eine zentrale, aus ausgewählten Rohdaten neu berechnete Bewertung ist zusätzlich
+unter **Repositories → ha-CPsWMS → L1-Nachweise** verfügbar (siehe unten).
 Der Viewer zeigt Container-Schwachstellen jetzt in einem separaten Bereich
 **Container Security**. Das verändert weder den offiziellen Compliance-PASS noch
 die freigegebene Baseline, OPA-Regeln oder akzeptierte Lifecycle-Piloten.
@@ -145,3 +147,75 @@ Viewer speichert keine Fremdtexte als ausführbares HTML. Originale GitHub-Artef
 bleiben nur für die Consumer-Aufbewahrungsfrist verfügbar; normalisierte hohe
 und kritische Befunde bleiben in Git erhalten. Detaildaten niedrigerer
 Schweregrade werden nicht übernommen, deren Summen werden angezeigt.
+
+## Zentrale Bewertung je L1-Kontrolle
+
+[L1-Nachweise im neuen Viewer](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository/joku-dev%2Fha-CPsWMS/l1).
+
+`scripts/intake_measured_l1.py` prüft die vorhandenen Artefakte desselben
+Messlaufs erneut. Es berechnet die 16 Kontrollbewertungen zentral aus JUnit,
+Bandit, Ruff, CycloneDX, Trivy, GitHub-API-Antworten und CI-Deployment-Metadaten.
+Producer-Statusangaben werden nicht als Kontrollfreigabe übernommen.
+
+```sh
+.venv-validation/bin/python scripts/intake_measured_l1.py --run-id 35131185085
+.venv-validation/bin/python scripts/generate_status_viewer.py
+./scripts/validate_all.sh
+```
+
+Die Aufbereitung verwendet das versionierte Pilotprofil
+`ha-cpswms-l1-measured-v1` in `scripts/lib/measured_l1.py`. Es referenziert die
+bestehenden 16 Kontrollen in `model/controls/dscb-l1.yaml`, führt keine neuen
+Anforderungen ein und ersetzt weder OPA noch die freigegebene Baseline.
+Änderungen an der Bedeutung dieses Profils benötigen eine neue Profil-/Vertragsversion.
+
+| Anzeige | Bedeutung |
+|---|---|
+| Technisch belegt | Der beschriebene technische Teil wurde zentral nachgeprüft; keine vollständige Kontroll- oder Release-Freigabe |
+| Teilweise belegt | Messwerte liegen vor, weitere Bestandteile oder organisatorische Entscheidungen fehlen |
+| Befunde offen | Werkzeuge haben Befunde geliefert, deren Bewertung noch nachzuweisen ist |
+| Nachweis fehlt | Erforderliche Nachweise fehlen oder erlauben keine positive Feststellung |
+
+Im ersten erfassten Lauf `35131185085` ergeben sich **5 technisch belegte,
+6 teilweise belegte, 2 Kontrollen mit Befunden und 3 Nachweislücken**.
+Die zentrale Bewertung ist bewusst enger als der Consumer-Abdeckungsbericht
+(7/4/2/3): L1-002 belegt Commit/Autor, aber keine organisatorische VCS-Freigabe;
+L1-005 umfasst die fünf Runtime-Images, nicht alle Entwicklungs-/Build-Abhängigkeiten.
+Die 57 erfolgreichen Tests und Scanbefunde werden aus Rohdaten nachgerechnet.
+
+Jede Kontrolle zeigt Beobachtung, Prüfmittel, verbleibenden Umfang und konkrete
+Nachweisdateien mit SHA-256, Größe und Actions-Artefakt-ID. Die Übersicht stellt
+sie neben das offizielle Baseline-Ergebnis; eine gemeinsame Commit-Zuordnung
+wird nur angezeigt, wenn sie tatsächlich vorliegt. Suche und Statusfilter helfen
+bei der Bearbeitung. Alte erfasste Bewertungen bleiben über ihre Snapshots zugänglich.
+
+### Prüfgrenze und Aufbewahrung
+
+Der Intake prüft GitHub-Repository, erfolgreichen `push/main`-Lauf, Workflow,
+Commit, Versuch und Artefaktzuordnung. Producer-Manifeste binden ausgewählte
+Rohdateien an diesen Kontext. JUnit-Zahlen und SAST-Befunde werden nachgerechnet;
+SBOMs, Scan-Reports und Runtime-Container müssen zu denselben Image-IDs gehören.
+Die technische Anforderungszuordnung wird aus dem exakten Quell-Commit gelesen.
+Fremde Kontexte, falsche Hashes, fehlende Dateien und widersprüchliche Summen
+brechen den Intake ab und ersetzen keinen bisherigen Stand. HTTP 403 innerhalb
+einer gültigen Plattformaufzeichnung wird als Nachweislücke sichtbar.
+
+Die zentrale Prüfung lädt nicht die kompletten Image-Archive. Deren Digests
+bleiben ausdrücklich Producer-Angaben. Auch ein gültiges Manifest beweist keine
+unabhängige Attestation oder die Vertrauenswürdigkeit des Producers. Die
+Nachweisbindung ist eine deterministische Kontext-/Hash-Zuordnung, keine Signatur.
+
+`schemas/measured-l1-assessment.schema.json` validiert die neuen additiven
+Snapshots unter `status/measured-l1-results/`. Wiederholung ist idempotent;
+abweichende Inhalte derselben Lauf-/Versuchsidentität überschreiben keine Historie.
+Rohdateien verbleiben bei GitHub für die Consumer-Aufbewahrungsfrist; normalisierte
+Beobachtungen und Hashes bleiben im Repository. Geheimnisse, signierte Download-URLs
+und vollständige Rohlogs werden nicht eingecheckt. Der CLI-Intake wird über einen
+geprüften PR veröffentlicht; **ein automatischer Refresh ist weiterhin nicht eingerichtet**.
+
+Diese Bewertung entfernt keine historischen Replay-Findings und ändert keine
+Trust-Stufen. Der alte Baseline-Workflow hat weiter seine eigenen Eingaben. Für
+seine Umstellung auf gemessene Kontrollergebnisse ist ein gesonderter
+Baseline-/Migrationsschritt erforderlich. Ein neu erfasster Bericht ist weder
+Deployment-Zustimmung noch Risikoakzeptanz. L1-013/014 und Teile von L1-016 bleiben
+bis zur bereitgestellten VM und den zugehörigen autorisierten Nachweisen offen.
