@@ -70,15 +70,15 @@ Why this matters:
 
 ## Current Mainline Results
 
-These values record the 11 September 2026 mainline refresh. The dated
-[maintenance record](../operations/reference-runs/2026-09-11-operational-evidence-refresh.md)
-explains collection, review and the separate Trust findings. The July results
-remain in the immutable history; this table is not a production approval.
+These values record the 16 September 2026 mainline runs, accepted through
+intake PRs #109 and #110. Original artifact hashes and GitHub run/commit bindings
+were checked during reconciliation. Earlier results remain in the immutable
+history; this table is not a production approval.
 
 | Domain | Repository | Status | Baseline | Last mainline run | Commit | Generated |
 |---|---|---|---|---|---|---|
-| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `34602002201` | `6976bb2af2b9d47d2934273c444b6c9b62a81ea2` | `2026-09-11T13:02:37Z` |
-| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `34602001140` | `6976bb2af2b9d47d2934273c444b6c9b62a81ea2` | `2026-09-11T13:01:50Z` |
+| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `35131186298` | `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3` | `2026-09-16T17:57:22Z` |
+| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `35131185047` | `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3` | `2026-09-16T17:55:49Z` |
 
 Expected summaries:
 
@@ -445,16 +445,16 @@ Current known-good app runs:
 
 | Workflow | Run | Expected status |
 |---|---:|---|
-| Architecture Runtime Governance | `34602001140` | Success |
-| DevSecOps Baseline | `34602002201` | Success |
-| DevSecOps Governance | `34602001019` | Success |
-| CI | `34602001068` | Success |
+| Architecture Runtime Governance | `35131185047` | Success |
+| DevSecOps Baseline | `35131186298` | Success |
+| DevSecOps Governance | `35131185030` | Success |
+| CI | `35131185111` | Success |
 
 Open the run URLs:
 
 ```text
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/34602001140
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/34602002201
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185047
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131186298
 ```
 
 Explain:
@@ -529,16 +529,16 @@ Expected interpretation:
 - DevSecOps should show `pass` for baseline `l1-baseline-v1.1.3`.
 - Architecture should show `PASS` for baseline `architecture-baseline-l1-v0.1.0`.
 - Existing pre-Trust snapshots should show evidence Trust `unverified` without changing either governance result.
-- At the 11 September 2026 accepted state, Replay Triage shows four recorded
-  failures, two current-rule failures and two superseded legacy assessments.
-  One official-latest finding belongs to ha-CPsWMS DevSecOps run `34602002201`.
-  Passing controls do not clear that separate Trust finding.
+- The latest ha-CPsWMS DevSecOps run `35131186298` retains a report-only
+  Replay `fail` for cross-commit subject reuse. Architecture run `35131185047`
+  has Replay `pass`. Passing controls do not clear the separate Trust finding.
+  Historical replay assessments remain available under Evidence → Replay.
 - A resolved Collection Attempt proves only that collection later succeeded;
   it does not upgrade or weaken the collected governance outcome.
-- Intake Health reports six accepted executions, 100% observed success,
-  p50 3 seconds and p95 4 seconds in its committed observation window. That
-  limited accepted telemetry is not a production SLO and differs from the daily
-  report's live Actions observation, which still includes an earlier failed run.
+- Intake Health derives its counts and durations from the accepted operation
+  events, including these two intakes. Read the displayed observation window;
+  accepted telemetry is not a production SLO and can differ from the daily
+  report's live Actions observations.
 
 - The viewer is the demo cockpit: it makes the current governance state visible without opening every raw JSON file.
 
