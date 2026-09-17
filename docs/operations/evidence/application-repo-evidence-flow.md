@@ -664,7 +664,7 @@ Es bekommt mindestens:
 ```bash
 python3 scripts/intake_github_actions_run.py \
   --repository-id joku-dev/ha-CPsWMS \
-  --run-id 34602002201 \
+  --run-id 35131186298 \
   --baseline-level L1 \
   --governance-baseline-ref l1-baseline-v1.1.3
 ```
@@ -693,7 +693,7 @@ status/results/<owner>__<repo>/<timestamp>-run-<run-id>.json
 Beispiel:
 
 ```text
-status/results/joku-dev__ha-CPsWMS/2026-09-11T13-02-37Z-run-34602002201.json
+status/results/joku-dev__ha-CPsWMS/2026-09-16T17-57-22Z-run-35131186298.json
 ```
 
 Diese Datei ist nicht dieselbe wie `pipeline-evidence.json`.

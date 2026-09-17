@@ -125,13 +125,13 @@ This step catches intake normalization errors, wrong repository mapping, or snap
 
 1. Identify a downstream mainline governance run that should be ingested.
 2. Run the intake script in a working branch for the selected run. The accepted
-   ha-CPsWMS reference as of 11 September 2026 is shown below; select a newer
+   ha-CPsWMS reference as of 16 September 2026 is shown below; select a newer
    accepted mainline run when performing a future spot check:
 
 ```bash
 python3 scripts/intake_github_actions_run.py \
   --repository-id joku-dev/ha-CPsWMS \
-  --run-id 34602002201 \
+  --run-id 35131186298 \
   --baseline-level L1 \
   --governance-baseline-ref l1-baseline-v1.1.3 \
   --notes "Spot check: verify actual governance artifact and metadata."

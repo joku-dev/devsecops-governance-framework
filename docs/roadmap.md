@@ -1,6 +1,6 @@
 # Roadmap
 
-Reviewed against `8df643db37ec4d6da7196b94aaa77b5e0e0844d8` on 13 September 2026.
+Reviewed against `a74e06708c622f98f2699e136accbec9838c41ab` on 17 September 2026.
 This roadmap distinguishes implemented capabilities from remaining decisions.
 The [current platform state](operations/status/current-governance-platform-state.md)
 contains the dated evidence, and the [operations handbook](operations/guides/governance-repository-operations-handbook.md)
@@ -11,12 +11,17 @@ defines the controlled pilot procedure.
 - 46 DevSecOps controls and their control-to-platform mappings are represented.
 - DevSecOps L1 `l1-baseline-v1.1.3` and Architecture L1
   `architecture-baseline-l1-v0.1.0` are released.
-- Three consumers have accepted mainline results from 11 September. Architecture
-  is present for two and typed vulnerability evidence for one.
+- Three consumers have accepted mainline results. Architecture is present for
+  two; typed vulnerability evidence exists for the neutral consumer and
+  ha-CPsWMS, and typed SBOM evidence exists for ha-CPsWMS.
 - Result snapshots, digests, manifests, append-only intake, conflict retention,
   replay triage, Trust verification and a signed-attestation pilot are implemented.
+- ha-CPsWMS produces 58 real source/runtime tests, SAST, five container builds,
+  CycloneDX SBOMs and Trivy scans. Central intake recomputes all 16 L1 evidence
+  assessments and records per-control coverage, Trust and Freshness.
 - Operational updates use reviewed bot PRs. Intake telemetry, controlled retry,
-  portfolio, graph, viewer and readiness projections are available.
+  portfolio, graph, the integrated Governance Workspace and readiness projections
+  are available.
 - Pinned validation, daily operations, self-security, documentation publication,
   backup/recovery procedures and management communication artifacts are available.
 
@@ -30,8 +35,10 @@ scenario reporting/viewer and diagnostic additional adapters. The real GitHub
 GRS-002 pilot has personal LD-07 acceptance and successful manual publication
 runs (#92/#93), with two PASS receipts and no actual finding or remediation.
 See the [current lifecycle state](operations/status/governance-lifecycle-current-state.md).
-Live waivers, other lifecycle consumers, a defined portfolio denominator,
-optional AI assistance and a runtime release remain separate decisions.
+The separate consumer operation-readiness pilot is implemented for the neutral
+demo consumer with its own personal acceptance and action boundary. Live waivers,
+other lifecycle consumers, a defined portfolio denominator, optional AI assistance
+and a runtime release remain separate decisions.
 Bitbucket Data Center/Bamboo implementation waits for actual company versions.
 
 ## Next Operating Work
@@ -39,11 +46,14 @@ Bitbucket Data Center/Bamboo implementation waits for actual company versions.
 1. Record pilot ownership, scope, dates and acceptance tests; keep consumer evidence
    fresh and review the daily report, including observation gaps.
 2. Resolve the Factory direct-push finding, the neutral demo's 25 architecture
-   findings and the ha-CPsWMS DevSecOps replay finding through new evidence.
+   findings and the two official-latest ha-CPsWMS replay findings through new
+   evidence or a corrected typed-subject replay model.
 3. Verify credential recovery, backups and agreed recovery scope. Introduce
    independent missing-report alerting only through a separately scoped change.
 4. Collect representative intake samples. The second consumer already produces
    telemetry; broader samples and platform validation remain useful.
+5. Connect the planned staging VM so L1-013/014 and the operational parts of
+   L1-016 can receive authorized deployment and runtime evidence.
 
 ## Governance And Release Decisions
 

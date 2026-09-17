@@ -90,6 +90,14 @@ Erste erfasste Messpunkte:
 | [35128325507](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35128325507) | 9aa1806 | 13 | 373 | 57 |
 | [35131185085](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185085) | 4c57eb1 | 1 | 332 | 57 |
 
+Der neueste kombinierte Typed-Evidence-/L1-Lauf
+[`35241262722`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35241262722)
+gehört zum Commit `ce02be6`, enthält 58 bestandene Tests und liefert über den
+strengeren Typed-Evidence-Intake 1 kritische und 329 hohe Image-/Paketvorkommen.
+Er ersetzt den zweiten Messpunkt in der getrennten Container-Security-Historie
+nicht automatisch; beide Speicher behalten ihre jeweilige Intake- und
+Auswahlregel.
+
 Der Vergleich zählt Meldungen über fünf Images. Er belegt allein keine Kausalität:
 Auch eine geänderte Scanner-Datenbank kann Zahlen ändern. Die
 [Consumer-Bewertung](https://github.com/joku-dev/ha-CPsWMS/blob/main/docs/quality/CONTAINER_SECURITY_REMEDIATION.md)
@@ -106,7 +114,7 @@ GitHub CLI mit Leserechten für Actions und die gepinnte Validierungsumgebung.
 
 ```sh
 ./scripts/bootstrap_validation_env.sh
-.venv-validation/bin/python scripts/intake_measured_security.py --run-id 35131185085
+.venv-validation/bin/python scripts/intake_measured_security.py --run-id 35241262722
 .venv-validation/bin/python scripts/generate_status_viewer.py
 ./scripts/validate_all.sh
 ```
@@ -162,7 +170,7 @@ Bandit, Ruff, CycloneDX, Trivy, GitHub-API-Antworten und CI-Deployment-Metadaten
 Producer-Statusangaben werden nicht als Kontrollfreigabe übernommen.
 
 ```sh
-.venv-validation/bin/python scripts/intake_measured_l1.py --run-id 35131185085
+.venv-validation/bin/python scripts/intake_measured_l1.py --run-id 35241262722
 .venv-validation/bin/python scripts/generate_status_viewer.py
 ./scripts/validate_all.sh
 ```
@@ -180,12 +188,13 @@ Anforderungen ein und ersetzt weder OPA noch die freigegebene Baseline.
 | Befunde offen | Werkzeuge haben Befunde geliefert, deren Bewertung noch nachzuweisen ist |
 | Nachweis fehlt | Erforderliche Nachweise fehlen oder erlauben keine positive Feststellung |
 
-Im ersten erfassten Lauf `35131185085` ergeben sich **5 technisch belegte,
+Im aktuellen erfassten Lauf `35241262722` ergeben sich **5 technisch belegte,
 6 teilweise belegte, 2 Kontrollen mit Befunden und 3 Nachweislücken**.
 Die zentrale Bewertung ist bewusst enger als der Consumer-Abdeckungsbericht
 (7/4/2/3): L1-002 belegt Commit/Autor, aber keine organisatorische VCS-Freigabe;
 L1-005 umfasst die fünf Runtime-Images, nicht alle Entwicklungs-/Build-Abhängigkeiten.
-Die 57 erfolgreichen Tests und Scanbefunde werden aus Rohdaten nachgerechnet.
+Die 58 erfolgreichen Tests (50 Quelltests und 8 Runtime-Integrationstests) und
+Scanbefunde werden aus Rohdaten nachgerechnet.
 
 Jede Kontrolle zeigt Beobachtung, Prüfmittel, verbleibenden Umfang und konkrete
 Nachweisdateien mit SHA-256, Größe und Actions-Artefakt-ID. Die Übersicht stellt
@@ -214,6 +223,12 @@ fehlt, bleibt die aggregierte Trust-Stufe der betroffenen Kontrolle
 Nicht bewertete Dimensionen werden ausdrücklich als `not_evaluated` gespeichert.
 Diese Assurance bleibt report-only und ändert weder Kontrollstatus noch Baseline,
 Blocking-Modus, Produktionsfreigabe oder Risikoakzeptanz.
+
+Für Lauf `35241262722` sind 7 Kontrollen vollständig abgedeckt,
+`integrity_verified` und innerhalb ihrer Freshness-Regel. Sechs Kontrollen sind
+teilweise und drei nicht abgedeckt; zusammen bleiben 9 Kontrollen
+`unverified`. Keine Kontrolle erreicht `provenance_verified` oder `attested`,
+weil die dafür erforderlichen unabhängigen Nachweise nicht vorliegen.
 
 ### Prüfgrenze und Aufbewahrung
 

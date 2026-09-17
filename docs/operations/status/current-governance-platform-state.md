@@ -2,10 +2,11 @@
 
 ## Observation Scope
 
-This page describes the implemented operating model as checked on 13 September
-2026 at `8df643d`. The ha-CPsWMS observations below were updated for its
-16 September runs through intake PRs #109/#110; other consumer observations
-retain their individual dates. For daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
+This page describes the implemented operating model as checked on 17 September
+2026 at `a74e067`. The ha-CPsWMS governance observations were updated for its
+16 September runs and its measured/typed evidence for run `35241262722` on
+17 September; other consumer observations retain their individual dates. For
+daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
 For live observations use the latest main workflow artifacts and
 [daily operations report](daily-governance-operations.md). A dated document or
 successful workflow is not a current compliance attestation.
@@ -18,10 +19,11 @@ successful workflow is not a current compliance attestation.
 | Executable governance | OPA policies, schemas, collectors and validators translate the approved model into evaluated evidence |
 | Released baselines | DevSecOps `l1-baseline-v1.1.3`; architecture `architecture-baseline-l1-v0.1.0`; frozen packages under `releases/` |
 | Accepted results | Append-only snapshots and digests, manifests, domain indexes and collection-attempt records under `status/` |
+| Typed and measured evidence | Centrally verified vulnerability/SBOM snapshots, measured L1 assessments and conservative per-control assurance for ha-CPsWMS |
 | Intake telemetry | Append-only `status/intake-events/` feeds Intake Health, readiness and daily operating observations |
 | Operational publication | Intake, portfolio and the manual lifecycle workflow propose scoped bot PRs; six publisher scopes; accepted state changes on protected main after checked merge |
 | Closed-loop lifecycle | Personally accepted manual GRS-002 pilot; two real PASS receipts, no finding/actions; separate synthetic exception/scenario support |
-| Status viewer and graph | Script-generated `generated/viewer/status-viewer.html` and `generated/graph/governance-graph.json`; read-only projections |
+| Status viewer and graph | Primary application under `generated/viewer/app/`, technical fallback at `generated/viewer/status-viewer.html` and governance graph; read-only projections |
 | Documentation publication | `.github/workflows/publish-docs.yml` builds MkDocs strictly and deploys Pages, including generated assets |
 | Self-security | Report-only assessment of this repository, independently of consumer governance results |
 | Daily operations | `.github/workflows/governance-operations.yml`, daily 06:43 UTC and manual runs; summary and retained artifacts, no automatic alert delivery |
@@ -106,7 +108,37 @@ finding despite its passing controls. All three consumers remain below the
 Blocking Readiness bar. The neutral consumer now has current Typed Evidence
 for its accepted mainline commit; that previously open gap is closed.
 
+## Measured ha-CPsWMS Evidence, 17 September 2026
+
+The separate successful mainline run
+[`35241262722`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35241262722)
+at commit `ce02be6ab74877e5205f7963e3b608299da7341e` produced 50 passing source
+tests, eight passing runtime integration tests, Bandit/Ruff results, five
+container images, CycloneDX 1.6 SBOMs and Trivy 0.70.0 scan evidence.
+
+Central intake verified the five image archives, image identities and layers,
+the SBOM and scan hashes, producer manifests, repository/run/attempt/commit
+context and Freshness. The typed index therefore records `integrity_verified`
+for both vulnerability and SBOM evidence. It contains 749 SBOM components and
+1,993 vulnerability observations across the five images, including one critical
+and 329 high image/package occurrences. These are findings for assessment, not
+an automatic risk decision.
+
+The measured L1 projection reports 5 controls as `measured`, 6 as `partial`,
+2 with `findings` and 3 as `gap`. The linked assurance snapshot covers all 16:
+7 have complete coverage, passing Freshness and `integrity_verified`; 6 are
+partial and 3 missing, leaving 9 `unverified`. Provenance, custody and
+attestation are not promoted without their own proof. L1-013/014 and parts of
+L1-016 remain open until a named staging environment and authorized operating
+evidence exist. See [measured L1 evidence](../evidence/l1-measured-evidence-ha-cpswms.md)
+and the [Governance Workspace](../guides/governance-viewer-app.md).
+
 ## Central Operations And Remaining Findings
+
+The current Intake Health projection at 17 September records 11 successful
+events in its 30-day window, no failed or partial event, no open collection
+attempt and two quarantined conflicts. This is intake telemetry, not proof that
+all evidence is current or that every consumer is compliant.
 
 Governance CI `34611502655`, CodeQL `34611502609`, self-security `34611502768`
 and Pages `34611502982` succeeded for the observation baseline. Manual daily

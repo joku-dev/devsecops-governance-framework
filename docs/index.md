@@ -12,8 +12,9 @@ The [v0.2.0 adoption/operations release](releases/v0.2.0-public-adoption.md)
 packages the controlled pilot state and publication downloads; its release
 statement explains publication status and separate baseline pins.
 
-Accepted consumer evidence on 11 September 2026 and remaining findings are
-recorded in the [current platform state](operations/status/current-governance-platform-state.md).
+Current accepted governance results from 16 September and measured ha-CPsWMS
+evidence from 17 September 2026 are recorded in the
+[current platform state](operations/status/current-governance-platform-state.md).
 
 For current pilot and central operations, start with the
 [operations handbook](operations/guides/governance-repository-operations-handbook.md).
@@ -49,6 +50,8 @@ Application repositories can consume this framework from CI/CD without copying t
 - If you want the formal waiver standard, read `operations/processes/waiver-management-standard.md`.
 - If you want to record downstream runs and understand the viewer, read `operations/evidence/governance-result-intake-and-viewer-usage.md`.
 - If you want the current overall situation, read `operations/status/current-governance-platform-state.md`.
+- If you want to inspect the interactive status, evidence and findings, open the [Governance Workspace](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html).
+- If you want the measured ha-CPsWMS L1 evidence and its assurance limits, read `operations/evidence/l1-measured-evidence-ha-cpswms.md`.
 - If you want a concrete rollout retrospective, read `operations/status/ha-cpswms-governance-lessons-learned.md`.
 - If you want the documentation publishing flow, read `operations/guides/mkdocs-and-github-pages-step-by-step.md`.
 - If you want the governance logic, read `governance/policy-directive-baseline-verification-and-governance-as-code-explained.md`.

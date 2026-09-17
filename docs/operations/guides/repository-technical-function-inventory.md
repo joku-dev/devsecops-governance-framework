@@ -1,7 +1,7 @@
 # Technische Funktionsliste des Repositories
 
-Stand: 17. September 2026, Bestand aus der Dokumentationsprüfung einschließlich
-Kontrollnachweis-Assurance GCR-2026-092.
+Stand: 17. September 2026, geprüft gegen Quellstand `a74e067` einschließlich
+Kontrollnachweis-Assurance GCR-2026-092 und Dokumentationsabgleich GCR-2026-093.
 
 Dies ist die vollständige Dateiliste der implementierten Skripte und Bibliotheksmodule
 unter `scripts/`, der GitHub-Workflows und der OPA-Module am genannten Stand.

@@ -22,3 +22,10 @@ python3 scripts/run_demo.py
 ```
 
 Outputs are written to `generated/demo/`.
+
+This local demo is deterministic sample data for policy and report generation.
+It is separate from the accepted consumer runs and the real ha-CPsWMS measured
+evidence shown in the Governance Workspace. Use
+`docs/demos/demo-end-to-end-governance.md` for the current connected demo and
+`docs/operations/evidence/l1-measured-evidence-ha-cpswms.md` for the real test,
+SBOM, scan and per-control assurance scope.
