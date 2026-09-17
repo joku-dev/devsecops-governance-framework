@@ -212,75 +212,53 @@ def add_typed_evidence(builder: GraphBuilder, index: dict) -> None:
             repository_id,
             repository_id=repository_id,
         )
-        result = repository.get("latest_result", {})
-        if not result:
-            continue
-        run_id = str(result.get("pipeline_run_id", "unknown"))
-        generated_at = result.get("generated_at", "unknown")
-        run_node = builder.add_node(
-            f"run:typed-evidence:{repository_id}:{run_id}:{generated_at}",
-            "WorkflowRun",
-            f"typed evidence: {run_id}",
-            domain="typed_evidence",
-            run_id=run_id,
-            event=result.get("pipeline_event", "unknown"),
-            branch=result.get("branch", "unknown"),
-            generated_at=generated_at,
-            url=result.get("pipeline_url", ""),
-        )
-        builder.add_edge("HAS_RESULT", repo_node, run_node, domain="typed_evidence", latest=True)
-
-        evidence_type = result.get("evidence_type", "unknown")
-        evidence_node = builder.add_node(
-            f"evidence:{repository_id}:{run_id}:{evidence_type}:{generated_at}",
-            "EvidenceRecord",
-            evidence_type,
-            evidence_type=evidence_type,
-            collector_status=result.get("collector_status", "unknown"),
-            enforcement=result.get("enforcement", "report_only"),
-            finding_count=result.get("finding_count", 0),
-            max_severity=result.get("max_severity", "unknown"),
-            freshness=result.get("freshness", "not_evaluated"),
-            content_integrity=result.get("content_integrity", "not_evaluated"),
-            subject_binding=result.get("subject_binding", {}),
-        )
-        builder.add_edge("HAS_EVIDENCE", run_node, evidence_node)
-
-        trust = result.get("trust", {})
-        trust_node = builder.add_node(
-            f"trust:typed-evidence:{repository_id}:{run_id}:{generated_at}",
-            "TrustAssessment",
-            trust.get("effective_level", "unverified"),
-            domain="typed_evidence",
-            effective_level=trust.get("effective_level", "unverified"),
-            assessment_status=trust.get("assessment_status", "not_available"),
-            verified_at=trust.get("verified_at"),
-            check_summary=trust.get("check_summary", {}),
-        )
-        builder.add_edge("HAS_TRUST_ASSESSMENT", evidence_node, trust_node)
-
-        scanner = result.get("scanner", {})
-        if scanner.get("name"):
-            scanner_key = f"{scanner['name']}:{scanner.get('version', 'unknown')}"
-            scanner_node = builder.add_node(
-                f"scanner:{scanner_key}",
-                "Scanner",
-                scanner_key,
-                name=scanner.get("name"),
-                version=scanner.get("version"),
+        latest_results = repository.get("latest_results") or ([repository["latest_result"]] if repository.get("latest_result") else [])
+        for result in latest_results:
+            run_id = str(result.get("pipeline_run_id", "unknown"))
+            generated_at = result.get("generated_at", "unknown")
+            run_node = builder.add_node(
+                f"run:typed-evidence:{repository_id}:{run_id}:{generated_at}",
+                "WorkflowRun", f"typed evidence: {run_id}", domain="typed_evidence", run_id=run_id,
+                event=result.get("pipeline_event", "unknown"), branch=result.get("branch", "unknown"),
+                generated_at=generated_at, url=result.get("pipeline_url", ""),
             )
-            builder.add_edge("PRODUCED_BY", evidence_node, scanner_node)
-
-        source_file = result.get("source_file")
-        if source_file:
-            snapshot_node = builder.add_node(
-                f"snapshot:{source_file}",
-                "ResultSnapshot",
-                Path(source_file).name,
-                path=source_file,
-                domain="typed_evidence",
+            builder.add_edge("HAS_RESULT", repo_node, run_node, domain="typed_evidence", latest=True)
+            evidence_type = result.get("evidence_type", "unknown")
+            evidence_node = builder.add_node(
+                f"evidence:{repository_id}:{run_id}:{evidence_type}:{generated_at}",
+                "EvidenceRecord", evidence_type, evidence_type=evidence_type,
+                collector_status=result.get("collector_status", "unknown"),
+                enforcement=result.get("enforcement", "report_only"),
+                finding_count=result.get("finding_count"), component_count=result.get("component_count"),
+                max_severity=result.get("max_severity"), freshness=result.get("freshness", "not_evaluated"),
+                content_integrity=result.get("content_integrity", "not_evaluated"),
+                subject_binding=result.get("subject_binding", {}),
             )
-            builder.add_edge("RECORDED_IN", evidence_node, snapshot_node)
+            builder.add_edge("HAS_EVIDENCE", run_node, evidence_node)
+            trust = result.get("trust", {})
+            trust_node = builder.add_node(
+                f"trust:typed-evidence:{repository_id}:{run_id}:{evidence_type}:{generated_at}",
+                "TrustAssessment", trust.get("effective_level", "unverified"), domain="typed_evidence",
+                effective_level=trust.get("effective_level", "unverified"),
+                assessment_status=trust.get("assessment_status", "not_available"),
+                verified_at=trust.get("verified_at"), check_summary=trust.get("check_summary", {}),
+            )
+            builder.add_edge("HAS_TRUST_ASSESSMENT", evidence_node, trust_node)
+            producer = result.get("producer", result.get("scanner", {}))
+            if producer.get("name"):
+                producer_key = f"{producer['name']}:{producer.get('version', 'unknown')}"
+                producer_node = builder.add_node(
+                    f"scanner:{producer_key}", "Scanner", producer_key,
+                    name=producer.get("name"), version=producer.get("version"),
+                )
+                builder.add_edge("PRODUCED_BY", evidence_node, producer_node)
+            source_file = result.get("source_file")
+            if source_file:
+                snapshot_node = builder.add_node(
+                    f"snapshot:{source_file}", "ResultSnapshot", Path(source_file).name,
+                    path=source_file, domain="typed_evidence",
+                )
+                builder.add_edge("RECORDED_IN", evidence_node, snapshot_node)
 
 
 def build_graph(root: Path = ROOT) -> dict:

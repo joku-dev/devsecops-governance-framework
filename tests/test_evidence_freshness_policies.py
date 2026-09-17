@@ -85,6 +85,24 @@ class EvidenceFreshnessPolicyTests(unittest.TestCase):
         self.assertEqual(future["result"], "fail")
         self.assertEqual(missing["result"], "not_evaluated")
 
+    def test_subject_bound_freshness_uses_verified_artifact_binding(self):
+        policy = load_freshness_policy(POLICY_PATH, "freshness-sbom-subject-bound")
+        passed = evaluate_freshness(
+            policy,
+            produced_at="2026-07-15T12:00:00Z",
+            evaluated_at="2026-07-15T14:00:00Z",
+            subject_bound=True,
+        )
+        failed = evaluate_freshness(
+            policy,
+            produced_at="2026-07-15T12:00:00Z",
+            evaluated_at="2026-07-15T14:00:00Z",
+            subject_bound=False,
+        )
+        self.assertEqual("pass", passed["result"])
+        self.assertEqual("fail", failed["result"])
+        self.assertEqual(["evidence.sbom.subject_digest"], passed["evidence_refs"])
+
     def test_freshness_check_is_recorded_without_changing_governance_outcome(self):
         with tempfile.TemporaryDirectory() as tempdir:
             directory = Path(tempdir)

@@ -37,9 +37,9 @@ with sync_playwright() as p:
     assert 'replay fail' in ha.filter(has_text='DevSecOps').inner_text()
     assert 'replay pass' in ha.filter(has_text='Architecture').inner_text()
     typed=page.locator('.panel').filter(has=page.get_by_role('heading',name='Latest Typed Evidence',exact=True))
-    assert typed.locator('tbody tr').count()==2
+    assert typed.locator('tbody tr').count()>=2
     assert 'governance-framework-demo-consumer' in typed.inner_text()
-    ha_typed=typed.locator('tbody tr').filter(has_text='joku-dev/ha-CPsWMS')
+    ha_typed=typed.locator('tbody tr').filter(has_text='joku-dev/ha-CPsWMS').filter(has_text='vulnerability_scan')
     assert ha_typed.count()==1
     ha_typed_text=ha_typed.inner_text()
     assert 'integrity_verified' in ha_typed_text
@@ -47,6 +47,11 @@ with sync_playwright() as p:
     assert ha_typed_text.count('archive verified')==5
     for image in ('ha-sync','query-api','semantic-enrichment','world-model-chat','neo4j'):
         assert image in ha_typed_text
+    ha_sbom=typed.locator('tbody tr').filter(has_text='joku-dev/ha-CPsWMS').filter(has_text='sbom')
+    if ha_sbom.count():
+        sbom_text=ha_sbom.inner_text()
+        assert 'integrity_verified' in sbom_text and 'CycloneDX' in sbom_text
+        assert sbom_text.count('SBOM verified')==5
     coverage=page.locator('.panel').filter(has=page.get_by_role('heading',name='Typed Evidence: Abdeckung',exact=True))
     coverage_text=coverage.inner_text()
     assert 'Kein Typed-Evidence-Eintrag für:' in coverage_text

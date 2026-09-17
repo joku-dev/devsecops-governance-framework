@@ -206,6 +206,13 @@ implemented by `scripts/intake_ha_container_trust.py` and
 `scripts/lib/container_typed_evidence.py`. It remains co-collected report-only
 evidence and does not claim scanner attestation, approval or risk acceptance.
 
+The additive `ha-cpswms-container-evidence-v2` declaration also carries the
+CycloneDX digest and component count for every image. Central intake hashes the
+SBOM bytes, validates their structure and Trivy execution record, binds the
+metadata ImageID to the complete verified Docker archive, and writes a separate
+`sbom` Trust snapshot. The SBOM uses `freshness-sbom-subject-bound`; elapsed time
+alone neither establishes nor invalidates its freshness.
+
 This adoption is additive:
 
 - existing collector and Trust records remain valid

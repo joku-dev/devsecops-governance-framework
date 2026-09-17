@@ -13,7 +13,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'scripts'))
 from lib.container_typed_evidence import PROFILE, SERVICES, NAMES, verify_bundle, verify_docker_archive
-from intake_ha_container_trust import bind_artifact, extract_selected
+from intake_ha_container_trust import bind_artifact, extract_selected, prior_for_evidence_type
 from generate_typed_evidence_results_index import project_result
 from jsonschema import Draft202012Validator
 
@@ -47,6 +47,10 @@ class ContainerTypedTests(unittest.TestCase):
             path=root/service;path.mkdir();paths[service]=path
             image_id=image_tar(path/'image.tar');archive_hash=hashlib.sha256((path/'image.tar').read_bytes()).hexdigest()
             values={'subject.json':{'service':service,'commit':run['head_sha'],'image_id':image_id,'archive_sha256':archive_hash},
+                    'sbom.cyclonedx.json':{'bomFormat':'CycloneDX','specVersion':'1.6',
+                        'metadata':{'component':{'type':'container','properties':[{'name':'aquasecurity:trivy:ImageID','value':image_id}]}},
+                        'components':[{'type':'library','name':'package-a','version':'1.0'}]},
+                    'sbom.execution.json':{'exit_code':0,'execution_ok':True,'command':['trivy','image','--image-src','docker','--format','cyclonedx','--output','sbom.cyclonedx.json',image_id]},
                     'vulnerabilities.json':{'Metadata':{'ImageID':image_id},'Results':[{'Target':'os','Vulnerabilities':[]}]},
                     'vulnerabilities.execution.json':{'exit_code':0,'execution_ok':True,'command':['trivy','image','--image-src','docker',image_id]},
                     'archive.execution.json':{'exit_code':0,'execution_ok':True},
@@ -60,7 +64,9 @@ class ContainerTypedTests(unittest.TestCase):
                       'verified_zip_sha256':'f'*64,'workflow_run':{'id':123,'head_sha':run['head_sha'],'head_branch':'main','repository_id':9}}
             bundles[service]=({name:(path/name).read_bytes() for name in ('manifest.json','subject.json','vulnerabilities.json','vulnerabilities.execution.json')},artifact)
             report['images'][service]={'image_id':image_id}
-            declaration['images'][service]={'artifact_name':artifact['name'],'image_id':image_id,'archive_sha256':archive_hash}
+            declaration['images'][service]={'artifact_name':artifact['name'],'image_id':image_id,
+                'archive_sha256':archive_hash,
+                'sbom_sha256':manifest['files']['sbom.cyclonedx.json']['sha256'],'sbom_component_count':1}
         return run,report,declaration,bundles,paths
 
     def verify(self, args):
@@ -68,19 +74,39 @@ class ContainerTypedTests(unittest.TestCase):
 
     def test_all_five_images_verified_and_projected(self):
         with tempfile.TemporaryDirectory() as temp:
-            args=self.bundle(Path(temp)); trust=self.verify(args)
-        self.assertEqual('integrity_verified',trust['effective_level'])
-        self.assertEqual(5,len(trust['capture']['observations']['container_images']))
-        self.assertEqual(35,len(trust['capture']['subjects']))
-        self.assertFalse(trust['capture']['observations']['independent_attestation'])
-        Draft202012Validator(json.loads((ROOT/'schemas/evidence-trust-record.schema.json').read_text())).validate(trust)
-        projected=project_result({'trust':trust},ROOT/'status/fake.json')
-        self.assertEqual(5,len(projected['container_images']))
+            args=self.bundle(Path(temp)); trusts=self.verify(args)
+        self.assertEqual({'vulnerability_scan','sbom'},set(trusts))
+        for trust in trusts.values():
+            self.assertEqual('integrity_verified',trust['effective_level'])
+            self.assertEqual(5,len(trust['capture']['observations']['container_images']))
+            self.assertEqual(35,len(trust['capture']['subjects']))
+            self.assertFalse(trust['capture']['observations']['independent_attestation'])
+            Draft202012Validator(json.loads((ROOT/'schemas/evidence-trust-record.schema.json').read_text())).validate(trust)
+        vulnerability=project_result({'evidence_type':'vulnerability_scan','trust':trusts['vulnerability_scan']},ROOT/'status/fake.json')
+        sbom=project_result({'evidence_type':'sbom','trust':trusts['sbom']},ROOT/'status/fake.json')
+        self.assertEqual(5,len(vulnerability['container_images']))
+        self.assertEqual(5,len(sbom['container_images']))
+        self.assertEqual(5,sbom['component_count'])
+        self.assertEqual('CycloneDX',sbom['format']['name'])
+        freshness=next(c for c in trusts['sbom']['checks'] if c['id']=='freshness_evaluated')
+        self.assertEqual('pass',freshness['result'])
 
     def test_tampered_archive_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
             args=self.bundle(Path(temp)); (args[4][SERVICES[0]]/'image.tar').write_bytes(b'changed')
             with self.assertRaisesRegex(ValueError,'digest mismatch'): self.verify(args)
+
+    def test_tampered_or_wrongly_bound_sbom_rejected(self):
+        with tempfile.TemporaryDirectory() as temp:
+            args=self.bundle(Path(temp)); path=args[4][SERVICES[0]]/'sbom.cyclonedx.json'
+            sbom=json.loads(path.read_text());sbom['metadata']['component']['properties'][0]['value']='sha256:'+'0'*64
+            path.write_text(json.dumps(sbom))
+            manifest=json.loads((args[4][SERVICES[0]]/'manifest.json').read_text())
+            manifest['files']['sbom.cyclonedx.json']={'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'bytes':path.stat().st_size}
+            (args[4][SERVICES[0]]/'manifest.json').write_text(json.dumps(manifest))
+            args[3][SERVICES[0]][0]['manifest.json']=json.dumps(manifest).encode()
+            args[2]['images'][SERVICES[0]]['sbom_sha256']=manifest['files']['sbom.cyclonedx.json']['sha256']
+            with self.assertRaisesRegex(ValueError,'SBOM format, contents or image binding'): self.verify(args)
 
     def test_archive_config_and_layer_must_match(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -116,7 +142,7 @@ class ContainerTypedTests(unittest.TestCase):
 
     def test_expired_freshness_does_not_become_new_when_rehashed(self):
         with tempfile.TemporaryDirectory() as temp:
-            args=self.bundle(Path(temp));trust=verify_bundle(*args,verified_at='2026-09-19T10:06:00Z')
+            args=self.bundle(Path(temp));trust=verify_bundle(*args,verified_at='2026-09-19T10:06:00Z')['vulnerability_scan']
         check=next(c for c in trust['checks'] if c['id']=='freshness_evaluated')
         self.assertEqual('fail',check['result'])
 
@@ -127,5 +153,10 @@ class ContainerTypedTests(unittest.TestCase):
             extract_selected(archive,root/'out',['subject.json'])
             self.assertFalse((root/'escape').exists())
             self.assertEqual('{}',(root/'out/subject.json').read_text())
+
+    def test_replay_history_is_scoped_by_evidence_type(self):
+        snapshots=[{'trust':{'capture':{'evidence_type':'vulnerability_scan'}}},
+                   {'trust':{'capture':{'evidence_type':'sbom'}}}]
+        self.assertEqual([snapshots[1]],prior_for_evidence_type(snapshots,'sbom'))
 
 if __name__=='__main__':unittest.main()
