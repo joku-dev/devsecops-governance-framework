@@ -4,7 +4,7 @@ Generated from latest stored snapshot time: `2026-09-16T17:57:22Z`
 
 ## Summary
 
-- Assessments: 40
+- Assessments: 41
 - Stored replay failures: 6
 - Failures under current report-only interpretation: 4
 - Superseded legacy assessments: 2
@@ -17,10 +17,10 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 | Domain | Repository | Run | Recorded | Current interpretation | Classification | Action |
 |---|---|---:|---|---|---|---|
 | `devsecops` | `joku-dev/ai-native-engineering-factory` | `34503074356` | `pass` | `pass` | `cross_repository_reuse` | `investigate_cross_repository_provenance` |
-| `architecture` | `joku-dev/ha-CPsWMS` | `34602001140` | `pass` | `pass` | `new_evidence` | `none` |
 | `architecture` | `joku-dev/governance-framework-demo-consumer` | `34778861076` | `pass` | `pass` | `new_evidence` | `none` |
 | `devsecops` | `joku-dev/governance-framework-demo-consumer` | `34778861276` | `pass` | `pass` | `deterministic_report_reuse` | `none` |
 | `typed_evidence` | `joku-dev/governance-framework-demo-consumer` | `34778861276` | `pass` | `pass` | `new_evidence` | `none` |
+| `architecture` | `joku-dev/ha-CPsWMS` | `35131185047` | `pass` | `pass` | `new_evidence` | `none` |
 | `devsecops` | `joku-dev/ha-CPsWMS` | `35131186298` | `fail` | `fail` | `cross_commit_reuse` | `reverify_with_artifact_digest` |
 
 ## Classification Counts
@@ -32,4 +32,4 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 | `cross_repository_reuse` | 2 |
 | `deterministic_report_reuse` | 6 |
 | `legacy_assessment_superseded` | 2 |
-| `new_evidence` | 21 |
+| `new_evidence` | 22 |

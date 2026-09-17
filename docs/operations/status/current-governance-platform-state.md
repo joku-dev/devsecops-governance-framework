@@ -3,7 +3,9 @@
 ## Observation Scope
 
 This page describes the implemented operating model as checked on 13 September
-2026 at `8df643d`. Consumer observations below retain their 11 September dates. For daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
+2026 at `8df643d`. The ha-CPsWMS observations below were updated for its
+16 September runs through intake PRs #109/#110; other consumer observations
+retain their individual dates. For daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
 For live observations use the latest main workflow artifacts and
 [daily operations report](daily-governance-operations.md). A dated document or
 successful workflow is not a current compliance attestation.
@@ -70,12 +72,13 @@ new blocking. [Blocking alignment](blocking-mode-alignment.md) and the
 
 The [13 September revalidation](../reference-runs/2026-09-13-consumer-revalidation.md)
 refreshes diagnostic history for all three consumers and official mainline evidence
-for the demo consumer after its operation-readiness preparation:
+for the demo consumer after its operation-readiness preparation. The ha-CPsWMS
+rows additionally include the accepted 16 September mainline runs:
 
 | Consumer | Domain | Producer run | Recorded outcome |
 |---|---|---|---|
-| `ha-CPsWMS` | DevSecOps L1 | `34602002201` | `pass`; 16/16 applicable controls, 30 not applicable |
-| `ha-CPsWMS` | Architecture L1 | `34602001140` | `pass`; 4/4 gates, zero findings |
+| `ha-CPsWMS` | DevSecOps L1 | `35131186298` | `pass`; 16/16 applicable controls, 30 not applicable |
+| `ha-CPsWMS` | Architecture L1 | `35131185047` | `pass`; 4/4 gates, zero findings |
 | `ai-native-engineering-factory` | DevSecOps | `34503074356`, attempt 2 | `fail`; baseline gate reports direct pushes allowed |
 | `governance-framework-demo-consumer` | DevSecOps L1 | `34778861276` | `pass`; one-gate fallback summary |
 | `governance-framework-demo-consumer` | Architecture L1 | `34778861076` | `findings`; 25 findings across four gates |
@@ -87,7 +90,7 @@ not a full control-catalog evaluation. Factory pins implementation commit
 `l1-baseline-v1.1.3`. Both architecture integrations use
 `architecture-baseline-l1-v0.1.0`.
 
-The accepted consumer commits are `6976bb2af2b9d47d2934273c444b6c9b62a81ea2`
+The accepted consumer commits are `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3`
 for ha-CPsWMS, `371251fe17c6923a810ab437a6c27fc7bfb624ed` for Factory, and
 `915aeed2507ba3cc60fad5cd6a7b2415505a1ac9` for the neutral demo consumer.
 

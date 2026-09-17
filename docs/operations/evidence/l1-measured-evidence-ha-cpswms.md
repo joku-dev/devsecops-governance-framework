@@ -65,9 +65,83 @@ Die bisherige L1-Auswertung kann auf deklarierte Eingabefelder zurückgreifen.
 Ihr `16/16 pass` ist deshalb kein Ersatz für den neuen Bericht über tatsächlich
 vorliegende Nachweise. Historische Berichte bleiben unverändert erhalten.
 
-Die ergänzende Abdeckungsanalyse ist ein eigener Consumer-Artefakttyp und wird
-nicht unter dem bestehenden Compliance-Vertrag als offizieller PASS eingespielt.
-Der Viewer behält seine tatsächlichen Intake-Snapshots. Eine spätere Integration
-benötigt eine explizite Zuordnung dieses Evidenztyps und dessen Statussemantik.
-Die freigegebene Baseline, OPA-Regeln und beide akzeptierten Lifecycle-Piloten
-werden durch diese Erweiterung nicht geändert.
+Die ergänzende Abdeckungsanalyse bleibt ein eigener Consumer-Artefakttyp.
+Der Viewer zeigt Container-Schwachstellen jetzt in einem separaten Bereich
+**Container Security**. Das verändert weder den offiziellen Compliance-PASS noch
+die freigegebene Baseline, OPA-Regeln oder akzeptierte Lifecycle-Piloten.
+
+## Container Security im Viewer
+
+[Viewer öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/status-viewer.html#measured-security).
+Der Bereich zeigt den erfassten Main-Lauf, Datum, Commit und Versuch, Schweregrade,
+Image-IDs, Scan-Hashes und einen Vergleich mit dem vorherigen erfassten Main-Lauf.
+Die ausklappbare Detailtabelle lässt sich nach HIGH/CRITICAL sowie CVE, Paket oder
+Image filtern. Image-/Paketmeldungen und unterschiedliche CVE-IDs werden getrennt
+gezählt. Ein kritischer Treffer bleibt sichtbar, auch wenn der Governance-Status
+PASS ist. Fehlende Daten werden nicht als null Schwachstellen dargestellt.
+
+Erste erfasste Messpunkte:
+
+| Run | Commit | Kritisch | Hoch | Tests |
+|---|---|---:|---:|---:|
+| [35128325507](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35128325507) | 9aa1806 | 13 | 373 | 57 |
+| [35131185085](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185085) | 4c57eb1 | 1 | 332 | 57 |
+
+Der Vergleich zählt Meldungen über fünf Images. Er belegt allein keine Kausalität:
+Auch eine geänderte Scanner-Datenbank kann Zahlen ändern. Die
+[Consumer-Bewertung](https://github.com/joku-dev/ha-CPsWMS/blob/main/docs/quality/CONTAINER_SECURITY_REMEDIATION.md)
+beschreibt die tatsächlich installierten Paketkorrekturen und offenen Gruppen.
+Die Hinweise im Viewer sind technische Prüfansätze, keine VEX-Freigabe,
+Risikobilligung oder Bestätigung tatsächlicher Ausnutzbarkeit. Insbesondere ist
+ein Linux-Headerpaket kein Nachweis über den Kernel einer späteren Staging-VM.
+
+## Wiederholbarer Intake
+
+Der neue, ausdrücklich auf `joku-dev/ha-CPsWMS` und dessen fünf Images begrenzte
+Pilot verwendet `scripts/intake_measured_security.py`. Voraussetzungen:
+GitHub CLI mit Leserechten für Actions und die gepinnte Validierungsumgebung.
+
+```sh
+./scripts/bootstrap_validation_env.sh
+.venv-validation/bin/python scripts/intake_measured_security.py --run-id 35131185085
+.venv-validation/bin/python scripts/generate_status_viewer.py
+./scripts/validate_all.sh
+```
+
+Bei einem externen `VALIDATION_VENV` dessen Python-Pfad einsetzen. Anschließend
+die neuen Snapshots und den generierten Viewer über den normalen PR-/Merge-Weg
+veröffentlichen. **Kein automatischer Refresh ist eingerichtet.** Die Seite
+bezeichnet den Stand ausdrücklich als erfassten Snapshot; neuere Consumer-Runs
+erscheinen erst nach erneutem Intake und Merge. Der Pages-Workflow generiert den
+Viewer beim Veröffentlichen erneut aus den eingecheckten Snapshots.
+
+Der Intake lässt ausschließlich erfolgreiche, abgeschlossene `push/main`-Runs
+von `.github/workflows/l1-measured-evidence.yml` zu. PRs, Branch-Runs, manuelle
+Runs, fremde Repositories, andere Versuche und widersprüchliche Counts werden
+abgewiesen. Die Run-Auswahl erfolgt nach Quellzeit und Versuch, nicht Dateinamen.
+
+Aus den GitHub-Artefakten werden gezielt JSON-Dateien per ZIP-Bytebereich gelesen.
+Dabei werden ZIP-CRC, Rohdatei-SHA-256 und Größen gegen Producer-Manifeste,
+Run-/Commit-/Versuchsbindung, Image-ID sowie erfolgreiche Scanausführung geprüft.
+Die Summen aller Schweregrade müssen mit `l1-control-coverage` übereinstimmen.
+Coverage-Testzahlen stammen aus diesem Producer-Bericht. Es werden keine
+vollständigen Docker-/ZIP-Archive erneut gehasht und keine unabhängige Attestation
+oder bestehende Evidence-Trust-Stufe behauptet. `archive_digest_verified` bleibt
+explizit false. GitHub-Zugangsdaten und signierte Download-URLs werden nicht
+persistiert oder an den Viewer übergeben.
+
+## Speicherung und Vertrag
+
+- `schemas/measured-container-security.schema.json`: additiver, report-only Vertrag.
+- `status/measured-security-results/`: append-only normalisierte Snapshots mit
+  Schweregradsummen, vollständigen HIGH-/CRITICAL-Details, Image- und Quellen-IDs.
+- `scripts/lib/measured_security.py`: Kontext-, Hash-, Summen- und Schema-Prüfung.
+- `scripts/lib/measured_security_view.py`: HTML-Projektion und sichere Textausgabe.
+
+Wiederholung desselben Intakes ist idempotent. Abweichende Daten für dieselbe
+Run-/Versuchsidentität führen zu einem Fehler; der bestehende Snapshot wird nicht
+überschrieben. Fehlgeschlagener Intake ersetzt keinen vorherigen Stand. Der
+Viewer speichert keine Fremdtexte als ausführbares HTML. Originale GitHub-Artefakte
+bleiben nur für die Consumer-Aufbewahrungsfrist verfügbar; normalisierte hohe
+und kritische Befunde bleiben in Git erhalten. Detaildaten niedrigerer
+Schweregrade werden nicht übernommen, deren Summen werden angezeigt.
