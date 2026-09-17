@@ -11,6 +11,7 @@ on:
       - "requirements-docs.txt"
       - "scripts/generate_status_viewer.py"
       - "scripts/lib/viewer_app.py"
+      - "scripts/lib/viewer_technical.py"
       - "scripts/lib/measured_security*.py"
       - "apps/governance-viewer/**"
       - "scripts/generate_governance_graph.py"
