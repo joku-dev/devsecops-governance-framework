@@ -1,14 +1,14 @@
 # Replay Triage Report
 
-Generated from latest stored snapshot time: `2026-09-17T14:18:04Z`
+Generated from latest stored snapshot time: `2026-09-17T15:38:49Z`
 
 ## Summary
 
-- Assessments: 42
+- Assessments: 44
 - Stored replay failures: 6
-- Failures under current report-only interpretation: 4
+- Failures under current report-only interpretation: 5
 - Superseded legacy assessments: 2
-- Official latest findings: 1
+- Official latest findings: 2
 
 No historical snapshot, latest-result pointer, Trust level, or enforcement behavior is changed.
 
@@ -22,7 +22,7 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 | `typed_evidence` | `joku-dev/governance-framework-demo-consumer` | `34778861276` | `pass` | `pass` | `new_evidence` | `none` |
 | `architecture` | `joku-dev/ha-CPsWMS` | `35131185047` | `pass` | `pass` | `new_evidence` | `none` |
 | `devsecops` | `joku-dev/ha-CPsWMS` | `35131186298` | `fail` | `fail` | `cross_commit_reuse` | `reverify_with_artifact_digest` |
-| `typed_evidence` | `joku-dev/ha-CPsWMS` | `35232313852` | `pass` | `pass` | `new_evidence` | `none` |
+| `typed_evidence` | `joku-dev/ha-CPsWMS` | `35241262722` | `pass` | `fail` | `same_context_content_conflict` | `investigate_same_context_mutation` |
 
 ## Classification Counts
 
@@ -33,4 +33,5 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 | `cross_repository_reuse` | 2 |
 | `deterministic_report_reuse` | 6 |
 | `legacy_assessment_superseded` | 2 |
-| `new_evidence` | 23 |
+| `new_evidence` | 24 |
+| `same_context_content_conflict` | 1 |
