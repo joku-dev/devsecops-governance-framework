@@ -19,7 +19,7 @@ The check is currently used as **report-only governance**. It makes architecture
 |---|---|
 | Application repository | `/workspace/ha-CPsWMS` |
 | Local generated report commit | `77e8fcd` |
-| Latest mainline commit in viewer | `6976bb2af2b9d47d2934273c444b6c9b62a81ea2` |
+| Latest mainline commit in viewer | `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3` |
 | Release ID | `ha-CPsWMS-demo` |
 | Detected services | `5` |
 | Governance repository | `/workspace/devsecops-governance-framework` |
@@ -454,12 +454,12 @@ The current latest tracked architecture result for `ha-CPsWMS` contains:
 | Repository | `joku-dev/ha-CPsWMS` |
 | Architecture governance baseline | `architecture-baseline-l1-v0.1.0` |
 | ha-CPsWMS solution baseline | `ha-CPsWMS-demo-baseline` |
-| Last tracked run | `34602001140` |
-| Run URL | `https://github.com/joku-dev/ha-CPsWMS/actions/runs/34602001140` |
+| Last tracked run | `35131185047` |
+| Run URL | `https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185047` |
 | Branch | `main` |
 | Event | `push` |
-| Commit | `6976bb2af2b9d47d2934273c444b6c9b62a81ea2` |
-| Generated | `2026-09-11T13:01:50Z` |
+| Commit | `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3` |
+| Generated | `2026-09-16T17:55:49Z` |
 | Result | `PASS`, `4/4 gates`, `0 findings` |
 
 This is a mainline result. Earlier architecture history entries include branch and early mainline runs that used the demo solution baseline as the reported architecture baseline. The current mainline result reports the released governance baseline, `architecture-baseline-l1-v0.1.0`.

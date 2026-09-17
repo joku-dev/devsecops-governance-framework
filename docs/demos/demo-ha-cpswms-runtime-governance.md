@@ -18,14 +18,14 @@ Use this document when the demo audience wants to go deeper into the architectur
 | Application branch | `main` |
 | Architecture governance baseline | `architecture-baseline-l1-v0.1.0` |
 | Solution baseline | `ha-CPsWMS-demo-baseline` |
-| Latest mainline run | `34602001140` |
-| Latest mainline commit | `6976bb2af2b9d47d2934273c444b6c9b62a81ea2` |
-| Generated | `2026-09-11T13:01:50Z` |
+| Latest mainline run | `35131185047` |
+| Latest mainline commit | `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3` |
+| Generated | `2026-09-16T17:55:49Z` |
 | Current result | `PASS`, `4/4 gates`, `0 findings` |
 
 Interpretation:
 
-- These are the accepted 11 September 2026 mainline observations, not proof of current freshness.
+- These are the accepted 16 September 2026 mainline observations, not proof of current freshness.
 - The checks are currently used report-only for the demo.
 - A `PASS` means the recorded evidence satisfies the released L1 architecture governance checks. It is not a formal production approval.
 
@@ -326,7 +326,7 @@ Expected current gate summary:
 Current known-good architecture run:
 
 ```text
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/34602001140
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185047
 ```
 
 Expected interpretation:
@@ -358,7 +358,7 @@ Expected current viewer values:
 | Repository | `joku-dev/ha-CPsWMS` |
 | Status | `PASS` |
 | Baseline | `architecture-baseline-l1-v0.1.0` |
-| Last Mainline Run | `34602001140` |
+| Last Mainline Run | `35131185047` |
 | Summary | `4/4 gates pass`, `0 findings` |
 | Evidence Trust | `integrity_verified` after central re-verification |
 

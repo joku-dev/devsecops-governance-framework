@@ -26,7 +26,10 @@ with sync_playwright() as p:
     page.get_by_role('link',name='ha-CPsWMS öffnen').click()
     page.wait_for_selector('.tabs')
     assert page.locator('.metric .value').all_text_contents()==['1','332','121','57']
-    assert 'unterschiedliche Commits' in page.locator('main').inner_text()
+    # The accepted governance intakes now bind to the measured scan commit.
+    assert 'unterschiedliche Commits' not in page.locator('main').inner_text()
+    assert page.locator('a[href*="35131186298"]').count() > 0
+    assert page.locator('a[href*="35131185047"]').count() > 0
     assert 'FAIL' in page.locator('main').inner_text() # replay is not hidden by governance PASS
     page.screenshot(path='/tmp/viewer-app-repo.png',full_page=True)
     go(REPO+'security')
@@ -86,6 +89,13 @@ with sync_playwright() as p:
     assert '<img' in safe.locator('main').inner_text()
     assert safe.locator('main img').count()==0
     assert safe.evaluate('window.injected') is None
+    # Preserve coverage of the warning for genuinely mismatched contexts.
+    mismatch=json.loads(json.dumps(original))
+    ha=next(r for r in mismatch['repositories'] if r['id']=='joku-dev/ha-CPsWMS')
+    ha['devsecops']['commit_id']='0'*40
+    mixed=browser.new_page();mixed.route('**/data.json',lambda route:route.fulfill(json=mismatch))
+    mixed.goto(URL+REPO+'summary');mixed.wait_for_selector('.tabs')
+    assert 'unterschiedliche Commits' in mixed.locator('main').inner_text()
     empty=browser.new_page();empty.route('**/data.json',lambda route:route.fulfill(json={'version':1,'repositories':[]}))
     empty.goto(URL);empty.wait_for_selector('h1')
     assert empty.locator('.metric .value').all_text_contents()==['0','—','—','0']
