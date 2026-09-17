@@ -10,6 +10,11 @@ import subprocess
 from intake_measured_security import gh_json, selected_files
 from lib.measured_security import ROOT, REPOSITORY, check_run
 from lib.measured_l1 import FILES, artifact_binding, normalize, store_snapshot
+from lib.control_evidence_assurance import (
+    RESULT_ROOT as ASSURANCE_ROOT,
+    build_assurance,
+    store_snapshot as store_assurance_snapshot,
+)
 
 
 def capture(repository, run_id):
@@ -51,7 +56,23 @@ def main():
     args = parser.parse_args()
     item = capture(args.repository, args.run_id)
     path = store_snapshot(ROOT / 'status/measured-l1-results', item)
+    typed = []
+    for typed_path in sorted((ROOT / 'status/typed-evidence-results').rglob('*.json')):
+        payload = json.loads(typed_path.read_text(encoding='utf-8'))
+        if (payload.get('repository_id') == item['repository_id']
+                and payload.get('pipeline', {}).get('pipeline_run_id') == item['run']['id']
+                and payload.get('pipeline', {}).get('run_attempt') == item['run']['attempt']
+                and payload.get('repository', {}).get('commit_id') == item['run']['commit']):
+            payload['_source_file'] = typed_path.relative_to(ROOT).as_posix()
+            typed.append(payload)
+    assurance = build_assurance(
+        item,
+        typed,
+        measured_source_file=path.relative_to(ROOT).as_posix(),
+    )
+    assurance_path = store_assurance_snapshot(ASSURANCE_ROOT, assurance)
     print(f'Captured {path.relative_to(ROOT)}: {json.dumps(item["summary"])} (report-only)')
+    print(f'Captured {assurance_path.relative_to(ROOT)}: {json.dumps(assurance["summary"])} (report-only)')
 
 
 if __name__ == '__main__':

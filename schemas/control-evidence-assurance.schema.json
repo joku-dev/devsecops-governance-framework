@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Control Evidence Assurance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "result_type", "profile", "repository_id",
+    "reference_baseline", "run", "verified_at", "enforcement",
+    "official_compliance_result", "production_approval", "risk_acceptance",
+    "source_assessment", "controls", "summary", "assurance_binding"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "result_type": { "const": "control-evidence-assurance" },
+    "profile": { "const": "control-evidence-assurance-v1" },
+    "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+    "reference_baseline": { "type": "string", "minLength": 1 },
+    "run": { "$ref": "#/$defs/run" },
+    "verified_at": { "type": "string", "format": "date-time" },
+    "enforcement": { "const": "report-only" },
+    "official_compliance_result": { "const": false },
+    "production_approval": { "const": false },
+    "risk_acceptance": { "const": false },
+    "source_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result_type", "profile", "evidence_binding", "source_file"],
+      "properties": {
+        "result_type": { "const": "measured-l1-assessment" },
+        "profile": { "type": "string", "minLength": 1 },
+        "evidence_binding": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "source_file": { "type": "string", "pattern": "^status/measured-l1-results/.+\\.json$" }
+      }
+    },
+    "controls": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": { "$ref": "#/$defs/control" }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total_controls", "coverage", "trust_levels", "freshness"],
+      "properties": {
+        "total_controls": { "const": 16 },
+        "coverage": { "$ref": "#/$defs/counts" },
+        "trust_levels": { "$ref": "#/$defs/trustCounts" },
+        "freshness": { "$ref": "#/$defs/resultCounts" }
+      }
+    },
+    "assurance_binding": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "$defs": {
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "attempt", "commit", "branch", "event", "created_at", "updated_at"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[1-9][0-9]*$" },
+        "attempt": { "type": "integer", "minimum": 1 },
+        "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "branch": { "const": "main" },
+        "event": { "const": "push" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "result": { "enum": ["pass", "fail", "not_evaluated"] },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "policy_id", "policy_version", "policy_status", "evaluated_at", "reason"],
+      "properties": {
+        "result": { "$ref": "#/$defs/result" },
+        "policy_id": { "type": "string", "pattern": "^freshness-[a-z0-9-]+$" },
+        "policy_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "policy_status": { "enum": ["provisional", "approved", "retired"] },
+        "produced_at": { "type": ["string", "null"] },
+        "evaluated_at": { "type": "string", "format": "date-time" },
+        "age_seconds": { "type": "integer" },
+        "maximum_age_seconds": { "type": ["integer", "null"], "minimum": 1 },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "evidenceItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_type", "status", "required", "evidence_refs", "effective_level",
+        "content_integrity", "provenance", "freshness", "replay", "custody", "attestation"
+      ],
+      "properties": {
+        "evidence_type": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "status": { "enum": ["present", "missing"] },
+        "required": { "const": true },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "typed_source_file": { "type": "string", "pattern": "^status/typed-evidence-results/.+\\.json$" },
+        "effective_level": { "enum": ["unverified", "integrity_verified", "provenance_verified", "attested"] },
+        "content_integrity": { "$ref": "#/$defs/result" },
+        "provenance": { "$ref": "#/$defs/result" },
+        "freshness": { "$ref": "#/$defs/freshness" },
+        "replay": { "$ref": "#/$defs/result" },
+        "custody": { "$ref": "#/$defs/result" },
+        "attestation": { "$ref": "#/$defs/result" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "missing" } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "evidence_refs": { "maxItems": 0 },
+              "effective_level": { "const": "unverified" },
+              "content_integrity": { "const": "not_evaluated" },
+              "provenance": { "const": "not_evaluated" },
+              "replay": { "const": "not_evaluated" },
+              "custody": { "const": "not_evaluated" },
+              "attestation": { "const": "not_evaluated" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "status": { "const": "present" } }, "required": ["status"] },
+          "then": { "properties": { "evidence_refs": { "minItems": 1 } } }
+        }
+      ]
+    },
+    "control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "control_id", "assessment", "coverage", "effective_level", "content_integrity",
+        "provenance", "freshness", "replay", "custody", "attestation",
+        "decision_context", "subject_binding", "evidence", "missing_scope"
+      ],
+      "properties": {
+        "control_id": { "type": "string", "pattern": "^DSCB-L1-REQ-0(0[1-9]|1[0-6])$" },
+        "assessment": { "enum": ["measured", "partial", "findings", "gap"] },
+        "coverage": { "enum": ["complete", "partial", "missing"] },
+        "effective_level": { "enum": ["unverified", "integrity_verified", "provenance_verified", "attested"] },
+        "content_integrity": { "$ref": "#/$defs/result" },
+        "provenance": { "$ref": "#/$defs/result" },
+        "freshness": { "$ref": "#/$defs/freshness" },
+        "replay": { "$ref": "#/$defs/result" },
+        "custody": { "$ref": "#/$defs/result" },
+        "attestation": { "$ref": "#/$defs/result" },
+        "decision_context": { "enum": ["mainline", "release", "runtime"] },
+        "subject_binding": { "enum": ["commit", "repository_state", "artifact", "release_candidate", "pipeline_run", "runtime_environment"] },
+        "evidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/evidenceItem" } },
+        "missing_scope": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["complete", "partial", "missing"],
+      "properties": {
+        "complete": { "type": "integer", "minimum": 0 },
+        "partial": { "type": "integer", "minimum": 0 },
+        "missing": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "trustCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unverified", "integrity_verified", "provenance_verified", "attested"],
+      "properties": {
+        "unverified": { "type": "integer", "minimum": 0 },
+        "integrity_verified": { "type": "integer", "minimum": 0 },
+        "provenance_verified": { "type": "integer", "minimum": 0 },
+        "attested": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "resultCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pass", "fail", "not_evaluated"],
+      "properties": {
+        "pass": { "type": "integer", "minimum": 0 },
+        "fail": { "type": "integer", "minimum": 0 },
+        "not_evaluated": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
