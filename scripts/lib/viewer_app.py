@@ -6,11 +6,12 @@ import json
 import shutil
 
 from lib.measured_security import load_snapshots
+from lib.measured_l1 import load_snapshots as load_l1_snapshots
 from lib.viewer_technical import project_technical
 from lib.measured_security_view import assessment
 
 
-def project(devsecops, architecture, snapshots):
+def project(devsecops, architecture, snapshots, l1_snapshots=()):
     repositories = {}
     for domain, index in [('devsecops', devsecops), ('architecture', architecture)]:
         for row in index['repositories']:
@@ -30,7 +31,13 @@ def project(devsecops, architecture, snapshots):
         repo['security_history'] = [
             {k: s[k] for k in ('run', 'counts', 'tests_passed')} for s in reversed(ordered)
         ]
+    for item in l1_snapshots:
+        repo = repositories.setdefault(item['repository_id'], {'id': item['repository_id'], 'devsecops': None, 'architecture': None, 'security': None, 'security_history': []})
+        repo.setdefault('l1_history', []).append(item)
     for repo in repositories.values():
+        history = sorted(repo.get('l1_history', []), key=lambda s: (datetime.fromisoformat(s['run']['created_at'].replace('Z', '+00:00')), int(s['run']['id']), s['run']['attempt']), reverse=True)
+        repo['l1_assessment'] = history[0] if history else None
+        repo['l1_history'] = [{'run': s['run'], 'summary': s['summary']} for s in history]
         groups = {}
         current = repo.get('security')
         if current:
@@ -50,7 +57,8 @@ def build(root: Path, technical_html=None):
     def read(name):
         return json.loads((root / 'status' / name).read_text(encoding='utf-8'))
     data = project(read('repository-results-index.json'), read('architecture-results-index.json'),
-                   load_snapshots(root / 'status/measured-security-results'))
+                   load_snapshots(root / 'status/measured-security-results'),
+                   load_l1_snapshots(root / 'status/measured-l1-results'))
     if technical_html is None:
         legacy = root / 'generated/viewer/status-viewer.html'
         technical_html = legacy.read_text(encoding='utf-8') if legacy.exists() else ''

@@ -742,3 +742,20 @@ h1 {
     flex-wrap:wrap
   }
 }
+
+/* Per-control measured L1 evidence, separate from the official baseline. */
+.l1-control {padding:16px 0;border-top:1px solid var(--line,#dce5eb);margin:0}
+.l1-control-heading {display:flex;align-items:center;justify-content:space-between;gap:16px}
+.l1-control-title::before {content:"▸ ";color:#087d73}
+.l1-control[open]>.l1-control-heading .l1-control-title::before {content:"▾ "}
+.l1-control-title {font-weight:600;line-height:1.5}
+.l1-control p {line-height:1.6}
+.l1-sources {list-style:none;padding:0}
+.l1-sources li {padding:12px 0;overflow-wrap:anywhere}
+.l1-sources small {display:block;margin:5px 0;color:var(--muted,#506577)}
+.l1-sources code {font-size:.75rem;word-break:break-all}
+.l1-measured {background:#e6f4ed;color:#066449}
+.l1-partial,.l1-findings {background:#fff3d9;color:#815409}
+.l1-gap {background:#fce9ec;color:#ad2940}
+.l1-metrics .value {font-size:2rem}
+@media(max-width:600px) {.l1-control-heading {align-items:flex-start;flex-direction:column;gap:8px}}
