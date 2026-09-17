@@ -13,6 +13,8 @@ on:
       - "scripts/lib/viewer_app.py"
       - "scripts/lib/viewer_technical.py"
       - "scripts/lib/measured_security*.py"
+      - "scripts/lib/measured_l1.py"
+      - "schemas/measured-l1-assessment.schema.json"
       - "apps/governance-viewer/**"
       - "scripts/generate_governance_graph.py"
       - "generated/graph/**"

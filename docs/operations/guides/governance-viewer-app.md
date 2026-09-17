@@ -14,7 +14,7 @@ nicht erforderlich.
 |---|---|
 | Übersicht | Repository-Anzahl, gemessene kritische/hohe Meldungen, Governance mit Befunden und abgeleitete nächste Prüfungen |
 | Repositories | Suche, offizielle DevSecOps-/Architektur-Ergebnisse und separate Container-Scans |
-| Repository-Detail | Zusammenfassung, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
+| Repository-Detail | Zusammenfassung, L1-Nachweise je Kontrolle, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
 | Befunde | HIGH/CRITICAL nach Repository, Schweregrad, Image und CVE/Paket durchsuchen; 20 Gruppen pro Seite |
 | Nachweise | Ergebnisnachweise, Evidence Trust, Replay-Prüfung, Nachweisherkunft, vollständige Governance-Laufhistorie, Artefakte und Daten |
 | Governance | Governance-Graph, Runtime-Referenzartefakte, Kontrollen, Modell, Quellenaufnahme und offene Aufgaben |
@@ -37,11 +37,26 @@ verwendet Hash-Routen und unterstützt Browser-Zurück sowie direkte Links. Alte
 Abschnittsnamen wie `#replay-triage` werden innerhalb der Anwendung auf die passende
 Ansicht abgebildet. `#overview` öffnet die neue Übersicht.
 
+## L1-Nachweise je Repository
+
+Unter **Repositories → ha-CPsWMS → L1-Nachweise** stehen 16 zentrale
+Report-only-Bewertungen aus tatsächlichen Prüfungen. Jede Kontrolle nennt
+Messwerte, Werkzeuge, verbleibende Lücken und die Originaldateien mit Prüfsummen.
+Kontrollzeilen für Details aufklappen, nach Kontroll-ID, Werkzeug oder Text
+suchen und nach Nachweisstatus filtern.
+Die Zusammenfassung verlinkt diese Ansicht; die offizielle Baseline bleibt daneben
+als eigener Status sichtbar. Fehlende Messungen ergeben keinen PASS.
+
+[Kontrollen öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository/joku-dev%2Fha-CPsWMS/l1)
+· [Vertrag und Prüfgrenzen](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle)
+
 ## Bedeutung der Daten
 
 - Governance-Ergebnisse stammen unverändert aus `latest_result` der vorhandenen
   DevSecOps- und Architektur-Indizes. Die Anwendung wählt keine neueren PR-,
   Branch- oder manuellen Ergebnisse als offiziellen Stand aus.
+- L1-Nachweise stammen aus validierten `status/measured-l1-results/`-Snapshots.
+  Sie verändern weder offizielle Ergebnisse noch historische Replay-Befunde.
 - Container-Sicherheit stammt aus den validierten, separat aufgenommenen
   `status/measured-security-results/`-Snapshots. Diese sind report-only.
 - HIGH/CRITICAL-Meldungen zählen Image-/Paketvorkommen. CVE-IDs werden zusätzlich

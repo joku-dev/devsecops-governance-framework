@@ -275,3 +275,17 @@ git ls-files 'scripts/*.py' 'scripts/*.sh' 'scripts/*.mjs' '.github/workflows/*.
 
 Die [Dokumentationsprüfung vom 13. September](../reference-runs/2026-09-13-documentation-currency-review.md)
 beschreibt den geprüften Umfang und die getrennten historischen Artefakte.
+
+## Additive zentrale L1-Messbewertung (17. September 2026)
+
+| Baustein | Funktion |
+|---|---|
+| `scripts/intake_measured_l1.py` | Aufnahme ausgewählter Rohartefakte eines erfolgreichen ha-CPsWMS-Messlaufs und der Anforderungszuordnung am exakten Commit |
+| `scripts/lib/measured_l1.py` | Kontext-/Hash-/Image-Prüfung, zentrale konservative Bewertung aller 16 L1-Kontrollen, Schema- und Append-only-Prüfung |
+| `schemas/measured-l1-assessment.schema.json` | Additiver Report-only-Vertrag mit Beobachtungen, Nachweisreferenzen, Bewertungsprofil und expliziten Prüfgrenzen |
+| `status/measured-l1-results/` | Unveränderliche Snapshots je Lauf und Versuch; Auswahl nach Quellzeit |
+| `scripts/lib/viewer_app.py`, `apps/governance-viewer/app.js` | Getrennte L1-Projektion, Kontrollsuche, Statusfilter, Quelldateien und Laufvergleich zur offiziellen Baseline |
+| `tests/test_measured_l1.py`, `tests/browser/check_viewer_l1.py` | Manipulation, falsche Kontexte, unzulässige Freigaben, Rohdatenvergleich, Historie und Browserdarstellung prüfen |
+
+Keine automatische Aufnahme, Baseline-Änderung oder Live-Freigabe.
+[Details](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle).
