@@ -195,6 +195,13 @@ results: a `main` branch `push` is preferred, so a later manual diagnostic run
 does not replace it. This selection is confined to the typed-evidence index;
 it does not change governance `latest_result`.
 
+The global viewer's **Evidence Trust** section displays governance Trust from
+the DevSecOps and architecture indexes first, including ha-CPsWMS. Its **Latest
+Typed Evidence** table remains scoped to this separate typed index. The coverage
+notice identifies governance repositories with no latest typed entry. Measured
+L1 and container-security snapshots do not qualify as typed evidence merely by
+appearing in the viewer. No Trust level is inferred across these stores.
+
 ## Intake Script
 
 Use:

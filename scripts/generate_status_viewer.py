@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from html import escape
 from pathlib import Path
+from urllib.parse import quote
 import csv
 import json
 
@@ -207,18 +208,58 @@ def trust_detail(projection: dict) -> str:
     )
 
 
-def build_typed_evidence_trust_section(typed_evidence_index: dict) -> str:
+def build_governance_trust_panel(results_index: dict, architecture_index: dict) -> str:
+    rows = []
+    for domain, index in (("DevSecOps", results_index), ("Architecture", architecture_index)):
+        for repository in index.get("repositories", []):
+            repo_id = repository.get("repository_id", "unknown")
+            latest = repository.get("latest_result") or {}
+            trust = latest.get("trust") or {}
+            replay = trust.get("replay", "not_evaluated")
+            run_id = latest.get("pipeline_run_id", "")
+            run_url = f"https://github.com/{quote(repo_id, safe='/')}/actions/runs/{quote(run_id, safe='')}" if run_id else ""
+            source = latest.get("source_file", "")
+            source_link = (
+                f'<a href="https://github.com/joku-dev/devsecops-governance-framework/blob/main/{quote(source, safe="/")}">Snapshot</a>'
+                if source else "not recorded"
+            )
+            rows.append([
+                f"<code>{escape(repo_id)}</code>", domain,
+                trust_badge(trust) + (f'<span class="cell-detail">{escape(trust_detail(trust))}</span>' if trust else ""),
+                badge(replay, "ok" if replay == "pass" else "warn"),
+                escape(trust.get("verified_at") or "not recorded")
+                + f"<span class=\"cell-detail\">Commit <code>{escape((latest.get('commit_id') or 'not recorded')[:12])}</code></span>",
+                run_link(run_id, run_url) + f'<span class="cell-detail">{source_link}</span>',
+            ])
+    return (
+        '<section class="panel"><h2>Latest Governance Evidence Trust</h2>'
+        '<p>Gespeicherter Trust der offiziellen DevSecOps- und Architektur-Ergebnisse. '
+        'Replay bleibt ein eigenes Signal; keine Neubewertung der heutigen Aktualität.</p>'
+        + (html_table(["Repository", "Domain", "Trust", "Replay", "Verified at / Commit", "Run / Source"], rows)
+           if rows else '<p>Kein Governance-Trust erfasst.</p>')
+        + '</section>'
+    )
+
+
+def build_evidence_trust_section(typed_evidence_index: dict, results_index: dict, architecture_index: dict) -> str:
     repositories = typed_evidence_index.get("repositories", [])
-    if not repositories:
-        return ""
+    governance_html = build_governance_trust_panel(results_index, architecture_index)
+    typed_repos = {r["repository_id"] for r in repositories if r.get("latest_result")}
+    governance_repos = {r["repository_id"] for index in (results_index, architecture_index) for r in index.get("repositories", [])}
+    missing = sorted(governance_repos - typed_repos)
+    coverage = (
+        '<p>Kein Typed-Evidence-Eintrag für: '
+        + ', '.join(f'<code>{escape(repo)}</code>' for repo in missing) + '.</p>'
+        if missing else ''
+    )
     summary = typed_evidence_index.get("summary", {})
     level_counts = summary.get("trust_level_counts", {})
     cards = [
-        ("Evidence Repositories", summary.get("repository_count", 0), "Typed evidence tracked centrally"),
-        ("Evidence Results", summary.get("result_count", 0), f"Mainline: {summary.get('mainline_results', 0)}"),
-        ("Integrity Verified", level_counts.get("integrity_verified", 0), "Outcome-independent Trust"),
-        ("Freshness Failures", summary.get("freshness_failures", 0), "Report-only findings"),
-        ("Replay Findings", summary.get("replay_failures", 0), "Report-only context conflicts"),
+        ("Typed Evidence Repositories", summary.get("repository_count", 0), "Typed evidence tracked centrally"),
+        ("Typed Evidence Results", summary.get("result_count", 0), f"Mainline: {summary.get('mainline_results', 0)}"),
+        ("Typed Integrity Verified", level_counts.get("integrity_verified", 0), "Outcome-independent Trust"),
+        ("Typed Freshness Failures", summary.get("freshness_failures", 0), "Report-only findings"),
+        ("Typed Replay Findings", summary.get("replay_failures", 0), "Report-only context conflicts"),
     ]
     card_html = "".join(
         "<section class=\"card\">"
@@ -256,14 +297,19 @@ def build_typed_evidence_trust_section(typed_evidence_index: dict) -> str:
         )
     return (
         "<section id=\"evidence-trust\" class=\"viewer-section\">"
-        "<div class=\"section-title\"><h2>Typed Evidence Trust</h2>"
-        "<p>Centrally reverified vulnerability evidence, shown independently from governance outcomes and delivery enforcement.</p></div>"
+        "<div class=\"section-title\"><h2>Evidence Trust</h2>"
+        "<p>Governance-Trust und separat aufgenommene Typed Evidence werden getrennt dargestellt. Alle Trust-Befunde sind report-only.</p></div>"
+        f"{governance_html}"
+        "<section class=\"panel\"><h2>Typed Evidence: Abdeckung</h2>"
+        "<p>Latest Typed Evidence enthält ausschließlich Nachweise aus dem separaten Typed-Evidence-Intake. "
+        "Gemessene L1-Nachweise und Container-Scans werden dadurch nicht automatisch zu Typed Evidence.</p>"
+        f"{coverage}</section>"
         f"<section class=\"cards\">{card_html}</section>"
         "<section class=\"panel\"><h2>Latest Typed Evidence</h2>"
-        + html_table(
+        + (html_table(
             ["Repository", "Evidence", "Scanner", "Trust", "Integrity", "Freshness", "Replay", "Findings", "Subject Binding", "Run"],
             rows,
-        )
+        ) if rows else "<p>Keine Typed Evidence erfasst.</p>")
         + "</section></section>"
     )
 
@@ -1983,7 +2029,7 @@ def main() -> int:
         if runtime_cards_html
         else ""
     )
-    typed_evidence_trust_html = build_typed_evidence_trust_section(typed_evidence_index)
+    typed_evidence_trust_html = build_evidence_trust_section(typed_evidence_index, results_index, architecture_index)
     replay_triage_html = build_replay_triage_section(replay_triage)
     governance_graph_html = build_governance_graph_section(governance_graph)
     graph_script = governance_graph_script() if governance_graph_html else ""

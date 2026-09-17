@@ -9,6 +9,7 @@ import unittest
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 from lib.viewer_technical import project_technical, link, SECTIONS
+from generate_status_viewer import build_evidence_trust_section
 
 
 class Cells(HTMLParser):
@@ -24,6 +25,44 @@ class Cells(HTMLParser):
 
 
 class TechnicalViewerTests(unittest.TestCase):
+    def test_governance_trust_visible_without_typed_intake(self):
+        dev = {'repositories': [{'repository_id': 'org/application', 'latest_result': {
+            'pipeline_run_id': '42', 'commit_id': 'official',
+            'trust': {'effective_level': 'integrity_verified', 'replay': 'fail'},
+        }, 'history': [{'commit_id': 'newer-pr-commit'}]}]}
+        source = build_evidence_trust_section({}, dev, {})
+        self.assertIn('org/application', source)
+        self.assertIn('Evidence: integrity_verified', source)
+        self.assertIn('replay fail', source)
+        self.assertIn('official', source)
+        self.assertNotIn('newer-pr-commit', source)
+        self.assertIn('Keine Typed Evidence erfasst.', source)
+        self.assertIn('Kein Typed-Evidence-Eintrag für:', source)
+        section = next(s for s in project_technical(source)['sections'] if s['id']=='evidence-trust')
+        self.assertTrue(section['available'])
+
+    def test_global_trust_missing_is_not_success_and_text_is_escaped(self):
+        index = {'repositories': [{'repository_id': 'org/<script>', 'latest_result': {}}]}
+        source = build_evidence_trust_section({}, index, {})
+        self.assertIn('Evidence: not tracked', source)
+        self.assertIn('not_evaluated', source)
+        self.assertNotIn('integrity_verified', source)
+        self.assertNotIn('<script>', source)
+        self.assertIn('org/&lt;script&gt;', source)
+
+    def test_typed_coverage_is_not_inferred_from_governance(self):
+        typed = {'repositories': [{'repository_id': 'org/demo', 'latest_result': {
+            'evidence_type': 'vulnerability_scan', 'trust': {'effective_level': 'integrity_verified'},
+        }}]}
+        dev = {'repositories': [{'repository_id': name, 'latest_result': {}} for name in ['org/demo', 'org/application']]}
+        source = build_evidence_trust_section(typed, dev, {})
+        coverage = source.split('Kein Typed-Evidence-Eintrag für:', 1)[1].split('</p>', 1)[0]
+        self.assertIn('org/application', coverage)
+        self.assertNotIn('org/demo', coverage)
+        typed_table = source.split('<h2>Latest Typed Evidence</h2>', 1)[1]
+        self.assertIn('org/demo', typed_table)
+        self.assertNotIn('org/application', typed_table)
+
     def test_all_existing_sections_have_destinations(self):
         data=project_technical((ROOT/'generated/viewer/status-viewer.html').read_text())
         present={s['id'] for s in data['sections'] if s['available']}
@@ -80,4 +119,3 @@ class TechnicalViewerTests(unittest.TestCase):
         data=project_technical('')
         self.assertIsNone(data['graph'])
         self.assertTrue(all(not s['available'] and s['html'] is None for s in data['sections']))
-
