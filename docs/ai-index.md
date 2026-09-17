@@ -214,7 +214,7 @@ python3 -m unittest discover -s tests
 | Vulnerability collector guide | `docs/operations/evidence/vulnerability-scan-collector-usage.md` |
 | Typed evidence result index | `status/typed-evidence-results-index.json` |
 | Typed evidence result history | `status/typed-evidence-results/` |
-| Typed evidence intake | `scripts/intake_evidence_trust_github_actions_run.py` |
+| Typed evidence intake | `scripts/intake_evidence_trust_github_actions_run.py`; five-image ha-CPsWMS profile: `scripts/intake_ha_container_trust.py`, `scripts/lib/container_typed_evidence.py` |
 | Governance graph schema | `schemas/governance-graph.schema.json` |
 | Governance graph generator | `scripts/generate_governance_graph.py` |
 | Governance graph output | `generated/graph/governance-graph.json` |

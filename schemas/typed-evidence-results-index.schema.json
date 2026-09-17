@@ -129,6 +129,102 @@
         "content_integrity": { "enum": ["pass", "fail", "not_evaluated"] },
         "replay": { "enum": ["pass", "fail", "not_evaluated"] },
         "trust": { "$ref": "#/$defs/trustProjection" },
+        "container_images": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": [
+              "service",
+              "image_id",
+              "artifact_id",
+              "artifact_name",
+              "artifact_archive_sha256",
+              "archive_sha256",
+              "archive_digest_verified",
+              "image_layers_verified",
+              "counts"
+            ],
+            "properties": {
+              "service": {
+                "enum": [
+                  "ha-sync",
+                  "query-api",
+                  "neo4j",
+                  "semantic-enrichment",
+                  "world-model-chat"
+                ]
+              },
+              "image_id": {
+                "type": "string",
+                "pattern": "^sha256:[a-f0-9]{64}$"
+              },
+              "artifact_id": {
+                "type": "string",
+                "pattern": "^[0-9]+$"
+              },
+              "artifact_name": {
+                "type": "string",
+                "pattern": "^l1-image-"
+              },
+              "artifact_archive_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "archive_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "archive_digest_verified": {
+                "const": true
+              },
+              "image_layers_verified": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "counts": {
+                "type": "object",
+                "required": [
+                  "CRITICAL",
+                  "HIGH",
+                  "MEDIUM",
+                  "LOW",
+                  "INFO",
+                  "UNKNOWN"
+                ],
+                "properties": {
+                  "CRITICAL": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "HIGH": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "MEDIUM": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "LOW": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "INFO": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "UNKNOWN": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
         "source_file": { "type": "string", "minLength": 1 }
       },
       "additionalProperties": false
