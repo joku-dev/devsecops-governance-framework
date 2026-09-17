@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "projection_type": "replay-triage",
-  "generated_at": "2026-09-16T17:57:22Z",
+  "generated_at": "2026-09-17T14:18:04Z",
   "enforcement": "report_only",
   "decision_boundary": {
     "historical_snapshots_rewritten": false,
@@ -10,7 +10,7 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 41,
+    "assessments": 42,
     "recorded_failures": 6,
     "recalculated_failures": 4,
     "legacy_assessments_superseded": 2,
@@ -21,7 +21,7 @@
       "cross_repository_reuse": 2,
       "deterministic_report_reuse": 6,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 22
+      "new_evidence": 23
     }
   },
   "official_latest_findings": [
@@ -1541,6 +1541,25 @@
           ]
         }
       ]
+    },
+    {
+      "domain": "typed_evidence",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-09-17T14:18:04Z",
+      "run_id": "35232313852",
+      "event": "push",
+      "commit_id": "cfe0a49fab5d089970054ce3065da4cb896398f9",
+      "artifact_name": "l1-control-coverage",
+      "artifact_digest_available": true,
+      "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T14-18-04Z-run-35232313852-vulnerability-scan.json",
+      "official_latest": true,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "065a310bc349f5b99676530599fe836153c7dddb8cc2ccb49efc49a2d308918b",
+      "relationships": []
     }
   ]
 }
