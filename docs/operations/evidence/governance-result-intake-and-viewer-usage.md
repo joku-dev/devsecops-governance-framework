@@ -4,7 +4,8 @@ For credential setup and rotation, see [GitHub access maintenance](../security/g
 For daily checks, failure handling and pilot acceptance, see the
 [operations handbook](../guides/governance-repository-operations-handbook.md).
 
-For the new overview, repository details, container findings and evidence navigation,
+For the new overview, repository details, central Repository Security status,
+container findings and evidence navigation,
 open the [Governance Workspace application](../guides/governance-viewer-app.md).
 Graph, controls, models, source intake and operational views are integrated into
 the application under Governance, Evidence and Operations. The old static viewer

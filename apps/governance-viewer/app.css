@@ -524,6 +524,26 @@ dd {
 .evidence-item .panel-head {
   margin-bottom:8px
 }
+.security-finding {
+  padding:14px 0;
+  border-bottom:1px solid var(--line)
+}
+.security-finding:last-child {
+  border-bottom:0;
+  padding-bottom:0
+}
+.security-finding .panel-head {
+  margin-bottom:6px
+}
+.security-finding p {
+  margin:6px 0
+}
+.security-finding small {
+  color:var(--muted)
+}
+.repository-security-overview .panel {
+  min-width:0
+}
 footer {
   font-size:11px;
   color:var(--muted);

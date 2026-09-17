@@ -1,7 +1,7 @@
 # Governance Workspace: Viewer-Anwendung
 
 Die eigenständige, lesende Frontend-Anwendung bündelt Übersicht, Repositories,
-Container-Befunde, Nachweise, Governance und Betrieb. Sie läuft im bestehenden Repository auf GitHub
+Container-Befunde, Repository Security, Nachweise, Governance und Betrieb. Sie läuft im bestehenden Repository auf GitHub
 Pages. Ein Backend oder ein Benutzerkonto ist für die veröffentlichte Ansicht
 nicht erforderlich.
 
@@ -16,6 +16,7 @@ nicht erforderlich.
 | Repositories | Suche, offizielle DevSecOps-/Architektur-Ergebnisse und separate Container-Scans |
 | Repository-Detail | Zusammenfassung, Evidence Trust je Governance-Domain, L1-Nachweise je Kontrolle, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
 | Befunde | HIGH/CRITICAL nach Repository, Schweregrad, Image und CVE/Paket durchsuchen; 20 Gruppen pro Seite |
+| Repository Security | Aktueller Self-Security-Stand des zentralen Governance-Repositories, alle 16 Kriterien, offene kritische/hohe Punkte und dokumentierte Maßnahmen |
 | Nachweise | Ergebnisnachweise, Evidence Trust, Replay-Prüfung, Nachweisherkunft, vollständige Governance-Laufhistorie, Artefakte und Daten |
 | Governance | Governance-Graph, Runtime-Referenzartefakte, Kontrollen, Modell, Quellenaufnahme und offene Aufgaben |
 | Betrieb | Integrationsstatus, Intake-Zustand, Sammelversuche, Intake-Konflikte und Agent-Nutzung |
@@ -28,6 +29,7 @@ Vorhandene Kontroll- und Laufkontextfilter wirken gemeinsam mit der Seitennaviga
 Der Graph unterstützt Suche, Typ-/Bereichsfilter und Auswahl per Maus oder Tastatur.
 
 [Replay-Prüfung öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#evidence/replay)
+· [Repository Security öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository-security)
 · [Governance öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#governance/controls)
 · [Betrieb öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/intake)
 
@@ -84,6 +86,11 @@ als eigener Status sichtbar. Fehlende Messungen ergeben keinen PASS.
 - Governance-Ergebnisse stammen unverändert aus `latest_result` der vorhandenen
   DevSecOps- und Architektur-Indizes. Die Anwendung wählt keine neueren PR-,
   Branch- oder manuellen Ergebnisse als offiziellen Stand aus.
+- Repository Security stammt aus dem schema-validierten Self-Security-Bericht
+  `generated/reports/governance-repository-security.json`. Die Ansicht zeigt
+  dessen gespeicherten Beobachtungszeitpunkt, Gesamtstatus, Kriterien und
+  Maßnahmen unverändert als report-only Projektion. Sie fragt GitHub nicht live
+  ab und verändert keine Repository-Einstellung.
 - L1-Nachweise stammen aus validierten `status/measured-l1-results/`-Snapshots.
   Sie verändern weder offizielle Ergebnisse noch historische Replay-Befunde.
 - Kontroll-Assurance stammt aus validierten, append-only gespeicherten
@@ -118,9 +125,9 @@ Quellen der Anwendung: `apps/governance-viewer/index.html`, `app.css`, `app.js`,
 `technical.css` und `technical.js`.
 Es handelt sich um eine eigenständige Browser-Anwendung mit lokalem Routing,
 Filtern und Seitennavigation, ohne externe JavaScript- oder CSS-Abhängigkeiten.
-Die Python-Projektion `scripts/lib/viewer_app.py` validiert und verbindet die
-gemessene Bewertung mit der Kontroll-Assurance nur bei identischem Repository,
-Run, Versuch und Commit. Sie erzeugt ein internes
+Die Python-Projektion `scripts/lib/viewer_app.py` validiert den Self-Security-Bericht
+gegen sein JSON-Schema und verbindet die gemessene Bewertung mit der
+Kontroll-Assurance nur bei identischem Repository, Run, Versuch und Commit. Sie erzeugt ein internes
 Darstellungsformat (`version: 1`), keinen neuen Consumer-Evidence-Vertrag.
 
 `scripts/generate_status_viewer.py` baut beide Viewer. Die Anwendung liegt danach
