@@ -1,18 +1,18 @@
 {
   "schema_version": "1.0.0",
   "projection_type": "intake-health",
-  "generated_at": "2026-09-17T07:29:20Z",
+  "generated_at": "2026-09-17T14:16:39Z",
   "enforcement": "report_only",
   "observation_status": "observed",
   "window": {
     "days": 30,
-    "started_at": "2026-08-18T07:29:20Z",
-    "ended_at": "2026-09-17T07:29:20Z"
+    "started_at": "2026-08-18T14:16:39Z",
+    "ended_at": "2026-09-17T14:16:39Z"
   },
   "summary": {
     "events": {
-      "total": 8,
-      "success": 8,
+      "total": 9,
+      "success": 9,
       "partial": 0,
       "failed": 0,
       "success_rate_pct": 100.0,
@@ -55,8 +55,8 @@
       "dimension": "repository_id",
       "value": "joku-dev/ha-CPsWMS",
       "metrics": {
-        "total": 5,
-        "success": 5,
+        "total": 6,
+        "success": 6,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -73,8 +73,8 @@
       "dimension": "collector",
       "value": "central-governance-intake@0.1.0",
       "metrics": {
-        "total": 7,
-        "success": 7,
+        "total": 8,
+        "success": 8,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -127,8 +127,8 @@
       "dimension": "intake_type",
       "value": "devsecops_governance",
       "metrics": {
-        "total": 4,
-        "success": 4,
+        "total": 5,
+        "success": 5,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -163,8 +163,8 @@
       "dimension": "evidence_type",
       "value": "governance_result",
       "metrics": {
-        "total": 7,
-        "success": 7,
+        "total": 8,
+        "success": 8,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -202,7 +202,7 @@
       "repository_id": "joku-dev/ai-native-engineering-factory",
       "run_id": "34503074356",
       "generated_at": "2026-09-11T12:56:37Z",
-      "age_ms": 498763687,
+      "age_ms": 523202840,
       "source_file": "status/results/joku-dev__ai-native-engineering-factory/2026-09-11T12-56-37Z-run-34503074356.json"
     },
     {
@@ -210,7 +210,7 @@
       "repository_id": "joku-dev/governance-framework-demo-consumer",
       "run_id": "34778861076",
       "generated_at": "2026-09-13T19:49:41Z",
-      "age_ms": 301179687,
+      "age_ms": 325618840,
       "source_file": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-41Z-run-34778861076.json"
     },
     {
@@ -218,7 +218,7 @@
       "repository_id": "joku-dev/governance-framework-demo-consumer",
       "run_id": "34778861276",
       "generated_at": "2026-09-13T19:49:58Z",
-      "age_ms": 301162687,
+      "age_ms": 325601840,
       "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276.json"
     },
     {
@@ -226,7 +226,7 @@
       "repository_id": "joku-dev/governance-framework-demo-consumer",
       "run_id": "34778861276",
       "generated_at": "2026-09-13T19:49:58Z",
-      "age_ms": 301162687,
+      "age_ms": 325601840,
       "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json"
     },
     {
@@ -234,16 +234,16 @@
       "repository_id": "joku-dev/ha-CPsWMS",
       "run_id": "35131185047",
       "generated_at": "2026-09-16T17:55:49Z",
-      "age_ms": 48811687,
+      "age_ms": 73250840,
       "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-16T17-55-49Z-run-35131185047.json"
     },
     {
       "domain": "devsecops",
       "repository_id": "joku-dev/ha-CPsWMS",
-      "run_id": "35131186298",
-      "generated_at": "2026-09-16T17:57:22Z",
-      "age_ms": 48718687,
-      "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-16T17-57-22Z-run-35131186298.json"
+      "run_id": "35232315724",
+      "generated_at": "2026-09-17T14:16:27Z",
+      "age_ms": 12840,
+      "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-17T14-16-27Z-run-35232315724.json"
     }
   ],
   "source_files": [

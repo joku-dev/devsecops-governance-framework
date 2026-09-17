@@ -1,12 +1,12 @@
 # Replay Triage Report
 
-Generated from latest stored snapshot time: `2026-09-16T17:57:22Z`
+Generated from latest stored snapshot time: `2026-09-17T14:16:27Z`
 
 ## Summary
 
-- Assessments: 41
-- Stored replay failures: 6
-- Failures under current report-only interpretation: 4
+- Assessments: 42
+- Stored replay failures: 7
+- Failures under current report-only interpretation: 5
 - Superseded legacy assessments: 2
 - Official latest findings: 1
 
@@ -21,14 +21,14 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 | `devsecops` | `joku-dev/governance-framework-demo-consumer` | `34778861276` | `pass` | `pass` | `deterministic_report_reuse` | `none` |
 | `typed_evidence` | `joku-dev/governance-framework-demo-consumer` | `34778861276` | `pass` | `pass` | `new_evidence` | `none` |
 | `architecture` | `joku-dev/ha-CPsWMS` | `35131185047` | `pass` | `pass` | `new_evidence` | `none` |
-| `devsecops` | `joku-dev/ha-CPsWMS` | `35131186298` | `fail` | `fail` | `cross_commit_reuse` | `reverify_with_artifact_digest` |
+| `devsecops` | `joku-dev/ha-CPsWMS` | `35232315724` | `fail` | `fail` | `cross_commit_reuse` | `reverify_with_artifact_digest` |
 
 ## Classification Counts
 
 | Classification | Count |
 |---|---:|
 | `compatible_reuse` | 5 |
-| `cross_commit_reuse` | 4 |
+| `cross_commit_reuse` | 5 |
 | `cross_repository_reuse` | 2 |
 | `deterministic_report_reuse` | 6 |
 | `legacy_assessment_superseded` | 2 |
