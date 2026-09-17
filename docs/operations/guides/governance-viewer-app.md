@@ -14,7 +14,7 @@ nicht erforderlich.
 |---|---|
 | Übersicht | Repository-Anzahl, gemessene kritische/hohe Meldungen, Governance mit Befunden und abgeleitete nächste Prüfungen |
 | Repositories | Suche, offizielle DevSecOps-/Architektur-Ergebnisse und separate Container-Scans |
-| Repository-Detail | Zusammenfassung, L1-Nachweise je Kontrolle, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
+| Repository-Detail | Zusammenfassung, Evidence Trust je Governance-Domain, L1-Nachweise je Kontrolle, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
 | Befunde | HIGH/CRITICAL nach Repository, Schweregrad, Image und CVE/Paket durchsuchen; 20 Gruppen pro Seite |
 | Nachweise | Ergebnisnachweise, Evidence Trust, Replay-Prüfung, Nachweisherkunft, vollständige Governance-Laufhistorie, Artefakte und Daten |
 | Governance | Governance-Graph, Runtime-Referenzartefakte, Kontrollen, Modell, Quellenaufnahme und offene Aufgaben |
@@ -36,6 +36,21 @@ verfügbar. Ihre bestehenden Deep Links funktionieren weiterhin. Die neue Anwend
 verwendet Hash-Routen und unterstützt Browser-Zurück sowie direkte Links. Alte
 Abschnittsnamen wie `#replay-triage` werden innerhalb der Anwendung auf die passende
 Ansicht abgebildet. `#overview` öffnet die neue Übersicht.
+
+## Evidence Trust je Repository
+
+Unter **Repositories → ha-CPsWMS → Evidence Trust** stehen die gespeicherten
+Trust-Stufen für DevSecOps und Architektur mit Prüfzeitpunkt, Commit, Replay,
+Anzahl bestandener/fehlgeschlagener/nicht bewerteter Einzelprüfungen und Links
+zu den vollständigen Snapshots. Die Zusammenfassung, der Nachweise-Reiter und
+die L1-Ansicht verlinken diesen Bereich direkt.
+
+[ha-CPsWMS Evidence Trust öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository/joku-dev%2Fha-CPsWMS/trust).
+`integrity_verified` kann neben Replay `FAIL` stehen: Es bestätigt die geprüfte
+Integrität, hebt aber offene Replay-Befunde oder nicht bewertete Dimensionen nicht
+auf. Fehlender Trust bleibt ausdrücklich nicht erfasst. Die Trust-Stufen der
+offiziellen Governance-Ergebnisse werden nicht auf die separaten L1-Messberichte
+oder Container-Scans übertragen; dort gelten die jeweils dokumentierten Prüfgrenzen.
 
 ## L1-Nachweise je Repository
 
