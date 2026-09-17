@@ -77,7 +77,7 @@ class ViewerAppTests(unittest.TestCase):
             first={p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()}
             build(root)
             self.assertEqual(first,{p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()})
-            self.assertEqual({'index.html','app.css','app.js','data.json'},set(first))
+            self.assertEqual({'index.html','app.css','app.js','technical.js','technical.css','data.json'},set(first))
             self.assertIn(b"script-src 'self'",first['index.html'])
 
     def test_operational_intake_cannot_publish_application_artifacts(self):

@@ -37,7 +37,7 @@
     const items = [];
     for (const repo of repos) {
       if (repo.security && (repo.security.counts.CRITICAL || repo.security.counts.HIGH)) items.push({title:`${repo.id.split('/')[1]}: Sicherheitsbefunde bewerten`, text:`${repo.security.counts.CRITICAL} kritische und ${repo.security.counts.HIGH} hohe Image-/Paketmeldungen. Technische Bewertung ist keine Risikofreigabe.`, url:route(repo,'findings'), label:'Befunde untersuchen'});
-      if (['devsecops','architecture'].some(d => repo[d]?.trust?.replay === 'fail')) items.push({title:`${repo.id.split('/')[1]}: Replay-Befund prüfen`, text:'Das Governance-Ergebnis und die Prüfung der Nachweisherkunft sind getrennte Signale.', url:'../status-viewer.html#replay-triage', label:'Technische Triage öffnen'});
+      if (['devsecops','architecture'].some(d => repo[d]?.trust?.replay === 'fail')) items.push({title:`${repo.id.split('/')[1]}: Replay-Befund prüfen`, text:'Das Governance-Ergebnis und die Prüfung der Nachweisherkunft sind getrennte Signale.', url:'#evidence/replay', label:'Replay-Prüfung öffnen'});
       if (['devsecops','architecture'].some(d => ['fail','findings'].includes(String(repo[d]?.status).toLowerCase()))) items.push({title:`${repo.id.split('/')[1]}: Governance-Befunde bearbeiten`, text:'Mindestens ein erfasster Governance-Bereich enthält Befunde.', url:route(repo), label:'Ergebnisse ansehen'});
     }
     return items.length ? items.map((item,i) => `<div class="action"><span class="action-number">${String(i+1).padStart(2,'0')}</span><div><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p><a href="${item.url}">${item.label} →</a></div></div>`).join('') : '<p class="muted">Aus den erfassten Ergebnissen ist kein Handlungsbedarf abgeleitet. Fehlende Nachweise separat prüfen.</p>';
@@ -100,7 +100,7 @@
     draw();
   }
   function evidence(repos) {
-    return `<div class="notice">Herkunft, Commit und Erfassungszeit gehören zu jedem Ergebnis. Scan-Intake prüft Rohdatei-Hashes gegen Producer-Manifeste und die Image-Zuordnung; keine unabhängige Attestation und keine erneute Prüfung kompletter Image-Archive. Originalartefakte können ablaufen.</div>` + repos.map(repo=>`<section class="panel"><h2>${esc(repo.id)}</h2>${['devsecops','architecture'].map(key=>{const r=repo[key];return r?`<article class="evidence-item"><div class="panel-head"><h3>${key==='devsecops'?'DevSecOps':'Architektur'} · offizieller Mainline-Stand</h3>${badge(r.status)}</div><p class="muted">${date(r.generated_at)} · Commit <code>${short(r.commit_id)}</code></p><a href="${runURL(repo.id,r.pipeline_run_id)}">Run ${esc(r.pipeline_run_id)} ↗</a> · <a href="${sourceURL(r.source_file)}">Gespeicherten Snapshot öffnen ↗</a></article>`:'';}).join('')}${(repo.security_history||[]).map(s=>`<article class="evidence-item"><div class="panel-head"><h3>Gemessene Container-Sicherheit · ${esc(s.run.branch)}</h3><span class="badge">Report-only</span></div><p class="muted">${date(s.run.updated_at)} · Commit <code>${short(s.run.commit)}</code> · Versuch ${s.run.attempt}</p><p>${s.counts.CRITICAL} kritisch · ${s.counts.HIGH} hoch · ${s.tests_passed} erfolgreiche Tests</p><a href="${runURL(repo.id,s.run.id)}">Run ${esc(s.run.id)} &amp; Scan-/SBOM-Artefakte ↗</a> · <a href="${sourceURL(snapshotPath(repo,s))}">Gespeicherten Snapshot öffnen ↗</a></article>`).join('')}${!repo.security?'<p class="muted">Keine gemessenen Container-Scans erfasst.</p>':''}</section>`).join('') + '<p class="muted">Hier: offizielle Governance-Stände und erfasste Scan-Historie. Weitere Branch-, PR- und manuelle Läufe im <a href="../status-viewer.html#runs">technischen Viewer</a>.</p>';
+    return `<div class="notice">Herkunft, Commit und Erfassungszeit gehören zu jedem Ergebnis. Scan-Intake prüft Rohdatei-Hashes gegen Producer-Manifeste und die Image-Zuordnung; keine unabhängige Attestation und keine erneute Prüfung kompletter Image-Archive. Originalartefakte können ablaufen.</div>` + repos.map(repo=>`<section class="panel"><h2>${esc(repo.id)}</h2>${['devsecops','architecture'].map(key=>{const r=repo[key];return r?`<article class="evidence-item"><div class="panel-head"><h3>${key==='devsecops'?'DevSecOps':'Architektur'} · offizieller Mainline-Stand</h3>${badge(r.status)}</div><p class="muted">${date(r.generated_at)} · Commit <code>${short(r.commit_id)}</code></p><a href="${runURL(repo.id,r.pipeline_run_id)}">Run ${esc(r.pipeline_run_id)} ↗</a> · <a href="${sourceURL(r.source_file)}">Gespeicherten Snapshot öffnen ↗</a></article>`:'';}).join('')}${(repo.security_history||[]).map(s=>`<article class="evidence-item"><div class="panel-head"><h3>Gemessene Container-Sicherheit · ${esc(s.run.branch)}</h3><span class="badge">Report-only</span></div><p class="muted">${date(s.run.updated_at)} · Commit <code>${short(s.run.commit)}</code> · Versuch ${s.run.attempt}</p><p>${s.counts.CRITICAL} kritisch · ${s.counts.HIGH} hoch · ${s.tests_passed} erfolgreiche Tests</p><a href="${runURL(repo.id,s.run.id)}">Run ${esc(s.run.id)} &amp; Scan-/SBOM-Artefakte ↗</a> · <a href="${sourceURL(snapshotPath(repo,s))}">Gespeicherten Snapshot öffnen ↗</a></article>`).join('')}${!repo.security?'<p class="muted">Keine gemessenen Container-Scans erfasst.</p>':''}</section>`).join('') + '<p class="muted">Hier: offizielle Governance-Stände und erfasste Scan-Historie. Weitere Branch-, PR- und manuelle Läufe im <a href="#evidence/history">Bereich Laufhistorie</a>.</p>';
   }
   function repository(repo, tab) {
     const tabs={summary:'Zusammenfassung',security:'Container-Sicherheit',findings:'Befunde',evidence:'Nachweise'};
@@ -108,10 +108,42 @@
     content.innerHTML=heading(repo.id.split('/')[0],repo.id.split('/')[1],'Erfasste Ergebnisse mit ihrem jeweiligen Softwarestand.',`<a class="button" href="${repoURL(repo.id)}">Repository auf GitHub ↗</a>`)+`<nav class="tabs" aria-label="Repository-Ansichten">${Object.entries(tabs).map(([key,label])=>`<a href="${route(repo,key)}" ${tab===key?'aria-current="page"':''}>${label}</a>`).join('')}</nav>`+(tab==='summary'?summary(repo):tab==='security'?security(repo):tab==='findings'?findings([repo],true):evidence([repo]));
     if(tab==='findings')bindFindings([repo]);
   }
+  const groupNames = {evidence:'Nachweise', governance:'Governance', operations:'Betrieb'};
+  const groupDescriptions = {
+    evidence:'Herkunft, Qualität und Verlauf der gespeicherten Nachweise prüfen.',
+    governance:'Kontrollen, Modelle und ihre Beziehungen zu Quellen und Laufzeitergebnissen untersuchen.',
+    operations:'Integrationen, Nachweisaufnahme und Betriebsbefunde im Zusammenhang verfolgen.'
+  };
+  function workspaceTabs(group, tab) {
+    const sections = (state.data.technical?.sections || []).filter(s => s.group === group);
+    const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : sections;
+    return `<nav class="tabs workspace-tabs" aria-label="${groupNames[group]}-Bereiche">${entries.map(s=>`<a href="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'aria-current="page"':''}>${esc(s.title)}</a>`).join('')}</nav><label class="section-picker">Bereich auswählen<select id="section-picker">${entries.map(s=>`<option value="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'selected':''}>${esc(s.title)}</option>`).join('')}</select></label>`;
+  }
+  function technicalView(group, tab) {
+    const section = (state.data.technical?.sections || []).find(s => s.group === group && s.tab === tab);
+    if (!(group === 'evidence' && tab === 'summary') && !section) { notFound(); return; }
+    content.innerHTML = heading(groupNames[group], tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
+    document.getElementById('section-picker')?.addEventListener('change', e => {location.hash=e.target.value;});
+    if (group==='evidence' && tab==='summary') {
+      content.insertAdjacentHTML('beforeend', evidence(state.data.repositories));
+      return;
+    }
+    const boundaries = {
+      'replay-triage':'Replay prüft die Wiederverwendung von Nachweisen. FAIL kennzeichnet einen ungeklärten Kontextwechsel oder Widerspruch. Governance-Ergebnis und Replay bleiben getrennt; diese Prüfung ist report-only.',
+      'runtime-governance':'Diese Ansicht enthält gespeicherte Runtime- und Demo-Artefakte. Für den offiziellen Repository-Stand die Repository-Detailansicht und ihre Quellläufe verwenden.',
+      'controls':'Die Kontrollansicht zeigt den gespeicherten Kontrollbericht und die Automatisierungsabdeckung. Die Repository-Ansichten weisen ihre offiziellen Ergebnisse jeweils mit eigener Quelle aus.',
+      'runs':'Mainline-, Branch-, Pull-Request- und manuelle Läufe bleiben unterscheidbar. Ein neuerer Diagnoselauf ersetzt nicht automatisch das offizielle Mainline-Ergebnis.'
+    };
+    if (boundaries[section.id]) content.insertAdjacentHTML('beforeend', `<div class="notice">${esc(boundaries[section.id])}</div>`);
+    const host=document.createElement('div');host.className='technical';content.append(host);
+    window.GovernanceTechnical.mount(host,section,state.data.technical.graph);
+  }
   function render() {
     let parts;
     try { parts=(location.hash.slice(1)||'overview').split('/').map(decodeURIComponent); } catch { parts=['invalid']; }
-    const view=parts[0], names={overview:'Übersicht',repositories:'Repositories',repository:'Repositories',findings:'Befunde',evidence:'Nachweise'};
+    const alias=(state.data.technical?.sections || []).find(s=>s.id===parts[0]);
+    if(alias && parts[0]!=='overview' && !parts[1]) parts=[alias.group,alias.tab];
+    const view=parts[0], names={overview:'Übersicht',repositories:'Repositories',repository:'Repositories',findings:'Befunde',evidence:'Nachweise',governance:'Governance',operations:'Betrieb'};
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===(view==='repository'?'repositories':view))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     document.getElementById('breadcrumb').textContent=names[view]||'Seite nicht gefunden';
     document.title=(names[view]||'Seite nicht gefunden')+' · Governance Workspace';
@@ -120,7 +152,9 @@
     else if(view==='repositories')repositories();
     else if(view==='repository') {const repo=state.data.repositories.find(r=>r.id===parts[1]);if(repo)repository(repo,parts[2]||'summary');else notFound();}
     else if(view==='findings'){content.innerHTML=heading('Sicherheit','Befunde','Gemessene Container-Befunde durchsuchen und die weitere Prüfung vorbereiten.')+findings(state.data.repositories);bindFindings(state.data.repositories);}
-    else if(view==='evidence')content.innerHTML=heading('Herkunft & Verlauf','Nachweise','Jedes Ergebnis zurück zu seinem Lauf und gespeicherten Snapshot verfolgen.')+evidence(state.data.repositories);
+    else if(view==='evidence')technicalView(view,parts[1]||'summary');
+    else if(view==='governance')technicalView(view,parts[1]||'controls');
+    else if(view==='operations')technicalView(view,parts[1]||'intake');
     else notFound();
     window.scrollTo(0,0);content.focus({preventScroll:true});
   }

@@ -2387,7 +2387,7 @@ def main() -> int:
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(html, encoding="utf-8")
-    build_viewer_app(ROOT)
+    build_viewer_app(ROOT, html)
     print(f"Wrote {OUT.relative_to(ROOT)} and viewer app")
     return 0
 
