@@ -15,10 +15,13 @@
 | Control-to-platform traceability | 46 / 46 complete |
 | Initial evidence catalog | Complete |
 | Initial platform capability catalog | Complete |
-| Initial policy-as-code candidates | 14 candidates |
+| Policy-as-code modules | 15 Rego modules, including aggregated DevSecOps and four architecture readiness policies |
 | Repository validation script | Complete |
 | Traceability CSV generator | Complete |
 | Append-only result intake and report-only replay assessment | Complete |
+| Typed vulnerability and SBOM evidence intake | Implemented for the current GitHub pilots |
+| Measured ha-CPsWMS L1 assessment and per-control assurance | Implemented, report-only |
+| Integrated read-only Governance Workspace | Complete |
 
 ## Still To Refine
 
@@ -28,6 +31,8 @@ The current model is a complete MVP, not yet a fully approved enterprise baselin
 - exact verification frequency per control
 - exact waiver authority per control
 - mapping to concrete tool integrations such as GitLab, GitHub Enterprise, Artifactory, Nexus, SonarQube, Dependency-Track, DefectDojo, or ALM systems
+- validation of the Bamboo/Bitbucket Data Center and Jenkins reference adapters against actual company environments
 - executable policy input model per selected platform
 - enterprise approval and maintenance of the implemented DOCX/PDF rendering pipeline
 - production issuer/key lifecycle and operational Trust promotion beyond the implemented signed-attestation pilot
+- authorized staging deployment and operations evidence for the remaining ha-CPsWMS L1-013/014/016 gaps

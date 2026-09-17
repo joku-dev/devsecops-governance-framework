@@ -655,7 +655,7 @@ Beispiel:
 ```bash
 python3 scripts/intake_architecture_github_actions_run.py \
   --repository-id joku-dev/ha-CPsWMS \
-  --run-id 34602001140 \
+  --run-id 35131185047 \
   --architecture-baseline-ref architecture-baseline-l1-v0.1.0
 ```
 
@@ -688,7 +688,7 @@ status/architecture-results/<owner>__<repo>/<timestamp>-run-<run-id>.json
 Beispiel:
 
 ```text
-status/architecture-results/joku-dev__ha-CPsWMS/2026-09-11T13-01-50Z-run-34602001140.json
+status/architecture-results/joku-dev__ha-CPsWMS/2026-09-16T17-55-49Z-run-35131185047.json
 ```
 
 Diese Datei ist nicht dasselbe wie `architecture-release-input.json` oder `architecture-governance-report.json`.

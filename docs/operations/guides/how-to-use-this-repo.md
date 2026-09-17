@@ -148,7 +148,8 @@ Important outputs:
 - `generated/documents/devsecops-dir-001.html`
 - `generated/control-evaluation-report.json`
 - `generated/control-evaluation-report.md`
-- `generated/viewer/status-viewer.html`
+- `generated/viewer/app/index.html` (primary Governance Workspace)
+- `generated/viewer/status-viewer.html` (technical fallback)
 
 ### 4. Revalidate After Generation
 

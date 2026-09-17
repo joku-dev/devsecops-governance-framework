@@ -8,8 +8,9 @@ Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-stat
 ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
 13. September 2026 aktiv, manuell und report-only.
 
-Accepted consumer evidence on 11 September 2026 and remaining findings are
-recorded in the [current platform state](operations/status/current-governance-platform-state.md).
+Current accepted governance results from 16 September and measured ha-CPsWMS
+evidence from 17 September 2026 are recorded in the
+[current platform state](operations/status/current-governance-platform-state.md).
 
 For current pilot and central operations, start with the
 [operations handbook](operations/guides/governance-repository-operations-handbook.md).
@@ -106,6 +107,8 @@ It is intended for:
 - Governance Intelligence Graph Viewer: `docs/operations/status/governance-intelligence-graph-viewer.md`
 - How to read control evaluation status: `docs/operations/evidence/how-to-read-control-evaluation-status.md`
 - Governance result intake and viewer usage: `docs/operations/evidence/governance-result-intake-and-viewer-usage.md`
+- Governance Workspace guide: `docs/operations/guides/governance-viewer-app.md`
+- Measured ha-CPsWMS L1 evidence and control assurance: `docs/operations/evidence/l1-measured-evidence-ha-cpswms.md`
 - Intake operation telemetry: `docs/operations/evidence/intake-operation-telemetry.md`
 - Bitbucket and Bamboo governance adapter: `docs/operations/adapters/bitbucket-bamboo-governance-adapter.md`
 - Agent system usage: `docs/operations/agents/agent-system-usage.md`
@@ -151,7 +154,7 @@ It is intended for:
 
 - Release overview: `docs/releases/index.md`
 - Operational pilot repository release v0.2.0: `docs/releases/v0.2.0-public-adoption.md`
-- Public adoption release v0.1.0: `docs/releases/v0.1.0-public-adoption.md`
+- Historical public adoption release v0.1.0: `docs/releases/v0.1.0-public-adoption.md`
 - Release and migration model: `docs/releases/release-and-migration-model.md`
 - Release publication checklist: `docs/releases/release-publication-checklist.md`
 - L1 baseline v1.0.0: `docs/releases/l1-baseline-v1.0.0.md`
