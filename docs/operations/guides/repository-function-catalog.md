@@ -532,11 +532,13 @@ Läufe, Commits, Baselines, Trust und Nachweise. Er projiziert die von den Indiz
 ausgewählten aktuellen Ergebnisse, nicht die gesamte Historie.
 
 **Ergebnisse:** Eine eigenständige [Viewer-Anwendung](governance-viewer-app.md)
-mit Übersicht, Repository-Details, filterbaren Container-Befunden und Nachweisen;
+mit Übersicht, Repository-Details, filterbaren Container-Befunden und Nachweisen
+sowie integrierten Governance- und Betriebsansichten;
 zusätzlich der bisherige technische HTML-Viewer, strukturierte Indizes und ein
 maschinenlesbarer Graph. Im Graph lassen sich Knoten suchen, Typen filtern und
-Beziehungen untersuchen. Weitere Ansichten zeigen Befunde, Trust, Replay und
-Sammlungsfehler.
+Beziehungen untersuchen. Integrierte Ansichten zeigen Befunde, Trust, Replay, Laufhistorie,
+Sammlungsfehler, Modelle und Agent-Nutzung. Technische Tabellen unterstützen
+Suche und Seitennavigation; auf Mobilgeräten werden Unterbereiche ausgewählt.
 
 **Implementierungsstellen:** `scripts/generate_repository_results_index.py`,
 `scripts/generate_architecture_results_index.py`,

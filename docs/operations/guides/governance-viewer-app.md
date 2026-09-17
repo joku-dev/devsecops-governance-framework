@@ -1,7 +1,7 @@
 # Governance Workspace: Viewer-Anwendung
 
 Die eigenständige, lesende Frontend-Anwendung bündelt Übersicht, Repositories,
-Container-Befunde und Nachweise. Sie läuft im bestehenden Repository auf GitHub
+Container-Befunde, Nachweise, Governance und Betrieb. Sie läuft im bestehenden Repository auf GitHub
 Pages. Ein Backend oder ein Benutzerkonto ist für die veröffentlichte Ansicht
 nicht erforderlich.
 
@@ -16,13 +16,26 @@ nicht erforderlich.
 | Repositories | Suche, offizielle DevSecOps-/Architektur-Ergebnisse und separate Container-Scans |
 | Repository-Detail | Zusammenfassung, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
 | Befunde | HIGH/CRITICAL nach Repository, Schweregrad, Image und CVE/Paket durchsuchen; 20 Gruppen pro Seite |
-| Nachweise | Offizielle Governance-Stände und erfasste Scan-Historie mit Commit, UTC-Datum, Run- und Snapshot-Links |
+| Nachweise | Ergebnisnachweise, Evidence Trust, Replay-Prüfung, Nachweisherkunft, vollständige Governance-Laufhistorie, Artefakte und Daten |
+| Governance | Governance-Graph, Runtime-Referenzartefakte, Kontrollen, Modell, Quellenaufnahme und offene Aufgaben |
+| Betrieb | Integrationsstatus, Intake-Zustand, Sammelversuche, Intake-Konflikte und Agent-Nutzung |
 
-Der technische Viewer bleibt unter seinem bisherigen Pfad verfügbar und ist in
-beide Richtungen verlinkt. Dort bleiben Graph, Intake, Modelle, Lifecycle und die
-vollständige Governance-Laufhistorie erreichbar. Bestehende Deep Links bleiben
-funktional. Neue Ansichten verwenden Hash-Routen; Browser-Zurück und direkte Links
-funktionieren auch auf statischem Hosting.
+Die technischen Funktionen sind direkt in die Anwendung integriert. Pro Bereich
+wird eine Ansicht angezeigt. Auf Desktop wechseln Reiter zwischen Unterbereichen;
+auf Mobilgeräten bietet ein Auswahlfeld alle Unterbereiche an. Technische Tabellen
+ab acht Zeilen erhalten Suche und Seitennavigation mit zehn Zeilen je Seite.
+Vorhandene Kontroll- und Laufkontextfilter wirken gemeinsam mit der Seitennavigation.
+Der Graph unterstützt Suche, Typ-/Bereichsfilter und Auswahl per Maus oder Tastatur.
+
+[Replay-Prüfung öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#evidence/replay)
+· [Governance öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#governance/controls)
+· [Betrieb öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/intake)
+
+Die frühere Gesamtansicht bleibt als Rückfallansicht unter ihrem bisherigen Pfad
+verfügbar. Ihre bestehenden Deep Links funktionieren weiterhin. Die neue Anwendung
+verwendet Hash-Routen und unterstützt Browser-Zurück sowie direkte Links. Alte
+Abschnittsnamen wie `#replay-triage` werden innerhalb der Anwendung auf die passende
+Ansicht abgebildet. `#overview` öffnet die neue Übersicht.
 
 ## Bedeutung der Daten
 
@@ -53,18 +66,33 @@ können diese Stände verändern.
 
 ## Architektur und Aktualisierung
 
-Quellen der Anwendung: `apps/governance-viewer/index.html`, `app.css` und `app.js`.
+Quellen der Anwendung: `apps/governance-viewer/index.html`, `app.css`, `app.js`,
+`technical.css` und `technical.js`.
 Es handelt sich um eine eigenständige Browser-Anwendung mit lokalem Routing,
 Filtern und Seitennavigation, ohne externe JavaScript- oder CSS-Abhängigkeiten.
 Die Python-Projektion `scripts/lib/viewer_app.py` erzeugt ein internes
 Darstellungsformat (`version: 1`), keinen neuen Consumer-Evidence-Vertrag.
 
 `scripts/generate_status_viewer.py` baut beide Viewer. Die Anwendung liegt danach
-unter `generated/viewer/app/` mit `index.html`, `app.css`, `app.js` und `data.json`.
+unter `generated/viewer/app/` mit den fünf Frontend-Dateien und `data.json`.
 Diese Dateien werden nicht von Hand bearbeitet. Der Build ist bei gleichen
 Eingaben deterministisch und prüft Container-Snapshots über den bestehenden
 Validator. Die Veröffentlichung baut die Dateien erneut und kopiert sie zusammen
 mit der Dokumentation nach GitHub Pages.
+
+`scripts/lib/viewer_technical.py` übernimmt die fachlichen Abschnittsinhalte direkt
+aus dem bestehenden Renderer. Es entsteht keine zweite Auswahl- oder Bewertungslogik.
+Das interne Feld `technical` enthält zugeordnete Ansichten und getrennte Graphdaten.
+Inline-Skripte, Eventhandler und Inline-Stile werden entfernt, Links geprüft und für
+den neuen Pfad aufgelöst. Der Browser bindet Filter und Graphinteraktionen über
+das eigene Modul. Unbekannte technische Abschnitte führen zu einem Buildfehler;
+fehlende optionale Projektionen zu einer expliziten Leermeldung.
+
+Status-JSON-Dateien werden aus dem Git-Repository verlinkt; generierte Berichte
+bleiben direkt auf Pages erreichbar. Runtime-Demo- und lokale Kontrollberichte
+bleiben als Referenzartefakte von offiziellen Repository-Ergebnissen getrennt.
+Der separate synthetische Lifecycle-Szenario-Viewer ist eine eigene Anwendung und
+wird durch diese Integration nicht zu offiziellen Live-Ergebnissen umgedeutet.
 
 Nach einem angenommenen Intake wird die Datendatei beim Pages-Build neu erzeugt.
 `generated/viewer/app/data.json` ist ein ignoriertes Build-Artefakt und wird nicht
@@ -103,6 +131,7 @@ Zusätzliche Browser-Abnahme in einer separaten Testumgebung mit
 
 ```bash
 python tests/browser/check_viewer_app.py http://127.0.0.1:8000/generated/viewer/app/index.html
+python tests/browser/check_viewer_technical.py http://127.0.0.1:8000/generated/viewer/app/index.html
 ```
 
 Die Browser-Abnahme verwendet die initialen Referenzdaten (1 kritisch, 332 hoch,
@@ -110,7 +139,9 @@ Die Browser-Abnahme verwendet die initialen Referenzdaten (1 kritisch, 332 hoch,
 Daten-Intake die erwarteten Werte anhand der neuen validierten Snapshots prüfen
 und aktualisieren. Sie prüft Desktop/Mobil, Routing, Filter, Seitennavigation,
 Ladefehler, leere Daten und HTML-Escaping. Synthetische Fehlerdaten werden nur im
-Testbrowser eingespeist.
+Testbrowser eingespeist. Die technische Abnahme prüft zusätzlich alle integrierten
+Ansichten, kombinierte Kontextfilter, Graphauswahl, mobile Navigation, Rückwärts-
+navigation, Linkauflösung und die HTML-Projektionsgrenze.
 
 ## Weiterentwicklung
 

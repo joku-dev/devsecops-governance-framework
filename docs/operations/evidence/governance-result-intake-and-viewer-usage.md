@@ -6,7 +6,9 @@ For daily checks, failure handling and pilot acceptance, see the
 
 For the new overview, repository details, container findings and evidence navigation,
 open the [Governance Workspace application](../guides/governance-viewer-app.md).
-The technical viewer remains available for graph, intake, lifecycle and models.
+Graph, controls, models, source intake and operational views are integrated into
+the application under Governance, Evidence and Operations. The old static viewer
+remains available as a compatibility fallback.
 Both are built by `scripts/generate_status_viewer.py`.
 
 ## Purpose
