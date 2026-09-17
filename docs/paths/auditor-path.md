@@ -32,12 +32,15 @@ After following this path, you should understand:
 - `docs/operations/evidence/governance-evidence-contract.md`
 - `docs/operations/evidence/how-to-read-control-evaluation-status.md`
 - `docs/operations/evidence/governance-evidence-schema-versioning.md`
+- `docs/operations/evidence/evidence-trust-model.md`
+- `docs/operations/evidence/l1-measured-evidence-ha-cpswms.md`
 
 ### Step 4: Understand Operational Status
 
 - `docs/operations/status/current-governance-platform-state.md`
 - `docs/operations/status/ha-cpswms-governance-validation-status.md`
 - `docs/operations/status/ha-cpswms-governance-lessons-learned.md`
+- `docs/operations/guides/governance-viewer-app.md`
 
 ### Step 5: Understand Release Governance
 
@@ -50,3 +53,5 @@ After following this path, you should understand:
 - what evidence is expected
 - which checks are automated and which are evidence-based
 - what changed between baseline releases
+- which evidence is measured, how fresh and trustworthy it is, and which
+  control parts remain unverified

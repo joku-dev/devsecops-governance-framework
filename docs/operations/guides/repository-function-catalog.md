@@ -13,10 +13,10 @@ zusätzlich alle Skripte, Bibliotheksmodule, Workflows und OPA-Module des Quells
 | Merkmal | Wert |
 | --- | --- |
 | Dokumentstand | 17. September 2026 |
-| Betrachteter Quellstand | `34e5dfff439fd5033cc2efd5a3ccc3b92c8d0aa2` plus GCR-2026-092 |
+| Betrachteter Quellstand | `a74e06708c622f98f2699e136accbec9838c41ab` plus GCR-2026-093 |
 | Zielgruppe | Geschäftsführung, Governance-Verantwortliche, Architektur, Security, Plattformbetrieb und Anwendungsteams |
 | Dokumenttyp | Erläuternder Funktionskatalog |
-| Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierungen: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md), [GCR-2026-078](../../governance/change-requests/GCR-2026-078-documentation-and-function-audit.md) |
+| Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierungen: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md), [GCR-2026-078](../../governance/change-requests/GCR-2026-078-documentation-and-function-audit.md), [GCR-2026-093](../../governance/change-requests/GCR-2026-093-current-documentation-capabilities-refresh.md) |
 
 Der Katalog beschreibt vorhandene Fähigkeiten zum genannten Quellstand. Er
 bestätigt keine aktuelle Betriebsbereitschaft einer Anwendung und erzeugt keine
@@ -865,3 +865,9 @@ zentral. Deklarierte Freigaben werden nicht als Messung übernommen. Der offizie
 Baseline-Status und Replay bleiben unverändert daneben sichtbar.
 Vertrag, Grenzen und wiederholbare Aufnahme:
 [L1-Nachweise](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle).
+
+Der aktuelle Lauf `35241262722` umfasst 58 bestandene Tests, fünf gebaute und
+gescannte Images, 749 SBOM-Komponenten und eine Assurance-Aussage für jede der
+16 L1-Kontrollen. Sieben Kontrollen besitzen vollständige, frische und
+integritätsgeprüfte Evidenz; fehlende organisatorische, Deployment- oder
+Betriebsnachweise halten die übrigen neun ausdrücklich auf `unverified`.

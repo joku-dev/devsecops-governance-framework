@@ -4,6 +4,11 @@
 
 This package gives application teams a minimal, copyable starting point for consuming the public DevSecOps Governance Framework.
 
+It is a wiring package for GitHub Actions. The current validated neutral example
+is `joku-dev/governance-framework-demo-consumer`; the deeper ha-CPsWMS pilot adds
+real tests, container builds, SBOMs, scans and measured L1 evidence beyond these
+placeholders.
+
 Central baseline repository:
 
 ```text
@@ -51,3 +56,6 @@ The first run is allowed to be diagnostic. A green report-only run means the wir
 - Architecture evidence files with `status: draft` are not approved evidence.
 - Branch protection and review enforcement must be configured in the application repository.
 - Application teams remain responsible for their own evidence quality and release decisions.
+- Copying this package does not enroll the repository in central intake. Configure
+  the documented dispatch token and reviewed operational publication path
+  separately when results should appear in the central viewer.

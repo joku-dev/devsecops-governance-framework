@@ -37,6 +37,7 @@ After following this path, you should understand:
 - `docs/operations/evidence/governance-evidence-contract.md`
 - `docs/operations/evidence/governance-evidence-schema-versioning.md`
 - `docs/examples/governance-run-input.example.json`
+- `docs/operations/evidence/l1-measured-evidence-ha-cpswms.md`
 
 ### Step 4: Understand Run Evaluation
 
@@ -47,6 +48,7 @@ After following this path, you should understand:
 
 - `docs/operations/evidence/governance-result-intake-and-viewer-usage.md`
 - `docs/operations/evidence/governance-results-storage-model.md`
+- `docs/operations/guides/governance-viewer-app.md`
 
 ## Operational Questions This Path Answers
 
@@ -54,3 +56,5 @@ After following this path, you should understand:
 - how do we pin a governance baseline release
 - how do we interpret pass, fail, not tested, and not applicable
 - how do we record results centrally
+- how do we distinguish governance outcomes, measured evidence, Trust,
+  Freshness and production approval

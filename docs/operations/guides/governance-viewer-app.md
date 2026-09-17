@@ -105,11 +105,12 @@ als eigener Status sichtbar. Fehlende Messungen ergeben keinen PASS.
 - Prüfhinweise in der Befundliste sind technische Hinweise, kein bearbeitbarer
   Ticketstatus, keine VEX-Feststellung und keine formale Risikobewertung.
 
-Die erste Version enthält die vorhandenen Governance-Indizes für drei Repositories
-und gemessene Scans für ha-CPsWMS. Sie führt keine neuen Tests oder Scans aus. Der
-Sicherheitsscan vom 16. September 2026 und die Governance-Stände vom 11./13.
-September 2026 illustrieren die getrennten Erfassungszeitpunkte; zukünftige Intakes
-können diese Stände verändern.
+Die Anwendung enthält die Governance-Indizes für drei Repositories sowie
+gemessene und typisierte Nachweise für ha-CPsWMS. Sie führt selbst keine Tests
+oder Scans aus. Die aktuell veröffentlichten Daten kombinieren Governance-Läufe
+vom 16. September, die getrennte Container-Security-Historie vom 16. September
+und den Typed-Evidence-/L1-Lauf vom 17. September 2026. Zukünftige geprüfte
+Intakes können diese Stände verändern.
 
 ## Architektur und Aktualisierung
 
