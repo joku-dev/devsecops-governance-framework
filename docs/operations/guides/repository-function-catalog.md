@@ -547,7 +547,8 @@ Läufe, Commits, Baselines, Trust und Nachweise. Er projiziert die von den Indiz
 ausgewählten aktuellen Ergebnisse, nicht die gesamte Historie.
 
 **Ergebnisse:** Eine eigenständige [Viewer-Anwendung](governance-viewer-app.md)
-mit Übersicht, Repository-Details, filterbaren Container-Befunden und Nachweisen
+mit Übersicht, Repository-Details, filterbaren Container-Befunden, einem eigenen
+Repository-Security-Bereich und Nachweisen
 sowie integrierten Governance- und Betriebsansichten;
 zusätzlich der bisherige technische HTML-Viewer, strukturierte Indizes und ein
 maschinenlesbarer Graph. Im Graph lassen sich Knoten suchen, Typen filtern und
@@ -625,8 +626,10 @@ gebundenen Betriebs- und Publikationsworkflows. Artefakthygiene prüft öffentli
 Veröffentlichungsinhalte.
 
 **Ergebnisse:** Intake Health, Betriebsbericht, Sicherheitsassessment und
-CI-Sicherheitsbefunde. Nicht verfügbare Informationen bleiben als fehlende
-Beobachtbarkeit erkennbar.
+CI-Sicherheitsbefunde. Der Viewer projiziert das schema-validierte
+Self-Security-Assessment als eigenen Bereich mit Gesamtstatus, allen Kriterien
+und dokumentierten Maßnahmen. Nicht verfügbare Informationen bleiben als
+fehlende Beobachtbarkeit erkennbar.
 
 **Implementierungsstellen:** `scripts/record_intake_event.py`,
 `scripts/generate_intake_health.py`, `scripts/generate_operations_report.py`,
