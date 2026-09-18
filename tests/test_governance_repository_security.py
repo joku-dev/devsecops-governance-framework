@@ -45,6 +45,10 @@ class GovernanceRepositorySecurityTests(unittest.TestCase):
                 "  - run: python3 scripts/publish_typed_evidence_assurance_update.py "
                 "--scope typed-evidence\n"
             )
+            (workflows / "self-security-review.yml").write_text(
+                "permissions:\n  contents: write\nsteps:\n"
+                "  - run: python3 scripts/publish_self_security_refresh.py\n"
+            )
             with patch("assess_governance_repository_security.ROOT", root):
                 observation = scan_workflows()
             self.assertEqual(observation["direct_main_write_workflows"], [".github/workflows/unknown.yml"])
@@ -53,6 +57,7 @@ class GovernanceRepositorySecurityTests(unittest.TestCase):
                 [
                     ".github/workflows/consumer-review.yml",
                     ".github/workflows/review.yml",
+                    ".github/workflows/self-security-review.yml",
                     ".github/workflows/typed-review.yml",
                 ],
             )
