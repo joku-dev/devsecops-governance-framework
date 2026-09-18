@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "projection_type": "blocking-mode-alignment",
-  "generated_at": "2026-09-18T15:03:33.013817Z",
+  "generated_at": "2026-09-18T15:11:28.315692Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "alignment_status": "controlled",
