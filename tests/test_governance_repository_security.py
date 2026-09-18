@@ -1,6 +1,7 @@
 from pathlib import Path
 import copy
 import json
+import subprocess
 import sys
 import unittest
 from unittest.mock import patch
@@ -12,10 +13,29 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from assess_governance_repository_security import assess, render_markdown, active_rulesets, scan_workflows
+from assess_governance_repository_security import (
+    active_rulesets,
+    assess,
+    gh_api,
+    render_markdown,
+    scan_workflows,
+)
 
 
 class GovernanceRepositorySecurityTests(unittest.TestCase):
+    def test_api_error_identifies_the_failed_endpoint(self):
+        result = subprocess.CompletedProcess(
+            ["gh", "api"], 1, stdout="", stderr="gh: forbidden (HTTP 403)"
+        )
+        with patch("assess_governance_repository_security.run", return_value=result):
+            self.assertEqual(
+                gh_api("repos/owner/repo/actions/permissions"),
+                (
+                    None,
+                    "repos/owner/repo/actions/permissions: gh: forbidden (HTTP 403)",
+                ),
+            )
+
     def test_only_rules_applicable_to_main_are_observed(self):
         with patch("assess_governance_repository_security.gh_api", return_value=([], None)) as api:
             self.assertEqual(active_rulesets("owner/repo"), ([], []))
