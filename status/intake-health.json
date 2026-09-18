@@ -1,18 +1,18 @@
 {
   "schema_version": "1.0.0",
   "projection_type": "intake-health",
-  "generated_at": "2026-09-18T15:01:05Z",
+  "generated_at": "2026-09-18T15:08:24Z",
   "enforcement": "report_only",
   "observation_status": "observed",
   "window": {
     "days": 30,
-    "started_at": "2026-08-19T15:01:05Z",
-    "ended_at": "2026-09-18T15:01:05Z"
+    "started_at": "2026-08-19T15:08:24Z",
+    "ended_at": "2026-09-18T15:08:24Z"
   },
   "summary": {
     "events": {
-      "total": 13,
-      "success": 13,
+      "total": 14,
+      "success": 14,
       "partial": 0,
       "failed": 0,
       "success_rate_pct": 100.0,
@@ -55,8 +55,8 @@
       "dimension": "repository_id",
       "value": "joku-dev/ha-CPsWMS",
       "metrics": {
-        "total": 10,
-        "success": 10,
+        "total": 11,
+        "success": 11,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -73,8 +73,8 @@
       "dimension": "collector",
       "value": "central-governance-intake@0.1.0",
       "metrics": {
-        "total": 8,
-        "success": 8,
+        "total": 9,
+        "success": 9,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -109,15 +109,15 @@
       "dimension": "intake_type",
       "value": "architecture_governance",
       "metrics": {
-        "total": 3,
-        "success": 3,
+        "total": 4,
+        "success": 4,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
         "failure_rate_pct": 0.0,
         "duration_ms": {
           "minimum": 1000,
-          "p50": 2000,
+          "p50": 1000,
           "p95": 3000,
           "maximum": 3000
         }
@@ -163,8 +163,8 @@
       "dimension": "evidence_type",
       "value": "governance_result",
       "metrics": {
-        "total": 8,
-        "success": 8,
+        "total": 9,
+        "success": 9,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -202,7 +202,7 @@
       "repository_id": "joku-dev/ai-native-engineering-factory",
       "run_id": "34503074356",
       "generated_at": "2026-09-11T12:56:37Z",
-      "age_ms": 612268621,
+      "age_ms": 612707866,
       "source_file": "status/results/joku-dev__ai-native-engineering-factory/2026-09-11T12-56-37Z-run-34503074356.json"
     },
     {
@@ -210,7 +210,7 @@
       "repository_id": "joku-dev/governance-framework-demo-consumer",
       "run_id": "34778861076",
       "generated_at": "2026-09-13T19:49:41Z",
-      "age_ms": 414684621,
+      "age_ms": 415123866,
       "source_file": "status/architecture-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-41Z-run-34778861076.json"
     },
     {
@@ -218,7 +218,7 @@
       "repository_id": "joku-dev/governance-framework-demo-consumer",
       "run_id": "34778861276",
       "generated_at": "2026-09-13T19:49:58Z",
-      "age_ms": 414667621,
+      "age_ms": 415106866,
       "source_file": "status/results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276.json"
     },
     {
@@ -226,23 +226,23 @@
       "repository_id": "joku-dev/governance-framework-demo-consumer",
       "run_id": "34778861276",
       "generated_at": "2026-09-13T19:49:58Z",
-      "age_ms": 414667621,
+      "age_ms": 415106866,
       "source_file": "status/typed-evidence-results/joku-dev__governance-framework-demo-consumer/2026-09-13T19-49-58Z-run-34778861276-vulnerability-scan.json"
     },
     {
       "domain": "architecture",
       "repository_id": "joku-dev/ha-CPsWMS",
-      "run_id": "35131185047",
-      "generated_at": "2026-09-16T17:55:49Z",
-      "age_ms": 162316621,
-      "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-16T17-55-49Z-run-35131185047.json"
+      "run_id": "35351493524",
+      "generated_at": "2026-09-18T13:39:46Z",
+      "age_ms": 5318866,
+      "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T13-39-46Z-run-35351493524.json"
     },
     {
       "domain": "devsecops",
       "repository_id": "joku-dev/ha-CPsWMS",
       "run_id": "35351494433",
       "generated_at": "2026-09-18T13:40:40Z",
-      "age_ms": 4825621,
+      "age_ms": 5264866,
       "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-18T13-40-40Z-run-35351494433.json"
     },
     {
@@ -250,7 +250,7 @@
       "repository_id": "joku-dev/ha-CPsWMS",
       "run_id": "35351493542",
       "generated_at": "2026-09-18T13:42:18Z",
-      "age_ms": 4727621,
+      "age_ms": 5166866,
       "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T13-42-18Z-run-35351493542-vulnerability-scan.json"
     }
   ],
