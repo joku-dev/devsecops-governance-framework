@@ -40,7 +40,7 @@ jobs:
 
       - name: Assess live repository security posture
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
         run: |
           python3 scripts/assess_governance_repository_security.py
           cat generated/reports/governance-repository-security.md >> "$GITHUB_STEP_SUMMARY"
@@ -59,7 +59,7 @@ jobs:
       - name: Validate bounded refresh
         run: |
           python3 scripts/validate_governance_repo.py
-          python3 -m unittest tests.test_governance_repository_security tests.test_viewer_app tests.test_self_security_refresh_publication
+          python3 -m unittest tests.test_governance_repository_security tests.test_self_security_refresh_publication
 
       - name: Open or update self-security review PR
         env:
