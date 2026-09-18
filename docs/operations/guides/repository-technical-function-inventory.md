@@ -39,6 +39,7 @@ Diese Dateien ergänzen den unten datierten Bestand. Die
 |---|---|
 | `model/evidence/control-evidence-assurance-profile.yaml` | Ordnet allen 16 L1-Kontrollen Nachweistyp, Freshness-Policy, Entscheidungskontext und Subjektbindung zu. |
 | `scripts/lib/control_evidence_assurance.py` | Erzeugt, bindet, validiert und speichert konservative report-only Assurance je Kontrolle. |
+| `scripts/lib/consolidated_l1.py` | Verbindet eine gemessene L1-Bewertung ausschließlich mit dem exakt passenden Staging-Snapshot und speichert die abgeleitete 16-Kontroll-Sicht append-only. |
 | `schemas/control-evidence-assurance.schema.json` | Geschlossener Vertrag für Kontrollabdeckung, Trust-Dimensionen, Nachweisgruppen und Zusammenfassung. |
 | `status/control-evidence-assurance/` | Append-only Lauf-/Versuchs-Snapshots der Kontroll-Assurance. |
 | `scripts/intake_measured_l1.py` | Erzeugt nach dem zentralen Rohdatencheck zusätzlich die Assurance und übernimmt passende typisierte SBOM-/Scan-Prüfungen. |

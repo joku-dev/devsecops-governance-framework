@@ -771,6 +771,15 @@ def main() -> int:
         load_staging_deployment_snapshots(ROOT / "status/staging-deployment-results")
     except Exception as exc:
         errors.append(f"Staging deployment result validation: {exc}")
+    from lib.consolidated_l1 import (
+        load_snapshots as load_consolidated_l1_snapshots,
+        validate_sources as validate_consolidated_l1_sources,
+    )
+    try:
+        for consolidated in load_consolidated_l1_snapshots(ROOT / "status/consolidated-l1-results"):
+            validate_consolidated_l1_sources(consolidated)
+    except Exception as exc:
+        errors.append(f"Consolidated L1 assessment validation: {exc}")
     validate_intake_conflicts(errors)
     validate_intake_events(errors)
     validate_intake_health(errors)
