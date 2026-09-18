@@ -53,11 +53,12 @@ def run(command: list[str]) -> subprocess.CompletedProcess[str]:
 def gh_api(path: str) -> tuple[object | None, str | None]:
     result = run(["gh", "api", path])
     if result.returncode != 0:
-        return None, result.stderr.strip() or result.stdout.strip() or "GitHub API request failed"
+        detail = result.stderr.strip() or result.stdout.strip() or "GitHub API request failed"
+        return None, f"{path}: {detail}"
     try:
         return json.loads(result.stdout), None
     except json.JSONDecodeError as error:
-        return None, f"GitHub API returned invalid JSON: {error}"
+        return None, f"{path}: GitHub API returned invalid JSON: {error}"
 
 
 def workflow_files() -> list[Path]:
