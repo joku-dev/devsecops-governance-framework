@@ -119,8 +119,12 @@ Material changes are restricted to:
 ```text
 generated/reports/governance-repository-security.json
 generated/reports/governance-repository-security.md
-generated/viewer/app/data.json
 ```
+
+`generated/viewer/app/data.json` remains an ignored build artifact. The refresh
+builds and validates that projection before publication; after a report merge,
+the Pages workflow regenerates it from the versioned report. It is never added
+to the status pull request.
 
 They are proposed through one branch and at most one open pull request:
 
@@ -134,24 +138,30 @@ and updates the same review. An unresolved merge conflict, a stale branch
 without an open pull request, a symlink, or any non-allowlisted source change
 fails closed.
 
-The workflow explicitly dispatches Governance CI, CodeQL, Self-Security, and
-Dependency Review for the automation branch. It never approves or merges its
-own pull request, never changes GitHub settings, and never pushes to `main`.
-Merging the reviewed refresh updates both the versioned report and the Viewer;
-the point-in-time artifact remains available even when no material change is
-proposed.
+The workflow explicitly dispatches Governance CI, CodeQL, Self-Security,
+Dependency Review, and Consumer Lifecycle Guard for the automation branch.
+These dispatches provide immediate validation evidence. Because GitHub does not
+associate manually dispatched checks with a bot-created pull request, a
+maintainer must also approve the five pending PR-context workflow runs in the
+Actions UI before the protected-branch checks are satisfied. The workflow never
+approves those runs, approves or merges its own pull request, changes GitHub
+settings, or pushes to `main`. Merging the reviewed refresh updates the
+versioned report; the Pages build then updates the Viewer. The point-in-time
+artifact remains available even when no material change is proposed.
 
 ## Current Activation State
 
-As of 2026-07-18, GitHub secret scanning, secret push protection, dependency
+As of 2026-09-18, GitHub secret scanning, secret push protection, dependency
 alerts, automated security updates, and private vulnerability reporting are
 enabled. The versioned change adds
 Dependabot configuration, CodeQL, dependency review, full-SHA Action pinning,
 expanded CODEOWNERS, and the report-only self-security workflow.
 
-The initial assessment recorded 7 passing and 9 failing criteria. Consult the
-latest workflow assessment artifact for the current live settings; the versioned
-report is a dated observation, not a security attestation.
+The initial assessment recorded 7 passing and 9 failing criteria. Refresh run
+`35315432116` and reviewed status PR #140 updated the versioned observation to
+13 passing and 3 failing criteria (`GRS-002`, `GRS-005`, `GRS-014`). Consult the
+latest workflow assessment artifact for the current live settings; the
+versioned report is a dated observation, not a security attestation.
 
 GCR-2026-051 authorized the implemented writer migration: four operational writers now propose
 review PRs using scope-specific allowlists and immutable historical evidence.

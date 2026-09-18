@@ -30,15 +30,20 @@ Zeitstempel-Rauschen oder automatische Freigaben zu erzeugen.
 3. Für den semantischen Vergleich werden ausschließlich `observed_at` und
    `observation.observed_at` entfernt. Alle Kriterien, Details, API-Fehler,
    GitHub-Einstellungen und Remediation-Aussagen bleiben vergleichswirksam.
-4. Der Publisher darf nur den JSON-/Markdown-Bericht und
-   `generated/viewer/app/data.json` verändern.
+4. Der Publisher darf nur den JSON-/Markdown-Bericht versionieren.
+   `generated/viewer/app/data.json` bleibt ein ignoriertes Build-Artefakt, wird
+   vor der Publikation geprüft und nach dem Merge durch Pages neu erzeugt.
 5. `automation/self-security-refresh` trägt höchstens einen offenen PR. Ein
    vorhandener PR wird ohne Force-Push fortgeschrieben; Konflikte schlagen fehl.
 6. Der Workflow führt keine Freigabe, keinen Merge, keinen Main-Push, keine
    Schutzregeländerung und keinen Administrator-Bypass aus.
-7. Dependency Review erhält einen sicheren `workflow_dispatch`-Pfad mit
-   expliziter Base und Head, damit GITHUB_TOKEN-erzeugte operative PRs alle fünf
-   erforderlichen Main-Checks ausführen können.
+7. Governance CI, CodeQL, Self-Security, Dependency Review und Consumer
+   Lifecycle Guard werden für den Automations-Branch explizit gestartet.
+   Dependency Review erhält dafür eine explizite Base und Head.
+8. Manuell dispatchte Checks liefern frühe Validierungsevidenz, werden von
+   GitHub aber nicht als PR-Kontext angerechnet. Ein Maintainer genehmigt daher
+   zusätzlich die fünf wartenden PR-Workflowläufe. Der Publisher genehmigt
+   weder Workflows noch Reviews oder Merges selbst.
 
 ## Validation Plan
 
@@ -49,7 +54,7 @@ Zeitstempel-Rauschen oder automatische Freigaben zu erzeugen.
 - [x] Workflow-Vertragstest für Main-only, Berechtigungen und fehlenden Merge
 - [x] `./scripts/validate_all.sh` (`602` tests passed)
 - [x] Pull-Request-Prüfungen für Implementierung PR #135
-- [ ] erster manueller Live-Refresh auf `main`
+- [x] erster manueller Live-Refresh auf `main` (Run `35315432116`, PR #140)
 
 Der erste Live-Versuch (Run `35308723317`) bestätigte Erfassung,
 Artefakt-Upload und Viewer-Generierung, schlug aber vor der Publikation fehl,
@@ -84,8 +89,18 @@ Branch-Protection-Endpunkte nur dann als nicht blockierend klassifiziert, wenn
 die gleiche Beobachtung den Schutz von `main` durch das effektive Ruleset
 bestätigt. Alle `403`-Antworten bleiben blockierend.
 
+Run `35314753486` benannte die vier blockierten Endpunkte eindeutig. Nach der
+Korrektur der Token-Berechtigung bestand Run `35315432116` die vollständige
+Kette und erzeugte den begrenzten Status-PR #140. Der Bericht bestätigte 13 von
+16 Kriterien; offen bleiben `GRS-002`, `GRS-005` und `GRS-014`. Alle fünf
+direkt dispatchten Checks waren erfolgreich. GitHub verlangte für die
+gleichnamigen PR-Kontextläufe zusätzlich eine Maintainer-Genehmigung; nach
+dieser Genehmigung bestanden alle fünf geschützten Checks und PR #140 wurde als
+Merge-Commit `376d6e5` integriert. Die Schutzregeln wurden danach vollständig
+wiederhergestellt.
+
 ## Release Decision
 
 Kein Baseline-Release ist erforderlich. Der Change aktualisiert ausschließlich
-die Publikation eines vorhandenen report-only Sicherheitsnachweises und seine
-Viewer-Projektion.
+die Publikation eines vorhandenen report-only Sicherheitsnachweises. Die
+Viewer-Projektion bleibt ein daraus erzeugtes Build-Artefakt.
