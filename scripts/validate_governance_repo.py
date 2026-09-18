@@ -766,6 +766,11 @@ def main() -> int:
             validate_assurance_source(assurance)
     except Exception as exc:
         errors.append(f"Control evidence assurance validation: {exc}")
+    from lib.staging_deployment import load_snapshots as load_staging_deployment_snapshots
+    try:
+        load_staging_deployment_snapshots(ROOT / "status/staging-deployment-results")
+    except Exception as exc:
+        errors.append(f"Staging deployment result validation: {exc}")
     validate_intake_conflicts(errors)
     validate_intake_events(errors)
     validate_intake_health(errors)

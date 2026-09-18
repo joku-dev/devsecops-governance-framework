@@ -77,13 +77,14 @@ The `ha-CPsWMS` mainline demo state is:
 
 | Domain | Status | Baseline | Run |
 |---|---|---|---|
-| DevSecOps | `pass` | `l1-baseline-v1.1.3` | `35131186298` |
-| Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `35131185047` |
+| DevSecOps | `pass` | `l1-baseline-v1.1.3` | `35351494433` |
+| Architecture | `PASS` | `architecture-baseline-l1-v0.1.0` | `35351493524` |
 
-The separate measured-evidence run `35241262722` is report-only. It records
+The separate measured-evidence run `35351493542` is report-only. It records
 typed vulnerability and SBOM evidence, a measured assessment of all 16 L1
-controls, and per-control assurance; it is not an official compliance result or
-production approval.
+controls, and per-control assurance. Its authorized staging deployment passed
+19 runtime checks and supplies separate evidence for L1-013/014/016; neither
+record is an official compliance result or production approval.
 
 Use `docs/demos/demo-end-to-end-governance.md` as the primary demo runbook.
 
