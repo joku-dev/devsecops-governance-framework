@@ -121,15 +121,28 @@ NIST_PREFIX_MAP = {
     "PS.3": ["HREQ-SC-003"],
 }
 
+MAX_WORKBOOK_XML_BYTES = 32 * 1024 * 1024
+
+
+def safe_workbook_xml(archive: ZipFile, name: str) -> ET.Element:
+    entries = [entry for entry in archive.infolist() if entry.filename == name]
+    if len(entries) != 1 or entries[0].file_size > MAX_WORKBOOK_XML_BYTES:
+        raise ValueError(f"Missing, duplicate or oversized workbook XML: {name}")
+    raw = archive.read(entries[0])
+    upper = raw.upper()
+    if b"<!DOCTYPE" in upper or b"<!ENTITY" in upper:
+        raise ValueError(f"DTD and entity declarations are unsupported in workbook XML: {name}")
+    return ET.fromstring(raw)  # nosec B314: declarations and size are rejected above.
+
 
 def load_rows(path: Path) -> list[dict[str, str]]:
     with ZipFile(path) as archive:
-        strings_root = ET.fromstring(archive.read("xl/sharedStrings.xml"))
+        strings_root = safe_workbook_xml(archive, "xl/sharedStrings.xml")
         shared = [
             "".join(node.text or "" for node in item.iter(f"{{{XML_NS}}}t"))
             for item in strings_root.findall("m:si", NS)
         ]
-        sheet = ET.fromstring(archive.read("xl/worksheets/sheet1.xml"))
+        sheet = safe_workbook_xml(archive, "xl/worksheets/sheet1.xml")
 
     result = []
     for row in sheet.findall(".//m:sheetData/m:row", NS):

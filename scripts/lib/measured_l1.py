@@ -12,6 +12,7 @@ from lib.measured_security import ROOT, SERVICES, REPOSITORY, check_run, normali
 
 PROFILE = 'ha-cpswms-l1-measured-v1'
 BASELINE = 'l1-baseline-v1.1.3'
+MAX_JUNIT_BYTES = 32 * 1024 * 1024
 STATES = ('measured', 'partial', 'findings', 'gap')
 FILES = {
     'source': ('junit.xml', 'tests.execution.json', 'bandit.json', 'bandit.execution.json',
@@ -42,11 +43,13 @@ def raw_record(raw, artifact_id, verification):
 
 
 def cases(raw):
+    if len(raw) > MAX_JUNIT_BYTES:
+        raise ValueError('JUnit evidence exceeds size limit')
     text = raw.decode('utf-8-sig')  # Producer JUnit is UTF-8; reject alternate encodings.
     if '\x00' in text or '<!DOCTYPE' in text.upper() or '<!ENTITY' in text.upper():
         raise ValueError('DTD/entity declarations are not test evidence')
     result = []
-    for case in ET.fromstring(text).iter('testcase'):
+    for case in ET.fromstring(text).iter('testcase'):  # nosec B314: DTD/entities and size are rejected above.
         state = next((s for s in ('error', 'failure', 'skipped') if case.find(s) is not None), 'pass')
         result.append({'class': case.get('classname', ''), 'name': case.get('name', ''), 'status': state})
     if not result:

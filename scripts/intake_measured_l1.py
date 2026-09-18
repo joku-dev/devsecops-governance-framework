@@ -44,6 +44,7 @@ def capture(repository, run_id):
     raw = base64.b64decode(content['content'])
     # Git blob identity verifies the source file returned at the exact commit.
     blob = b'blob ' + str(len(raw)).encode() + b'\0' + raw
+    # nosemgrep: python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1 -- Git object IDs require SHA-1 here.
     if hashlib.sha1(blob, usedforsecurity=False).hexdigest() != content['sha']:
         raise ValueError('Traceability Git blob identity mismatch')
     return normalize(run, report_raw, report_artifact, bundles, raw)
