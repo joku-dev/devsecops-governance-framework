@@ -47,7 +47,7 @@ Zeitstempel-Rauschen oder automatische Freigaben zu erzeugen.
 - [x] Unit-Test gegen normative oder nicht allowlistete Änderungen
 - [x] Unit-Test für Main-Unveränderlichkeit und Check-Dispatch
 - [x] Workflow-Vertragstest für Main-only, Berechtigungen und fehlenden Merge
-- [x] `./scripts/validate_all.sh` (`598` tests passed)
+- [x] `./scripts/validate_all.sh` (`600` tests passed)
 - [x] Pull-Request-Prüfungen für Implementierung PR #135
 - [ ] erster manueller Live-Refresh auf `main`
 
@@ -56,6 +56,16 @@ Artefakt-Upload und Viewer-Generierung, schlug aber vor der Publikation fehl,
 weil im neuen Workflow der OPA-Validator auf dem Runner fehlte. Der
 Follow-up-Change installiert deshalb dieselbe gepinnte OPA-Version wie
 Governance CI; der Live-Refresh wird danach vollständig wiederholt.
+
+Der zweite Live-Versuch (Run `35309466848`) bestätigte die OPA-Korrektur und
+bestand die Repository-Modellvalidierung. Zwei Viewer-Tests verglichen den
+frisch erfassten Bericht anschließend jedoch mit fest codierten Werten des
+zuvor versionierten Berichts. Der korrigierte Live-Vertrag prüft nun die
+dynamische Projektion auf Gleichheit mit dem erfassten Bericht, während die
+vollständige Testsuite weiterhin die versionierte Baseline prüft. Administrative
+API-Lücken führen vor jeder versionierten Publikation zu einem geschlossenen
+Fehler; die lesende Erfassung verwendet dafür das bereits konfigurierte
+`GH_RESULT_INTAKE_TOKEN`.
 
 ## Release Decision
 
