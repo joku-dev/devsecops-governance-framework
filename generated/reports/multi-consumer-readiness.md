@@ -1,6 +1,6 @@
 # Multi-Consumer Readiness
 
-Generated: `2026-09-18T15:08:24Z`
+Generated: `2026-09-18T16:58:27Z`
 
 Readiness: `PASS` (report-only)
 
@@ -28,6 +28,6 @@ Readiness: `PASS` (report-only)
 |---|---|---:|---:|---:|---:|
 | `joku-dev/ai-native-engineering-factory` | `report-only` | True | False | False | 0 |
 | `joku-dev/governance-framework-demo-consumer` | `report-only` | True | True | True | 7 |
-| `joku-dev/ha-CPsWMS` | `block-on-error` | True | True | True | 11 |
+| `joku-dev/ha-CPsWMS` | `block-on-error` | True | True | True | 12 |
 
 Readiness proves isolated central storage, indexing, concurrency, portfolio projection, and telemetry identity. It does not require every consumer to produce every optional evidence domain and does not change enforcement.

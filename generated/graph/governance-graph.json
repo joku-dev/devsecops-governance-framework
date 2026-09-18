@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-09-18T15:11:30Z",
+  "generated_at": "2026-09-18T17:01:36Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,12 +10,12 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 198,
+    "node_count": 199,
     "edge_count": 417,
     "node_types": {
       "Artifact": 140,
       "Baseline": 3,
-      "Commit": 3,
+      "Commit": 4,
       "EvidenceRecord": 3,
       "Repository": 3,
       "ResultSnapshot": 8,
@@ -1482,6 +1482,15 @@
       }
     },
     {
+      "id": "commit:joku-dev/ha-CPsWMS:37e5a51ba627ca39880219ba311759f0be50ac04",
+      "type": "Commit",
+      "label": "37e5a51ba627",
+      "properties": {
+        "repository_id": "joku-dev/ha-CPsWMS",
+        "commit_id": "37e5a51ba627ca39880219ba311759f0be50ac04"
+      }
+    },
+    {
       "id": "commit:joku-dev/ha-CPsWMS:5d5772d989b0080ae041969315742c8fbbca6dfe",
       "type": "Commit",
       "label": "5d5772d989b0",
@@ -1582,17 +1591,17 @@
       }
     },
     {
-      "id": "run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
+      "id": "run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
       "type": "WorkflowRun",
-      "label": "architecture: 35351493524",
+      "label": "architecture: 35371297967",
       "properties": {
         "domain": "architecture",
-        "run_id": "35351493524",
+        "run_id": "35371297967",
         "status": "pass",
-        "generated_at": "2026-09-18T13:39:46Z",
+        "generated_at": "2026-09-18T16:55:27Z",
         "event": "push",
         "branch": "main",
-        "url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351493524"
+        "url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35371297967"
       }
     },
     {
@@ -1691,11 +1700,11 @@
       }
     },
     {
-      "id": "snapshot:status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T13-39-46Z-run-35351493524.json",
+      "id": "snapshot:status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T16-55-27Z-run-35371297967.json",
       "type": "ResultSnapshot",
-      "label": "2026-09-18T13-39-46Z-run-35351493524.json",
+      "label": "2026-09-18T16-55-27Z-run-35371297967.json",
       "properties": {
-        "path": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T13-39-46Z-run-35351493524.json",
+        "path": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T16-55-27Z-run-35371297967.json",
         "domain": "architecture"
       }
     },
@@ -2072,14 +2081,14 @@
       }
     },
     {
-      "id": "trust:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
+      "id": "trust:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
       "type": "TrustAssessment",
       "label": "integrity_verified",
       "properties": {
         "domain": "architecture",
         "effective_level": "integrity_verified",
         "assessment_status": "evaluated",
-        "verified_at": "2026-09-18T15:08:24Z",
+        "verified_at": "2026-09-18T16:58:27Z",
         "check_summary": {
           "pass": 7,
           "fail": 0,
@@ -5595,10 +5604,10 @@
       "properties": {}
     },
     {
-      "id": "EVALUATES_COMMIT:run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z->commit:joku-dev/ha-CPsWMS:5d5772d989b0080ae041969315742c8fbbca6dfe",
+      "id": "EVALUATES_COMMIT:run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z->commit:joku-dev/ha-CPsWMS:37e5a51ba627ca39880219ba311759f0be50ac04",
       "type": "EVALUATES_COMMIT",
-      "source": "run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
-      "target": "commit:joku-dev/ha-CPsWMS:5d5772d989b0080ae041969315742c8fbbca6dfe",
+      "source": "run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
+      "target": "commit:joku-dev/ha-CPsWMS:37e5a51ba627ca39880219ba311759f0be50ac04",
       "properties": {}
     },
     {
@@ -5684,10 +5693,10 @@
       }
     },
     {
-      "id": "HAS_RESULT:repository:joku-dev/ha-CPsWMS->run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
+      "id": "HAS_RESULT:repository:joku-dev/ha-CPsWMS->run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
       "type": "HAS_RESULT",
       "source": "repository:joku-dev/ha-CPsWMS",
-      "target": "run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
+      "target": "run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
       "properties": {
         "domain": "architecture",
         "latest": true
@@ -5742,10 +5751,10 @@
       "properties": {}
     },
     {
-      "id": "HAS_TRUST_ASSESSMENT:run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z->trust:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
+      "id": "HAS_TRUST_ASSESSMENT:run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z->trust:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
       "type": "HAS_TRUST_ASSESSMENT",
-      "source": "run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
-      "target": "trust:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
+      "source": "run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
+      "target": "trust:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
       "properties": {}
     },
     {
@@ -5819,10 +5828,10 @@
       "properties": {}
     },
     {
-      "id": "RECORDED_IN:run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z->snapshot:status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T13-39-46Z-run-35351493524.json",
+      "id": "RECORDED_IN:run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z->snapshot:status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T16-55-27Z-run-35371297967.json",
       "type": "RECORDED_IN",
-      "source": "run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
-      "target": "snapshot:status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T13-39-46Z-run-35351493524.json",
+      "source": "run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
+      "target": "snapshot:status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T16-55-27Z-run-35371297967.json",
       "properties": {}
     },
     {
@@ -5854,9 +5863,9 @@
       "properties": {}
     },
     {
-      "id": "USES_BASELINE:run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z->baseline:architecture:architecture-baseline-l1-v0.1.0",
+      "id": "USES_BASELINE:run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z->baseline:architecture:architecture-baseline-l1-v0.1.0",
       "type": "USES_BASELINE",
-      "source": "run:architecture:joku-dev/ha-CPsWMS:35351493524:2026-09-18T13:39:46Z",
+      "source": "run:architecture:joku-dev/ha-CPsWMS:35371297967:2026-09-18T16:55:27Z",
       "target": "baseline:architecture:architecture-baseline-l1-v0.1.0",
       "properties": {}
     },
