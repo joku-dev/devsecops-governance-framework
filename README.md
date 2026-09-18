@@ -10,8 +10,8 @@ The [v0.2.0 adoption/operations release](docs/releases/v0.2.0-public-adoption.md
 packages the controlled pilot state and publication downloads; its release
 statement explains publication status and separate baseline pins.
 
-The current accepted governance results from 16 September and the measured
-ha-CPsWMS evidence from 17 September 2026 are recorded in the
+The current accepted governance results, measured ha-CPsWMS evidence and the
+real staging deployment from 18 September 2026 are recorded in the
 [current platform state](docs/operations/status/current-governance-platform-state.md).
 
 For current pilot and central operations, start with the
@@ -140,22 +140,24 @@ The addendum keeps the original framework document as the normative reference an
 - `architecture-baseline-l1-v0.1.0` is available as the released architecture runtime governance baseline.
 - GitHub Pages publishes the documentation and the read-only Governance Workspace with repository, finding, Repository Security, evidence, governance and operations views.
 - A daily Self-Security refresh records every live assessment as a workflow artifact and proposes material JSON/Markdown report changes through one reviewed pull request; timestamps alone never create commits, and the Pages build regenerates the Viewer projection after merge.
-- Central intake stores append-only DevSecOps, architecture, typed evidence, measured L1 and control-assurance snapshots under `status/`; reviewed operational PRs update the official indexes.
+- Central intake stores append-only DevSecOps, architecture, typed evidence, measured L1, control-assurance and staging-deployment snapshots under `status/`; reviewed operational PRs update the official indexes.
 - Evidence Trust records integrity, provenance, freshness, replay, custody and attestation without turning evidence quality into a compliance or release decision.
 - The ha-CPsWMS pilot produces real tests, SAST, five container builds, CycloneDX SBOMs, Trivy scans and HTTP/Neo4j integration evidence. Its latest measured L1 assessment covers all 16 controls and leaves missing or partial evidence explicit.
+- The isolated ha-CPsWMS staging VM runs the verified query-api and Neo4j images. Its first recorded deployment passed 19 health, function, persistence, restart, outage/recovery, identity and runtime-hardening checks; the Viewer keeps this staging-only decision separate from production approval and vulnerability risk acceptance.
 - The manual closed-loop lifecycle pilot can record observations, decisions, actions, receipts, closure and revocation for its narrowly accepted scope. It remains report-only and subject to personal action consent.
 - `governance-framework-demo-consumer` is the neutral public reference consumer for first adoption validation.
 - Platform-neutral evidence generation, validation and bundle intake support adapter paths for GitHub Actions, Bamboo with Bitbucket Data Center, Bitbucket Pipelines, Jenkins and GitLab CI. The non-GitHub paths are reference implementations that require environment-specific integration and validation.
 
 Current accepted ha-CPsWMS governance runs are DevSecOps
-[`35131186298`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131186298)
+[`35351494433`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351494433)
 and architecture
-[`35131185047`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185047).
+[`35351493524`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351493524).
 The separate measured-evidence run
-[`35241262722`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35241262722)
-contains 58 passing tests, typed vulnerability and SBOM evidence, and the
-per-control assurance projection. A governance PASS remains distinct from open
-scanner findings, replay deviations and production approval.
+[`35351493542`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351493542)
+contains 59 passing tests, typed vulnerability and SBOM evidence, and the
+per-control assurance projection. The real deployment of that commit adds a
+separate staging result with 19 passed checks. A governance PASS remains distinct
+from open scanner findings, replay deviations and production approval.
 
 ## AI And Agent Navigation
 

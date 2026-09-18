@@ -2,11 +2,11 @@
 
 ## Observation Scope
 
-This page describes the implemented operating model as checked on 17 September
+This page describes the implemented operating model as checked on 18 September
 2026, including the live settings recorded by GCR-2026-094. The ha-CPsWMS
-governance observations were updated for its
-16 September runs and its measured/typed evidence for run `35241262722` on
-17 September; other consumer observations retain their individual dates. For
+governance observations, measured/typed evidence and real staging evidence were
+updated for its 18 September runs; other consumer observations retain their
+individual dates. For
 daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
 For live observations use the latest main workflow artifacts and
 [daily operations report](daily-governance-operations.md). A dated document or
@@ -21,6 +21,7 @@ successful workflow is not a current compliance attestation.
 | Released baselines | DevSecOps `l1-baseline-v1.1.3`; architecture `architecture-baseline-l1-v0.1.0`; frozen packages under `releases/` |
 | Accepted results | Append-only snapshots and digests, manifests, domain indexes and collection-attempt records under `status/` |
 | Typed and measured evidence | Centrally verified vulnerability/SBOM snapshots, measured L1 assessments and conservative per-control assurance for ha-CPsWMS |
+| Staging deployment evidence | Centrally verified approval, subject binding, image identity, runtime checks, security boundaries and recovery evidence for the isolated ha-CPsWMS staging VM |
 | Intake telemetry | Append-only `status/intake-events/` feeds Intake Health, readiness and daily operating observations |
 | Operational publication | Intake, portfolio and the manual lifecycle workflow propose scoped bot PRs; six publisher scopes; accepted state changes on protected main after checked merge |
 | Closed-loop lifecycle | Personally accepted manual GRS-002 pilot; two real PASS receipts, no finding/actions; separate synthetic exception/scenario support |
@@ -80,12 +81,12 @@ new blocking. [Blocking alignment](blocking-mode-alignment.md) and the
 The [13 September revalidation](../reference-runs/2026-09-13-consumer-revalidation.md)
 refreshes diagnostic history for all three consumers and official mainline evidence
 for the demo consumer after its operation-readiness preparation. The ha-CPsWMS
-rows additionally include the accepted 16 September mainline runs:
+rows additionally include the accepted 18 September mainline runs:
 
 | Consumer | Domain | Producer run | Recorded outcome |
 |---|---|---|---|
-| `ha-CPsWMS` | DevSecOps L1 | `35131186298` | `pass`; 16/16 applicable controls, 30 not applicable |
-| `ha-CPsWMS` | Architecture L1 | `35131185047` | `pass`; 4/4 gates, zero findings |
+| `ha-CPsWMS` | DevSecOps L1 | `35351494433` | `pass`; 16/16 applicable controls, 30 not applicable |
+| `ha-CPsWMS` | Architecture L1 | `35351493524` | `pass`; 4/4 gates, zero findings |
 | `ai-native-engineering-factory` | DevSecOps | `34503074356`, attempt 2 | `fail`; baseline gate reports direct pushes allowed |
 | `governance-framework-demo-consumer` | DevSecOps L1 | `34778861276` | `pass`; one-gate fallback summary |
 | `governance-framework-demo-consumer` | Architecture L1 | `34778861076` | `findings`; 25 findings across four gates |
@@ -97,7 +98,7 @@ not a full control-catalog evaluation. Factory pins implementation commit
 `l1-baseline-v1.1.3`. Both architecture integrations use
 `architecture-baseline-l1-v0.1.0`.
 
-The accepted consumer commits are `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3`
+The accepted consumer commits are `5d5772d989b0080ae041969315742c8fbbca6dfe`
 for ha-CPsWMS, `371251fe17c6923a810ab437a6c27fc7bfb624ed` for Factory, and
 `915aeed2507ba3cc60fad5cd6a7b2415505a1ac9` for the neutral demo consumer.
 
@@ -113,11 +114,11 @@ finding despite its passing controls. All three consumers remain below the
 Blocking Readiness bar. The neutral consumer now has current Typed Evidence
 for its accepted mainline commit; that previously open gap is closed.
 
-## Measured ha-CPsWMS Evidence, 17 September 2026
+## Measured ha-CPsWMS Evidence And Staging, 18 September 2026
 
 The separate successful mainline run
-[`35241262722`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35241262722)
-at commit `ce02be6ab74877e5205f7963e3b608299da7341e` produced 50 passing source
+[`35351493542`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351493542)
+at commit `5d5772d989b0080ae041969315742c8fbbca6dfe` produced 51 passing source
 tests, eight passing runtime integration tests, Bandit/Ruff results, five
 container images, CycloneDX 1.6 SBOMs and Trivy 0.70.0 scan evidence.
 
@@ -125,18 +126,28 @@ Central intake verified the five image archives, image identities and layers,
 the SBOM and scan hashes, producer manifests, repository/run/attempt/commit
 context and Freshness. The typed index therefore records `integrity_verified`
 for both vulnerability and SBOM evidence. It contains 749 SBOM components and
-1,993 vulnerability observations across the five images, including one critical
-and 329 high image/package occurrences. These are findings for assessment, not
+2,468 vulnerability observations across the five images, including one critical
+and 327 high image/package occurrences. These are findings for assessment, not
 an automatic risk decision.
 
 The measured L1 projection reports 5 controls as `measured`, 6 as `partial`,
 2 with `findings` and 3 as `gap`. The linked assurance snapshot covers all 16:
 7 have complete coverage, passing Freshness and `integrity_verified`; 6 are
 partial and 3 missing, leaving 9 `unverified`. Provenance, custody and
-attestation are not promoted without their own proof. L1-013/014 and parts of
-L1-016 remain open until a named staging environment and authorized operating
-evidence exist. See [measured L1 evidence](../evidence/l1-measured-evidence-ha-cpswms.md)
-and the [Governance Workspace](../guides/governance-viewer-app.md).
+attestation are not promoted without their own proof.
+
+The separately authorized deployment of this exact commit to
+`ha-cpswms-stg-01` passed all 19 health, function, persistence, controlled-outage,
+recovery, restart, image-identity and runtime-hardening checks. Central intake
+verified the complete bundle hashes, approval, successful source run and subject
+binding. Its Trust level is `integrity_verified`; L1-013 and L1-014 are measured,
+while L1-016 is partial until durable event retention, backup/restore, monitoring
+and incident ownership are implemented. The API stayed bound to VM loopback and
+Neo4j had no host-published port. This is staging-only, report-only evidence and
+does not grant production approval or accept the scanner findings. See
+[measured L1 evidence](../evidence/l1-measured-evidence-ha-cpswms.md),
+[staging deployment evidence](../evidence/staging-deployment-evidence.md) and the
+[Governance Workspace](../guides/governance-viewer-app.md).
 
 ## Central Operations And Remaining Findings
 

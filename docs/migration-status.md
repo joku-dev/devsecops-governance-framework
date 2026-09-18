@@ -21,6 +21,7 @@
 | Append-only result intake and report-only replay assessment | Complete |
 | Typed vulnerability and SBOM evidence intake | Implemented for the current GitHub pilots |
 | Measured ha-CPsWMS L1 assessment and per-control assurance | Implemented, report-only |
+| Authorized ha-CPsWMS staging deployment and runtime evidence | Implemented for L1-013/014 and partially for L1-016, report-only |
 | Integrated read-only Governance Workspace | Complete |
 
 ## Still To Refine
@@ -35,4 +36,4 @@ The current model is a complete MVP, not yet a fully approved enterprise baselin
 - executable policy input model per selected platform
 - enterprise approval and maintenance of the implemented DOCX/PDF rendering pipeline
 - production issuer/key lifecycle and operational Trust promotion beyond the implemented signed-attestation pilot
-- authorized staging deployment and operations evidence for the remaining ha-CPsWMS L1-013/014/016 gaps
+- production-grade monitoring, security-event retention, backup/restore and incident ownership beyond the completed ha-CPsWMS staging run

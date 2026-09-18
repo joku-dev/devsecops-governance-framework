@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from lib.viewer_app import project, build, load_repository_security
 from lib.measured_security import load_snapshots
 from lib.control_evidence_assurance import build_assurance
+from lib.staging_deployment import load_snapshots as load_staging_snapshots
 from publish_operational_update import allowed
 
 
@@ -73,6 +74,17 @@ class ViewerAppTests(unittest.TestCase):
         self.assertEqual(measured,repo['l1_assessment'])
         self.assertEqual(assurance,repo['control_assurance'])
         self.assertEqual(16,repo['control_assurance']['summary']['total_controls'])
+
+    def test_staging_deployment_is_projected_separately_from_ci_results(self):
+        staging = load_staging_snapshots(ROOT / 'status/staging-deployment-results')
+        data = project(self.dev, self.arch, self.scans, staging_snapshots=staging)
+        repo = next(r for r in data['repositories'] if r['id']=='joku-dev/ha-CPsWMS')
+        self.assertEqual('pass', repo['staging_deployment']['deployment']['status'])
+        self.assertEqual(19, repo['staging_deployment']['tests']['pass'])
+        self.assertEqual('5d5772d989b0080ae041969315742c8fbbca6dfe',
+                         repo['staging_deployment']['deployed_subject']['commit'])
+        self.assertEqual('integrity_verified', repo['staging_deployment']['trust']['effective_level'])
+        self.assertEqual(1, len(repo['staging_deployment_history']))
 
     def test_repository_security_report_is_validated_and_projected(self):
         report = load_repository_security(ROOT)
