@@ -139,7 +139,7 @@ The addendum keeps the original framework document as the normative reference an
 - The current `L1 v1.1.3` package adds run-context-aware evaluation for release, pull-request, branch-validation, and diagnostic runs.
 - `architecture-baseline-l1-v0.1.0` is available as the released architecture runtime governance baseline.
 - GitHub Pages publishes the documentation and the read-only Governance Workspace with repository, finding, Repository Security, evidence, governance and operations views.
-- A daily Self-Security refresh records every live assessment as a workflow artifact and proposes material report and Viewer changes through one reviewed pull request; timestamps alone never create commits.
+- A daily Self-Security refresh records every live assessment as a workflow artifact and proposes material JSON/Markdown report changes through one reviewed pull request; timestamps alone never create commits, and the Pages build regenerates the Viewer projection after merge.
 - Central intake stores append-only DevSecOps, architecture, typed evidence, measured L1 and control-assurance snapshots under `status/`; reviewed operational PRs update the official indexes.
 - Evidence Trust records integrity, provenance, freshness, replay, custody and attestation without turning evidence quality into a compliance or release decision.
 - The ha-CPsWMS pilot produces real tests, SAST, five container builds, CycloneDX SBOMs, Trivy scans and HTTP/Neo4j integration evidence. Its latest measured L1 assessment covers all 16 controls and leaves missing or partial evidence explicit.

@@ -19,6 +19,7 @@ from publish_self_security_refresh import (
     blocking_api_errors,
     materially_equal,
     publish,
+    validate_viewer_projection,
 )
 
 
@@ -110,6 +111,16 @@ class SelfSecurityRefreshPublicationTests(unittest.TestCase):
         self.assertEqual(create[2]["head"], BRANCH)
         dispatches = [call for call in self.calls if "/dispatches" in call[1]]
         self.assertEqual(len(dispatches), len(CHECK_WORKFLOWS))
+        self.assertEqual(
+            CHECK_WORKFLOWS,
+            (
+                "governance-ci.yml",
+                "codeql.yml",
+                "governance-repository-security.yml",
+                "dependency-review.yml",
+                "consumer-lifecycle-guard.yml",
+            ),
+        )
         dependency = next(call for call in dispatches if "dependency-review.yml" in call[1])
         self.assertEqual(dependency[2]["inputs"], {"base_ref": "main", "head_ref": BRANCH})
 
@@ -192,13 +203,19 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
         self.assertEqual(workflow["permissions"]["pull-requests"], "write")
         self.assertEqual(workflow["permissions"]["actions"], "write")
 
-    def test_live_viewer_projection_matches_live_security_report(self):
-        report = json.loads(
-            (ROOT / "generated/reports/governance-repository-security.json").read_text()
-        )
-        projection = json.loads((ROOT / "generated/viewer/app/data.json").read_text())[
-            "repository_security"
-        ]
+    def test_viewer_projection_validation_uses_the_generated_report(self):
+        report = {
+            "repository_id": "owner/repo",
+            "observed_at": "2026-09-18T00:00:00Z",
+            "profile_version": "0.3.0",
+            "enforcement": "report_only",
+            "overall_status": "findings",
+            "summary": {"criteria": 1, "pass": 0, "fail": 1},
+            "risk_statement": "review required",
+            "criteria": [{"id": "GRS-001", "status": "fail"}],
+            "next_steps": [],
+            "decision_boundary": {"blocks_pull_requests": False},
+        }
         projected_keys = (
             "repository_id",
             "observed_at",
@@ -211,14 +228,36 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
             "next_steps",
             "decision_boundary",
         )
-        self.assertEqual(
-            {key: report[key] for key in projected_keys},
-            {key: projection[key] for key in projected_keys},
-        )
-        self.assertEqual(
-            projection["source_file"],
-            "generated/reports/governance-repository-security.json",
-        )
+        projection = {key: report[key] for key in projected_keys} | {
+            "source_file": "generated/reports/governance-repository-security.json"
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.write_for_root(
+                root,
+                "generated/reports/governance-repository-security.json",
+                report,
+            )
+            self.write_for_root(
+                root,
+                "generated/viewer/app/data.json",
+                {"repository_security": projection},
+            )
+            validate_viewer_projection(root)
+            projection["summary"] = {"criteria": 1, "pass": 1, "fail": 0}
+            self.write_for_root(
+                root,
+                "generated/viewer/app/data.json",
+                {"repository_security": projection},
+            )
+            with self.assertRaisesRegex(ValueError, "does not match"):
+                validate_viewer_projection(root)
+
+    @staticmethod
+    def write_for_root(root, path, value):
+        target = root / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(json.dumps(value))
 
     def test_daily_schedule_has_one_writer_and_read_only_assessment_stays_event_driven(self):
         refresh = yaml.load(
