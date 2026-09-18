@@ -10,6 +10,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 from lib.measured_security import load_snapshots
 from lib.measured_l1 import load_snapshots as load_l1_snapshots
 from lib.control_evidence_assurance import load_snapshots as load_assurance_snapshots
+from lib.staging_deployment import load_snapshots as load_staging_snapshots
 from lib.viewer_technical import project_technical
 from lib.measured_security_view import assessment
 
@@ -33,7 +34,7 @@ def load_repository_security(root: Path):
     }
 
 
-def project(devsecops, architecture, snapshots, l1_snapshots=(), assurance_snapshots=()):
+def project(devsecops, architecture, snapshots, l1_snapshots=(), assurance_snapshots=(), staging_snapshots=()):
     repositories = {}
     for domain, index in [('devsecops', devsecops), ('architecture', architecture)]:
         for row in index['repositories']:
@@ -59,6 +60,12 @@ def project(devsecops, architecture, snapshots, l1_snapshots=(), assurance_snaps
     for item in assurance_snapshots:
         repo = repositories.setdefault(item['repository_id'], {'id': item['repository_id'], 'devsecops': None, 'architecture': None, 'security': None, 'security_history': []})
         repo.setdefault('control_assurance_history', []).append(item)
+    for item in staging_snapshots:
+        repo = repositories.setdefault(item['repository_id'], {
+            'id': item['repository_id'], 'devsecops': None, 'architecture': None,
+            'security': None, 'security_history': [],
+        })
+        repo.setdefault('staging_deployment_history', []).append(item)
     for repo in repositories.values():
         history = sorted(repo.get('l1_history', []), key=lambda s: (datetime.fromisoformat(s['run']['created_at'].replace('Z', '+00:00')), int(s['run']['id']), s['run']['attempt']), reverse=True)
         repo['l1_assessment'] = history[0] if history else None
@@ -67,6 +74,22 @@ def project(devsecops, architecture, snapshots, l1_snapshots=(), assurance_snaps
         repo['control_assurance'] = assurance_history[0] if assurance_history else None
         repo['control_assurance_history'] = [
             {'run': s['run'], 'summary': s['summary'], 'verified_at': s['verified_at']} for s in assurance_history
+        ]
+        staging_history = sorted(
+            repo.get('staging_deployment_history', []),
+            key=lambda s: datetime.fromisoformat(s['deployment']['finished_at'].replace('Z', '+00:00')),
+            reverse=True,
+        )
+        repo['staging_deployment'] = staging_history[0] if staging_history else None
+        repo['staging_deployment_history'] = [
+            {
+                'deployed_subject': s['deployed_subject'],
+                'deployment': s['deployment'],
+                'tests': s['tests'],
+                'trust': s['trust'],
+                'source_file': s['source_file'],
+            }
+            for s in staging_history
         ]
         groups = {}
         current = repo.get('security')
@@ -89,7 +112,8 @@ def build(root: Path, technical_html=None):
     data = project(read('repository-results-index.json'), read('architecture-results-index.json'),
                    load_snapshots(root / 'status/measured-security-results'),
                    load_l1_snapshots(root / 'status/measured-l1-results'),
-                   load_assurance_snapshots(root / 'status/control-evidence-assurance'))
+                   load_assurance_snapshots(root / 'status/control-evidence-assurance'),
+                   load_staging_snapshots(root / 'status/staging-deployment-results'))
     data['repository_security'] = load_repository_security(root)
     if technical_html is None:
         legacy = root / 'generated/viewer/status-viewer.html'
