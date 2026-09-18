@@ -43,7 +43,7 @@ Trust Boundary im Code und für die statische Analyse eindeutig.
 - [x] Browser-Angriffstest für hostile Repository-Suche und URL-Fragment
 - [x] `./scripts/validate_all.sh` (`589` tests passed)
 - [x] CodeQL-Pull-Request-Lauf `35305352610` ohne offenen `js/xss-through-dom`-Befund
-- [ ] GitHub-Alert-Readback nach Mainline-Lauf
+- [x] GitHub-Alert-Readback nach Mainline-Lauf `35305737319`: Code Scanning, Dependabot und Secret Scanning jeweils 0 offen
 
 ## Release Decision
 
