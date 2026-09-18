@@ -85,8 +85,8 @@ rows additionally include the accepted 18 September mainline runs:
 
 | Consumer | Domain | Producer run | Recorded outcome |
 |---|---|---|---|
-| `ha-CPsWMS` | DevSecOps L1 | `35351494433` | `pass`; 16/16 applicable controls, 30 not applicable |
-| `ha-CPsWMS` | Architecture L1 | `35351493524` | `pass`; 4/4 gates, zero findings |
+| `ha-CPsWMS` | DevSecOps L1 | `35371298636` | `pass`; 16/16 applicable controls, 30 not applicable |
+| `ha-CPsWMS` | Architecture L1 | `35371297967` | `pass`; 4/4 gates, zero findings |
 | `ai-native-engineering-factory` | DevSecOps | `34503074356`, attempt 2 | `fail`; baseline gate reports direct pushes allowed |
 | `governance-framework-demo-consumer` | DevSecOps L1 | `34778861276` | `pass`; one-gate fallback summary |
 | `governance-framework-demo-consumer` | Architecture L1 | `34778861076` | `findings`; 25 findings across four gates |
@@ -98,7 +98,7 @@ not a full control-catalog evaluation. Factory pins implementation commit
 `l1-baseline-v1.1.3`. Both architecture integrations use
 `architecture-baseline-l1-v0.1.0`.
 
-The accepted consumer commits are `5d5772d989b0080ae041969315742c8fbbca6dfe`
+The accepted consumer commits are `37e5a51ba627ca39880219ba311759f0be50ac04`
 for ha-CPsWMS, `371251fe17c6923a810ab437a6c27fc7bfb624ed` for Factory, and
 `915aeed2507ba3cc60fad5cd6a7b2415505a1ac9` for the neutral demo consumer.
 
@@ -117,8 +117,8 @@ for its accepted mainline commit; that previously open gap is closed.
 ## Measured ha-CPsWMS Evidence And Staging, 18 September 2026
 
 The separate successful mainline run
-[`35351493542`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351493542)
-at commit `5d5772d989b0080ae041969315742c8fbbca6dfe` produced 51 passing source
+[`35371297825`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35371297825)
+at commit `37e5a51ba627ca39880219ba311759f0be50ac04` produced 53 passing source
 tests, eight passing runtime integration tests, Bandit/Ruff results, five
 container images, CycloneDX 1.6 SBOMs and Trivy 0.70.0 scan evidence.
 
@@ -136,7 +136,8 @@ The measured L1 projection reports 5 controls as `measured`, 6 as `partial`,
 partial and 3 missing, leaving 9 `unverified`. Provenance, custody and
 attestation are not promoted without their own proof.
 
-The separately authorized deployment of this exact commit to
+The separately authorized deployment of the earlier commit
+`5d5772d989b0080ae041969315742c8fbbca6dfe` from measured run `35351493542` to
 `ha-cpswms-stg-01` passed all 19 health, function, persistence, controlled-outage,
 recovery, restart, image-identity and runtime-hardening checks. Central intake
 verified the complete bundle hashes, approval, successful source run and subject
