@@ -85,14 +85,20 @@ workflow artifact, regenerates the Governance Workspace projection, and invokes
 validation dependencies and the pinned OPA `1.18.2` validator before running
 the repository and workflow-contract checks.
 
-The live assessment uses the repository secret `GH_RESULT_INTAKE_TOKEN` because
-the default workflow token cannot read all administrative repository and
-Actions settings. The secret is exposed only to the assessment step; PR
-publication and check dispatch continue to use the scoped workflow token. If
-the secret is unavailable the workflow can fall back to the workflow token for
-collection, but any resulting GitHub API error makes versioned publication fail
-closed. The incomplete point-in-time report remains available as a workflow
-artifact for diagnosis.
+The live assessment uses the dedicated repository secret
+`GH_SELF_SECURITY_READ_TOKEN` because the default workflow token cannot read
+all administrative repository and Actions settings. Configure it as a
+fine-grained personal access token with access only to this repository and the
+repository permission **Administration: Read-only**. Metadata read access is
+included by GitHub; the assessment requires no write permission. Do not reuse
+the result-intake token for this purpose.
+
+The secret is exposed only to the assessment step; PR publication and check
+dispatch continue to use the scoped workflow token. If the secret is
+unavailable the workflow can fall back to the workflow token for collection,
+but any resulting GitHub API error makes versioned publication fail closed. The
+incomplete point-in-time report remains available as a workflow artifact for
+diagnosis.
 
 The publisher compares security-relevant JSON after removing only the top-level
 and nested observation timestamps. If all other values are unchanged, it does
