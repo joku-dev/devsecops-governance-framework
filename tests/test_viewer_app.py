@@ -121,6 +121,13 @@ class ViewerAppTests(unittest.TestCase):
                 self.assertFalse(allowed('generated/viewer/app/'+name,scope))
             self.assertFalse(allowed('apps/governance-viewer/app.js',scope))
 
+    def test_untrusted_filter_state_is_separate_from_report_model(self):
+        source = (ROOT / 'apps/governance-viewer/app.js').read_text()
+        self.assertIn('const uiState = {', source)
+        self.assertIn('let dataModel = null;', source)
+        self.assertNotIn('const state = { data:', source)
+        self.assertNotIn('state.data', source)
+
     def test_build_rejects_invalid_security_evidence(self):
         import shutil
         with tempfile.TemporaryDirectory() as d:

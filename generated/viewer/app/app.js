@@ -2,7 +2,11 @@
 (() => {
   const content = document.getElementById('content');
   const central = 'https://github.com/joku-dev/devsecops-governance-framework/blob/main/';
-  const state = { data: null, page: 0, query: '', severity: 'all', image: 'all', repo: 'all' };
+  // Keep untrusted UI values separate from the validated, read-only report model.
+  // Besides making the trust boundary explicit, this prevents filter text from
+  // being confused with repository data by data-flow analysis.
+  const uiState = { page: 0, query: '', severity: 'all', image: 'all', repo: 'all' };
+  let dataModel = null;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const count = value => Number.isFinite(value) ? value.toLocaleString('de-DE') : '—';
   const short = value => esc((value || '').slice(0, 12));
@@ -35,7 +39,7 @@
   }
   function actions(repos, includeRepositorySecurity = false) {
     const items = [];
-    const repositorySecurity = state.data.repository_security;
+    const repositorySecurity = dataModel.repository_security;
     if (includeRepositorySecurity && repositorySecurity?.summary?.fail) items.push({title:'Governance-Repository: Security-Anforderungen bearbeiten', text:`${repositorySecurity.summary.fail} von ${repositorySecurity.summary.criteria} Kriterien offen · ${repositorySecurity.summary.critical_failures} kritisch · ${repositorySecurity.summary.high_failures} hoch.`, url:'#repository-security', label:'Repository Security öffnen'});
     for (const repo of repos) {
       if (repo.l1_assessment) items.push({title:`${repo.id.split('/')[1]}: L1-Nachweislücken bearbeiten`, text:`${repo.l1_assessment.summary.gap} Kontrollen mit fehlenden Nachweisen · ${repo.l1_assessment.summary.partial} teilweise belegt.`, url:route(repo,'l1'), label:'Kontrollen und Nachweise öffnen'});
@@ -46,7 +50,7 @@
     return items.length ? items.map((item,i) => `<div class="action"><span class="action-number">${String(i+1).padStart(2,'0')}</span><div><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p><a href="${item.url}">${item.label} →</a></div></div>`).join('') : '<p class="muted">Aus den erfassten Ergebnissen ist kein Handlungsbedarf abgeleitet. Fehlende Nachweise separat prüfen.</p>';
   }
   function overview() {
-    const repos = state.data.repositories, measured = repos.filter(r => r.security), primary = repos.find(r => r.id === 'joku-dev/ha-CPsWMS') || repos[0];
+    const repos = dataModel.repositories, measured = repos.filter(r => r.security), primary = repos.find(r => r.id === 'joku-dev/ha-CPsWMS') || repos[0];
     const critical = measured.reduce((n,r) => n+r.security.counts.CRITICAL,0), high = measured.reduce((n,r) => n+r.security.counts.HIGH,0);
     const affected = repos.filter(r => ['devsecops','architecture'].some(d => ['fail','findings'].includes(String(r[d]?.status).toLowerCase()))).length;
     content.innerHTML = heading('Portfolio · gespeicherter Stand', 'Governance im Überblick', 'Ergebnisse einordnen, offene Befunde erkennen und den passenden Nachweis finden.', primary ? `<a class="button primary" href="${route(primary)}">${esc(primary.id.split('/')[1])} öffnen →</a>` : '') +
@@ -55,9 +59,9 @@
       <section class="panel"><div class="panel-head"><h2>Repositories im Vergleich</h2><a href="#repositories">Alle ansehen →</a></div>${repositoryTable(repos)}</section>`;
   }
   function repositories() {
-    content.innerHTML = heading('Portfolio', 'Repositories', 'Offizielle Mainline-Ergebnisse und gemessene Sicherheit je Repository.') + `<section class="panel"><div class="filters"><label class="search">Repository suchen<input id="repo-search" type="search" placeholder="Name oder Organisation"></label></div><div id="repo-results">${repositoryTable(state.data.repositories)}</div></section>`;
+    content.innerHTML = heading('Portfolio', 'Repositories', 'Offizielle Mainline-Ergebnisse und gemessene Sicherheit je Repository.') + `<section class="panel"><div class="filters"><label class="search">Repository suchen<input id="repo-search" type="search" placeholder="Name oder Organisation"></label></div><div id="repo-results">${repositoryTable(dataModel.repositories)}</div></section>`;
     document.getElementById('repo-search').addEventListener('input', e => {
-      const matches = state.data.repositories.filter(r => r.id.toLowerCase().includes(e.target.value.toLowerCase()));
+      const matches = dataModel.repositories.filter(r => r.id.toLowerCase().includes(e.target.value.toLowerCase()));
       document.getElementById('repo-results').innerHTML = matches.length ? repositoryTable(matches) : '<p class="empty">Keine passenden Repositories.</p>';
     });
   }
@@ -124,7 +128,7 @@
   }
   function filters(repos, fixed) {
     const allImages = [...new Set(repos.flatMap(r=>Object.keys(r.security?.images || {})))].sort();
-    return `<div class="filters"><label class="search">Suche<input id="finding-query" type="search" placeholder="CVE, Paket oder Image" value="${esc(state.query)}"></label><label>Schweregrad<select id="finding-severity"><option value="all">Kritisch &amp; hoch</option><option value="CRITICAL">Kritisch</option><option value="HIGH">Hoch</option></select></label><label>Image<select id="finding-image"><option value="all">Alle Images</option>${allImages.map(i=>`<option value="${esc(i)}">${esc(i)}</option>`).join('')}</select></label>${fixed?'':`<label>Repository<select id="finding-repo"><option value="all">Alle Repositories</option>${repos.map(r=>`<option value="${esc(r.id)}">${esc(r.id.split('/')[1])}</option>`).join('')}</select></label>`}</div>`;
+    return `<div class="filters"><label class="search">Suche<input id="finding-query" type="search" placeholder="CVE, Paket oder Image" value="${esc(uiState.query)}"></label><label>Schweregrad<select id="finding-severity"><option value="all">Kritisch &amp; hoch</option><option value="CRITICAL">Kritisch</option><option value="HIGH">Hoch</option></select></label><label>Image<select id="finding-image"><option value="all">Alle Images</option>${allImages.map(i=>`<option value="${esc(i)}">${esc(i)}</option>`).join('')}</select></label>${fixed?'':`<label>Repository<select id="finding-repo"><option value="all">Alle Repositories</option>${repos.map(r=>`<option value="${esc(r.id)}">${esc(r.id.split('/')[1])}</option>`).join('')}</select></label>`}</div>`;
   }
   function findings(repos, fixed = false) {
     return `<div class="notice">Container-Scans · HIGH / CRITICAL · Status: technische Prüfung offen. Mehrere Image-/Paketmeldungen können dieselbe CVE betreffen. Eine technische Einordnung ist keine Risikofreigabe.</div><section class="panel"><h2>Hohe und kritische Befunde</h2>${repos.filter(r=>r.security).map(r=>`<p class="muted">${esc(r.id)} · ${date(r.security.run.updated_at)} · <a href="${runURL(r.id,r.security.run.id)}">Run ${esc(r.security.run.id)}</a> · <a href="${route(r,'evidence')}">Nachweise →</a></p>`).join('')}${filters(repos,fixed)}<div id="finding-results"></div></section>`;
@@ -133,13 +137,13 @@
     const items = repos.flatMap(r=>r.findings.map(f=>({...f,repo:r.id}))).sort((a,b)=>Number(b.severity==='CRITICAL')-Number(a.severity==='CRITICAL'));
     const controls = {'finding-query':'query','finding-severity':'severity','finding-image':'image','finding-repo':'repo'};
     function draw() {
-      const matches = items.filter(f=>(state.severity==='all'||state.severity===f.severity)&&(state.image==='all'||f.images.includes(state.image))&&(state.repo==='all'||state.repo===f.repo)&&`${f.id} ${f.package} ${f.images.join(' ')} ${f.repo}`.toLowerCase().includes(state.query.toLowerCase()));
-      const pages = Math.max(1,Math.ceil(matches.length/20)); state.page=Math.min(state.page,pages-1);
-      const rows=matches.slice(state.page*20,state.page*20+20).map(f=>`<tr data-finding><td>${badge(f.severity)}</td><td>${/^CVE-\d{4}-\d+$/.test(f.id)?`<a class="row-link" href="https://security-tracker.debian.org/tracker/${encodeURIComponent(f.id)}">${esc(f.id)} ↗</a>`:esc(f.id)}<small>${esc(f.package)} · ${esc(f.installed_version)}</small></td><td>${esc(f.images.join(', '))}<small>${esc(f.repo)} · ${count(f.occurrences)} Meldungen</small></td><td>${esc(f.fixed_version || 'Im Scan nicht angegeben')}</td><td>${esc(f.assessment)}<small>Prüfung offen</small></td></tr>`);
-      document.getElementById('finding-results').innerHTML=`<p class="count" role="status" aria-live="polite">${matches.length} / ${items.length} Paket-/Versionsgruppen · ${new Set(matches.map(f=>f.id)).size} unterschiedliche CVE-IDs</p>${rows.length?table(['Schweregrad','CVE / Paket','Betroffene Images','Korrigiert laut Scan','Offene Prüfung'],rows):'<p class="empty">Keine passenden Befunde. Filter anpassen; fehlende Scans sind kein Nachweis von Schwachstellenfreiheit.</p>'}<div class="pager"><button id="prev" ${state.page===0?'disabled':''}>← Zurück</button><span>Seite ${state.page+1} von ${pages}</span><button id="next" ${state.page===pages-1?'disabled':''}>Weiter →</button></div>`;
-      document.getElementById('prev').onclick=()=>{state.page--;draw();};document.getElementById('next').onclick=()=>{state.page++;draw();};
+      const matches = items.filter(f=>(uiState.severity==='all'||uiState.severity===f.severity)&&(uiState.image==='all'||f.images.includes(uiState.image))&&(uiState.repo==='all'||uiState.repo===f.repo)&&`${f.id} ${f.package} ${f.images.join(' ')} ${f.repo}`.toLowerCase().includes(uiState.query.toLowerCase()));
+      const pages = Math.max(1,Math.ceil(matches.length/20)); uiState.page=Math.min(uiState.page,pages-1);
+      const rows=matches.slice(uiState.page*20,uiState.page*20+20).map(f=>`<tr data-finding><td>${badge(f.severity)}</td><td>${/^CVE-\d{4}-\d+$/.test(f.id)?`<a class="row-link" href="https://security-tracker.debian.org/tracker/${encodeURIComponent(f.id)}">${esc(f.id)} ↗</a>`:esc(f.id)}<small>${esc(f.package)} · ${esc(f.installed_version)}</small></td><td>${esc(f.images.join(', '))}<small>${esc(f.repo)} · ${count(f.occurrences)} Meldungen</small></td><td>${esc(f.fixed_version || 'Im Scan nicht angegeben')}</td><td>${esc(f.assessment)}<small>Prüfung offen</small></td></tr>`);
+      document.getElementById('finding-results').innerHTML=`<p class="count" role="status" aria-live="polite">${matches.length} / ${items.length} Paket-/Versionsgruppen · ${new Set(matches.map(f=>f.id)).size} unterschiedliche CVE-IDs</p>${rows.length?table(['Schweregrad','CVE / Paket','Betroffene Images','Korrigiert laut Scan','Offene Prüfung'],rows):'<p class="empty">Keine passenden Befunde. Filter anpassen; fehlende Scans sind kein Nachweis von Schwachstellenfreiheit.</p>'}<div class="pager"><button id="prev" ${uiState.page===0?'disabled':''}>← Zurück</button><span>Seite ${uiState.page+1} von ${pages}</span><button id="next" ${uiState.page===pages-1?'disabled':''}>Weiter →</button></div>`;
+      document.getElementById('prev').onclick=()=>{uiState.page--;draw();};document.getElementById('next').onclick=()=>{uiState.page++;draw();};
     }
-    Object.entries(controls).forEach(([id,key])=>{const el=document.getElementById(id);if(el){el.value=state[key];el.addEventListener(key==='query'?'input':'change',()=>{state[key]=el.value;state.page=0;draw();});}});
+    Object.entries(controls).forEach(([id,key])=>{const el=document.getElementById(id);if(el){el.value=uiState[key];el.addEventListener(key==='query'?'input':'change',()=>{uiState[key]=el.value;uiState.page=0;draw();});}});
     draw();
   }
   function evidence(repos) {
@@ -160,7 +164,7 @@
     return `<div class="notice">Evidence Trust bewertet Herkunft und Integrität der Nachweise. Governance-Ergebnis, Replay und nicht bewertete Prüfungen bleiben eigenständige Signale.</div><div class="grid-two">${cards}</div><section class="panel"><div class="panel-head"><h2>Assurance der 16 L1-Kontrollen</h2>${q?'<span class="badge">Report-only</span>':''}</div>${q?`<p><strong>${count(q.summary.trust_levels.integrity_verified)}</strong> integrity_verified · <strong>${count(q.summary.trust_levels.unverified)}</strong> unverified · <strong>${count(q.summary.freshness.pass)}</strong> Freshness-Prüfungen bestanden</p><p class="muted">Stand ${date(q.verified_at)} · Run ${esc(q.run.id)} · fehlende Nachweisanteile stufen die jeweilige Kontrolle konservativ auf unverified zurück.</p><p><a href="${route(repo,'l1')}">Assurance je Kontrolle öffnen →</a> · <a href="${sourceURL(assurancePath(repo,q.run))}">Assurance-Snapshot ↗</a></p>`:'<p>Für den aktuellen gemessenen L1-Lauf ist noch keine Assurance pro Kontrolle erfasst. Fehlende Prüfungen gelten nicht als bestanden.</p>'}<p><a href="${route(repo,'evidence')}">Quelldaten und Scan-Historie →</a> · <a href="#evidence/trust">Evidence Trust aller Repositories →</a></p></section>`;
   }
   function repositorySecurity() {
-    const report=state.data.repository_security;
+    const report=dataModel.repository_security;
     if(!report) {
       content.innerHTML=heading('Sicherheit','Repository Security','Schutzstatus des zentralen Governance-Repositories.')+'<section class="panel"><div class="notice warn">Kein validierter Self-Security-Bericht erfasst. Fehlende Daten gelten nicht als bestandene Anforderungen.</div></section>';
       return;
@@ -190,17 +194,17 @@
     operations:'Integrationen, Nachweisaufnahme und Betriebsbefunde im Zusammenhang verfolgen.'
   };
   function workspaceTabs(group, tab) {
-    const sections = (state.data.technical?.sections || []).filter(s => s.group === group);
+    const sections = (dataModel.technical?.sections || []).filter(s => s.group === group);
     const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : sections;
     return `<nav class="tabs workspace-tabs" aria-label="${groupNames[group]}-Bereiche">${entries.map(s=>`<a href="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'aria-current="page"':''}>${esc(s.title)}</a>`).join('')}</nav><label class="section-picker">Bereich auswählen<select id="section-picker">${entries.map(s=>`<option value="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'selected':''}>${esc(s.title)}</option>`).join('')}</select></label>`;
   }
   function technicalView(group, tab) {
-    const section = (state.data.technical?.sections || []).find(s => s.group === group && s.tab === tab);
+    const section = (dataModel.technical?.sections || []).find(s => s.group === group && s.tab === tab);
     if (!(group === 'evidence' && tab === 'summary') && !section) { notFound(); return; }
     content.innerHTML = heading(groupNames[group], tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
     document.getElementById('section-picker')?.addEventListener('change', e => {location.hash=e.target.value;});
     if (group==='evidence' && tab==='summary') {
-      content.insertAdjacentHTML('beforeend', evidence(state.data.repositories));
+      content.insertAdjacentHTML('beforeend', evidence(dataModel.repositories));
       return;
     }
     const boundaries = {
@@ -211,22 +215,22 @@
     };
     if (boundaries[section.id]) content.insertAdjacentHTML('beforeend', `<div class="notice">${esc(boundaries[section.id])}</div>`);
     const host=document.createElement('div');host.className='technical';content.append(host);
-    window.GovernanceTechnical.mount(host,section,state.data.technical.graph);
+    window.GovernanceTechnical.mount(host,section,dataModel.technical.graph);
   }
   function render() {
     let parts;
     try { parts=(location.hash.slice(1)||'overview').split('/').map(decodeURIComponent); } catch { parts=['invalid']; }
-    const alias=(state.data.technical?.sections || []).find(s=>s.id===parts[0]);
+    const alias=(dataModel.technical?.sections || []).find(s=>s.id===parts[0]);
     if(alias && parts[0]!=='overview' && !parts[1]) parts=[alias.group,alias.tab];
     const view=parts[0], names={overview:'Übersicht',repositories:'Repositories',repository:'Repositories',findings:'Befunde','repository-security':'Repository Security',evidence:'Nachweise',governance:'Governance',operations:'Betrieb'};
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===(view==='repository'?'repositories':view))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     document.getElementById('breadcrumb').textContent=names[view]||'Seite nicht gefunden';
     document.title=(names[view]||'Seite nicht gefunden')+' · Governance Workspace';
-    Object.assign(state,{page:0,query:'',severity:'all',image:'all',repo:'all'});
+    Object.assign(uiState,{page:0,query:'',severity:'all',image:'all',repo:'all'});
     if(view==='overview')overview();
     else if(view==='repositories')repositories();
-    else if(view==='repository') {const repo=state.data.repositories.find(r=>r.id===parts[1]);if(repo)repository(repo,parts[2]||'summary');else notFound();}
-    else if(view==='findings'){content.innerHTML=heading('Sicherheit','Befunde','Gemessene Container-Befunde durchsuchen und die weitere Prüfung vorbereiten.')+findings(state.data.repositories);bindFindings(state.data.repositories);}
+    else if(view==='repository') {const repo=dataModel.repositories.find(r=>r.id===parts[1]);if(repo)repository(repo,parts[2]||'summary');else notFound();}
+    else if(view==='findings'){content.innerHTML=heading('Sicherheit','Befunde','Gemessene Container-Befunde durchsuchen und die weitere Prüfung vorbereiten.')+findings(dataModel.repositories);bindFindings(dataModel.repositories);}
     else if(view==='repository-security')repositorySecurity();
     else if(view==='evidence')technicalView(view,parts[1]||'summary');
     else if(view==='governance')technicalView(view,parts[1]||'controls');
@@ -239,7 +243,7 @@
     try{
       const response=await fetch('data.json',{cache:'no-store'});if(!response.ok)throw new Error('HTTP '+response.status);
       const data=await response.json();if(data.version!==1||!Array.isArray(data.repositories))throw new Error('Unbekanntes Datenformat');
-      state.data=data;render();window.addEventListener('hashchange',render);
+      dataModel=data;render();window.addEventListener('hashchange',render);
     }catch(error){
       content.innerHTML='<section class="panel error" role="alert"><h1>Ergebnisse nicht verfügbar</h1><p>Die gespeicherten Daten konnten nicht geladen werden. Es wird kein grüner Status angenommen.</p><button id="retry">Erneut laden</button> · <a href="../status-viewer.html">Technischen Viewer öffnen</a></section>';
       document.getElementById('retry').onclick=()=>location.reload();
