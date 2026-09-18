@@ -85,11 +85,21 @@ workflow artifact, regenerates the Governance Workspace projection, and invokes
 validation dependencies and the pinned OPA `1.18.2` validator before running
 the repository and workflow-contract checks.
 
+The live assessment uses the repository secret `GH_RESULT_INTAKE_TOKEN` because
+the default workflow token cannot read all administrative repository and
+Actions settings. The secret is exposed only to the assessment step; PR
+publication and check dispatch continue to use the scoped workflow token. If
+the secret is unavailable the workflow can fall back to the workflow token for
+collection, but any resulting GitHub API error makes versioned publication fail
+closed. The incomplete point-in-time report remains available as a workflow
+artifact for diagnosis.
+
 The publisher compares security-relevant JSON after removing only the top-level
 and nested observation timestamps. If all other values are unchanged, it does
 not create a commit or update a pull request. A changed criterion, observation,
-summary, remediation step, API error, repository setting, workflow inventory,
-or release-tag result is material.
+summary, remediation step, repository setting, workflow inventory, or
+release-tag result is material. GitHub API errors prevent versioned publication
+instead of being interpreted as a repository-setting regression.
 
 Material changes are restricted to:
 

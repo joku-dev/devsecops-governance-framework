@@ -138,6 +138,16 @@ class SelfSecurityRefreshPublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "no remote branch"):
             self.publish()
 
+    def test_api_errors_fail_closed_before_versioned_publication(self):
+        self.regenerate(observed_at="2026-09-18T00:00:00Z", status="pass")
+        path = self.root / "generated/reports/governance-repository-security.json"
+        current = json.loads(path.read_text())
+        current["observation"]["api_errors"] = ["administrative setting unavailable"]
+        self.write_json("generated/reports/governance-repository-security.json", current)
+        with self.assertRaisesRegex(ValueError, "observation is incomplete"):
+            self.publish()
+        self.assertFalse(any(call[0] in {"POST", "PATCH"} for call in self.calls))
+
     def test_time_is_the_only_ignored_report_field(self):
         old = report("2026-09-17T00:00:00Z")
         new = report("2026-09-18T00:00:00Z")
@@ -158,6 +168,7 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
             "open-policy-agent/setup-opa@b2b258e089860efaadaaf71bf6e3aecb4a3eeff1",
             text,
         )
+        self.assertIn("secrets.GH_RESULT_INTAKE_TOKEN || github.token", text)
         self.assertEqual(
             workflow["jobs"]["refresh"]["steps"][2]["with"]["version"],
             "1.18.2",
@@ -166,6 +177,34 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
         self.assertNotIn("git push", text)
         self.assertEqual(workflow["permissions"]["pull-requests"], "write")
         self.assertEqual(workflow["permissions"]["actions"], "write")
+
+    def test_live_viewer_projection_matches_live_security_report(self):
+        report = json.loads(
+            (ROOT / "generated/reports/governance-repository-security.json").read_text()
+        )
+        projection = json.loads((ROOT / "generated/viewer/app/data.json").read_text())[
+            "repository_security"
+        ]
+        projected_keys = (
+            "repository_id",
+            "observed_at",
+            "profile_version",
+            "enforcement",
+            "overall_status",
+            "summary",
+            "risk_statement",
+            "criteria",
+            "next_steps",
+            "decision_boundary",
+        )
+        self.assertEqual(
+            {key: report[key] for key in projected_keys},
+            {key: projection[key] for key in projected_keys},
+        )
+        self.assertEqual(
+            projection["source_file"],
+            "generated/reports/governance-repository-security.json",
+        )
 
     def test_daily_schedule_has_one_writer_and_read_only_assessment_stays_event_driven(self):
         refresh = yaml.load(
