@@ -42,7 +42,7 @@ Trust Boundary im Code und für die statische Analyse eindeutig.
 - [x] Browser-Angriffstest für gespeicherte HTML-Payload und passenden Filter
 - [x] Browser-Angriffstest für hostile Repository-Suche und URL-Fragment
 - [x] `./scripts/validate_all.sh` (`589` tests passed)
-- [ ] CodeQL-Pull-Request-Lauf ohne neuen `js/xss-through-dom`-Befund
+- [x] CodeQL-Pull-Request-Lauf `35305352610` ohne offenen `js/xss-through-dom`-Befund
 - [ ] GitHub-Alert-Readback nach Mainline-Lauf
 
 ## Release Decision
