@@ -64,8 +64,16 @@ zuvor versionierten Berichts. Der korrigierte Live-Vertrag prüft nun die
 dynamische Projektion auf Gleichheit mit dem erfassten Bericht, während die
 vollständige Testsuite weiterhin die versionierte Baseline prüft. Administrative
 API-Lücken führen vor jeder versionierten Publikation zu einem geschlossenen
-Fehler; die lesende Erfassung verwendet dafür das bereits konfigurierte
-`GH_RESULT_INTAKE_TOKEN`.
+Fehler und erfordern einen dafür begrenzten Lese-Token.
+
+Der dritte Live-Versuch (Run `35310348134`) bestand Erfassung, OPA,
+Repository-Validierung und dynamische Viewer-Projektion. Der Publisher stoppte
+anschließend wie vorgesehen, weil das vorhandene Intake-Token für vier
+administrative Leseendpunkte keine Berechtigung besitzt. Die dauerhafte Lösung
+trennt die Aufgaben: `GH_SELF_SECURITY_READ_TOKEN` erhält nur Zugriff auf dieses
+Repository und **Administration: Read-only**; der Intake-Token wird nicht für
+Self-Security wiederverwendet. Bis dieses Secret gesetzt ist, bleibt die
+versionierte Publikation fail-closed.
 
 ## Release Decision
 

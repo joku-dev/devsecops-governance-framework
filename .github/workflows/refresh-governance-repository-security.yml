@@ -40,7 +40,7 @@ jobs:
 
       - name: Assess live repository security posture
         env:
-          GH_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
+          GH_TOKEN: ${{ secrets.GH_SELF_SECURITY_READ_TOKEN || github.token }}
         run: |
           python3 scripts/assess_governance_repository_security.py
           cat generated/reports/governance-repository-security.md >> "$GITHUB_STEP_SUMMARY"

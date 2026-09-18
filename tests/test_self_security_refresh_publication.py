@@ -168,7 +168,8 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
             "open-policy-agent/setup-opa@b2b258e089860efaadaaf71bf6e3aecb4a3eeff1",
             text,
         )
-        self.assertIn("secrets.GH_RESULT_INTAKE_TOKEN || github.token", text)
+        self.assertIn("secrets.GH_SELF_SECURITY_READ_TOKEN || github.token", text)
+        self.assertNotIn("secrets.GH_RESULT_INTAKE_TOKEN", text)
         self.assertEqual(
             workflow["jobs"]["refresh"]["steps"][2]["with"]["version"],
             "1.18.2",
