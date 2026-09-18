@@ -38,6 +38,7 @@ REVIEWED_PUBLISHER_COMMANDS = (
         r"scripts/publish_typed_evidence_assurance_update\.py\s+--scope\s+typed-evidence\b"
     ),
     re.compile(r"scripts/publish_consumer_lifecycle\.py\b"),
+    re.compile(r"scripts/publish_self_security_refresh\.py\b"),
 )
 
 
