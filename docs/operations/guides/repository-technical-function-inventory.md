@@ -300,7 +300,7 @@ beschreibt den geprüften Umfang und die getrennten historischen Artefakte.
 | Baustein | Funktion |
 |---|---|
 | `scripts/intake_measured_l1.py` | Aufnahme ausgewählter Rohartefakte eines erfolgreichen ha-CPsWMS-Messlaufs und der Anforderungszuordnung am exakten Commit |
-| `scripts/lib/measured_l1.py` | Kontext-/Hash-/Image-Prüfung, zentrale konservative Bewertung aller 16 L1-Kontrollen, Schema- und Append-only-Prüfung |
+| `scripts/lib/measured_l1.py` | Kontext-/Hash-Prüfung, Bindung von Build-/Scan-Digest an Archiv-Tag und importierte Runtime-Image-ID, zentrale konservative Bewertung aller 16 L1-Kontrollen, Schema- und Append-only-Prüfung |
 | `schemas/measured-l1-assessment.schema.json` | Additiver Report-only-Vertrag mit Beobachtungen, Nachweisreferenzen, Bewertungsprofil und expliziten Prüfgrenzen |
 | `status/measured-l1-results/` | Unveränderliche Snapshots je Lauf und Versuch; Auswahl nach Quellzeit |
 | `model/evidence/control-evidence-assurance-profile.yaml` | Vollständige Zuordnung der 16 Kontrollen zu Nachweistyp, Freshness und Bindung |
