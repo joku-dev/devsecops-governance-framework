@@ -16,6 +16,7 @@ from publish_self_security_refresh import (
     ALLOWED_PATHS,
     BRANCH,
     CHECK_WORKFLOWS,
+    blocking_api_errors,
     materially_equal,
     publish,
 )
@@ -147,6 +148,18 @@ class SelfSecurityRefreshPublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "observation is incomplete"):
             self.publish()
         self.assertFalse(any(call[0] in {"POST", "PATCH"} for call in self.calls))
+
+    def test_legacy_protection_404_requires_confirmed_ruleset_protection(self):
+        current = report("2026-09-18T00:00:00Z", "pass")
+        current["observation"]["repository"]["branch_protected"] = True
+        current["observation"]["api_errors"] = [
+            "repos/owner/repo/branches/main/protection: "
+            "gh: Branch not protected (HTTP 404)"
+        ]
+        self.assertEqual(blocking_api_errors(current), [])
+        current["observation"]["repository"]["protected"] = False
+        current["observation"]["repository"]["branch_protected"] = False
+        self.assertEqual(len(blocking_api_errors(current)), 1)
 
     def test_time_is_the_only_ignored_report_field(self):
         old = report("2026-09-17T00:00:00Z")
