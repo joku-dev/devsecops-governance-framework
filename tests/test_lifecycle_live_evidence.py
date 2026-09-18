@@ -17,12 +17,16 @@ from lib.governance_lifecycle.live_evidence import collect_preflight, replay_cap
 
 AT = "2026-09-13T13:00:00Z"
 REPO = "joku-dev/devsecops-governance-framework"
+# First commit that contains the complete producer file set with the digests
+# pinned by the immutable preparation profile.  The profile's older source
+# anchor predates the workflow file and therefore cannot serve as a fixture.
+FIXTURE_REFERENCE_COMMIT = "0890a0916f0efb2c3693d22f37a28d7feb2f7ada"
 
 
 class LiveEvidenceTests(unittest.TestCase):
     def setUp(self):
         self.profile = validate_preparation()["profile"]
-        reference_commit = self.profile["source"]["reference_commit"]
+        reference_commit = FIXTURE_REFERENCE_COMMIT
 
         def historical(path):
             return subprocess.check_output(
