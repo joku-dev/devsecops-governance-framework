@@ -1,0 +1,570 @@
+{
+  "schema_version": "1.0.0",
+  "result_type": "typed-evidence-trust",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "evidence_type": "sbom",
+  "generated_at": "2026-09-18T19:38:39Z",
+  "pipeline": {
+    "pipeline_name": "L1 Measured Evidence",
+    "pipeline_run_id": "35386771107",
+    "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107",
+    "event": "push",
+    "status": "success",
+    "run_attempt": 1
+  },
+  "repository": {
+    "branch": "main",
+    "commit_id": "2c9724dc34845f40425018a46d254c2b17221966"
+  },
+  "source_artifact": {
+    "name": "l1-control-coverage",
+    "artifact_id": "10564835418",
+    "size_bytes": 6864,
+    "archive_download_url": "https://api.github.com/repos/joku-dev/ha-CPsWMS/actions/artifacts/10564835418/zip",
+    "archive_sha256": "f1d42152cd4d312ce577ded22d7c2a61ef4bc3332c943da496a07ffbd04a789a"
+  },
+  "trust": {
+    "model_id": "evidence-trust-model-v1",
+    "capture_phase": "additive_capture",
+    "effective_level": "integrity_verified",
+    "assessment_status": "evaluated",
+    "verifier": "central-ha-container-sbom-intake/v1",
+    "verified_at": "2026-09-18T19:39:08.777099Z",
+    "checks": [
+      {
+        "id": "subject_identity_complete",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source",
+          "trust.capture.subjects"
+        ]
+      },
+      {
+        "id": "content_digest_verified",
+        "result": "pass",
+        "evidence_refs": [
+          "artifact:10563839704/subject.json",
+          "artifact:10563839704/archive.execution.json",
+          "artifact:10563839704/trivy-version.log",
+          "artifact:10563839704/trivy-version.execution.json",
+          "artifact:10563839704/image.tar",
+          "artifact:10563839704/sbom.cyclonedx.json",
+          "artifact:10563839704/sbom.execution.json",
+          "artifact:10563987677/subject.json",
+          "artifact:10563987677/archive.execution.json",
+          "artifact:10563987677/trivy-version.log",
+          "artifact:10563987677/trivy-version.execution.json",
+          "artifact:10563987677/image.tar",
+          "artifact:10563987677/sbom.cyclonedx.json",
+          "artifact:10563987677/sbom.execution.json",
+          "artifact:10564695051/subject.json",
+          "artifact:10564695051/archive.execution.json",
+          "artifact:10564695051/trivy-version.log",
+          "artifact:10564695051/trivy-version.execution.json",
+          "artifact:10564695051/image.tar",
+          "artifact:10564695051/sbom.cyclonedx.json",
+          "artifact:10564695051/sbom.execution.json",
+          "artifact:10563659901/subject.json",
+          "artifact:10563659901/archive.execution.json",
+          "artifact:10563659901/trivy-version.log",
+          "artifact:10563659901/trivy-version.execution.json",
+          "artifact:10563659901/image.tar",
+          "artifact:10563659901/sbom.cyclonedx.json",
+          "artifact:10563659901/sbom.execution.json",
+          "artifact:10563749853/subject.json",
+          "artifact:10563749853/archive.execution.json",
+          "artifact:10563749853/trivy-version.log",
+          "artifact:10563749853/trivy-version.execution.json",
+          "artifact:10563749853/image.tar",
+          "artifact:10563749853/sbom.cyclonedx.json",
+          "artifact:10563749853/sbom.execution.json"
+        ]
+      },
+      {
+        "id": "producer_run_resolved",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.run_id"
+        ]
+      },
+      {
+        "id": "commit_matches_run",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.commit_id"
+        ]
+      },
+      {
+        "id": "artifact_belongs_to_run",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.artifact_name"
+        ]
+      },
+      {
+        "id": "baseline_ref_resolved",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "freshness_evaluated",
+        "result": "pass",
+        "evidence_refs": [
+          "evidence.sbom.subject_digest"
+        ],
+        "policy_id": "freshness-sbom-subject-bound",
+        "policy_version": "0.1.0",
+        "policy_status": "provisional",
+        "produced_at": "2026-09-18T19:35:43.935205+00:00",
+        "evaluated_at": "2026-09-18T19:39:08.777099Z",
+        "maximum_age_seconds": null,
+        "finding_effect": "report_only",
+        "reason": "Evidence is bound to the centrally verified immutable subject."
+      },
+      {
+        "id": "replay_key_unique",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source",
+          "trust.capture.subjects"
+        ],
+        "finding_effect": "report_only",
+        "reason": "No prior replay key or incompatible digest reuse was found.",
+        "replay_key": "87f7f7fe2045ca5b7134721c6314955dcc8830750e469919d7d1020a9e8ee1f3"
+      },
+      {
+        "id": "custody_recorded",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_signature_valid",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_issuer_trusted",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_subject_matches",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      }
+    ],
+    "capture": {
+      "contract_id": "evidence-collector-contract",
+      "contract_version": "0.1.0",
+      "status": "collected",
+      "enforcement": "report_only",
+      "evidence_type": "sbom",
+      "governance_domain": "devsecops",
+      "collector": {
+        "id": "central-ha-container-sbom-collector",
+        "version": "0.1.0"
+      },
+      "produced_at": "2026-09-18T19:35:43.935205+00:00",
+      "captured_at": "2026-09-18T19:39:08.777099Z",
+      "source": {
+        "provider": "ci_artifact",
+        "repository_id": "joku-dev/ha-CPsWMS",
+        "commit_id": "2c9724dc34845f40425018a46d254c2b17221966",
+        "workflow_name": "L1 Measured Evidence",
+        "run_id": "35386771107",
+        "run_attempt": 1,
+        "artifact_name": "l1-control-coverage",
+        "source_uri": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107",
+        "artifact_digest": "f1d42152cd4d312ce577ded22d7c2a61ef4bc3332c943da496a07ffbd04a789a"
+      },
+      "subjects": [
+        {
+          "id": "ha_sync_subject_json",
+          "evidence_ref": "artifact:10563839704/subject.json",
+          "algorithm": "sha256",
+          "digest": "d473640abe392a4d7718d2c0db433bd75d729a296d7c4f9fb3925c5d07a34436",
+          "size_bytes": 640
+        },
+        {
+          "id": "ha_sync_archive_execution_json",
+          "evidence_ref": "artifact:10563839704/archive.execution.json",
+          "algorithm": "sha256",
+          "digest": "10e089e5ff8b1f7b53f8e176d233da2264ab98a5583c7794f76530349d7fb47a",
+          "size_bytes": 290
+        },
+        {
+          "id": "ha_sync_trivy_version_log",
+          "evidence_ref": "artifact:10563839704/trivy-version.log",
+          "algorithm": "sha256",
+          "digest": "cc362a57aea5c884a63df4ca01c87e4c25bc4c92c4262547c1eeb5ebcc03384a",
+          "size_bytes": 210
+        },
+        {
+          "id": "ha_sync_trivy_version_execution_json",
+          "evidence_ref": "artifact:10563839704/trivy-version.execution.json",
+          "algorithm": "sha256",
+          "digest": "336fcf4a603e7e4324eb47e01ba035492ffb358677541eb6099431fb0a6a0fe1",
+          "size_bytes": 164
+        },
+        {
+          "id": "ha_sync_image_tar",
+          "evidence_ref": "artifact:10563839704/image.tar",
+          "algorithm": "sha256",
+          "digest": "a4594857e9bf23454241e3cf5d874a9d3a006c2ae016c3bd991981cecae53c12",
+          "size_bytes": 163205632
+        },
+        {
+          "id": "ha_sync_sbom_cyclonedx_json",
+          "evidence_ref": "artifact:10563839704/sbom.cyclonedx.json",
+          "algorithm": "sha256",
+          "digest": "057784f96860b91c17b183fc08a864faf995a01fe24f9869b13e67ee01f8b66c",
+          "size_bytes": 190319
+        },
+        {
+          "id": "ha_sync_sbom_execution_json",
+          "evidence_ref": "artifact:10563839704/sbom.execution.json",
+          "algorithm": "sha256",
+          "digest": "c8a7ff36bae43aa7552604b7d7e8520719ddb8f791989c041a05215794161fdf",
+          "size_bytes": 414
+        },
+        {
+          "id": "query_api_subject_json",
+          "evidence_ref": "artifact:10563987677/subject.json",
+          "algorithm": "sha256",
+          "digest": "9843f9ab250b8bc7c4cde68aa33919320f7fbf16addc1ee9e9d15bd8e73e5acc",
+          "size_bytes": 644
+        },
+        {
+          "id": "query_api_archive_execution_json",
+          "evidence_ref": "artifact:10563987677/archive.execution.json",
+          "algorithm": "sha256",
+          "digest": "8d8f8162f6d57160ce48ec411c3ec69f415e8ee45970d8a1176c4a5d19d34f2d",
+          "size_bytes": 294
+        },
+        {
+          "id": "query_api_trivy_version_log",
+          "evidence_ref": "artifact:10563987677/trivy-version.log",
+          "algorithm": "sha256",
+          "digest": "9d0a85920684d4a80c9889e80533d0b9964b646865c01bbbd9c2736e5f940346",
+          "size_bytes": 210
+        },
+        {
+          "id": "query_api_trivy_version_execution_json",
+          "evidence_ref": "artifact:10563987677/trivy-version.execution.json",
+          "algorithm": "sha256",
+          "digest": "1b2b7af9e72f2789cac80b2c1bb26f7b1bcfd104d6403e40336e0a4ede783c83",
+          "size_bytes": 164
+        },
+        {
+          "id": "query_api_image_tar",
+          "evidence_ref": "artifact:10563987677/image.tar",
+          "algorithm": "sha256",
+          "digest": "77080bd12ed2e45ba6f6e4d99f6bd0e9a5df0feea46da8a41ed359b44cc05774",
+          "size_bytes": 155732480
+        },
+        {
+          "id": "query_api_sbom_cyclonedx_json",
+          "evidence_ref": "artifact:10563987677/sbom.cyclonedx.json",
+          "algorithm": "sha256",
+          "digest": "13d8e1580a8edfa43aa47c78d1663cee3dd10c6a8d632e79a4a485f987ac7d13",
+          "size_bytes": 182799
+        },
+        {
+          "id": "query_api_sbom_execution_json",
+          "evidence_ref": "artifact:10563987677/sbom.execution.json",
+          "algorithm": "sha256",
+          "digest": "32ff5c4948b0d73822e4f4682e9467a6d8c46c9ade709a2b4274250e51c67f33",
+          "size_bytes": 416
+        },
+        {
+          "id": "semantic_enrichment_subject_json",
+          "evidence_ref": "artifact:10564695051/subject.json",
+          "algorithm": "sha256",
+          "digest": "d274ab48031f09de927b840d70cd231771999d2d404c661f9c7ab6f68741b0c3",
+          "size_bytes": 664
+        },
+        {
+          "id": "semantic_enrichment_archive_execution_json",
+          "evidence_ref": "artifact:10564695051/archive.execution.json",
+          "algorithm": "sha256",
+          "digest": "132a4c99faef6f5cd3f890634b779858d8cbad39348aea82ace474eee12b724b",
+          "size_bytes": 307
+        },
+        {
+          "id": "semantic_enrichment_trivy_version_log",
+          "evidence_ref": "artifact:10564695051/trivy-version.log",
+          "algorithm": "sha256",
+          "digest": "a2e894a870d93ea0b2c186d00c43f8b049e024c5eb2e6c080324aa0f1b23ec04",
+          "size_bytes": 210
+        },
+        {
+          "id": "semantic_enrichment_trivy_version_execution_json",
+          "evidence_ref": "artifact:10564695051/trivy-version.execution.json",
+          "algorithm": "sha256",
+          "digest": "b0505945c10a34afa27c3595a6c9e7c8300f309024c9542150b59cdb58ff05a6",
+          "size_bytes": 164
+        },
+        {
+          "id": "semantic_enrichment_image_tar",
+          "evidence_ref": "artifact:10564695051/image.tar",
+          "algorithm": "sha256",
+          "digest": "48c7b5495f446c26b07e1b8cabf5af475335e93c76a314ca176619fc97e0eefb",
+          "size_bytes": 187465216
+        },
+        {
+          "id": "semantic_enrichment_sbom_cyclonedx_json",
+          "evidence_ref": "artifact:10564695051/sbom.cyclonedx.json",
+          "algorithm": "sha256",
+          "digest": "bb59fe3e5eb64e96dd44483d5f6e56c452f8774e89bb1d176fed39e9528d2edf",
+          "size_bytes": 197965
+        },
+        {
+          "id": "semantic_enrichment_sbom_execution_json",
+          "evidence_ref": "artifact:10564695051/sbom.execution.json",
+          "algorithm": "sha256",
+          "digest": "9a010b8244ab5779c9d5118238fdb4d7514fcc6a01034ffc86eab1e742121e69",
+          "size_bytes": 426
+        },
+        {
+          "id": "world_model_chat_subject_json",
+          "evidence_ref": "artifact:10563659901/subject.json",
+          "algorithm": "sha256",
+          "digest": "1b51e9e387dba4b60449e25e2f11406a628ca263deb85c03c6c2daf7401e5cd2",
+          "size_bytes": 658
+        },
+        {
+          "id": "world_model_chat_archive_execution_json",
+          "evidence_ref": "artifact:10563659901/archive.execution.json",
+          "algorithm": "sha256",
+          "digest": "65a871394b465c293b552f68bf64b9c1d9881c1bbffa5210a2db1173bff4c448",
+          "size_bytes": 307
+        },
+        {
+          "id": "world_model_chat_trivy_version_log",
+          "evidence_ref": "artifact:10563659901/trivy-version.log",
+          "algorithm": "sha256",
+          "digest": "eea39250a57d6d6451692dea424b1f8cfcca1ed72d500f5c7152d9dde245ba58",
+          "size_bytes": 210
+        },
+        {
+          "id": "world_model_chat_trivy_version_execution_json",
+          "evidence_ref": "artifact:10563659901/trivy-version.execution.json",
+          "algorithm": "sha256",
+          "digest": "038357084c8ab78be62044bcde4cc1ce3acb025ad24240d9c6c3515b02e16787",
+          "size_bytes": 164
+        },
+        {
+          "id": "world_model_chat_image_tar",
+          "evidence_ref": "artifact:10563659901/image.tar",
+          "algorithm": "sha256",
+          "digest": "6568e778a64106193963d8a148e9a494a841ce5f4f5e24b68122065286621550",
+          "size_bytes": 215853056
+        },
+        {
+          "id": "world_model_chat_sbom_cyclonedx_json",
+          "evidence_ref": "artifact:10563659901/sbom.cyclonedx.json",
+          "algorithm": "sha256",
+          "digest": "9715177f754d30ab8435952ed8a2fe262bdfbd7241533acbf12e7876fa9dc05e",
+          "size_bytes": 208334
+        },
+        {
+          "id": "world_model_chat_sbom_execution_json",
+          "evidence_ref": "artifact:10563659901/sbom.execution.json",
+          "algorithm": "sha256",
+          "digest": "55f21b028a5cab62e2a055fc918c1586091df016b3d9228aa2101e0f75879cc9",
+          "size_bytes": 423
+        },
+        {
+          "id": "neo4j_subject_json",
+          "evidence_ref": "artifact:10563749853/subject.json",
+          "algorithm": "sha256",
+          "digest": "ff988fe17178cfd2459e7e125edb4019a31ca5c824b4621b050ce8567542bba9",
+          "size_bytes": 640
+        },
+        {
+          "id": "neo4j_archive_execution_json",
+          "evidence_ref": "artifact:10563749853/archive.execution.json",
+          "algorithm": "sha256",
+          "digest": "a852a17d9ab2f4e22148a1a00c20e96797abf21572c09cad8c3c6b6245236fcc",
+          "size_bytes": 286
+        },
+        {
+          "id": "neo4j_trivy_version_log",
+          "evidence_ref": "artifact:10563749853/trivy-version.log",
+          "algorithm": "sha256",
+          "digest": "2b8e897ec8fe3d8cf26f1d58e2fec32620ce080c4a953be733e6542899833d60",
+          "size_bytes": 394
+        },
+        {
+          "id": "neo4j_trivy_version_execution_json",
+          "evidence_ref": "artifact:10563749853/trivy-version.execution.json",
+          "algorithm": "sha256",
+          "digest": "e3b31a5da886b21028293b200a9bd733bf2d8f2863a783739124cb9526ac3bde",
+          "size_bytes": 163
+        },
+        {
+          "id": "neo4j_image_tar",
+          "evidence_ref": "artifact:10563749853/image.tar",
+          "algorithm": "sha256",
+          "digest": "1c8664b9a3fb1042d2402a66dfb1880eec4892422929110cf66a028037d52033",
+          "size_bytes": 636525568
+        },
+        {
+          "id": "neo4j_sbom_cyclonedx_json",
+          "evidence_ref": "artifact:10563749853/sbom.cyclonedx.json",
+          "algorithm": "sha256",
+          "digest": "844acf9d9f49c6c77e045caa579cae03e10ad6e807a74185422c2e22399fadee",
+          "size_bytes": 447519
+        },
+        {
+          "id": "neo4j_sbom_execution_json",
+          "evidence_ref": "artifact:10563749853/sbom.execution.json",
+          "algorithm": "sha256",
+          "digest": "106523e2b922b7ef438a78b72e954b7c228db13f8f280febc36629b97a6cf403",
+          "size_bytes": 412
+        }
+      ],
+      "custody": [
+        {
+          "sequence": 1,
+          "action": "download",
+          "actor": "central-ha-container-sbom-collector",
+          "at": "2026-09-18T19:39:08.777099Z",
+          "source_uri": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107",
+          "output_refs": [
+            "artifact_metadata"
+          ]
+        },
+        {
+          "sequence": 2,
+          "action": "extract_and_hash",
+          "actor": "central-ha-container-sbom-collector",
+          "at": "2026-09-18T19:39:08.777099Z",
+          "source_uri": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107",
+          "output_refs": [
+            "artifact:10563839704/subject.json",
+            "artifact:10563839704/archive.execution.json",
+            "artifact:10563839704/trivy-version.log",
+            "artifact:10563839704/trivy-version.execution.json",
+            "artifact:10563839704/image.tar",
+            "artifact:10563839704/sbom.cyclonedx.json",
+            "artifact:10563839704/sbom.execution.json",
+            "artifact:10563987677/subject.json",
+            "artifact:10563987677/archive.execution.json",
+            "artifact:10563987677/trivy-version.log",
+            "artifact:10563987677/trivy-version.execution.json",
+            "artifact:10563987677/image.tar",
+            "artifact:10563987677/sbom.cyclonedx.json",
+            "artifact:10563987677/sbom.execution.json",
+            "artifact:10564695051/subject.json",
+            "artifact:10564695051/archive.execution.json",
+            "artifact:10564695051/trivy-version.log",
+            "artifact:10564695051/trivy-version.execution.json",
+            "artifact:10564695051/image.tar",
+            "artifact:10564695051/sbom.cyclonedx.json",
+            "artifact:10564695051/sbom.execution.json",
+            "artifact:10563659901/subject.json",
+            "artifact:10563659901/archive.execution.json",
+            "artifact:10563659901/trivy-version.log",
+            "artifact:10563659901/trivy-version.execution.json",
+            "artifact:10563659901/image.tar",
+            "artifact:10563659901/sbom.cyclonedx.json",
+            "artifact:10563659901/sbom.execution.json",
+            "artifact:10563749853/subject.json",
+            "artifact:10563749853/archive.execution.json",
+            "artifact:10563749853/trivy-version.log",
+            "artifact:10563749853/trivy-version.execution.json",
+            "artifact:10563749853/image.tar",
+            "artifact:10563749853/sbom.cyclonedx.json",
+            "artifact:10563749853/sbom.execution.json"
+          ]
+        }
+      ],
+      "errors": [],
+      "observations": {
+        "profile": "ha-cpswms-container-evidence-v2",
+        "generator": {
+          "name": "trivy",
+          "version": "0.70.0"
+        },
+        "format": {
+          "name": "CycloneDX",
+          "version": "1.6"
+        },
+        "component_count": 749,
+        "subject_binding": {
+          "mode": "co_collected",
+          "producer_attested": false
+        },
+        "container_images": [
+          {
+            "service": "ha-sync",
+            "image_id": "sha256:8ec7adf834268a1a99842b1894106ea4de9343f1e07f8a32224ba79a6fd59072",
+            "artifact_id": "10563839704",
+            "artifact_name": "l1-image-ha-sync",
+            "artifact_archive_sha256": "45078f2b3a01d217cb9745e7987cc5f1a89343218b41b49f54c0b9fd87a276f6",
+            "archive_sha256": "a4594857e9bf23454241e3cf5d874a9d3a006c2ae016c3bd991981cecae53c12",
+            "archive_digest_verified": true,
+            "image_layers_verified": 12,
+            "sbom_sha256": "057784f96860b91c17b183fc08a864faf995a01fe24f9869b13e67ee01f8b66c",
+            "sbom_digest_verified": true,
+            "component_count": 98
+          },
+          {
+            "service": "query-api",
+            "image_id": "sha256:908f7a0f1d3e5794764307ec75dbb07738cc002a5caab8e18d7c449fce1ee2b9",
+            "artifact_id": "10563987677",
+            "artifact_name": "l1-image-query-api",
+            "artifact_archive_sha256": "ede2785ff767afb988d7c7b6f80bc650ca899bf2c6f74485b76c0842e70c7b6c",
+            "archive_sha256": "77080bd12ed2e45ba6f6e4d99f6bd0e9a5df0feea46da8a41ed359b44cc05774",
+            "archive_digest_verified": true,
+            "image_layers_verified": 9,
+            "sbom_sha256": "13d8e1580a8edfa43aa47c78d1663cee3dd10c6a8d632e79a4a485f987ac7d13",
+            "sbom_digest_verified": true,
+            "component_count": 91
+          },
+          {
+            "service": "semantic-enrichment",
+            "image_id": "sha256:c77cdaa699fdb0c6d55e6fe873a9b16f3caf1fba27f9fc518133122c85663368",
+            "artifact_id": "10564695051",
+            "artifact_name": "l1-image-semantic-enrichment",
+            "artifact_archive_sha256": "d53cc91582809ab25c89266f8cabf5d1ce975515119a65bf11b6f2773525e2e4",
+            "archive_sha256": "48c7b5495f446c26b07e1b8cabf5af475335e93c76a314ca176619fc97e0eefb",
+            "archive_digest_verified": true,
+            "image_layers_verified": 9,
+            "sbom_sha256": "bb59fe3e5eb64e96dd44483d5f6e56c452f8774e89bb1d176fed39e9528d2edf",
+            "sbom_digest_verified": true,
+            "component_count": 106
+          },
+          {
+            "service": "world-model-chat",
+            "image_id": "sha256:c7a7ccabc4c8d23adfb8d112ff40633b532e513756cd37453bcefd0e3f8b1d17",
+            "artifact_id": "10563659901",
+            "artifact_name": "l1-image-world-model-chat",
+            "artifact_archive_sha256": "7c503fc52e0eeedc4b8a70135522c91d71754156f9c3fb3d56a31bdbc8346c67",
+            "archive_sha256": "6568e778a64106193963d8a148e9a494a841ce5f4f5e24b68122065286621550",
+            "archive_digest_verified": true,
+            "image_layers_verified": 11,
+            "sbom_sha256": "9715177f754d30ab8435952ed8a2fe262bdfbd7241533acbf12e7876fa9dc05e",
+            "sbom_digest_verified": true,
+            "component_count": 116
+          },
+          {
+            "service": "neo4j",
+            "image_id": "sha256:dd7f47e7fba2c3b333b7a20889dd7cbcfdad203ce54f80727e1da4f1bd6a2844",
+            "artifact_id": "10563749853",
+            "artifact_name": "l1-image-neo4j",
+            "artifact_archive_sha256": "cbf03be0401d374752b4304a4fb78d991b4b9600d3e52aaaa9948ca24d616ada",
+            "archive_sha256": "1c8664b9a3fb1042d2402a66dfb1880eec4892422929110cf66a028037d52033",
+            "archive_digest_verified": true,
+            "image_layers_verified": 6,
+            "sbom_sha256": "844acf9d9f49c6c77e045caa579cae03e10ad6e807a74185422c2e22399fadee",
+            "sbom_digest_verified": true,
+            "component_count": 338
+          }
+        ],
+        "independent_attestation": false
+      }
+    }
+  }
+}
