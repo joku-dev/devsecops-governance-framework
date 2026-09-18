@@ -15,6 +15,8 @@ from lib.control_evidence_assurance import (
     build_assurance,
     store_snapshot as store_assurance_snapshot,
 )
+from lib.consolidated_l1 import reconcile as reconcile_consolidated
+from lib.staging_deployment import load_snapshots as load_staging_snapshots
 
 
 def capture(repository, run_id):
@@ -72,8 +74,12 @@ def main():
         measured_source_file=path.relative_to(ROOT).as_posix(),
     )
     assurance_path = store_assurance_snapshot(ASSURANCE_ROOT, assurance)
+    consolidated_paths = reconcile_consolidated(
+        [item], load_staging_snapshots(ROOT / 'status/staging-deployment-results'))
     print(f'Captured {path.relative_to(ROOT)}: {json.dumps(item["summary"])} (report-only)')
     print(f'Captured {assurance_path.relative_to(ROOT)}: {json.dumps(assurance["summary"])} (report-only)')
+    for consolidated_path in consolidated_paths:
+        print(f'Captured {consolidated_path.relative_to(ROOT)} (measured + exact staging supplement)')
 
 
 if __name__ == '__main__':

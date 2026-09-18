@@ -1,0 +1,334 @@
+{
+  "controls": [
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-001",
+      "evidence_refs": [
+        "measured:source/junit.xml",
+        "measured:runtime/junit.xml",
+        "measured:repository/quality/traceability.json"
+      ],
+      "observation": "59 Tests bestanden; 5 technische Anforderungszuordnungen geprüft.",
+      "remaining": "Freigegebene Systemanforderungen und vollständige Abdeckung aller Komponenten nachweisen.",
+      "title": "Anforderungen, Tests und Berichte",
+      "tools": [
+        "pytest",
+        "JUnit"
+      ]
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-002",
+      "evidence_refs": [
+        "measured:platform/commit.json",
+        "measured:platform/pulls.json"
+      ],
+      "observation": "Commit und identifizierbarer Autor bestätigt.",
+      "remaining": "Organisatorische VCS-Freigabe und benötigte Review-Nachweise separat belegen; kein unabhängiges Review abgeleitet.",
+      "title": "Änderungen und Autoren",
+      "tools": [
+        "GitHub API"
+      ]
+    },
+    {
+      "assessment": "gap",
+      "control_id": "DSCB-L1-REQ-003",
+      "evidence_refs": [
+        "measured:platform/protection.json",
+        "measured:platform/rules.json"
+      ],
+      "observation": "Branch-Schutz HTTP 403; Branch-Regeln HTTP 200.",
+      "remaining": "Vollständige Schutz- und Bypass-Regeln lesen und Direktänderungsverbot bewerten. API-Zugriff allein beweist keinen Schutz.",
+      "title": "Geschützte Branches",
+      "tools": [
+        "GitHub API"
+      ]
+    },
+    {
+      "assessment": "findings",
+      "control_id": "DSCB-L1-REQ-004",
+      "evidence_refs": [
+        "measured:source/bandit.json",
+        "measured:source/ruff.json"
+      ],
+      "observation": "4 Bandit- und 134 Ruff-Befunde; erfolgreiche Werkzeugausführung: True.",
+      "remaining": "Security-relevante Befunde fachlich bewerten und Entscheidungen dokumentieren.",
+      "title": "Sichere Entwicklung",
+      "tools": [
+        "Bandit",
+        "Ruff"
+      ]
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-005",
+      "evidence_refs": [
+        "measured:image-ha-sync/sbom.cyclonedx.json",
+        "measured:image-query-api/sbom.cyclonedx.json",
+        "measured:image-semantic-enrichment/sbom.cyclonedx.json",
+        "measured:image-world-model-chat/sbom.cyclonedx.json",
+        "measured:image-neo4j/sbom.cyclonedx.json"
+      ],
+      "observation": "749 Komponentenmeldungen in fünf Image-SBOMs (Mehrfachzählungen möglich).",
+      "remaining": "Inventar umfasst Runtime-Images; Entwicklungs- und Build-Abhängigkeiten vollständig ergänzen.",
+      "title": "Abhängigkeiten erfassen",
+      "tools": [
+        "Trivy",
+        "CycloneDX"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-006",
+      "evidence_refs": [
+        "measured:image-ha-sync/sbom.cyclonedx.json",
+        "measured:image-query-api/sbom.cyclonedx.json",
+        "measured:image-semantic-enrichment/sbom.cyclonedx.json",
+        "measured:image-world-model-chat/sbom.cyclonedx.json",
+        "measured:image-neo4j/sbom.cyclonedx.json",
+        "measured:image-ha-sync/subject.json",
+        "measured:image-query-api/subject.json",
+        "measured:image-semantic-enrichment/subject.json",
+        "measured:image-world-model-chat/subject.json",
+        "measured:image-neo4j/subject.json"
+      ],
+      "observation": "Fünf nichtleere SBOMs mit den gescannten Image-IDs abgeglichen.",
+      "remaining": "Nachweis gilt für diese CI-Builds; keine Release- oder Deployment-Freigabe.",
+      "title": "SBOM je Artefakt",
+      "tools": [
+        "Trivy",
+        "CycloneDX"
+      ]
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-007",
+      "evidence_refs": [
+        "measured:image-ha-sync/build.execution.json",
+        "measured:image-query-api/build.execution.json",
+        "measured:image-semantic-enrichment/build.execution.json",
+        "measured:image-world-model-chat/build.execution.json",
+        "measured:image-neo4j/build.execution.json",
+        "measured:image-ha-sync/subject.json",
+        "measured:image-query-api/subject.json",
+        "measured:image-semantic-enrichment/subject.json",
+        "measured:image-world-model-chat/subject.json",
+        "measured:image-neo4j/subject.json"
+      ],
+      "observation": "Erfolgreiche Build-Ausführung und festgelegte Basis-Image-Digests für fünf Images erfasst.",
+      "remaining": "Python-Abhängigkeiten sperren und reproduzierbare Wiederholungsbuilds nachweisen.",
+      "title": "Kontrollierte Builds",
+      "tools": [
+        "Docker",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-008",
+      "evidence_refs": [
+        "measured:image-ha-sync/subject.json",
+        "measured:image-query-api/subject.json",
+        "measured:image-semantic-enrichment/subject.json",
+        "measured:image-world-model-chat/subject.json",
+        "measured:image-neo4j/subject.json"
+      ],
+      "observation": "Fünf Image-IDs mit Commit, Scanner- und Docker-Metadaten abgeglichen.",
+      "remaining": "Archive-Digests sind Producer-Angaben; vollständige Image-Archive zentral nicht erneut gehasht.",
+      "title": "Build-Ergebnisse identifizieren",
+      "tools": [
+        "Docker",
+        "SHA-256"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-009",
+      "evidence_refs": [
+        "measured:image-ha-sync/vulnerabilities.json",
+        "measured:image-query-api/vulnerabilities.json",
+        "measured:image-semantic-enrichment/vulnerabilities.json",
+        "measured:image-world-model-chat/vulnerabilities.json",
+        "measured:image-neo4j/vulnerabilities.json"
+      ],
+      "observation": "Trivy-JSON und erfolgreiche Scan-Ausführung für alle fünf Image-IDs geprüft.",
+      "remaining": "Scan-Abschluss bewertet weder Ausnutzbarkeit noch Risikoakzeptanz.",
+      "title": "Schwachstellen scannen",
+      "tools": [
+        "Trivy"
+      ]
+    },
+    {
+      "assessment": "findings",
+      "control_id": "DSCB-L1-REQ-010",
+      "evidence_refs": [
+        "measured:image-ha-sync/vulnerabilities.json",
+        "measured:image-query-api/vulnerabilities.json",
+        "measured:image-semantic-enrichment/vulnerabilities.json",
+        "measured:image-world-model-chat/vulnerabilities.json",
+        "measured:image-neo4j/vulnerabilities.json"
+      ],
+      "observation": "2468 Image-/Paketmeldungen, davon 1 kritisch und 327 hoch.",
+      "remaining": "Befunde auf betroffene Nutzung prüfen, beheben oder autorisierte Entscheidungen einholen; keine automatische Risikofreigabe.",
+      "title": "Schwachstellen bewerten",
+      "tools": [
+        "Trivy"
+      ]
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-011",
+      "evidence_refs": [
+        "measured:image-ha-sync/subject.json",
+        "measured:image-query-api/subject.json",
+        "measured:image-semantic-enrichment/subject.json",
+        "measured:image-world-model-chat/subject.json",
+        "measured:image-neo4j/subject.json"
+      ],
+      "observation": "Ausgewählte Rohdateien gegen laufgebundene Producer-Manifeste geprüft.",
+      "remaining": "Zugriffsschutz, Aufbewahrung und unabhängige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivprüfung.",
+      "title": "Artefakte vor Manipulation schützen",
+      "tools": [
+        "SHA-256",
+        "GitHub Artifacts"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-012",
+      "evidence_refs": [
+        "measured:image-ha-sync/subject.json",
+        "measured:image-query-api/subject.json",
+        "measured:image-semantic-enrichment/subject.json",
+        "measured:image-world-model-chat/subject.json",
+        "measured:image-neo4j/subject.json"
+      ],
+      "observation": "Image-IDs und Quell-Commit sind durchgängig zugeordnet.",
+      "remaining": "Identität ist keine Aussage über Freigabe oder Vertrauenswürdigkeit des Producers.",
+      "title": "Artefaktidentität",
+      "tools": [
+        "Docker",
+        "SHA-256"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-013",
+      "evidence_refs": [
+        "measured:platform/environments.json",
+        "staging:deployment-approval.json",
+        "staging:deployment-receipt.json"
+      ],
+      "observation": "A maintainer explicitly approved the exact commit, source run, target and acknowledged staging risk before deployment.",
+      "remaining": "Staging-only decision; no production approval or general vulnerability risk acceptance.",
+      "title": "Deployment autorisieren",
+      "tools": [
+        "GitHub API",
+        "Staging deployment evidence"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-014",
+      "evidence_refs": [
+        "measured:runtime/deployment.json",
+        "staging:deployment-receipt.json",
+        "staging:checks.txt"
+      ],
+      "observation": "The target ran only the two approved local image IDs with pull_policy never; both identities and health were rechecked after start.",
+      "remaining": "Runtime IDs are locally observed transport identities; no independent signed deployment attestation.",
+      "title": "Nur freigegebene Artefakte deployen",
+      "tools": [
+        "Docker",
+        "Staging deployment evidence",
+        "pytest"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-015",
+      "evidence_refs": [
+        "measured:image-ha-sync/manifest.json",
+        "measured:image-neo4j/manifest.json",
+        "measured:image-query-api/manifest.json",
+        "measured:image-semantic-enrichment/manifest.json",
+        "measured:image-world-model-chat/manifest.json",
+        "measured:platform/manifest.json",
+        "measured:runtime/manifest.json",
+        "measured:source/manifest.json"
+      ],
+      "observation": "Ausgewählte Nachweisdateien an Repository, Commit, Lauf und Versuch gebunden und zentral geprüft.",
+      "remaining": "Keine unabhängige Attestation; nicht heruntergeladene Archivbytes bleiben ungeprüft.",
+      "title": "Maschinenlesbare Nachweise",
+      "tools": [
+        "JSON",
+        "JUnit",
+        "SHA-256"
+      ]
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-016",
+      "evidence_refs": [
+        "measured:runtime/deployment.json",
+        "measured:runtime/junit.xml",
+        "measured:runtime/query-api.log",
+        "measured:runtime/neo4j.log",
+        "staging:deployment-receipt.json",
+        "staging:query-api.log",
+        "staging:neo4j.log",
+        "staging:checks.txt"
+      ],
+      "observation": "Deployed versions, container logs, outage detection, recovery, restart and security boundaries are retained for the staging run.",
+      "remaining": "Define durable operational/security-event retention, backup-restore, monitoring and incident ownership before production use.",
+      "title": "Betrieb nachvollziehen",
+      "tools": [
+        "Docker",
+        "HTTP",
+        "Neo4j",
+        "Staging deployment evidence",
+        "pytest"
+      ]
+    }
+  ],
+  "enforcement": "report-only",
+  "evidence_binding": "3319b1e3d8192e2b40c69ee010b72e27f9cd672be6ba149a103a93a8be94f1ad",
+  "official_compliance_result": false,
+  "production_approval": false,
+  "profile": "ha-cpswms-l1-consolidated-v1",
+  "reference_baseline": "l1-baseline-v1.1.3",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "result_type": "consolidated-l1-assessment",
+  "risk_acceptance": false,
+  "run": {
+    "attempt": 1,
+    "branch": "main",
+    "commit": "5d5772d989b0080ae041969315742c8fbbca6dfe",
+    "created_at": "2026-09-18T13:39:30Z",
+    "event": "push",
+    "id": "35351493542",
+    "updated_at": "2026-09-18T13:42:18Z"
+  },
+  "schema_version": "1.0.0",
+  "source_assessments": {
+    "measured": {
+      "evidence_binding": "dd9c9fd804a48e2f143073932761273fb93ef9faf65ffe9376cb92b91cba15e7",
+      "profile": "ha-cpswms-l1-measured-v1",
+      "source_file": "status/measured-l1-results/joku-dev__ha-CPsWMS/run-35351493542-attempt-1.json"
+    },
+    "staging": {
+      "effective_level": "integrity_verified",
+      "evidence_binding": "4bdcc953802dd92afbe1e2d77d02f4e31ca77a1b618eff976c7824d66669e067",
+      "freshness": "pass",
+      "replay": "pass",
+      "source_file": "status/staging-deployment-results/joku-dev__ha-CPsWMS/2026-09-18T16-06-25Z-run-35351493542.json"
+    }
+  },
+  "summary": {
+    "findings": 2,
+    "gap": 1,
+    "measured": 7,
+    "partial": 6
+  },
+  "verified_at": "2026-09-18T16:15:00Z"
+}
