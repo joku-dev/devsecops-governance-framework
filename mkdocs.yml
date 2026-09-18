@@ -147,6 +147,7 @@ nav:
       - Security:
           - GitHub Access And Token Maintenance: operations/security/github-access-and-token-maintenance.md
           - Governance Repository Self-Security: operations/security/governance-repository-self-security.md
+          - Repository Code Security Assessment: operations/security/repository-code-security-assessment-2026-09-18.md
       - Status:
           - Daily Governance Operations: operations/status/daily-governance-operations.md
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md

@@ -124,7 +124,11 @@ def tokens_from_normalized(normalized: str) -> frozenset[str]:
 
 
 def stable_id(source_id: str, line_number: int, statement: str) -> str:
-    digest = hashlib.sha1(f"{source_id}:{line_number}:{statement}".encode("utf-8")).hexdigest()[:10]
+    # nosemgrep: python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1
+    digest = hashlib.sha1(
+        f"{source_id}:{line_number}:{statement}".encode("utf-8"),
+        usedforsecurity=False,
+    ).hexdigest()[:10]
     return f"REQ-{source_id}-{digest}"
 
 

@@ -15,6 +15,7 @@ permissions:
 
 jobs:
   analyze:
+    # Keep this context name stable because the protected branch requires it.
     name: Analyze Python
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +24,6 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4
         with:
-          languages: python
+          languages: python, javascript-typescript
       - name: Analyze
         uses: github/codeql-action/analyze@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4
