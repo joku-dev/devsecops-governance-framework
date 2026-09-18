@@ -175,8 +175,11 @@ Producer-Statusangaben werden nicht als Kontrollfreigabe übernommen.
 ./scripts/validate_all.sh
 ```
 
-Die Aufbereitung verwendet das versionierte Pilotprofil
-`ha-cpswms-l1-measured-v1` in `scripts/lib/measured_l1.py`. Es referenziert die
+Die Aufbereitung verwendet für neue Läufe das versionierte Pilotprofil
+`ha-cpswms-l1-measured-v2` in `scripts/lib/measured_l1.py`; historische
+v1-Snapshots bleiben weiter validierbar. Das Profil prüft zusätzlich den
+Main-Ruleset, Python-3.12-Locks samt SHA-256, Anwendungs-/CI-SBOMs und
+`pip-audit`-Rohdaten. Es referenziert die
 bestehenden 16 Kontrollen in `model/controls/dscb-l1.yaml`, führt keine neuen
 Anforderungen ein und ersetzt weder OPA noch die freigegebene Baseline.
 Änderungen an der Bedeutung dieses Profils benötigen eine neue Profil-/Vertragsversion.
@@ -190,9 +193,10 @@ Anforderungen ein und ersetzt weder OPA noch die freigegebene Baseline.
 
 Im aktuellen erfassten Lauf `35241262722` ergeben sich **5 technisch belegte,
 6 teilweise belegte, 2 Kontrollen mit Befunden und 3 Nachweislücken**.
-Die zentrale Bewertung ist bewusst enger als der Consumer-Abdeckungsbericht
-(7/4/2/3): L1-002 belegt Commit/Autor, aber keine organisatorische VCS-Freigabe;
-L1-005 umfasst die fünf Runtime-Images, nicht alle Entwicklungs-/Build-Abhängigkeiten.
+Historische v1-Läufe behalten ihre damalige Bewertung. In v2 können L1-003,
+L1-004, L1-005 und L1-007 nur dann technisch auf `measured` steigen, wenn die
+neuen Rohdaten zentral nachgerechnet werden. L1-002 bleibt trotz Commit-/Autor-
+Nachweis teilweise, solange keine organisatorische VCS-Freigabe belegt ist.
 Die 58 erfolgreichen Tests (50 Quelltests und 8 Runtime-Integrationstests) und
 Scanbefunde werden aus Rohdaten nachgerechnet.
 
