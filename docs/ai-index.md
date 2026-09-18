@@ -211,6 +211,7 @@ python3 -m unittest discover -s tests
 | Measured L1 control assessment | `scripts/intake_measured_l1.py`, `scripts/lib/measured_l1.py`, `schemas/measured-l1-assessment.schema.json`, `status/measured-l1-results/`; viewer repository tab `l1` |
 | L1 control evidence assurance | `model/evidence/control-evidence-assurance-profile.yaml`, `scripts/lib/control_evidence_assurance.py`, `schemas/control-evidence-assurance.schema.json`, `status/control-evidence-assurance/`; viewer repository tabs `l1` and `trust` |
 | Repository Security viewer projection | `generated/reports/governance-repository-security.json`, `schemas/governance-repository-security-report.schema.json`, `scripts/lib/viewer_app.py`; viewer route `#repository-security` |
+| Repository Security automatic refresh | `.github/workflows/refresh-governance-repository-security.yml`, `scripts/publish_self_security_refresh.py`; material changes only, one reviewed PR, no direct main write |
 | Viewer application | `apps/governance-viewer/`, `scripts/lib/viewer_app.py`, `scripts/lib/viewer_technical.py`, `generated/viewer/app/index.html`; guide: `docs/operations/guides/governance-viewer-app.md` |
 | Viewer generator | `scripts/generate_status_viewer.py` |
 | Viewer outputs | `generated/viewer/app/index.html` (primary application), `generated/viewer/status-viewer.html` (technical fallback) |

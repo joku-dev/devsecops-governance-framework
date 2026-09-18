@@ -72,9 +72,49 @@ Die Ansicht übernimmt Gesamtstatus, Kriterien, Beobachtungsdetails und
 dokumentierte Maßnahmen aus dem gespeicherten Bericht. Sie fragt GitHub nicht
 live ab und ändert keine Schutzregel.
 
-The GitHub workflow runs the same assessment for pull requests, `main`, daily,
-and on manual dispatch. Findings remain report-only during the initial
-observation period.
+The required-check workflow runs the same assessment for pull requests, pushes
+to `main`, and manual dispatch. A separate trusted refresh workflow runs daily
+at `04:31 UTC` and on manual dispatch. Findings remain report-only.
+
+## Automatic Versioned Refresh
+
+`.github/workflows/refresh-governance-repository-security.yml` collects a fresh
+live observation from protected `main`, uploads the point-in-time report as a
+workflow artifact, regenerates the Governance Workspace projection, and invokes
+`scripts/publish_self_security_refresh.py`.
+
+The publisher compares security-relevant JSON after removing only the top-level
+and nested observation timestamps. If all other values are unchanged, it does
+not create a commit or update a pull request. A changed criterion, observation,
+summary, remediation step, API error, repository setting, workflow inventory,
+or release-tag result is material.
+
+Material changes are restricted to:
+
+```text
+generated/reports/governance-repository-security.json
+generated/reports/governance-repository-security.md
+generated/viewer/app/data.json
+```
+
+They are proposed through one branch and at most one open pull request:
+
+```text
+automation/self-security-refresh
+```
+
+If that pull request already exists, the workflow merges the latest protected
+`main` into its branch without force-pushing, writes the newly generated files,
+and updates the same review. An unresolved merge conflict, a stale branch
+without an open pull request, a symlink, or any non-allowlisted source change
+fails closed.
+
+The workflow explicitly dispatches Governance CI, CodeQL, Self-Security, and
+Dependency Review for the automation branch. It never approves or merges its
+own pull request, never changes GitHub settings, and never pushes to `main`.
+Merging the reviewed refresh updates both the versioned report and the Viewer;
+the point-in-time artifact remains available even when no material change is
+proposed.
 
 ## Current Activation State
 
@@ -157,6 +197,11 @@ CodeQL to JavaScript. See the dated
 for findings, scanner evidence and residual limits. This code review complements
 the live repository-control profile; it does not turn the report-only
 Self-Security result into a certification.
+
+GCR-2026-098 adds the automatic reviewed refresh described above. The daily
+schedule moved from the read-only required-check workflow to the dedicated
+writer so exactly one scheduled assessment performs publication logic. Pull
+requests and pushes to `main` continue to run the read-only required check.
 
 ## Safe Activation Sequence
 

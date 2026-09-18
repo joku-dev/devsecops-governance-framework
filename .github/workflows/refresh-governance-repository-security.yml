@@ -1,0 +1,62 @@
+name: Refresh Governance Repository Self-Security
+
+on:
+  schedule:
+    - cron: "31 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write # Dispatch all required checks for a GITHUB_TOKEN-created PR.
+
+concurrency:
+  group: governance-repository-self-security-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out protected main and release tags
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: Install validation dependencies
+        run: python -m pip install --require-hashes -r requirements-validation.lock
+
+      - name: Assess live repository security posture
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/assess_governance_repository_security.py
+          cat generated/reports/governance-repository-security.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload current point-in-time assessment
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: governance-repository-security-refresh
+          path: |
+            generated/reports/governance-repository-security.json
+            generated/reports/governance-repository-security.md
+
+      - name: Regenerate Viewer projection
+        run: python3 scripts/generate_status_viewer.py
+
+      - name: Validate bounded refresh
+        run: |
+          python3 scripts/validate_governance_repo.py
+          python3 -m unittest tests.test_governance_repository_security tests.test_viewer_app tests.test_self_security_refresh_publication
+
+      - name: Open or update self-security review PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/publish_self_security_refresh.py
