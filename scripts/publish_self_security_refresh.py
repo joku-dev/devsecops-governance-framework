@@ -26,6 +26,7 @@ CHECK_WORKFLOWS = (
     "governance-repository-security.yml",
     "dependency-review.yml",
 )
+EXPECTED_LEGACY_PROTECTION_404 = "gh: Branch not protected (HTTP 404)"
 
 
 def git(root: Path, *args: str, check: bool = True) -> subprocess.CompletedProcess[str]:
@@ -59,6 +60,24 @@ def normalized_report(report: dict) -> dict:
 
 def materially_equal(current: dict, previous: dict) -> bool:
     return normalized_report(current) == normalized_report(previous)
+
+
+def blocking_api_errors(report: dict) -> list[str]:
+    observation = report.get("observation", {})
+    errors = observation.get("api_errors", []) if isinstance(observation, dict) else []
+    repository = observation.get("repository", {}) if isinstance(observation, dict) else {}
+    ruleset_protection_confirmed = (
+        isinstance(repository, dict) and repository.get("branch_protected") is True
+    )
+    return [
+        error
+        for error in errors
+        if not (
+            ruleset_protection_confirmed
+            and isinstance(error, str)
+            and error.endswith(EXPECTED_LEGACY_PROTECTION_404)
+        )
+    ]
 
 
 def changed_paths(root: Path) -> list[str]:
@@ -134,11 +153,11 @@ def publish(
         raise ValueError("Self-security report JSON was not regenerated")
 
     current = json.loads((root / REPORT_JSON).read_text(encoding="utf-8"))
-    api_errors = current.get("observation", {}).get("api_errors", [])
+    api_errors = blocking_api_errors(current)
     if api_errors:
         raise ValueError(
             "Self-security observation is incomplete; GitHub API errors must be resolved "
-            "before versioned publication"
+            f"before versioned publication: {'; '.join(api_errors)}"
         )
     outputs = {path: (root / path).read_bytes() for path in paths}
     git(root, "fetch", "origin", "main")

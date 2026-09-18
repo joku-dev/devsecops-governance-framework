@@ -100,12 +100,19 @@ but any resulting GitHub API error makes versioned publication fail closed. The
 incomplete point-in-time report remains available as a workflow artifact for
 diagnosis.
 
+API errors record the failing endpoint so token-scope problems remain
+diagnosable. Two legacy branch-protection endpoints may return `404` when an
+effective repository ruleset protects `main`. Those specific responses are
+non-blocking only when the same observation confirms effective branch
+protection through the ruleset API. Authentication failures, authorization
+failures, invalid responses, and every other API error remain blocking.
+
 The publisher compares security-relevant JSON after removing only the top-level
 and nested observation timestamps. If all other values are unchanged, it does
 not create a commit or update a pull request. A changed criterion, observation,
 summary, remediation step, repository setting, workflow inventory, or
-release-tag result is material. GitHub API errors prevent versioned publication
-instead of being interpreted as a repository-setting regression.
+release-tag result is material. Blocking GitHub API errors prevent versioned
+publication instead of being interpreted as a repository-setting regression.
 
 Material changes are restricted to:
 

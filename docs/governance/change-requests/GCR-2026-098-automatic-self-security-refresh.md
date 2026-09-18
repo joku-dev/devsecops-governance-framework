@@ -47,7 +47,7 @@ Zeitstempel-Rauschen oder automatische Freigaben zu erzeugen.
 - [x] Unit-Test gegen normative oder nicht allowlistete Änderungen
 - [x] Unit-Test für Main-Unveränderlichkeit und Check-Dispatch
 - [x] Workflow-Vertragstest für Main-only, Berechtigungen und fehlenden Merge
-- [x] `./scripts/validate_all.sh` (`600` tests passed)
+- [x] `./scripts/validate_all.sh` (`602` tests passed)
 - [x] Pull-Request-Prüfungen für Implementierung PR #135
 - [ ] erster manueller Live-Refresh auf `main`
 
@@ -74,6 +74,15 @@ trennt die Aufgaben: `GH_SELF_SECURITY_READ_TOKEN` erhält nur Zugriff auf diese
 Repository und **Administration: Read-only**; der Intake-Token wird nicht für
 Self-Security wiederverwendet. Bis dieses Secret gesetzt ist, bleibt die
 versionierte Publikation fail-closed.
+
+Der vierte Live-Versuch (Run `35313772168`) verwendete das neue Secret und
+bestand erneut Erfassung, OPA, Repository-Validierung und Viewer-Projektion.
+Vier administrative Endpunkte antworteten weiterhin mit `403`, weshalb der
+Publisher korrekt stoppte. Die Diagnose nennt künftig jeden betroffenen
+Endpunkt. Gleichzeitig werden die zwei erwarteten `404`-Antworten der alten
+Branch-Protection-Endpunkte nur dann als nicht blockierend klassifiziert, wenn
+die gleiche Beobachtung den Schutz von `main` durch das effektive Ruleset
+bestätigt. Alle `403`-Antworten bleiben blockierend.
 
 ## Release Decision
 
