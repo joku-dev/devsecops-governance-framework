@@ -103,7 +103,20 @@ with sync_playwright() as p:
     repo['findings'][0]['package']='<img src=x onerror="window.injected=true">'
     safe=browser.new_page();safe.route('**/data.json',lambda route:route.fulfill(json=hostile))
     safe.goto(URL+REPO+'findings');safe.wait_for_selector('[data-finding]')
+    safe.locator('#finding-query').fill('<img src=x onerror="window.injected=true">')
+    assert safe.locator('[data-finding]').count()==1
+    safe.locator('#finding-query').fill('img')
+    assert safe.locator('[data-finding]').count()>=1
     assert '<img' in safe.locator('main').inner_text()
+    assert safe.locator('main img').count()==0
+    assert safe.evaluate('window.injected') is None
+    safe.goto(URL+'#repositories');safe.wait_for_selector('#repo-search')
+    safe.locator('#repo-search').fill('<img src=x onerror="window.injected=true">')
+    assert safe.locator('main img').count()==0
+    assert safe.evaluate('window.injected') is None
+    safe.goto(URL+'#repository/%3Cimg%20src%3Dx%20onerror%3D%22window.injected%3Dtrue%22%3E/summary')
+    safe.wait_for_selector('h1')
+    assert safe.locator('h1').inner_text()=='Ansicht nicht gefunden'
     assert safe.locator('main img').count()==0
     assert safe.evaluate('window.injected') is None
     # Preserve coverage of the warning for genuinely mismatched contexts.
