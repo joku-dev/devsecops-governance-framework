@@ -24,8 +24,13 @@ the repository is free of every vulnerability.
 The reviewed code has a strong baseline after GCR-2026-096, but the pre-change
 state did not fully meet the expected secure-input and credential-handling
 requirements. Two relevant trust-boundary defects were confirmed and corrected.
-No known vulnerable pinned Python package, open GitHub security alert, command
-injection or unsafe Python deserialization was found in the reviewed scope.
+The first expanded JavaScript CodeQL run then reported 16 high-severity DOM-XSS
+alerts across eight source locations and their generated copies. Review of
+every SARIF path showed one common analysis issue: user-entered filter state
+and the validated report model shared the same global object, so CodeQL treated
+selected report rows as if they contained the filter text. The implementation
+now keeps the two trust domains in separate objects and retains hostile-input
+browser tests for stored data, filters and URL fragments.
 
 | ID | Initial severity | Finding | Resolution |
 |---|---|---|---|
@@ -34,19 +39,22 @@ injection or unsafe Python deserialization was found in the reviewed scope.
 | RCS-003 | medium | CodeQL scanned Python but not the maintained viewer JavaScript. | `javascript-typescript` was added to the existing required CodeQL job. The check context stays `Analyze Python` to preserve branch protection. |
 | RCS-004 | medium | Two XML ingestion paths did not consistently enforce explicit input size and DTD/entity rejection. | Candidate workbook XML and measured JUnit parsing now reject oversized content and DTD/entity declarations before `ElementTree` parsing. |
 | RCS-005 | informational | Bandit and Semgrep identify SHA-1 calls although they are used for stable non-security IDs and the Git object format. | `usedforsecurity=False` and scanner annotations document the bounded non-cryptographic use. SHA-256 remains the evidence-integrity algorithm. |
+| RCS-006 | high scanner classification, false-positive data flow | The first JavaScript CodeQL run raised 16 `js/xss-through-dom` alerts at eight viewer sinks and their generated copies. All paths originated at filter input stored beside the report model; the input only selected rows and was never interpolated. | Untrusted UI state and validated report data are structurally separated. Browser regressions exercise a matching HTML payload in stored scan data, hostile filter text and a hostile route fragment, and verify that no element or event handler is created. |
 
 ## Verification Evidence
 
 | Check | Result |
 |---|---|
-| GitHub Code Scanning alerts | 0 open before the change |
+| GitHub Code Scanning before JavaScript coverage | 0 open under the former Python-only configuration |
+| First expanded JavaScript CodeQL run | 16 open alerts, representing 8 source sinks plus 8 generated copies; all shared the same mixed-state data-flow cause |
+| Corrected JavaScript CodeQL run | Pending pull-request verification |
 | GitHub Dependabot alerts | 0 open |
 | GitHub Secret Scanning alerts | 0 open |
 | `pip-audit 2.10.1`, `requirements-validation.lock` | 7 dependencies, 0 known vulnerabilities |
 | `pip-audit 2.10.1`, `requirements-docs.lock` | 22 dependencies, 0 known vulnerabilities |
 | Bandit 1.9.4 after hardening | 0 high, 0 medium; remaining low-confidence/low-severity diagnostics are reviewed uses of list-form subprocess calls, standard-library XML imports and false-positive literals |
 | Semgrep 1.177.0 | Python, JavaScript and secret rules; no unresolved finding after documenting the two required non-security SHA-1 uses |
-| Targeted attack regression tests | traversal, absolute and Windows paths, case-colliding targets, symlinks, member/count/expanded-size limits, cross-origin credential stripping and HTTPS downgrade rejection |
+| Targeted attack regression tests | traversal, absolute and Windows paths, case-colliding targets, symlinks, member/count/expanded-size limits, cross-origin credential stripping, HTTPS downgrade rejection, stored viewer payloads, hostile filters and hostile routes |
 
 The dependency result is time-bound to 18 September 2026. Dependabot and the
 weekly CodeQL schedule provide continued observation, while future changes
@@ -63,8 +71,9 @@ still require review and validation.
 - Shell execution is avoided in the reviewed Python subprocess calls; commands
   use argument lists and no production `shell=True`, `eval`, `exec`, pickle or
   unsafe YAML loader was found.
-- Viewer data crosses a dedicated projection and escaping boundary, with
-  hostile-input browser tests retained as defense against stored XSS.
+- Viewer data crosses a dedicated projection and escaping boundary. Validated
+  report data and user-controlled UI state are held separately, and hostile
+  stored data, filter and route tests are retained as defense against DOM XSS.
 
 ## Residual Security Work
 
