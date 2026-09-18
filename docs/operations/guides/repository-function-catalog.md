@@ -557,10 +557,14 @@ Sammlungsfehler, Modelle und Agent-Nutzung. Technische Tabellen unterstützen
 Suche und Seitennavigation; auf Mobilgeräten werden Unterbereiche ausgewählt.
 Die L1-Detailansicht zeigt für jede der 16 Kontrollen zusätzlich Trust, Freshness,
 Integrität, Provenienz, Replay, Custody, Attestation und fehlende Nachweisgruppen.
+Der Repository-Reiter **Staging** zeigt reale Deployment-Identität, Approval,
+Health-, Funktions-, Persistenz- und Wiederanlaufprüfungen sowie die getrennte
+L1-Ergänzung für 013, 014 und 016.
 
 **Implementierungsstellen:** `scripts/generate_repository_results_index.py`,
 `scripts/generate_architecture_results_index.py`,
 `scripts/generate_typed_evidence_results_index.py`,
+`scripts/intake_staging_deployment_evidence.py`,
 `scripts/generate_governance_graph.py`, `scripts/generate_status_viewer.py`,
 `generated/viewer/status-viewer.html`, `generated/graph/governance-graph.json`,
 `apps/governance-viewer/`, `scripts/lib/viewer_app.py`, `generated/viewer/app/`.

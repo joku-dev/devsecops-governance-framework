@@ -14,7 +14,7 @@ nicht erforderlich.
 |---|---|
 | Übersicht | Repository-Anzahl, gemessene kritische/hohe Meldungen, Governance mit Befunden und abgeleitete nächste Prüfungen |
 | Repositories | Suche, offizielle DevSecOps-/Architektur-Ergebnisse und separate Container-Scans |
-| Repository-Detail | Zusammenfassung, Evidence Trust je Governance-Domain, L1-Nachweise je Kontrolle, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
+| Repository-Detail | Zusammenfassung, Evidence Trust je Governance-Domain, L1-Nachweise je Kontrolle, reales Staging-Deployment, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
 | Befunde | HIGH/CRITICAL nach Repository, Schweregrad, Image und CVE/Paket durchsuchen; 20 Gruppen pro Seite |
 | Repository Security | Aktueller Self-Security-Stand des zentralen Governance-Repositories, alle 16 Kriterien, offene kritische/hohe Punkte und dokumentierte Maßnahmen |
 | Nachweise | Ergebnisnachweise, Evidence Trust, Replay-Prüfung, Nachweisherkunft, vollständige Governance-Laufhistorie, Artefakte und Daten |
@@ -81,6 +81,20 @@ als eigener Status sichtbar. Fehlende Messungen ergeben keinen PASS.
 [Kontrollen öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository/joku-dev%2Fha-CPsWMS/l1)
 · [Vertrag und Prüfgrenzen](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle)
 
+## Reales Staging-Deployment
+
+Unter **Repositories → ha-CPsWMS → Staging** steht der tatsächlich auf der
+isolierten VM ausgeführte Lauf. Die Ansicht zeigt Ziel, deployten Commit,
+Quelllauf, exakte Runtime-Image-IDs, 19 Laufzeitprüfungen, Security-Grenzen,
+Ausfall/Wiederherstellung, Evidence Trust und die ergänzende Bewertung für
+L1-013, L1-014 und L1-016.
+
+[Staging-Lauf öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository/joku-dev%2Fha-CPsWMS/staging)
+
+Der Staging-Nachweis verändert den früheren CI-Snapshot nicht. Er ist ein späterer,
+append-only gespeicherter Laufzeitnachweis für den dort genannten Commit. Seine
+Freigabe ist weder Produktionsfreigabe noch allgemeine Risikoakzeptanz.
+
 ## Bedeutung der Daten
 
 - Governance-Ergebnisse stammen unverändert aus `latest_result` der vorhandenen
@@ -96,6 +110,9 @@ als eigener Status sichtbar. Fehlende Messungen ergeben keinen PASS.
 - Kontroll-Assurance stammt aus validierten, append-only gespeicherten
   `status/control-evidence-assurance/`-Snapshots. Fehlende erforderliche
   Nachweisanteile führen für die betreffende Kontrolle zu `unverified`.
+- Staging-Deployment-Ergebnisse stammen aus validierten, append-only gespeicherten
+  `status/staging-deployment-results/`-Snapshots. Der Intake prüft Bundle-Hashes,
+  Quelllauf, Approval und Subjektbindung und projiziert sie getrennt von CI.
 - Container-Sicherheit stammt aus den validierten, separat aufgenommenen
   `status/measured-security-results/`-Snapshots. Diese sind report-only.
 - HIGH/CRITICAL-Meldungen zählen Image-/Paketvorkommen. CVE-IDs werden zusätzlich
@@ -113,10 +130,10 @@ als eigener Status sichtbar. Fehlende Messungen ergeben keinen PASS.
   Ticketstatus, keine VEX-Feststellung und keine formale Risikobewertung.
 
 Die Anwendung enthält die Governance-Indizes für drei Repositories sowie
-gemessene und typisierte Nachweise für ha-CPsWMS. Sie führt selbst keine Tests
-oder Scans aus. Die aktuell veröffentlichten Daten kombinieren Governance-Läufe
-vom 16. September, die getrennte Container-Security-Historie vom 16. September
-und den Typed-Evidence-/L1-Lauf vom 17. September 2026. Zukünftige geprüfte
+gemessene, typisierte und reale Staging-Nachweise für ha-CPsWMS. Sie führt selbst
+keine Tests oder Scans aus. Die aktuell veröffentlichten Daten kombinieren die
+jeweils versionierten Governance-, Security-, Typed-Evidence-, L1- und
+Staging-Snapshots. Zukünftige geprüfte
 Intakes können diese Stände verändern.
 
 ## Architektur und Aktualisierung

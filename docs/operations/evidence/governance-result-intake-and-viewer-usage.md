@@ -274,6 +274,27 @@ sichtbar und setzt den aggregierten Kontroll-Trust auf `unverified`. Findings
 noch Governance-Ergebnis, Blocking-Modus, Produktionsfreigabe oder
 Risikoakzeptanz.
 
+## Staging Deployment Evidence
+
+Ein realer, explizit autorisierter Staging-Lauf wird getrennt von CI- und
+Governance-Ergebnissen aufgenommen. Das Anwendungs-Repository bewahrt Approval,
+Receipt, Prüfliste, HTTP-Antworten, Containerlogs und relative SHA-256-Prüfsummen.
+Der zentrale Intake prüft die vollständige Hashabdeckung, Receipt-interne Hashes,
+Ziel, Approval, deployten Commit und den zugehörigen erfolgreichen Mainline-Lauf.
+
+```bash
+.venv-validation/bin/python scripts/intake_staging_deployment_evidence.py \
+  --bundle /path/to/ha-CPsWMS/deployment/staging/evidence/<bundle> \
+  --evidence-repository-commit <full-commit>
+```
+
+Der append-only Snapshot liegt unter `status/staging-deployment-results/`. Im
+Viewer erscheint er im Repository-Reiter **Staging**, im Evidence-Trust-Bereich
+und als getrennte spätere Ergänzung der L1-Kontrollen 013, 014 und 016. Er bleibt
+report-only und gilt nicht als Produktionsfreigabe oder allgemeine
+Risikoakzeptanz. Die vollständigen Prüfgrenzen stehen in
+`docs/operations/evidence/staging-deployment-evidence.md`.
+
 ## Intake Script
 
 Use:
