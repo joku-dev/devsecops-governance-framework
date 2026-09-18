@@ -10,7 +10,7 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 49,
+    "assessments": 50,
     "recorded_failures": 8,
     "recalculated_failures": 8,
     "legacy_assessments_superseded": 2,
@@ -21,7 +21,7 @@
       "cross_repository_reuse": 2,
       "deterministic_report_reuse": 6,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 26,
+      "new_evidence": 27,
       "same_context_content_conflict": 2
     }
   },
@@ -1648,7 +1648,7 @@
       "artifact_name": "architecture-governance-evidence",
       "artifact_digest_available": false,
       "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T13-39-46Z-run-35351493524.json",
-      "official_latest": true,
+      "official_latest": false,
       "recorded_result": "pass",
       "recalculated_result": "pass",
       "classification": "new_evidence",
@@ -1790,6 +1790,25 @@
           ]
         }
       ]
+    },
+    {
+      "domain": "architecture",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-09-18T16:55:27Z",
+      "run_id": "35371297967",
+      "event": "push",
+      "commit_id": "37e5a51ba627ca39880219ba311759f0be50ac04",
+      "artifact_name": "architecture-governance-evidence",
+      "artifact_digest_available": false,
+      "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T16-55-27Z-run-35371297967.json",
+      "official_latest": true,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "f7a7741775a7dcadbd7aac6b91169a7af8b0119209fd53035742a0af13371d7a",
+      "relationships": []
     },
     {
       "domain": "devsecops",
