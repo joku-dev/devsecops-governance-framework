@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.0.0",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+  "governance_repository": "joku-dev/devsecops-governance-framework",
+  "result_type": "architecture-runtime-governance-run",
+  "generated_at": "2026-09-18T19:35:34Z",
+  "pipeline": {
+    "pipeline_name": "Architecture Runtime Governance",
+    "pipeline_run_id": "35386771102",
+    "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771102",
+    "event": "push",
+    "status": "success"
+  },
+  "repository": {
+    "branch": "main",
+    "branch_protected": true,
+    "commit_id": "2c9724dc34845f40425018a46d254c2b17221966"
+  },
+  "target": {
+    "path": "/home/runner/work/ha-CPsWMS/ha-CPsWMS/app",
+    "commit": "2c9724d",
+    "release_id": "2c9724dc34845f40425018a46d254c2b17221966",
+    "detected_services": 5
+  },
+  "checks": {
+    "architecture_runtime_governance": "success"
+  },
+  "evidence": {
+    "release_input": true,
+    "architecture_report": true,
+    "marker_assessments": 32,
+    "release_compatibility_declaration": true,
+    "solution_baseline": true,
+    "compatibility_evidence": true,
+    "security_evidence": true,
+    "deployment_evidence": true,
+    "runtime_evidence": true,
+    "review_evidence": false,
+    "exception_evidence": false,
+    "feedback_evidence": true,
+    "exceptions": 0
+  },
+  "artifact_metadata": {
+    "artifact_name": "architecture-governance-evidence",
+    "artifact_size_bytes": 4420,
+    "architecture_governance_report_sha256": "d85896b0d2f04582e0d0e0e30f5ab7fab3099b93b2ab443d9d3a4e28b3463641",
+    "architecture_release_input_sha256": "b505efbdfe622d17aa179c7eba12ba99c57f2f0035f80bb04be5d98580fbaf2b",
+    "artifact_archive_sha256": "c8bfbee8a2b62b7c8560a08ad31d952f100039a33ea974de1d549f082a8ec7d7"
+  },
+  "trust": {
+    "model_id": "evidence-trust-model-v1",
+    "capture_phase": "additive_capture",
+    "effective_level": "integrity_verified",
+    "assessment_status": "evaluated",
+    "verifier": "central-governance-intake/v1",
+    "verified_at": "2026-09-18T19:35:41Z",
+    "checks": [
+      {
+        "id": "subject_identity_complete",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source",
+          "trust.capture.subjects"
+        ]
+      },
+      {
+        "id": "content_digest_verified",
+        "result": "pass",
+        "evidence_refs": [
+          "artifact_metadata.architecture_governance_report_sha256",
+          "artifact_metadata.architecture_release_input_sha256",
+          "artifact_metadata.artifact_archive_sha256"
+        ]
+      },
+      {
+        "id": "producer_run_resolved",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.run_id"
+        ]
+      },
+      {
+        "id": "commit_matches_run",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.commit_id"
+        ]
+      },
+      {
+        "id": "artifact_belongs_to_run",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source.artifact_name"
+        ]
+      },
+      {
+        "id": "baseline_ref_resolved",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "freshness_evaluated",
+        "result": "pass",
+        "evidence_refs": [
+          "generated_at",
+          "trust.verified_at"
+        ],
+        "policy_id": "freshness-governance-result-24h",
+        "policy_version": "0.1.0",
+        "policy_status": "provisional",
+        "produced_at": "2026-09-18T19:35:34Z",
+        "evaluated_at": "2026-09-18T19:35:41Z",
+        "maximum_age_seconds": 86400,
+        "finding_effect": "report_only",
+        "reason": "Evidence age 7s is within the provisional maximum 86400s.",
+        "age_seconds": 7
+      },
+      {
+        "id": "replay_key_unique",
+        "result": "pass",
+        "evidence_refs": [
+          "trust.capture.source",
+          "trust.capture.subjects"
+        ],
+        "finding_effect": "report_only",
+        "reason": "No prior replay key or incompatible digest reuse was found.",
+        "replay_key": "12ff276af223d59700c2be9cf47a54a40be30a2030100d0d6840faa0fda3d21d"
+      },
+      {
+        "id": "custody_recorded",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_signature_valid",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_issuer_trusted",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      },
+      {
+        "id": "attestation_subject_matches",
+        "result": "not_evaluated",
+        "evidence_refs": []
+      }
+    ],
+    "capture": {
+      "contract_id": "evidence-collector-contract",
+      "contract_version": "0.1.0",
+      "status": "collected",
+      "enforcement": "report_only",
+      "evidence_type": "governance_result",
+      "governance_domain": "architecture",
+      "collector": {
+        "id": "central-governance-intake",
+        "version": "0.1.0"
+      },
+      "produced_at": "2026-09-18T19:35:34Z",
+      "captured_at": "2026-09-18T19:35:41Z",
+      "source": {
+        "provider": "github_actions",
+        "repository_id": "joku-dev/ha-CPsWMS",
+        "commit_id": "2c9724dc34845f40425018a46d254c2b17221966",
+        "workflow_name": "Architecture Runtime Governance",
+        "run_id": "35386771102",
+        "run_attempt": 1,
+        "artifact_name": "architecture-governance-evidence",
+        "source_uri": "https://api.github.com/repos/joku-dev/ha-CPsWMS/actions/artifacts/10564570203/zip"
+      },
+      "subjects": [
+        {
+          "id": "architecture_governance_report",
+          "evidence_ref": "artifact_metadata.architecture_governance_report_sha256",
+          "algorithm": "sha256",
+          "digest": "d85896b0d2f04582e0d0e0e30f5ab7fab3099b93b2ab443d9d3a4e28b3463641",
+          "size_bytes": 6191
+        },
+        {
+          "id": "architecture_release_input",
+          "evidence_ref": "artifact_metadata.architecture_release_input_sha256",
+          "algorithm": "sha256",
+          "digest": "b505efbdfe622d17aa179c7eba12ba99c57f2f0035f80bb04be5d98580fbaf2b",
+          "size_bytes": 24498
+        },
+        {
+          "id": "artifact_archive",
+          "evidence_ref": "artifact_metadata.artifact_archive_sha256",
+          "algorithm": "sha256",
+          "digest": "c8bfbee8a2b62b7c8560a08ad31d952f100039a33ea974de1d549f082a8ec7d7",
+          "size_bytes": 4420
+        }
+      ],
+      "custody": [
+        {
+          "sequence": 1,
+          "action": "download",
+          "actor": "central-governance-intake",
+          "at": "2026-09-18T19:35:41Z",
+          "source_uri": "https://api.github.com/repos/joku-dev/ha-CPsWMS/actions/artifacts/10564570203/zip",
+          "output_refs": [
+            "artifact_metadata"
+          ]
+        },
+        {
+          "sequence": 2,
+          "action": "extract_and_hash",
+          "actor": "central-governance-intake",
+          "at": "2026-09-18T19:35:41Z",
+          "source_uri": "https://api.github.com/repos/joku-dev/ha-CPsWMS/actions/artifacts/10564570203/zip",
+          "output_refs": [
+            "artifact_metadata.architecture_governance_report_sha256",
+            "artifact_metadata.architecture_release_input_sha256",
+            "artifact_metadata.artifact_archive_sha256"
+          ]
+        }
+      ],
+      "errors": []
+    }
+  },
+  "architecture_summary": {
+    "gate_count": 4,
+    "passed": 4,
+    "with_findings": 0,
+    "finding_count": 0
+  },
+  "gates": [
+    {
+      "id": "architecture_readiness",
+      "title": "Architecture Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "integration_readiness",
+      "title": "Integration Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "operation_readiness",
+      "title": "Operation Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "release_readiness",
+      "title": "Release Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    }
+  ],
+  "overall_status": "pass",
+  "notes": "Intaken automatically from downstream Architecture Runtime Governance run."
+}
