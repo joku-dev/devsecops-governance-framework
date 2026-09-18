@@ -33,6 +33,11 @@ class MeasuredL1Tests(unittest.TestCase):
             'evidence_errors': {}, 'enforcement': 'report-only', 'official_compliance_result': False, 'production_approval': False,
             'controls': [{'control_id': f'DSCB-L1-REQ-{i:03}', 'coverage': 'measured'} for i in range(1,17)],
             'test_summary': {'pass': 2}, 'static_analysis': {'bandit': 1, 'ruff': 1}, 'vulnerability_severities': {'HIGH': 5},
+            'dependency_inventory': {
+                'packages': {'ha-sync': 1, 'query-api': 1, 'semantic-enrichment': 1,
+                             'world-model-chat': 1, 'application': 4, 'ci': 5},
+                'sbom_components': {'application': 4, 'ci': 5}, 'resolver': 'uv 0.8.22'},
+            'dependency_vulnerability_count': 0, 'main_ruleset': None,
             'images': {s: {'image_id': self.images[s]} for s in SERVICES}}
         self.bundles = {}
         for number,(name,required) in enumerate(FILES.items(),2):
@@ -63,6 +68,34 @@ class MeasuredL1Tests(unittest.TestCase):
                 if f.endswith('.execution.json'): values[f] = {'exit_code': 0}
                 raw[f] = (b'<testsuites><testsuite><testcase classname="test.example" name="works"/></testsuite></testsuites>' if f == 'junit.xml'
                           else b'Tool 1.0\n' if f.endswith('.log') else json.dumps(values[f]).encode())
+            if name == 'source':
+                package_names = {
+                    'ha-sync': ['ha-package'], 'query-api': ['query-package'],
+                    'semantic-enrichment': ['semantic-package'], 'world-model-chat': ['chat-package'],
+                    'application': ['ha-package', 'query-package', 'semantic-package', 'chat-package'],
+                    'ci': ['ha-package', 'query-package', 'semantic-package', 'chat-package', 'test-tool'],
+                }
+                records = {}
+                for profile, packages in package_names.items():
+                    input_name = f'dependency-files/{profile}.in'
+                    lock_name = f'dependency-files/{profile}.lock'
+                    raw[input_name] = ('\n'.join(packages) + '\n').encode()
+                    raw[lock_name] = ''.join(
+                        f'{package}==1.0 \\\n    --hash=sha256:{hashlib.sha256(package.encode()).hexdigest()}\n'
+                        for package in packages).encode()
+                    records[profile] = {
+                        'input': profile + '.in', 'input_sha256': hashlib.sha256(raw[input_name]).hexdigest(),
+                        'lock': profile + '.lock', 'lock_sha256': hashlib.sha256(raw[lock_name]).hexdigest(),
+                        'package_count': len(packages), 'hashes_required': True,
+                        'evidence_input': input_name, 'evidence_lock': lock_name,
+                    }
+                raw['dependency-locks.json'] = json.dumps({
+                    'python': '3.12', 'resolver': 'uv 0.8.22', 'locks': records}).encode()
+                for profile, count in (('application', 4), ('ci', 5)):
+                    raw[f'dependency-sbom-{profile}.cyclonedx.json'] = json.dumps({
+                        'bomFormat': 'CycloneDX', 'components': [{}] * count}).encode()
+                raw['dependency-audit.json'] = json.dumps({
+                    'dependencies': [{'name': name, 'vulns': []} for name in package_names['application']]}).encode()
             self.bundles[name] = (raw, artifact('l1-'+name, number)); self.seal(name)
 
     def seal(self,name):
@@ -78,7 +111,7 @@ class MeasuredL1Tests(unittest.TestCase):
 
     def test_measured_rules_preserve_approval_gaps_despite_optimistic_producer(self):
         item=self.normalized()
-        self.assertEqual({'measured':5,'partial':6,'findings':2,'gap':3},item['summary'])
+        self.assertEqual({'measured':7,'partial':4,'findings':2,'gap':3},item['summary'])
         self.assertEqual({'DSCB-L1-REQ-'+f'{n:03}' for n in (3,13,14)}, {r['control_id'] for r in item['controls'] if r['assessment']=='gap'})
         model=yaml.safe_load((ROOT/'model/controls/dscb-l1.yaml').read_text())
         self.assertEqual({r['id'] for r in model['requirements']},{r['control_id'] for r in item['controls']})
@@ -90,6 +123,27 @@ class MeasuredL1Tests(unittest.TestCase):
         item=self.normalized()
         self.assertEqual('partial',item['controls'][2]['assessment'])
         self.assertEqual(['gap','gap'],[item['controls'][n]['assessment'] for n in (12,13)])
+
+    def test_complete_main_ruleset_without_bypass_is_measured(self):
+        required = ['validate-ubuntu', 'validate-debian', 'DevSecOps Governance',
+                    'Architecture Runtime Governance', 'L1 coverage report']
+        detail = {
+            'id': 99, 'name': 'main protection', 'enforcement': 'active', 'bypass_actors': [],
+            'conditions': {'ref_name': {'include': ['refs/heads/main'], 'exclude': []}},
+            'rules': [
+                {'type': 'deletion'}, {'type': 'non_fast_forward'},
+                {'type': 'pull_request', 'parameters': {'required_approving_review_count': 0}},
+                {'type': 'required_status_checks', 'parameters': {
+                    'required_status_checks': [{'context': name} for name in required]}},
+            ],
+        }
+        self.change('platform', 'rulesets.json', {'http_status': 200, 'data': [{'id': 99}]})
+        self.change('platform', 'ruleset-details.json', [{'http_status': 200, 'data': detail}])
+        self.report['main_ruleset'] = {
+            'id': 99, 'name': 'main protection', 'required_checks': sorted(required),
+            'required_approvals': 0,
+        }
+        self.assertEqual('measured', self.normalized()['controls'][2]['assessment'])
 
     def test_edited_raw_bytes_are_rejected(self):
         self.bundles['source'][0]['junit.xml'] += b' '
@@ -121,10 +175,10 @@ class MeasuredL1Tests(unittest.TestCase):
         self.change('source','bandit.execution.json',{'exit_code':2})
         self.assertEqual('gap',self.normalized()['controls'][3]['assessment'])
 
-    def test_tool_completion_with_no_findings_does_not_claim_review(self):
+    def test_tool_completion_with_no_findings_is_measured(self):
         self.change('source','bandit.json',{'results':[],'errors':[]});self.change('source','ruff.json',[])
         self.report['static_analysis']={'bandit':0,'ruff':0}
-        self.assertEqual('partial',self.normalized()['controls'][3]['assessment'])
+        self.assertEqual('measured',self.normalized()['controls'][3]['assessment'])
 
     def test_junit_counts_and_traceability_are_recomputed(self):
         self.report['test_summary']['pass']=999

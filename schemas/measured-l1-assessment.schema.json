@@ -30,7 +30,10 @@
       "const": "measured-l1-assessment"
     },
     "profile": {
-      "const": "ha-cpswms-l1-measured-v1"
+      "enum": [
+        "ha-cpswms-l1-measured-v1",
+        "ha-cpswms-l1-measured-v2"
+      ]
     },
     "repository_id": {
       "const": "joku-dev/ha-CPsWMS"
@@ -360,6 +363,51 @@
               "type": "integer",
               "minimum": 100,
               "maximum": 599
+            },
+            "rulesets_http": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 599
+            },
+            "main_ruleset": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "name",
+                    "required_checks",
+                    "required_approvals"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "required_checks": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 5,
+                      "uniqueItems": true
+                    },
+                    "required_approvals": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
+              ]
             }
           }
         },
@@ -463,6 +511,195 @@
                   "pattern": "^[a-f0-9]{64}$"
                 }
               }
+            }
+          }
+        },
+        "dependency_inventory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "python",
+            "resolver",
+            "profiles",
+            "application_sbom_components",
+            "ci_sbom_components",
+            "vulnerability_count",
+            "execution_ok"
+          ],
+          "properties": {
+            "python": {
+              "const": "3.12"
+            },
+            "resolver": {
+              "type": "string",
+              "minLength": 1
+            },
+            "profiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "ha-sync",
+                "query-api",
+                "semantic-enrichment",
+                "world-model-chat",
+                "application",
+                "ci"
+              ],
+              "properties": {
+                "ha-sync": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "package_count",
+                    "input_sha256",
+                    "lock_sha256"
+                  ],
+                  "properties": {
+                    "package_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "input_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "lock_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                },
+                "query-api": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "package_count",
+                    "input_sha256",
+                    "lock_sha256"
+                  ],
+                  "properties": {
+                    "package_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "input_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "lock_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                },
+                "semantic-enrichment": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "package_count",
+                    "input_sha256",
+                    "lock_sha256"
+                  ],
+                  "properties": {
+                    "package_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "input_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "lock_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                },
+                "world-model-chat": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "package_count",
+                    "input_sha256",
+                    "lock_sha256"
+                  ],
+                  "properties": {
+                    "package_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "input_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "lock_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                },
+                "application": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "package_count",
+                    "input_sha256",
+                    "lock_sha256"
+                  ],
+                  "properties": {
+                    "package_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "input_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "lock_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                },
+                "ci": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "package_count",
+                    "input_sha256",
+                    "lock_sha256"
+                  ],
+                  "properties": {
+                    "package_count": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "input_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "lock_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                }
+              }
+            },
+            "application_sbom_components": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "ci_sbom_components": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "vulnerability_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "execution_ok": {
+              "const": true
             }
           }
         }

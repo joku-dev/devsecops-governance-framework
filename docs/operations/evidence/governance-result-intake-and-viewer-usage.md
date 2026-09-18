@@ -290,8 +290,12 @@ Ziel, Approval, deployten Commit und den zugehörigen erfolgreichen Mainline-Lau
 
 Der append-only Snapshot liegt unter `status/staging-deployment-results/`. Im
 Viewer erscheint er im Repository-Reiter **Staging**, im Evidence-Trust-Bereich
-und als getrennte spätere Ergänzung der L1-Kontrollen 013, 014 und 016. Er bleibt
-report-only und gilt nicht als Produktionsfreigabe oder allgemeine
+und bei exakter Run-/Commit-Zuordnung in einer konsolidierten L1-Bewertung unter
+`status/consolidated-l1-results/`. Nur die Kontrollen 013, 014 und 016 dürfen aus
+dem Staging-Snapshot ergänzt werden. Bei einer Abweichung von Repository,
+Baseline, Commit, Producer-Run oder Versuch bleibt die aktuelle gemessene
+L1-Bewertung unverändert. Beide Quellsnapshots bleiben append-only. Das Ergebnis
+bleibt report-only und gilt nicht als Produktionsfreigabe oder allgemeine
 Risikoakzeptanz. Die vollständigen Prüfgrenzen stehen in
 `docs/operations/evidence/staging-deployment-evidence.md`.
 

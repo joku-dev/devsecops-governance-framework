@@ -445,6 +445,13 @@ Implementiert in `model/evidence/control-evidence-assurance-profile.yaml`,
 `schemas/control-evidence-assurance.schema.json` und
 `status/control-evidence-assurance/`.
 
+Für ein exakt passendes reales Staging-Deployment erzeugt
+`scripts/lib/consolidated_l1.py` eine zusätzliche append-only 16-Kontroll-Sicht.
+Sie übernimmt ausschließlich die Staging-Aussagen zu 013, 014 und 016 und nur
+bei identischem Repository, Baseline, Commit, Producer-Run und Versuch. Vertrag
+und Ergebnisse liegen in `schemas/consolidated-l1-assessment.schema.json` und
+`status/consolidated-l1-results/`.
+
 ## 14. Replay und Attestierungen untersuchen
 
 **Zweck:** Unpassende Wiederverwendung von Nachweisen erkennen und eine
@@ -559,12 +566,14 @@ Die L1-Detailansicht zeigt für jede der 16 Kontrollen zusätzlich Trust, Freshn
 Integrität, Provenienz, Replay, Custody, Attestation und fehlende Nachweisgruppen.
 Der Repository-Reiter **Staging** zeigt reale Deployment-Identität, Approval,
 Health-, Funktions-, Persistenz- und Wiederanlaufprüfungen sowie die getrennte
-L1-Ergänzung für 013, 014 und 016.
+L1-Ergänzung für 013, 014 und 016. Bei exakter Subjektbindung zeigt der
+L1-Reiter die daraus erzeugte konsolidierte Bewertung als primäre Sicht.
 
 **Implementierungsstellen:** `scripts/generate_repository_results_index.py`,
 `scripts/generate_architecture_results_index.py`,
 `scripts/generate_typed_evidence_results_index.py`,
 `scripts/intake_staging_deployment_evidence.py`,
+`scripts/lib/consolidated_l1.py`,
 `scripts/generate_governance_graph.py`, `scripts/generate_status_viewer.py`,
 `generated/viewer/status-viewer.html`, `generated/graph/governance-graph.json`,
 `apps/governance-viewer/`, `scripts/lib/viewer_app.py`, `generated/viewer/app/`.

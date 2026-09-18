@@ -34,7 +34,9 @@ risk acceptance.
 ## Control Projection
 
 The immutable earlier measured-L1 snapshot remains unchanged. The new runtime
-snapshot adds a separate later observation:
+snapshot adds a separate later observation. A derived consolidated snapshot now
+combines both only because repository, baseline, commit, source run and attempt
+match exactly; neither immutable source is rewritten:
 
 - `DSCB-L1-REQ-013`: measured for the exact staging deployment approval;
 - `DSCB-L1-REQ-014`: measured for the exact locally loaded runtime image IDs;

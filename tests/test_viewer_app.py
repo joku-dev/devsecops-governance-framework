@@ -13,6 +13,8 @@ from lib.viewer_app import project, build, load_repository_security
 from lib.measured_security import load_snapshots
 from lib.control_evidence_assurance import build_assurance
 from lib.staging_deployment import load_snapshots as load_staging_snapshots
+from lib.consolidated_l1 import load_snapshots as load_consolidated_snapshots
+from lib.measured_l1 import load_snapshots as load_l1_snapshots
 from publish_operational_update import allowed
 
 
@@ -85,6 +87,21 @@ class ViewerAppTests(unittest.TestCase):
                          repo['staging_deployment']['deployed_subject']['commit'])
         self.assertEqual('integrity_verified', repo['staging_deployment']['trust']['effective_level'])
         self.assertEqual(1, len(repo['staging_deployment_history']))
+
+    def test_consolidated_l1_is_selected_only_for_matching_latest_run(self):
+        measured = load_l1_snapshots(ROOT / 'status/measured-l1-results')
+        consolidated = load_consolidated_snapshots(ROOT / 'status/consolidated-l1-results')
+        matching = next(row for row in measured if row['run'] == consolidated[-1]['run'])
+        data = project(self.dev, self.arch, self.scans, [matching],
+                       consolidated_l1_snapshots=consolidated)
+        repo = next(r for r in data['repositories'] if r['id'] == 'joku-dev/ha-CPsWMS')
+        self.assertEqual('consolidated-l1-assessment', repo['l1_assessment']['result_type'])
+        self.assertEqual(consolidated[-1], repo['l1_consolidated_assessment'])
+        data = project(self.dev, self.arch, self.scans, measured,
+                       consolidated_l1_snapshots=consolidated)
+        repo = next(r for r in data['repositories'] if r['id'] == 'joku-dev/ha-CPsWMS')
+        self.assertEqual('measured-l1-assessment', repo['l1_assessment']['result_type'])
+        self.assertIsNone(repo['l1_consolidated_assessment'])
 
     def test_repository_security_report_is_validated_and_projected(self):
         report = load_repository_security(ROOT)

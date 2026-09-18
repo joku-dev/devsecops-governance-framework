@@ -10,11 +10,12 @@ import xml.etree.ElementTree as ET
 from jsonschema import Draft202012Validator, FormatChecker
 from lib.measured_security import ROOT, SERVICES, REPOSITORY, check_run, normalize as security_normalize
 
-PROFILE = 'ha-cpswms-l1-measured-v1'
+PROFILE = 'ha-cpswms-l1-measured-v2'
+LEGACY_PROFILE = 'ha-cpswms-l1-measured-v1'
 BASELINE = 'l1-baseline-v1.1.3'
 MAX_JUNIT_BYTES = 32 * 1024 * 1024
 STATES = ('measured', 'partial', 'findings', 'gap')
-FILES = {
+LEGACY_FILES = {
     'source': ('junit.xml', 'tests.execution.json', 'bandit.json', 'bandit.execution.json',
                'ruff.json', 'ruff.execution.json', 'installed-tools.log'),
     'platform': ('commit.json', 'pulls.json', 'protection.json', 'rules.json', 'environments.json', 'run.json'),
@@ -23,7 +24,22 @@ FILES = {
 IMAGE_FILES = ('subject.json', 'image-metadata.json', 'sbom.cyclonedx.json', 'vulnerabilities.json',
                'build.execution.json', 'sbom.execution.json', 'vulnerabilities.execution.json',
                'archive.execution.json', 'trivy-version.log')
-FILES.update({'image-' + s: IMAGE_FILES for s in SERVICES})
+LEGACY_FILES.update({'image-' + s: IMAGE_FILES for s in SERVICES})
+DEPENDENCY_PROFILES = ('ha-sync', 'query-api', 'semantic-enrichment', 'world-model-chat', 'application', 'ci')
+DEPENDENCY_FILES = (
+    'dependency-locks.json',
+    'dependency-sbom-application.cyclonedx.json', 'dependency-sbom-application.execution.json',
+    'dependency-sbom-ci.cyclonedx.json', 'dependency-sbom-ci.execution.json',
+    'dependency-audit.json', 'dependency-audit.execution.json',
+    *(f'dependency-files/{name}.{suffix}' for name in DEPENDENCY_PROFILES for suffix in ('in', 'lock')),
+)
+FILES = {name: tuple(value) for name, value in LEGACY_FILES.items()}
+FILES['source'] += DEPENDENCY_FILES
+FILES['platform'] += ('rulesets.json', 'ruleset-details.json')
+REQUIRED_CHECKS = {
+    'validate-ubuntu', 'validate-debian', 'DevSecOps Governance',
+    'Architecture Runtime Governance', 'L1 coverage report',
+}
 
 
 def digest(raw):
@@ -57,6 +73,107 @@ def cases(raw):
     return result
 
 
+def locked_packages(raw):
+    text = raw.decode('utf-8')
+    packages = {}
+    matches = list(re.finditer(
+        r'(?m)^([A-Za-z0-9_.-]+)==([^\s\\]+)(.*?)(?=^[A-Za-z0-9_.-]+==|\Z)',
+        text, re.DOTALL))
+    for match in matches:
+        name, version, block = match.groups()
+        if '--hash=sha256:' not in block:
+            raise ValueError('Unhashed dependency lock entry: ' + name)
+        packages[name.lower().replace('_', '-')] = version
+    if not packages:
+        raise ValueError('Dependency lock has no exact pins')
+    return packages
+
+
+def dependency_observation(source_files, source):
+    record = source['dependency-locks.json']
+    if record.get('python') != '3.12' or set(record.get('locks', {})) != set(DEPENDENCY_PROFILES):
+        raise ValueError('Dependency lock profiles are incomplete')
+    packages = {}
+    profiles = {}
+    for name in DEPENDENCY_PROFILES:
+        item = record['locks'][name]
+        input_name = f'dependency-files/{name}.in'
+        lock_name = f'dependency-files/{name}.lock'
+        if (item.get('evidence_input') != input_name or item.get('evidence_lock') != lock_name
+                or digest(source_files[input_name]) != item.get('input_sha256')
+                or digest(source_files[lock_name]) != item.get('lock_sha256')
+                or item.get('hashes_required') is not True):
+            raise ValueError('Dependency lock byte binding invalid: ' + name)
+        packages[name] = locked_packages(source_files[lock_name])
+        if len(packages[name]) != item.get('package_count'):
+            raise ValueError('Dependency lock package count mismatch: ' + name)
+        profiles[name] = {
+            'package_count': len(packages[name]),
+            'input_sha256': item['input_sha256'],
+            'lock_sha256': item['lock_sha256'],
+        }
+    for service in DEPENDENCY_PROFILES[:4]:
+        if not set(packages[service].items()).issubset(set(packages['application'].items())):
+            raise ValueError('Application dependency inventory omits ' + service)
+    if not set(packages['application'].items()).issubset(set(packages['ci'].items())):
+        raise ValueError('CI dependency inventory omits application packages')
+    components = {}
+    for profile in ('application', 'ci'):
+        sbom = source[f'dependency-sbom-{profile}.cyclonedx.json']
+        execution = source[f'dependency-sbom-{profile}.execution.json']
+        if (sbom.get('bomFormat') != 'CycloneDX'
+                or len(sbom.get('components', [])) < len(packages[profile])
+                or execution.get('exit_code') != 0):
+            raise ValueError('Dependency SBOM invalid: ' + profile)
+        components[profile] = len(sbom['components'])
+    audit = source['dependency-audit.json']
+    audit_execution = source['dependency-audit.execution.json']
+    if (not isinstance(audit.get('dependencies'), list)
+            or audit_execution.get('exit_code') not in (0, 1)):
+        raise ValueError('Dependency audit invalid')
+    vulnerabilities = [finding for dependency in audit['dependencies'] for finding in dependency.get('vulns', [])]
+    return {
+        'python': '3.12',
+        'resolver': record.get('resolver'),
+        'profiles': profiles,
+        'application_sbom_components': components['application'],
+        'ci_sbom_components': components['ci'],
+        'vulnerability_count': len(vulnerabilities),
+        'execution_ok': True,
+    }
+
+
+def main_ruleset(platform):
+    listing = platform['rulesets.json']
+    details = platform['ruleset-details.json']
+    if listing.get('http_status') != 200 or not isinstance(listing.get('data'), list) or not isinstance(details, list):
+        return None
+    by_id = {row.get('data', {}).get('id'): row for row in details}
+    for summary in listing['data']:
+        ruleset_id = summary.get('id')
+        response = by_id.get(ruleset_id, {})
+        if response.get('http_status') != 200:
+            continue
+        detail = response.get('data', {})
+        includes = set(detail.get('conditions', {}).get('ref_name', {}).get('include', []))
+        rules = {rule.get('type'): rule for rule in detail.get('rules', [])}
+        checks = {item.get('context') for item in rules.get('required_status_checks', {}).get(
+            'parameters', {}).get('required_status_checks', [])}
+        required_rules = {'deletion', 'non_fast_forward', 'pull_request', 'required_status_checks'}
+        if (detail.get('enforcement') == 'active'
+                and ('refs/heads/main' in includes or '~DEFAULT_BRANCH' in includes)
+                and not detail.get('bypass_actors') and required_rules.issubset(rules)
+                and REQUIRED_CHECKS.issubset(checks)):
+            return {
+                'id': ruleset_id,
+                'name': detail.get('name'),
+                'required_checks': sorted(checks),
+                'required_approvals': rules['pull_request'].get('parameters', {}).get(
+                    'required_approving_review_count'),
+            }
+    return None
+
+
 def evaluate(observed, refs):
     """Versioned assessment rules. No approval is inferred from a declaration or job status."""
     rows = []
@@ -67,6 +184,7 @@ def evaluate(observed, refs):
     sbom_refs = ['image-' + s + '/sbom.cyclonedx.json' for s in SERVICES]
     scan_refs = ['image-' + s + '/vulnerabilities.json' for s in SERVICES]
     tests = observed['tests']; static = observed['static_analysis']; platform = observed['platform']
+    dependencies = observed.get('dependency_inventory')
     tests_ok = all(v['execution_ok'] and v['failed'] == 0 and v['skipped'] == 0 for v in tests.values())
     linked = observed['traceability']['matched'] == observed['traceability']['requirements'] > 0
     row(1, 'Anforderungen, Tests und Berichte', 'partial' if tests_ok and linked else 'gap', ['pytest', 'JUnit'],
@@ -77,33 +195,59 @@ def evaluate(observed, refs):
         'Commit und identifizierbarer Autor bestätigt.' if platform['author_identified'] else 'Kein bestätigter Autor für diesen Commit.',
         'Organisatorische VCS-Freigabe und benötigte Review-Nachweise separat belegen; kein unabhängiges Review abgeleitet.',
         ['platform/commit.json', 'platform/pulls.json'])
-    row(3, 'Geschützte Branches', 'partial' if platform['protection_http'] == 200 else 'gap', ['GitHub API'],
-        f"Branch-Schutz HTTP {platform['protection_http']}; Branch-Regeln HTTP {platform['rules_http']}.",
-        'Vollständige Schutz- und Bypass-Regeln lesen und Direktänderungsverbot bewerten. API-Zugriff allein beweist keinen Schutz.',
-        ['platform/protection.json', 'platform/rules.json'])
-    row(4, 'Sichere Entwicklung', 'gap' if not static['execution_ok'] else 'findings' if static['bandit'] + static['ruff'] else 'partial', ['Bandit', 'Ruff'],
+    if dependencies:
+        rule = platform.get('main_ruleset')
+        row(3, 'Geschützte Branches', 'measured' if rule else 'partial' if platform['protection_http'] == 200 else 'gap', ['GitHub API'],
+            (f"Aktiver Main-Ruleset {rule['id']} ohne Bypass erzwingt Pull Requests und fünf Governance-/Validierungschecks."
+             if rule else f"Branch-Schutz HTTP {platform['protection_http']}; kein vollständiger Main-Ruleset ohne Bypass bestätigt."),
+            'Die technische Regel ist gemessen; organisatorische Review-Unabhängigkeit bleibt eine getrennte Entscheidung.' if rule
+            else 'Vollständigen Main-Ruleset ohne Bypass für Direktänderungen, Löschung und Force-Push einrichten.',
+            ['platform/protection.json', 'platform/rules.json', 'platform/rulesets.json', 'platform/ruleset-details.json'])
+    else:
+        row(3, 'Geschützte Branches', 'partial' if platform['protection_http'] == 200 else 'gap', ['GitHub API'],
+            f"Branch-Schutz HTTP {platform['protection_http']}; Branch-Regeln HTTP {platform['rules_http']}.",
+            'Vollständige Schutz- und Bypass-Regeln lesen und Direktänderungsverbot bewerten. API-Zugriff allein beweist keinen Schutz.',
+            ['platform/protection.json', 'platform/rules.json'])
+    row(4, 'Sichere Entwicklung', 'gap' if not static['execution_ok'] else 'findings' if static['bandit'] + static['ruff'] else 'measured' if dependencies else 'partial', ['Bandit', 'Ruff'],
         f"{static['bandit']} Bandit- und {static['ruff']} Ruff-Befunde; erfolgreiche Werkzeugausführung: {static['execution_ok']}.",
-        'Security-relevante Befunde fachlich bewerten und Entscheidungen dokumentieren.', ['source/bandit.json', 'source/ruff.json'])
-    row(5, 'Abhängigkeiten erfassen', 'partial', ['Trivy', 'CycloneDX'],
-        f"{observed['component_count']} Komponentenmeldungen in fünf Image-SBOMs (Mehrfachzählungen möglich).",
-        'Inventar umfasst Runtime-Images; Entwicklungs- und Build-Abhängigkeiten vollständig ergänzen.', sbom_refs)
+        'Keine maschinellen Befunde im geprüften Umfang; fachliche Secure-Design-Prüfung bleibt im Entwicklungsprozess.'
+        if dependencies and static['execution_ok'] and not static['bandit'] + static['ruff']
+        else 'Security-relevante Befunde fachlich bewerten und Entscheidungen dokumentieren.', ['source/bandit.json', 'source/ruff.json'])
+    if dependencies:
+        row(5, 'Abhängigkeiten erfassen', 'measured', ['Trivy', 'CycloneDX', 'pip-audit'],
+            f"{observed['component_count']} Image-Komponentenmeldungen sowie {dependencies['profiles']['application']['package_count']} Anwendungs- und {dependencies['profiles']['ci']['package_count']} CI-/Tool-Pakete geprüft.",
+            'Inventar ist an diesen Commit und Python 3.12 gebunden; Änderungen erfordern neue Locks und Nachweise.',
+            sbom_refs + ['source/dependency-locks.json', 'source/dependency-sbom-application.cyclonedx.json',
+                         'source/dependency-sbom-ci.cyclonedx.json'])
+    else:
+        row(5, 'Abhängigkeiten erfassen', 'partial', ['Trivy', 'CycloneDX'],
+            f"{observed['component_count']} Komponentenmeldungen in fünf Image-SBOMs (Mehrfachzählungen möglich).",
+            'Inventar umfasst Runtime-Images; Entwicklungs- und Build-Abhängigkeiten vollständig ergänzen.', sbom_refs)
     row(6, 'SBOM je Artefakt', 'measured', ['Trivy', 'CycloneDX'],
         'Fünf nichtleere SBOMs mit den gescannten Image-IDs abgeglichen.',
         'Nachweis gilt für diese CI-Builds; keine Release- oder Deployment-Freigabe.', sbom_refs + image_refs)
-    row(7, 'Kontrollierte Builds', 'partial', ['Docker', 'GitHub Actions'],
-        'Erfolgreiche Build-Ausführung und festgelegte Basis-Image-Digests für fünf Images erfasst.',
-        'Python-Abhängigkeiten sperren und reproduzierbare Wiederholungsbuilds nachweisen.',
-        ['image-' + s + '/build.execution.json' for s in SERVICES] + image_refs)
+    row(7, 'Kontrollierte Builds', 'measured' if dependencies else 'partial', ['Docker', 'GitHub Actions'],
+        ('Erfolgreiche Builds verwenden Digest-festgelegte Basisimages und Python-3.12-Locks mit exakten Versionen und SHA-256-Hashes.'
+         if dependencies else 'Erfolgreiche Build-Ausführung und festgelegte Basis-Image-Digests für fünf Images erfasst.'),
+        ('Nachweis gilt für diese automatisierten Builds; byte-identische Container-Reproduktion und unabhängige Provenienz bleiben weiterführend.'
+         if dependencies else 'Python-Abhängigkeiten sperren und reproduzierbare Wiederholungsbuilds nachweisen.'),
+        ['image-' + s + '/build.execution.json' for s in SERVICES] + image_refs
+        + (['source/dependency-locks.json'] if dependencies else []))
     row(8, 'Build-Ergebnisse identifizieren', 'measured', ['Docker', 'SHA-256'],
         'Fünf Image-IDs mit Commit, Scanner- und Docker-Metadaten abgeglichen.',
         'Archive-Digests sind Producer-Angaben; vollständige Image-Archive zentral nicht erneut gehasht.', image_refs)
     row(9, 'Schwachstellen scannen', 'measured', ['Trivy'],
         'Trivy-JSON und erfolgreiche Scan-Ausführung für alle fünf Image-IDs geprüft.',
         'Scan-Abschluss bewertet weder Ausnutzbarkeit noch Risikoakzeptanz.', scan_refs)
-    total = sum(observed['vulnerability_counts'].values())
-    row(10, 'Schwachstellen bewerten', 'findings' if total else 'partial', ['Trivy'],
-        f"{total} Image-/Paketmeldungen, davon {observed['vulnerability_counts']['CRITICAL']} kritisch und {observed['vulnerability_counts']['HIGH']} hoch.",
-        'Befunde auf betroffene Nutzung prüfen, beheben oder autorisierte Entscheidungen einholen; keine automatische Risikofreigabe.', scan_refs)
+    image_total = sum(observed['vulnerability_counts'].values())
+    dependency_total = dependencies['vulnerability_count'] if dependencies else 0
+    total = image_total + dependency_total
+    row(10, 'Schwachstellen bewerten', 'findings' if total else 'measured' if dependencies else 'partial',
+        ['Trivy', 'pip-audit'] if dependencies else ['Trivy'],
+        (f"{image_total} Image-/Paketmeldungen und {dependency_total} Anwendungsabhängigkeitsmeldungen; davon {observed['vulnerability_counts']['CRITICAL']} kritisch und {observed['vulnerability_counts']['HIGH']} hoch."
+         if dependencies else f"{image_total} Image-/Paketmeldungen, davon {observed['vulnerability_counts']['CRITICAL']} kritisch und {observed['vulnerability_counts']['HIGH']} hoch."),
+        'Befunde auf betroffene Nutzung prüfen, beheben oder autorisierte Entscheidungen einholen; keine automatische Risikofreigabe.',
+        scan_refs + (['source/dependency-audit.json'] if dependencies else []))
     row(11, 'Artefakte vor Manipulation schützen', 'partial', ['SHA-256', 'GitHub Artifacts'],
         'Ausgewählte Rohdateien gegen laufgebundene Producer-Manifeste geprüft.',
         'Zugriffsschutz, Aufbewahrung und unabhängige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivprüfung.', image_refs)
@@ -187,11 +331,24 @@ def normalize(run, report_raw, report_artifact, bundles, traceability_raw):
     static = {'bandit': len(bandit['results']), 'ruff': len(ruff), 'execution_ok': not bool(bandit.get('errors')) and all(source[n + '.execution.json']['exit_code'] in (0, 1) for n in ('bandit', 'ruff'))}
     if {k: static[k] for k in ('bandit', 'ruff')} != report['static_analysis']:
         raise ValueError('Producer SAST counts disagree with raw reports')
+    dependencies = dependency_observation(bundles['source'][0], source)
+    producer_dependencies = report.get('dependency_inventory') or {}
+    if (producer_dependencies.get('packages') != {
+            name: value['package_count'] for name, value in dependencies['profiles'].items()}
+            or producer_dependencies.get('sbom_components') != {
+                'application': dependencies['application_sbom_components'],
+                'ci': dependencies['ci_sbom_components']}
+            or producer_dependencies.get('resolver') != dependencies['resolver']
+            or report.get('dependency_vulnerability_count') != dependencies['vulnerability_count']):
+        raise ValueError('Producer dependency inventory disagrees with raw evidence')
     platform = parsed['platform']; commit = platform['commit.json']; platform_run = platform['run.json']
     if platform_run['http_status'] == 200 and (str(platform_run['data']['id']) != str(run['id']) or platform_run['data']['head_sha'] != run['head_sha']):
         raise ValueError('Platform run identity mismatch')
     if commit['http_status'] == 200 and commit['data']['sha'] != run['head_sha']:
         raise ValueError('Platform commit identity mismatch')
+    ruleset = main_ruleset(platform)
+    if report.get('main_ruleset') != ruleset:
+        raise ValueError('Producer main ruleset assessment disagrees with raw API evidence')
     deployment = parsed['runtime']['deployment.json']
     deployed = deployment['containers']
     portable_runtime = all(
@@ -212,9 +369,11 @@ def normalize(run, report_raw, report_artifact, bundles, traceability_raw):
             or any(c['environment'] != 'ephemeral-ci' for c in deployed)):
         raise ValueError('Runtime images/context do not match scanned CI images')
     observed = {'tests': tests, 'traceability': {'requirements': len(linked), 'matched': sum(r['passed'] for r in linked), 'links': linked},
-        'static_analysis': static, 'component_count': component_count, 'vulnerability_counts': scans['counts'],
+        'static_analysis': static, 'component_count': component_count,
+        'dependency_inventory': dependencies, 'vulnerability_counts': scans['counts'],
         'platform': {'author_identified': commit['http_status'] == 200 and bool((commit['data'].get('author') or {}).get('id')),
                      'protection_http': platform['protection.json']['http_status'], 'rules_http': platform['rules.json']['http_status'],
+                     'rulesets_http': platform['rulesets.json']['http_status'], 'main_ruleset': ruleset,
                      'environments_http': platform['environments.json']['http_status']}, 'images': images}
     rows = evaluate(observed, sources)
     result = {'schema_version': '1.0.0', 'result_type': 'measured-l1-assessment', 'profile': PROFILE,
@@ -241,8 +400,13 @@ def validate_snapshot(item):
         raise ValueError('Assessment differs from measured observations')
     if item['summary'] != {s: sum(r['assessment'] == s for r in item['controls']) for s in STATES}:
         raise ValueError('Assessment summary mismatch')
+    profile = item['profile']
+    files = FILES if profile == PROFILE else LEGACY_FILES
+    if profile == PROFILE and ('dependency_inventory' not in item['observations']
+                               or 'main_ruleset' not in item['observations']['platform']):
+        raise ValueError('Current measured profile lacks dependency or ruleset observations')
     required_refs = {'report/l1-coverage.json', 'repository/quality/traceability.json'}
-    required_refs.update(n + '/' + f for n, fs in FILES.items() for f in ('manifest.json', *fs))
+    required_refs.update(n + '/' + f for n, fs in files.items() for f in ('manifest.json', *fs))
     if set(item['sources']) != required_refs:
         raise ValueError('Incomplete or unexpected verified sources')
     for row in item['controls']:
