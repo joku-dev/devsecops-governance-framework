@@ -154,6 +154,14 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
         self.assertEqual(workflow["jobs"]["refresh"]["if"], "github.ref == 'refs/heads/main'")
         self.assertEqual(workflow["jobs"]["refresh"]["steps"][0]["with"]["ref"], "main")
         self.assertIn("scripts/publish_self_security_refresh.py", text)
+        self.assertIn(
+            "open-policy-agent/setup-opa@b2b258e089860efaadaaf71bf6e3aecb4a3eeff1",
+            text,
+        )
+        self.assertEqual(
+            workflow["jobs"]["refresh"]["steps"][2]["with"]["version"],
+            "1.18.2",
+        )
         self.assertNotIn("gh pr merge", text)
         self.assertNotIn("git push", text)
         self.assertEqual(workflow["permissions"]["pull-requests"], "write")
