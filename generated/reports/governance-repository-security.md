@@ -1,6 +1,6 @@
 # Governance Repository Self-Security Assessment
 
-Observed: `2026-09-17T20:22:13Z`
+Observed: `2026-09-18T06:34:09Z`
 
 ## Executive Assessment
 
@@ -43,7 +43,7 @@ switch consumer or repository enforcement to blocking mode.
 |---|---|---|---|
 | `GRS-002` | `critical` | Pull request and two independent approvals required | `required_approving_reviews=1, code_owner_review_required=true, last_push_approval_required=true` |
 | `GRS-005` | `high` | Signed changes required on the default branch | `signed_changes_required=false` |
-| `GRS-014` | `high` | Governance release tags are cryptographically verified | `unverified_release_tags=["architecture-baseline-l1-v0.1.0", "l1-baseline-v1.1.3", "v0.1.0-public-adoption"]` |
+| `GRS-014` | `high` | Governance release tags are cryptographically verified | `unverified_release_tags=["architecture-baseline-l1-v0.1.0", "l1-baseline-v1.1.3", "v0.1.0-public-adoption", "v0.2.0-public-adoption"]` |
 
 ## Recommended Next Steps
 
