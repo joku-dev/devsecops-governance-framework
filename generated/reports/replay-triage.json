@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "projection_type": "replay-triage",
-  "generated_at": "2026-09-17T15:38:49Z",
+  "generated_at": "2026-09-18T13:40:40Z",
   "enforcement": "report_only",
   "decision_boundary": {
     "historical_snapshots_rewritten": false,
@@ -10,14 +10,14 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 44,
-    "recorded_failures": 6,
-    "recalculated_failures": 5,
+    "assessments": 45,
+    "recorded_failures": 7,
+    "recalculated_failures": 6,
     "legacy_assessments_superseded": 2,
     "official_latest_findings": 2,
     "classification_counts": {
       "compatible_reuse": 5,
-      "cross_commit_reuse": 4,
+      "cross_commit_reuse": 5,
       "cross_repository_reuse": 2,
       "deterministic_report_reuse": 6,
       "legacy_assessment_superseded": 2,
@@ -26,8 +26,8 @@
     }
   },
   "official_latest_findings": [
-    "status/results/joku-dev__ha-CPsWMS/2026-09-16T17-57-22Z-run-35131186298.json",
-    "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T15-38-49Z-run-35241262722-vulnerability-scan.json"
+    "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T15-38-49Z-run-35241262722-vulnerability-scan.json",
+    "status/results/joku-dev__ha-CPsWMS/2026-09-18T13-40-40Z-run-35351494433.json"
   ],
   "assessments": [
     {
@@ -1508,7 +1508,7 @@
       "artifact_name": "governance-control-evaluation",
       "artifact_digest_available": true,
       "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-16T17-57-22Z-run-35131186298.json",
-      "official_latest": true,
+      "official_latest": false,
       "recorded_result": "fail",
       "recalculated_result": "fail",
       "classification": "cross_commit_reuse",
@@ -1634,6 +1634,65 @@
             "world_model_chat_subject_json",
             "world_model_chat_trivy_version_execution_json",
             "world_model_chat_trivy_version_log"
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "devsecops",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-09-18T13:40:40Z",
+      "run_id": "35351494433",
+      "event": "push",
+      "commit_id": "5d5772d989b0080ae041969315742c8fbbca6dfe",
+      "artifact_name": "governance-control-evaluation",
+      "artifact_digest_available": true,
+      "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-18T13-40-40Z-run-35351494433.json",
+      "official_latest": true,
+      "recorded_result": "fail",
+      "recalculated_result": "fail",
+      "classification": "cross_commit_reuse",
+      "recommended_action": "reverify_with_artifact_digest",
+      "explanation": "The same subject digest crosses commits without sufficient artifact binding to prove deterministic reuse.",
+      "replay_key": "fd7597b4aacb9f6066ba0076f493b04a846a0ed0e64db92501374fffd71a9e83",
+      "relationships": [
+        {
+          "classification": "cross_commit_reuse",
+          "replay_key": "1630134e423076dbf99b181f06e278131ac84785b205e5af4ebbefffe8b0ffe6",
+          "source_file": "status/results/joku-dev__ha-CPsWMS/2026-07-15T17-07-40Z-run-29415015878.json",
+          "repository_id": "joku-dev/ha-CPsWMS",
+          "commit_id": "716c3cda4fa5cef7504ca7b3263f0cd1697b6e6c",
+          "run_id": "29415015878",
+          "artifact_name": "governance-control-evaluation",
+          "shared_subject_ids": [
+            "control_evaluation_report",
+            "governance_run_input"
+          ]
+        },
+        {
+          "classification": "cross_commit_reuse",
+          "replay_key": "3af629042e04c7a1f189eb74d9c00ac4217377b71d6741e8373d81ef7908e571",
+          "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-11T13-02-37Z-run-34602002201.json",
+          "repository_id": "joku-dev/ha-CPsWMS",
+          "commit_id": "6976bb2af2b9d47d2934273c444b6c9b62a81ea2",
+          "run_id": "34602002201",
+          "artifact_name": "governance-control-evaluation",
+          "shared_subject_ids": [
+            "control_evaluation_report",
+            "governance_run_input"
+          ]
+        },
+        {
+          "classification": "cross_commit_reuse",
+          "replay_key": "55f88a77d83c2e8013870fe37fbf4a9fdc4aee6b3970f1bf117f9f73dafbe7fa",
+          "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-16T17-57-22Z-run-35131186298.json",
+          "repository_id": "joku-dev/ha-CPsWMS",
+          "commit_id": "4c57eb1cffcd1750c468ffba76a327bf78a8e8d3",
+          "run_id": "35131186298",
+          "artifact_name": "governance-control-evaluation",
+          "shared_subject_ids": [
+            "control_evaluation_report",
+            "governance_run_input"
           ]
         }
       ]
