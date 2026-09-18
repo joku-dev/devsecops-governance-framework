@@ -48,8 +48,14 @@ Zeitstempel-Rauschen oder automatische Freigaben zu erzeugen.
 - [x] Unit-Test für Main-Unveränderlichkeit und Check-Dispatch
 - [x] Workflow-Vertragstest für Main-only, Berechtigungen und fehlenden Merge
 - [x] `./scripts/validate_all.sh` (`598` tests passed)
-- [ ] Pull-Request-Prüfungen
+- [x] Pull-Request-Prüfungen für Implementierung PR #135
 - [ ] erster manueller Live-Refresh auf `main`
+
+Der erste Live-Versuch (Run `35308723317`) bestätigte Erfassung,
+Artefakt-Upload und Viewer-Generierung, schlug aber vor der Publikation fehl,
+weil im neuen Workflow der OPA-Validator auf dem Runner fehlte. Der
+Follow-up-Change installiert deshalb dieselbe gepinnte OPA-Version wie
+Governance CI; der Live-Refresh wird danach vollständig wiederholt.
 
 ## Release Decision
 
