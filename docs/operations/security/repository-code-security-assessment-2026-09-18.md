@@ -47,7 +47,7 @@ browser tests for stored data, filters and URL fragments.
 |---|---|
 | GitHub Code Scanning before JavaScript coverage | 0 open under the former Python-only configuration |
 | First expanded JavaScript CodeQL run | 16 open alerts, representing 8 source sinks plus 8 generated copies; all shared the same mixed-state data-flow cause |
-| Corrected JavaScript CodeQL pull-request run | 0 open alerts on the pull-request branch; CodeQL run `35305352610` passed |
+| Corrected JavaScript CodeQL mainline run | 0 open alerts; CodeQL run `35305737319` passed on merge commit `43b3e59` |
 | GitHub Dependabot alerts | 0 open |
 | GitHub Secret Scanning alerts | 0 open |
 | `pip-audit 2.10.1`, `requirements-validation.lock` | 7 dependencies, 0 known vulnerabilities |
