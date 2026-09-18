@@ -81,7 +81,9 @@ at `04:31 UTC` and on manual dispatch. Findings remain report-only.
 `.github/workflows/refresh-governance-repository-security.yml` collects a fresh
 live observation from protected `main`, uploads the point-in-time report as a
 workflow artifact, regenerates the Governance Workspace projection, and invokes
-`scripts/publish_self_security_refresh.py`.
+`scripts/publish_self_security_refresh.py`. It installs the locked Python
+validation dependencies and the pinned OPA `1.18.2` validator before running
+the repository and workflow-contract checks.
 
 The publisher compares security-relevant JSON after removing only the top-level
 and nested observation timestamps. If all other values are unchanged, it does
