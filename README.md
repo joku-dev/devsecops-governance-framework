@@ -149,15 +149,16 @@ The addendum keeps the original framework document as the normative reference an
 - Platform-neutral evidence generation, validation and bundle intake support adapter paths for GitHub Actions, Bamboo with Bitbucket Data Center, Bitbucket Pipelines, Jenkins and GitLab CI. The non-GitHub paths are reference implementations that require environment-specific integration and validation.
 
 Current accepted ha-CPsWMS governance runs are DevSecOps
-[`35351494433`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351494433)
+[`35371298636`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35371298636)
 and architecture
-[`35351493524`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351493524).
+[`35371297967`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35371297967).
 The separate measured-evidence run
-[`35351493542`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35351493542)
-contains 59 passing tests, typed vulnerability and SBOM evidence, and the
-per-control assurance projection. The real deployment of that commit adds a
-separate staging result with 19 passed checks. A governance PASS remains distinct
-from open scanner findings, replay deviations and production approval.
+[`35371297825`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35371297825)
+contains 61 passing tests, typed vulnerability and SBOM evidence, and the
+per-control assurance projection. The separately retained real deployment of
+commit `5d5772d989b0` adds a staging result with 19 passed checks. A governance
+PASS remains distinct from open scanner findings, replay deviations and
+production approval.
 
 ## AI And Agent Navigation
 
