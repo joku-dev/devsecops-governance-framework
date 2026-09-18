@@ -28,6 +28,7 @@ class MeasuredL1Tests(unittest.TestCase):
         self.report_artifact = artifact('l1-control-coverage', 1)
         self.trace = {'requirements': [{'id': 'REQ-1', 'test_class_prefix': 'test.', 'requirement': 'Example'}]}
         self.images = {s: 'sha256:'+hashlib.sha256(s.encode()).hexdigest() for s in SERVICES}
+        self.runtime_images = {s: 'sha256:'+hashlib.sha256(('runtime-'+s).encode()).hexdigest() for s in SERVICES}
         self.report = {'context': self.context, 'reference_baseline': 'l1-baseline-v1.1.3', 'report_type': 'l1-measured-evidence-coverage',
             'evidence_errors': {}, 'enforcement': 'report-only', 'official_compliance_result': False, 'production_approval': False,
             'controls': [{'control_id': f'DSCB-L1-REQ-{i:03}', 'coverage': 'measured'} for i in range(1,17)],
@@ -44,11 +45,14 @@ class MeasuredL1Tests(unittest.TestCase):
                 values['run.json'] = {'http_status': 200, 'data': {'id': 42, 'head_sha': 'a'*40}}
             if name == 'runtime':
                 values['deployment.json'] = {'commit': 'a'*40, 'run_id': '42', 'containers': [
-                    {'image_id': self.images[s], 'environment': 'ephemeral-ci'} for s in ('query-api','neo4j')]}
+                    {'runtime_image_id': self.runtime_images[s], 'build_config_digest': self.images[s],
+                     'archive_tag': 'l1-'+s+':fixture', 'environment': 'ephemeral-ci'}
+                    for s in ('query-api','neo4j')]}
             if name.startswith('image-'):
                 service = name[6:]; identity = self.images[service]
                 values.update({'subject.json': {'service': service, 'commit': 'a'*40, 'image_id': identity,
-                        'archive_sha256': 'b'*64, 'python_base': 'python@sha256:'+'c'*64},
+                        'archive_sha256': 'b'*64, 'archive_tag': 'l1-'+service+':fixture',
+                        'python_base': 'python@sha256:'+'c'*64},
                     'image-metadata.json': {'Id': identity},
                     'sbom.cyclonedx.json': {'bomFormat': 'CycloneDX', 'components': [{}], 'metadata': {'component': {
                         'type': 'container', 'properties': [{'name': 'aquasecurity:trivy:ImageID', 'value': identity}]}}},
@@ -135,9 +139,21 @@ class MeasuredL1Tests(unittest.TestCase):
             with self.assertRaises(ValueError):self.normalized()
 
     def test_scan_and_runtime_image_mismatch_rejected_even_when_resealed(self):
-        value=json.loads(self.bundles['runtime'][0]['deployment.json']);value['containers'][0]['image_id']='sha256:'+'f'*64
+        value=json.loads(self.bundles['runtime'][0]['deployment.json']);value['containers'][0]['build_config_digest']='sha256:'+'f'*64
         self.change('runtime','deployment.json',value)
         with self.assertRaisesRegex(ValueError,'Runtime images'):self.normalized()
+
+    def test_runtime_transport_identity_is_required_and_bound(self):
+        original=json.loads(self.bundles['runtime'][0]['deployment.json'])
+        mutations = []
+        missing=deepcopy(original);del missing['containers'][0]['runtime_image_id'];mutations.append(missing)
+        malformed=deepcopy(original);malformed['containers'][0]['runtime_image_id']='not-a-digest';mutations.append(malformed)
+        duplicate=deepcopy(original);duplicate['containers'][0]['runtime_image_id']=duplicate['containers'][1]['runtime_image_id'];mutations.append(duplicate)
+        wrong_tag=deepcopy(original);wrong_tag['containers'][0]['archive_tag']='l1-other:fixture';mutations.append(wrong_tag)
+        for value in mutations:
+            with self.subTest(value=value):
+                self.change('runtime','deployment.json',value)
+                with self.assertRaisesRegex(ValueError,'Runtime images'):self.normalized()
 
     def test_sbom_bound_to_other_image_rejected(self):
         value=json.loads(self.bundles['image-query-api'][0]['sbom.cyclonedx.json'])

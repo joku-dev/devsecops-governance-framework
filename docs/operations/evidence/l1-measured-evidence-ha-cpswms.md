@@ -235,7 +235,11 @@ weil die dafür erforderlichen unabhängigen Nachweise nicht vorliegen.
 Der Intake prüft GitHub-Repository, erfolgreichen `push/main`-Lauf, Workflow,
 Commit, Versuch und Artefaktzuordnung. Producer-Manifeste binden ausgewählte
 Rohdateien an diesen Kontext. JUnit-Zahlen und SAST-Befunde werden nachgerechnet;
-SBOMs, Scan-Reports und Runtime-Container müssen zu denselben Image-IDs gehören.
+SBOMs und Scan-Reports müssen zum Build-Config-Digest gehören. Bei portablen
+Docker-Archiven prüft der Intake zusätzlich den Archiv-Tag sowie die nach dem
+Import ermittelte Runtime-Image-ID. Der Runtime-Nachweis muss den Build-Digest
+jedes getesteten Containers wieder auf den gescannten Digest abbilden; fehlende,
+ungültige oder doppelte Runtime-IDs und falsche Archiv-Tags werden abgewiesen.
 Die technische Anforderungszuordnung wird aus dem exakten Quell-Commit gelesen.
 Fremde Kontexte, falsche Hashes, fehlende Dateien und widersprüchliche Summen
 brechen den Intake ab und ersetzen keinen bisherigen Stand. HTTP 403 innerhalb

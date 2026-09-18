@@ -193,10 +193,23 @@ def normalize(run, report_raw, report_artifact, bundles, traceability_raw):
     if commit['http_status'] == 200 and commit['data']['sha'] != run['head_sha']:
         raise ValueError('Platform commit identity mismatch')
     deployment = parsed['runtime']['deployment.json']
+    deployed = deployment['containers']
+    portable_runtime = all(
+        set(('runtime_image_id', 'build_config_digest', 'archive_tag')) <= set(container)
+        for container in deployed
+    )
+    portable_binding_valid = (
+        portable_runtime
+        and {container['build_config_digest'] for container in deployed}
+            == {images[s]['image_id'] for s in ('query-api', 'neo4j')}
+        and {container['archive_tag'] for container in deployed}
+            == {parsed['image-' + s]['subject.json']['archive_tag'] for s in ('query-api', 'neo4j')}
+        and all(re.fullmatch(r'sha256:[a-f0-9]{64}', container['runtime_image_id']) for container in deployed)
+        and len({container['runtime_image_id'] for container in deployed}) == len(deployed)
+    )
     if (deployment['commit'] != run['head_sha'] or str(deployment['run_id']) != str(run['id'])
-            or len(deployment['containers']) != 2
-            or {c['image_id'] for c in deployment['containers']} != {images[s]['image_id'] for s in ('query-api', 'neo4j')}
-            or any(c['environment'] != 'ephemeral-ci' for c in deployment['containers'])):
+            or len(deployed) != 2 or not portable_binding_valid
+            or any(c['environment'] != 'ephemeral-ci' for c in deployed)):
         raise ValueError('Runtime images/context do not match scanned CI images')
     observed = {'tests': tests, 'traceability': {'requirements': len(linked), 'matched': sum(r['passed'] for r in linked), 'links': linked},
         'static_analysis': static, 'component_count': component_count, 'vulnerability_counts': scans['counts'],
