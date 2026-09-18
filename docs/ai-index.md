@@ -68,6 +68,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Operate Evidence- und Governance-Hardening | `docs/operations/guides/evidence-and-governance-hardening-guide.md` |
 | Assess governance repository self-security | `docs/operations/security/governance-repository-self-security.md`, `model/controls/governance-repository-security.yaml`, `scripts/assess_governance_repository_security.py`, `generated/reports/governance-repository-security.md` |
 | Review the 17 September repository hardening and Bitbucket/Bamboo portability | `docs/operations/security/repository-security-hardening-2026-09-17.md`, `docs/governance/change-requests/GCR-2026-094-governance-repository-security-hardening.md` |
+| Review executable-code security and the 18 September intake hardening | `docs/operations/security/repository-code-security-assessment-2026-09-18.md`, `docs/governance/change-requests/GCR-2026-096-repository-code-security-hardening.md` |
 | Operate the vulnerability-scan collector pilot | `docs/operations/evidence/vulnerability-scan-collector-usage.md`, `scripts/collect_vulnerability_scan_evidence.py` |
 | Understand portfolio adoption reporting | `docs/operations/status/portfolio-adoption-reporting.md`, `governance/portfolio-adoption-reporting.yaml` |
 | Implement Bamboo 12.1.9 adapter | `docs/operations/adapters/bitbucket-bamboo-governance-adapter.md`, `pipeline-baseline/templates/bamboo/bamboo-specs/bamboo.yaml` |

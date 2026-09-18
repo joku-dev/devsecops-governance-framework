@@ -146,6 +146,18 @@ earlier evaluator. Historical receipts remain immutable. A new lifecycle
 `observe` operation for `0.3.0` requires a new preparation/operating revision
 and personal acceptance first.
 
+## Executable-Code Review On 18 September 2026
+
+GCR-2026-096 independently reviewed Python, maintained JavaScript, dependencies
+and active workflows. The change closes cross-origin bearer-token forwarding
+in GitHub artifact downloads, replaces unrestricted ZIP extraction with one
+bounded fail-closed implementation, adds explicit XML input limits and extends
+CodeQL to JavaScript. See the dated
+[code security assessment](repository-code-security-assessment-2026-09-18.md)
+for findings, scanner evidence and residual limits. This code review complements
+the live repository-control profile; it does not turn the report-only
+Self-Security result into a certification.
+
 ## Safe Activation Sequence
 
 The sequence below explains activation dependencies. Steps 1–5 are implemented

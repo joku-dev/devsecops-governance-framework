@@ -77,7 +77,7 @@ def download(artifact, output, names, token):
     archive = output / 'download.zip'
     digest, total = hashlib.sha256(), 0
     # Never forward the GitHub credential to artifact blob storage.
-    with urllib.request.urlopen(location, timeout=120) as source, archive.open('wb') as target:
+    with urllib.request.urlopen(location, timeout=120) as source, archive.open('wb') as target:  # nosec B310: signed URL is HTTPS and receives no credential.
         while data := source.read(1024**2):
             total += len(data)
             if total > MAX_ZIP:
