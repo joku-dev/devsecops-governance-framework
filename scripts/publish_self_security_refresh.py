@@ -134,6 +134,12 @@ def publish(
         raise ValueError("Self-security report JSON was not regenerated")
 
     current = json.loads((root / REPORT_JSON).read_text(encoding="utf-8"))
+    api_errors = current.get("observation", {}).get("api_errors", [])
+    if api_errors:
+        raise ValueError(
+            "Self-security observation is incomplete; GitHub API errors must be resolved "
+            "before versioned publication"
+        )
     outputs = {path: (root / path).read_bytes() for path in paths}
     git(root, "fetch", "origin", "main")
     git(root, "merge-base", "--is-ancestor", "HEAD", "refs/remotes/origin/main")
