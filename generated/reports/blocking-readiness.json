@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "projection_type": "blocking-readiness",
-  "generated_at": "2026-09-18T14:41:38Z",
+  "generated_at": "2026-09-18T15:01:05Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "summary": {
@@ -429,11 +429,11 @@
         },
         {
           "id": "typed_evidence_current_and_clean",
-          "status": "fail",
+          "status": "pass",
           "required": true,
           "observed": {
             "available": true,
-            "same_commit": false,
+            "same_commit": true,
             "freshness": "pass"
           },
           "expected": {
@@ -457,10 +457,10 @@
         },
         {
           "id": "intake_observation_sample",
-          "status": "fail",
+          "status": "pass",
           "required": true,
           "observed": {
-            "events": 9,
+            "events": 10,
             "success_rate_pct": 100.0
           },
           "expected": {
