@@ -11,7 +11,6 @@ import json
 import os
 import sys
 import tempfile
-import zipfile
 
 from intake_github_actions_run import (
     DEFAULT_API_URL,
@@ -26,6 +25,7 @@ from lib.evidence_trust import compute_sha256, load_freshness_policy, verify_tru
 from lib.identifiers import sanitize_timestamp, slugify_repository
 from lib.json_io import load_json
 from lib.result_ledger import apply_replay_assessment, load_snapshot_payloads, write_snapshot_append_only
+from lib.safe_archive import safe_extract_zip
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -188,8 +188,7 @@ def main() -> int:
                     f"with Actions read access for {args.repository_id}."
                 ) from error
         if archive.exists():
-            with zipfile.ZipFile(archive) as handle:
-                handle.extractall(extract_dir)
+            safe_extract_zip(archive, extract_dir)
         producer_trust = load_json(find_trust_record(extract_dir))
         verified_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
         trust = centrally_verify_trust(

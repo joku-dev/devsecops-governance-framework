@@ -203,6 +203,8 @@ Artefaktumgebung. Kein Werkzeug pauschal ausführen, um nur seine Funktion zu er
 | [scripts/lib/identifiers.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/identifiers.py) | Identifier and timestamp helpers used by governance intake scripts. |
 | [scripts/lib/json_io.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/json_io.py) | JSON file helpers used by governance repository scripts. |
 | [scripts/lib/result_ledger.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/lib/result_ledger.py) | Append-only storage and report-only replay assessment for result snapshots. |
+| `scripts/lib/safe_archive.py` | Validiert und entpackt externe ZIP-Evidenz mit Pfad-, Typ-, Anzahl-, Größen- und Kompressionsgrenzen. |
+| `scripts/lib/secure_http.py` | Erzwingt HTTPS, begrenzt Antworten und entfernt Autorisierung bei Redirects auf einen anderen Ursprung. |
 
 ## Publishing-Builder
 
@@ -222,7 +224,7 @@ der Stand einer gleichnamigen Datei auf `main` ersetzt diesen Tag nicht.
 | Datei | Trigger | Aufgabe |
 |---|---|---|
 | [.github/workflows/architecture-baseline-l1-v0.1.0.yml](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/.github/workflows/architecture-baseline-l1-v0.1.0.yml) | `workflow_call` | Konsumierbare Architektur-L1-Baseline; sammelt Eingang, prüft Gates und publiziert Evidenz. Standard: report-only. |
-| [.github/workflows/codeql.yml](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/.github/workflows/codeql.yml) | `workflow_dispatch`, `push`, `pull_request`, `schedule` | Statische Python-Sicherheitsanalyse mit CodeQL. |
+| [.github/workflows/codeql.yml](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/.github/workflows/codeql.yml) | `workflow_dispatch`, `push`, `pull_request`, `schedule` | Statische Python- und JavaScript-Sicherheitsanalyse mit CodeQL; der bestehende Pflichtprüfungsname bleibt stabil. |
 | [.github/workflows/dependency-review.yml](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/.github/workflows/dependency-review.yml) | `pull_request` | Prüft Änderungen an Abhängigkeiten im PR. |
 | [.github/workflows/devsecops-baseline-l1-v1.0.0.yml](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/.github/workflows/devsecops-baseline-l1-v1.0.0.yml) | `workflow_call` | Versionierter DevSecOps-L1-Wrapper v1.0.0; historische veröffentlichte Version, für bestehende Pins erhalten. |
 | [.github/workflows/devsecops-baseline-l1-v1.1.0.yml](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/.github/workflows/devsecops-baseline-l1-v1.1.0.yml) | `workflow_call` | Versionierter DevSecOps-L1-Wrapper v1.1.0; historische veröffentlichte Version, für bestehende Pins erhalten. |

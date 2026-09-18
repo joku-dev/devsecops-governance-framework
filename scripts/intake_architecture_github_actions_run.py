@@ -7,7 +7,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import quote
-from urllib.request import Request, urlopen
 import argparse
 import json
 import os
@@ -15,7 +14,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import zipfile
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
 from lib.evidence_trust import (
@@ -26,6 +24,8 @@ from lib.evidence_trust import (
 )
 from lib.json_io import load_json
 from lib.result_ledger import apply_replay_assessment, load_snapshot_payloads, write_snapshot_append_only
+from lib.safe_archive import safe_extract_zip
+from lib.secure_http import download_https, get_json_https
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,9 +47,7 @@ def github_get_json(url: str, token: str | None) -> dict:
     }
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    request = Request(url, headers=headers)
-    with urlopen(request) as response:
-        return json.loads(response.read().decode("utf-8"))
+    return get_json_https(url, headers=headers)
 
 
 def github_download(url: str, destination: Path, token: str | None) -> None:
@@ -58,9 +56,7 @@ def github_download(url: str, destination: Path, token: str | None) -> None:
     }
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    request = Request(url, headers=headers)
-    with urlopen(request) as response:
-        destination.write_bytes(response.read())
+    download_https(url, destination, headers=headers)
 
 
 def api_repo_path(repository_id: str) -> str:
@@ -246,8 +242,7 @@ def main() -> int:
             else:
                 raise
         if archive.exists():
-            with zipfile.ZipFile(archive) as handle:
-                handle.extractall(extract_dir)
+            safe_extract_zip(archive, extract_dir)
         report_path = find_json(extract_dir, "architecture-governance-report.json")
         release_input_path = find_json(extract_dir, "architecture-release-input.json")
         report = load_json(report_path)

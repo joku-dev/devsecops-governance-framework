@@ -8,7 +8,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import json
 import sys
-import zipfile
+
+from lib.safe_archive import safe_extract_zip
 
 try:
     import jsonschema
@@ -30,8 +31,7 @@ def extract_bundle(bundle: Path, destination: Path) -> Path:
         raise FileNotFoundError(f"bundle not found: {bundle}")
     if bundle.suffix.lower() != ".zip":
         raise ValueError(f"unsupported bundle type; expected directory or .zip: {bundle}")
-    with zipfile.ZipFile(bundle) as handle:
-        handle.extractall(destination)
+    safe_extract_zip(bundle, destination)
     return destination
 
 

@@ -10,10 +10,10 @@ from tempfile import TemporaryDirectory
 import json
 import shutil
 import sys
-import zipfile
 
 from intake_governance_result import sanitize_timestamp, slugify_repository
 from lib.result_ledger import write_snapshot_append_only
+from lib.safe_archive import safe_extract_zip
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,8 +33,7 @@ def extract_bundle(bundle: Path, destination: Path) -> Path:
         raise FileNotFoundError(f"bundle not found: {bundle}")
     if bundle.suffix.lower() != ".zip":
         raise ValueError(f"unsupported bundle type; expected directory or .zip: {bundle}")
-    with zipfile.ZipFile(bundle) as handle:
-        handle.extractall(destination)
+    safe_extract_zip(bundle, destination)
     return destination
 
 

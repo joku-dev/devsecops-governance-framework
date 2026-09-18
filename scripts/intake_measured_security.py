@@ -30,7 +30,7 @@ class RemoteZip(io.RawIOBase):
         if urlparse(url).scheme != 'https':
             raise ValueError('Artifact download must use HTTPS')
         self.url, self.pos = url, 0
-        with urllib.request.urlopen(urllib.request.Request(url, method='HEAD'), timeout=40) as response:
+        with urllib.request.urlopen(urllib.request.Request(url, method='HEAD'), timeout=40) as response:  # nosec B310: HTTPS checked above; no credential is sent.
             self.size = int(response.headers['Content-Length'])
 
     def seekable(self):
@@ -51,7 +51,7 @@ class RemoteZip(io.RawIOBase):
             raise ValueError('Artifact range exceeds size limit')
         end = self.pos + size - 1
         request = urllib.request.Request(self.url, headers={'Range': f'bytes={self.pos}-{end}'})
-        with urllib.request.urlopen(request, timeout=40) as response:
+        with urllib.request.urlopen(request, timeout=40) as response:  # nosec B310: self.url was validated as HTTPS; no credential is sent.
             if response.status != 206 or response.headers.get('Content-Range') != f'bytes {self.pos}-{end}/{self.size}':
                 raise ValueError('Artifact server did not honor byte range')
             data = response.read(size + 1)
