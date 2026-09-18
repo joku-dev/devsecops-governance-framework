@@ -53,7 +53,7 @@ Schwachstellen werden im selben Change behoben.
 - [x] `./scripts/bootstrap_validation_env.sh`
 - [x] `./scripts/validate_all.sh` (`588` tests passed)
 - [x] strict documentation build
-- [ ] pull-request checks on GitHub
+- [x] pull-request checks on GitHub: Governance CI `35303873574`, CodeQL/Analyze Python `35303873612`, Dependency Review `35303873584`, Self-Security `35303873596` and Consumer Lifecycle Guard `35303873613` passed
 
 ## Release Decision
 
