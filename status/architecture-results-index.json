@@ -1,16 +1,16 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-18T17:08:21Z",
+  "generated_at": "2026-09-19T07:19:21Z",
   "summary": {
     "repository_count": 2,
-    "result_count": 24,
-    "passing_results": 16,
+    "result_count": 25,
+    "passing_results": 17,
     "findings_results": 8,
-    "mainline_results": 16,
+    "mainline_results": 17,
     "branch_results": 2,
     "manual_results": 6,
     "trust_level_counts": {
-      "integrity_verified": 15,
+      "integrity_verified": 16,
       "unverified": 9
     }
   },
@@ -280,14 +280,14 @@
       "results_path": "status/architecture-results/joku-dev__ha-CPsWMS/",
       "latest_result": {
         "status": "pass",
-        "pipeline_run_id": "35371297967",
-        "commit_id": "37e5a51ba627ca39880219ba311759f0be50ac04",
-        "generated_at": "2026-09-18T16:55:27Z",
+        "pipeline_run_id": "35428987695",
+        "commit_id": "dc303dcdabb36d4218b68dee5d1bbaf5eb3bc09c",
+        "generated_at": "2026-09-19T07:19:13Z",
         "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
-        "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35371297967",
+        "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35428987695",
         "branch": "main",
         "pipeline_event": "push",
-        "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T16-55-27Z-run-35371297967.json",
+        "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-19T07-19-13Z-run-35428987695.json",
         "architecture_summary": {
           "gate_count": 4,
           "passed": 4,
@@ -297,7 +297,7 @@
         "trust": {
           "effective_level": "integrity_verified",
           "assessment_status": "evaluated",
-          "verified_at": "2026-09-18T17:08:21Z",
+          "verified_at": "2026-09-19T07:19:21Z",
           "replay": "pass",
           "check_summary": {
             "pass": 7,
@@ -754,6 +754,34 @@
             }
           },
           "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-18T16-55-27Z-run-35371297967.json"
+        },
+        {
+          "generated_at": "2026-09-19T07:19:13Z",
+          "status": "pass",
+          "pipeline_run_id": "35428987695",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35428987695",
+          "branch": "main",
+          "commit_id": "dc303dcdabb36d4218b68dee5d1bbaf5eb3bc09c",
+          "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+          "architecture_summary": {
+            "gate_count": 4,
+            "passed": 4,
+            "with_findings": 0,
+            "finding_count": 0
+          },
+          "trust": {
+            "effective_level": "integrity_verified",
+            "assessment_status": "evaluated",
+            "verified_at": "2026-09-19T07:19:21Z",
+            "replay": "pass",
+            "check_summary": {
+              "pass": 7,
+              "fail": 0,
+              "not_evaluated": 5
+            }
+          },
+          "source_file": "status/architecture-results/joku-dev__ha-CPsWMS/2026-09-19T07-19-13Z-run-35428987695.json"
         }
       ]
     }
