@@ -23,18 +23,21 @@ This document records a capacity assessment and target direction. It does not
 declare the current repository production-ready for 300 or 1,500 consumers,
 change a baseline or enable blocking enforcement.
 
-## Artifact Classification
+## Document Responsibility
 
-| Field | Decision |
+This document is the canonical location for measured consumer capacity,
+identified scale limits and the target architecture for 300 to 1,500 consumer
+repositories. The change classification and impact decision are recorded once
+in [GCR-2026-101](../../governance/change-requests/GCR-2026-101-consumer-scale-capacity-assessment.md).
+
+Related documents have narrower responsibilities:
+
+| Question | Canonical document |
 |---|---|
-| Artifact | Consumer scale simulation and capacity assessment |
-| Type | Planning documentation, diagnostic tool and tests |
-| Target | `docs/operations/planning/`, `scripts/`, `tests/` and documentation navigation |
-| Owner | Governance Platform Lead |
-| Source Document Intake required | no; this is an engineering assessment of the implemented system |
-| Evidence contract impact | none |
-| Runtime governance impact | none; the simulation is isolated and report-only |
-| Release impact | none |
+| Are registered consumers structurally isolated in the current implementation? | [Multi-Consumer Readiness](../status/multi-consumer-readiness.md) |
+| What is the current normalized-result storage contract? | [Governance Results Storage Model](../evidence/governance-results-storage-model.md) |
+| How is the current system built? | [Governance-as-Code System Architecture](../../governance/architecture/governance-as-code-system-architecture.md) |
+| What implementation work should happen next? | [Roadmap](../../roadmap.md) |
 
 ## Current Processing Model
 

@@ -1,6 +1,7 @@
 # Roadmap
 
-Reviewed against `a74e06708c622f98f2699e136accbec9838c41ab` on 17 September 2026.
+Reviewed against `614380fe98b41a29aab2154f09fb4431f63b350a` and the
+consumer-scale assessment on 19 September 2026.
 This roadmap distinguishes implemented capabilities from remaining decisions.
 The [current platform state](operations/status/current-governance-platform-state.md)
 contains the dated evidence, and the [operations handbook](operations/guides/governance-repository-operations-handbook.md)
@@ -16,7 +17,7 @@ defines the controlled pilot procedure.
   ha-CPsWMS, and typed SBOM evidence exists for ha-CPsWMS.
 - Result snapshots, digests, manifests, append-only intake, conflict retention,
   replay triage, Trust verification and a signed-attestation pilot are implemented.
-- ha-CPsWMS produces 58 real source/runtime tests, SAST, five container builds,
+- ha-CPsWMS produces 54 real source tests and eight runtime tests, SAST, five container builds,
   CycloneDX SBOMs and Trivy scans. Central intake recomputes all 16 L1 evidence
   assessments and records per-control coverage, Trust and Freshness.
 - Operational updates use reviewed bot PRs. Intake telemetry, controlled retry,
@@ -24,6 +25,10 @@ defines the controlled pilot procedure.
   are available.
 - Pinned validation, daily operations, self-security, documentation publication,
   backup/recovery procedures and management communication artifacts are available.
+- A separate staging VM supplies deployment and runtime evidence for
+  L1-013/014/016. The latest staging execution passed all 19 checks; the
+  consolidated L1 result records 11 measured controls, four partial controls,
+  one control with findings and no evidence gap.
 
 Implementation does not prove operating acceptance, enterprise compliance,
 production Trust promotion or released L2/L3 readiness.
@@ -52,8 +57,11 @@ Bitbucket Data Center/Bamboo implementation waits for actual company versions.
    independent missing-report alerting only through a separately scoped change.
 4. Collect representative intake samples. The second consumer already produces
    telemetry; broader samples and platform validation remain useful.
-5. Connect the planned staging VM so L1-013/014 and the operational parts of
-   L1-016 can receive authorized deployment and runtime evidence.
+5. Re-run the consumer-scale diagnostic on the intended runner class and design
+   the first production-scale evidence-plane increment: batched intake,
+   partitioned viewer data and external immutable evidence storage. Use the
+   [Consumer Scale Capacity Assessment](operations/planning/consumer-scale-capacity-assessment.md)
+   as the canonical sizing and architecture record.
 
 ## Governance And Release Decisions
 
@@ -69,4 +77,5 @@ Bitbucket Data Center/Bamboo implementation waits for actual company versions.
   approved Actions sources without rewriting historical released tags.
 - Validate additional CI/CD platforms and decide future L2/L3 release scope.
 - Decide long-term source-master and archival arrangements from actual operating
-  needs. The current pilot does not require a database.
+  needs. The current pilot does not require a database; a 300-to-1,500-consumer
+  operating model requires an external evidence store and bounded read models.
