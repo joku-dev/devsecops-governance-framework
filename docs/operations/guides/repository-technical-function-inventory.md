@@ -1,7 +1,7 @@
 # Technische Funktionsliste des Repositories
 
-Stand: 17. September 2026, geprüft gegen Quellstand `a74e067` einschließlich
-Kontrollnachweis-Assurance GCR-2026-092 und Dokumentationsabgleich GCR-2026-093.
+Stand: 19. September 2026, geprüft gegen Quellstand `614380f` einschließlich
+Consumer-Scale-Bewertung GCR-2026-101.
 
 Dies ist die vollständige Dateiliste der implementierten Skripte und Bibliotheksmodule
 unter `scripts/`, der GitHub-Workflows und der OPA-Module am genannten Stand.
@@ -9,7 +9,8 @@ Der [fachliche Katalog](repository-function-catalog.md) erläutert die 21 Aufgab
 mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbole
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
-Umfang: **138 Skripte/Module**, **21 Workflows**, **15 OPA-Module**.
+Umfang: **141 Python-Skripte/Module**, **2 Shell-Skripte**, **22 Workflows**,
+**15 OPA-Module**.
 
 Einträge wurden aus den versionierten Dateien, Python-Modulbeschreibungen und
 Workflow-Definitionen ermittelt. Englische Beschreibungen übernehmen die
@@ -132,6 +133,7 @@ Artefaktumgebung. Kein Werkzeug pauschal ausführen, um nur seine Funktion zu er
 | [scripts/generate_source_document_intake_status.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/generate_source_document_intake_status.py) | Generate a source-document intake status report. |
 | [scripts/generate_source_document_requirement_delta.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/generate_source_document_requirement_delta.py) | Generate requirement-level deltas for source-document replacement candidates. |
 | [scripts/generate_source_lineage_report.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/generate_source_lineage_report.py) | Generate source-document lineage report for governance artifacts. |
+| `scripts/simulate_consumer_scale.py` | Erzeugt ausschließlich in temporären Verzeichnissen 300-/1.500-Consumer-Szenarien und misst Index-, Portfolio- und Viewer-Projektionen, ohne offizielle Statusdaten zu verändern. |
 | [scripts/generate_status_viewer.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/generate_status_viewer.py) | Generate a static governance status viewer. |
 | [scripts/generate_traceability_csv.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/generate_traceability_csv.py) | Generate a flat control traceability CSV from the YAML control library. |
 | [scripts/generate_typed_evidence_results_index.py](https://github.com/joku-dev/devsecops-governance-framework/blob/8df643db37ec4d6da7196b94aaa77b5e0e0844d8/scripts/generate_typed_evidence_results_index.py) | Aggregate typed Evidence Trust results without changing governance outcomes. |

@@ -12,11 +12,11 @@ zusätzlich alle Skripte, Bibliotheksmodule, Workflows und OPA-Module des Quells
 
 | Merkmal | Wert |
 | --- | --- |
-| Dokumentstand | 17. September 2026 |
-| Betrachteter Quellstand | `a74e06708c622f98f2699e136accbec9838c41ab` plus GCR-2026-093 |
+| Dokumentstand | 19. September 2026 |
+| Betrachteter Quellstand | `614380fe98b41a29aab2154f09fb4431f63b350a` plus GCR-2026-101 |
 | Zielgruppe | Geschäftsführung, Governance-Verantwortliche, Architektur, Security, Plattformbetrieb und Anwendungsteams |
 | Dokumenttyp | Erläuternder Funktionskatalog |
-| Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierungen: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md), [GCR-2026-078](../../governance/change-requests/GCR-2026-078-documentation-and-function-audit.md), [GCR-2026-093](../../governance/change-requests/GCR-2026-093-current-documentation-capabilities-refresh.md) |
+| Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierungen: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md), [GCR-2026-078](../../governance/change-requests/GCR-2026-078-documentation-and-function-audit.md), [GCR-2026-093](../../governance/change-requests/GCR-2026-093-current-documentation-capabilities-refresh.md), [GCR-2026-101](../../governance/change-requests/GCR-2026-101-consumer-scale-capacity-assessment.md) |
 
 Der Katalog beschreibt vorhandene Fähigkeiten zum genannten Quellstand. Er
 bestätigt keine aktuelle Betriebsbereitschaft einer Anwendung und erzeugt keine
@@ -606,9 +606,16 @@ Readiness-Befunde und Hinweise auf notwendige Entscheidungen.
 `scripts/check_repository_onboarding_readiness.py`,
 `scripts/generate_portfolio_onboarding_status.py`,
 `scripts/generate_multi_consumer_readiness.py`,
+`scripts/simulate_consumer_scale.py`,
 `scripts/generate_blocking_readiness.py`,
 `scripts/generate_blocking_mode_alignment.py`,
 `status/application-repository-integrations.yaml`, `model/enforcement/`.
+
+Die [Consumer-Scale-Simulation](../planning/consumer-scale-capacity-assessment.md)
+misst zusätzlich die isolierte Index-, Portfolio- und Viewer-Verarbeitung für
+synthetische 300- und 1.500-Consumer-Szenarien. Sie verwendet temporäre Daten
+und verändert keine offiziellen Ergebnisse. GitHub-API-, PR-, Review- und
+Browserlast bleiben getrennte Produktionsabnahmen.
 
 **Einordnung und Grenzen:** Implementierte Entscheidungshilfen. Die
 Portfolio-Berichterstattung ist einfacher als das umfassendere fachliche

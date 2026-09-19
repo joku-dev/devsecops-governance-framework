@@ -34,6 +34,10 @@ Normalized evidence is held in Git; original producer artifacts remain subject
 to their retention settings and selected archival. The current pilot requires no
 database. See the [storage model](../evidence/governance-results-storage-model.md)
 and [backup procedure](../processes/governance-repository-backup-and-recovery.md).
+This storage statement applies to the current low-volume pilot. The
+[consumer-scale capacity assessment](../planning/consumer-scale-capacity-assessment.md)
+shows that production operation with 300 to 1,500 consumers requires batched
+intake, bounded read models and external immutable evidence storage.
 
 ## GitHub lifecycle update, 13 September 2026
 

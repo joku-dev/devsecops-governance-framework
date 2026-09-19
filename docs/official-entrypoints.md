@@ -4,6 +4,7 @@
 
 Aktueller Funktionsumfang: [detaillierter Katalog mit 21 Bereichen](operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](operations/guides/repository-technical-function-inventory.md).
+[Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-state.md)
 ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
 13. September 2026 aktiv, manuell und report-only.
@@ -118,6 +119,7 @@ It is intended for:
 - Operational governance enforcement options: `docs/operations/processes/operational-governance-enforcement-options.md`
 - Documentation structure model: `docs/operations/planning/document-structure-model.md`
 - Documentation structure audit: `docs/operations/planning/document-structure-audit.md`
+- Consumer scale capacity assessment: `docs/operations/planning/consumer-scale-capacity-assessment.md`
 - Closed-loop governance durable pilot intake: `docs/operations/evidence/governance-lifecycle-durable-pilot-intake.md`
 - Closed-loop governance personal channel probe: `docs/operations/evidence/governance-lifecycle-personal-channel.md`
 - Closed-loop governance action consent: `docs/operations/evidence/governance-lifecycle-action-consent.md`
