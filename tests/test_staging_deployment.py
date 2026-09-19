@@ -24,8 +24,8 @@ class StagingDeploymentTests(unittest.TestCase):
     def test_current_snapshot_is_bound_to_real_staging_run(self):
         item = self.item
         self.assertEqual("joku-dev/ha-CPsWMS", item["repository_id"])
-        self.assertEqual("35386771107", item["deployed_subject"]["source_run_id"])
-        self.assertEqual(2, item["deployed_subject"]["source_attempt"])
+        self.assertEqual("35428987714", item["deployed_subject"]["source_run_id"])
+        self.assertEqual(1, item["deployed_subject"]["source_attempt"])
         self.assertEqual("pass", item["deployment"]["status"])
         self.assertEqual({"query-api", "neo4j"}, set(item["components"]))
         self.assertEqual(19, item["tests"]["pass"])
