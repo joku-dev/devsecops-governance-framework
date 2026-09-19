@@ -5,6 +5,7 @@ import publish_operational_update as publisher
 
 
 ADDITIONAL_LEDGERS = (
+    "status/measured-security-results/",
     "status/measured-l1-results/",
     "status/control-evidence-assurance/",
 )
