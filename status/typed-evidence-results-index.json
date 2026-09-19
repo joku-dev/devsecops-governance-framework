@@ -1,20 +1,20 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-18T19:43:41Z",
+  "generated_at": "2026-09-19T06:37:25Z",
   "summary": {
     "repository_count": 2,
-    "result_count": 18,
-    "mainline_results": 15,
+    "result_count": 20,
+    "mainline_results": 17,
     "branch_results": 0,
     "manual_results": 3,
     "freshness_failures": 1,
     "replay_failures": 0,
     "trust_level_counts": {
-      "integrity_verified": 18
+      "integrity_verified": 20
     },
     "evidence_type_counts": {
-      "vulnerability_scan": 14,
-      "sbom": 4
+      "vulnerability_scan": 15,
+      "sbom": 5
     }
   },
   "repositories": [
@@ -437,13 +437,13 @@
       "repository_id": "joku-dev/ha-CPsWMS",
       "results_path": "status/typed-evidence-results/joku-dev__ha-CPsWMS/",
       "latest_result": {
-        "generated_at": "2026-09-18T19:42:24Z",
+        "generated_at": "2026-09-19T06:35:18Z",
         "evidence_type": "vulnerability_scan",
-        "pipeline_run_id": "35386771107",
+        "pipeline_run_id": "35426873233",
         "pipeline_event": "push",
-        "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107",
+        "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35426873233",
         "branch": "main",
-        "commit_id": "2c9724dc34845f40425018a46d254c2b17221966",
+        "commit_id": "e0c0ad9d687cfb9099d90de5aff1dfcee5bf5776",
         "collector_status": "collected",
         "enforcement": "report_only",
         "subject_binding": {
@@ -456,7 +456,7 @@
         "trust": {
           "effective_level": "integrity_verified",
           "assessment_status": "evaluated",
-          "verified_at": "2026-09-18T19:43:13.646321Z",
+          "verified_at": "2026-09-19T06:36:54.891230Z",
           "replay": "pass",
           "check_summary": {
             "pass": 7,
@@ -464,22 +464,22 @@
             "not_evaluated": 5
           }
         },
-        "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T19-42-24Z-run-35386771107-vulnerability-scan.json",
+        "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T06-35-18Z-run-35426873233-vulnerability-scan.json",
         "producer": {
           "name": "trivy",
           "version": "0.70.0"
         },
-        "finding_count": 2468,
+        "finding_count": 2467,
         "max_severity": "critical",
         "severity_consistent": true,
         "container_images": [
           {
             "service": "ha-sync",
-            "image_id": "sha256:ed4be88d3e05dc78bfa46164c6aa23bf01f92ae430410daebc7bc7c315f5d4d0",
-            "artifact_id": "10564332528",
+            "image_id": "sha256:a67e00bb514083f831701761aa2f0d196aadc3ac449ee47e5642c4fe77822bfa",
+            "artifact_id": "10578859195",
             "artifact_name": "l1-image-ha-sync",
-            "artifact_archive_sha256": "9f8303777acbc174dfa02bd6efc33fce005ba589a941906bd76f122998627e19",
-            "archive_sha256": "4138b99baf316b821cf2bf125e4f875c15337321e01c6a0b4b1251be2ae25769",
+            "artifact_archive_sha256": "0186fc78ac4e8395fe7a2d10f2d28222d11c916fdb2ca40b605c1ba0a6195ecb",
+            "archive_sha256": "bee239cf86bffb6b0c0b71b2385ab7291d94f83e2cdb25b821fdc569a9248ed8",
             "archive_digest_verified": true,
             "image_layers_verified": 12,
             "counts": {
@@ -493,11 +493,11 @@
           },
           {
             "service": "query-api",
-            "image_id": "sha256:efaff2532e9b94c720f5a93be7612566636ce94def0762e0c378393475fcc2ab",
-            "artifact_id": "10564332525",
+            "image_id": "sha256:a7282f0fc7e95873f562dca87b765166464785d44b8db863b0f8283d397709df",
+            "artifact_id": "10579191913",
             "artifact_name": "l1-image-query-api",
-            "artifact_archive_sha256": "e12de0209293c3ca78673a1883ce51de8477682b90b91b3831eced1e065453e7",
-            "archive_sha256": "7864207629b44acf54721c7df5f71891f328bf9ccfb5ea974c0c0ca64b4eec81",
+            "artifact_archive_sha256": "a5f92e50d9c26422aa7c97496b0d5893ceede83451fff7a16ceb9a9944918f8c",
+            "archive_sha256": "97b3b5d60a9953e9babc6176f3ff972a2b4bfd769093b84fe408a72ce225f90f",
             "archive_digest_verified": true,
             "image_layers_verified": 9,
             "counts": {
@@ -511,11 +511,11 @@
           },
           {
             "service": "semantic-enrichment",
-            "image_id": "sha256:e92b260ca0c33affe9bab6a199e0d9b3c004b6b2082a759cdfd81acdd5707b00",
-            "artifact_id": "10564511108",
+            "image_id": "sha256:457a60b472f692995e9e4e98a0f495c14a55a50dd16e8040e3fdcf9e0db9fde3",
+            "artifact_id": "10578144710",
             "artifact_name": "l1-image-semantic-enrichment",
-            "artifact_archive_sha256": "86994ebede4ed930f8ecbd7051077147666e60be25f368c87d03fa2665126759",
-            "archive_sha256": "4ed02e91c6c0594e435807a16623e49321f415e16199480be28ef63111381ff2",
+            "artifact_archive_sha256": "11aac547cd805f731bfb639dd06836ac4b06cca9416a26daa47f2ca254ffc9e1",
+            "archive_sha256": "f55d902273814b7a404197abeb7d107e36e444db587468cf8914334171868928",
             "archive_digest_verified": true,
             "image_layers_verified": 9,
             "counts": {
@@ -529,11 +529,11 @@
           },
           {
             "service": "world-model-chat",
-            "image_id": "sha256:eda1dbaadb55dbfbb41ad4a2e51c27e16a89887dc6a3f5caf2da3059ad9f9b3c",
-            "artifact_id": "10564437446",
+            "image_id": "sha256:d532ba612b6bea2a48afd8e4200b3cf4f3a1c6faf0e753bab2f2720aac96ef5e",
+            "artifact_id": "10579736306",
             "artifact_name": "l1-image-world-model-chat",
-            "artifact_archive_sha256": "7415c5a7e0f8534c3565f79c8f5f294fcd2ecf664309b82ade31532f4dfa2bf8",
-            "archive_sha256": "3219d2306b57bff343b2e3fa146c9aa005eda4db2e0fe56908ab4be4bcd55845",
+            "artifact_archive_sha256": "2b03471b75a6879efb7e50ee426422bf496726d99ed1519b31854dc62b2d39c3",
+            "archive_sha256": "84d92bff58e08d9a63d4700f3b0c47f93b6c3667f1517940e6aad0b840c9846c",
             "archive_digest_verified": true,
             "image_layers_verified": 11,
             "counts": {
@@ -547,19 +547,19 @@
           },
           {
             "service": "neo4j",
-            "image_id": "sha256:133f7f64326afdfd4620d46a2aa4d4af90810717507e7f64acb593e0b086711b",
-            "artifact_id": "10564491174",
+            "image_id": "sha256:7864c953a14973119a195612ccf3865ba398ba823bae82bf3da0c2a83137e423",
+            "artifact_id": "10579591486",
             "artifact_name": "l1-image-neo4j",
-            "artifact_archive_sha256": "4bd4031b01ad8fca1b5d3927d134b2dd7daa81d8c7853dbb30548aa92f24e370",
-            "archive_sha256": "6d1cc7bc9dbdfa7961517310a62b1f305533426dd8d59e97747f348bd6db1ddd",
+            "artifact_archive_sha256": "4484da9775436f97e9a403dadd9bba295adc4ffa11deec13226059b532937f09",
+            "archive_sha256": "ecbdd82880abfde32220bb967893f8c12120dcfa8ce09eb8177980ea4c71670f",
             "archive_digest_verified": true,
             "image_layers_verified": 6,
             "counts": {
               "CRITICAL": 1,
-              "HIGH": 151,
-              "MEDIUM": 986,
-              "LOW": 220,
-              "UNKNOWN": 466,
+              "HIGH": 152,
+              "MEDIUM": 984,
+              "LOW": 221,
+              "UNKNOWN": 465,
               "INFO": 0
             }
           }
@@ -567,13 +567,13 @@
       },
       "latest_results": [
         {
-          "generated_at": "2026-09-18T19:42:24Z",
+          "generated_at": "2026-09-19T06:35:18Z",
           "evidence_type": "vulnerability_scan",
-          "pipeline_run_id": "35386771107",
+          "pipeline_run_id": "35426873233",
           "pipeline_event": "push",
-          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107",
+          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35426873233",
           "branch": "main",
-          "commit_id": "2c9724dc34845f40425018a46d254c2b17221966",
+          "commit_id": "e0c0ad9d687cfb9099d90de5aff1dfcee5bf5776",
           "collector_status": "collected",
           "enforcement": "report_only",
           "subject_binding": {
@@ -586,7 +586,7 @@
           "trust": {
             "effective_level": "integrity_verified",
             "assessment_status": "evaluated",
-            "verified_at": "2026-09-18T19:43:13.646321Z",
+            "verified_at": "2026-09-19T06:36:54.891230Z",
             "replay": "pass",
             "check_summary": {
               "pass": 7,
@@ -594,22 +594,22 @@
               "not_evaluated": 5
             }
           },
-          "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T19-42-24Z-run-35386771107-vulnerability-scan.json",
+          "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T06-35-18Z-run-35426873233-vulnerability-scan.json",
           "producer": {
             "name": "trivy",
             "version": "0.70.0"
           },
-          "finding_count": 2468,
+          "finding_count": 2467,
           "max_severity": "critical",
           "severity_consistent": true,
           "container_images": [
             {
               "service": "ha-sync",
-              "image_id": "sha256:ed4be88d3e05dc78bfa46164c6aa23bf01f92ae430410daebc7bc7c315f5d4d0",
-              "artifact_id": "10564332528",
+              "image_id": "sha256:a67e00bb514083f831701761aa2f0d196aadc3ac449ee47e5642c4fe77822bfa",
+              "artifact_id": "10578859195",
               "artifact_name": "l1-image-ha-sync",
-              "artifact_archive_sha256": "9f8303777acbc174dfa02bd6efc33fce005ba589a941906bd76f122998627e19",
-              "archive_sha256": "4138b99baf316b821cf2bf125e4f875c15337321e01c6a0b4b1251be2ae25769",
+              "artifact_archive_sha256": "0186fc78ac4e8395fe7a2d10f2d28222d11c916fdb2ca40b605c1ba0a6195ecb",
+              "archive_sha256": "bee239cf86bffb6b0c0b71b2385ab7291d94f83e2cdb25b821fdc569a9248ed8",
               "archive_digest_verified": true,
               "image_layers_verified": 12,
               "counts": {
@@ -623,11 +623,11 @@
             },
             {
               "service": "query-api",
-              "image_id": "sha256:efaff2532e9b94c720f5a93be7612566636ce94def0762e0c378393475fcc2ab",
-              "artifact_id": "10564332525",
+              "image_id": "sha256:a7282f0fc7e95873f562dca87b765166464785d44b8db863b0f8283d397709df",
+              "artifact_id": "10579191913",
               "artifact_name": "l1-image-query-api",
-              "artifact_archive_sha256": "e12de0209293c3ca78673a1883ce51de8477682b90b91b3831eced1e065453e7",
-              "archive_sha256": "7864207629b44acf54721c7df5f71891f328bf9ccfb5ea974c0c0ca64b4eec81",
+              "artifact_archive_sha256": "a5f92e50d9c26422aa7c97496b0d5893ceede83451fff7a16ceb9a9944918f8c",
+              "archive_sha256": "97b3b5d60a9953e9babc6176f3ff972a2b4bfd769093b84fe408a72ce225f90f",
               "archive_digest_verified": true,
               "image_layers_verified": 9,
               "counts": {
@@ -641,11 +641,11 @@
             },
             {
               "service": "semantic-enrichment",
-              "image_id": "sha256:e92b260ca0c33affe9bab6a199e0d9b3c004b6b2082a759cdfd81acdd5707b00",
-              "artifact_id": "10564511108",
+              "image_id": "sha256:457a60b472f692995e9e4e98a0f495c14a55a50dd16e8040e3fdcf9e0db9fde3",
+              "artifact_id": "10578144710",
               "artifact_name": "l1-image-semantic-enrichment",
-              "artifact_archive_sha256": "86994ebede4ed930f8ecbd7051077147666e60be25f368c87d03fa2665126759",
-              "archive_sha256": "4ed02e91c6c0594e435807a16623e49321f415e16199480be28ef63111381ff2",
+              "artifact_archive_sha256": "11aac547cd805f731bfb639dd06836ac4b06cca9416a26daa47f2ca254ffc9e1",
+              "archive_sha256": "f55d902273814b7a404197abeb7d107e36e444db587468cf8914334171868928",
               "archive_digest_verified": true,
               "image_layers_verified": 9,
               "counts": {
@@ -659,11 +659,11 @@
             },
             {
               "service": "world-model-chat",
-              "image_id": "sha256:eda1dbaadb55dbfbb41ad4a2e51c27e16a89887dc6a3f5caf2da3059ad9f9b3c",
-              "artifact_id": "10564437446",
+              "image_id": "sha256:d532ba612b6bea2a48afd8e4200b3cf4f3a1c6faf0e753bab2f2720aac96ef5e",
+              "artifact_id": "10579736306",
               "artifact_name": "l1-image-world-model-chat",
-              "artifact_archive_sha256": "7415c5a7e0f8534c3565f79c8f5f294fcd2ecf664309b82ade31532f4dfa2bf8",
-              "archive_sha256": "3219d2306b57bff343b2e3fa146c9aa005eda4db2e0fe56908ab4be4bcd55845",
+              "artifact_archive_sha256": "2b03471b75a6879efb7e50ee426422bf496726d99ed1519b31854dc62b2d39c3",
+              "archive_sha256": "84d92bff58e08d9a63d4700f3b0c47f93b6c3667f1517940e6aad0b840c9846c",
               "archive_digest_verified": true,
               "image_layers_verified": 11,
               "counts": {
@@ -677,32 +677,32 @@
             },
             {
               "service": "neo4j",
-              "image_id": "sha256:133f7f64326afdfd4620d46a2aa4d4af90810717507e7f64acb593e0b086711b",
-              "artifact_id": "10564491174",
+              "image_id": "sha256:7864c953a14973119a195612ccf3865ba398ba823bae82bf3da0c2a83137e423",
+              "artifact_id": "10579591486",
               "artifact_name": "l1-image-neo4j",
-              "artifact_archive_sha256": "4bd4031b01ad8fca1b5d3927d134b2dd7daa81d8c7853dbb30548aa92f24e370",
-              "archive_sha256": "6d1cc7bc9dbdfa7961517310a62b1f305533426dd8d59e97747f348bd6db1ddd",
+              "artifact_archive_sha256": "4484da9775436f97e9a403dadd9bba295adc4ffa11deec13226059b532937f09",
+              "archive_sha256": "ecbdd82880abfde32220bb967893f8c12120dcfa8ce09eb8177980ea4c71670f",
               "archive_digest_verified": true,
               "image_layers_verified": 6,
               "counts": {
                 "CRITICAL": 1,
-                "HIGH": 151,
-                "MEDIUM": 986,
-                "LOW": 220,
-                "UNKNOWN": 466,
+                "HIGH": 152,
+                "MEDIUM": 984,
+                "LOW": 221,
+                "UNKNOWN": 465,
                 "INFO": 0
               }
             }
           ]
         },
         {
-          "generated_at": "2026-09-18T19:42:24Z",
+          "generated_at": "2026-09-19T06:35:18Z",
           "evidence_type": "sbom",
-          "pipeline_run_id": "35386771107",
+          "pipeline_run_id": "35426873233",
           "pipeline_event": "push",
-          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107",
+          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35426873233",
           "branch": "main",
-          "commit_id": "2c9724dc34845f40425018a46d254c2b17221966",
+          "commit_id": "e0c0ad9d687cfb9099d90de5aff1dfcee5bf5776",
           "collector_status": "collected",
           "enforcement": "report_only",
           "subject_binding": {
@@ -715,7 +715,7 @@
           "trust": {
             "effective_level": "integrity_verified",
             "assessment_status": "evaluated",
-            "verified_at": "2026-09-18T19:43:13.646321Z",
+            "verified_at": "2026-09-19T06:36:54.891230Z",
             "replay": "pass",
             "check_summary": {
               "pass": 7,
@@ -723,7 +723,7 @@
               "not_evaluated": 5
             }
           },
-          "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T19-42-24Z-run-35386771107-sbom.json",
+          "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T06-35-18Z-run-35426873233-sbom.json",
           "producer": {
             "name": "trivy",
             "version": "0.70.0"
@@ -736,66 +736,66 @@
           "container_images": [
             {
               "service": "ha-sync",
-              "image_id": "sha256:ed4be88d3e05dc78bfa46164c6aa23bf01f92ae430410daebc7bc7c315f5d4d0",
-              "artifact_id": "10564332528",
+              "image_id": "sha256:a67e00bb514083f831701761aa2f0d196aadc3ac449ee47e5642c4fe77822bfa",
+              "artifact_id": "10578859195",
               "artifact_name": "l1-image-ha-sync",
-              "artifact_archive_sha256": "9f8303777acbc174dfa02bd6efc33fce005ba589a941906bd76f122998627e19",
-              "archive_sha256": "4138b99baf316b821cf2bf125e4f875c15337321e01c6a0b4b1251be2ae25769",
+              "artifact_archive_sha256": "0186fc78ac4e8395fe7a2d10f2d28222d11c916fdb2ca40b605c1ba0a6195ecb",
+              "archive_sha256": "bee239cf86bffb6b0c0b71b2385ab7291d94f83e2cdb25b821fdc569a9248ed8",
               "archive_digest_verified": true,
               "image_layers_verified": 12,
-              "sbom_sha256": "df956430315cfceb4de6776a405ca630a23a9da3a1237282d91583bb44a3f1de",
+              "sbom_sha256": "97847aa7f0f47971d0a747e7fd49591626f7734022edd6e7a0f2c84c02efeab0",
               "sbom_digest_verified": true,
               "component_count": 98
             },
             {
               "service": "query-api",
-              "image_id": "sha256:efaff2532e9b94c720f5a93be7612566636ce94def0762e0c378393475fcc2ab",
-              "artifact_id": "10564332525",
+              "image_id": "sha256:a7282f0fc7e95873f562dca87b765166464785d44b8db863b0f8283d397709df",
+              "artifact_id": "10579191913",
               "artifact_name": "l1-image-query-api",
-              "artifact_archive_sha256": "e12de0209293c3ca78673a1883ce51de8477682b90b91b3831eced1e065453e7",
-              "archive_sha256": "7864207629b44acf54721c7df5f71891f328bf9ccfb5ea974c0c0ca64b4eec81",
+              "artifact_archive_sha256": "a5f92e50d9c26422aa7c97496b0d5893ceede83451fff7a16ceb9a9944918f8c",
+              "archive_sha256": "97b3b5d60a9953e9babc6176f3ff972a2b4bfd769093b84fe408a72ce225f90f",
               "archive_digest_verified": true,
               "image_layers_verified": 9,
-              "sbom_sha256": "fc3aa431588681c824b084a4cc4700672e9be6fdcc221d8d82cf2edc44f0b02a",
+              "sbom_sha256": "20be74474ebfe054cb621d07b9e2fe035dd2af66f66a5287382071734e85ec22",
               "sbom_digest_verified": true,
               "component_count": 91
             },
             {
               "service": "semantic-enrichment",
-              "image_id": "sha256:e92b260ca0c33affe9bab6a199e0d9b3c004b6b2082a759cdfd81acdd5707b00",
-              "artifact_id": "10564511108",
+              "image_id": "sha256:457a60b472f692995e9e4e98a0f495c14a55a50dd16e8040e3fdcf9e0db9fde3",
+              "artifact_id": "10578144710",
               "artifact_name": "l1-image-semantic-enrichment",
-              "artifact_archive_sha256": "86994ebede4ed930f8ecbd7051077147666e60be25f368c87d03fa2665126759",
-              "archive_sha256": "4ed02e91c6c0594e435807a16623e49321f415e16199480be28ef63111381ff2",
+              "artifact_archive_sha256": "11aac547cd805f731bfb639dd06836ac4b06cca9416a26daa47f2ca254ffc9e1",
+              "archive_sha256": "f55d902273814b7a404197abeb7d107e36e444db587468cf8914334171868928",
               "archive_digest_verified": true,
               "image_layers_verified": 9,
-              "sbom_sha256": "d16bafd4c1f29e8b551ffda08dc6feeca56cb8d11fb0fcefa931b4172640683f",
+              "sbom_sha256": "9c7eb5b5724672b9573448885ba649e08886d9574e00f48f5f47b59fe617ee96",
               "sbom_digest_verified": true,
               "component_count": 106
             },
             {
               "service": "world-model-chat",
-              "image_id": "sha256:eda1dbaadb55dbfbb41ad4a2e51c27e16a89887dc6a3f5caf2da3059ad9f9b3c",
-              "artifact_id": "10564437446",
+              "image_id": "sha256:d532ba612b6bea2a48afd8e4200b3cf4f3a1c6faf0e753bab2f2720aac96ef5e",
+              "artifact_id": "10579736306",
               "artifact_name": "l1-image-world-model-chat",
-              "artifact_archive_sha256": "7415c5a7e0f8534c3565f79c8f5f294fcd2ecf664309b82ade31532f4dfa2bf8",
-              "archive_sha256": "3219d2306b57bff343b2e3fa146c9aa005eda4db2e0fe56908ab4be4bcd55845",
+              "artifact_archive_sha256": "2b03471b75a6879efb7e50ee426422bf496726d99ed1519b31854dc62b2d39c3",
+              "archive_sha256": "84d92bff58e08d9a63d4700f3b0c47f93b6c3667f1517940e6aad0b840c9846c",
               "archive_digest_verified": true,
               "image_layers_verified": 11,
-              "sbom_sha256": "d2e743478fd26e65573bcc1fba462f17fe92b8277e90bef6bf22ab30ab9c77c9",
+              "sbom_sha256": "695c813f73f0cacc4acccde14a47ce9bc005f8770910e54dba2a59541f9c7555",
               "sbom_digest_verified": true,
               "component_count": 116
             },
             {
               "service": "neo4j",
-              "image_id": "sha256:133f7f64326afdfd4620d46a2aa4d4af90810717507e7f64acb593e0b086711b",
-              "artifact_id": "10564491174",
+              "image_id": "sha256:7864c953a14973119a195612ccf3865ba398ba823bae82bf3da0c2a83137e423",
+              "artifact_id": "10579591486",
               "artifact_name": "l1-image-neo4j",
-              "artifact_archive_sha256": "4bd4031b01ad8fca1b5d3927d134b2dd7daa81d8c7853dbb30548aa92f24e370",
-              "archive_sha256": "6d1cc7bc9dbdfa7961517310a62b1f305533426dd8d59e97747f348bd6db1ddd",
+              "artifact_archive_sha256": "4484da9775436f97e9a403dadd9bba295adc4ffa11deec13226059b532937f09",
+              "archive_sha256": "ecbdd82880abfde32220bb967893f8c12120dcfa8ce09eb8177980ea4c71670f",
               "archive_digest_verified": true,
               "image_layers_verified": 6,
-              "sbom_sha256": "3d96d27b5b3ddb906c0b7c128648c89b9e015260d2e37cbe01dbf24127720a10",
+              "sbom_sha256": "7711b6eb50c6f2921b9ce64364e720c38a9f2c877396e82915a08644c82c2495",
               "sbom_digest_verified": true,
               "component_count": 338
             }
@@ -1867,6 +1867,241 @@
                 "MEDIUM": 986,
                 "LOW": 220,
                 "UNKNOWN": 466,
+                "INFO": 0
+              }
+            }
+          ]
+        },
+        {
+          "generated_at": "2026-09-19T06:35:18Z",
+          "evidence_type": "sbom",
+          "pipeline_run_id": "35426873233",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35426873233",
+          "branch": "main",
+          "commit_id": "e0c0ad9d687cfb9099d90de5aff1dfcee5bf5776",
+          "collector_status": "collected",
+          "enforcement": "report_only",
+          "subject_binding": {
+            "mode": "co_collected",
+            "producer_attested": false
+          },
+          "freshness": "pass",
+          "content_integrity": "pass",
+          "replay": "pass",
+          "trust": {
+            "effective_level": "integrity_verified",
+            "assessment_status": "evaluated",
+            "verified_at": "2026-09-19T06:36:54.891230Z",
+            "replay": "pass",
+            "check_summary": {
+              "pass": 7,
+              "fail": 0,
+              "not_evaluated": 5
+            }
+          },
+          "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T06-35-18Z-run-35426873233-sbom.json",
+          "producer": {
+            "name": "trivy",
+            "version": "0.70.0"
+          },
+          "format": {
+            "name": "CycloneDX",
+            "version": "1.6"
+          },
+          "component_count": 749,
+          "container_images": [
+            {
+              "service": "ha-sync",
+              "image_id": "sha256:a67e00bb514083f831701761aa2f0d196aadc3ac449ee47e5642c4fe77822bfa",
+              "artifact_id": "10578859195",
+              "artifact_name": "l1-image-ha-sync",
+              "artifact_archive_sha256": "0186fc78ac4e8395fe7a2d10f2d28222d11c916fdb2ca40b605c1ba0a6195ecb",
+              "archive_sha256": "bee239cf86bffb6b0c0b71b2385ab7291d94f83e2cdb25b821fdc569a9248ed8",
+              "archive_digest_verified": true,
+              "image_layers_verified": 12,
+              "sbom_sha256": "97847aa7f0f47971d0a747e7fd49591626f7734022edd6e7a0f2c84c02efeab0",
+              "sbom_digest_verified": true,
+              "component_count": 98
+            },
+            {
+              "service": "query-api",
+              "image_id": "sha256:a7282f0fc7e95873f562dca87b765166464785d44b8db863b0f8283d397709df",
+              "artifact_id": "10579191913",
+              "artifact_name": "l1-image-query-api",
+              "artifact_archive_sha256": "a5f92e50d9c26422aa7c97496b0d5893ceede83451fff7a16ceb9a9944918f8c",
+              "archive_sha256": "97b3b5d60a9953e9babc6176f3ff972a2b4bfd769093b84fe408a72ce225f90f",
+              "archive_digest_verified": true,
+              "image_layers_verified": 9,
+              "sbom_sha256": "20be74474ebfe054cb621d07b9e2fe035dd2af66f66a5287382071734e85ec22",
+              "sbom_digest_verified": true,
+              "component_count": 91
+            },
+            {
+              "service": "semantic-enrichment",
+              "image_id": "sha256:457a60b472f692995e9e4e98a0f495c14a55a50dd16e8040e3fdcf9e0db9fde3",
+              "artifact_id": "10578144710",
+              "artifact_name": "l1-image-semantic-enrichment",
+              "artifact_archive_sha256": "11aac547cd805f731bfb639dd06836ac4b06cca9416a26daa47f2ca254ffc9e1",
+              "archive_sha256": "f55d902273814b7a404197abeb7d107e36e444db587468cf8914334171868928",
+              "archive_digest_verified": true,
+              "image_layers_verified": 9,
+              "sbom_sha256": "9c7eb5b5724672b9573448885ba649e08886d9574e00f48f5f47b59fe617ee96",
+              "sbom_digest_verified": true,
+              "component_count": 106
+            },
+            {
+              "service": "world-model-chat",
+              "image_id": "sha256:d532ba612b6bea2a48afd8e4200b3cf4f3a1c6faf0e753bab2f2720aac96ef5e",
+              "artifact_id": "10579736306",
+              "artifact_name": "l1-image-world-model-chat",
+              "artifact_archive_sha256": "2b03471b75a6879efb7e50ee426422bf496726d99ed1519b31854dc62b2d39c3",
+              "archive_sha256": "84d92bff58e08d9a63d4700f3b0c47f93b6c3667f1517940e6aad0b840c9846c",
+              "archive_digest_verified": true,
+              "image_layers_verified": 11,
+              "sbom_sha256": "695c813f73f0cacc4acccde14a47ce9bc005f8770910e54dba2a59541f9c7555",
+              "sbom_digest_verified": true,
+              "component_count": 116
+            },
+            {
+              "service": "neo4j",
+              "image_id": "sha256:7864c953a14973119a195612ccf3865ba398ba823bae82bf3da0c2a83137e423",
+              "artifact_id": "10579591486",
+              "artifact_name": "l1-image-neo4j",
+              "artifact_archive_sha256": "4484da9775436f97e9a403dadd9bba295adc4ffa11deec13226059b532937f09",
+              "archive_sha256": "ecbdd82880abfde32220bb967893f8c12120dcfa8ce09eb8177980ea4c71670f",
+              "archive_digest_verified": true,
+              "image_layers_verified": 6,
+              "sbom_sha256": "7711b6eb50c6f2921b9ce64364e720c38a9f2c877396e82915a08644c82c2495",
+              "sbom_digest_verified": true,
+              "component_count": 338
+            }
+          ]
+        },
+        {
+          "generated_at": "2026-09-19T06:35:18Z",
+          "evidence_type": "vulnerability_scan",
+          "pipeline_run_id": "35426873233",
+          "pipeline_event": "push",
+          "pipeline_url": "https://github.com/joku-dev/ha-CPsWMS/actions/runs/35426873233",
+          "branch": "main",
+          "commit_id": "e0c0ad9d687cfb9099d90de5aff1dfcee5bf5776",
+          "collector_status": "collected",
+          "enforcement": "report_only",
+          "subject_binding": {
+            "mode": "co_collected",
+            "producer_attested": false
+          },
+          "freshness": "pass",
+          "content_integrity": "pass",
+          "replay": "pass",
+          "trust": {
+            "effective_level": "integrity_verified",
+            "assessment_status": "evaluated",
+            "verified_at": "2026-09-19T06:36:54.891230Z",
+            "replay": "pass",
+            "check_summary": {
+              "pass": 7,
+              "fail": 0,
+              "not_evaluated": 5
+            }
+          },
+          "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T06-35-18Z-run-35426873233-vulnerability-scan.json",
+          "producer": {
+            "name": "trivy",
+            "version": "0.70.0"
+          },
+          "finding_count": 2467,
+          "max_severity": "critical",
+          "severity_consistent": true,
+          "container_images": [
+            {
+              "service": "ha-sync",
+              "image_id": "sha256:a67e00bb514083f831701761aa2f0d196aadc3ac449ee47e5642c4fe77822bfa",
+              "artifact_id": "10578859195",
+              "artifact_name": "l1-image-ha-sync",
+              "artifact_archive_sha256": "0186fc78ac4e8395fe7a2d10f2d28222d11c916fdb2ca40b605c1ba0a6195ecb",
+              "archive_sha256": "bee239cf86bffb6b0c0b71b2385ab7291d94f83e2cdb25b821fdc569a9248ed8",
+              "archive_digest_verified": true,
+              "image_layers_verified": 12,
+              "counts": {
+                "CRITICAL": 0,
+                "HIGH": 44,
+                "MEDIUM": 58,
+                "LOW": 58,
+                "UNKNOWN": 1,
+                "INFO": 0
+              }
+            },
+            {
+              "service": "query-api",
+              "image_id": "sha256:a7282f0fc7e95873f562dca87b765166464785d44b8db863b0f8283d397709df",
+              "artifact_id": "10579191913",
+              "artifact_name": "l1-image-query-api",
+              "artifact_archive_sha256": "a5f92e50d9c26422aa7c97496b0d5893ceede83451fff7a16ceb9a9944918f8c",
+              "archive_sha256": "97b3b5d60a9953e9babc6176f3ff972a2b4bfd769093b84fe408a72ce225f90f",
+              "archive_digest_verified": true,
+              "image_layers_verified": 9,
+              "counts": {
+                "CRITICAL": 0,
+                "HIGH": 44,
+                "MEDIUM": 58,
+                "LOW": 58,
+                "UNKNOWN": 1,
+                "INFO": 0
+              }
+            },
+            {
+              "service": "semantic-enrichment",
+              "image_id": "sha256:457a60b472f692995e9e4e98a0f495c14a55a50dd16e8040e3fdcf9e0db9fde3",
+              "artifact_id": "10578144710",
+              "artifact_name": "l1-image-semantic-enrichment",
+              "artifact_archive_sha256": "11aac547cd805f731bfb639dd06836ac4b06cca9416a26daa47f2ca254ffc9e1",
+              "archive_sha256": "f55d902273814b7a404197abeb7d107e36e444db587468cf8914334171868928",
+              "archive_digest_verified": true,
+              "image_layers_verified": 9,
+              "counts": {
+                "CRITICAL": 0,
+                "HIGH": 44,
+                "MEDIUM": 58,
+                "LOW": 58,
+                "UNKNOWN": 1,
+                "INFO": 0
+              }
+            },
+            {
+              "service": "world-model-chat",
+              "image_id": "sha256:d532ba612b6bea2a48afd8e4200b3cf4f3a1c6faf0e753bab2f2720aac96ef5e",
+              "artifact_id": "10579736306",
+              "artifact_name": "l1-image-world-model-chat",
+              "artifact_archive_sha256": "2b03471b75a6879efb7e50ee426422bf496726d99ed1519b31854dc62b2d39c3",
+              "archive_sha256": "84d92bff58e08d9a63d4700f3b0c47f93b6c3667f1517940e6aad0b840c9846c",
+              "archive_digest_verified": true,
+              "image_layers_verified": 11,
+              "counts": {
+                "CRITICAL": 0,
+                "HIGH": 44,
+                "MEDIUM": 58,
+                "LOW": 58,
+                "UNKNOWN": 1,
+                "INFO": 0
+              }
+            },
+            {
+              "service": "neo4j",
+              "image_id": "sha256:7864c953a14973119a195612ccf3865ba398ba823bae82bf3da0c2a83137e423",
+              "artifact_id": "10579591486",
+              "artifact_name": "l1-image-neo4j",
+              "artifact_archive_sha256": "4484da9775436f97e9a403dadd9bba295adc4ffa11deec13226059b532937f09",
+              "archive_sha256": "ecbdd82880abfde32220bb967893f8c12120dcfa8ce09eb8177980ea4c71670f",
+              "archive_digest_verified": true,
+              "image_layers_verified": 6,
+              "counts": {
+                "CRITICAL": 1,
+                "HIGH": 152,
+                "MEDIUM": 984,
+                "LOW": 221,
+                "UNKNOWN": 465,
                 "INFO": 0
               }
             }
