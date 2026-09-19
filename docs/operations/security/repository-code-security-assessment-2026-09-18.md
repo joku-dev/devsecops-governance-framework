@@ -87,6 +87,11 @@ defects:
 - `GRS-014`: the three historical release tags are not cryptographically
   verified.
 
+GCR-2026-102 subsequently closed `GRS-014` through direct verification of the
+signed operational-pilot tag and a signed retrospective integrity manifest for
+the unchanged historical tags. This dated assessment remains the record of the
+18 September observation.
+
 Those controls need reviewer identities, signing custody and release-process
 decisions. Rewriting historical tags merely to clear the finding would damage
 the existing release record. Extended non-provider secret patterns and secret

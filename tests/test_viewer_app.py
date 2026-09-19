@@ -112,10 +112,10 @@ class ViewerAppTests(unittest.TestCase):
         report = load_repository_security(ROOT)
         self.assertEqual('joku-dev/devsecops-governance-framework', report['repository_id'])
         self.assertEqual(16, report['summary']['criteria'])
-        self.assertEqual(13, report['summary']['pass'])
-        self.assertEqual(3, report['summary']['fail'])
+        self.assertEqual(14, report['summary']['pass'])
+        self.assertEqual(2, report['summary']['fail'])
         self.assertEqual(
-            ['GRS-002', 'GRS-005', 'GRS-014'],
+            ['GRS-002', 'GRS-005'],
             [item['id'] for item in report['criteria'] if item['status'] == 'fail'],
         )
         self.assertNotIn('observation', report)
@@ -146,7 +146,7 @@ class ViewerAppTests(unittest.TestCase):
             self.assertEqual({'index.html','app.css','app.js','technical.js','technical.css','data.json'},set(first))
             self.assertIn(b"script-src 'self'",first['index.html'])
             payload=json.loads(first['data.json'])
-            self.assertEqual(13,payload['repository_security']['summary']['pass'])
+            self.assertEqual(14,payload['repository_security']['summary']['pass'])
 
     def test_operational_intake_cannot_publish_application_artifacts(self):
         for scope in ('devsecops','architecture','typed-evidence'):

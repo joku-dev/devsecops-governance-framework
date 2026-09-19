@@ -1,6 +1,6 @@
 schema_version: 0.1.0
 profile_id: governance-repository-self-security
-version: 0.3.0
+version: 0.4.0
 title: Governance Repository Self-Security Profile
 status: active_report_only
 repository_id: joku-dev/devsecops-governance-framework

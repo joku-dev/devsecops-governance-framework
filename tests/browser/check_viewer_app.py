@@ -62,11 +62,11 @@ with sync_playwright() as p:
     page.locator('#finding-repo').select_option('joku-dev/governance-framework-demo-consumer')
     assert page.locator('[data-finding]').count()==0
     go('#repository-security')
-    assert page.locator('.repository-security-metrics .value').all_text_contents()==['13','3','1','2']
+    assert page.locator('.repository-security-metrics .value').all_text_contents()==['14','2','1','1']
     assert page.locator('[data-security-criterion]').count()==16
     assert page.locator('[data-security-criterion="GRS-002"] .badge.fail').count()==1
     assert page.locator('[data-security-criterion="GRS-005"] .badge.fail').count()==1
-    assert page.locator('[data-security-criterion="GRS-014"] .badge.fail').count()==1
+    assert page.locator('[data-security-criterion="GRS-014"] .badge.pass').count()==1
     assert 'report_only' in page.locator('main').inner_text()
     assert page.locator('a[href*="governance-repository-security.json"]').count()==1
     page.screenshot(path='/tmp/viewer-repository-security.png',full_page=True)

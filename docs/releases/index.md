@@ -37,6 +37,13 @@ The latest prepared packages by release line are:
 
 The working source still remains in `model/`, while approved frozen release packages are published under `releases/`.
 
+The current operational-pilot tag is directly SSH-signed. The three older
+unsigned baseline/adoption tags are preserved under their original identities
+and covered by the signed retrospective release-integrity statement. Future
+release tags require direct signatures. See the
+[release and migration model](release-and-migration-model.md) for the assurance
+boundary.
+
 To understand how releases should evolve and how downstream repositories should migrate, read:
 
 - `release-and-migration-model.md`
