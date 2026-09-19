@@ -83,10 +83,10 @@ class ViewerAppTests(unittest.TestCase):
         repo = next(r for r in data['repositories'] if r['id']=='joku-dev/ha-CPsWMS')
         self.assertEqual('pass', repo['staging_deployment']['deployment']['status'])
         self.assertEqual(19, repo['staging_deployment']['tests']['pass'])
-        self.assertEqual('2c9724dc34845f40425018a46d254c2b17221966',
+        self.assertEqual('dc303dcdabb36d4218b68dee5d1bbaf5eb3bc09c',
                          repo['staging_deployment']['deployed_subject']['commit'])
         self.assertEqual('integrity_verified', repo['staging_deployment']['trust']['effective_level'])
-        self.assertEqual(2, len(repo['staging_deployment_history']))
+        self.assertEqual(3, len(repo['staging_deployment_history']))
 
     def test_consolidated_l1_is_selected_only_for_matching_latest_run(self):
         measured = load_l1_snapshots(ROOT / 'status/measured-l1-results')
