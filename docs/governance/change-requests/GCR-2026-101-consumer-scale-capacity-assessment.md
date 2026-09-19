@@ -32,6 +32,12 @@ governance policy, released baselines, result contracts or enforcement.
    partitioned viewer data and intake shards.
 5. Separate complete governance instances require an isolation reason and a
    federation contract that prevents silent baseline drift.
+6. Documentation ownership is explicit: the capacity assessment owns scale
+   measurements and target architecture; Multi-Consumer Readiness owns current
+   structural isolation; the storage model owns the current pilot storage
+   contract; and the roadmap owns implementation sequencing.
+7. Historical GCRs, release documentation, reference runs and source documents
+   are retained as audit records and are not treated as cleanup duplicates.
 
 ## Impact Analysis
 
@@ -54,6 +60,9 @@ governance policy, released baselines, result contracts or enforcement.
 - [x] `./scripts/validate_all.sh` (`617` tests passed)
 - [x] `.venv-docs/bin/mkdocs build --strict`
 - [x] repository hygiene and documentation links reviewed
+- [x] active documentation checked for exact content, duplicate H1 headings and
+      high-similarity overlap
+- [x] semantic overlaps resolved through canonical ownership and cross-links
 
 ## Release Decision
 
