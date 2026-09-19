@@ -22,7 +22,7 @@ class ConsumerScaleSimulationTests(unittest.TestCase):
             ROOT / "status" / "repository-results-index.json",
             ROOT / "status" / "architecture-results-index.json",
             ROOT / "status" / "typed-evidence-results-index.json",
-            ROOT / "generated" / "viewer" / "app" / "data.json",
+            ROOT / "generated" / "viewer" / "status-viewer.html",
         ]
         before = {path: path.read_bytes() for path in protected}
 

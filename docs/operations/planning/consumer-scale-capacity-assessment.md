@@ -107,10 +107,10 @@ tool on the intended runner class before sizing production infrastructure.
 
 | Projection | 300 consumers | 1,500 consumers |
 |---|---:|---:|
-| DevSecOps index | 0.34 s, 2.4 MiB peak, 0.66 MB | 1.87 s, 11.3 MiB peak, 3.28 MB |
-| Architecture index | 0.33 s, 2.4 MiB peak, 0.66 MB | 1.73 s, 11.4 MiB peak, 3.32 MB |
-| Typed-evidence index | 1.16 s, 20.7 MiB peak, 7.78 MB | 6.07 s, 102.5 MiB peak, 38.89 MB |
-| Portfolio projection | 0.02 s, 0.24 MB | 0.08 s, 1.19 MB |
+| DevSecOps index | 0.32 s, 2.4 MiB peak, 0.66 MB | 1.77 s, 11.3 MiB peak, 3.28 MB |
+| Architecture index | 0.32 s, 2.4 MiB peak, 0.66 MB | 1.83 s, 11.4 MiB peak, 3.32 MB |
+| Typed-evidence index | 1.16 s, 20.7 MiB peak, 7.78 MB | 7.20 s, 102.5 MiB peak, 38.89 MB |
+| Portfolio projection | 0.02 s, 0.24 MB | 0.09 s, 1.19 MB |
 
 These measurements show approximately linear processing for a single current
 result set. They do not cover history growth. Because every generator currently
@@ -123,7 +123,7 @@ index size.
 | Viewer scenario | 300 consumers | 1,500 consumers |
 |---|---:|---:|
 | Light repository rows | 1.11 MB; 0.11 s | 3.94 MB; 0.47 s |
-| Current ha-CPsWMS-shaped details | 88.69 MB; 9.07 s; 320.6 MiB peak | at least 393.78 MB pretty JSON / 266.70 MB compact JSON |
+| Current ha-CPsWMS-shaped details | 88.69 MB; 8.35 s; 314.1 MiB peak | at least 393.78 MB pretty JSON / 266.70 MB compact JSON |
 
 The detailed source row contains 153 grouped high or critical findings plus L1,
 assurance, staging and history data. The current application downloads the
