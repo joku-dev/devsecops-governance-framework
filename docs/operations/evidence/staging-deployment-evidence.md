@@ -4,7 +4,7 @@ The staging deployment intake preserves a real, authorized runtime observation
 without changing an earlier CI assessment or a released baseline.
 
 The current result covers the isolated `ha-cpswms-stg-01` VM and the deployed
-ha-CPsWMS commit `5d5772d989b0080ae041969315742c8fbbca6dfe`. The producer bundle
+ha-CPsWMS commit `dc303dcdabb36d4218b68dee5d1bbaf5eb3bc09c` from measured run `35428987714`, attempt 1. The producer bundle
 is versioned in the application repository. The central normalized snapshot is
 stored append-only under `status/staging-deployment-results/`.
 
