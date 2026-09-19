@@ -141,6 +141,7 @@ The addendum keeps the original framework document as the normative reference an
 - `architecture-baseline-l1-v0.1.0` is available as the released architecture runtime governance baseline.
 - GitHub Pages publishes the documentation and the read-only Governance Workspace with repository, finding, Repository Security, evidence, governance and operations views.
 - A daily Self-Security refresh records every live assessment as a workflow artifact and proposes material JSON/Markdown report changes through one reviewed pull request; timestamps alone never create commits, and the Pages build regenerates the Viewer projection after merge.
+- Release integrity verifies the directly signed operational-pilot tag and a signed, closed retrospective manifest for the three immutable historical tags; every future release tag requires a direct trusted signature.
 - Central intake stores append-only DevSecOps, architecture, typed evidence, measured L1, control-assurance and staging-deployment snapshots under `status/`; reviewed operational PRs update the official indexes.
 - Evidence Trust records integrity, provenance, freshness, replay, custody and attestation without turning evidence quality into a compliance or release decision.
 - The ha-CPsWMS pilot produces real tests, SAST, five container builds, CycloneDX SBOMs, Trivy scans and HTTP/Neo4j integration evidence. Its latest measured L1 assessment covers all 16 controls and leaves missing or partial evidence explicit.

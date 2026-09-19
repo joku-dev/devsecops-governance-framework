@@ -87,8 +87,16 @@ If the release changes viewer or generated artifacts, also refresh the derived o
 
 - commit the release package and documentation
 - push to the protected mainline
-- publish or reference the release tag if used
+- create the release tag as an annotated SSH-signed tag using an active signer
+  from `model/governance/release-signing-policy.yaml`
+- verify the tag locally against that policy before pushing it
+- publish or reference the verified release tag
 - announce the baseline version for downstream adoption
+
+The signed retrospective manifest is restricted to the three explicitly named
+historical tags. Do not add a new release to that set. A new unsigned tag is a
+`GRS-014` finding and must be replaced through a new release identity rather
+than moving or rewriting a published tag.
 
 ## Short Maintainer Checklist
 
@@ -100,6 +108,7 @@ If the release changes viewer or generated artifacts, also refresh the derived o
 - validation green
 - downstream impact understood
 - reviewers aligned
+- release tag directly signed and verified
 
 ## Related Documents
 

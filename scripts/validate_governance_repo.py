@@ -226,11 +226,30 @@ def validate_blocking_mode_alignment(errors):
 def validate_governance_repository_security(errors):
     model_path = MODEL / "controls" / "governance-repository-security.yaml"
     report_path = ROOT / "generated" / "reports" / "governance-repository-security.json"
+    release_policy_path = MODEL / "governance" / "release-signing-policy.yaml"
+    release_manifest_path = ROOT / "releases" / "release-tag-integrity.json"
     validate_schema(
         errors,
         ROOT / "schemas" / "governance-repository-security-model.schema.json",
         model_path,
     )
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "release-signing-policy.schema.json",
+        release_policy_path,
+    )
+    validate_schema(
+        errors,
+        ROOT / "schemas" / "release-tag-integrity.schema.json",
+        release_manifest_path,
+    )
+    try:
+        from lib.release_integrity import verify_release_integrity
+        release_integrity = verify_release_integrity(ROOT, release_policy_path)
+        if not isinstance(release_integrity.get("unverified_release_tags"), list):
+            errors.append("Governance release integrity did not return a reportable tag result")
+    except Exception as exc:
+        errors.append(f"Governance release integrity validation failed: {exc}")
     if not report_path.exists():
         errors.append("Governance repository self-security report is missing")
         return
