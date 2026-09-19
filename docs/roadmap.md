@@ -73,8 +73,9 @@ Bitbucket Data Center/Bamboo implementation waits for actual company versions.
   currently none of the three consumers meets the readiness bar.
 - Establish production issuer/key lifecycle and producer emission before
   promoting the signed-attestation pilot into operational Trust.
-- Plan signed changes/releases, repository-wide SHA-pinning enforcement and
-  approved Actions sources without rewriting historical released tags.
+- Establish signed-change enforcement on `main` and test signer recovery.
+  Release-tag integrity, repository-wide SHA pinning and approved Action sources
+  are implemented; every future release tag must remain directly signed.
 - Validate additional CI/CD platforms and decide future L2/L3 release scope.
 - Decide long-term source-master and archival arrangements from actual operating
   needs. The current pilot does not require a database; a 300-to-1,500-consumer

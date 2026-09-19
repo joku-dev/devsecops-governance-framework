@@ -166,17 +166,17 @@ Governance CI [35430841107](https://github.com/joku-dev/devsecops-governance-fra
 CodeQL [35430841133](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/35430841133),
 self-security [35430841091](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/35430841091)
 and Pages [35430841090](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/35430841090)
-succeeded for the current viewer commit. The versioned self-security assessment
-records 13 passing and 3 failing criteria (one critical, two high); the latest
-successful reassessment found no material change, so its timestamp alone was not
-committed. Success means report generation worked and does not resolve its
-findings.
+succeeded for the preceding viewer commit. The current Self-Security `0.4.0`
+assessment records 14 passing and 2 failing criteria (one critical, one high).
+Success means report generation and release-integrity verification worked; it
+does not resolve the independent reviewer or signed-main-change findings.
 
 The 17 September hardening closed the repository-level SHA-pinning and unrestricted
 Action-source gaps and made Dependency Review mandatory. The corrected evaluator
-also recognizes all reviewed PR publishers. Remaining findings include the
-second independent reviewer, signed changes, three historical unsigned release
-tags and the future signed-release process. Secret scanning, push protection,
+also recognizes all reviewed PR publishers. GCR-2026-102 directly verifies the
+signed operational-pilot tag and binds the three immutable historical tags to a
+signed retrospective integrity manifest. Remaining findings are the second
+independent reviewer and signed changes. Secret scanning, push protection,
 Dependabot security updates, private vulnerability reporting and read-only
 default workflow permissions remain enabled. Enhanced non-provider patterns and
 validity checks remained disabled after an API enablement request and therefore
