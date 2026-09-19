@@ -46,7 +46,7 @@ class ConsolidatedL1Tests(unittest.TestCase):
         self.assertEqual("measured", controls["DSCB-L1-REQ-013"]["assessment"])
         self.assertEqual("measured", controls["DSCB-L1-REQ-014"]["assessment"])
         self.assertEqual("partial", controls["DSCB-L1-REQ-016"]["assessment"])
-        self.assertEqual({"measured": 7, "partial": 6, "findings": 2, "gap": 1}, self.item["summary"])
+        self.assertEqual({"measured": 11, "partial": 4, "findings": 1, "gap": 0}, self.item["summary"])
         self.assertFalse(self.item["production_approval"])
         validate_sources(self.item)
 
