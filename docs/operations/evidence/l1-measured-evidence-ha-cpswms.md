@@ -4,7 +4,7 @@ Stand: 19. September 2026. Referenz ist die unveränderte DevSecOps-Baseline
 `l1-baseline-v1.1.3` mit 16 Kontrollen. Die Erweiterung ist in
 [ha-CPsWMS PR #25](https://github.com/joku-dev/ha-CPsWMS/pull/25) auf das
 Evidence-Profil v2 erweitert; der aktuelle Staging-Nachweis liegt in
-[PR #26](https://github.com/joku-dev/ha-CPsWMS/pull/26).
+[PR #28](https://github.com/joku-dev/ha-CPsWMS/pull/28).
 
 ## Was ausgeführt wird
 
@@ -95,9 +95,9 @@ Erste erfasste Messpunkte:
 | [35131185085](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185085) | 4c57eb1 | 1 | 332 | 57 |
 
 Der aktuelle kombinierte Typed-Evidence-/L1-Lauf
-[`35386771107`, Versuch 2](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107/attempts/2)
-gehört zum Commit `2c9724d`, enthält 62 bestandene Tests und liefert über den
-strengeren Typed-Evidence-Intake 1 kritische und 327 hohe Image-/Paketvorkommen.
+[`35428987714`, Versuch 1](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35428987714)
+gehört zum Commit `dc303dc`, enthält 62 bestandene Tests und liefert über den
+strengeren Typed-Evidence-Intake 1 kritische und 328 hohe Image-/Paketvorkommen.
 Er ersetzt den zweiten Messpunkt in der getrennten Container-Security-Historie
 nicht automatisch; beide Speicher behalten ihre jeweilige Intake- und
 Auswahlregel.
@@ -118,7 +118,7 @@ GitHub CLI mit Leserechten für Actions und die gepinnte Validierungsumgebung.
 
 ```sh
 ./scripts/bootstrap_validation_env.sh
-.venv-validation/bin/python scripts/intake_measured_security.py --run-id 35386771107
+.venv-validation/bin/python scripts/intake_measured_security.py --run-id 35428987714
 .venv-validation/bin/python scripts/generate_status_viewer.py
 ./scripts/validate_all.sh
 ```
@@ -138,15 +138,16 @@ von `.github/workflows/l1-measured-evidence.yml` zu. PRs, Branch-Runs, manuelle
 Runs, fremde Repositories, andere Versuche und widersprüchliche Counts werden
 abgewiesen. Die Run-Auswahl erfolgt nach Quellzeit und Versuch, nicht Dateinamen.
 
-Aus den GitHub-Artefakten werden gezielt JSON-Dateien per ZIP-Bytebereich gelesen.
-Dabei werden ZIP-CRC, Rohdatei-SHA-256 und Größen gegen Producer-Manifeste,
-Run-/Commit-/Versuchsbindung, Image-ID sowie erfolgreiche Scanausführung geprüft.
-Die Summen aller Schweregrade müssen mit `l1-control-coverage` übereinstimmen.
-Coverage-Testzahlen stammen aus diesem Producer-Bericht. Es werden keine
-vollständigen Docker-/ZIP-Archive erneut gehasht und keine unabhängige Attestation
-oder bestehende Evidence-Trust-Stufe behauptet. `archive_digest_verified` bleibt
-explizit false. GitHub-Zugangsdaten und signierte Download-URLs werden nicht
-persistiert oder an den Viewer übergeben.
+Der automatische Typed-Evidence-Intake lädt die fünf vollständigen
+Image-Artefakte und prüft ZIP-Digest und -Größe, Producer-Manifeste,
+Run-/Commit-/Versuchsbindung, Archiv-Digest, Transport-Tag, Image-Konfiguration,
+Layer, SBOM und Scan. Aus denselben verifizierten Bytes erzeugt er den detaillierten
+Container-Security-Snapshot; dadurch können SBOM, Schwachstellen und Trust auf
+identische Artefakte zurückgeführt werden. Der separate gemessene L1-Snapshot
+bewertet ausgewählte Kontrollnachweise und kennzeichnet seine engere Prüfgrenze
+weiterhin ausdrücklich. Eine unabhängige Attestation wird nicht behauptet.
+GitHub-Zugangsdaten und signierte Download-URLs werden nicht persistiert oder an
+den Viewer übergeben.
 
 ## Speicherung und Vertrag
 
@@ -174,7 +175,7 @@ Bandit, Ruff, CycloneDX, Trivy, GitHub-API-Antworten und CI-Deployment-Metadaten
 Producer-Statusangaben werden nicht als Kontrollfreigabe übernommen.
 
 ```sh
-.venv-validation/bin/python scripts/intake_measured_l1.py --run-id 35386771107
+.venv-validation/bin/python scripts/intake_measured_l1.py --run-id 35428987714
 .venv-validation/bin/python scripts/generate_status_viewer.py
 ./scripts/validate_all.sh
 ```
@@ -206,7 +207,7 @@ Anforderungen ein und ersetzt weder OPA noch die freigegebene Baseline.
 | Befunde offen | Werkzeuge haben Befunde geliefert, deren Bewertung noch nachzuweisen ist |
 | Nachweis fehlt | Erforderliche Nachweise fehlen oder erlauben keine positive Feststellung |
 
-Im aktuellen gemessenen Lauf `35386771107`, Versuch 2, ergeben sich **9 technisch
+Im aktuellen gemessenen Lauf `35428987714`, Versuch 1, ergeben sich **9 technisch
 belegte, 4 teilweise belegte, 1 Kontrolle mit Befunden und 2 Nachweislücken**.
 Der exakt zugeordnete Staging-Nachweis ergänzt L1-013 und L1-014. Die
 konsolidierte Sicht enthält damit **11 technisch belegte, 4 teilweise belegte,
@@ -247,7 +248,7 @@ Nicht bewertete Dimensionen werden ausdrücklich als `not_evaluated` gespeichert
 Diese Assurance bleibt report-only und ändert weder Kontrollstatus noch Baseline,
 Blocking-Modus, Produktionsfreigabe oder Risikoakzeptanz.
 
-Für Lauf `35386771107`, Versuch 2, sind 10 Kontrollen vollständig abgedeckt und
+Für Lauf `35428987714`, Versuch 1, sind 10 Kontrollen vollständig abgedeckt und
 innerhalb ihrer Freshness-Regel. Vier Kontrollen sind teilweise und zwei nicht
 abgedeckt; 10 erreichen `integrity_verified`, 6 bleiben `unverified`. Keine
 Kontrolle erreicht `provenance_verified` oder `attested`,
@@ -287,7 +288,7 @@ Diese Bewertung entfernt keine historischen Replay-Findings und ändert keine
 Trust-Stufen anderer Ergebnisarten. Der alte Baseline-Workflow hat weiter seine eigenen Eingaben. Für
 seine Umstellung auf gemessene Kontrollergebnisse ist ein gesonderter
 Baseline-/Migrationsschritt erforderlich. Der aktuelle Staging-Nachweis ist eine
-enge Deployment-Zustimmung für Commit `2c9724d` auf `ha-cpswms-stg-01`; er ist
+enge Deployment-Zustimmung für Commit `dc303dc` auf `ha-cpswms-stg-01`; er ist
 keine Produktionsfreigabe und keine Risikoakzeptanz. L1-016 bleibt bis zu
 dauerhafter Aufbewahrung, Monitoring, Backup/Restore und geklärter
 Betriebsverantwortung teilweise belegt.
