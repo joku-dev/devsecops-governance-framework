@@ -239,6 +239,12 @@ Each snapshot holds all five images and independently checked archive hashes.
 The viewer shows critical/high counts for the scan and verified component counts
 for the SBOM. The index retains `latest_result` for compatibility and adds
 `latest_results` so each evidence type has an official mainline selection.
+The same verified source bytes also create the detailed report-only container
+security snapshot under `status/measured-security-results/`. The Container
+Security view therefore uses the same run, commit, image identities and findings
+as the typed Trust result instead of retaining an older, separately collected
+scan. This projection does not promote findings to a compliance decision or risk
+acceptance.
 Freshness uses the oldest producer image-evidence completion timestamp, not the
 central download time. Vulnerability freshness uses the existing 24-hour window;
 SBOM freshness is subject-bound and passes only after the central verifier binds

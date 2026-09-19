@@ -16,7 +16,14 @@ import zipfile
 from intake_measured_security import gh_json, NoRedirect
 from intake_evidence_trust_github_actions_run import write_snapshot, TRUST_RESULT_ROOTS
 from lib.container_typed_evidence import PROFILE, NAMES, VULNERABILITY_NAMES, MAX_IMAGE, verify_bundle
-from lib.measured_security import REPOSITORY, SERVICES, check_run
+from lib.measured_security import (
+    REPOSITORY,
+    ROOT,
+    SERVICES,
+    check_run,
+    normalize as normalize_measured_security,
+    store_snapshot as store_measured_security_snapshot,
+)
 from lib.result_ledger import apply_replay_assessment, load_snapshot_payloads
 
 MAX_ZIP = 1024**3
@@ -120,8 +127,13 @@ def capture(run_id):
             print('Downloaded full image evidence: ' + service, flush=True)
         verified_at = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
         trusts = verify_bundle(run, report, declaration, bundles, paths, verified_at)
+        measured_security = normalize_measured_security(run, report, bundles)
+        measured_security_path = store_measured_security_snapshot(
+            ROOT / 'status/measured-security-results',
+            measured_security,
+        )
         prior = load_snapshot_payloads(TRUST_RESULT_ROOTS)
-        outputs = []
+        outputs = [measured_security_path]
         for trust in trusts.values():
             trust['capture']['source']['artifact_digest'] = coverage['verified_zip_sha256']
             evidence_type = trust['capture']['evidence_type']

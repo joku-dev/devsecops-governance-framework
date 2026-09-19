@@ -18,6 +18,10 @@ class TypedEvidenceAssurancePublicationTests(unittest.TestCase):
         self.addCleanup(publisher.SCOPES.__setitem__, "typed-evidence", old_scope)
         extension.configure()
         self.assertTrue(publisher.allowed(
+            "status/measured-security-results/org__repo/run-1-attempt-1.json",
+            "typed-evidence",
+        ))
+        self.assertTrue(publisher.allowed(
             "status/control-evidence-assurance/org__repo/run-1-attempt-1.json",
             "typed-evidence",
         ))
