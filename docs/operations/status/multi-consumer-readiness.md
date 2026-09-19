@@ -10,6 +10,14 @@ The report is deterministic and report-only. It validates repository structure
 and current registered data; it does not modify a consumer, accept evidence,
 promote an adoption state, or change enforcement.
 
+## Responsibility Boundary
+
+This report owns the proof of structural isolation for the consumers currently
+registered in the repository. It does not measure intake throughput, Git growth,
+viewer payload size or production capacity. Those questions and the target
+architecture for 300 to 1,500 consumers are owned by the
+[Consumer Scale Capacity Assessment](../planning/consumer-scale-capacity-assessment.md).
+
 ## Artifacts
 
 | Artifact | Location |
@@ -54,7 +62,7 @@ The current report passes all nine checks:
 | Registered consumers | 3 |
 | Consumers with DevSecOps results | 3 |
 | Consumers with Architecture results | 2 |
-| Consumers with Typed Evidence results | 1 |
+| Consumers with Typed Evidence results | 2 |
 | Consumers with post-instrumentation telemetry | 2 |
 | Isolation checks | 9 pass / 0 fail |
 
@@ -69,9 +77,9 @@ Evidence are optional consumer capabilities; readiness does not fabricate
 missing domains. All registered consumers currently have an isolated accepted
 DevSecOps latest-state projection.
 
-On 11 September 2026, both ha-CPsWMS and the neutral demo consumer have
-accepted Intake Operation Events. Factory evidence was collected through the
-authenticated manual path; no historic workflow telemetry was fabricated.
+Both ha-CPsWMS and the neutral demo consumer have accepted Intake Operation
+Events. Factory evidence was collected through the authenticated manual path;
+no historic workflow telemetry was fabricated.
 The current report proves structural isolation, not sustained throughput or
 production reliability. Continue collecting representative operating samples.
 

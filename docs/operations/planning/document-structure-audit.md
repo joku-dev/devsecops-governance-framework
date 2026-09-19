@@ -9,7 +9,8 @@
 ## Purpose
 
 This document records the current state of the documentation structure after the
-first documentation migration wave.
+first documentation migration wave and the duplicate-content review completed
+on 19 September 2026.
 
 It is a stabilisation artifact. It does not move files, change governance
 behavior or redefine source-document intake. Its purpose is to make the current
@@ -20,7 +21,7 @@ structure reviewable before additional restructuring is attempted.
 | Field | Value |
 |---|---|
 | Document type | Documentation structure audit |
-| Status | Draft audit |
+| Status | Current review, 19 September 2026 |
 | Change type | Documentation-only |
 | Primary audience | Governance maintainers, Enterprise Architecture, DevSecOps platform team, AI agents |
 | Scope | Human-readable documentation under `docs/` |
@@ -112,6 +113,38 @@ The migration wave intentionally did not rewrite:
 This preserves auditability and avoids changing historical records for cosmetic
 reasons.
 
+## Duplicate-Content Review
+
+The 19 September 2026 review examined 170 active Markdown documents. Historical
+change requests, source documents, reference runs and publication source files
+were excluded from similarity scoring because repeated release language and
+preserved decisions are part of their audit purpose.
+
+The review normalized Markdown content and checked exact document bodies,
+first-level headings and four-word shingles for high-similarity pairs. It found:
+
+- no exact duplicate active documents;
+- no duplicate first-level headings in the active scope;
+- no high-similarity pair that should be merged or deleted;
+- intentional overlap among official entrypoints, role paths and sequential
+  release documents.
+
+The review also found semantic overlap without copied content. It was resolved
+by assigning one canonical responsibility to each document:
+
+| Subject | Canonical owner | Resolution |
+|---|---|---|
+| Current consumer isolation | [Multi-Consumer Readiness](../status/multi-consumer-readiness.md) | Limited to registry coverage and structural isolation. |
+| Measured 300-to-1,500-consumer capacity | [Consumer Scale Capacity Assessment](consumer-scale-capacity-assessment.md) | Owns measurements, constraints and target scale architecture. |
+| Current normalized-result storage | [Governance Results Storage Model](../evidence/governance-results-storage-model.md) | Owns the pilot storage contract and points to the scale design. |
+| Implementation order | [Roadmap](../../roadmap.md) | Links to detailed assessments instead of repeating their design. |
+| Broad repository structure history | [Repository Target Structure And Migration Plan](repository-target-structure-and-migration-plan.md) | Retained as planning history and marked as distinct from capacity design. |
+
+The duplicated artifact-classification table was removed from the capacity
+assessment; its canonical copy remains in `GCR-2026-101`. The obsolete manual
+instructions for adding accepted result JSON directly to `status/` were removed
+from the storage model and replaced with the canonical intake procedure.
+
 ## Validation Baseline
 
 Each migration package in the first wave was validated with:
@@ -141,20 +174,11 @@ the strict build during this audit update.
 
 ## Recommended Next Steps
 
-The next documentation changes should be smaller than the first migration wave
-and should focus on one of these options:
-
-1. Make MkDocs validation available locally or in CI before additional
-   navigation-heavy changes.
-2. Review whether `docs/operations/ai-working-rules.md` should move into
-   `docs/operations/agents/`.
-
-The JSON examples have been moved into `docs/examples/`. The recommended
-publishing article has been moved into `docs/publishing/`. The recommended
-operations guides have been moved into `docs/operations/guides/`. The
-process and governance operation documents have been moved into
-`docs/operations/processes/`. The recommended immediate next step is to review
-whether the AI working rules should move into the agent operations folder.
+Keep future documentation changes focused and preserve the ownership boundaries
+above. Review duplicate content again when a new cross-cutting planning document
+is introduced, and keep strict MkDocs plus repository validation in the normal
+change path. A later focused migration may still assess
+`docs/operations/ai-working-rules.md`; it is not mixed into this content cleanup.
 
 ## Conclusion
 

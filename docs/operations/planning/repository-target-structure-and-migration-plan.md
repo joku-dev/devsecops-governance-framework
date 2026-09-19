@@ -6,6 +6,11 @@
 > and [roadmap](../../roadmap.md). CI validation and strict MkDocs publishing
 > are already implemented; new blocking requires the current readiness process.
 
+> This document owns the broad repository-structure migration history. It is
+> not the current capacity design. Measured scale limits and the target
+> evidence-plane architecture are maintained in the
+> [Consumer Scale Capacity Assessment](consumer-scale-capacity-assessment.md).
+
 ## Purpose
 
 This document proposes a professional target structure for `devsecops-governance-framework`.
