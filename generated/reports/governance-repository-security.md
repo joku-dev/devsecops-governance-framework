@@ -1,10 +1,10 @@
 # Governance Repository Self-Security Assessment
 
-Observed: `2026-09-18T06:34:09Z`
+Observed: `2026-09-19T12:08:52Z`
 
 ## Executive Assessment
 
-3 of 16 self-security criteria are not evidenced as satisfied: GRS-002 (Pull request and two independent approvals required); GRS-005 (Signed changes required on the default branch); GRS-014 (Governance release tags are cryptographically verified). Review the observations and remediation steps below.
+2 of 16 self-security criteria are not evidenced as satisfied: GRS-002 (Pull request and two independent approvals required); GRS-005 (Signed changes required on the default branch). Review the observations and remediation steps below.
 
 This is a point-in-time, report-only assessment of the repository that defines and
 distributes governance. It is not a security certification or an authorization to
@@ -16,10 +16,10 @@ switch consumer or repository enforcement to blocking mode.
 - Enforcement: `report_only`
 - Enforcement change authorized: `false`
 - Criteria: `16`
-- Passed: `13`
-- Failed: `3`
+- Passed: `14`
+- Failed: `2`
 - Critical failures: `1`
-- High failures: `2`
+- High failures: `1`
 
 ## Controls Currently Evidenced
 
@@ -34,6 +34,7 @@ switch consumer or repository enforcement to blocking mode.
 - `GRS-011`: Default and explicit workflow permissions restricted
 - `GRS-012`: Critical governance paths have explicit owners
 - `GRS-013`: Automation cannot push operational data directly to the default branch
+- `GRS-014`: Governance release tags are cryptographically verified
 - `GRS-015`: Private vulnerability reporting is enabled
 - `GRS-016`: GitHub Actions restricted to approved sources
 
@@ -43,7 +44,6 @@ switch consumer or repository enforcement to blocking mode.
 |---|---|---|---|
 | `GRS-002` | `critical` | Pull request and two independent approvals required | `required_approving_reviews=1, code_owner_review_required=true, last_push_approval_required=true` |
 | `GRS-005` | `high` | Signed changes required on the default branch | `signed_changes_required=false` |
-| `GRS-014` | `high` | Governance release tags are cryptographically verified | `unverified_release_tags=["architecture-baseline-l1-v0.1.0", "l1-baseline-v1.1.3", "v0.1.0-public-adoption", "v0.2.0-public-adoption"]` |
 
 ## Recommended Next Steps
 
@@ -60,13 +60,6 @@ switch consumer or repository enforcement to blocking mode.
 - Prerequisites: `GRS-013`
 - Action: Register accountable human and automation signing identities, validate recovery, and add the signed-commit rule to the protected default branch.
 - Acceptance criteria: Unsigned commits are rejected from main and authorized signed changes remain operable.
-
-### 3. Introduce verified release publication (`P2`)
-
-- Addresses: `GRS-014`
-- Prerequisites: `GRS-005`
-- Action: Publish future baseline tags through an accountable signed release process with verification evidence; do not rewrite historical released tags in place.
-- Acceptance criteria: New governance baseline tags verify cryptographically and their release packages retain valid checksums and provenance.
 
 ## Complete Criteria
 
@@ -85,7 +78,7 @@ switch consumer or repository enforcement to blocking mode.
 | `GRS-011` | `high` | `pass` | Default and explicit workflow permissions restricted | `true` |
 | `GRS-012` | `high` | `pass` | Critical governance paths have explicit owners | `true` |
 | `GRS-013` | `critical` | `pass` | Automation cannot push operational data directly to the default branch | `true` |
-| `GRS-014` | `high` | `fail` | Governance release tags are cryptographically verified | `false` |
+| `GRS-014` | `high` | `pass` | Governance release tags are cryptographically verified | `true` |
 | `GRS-015` | `high` | `pass` | Private vulnerability reporting is enabled | `true` |
 | `GRS-016` | `high` | `pass` | GitHub Actions restricted to approved sources | `true` |
 
@@ -93,6 +86,9 @@ switch consumer or repository enforcement to blocking mode.
 
 - GitHub repository settings are collected live through the authenticated GitHub API.
 - Workflow pinning, CODEOWNERS, direct writes, and release tags are inspected from the checkout.
+- Current release tags require a direct trusted signature. The explicitly bounded historical
+  tag set is verified against a signed retrospective integrity manifest; this does not claim
+  that those historical tags carried an original publication-time signature.
 - API errors are retained in the JSON observation. A `404` on a legacy branch-protection
   endpoint does not negate protection established by the effective branch rulesets;
   unavailable administrative observations are not proof that a feature is disabled.
@@ -103,7 +99,8 @@ switch consumer or repository enforcement to blocking mode.
 
 - Released DevSecOps and architecture baseline packages are unchanged.
 - Consumer evidence contracts and enforcement modes are unchanged.
-- Report schema `0.2.0` additively introduces a structured remediation plan.
+- Self-Security profile `0.4.0` adds structured release-integrity verification;
+  report schema `0.2.0` remains compatible.
 - No baseline release is required for this reporting improvement.
 
 ## Decision Boundary

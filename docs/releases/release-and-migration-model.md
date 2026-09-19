@@ -107,6 +107,19 @@ Every released baseline should ideally provide:
 - example consumer workflow
 - evidence contract notes when relevant
 
+## Release Signature And Historical Integrity
+
+Every new baseline or public-adoption tag must be directly SSH-signed by an
+active signer in `model/governance/release-signing-policy.yaml`. The repository
+Self-Security assessment verifies the signature from the checkout and treats an
+unknown unsigned tag as a `GRS-014` finding.
+
+Three older tags predate this rule. They remain immutable and are bound to the
+signed `releases/release-tag-integrity.json` statement through exact tag-object,
+target-commit and release-artifact digests. This is explicitly retrospective;
+it does not claim an original publication-time signature and cannot be extended
+to future tags.
+
 ## Relationship To Viewer History
 
 The status viewer shows operational outcome history.

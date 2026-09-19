@@ -1,0 +1,26 @@
+schema_version: "0.1.0"
+policy_id: governance-release-signing
+repository_id: joku-dev/devsecops-governance-framework
+status: active_report_only
+enforcement: report_only
+direct_signature:
+  namespace: git
+  trusted_signers:
+    - principal: 81616324+joku-dev@users.noreply.github.com
+      github_login: joku-dev
+      key_type: ssh-ed25519
+      public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHd2vsaf28j4G3P/6+zCo8851n3RYsSAaFiYT8R27OqG
+      fingerprint: SHA256:UamOE5DsJHZP8qHiN+XYBKLswHBes1pBvVmDY1nuliY
+      status: active
+      valid_from: "2026-06-05T18:56:28Z"
+legacy_attestation:
+  namespace: governance-release-integrity-v1
+  manifest: releases/release-tag-integrity.json
+  signature: releases/release-tag-integrity.json.sig
+  permitted_unsigned_tags:
+    - architecture-baseline-l1-v0.1.0
+    - l1-baseline-v1.1.3
+    - v0.1.0-public-adoption
+cutover:
+  future_tags_require_direct_signature: true
+  allow_new_legacy_tags: false

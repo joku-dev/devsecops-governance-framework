@@ -13,6 +13,8 @@ import subprocess
 
 import yaml
 
+from lib.release_integrity import verify_release_integrity
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MODEL = ROOT / "model" / "controls" / "governance-repository-security.yaml"
@@ -24,6 +26,7 @@ CRITICAL_CODEOWNER_PATHS = (
     "/.github/workflows/",
     "/model/controls/",
     "/model/evidence/",
+    "/model/governance/",
     "/policies/opa/",
     "/schemas/",
     "/scripts/",
@@ -106,14 +109,7 @@ def scan_codeowners() -> dict:
 
 
 def tag_verification() -> dict:
-    tags = run(["git", "tag", "--list", "*baseline*"]).stdout.splitlines()
-    tags.extend(run(["git", "tag", "--list", "v*-public-adoption"]).stdout.splitlines())
-    tags = sorted(set(tag for tag in tags if tag))
-    unverified = []
-    for tag in tags:
-        if run(["git", "verify-tag", tag]).returncode != 0:
-            unverified.append(tag)
-    return {"release_tags": tags, "unverified_release_tags": unverified}
+    return verify_release_integrity(ROOT)
 
 
 def active_rulesets(repository: str) -> tuple[list[dict], list[str]]:
@@ -262,7 +258,12 @@ def evidence_refs(key: str) -> list[str]:
         "workflow_permissions_restricted": ["github:actions/permissions/workflow", ".github/workflows/"],
         "critical_paths_owned": [".github/CODEOWNERS"],
         "automated_main_writes_absent": [".github/workflows/"],
-        "release_tags_verified": ["git:release-tags", "releases/"],
+        "release_tags_verified": [
+            "git:release-tags",
+            "model/governance/release-signing-policy.yaml",
+            "releases/release-tag-integrity.json",
+            "releases/release-tag-integrity.json.sig",
+        ],
         "private_vulnerability_reporting_enabled": [
             "github:private-vulnerability-reporting",
             "SECURITY.md",
@@ -361,7 +362,12 @@ def criterion_detail(key: str, observation: dict) -> str:
             + json.dumps(actions.get("direct_main_write_workflows", []))
         ),
         "release_tags_verified": (
-            "unverified_release_tags=" + json.dumps(release.get("unverified_release_tags", []))
+            "direct_verified="
+            + json.dumps(release.get("direct_verified_release_tags", []))
+            + ", legacy_manifest_verified="
+            + json.dumps(release.get("legacy_manifest_verified_tags", []))
+            + ", unverified="
+            + json.dumps(release.get("unverified_release_tags", []))
         ),
         "private_vulnerability_reporting_enabled": (
             "private_vulnerability_reporting="
@@ -620,6 +626,9 @@ def render_markdown(report: dict) -> str:
             "",
             "- GitHub repository settings are collected live through the authenticated GitHub API.",
             "- Workflow pinning, CODEOWNERS, direct writes, and release tags are inspected from the checkout.",
+            "- Current release tags require a direct trusted signature. The explicitly bounded historical",
+            "  tag set is verified against a signed retrospective integrity manifest; this does not claim",
+            "  that those historical tags carried an original publication-time signature.",
             "- API errors are retained in the JSON observation. A `404` on a legacy branch-protection",
             "  endpoint does not negate protection established by the effective branch rulesets;",
             "  unavailable administrative observations are not proof that a feature is disabled.",
@@ -630,7 +639,8 @@ def render_markdown(report: dict) -> str:
             "",
             "- Released DevSecOps and architecture baseline packages are unchanged.",
             "- Consumer evidence contracts and enforcement modes are unchanged.",
-            "- Report schema `0.2.0` additively introduces a structured remediation plan.",
+            "- Self-Security profile `0.4.0` adds structured release-integrity verification;",
+            "  report schema `0.2.0` remains compatible.",
             "- No baseline release is required for this reporting improvement.",
             "",
             "## Decision Boundary",

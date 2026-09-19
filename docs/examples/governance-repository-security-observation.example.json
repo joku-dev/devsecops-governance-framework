@@ -42,8 +42,16 @@
   "release_integrity": {
     "release_tags": [
       "architecture-baseline-l1-v0.1.0",
+      "l1-baseline-v1.1.3",
+      "v0.2.0-public-adoption"
+    ],
+    "direct_verified_release_tags": ["v0.2.0-public-adoption"],
+    "legacy_manifest_verified_tags": [
+      "architecture-baseline-l1-v0.1.0",
       "l1-baseline-v1.1.3"
     ],
-    "unverified_release_tags": []
+    "unverified_release_tags": [],
+    "verification_errors": [],
+    "future_tags_require_direct_signature": true
   }
 }

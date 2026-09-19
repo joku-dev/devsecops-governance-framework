@@ -654,6 +654,7 @@ fehlende Beobachtbarkeit erkennbar.
 **Implementierungsstellen:** `scripts/record_intake_event.py`,
 `scripts/generate_intake_health.py`, `scripts/generate_operations_report.py`,
 `scripts/assess_governance_repository_security.py`,
+`scripts/lib/release_integrity.py`,
 `scripts/check_public_artifact_hygiene.py`,
 `.github/workflows/governance-operations.yml`,
 `.github/workflows/governance-repository-security.yml`,

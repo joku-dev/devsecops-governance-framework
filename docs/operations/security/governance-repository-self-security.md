@@ -66,6 +66,15 @@ generated/reports/governance-repository-security.json
 generated/reports/governance-repository-security.md
 ```
 
+Release-tag verification loads
+`model/governance/release-signing-policy.yaml`. Directly signed tags are checked
+against its active SSH signers. The fixed historical set is checked against the
+signature on `releases/release-tag-integrity.json`, exact tag-object and target
+commit identities, and the bound release-package checksums. The historical mode
+is a retrospective integrity statement and is shown separately from a direct
+publication-time tag signature. Every new release tag requires a direct trusted
+signature.
+
 Der Governance Workspace zeigt den schema-validierten Stand zusätzlich im
 eigenen Bereich [Repository Security](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository-security).
 Die Ansicht übernimmt Gesamtstatus, Kriterien, Beobachtungsdetails und
@@ -158,10 +167,11 @@ Dependabot configuration, CodeQL, dependency review, full-SHA Action pinning,
 expanded CODEOWNERS, and the report-only self-security workflow.
 
 The initial assessment recorded 7 passing and 9 failing criteria. Refresh run
-`35315432116` and reviewed status PR #140 updated the versioned observation to
-13 passing and 3 failing criteria (`GRS-002`, `GRS-005`, `GRS-014`). Consult the
+`35315432116` and reviewed status PR #140 later recorded 13 passing and 3
+failing criteria. GCR-2026-102 verifies release integrity and brings the current
+profile to 14 passing and 2 failing criteria (`GRS-002`, `GRS-005`). Consult the
 latest workflow assessment artifact for the current live settings; the
-versioned report is a dated observation, not a security attestation.
+versioned report is a dated observation, not a general security certification.
 
 GCR-2026-051 authorized the implemented writer migration: four operational writers now propose
 review PRs using scope-specific allowlists and immutable historical evidence.
@@ -180,7 +190,7 @@ The restored protection still requires one review, strict checks and no standing
 bypass. Central PRs #64 and #67 used separately authorized exceptions that were
 restored and audited immediately after their merges.
 
-The authenticated assessment confirmed 12 of 16 criteria and four gaps:
+The 11 September authenticated assessment confirmed 12 of 16 criteria and four gaps:
 `GRS-005` signed-change enforcement, `GRS-010` repository-level SHA-pinning
 requirements, `GRS-014` signatures on the three historical release tags and
 `GRS-016` restriction of Actions sources. All active workflow references are
@@ -190,8 +200,8 @@ updates and read-only default workflow permissions were verified enabled.
 The scheduled token cannot observe every administrative setting. Its unknown
 values are not proof that a setting is disabled. Preserve those observation
 limits and read the [current platform state](../status/current-governance-platform-state.md)
-for the dated report context. Future signed releases need a separate process;
-do not rewrite existing released tags to clear historical findings.
+for the dated report context. GCR-2026-102 subsequently introduced direct
+verification and a signed retrospective manifest without rewriting those tags.
 
 ## Hardening Update On 17 September 2026
 
@@ -212,8 +222,8 @@ change.
 The GRS-002 target has been raised to two independent approvals plus CODEOWNER
 and last-push approval. Only one human collaborator currently exists, so the
 live approval count remains one and GRS-002 is an explicit open finding. Signed
-changes, signed future releases, a short-lived GitHub App collector identity and
-off-site recovery remain separate prerequisites. See the complete
+changes, signer rotation/recovery, a short-lived GitHub App collector identity
+and off-site recovery remain separate prerequisites. See the complete
 [hardening record](repository-security-hardening-2026-09-17.md).
 
 The accepted lifecycle source profile still pins Self-Security `0.2.0` and its
@@ -258,8 +268,8 @@ step instead of assuming versioned configuration has activated live settings:
    `validate-and-report`, `Analyze Python`, and `Governance Repository Security`
    checks from GitHub Actions; prohibit deletion and force push, with no bypass;
 6. restrict Actions to approved publishers and require full commit-SHA pinning;
-7. establish two independent reviewers and commit signing, then publish new
-   signed baseline tags and attestations through separate changes;
+7. establish two independent reviewers and commit signing; retain direct tag
+   signing for every new baseline and public-adoption release;
 8. after a successful observation period and accountable approval, consider
    making selected self-security criteria blocking.
 
