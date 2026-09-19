@@ -25,7 +25,6 @@ sys.path.insert(0, str(ROOT / "scripts"))
 DEVSECOPS_INDEX = ROOT / "status" / "repository-results-index.json"
 ARCHITECTURE_INDEX = ROOT / "status" / "architecture-results-index.json"
 TYPED_INDEX = ROOT / "status" / "typed-evidence-results-index.json"
-VIEWER_DATA = ROOT / "generated" / "viewer" / "app" / "data.json"
 DEFAULT_SOURCE_REPOSITORY = "joku-dev/ha-CPsWMS"
 LIGHT_VIEWER_REPOSITORY = "joku-dev/governance-framework-demo-consumer"
 
@@ -223,12 +222,33 @@ def estimate_viewer_rows(source_row: dict, repository_count: int) -> dict:
     }
 
 
+def load_current_viewer_projection(root: Path) -> dict:
+    viewer = importlib.import_module("lib.viewer_app")
+
+    def read_index(name: str) -> dict:
+        return load_json(root / "status" / name)
+
+    data = viewer.project(
+        read_index("repository-results-index.json"),
+        read_index("architecture-results-index.json"),
+        viewer.load_snapshots(root / "status" / "measured-security-results"),
+        viewer.load_l1_snapshots(root / "status" / "measured-l1-results"),
+        viewer.load_assurance_snapshots(root / "status" / "control-evidence-assurance"),
+        viewer.load_staging_snapshots(root / "status" / "staging-deployment-results"),
+        viewer.load_consolidated_l1_snapshots(root / "status" / "consolidated-l1-results"),
+    )
+    data["repository_security"] = viewer.load_repository_security(root)
+    legacy = root / "generated" / "viewer" / "status-viewer.html"
+    data["technical"] = viewer.project_technical(legacy.read_text(encoding="utf-8"))
+    return data
+
+
 def run_simulation(
     root: Path,
     repository_counts: list[int],
     detailed_materialize_limit: int = 300,
 ) -> dict:
-    viewer_data = load_json(root / "generated" / "viewer" / "app" / "data.json")
+    viewer_data = load_current_viewer_projection(root)
     detailed_row = next(
         row for row in viewer_data["repositories"] if row["id"] == DEFAULT_SOURCE_REPOSITORY
     )
