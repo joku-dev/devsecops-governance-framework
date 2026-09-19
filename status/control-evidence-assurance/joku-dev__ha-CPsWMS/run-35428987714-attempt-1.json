@@ -1,0 +1,1054 @@
+{
+  "assurance_binding": "529eae458ab9e098e86127d115fd2b9e3da1388f9c86f36d83921f91ba6e1cab",
+  "controls": [
+    {
+      "assessment": "partial",
+      "attestation": "not_evaluated",
+      "content_integrity": "not_evaluated",
+      "control_id": "DSCB-L1-REQ-001",
+      "coverage": "partial",
+      "custody": "not_evaluated",
+      "decision_context": "mainline",
+      "effective_level": "unverified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "source/junit.xml",
+            "runtime/junit.xml",
+            "repository/quality/traceability.json"
+          ],
+          "evidence_type": "requirements_traceability_records",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-control-evidence-commit-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        },
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "not_evaluated",
+          "custody": "not_evaluated",
+          "effective_level": "unverified",
+          "evidence_refs": [],
+          "evidence_type": "unmet_control_evidence",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "policy_id": "freshness-control-evidence-commit-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": null,
+            "reason": "Freigegebene Systemanforderungen und vollständige Abdeckung aller Komponenten nachweisen.",
+            "result": "not_evaluated"
+          },
+          "provenance": "not_evaluated",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "missing"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "policy_id": "freshness-control-evidence-commit-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": null,
+        "reason": "Freigegebene Systemanforderungen und vollständige Abdeckung aller Komponenten nachweisen.",
+        "result": "not_evaluated"
+      },
+      "missing_scope": [
+        "Freigegebene Systemanforderungen und vollständige Abdeckung aller Komponenten nachweisen."
+      ],
+      "provenance": "not_evaluated",
+      "replay": "not_evaluated",
+      "subject_binding": "commit"
+    },
+    {
+      "assessment": "partial",
+      "attestation": "not_evaluated",
+      "content_integrity": "not_evaluated",
+      "control_id": "DSCB-L1-REQ-002",
+      "coverage": "partial",
+      "custody": "not_evaluated",
+      "decision_context": "mainline",
+      "effective_level": "unverified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "platform/commit.json",
+            "platform/pulls.json"
+          ],
+          "evidence_type": "commit_history",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-control-evidence-commit-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        },
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "not_evaluated",
+          "custody": "not_evaluated",
+          "effective_level": "unverified",
+          "evidence_refs": [],
+          "evidence_type": "unmet_control_evidence",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "policy_id": "freshness-control-evidence-commit-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": null,
+            "reason": "Organisatorische VCS-Freigabe und benötigte Review-Nachweise separat belegen; kein unabhängiges Review abgeleitet.",
+            "result": "not_evaluated"
+          },
+          "provenance": "not_evaluated",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "missing"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "policy_id": "freshness-control-evidence-commit-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": null,
+        "reason": "Organisatorische VCS-Freigabe und benötigte Review-Nachweise separat belegen; kein unabhängiges Review abgeleitet.",
+        "result": "not_evaluated"
+      },
+      "missing_scope": [
+        "Organisatorische VCS-Freigabe und benötigte Review-Nachweise separat belegen; kein unabhängiges Review abgeleitet."
+      ],
+      "provenance": "not_evaluated",
+      "replay": "not_evaluated",
+      "subject_binding": "commit"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-003",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "mainline",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "platform/protection.json",
+            "platform/rules.json",
+            "platform/rulesets.json",
+            "platform/ruleset-details.json"
+          ],
+          "evidence_type": "branch_protection_configuration",
+          "freshness": {
+            "age_seconds": 29,
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": 86400,
+            "policy_id": "freshness-repository-configuration-24h",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence age 29s is within the provisional maximum 86400s.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        }
+      ],
+      "freshness": {
+        "age_seconds": 29,
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": 86400,
+        "policy_id": "freshness-repository-configuration-24h",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:21:51Z",
+        "reason": "Evidence age 29s is within the provisional maximum 86400s.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "not_evaluated",
+      "subject_binding": "repository_state"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-004",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "mainline",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "source/bandit.json",
+            "source/ruff.json"
+          ],
+          "evidence_type": "static_code_analysis_reports",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-control-evidence-commit-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": null,
+        "policy_id": "freshness-control-evidence-commit-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:21:51Z",
+        "reason": "Evidence is bound to the centrally verified immutable subject.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "not_evaluated",
+      "subject_binding": "commit"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-005",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/sbom.cyclonedx.json",
+            "image-query-api/sbom.cyclonedx.json",
+            "image-semantic-enrichment/sbom.cyclonedx.json",
+            "image-world-model-chat/sbom.cyclonedx.json",
+            "image-neo4j/sbom.cyclonedx.json",
+            "source/dependency-locks.json",
+            "source/dependency-sbom-application.cyclonedx.json",
+            "source/dependency-sbom-ci.cyclonedx.json"
+          ],
+          "evidence_type": "sbom",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-sbom-subject-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:19:33.463919+00:00",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "pass",
+          "required": true,
+          "status": "present",
+          "typed_source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T07-21-51Z-run-35428987714-sbom.json"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": null,
+        "policy_id": "freshness-sbom-subject-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:19:33.463919+00:00",
+        "reason": "Evidence is bound to the centrally verified immutable subject.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "pass",
+      "subject_binding": "artifact"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-006",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/sbom.cyclonedx.json",
+            "image-query-api/sbom.cyclonedx.json",
+            "image-semantic-enrichment/sbom.cyclonedx.json",
+            "image-world-model-chat/sbom.cyclonedx.json",
+            "image-neo4j/sbom.cyclonedx.json",
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json"
+          ],
+          "evidence_type": "sbom",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-sbom-subject-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:19:33.463919+00:00",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "pass",
+          "required": true,
+          "status": "present",
+          "typed_source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T07-21-51Z-run-35428987714-sbom.json"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": null,
+        "policy_id": "freshness-sbom-subject-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:19:33.463919+00:00",
+        "reason": "Evidence is bound to the centrally verified immutable subject.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "pass",
+      "subject_binding": "artifact"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-007",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/build.execution.json",
+            "image-query-api/build.execution.json",
+            "image-semantic-enrichment/build.execution.json",
+            "image-world-model-chat/build.execution.json",
+            "image-neo4j/build.execution.json",
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json",
+            "source/dependency-locks.json"
+          ],
+          "evidence_type": "build_pipeline_logs",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-control-evidence-commit-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": null,
+        "policy_id": "freshness-control-evidence-commit-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:21:51Z",
+        "reason": "Evidence is bound to the centrally verified immutable subject.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "not_evaluated",
+      "subject_binding": "commit"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-008",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json"
+          ],
+          "evidence_type": "artifact_version_identifiers",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-artifact-subject-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": null,
+        "policy_id": "freshness-artifact-subject-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:21:51Z",
+        "reason": "Evidence is bound to the centrally verified immutable subject.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "not_evaluated",
+      "subject_binding": "artifact"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-009",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/vulnerabilities.json",
+            "image-query-api/vulnerabilities.json",
+            "image-semantic-enrichment/vulnerabilities.json",
+            "image-world-model-chat/vulnerabilities.json",
+            "image-neo4j/vulnerabilities.json"
+          ],
+          "evidence_type": "vulnerability_scan_reports",
+          "freshness": {
+            "age_seconds": 167,
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": 86400,
+            "policy_id": "freshness-vulnerability-scan-24h",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:19:33.463919+00:00",
+            "reason": "Evidence age 167s is within the provisional maximum 86400s.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "pass",
+          "required": true,
+          "status": "present",
+          "typed_source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T07-21-51Z-run-35428987714-vulnerability-scan.json"
+        }
+      ],
+      "freshness": {
+        "age_seconds": 167,
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": 86400,
+        "policy_id": "freshness-vulnerability-scan-24h",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:19:33.463919+00:00",
+        "reason": "Evidence age 167s is within the provisional maximum 86400s.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "pass",
+      "subject_binding": "artifact"
+    },
+    {
+      "assessment": "findings",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-010",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/vulnerabilities.json",
+            "image-query-api/vulnerabilities.json",
+            "image-semantic-enrichment/vulnerabilities.json",
+            "image-world-model-chat/vulnerabilities.json",
+            "image-neo4j/vulnerabilities.json",
+            "source/dependency-audit.json"
+          ],
+          "evidence_type": "vulnerability_scan_reports",
+          "freshness": {
+            "age_seconds": 167,
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": 86400,
+            "policy_id": "freshness-vulnerability-scan-24h",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:19:33.463919+00:00",
+            "reason": "Evidence age 167s is within the provisional maximum 86400s.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "pass",
+          "required": true,
+          "status": "present",
+          "typed_source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T07-21-51Z-run-35428987714-vulnerability-scan.json"
+        }
+      ],
+      "freshness": {
+        "age_seconds": 167,
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": 86400,
+        "policy_id": "freshness-vulnerability-scan-24h",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:19:33.463919+00:00",
+        "reason": "Evidence age 167s is within the provisional maximum 86400s.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "pass",
+      "subject_binding": "artifact"
+    },
+    {
+      "assessment": "partial",
+      "attestation": "not_evaluated",
+      "content_integrity": "not_evaluated",
+      "control_id": "DSCB-L1-REQ-011",
+      "coverage": "partial",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "unverified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json"
+          ],
+          "evidence_type": "artifact_checksum_or_digest_records",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-artifact-subject-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        },
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "not_evaluated",
+          "custody": "not_evaluated",
+          "effective_level": "unverified",
+          "evidence_refs": [],
+          "evidence_type": "unmet_control_evidence",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "policy_id": "freshness-artifact-subject-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": null,
+            "reason": "Zugriffsschutz, Aufbewahrung und unabhängige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivprüfung.",
+            "result": "not_evaluated"
+          },
+          "provenance": "not_evaluated",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "missing"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "policy_id": "freshness-artifact-subject-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": null,
+        "reason": "Zugriffsschutz, Aufbewahrung und unabhängige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivprüfung.",
+        "result": "not_evaluated"
+      },
+      "missing_scope": [
+        "Zugriffsschutz, Aufbewahrung und unabhängige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivprüfung."
+      ],
+      "provenance": "not_evaluated",
+      "replay": "not_evaluated",
+      "subject_binding": "artifact"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-012",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json"
+          ],
+          "evidence_type": "artifact_checksum_or_digest_records",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-artifact-subject-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": null,
+        "policy_id": "freshness-artifact-subject-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:21:51Z",
+        "reason": "Evidence is bound to the centrally verified immutable subject.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "not_evaluated",
+      "subject_binding": "artifact"
+    },
+    {
+      "assessment": "gap",
+      "attestation": "not_evaluated",
+      "content_integrity": "not_evaluated",
+      "control_id": "DSCB-L1-REQ-013",
+      "coverage": "missing",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "unverified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "platform/environments.json"
+          ],
+          "evidence_type": "release_approval_records",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "policy_id": "freshness-release-approval-candidate-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": null,
+            "reason": "No exact release candidate and approval evidence is available for this control.",
+            "result": "not_evaluated"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        },
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "not_evaluated",
+          "custody": "not_evaluated",
+          "effective_level": "unverified",
+          "evidence_refs": [],
+          "evidence_type": "unmet_control_evidence",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "policy_id": "freshness-release-approval-candidate-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": null,
+            "reason": "Zielumgebung und autorisierte Freigabe für das konkrete Artefakt nachweisen. Merge und grüner Lauf reichen nicht.",
+            "result": "not_evaluated"
+          },
+          "provenance": "not_evaluated",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "missing"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "policy_id": "freshness-release-approval-candidate-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": null,
+        "reason": "Zielumgebung und autorisierte Freigabe für das konkrete Artefakt nachweisen. Merge und grüner Lauf reichen nicht.",
+        "result": "not_evaluated"
+      },
+      "missing_scope": [
+        "Zielumgebung und autorisierte Freigabe für das konkrete Artefakt nachweisen. Merge und grüner Lauf reichen nicht."
+      ],
+      "provenance": "not_evaluated",
+      "replay": "not_evaluated",
+      "subject_binding": "release_candidate"
+    },
+    {
+      "assessment": "gap",
+      "attestation": "not_evaluated",
+      "content_integrity": "not_evaluated",
+      "control_id": "DSCB-L1-REQ-014",
+      "coverage": "missing",
+      "custody": "not_evaluated",
+      "decision_context": "release",
+      "effective_level": "unverified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "runtime/deployment.json"
+          ],
+          "evidence_type": "deployment_logs",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "policy_id": "freshness-release-approval-candidate-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": null,
+            "reason": "No exact release candidate and approval evidence is available for this control.",
+            "result": "not_evaluated"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        },
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "not_evaluated",
+          "custody": "not_evaluated",
+          "effective_level": "unverified",
+          "evidence_refs": [],
+          "evidence_type": "unmet_control_evidence",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "policy_id": "freshness-release-approval-candidate-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": null,
+            "reason": "Deployment in eine genehmigte Zielumgebung und dortige Auswahl freigegebener Artefakte nachweisen.",
+            "result": "not_evaluated"
+          },
+          "provenance": "not_evaluated",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "missing"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "policy_id": "freshness-release-approval-candidate-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": null,
+        "reason": "Deployment in eine genehmigte Zielumgebung und dortige Auswahl freigegebener Artefakte nachweisen.",
+        "result": "not_evaluated"
+      },
+      "missing_scope": [
+        "Deployment in eine genehmigte Zielumgebung und dortige Auswahl freigegebener Artefakte nachweisen."
+      ],
+      "provenance": "not_evaluated",
+      "replay": "not_evaluated",
+      "subject_binding": "release_candidate"
+    },
+    {
+      "assessment": "measured",
+      "attestation": "not_evaluated",
+      "content_integrity": "pass",
+      "control_id": "DSCB-L1-REQ-015",
+      "coverage": "complete",
+      "custody": "not_evaluated",
+      "decision_context": "mainline",
+      "effective_level": "integrity_verified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "image-ha-sync/manifest.json",
+            "image-neo4j/manifest.json",
+            "image-query-api/manifest.json",
+            "image-semantic-enrichment/manifest.json",
+            "image-world-model-chat/manifest.json",
+            "platform/manifest.json",
+            "runtime/manifest.json",
+            "source/manifest.json"
+          ],
+          "evidence_type": "pipeline_execution_logs",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": null,
+            "policy_id": "freshness-control-evidence-commit-bound",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence is bound to the centrally verified immutable subject.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "maximum_age_seconds": null,
+        "policy_id": "freshness-control-evidence-commit-bound",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": "2026-09-19T07:21:51Z",
+        "reason": "Evidence is bound to the centrally verified immutable subject.",
+        "result": "pass"
+      },
+      "missing_scope": [],
+      "provenance": "pass",
+      "replay": "not_evaluated",
+      "subject_binding": "pipeline_run"
+    },
+    {
+      "assessment": "partial",
+      "attestation": "not_evaluated",
+      "content_integrity": "not_evaluated",
+      "control_id": "DSCB-L1-REQ-016",
+      "coverage": "partial",
+      "custody": "not_evaluated",
+      "decision_context": "runtime",
+      "effective_level": "unverified",
+      "evidence": [
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "pass",
+          "custody": "not_evaluated",
+          "effective_level": "integrity_verified",
+          "evidence_refs": [
+            "runtime/deployment.json",
+            "runtime/junit.xml",
+            "runtime/query-api.log",
+            "runtime/neo4j.log"
+          ],
+          "evidence_type": "system_logs",
+          "freshness": {
+            "age_seconds": 29,
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "maximum_age_seconds": 1800,
+            "policy_id": "freshness-runtime-evidence-30m",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": "2026-09-19T07:21:51Z",
+            "reason": "Evidence age 29s is within the provisional maximum 1800s.",
+            "result": "pass"
+          },
+          "provenance": "pass",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "present"
+        },
+        {
+          "attestation": "not_evaluated",
+          "content_integrity": "not_evaluated",
+          "custody": "not_evaluated",
+          "effective_level": "unverified",
+          "evidence_refs": [],
+          "evidence_type": "unmet_control_evidence",
+          "freshness": {
+            "evaluated_at": "2026-09-19T07:22:20.851449Z",
+            "policy_id": "freshness-runtime-evidence-30m",
+            "policy_status": "provisional",
+            "policy_version": "0.1.0",
+            "produced_at": null,
+            "reason": "VM, Betriebsregister und dauerhafte Security-Ereignisaufbewahrung ergänzen; CI ist kein Betriebsnachweis.",
+            "result": "not_evaluated"
+          },
+          "provenance": "not_evaluated",
+          "replay": "not_evaluated",
+          "required": true,
+          "status": "missing"
+        }
+      ],
+      "freshness": {
+        "evaluated_at": "2026-09-19T07:22:20.851449Z",
+        "policy_id": "freshness-runtime-evidence-30m",
+        "policy_status": "provisional",
+        "policy_version": "0.1.0",
+        "produced_at": null,
+        "reason": "VM, Betriebsregister und dauerhafte Security-Ereignisaufbewahrung ergänzen; CI ist kein Betriebsnachweis.",
+        "result": "not_evaluated"
+      },
+      "missing_scope": [
+        "VM, Betriebsregister und dauerhafte Security-Ereignisaufbewahrung ergänzen; CI ist kein Betriebsnachweis."
+      ],
+      "provenance": "not_evaluated",
+      "replay": "not_evaluated",
+      "subject_binding": "runtime_environment"
+    }
+  ],
+  "enforcement": "report-only",
+  "official_compliance_result": false,
+  "production_approval": false,
+  "profile": "control-evidence-assurance-v1",
+  "reference_baseline": "l1-baseline-v1.1.3",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "result_type": "control-evidence-assurance",
+  "risk_acceptance": false,
+  "run": {
+    "attempt": 1,
+    "branch": "main",
+    "commit": "dc303dcdabb36d4218b68dee5d1bbaf5eb3bc09c",
+    "created_at": "2026-09-19T07:19:01Z",
+    "event": "push",
+    "id": "35428987714",
+    "updated_at": "2026-09-19T07:21:51Z"
+  },
+  "schema_version": "1.0.0",
+  "source_assessment": {
+    "evidence_binding": "600d70ccaf1177c05a32068167b5adde2d1aac001f4ae77477377ecd8050e76b",
+    "profile": "ha-cpswms-l1-measured-v2",
+    "result_type": "measured-l1-assessment",
+    "source_file": "status/measured-l1-results/joku-dev__ha-CPsWMS/run-35428987714-attempt-1.json"
+  },
+  "summary": {
+    "coverage": {
+      "complete": 10,
+      "missing": 2,
+      "partial": 4
+    },
+    "freshness": {
+      "fail": 0,
+      "not_evaluated": 6,
+      "pass": 10
+    },
+    "total_controls": 16,
+    "trust_levels": {
+      "attested": 0,
+      "integrity_verified": 10,
+      "provenance_verified": 0,
+      "unverified": 6
+    }
+  },
+  "verified_at": "2026-09-19T07:22:20.851449Z"
+}
