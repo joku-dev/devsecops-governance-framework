@@ -1,0 +1,174 @@
+{
+  "approval": {
+    "approved_at": "2026-09-19T06:26:29.938207+00:00",
+    "critical_findings_acknowledged": 1,
+    "decision": "approved_for_staging",
+    "high_findings_acknowledged": 327,
+    "scope": "staging_only"
+  },
+  "components": {
+    "neo4j": {
+      "health": "healthy",
+      "runtime_image_id": "sha256:2fbf6e01f1dd315594112f3bc0682ed77045b4f70e5052971e29091d4ea23da4"
+    },
+    "query-api": {
+      "health": "healthy",
+      "runtime_image_id": "sha256:98e7c60cd4f9b3dc1cda5f8caff532599c13ea1c5889da5592f34a7e4a893eec"
+    }
+  },
+  "controls": [
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-013",
+      "evidence_refs": [
+        "deployment-approval.json",
+        "deployment-receipt.json"
+      ],
+      "observation": "A maintainer explicitly approved the exact commit, source run, target and acknowledged staging risk before deployment.",
+      "remaining": "Staging-only decision; no production approval or general vulnerability risk acceptance."
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-014",
+      "evidence_refs": [
+        "deployment-receipt.json",
+        "checks.txt"
+      ],
+      "observation": "The target ran only the two approved local image IDs with pull_policy never; both identities and health were rechecked after start.",
+      "remaining": "Runtime IDs are locally observed transport identities; no independent signed deployment attestation."
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-016",
+      "evidence_refs": [
+        "deployment-receipt.json",
+        "query-api.log",
+        "neo4j.log",
+        "checks.txt"
+      ],
+      "observation": "Deployed versions, container logs, outage detection, recovery, restart and security boundaries are retained for the staging run.",
+      "remaining": "Define durable operational/security-event retention, backup-restore, monitoring and incident ownership before production use."
+    }
+  ],
+  "deployed_subject": {
+    "commit": "2c9724dc34845f40425018a46d254c2b17221966",
+    "source_attempt": 2,
+    "source_run_id": "35386771107"
+  },
+  "deployment": {
+    "api_binding": "127.0.0.1:18080",
+    "compose_sha256": "a22b8db2b75c62a2e2329c20cd66db7ba7b9891eb9a820e7ab4b606968203ccb",
+    "enforcement": "report-only",
+    "finished_at": "2026-09-19T06:27:45Z",
+    "production_approval": false,
+    "project": "ha-cpswms-staging",
+    "risk_acceptance": false,
+    "started_at": "2026-09-19T06:26:30Z",
+    "status": "pass"
+  },
+  "environment": {
+    "address": "192.168.200.197",
+    "hostname": "ha-cpswms-stg-01",
+    "name": "staging"
+  },
+  "evidence_binding": "136eda32abd33995e66b9f5983929a8f4952728a18b92da5463f50fd17d6510c",
+  "evidence_repository": {
+    "commit": "e0c0ad9d687cfb9099d90de5aff1dfcee5bf5776",
+    "path": "deployment/staging/evidence/2026-09-19T06-26-29Z-run-35386771107-attempt-2/"
+  },
+  "observations": [
+    {
+      "id": "STG-OBS-001",
+      "severity": "low",
+      "summary": "The health endpoint returns HTTP 500 while Neo4j is unavailable. Dependency failure is detected and recovery succeeds."
+    }
+  ],
+  "reference_baseline": "l1-baseline-v1.1.3",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "result_type": "staging-deployment-result",
+  "schema_version": "1.0.0",
+  "security_boundaries": {
+    "api_loopback_only": true,
+    "backend_network_internal": true,
+    "capabilities_dropped": true,
+    "neo4j_not_published": true,
+    "no_new_privileges": true,
+    "query_api_non_root": true,
+    "query_api_read_only_rootfs": true
+  },
+  "source_file": "status/staging-deployment-results/joku-dev__ha-CPsWMS/2026-09-19T06-27-45Z-run-35386771107.json",
+  "tests": {
+    "database_outage_http_status": 500,
+    "database_recovery_http_status": 200,
+    "fail": 0,
+    "pass": 19
+  },
+  "trust": {
+    "assessment_status": "evaluated",
+    "check_summary": {
+      "fail": 0,
+      "not_evaluated": 4,
+      "pass": 8
+    },
+    "content_integrity": "pass",
+    "effective_level": "integrity_verified",
+    "freshness": "pass",
+    "replay": "pass",
+    "verified_at": "2026-09-19T06:32:35.997499Z"
+  },
+  "verified_at": "2026-09-19T06:32:35.997499Z",
+  "verified_sources": {
+    "SHA256SUMS": {
+      "bytes": 1038,
+      "sha256": "71dcd1de1b2225bba2dbe46be8e812511920e54a24acd2b071ce62abbb70a99e"
+    },
+    "capabilities.json": {
+      "bytes": 20,
+      "sha256": "8d86e6ae4257ed0e628581df1342f28649b1089ca4f5a85dd1a604ec88fd2d06"
+    },
+    "checks.txt": {
+      "bytes": 488,
+      "sha256": "f695fc9eb4c02e503a8dcd0f140b7898acdcfe314df1bce71f8b79708888774f"
+    },
+    "deployment-approval.json": {
+      "bytes": 1113,
+      "sha256": "b09be0a13ff054fe0681d3ef12842b0aee99f8f4380150223547c1224e29e26c"
+    },
+    "deployment-receipt.json": {
+      "bytes": 3799,
+      "sha256": "a6da50448804b3a80d452aa7c999b2fd34ef957493ff9fdad68ad2571ba456dd"
+    },
+    "health-after-api-restart.json": {
+      "bytes": 16,
+      "sha256": "08e2c358ce13cb67f94ebb35b0f67c8763190a857c0db68da6eb196dfe9da46a"
+    },
+    "health-after-recovery.json": {
+      "bytes": 16,
+      "sha256": "08e2c358ce13cb67f94ebb35b0f67c8763190a857c0db68da6eb196dfe9da46a"
+    },
+    "health-during-db-outage.json": {
+      "bytes": 128,
+      "sha256": "b6c93fb2291a9a7c810020c3e89e03e7027b2f0fce504185806d9e6155b0c3b4"
+    },
+    "health.json": {
+      "bytes": 16,
+      "sha256": "08e2c358ce13cb67f94ebb35b0f67c8763190a857c0db68da6eb196dfe9da46a"
+    },
+    "neo4j.log": {
+      "bytes": 8356,
+      "sha256": "1cb5370a63f3cf5eb0709a265078b4a62b967bffce241e52c05a12e5136c911e"
+    },
+    "query-api.log": {
+      "bytes": 699376,
+      "sha256": "78852545e15234c583c014a8fd30fbf6a2516e0180831fff3552bee2184d1e0d"
+    },
+    "simulation-readiness.json": {
+      "bytes": 29,
+      "sha256": "077d6da0181a80de535dcb3ca2754e842673b46e3d14d0bca393aedee2c9c388"
+    },
+    "what-if-zigbee.json": {
+      "bytes": 66,
+      "sha256": "ed5a9f9f1e30cf5df5bf3383b75031a7124711721c4b472f4c0e129f47ea487d"
+    }
+  }
+}

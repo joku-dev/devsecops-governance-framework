@@ -83,10 +83,10 @@ class ViewerAppTests(unittest.TestCase):
         repo = next(r for r in data['repositories'] if r['id']=='joku-dev/ha-CPsWMS')
         self.assertEqual('pass', repo['staging_deployment']['deployment']['status'])
         self.assertEqual(19, repo['staging_deployment']['tests']['pass'])
-        self.assertEqual('5d5772d989b0080ae041969315742c8fbbca6dfe',
+        self.assertEqual('2c9724dc34845f40425018a46d254c2b17221966',
                          repo['staging_deployment']['deployed_subject']['commit'])
         self.assertEqual('integrity_verified', repo['staging_deployment']['trust']['effective_level'])
-        self.assertEqual(1, len(repo['staging_deployment_history']))
+        self.assertEqual(2, len(repo['staging_deployment_history']))
 
     def test_consolidated_l1_is_selected_only_for_matching_latest_run(self):
         measured = load_l1_snapshots(ROOT / 'status/measured-l1-results')
@@ -97,7 +97,12 @@ class ViewerAppTests(unittest.TestCase):
         repo = next(r for r in data['repositories'] if r['id'] == 'joku-dev/ha-CPsWMS')
         self.assertEqual('consolidated-l1-assessment', repo['l1_assessment']['result_type'])
         self.assertEqual(consolidated[-1], repo['l1_consolidated_assessment'])
-        data = project(self.dev, self.arch, self.scans, measured,
+        newer = deepcopy(measured[-1])
+        newer['run']['id'] = '99999999999'
+        newer['run']['attempt'] = 1
+        newer['run']['created_at'] = '2099-01-01T00:00:00Z'
+        newer['run']['updated_at'] = '2099-01-01T00:01:00Z'
+        data = project(self.dev, self.arch, self.scans, measured + [newer],
                        consolidated_l1_snapshots=consolidated)
         repo = next(r for r in data['repositories'] if r['id'] == 'joku-dev/ha-CPsWMS')
         self.assertEqual('measured-l1-assessment', repo['l1_assessment']['result_type'])
