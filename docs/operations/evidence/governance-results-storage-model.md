@@ -4,6 +4,10 @@
 
 This document explains how this repository can hold governance execution results from multiple downstream repositories without turning the repository itself into an unstructured dump of pipeline output.
 
+It defines the current pilot storage contract. Measured limits and the
+production target for 300 to 1,500 consumers are maintained in the
+[Consumer Scale Capacity Assessment](../planning/consumer-scale-capacity-assessment.md).
+
 ## Recommended Model
 
 The repository uses a hybrid model:
@@ -102,43 +106,18 @@ python3 scripts/intake_architecture_github_actions_run.py \
   --architecture-baseline-ref architecture-baseline-l1-v0.1.0
 ```
 
-## Step-By-Step For Adding Another Repository Result
+## Canonical Intake Procedure
 
-### Step 1
+Do not create or edit accepted result snapshots and central indexes by hand.
+Use the repository intake workflows or the corresponding intake scripts so
+that schema validation, repository/run binding, replay handling, provenance,
+digests and index regeneration remain consistent. The complete operator
+procedure, including retries and review PRs, is maintained in
+[Governance Result Intake And Viewer Usage](governance-result-intake-and-viewer-usage.md).
 
-Create a repository-specific folder under `status/results/`.
-
-Example:
-
-```bash
-mkdir -p status/results/example-org__example-repo
-```
-
-### Step 2
-
-Add a normalized JSON result file.
-
-Example file name:
-
-```text
-status/results/example-org__example-repo/2026-06-28T12-00-00Z-run-123456789.json
-```
-
-### Step 3
-
-Populate the file with the normalized fields used by this repository.
-
-### Step 4
-
-Regenerate the central index:
-
-```bash
-python3 scripts/generate_repository_results_index.py
-```
-
-### Step 5
-
-Commit the snapshot if the result should become part of the governed audit trail.
+The index generator commands above are useful for deterministic regeneration
+and validation after an authorized intake. They are not a substitute for
+accepting evidence through the intake boundary.
 
 ## When To Store Results In Git
 
@@ -162,9 +141,9 @@ In those cases:
 - store raw evidence in GitHub Actions artifacts or object storage
 - store only normalized snapshots or summaries in this repository
 
-## Long-Term Evolution
+## Production Scale Boundary
 
-If the number of repositories grows significantly, this repository can continue to keep:
+At larger portfolio sizes, this repository can continue to keep:
 
 - schemas
 - normalization logic
@@ -176,3 +155,7 @@ while a separate central store can keep:
 - all raw run evidence
 - long-term historical time series
 - dashboards and queries
+
+Queueing, batching, retention, viewer partitioning and intake sharding belong
+to the target architecture in the
+[Consumer Scale Capacity Assessment](../planning/consumer-scale-capacity-assessment.md).

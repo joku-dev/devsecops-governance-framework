@@ -32,6 +32,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Compare governance with central repository versus without central repository | `docs/governance/architecture/governance-repository-architecture-comparison.md` |
 | Classify documentation and plan safe docs restructuring | `docs/operations/planning/document-structure-model.md` |
 | Plan the closed-loop finding, decision and remediation pilot | `docs/operations/planning/closed-loop-governance-implementation-plan.md` (CLG-01–06.3 implementation and accepted limited GitHub pilot) |
+| Assess capacity for 300 to 1,500 consumer repositories | `docs/operations/planning/consumer-scale-capacity-assessment.md`, `scripts/simulate_consumer_scale.py` |
 | Inspect CLG-01 contracts and open pilot decisions | `docs/operations/evidence/governance-lifecycle-contract.md`, `docs/operations/evidence/governance-lifecycle-pilot-decisions.md` (offline contracts; separate accepted live pilot) |
 | Use the CLG-02 synthetic finding/event kernel | `docs/operations/evidence/governance-lifecycle-kernel.md`, `scripts/intake_governance_lifecycle_observation.py`, `status/governance-lifecycle-synthetic-index.json` (synthetic only) |
 | Use CLG-03 synthetic decision and remediation intake | `docs/operations/evidence/governance-lifecycle-decisions.md`, `scripts/intake_governance_lifecycle_action.py` (test consent; separate personal live action path) |
