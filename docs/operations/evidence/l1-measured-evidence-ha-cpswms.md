@@ -1,8 +1,10 @@
 # L1 mit gemessenen Nachweisen in ha-CPsWMS
 
-Stand: 17. September 2026. Referenz ist die unveränderte DevSecOps-Baseline
+Stand: 19. September 2026. Referenz ist die unveränderte DevSecOps-Baseline
 `l1-baseline-v1.1.3` mit 16 Kontrollen. Die Erweiterung ist in
-[ha-CPsWMS PR #16](https://github.com/joku-dev/ha-CPsWMS/pull/16) umgesetzt.
+[ha-CPsWMS PR #25](https://github.com/joku-dev/ha-CPsWMS/pull/25) auf das
+Evidence-Profil v2 erweitert; der aktuelle Staging-Nachweis liegt in
+[PR #26](https://github.com/joku-dev/ha-CPsWMS/pull/26).
 
 ## Was ausgeführt wird
 
@@ -15,10 +17,13 @@ Beziehungen befüllter Testgraph ersetzt den bisher leeren Benchmark als Grundla
 für konkrete Ergebnisassertionen. Ein Datenbankausfall samt Wiederanlauf wird
 gegen die echte HTTP-API geprüft.
 
-GitHub-API-Abfragen liefern Commit-, PR-, Review- und Schutzeinstellungen.
-403/fehlende Rechte bleiben Nachweislücken. Tests, Scans, Laufzeiten, Exit-Codes,
+GitHub-API-Abfragen liefern Commit-, PR-, Review-, Branch-Protection- und
+Ruleset-Daten. Tests, Scans, Laufzeiten, Exit-Codes,
 SBOMs und Deployment-IDs erhalten maschinenlesbare Artefakte. Der Aggregator
 prüft heruntergeladene Dateien gegen Run-/Commit-Bindung und SHA-256-Manifeste.
+Anwendungs- und CI-/Tool-Abhängigkeiten werden zusätzlich aus hashgesperrten
+Python-3.12-Locks inventarisiert, als CycloneDX-SBOM gespeichert und mit
+`pip-audit` geprüft.
 
 Die konkrete [Consumer-Anleitung und Kontrollmatrix](https://github.com/joku-dev/ha-CPsWMS/blob/main/docs/quality/L1_MEASURED_EVIDENCE.md)
 nennt alle 16 Kontrollen, ausführbare Werkzeuge und verbleibende Grenzen.
@@ -45,16 +50,15 @@ Check gesetzt. Der registrierte bisherige ha-CPsWMS-Blocking-Modus bleibt getren
 
 - Vollständige freigegebene Systemanforderungen und Abdeckung aller Komponenten
   einschließlich tatsächlicher Testfall-/Berichtszuordnung (L1-001).
-- Vollständig lesbare und bewertete Branch-/Bypass-Konfiguration (L1-003).
-- Fachliche Bewertung der SAST-/CVE-Befunde, keine automatisch behauptete
-  Review oder Risikofreigabe (L1-004/010).
-- Gelockte Python-Auflösung und Nachweis reproduzierbarer Builds (L1-007).
+- Organisatorische VCS-Freigabe und unabhängiges Review zusätzlich zur
+  gemessenen Commit-Identität und technischen Main-Regel (L1-002/003).
+- Fachliche Bewertung der CVE-Befunde, keine automatisch behauptete
+  Risikofreigabe (L1-010).
 - Release-Archivierung, Zugriffsschutz und unabhängige Provenienz ergänzend zur
   Prüfung von Dateiintegrität (L1-011).
-- Autorisierte Deployment-Freigabe und ausschließlich freigegebene Artefakte in
-  einer konkret benannten Zielumgebung (L1-013/014).
-- Betriebsregister und Aufbewahrung relevanter Security-Ereignisse außerhalb
-  der kurzlebigen CI-Umgebung (L1-016).
+- Dauerhaftes Betriebsregister, Security-Event-Aufbewahrung, Backup/Restore,
+  Monitoring und Incident-Verantwortung über den belegten Staging-Lauf hinaus
+  (L1-016).
 
 Die CI nutzt weder eine reale Home-Assistant-Instanz noch bezahlte LLM-Aufrufe.
 Sie erzeugt keine Produktions-SLOs oder repräsentative Lasttestergebnisse.
@@ -90,10 +94,10 @@ Erste erfasste Messpunkte:
 | [35128325507](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35128325507) | 9aa1806 | 13 | 373 | 57 |
 | [35131185085](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185085) | 4c57eb1 | 1 | 332 | 57 |
 
-Der neueste kombinierte Typed-Evidence-/L1-Lauf
-[`35241262722`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35241262722)
-gehört zum Commit `ce02be6`, enthält 58 bestandene Tests und liefert über den
-strengeren Typed-Evidence-Intake 1 kritische und 329 hohe Image-/Paketvorkommen.
+Der aktuelle kombinierte Typed-Evidence-/L1-Lauf
+[`35386771107`, Versuch 2](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35386771107/attempts/2)
+gehört zum Commit `2c9724d`, enthält 62 bestandene Tests und liefert über den
+strengeren Typed-Evidence-Intake 1 kritische und 327 hohe Image-/Paketvorkommen.
 Er ersetzt den zweiten Messpunkt in der getrennten Container-Security-Historie
 nicht automatisch; beide Speicher behalten ihre jeweilige Intake- und
 Auswahlregel.
@@ -114,7 +118,7 @@ GitHub CLI mit Leserechten für Actions und die gepinnte Validierungsumgebung.
 
 ```sh
 ./scripts/bootstrap_validation_env.sh
-.venv-validation/bin/python scripts/intake_measured_security.py --run-id 35241262722
+.venv-validation/bin/python scripts/intake_measured_security.py --run-id 35386771107
 .venv-validation/bin/python scripts/generate_status_viewer.py
 ./scripts/validate_all.sh
 ```
@@ -170,9 +174,20 @@ Bandit, Ruff, CycloneDX, Trivy, GitHub-API-Antworten und CI-Deployment-Metadaten
 Producer-Statusangaben werden nicht als Kontrollfreigabe übernommen.
 
 ```sh
-.venv-validation/bin/python scripts/intake_measured_l1.py --run-id 35241262722
+.venv-validation/bin/python scripts/intake_measured_l1.py --run-id 35386771107
 .venv-validation/bin/python scripts/generate_status_viewer.py
 ./scripts/validate_all.sh
+```
+
+Der getrennte Staging-Intake prüft die versionierte Freigabe, alle Bundle-Hashes,
+Zeitreihenfolge, Ziel, Runtime-IDs und die Bindung an denselben `push/main`-Lauf.
+Nur bei exakt gleichem Repository, Commit, Lauf und Versuch ergänzt die
+konsolidierte Projektion die Kontrollen 013, 014 und 016:
+
+```sh
+.venv-validation/bin/python scripts/intake_staging_deployment_evidence.py \
+  --bundle ../ha-CPsWMS/deployment/staging/evidence/<bundle> \
+  --evidence-repository-commit <40-stelliger-consumer-commit>
 ```
 
 Die Aufbereitung verwendet für neue Läufe das versionierte Pilotprofil
@@ -191,13 +206,17 @@ Anforderungen ein und ersetzt weder OPA noch die freigegebene Baseline.
 | Befunde offen | Werkzeuge haben Befunde geliefert, deren Bewertung noch nachzuweisen ist |
 | Nachweis fehlt | Erforderliche Nachweise fehlen oder erlauben keine positive Feststellung |
 
-Im aktuellen erfassten Lauf `35241262722` ergeben sich **5 technisch belegte,
-6 teilweise belegte, 2 Kontrollen mit Befunden und 3 Nachweislücken**.
+Im aktuellen gemessenen Lauf `35386771107`, Versuch 2, ergeben sich **9 technisch
+belegte, 4 teilweise belegte, 1 Kontrolle mit Befunden und 2 Nachweislücken**.
+Der exakt zugeordnete Staging-Nachweis ergänzt L1-013 und L1-014. Die
+konsolidierte Sicht enthält damit **11 technisch belegte, 4 teilweise belegte,
+1 Kontrolle mit Befunden und keine Nachweislücke**. Sie bleibt report-only und
+ist weder Produktionsfreigabe noch Risikoakzeptanz.
 Historische v1-Läufe behalten ihre damalige Bewertung. In v2 können L1-003,
 L1-004, L1-005 und L1-007 nur dann technisch auf `measured` steigen, wenn die
 neuen Rohdaten zentral nachgerechnet werden. L1-002 bleibt trotz Commit-/Autor-
 Nachweis teilweise, solange keine organisatorische VCS-Freigabe belegt ist.
-Die 58 erfolgreichen Tests (50 Quelltests und 8 Runtime-Integrationstests) und
+Die 62 erfolgreichen Tests (54 Quelltests und 8 Runtime-Integrationstests) und
 Scanbefunde werden aus Rohdaten nachgerechnet.
 
 Jede Kontrolle zeigt Beobachtung, Prüfmittel, verbleibenden Umfang und konkrete
@@ -228,10 +247,10 @@ Nicht bewertete Dimensionen werden ausdrücklich als `not_evaluated` gespeichert
 Diese Assurance bleibt report-only und ändert weder Kontrollstatus noch Baseline,
 Blocking-Modus, Produktionsfreigabe oder Risikoakzeptanz.
 
-Für Lauf `35241262722` sind 7 Kontrollen vollständig abgedeckt,
-`integrity_verified` und innerhalb ihrer Freshness-Regel. Sechs Kontrollen sind
-teilweise und drei nicht abgedeckt; zusammen bleiben 9 Kontrollen
-`unverified`. Keine Kontrolle erreicht `provenance_verified` oder `attested`,
+Für Lauf `35386771107`, Versuch 2, sind 10 Kontrollen vollständig abgedeckt und
+innerhalb ihrer Freshness-Regel. Vier Kontrollen sind teilweise und zwei nicht
+abgedeckt; 10 erreichen `integrity_verified`, 6 bleiben `unverified`. Keine
+Kontrolle erreicht `provenance_verified` oder `attested`,
 weil die dafür erforderlichen unabhängigen Nachweise nicht vorliegen.
 
 ### Prüfgrenze und Aufbewahrung
@@ -267,6 +286,8 @@ Intake verwenden denselben geprüften PR-Weg.
 Diese Bewertung entfernt keine historischen Replay-Findings und ändert keine
 Trust-Stufen anderer Ergebnisarten. Der alte Baseline-Workflow hat weiter seine eigenen Eingaben. Für
 seine Umstellung auf gemessene Kontrollergebnisse ist ein gesonderter
-Baseline-/Migrationsschritt erforderlich. Ein neu erfasster Bericht ist weder
-Deployment-Zustimmung noch Risikoakzeptanz. L1-013/014 und Teile von L1-016 bleiben
-bis zur bereitgestellten VM und den zugehörigen autorisierten Nachweisen offen.
+Baseline-/Migrationsschritt erforderlich. Der aktuelle Staging-Nachweis ist eine
+enge Deployment-Zustimmung für Commit `2c9724d` auf `ha-cpswms-stg-01`; er ist
+keine Produktionsfreigabe und keine Risikoakzeptanz. L1-016 bleibt bis zu
+dauerhafter Aufbewahrung, Monitoring, Backup/Restore und geklärter
+Betriebsverantwortung teilweise belegt.
