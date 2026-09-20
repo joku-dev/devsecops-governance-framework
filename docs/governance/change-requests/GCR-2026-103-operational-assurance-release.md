@@ -29,6 +29,7 @@ records the capabilities introduced after v0.2.0:
 - real ha-CPsWMS staging deployment evidence and consolidated L1 measurement;
 - repository hardening, CodeQL remediation, Self-Security and cryptographic
   release-tag verification;
+- fail-closed dependency-review handling for the private-repository GitHub plan;
 - capacity simulation and operating guidance for 300 to 1,500 consumer
   repositories.
 
