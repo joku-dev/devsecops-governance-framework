@@ -8,12 +8,13 @@ Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-stat
 ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
 13. September 2026 aktiv, manuell und report-only.
 
-The [v0.2.0 adoption/operations release](releases/v0.2.0-public-adoption.md)
-packages the controlled pilot state and publication downloads; its release
-statement explains publication status and separate baseline pins.
+The [v0.3.0 adoption/operations release](releases/v0.3.0-public-adoption.md)
+packages the current operational assurance, evidence, viewer, security and
+scale-readiness state; its release statement explains publication status,
+known limits and separate baseline pins.
 
-Current accepted governance results from 16 September and measured ha-CPsWMS
-evidence from 17 September 2026 are recorded in the
+Current accepted governance results and measured ha-CPsWMS mainline and staging
+evidence from 19 September 2026 are recorded in the
 [current platform state](operations/status/current-governance-platform-state.md).
 
 For current pilot and central operations, start with the
