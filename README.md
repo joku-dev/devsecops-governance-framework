@@ -7,12 +7,13 @@ Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current
 ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
 13. September 2026 aktiv, manuell und report-only.
 
-The [v0.2.0 adoption/operations release](docs/releases/v0.2.0-public-adoption.md)
-packages the controlled pilot state and publication downloads; its release
-statement explains publication status and separate baseline pins.
+The [v0.3.0 adoption/operations release](docs/releases/v0.3.0-public-adoption.md)
+packages the current operational assurance, evidence, viewer, security and
+scale-readiness state; its release statement explains publication status,
+known limits and separate baseline pins.
 
 The current accepted governance results, measured ha-CPsWMS evidence and the
-real staging deployment from 18 September 2026 are recorded in the
+real staging deployment from 19 September 2026 are recorded in the
 [current platform state](docs/operations/status/current-governance-platform-state.md).
 
 For current pilot and central operations, start with the
@@ -38,7 +39,7 @@ The repository models a governance stack where a `Policy` defines mandatory inte
 | Try the framework in an application repo | `docs/onboarding/public-repo-quickstart.md` |
 | Copy ready-to-use templates | `adoption-package/README.md` |
 | Inspect the validated neutral consumer | `docs/onboarding/validated-demo-consumer.md` |
-| Review the current public release | `docs/releases/v0.2.0-public-adoption.md` |
+| Review the current public release | `docs/releases/v0.3.0-public-adoption.md` |
 | Inspect current repository capabilities | `docs/operations/guides/repository-function-catalog.md` |
 | Open the governance viewer | `https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html` |
 | Open the published documentation | `https://joku-dev.github.io/devsecops-governance-framework/` |
