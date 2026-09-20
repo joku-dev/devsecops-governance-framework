@@ -50,3 +50,19 @@ The experiment includes 18 filesystem scenarios, independent replay and 27
 unmodified existing pilot/acceptance comparison tests. All 83 implementation
 files named by the existing operating acceptances remain byte-identical to the
 starting main revision. Exact run artifacts are retained outside the site tree.
+
+## Confidential counsel packet
+
+On 20 September 2026 the maintainer requested a technical packet for patent
+counsel: problem statement, solution, design/architecture, other applications
+and implementation references. The packet is explanatory research documentation
+under `experiments/state_binding/counsel-package/`, derived from the fixed private
+prototype and retained evidence. It includes a PDF, editable Markdown, diagrams
+and a private handoff archive. Hypothetical applications are distinguished from
+implemented functionality and known related mechanisms from this prototype.
+
+No normative source or register change, new runtime authority, accepted-pilot
+change, release or public publication follows. Full Source Document Intake is
+not required. The packet does not establish inventorship, patentability or a
+complete historical-disclosure inventory. Generation, artifact integrity,
+visual inspection and the full repository validation precede its commit.

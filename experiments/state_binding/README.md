@@ -12,6 +12,9 @@ keine automatisch abgeleiteten Testergebnisse.
 * [Vertraulichkeit und Herkunft](DISCLOSURE.md): geprüfter Veröffentlichungsstatus
   und noch zu klärende frühere Offenlegungen/menschliche Beiträge.
 * [Ergebnisverzeichnis](evidence/README.md): aufbewahrte Versuchspakete und Prüfsummen.
+* [Unterlagen für die Patentberatung](counsel-package/README.md): Problemstellung,
+  Lösungsansatz, Architektur, Anwendungsfelder und feste Implementierungsreferenzen
+  als PDF und vertrauliches Weitergabepaket.
 
 Der Code liegt vollständig in diesem Versuchsbereich. Die Tests werden über
 `tests/test_state_binding_prototype.py` von der normalen Testsuite entdeckt.
