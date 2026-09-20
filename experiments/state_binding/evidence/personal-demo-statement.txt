@@ -1,0 +1,7 @@
+CLG-PERSONAL-CONSENT/1
+{
+  "disposition": "approve",
+  "request_digest": "48a97c11dd0fe4f74806f95d2fcd2af019b097d3e129f0a18a9774654ec7ce88",
+  "statement": "Ich habe diese Anfrage persönlich geprüft und gebe diese Erklärung selbst ab; keine Automation handelt dabei für mich.",
+  "supersedes_comment_id": null
+}

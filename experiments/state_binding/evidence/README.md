@@ -22,6 +22,8 @@ Das Paket wurde aus einem unveränderten getrackten Arbeitsstand erzeugt.
 - [Erster Testlauf](validation-initial.log): dokumentiert den Fehler durch
   geerbte Commit-Signierung in einem temporären Test-Repository.
 - [Dokumentationsbuild](docs-build.log).
+- [Vorbereiteter persönlicher Demo-Schritt](PERSONAL-DEMO.md), noch ohne Erklärung.
+- [Separater GitHub-CI-Status](CI-LIMITATIONS.md).
 
 Die erneute Validierung schaltete Signierung ausschließlich prozesslokal für
 Fixture-Commits ab. Die gespeicherte Git-Konfiguration und die expliziten
