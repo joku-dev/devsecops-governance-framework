@@ -60,6 +60,7 @@ extern eingetretene Wirkung; der Prototyp hat deshalb genau einen lokalen Effekt
 | Eine Anfrage erzeugt keinen zweiten Effekt | `retry`, `concurrent_publication`, zwei lokale Prozesse |
 | Widerruf bleibt nach neuer Historie wirksam | `revocation_after_change` |
 | Gespeicherte Ergebnisse sind nachprüfbar | eigenständiger Replay-Prüfer, Manipulationstests |
+| Eine tatsächlich abgegebene Erklärung bindet die lokale Testaktion | [Persönlicher Lauf 001](evidence/PERSONAL-DEMO.md), GitHub-Kommentar, atomare Publikation und erneute Providerabfrage |
 
 ## Vergleich und mögliche Abgrenzung
 
@@ -94,6 +95,11 @@ weder die geladenen Maschineninstruktionen noch Betriebssystem, Hardware oder
 kompromittierte Laufzeit. Das Bedrohungsmodell setzt diese Komponenten als
 vertrauenswürdig voraus. Die Providerdaten der automatischen Versuche sind
 synthetisch. Ein persönlich erklärter Lauf ist ein zusätzlicher Nachweis.
+Dieser zusätzliche Lauf wurde am 20. September 2026 ausgeführt und getrennt
+aufbewahrt. Seine Offline-Prüfung verwendet die bestehende Implementierung;
+der unabhängige Prüfer des automatisierten Pakets prüft keine persönlichen
+Erklärungen. GitHub bestätigt das Konto; die persönliche Anwesenheit bleibt
+ausdrücklich selbst erklärt. Die Beobachtungsdaten dieses Laufs bleiben synthetisch.
 
 Die gespeicherten Zeitangaben und Git-Commits dokumentieren den Entwicklungsstand;
 sie sind keine amtliche Prioritätssicherung. Fehlversuche und Grenzen sind Teil

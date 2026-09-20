@@ -60,12 +60,17 @@ Sie sind keine amtliche Zeitbestätigung oder ein Nachweis des Anmeldetags.
 
 ## Persönlicher Demonstrationslauf
 
+Der erste persönliche Lauf wurde am 20. September 2026 erfolgreich ausgeführt.
+[Ergebnis und Rohdaten](evidence/PERSONAL-DEMO.md) dokumentieren die von `joku-dev`
+abgegebene GitHub-Erklärung und genau eine lokale Testpublikation. Die folgenden
+Befehle bereiten einen neuen Lauf vor; dessen Antrag benötigt eine eigene Erklärung.
+
 Der automatische Versuchsrunner gibt keine persönliche Erklärung ab. Für einen
 ergänzenden Lauf kann die vorhandene GitHub-Kommentarprüfung verwendet werden:
 
 ```bash
 .venv-validation/bin/python experiments/state_binding/human_demo.py prepare \
-  --workspace experiments/state_binding/human-demo/session-1 \
+  --workspace experiments/state_binding/human-demo/session-2 \
   --discussion-number PRIVATE_PR_NUMMER --subject-id 81616324
 ```
 
@@ -77,7 +82,7 @@ Demonstrationsschreibvorgang. Danach:
 
 ```bash
 .venv-validation/bin/python experiments/state_binding/human_demo.py execute \
-  --workspace experiments/state_binding/human-demo/session-1
+  --workspace experiments/state_binding/human-demo/session-2
 ```
 
 Die Ausführung fragt die Kommentare direkt bei GitHub ab, prüft die tatsächliche

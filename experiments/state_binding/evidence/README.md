@@ -1,4 +1,6 @@
-# Vertrauliche Versuchsnachweise — Lauf 001
+# Vertrauliche Versuchsnachweise
+
+## Automatisierter Lauf 001
 
 Code-Commit: `68849a1011097e9ad985844110b12c2dd7f18e3b` (signierter Entwicklungscommit).
 Alle Implementierungsdateien des Versuchs stimmen mit diesem Commit überein.
@@ -9,7 +11,8 @@ Das Paket wurde aus einem unveränderten getrackten Arbeitsstand erzeugt.
 - **640/640 Repository-Tests bestanden**; darunter 17 zusätzliche Prototyp-/Evidence-Tests.
 - OPA/Runtime, Repository, Agent-Provenance und strikter MkDocs-Build bestanden.
 - **83 geschützte Implementierungsdateien unverändert** gegenüber dem benannten main-Stand.
-- Echte persönliche Autorisierung: **noch nicht durchgeführt**.
+- Ergänzender persönlicher Demonstrationslauf: **erfolgreich durchgeführt**,
+  separat dokumentiert in [PERSONAL-DEMO.md](PERSONAL-DEMO.md).
 - Neuheit/Patentfähigkeit: **nicht bewertet**.
 
 ## Dateien
@@ -22,7 +25,11 @@ Das Paket wurde aus einem unveränderten getrackten Arbeitsstand erzeugt.
 - [Erster Testlauf](validation-initial.log): dokumentiert den Fehler durch
   geerbte Commit-Signierung in einem temporären Test-Repository.
 - [Dokumentationsbuild](docs-build.log).
-- [Vorbereiteter persönlicher Demo-Schritt](PERSONAL-DEMO.md), noch ohne Erklärung.
+- [Persönlicher Demonstrationslauf](PERSONAL-DEMO.md): echte GitHub-Erklärung,
+  genau eine lokale Testpublikation, gespeicherter Replay und erneute Providerprüfung.
+- [Separates persönliches Versuchspaket](personal-demo-001.zip) und
+  [Prüfergebnis](personal-demo-verification.json).
+- [Vollständige Repository-Validierung nach dem persönlichen Lauf](personal-demo-validation.log).
 - [Separater GitHub-CI-Status](CI-LIMITATIONS.md).
 
 Die erneute Validierung schaltete Signierung ausschließlich prozesslokal für

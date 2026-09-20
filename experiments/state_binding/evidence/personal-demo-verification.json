@@ -1,0 +1,66 @@
+{
+  "artifact": {
+    "content": "Personally authorized PRIVATE LOCAL TEST artifact",
+    "media_type": "text/plain"
+  },
+  "execution_capture_at": "2026-09-20T10:33:43Z",
+  "execution_source_commit": "4dbc458872d39c113d8f0b978aab918eb0c6ce28",
+  "fresh_provider_recheck": "confirmed",
+  "fresh_provider_recheck_at": "2026-09-20T10:35:21Z",
+  "human_presence": "explicitly_self_attested_not_provider_attested",
+  "inner_provider": "test_fixture",
+  "limits": [
+    "Local test publication only",
+    "No production, deployment or operating acceptance",
+    "GitHub account plus explicit self-attestation; not proof of physical presence",
+    "Provider recheck is a point-in-time observation",
+    "No patentability or official timestamp assertion"
+  ],
+  "manifest_sha256": "50f3c008b7b218dd8252a05a47b30f133010ad26bbcbe5392fa8c9e3ffd5b950",
+  "official_state": false,
+  "offline_verifier": "shared prototype replay and existing personal_probe; not independent implementation",
+  "package": "personal-demo-001.zip",
+  "package_file_count": 12,
+  "package_sha256": "2183f4a4601b5f96cadd2a649c0ca601ea3f16d4e5305dd5fa47a8c1bc12a38d",
+  "post_execution_roots": {
+    "history": "95f8e382e5d012f68ce25c11b14fbc9064d54ceab11bd552f062bd57224a130b",
+    "implementation": "d433c7c401cbcca512035c862d0d4406158fa677372630074031d224c5477865",
+    "state": "f02a4d11cc7eb58f54c16d893ec75c732f5b8c11d2b17f29411fb0801b35159d"
+  },
+  "pre_execution_roots_replayed_from_retained_prefix": {
+    "history": "e6843d463011836c59894710e554f8d95155104b3b3c46f8c2fcee9a48f0938f",
+    "implementation": "d433c7c401cbcca512035c862d0d4406158fa677372630074031d224c5477865",
+    "state": "1826e786323343f776d4ef285e809d4e2695a29fe86d404f026a1ed40c4d0f2e"
+  },
+  "provider_statement_verified_at_execution": true,
+  "publication_count": 1,
+  "read_only_reuse_preconditions": {
+    "accepted": false,
+    "reason": "stale_history",
+    "second_execute_attempted": false
+  },
+  "record_type": "private-prototype-personal-demo-verification",
+  "repository_validation": {
+    "bootstrap": "passed",
+    "command": "GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=commit.gpgsign GIT_CONFIG_VALUE_0=false ./scripts/validate_all.sh",
+    "completed_at": "2026-09-20T10:44:53Z",
+    "full_validation": "passed",
+    "generated_timestamp_only_changes_restored": 17,
+    "log": "personal-demo-validation.log",
+    "log_sha256": "6acfba5617ead9b1bb2e05dc729fe2bcaf4d58946c3ad3e3f3856a92d26ee4c7",
+    "protected_files_unchanged": 83,
+    "stored_git_config_changed": false,
+    "unit_tests": 640
+  },
+  "request_digest": "48a97c11dd0fe4f74806f95d2fcd2af019b097d3e129f0a18a9774654ec7ce88",
+  "retained_provider_replay": "confirmed",
+  "source_manifest_matches_commit": true,
+  "statement_id": 5749239832,
+  "statement_url": "https://github.com/joku-dev/devsecops-governance-framework/pull/176#issuecomment-5749239832",
+  "subject_id": "github-user:81616324",
+  "synthetic_observations": true,
+  "transaction_count": 2,
+  "transaction_id": "transaction:b7d3992989486569612bf055cd04af5b25e9d01a8ee8dd776baf79ff82796ed4",
+  "verified_at": "2026-09-20T10:35:22Z",
+  "version": "1"
+}
