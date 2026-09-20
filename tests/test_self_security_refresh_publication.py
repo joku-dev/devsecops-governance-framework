@@ -293,6 +293,15 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
         self.assertIn("inputs.base_ref", action["with"]["base-ref"])
         self.assertIn("inputs.head_ref", action["with"]["head-ref"])
 
+    def test_codeql_can_read_private_repository_workflow_metadata(self):
+        workflow = yaml.load(
+            (ROOT / ".github/workflows/codeql.yml").read_text(),
+            Loader=yaml.BaseLoader,
+        )
+        self.assertEqual(workflow["permissions"]["actions"], "read")
+        self.assertEqual(workflow["permissions"]["contents"], "read")
+        self.assertEqual(workflow["permissions"]["security-events"], "write")
+
 
 if __name__ == "__main__":
     unittest.main()
