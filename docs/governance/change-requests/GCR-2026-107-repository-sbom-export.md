@@ -31,6 +31,8 @@ change vulnerability enforcement.
   graph.
 - Validate the SPDX document, repository identity, and package inventory before
   writing the SBOM and commit metadata.
+- Pin the assurance regression fixture that shares the typed-evidence run so CI
+  does not select a different measurement based on filesystem glob order.
 - Upload both files as a 90-day Actions artifact named for the commit SHA.
 - Keep vulnerability handling within the repository's current report-only
   posture.
