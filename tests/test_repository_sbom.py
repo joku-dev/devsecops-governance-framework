@@ -75,7 +75,7 @@ class RepositorySbomTests(unittest.TestCase):
     def test_generation_refuses_stale_or_non_default_branch_commits(self):
         with patch.object(sbom, "current_default_branch_sha", return_value=("main", "a" * 40)), patch.object(
             sbom, "api_json", side_effect=AssertionError("must not request an SBOM")
-        ):
+        ), patch.dict("os.environ", {"GITHUB_REF": ""}):
             with self.assertRaisesRegex(ValueError, "not the current default-branch HEAD"):
                 sbom.generate("joku-dev/devsecops-governance-framework", "b" * 40, "token", sbom.Path("unused"))
 
