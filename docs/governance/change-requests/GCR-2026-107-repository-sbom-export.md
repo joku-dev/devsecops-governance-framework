@@ -50,14 +50,16 @@ change vulnerability enforcement.
 - [x] `python3 -m unittest tests.test_repository_sbom` (8 tests passed)
 - [x] `python3 scripts/validate_runtime_governance.py`
 - [x] `python3 scripts/validate_governance_repo.py`
-- [ ] `python3 -m unittest discover -s tests`
+- [x] `python3 -m unittest discover -s tests` (631 tests passed in hosted PR validation)
 - [x] `.venv-docs/bin/mkdocs build --strict`
 
-The full unit suite ran 648 tests and reported two errors outside this SBOM
-change: one test could not create a signed temporary commit in this execution
-environment, and one expects the locally deleted counsel ZIP. The SBOM tests
-passed independently. A live Actions run is still needed to verify GitHub API
-permissions and artifact publication.
+The hosted PR validation ran 631 regression tests successfully after the
+assurance test was pinned to its matching measured run. A separate full test
+run in the local prototype worktree reported two unrelated environment or
+worktree errors: a signed temporary commit could not be created, and one test
+expected the locally deleted counsel ZIP. The SBOM tests passed independently.
+A live run of the new SBOM workflow is still needed to verify API access and
+artifact publication.
 
 ## Review Focus
 
