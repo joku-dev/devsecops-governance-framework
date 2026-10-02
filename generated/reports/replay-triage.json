@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "projection_type": "replay-triage",
-  "generated_at": "2026-09-19T07:21:51Z",
+  "generated_at": "2026-10-02T10:48:35Z",
   "enforcement": "report_only",
   "decision_boundary": {
     "historical_snapshots_rewritten": false,
@@ -10,18 +10,18 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 58,
+    "assessments": 60,
     "recorded_failures": 9,
     "recalculated_failures": 7,
     "legacy_assessments_superseded": 2,
     "official_latest_findings": 1,
     "classification_counts": {
-      "compatible_reuse": 10,
+      "compatible_reuse": 11,
       "cross_commit_reuse": 7,
       "cross_repository_reuse": 2,
       "deterministic_report_reuse": 6,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 31
+      "new_evidence": 32
     }
   },
   "official_latest_findings": [
@@ -2163,7 +2163,7 @@
       "artifact_name": "l1-control-coverage",
       "artifact_digest_available": true,
       "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T07-21-51Z-run-35428987714-vulnerability-scan.json",
-      "official_latest": true,
+      "official_latest": false,
       "recorded_result": "pass",
       "recalculated_result": "pass",
       "classification": "compatible_reuse",
@@ -2178,6 +2178,81 @@
           "repository_id": "joku-dev/ha-CPsWMS",
           "commit_id": "dc303dcdabb36d4218b68dee5d1bbaf5eb3bc09c",
           "run_id": "35428987714",
+          "artifact_name": "l1-control-coverage",
+          "shared_subject_ids": [
+            "ha_sync_archive_execution_json",
+            "ha_sync_image_tar",
+            "ha_sync_subject_json",
+            "ha_sync_trivy_version_execution_json",
+            "ha_sync_trivy_version_log",
+            "neo4j_archive_execution_json",
+            "neo4j_image_tar",
+            "neo4j_subject_json",
+            "neo4j_trivy_version_execution_json",
+            "neo4j_trivy_version_log",
+            "query_api_archive_execution_json",
+            "query_api_image_tar",
+            "query_api_subject_json",
+            "query_api_trivy_version_execution_json",
+            "query_api_trivy_version_log",
+            "semantic_enrichment_archive_execution_json",
+            "semantic_enrichment_image_tar",
+            "semantic_enrichment_subject_json",
+            "semantic_enrichment_trivy_version_execution_json",
+            "semantic_enrichment_trivy_version_log",
+            "world_model_chat_archive_execution_json",
+            "world_model_chat_image_tar",
+            "world_model_chat_subject_json",
+            "world_model_chat_trivy_version_execution_json",
+            "world_model_chat_trivy_version_log"
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "typed_evidence",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-10-02T10:48:35Z",
+      "run_id": "36997124065",
+      "event": "push",
+      "commit_id": "5c3b5cb50d2260bfbde736c9ac80667271406d99",
+      "artifact_name": "l1-control-coverage",
+      "artifact_digest_available": true,
+      "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-10-02T10-48-35Z-run-36997124065-sbom.json",
+      "official_latest": false,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "0e86b66a77754f5f1fd0706f8cc33a3b2c27ba07ac2f073bf54ee5505644072d",
+      "relationships": []
+    },
+    {
+      "domain": "typed_evidence",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-10-02T10:48:35Z",
+      "run_id": "36997124065",
+      "event": "push",
+      "commit_id": "5c3b5cb50d2260bfbde736c9ac80667271406d99",
+      "artifact_name": "l1-control-coverage",
+      "artifact_digest_available": true,
+      "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-10-02T10-48-35Z-run-36997124065-vulnerability-scan.json",
+      "official_latest": true,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "compatible_reuse",
+      "recommended_action": "none",
+      "explanation": "Digest reuse remains inside the same decision context.",
+      "replay_key": "c5c13a08bdfefa9ddb6f81baa1fc0160ce54f3dbb9767366531351915e593bed",
+      "relationships": [
+        {
+          "classification": "compatible_reuse",
+          "replay_key": "0e86b66a77754f5f1fd0706f8cc33a3b2c27ba07ac2f073bf54ee5505644072d",
+          "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-10-02T10-48-35Z-run-36997124065-sbom.json",
+          "repository_id": "joku-dev/ha-CPsWMS",
+          "commit_id": "5c3b5cb50d2260bfbde736c9ac80667271406d99",
+          "run_id": "36997124065",
           "artifact_name": "l1-control-coverage",
           "shared_subject_ids": [
             "ha_sync_archive_execution_json",
