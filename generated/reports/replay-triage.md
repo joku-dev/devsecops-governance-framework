@@ -20,7 +20,6 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 | `architecture` | `joku-dev/governance-framework-demo-consumer` | `34778861076` | `pass` | `pass` | `new_evidence` | `none` |
 | `devsecops` | `joku-dev/governance-framework-demo-consumer` | `34778861276` | `pass` | `pass` | `deterministic_report_reuse` | `none` |
 | `typed_evidence` | `joku-dev/governance-framework-demo-consumer` | `34778861276` | `pass` | `pass` | `new_evidence` | `none` |
-| `architecture` | `joku-dev/ha-CPsWMS` | `35428987695` | `pass` | `pass` | `new_evidence` | `none` |
 | `devsecops` | `joku-dev/ha-CPsWMS` | `35428988040` | `fail` | `fail` | `cross_commit_reuse` | `reverify_with_artifact_digest` |
 | `typed_evidence` | `joku-dev/ha-CPsWMS` | `36997124065` | `pass` | `pass` | `compatible_reuse` | `none` |
 

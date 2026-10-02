@@ -73,8 +73,8 @@
       "dimension": "collector",
       "value": "central-governance-intake@0.1.0",
       "metrics": {
-        "total": 13,
-        "success": 13,
+        "total": 14,
+        "success": 14,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -109,8 +109,8 @@
       "dimension": "intake_type",
       "value": "architecture_governance",
       "metrics": {
-        "total": 6,
-        "success": 6,
+        "total": 7,
+        "success": 7,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -163,8 +163,8 @@
       "dimension": "evidence_type",
       "value": "governance_result",
       "metrics": {
-        "total": 13,
-        "success": 13,
+        "total": 14,
+        "success": 14,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,

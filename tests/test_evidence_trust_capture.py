@@ -24,7 +24,14 @@ def load_script(name: str):
 
 
 architecture_intake = load_script("intake_architecture_github_actions_run")
-from lib.evidence_trust import build_trust_capture, digest_subject, project_trust, verify_trust_capture
+from lib.evidence_trust import (
+    build_trust_capture,
+    digest_subject,
+    load_freshness_policy,
+    promote_effective_level,
+    project_trust,
+    verify_trust_capture,
+)
 from lib.result_ledger import apply_replay_assessment
 
 
@@ -76,7 +83,7 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
         errors = list(Draft202012Validator(SCHEMA).iter_errors(trust))
         self.assertTrue(errors)
 
-    def test_verifier_derives_integrity_level_and_leaves_later_checks_pending(self):
+    def test_verifier_derives_integrity_level_when_provenance_inputs_are_missing(self):
         with tempfile.TemporaryDirectory() as tempdir:
             directory = Path(tempdir)
             trust = self.build_capture(directory)
@@ -95,6 +102,89 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
         self.assertEqual(projection["effective_level"], "integrity_verified")
         self.assertEqual(projection["assessment_status"], "evaluated")
         self.assertEqual(projection["check_summary"], {"pass": 5, "fail": 0, "not_evaluated": 7})
+
+    def test_verifier_derives_provenance_level_only_when_all_model_checks_pass(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            directory = Path(tempdir)
+            trust = self.build_capture(directory)
+            archive = directory / "artifact.zip"
+            archive.write_bytes(b"artifact archive")
+            archive_subject = digest_subject("artifact_archive", archive, "trust.capture.subjects.artifact_archive")
+            trust["capture"]["subjects"].append(archive_subject)
+            trust["capture"]["source"]["artifact_digest"] = archive_subject["digest"]
+            trust["capture"]["custody"][1]["output_refs"].append(archive_subject["evidence_ref"])
+            policy = load_freshness_policy(ROOT / "model" / "evidence" / "evidence-freshness-policies.yaml", "freshness-governance-result-24h")
+            verified = verify_trust_capture(
+                trust,
+                repository_id="owner/repo",
+                commit_id="abc123",
+                run_id="42",
+                artifact_name="governance-evidence",
+                subject_paths={"governance_report": directory / "report.json", "artifact_archive": archive},
+                verified_at="2026-07-15T14:01:00Z",
+                freshness_policy=policy,
+                produced_at="2026-07-15T14:00:00Z",
+                baseline={"ref": "refs/tags/l1-baseline-v1.1.3", "sha": "a" * 40},
+                baseline_ref="l1-baseline-v1.1.3",
+            )
+            assessed = apply_replay_assessment(verified, [])
+            assessed["effective_level"] = promote_effective_level(assessed["effective_level"], assessed["checks"])
+
+        Draft202012Validator(SCHEMA).validate(assessed)
+        self.assertEqual(assessed["effective_level"], "provenance_verified")
+        results = {check["id"]: check["result"] for check in assessed["checks"]}
+        self.assertTrue(all(results[check] == "pass" for check in (
+            "subject_identity_complete", "content_digest_verified", "producer_run_resolved",
+            "commit_matches_run", "artifact_belongs_to_run", "baseline_ref_resolved",
+            "freshness_evaluated", "replay_key_unique", "custody_recorded",
+        )))
+        self.assertEqual(results["attestation_signature_valid"], "not_evaluated")
+
+    def test_wrong_baseline_override_prevents_provenance_level(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            directory = Path(tempdir)
+            trust = self.build_capture(directory)
+            verified = verify_trust_capture(
+                trust,
+                repository_id="owner/repo",
+                commit_id="abc123",
+                run_id="42",
+                artifact_name="governance-evidence",
+                subject_paths={"governance_report": directory / "report.json"},
+                verified_at="2026-07-15T14:01:00Z",
+                baseline={"ref": "refs/tags/l1-baseline-v1.1.3", "sha": "a" * 40},
+                baseline_ref="main",
+            )
+
+        checks = {check["id"]: check["result"] for check in verified["checks"]}
+        self.assertEqual(checks["baseline_ref_resolved"], "fail")
+        self.assertEqual(verified["effective_level"], "integrity_verified")
+
+    def test_incomplete_custody_record_prevents_provenance_level(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            directory = Path(tempdir)
+            trust = self.build_capture(directory)
+            archive = directory / "artifact.zip"
+            archive.write_bytes(b"artifact archive")
+            archive_subject = digest_subject("artifact_archive", archive, "trust.capture.subjects.artifact_archive")
+            trust["capture"]["subjects"].append(archive_subject)
+            trust["capture"]["custody"][1]["output_refs"].append(archive_subject["evidence_ref"])
+            trust["capture"]["custody"][1]["source_uri"] = "https://example.invalid/other.zip"
+            verified = verify_trust_capture(
+                trust,
+                repository_id="owner/repo",
+                commit_id="abc123",
+                run_id="42",
+                artifact_name="governance-evidence",
+                subject_paths={"governance_report": directory / "report.json", "artifact_archive": archive},
+                verified_at="2026-07-15T14:01:00Z",
+                baseline={"ref": "refs/tags/l1-baseline-v1.1.3", "sha": "a" * 40},
+                baseline_ref="l1-baseline-v1.1.3",
+            )
+
+        checks = {check["id"]: check["result"] for check in verified["checks"]}
+        self.assertEqual(checks["custody_recorded"], "fail")
+        self.assertEqual(verified["effective_level"], "integrity_verified")
 
     def test_digest_mismatch_prevents_integrity_level(self):
         with tempfile.TemporaryDirectory() as tempdir:
