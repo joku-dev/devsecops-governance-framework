@@ -86,6 +86,25 @@ Existing snapshots remain valid historical evidence and are not retroactively
 promoted. Without an explicit trust assessment, their model default is
 `unverified`.
 
+### ha-CPsWMS Container Evidence
+
+The fixed five-image vulnerability and SBOM intake now has the additional
+checks needed to derive `provenance_verified` on a newly captured snapshot.
+The central verifier resolves the declared L1 baseline against the run's
+GitHub `referenced_workflows` entry, including its immutable workflow commit;
+it records a custody digest over all six artifact archives and a normalized
+digest over the typed evidence subjects and observations. The recorded
+transformation list covers download, archive verification, selected-member
+extraction, subject-hash verification, and normalization. Replay is evaluated
+after central verification; the level advances only if replay and every other
+rank-2 check pass.
+
+This applies only to new evidence captured by the central ha-CPsWMS collector.
+It does not relabel historical snapshots, change governance outcomes, establish
+cryptographic attestation, or approve a release. The producer's scans remain
+co-collected and report-only. A live status change requires a fresh successful
+mainline run and its central intake after the verifier change is deployed.
+
 ## Trust Dimensions
 
 | Dimension | Question |
