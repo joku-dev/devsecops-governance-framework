@@ -2,8 +2,8 @@
 
 Operating acceptance: **confirmed**. Effective: **true**.
 Implementation matches the acceptance request: `true`.
-Finding state: `open`. Pilot state as of `2026-09-16T15:42:03Z`; evidence as of `2026-09-16T15:42:03Z`.
-Receipts: 1; action records: 1.
+Finding state: `open`. Pilot state as of `2026-10-02T18:50:20Z`; evidence as of `2026-10-02T18:50:20Z`.
+Receipts: 1; action records: 2.
 
 The report reflects retained captures. Recheck GitHub before any new operational proposal.
 Explicit consumer operating acceptance of the separate pilot validation projection; source receipts remain unchanged.
