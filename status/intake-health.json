@@ -64,7 +64,7 @@
         "duration_ms": {
           "minimum": 1000,
           "p50": 3000,
-          "p95": 61000,
+          "p95": 53000,
           "maximum": 61000
         }
       }
@@ -91,8 +91,8 @@
       "dimension": "collector",
       "value": "central-vulnerability-scan-collector@0.1.0",
       "metrics": {
-        "total": 8,
-        "success": 8,
+        "total": 9,
+        "success": 9,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -109,8 +109,8 @@
       "dimension": "intake_type",
       "value": "architecture_governance",
       "metrics": {
-        "total": 6,
-        "success": 6,
+        "total": 7,
+        "success": 7,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -145,8 +145,8 @@
       "dimension": "intake_type",
       "value": "typed_evidence",
       "metrics": {
-        "total": 8,
-        "success": 8,
+        "total": 9,
+        "success": 9,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,
@@ -181,8 +181,8 @@
       "dimension": "evidence_type",
       "value": "vulnerability_scan",
       "metrics": {
-        "total": 8,
-        "success": 8,
+        "total": 9,
+        "success": 9,
         "partial": 0,
         "failed": 0,
         "success_rate_pct": 100.0,

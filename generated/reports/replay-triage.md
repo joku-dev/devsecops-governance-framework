@@ -28,7 +28,7 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 
 | Classification | Count |
 |---|---:|
-| `compatible_reuse` | 10 |
+| `compatible_reuse` | 11 |
 | `cross_commit_reuse` | 7 |
 | `cross_repository_reuse` | 2 |
 | `deterministic_report_reuse` | 6 |
