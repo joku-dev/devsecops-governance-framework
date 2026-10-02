@@ -47,10 +47,14 @@ The GitHub Actions intake records:
 - initial download and extract-and-hash custody steps
 - the downstream run URL
 
-This provides useful identity, provenance, integrity, and custody material. The
-central verifier independently recomputes captured-subject digests and may
-derive `integrity_verified`. It does not derive a higher level from capture
-alone.
+The central verifier independently recomputes captured-subject digests. For
+DevSecOps result intake it also resolves the baseline from the producer run's
+tagged `referenced_workflows` entry and immutable workflow SHA, checks that the
+selected baseline agrees with that entry, validates the recorded download and
+extract-and-hash custody steps, and evaluates freshness and replay. It derives
+`provenance_verified` only when every check required by the model passes.
+Missing or inconsistent provenance data prevents promotion and remains visible
+as a failed or unevaluated Trust check. These checks remain report-only.
 
 ### Architecture Intake
 
@@ -68,13 +72,15 @@ not rewritten.
 
 ### Shared Verification State
 
-Both intake paths now record a named verifier, verification timestamp, and
-per-check results. The remaining Phase 3 capabilities are:
+Both intake paths record a named verifier, verification timestamp, and
+per-check results. Replay and freshness are evaluated by the shared verifier.
+Architecture intake does not yet resolve its baseline from a pinned producer
+workflow reference, so it cannot be promoted to `provenance_verified` by this
+change. The remaining capabilities are:
 
-- replay-key construction and duplicate or cross-subject reuse evaluation
-- freshness policies by evidence type and decision context
 - a normalized snapshot digest and transformation record
 - production-approved issuer and attestation verification
+- pinned architecture-baseline resolution from authoritative run metadata
 
 Existing snapshots remain valid historical evidence and are not retroactively
 promoted. Without an explicit trust assessment, their model default is
@@ -109,8 +115,9 @@ by lower levels.
 
 ## Assignment Rules
 
-The effective trust level is assigned by the intake verifier, not by the
-evidence producer.
+The effective trust level is derived from the required checks in
+`model/evidence/evidence-trust-model.yaml` after replay evaluation. Existing
+snapshots are not retroactively promoted or downgraded.
 
 The producer may provide claims and attestations, but it cannot self-declare a
 trusted level. The verifier must:

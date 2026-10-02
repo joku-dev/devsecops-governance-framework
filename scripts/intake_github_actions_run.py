@@ -22,6 +22,7 @@ from lib.evidence_trust import (
     compute_sha256,
     digest_subject,
     load_freshness_policy,
+    promote_effective_level,
     verify_trust_capture,
 )
 from lib.json_io import load_json
@@ -88,6 +89,17 @@ def infer_baseline_ref(run: dict) -> str:
         if match:
             return match.group(2)
     return "unknown"
+
+
+def resolve_baseline(run: dict) -> dict | None:
+    """Return a tag and immutable workflow SHA reported by the producer run."""
+    for workflow in run.get("referenced_workflows", []):
+        ref = workflow.get("ref", "")
+        sha = workflow.get("sha", "")
+        tag = ref.removeprefix("refs/tags/") if ref.startswith("refs/tags/") else ""
+        if "baseline" in tag and isinstance(sha, str) and re.fullmatch(r"[0-9a-fA-F]{40}", sha):
+            return {"ref": ref, "sha": sha.lower()}
+    return None
 
 
 def find_job_status(jobs: list[dict], *name_fragments: str) -> str:
@@ -388,6 +400,11 @@ def main() -> int:
         artifact_digest = selected_artifact.get("digest")
         if artifact_digest:
             trust["capture"]["source"]["artifact_digest"] = artifact_digest.removeprefix("sha256:")
+        baseline_ref = args.governance_baseline_ref or infer_baseline_ref(run)
+        resolved_baseline = resolve_baseline(run)
+        trust["capture"]["observations"] = {
+            "governance_baseline": resolved_baseline or {"ref": None, "sha": None}
+        }
         trust = verify_trust_capture(
             trust,
             repository_id=args.repository_id,
@@ -398,10 +415,12 @@ def main() -> int:
             verified_at=captured_at,
             freshness_policy=freshness_policy,
             produced_at=run.get("updated_at") or run.get("created_at"),
+            baseline=resolved_baseline,
+            baseline_ref=baseline_ref,
         )
         trust = apply_replay_assessment(trust, load_snapshot_payloads(TRUST_RESULT_ROOTS))
+        trust["effective_level"] = promote_effective_level(trust["effective_level"], trust["checks"])
 
-    baseline_ref = args.governance_baseline_ref or infer_baseline_ref(run)
     protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
     output_path = write_snapshot(
         repository_id=args.repository_id,
