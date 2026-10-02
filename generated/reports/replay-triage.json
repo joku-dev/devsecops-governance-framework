@@ -12,22 +12,20 @@
   "summary": {
     "assessments": 58,
     "recorded_failures": 9,
-    "recalculated_failures": 12,
+    "recalculated_failures": 7,
     "legacy_assessments_superseded": 2,
-    "official_latest_findings": 2,
+    "official_latest_findings": 1,
     "classification_counts": {
-      "compatible_reuse": 5,
+      "compatible_reuse": 10,
       "cross_commit_reuse": 7,
       "cross_repository_reuse": 2,
       "deterministic_report_reuse": 6,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 31,
-      "same_context_content_conflict": 5
+      "new_evidence": 31
     }
   },
   "official_latest_findings": [
-    "status/results/joku-dev__ha-CPsWMS/2026-09-19T07-20-05Z-run-35428988040.json",
-    "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T07-21-51Z-run-35428987714-vulnerability-scan.json"
+    "status/results/joku-dev__ha-CPsWMS/2026-09-19T07-20-05Z-run-35428988040.json"
   ],
   "assessments": [
     {
@@ -1594,14 +1592,14 @@
       "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T15-38-49Z-run-35241262722-vulnerability-scan.json",
       "official_latest": false,
       "recorded_result": "pass",
-      "recalculated_result": "fail",
-      "classification": "same_context_content_conflict",
-      "recommended_action": "investigate_same_context_mutation",
-      "explanation": "The same run context has different subject content and must remain quarantined for review.",
+      "recalculated_result": "pass",
+      "classification": "compatible_reuse",
+      "recommended_action": "none",
+      "explanation": "Digest reuse remains inside the same decision context.",
       "replay_key": "90bc8d58637d186f346cc1ec4e7da5f0ccc29f26ef61c87ecd0ceb351d2425cc",
       "relationships": [
         {
-          "classification": "same_context_content_conflict",
+          "classification": "compatible_reuse",
           "replay_key": "06a1966bf92b271909ab4cf24bbbe7487b07963e0e74c9efeecc00cacf37066f",
           "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-17T15-38-49Z-run-35241262722-sbom.json",
           "repository_id": "joku-dev/ha-CPsWMS",
@@ -1747,14 +1745,14 @@
       "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T13-42-18Z-run-35351493542-vulnerability-scan.json",
       "official_latest": false,
       "recorded_result": "pass",
-      "recalculated_result": "fail",
-      "classification": "same_context_content_conflict",
-      "recommended_action": "investigate_same_context_mutation",
-      "explanation": "The same run context has different subject content and must remain quarantined for review.",
+      "recalculated_result": "pass",
+      "classification": "compatible_reuse",
+      "recommended_action": "none",
+      "explanation": "Digest reuse remains inside the same decision context.",
       "replay_key": "b29c5bf6036278a86d00404316b8d393f45f3402eb87ef8fc19989fe900fa181",
       "relationships": [
         {
-          "classification": "same_context_content_conflict",
+          "classification": "compatible_reuse",
           "replay_key": "c96a260890d571ea82ea7ca13c8a560f3bb7e2a2a14a86a15fd699e78fe6faf6",
           "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T13-42-18Z-run-35351493542-sbom.json",
           "repository_id": "joku-dev/ha-CPsWMS",
@@ -1913,14 +1911,14 @@
       "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T16-57-51Z-run-35371297825-vulnerability-scan.json",
       "official_latest": false,
       "recorded_result": "pass",
-      "recalculated_result": "fail",
-      "classification": "same_context_content_conflict",
-      "recommended_action": "investigate_same_context_mutation",
-      "explanation": "The same run context has different subject content and must remain quarantined for review.",
+      "recalculated_result": "pass",
+      "classification": "compatible_reuse",
+      "recommended_action": "none",
+      "explanation": "Digest reuse remains inside the same decision context.",
       "replay_key": "815dc758d1e9661b94f34c1e95fce6342be50982fd1151f9410222e7fe225362",
       "relationships": [
         {
-          "classification": "same_context_content_conflict",
+          "classification": "compatible_reuse",
           "replay_key": "20bd05f37dda44f23da4a7cb235e68272219784bcc1febee359b642a700c3875",
           "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T16-57-51Z-run-35371297825-sbom.json",
           "repository_id": "joku-dev/ha-CPsWMS",
@@ -1988,14 +1986,14 @@
       "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T19-42-24Z-run-35386771107-vulnerability-scan.json",
       "official_latest": false,
       "recorded_result": "pass",
-      "recalculated_result": "fail",
-      "classification": "same_context_content_conflict",
-      "recommended_action": "investigate_same_context_mutation",
-      "explanation": "The same run context has different subject content and must remain quarantined for review.",
+      "recalculated_result": "pass",
+      "classification": "compatible_reuse",
+      "recommended_action": "none",
+      "explanation": "Digest reuse remains inside the same decision context.",
       "replay_key": "9cb5aa52f46f81883b91a938199c2eaeb1e4feb113adfb993a41aef4301c2e70",
       "relationships": [
         {
-          "classification": "same_context_content_conflict",
+          "classification": "compatible_reuse",
           "replay_key": "d655dbb1bdd656dc7d6e871d3ec0c69877ad99daa3c279c700820047a358858a",
           "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-18T19-42-24Z-run-35386771107-sbom.json",
           "repository_id": "joku-dev/ha-CPsWMS",
@@ -2167,14 +2165,14 @@
       "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T07-21-51Z-run-35428987714-vulnerability-scan.json",
       "official_latest": true,
       "recorded_result": "pass",
-      "recalculated_result": "fail",
-      "classification": "same_context_content_conflict",
-      "recommended_action": "investigate_same_context_mutation",
-      "explanation": "The same run context has different subject content and must remain quarantined for review.",
+      "recalculated_result": "pass",
+      "classification": "compatible_reuse",
+      "recommended_action": "none",
+      "explanation": "Digest reuse remains inside the same decision context.",
       "replay_key": "c433a59cf26b1396f5deda4c82012ecd6535548ff5271c617223afcd99c25205",
       "relationships": [
         {
-          "classification": "same_context_content_conflict",
+          "classification": "compatible_reuse",
           "replay_key": "4b9d86d9521afde216fd97474f571b267de1e06552b19e1a7cbcbdbbefe429ae",
           "source_file": "status/typed-evidence-results/joku-dev__ha-CPsWMS/2026-09-19T07-21-51Z-run-35428987714-sbom.json",
           "repository_id": "joku-dev/ha-CPsWMS",
