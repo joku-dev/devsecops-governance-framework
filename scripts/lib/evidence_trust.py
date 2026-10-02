@@ -171,10 +171,12 @@ def _evaluate_baseline(baseline: dict | None, selected_ref: str | None) -> dict:
     return {
         "id": "baseline_ref_resolved",
         "result": "pass" if valid else "fail",
-        "evidence_refs": ["run.referenced_workflows[].ref", "run.referenced_workflows[].sha"] if baseline else [],
+        "evidence_refs": (baseline.get("evidence_refs") or [
+            "run.referenced_workflows[].ref", "run.referenced_workflows[].sha"
+        ]) if baseline else [],
         "reason": "Selected governance baseline matches an immutable tagged workflow reference and resolved commit."
         if valid
-        else "Governance baseline is missing, unpinned, unresolved, or differs from the producer run reference.",
+        else "Governance baseline is missing, unpinned, unresolved, or differs from authoritative run metadata.",
     }
 
 

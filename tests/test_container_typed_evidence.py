@@ -74,8 +74,9 @@ class ContainerTypedTests(unittest.TestCase):
         coverage_artifact={'id':99,'name':'l1-control-coverage','verified_zip_sha256':'c'*64}
         return run,report,declaration,bundles,paths,coverage_artifact
 
-    def verify(self, args):
-        return verify_bundle(*args[:5], verified_at='2026-09-17T10:06:00Z', coverage_artifact=args[5])
+    def verify(self, args, baseline_run=None):
+        return verify_bundle(*args[:5], verified_at='2026-09-17T10:06:00Z',
+                             coverage_artifact=args[5], baseline_run=baseline_run)
 
     def test_all_five_images_verified_and_projected(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -121,6 +122,54 @@ class ContainerTypedTests(unittest.TestCase):
             self.assertEqual('fail',checks['baseline_ref_resolved'])
             assessed=apply_replay_assessment(trust,[])
             self.assertEqual('integrity_verified',assessed['effective_level'])
+
+    def test_same_commit_successful_mainline_baseline_run_can_bind_evidence(self):
+        from lib.result_ledger import apply_replay_assessment
+        with tempfile.TemporaryDirectory() as temp:
+            args=self.bundle(Path(temp))
+            producer=args[0]
+            workflow_refs=deepcopy(producer['referenced_workflows'])
+            producer['referenced_workflows']=[]
+            baseline_run={
+                'id':456,'run_attempt':1,'path':'.github/workflows/devsecops-baseline.yml',
+                'event':'push','head_branch':'main','head_sha':producer['head_sha'],
+                'status':'completed','conclusion':'success','head_repository':{'id':9},
+                'html_url':'https://github.com/joku-dev/ha-CPsWMS/actions/runs/456',
+                'referenced_workflows':workflow_refs,
+            }
+            trusts=self.verify(args,baseline_run=baseline_run)
+        for trust in trusts.values():
+            baseline=trust['capture']['observations']['baseline_resolution']
+            checks={check['id']:check['result'] for check in trust['checks']}
+            self.assertEqual('456',baseline['baseline_run']['run_id'])
+            self.assertEqual('pass',checks['baseline_ref_resolved'])
+            baseline_check=next(check for check in trust['checks'] if check['id']=='baseline_ref_resolved')
+            self.assertIn('baseline_run.head_sha',baseline_check['evidence_refs'])
+            assessed=apply_replay_assessment(trust,[])
+            assessed['effective_level']=promote_effective_level(assessed['effective_level'],assessed['checks'])
+            self.assertEqual('provenance_verified',assessed['effective_level'])
+
+    def test_paired_baseline_requires_same_commit_successful_mainline_run(self):
+        with tempfile.TemporaryDirectory() as temp:
+            args=self.bundle(Path(temp))
+            producer=args[0]
+            refs=deepcopy(producer['referenced_workflows'])
+            producer['referenced_workflows']=[]
+            invalid_runs=[
+                {'id':1,'path':'.github/workflows/devsecops-baseline.yml','event':'push','head_branch':'main',
+                 'head_sha':'f'*40,'status':'completed','conclusion':'success','head_repository':{'id':9},'referenced_workflows':refs},
+                {'id':2,'path':'.github/workflows/devsecops-baseline.yml','event':'workflow_dispatch','head_branch':'main',
+                 'head_sha':producer['head_sha'],'status':'completed','conclusion':'success','head_repository':{'id':9},'referenced_workflows':refs},
+                {'id':3,'path':'.github/workflows/devsecops-baseline.yml','event':'push','head_branch':'main',
+                 'head_sha':producer['head_sha'],'status':'completed','conclusion':'failure','head_repository':{'id':9},'referenced_workflows':refs},
+                {'id':4,'path':'.github/workflows/devsecops-baseline.yml','event':'push','head_branch':'main',
+                 'head_sha':producer['head_sha'],'status':'completed','conclusion':'success','head_repository':{'id':10},'referenced_workflows':refs},
+            ]
+            for baseline_run in invalid_runs:
+                trusts=self.verify(args,baseline_run=baseline_run)
+                for trust in trusts.values():
+                    checks={check['id']:check['result'] for check in trust['checks']}
+                    self.assertEqual('fail',checks['baseline_ref_resolved'])
 
     def test_normalized_custody_digest_is_recomputed(self):
         from lib.result_ledger import apply_replay_assessment
