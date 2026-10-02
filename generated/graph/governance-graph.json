@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-10-02T15:51:57Z",
+  "generated_at": "2026-10-02T17:21:03Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -10,12 +10,12 @@
     "status/typed-evidence-results-index.json"
   ],
   "summary": {
-    "node_count": 199,
+    "node_count": 198,
     "edge_count": 417,
     "node_types": {
       "Artifact": 140,
       "Baseline": 3,
-      "Commit": 4,
+      "Commit": 3,
       "EvidenceRecord": 3,
       "Repository": 3,
       "ResultSnapshot": 8,
@@ -1488,15 +1488,6 @@
       "properties": {
         "repository_id": "joku-dev/ha-CPsWMS",
         "commit_id": "5c3b5cb50d2260bfbde736c9ac80667271406d99"
-      }
-    },
-    {
-      "id": "commit:joku-dev/ha-CPsWMS:dc303dcdabb36d4218b68dee5d1bbaf5eb3bc09c",
-      "type": "Commit",
-      "label": "dc303dcdabb3",
-      "properties": {
-        "repository_id": "joku-dev/ha-CPsWMS",
-        "commit_id": "dc303dcdabb36d4218b68dee5d1bbaf5eb3bc09c"
       }
     },
     {
