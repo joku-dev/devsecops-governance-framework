@@ -5,7 +5,7 @@ import json
 from pathlib import Path, PurePosixPath
 import tarfile
 
-from lib.evidence_trust import build_typed_trust_capture, verify_trust_capture, load_freshness_policy
+from lib.evidence_trust import build_typed_trust_capture, canonical_sha256, verify_trust_capture, load_freshness_policy
 from lib.measured_security import ROOT, SERVICES, REPOSITORY, normalize
 
 LEGACY_PROFILE = 'ha-cpswms-container-trust-v1'
@@ -67,7 +67,55 @@ def verify_docker_archive(path, image_id, commit=None):
         return len(layers)
 
 
-def verify_bundle(run, report, declaration, bundles, paths, verified_at):
+def resolve_baseline(run, report):
+    """Bind the report's baseline to GitHub's immutable reusable-workflow metadata."""
+    expected = report.get('reference_baseline')
+    matches = []
+    for workflow in run.get('referenced_workflows', []):
+        path = workflow.get('path', '')
+        ref = workflow.get('ref', '')
+        sha = workflow.get('sha', '')
+        if 'devsecops-baseline-l1-' in path:
+            matches.append({'baseline_ref': expected, 'workflow_ref': ref,
+                            'workflow_path': path, 'workflow_sha': sha})
+    if len(matches) != 1:
+        return {'baseline_ref': expected, 'workflow_ref': '', 'workflow_path': '', 'workflow_sha': ''}
+    return matches[0]
+
+
+def build_custody_record(run, coverage_artifact, bundles, subjects, observations, verified_at):
+    artifacts = {'l1-control-coverage': coverage_artifact}
+    artifacts.update({artifact['name']: artifact for _, artifact in bundles.values()})
+    raw_artifacts = {
+        name: {'artifact_id': str(item['id']), 'sha256': item.get('verified_zip_sha256', '')}
+        for name, item in sorted(artifacts.items())
+    }
+    raw_digest = canonical_sha256(raw_artifacts)
+    normalized_digest = canonical_sha256({
+        'profile': observations['profile'],
+        'repository_id': run['repository']['full_name'],
+        'commit_id': run['head_sha'],
+        'run_id': str(run['id']),
+        'subjects': subjects,
+        'observations': observations,
+    })
+    return {
+        'collector': 'central-ha-container-trust-intake',
+        'collected_at': verified_at,
+        'raw_digest': raw_digest,
+        'raw_artifacts': raw_artifacts,
+        'normalized_digest': normalized_digest,
+        'transformations': [
+            'download_github_actions_artifacts',
+            'verify_zip_metadata_and_sha256',
+            'extract_selected_members',
+            'verify_subject_hashes',
+            'normalize_typed_evidence',
+        ],
+    }
+
+
+def verify_bundle(run, report, declaration, bundles, paths, verified_at, coverage_artifact=None):
     """Return separately verified vulnerability and SBOM Trust records."""
     measured = normalize(run, report, bundles)
     expected_context = {'repository': REPOSITORY, 'commit': run['head_sha'],
@@ -163,11 +211,22 @@ def verify_bundle(run, report, declaration, bundles, paths, verified_at):
         repository_id=REPOSITORY, commit_id=run['head_sha'], workflow_name=run['name'], run_id=str(run['id']),
         run_attempt=run['run_attempt'], artifact_name='l1-control-coverage', source_uri=run['html_url'],
         produced_at=produced_at, captured_at=verified_at, subjects=subjects_by_type['vulnerability_scan'], observations=observations)
+    baseline_resolution = resolve_baseline(run, report)
+    observations['baseline_resolution'] = baseline_resolution
+    observations['governance_baseline'] = {'ref': baseline_resolution.get('workflow_ref'),
+                                           'sha': baseline_resolution.get('workflow_sha')}
+    if coverage_artifact is None:
+        coverage_artifact = {'id': 'missing', 'name': 'l1-control-coverage'}
+    vulnerability_custody = build_custody_record(
+        run, coverage_artifact, bundles, subjects_by_type['vulnerability_scan'], observations, verified_at)
     trusts = {'vulnerability_scan': verify_trust_capture(
         trust, repository_id=REPOSITORY, commit_id=run['head_sha'], run_id=str(run['id']),
         artifact_name='l1-control-coverage', subject_paths=paths_by_type['vulnerability_scan'], verified_at=verified_at,
         freshness_policy=load_freshness_policy(ROOT/'model/evidence/evidence-freshness-policies.yaml', 'freshness-vulnerability-scan-24h'),
-        produced_at=produced_at, verifier_id='central-ha-container-trust-intake/v2')}
+        produced_at=produced_at,
+        baseline={'ref': baseline_resolution.get('workflow_ref'), 'sha': baseline_resolution.get('workflow_sha')},
+        baseline_ref=baseline_resolution.get('baseline_ref'), custody_record=vulnerability_custody,
+        verifier_id='central-ha-container-trust-intake/v3')}
     if profile == PROFILE:
         if len(spec_versions) != 1:
             raise ValueError('Mixed CycloneDX versions')
@@ -176,14 +235,20 @@ def verify_bundle(run, report, declaration, bundles, paths, verified_at):
             'component_count': sum(image['component_count'] for image in sbom_images),
             'subject_binding': {'mode': 'co_collected', 'producer_attested': False},
             'container_images': sbom_images, 'independent_attestation': False}
+        sbom_observations['baseline_resolution'] = baseline_resolution
         sbom_trust = build_typed_trust_capture(evidence_type='sbom', governance_domain='devsecops',
             collector_id='central-ha-container-sbom-collector', collector_version='0.1.0', source_provider='ci_artifact',
             repository_id=REPOSITORY, commit_id=run['head_sha'], workflow_name=run['name'], run_id=str(run['id']),
             run_attempt=run['run_attempt'], artifact_name='l1-control-coverage', source_uri=run['html_url'],
             produced_at=produced_at, captured_at=verified_at, subjects=subjects_by_type['sbom'], observations=sbom_observations)
+        sbom_custody = build_custody_record(
+            run, coverage_artifact, bundles, subjects_by_type['sbom'], sbom_observations, verified_at)
         trusts['sbom'] = verify_trust_capture(
             sbom_trust, repository_id=REPOSITORY, commit_id=run['head_sha'], run_id=str(run['id']),
             artifact_name='l1-control-coverage', subject_paths=paths_by_type['sbom'], verified_at=verified_at,
             freshness_policy=load_freshness_policy(ROOT/'model/evidence/evidence-freshness-policies.yaml', 'freshness-sbom-subject-bound'),
-            produced_at=produced_at, freshness_subject_bound=True, verifier_id='central-ha-container-sbom-intake/v1')
+            produced_at=produced_at, freshness_subject_bound=True,
+            baseline={'ref': baseline_resolution.get('workflow_ref'), 'sha': baseline_resolution.get('workflow_sha')},
+            baseline_ref=baseline_resolution.get('baseline_ref'),
+            custody_record=sbom_custody, verifier_id='central-ha-container-sbom-intake/v2')
     return trusts

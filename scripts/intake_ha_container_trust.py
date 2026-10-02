@@ -25,6 +25,7 @@ from lib.measured_security import (
     store_snapshot as store_measured_security_snapshot,
 )
 from lib.result_ledger import apply_replay_assessment, load_snapshot_payloads
+from lib.evidence_trust import promote_effective_level
 
 MAX_ZIP = 1024**3
 MAX_SMALL = 32 * 1024**2
@@ -126,7 +127,7 @@ def capture(run_id):
             bundles[service], paths[service] = (raw, artifact), path
             print('Downloaded full image evidence: ' + service, flush=True)
         verified_at = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
-        trusts = verify_bundle(run, report, declaration, bundles, paths, verified_at)
+        trusts = verify_bundle(run, report, declaration, bundles, paths, verified_at, coverage_artifact=coverage)
         measured_security = normalize_measured_security(run, report, bundles)
         measured_security_path = store_measured_security_snapshot(
             ROOT / 'status/measured-security-results',
@@ -139,6 +140,7 @@ def capture(run_id):
             evidence_type = trust['capture']['evidence_type']
             same_type_prior = prior_for_evidence_type(prior, evidence_type)
             trust = apply_replay_assessment(trust, same_type_prior)
+            trust['effective_level'] = promote_effective_level(trust['effective_level'], trust['checks'])
             outputs.append(write_snapshot(repository_id=REPOSITORY, run=run, artifact=coverage, trust=trust,
                 archive_sha256=coverage['verified_zip_sha256']))
         return outputs
