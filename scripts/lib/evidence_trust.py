@@ -7,6 +7,7 @@ from copy import deepcopy
 from datetime import datetime
 from functools import lru_cache
 import hashlib
+import json
 
 import yaml
 
@@ -39,6 +40,12 @@ def compute_sha256(path: Path) -> str:
     digest = hashlib.sha256()
     digest.update(path.read_bytes())
     return digest.hexdigest()
+
+
+def canonical_sha256(value: dict) -> str:
+    """Hash a JSON object using stable UTF-8 canonical serialization."""
+    encoded = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
 
 
 def digest_subject(subject_id: str, path: Path, evidence_ref: str) -> dict:
@@ -369,6 +376,7 @@ def verify_trust_capture(
     freshness_subject_bound: bool | None = None,
     baseline: dict | None = None,
     baseline_ref: str | None = None,
+    custody_record: dict | None = None,
     verifier_id: str = VERIFIER_ID,
 ) -> dict:
     """Evaluate only checks supported by authoritative intake-time material."""
@@ -435,6 +443,53 @@ def verify_trust_capture(
             evaluated_at=verified_at,
             subject_bound=freshness_subject_bound,
         )
+
+    if baseline is not None or baseline_ref is not None:
+        checks["baseline_ref_resolved"] = _evaluate_baseline(baseline, baseline_ref)
+
+    if custody_record is not None:
+        result["capture"]["custody_record"] = deepcopy(custody_record)
+        expected_transformations = {
+            "download_github_actions_artifacts",
+            "verify_zip_metadata_and_sha256",
+            "extract_selected_members",
+            "verify_subject_hashes",
+            "normalize_typed_evidence",
+        }
+        transformations = custody_record.get("transformations")
+        capture = result["capture"]
+        expected_normalized_digest = canonical_sha256({
+            "profile": capture.get("observations", {}).get("profile"),
+            "repository_id": source.get("repository_id"),
+            "commit_id": source.get("commit_id"),
+            "run_id": source.get("run_id"),
+            "subjects": subjects,
+            "observations": capture.get("observations", {}),
+        })
+        custody_valid = (
+            isinstance(custody_record.get("collector"), str)
+            and bool(custody_record.get("collector"))
+            and _parse_timestamp(custody_record.get("collected_at")) is not None
+            and all(
+                isinstance(custody_record.get(key), str)
+                and len(custody_record[key]) == 64
+                and all(character in "0123456789abcdef" for character in custody_record[key])
+                for key in ("raw_digest", "normalized_digest")
+            )
+            and isinstance(custody_record.get("raw_artifacts"), dict)
+            and custody_record.get("raw_digest") == canonical_sha256(custody_record["raw_artifacts"])
+            and custody_record.get("normalized_digest") == expected_normalized_digest
+            and isinstance(transformations, list)
+            and set(transformations) == expected_transformations
+        )
+        checks["custody_recorded"] = {
+            "id": "custody_recorded",
+            "result": "pass" if custody_valid else "fail",
+            "evidence_refs": ["trust.capture.custody_record", "trust.capture.custody"],
+            "reason": "Collector, acquisition time, raw and normalized digests, and transformation steps are recorded."
+            if custody_valid
+            else "Chain-of-custody record is incomplete or invalid.",
+        }
 
     integrity_verified = all(
         checks[check_id]["result"] == "pass"
