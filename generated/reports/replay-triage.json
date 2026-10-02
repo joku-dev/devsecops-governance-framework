@@ -10,23 +10,21 @@
     "enforcement_change_authorized": false
   },
   "summary": {
-    "assessments": 61,
+    "assessments": 62,
     "recorded_failures": 9,
     "recalculated_failures": 7,
     "legacy_assessments_superseded": 2,
-    "official_latest_findings": 1,
+    "official_latest_findings": 0,
     "classification_counts": {
       "compatible_reuse": 11,
       "cross_commit_reuse": 7,
       "cross_repository_reuse": 2,
       "deterministic_report_reuse": 6,
       "legacy_assessment_superseded": 2,
-      "new_evidence": 33
+      "new_evidence": 34
     }
   },
-  "official_latest_findings": [
-    "status/results/joku-dev__ha-CPsWMS/2026-09-19T07-20-05Z-run-35428988040.json"
-  ],
+  "official_latest_findings": [],
   "assessments": [
     {
       "domain": "typed_evidence",
@@ -2059,7 +2057,7 @@
       "artifact_name": "governance-control-evaluation",
       "artifact_digest_available": true,
       "source_file": "status/results/joku-dev__ha-CPsWMS/2026-09-19T07-20-05Z-run-35428988040.json",
-      "official_latest": true,
+      "official_latest": false,
       "recorded_result": "fail",
       "recalculated_result": "fail",
       "classification": "cross_commit_reuse",
@@ -2226,6 +2224,25 @@
       "recommended_action": "none",
       "explanation": "No earlier digest reuse or conflicting replay identity was found.",
       "replay_key": "85c81d90a197293af9c900a9fe02eaf947221a0cd22ad7cc1a690f084e680c18",
+      "relationships": []
+    },
+    {
+      "domain": "devsecops",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "generated_at": "2026-10-02T10:45:37Z",
+      "run_id": "36997125273",
+      "event": "push",
+      "commit_id": "5c3b5cb50d2260bfbde736c9ac80667271406d99",
+      "artifact_name": "governance-control-evaluation",
+      "artifact_digest_available": true,
+      "source_file": "status/results/joku-dev__ha-CPsWMS/2026-10-02T10-45-37Z-run-36997125273.json",
+      "official_latest": true,
+      "recorded_result": "pass",
+      "recalculated_result": "pass",
+      "classification": "new_evidence",
+      "recommended_action": "none",
+      "explanation": "No earlier digest reuse or conflicting replay identity was found.",
+      "replay_key": "7bac830140f5fdb68a2217e5d0eb8a4bcf9902003d00c5772d3ff1cafd53c750",
       "relationships": []
     },
     {
