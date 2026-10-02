@@ -104,7 +104,7 @@ verification_checks:
     description: Evidence age and expiry are evaluated against an approved evidence-type policy.
   - id: replay_key_unique
     dimension: replay_resistance
-    description: Repository, run, attempt, artifact, subject, and digest do not conflict with accepted evidence history.
+    description: Repository, evidence type, run, attempt, artifact, subject, and digest do not conflict with accepted evidence history.
   - id: custody_recorded
     dimension: chain_of_custody
     description: Collector, source URI, timestamps, raw digest, normalized digest, and transformations are recorded.
