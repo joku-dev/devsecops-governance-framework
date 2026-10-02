@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "projection_type": "blocking-readiness",
-  "generated_at": "2026-10-02T15:09:47Z",
+  "generated_at": "2026-10-02T17:10:44Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "summary": {
@@ -460,7 +460,7 @@
           "status": "pass",
           "required": true,
           "observed": {
-            "events": 19,
+            "events": 20,
             "success_rate_pct": 100.0
           },
           "expected": {
