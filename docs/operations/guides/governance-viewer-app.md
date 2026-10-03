@@ -10,7 +10,7 @@ nicht erforderlich.
 
 ## Bedienung
 
-Änderung und Grenzen: [GCR-2026-110](../../governance/change-requests/GCR-2026-110-viewer-reading-experience.md).
+Änderung und Grenzen: [GCR-2026-111](../../governance/change-requests/GCR-2026-111-viewer-reading-experience.md).
 
 Der Einstieg priorisiert **Handlungsbedarf**, **Herkunft prüfen** und
 **abgeschlossene Pilotfälle**. Die ersten beiden Karten öffnen entsprechend

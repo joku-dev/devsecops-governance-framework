@@ -1,4 +1,4 @@
-# GCR-2026-110: Intuitive Viewer Reading And Verified Case History
+# GCR-2026-111: Intuitive Viewer Reading And Verified Case History
 
 The maintainer requests a more intuitive, professional Viewer: decision-oriented
 entry points, understandable Trust labels, repository reading guidance and an
