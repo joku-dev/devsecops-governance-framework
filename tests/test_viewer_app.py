@@ -18,6 +18,18 @@ from lib.measured_l1 import load_snapshots as load_l1_snapshots
 from publish_operational_update import allowed
 
 
+def lifecycle_view_fixture():
+    return {
+        'finding_state':'closed','official_state':True,'enforcement':'report_only',
+        'scope':{'repository_id':'owner/consumer','rule_id':'operation_readiness'},
+        'as_of':'2026-10-03T10:00:00Z',
+        'counts':{'receipts':1,'actions':0,'failures':0,'quarantined':0},
+        'next_step':{'id':'closed_wait','title':'Kein offener Schritt','detail':'Geschlossen',
+                     'operation':'observe','links':[]},
+        'source_url':'https://example.test/status.json','history':[],
+    }
+
+
 class ViewerAppTests(unittest.TestCase):
     def setUp(self):
         self.dev = json.loads((ROOT / 'status/repository-results-index.json').read_text())
@@ -139,9 +151,10 @@ class ViewerAppTests(unittest.TestCase):
                 ROOT/'schemas/governance-repository-security-report.schema.json',
                 root/'schemas/governance-repository-security-report.schema.json',
             )
-            build(root)
+            lifecycle=lifecycle_view_fixture()
+            build(root,consumer_lifecycle_next_step=lifecycle)
             first={p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()}
-            build(root)
+            build(root,consumer_lifecycle_next_step=lifecycle)
             self.assertEqual(first,{p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()})
             self.assertEqual({'index.html','app.css','app.js','technical.js','technical.css','data.json'},set(first))
             self.assertIn(b"script-src 'self'",first['index.html'])
@@ -170,7 +183,7 @@ class ViewerAppTests(unittest.TestCase):
                 (root/'status'/name).write_text(json.dumps(data))
             invalid=deepcopy(self.scans[0]);invalid['official_compliance_result']=True
             (root/'status/measured-security-results/org/run-invalid.json').write_text(json.dumps(invalid))
-            with self.assertRaises(ValidationError): build(root)
+            with self.assertRaises(ValidationError): build(root,consumer_lifecycle_next_step=lifecycle_view_fixture())
             self.assertFalse((root/'generated/viewer/app/data.json').exists())
 
     def test_repository_security_projection_rejects_invalid_report(self):

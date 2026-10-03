@@ -32,6 +32,15 @@ Der Graph unterstützt Suche, Typ-/Bereichsfilter und Auswahl per Maus oder Tast
 · [Repository Security öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository-security)
 · [Governance öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#governance/controls)
 · [Betrieb öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/intake)
+· [Lifecycle-Nächster Schritt öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/lifecycle)
+
+Unter **Betrieb → Lifecycle-Nächster Schritt** zeigt der Workspace den aus dem
+offiziellen Consumer-Lifecycle-Index und den akzeptierten Transaktionen
+abgeleiteten nächsten zulässigen Arbeitsschritt. Observationen, persönliche
+Erklärungen, Anträge und Intake-Workflows sind direkt verlinkt. Die Ansicht ist
+read-only: Sie erteilt keine Freigabe und löst keinen Workflow aus. Bei einem
+geschlossenen Finding nennt sie ausdrücklich, dass keine Aktion offen ist und
+der manuelle report-only Pilot nicht kontinuierlich überwacht.
 
 Die frühere Gesamtansicht bleibt als Rückfallansicht unter ihrem bisherigen Pfad
 verfügbar. Ihre bestehenden Deep Links funktionieren weiterhin. Die neue Anwendung
