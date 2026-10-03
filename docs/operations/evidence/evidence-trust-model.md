@@ -88,12 +88,21 @@ promoted. Without an explicit trust assessment, their model default is
 
 ### ha-CPsWMS Container Evidence
 
-The fixed five-image vulnerability and SBOM intake now has the additional
+The fixed five-image vulnerability and SBOM intake has the additional
 checks needed to derive `provenance_verified` on a newly captured snapshot.
-The central verifier resolves the declared L1 baseline against the run's
-GitHub `referenced_workflows` entry, including its immutable workflow commit;
-it records a custody digest over all six artifact archives and a normalized
-digest over the typed evidence subjects and observations. The recorded
+When the evidence producer run itself references the tagged L1 reusable
+workflow, the central verifier resolves the declared baseline against that
+run's GitHub `referenced_workflows` entry and immutable workflow commit. The
+ha-CPsWMS measured-evidence workflow is a separate local workflow, so its
+`referenced_workflows` list is empty. For that profile, the verifier instead
+requires exactly one successful `DevSecOps Baseline` push run on protected
+`main` for the same repository and exact source commit. The verifier resolves
+the report's declared baseline against that paired run's tagged L1 reusable
+workflow reference and immutable workflow commit. Missing, failed, ambiguous,
+manual, cross-branch, or different-commit baseline runs prevent promotion.
+The paired run identity and workflow reference are recorded in the Trust
+observations. The verifier also records a custody digest over all six artifact
+archives and a normalized digest over the typed subjects and observations. Its
 transformation list covers download, archive verification, selected-member
 extraction, subject-hash verification, and normalization. Replay is evaluated
 after central verification; the level advances only if replay and every other

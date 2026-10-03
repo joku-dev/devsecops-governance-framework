@@ -67,20 +67,64 @@ def verify_docker_archive(path, image_id, commit=None):
         return len(layers)
 
 
-def resolve_baseline(run, report):
-    """Bind the report's baseline to GitHub's immutable reusable-workflow metadata."""
-    expected = report.get('reference_baseline')
+def _baseline_workflow_matches(run):
+    """Return the single pinned L1 workflow reference from an authoritative run."""
     matches = []
     for workflow in run.get('referenced_workflows', []):
         path = workflow.get('path', '')
         ref = workflow.get('ref', '')
         sha = workflow.get('sha', '')
         if 'devsecops-baseline-l1-' in path:
-            matches.append({'baseline_ref': expected, 'workflow_ref': ref,
-                            'workflow_path': path, 'workflow_sha': sha})
+            matches.append({'workflow_ref': ref, 'workflow_path': path, 'workflow_sha': sha})
+    return matches
+
+
+def _paired_baseline_context_matches(run, baseline_run):
+    """Require a successful protected-main baseline run for the exact producer commit."""
+    producer_repository = run.get('repository', {})
+    baseline_repository = baseline_run.get('head_repository', {})
+    return (
+        baseline_run.get('path') == '.github/workflows/devsecops-baseline.yml'
+        and baseline_run.get('event') == 'push'
+        and baseline_run.get('head_branch') == 'main'
+        and baseline_run.get('head_sha') == run.get('head_sha')
+        and baseline_run.get('status') == 'completed'
+        and baseline_run.get('conclusion') == 'success'
+        and str(baseline_repository.get('id', '')) == str(producer_repository.get('id', ''))
+    )
+
+
+def resolve_baseline(run, report, baseline_run=None):
+    """Bind the report baseline to a same-run or exact-commit paired workflow reference."""
+    expected = report.get('reference_baseline')
+    matches = _baseline_workflow_matches(run)
+    baseline_context = None
+    if len(matches) != 1 and baseline_run and _paired_baseline_context_matches(run, baseline_run):
+        matches = _baseline_workflow_matches(baseline_run)
+        if len(matches) == 1:
+            baseline_context = {
+                'run_id': str(baseline_run.get('id', '')),
+                'run_attempt': str(baseline_run.get('run_attempt', '')),
+                'workflow_path': baseline_run.get('path', ''),
+                'event': baseline_run.get('event', ''),
+                'branch': baseline_run.get('head_branch', ''),
+                'commit_id': baseline_run.get('head_sha', ''),
+                'status': baseline_run.get('status', ''),
+                'conclusion': baseline_run.get('conclusion', ''),
+                'url': baseline_run.get('html_url', ''),
+            }
     if len(matches) != 1:
-        return {'baseline_ref': expected, 'workflow_ref': '', 'workflow_path': '', 'workflow_sha': ''}
-    return matches[0]
+        return {'baseline_ref': expected, 'workflow_ref': '', 'workflow_path': '', 'workflow_sha': '',
+                'baseline_run': None, 'evidence_refs': []}
+    match = matches[0]
+    evidence_refs = (
+        ['baseline_run.id', 'baseline_run.head_sha',
+         'baseline_run.referenced_workflows[].ref', 'baseline_run.referenced_workflows[].sha']
+        if baseline_context else
+        ['run.referenced_workflows[].ref', 'run.referenced_workflows[].sha']
+    )
+    return {'baseline_ref': expected, **match, 'baseline_run': baseline_context,
+            'evidence_refs': evidence_refs}
 
 
 def build_custody_record(run, coverage_artifact, bundles, subjects, observations, verified_at):
@@ -115,7 +159,8 @@ def build_custody_record(run, coverage_artifact, bundles, subjects, observations
     }
 
 
-def verify_bundle(run, report, declaration, bundles, paths, verified_at, coverage_artifact=None):
+def verify_bundle(run, report, declaration, bundles, paths, verified_at, coverage_artifact=None,
+                  baseline_run=None):
     """Return separately verified vulnerability and SBOM Trust records."""
     measured = normalize(run, report, bundles)
     expected_context = {'repository': REPOSITORY, 'commit': run['head_sha'],
@@ -211,7 +256,7 @@ def verify_bundle(run, report, declaration, bundles, paths, verified_at, coverag
         repository_id=REPOSITORY, commit_id=run['head_sha'], workflow_name=run['name'], run_id=str(run['id']),
         run_attempt=run['run_attempt'], artifact_name='l1-control-coverage', source_uri=run['html_url'],
         produced_at=produced_at, captured_at=verified_at, subjects=subjects_by_type['vulnerability_scan'], observations=observations)
-    baseline_resolution = resolve_baseline(run, report)
+    baseline_resolution = resolve_baseline(run, report, baseline_run=baseline_run)
     observations['baseline_resolution'] = baseline_resolution
     observations['governance_baseline'] = {'ref': baseline_resolution.get('workflow_ref'),
                                            'sha': baseline_resolution.get('workflow_sha')}
@@ -224,7 +269,8 @@ def verify_bundle(run, report, declaration, bundles, paths, verified_at, coverag
         artifact_name='l1-control-coverage', subject_paths=paths_by_type['vulnerability_scan'], verified_at=verified_at,
         freshness_policy=load_freshness_policy(ROOT/'model/evidence/evidence-freshness-policies.yaml', 'freshness-vulnerability-scan-24h'),
         produced_at=produced_at,
-        baseline={'ref': baseline_resolution.get('workflow_ref'), 'sha': baseline_resolution.get('workflow_sha')},
+        baseline={'ref': baseline_resolution.get('workflow_ref'), 'sha': baseline_resolution.get('workflow_sha'),
+                  'evidence_refs': baseline_resolution.get('evidence_refs', [])},
         baseline_ref=baseline_resolution.get('baseline_ref'), custody_record=vulnerability_custody,
         verifier_id='central-ha-container-trust-intake/v3')}
     if profile == PROFILE:
@@ -248,7 +294,8 @@ def verify_bundle(run, report, declaration, bundles, paths, verified_at, coverag
             artifact_name='l1-control-coverage', subject_paths=paths_by_type['sbom'], verified_at=verified_at,
             freshness_policy=load_freshness_policy(ROOT/'model/evidence/evidence-freshness-policies.yaml', 'freshness-sbom-subject-bound'),
             produced_at=produced_at, freshness_subject_bound=True,
-            baseline={'ref': baseline_resolution.get('workflow_ref'), 'sha': baseline_resolution.get('workflow_sha')},
+            baseline={'ref': baseline_resolution.get('workflow_ref'), 'sha': baseline_resolution.get('workflow_sha'),
+                      'evidence_refs': baseline_resolution.get('evidence_refs', [])},
             baseline_ref=baseline_resolution.get('baseline_ref'),
             custody_record=sbom_custody, verifier_id='central-ha-container-sbom-intake/v2')
     return trusts
