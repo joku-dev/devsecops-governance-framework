@@ -1,7 +1,9 @@
 # Technische Funktionsliste des Repositories
 
-Stand: 19. September 2026, geprüft gegen Quellstand `614380f` einschließlich
-Consumer-Scale-Bewertung GCR-2026-101.
+Inventarabgleich: **3. Oktober 2026**, Quellstand `46b33429`.
+Die ursprünglichen Modulbeschreibungen und commitgebundenen Links stammen aus
+dem September-Katalog; die folgenden Ergänzungen und Zählungen berücksichtigen
+den genannten Oktober-Quellstand. Historische Links sind keine Latest-Code-Links.
 
 Dies ist die vollständige Dateiliste der implementierten Skripte und Bibliotheksmodule
 unter `scripts/`, der GitHub-Workflows und der OPA-Module am genannten Stand.
@@ -9,12 +11,24 @@ Der [fachliche Katalog](repository-function-catalog.md) erläutert die 21 Aufgab
 mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbole
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
-Umfang: **141 Python-Skripte/Module**, **2 Shell-Skripte**, **22 Workflows**,
+Umfang: **142 Python-Skripte/Module**, **2 Shell-Skripte**, **22 Workflows**,
 **15 OPA-Module**.
 
 Einträge wurden aus den versionierten Dateien, Python-Modulbeschreibungen und
 Workflow-Definitionen ermittelt. Englische Beschreibungen übernehmen die
 Quellsprache der Module; unvollständige Paketbeschreibungen wurden fachlich präzisiert.
+
+## Staging- und Provenance-Ergänzungen
+
+| Datei | Aufgabe |
+|---|---|
+| `scripts/intake_staging_deployment_evidence.py` | Nimmt ein bereits autorisiertes Report-only-Staging-Bundle auf und gleicht es mit passenden gemessenen L1-Nachweisen ab; führt kein Deployment aus. |
+| `scripts/lib/staging_deployment.py` | Validiert Subjektbindung, Rohdaten und autorisierte Staging-Nachweise und speichert unveränderliche Snapshots. |
+| `scripts/intake_ha_container_trust.py` | Ermittelt genau einen passenden erfolgreichen Baseline-Main-Push zum Producer-Commit und übergibt ihn an die zentrale Trust-Prüfung. |
+| `scripts/lib/container_typed_evidence.py` | Prüft unveränderliche Baseline-Referenz und Artefakt-/Normalisierungs-Custody für neue Fünf-Image-Snapshots; kann `provenance_verified` ableiten, ohne Attestierung oder Compliance-Freigabe. |
+
+Eigene Repository-SBOM (#178) und Lifecycle-Next-Step-Ansicht (#200) sind am
+genannten Quellstand offene PRs und werden nicht als implementierter Bestand gezählt.
 
 ## Viewer-Ergänzungen (GCR-2026-084/085/086)
 
