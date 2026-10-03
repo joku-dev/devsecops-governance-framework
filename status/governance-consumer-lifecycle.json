@@ -1,20 +1,23 @@
 {
-  "active_closure_ref": null,
+  "active_closure_ref": {
+    "digest": "ef0eeb4633a444ade2db5fd1deccdfb51e798906a04ebacdedd6d9b2c919b182",
+    "id": "transaction:533b0008c14e1f7ae972b859d82ff642ed7c365da0a0e5274cbf25116492ed40"
+  },
   "active_decision_ref": {
     "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7",
     "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
   },
-  "as_of": "2026-10-03T09:41:26Z",
-  "candidate_projection_digest": "fb063d81f40f52beb3e40009f1d652bf1b3b367aa159c90239a29a6aecf1a47f",
+  "as_of": "2026-10-03T10:58:04Z",
+  "candidate_projection_digest": "05f5aead6ec33c5bd85f7b1e6df980d264487b044624d6605b67f81e2a33f537",
   "counts": {
-    "actions": 3,
+    "actions": 4,
     "failures": 1,
     "quarantined": 0,
     "receipts": 3
   },
   "enforcement": "report_only",
-  "evidence_as_of": "2026-10-03T09:41:26Z",
-  "finding_state": "open",
+  "evidence_as_of": "2026-10-03T10:58:04Z",
+  "finding_state": "closed",
   "index_type": "governance-consumer-lifecycle-pilot",
   "limitation": "Manual report-only operation_readiness pilot for the neutral demo only; no automatic remediation, waivers or baseline changes.",
   "live_activation_approved": true,
