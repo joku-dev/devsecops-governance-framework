@@ -2,10 +2,10 @@
 
 ## Observation Scope
 
-This page describes the implemented operating model as checked on 18 September
+This page describes the implemented operating model as checked on 19 September
 2026, including the live settings recorded by GCR-2026-094. The ha-CPsWMS
 governance observations, measured/typed evidence and real staging evidence were
-updated for its 18 September runs; other consumer observations retain their
+updated for its 19 September runs; other consumer observations retain their
 individual dates. For
 daily operation use the [operations handbook](../guides/governance-repository-operations-handbook.md).
 For live observations use the latest main workflow artifacts and
