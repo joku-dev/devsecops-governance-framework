@@ -29,6 +29,7 @@ from lib.evidence_trust import promote_effective_level
 
 MAX_ZIP = 1024**3
 MAX_SMALL = 32 * 1024**2
+BASELINE_WORKFLOW = '.github/workflows/devsecops-baseline.yml'
 
 
 def prior_for_evidence_type(snapshots, evidence_type):
@@ -49,6 +50,28 @@ def bind_artifact(artifacts, name, run):
             or artifact['size_in_bytes'] > MAX_ZIP):
         raise ValueError('Artifact source binding or size mismatch')
     return dict(artifact)
+
+
+def find_paired_baseline_run(run):
+    """Find the exact mainline baseline run for this source commit, if it is unique."""
+    if run.get('event') != 'push' or run.get('head_branch') != 'main':
+        return None
+    endpoint = (
+        f'repos/{REPOSITORY}/actions/workflows/devsecops-baseline.yml/runs'
+        f'?head_sha={run["head_sha"]}&branch=main&event=push&per_page=100'
+    )
+    try:
+        listing = gh_json(endpoint)
+    except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError, OSError):
+        return None
+    runs = listing.get('workflow_runs', [])
+    if listing.get('total_count') != len(runs) or len(runs) != 1:
+        return None
+    candidate = runs[0]
+    # The API route is workflow-scoped; also check its returned path before using it.
+    if candidate.get('path') != BASELINE_WORKFLOW:
+        return None
+    return candidate
 
 
 def extract_selected(archive_path, output, names):
@@ -105,6 +128,7 @@ def download(artifact, output, names, token):
 def capture(run_id):
     run = gh_json(f'repos/{REPOSITORY}/actions/runs/{run_id}')
     check_run(run, REPOSITORY, run_id)
+    baseline_run = find_paired_baseline_run(run)
     listing = gh_json(f'repos/{REPOSITORY}/actions/runs/{run_id}/artifacts?per_page=100')
     artifacts = listing['artifacts']
     if listing['total_count'] != len(artifacts):
@@ -127,7 +151,8 @@ def capture(run_id):
             bundles[service], paths[service] = (raw, artifact), path
             print('Downloaded full image evidence: ' + service, flush=True)
         verified_at = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
-        trusts = verify_bundle(run, report, declaration, bundles, paths, verified_at, coverage_artifact=coverage)
+        trusts = verify_bundle(run, report, declaration, bundles, paths, verified_at,
+                               coverage_artifact=coverage, baseline_run=baseline_run)
         measured_security = normalize_measured_security(run, report, bundles)
         measured_security_path = store_measured_security_snapshot(
             ROOT / 'status/measured-security-results',
