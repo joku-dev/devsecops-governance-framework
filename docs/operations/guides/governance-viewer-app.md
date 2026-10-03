@@ -10,6 +10,27 @@ nicht erforderlich.
 
 ## Bedienung
 
+Änderung und Grenzen: [GCR-2026-110](../../governance/change-requests/GCR-2026-110-viewer-reading-experience.md).
+
+Der Einstieg priorisiert **Handlungsbedarf**, **Herkunft prüfen** und
+**abgeschlossene Pilotfälle**. Die ersten beiden Karten öffnen entsprechend
+gefilterte Repository-Listen; Suche und Filter lassen sich kombinieren.
+Die Fallkarte öffnet eine chronologische, quellverlinkte Closed-Loop-Ansicht
+des separat abgenommenen Consumer-Piloten. Deren Zustand wird beim Build gegen
+die akzeptierte Ledger-Projektion geprüft; ein fehlender oder ungültiger Stand
+wird als nicht verfügbar gezeigt und niemals als null offene Fälle ausgegeben.
+
+Repository-Details beginnen mit Ergebnis, Nachweisqualität, Aktualität und
+nächstem Prüfschritt. „Herkunft verifiziert“ bezeichnet `provenance_verified`;
+„Integrität verifiziert“ bezeichnet `integrity_verified`. Die technischen Codes
+bleiben in der Detailansicht erhalten. „Herkunft prüfen“ zeigt fehlende
+Governance-Ergebnisse oder eine nicht vollständig verifizierte Herkunft der
+beiden Governance-Domänen; es aktiviert keine neue Provenance-Anforderung.
+Typisierte SBOM-/Scan-Evidenz behält ihre separate Trust-Bewertung.
+Zeitangaben zeigen das Alter des gespeicherten Ergebnisses, keine neu berechnete
+Freshness-Entscheidung. Nicht bewertete Prüfungen, fehlende Scans und unbekannte
+Zustände gelten weiterhin nicht als bestanden.
+
 | Bereich | Inhalt |
 |---|---|
 | Übersicht | Repository-Anzahl, gemessene kritische/hohe Meldungen, Governance mit Befunden und abgeleitete nächste Prüfungen |
