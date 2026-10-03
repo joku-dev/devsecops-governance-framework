@@ -23,11 +23,6 @@ on:
       - "status/**"
       - ".github/workflows/publish-docs.yml"
   workflow_dispatch:
-    inputs:
-      publish_private_pages:
-        description: "Deploy Pages even when the repository is private"
-        required: false
-        default: "false"
 
 permissions:
   contents: read
@@ -40,7 +35,7 @@ concurrency:
 
 jobs:
   publish-docs:
-    if: ${{ !github.event.repository.private || inputs.publish_private_pages == 'true' }}
+    if: ${{ github.event.repository.private == false }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -49,6 +44,13 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Refuse publication of confidential research
+        run: |
+          if [ -f experiments/state_binding/CONFIDENTIAL ]; then
+            echo "Confidential research marker prevents public publication." >&2
+            exit 1
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0

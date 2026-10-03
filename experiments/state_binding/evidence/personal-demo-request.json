@@ -1,0 +1,90 @@
+{
+  "created_at": "2026-09-20T10:10:48Z",
+  "discussion_number": 176,
+  "official_state": false,
+  "prototype_grant": {
+    "provider_statement": {
+      "environment": "test_fixture",
+      "request_digest": "c28b5682d8825a91dd7489eb958740d5ff1d9f11edf142470ca130c37f33faf1",
+      "revision": 1,
+      "status": "approved",
+      "subject": "test-person:owner"
+    },
+    "request": {
+      "action": {
+        "content": "Personally authorized PRIVATE LOCAL TEST artifact",
+        "kind": "publish_test_artifact"
+      },
+      "expected_head": {
+        "digest": "3ca1bb293399f959cb6c3477685ec6213761919fee8d798ea04ee5d74ebdc8f9",
+        "id": "transaction:e9213917040a7b06a24fd40fbfe6aa1907d56331b4f4e8de38047ea981b247ea"
+      },
+      "expected_sequence": 1,
+      "implementation_manifest": {
+        "experiments/state_binding/__init__.py": "4a8af6f5707387087b9082a3ae46cae424c3382b2a3af789011729af4895272b",
+        "experiments/state_binding/human_demo.py": "58436ac95645cfdf328eb699fbc040790f6dca2122746e8243fb35b3b3d63628",
+        "experiments/state_binding/prototype.py": "fc67e919689dc3c35a3703ec1e5d2c3243851f8a3a1ce58ef7f78c2c4d1689d0",
+        "experiments/state_binding/run_experiments.py": "71ab303054c978e6e55341facc6657270cb6d2c94d193ead4193bbb8658c12f4",
+        "experiments/state_binding/verify_evidence.py": "120457af299afa275e3405b217c68de61de55b896e8a3c1d2d66a7efeb19acda",
+        "requirements-validation.lock": "e0dc970f16ff708ff2af733d06c876593b9b2f473684941ee560710f4dc7911d",
+        "requirements-validation.txt": "d554f9277aa3f1508e1c6c4d9f8ebca01d88a3d1867945effaf57e0550255748",
+        "scripts/lib/__init__.py": "3b5a8e2d67e7a7fad7d398b141de8f55b0a1801624b3fe65bc3bd0e9c23cec83",
+        "scripts/lib/governance_lifecycle/__init__.py": "c7134c005cbeecf640aebc8d9c11a54904ecfeb9e8499c951050a0c8b8c1ac35",
+        "scripts/lib/governance_lifecycle/adapter.py": "0eef0c967904aaf7acded725068d72ce9dc278dffbd0317e75fa6797cbcf17cc",
+        "scripts/lib/governance_lifecycle/architecture_candidates.py": "d5f178c5ca788306dd66d4afb4b8a46b56570969fda2a7d24a64dac714384ab6",
+        "scripts/lib/governance_lifecycle/candidates.py": "1bfc88bae4b5db4a123b887f41687a41ef2b84a9b16bbc3228c9ec1b895439ba",
+        "scripts/lib/governance_lifecycle/closure.py": "6482978c9e3d2dc45e498a11fe5f22af005e7801f5b3f6e833574c58e1ef36d4",
+        "scripts/lib/governance_lifecycle/consumer_acceptance.py": "f2b9d1c7b189365502e018003628342b9246287d7f563e7afc930fe75914daa2",
+        "scripts/lib/governance_lifecycle/consumer_actions.py": "77370085327881e61bdafdf8eccc8436b25aaa28303c23e2cfa2097323ccc508",
+        "scripts/lib/governance_lifecycle/consumer_admission.py": "468e11a702ef3cbd9fa2adb7e04d0609e0c29b53d5534e7fb18e8acf17fcba5b",
+        "scripts/lib/governance_lifecycle/consumer_contracts.py": "f48015b4a7643284d82a3f27e9c137303f93c1eb83998fae5d35b6e1df95c17d",
+        "scripts/lib/governance_lifecycle/consumer_evidence.py": "d2f6449a9ce49eba03acae1d8c4685ea71c8067f6f32a06e391e6d59a778fc1a",
+        "scripts/lib/governance_lifecycle/contracts.py": "ff987bc0a4bee604e7e8cb55a3538e0ffd2b50d0f5517d86df693605c204da1a",
+        "scripts/lib/governance_lifecycle/decisions.py": "57655df42042d78e9a08292bd4d97ac9b77900fc62f9828145f0565d357e98a9",
+        "scripts/lib/governance_lifecycle/devsecops_candidates.py": "68460f97ef20b16bea486da5bc051c067effdc76e0c2efe60f7e3471c4e6da31",
+        "scripts/lib/governance_lifecycle/exceptions.py": "5bc6d1d1f6e1d506e89542d04dd249d4b09b9f24ed43c3a484adb56d2cfc34e4",
+        "scripts/lib/governance_lifecycle/kernel.py": "8ebc3c0432a6d25801f64ff269762773188dfc0598873fbf26fff0043b1bd9e7",
+        "scripts/lib/governance_lifecycle/live_admission.py": "53d9c8d91d2ed827f5727774b645219fb4b623b7245575a61489272b3d0a7a98",
+        "scripts/lib/governance_lifecycle/live_evidence.py": "85729f59c8a830d1d321097cc00ac98a987fa40bc21a529e36c5675b98ed6df5",
+        "scripts/lib/governance_lifecycle/live_preparation.py": "f5bdabd0b5093cd6bf46f1a69d1736f9ecc4dd9dc03651f5af8c44ca079ce0e5",
+        "scripts/lib/governance_lifecycle/operating_acceptance.py": "440dd05df9041969d44932d6d454ac521962e8e5ee0f5c01dbcdf6930fc9e717",
+        "scripts/lib/governance_lifecycle/personal_probe.py": "206adbe1aaba930e4b34dd30b1c7bcfd202979278d7674e1c483ff827ec13b05",
+        "scripts/lib/governance_lifecycle/pilot_actions.py": "4e557449b02257a2a85e94fae0fb3a862f24f9915a0fae49ce5fe58b3273c0f9",
+        "scripts/lib/governance_lifecycle/store.py": "5668593aaf4813bbd71d0d3487588cc6d0cf44199c0eb91efb954844e9cd7af2",
+        "scripts/lib/governance_lifecycle/synthetic.py": "7b27fd406e5d3fb04648f0b9f01a3cf3236b4ee8fc2df106f4ef1627d7ca7b19",
+        "scripts/lib/governance_lifecycle/synthetic_actions.py": "aba17ea17d0292905e93f2d3c9b5deddff0c182b247e089b5a910cfaffa8ed05",
+        "scripts/lib/governance_lifecycle/synthetic_exceptions.py": "84df939e8cad38cc6f92097711cfa050759494c11f5fd25c87bceb935e1d7cfa",
+        "scripts/lib/result_ledger.py": "b16ec64a034326e92fb44dea365903f3bf8b7309c00dd6d6d1d01dbe4c099f1c",
+        "scripts/validation-toolchain.env": "c7c68b1cdfe872ad65a66c50485a51b9c6e4b1a5a29c231c68e3b2d2624dc6fd",
+        "workspace/executor-config.json": "0d936f314d7613a82152805328ee455e83f0da3f7140152f9d277d2641fbf616"
+      },
+      "profile": {
+        "id": "private-research",
+        "version": "1"
+      },
+      "role_binding": {
+        "active": true,
+        "subject": "test-person:owner"
+      },
+      "roots": {
+        "history": "e6843d463011836c59894710e554f8d95155104b3b3c46f8c2fcee9a48f0938f",
+        "implementation": "d433c7c401cbcca512035c862d0d4406158fa677372630074031d224c5477865",
+        "state": "1826e786323343f776d4ef285e809d4e2695a29fe86d404f026a1ed40c4d0f2e"
+      },
+      "scope": {
+        "contract": "1",
+        "environment": "test_fixture",
+        "finding": "prototype-001",
+        "repository": "synthetic/state-binding"
+      },
+      "subject": "test-person:owner",
+      "version": "1"
+    }
+  },
+  "purpose": "Authorize exactly one local test artifact publication in the isolated prototype; no production remediation, deployment, operating acceptance or patent assertion.",
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "request_type": "private-prototype-local-demo",
+  "required_role": "prototype_reviewer",
+  "required_subject_id": "github-user:81616324",
+  "version": "1"
+}
