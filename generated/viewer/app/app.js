@@ -245,14 +245,36 @@
   };
   function workspaceTabs(group, tab) {
     const sections = (dataModel.technical?.sections || []).filter(s => s.group === group);
-    const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : sections;
+    const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : group === 'operations' ? [...sections, {tab:'lifecycle',title:'Lifecycle-Nächster Schritt'}] : sections;
     return `<nav class="tabs workspace-tabs" aria-label="${groupNames[group]}-Bereiche">${entries.map(s=>`<a href="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'aria-current="page"':''}>${esc(s.title)}</a>`).join('')}</nav><label class="section-picker">Bereich auswählen<select id="section-picker">${entries.map(s=>`<option value="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'selected':''}>${esc(s.title)}</option>`).join('')}</select></label>`;
+  }
+  function lifecycleNextStepView() {
+    const model=dataModel.consumer_lifecycle_next_step;
+    if(!model) {
+      content.insertAdjacentHTML('beforeend','<section class="panel"><div class="notice warn">Der Consumer-Lifecycle-Status ist nicht verfügbar. Fehlende Daten gelten nicht als geschlossen.</div></section>');
+      return;
+    }
+    const s=model.next_step, counts=model.counts;
+    const links=(items)=>items.map(item=>`<a href="${esc(item.url)}">${esc(item.label)} ↗</a>`).join(' · ');
+    const history=model.history.map(item=>`<tr><td>${date(item.recorded_at)}</td><td>${esc(item.kind)}</td><td>${esc(item.detail)}</td><td>${badge(item.status)}</td><td>${links(item.links)}</td></tr>`);
+    content.insertAdjacentHTML('beforeend',`
+      <section class="panel"><div class="panel-head"><h2>${esc(s.title)}</h2>${badge(model.finding_state)}</div>
+        <div class="notice">${esc(s.detail)}</div>
+        <dl><dt>Consumer</dt><dd>${esc(model.scope.repository_id)}</dd><dt>Regel</dt><dd><code>${esc(model.scope.rule_id)}</code></dd><dt>Erzwingung</dt><dd>${esc(model.enforcement)}</dd><dt>Indexstand</dt><dd>${date(model.as_of)}</dd></dl>
+        <div class="metrics">${metric('Receipts',counts.receipts,'Akzeptierte Observationen')}${metric('Aktionen',counts.actions,'Persönlich gebundene Aktionen')}${metric('Historische Fehler',counts.failures,'Im Ledger erhalten')}${metric('Quarantäne',counts.quarantined,'Muss vor Aktionen geklärt werden')}</div>
+        <p><strong>Nächste Operation:</strong> ${s.operation?`<code>${esc(s.operation)}</code>`:'Keine offen'}</p><p>${links(s.links)}</p>
+        <p><a href="${esc(model.source_url)}">Offiziellen Lifecycle-Index öffnen ↗</a></p>
+        <p class="muted">Read-only-Hinweis aus dem akzeptierten Ledger. Er erteilt keine Zustimmung, führt keinen Workflow aus und ersetzt nicht die Frische- und Rollenprüfung beim Intake.</p>
+      </section>
+      <section class="panel"><div class="panel-head"><h2>Beleg- und PR-Verlauf</h2><span class="badge">${count(model.history.length)} Einträge</span></div>${table(['Zeit','Typ','Schritt','Status','Direktlinks'],history)}</section>`);
   }
   function technicalView(group, tab) {
     const section = (dataModel.technical?.sections || []).find(s => s.group === group && s.tab === tab);
-    if (!(group === 'evidence' && tab === 'summary') && !section) { notFound(); return; }
-    content.innerHTML = heading(groupNames[group], tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
+    const lifecyclePage=group==='operations'&&tab==='lifecycle';
+    if (!(group === 'evidence' && tab === 'summary') && !section && !lifecyclePage) { notFound(); return; }
+    content.innerHTML = heading(groupNames[group], lifecyclePage?'Lifecycle-Nächster Schritt':tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
     document.getElementById('section-picker')?.addEventListener('change', e => {location.hash=e.target.value;});
+    if(lifecyclePage){lifecycleNextStepView();return;}
     if (group==='evidence' && tab==='summary') {
       content.insertAdjacentHTML('beforeend', evidence(dataModel.repositories));
       return;
