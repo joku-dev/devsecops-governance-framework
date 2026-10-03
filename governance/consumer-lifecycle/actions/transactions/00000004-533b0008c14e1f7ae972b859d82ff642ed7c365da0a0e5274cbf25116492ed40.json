@@ -1,0 +1,194 @@
+{
+  "environment": "live_pilot_validation",
+  "live_activation_approved": false,
+  "official_state": false,
+  "outcome": "eligible_for_pilot",
+  "previous_ref": {
+    "digest": "9de269e94efb5336202afbaa74437354d37b68ce84ab08ff194140c6ae97b6e3",
+    "id": "transaction:c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552"
+  },
+  "receipt_head_at_recording": {
+    "digest": "72db8383ef1acfd5b8bea1d12ebd90df8f96826113470ca3cec7b89d73d36154",
+    "id": "transaction:90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c"
+  },
+  "record_type": "lifecycle-pilot-action-receipt",
+  "recorded_at": "2026-10-03T10:58:04Z",
+  "request": {
+    "body": {
+      "decision_ref": {
+        "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7",
+        "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
+      },
+      "kind": "closure",
+      "passing_ref": {
+        "digest": "72db8383ef1acfd5b8bea1d12ebd90df8f96826113470ca3cec7b89d73d36154",
+        "id": "transaction:90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c"
+      },
+      "progress_ref": {
+        "digest": "9de269e94efb5336202afbaa74437354d37b68ce84ab08ff194140c6ae97b6e3",
+        "id": "transaction:c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552"
+      }
+    },
+    "created_at": "2026-10-03T09:54:24Z",
+    "discussion_number": 198,
+    "environment": "live_pilot_validation",
+    "expected_action_head": {
+      "digest": "9de269e94efb5336202afbaa74437354d37b68ce84ab08ff194140c6ae97b6e3",
+      "id": "transaction:c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552"
+    },
+    "expected_receipt_head": {
+      "digest": "72db8383ef1acfd5b8bea1d12ebd90df8f96826113470ca3cec7b89d73d36154",
+      "id": "transaction:90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c"
+    },
+    "expected_revision": 6,
+    "operating_profile_ref": {
+      "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541",
+      "revision": 1
+    },
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "request_type": "consumer-lifecycle-action",
+    "required_role": "closure_approver",
+    "required_subject_id": "github-user:81616324",
+    "role_binding_ref": {
+      "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95",
+      "revision": 1
+    },
+    "schema_version": "0.1.0",
+    "scope": {
+      "domain": "architecture",
+      "enforcement": "report_only",
+      "github_repository_id": 1301526448,
+      "pilot_only": true,
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "resource": "repository",
+      "rule_id": "operation_readiness"
+    }
+  },
+  "schema_version": "0.1.0",
+  "sequence": 4,
+  "snapshot": {
+    "capture_method": "github_api_get_via_gh",
+    "comment_pages_after": [
+      "[{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5968490609\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/198#issuecomment-5968490609\",\"issue_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198\",\"id\":5968490609,\"node_id\":\"IC_kwDOTZFSfM8AAAABY7_wcQ\",\"user\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"created_at\":\"2026-10-03T10:56:56Z\",\"updated_at\":\"2026-10-03T10:56:56Z\",\"body\":\"CLG-PERSONAL-CONSENT/1\\r\\n{\\r\\n  \\\"disposition\\\": \\\"approve\\\",\\r\\n  \\\"request_digest\\\": \\\"c0e69e79a5ff4c29c89c429179a4eab31be9b7a876a535e35eda6668ab4c3c2f\\\",\\r\\n  \\\"statement\\\": \\\"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\\\",\\r\\n  \\\"supersedes_comment_id\\\": null\\r\\n}\",\"author_association\":\"OWNER\",\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5968490609/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"performed_via_github_app\":null,\"minimized\":null}]"
+    ],
+    "comment_pages_before": [
+      "[{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5968490609\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/198#issuecomment-5968490609\",\"issue_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198\",\"id\":5968490609,\"node_id\":\"IC_kwDOTZFSfM8AAAABY7_wcQ\",\"user\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"created_at\":\"2026-10-03T10:56:56Z\",\"updated_at\":\"2026-10-03T10:56:56Z\",\"body\":\"CLG-PERSONAL-CONSENT/1\\r\\n{\\r\\n  \\\"disposition\\\": \\\"approve\\\",\\r\\n  \\\"request_digest\\\": \\\"c0e69e79a5ff4c29c89c429179a4eab31be9b7a876a535e35eda6668ab4c3c2f\\\",\\r\\n  \\\"statement\\\": \\\"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\\\",\\r\\n  \\\"supersedes_comment_id\\\": null\\r\\n}\",\"author_association\":\"OWNER\",\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5968490609/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"performed_via_github_app\":null,\"minimized\":null}]"
+    ],
+    "issue_response": "{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198\",\"repository_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework\",\"labels_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198/labels{/name}\",\"comments_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198/comments\",\"events_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198/events\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/198\",\"id\":5688607880,\"node_id\":\"PR_kwDOTZFSfM8AAAABGazWsw\",\"number\":198,\"title\":\"governance: prepare consumer closure request\",\"user\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"labels\":[],\"state\":\"closed\",\"locked\":false,\"assignees\":[],\"milestone\":null,\"comments\":1,\"created_at\":\"2026-10-03T10:06:13Z\",\"updated_at\":\"2026-10-03T10:56:57Z\",\"closed_at\":\"2026-10-03T10:09:32Z\",\"assignee\":null,\"author_association\":\"OWNER\",\"active_lock_reason\":null,\"draft\":false,\"pull_request\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/pulls/198\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/198\",\"diff_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/198.diff\",\"patch_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/198.patch\",\"merged_at\":\"2026-10-03T10:09:32Z\"},\"body\":\"## Summary\\n- Add a versioned closure request bound to the active remediation decision, the captured `completed` statement, and the latest eligible post-completion `operation_readiness=pass` receipt from consumer run #37113784702.\\n- Preserve the current official state as open. Merging this request file alone does not close the finding.\\n\\n## Bound evidence\\n- Decision: `transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1`\\n- Completed progress: `transaction:c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552`\\n- Passing receipt: `transaction:90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c`\\n- Request digest: `c0e69e79a5ff4c29c89c429179a4eab31be9b7a876a535e35eda6668ab4c3c2f`\\n\\nThe appointed closure approver must personally review this request and post the exact statement below as a PR comment. No personal approval is asserted by this PR description or its merge.\\n\\n```text\\nCLG-PERSONAL-CONSENT/1\\n{\\n  \\\"disposition\\\": \\\"approve\\\",\\n  \\\"request_digest\\\": \\\"c0e69e79a5ff4c29c89c429179a4eab31be9b7a876a535e35eda6668ab4c3c2f\\\",\\n  \\\"statement\\\": \\\"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\\\",\\n  \\\"supersedes_comment_id\\\": null\\n}\\n```\\n\",\"closed_by\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"timeline_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198/timeline\",\"performed_via_github_app\":null,\"state_reason\":null}",
+    "previous_comments": [],
+    "request": {
+      "body": {
+        "decision_ref": {
+          "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7",
+          "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
+        },
+        "kind": "closure",
+        "passing_ref": {
+          "digest": "72db8383ef1acfd5b8bea1d12ebd90df8f96826113470ca3cec7b89d73d36154",
+          "id": "transaction:90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c"
+        },
+        "progress_ref": {
+          "digest": "9de269e94efb5336202afbaa74437354d37b68ce84ab08ff194140c6ae97b6e3",
+          "id": "transaction:c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552"
+        }
+      },
+      "created_at": "2026-10-03T09:54:24Z",
+      "discussion_number": 198,
+      "environment": "live_pilot_validation",
+      "expected_action_head": {
+        "digest": "9de269e94efb5336202afbaa74437354d37b68ce84ab08ff194140c6ae97b6e3",
+        "id": "transaction:c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552"
+      },
+      "expected_receipt_head": {
+        "digest": "72db8383ef1acfd5b8bea1d12ebd90df8f96826113470ca3cec7b89d73d36154",
+        "id": "transaction:90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c"
+      },
+      "expected_revision": 6,
+      "operating_profile_ref": {
+        "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541",
+        "revision": 1
+      },
+      "repository_id": "joku-dev/devsecops-governance-framework",
+      "request_type": "consumer-lifecycle-action",
+      "required_role": "closure_approver",
+      "required_subject_id": "github-user:81616324",
+      "role_binding_ref": {
+        "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95",
+        "revision": 1
+      },
+      "schema_version": "0.1.0",
+      "scope": {
+        "domain": "architecture",
+        "enforcement": "report_only",
+        "github_repository_id": 1301526448,
+        "pilot_only": true,
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "resource": "repository",
+        "rule_id": "operation_readiness"
+      }
+    },
+    "result": {
+      "captured_at": "2026-10-03T10:58:04Z",
+      "human_presence": "explicitly_self_attested_not_provider_attested",
+      "issues": [],
+      "last_statement_id": 5968490609,
+      "live_activation_approved": false,
+      "official_state": false,
+      "record_type": "lifecycle-pilot-action-consent-result",
+      "relevant_comments": [
+        {
+          "author_association": "OWNER",
+          "body": "CLG-PERSONAL-CONSENT/1\r\n{\r\n  \"disposition\": \"approve\",\r\n  \"request_digest\": \"c0e69e79a5ff4c29c89c429179a4eab31be9b7a876a535e35eda6668ab4c3c2f\",\r\n  \"statement\": \"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\",\r\n  \"supersedes_comment_id\": null\r\n}",
+          "created_at": "2026-10-03T10:56:56Z",
+          "html_url": "https://github.com/joku-dev/devsecops-governance-framework/pull/198#issuecomment-5968490609",
+          "id": 5968490609,
+          "issue_url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/198",
+          "minimized": null,
+          "node_id": "IC_kwDOTZFSfM8AAAABY7_wcQ",
+          "performed_via_github_app": null,
+          "reactions": {
+            "+1": 0,
+            "-1": 0,
+            "confused": 0,
+            "eyes": 0,
+            "heart": 0,
+            "hooray": 0,
+            "laugh": 0,
+            "rocket": 0,
+            "total_count": 0,
+            "url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5968490609/reactions"
+          },
+          "updated_at": "2026-10-03T10:56:56Z",
+          "url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5968490609",
+          "user": {
+            "avatar_url": "https://avatars.githubusercontent.com/u/81616324?v=4",
+            "events_url": "https://api.github.com/users/joku-dev/events{/privacy}",
+            "followers_url": "https://api.github.com/users/joku-dev/followers",
+            "following_url": "https://api.github.com/users/joku-dev/following{/other_user}",
+            "gists_url": "https://api.github.com/users/joku-dev/gists{/gist_id}",
+            "gravatar_id": "",
+            "html_url": "https://github.com/joku-dev",
+            "id": 81616324,
+            "login": "joku-dev",
+            "node_id": "MDQ6VXNlcjgxNjE2MzI0",
+            "organizations_url": "https://api.github.com/users/joku-dev/orgs",
+            "received_events_url": "https://api.github.com/users/joku-dev/received_events",
+            "repos_url": "https://api.github.com/users/joku-dev/repos",
+            "site_admin": false,
+            "starred_url": "https://api.github.com/users/joku-dev/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/joku-dev/subscriptions",
+            "type": "User",
+            "url": "https://api.github.com/users/joku-dev",
+            "user_view_type": "public"
+          }
+        }
+      ],
+      "remediation_or_closure_authorized": false,
+      "request_digest": "c0e69e79a5ff4c29c89c429179a4eab31be9b7a876a535e35eda6668ab4c3c2f",
+      "schema_version": "0.1.0",
+      "status": "confirmed",
+      "unauthorized_comment_ids": []
+    }
+  },
+  "transaction_id": "transaction:533b0008c14e1f7ae972b859d82ff642ed7c365da0a0e5274cbf25116492ed40"
+}
