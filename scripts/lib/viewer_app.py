@@ -14,6 +14,7 @@ from lib.staging_deployment import load_snapshots as load_staging_snapshots
 from lib.consolidated_l1 import load_snapshots as load_consolidated_l1_snapshots
 from lib.viewer_technical import project_technical
 from lib.measured_security_view import assessment
+from lib.consumer_lifecycle_next_step import build as build_consumer_lifecycle_next_step
 
 
 def load_repository_security(root: Path):
@@ -125,7 +126,7 @@ def project(devsecops, architecture, snapshots, l1_snapshots=(), assurance_snaps
     return {'version': 1, 'repositories': sorted(repositories.values(), key=lambda r: (r['id'] != 'joku-dev/ha-CPsWMS', r['id']))}
 
 
-def build(root: Path, technical_html=None):
+def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None):
     def read(name):
         return json.loads((root / 'status' / name).read_text(encoding='utf-8'))
     data = project(read('repository-results-index.json'), read('architecture-results-index.json'),
@@ -135,6 +136,11 @@ def build(root: Path, technical_html=None):
                    load_staging_snapshots(root / 'status/staging-deployment-results'),
                    load_consolidated_l1_snapshots(root / 'status/consolidated-l1-results'))
     data['repository_security'] = load_repository_security(root)
+    data['consumer_lifecycle_next_step'] = (
+        consumer_lifecycle_next_step
+        if consumer_lifecycle_next_step is not None
+        else build_consumer_lifecycle_next_step(root)
+    )
     if technical_html is None:
         legacy = root / 'generated/viewer/status-viewer.html'
         technical_html = legacy.read_text(encoding='utf-8') if legacy.exists() else ''
