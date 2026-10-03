@@ -1,10 +1,10 @@
 # Replay Triage Report
 
-Generated from latest stored snapshot time: `2026-10-02T10:48:35Z`
+Generated from latest stored snapshot time: `2026-10-02T19:56:16Z`
 
 ## Summary
 
-- Assessments: 62
+- Assessments: 64
 - Stored replay failures: 9
 - Failures under current report-only interpretation: 7
 - Superseded legacy assessments: 2
@@ -28,9 +28,9 @@ No historical snapshot, latest-result pointer, Trust level, or enforcement behav
 
 | Classification | Count |
 |---|---:|
-| `compatible_reuse` | 11 |
+| `compatible_reuse` | 12 |
 | `cross_commit_reuse` | 7 |
 | `cross_repository_reuse` | 2 |
 | `deterministic_report_reuse` | 6 |
 | `legacy_assessment_superseded` | 2 |
-| `new_evidence` | 34 |
+| `new_evidence` | 35 |
