@@ -7,18 +7,36 @@ from scripts import export_repository_sbom as sbom
 
 
 def valid_document(repository="joku-dev/devsecops-governance-framework"):
+    root_id = "SPDXRef-github-repository"
     return {
         "SPDXID": "SPDXRef-DOCUMENT",
         "spdxVersion": "SPDX-2.3",
-        "name": f"github/{repository}",
+        "name": f"com.github.{repository}",
         "dataLicense": "CC0-1.0",
         "documentNamespace": "https://spdx.org/spdxdocs/example",
         "creationInfo": {"created": "2026-10-01T00:00:00Z", "creators": ["Tool: GitHub.com-Dependency-Graph"]},
         "packages": [
-            {"SPDXID": "SPDXRef-Repository", "name": f"github/{repository}", "versionInfo": "main"},
+            {
+                "SPDXID": root_id,
+                "name": f"com.github.{repository}",
+                "versionInfo": "main",
+                "externalRefs": [
+                    {
+                        "referenceCategory": "PACKAGE-MANAGER",
+                        "referenceType": "purl",
+                        "referenceLocator": f"pkg:github/{repository}@main",
+                    }
+                ],
+            },
             {"SPDXID": "SPDXRef-Package", "name": "jsonschema", "versionInfo": "4.26.0"},
         ],
-        "relationships": [],
+        "relationships": [
+            {
+                "spdxElementId": "SPDXRef-DOCUMENT",
+                "relationshipType": "DESCRIBES",
+                "relatedSpdxElement": root_id,
+            }
+        ],
     }
 
 
