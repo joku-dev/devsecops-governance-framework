@@ -1,4 +1,69 @@
-# Governance Lifecycle Overview (CLG-06.1)
+# Closed-Loop Governance: Lesekarte und Szenarioübersicht
+
+## Gesamtüberblick und Geltungsgrenzen
+
+Dokumentationsabgleich: **3. Oktober 2026**, Quellstand `46b33429`.
+Closed-Loop Governance verbindet einen verifizierten Befund mit einer gebundenen
+Entscheidung, dokumentierter Bearbeitung, neuer Evidenz und einer gesonderten
+Abschlussentscheidung. Ein grüner Scanner oder ein erledigtes Ticket allein
+schließt keinen Governance-Fall. Die gespeicherte Historie bleibt erhalten;
+ein späterer zulässiger neuer Fehler kann einen abgeschlossenen Fall wieder öffnen.
+
+Die vorhandene Dokumentation ist auf technische Verträge, Szenarien und
+Betriebsleitfäden verteilt. Diese Lesekarte führt sie zusammen; sie ersetzt
+keinen freigegebenen Vertrag und erweitert keine Betriebsabnahme.
+
+| Ebene | Implementierter Umfang | Nicht daraus abzuleiten |
+|---|---|---|
+| Kernel und synthetische Szenarien | Zustandsprojektion, Konfliktquarantäne, Entscheidungen, Bearbeitung, Abschluss/Wiederöffnung und Ausnahme-Szenarien; reproduzierbare lokale Tests | Synthetische Daten sind keine Live-Annahme, echte Freigabe oder produktive Waiver-Autorität |
+| Zentraler GitHub-Pilot | Persönlich abgenommener manueller GRS-002-Report-only-Scope für dieses Repository/main; eigene Receipts und Aktionshistorie | Keine generelle Freigabe anderer Regeln, Consumer oder kontinuierlicher Überwachung |
+| Separater Consumer-Pilot | Persönlich abgenommener manueller `operation_readiness`-Scope für `governance-framework-demo-consumer`; eigene Verträge, Ledger und unabhängiger Guard | Keine Produktionsreife, automatische Behebung, neue Blocking-Autorität oder Portfolio-Freigabe |
+
+## End-to-End-Ablauf
+
+| Schritt | Nachweis und Wirkung |
+|---|---|
+| 1. Beobachten und prüfen | Quelle, Run, Commit, Baseline, Artefakte und Regelumfang prüfen; nur zulässige Beobachtungen übernehmen. Konflikte nicht als saubere Evidenz behandeln. |
+| 2. Befund aufnehmen | Akzeptierter FAIL erzeugt/aktualisiert den Fall; identische Wiederzustellung erzeugt keine zusätzliche Wirkung. |
+| 3. Entscheidung binden | Zuständige Person gibt im definierten Kanal eine Erklärung ab, gebunden an Antrag, Inhalt, Scope und Zustandsrevision. Automation darf diese Erklärung nicht ersetzen. |
+| 4. Bearbeitung dokumentieren | Plan und persönlich bestätigte Fortschritte (`in_progress`, `completed`) erfassen. Umsetzung ist kein automatisch autorisierter Remediation-Executor. |
+| 5. Neu verifizieren | Frische zulässige PASS-Evidenz nach abgeschlossener Bearbeitung prüfen; ein Gesamt-PASS außerhalb der betroffenen Regel genügt nicht. |
+| 6. Gesondert abschließen | Eigene persönliche Abschlussentscheidung, passende Revision und vollständige Evidenzkette prüfen; erst dann `closed` projizieren. |
+| 7. Später erneut beobachten | Neuer zulässiger FAIL kann wieder öffnen. Historische Closures und alte/verspätete Beobachtungen werden nicht gelöscht. Die Piloten beobachten nicht kontinuierlich. |
+
+## Dokumentationspfad
+
+| Frage | Maßgebliche Dokumentation |
+|---|---|
+| Welche Verträge und Identitäten gelten? | [CLG-01 Verträge](governance-lifecycle-contract.md), [CLG-02 Kernel](governance-lifecycle-kernel.md) |
+| Wie funktionieren Entscheidung und Bearbeitung? | [CLG-03 Entscheidungen](governance-lifecycle-decisions.md) |
+| Wann sind Abschluss und Wiederöffnung zulässig? | [CLG-04 Closure](governance-lifecycle-closure.md), [synthetisches End-to-End-Runbook](../../demos/demo-governance-lifecycle-pilot.md) |
+| Wie sind Ausnahmen von erfolgreicher Behebung getrennt? | [Ausnahme-Szenarien](governance-lifecycle-exceptions.md); kein aktiver Live-Waiver-Scope |
+| Wie wird persönliche Zustimmung verifiziert? | [Persönlicher Kanal](governance-lifecycle-personal-channel.md), [gebundene Aktionsfreigaben](governance-lifecycle-action-consent.md) |
+| Wie kommen echte Quellen in den Pilot? | [Dauerhafter Intake](governance-lifecycle-durable-pilot-intake.md), [Live-Evidence-Preflight](governance-lifecycle-live-evidence-preflight.md) |
+| Welcher Betrieb ist tatsächlich abgenommen? | [Aktueller Pilotstatus](../status/governance-lifecycle-current-state.md), [zentraler Betriebsleitfaden](governance-lifecycle-live-operation.md), [separater Consumer-Betriebsleitfaden](consumer-lifecycle-operation.md) |
+| Wo steht der reale Consumer-Fall? | [Fallchronologie](consumer-lifecycle-operation-readiness.md), `status/governance-consumer-lifecycle.json`, `generated/reports/governance-consumer-lifecycle.md` |
+| Wie werden Nachweise und Ansichten eingeordnet? | [Evidence Trust](evidence-trust-model.md), [Szenario-Viewer](governance-lifecycle-viewer.md), [Governance Workspace](../guides/governance-viewer-app.md) |
+| Was bleibt Ausbauplanung? | [Closed-Loop-Implementierungsplan](../planning/closed-loop-governance-implementation-plan.md); Planung ist keine Betriebsfreigabe |
+
+## Übernommener Consumer-Stand und Validierung
+
+Die Consumer-Projektion vom `2026-10-03T10:58:04Z` weist wirksame Betriebsabnahme,
+`finding_state: closed`, drei Receipts und vier Aktionsdatensätze aus. Dies ist
+eine datierte Beschreibung des übernommenen Ledgers, kein neu erzeugter Nachweis.
+Der zentrale GRS-002-Pilot und die synthetischen Szenarien behalten ihre eigenen
+Statusdateien und dürfen nicht zu einem gemeinsamen Compliance-Score addiert werden.
+
+Vor Änderungen: Betriebsabnahme-Manifeste und aktuelle Ledger prüfen. Dateien
+mit akzeptierten Implementierungsfingerprints nicht stillschweigend verändern.
+Vor Veröffentlichung die gepinnte Umgebung mit
+`./scripts/bootstrap_validation_env.sh` vorbereiten, `./scripts/validate_all.sh`
+ausführen und den strikten MkDocs-Build prüfen. Der Ledger-Validator und die
+Tests prüfen unter anderem Replay, Revisionen, widersprüchliche Evidenz,
+persönliche Zustimmung sowie Abschluss und Wiederöffnung. Ein erfolgreicher
+Testlauf ist keine persönliche Betriebsannahme und keine Produktionsfreigabe.
+
+## CLG-06.1: historische synthetische Berichtsimplementierung
 
 CLG-06.1 adds reproducible JSON and Markdown reporting over the three existing
 synthetic GRS-002 histories. It is the first bounded step in the
