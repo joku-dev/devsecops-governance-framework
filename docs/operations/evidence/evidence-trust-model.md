@@ -47,10 +47,14 @@ The GitHub Actions intake records:
 - initial download and extract-and-hash custody steps
 - the downstream run URL
 
-This provides useful identity, provenance, integrity, and custody material. The
-central verifier independently recomputes captured-subject digests and may
-derive `integrity_verified`. It does not derive a higher level from capture
-alone.
+The central verifier independently recomputes captured-subject digests. For
+DevSecOps result intake it also resolves the baseline from the producer run's
+tagged `referenced_workflows` entry and immutable workflow SHA, checks that the
+selected baseline agrees with that entry, validates the recorded download and
+extract-and-hash custody steps, and evaluates freshness and replay. It derives
+`provenance_verified` only when every check required by the model passes.
+Missing or inconsistent provenance data prevents promotion and remains visible
+as a failed or unevaluated Trust check. These checks remain report-only.
 
 ### Architecture Intake
 
@@ -68,17 +72,47 @@ not rewritten.
 
 ### Shared Verification State
 
-Both intake paths now record a named verifier, verification timestamp, and
-per-check results. The remaining Phase 3 capabilities are:
+Both intake paths record a named verifier, verification timestamp, and
+per-check results. Replay and freshness are evaluated by the shared verifier.
+Architecture intake does not yet resolve its baseline from a pinned producer
+workflow reference, so it cannot be promoted to `provenance_verified` by this
+change. The remaining capabilities are:
 
-- replay-key construction and duplicate or cross-subject reuse evaluation
-- freshness policies by evidence type and decision context
 - a normalized snapshot digest and transformation record
 - production-approved issuer and attestation verification
+- pinned architecture-baseline resolution from authoritative run metadata
 
 Existing snapshots remain valid historical evidence and are not retroactively
 promoted. Without an explicit trust assessment, their model default is
 `unverified`.
+
+### ha-CPsWMS Container Evidence
+
+The fixed five-image vulnerability and SBOM intake has the additional
+checks needed to derive `provenance_verified` on a newly captured snapshot.
+When the evidence producer run itself references the tagged L1 reusable
+workflow, the central verifier resolves the declared baseline against that
+run's GitHub `referenced_workflows` entry and immutable workflow commit. The
+ha-CPsWMS measured-evidence workflow is a separate local workflow, so its
+`referenced_workflows` list is empty. For that profile, the verifier instead
+requires exactly one successful `DevSecOps Baseline` push run on protected
+`main` for the same repository and exact source commit. The verifier resolves
+the report's declared baseline against that paired run's tagged L1 reusable
+workflow reference and immutable workflow commit. Missing, failed, ambiguous,
+manual, cross-branch, or different-commit baseline runs prevent promotion.
+The paired run identity and workflow reference are recorded in the Trust
+observations. The verifier also records a custody digest over all six artifact
+archives and a normalized digest over the typed subjects and observations. Its
+transformation list covers download, archive verification, selected-member
+extraction, subject-hash verification, and normalization. Replay is evaluated
+after central verification; the level advances only if replay and every other
+rank-2 check pass.
+
+This applies only to new evidence captured by the central ha-CPsWMS collector.
+It does not relabel historical snapshots, change governance outcomes, establish
+cryptographic attestation, or approve a release. The producer's scans remain
+co-collected and report-only. A live status change requires a fresh successful
+mainline run and its central intake after the verifier change is deployed.
 
 ## Trust Dimensions
 
@@ -109,8 +143,9 @@ by lower levels.
 
 ## Assignment Rules
 
-The effective trust level is assigned by the intake verifier, not by the
-evidence producer.
+The effective trust level is derived from the required checks in
+`model/evidence/evidence-trust-model.yaml` after replay evaluation. Existing
+snapshots are not retroactively promoted or downgraded.
 
 The producer may provide claims and attestations, but it cannot self-declare a
 trusted level. The verifier must:

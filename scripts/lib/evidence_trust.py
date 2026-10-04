@@ -5,7 +5,9 @@ from __future__ import annotations
 from pathlib import Path
 from copy import deepcopy
 from datetime import datetime
+from functools import lru_cache
 import hashlib
+import json
 
 import yaml
 
@@ -16,6 +18,8 @@ COLLECTOR_VERSION = "0.1.0"
 COLLECTOR_CONTRACT_ID = "evidence-collector-contract"
 COLLECTOR_CONTRACT_VERSION = "0.1.0"
 VERIFIER_ID = "central-governance-intake/v1"
+ROOT = Path(__file__).resolve().parents[2]
+TRUST_MODEL_PATH = ROOT / "model" / "evidence" / "evidence-trust-model.yaml"
 CHECK_IDS = [
     "subject_identity_complete",
     "content_digest_verified",
@@ -36,6 +40,12 @@ def compute_sha256(path: Path) -> str:
     digest = hashlib.sha256()
     digest.update(path.read_bytes())
     return digest.hexdigest()
+
+
+def canonical_sha256(value: dict) -> str:
+    """Hash a JSON object using stable UTF-8 canonical serialization."""
+    encoded = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
 
 
 def digest_subject(subject_id: str, path: Path, evidence_ref: str) -> dict:
@@ -71,6 +81,103 @@ def _parse_timestamp(value: str | None) -> datetime | None:
         return parsed if parsed.tzinfo is not None else None
     except ValueError:
         return None
+
+
+@lru_cache(maxsize=1)
+def _trust_levels() -> list[dict]:
+    model = yaml.safe_load(TRUST_MODEL_PATH.read_text(encoding="utf-8"))
+    return sorted(model["trust_levels"], key=lambda item: item["rank"])
+
+
+def derive_effective_level(checks: list[dict]) -> str:
+    """Assign the highest trust level whose complete model requirements pass."""
+    results = {check.get("id"): check.get("result") for check in checks}
+    level = "unverified"
+    for candidate in _trust_levels():
+        if all(results.get(check_id) == "pass" for check_id in candidate["required_checks"]):
+            level = candidate["id"]
+    return level
+
+
+def promote_effective_level(current_level: str, checks: list[dict]) -> str:
+    """Promote an evaluated record when checks justify it, without reclassifying history downward."""
+    levels = _trust_levels()
+    ranks = {candidate["id"]: candidate["rank"] for candidate in levels}
+    derived = derive_effective_level(checks)
+    if current_level not in ranks:
+        current_level = "unverified"
+    return derived if ranks[derived] > ranks[current_level] else current_level
+
+
+def _evaluate_custody(capture: dict) -> dict:
+    source = capture.get("source", {})
+    subjects = capture.get("subjects", [])
+    collector = capture.get("collector", {})
+    collector_id = collector.get("id") if isinstance(collector, dict) else collector
+    steps = capture.get("custody", [])
+    source_uri = source.get("source_uri")
+    archive = next((subject for subject in subjects if subject.get("id") == "artifact_archive"), None)
+    if archive is None:
+        return {
+            "id": "custody_recorded",
+            "result": "not_evaluated",
+            "evidence_refs": [],
+            "reason": "This collector capture has no downloaded archive subject for the custody verifier to bind.",
+        }
+    artifact_digest = source.get("artifact_digest")
+    step_times = [_parse_timestamp(step.get("at")) for step in steps if isinstance(step, dict)]
+    ordered_records = len(steps) == 2 and all(isinstance(step, dict) for step in steps)
+    valid = (
+        ordered_records
+        and [step.get("sequence") for step in steps] == [1, 2]
+        and [step.get("action") for step in steps] == ["download", "extract_and_hash"]
+        and bool(collector_id)
+        and bool(source_uri)
+        and all(step.get("actor") == collector_id for step in steps)
+        and all(step.get("source_uri") == source_uri for step in steps)
+        and len(step_times) == 2
+        and all(timestamp is not None for timestamp in step_times)
+        and step_times[0] <= step_times[1]
+        and "artifact_metadata" in steps[0].get("output_refs", [])
+        and bool(subjects)
+        and all(subject.get("evidence_ref") in steps[1].get("output_refs", []) for subject in subjects)
+        and isinstance(archive.get("digest"), str)
+        and len(archive["digest"]) == 64
+        and all(char in "0123456789abcdef" for char in archive["digest"])
+        and (artifact_digest is None or artifact_digest == archive.get("digest"))
+        and all(_parse_timestamp(value) is not None for value in (capture.get("captured_at"), capture.get("produced_at")))
+        and not capture.get("errors")
+    )
+    return {
+        "id": "custody_recorded",
+        "result": "pass" if valid else "fail",
+        "evidence_refs": ["trust.capture.custody", "trust.capture.source.artifact_digest", "trust.capture.subjects"],
+        "reason": "Ordered download and extraction steps bind the downloaded archive to the hashed subjects."
+        if valid
+        else "Custody steps, timestamps, archive digest, or subject bindings are incomplete or inconsistent.",
+    }
+
+
+def _evaluate_baseline(baseline: dict | None, selected_ref: str | None) -> dict:
+    valid = (
+        isinstance(baseline, dict)
+        and isinstance(baseline.get("ref"), str)
+        and baseline["ref"].startswith("refs/tags/")
+        and baseline["ref"].removeprefix("refs/tags/") == selected_ref
+        and isinstance(baseline.get("sha"), str)
+        and len(baseline["sha"]) == 40
+        and all(char in "0123456789abcdef" for char in baseline["sha"].lower())
+    )
+    return {
+        "id": "baseline_ref_resolved",
+        "result": "pass" if valid else "fail",
+        "evidence_refs": (baseline.get("evidence_refs") or [
+            "run.referenced_workflows[].ref", "run.referenced_workflows[].sha"
+        ]) if baseline else [],
+        "reason": "Selected governance baseline matches an immutable tagged workflow reference and resolved commit."
+        if valid
+        else "Governance baseline is missing, unpinned, unresolved, or differs from authoritative run metadata.",
+    }
 
 
 def evaluate_freshness(
@@ -269,6 +376,9 @@ def verify_trust_capture(
     freshness_policy: dict | None = None,
     produced_at: str | None = None,
     freshness_subject_bound: bool | None = None,
+    baseline: dict | None = None,
+    baseline_ref: str | None = None,
+    custody_record: dict | None = None,
     verifier_id: str = VERIFIER_ID,
 ) -> dict:
     """Evaluate only checks supported by authoritative intake-time material."""
@@ -310,6 +420,10 @@ def verify_trust_capture(
         "evidence_refs": [subject.get("evidence_ref", "") for subject in subjects if subject.get("evidence_ref")],
     }
 
+    checks["custody_recorded"] = _evaluate_custody(result.get("capture", {}))
+    if baseline is not None or baseline_ref is not None:
+        checks["baseline_ref_resolved"] = _evaluate_baseline(baseline, baseline_ref)
+
     for check_id, passed, evidence_refs in [
         ("producer_run_resolved", source.get("run_id") == str(run_id), ["trust.capture.source.run_id"]),
         ("commit_matches_run", source.get("commit_id") == commit_id, ["trust.capture.source.commit_id"]),
@@ -332,6 +446,53 @@ def verify_trust_capture(
             subject_bound=freshness_subject_bound,
         )
 
+    if baseline is not None or baseline_ref is not None:
+        checks["baseline_ref_resolved"] = _evaluate_baseline(baseline, baseline_ref)
+
+    if custody_record is not None:
+        result["capture"]["custody_record"] = deepcopy(custody_record)
+        expected_transformations = {
+            "download_github_actions_artifacts",
+            "verify_zip_metadata_and_sha256",
+            "extract_selected_members",
+            "verify_subject_hashes",
+            "normalize_typed_evidence",
+        }
+        transformations = custody_record.get("transformations")
+        capture = result["capture"]
+        expected_normalized_digest = canonical_sha256({
+            "profile": capture.get("observations", {}).get("profile"),
+            "repository_id": source.get("repository_id"),
+            "commit_id": source.get("commit_id"),
+            "run_id": source.get("run_id"),
+            "subjects": subjects,
+            "observations": capture.get("observations", {}),
+        })
+        custody_valid = (
+            isinstance(custody_record.get("collector"), str)
+            and bool(custody_record.get("collector"))
+            and _parse_timestamp(custody_record.get("collected_at")) is not None
+            and all(
+                isinstance(custody_record.get(key), str)
+                and len(custody_record[key]) == 64
+                and all(character in "0123456789abcdef" for character in custody_record[key])
+                for key in ("raw_digest", "normalized_digest")
+            )
+            and isinstance(custody_record.get("raw_artifacts"), dict)
+            and custody_record.get("raw_digest") == canonical_sha256(custody_record["raw_artifacts"])
+            and custody_record.get("normalized_digest") == expected_normalized_digest
+            and isinstance(transformations, list)
+            and set(transformations) == expected_transformations
+        )
+        checks["custody_recorded"] = {
+            "id": "custody_recorded",
+            "result": "pass" if custody_valid else "fail",
+            "evidence_refs": ["trust.capture.custody_record", "trust.capture.custody"],
+            "reason": "Collector, acquisition time, raw and normalized digests, and transformation steps are recorded."
+            if custody_valid
+            else "Chain-of-custody record is incomplete or invalid.",
+        }
+
     integrity_verified = all(
         checks[check_id]["result"] == "pass"
         for check_id in ("subject_identity_complete", "content_digest_verified")
@@ -345,6 +506,7 @@ def verify_trust_capture(
             "checks": [checks[check_id] for check_id in CHECK_IDS],
         }
     )
+    result["effective_level"] = derive_effective_level(result["checks"])
     return result
 
 
