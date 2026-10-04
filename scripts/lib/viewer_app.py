@@ -14,6 +14,7 @@ from lib.staging_deployment import load_snapshots as load_staging_snapshots
 from lib.consolidated_l1 import load_snapshots as load_consolidated_l1_snapshots
 from lib.viewer_technical import project_technical
 from lib.measured_security_view import assessment
+from lib.viewer_experience import load_consumer_case
 from lib.consumer_lifecycle_next_step import build as build_consumer_lifecycle_next_step
 
 
@@ -136,6 +137,7 @@ def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None)
                    load_staging_snapshots(root / 'status/staging-deployment-results'),
                    load_consolidated_l1_snapshots(root / 'status/consolidated-l1-results'))
     data['repository_security'] = load_repository_security(root)
+    data['consumer_case'] = load_consumer_case(root)
     data['consumer_lifecycle_next_step'] = (
         consumer_lifecycle_next_step
         if consumer_lifecycle_next_step is not None
