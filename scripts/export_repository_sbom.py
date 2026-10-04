@@ -21,6 +21,7 @@ MAX_SBOM_BYTES = 25 * 1024 * 1024
 POLL_ATTEMPTS = 18
 POLL_INTERVAL_SECONDS = 5
 DOWNLOAD_HOST_SUFFIXES = (".github.com", ".githubusercontent.com", ".amazonaws.com")
+DOWNLOAD_HOSTS = {"github.com", "githubusercontent.com", "amazonaws.com"}
 
 
 class NoRedirect(HTTPRedirectHandler):
@@ -95,9 +96,14 @@ def validate_download_url(location: str) -> None:
         or parsed.username is not None
         or parsed.password is not None
         or parsed.fragment
-        or not any(host.endswith(suffix) for suffix in DOWNLOAD_HOST_SUFFIXES)
+        or (
+            host not in DOWNLOAD_HOSTS
+            and not any(host.endswith(suffix) for suffix in DOWNLOAD_HOST_SUFFIXES)
+        )
     ):
-        raise ValueError("GitHub returned an unexpected SBOM download host or URL")
+        # Report the hostname only. A GitHub download URL contains a temporary
+        # credential in its query string, which must never enter Actions logs.
+        raise ValueError(f"GitHub returned an unexpected SBOM download host or URL: {host or '<missing>'}")
 
 
 class SafeDownloadRedirect(HTTPRedirectHandler):
