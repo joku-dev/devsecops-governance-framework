@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="491.27559055118115" height="357" preserveAspectRatio="xMinYMin meet" viewBox="0 0 491 357" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="491.27559055118115" height="357"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-357)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="8" y="337" style="font-family: BodyBold; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,674) scale(1,-1)">Vorbereitung</text>
+			<rect x="126" y="303" width="345" height="45" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="179.431298828125" y="331.5" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,663) scale(1,-1)">Snapshot und H / Z / I bilden; konkreten Antrag fixieren</text>
+			<text x="217.8152587890625" y="319.5" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,639) scale(1,-1)">lokale Sperre während der Vorbereitung</text>
+			<text x="8" y="250" style="font-family: BodyBold; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,500) scale(1,-1)">Freigabepause</text>
+			<rect x="126" y="225" width="345" height="45" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="180.19111328125" y="253.5" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,507) scale(1,-1)">Benannte Person prüft Antrag und erklärt Zustimmung</text>
+			<text x="240.5785888671875" y="241.5" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,483) scale(1,-1)">lokale Sperre ist freigegeben</text>
+			<path d="M 298,303 L 298,270 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="298 270, 300.3365 275.5264, 295.6635 275.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="8" y="164" style="font-family: BodyBold; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,328) scale(1,-1)">Ausführung</text>
+			<rect x="126" y="142" width="345" height="49" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="177.1407470703125" y="172.5" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,345) scale(1,-1)">Sperre erwerben; aktuellen Kontext und Provider prüfen</text>
+			<text x="170.00693359375" y="160.5" style="font-family: Body; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,321) scale(1,-1)">Provider doppelt lesen; gesamten lokalen Kontext erneut prüfen</text>
+			<path d="M 298,225 L 298,191 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="298 191, 300.3365 196.5264, 295.6635 196.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<rect x="126" y="65" width="345" height="45" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="160.96247558593748" y="93.5" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,187) scale(1,-1)">Bei Übereinstimmung eine vollständige Transaktion publizieren</text>
+			<text x="204.1697021484375" y="81.5" style="font-family: Body; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,163) scale(1,-1)">Artefakt ist Teil derselben lokal atomaren Datei</text>
+			<path d="M 298,142 L 298,110 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="298 110, 300.3365 115.5264, 295.6635 115.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="8" y="25" style="font-family: BodyItalic; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,50) scale(1,-1)">Bei Abweichung: keine Publikation. Nach Erfolg: alter Antrag trifft auf neue Historie.</text>
+			<text x="8" y="10" style="font-family: BodyItalic; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,20) scale(1,-1)">Die lokale Sperre sperrt den externen Provider nicht; dessen Race-Fenster bleibt bestehen.</text>
+		</g>
+	</g>
+</svg>

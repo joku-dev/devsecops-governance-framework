@@ -1,0 +1,92 @@
+{
+  "archive": "Patentanwalt-Paket-Zustandsgebundene-Autorisierung.zip",
+  "document_source_digests": {
+    ".gitattributes": "34cdf4ee9ed0ef3c574537d2e581be8471d8b7040470a039722dbf399a660146",
+    "01-problemstellung.md": "094de2e1bf7241327e8cb5ca7d8db8de669d68e7a1ec12c3c8fa2c17f83dc21a",
+    "02-loesungsansatz.md": "531fbda3f71c1ebbfdde59503dd843d5d557f5f55a1a8ede2ac4fadee3eca749",
+    "03-design-und-architektur.md": "989506bca6a08cd38a086e7d51369cf626b13f007e5500c7570cd1854514f79b",
+    "04-anwendungsfelder.md": "2cfd6ee475fe82fbba86868c1959ec04872ee7dcbbee2b72857d81fe64319107",
+    "05-implementierungsreferenzen.md": "21eb9dadf77e5b0f1c064cd95adf3f04145c8522e6db80b14b3256cf4644a674",
+    "06-herkunft-und-prueffragen.md": "b1ea2584f8e9e06c3608a235bbe26809728deff98a7c9ebe99ccffe7801297e4",
+    "README.md": "379ad9807c0e9bdb9069692012ced05b3ae4057085bfab32466b04e8ab5608aa",
+    "build_packet.py": "d499eeacf0d59ad84e7f43d6c15126a58ab5e3cf5ed5cc1116657ce94ae2ca89",
+    "figures/01-architektur.svg": "97eb78da85d47c013fbc863cc3d56cf8c3ecbbb44323b8061ad7c6b953538cde",
+    "figures/02-ablauf.svg": "a632af426d0976fee26bbb2d4e6efb48720f410de122c0e94802af0495161e5d",
+    "figures/03-agententransfer.svg": "dc467023553ac0ccc9cb1a2f8fda1ed6be637c0395ece19838ef8dc59100ae7c",
+    "requirements.txt": "2ff43b2b91fe396d1a28ba801c2439d5c0cac2d51f92a29f956313265b26a2a3",
+    "verify_package.py": "f7b0cbfb2fd6aa65724befed4caefce1041f4e093eeab779e8667f22312cda14"
+  },
+  "document_version": "1.0",
+  "fonts": {
+    "Body": {
+      "file": "Arial.ttf",
+      "sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9"
+    },
+    "BodyBold": {
+      "file": "Arial Bold.ttf",
+      "sha256": "d72db21f9242aedd6b917d8549ad5921766b24d5f8d0becfda2ff4c620b3c2e0"
+    },
+    "BodyItalic": {
+      "file": "Arial Italic.ttf",
+      "sha256": "ce1d2f1ab89db45f9796100eee960f5702a40e84c225c2b48c3ec3e81d153f98"
+    },
+    "Mono": {
+      "file": "Courier New.ttf",
+      "sha256": "c886ca3172d8ce9189976992d145ec090500a4ff516ecb9d4df56b1a78336247"
+    }
+  },
+  "manifest_sha256": "1a5f7af95302617571d88c5d5e4980c6c2e80639b520ecff9bd09858e2ca7a6a",
+  "pdf": "Patentanwalt-Unterlagen-Zustandsgebundene-Autorisierung.pdf",
+  "pdf_sha256": "e5e6737a87fdf2e6e2b2be2cc55787e503fc2914334809c78caf6e7acf0abb5b",
+  "reference_commit": "56ed0c743121fddc9d117b69eb470493dff5046d",
+  "repository_validation": {
+    "bootstrap": "passed",
+    "completed_at": "2026-09-20T11:20:53Z",
+    "confidential_packet_absent_from_site": true,
+    "docs_environment": ".venv-docs",
+    "generated_timestamp_only_changes_restored": 17,
+    "initial_docs_command": "The validation-only environment has no MkDocs; repeated with the existing docs environment.",
+    "log_digests": {
+      "docs-build.log": "81a9190f82c48aa054d7fee2013f490144dcb16501fd30020a7eccd7beb7b652",
+      "validation.log": "1d56414559449100252c2ac4c1b92fbf3c41e0afb96ce15065783ab8913ab73a"
+    },
+    "opa_and_runtime": "passed",
+    "protected_files_unchanged": 83,
+    "repository_and_provenance": "passed",
+    "stored_git_config_changed": false,
+    "strict_mkdocs": "passed",
+    "test_environment": {
+      "GIT_CONFIG_COUNT": "1",
+      "GIT_CONFIG_KEY_0": "commit.gpgsign",
+      "GIT_CONFIG_VALUE_0": "false"
+    },
+    "unit_test_status": "passed",
+    "unit_tests": 640
+  },
+  "source_file_count": 37,
+  "verification": {
+    "external_anchor_checked": false,
+    "file_count": 64,
+    "package_integrity_verified": true,
+    "package_sha256": "e40181e2ec8f6f631b7558cea22ada12bd70f4294cb471834f09866602747111",
+    "technical_claims_or_patentability_verified": false
+  },
+  "visual_review": {
+    "all_pages_visually_reviewed": true,
+    "figures": 3,
+    "fixed_private_code_links": "passed",
+    "network_required_for_offline_check": false,
+    "original_evidence_bundles_unchanged": true,
+    "package_integrity_and_external_digest": "passed",
+    "pdf_pages": 22,
+    "source_files_verified_against_commit": 37,
+    "text_bounds_check": "passed",
+    "unpacked_offline_automated_verification": {
+      "bundle_manifest_sha256": "e8a903751e3e3f040371329f8f8ef2910376f72decd42a033f3620b50caf4628",
+      "experiments": 18,
+      "external_anchor_checked": true,
+      "human_authorization_proven": false,
+      "verified": true
+    }
+  }
+}
