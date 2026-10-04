@@ -20,7 +20,12 @@ API_VERSION = "2026-03-10"
 MAX_SBOM_BYTES = 25 * 1024 * 1024
 POLL_ATTEMPTS = 18
 POLL_INTERVAL_SECONDS = 5
-DOWNLOAD_HOST_SUFFIXES = (".github.com", ".githubusercontent.com", ".amazonaws.com")
+DOWNLOAD_HOST_SUFFIXES = (
+    ".github.com",
+    ".githubusercontent.com",
+    ".amazonaws.com",
+    ".blob.core.windows.net",
+)
 DOWNLOAD_HOSTS = {"github.com", "githubusercontent.com", "amazonaws.com"}
 
 
@@ -107,7 +112,7 @@ def validate_download_url(location: str) -> None:
 
 
 class SafeDownloadRedirect(HTTPRedirectHandler):
-    """Allow only HTTPS redirects within GitHub's temporary artifact hosts."""
+    """Allow only HTTPS redirects to hosts used by GitHub's SBOM endpoint."""
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         validate_download_url(newurl)
