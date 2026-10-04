@@ -23,6 +23,17 @@ bestätigt keine aktuelle Betriebsbereitschaft einer Anwendung und erzeugt keine
 neue fachliche Vorgabe. Genehmigte Quellen, Modelle, Schemas und veröffentlichte
 Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 
+## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
+
+Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
+zeigt nun einen validierten, lesenden Lifecycle-Nächste-Schritte-Bereich mit
+Quellnachweisen. Der Repository-SBOM-Export erzeugt ein commitgebundenes SPDX-
+Artefakt aus dem GitHub-Dependency-Graph und verändert weder Prüf-Gates noch
+Governance-Ergebnisse. Diese nachträglichen Funktionen sind keine Erweiterung
+der persönlichen Betriebsabnahme oder Produktionsfreigabe. Die drei neuen
+Python-Dateien sind in der [technischen Funktionsliste](repository-technical-function-inventory.md)
+ausgewiesen; der dortige Zähler für den historischen Stand bleibt nachvollziehbar.
+
 ### Bedeutung der Einordnung
 
 | Einordnung | Bedeutung |

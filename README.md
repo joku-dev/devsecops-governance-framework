@@ -169,8 +169,10 @@ newly captured ha-CPsWMS container SBOM evidence reaches `provenance_verified`.
 Neither statement grants production approval or retroactively promotes old evidence.
 The [Closed-Loop Governance reading map](docs/operations/evidence/governance-lifecycle-overview.md)
 distinguishes the kernel, synthetic scenarios and the two separately accepted pilots.
-Repository SBOM export (PR #178) and Lifecycle Next Step navigation (PR #200)
-remain open proposals, not features delivered on this source revision.
+After that 3 October observation, PR #200 delivered read-only Lifecycle Next Step
+guidance in the viewer, and PR #178 delivered the commit-bound repository SBOM
+export. Neither grants production approval or changes the accepted governance
+scope.
 
 ## AI And Agent Navigation
 

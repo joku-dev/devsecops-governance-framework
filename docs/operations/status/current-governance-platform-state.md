@@ -18,6 +18,17 @@ observations, not assertions that every source is still current.
 | Self-security | [Run `37118684212`](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37118684212), observed `2026-10-03T11:08:18Z`: 8 pass / 8 fail (not evidenced). Two approvals and required signatures remain absent; other findings include unavailable settings/API access | Latest assessment artifact and its `observation.api_errors`; the versioned report still observes 19 September |
 | Releases and pending work | Published adoption release remains `v0.2.0-public-adoption`; v0.3.0, repository SBOM export (#178) and Lifecycle Next Step (#200) remain open PRs | Published releases and reviewed merges; an open PR is not delivered capability |
 
+## Changes After The 3 October Observation
+
+The table above is bound to source commit `46b33429`; it is not a live claim
+about later merges. PR #200 subsequently delivered the read-only Lifecycle Next
+Step viewer, and PR #178 delivered the commit-bound repository SBOM export.
+PRs #96, #177 and #194 also merged after the observation: the CodeQL action
+pins were updated, the baseline wrapper pin was aligned to an identical
+reusable-workflow file, and the portfolio projection now reflects the accepted
+October ha-CPsWMS runs. The published adoption release remains v0.2.0; PR #175
+is still a release proposal and requires a refreshed release review.
+
 The successful Self-Security job proves that the assessment ran, not that all
 criteria passed. `None`/unavailable security settings are not proof of disabled
 features. Do not substitute the older 14/16 versioned report for the fresh

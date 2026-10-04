@@ -11,8 +11,9 @@ Der [fachliche Katalog](repository-function-catalog.md) erläutert die 21 Aufgab
 mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbole
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
-Umfang: **142 Python-Skripte/Module**, **2 Shell-Skripte**, **22 Workflows**,
-**15 OPA-Module**.
+Umfang am historischen Quellstand: **142 Python-Skripte/Module**, **2 Shell-Skripte**,
+**22 Workflows**, **15 OPA-Module**. Nach den unten aufgeführten Ergänzungen
+enthält der aktuelle Main **145 Python-Skripte/Module**.
 
 Einträge wurden aus den versionierten Dateien, Python-Modulbeschreibungen und
 Workflow-Definitionen ermittelt. Englische Beschreibungen übernehmen die
@@ -27,8 +28,18 @@ Quellsprache der Module; unvollständige Paketbeschreibungen wurden fachlich pr�
 | `scripts/intake_ha_container_trust.py` | Ermittelt genau einen passenden erfolgreichen Baseline-Main-Push zum Producer-Commit und übergibt ihn an die zentrale Trust-Prüfung. |
 | `scripts/lib/container_typed_evidence.py` | Prüft unveränderliche Baseline-Referenz und Artefakt-/Normalisierungs-Custody für neue Fünf-Image-Snapshots; kann `provenance_verified` ableiten, ohne Attestierung oder Compliance-Freigabe. |
 
-Eigene Repository-SBOM (#178) und Lifecycle-Next-Step-Ansicht (#200) sind am
-genannten Quellstand offene PRs und werden nicht als implementierter Bestand gezählt.
+Am genannten Quellstand waren die Repository-SBOM (#178) und die
+Lifecycle-Next-Step-Ansicht (#200) noch offene PRs. Beide wurden danach gemergt.
+Die folgenden drei ergänzten Python-Dateien sind im historischen Zähler 142
+nicht enthalten und erhöhen den Bestand im aktuellen Main auf 145.
+
+## Ergänzungen nach dem 3.-Oktober-Quellstand
+
+| Datei | Aufgabe |
+|---|---|
+| `scripts/export_repository_sbom.py` | Exportiert das GitHub-Dependency-Graph als commitgebundenes SPDX-SBOM-Artefakt; nur lesend und ohne Merge-Gate. |
+| `scripts/lib/consumer_lifecycle_next_step.py` | Erzeugt aus der validierten Consumer-Lifecycle-Projektion eine lesende nächste-Schritte-Ansicht; ungültige Projektionen bleiben unverfügbar. |
+| `scripts/lib/viewer_experience.py` | Validiert den Lifecycle-Fall für die verständliche Viewer-Übersicht und verlinkt die erhaltenen Nachweise. |
 
 ## Viewer-Ergänzungen (GCR-2026-084/085/086)
 
