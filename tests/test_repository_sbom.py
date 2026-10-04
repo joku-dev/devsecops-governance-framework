@@ -60,12 +60,15 @@ class RepositorySbomTests(unittest.TestCase):
                 sbom.validate_download_url(url)
         sbom.validate_download_url("https://github.s3.amazonaws.com/private/sbom?sig=secret")
         sbom.validate_download_url("https://github.com/private/sbom?sig=secret")
+        sbom.validate_download_url("https://dgpproduction.blob.core.windows.net/private/sbom?sig=secret")
 
     def test_download_url_host_allowlist_does_not_accept_suffix_lookalikes(self):
         for url in (
             "https://github.com.attacker.example/sbom",
             "https://attacker-github.com/sbom",
             "https://githubusercontent.com.attacker.example/sbom",
+            "https://blob.core.windows.net.attacker.example/sbom",
+            "https://attackerblob.core.windows.net/sbom",
         ):
             with self.subTest(url=url), self.assertRaises(ValueError):
                 sbom.validate_download_url(url)
