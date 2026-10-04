@@ -4,6 +4,9 @@ For operation of the central repository, use the
 [operations handbook](../operations/guides/governance-repository-operations-handbook.md),
 including its end-to-end pilot acceptance tests. This page covers the consumer team.
 
+For the selected cJSON/go-httpbin evaluation and its measured preflight, use
+the [External Consumer Validation Pilot](external-consumer-validation-pilot.md).
+
 ## Purpose
 
 This runbook describes how to run a controlled first adoption of the public DevSecOps Governance Framework in an application repository.
