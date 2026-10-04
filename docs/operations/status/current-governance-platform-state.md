@@ -7,6 +7,23 @@ Documentation observation: **3 October 2026**, source commit
 not a new evaluation. The September sections below are retained reference
 observations, not assertions that every source is still current.
 
+## Live Readback, 4 October 2026
+
+Read-only GitHub observation at `2026-10-04T08:07Z`; repository source commit
+`701d7d0d20a461df43ae6667c3947188eb3a3bde`.
+
+| Area | Current observation | Interpretation |
+|---|---|---|
+| Main workflows | Governance CI, CodeQL, Self-Security and Docs publication succeeded for the PR #204 merge. Repository SBOM run [37185739306](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37185739306) failed in download URL validation. | The mainline SBOM artifact was not produced by that run. The proposed exporter correction accepts approved apex GitHub download hosts and logs only a rejected hostname; it is being prepared for review, and a successful mainline follow-up run is still required. |
+| PR #175 | Open release proposal; branch now includes current `main` and is mergeable. Required checks are rerunning; review is required. | The update resolved its README and status-report conflicts while retaining the proposed v0.3 release content. Reassess after checks and review. |
+| PR #176 | Open draft; branch now includes current `main` and is mergeable. Review is required. | Branch synchronization completed; review is still outstanding. |
+| PR #205 | Open draft; already based on current `main`, mergeable, checks succeeded, review required. | Checks alone do not satisfy the required human review. |
+| GRS-002 waiver | The scoped waiver is tracked on `main`, approved, and effective from 4 October through 12 December 2026. | This records scoped risk acceptance; it does not change live branch protection or convert the report-only lifecycle pilot into enforcement. |
+
+This readback updates the older pending-work summary below. It does not refresh
+the dated ha-CPsWMS producer evidence, the 3 October consumer-lifecycle
+projection, or the separate Self-Security assessment artifact.
+
 ## October Observation And Authoritative Sources
 
 | Area | Observation at the source revision | Authoritative source for later checks |

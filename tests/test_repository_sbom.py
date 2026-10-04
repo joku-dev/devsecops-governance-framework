@@ -59,6 +59,16 @@ class RepositorySbomTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(ValueError):
                 sbom.validate_download_url(url)
         sbom.validate_download_url("https://github.s3.amazonaws.com/private/sbom?sig=secret")
+        sbom.validate_download_url("https://github.com/private/sbom?sig=secret")
+
+    def test_download_url_host_allowlist_does_not_accept_suffix_lookalikes(self):
+        for url in (
+            "https://github.com.attacker.example/sbom",
+            "https://attacker-github.com/sbom",
+            "https://githubusercontent.com.attacker.example/sbom",
+        ):
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                sbom.validate_download_url(url)
 
     def test_limited_reader_rejects_oversized_content(self):
         class FakeResponse:
