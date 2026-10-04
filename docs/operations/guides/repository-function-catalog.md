@@ -12,8 +12,8 @@ zusätzlich alle Skripte, Bibliotheksmodule, Workflows und OPA-Module des Quells
 
 | Merkmal | Wert |
 | --- | --- |
-| Dokumentstand | 19. September 2026 |
-| Betrachteter Quellstand | `614380fe98b41a29aab2154f09fb4431f63b350a` plus GCR-2026-101 |
+| Dokumentationsabgleich | 3. Oktober 2026; gezielter Status-/Inventarabgleich, keine neue fachliche Abnahme |
+| Betrachteter Quellstand | `46b33429a6f271273e33508f26275ed8ba7f1f2c`; ursprünglicher Katalog vom 19. September bleibt Grundlage |
 | Zielgruppe | Geschäftsführung, Governance-Verantwortliche, Architektur, Security, Plattformbetrieb und Anwendungsteams |
 | Dokumenttyp | Erläuternder Funktionskatalog |
 | Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierungen: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md), [GCR-2026-078](../../governance/change-requests/GCR-2026-078-documentation-and-function-audit.md), [GCR-2026-093](../../governance/change-requests/GCR-2026-093-current-documentation-capabilities-refresh.md), [GCR-2026-101](../../governance/change-requests/GCR-2026-101-consumer-scale-capacity-assessment.md) |
@@ -22,6 +22,17 @@ Der Katalog beschreibt vorhandene Fähigkeiten zum genannten Quellstand. Er
 bestätigt keine aktuelle Betriebsbereitschaft einer Anwendung und erzeugt keine
 neue fachliche Vorgabe. Genehmigte Quellen, Modelle, Schemas und veröffentlichte
 Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
+
+## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
+
+Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
+zeigt nun einen validierten, lesenden Lifecycle-Nächste-Schritte-Bereich mit
+Quellnachweisen. Der Repository-SBOM-Export erzeugt ein commitgebundenes SPDX-
+Artefakt aus dem GitHub-Dependency-Graph und verändert weder Prüf-Gates noch
+Governance-Ergebnisse. Diese nachträglichen Funktionen sind keine Erweiterung
+der persönlichen Betriebsabnahme oder Produktionsfreigabe. Die drei neuen
+Python-Dateien sind in der [technischen Funktionsliste](repository-technical-function-inventory.md)
+ausgewiesen; der dortige Zähler für den historischen Stand bleibt nachvollziehbar.
 
 ### Bedeutung der Einordnung
 
@@ -423,6 +434,14 @@ Governance-Ergebnis verwechselt wird.
 **Ergebnisse:** Trust-Bewertungen mit nachvollziehbaren Einzelprüfungen und
 sichtbaren Grenzen, etwa `unverified` oder `integrity_verified`.
 
+Der feste ha-CPsWMS-Fünf-Image-Intake kann inzwischen auf neu aufgenommenen
+Snapshots `provenance_verified` erreichen. Er prüft zusätzlich die unveränderliche
+Baseline-Bindung über den passenden erfolgreichen Main-Push-Lauf desselben
+Commits sowie die Rohartefakt-/Normalisierungs-Custody. Der übernommene SBOM-Snapshot
+für Lauf `36997124065`, Versuch 2, erreicht diese Stufe. Alte Snapshots werden
+nicht hochgestuft; eine kryptografische Producer-Attestierung ist damit nicht
+nachgewiesen. Verfahren und Grenzen: [Evidence Trust](../evidence/evidence-trust-model.md#ha-cpswms-container-evidence).
+
 **Implementierungsstellen:** `scripts/lib/evidence_trust.py`,
 `model/evidence/evidence-trust-model.yaml`,
 `model/evidence/evidence-freshness-policies.yaml`,
@@ -773,6 +792,13 @@ Die neuen Workflows `consumer-lifecycle-update.yml` und
 Providerprüfung. Die eigene Projektion `status/governance-consumer-lifecycle.json`
 verhindert eine Vermischung mit dem bestehenden GRS-002-Piloten.
 
+Die übernommene Consumer-Projektion vom `2026-10-03T10:58:04Z` dokumentiert
+inzwischen `closed`, drei Receipts und vier Aktionsdatensätze. Fortschritt und
+Abschluss wurden persönlich gebunden erfasst; die oben genannten Erklärungen
+sind notwendige Bedingungen, nicht weiterhin ausstehende Aufgaben dieses Falls.
+Die [Closed-Loop-Lesekarte](../evidence/governance-lifecycle-overview.md)
+führt Verträge, Betrieb, Tests und Grenzen zusammen.
+
 ## Berichte und Exporte im Überblick
 
 | Ausgabegruppe | Zweck | Wesentliche Generatoren unter `scripts/` |
@@ -894,8 +920,15 @@ Baseline-Status und Replay bleiben unverändert daneben sichtbar.
 Vertrag, Grenzen und wiederholbare Aufnahme:
 [L1-Nachweise](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle).
 
-Der aktuelle Lauf `35241262722` umfasst 58 bestandene Tests, fünf gebaute und
+Der historische Referenzlauf `35241262722` umfasst 58 bestandene Tests, fünf gebaute und
 gescannte Images, 749 SBOM-Komponenten und eine Assurance-Aussage für jede der
 16 L1-Kontrollen. Sieben Kontrollen besitzen vollständige, frische und
 integritätsgeprüfte Evidenz; fehlende organisatorische, Deployment- oder
 Betriebsnachweise halten die übrigen neun ausdrücklich auf `unverified`.
+
+Diese Zahlen gelten nur für den genannten Referenzlauf. Neuere übernommene
+Snapshots und ihre individuellen Zeit-/Run-Bindungen stehen unter
+`status/measured-l1-results/`, `status/control-evidence-assurance/` und
+`status/typed-evidence-results/`. Der
+[Plattformstatus](../status/current-governance-platform-state.md) zeigt den
+datierten Dokumentationsabgleich und verweist auf die maßgeblichen Quellen.

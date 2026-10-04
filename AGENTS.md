@@ -71,9 +71,9 @@ Foundation documents provide architectural and strategic guardrails. They do not
 
 Do not silently change released baseline packages or tags. If a baseline changes, create an explicit new release or release-candidate flow.
 
-## Current Demo State
+## Historical Demo Reference And Current Sources
 
-The `ha-CPsWMS` mainline demo state is:
+The retained 19 September `ha-CPsWMS` mainline reference state is:
 
 | Domain | Status | Baseline | Run |
 |---|---|---|---|
@@ -85,6 +85,15 @@ records typed vulnerability and SBOM evidence, a measured assessment of all 16
 L1 controls, and per-control assurance. The exact same commit and run passed 19
 staging runtime checks and supplies separate evidence for L1-013/014/016; neither
 record is an official compliance result or production approval.
+
+Do not treat those dated runs as the latest state. Read accepted domain indexes
+under `status/` and `docs/operations/status/current-governance-platform-state.md`
+before describing current results. At source revision `46b33429` (3 October),
+the separate consumer pilot projection records `finding_state: closed`, three
+receipts and four actions. The newly captured ha-CPsWMS SBOM snapshot for run
+`36997124065`, attempt 2, records `provenance_verified`; historical snapshots
+retain their original Trust level. Use the Closed-Loop reading map in
+`docs/operations/evidence/governance-lifecycle-overview.md` to distinguish scopes.
 
 Use `docs/demos/demo-end-to-end-governance.md` as the primary demo runbook.
 
