@@ -24,11 +24,24 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 {
                     "path": "joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.1.3.yml@l1-baseline-v1.1.3",
                     "ref": "refs/tags/l1-baseline-v1.1.3",
+                    "sha": "a" * 40,
                 }
             ]
         }
 
         self.assertEqual(intake.infer_baseline_ref(run), "l1-baseline-v1.1.3")
+        self.assertEqual(
+            intake.resolve_baseline(run),
+            {"ref": "refs/tags/l1-baseline-v1.1.3", "sha": "a" * 40},
+        )
+
+    def test_unpinned_or_unresolved_baseline_cannot_be_resolved(self):
+        for workflow in (
+            {"ref": "main", "sha": "a" * 40},
+            {"ref": "refs/tags/l1-baseline-v1.1.3", "sha": ""},
+        ):
+            with self.subTest(workflow=workflow):
+                self.assertIsNone(intake.resolve_baseline({"referenced_workflows": [workflow]}))
 
     def test_evidence_flags_are_derived_from_governance_input(self):
         governance_input = {

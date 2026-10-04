@@ -25,7 +25,11 @@ from lib.control_evidence_assurance import (
 class ControlEvidenceAssuranceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.measured_path = next((ROOT / "status/measured-l1-results/joku-dev__ha-CPsWMS").glob("*.json"))
+        # This fixture has matching typed SBOM and scan evidence below. Pin it
+        # explicitly so filesystem-dependent glob order cannot select a later run.
+        cls.measured_path = (
+            ROOT / "status/measured-l1-results/joku-dev__ha-CPsWMS/run-35241262722-attempt-1.json"
+        )
         cls.measured = json.loads(cls.measured_path.read_text(encoding="utf-8"))
         cls.verified_at = "2026-09-16T18:00:00Z"
 
