@@ -151,12 +151,38 @@ def validate_spdx(raw: bytes, repository: str) -> dict:
         raise ValueError("SBOM contains no dependency packages")
     if not all(isinstance(item, dict) and item.get("name") and item.get("SPDXID") for item in packages):
         raise ValueError("SBOM contains a malformed package entry")
-    identifiers = {item.get("SPDXID") for item in packages}
-    if "SPDXRef-Repository" not in identifiers:
+    relationships = document.get("relationships")
+    if isinstance(relationships, list):
+        described_ids = {
+            item.get("relatedSpdxElement")
+            for item in relationships
+            if isinstance(item, dict)
+            and item.get("spdxElementId") == "SPDXRef-DOCUMENT"
+            and item.get("relationshipType") == "DESCRIBES"
+        }
+    else:
+        described_ids = set()
+    described_packages = [item for item in packages if item.get("SPDXID") in described_ids]
+    if not described_packages:
         raise ValueError("SBOM does not identify the repository root package")
-    root = next(item for item in packages if item.get("SPDXID") == "SPDXRef-Repository")
-    expected_root_name = f"github/{repository}".casefold()
-    if str(root.get("name", "")).casefold() != expected_root_name:
+    expected_names = {f"github/{repository}".casefold(), f"com.github.{repository}".casefold()}
+    expected_purl_prefix = f"pkg:github/{repository}@".casefold()
+    matching_roots = []
+    for package in described_packages:
+        name_matches = str(package.get("name", "")).casefold() in expected_names
+        external_refs = package.get("externalRefs")
+        if not isinstance(external_refs, list):
+            external_refs = []
+        purl_matches = any(
+            isinstance(reference, dict)
+            and reference.get("referenceType") == "purl"
+            and isinstance(reference.get("referenceLocator"), str)
+            and reference["referenceLocator"].casefold().startswith(expected_purl_prefix)
+            for reference in external_refs
+        )
+        if name_matches or purl_matches:
+            matching_roots.append(package)
+    if len(matching_roots) != 1:
         raise ValueError("SBOM repository identity does not match the requested repository")
     return document
 
