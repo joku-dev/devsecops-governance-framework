@@ -11,8 +11,8 @@ The [v0.2.0 adoption/operations release](docs/releases/v0.2.0-public-adoption.md
 packages the controlled pilot state and publication downloads; its release
 statement explains publication status and separate baseline pins.
 
-The current accepted governance results, measured ha-CPsWMS evidence and the
-real staging deployment from 18 September 2026 are recorded in the
+The dated operating observations, current-state source links, measured
+ha-CPsWMS evidence and historical staging deployment are recorded in the
 [current platform state](docs/operations/status/current-governance-platform-state.md).
 
 For current pilot and central operations, start with the
@@ -150,7 +150,7 @@ The addendum keeps the original framework document as the normative reference an
 - `governance-framework-demo-consumer` is the neutral public reference consumer for first adoption validation.
 - Platform-neutral evidence generation, validation and bundle intake support adapter paths for GitHub Actions, Bamboo with Bitbucket Data Center, Bitbucket Pipelines, Jenkins and GitLab CI. The non-GitHub paths are reference implementations that require environment-specific integration and validation.
 
-Current accepted ha-CPsWMS governance runs are DevSecOps
+Historical accepted ha-CPsWMS reference runs from 19 September are DevSecOps
 [`35428988040`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35428988040)
 and architecture
 [`35428987695`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/35428987695).
@@ -161,6 +161,18 @@ per-control assurance projection. The real staging deployment of the same
 application commit `dc303dcdabb3` adds 19 passed runtime checks. A governance
 PASS remains distinct from open scanner findings, replay deviations and
 production approval.
+
+The [current-state overview](docs/operations/status/current-governance-platform-state.md)
+records the 3 October documentation observation and links to the authoritative
+accepted indexes. The separate demo-consumer lifecycle case is now closed;
+newly captured ha-CPsWMS container SBOM evidence reaches `provenance_verified`.
+Neither statement grants production approval or retroactively promotes old evidence.
+The [Closed-Loop Governance reading map](docs/operations/evidence/governance-lifecycle-overview.md)
+distinguishes the kernel, synthetic scenarios and the two separately accepted pilots.
+After that 3 October observation, PR #200 delivered read-only Lifecycle Next Step
+guidance in the viewer, and PR #178 delivered the commit-bound repository SBOM
+export. Neither grants production approval or changes the accepted governance
+scope.
 
 ## AI And Agent Navigation
 

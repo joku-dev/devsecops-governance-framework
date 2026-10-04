@@ -141,6 +141,36 @@
             "additionalProperties": false
           }
         },
+        "custody_record": {
+          "type": "object",
+          "required": ["collector", "collected_at", "raw_digest", "raw_artifacts", "normalized_digest", "transformations"],
+          "properties": {
+            "collector": { "type": "string", "minLength": 1 },
+            "collected_at": { "type": "string", "format": "date-time" },
+            "raw_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "raw_artifacts": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "object",
+                "required": ["artifact_id", "sha256"],
+                "properties": {
+                  "artifact_id": { "type": "string", "minLength": 1 },
+                  "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+                },
+                "additionalProperties": false
+              }
+            },
+            "normalized_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "transformations": {
+              "type": "array",
+              "minItems": 5,
+              "items": { "enum": ["download_github_actions_artifacts", "verify_zip_metadata_and_sha256", "extract_selected_members", "verify_subject_hashes", "normalize_typed_evidence"] },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        },
         "errors": {
           "type": "array",
           "items": {

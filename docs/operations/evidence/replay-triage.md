@@ -69,24 +69,29 @@ run, artifact, and shared subject identifiers where a relationship exists.
 
 ## Current Repository Interpretation
 
-At the 17 September 2026 projection the ledger contains 44 Trust-bearing
-assessments: six recorded failures, five failures under the current rules and
-two superseded legacy assessments. Two official-latest findings remain. The
-ha-CPsWMS DevSecOps result `35131186298` has cross-commit reuse without enough
-artifact binding. Typed vulnerability result `35241262722` is also flagged
-because vulnerability and SBOM records in the same run bind different typed
-subject content. Their passing control or integrity outcomes do not clear the
-separate replay interpretation.
+Replay Triage uses `capture.evidence_type` to scope same-context mutation
+comparisons when both snapshots declare a type. Reuse across different types
+is still compared for shared digests; a changed subject set within the same
+evidence type and run context remains a content conflict. If either snapshot
+lacks a type, the projection retains the legacy same-context comparison.
+Historical snapshots and their recorded checks are not rewritten.
+
+The previous typed-evidence finding for vulnerability and SBOM records in one
+producer run was caused by comparing different evidence types as one replay
+context. The updated projection should classify their shared image subjects as
+compatible reuse, while preserving same-type mutation findings. This remains a
+report-only interpretation and does not change Trust levels or governance
+outcomes.
 
 The neutral demo's current DevSecOps run `34778861276` has passing recorded
 and recalculated replay checks. Historical run `29636320472` still demonstrates
 safe deterministic report reuse with artifact binding, while `29603835297`
 retains the earlier cross-commit finding. No historical snapshot was changed.
 
-The typed-evidence relationship requires operator review of the replay subject
-model; it is not proof that either verified artifact was altered. Use the JSON
-projection and its source timestamp for later observations rather than assuming
-these counts remain constant.
+Use the generated JSON projection and its source timestamp for current
+observations rather than assuming earlier counts remain constant. Any finding
+still marked `same_context_content_conflict` within one evidence type remains
+actionable and should be investigated.
 
 ## Operator Workflow
 

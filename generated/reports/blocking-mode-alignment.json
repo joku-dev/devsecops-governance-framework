@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "projection_type": "blocking-mode-alignment",
-  "generated_at": "2026-09-19T07:51:04.397671Z",
+  "generated_at": "2026-10-03T05:58:03.335579Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "alignment_status": "controlled",
@@ -64,9 +64,7 @@
       "blocking_activation_valid": false,
       "gap_ids": [
         "accountable_approval",
-        "minimum_trust_level",
-        "replay_check_clean",
-        "trust_checks_clean"
+        "minimum_trust_level"
       ],
       "risk_record_ref": "model/enforcement/blocking-mode-alignment.yaml#joku-dev/ha-CPsWMS",
       "review_due": "2026-12-12T22:59:59Z",

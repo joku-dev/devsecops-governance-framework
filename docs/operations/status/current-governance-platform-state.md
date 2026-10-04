@@ -2,6 +2,44 @@
 
 ## Observation Scope
 
+Documentation observation: **3 October 2026**, source commit
+`46b33429a6f271273e33508f26275ed8ba7f1f2c`. This is a dated read-only summary,
+not a new evaluation. The September sections below are retained reference
+observations, not assertions that every source is still current.
+
+## October Observation And Authoritative Sources
+
+| Area | Observation at the source revision | Authoritative source for later checks |
+|---|---|---|
+| Separate consumer lifecycle | Operating acceptance confirmed/effective; `finding_state: closed`; 3 receipts and 4 action records; projection/evidence time `2026-10-03T10:58:04Z` | `status/governance-consumer-lifecycle.json` and `generated/reports/governance-consumer-lifecycle.md` |
+| ha-CPsWMS container SBOM Trust | Run `36997124065`, attempt 2, accepted snapshot `2026-10-02T19-56-16Z-run-36997124065-sbom.json`: `provenance_verified`; same-commit paired baseline and custody checks pass; attestation remains unevaluated | `status/typed-evidence-results/`, the typed-evidence index and [Evidence Trust](../evidence/evidence-trust-model.md#ha-cpswms-container-evidence) |
+| Main CI | Governance CI, CodeQL, Self-Security, Consumer Lifecycle Guard, latest Pages publication and Daily Operations succeeded | Latest GitHub Actions runs for the actual remote main commit |
+| Main protection | Active ruleset, one required approval, CODEOWNER/last-push review, five required checks, no configured bypass; force-push/deletion blocked; signed commits not required | Live GitHub ruleset `22622881`, not only the desired configuration file |
+| Self-security | [Run `37118684212`](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37118684212), observed `2026-10-03T11:08:18Z`: 8 pass / 8 fail (not evidenced). Two approvals and required signatures remain absent; other findings include unavailable settings/API access | Latest assessment artifact and its `observation.api_errors`; the versioned report still observes 19 September |
+| Releases and pending work | Published adoption release remains `v0.2.0-public-adoption`; v0.3.0, repository SBOM export (#178) and Lifecycle Next Step (#200) remain open PRs | Published releases and reviewed merges; an open PR is not delivered capability |
+
+## Changes After The 3 October Observation
+
+The table above is bound to source commit `46b33429`; it is not a live claim
+about later merges. PR #200 subsequently delivered the read-only Lifecycle Next
+Step viewer, and PR #178 delivered the commit-bound repository SBOM export.
+PRs #96, #177 and #194 also merged after the observation: the CodeQL action
+pins were updated, the baseline wrapper pin was aligned to an identical
+reusable-workflow file, and the portfolio projection now reflects the accepted
+October ha-CPsWMS runs. The published adoption release remains v0.2.0; PR #175
+is still a release proposal and requires a refreshed release review.
+
+The successful Self-Security job proves that the assessment ran, not that all
+criteria passed. `None`/unavailable security settings are not proof of disabled
+features. Do not substitute the older 14/16 versioned report for the fresh
+artifact or manually rewrite generated reports to hide missing observations.
+The two pilots remain manual and report-only. A closed demo finding and
+`provenance_verified` evidence do not accept scanner risks or approve production.
+For future observations, read the accepted indexes and live workflow artifacts
+first; old source dates are not refreshed by rebuilding documentation.
+
+## Historical September Reference
+
 This page describes the implemented operating model as checked on 18 September
 2026, including the live settings recorded by GCR-2026-094. The ha-CPsWMS
 governance observations, measured/typed evidence and real staging evidence were
@@ -166,7 +204,7 @@ Governance CI [35430841107](https://github.com/joku-dev/devsecops-governance-fra
 CodeQL [35430841133](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/35430841133),
 self-security [35430841091](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/35430841091)
 and Pages [35430841090](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/35430841090)
-succeeded for the preceding viewer commit. The current Self-Security `0.4.0`
+succeeded for the preceding viewer commit. The retained September Self-Security `0.4.0`
 assessment records 14 passing and 2 failing criteria (one critical, one high).
 Success means report generation and release-integrity verification worked; it
 does not resolve the independent reviewer or signed-main-change findings.

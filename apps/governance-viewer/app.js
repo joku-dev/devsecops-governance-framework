@@ -26,6 +26,29 @@
   const snapshotPath = (repo, s) => `status/measured-security-results/${repo.id.replace('/', '__')}/run-${s.run.id}-attempt-${s.run.attempt}.json`;
   const table = (labels, rows) => `<div class="table-scroll"><table><thead><tr>${labels.map(l => `<th scope="col">${esc(l)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
   function previous(repo) { return (repo.security_history || []).find(s => s.run.id !== repo.security?.run.id); }
+  const trustNames = {unverified:'Nachweis nicht verifiziert', integrity_verified:'Integrität verifiziert', provenance_verified:'Herkunft verifiziert', attested:'Kryptografisch attestiert'};
+  const trustLabel = level => trustNames[level] || 'Nachweisqualität nicht erfasst';
+  function reading(repo) {
+    const results = ['devsecops','architecture'].map(key => repo[key]);
+    const attention = results.some(r => ['fail','findings'].includes(String(r?.status).toLowerCase()) || r?.trust?.replay === 'fail') || Boolean(repo.security && (repo.security.counts.CRITICAL || repo.security.counts.HIGH)) || Boolean(repo.l1_assessment && (repo.l1_assessment.summary.gap || repo.l1_assessment.summary.partial || repo.l1_assessment.summary.findings));
+    const missing = results.some(r => !r);
+    const provenance = results.every(r => r && ['provenance_verified','attested'].includes(r.trust?.effective_level));
+    return {attention, missing, quality:missing || !provenance,
+      outcome:results.some(r => ['fail','findings'].includes(String(r?.status).toLowerCase())) ? 'Governance-Befunde offen' : missing ? 'Governance-Ergebnis fehlt' : results.every(r => String(r.status).toLowerCase()==='pass') ? 'Governance-Prüfungen bestanden' : 'Governance-Status unklar',
+      trust:missing ? 'Ergebnisnachweise fehlen' : provenance ? 'Herkunft in beiden Domänen verifiziert' : 'Herkunft nicht vollständig verifiziert'};
+  }
+  function decisionSummary(repo) {
+    const r=reading(repo);
+    return `<section class="panel decision-summary" aria-label="Zustand und Handlungsbedarf"><h2>Was bedeutet dieser Stand?</h2><div class="reading-grid"><div><span class="label">Governance-Ergebnis</span><strong>${esc(r.outcome)}</strong></div><div><span class="label">Nachweisqualität</span><strong>${esc(r.trust)}</strong><a href="${route(repo,'trust')}">Einzelprüfungen ansehen →</a></div><div><span class="label">Aktualität</span><strong>${age(repo.devsecops?.generated_at || repo.architecture?.generated_at)}</strong><small>Domänen können unterschiedliche Stände haben. Alter allein ist kein Freshness-Urteil.</small></div></div><p><strong>Nächster Schritt:</strong> ${r.attention?'Befunde und Nachweislücken prüfen.':r.quality?'Fehlende Ergebnisse oder Herkunftsprüfungen untersuchen.':'Neue Evidenz und Änderungen weiter beobachten.'}</p><p class="muted">Gespeicherter Stand; keine Produktionsfreigabe. Scanner-Befunde und Replay bleiben unabhängig vom Governance-PASS sichtbar.</p></section>`;
+  }
+  function casePanel() {
+    const c=dataModel.consumer_case;
+    if(!c?.available) return '<section class="panel"><h2>Closed-Loop-Pilot</h2><p>Fallzustand nicht verifiziert verfügbar. Daraus wird kein abgeschlossener Fall abgeleitet.</p></section>';
+    const names={closed:'Abgeschlossen',open:'Offen',needs_clarification:'Klärung erforderlich',inactive:'Betriebsannahme nicht wirksam',no_finding:'Kein Befund',not_observed:'Noch nicht beobachtet'};
+    const progressNames={pass:'Regel erfüllt',fail:'Regel nicht erfüllt',in_progress:'In Bearbeitung',completed:'Bearbeitung abgeschlossen'};
+    const events={observation:'Regel erneut geprüft',decision:'Behebungsentscheidung',progress:'Bearbeitungsfortschritt',closure:'Abschlussentscheidung'};
+    return `<section class="panel" id="closed-loop"><div class="panel-head"><h2>Closed-Loop-Pilot: ${esc(c.repository_id.split('/')[1])}</h2><span class="badge">${esc(names[c.finding_state] || 'Unbekannter Zustand')}</span></div><p>${esc(c.rule_id)} · ${date(c.as_of)} · ${c.effective?'Betriebsannahme wirksam':'Betriebsannahme nicht wirksam'} · manuell und report-only</p><p>Der Abschluss gilt nur für diesen Fall. Neue Fehler können wieder öffnen; keine kontinuierliche Überwachung oder automatische Behebung.</p><ol class="case-timeline">${c.timeline.map(t=>`<li><strong>${esc(events[t.kind] || t.kind)}</strong><span>${esc(progressNames[t.status] || t.status || '')} · ${esc(t.outcome==='eligible_for_pilot'?'Akzeptierter Pilotnachweis':t.outcome)}</span><small>${date(t.recorded_at)}</small><a href="${sourceURL(t.source_file)}">Gebundenen Nachweis öffnen ↗</a></li>`).join('')}</ol></section>`;
+  }
   function securityCards(repo) {
     const s = repo.security, before = previous(repo);
     if (!s) return '<div class="notice">Keine gemessenen Container-Scans erfasst. Daraus lässt sich keine Schwachstellenfreiheit ableiten.</div>';
@@ -33,9 +56,9 @@
     return `<div class="metrics">${metric('Kritische Meldungen', s.counts.CRITICAL, before ? `Vorher ${before.counts.CRITICAL} · Image-/Paketmeldungen` : 'Kein vorheriger Scan erfasst', 'critical')}${metric('Hohe Meldungen', s.counts.HIGH, before ? `Vorher ${before.counts.HIGH} · Image-/Paketmeldungen` : 'Kein vorheriger Scan erfasst', 'high')}${metric('Unterschiedliche CVE-IDs', unique, 'HIGH / CRITICAL über alle Images')}${metric('Erfolgreiche Tests', s.tests_passed, 'Im selben Lauf gemeldet', 'good')}</div>`;
   }
   function repositoryTable(repos) {
-    return table(['Repository', 'DevSecOps', 'Architektur', 'Container-Sicherheit', 'Erfasste Stände'], repos.map(repo => {
+    return table(['Repository', 'DevSecOps', 'Architektur', 'Nachweisqualität', 'Container-Sicherheit', 'Erfasste Stände'], repos.map(repo => {
       const s = repo.security;
-      return `<tr><td><a class="repo-name" href="${route(repo)}">${esc(repo.id.split('/')[1])} →</a><small>${esc(repo.id.split('/')[0])}</small></td><td>${badge(repo.devsecops?.status)}</td><td>${badge(repo.architecture?.status)}</td><td>${s ? `${badge(s.counts.CRITICAL ? 'critical' : s.counts.HIGH ? 'high' : 'Keine hohen / kritischen Meldungen')}<small>${count(s.counts.CRITICAL)} kritisch · ${count(s.counts.HIGH)} hoch</small>` : '<span class="muted">Nicht erfasst</span>'}</td><td><small>Governance: ${date(repo.devsecops?.generated_at || repo.architecture?.generated_at)}</small><small>Scan: ${date(s?.run.updated_at)}</small></td></tr>`;
+      return `<tr><td><a class="repo-name" href="${route(repo)}">${esc(repo.id.split('/')[1])} →</a><small>${esc(repo.id.split('/')[0])}</small></td><td>${badge(repo.devsecops?.status)}</td><td>${badge(repo.architecture?.status)}</td><td><a href="${route(repo,'trust')}">${esc(reading(repo).trust)}</a><small>Governance-Domänen; typisierte Evidenz separat</small></td><td>${s ? `${badge(s.counts.CRITICAL ? 'critical' : s.counts.HIGH ? 'high' : 'Keine hohen / kritischen Meldungen')}<small>${count(s.counts.CRITICAL)} kritisch · ${count(s.counts.HIGH)} hoch</small>` : '<span class="muted">Nicht erfasst</span>'}</td><td><small>Governance: ${date(repo.devsecops?.generated_at || repo.architecture?.generated_at)}</small><small>Scan: ${date(s?.run.updated_at)}</small></td></tr>`;
     }));
   }
   function actions(repos, includeRepositorySecurity = false) {
@@ -43,7 +66,7 @@
     const repositorySecurity = dataModel.repository_security;
     if (includeRepositorySecurity && repositorySecurity?.summary?.fail) items.push({title:'Governance-Repository: Security-Anforderungen bearbeiten', text:`${repositorySecurity.summary.fail} von ${repositorySecurity.summary.criteria} Kriterien offen · ${repositorySecurity.summary.critical_failures} kritisch · ${repositorySecurity.summary.high_failures} hoch.`, url:'#repository-security', label:'Repository Security öffnen'});
     for (const repo of repos) {
-      if (repo.l1_assessment) items.push({title:`${repo.id.split('/')[1]}: L1-Nachweislücken bearbeiten`, text:`${repo.l1_assessment.summary.gap} Kontrollen mit fehlenden Nachweisen · ${repo.l1_assessment.summary.partial} teilweise belegt.`, url:route(repo,'l1'), label:'Kontrollen und Nachweise öffnen'});
+      if (repo.l1_assessment && (repo.l1_assessment.summary.gap || repo.l1_assessment.summary.partial || repo.l1_assessment.summary.findings)) items.push({title:`${repo.id.split('/')[1]}: L1-Nachweislücken bearbeiten`, text:`${repo.l1_assessment.summary.gap} Kontrollen mit fehlenden Nachweisen · ${repo.l1_assessment.summary.partial} teilweise belegt.`, url:route(repo,'l1'), label:'Kontrollen und Nachweise öffnen'});
       if (repo.security && (repo.security.counts.CRITICAL || repo.security.counts.HIGH)) items.push({title:`${repo.id.split('/')[1]}: Sicherheitsbefunde bewerten`, text:`${repo.security.counts.CRITICAL} kritische und ${repo.security.counts.HIGH} hohe Image-/Paketmeldungen. Technische Bewertung ist keine Risikofreigabe.`, url:route(repo,'findings'), label:'Befunde untersuchen'});
       if (['devsecops','architecture'].some(d => repo[d]?.trust?.replay === 'fail')) items.push({title:`${repo.id.split('/')[1]}: Replay-Befund prüfen`, text:'Das Governance-Ergebnis und die Prüfung der Nachweisherkunft sind getrennte Signale.', url:'#evidence/replay', label:'Replay-Prüfung öffnen'});
       if (['devsecops','architecture'].some(d => ['fail','findings'].includes(String(repo[d]?.status).toLowerCase()))) items.push({title:`${repo.id.split('/')[1]}: Governance-Befunde bearbeiten`, text:'Mindestens ein erfasster Governance-Bereich enthält Befunde.', url:route(repo), label:'Ergebnisse ansehen'});
@@ -53,29 +76,34 @@
   function overview() {
     const repos = dataModel.repositories, measured = repos.filter(r => r.security), primary = repos.find(r => r.id === 'joku-dev/ha-CPsWMS') || repos[0];
     const critical = measured.reduce((n,r) => n+r.security.counts.CRITICAL,0), high = measured.reduce((n,r) => n+r.security.counts.HIGH,0);
+    const attention=repos.filter(r=>reading(r).attention), quality=repos.filter(r=>reading(r).quality), c=dataModel.consumer_case;
+    const closed=c?.available && c.effective && c.finding_state==='closed' ? 1 : 0;
     const affected = repos.filter(r => ['devsecops','architecture'].some(d => ['fail','findings'].includes(String(r[d]?.status).toLowerCase()))).length;
     content.innerHTML = heading('Portfolio · gespeicherter Stand', 'Governance im Überblick', 'Ergebnisse einordnen, offene Befunde erkennen und den passenden Nachweis finden.', primary ? `<a class="button primary" href="${route(primary)}">${esc(primary.id.split('/')[1])} öffnen →</a>` : '') +
-      `<div class="metrics">${metric('Repositories', repos.length, `${measured.length} mit gemessenen Container-Scans`)}${metric('Kritische Meldungen', measured.length ? critical : null, 'Nur erfasste Container-Scans', 'critical')}${metric('Hohe Meldungen', measured.length ? high : null, 'Image-/Paketmeldungen, nicht eindeutige CVEs','high')}${metric('Governance mit Befunden', affected, 'Repositories mit FAIL oder FINDINGS')}</div>
+      `<div class="priority-grid"><a class="priority-card" href="#repositories/attention"><span>Handlungsbedarf</span><strong>${count(attention.length)}</strong><small>Repositories mit Befunden oder Nachweislücken →</small></a><a class="priority-card" href="#repositories/quality"><span>Herkunft prüfen</span><strong>${count(quality.length)}</strong><small>Ergebnisnachweise fehlen oder Herkunft ist nicht vollständig verifiziert →</small></a><a class="priority-card" href="#cases"><span>Abgeschlossene Pilotfälle</span><strong>${c?.available?count(closed):'—'}</strong><small>Separat abgenommener Consumer-Scope; kein Portfolio-Gesamtnachweis →</small></a></div><div class="metrics">${metric('Repositories', repos.length, `${measured.length} mit gemessenen Container-Scans`)}${metric('Kritische Meldungen', measured.length ? critical : null, 'Nur erfasste Container-Scans', 'critical')}${metric('Hohe Meldungen', measured.length ? high : null, 'Image-/Paketmeldungen, nicht eindeutige CVEs','high')}${metric('Governance mit Befunden', affected, 'Repositories mit FAIL oder FINDINGS')}</div>
       <div class="grid-two"><section class="panel"><div class="panel-head"><h2>Was Aufmerksamkeit braucht</h2><span class="badge">Aus Ergebnissen abgeleitet</span></div>${actions(repos,true)}</section><section class="panel"><h2>Den Stand richtig lesen</h2><ul class="scope-list"><li><div>Governance<small>Bewertung gegen die jeweilige Baseline</small></div><span class="badge">Eigener Status</span></li><li><div>Repository Security<small>Schutz des Governance-Repositories</small></div><span class="badge">Report-only</span></li><li><div>Container-Sicherheit<small>Tatsächliche Scanner-Meldungen</small></div><span class="badge">Report-only</span></li><li><div>Nachweisqualität<small>Integrität und Replay separat prüfen</small></div><span class="badge">Eigene Prüfung</span></li></ul><div class="notice">Ein Governance-PASS bedeutet nicht schwachstellenfrei oder für Produktion freigegeben.</div><p class="muted">Es werden gespeicherte Ergebnisse gezeigt. Fehlende Scans zählen nicht als null Befunde.</p></section></div>
       <section class="panel"><div class="panel-head"><h2>Repositories im Vergleich</h2><a href="#repositories">Alle ansehen →</a></div>${repositoryTable(repos)}</section>`;
   }
-  function repositories() {
-    content.innerHTML = heading('Portfolio', 'Repositories', 'Offizielle Mainline-Ergebnisse und gemessene Sicherheit je Repository.') + `<section class="panel"><div class="filters"><label class="search">Repository suchen<input id="repo-search" type="search" placeholder="Name oder Organisation"></label></div><div id="repo-results">${repositoryTable(dataModel.repositories)}</div></section>`;
-    document.getElementById('repo-search').addEventListener('input', e => {
-      const matches = dataModel.repositories.filter(r => r.id.toLowerCase().includes(e.target.value.toLowerCase()));
-      document.getElementById('repo-results').innerHTML = matches.length ? repositoryTable(matches) : '<p class="empty">Keine passenden Repositories.</p>';
-    });
+  function repositories(filter = 'all') {
+    const selected=['all','attention','quality'].includes(filter)?filter:'all';
+    content.innerHTML = heading('Portfolio', 'Repositories', 'Ergebnis, Nachweisqualität und Erfassungszeit getrennt lesen.') + `<section class="panel"><div class="filters"><label class="search">Repository suchen<input id="repo-search" type="search" placeholder="Name oder Organisation"></label><label>Ansicht<select id="repo-filter"><option value="all">Alle Repositories</option><option value="attention">Handlungsbedarf</option><option value="quality">Herkunft prüfen</option></select></label></div><p class="muted">„Herkunft prüfen“ ist eine Leshilfe zum mittelfristigen Provenance-Ziel, kein neues Compliance-Gate. Fehlende Container-Scans bedeuten keine Schwachstellenfreiheit.</p><div id="repo-results"></div></section>`;
+    const search=document.getElementById('repo-search'), picker=document.getElementById('repo-filter'); picker.value=selected;
+    function draw() {
+      const matches=dataModel.repositories.filter(r=>r.id.toLowerCase().includes(search.value.toLowerCase()) && (picker.value==='all'||reading(r)[picker.value==='attention'?'attention':'quality']));
+      document.getElementById('repo-results').innerHTML=`<p role="status">${matches.length} passende Repositories</p>`+(matches.length?repositoryTable(matches):'<p class="empty">Keine passenden Repositories. Filter oder Suche anpassen.</p>');
+    }
+    search.addEventListener('input',draw);picker.addEventListener('change',draw);draw();
   }
   function governanceCard(repo, key, title) {
     const r = repo[key];
     if (!r) return `<section class="panel"><h2>${title}</h2><p class="muted">Kein offizielles Mainline-Ergebnis erfasst.</p></section>`;
     const summary = key === 'devsecops' ? r.control_evaluation_summary : r.architecture_summary;
     const text = key === 'devsecops' ? `${count(summary?.pass)} Kontrollen bestanden · ${count(summary?.fail)} fehlgeschlagen` : `${count(summary?.passed)} / ${count(summary?.gate_count)} Gates bestanden · ${count(summary?.finding_count)} Befunde`;
-    return `<section class="panel"><div class="panel-head"><h2>${title}</h2>${badge(r.status)}</div><p>${text}</p><p class="muted">${date(r.generated_at)} · ${age(r.generated_at)}</p><dl><dt>Baseline</dt><dd>${esc(r.governance_baseline_ref || r.architecture_baseline_ref)}</dd><dt>Commit</dt><dd><a href="${repoURL(repo.id)}/commit/${encodeURIComponent(r.commit_id)}"><code>${short(r.commit_id)}</code></a></dd><dt>Evidence Trust</dt><dd><a href="${route(repo,'trust')}">${esc(r.trust?.effective_level || 'nicht erfasst')} →</a></dd><dt>Replay</dt><dd>${badge(r.trust?.replay)}</dd></dl><a href="${runURL(repo.id,r.pipeline_run_id)}">Run ${esc(r.pipeline_run_id)} ↗</a> · <a href="${sourceURL(r.source_file)}">Snapshot ↗</a></section>`;
+    return `<section class="panel"><div class="panel-head"><h2>${title}</h2>${badge(r.status)}</div><p>${text}</p><p class="muted">${date(r.generated_at)} · ${age(r.generated_at)}</p><dl><dt>Baseline</dt><dd>${esc(r.governance_baseline_ref || r.architecture_baseline_ref)}</dd><dt>Commit</dt><dd><a href="${repoURL(repo.id)}/commit/${encodeURIComponent(r.commit_id)}"><code>${short(r.commit_id)}</code></a></dd><dt>Evidence Trust</dt><dd><a href="${route(repo,'trust')}">${esc(trustLabel(r.trust?.effective_level))} →</a></dd><dt>Replay</dt><dd>${badge(r.trust?.replay)}</dd></dl><a href="${runURL(repo.id,r.pipeline_run_id)}">Run ${esc(r.pipeline_run_id)} ↗</a> · <a href="${sourceURL(r.source_file)}">Snapshot ↗</a></section>`;
   }
   function summary(repo) {
     const s = repo.security;
-    return `<div class="grid-two">${governanceCard(repo,'devsecops','DevSecOps')}${governanceCard(repo,'architecture','Architektur')}</div>
+    return `${decisionSummary(repo)}<div class="grid-two">${governanceCard(repo,'devsecops','DevSecOps')}${governanceCard(repo,'architecture','Architektur')}</div>
       <section class="panel"><div class="panel-head"><h2>Gemessene Container-Sicherheit</h2><a href="${route(repo,'security')}">Images &amp; Vergleich →</a></div>${s ? `<p class="muted">${date(s.run.updated_at)} · Commit <code>${short(s.run.commit)}</code> · Report-only</p>` : ''}${securityCards(repo)}${s && [repo.devsecops,repo.architecture].some(r=>r && r.commit_id!==s.run.commit) ? '<div class="notice warn">Governance und Scan beziehen sich auf unterschiedliche Commits. Sie bilden keine gemeinsame Freigabe dieses Softwarestands.</div>' : ''}</section>
       ${l1Summary(repo)}${stagingSummary(repo)}<section class="panel"><h2>Nächste Prüfungen</h2>${actions([repo])}</section>`;
   }
@@ -176,10 +204,10 @@
       if(!t)return `<section class="panel trust-card"><h2>${title}</h2><p class="muted">Kein Evidence-Trust-Status erfasst. Fehlende Prüfungen gelten nicht als bestanden.</p></section>`;
       const level=t.effective_level || 'nicht erfasst';
       const explanation=level==='integrity_verified'?'Die Integrität der erfassten Nachweise wurde geprüft. Das ist keine vollständige Bestätigung aller Trust-Dimensionen.':level==='unverified'?'Für diese Nachweise liegt keine verifizierte Trust-Stufe vor.':'Die gespeicherte Trust-Stufe gilt für diesen Lauf; Einzelprüfungen und Grenzen im Quellnachweis beachten.';
-      return `<section class="panel trust-card" data-trust-domain="${key}"><div class="panel-head"><h2>${title}</h2><span class="badge">Report-only</span></div><p><strong>Evidence Trust</strong> · <code>${esc(level)}</code></p><p>${explanation}</p><dl><dt>Bewertet am</dt><dd>${date(t.verified_at)}</dd><dt>Commit</dt><dd><code>${short(r.commit_id)}</code></dd><dt>Prüfstatus</dt><dd>${esc(t.assessment_status || 'nicht erfasst')}</dd><dt>Replay</dt><dd>${badge(t.replay)}</dd></dl>
-        ${table(['Einzelprüfungen','Anzahl'],[['Bestanden',t.check_summary?.pass],['Fehlgeschlagen',t.check_summary?.fail],['Nicht bewertet',t.check_summary?.not_evaluated]].map(([label,n])=>`<tr><td>${label}</td><td>${count(n)}</td></tr>`))}
+      return `<section class="panel trust-card" data-trust-domain="${key}"><div class="panel-head"><h2>${title}</h2><span class="badge">Report-only</span></div><p><strong>${esc(trustLabel(level))}</strong> · <code>${esc(level)}</code></p><p>${explanation}</p><dl><dt>Bewertet am</dt><dd>${date(t.verified_at)}</dd><dt>Commit</dt><dd><code>${short(r.commit_id)}</code></dd><dt>Prüfstatus</dt><dd>${esc(t.assessment_status || 'nicht erfasst')}</dd><dt>Replay</dt><dd>${badge(t.replay)}</dd></dl>
+        <p>${count(t.check_summary?.fail)} Prüfungen fehlgeschlagen · ${count(t.check_summary?.not_evaluated)} nicht bewertet. Die fehlenden Einzelprüfungen stehen im Quellnachweis; ihr Zweck wird nicht geraten.</p><details><summary>Technische Einzelprüfungen und Quellen</summary>${table(['Einzelprüfungen','Anzahl'],[['Bestanden',t.check_summary?.pass],['Fehlgeschlagen',t.check_summary?.fail],['Nicht bewertet',t.check_summary?.not_evaluated]].map(([label,n])=>`<tr><td>${label}</td><td>${count(n)}</td></tr>`))}
         ${t.replay==='fail'?'<div class="notice warn">Replay-Befund offen: Die verifizierte Integrität hebt diesen Befund nicht auf. <a href="#evidence/replay">Replay-Abweichung ansehen →</a></div>':''}
-        <p><a href="${runURL(repo.id,r.pipeline_run_id)}">Run ${esc(r.pipeline_run_id)} ↗</a> · <a href="${sourceURL(r.source_file)}">Snapshot mit allen Trust-Prüfungen ↗</a></p><p class="muted">Gespeicherte Bewertung zum angegebenen Zeitpunkt; keine Aussage über heutige Freshness oder Produktionsfreigabe.</p></section>`;
+        <p><a href="${runURL(repo.id,r.pipeline_run_id)}">Run ${esc(r.pipeline_run_id)} ↗</a> · <a href="${sourceURL(r.source_file)}">Snapshot mit allen Trust-Prüfungen ↗</a></p><p class="muted">Gespeicherte Bewertung zum angegebenen Zeitpunkt; keine Aussage über heutige Freshness oder Produktionsfreigabe.</p></details></section>`;
     }).join('');
     const q=assuranceFor(repo,repo.l1_assessment);
     const d=repo.staging_deployment;
@@ -217,14 +245,36 @@
   };
   function workspaceTabs(group, tab) {
     const sections = (dataModel.technical?.sections || []).filter(s => s.group === group);
-    const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : sections;
+    const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : group === 'operations' ? [...sections, {tab:'lifecycle',title:'Lifecycle-Nächster Schritt'}] : sections;
     return `<nav class="tabs workspace-tabs" aria-label="${groupNames[group]}-Bereiche">${entries.map(s=>`<a href="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'aria-current="page"':''}>${esc(s.title)}</a>`).join('')}</nav><label class="section-picker">Bereich auswählen<select id="section-picker">${entries.map(s=>`<option value="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'selected':''}>${esc(s.title)}</option>`).join('')}</select></label>`;
+  }
+  function lifecycleNextStepView() {
+    const model=dataModel.consumer_lifecycle_next_step;
+    if(!model) {
+      content.insertAdjacentHTML('beforeend','<section class="panel"><div class="notice warn">Der Consumer-Lifecycle-Status ist nicht verfügbar. Fehlende Daten gelten nicht als geschlossen.</div></section>');
+      return;
+    }
+    const s=model.next_step, counts=model.counts;
+    const links=(items)=>items.map(item=>`<a href="${esc(item.url)}">${esc(item.label)} ↗</a>`).join(' · ');
+    const history=model.history.map(item=>`<tr><td>${date(item.recorded_at)}</td><td>${esc(item.kind)}</td><td>${esc(item.detail)}</td><td>${badge(item.status)}</td><td>${links(item.links)}</td></tr>`);
+    content.insertAdjacentHTML('beforeend',`
+      <section class="panel"><div class="panel-head"><h2>${esc(s.title)}</h2>${badge(model.finding_state)}</div>
+        <div class="notice">${esc(s.detail)}</div>
+        <dl><dt>Consumer</dt><dd>${esc(model.scope.repository_id)}</dd><dt>Regel</dt><dd><code>${esc(model.scope.rule_id)}</code></dd><dt>Erzwingung</dt><dd>${esc(model.enforcement)}</dd><dt>Indexstand</dt><dd>${date(model.as_of)}</dd></dl>
+        <div class="metrics">${metric('Receipts',counts.receipts,'Akzeptierte Observationen')}${metric('Aktionen',counts.actions,'Persönlich gebundene Aktionen')}${metric('Historische Fehler',counts.failures,'Im Ledger erhalten')}${metric('Quarantäne',counts.quarantined,'Muss vor Aktionen geklärt werden')}</div>
+        <p><strong>Nächste Operation:</strong> ${s.operation?`<code>${esc(s.operation)}</code>`:'Keine offen'}</p><p>${links(s.links)}</p>
+        <p><a href="${esc(model.source_url)}">Offiziellen Lifecycle-Index öffnen ↗</a></p>
+        <p class="muted">Read-only-Hinweis aus dem akzeptierten Ledger. Er erteilt keine Zustimmung, führt keinen Workflow aus und ersetzt nicht die Frische- und Rollenprüfung beim Intake.</p>
+      </section>
+      <section class="panel"><div class="panel-head"><h2>Beleg- und PR-Verlauf</h2><span class="badge">${count(model.history.length)} Einträge</span></div>${table(['Zeit','Typ','Schritt','Status','Direktlinks'],history)}</section>`);
   }
   function technicalView(group, tab) {
     const section = (dataModel.technical?.sections || []).find(s => s.group === group && s.tab === tab);
-    if (!(group === 'evidence' && tab === 'summary') && !section) { notFound(); return; }
-    content.innerHTML = heading(groupNames[group], tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
+    const lifecyclePage=group==='operations'&&tab==='lifecycle';
+    if (!(group === 'evidence' && tab === 'summary') && !section && !lifecyclePage) { notFound(); return; }
+    content.innerHTML = heading(groupNames[group], lifecyclePage?'Lifecycle-Nächster Schritt':tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
     document.getElementById('section-picker')?.addEventListener('change', e => {location.hash=e.target.value;});
+    if(lifecyclePage){lifecycleNextStepView();return;}
     if (group==='evidence' && tab==='summary') {
       content.insertAdjacentHTML('beforeend', evidence(dataModel.repositories));
       return;
@@ -244,13 +294,14 @@
     try { parts=(location.hash.slice(1)||'overview').split('/').map(decodeURIComponent); } catch { parts=['invalid']; }
     const alias=(dataModel.technical?.sections || []).find(s=>s.id===parts[0]);
     if(alias && parts[0]!=='overview' && !parts[1]) parts=[alias.group,alias.tab];
-    const view=parts[0], names={overview:'Übersicht',repositories:'Repositories',repository:'Repositories',findings:'Befunde','repository-security':'Repository Security',evidence:'Nachweise',governance:'Governance',operations:'Betrieb'};
-    document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===(view==='repository'?'repositories':view))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
+    const view=parts[0], names={overview:'Übersicht',cases:'Betrieb',repositories:'Repositories',repository:'Repositories',findings:'Befunde','repository-security':'Repository Security',evidence:'Nachweise',governance:'Governance',operations:'Betrieb'};
+    document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===(view==='repository'?'repositories':view==='cases'?'operations':view))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     document.getElementById('breadcrumb').textContent=names[view]||'Seite nicht gefunden';
     document.title=(names[view]||'Seite nicht gefunden')+' · Governance Workspace';
     Object.assign(uiState,{page:0,query:'',severity:'all',image:'all',repo:'all'});
     if(view==='overview')overview();
-    else if(view==='repositories')repositories();
+    else if(view==='repositories')repositories(parts[1]);
+    else if(view==='cases')content.innerHTML=heading('Betrieb','Closed-Loop-Fallverlauf','Verifizierte Historie des separat abgenommenen Consumer-Piloten.')+casePanel();
     else if(view==='repository') {const repo=dataModel.repositories.find(r=>r.id===parts[1]);if(repo)repository(repo,parts[2]||'summary');else notFound();}
     else if(view==='findings'){content.innerHTML=heading('Sicherheit','Befunde','Gemessene Container-Befunde durchsuchen und die weitere Prüfung vorbereiten.')+findings(dataModel.repositories);bindFindings(dataModel.repositories);}
     else if(view==='repository-security')repositorySecurity();

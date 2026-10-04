@@ -14,6 +14,8 @@ on:
       - "scripts/generate_status_viewer.py"
       - "scripts/lib/viewer_app.py"
       - "scripts/lib/viewer_technical.py"
+      - "scripts/lib/viewer_experience.py"
+      - "scripts/lib/consumer_lifecycle_next_step.py"
       - "scripts/lib/measured_security*.py"
       - "scripts/lib/measured_l1.py"
       - "schemas/measured-l1-assessment.schema.json"
@@ -56,6 +58,11 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.11"
+
+      - name: Set up OPA
+        uses: open-policy-agent/setup-opa@b2b258e089860efaadaaf71bf6e3aecb4a3eeff1 # v2.4.0
+        with:
+          version: 1.18.2
 
       - name: Install MkDocs
         run: |
