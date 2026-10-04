@@ -40,7 +40,7 @@ It is intended for:
 - Pilot runbook: `docs/onboarding/pilot-runbook.md`
 - Public quickstart: `docs/onboarding/public-repo-quickstart.md`
 - Validated neutral demo consumer: `docs/onboarding/validated-demo-consumer.md`
-- Adoption/operations release: `docs/releases/v0.2.0-public-adoption.md`
+- Adoption/operations release: `docs/releases/v0.3.0-public-adoption.md`
 - Reading compass for new team members: `docs/lesekompass.md`
 - Role-based documentation paths: `docs/paths/index.md`
 - AI navigation index: `docs/ai-index.md`
@@ -155,7 +155,8 @@ It is intended for:
 ## Release Documents
 
 - Release overview: `docs/releases/index.md`
-- Operational pilot repository release v0.2.0: `docs/releases/v0.2.0-public-adoption.md`
+- Operational assurance repository release v0.3.0: `docs/releases/v0.3.0-public-adoption.md`
+- Historical operational pilot repository release v0.2.0: `docs/releases/v0.2.0-public-adoption.md`
 - Historical public adoption release v0.1.0: `docs/releases/v0.1.0-public-adoption.md`
 - Release and migration model: `docs/releases/release-and-migration-model.md`
 - Release publication checklist: `docs/releases/release-publication-checklist.md`

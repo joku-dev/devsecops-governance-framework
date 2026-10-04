@@ -1,0 +1,76 @@
+WARNING: The directory '/Users/joku/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+No broken requirements found.
+Validation toolchain ready (OPA 1.18.2).
+Runtime governance validation passed
+- expected markers: 41
+- schema checks: 9
+- architecture requirements: 14
+- OPA release-readiness example: passed
+Validation passed
+- controls: 46
+- L1: 16
+- L2: 14
+- L3: 11
+- GOV: 5
+- traceability mappings: 46
+- registered source documents: 21
+- policy candidates: 31
+Evidence agent provenance validation passed
+........................................................................................................error: --provider-review must name a real provider such as codex or mistral
+..........................................................Governance Agent Dispatch
+
+Changed files:
+- docs/operations/agents/agent-usage-tracking.md
+
+Selected agents:
+- repo-steward
+
+Release impact: none
+
+Required validation:
+- git diff --check
+Wrote index.json
+Wrote index.json
+Wrote /var/folders/wf/8lmbldz92y70rsrs9csmmlsc0000gr/T/tmps_9osaqy/summary.json
+Wrote /var/folders/wf/8lmbldz92y70rsrs9csmmlsc0000gr/T/tmps_9osaqy/snapshot.md
+- events: 1
+...............................................................................................................................................................................................................E...................................................Opened operational review: https://github.com/owner/repo/pull/1
+.......................................Opened operational review: https://github.com/owner/repo/pull/1
+.Opened operational review: https://github.com/owner/repo/pull/1
+...No operational changes to propose.
+Opened operational review: https://github.com/owner/repo/pull/1
+.Opened operational review: https://github.com/owner/repo/pull/1
+Opened operational review: https://github.com/owner/repo/pull/1
+.................................warning: GitHub run metadata unavailable; recording the failed attempt with fallback identity
+................................................................Wrote index.json
+Wrote index.json
+Self-security review: https://github.com/owner/repo/pull/7
+...Self-security review: https://github.com/owner/repo/pull/7
+Self-security review: https://github.com/owner/repo/pull/7
+..............No material self-security change; observation timestamp is not proposed.
+.............................................................
+======================================================================
+ERROR: test_merge_prefix_protects_accepted_role_and_profile_bytes (test_lifecycle_live_preparation.LivePreparationTests.test_merge_prefix_protects_accepted_role_and_profile_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/joku/Development/devsecops-governance-framework/tests/test_lifecycle_live_preparation.py", line 100, in test_merge_prefix_protects_accepted_role_and_profile_bytes
+    git("add", "."); git("commit", "-m", "accepted preparation")
+                     ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joku/Development/devsecops-governance-framework/tests/test_lifecycle_live_preparation.py", line 98, in git
+    return subprocess.check_output(["git", *args], cwd=root, text=True, stderr=subprocess.DEVNULL).strip()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/usr/local/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', 'commit', '-m', 'accepted preparation']' returned non-zero exit status 128.
+
+----------------------------------------------------------------------
+Ran 640 tests in 335.892s
+
+FAILED (errors=1)
+Wrote index.json

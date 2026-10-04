@@ -1,0 +1,3 @@
+# Preserve generated document/archive bytes and avoid textual whitespace checks.
+*.pdf binary
+*.zip binary

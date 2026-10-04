@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="491.27559055118115" height="325" preserveAspectRatio="xMinYMin meet" viewBox="0 0 491 325" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="491.27559055118115" height="325"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-325)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="8" y="307" style="font-family: BodyBold; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,614) scale(1,-1)">Entwurf einer Übertragung auf Agentensysteme - noch nicht implementiert</text>
+			<rect x="8" y="230" width="147" height="50" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="55.4685791015625" y="267.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,534) scale(1,-1)">Agent / LLM</text>
+			<text x="27.630932617187497" y="255.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,510) scale(1,-1)">liefert konkreten Vorschlag</text>
+			<text x="36.4732177734375" y="243.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,486) scale(1,-1)">keine eigene Freigabe</text>
+			<rect x="185" y="230" width="145" height="50" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="193.7755615234375" y="267.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,534) scale(1,-1)">Vertrauenswürdiges Gateway</text>
+			<text x="207.170068359375" y="255.0" style="font-family: Body; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,510) scale(1,-1)">fixiert Aktion und Kontext</text>
+			<text x="220.4534912109375" y="243.0" style="font-family: Body; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,486) scale(1,-1)">H / Z / I + Request</text>
+			<rect x="360" y="230" width="123" height="50" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="390.9008056640625" y="267.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,534) scale(1,-1)">Freigabestelle</text>
+			<text x="376.4798828125" y="255.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,510) scale(1,-1)">prüft konkreten Antrag</text>
+			<text x="390.13876953125" y="243.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,486) scale(1,-1)">bestätigt Digest</text>
+			<path d="M 155,255 L 185,255 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="185 255, 179.4736 257.3365, 179.4736 252.6635" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<path d="M 330,263 L 360,263 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="360 263, 354.4736 265.3365, 354.4736 260.6635" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<path d="M 360,246 L 330,246 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="330 246, 335.5264 243.6635, 335.5264 248.3365" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<rect x="185" y="134" width="145" height="56" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="205.4171630859375" y="174.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,348) scale(1,-1)">Gateway vor Tool-Effekt</text>
+			<text x="204.379638671875" y="162.0" style="font-family: Body; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,324) scale(1,-1)">Antrag und Kontext prüfen</text>
+			<text x="215.2703125" y="150.0" style="font-family: Body; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,300) scale(1,-1)">Zielversion mitführen</text>
+			<path d="M 258,230 L 258,190 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="258 190, 260.3365 195.5264, 255.6635 195.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<rect x="185" y="43" width="298" height="52" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="279.635498046875" y="81.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,162) scale(1,-1)">Kontrolliertes Zielsystem</text>
+			<text x="218.9281005859375" y="69.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,138) scale(1,-1)">z. B. Versionsvergleich und Mutation in einer Transaktion</text>
+			<text x="226.261865234375" y="57.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,114) scale(1,-1)">diese Effektkopplung ist zusätzlich zu implementieren</text>
+			<path d="M 258,134 L 258,95 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="258 95, 260.3365 100.5264, 255.6635 100.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="8" y="15" style="font-family: BodyItalic; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,30) scale(1,-1)">LLM-Ausgaben werden aufgezeichnet; ein deterministischer Replay ruft das Modell nicht neu auf.</text>
+		</g>
+	</g>
+</svg>

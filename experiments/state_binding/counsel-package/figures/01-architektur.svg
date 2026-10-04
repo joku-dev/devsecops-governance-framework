@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="491.27559055118115" height="362" preserveAspectRatio="xMinYMin meet" viewBox="0 0 491 362" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="491.27559055118115" height="362"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-362)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="8" y="296" width="150" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="29.390869140625" y="326.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,652) scale(1,-1)">110 Transaktionshistorie</text>
+			<text x="45.56025390625" y="314.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,628) scale(1,-1)">geordnete Dateien</text>
+			<rect x="8" y="210" width="150" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="42.294384765625" y="240.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,480) scale(1,-1)">130 History Root H</text>
+			<text x="49.110498046875" y="228.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,456) scale(1,-1)">Historienidentität</text>
+			<rect x="184" y="296" width="135" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="188.02216796875" y="326.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,652) scale(1,-1)">120 Deterministischer Replay</text>
+			<text x="200.1503173828125" y="314.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,628) scale(1,-1)">Kette und Zustand prüfen</text>
+			<rect x="184" y="210" width="135" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="215.850927734375" y="240.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,480) scale(1,-1)">130 State Root Z</text>
+			<text x="213.56259765625" y="228.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,456) scale(1,-1)">definierter Zustand</text>
+			<rect x="344" y="296" width="139" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="355.6008056640625" y="326.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,652) scale(1,-1)">Implementierungsmanifest</text>
+			<text x="363.170068359375" y="314.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,628) scale(1,-1)">ausgewählte Datei-Bytes</text>
+			<rect x="344" y="210" width="139" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="356.869384765625" y="240.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,480) scale(1,-1)">130 Implementation Root I</text>
+			<text x="358.8800048828125" y="228.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,456) scale(1,-1)">Umfang ausdrücklich fixiert</text>
+			<path d="M 158,320 L 184,320 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="184 320, 178.4736 322.3365, 178.4736 317.6635" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<path d="M 83,296 L 83,258 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="83 258, 85.33651 263.5264, 80.66349 263.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<path d="M 414,296 L 414,258 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="414 258, 416.3365 263.5264, 411.6635 263.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<rect x="184" y="128" width="135" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="193.8585205078125" y="158.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,316) scale(1,-1)">140 Antrag Q und Digest D</text>
+			<text x="213.0627197265625" y="146.0" style="font-family: Body; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,292) scale(1,-1)">Aktion, Rolle, Profil</text>
+			<path d="M 251,296 L 251,258 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="251 258, 253.3365 263.5264, 248.6635 263.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<path d="M 251,210 L 251,176 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="251 176, 253.3365 181.5264, 248.6635 181.5264" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<path d="M 114,210 L 184,164 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="184 164, 180.6647 168.9876, 178.0984 165.0823" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<path d="M 385,210 L 319,164 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="319 164, 324.8698 165.2431, 322.1978 169.0768" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<rect x="8" y="128" width="150" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="36.97568359375" y="158.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,316) scale(1,-1)">150 Freigabeprovider</text>
+			<text x="37.73994140625" y="146.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,292) scale(1,-1)">GitHub / Test-Provider</text>
+			<path d="M 184,156 L 158,156 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="158 156, 163.5264 153.6635, 163.5264 158.3365" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<path d="M 158,141 L 184,141 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="184 141, 178.4736 143.3365, 178.4736 138.6635" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<rect x="184" y="45" width="135" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="191.065869140625" y="75.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,150) scale(1,-1)">160 Prüfkern und 170 Writer</text>
+			<text x="197.24658203125" y="63.0" style="font-family: Body; font-size: 9.1px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,126) scale(1,-1)">lokale Sperre + Publikation</text>
+			<path d="M 251,128 L 251,93 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="251 93, 253.3365 98.52637, 248.6635 98.52637" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<rect x="344" y="45" width="139" height="48" rx="3" ry="3" style="stroke: rgb(49%,53%,56%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="366.471484375" y="75.0" style="font-family: BodyBold; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,150) scale(1,-1)">180 Nachweisprüfung</text>
+			<text x="359.881982421875" y="63.0" style="font-family: Body; font-size: 9.1px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,126) scale(1,-1)">Paket, Replay und Digests</text>
+			<path d="M 319,69 L 344,69 Z" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="344 69, 338.4736 71.33651, 338.4736 66.66349" style="stroke: rgb(14%,26%,35%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,26%,35%); fill-rule: evenodd;"/>
+			<text x="8" y="15" style="font-family: BodyItalic; font-size: 9px;fill: rgb(6%,6%,6%); stroke:none;" transform="translate(0,30) scale(1,-1)">Provider und Laufzeitvertrauen liegen außerhalb der lokalen Atomizitätsgarantie.</text>
+		</g>
+	</g>
+</svg>
