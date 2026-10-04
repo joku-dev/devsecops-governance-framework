@@ -20,7 +20,7 @@ REPO = "joku-dev/devsecops-governance-framework"
 # First commit that contains the complete producer file set with the digests
 # pinned by the immutable preparation profile.  The profile's older source
 # anchor predates the workflow file and therefore cannot serve as a fixture.
-FIXTURE_REFERENCE_COMMIT = "0890a0916f0efb2c3693d22f37a28d7feb2f7ada"
+FIXTURE_REFERENCE_COMMIT = "c2250325f34d938ea4f607036e003a36a3f2f9da"
 
 
 class LiveEvidenceTests(unittest.TestCase):
