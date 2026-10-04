@@ -160,6 +160,17 @@ artifact remains available even when no material change is proposed.
 
 ## Current Activation State
 
+Documentation observation on 3 October 2026 (source `46b33429`): main assessment
+[run `37118684212`](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37118684212)
+reported **8 pass / 8 fail (not evidenced)** at `2026-10-03T11:08:18Z`.
+The live ruleset requires one approval, not two, and no signed-commit rule.
+Other findings include unavailable security settings and HTTP 403 responses for
+administrative observation. Missing values are not evidence that those features
+are disabled. A successful report-only assessment job is not a clean security result.
+The versioned JSON/Markdown report still observes 19 September; use the latest
+workflow artifact and its API errors for a new live assessment. The following
+activation and hardening statements are dated historical observations.
+
 As of 2026-09-18, GitHub secret scanning, secret push protection, dependency
 alerts, automated security updates, and private vulnerability reporting are
 enabled. The versioned change adds
@@ -168,8 +179,8 @@ expanded CODEOWNERS, and the report-only self-security workflow.
 
 The initial assessment recorded 7 passing and 9 failing criteria. Refresh run
 `35315432116` and reviewed status PR #140 later recorded 13 passing and 3
-failing criteria. GCR-2026-102 verifies release integrity and brings the current
-profile to 14 passing and 2 failing criteria (`GRS-002`, `GRS-005`). Consult the
+failing criteria. GCR-2026-102 verifies release integrity; the retained September
+assessment records 14 passing and 2 failing criteria (`GRS-002`, `GRS-005`). Consult the
 latest workflow assessment artifact for the current live settings; the
 versioned report is a dated observation, not a general security certification.
 

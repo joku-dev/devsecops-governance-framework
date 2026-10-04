@@ -30,6 +30,35 @@ def replay_check(trust: dict) -> dict:
     )
 
 
+def evidence_type(trust: dict) -> str | None:
+    value = trust.get("capture", {}).get("evidence_type")
+    return value if isinstance(value, str) and value else None
+
+
+def distinct_typed_replay_context(left: dict, right: dict) -> bool:
+    """Different typed evidence in one producer run is not a mutation conflict."""
+    left_type, right_type = evidence_type(left), evidence_type(right)
+    return bool(
+        left_type
+        and right_type
+        and left_type != right_type
+        and replay_context(left) == replay_context(right)
+    )
+
+
+def replay_history_for_triage(current: dict, prior_rows: list[dict]) -> list[dict]:
+    """Exclude only cross-type, same-run pairs from the generic mutation check.
+
+    Those pairs are evaluated below as digest reuse. The producer's recorded
+    check and the fingerprinted result ledger remain unchanged.
+    """
+    return [
+        item["payload"]
+        for item in prior_rows
+        if not distinct_typed_replay_context(current, item["trust"])
+    ]
+
+
 def load_rows(snapshot_roots: dict[str, Path]) -> list[dict]:
     rows = []
     for domain, root in snapshot_roots.items():
@@ -68,8 +97,9 @@ def relationship(current: dict, prior: dict) -> dict | None:
     current_key, prior_key = replay_key(current_trust), replay_key(prior_trust)
     current_context, prior_context = replay_context(current_trust), replay_context(prior_trust)
     current_subjects, prior_subjects = subject_digests(current_trust), subject_digests(prior_trust)
+    separate_evidence_types = distinct_typed_replay_context(current_trust, prior_trust)
     if current_key and current_key == prior_key:
-        classification = "idempotent_reintake"
+        classification = "compatible_reuse" if separate_evidence_types else "idempotent_reintake"
         shared_ids = sorted(set(current_subjects) & set(prior_subjects))
     else:
         shared = {
@@ -77,7 +107,11 @@ def relationship(current: dict, prior: dict) -> dict | None:
             for digest in current_subjects.values()
             if digest in set(prior_subjects.values())
         }
-        if not shared and not (current_context == prior_context and current_subjects != prior_subjects):
+        if not shared and not (
+            current_context == prior_context
+            and current_subjects != prior_subjects
+            and not separate_evidence_types
+        ):
             return None
         pairs = [
             (current_id, prior_id)
@@ -86,7 +120,7 @@ def relationship(current: dict, prior: dict) -> dict | None:
             if digest == prior_digest
         ]
         shared_ids = sorted({item for pair in pairs for item in pair})
-        if current_context == prior_context and current_subjects != prior_subjects:
+        if current_context == prior_context and current_subjects != prior_subjects and not separate_evidence_types:
             classification = "same_context_content_conflict"
         elif any(current_id != prior_id for current_id, prior_id in pairs):
             classification = "cross_subject_conflict"
@@ -168,14 +202,19 @@ def build_report(*, rows: list[dict], official_latest: set[str]) -> dict:
     for row in rows:
         trust = row["trust"]
         recorded = replay_check(trust)
-        recalculated_trust = apply_replay_assessment(trust, [item["payload"] for item in prior_rows])
+        recalculated_trust = apply_replay_assessment(trust, replay_history_for_triage(trust, prior_rows))
         recalculated = replay_check(recalculated_trust)
         related_keys = set(recalculated.get("related_replay_keys", []))
         relationships = [
             value
             for prior in prior_rows
             for value in [relationship(row, prior)]
-            if value is not None and (not related_keys or value.get("replay_key") in related_keys)
+            if value is not None
+            and (
+                not related_keys
+                or value.get("replay_key") in related_keys
+                or distinct_typed_replay_context(trust, prior["trust"])
+            )
         ]
         classification = choose_classification(recorded, recalculated, relationships)
         action, explanation = guidance(classification)

@@ -68,6 +68,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Understand intake and viewer | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
 | Operate Evidence- und Governance-Hardening | `docs/operations/guides/evidence-and-governance-hardening-guide.md` |
 | Assess governance repository self-security | `docs/operations/security/governance-repository-self-security.md`, `model/controls/governance-repository-security.yaml`, `scripts/assess_governance_repository_security.py`, `generated/reports/governance-repository-security.md` |
+| Export and review the repository dependency SBOM | `docs/operations/security/repository-sbom-and-vulnerability-management.md`, `scripts/export_repository_sbom.py`, `.github/workflows/repository-sbom.yml`, `docs/governance/change-requests/GCR-2026-107-repository-sbom-export.md` |
 | Verify governance release-tag integrity | `model/governance/release-signing-policy.yaml`, `releases/release-tag-integrity.json`, `scripts/lib/release_integrity.py` |
 | Review the 17 September repository hardening and Bitbucket/Bamboo portability | `docs/operations/security/repository-security-hardening-2026-09-17.md`, `docs/governance/change-requests/GCR-2026-094-governance-repository-security-hardening.md` |
 | Review executable-code security and the 18 September intake hardening | `docs/operations/security/repository-code-security-assessment-2026-09-18.md`, `docs/governance/change-requests/GCR-2026-096-repository-code-security-hardening.md` |

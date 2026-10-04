@@ -9,8 +9,8 @@ Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-stat
 ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
 13. September 2026 aktiv, manuell und report-only.
 
-Current accepted governance results from 16 September and measured ha-CPsWMS
-evidence from 17 September 2026 are recorded in the
+The dated operating observations and authoritative current-state source links
+are recorded in the
 [current platform state](operations/status/current-governance-platform-state.md).
 
 For current pilot and central operations, start with the

@@ -1,0 +1,1030 @@
+{
+  "controls": [
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-001",
+      "evidence_refs": [
+        "source/junit.xml",
+        "runtime/junit.xml",
+        "repository/quality/traceability.json"
+      ],
+      "observation": "62 Tests bestanden; 5 technische Anforderungszuordnungen geprüft.",
+      "remaining": "Freigegebene Systemanforderungen und vollständige Abdeckung aller Komponenten nachweisen.",
+      "title": "Anforderungen, Tests und Berichte",
+      "tools": [
+        "pytest",
+        "JUnit"
+      ]
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-002",
+      "evidence_refs": [
+        "platform/commit.json",
+        "platform/pulls.json"
+      ],
+      "observation": "Commit und identifizierbarer Autor bestätigt.",
+      "remaining": "Organisatorische VCS-Freigabe und benötigte Review-Nachweise separat belegen; kein unabhängiges Review abgeleitet.",
+      "title": "Änderungen und Autoren",
+      "tools": [
+        "GitHub API"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-003",
+      "evidence_refs": [
+        "platform/protection.json",
+        "platform/rules.json",
+        "platform/rulesets.json",
+        "platform/ruleset-details.json"
+      ],
+      "observation": "Aktiver Main-Ruleset 23678106 ohne Bypass erzwingt Pull Requests und fünf Governance-/Validierungschecks.",
+      "remaining": "Die technische Regel ist gemessen; organisatorische Review-Unabhängigkeit bleibt eine getrennte Entscheidung.",
+      "title": "Geschützte Branches",
+      "tools": [
+        "GitHub API"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-004",
+      "evidence_refs": [
+        "source/bandit.json",
+        "source/ruff.json"
+      ],
+      "observation": "0 Bandit- und 0 Ruff-Befunde; erfolgreiche Werkzeugausführung: True.",
+      "remaining": "Keine maschinellen Befunde im geprüften Umfang; fachliche Secure-Design-Prüfung bleibt im Entwicklungsprozess.",
+      "title": "Sichere Entwicklung",
+      "tools": [
+        "Bandit",
+        "Ruff"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-005",
+      "evidence_refs": [
+        "image-ha-sync/sbom.cyclonedx.json",
+        "image-query-api/sbom.cyclonedx.json",
+        "image-semantic-enrichment/sbom.cyclonedx.json",
+        "image-world-model-chat/sbom.cyclonedx.json",
+        "image-neo4j/sbom.cyclonedx.json",
+        "source/dependency-locks.json",
+        "source/dependency-sbom-application.cyclonedx.json",
+        "source/dependency-sbom-ci.cyclonedx.json"
+      ],
+      "observation": "749 Image-Komponentenmeldungen sowie 32 Anwendungs- und 84 CI-/Tool-Pakete geprüft.",
+      "remaining": "Inventar ist an diesen Commit und Python 3.12 gebunden; Änderungen erfordern neue Locks und Nachweise.",
+      "title": "Abhängigkeiten erfassen",
+      "tools": [
+        "Trivy",
+        "CycloneDX",
+        "pip-audit"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-006",
+      "evidence_refs": [
+        "image-ha-sync/sbom.cyclonedx.json",
+        "image-query-api/sbom.cyclonedx.json",
+        "image-semantic-enrichment/sbom.cyclonedx.json",
+        "image-world-model-chat/sbom.cyclonedx.json",
+        "image-neo4j/sbom.cyclonedx.json",
+        "image-ha-sync/subject.json",
+        "image-query-api/subject.json",
+        "image-semantic-enrichment/subject.json",
+        "image-world-model-chat/subject.json",
+        "image-neo4j/subject.json"
+      ],
+      "observation": "Fünf nichtleere SBOMs mit den gescannten Image-IDs abgeglichen.",
+      "remaining": "Nachweis gilt für diese CI-Builds; keine Release- oder Deployment-Freigabe.",
+      "title": "SBOM je Artefakt",
+      "tools": [
+        "Trivy",
+        "CycloneDX"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-007",
+      "evidence_refs": [
+        "image-ha-sync/build.execution.json",
+        "image-query-api/build.execution.json",
+        "image-semantic-enrichment/build.execution.json",
+        "image-world-model-chat/build.execution.json",
+        "image-neo4j/build.execution.json",
+        "image-ha-sync/subject.json",
+        "image-query-api/subject.json",
+        "image-semantic-enrichment/subject.json",
+        "image-world-model-chat/subject.json",
+        "image-neo4j/subject.json",
+        "source/dependency-locks.json"
+      ],
+      "observation": "Erfolgreiche Builds verwenden Digest-festgelegte Basisimages und Python-3.12-Locks mit exakten Versionen und SHA-256-Hashes.",
+      "remaining": "Nachweis gilt für diese automatisierten Builds; byte-identische Container-Reproduktion und unabhängige Provenienz bleiben weiterführend.",
+      "title": "Kontrollierte Builds",
+      "tools": [
+        "Docker",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-008",
+      "evidence_refs": [
+        "image-ha-sync/subject.json",
+        "image-query-api/subject.json",
+        "image-semantic-enrichment/subject.json",
+        "image-world-model-chat/subject.json",
+        "image-neo4j/subject.json"
+      ],
+      "observation": "Fünf Image-IDs mit Commit, Scanner- und Docker-Metadaten abgeglichen.",
+      "remaining": "Archive-Digests sind Producer-Angaben; vollständige Image-Archive zentral nicht erneut gehasht.",
+      "title": "Build-Ergebnisse identifizieren",
+      "tools": [
+        "Docker",
+        "SHA-256"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-009",
+      "evidence_refs": [
+        "image-ha-sync/vulnerabilities.json",
+        "image-query-api/vulnerabilities.json",
+        "image-semantic-enrichment/vulnerabilities.json",
+        "image-world-model-chat/vulnerabilities.json",
+        "image-neo4j/vulnerabilities.json"
+      ],
+      "observation": "Trivy-JSON und erfolgreiche Scan-Ausführung für alle fünf Image-IDs geprüft.",
+      "remaining": "Scan-Abschluss bewertet weder Ausnutzbarkeit noch Risikoakzeptanz.",
+      "title": "Schwachstellen scannen",
+      "tools": [
+        "Trivy"
+      ]
+    },
+    {
+      "assessment": "findings",
+      "control_id": "DSCB-L1-REQ-010",
+      "evidence_refs": [
+        "image-ha-sync/vulnerabilities.json",
+        "image-query-api/vulnerabilities.json",
+        "image-semantic-enrichment/vulnerabilities.json",
+        "image-world-model-chat/vulnerabilities.json",
+        "image-neo4j/vulnerabilities.json",
+        "source/dependency-audit.json"
+      ],
+      "observation": "3269 Image-/Paketmeldungen und 0 Anwendungsabhängigkeitsmeldungen; davon 1 kritisch und 358 hoch.",
+      "remaining": "Befunde auf betroffene Nutzung prüfen, beheben oder autorisierte Entscheidungen einholen; keine automatische Risikofreigabe.",
+      "title": "Schwachstellen bewerten",
+      "tools": [
+        "Trivy",
+        "pip-audit"
+      ]
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-011",
+      "evidence_refs": [
+        "image-ha-sync/subject.json",
+        "image-query-api/subject.json",
+        "image-semantic-enrichment/subject.json",
+        "image-world-model-chat/subject.json",
+        "image-neo4j/subject.json"
+      ],
+      "observation": "Ausgewählte Rohdateien gegen laufgebundene Producer-Manifeste geprüft.",
+      "remaining": "Zugriffsschutz, Aufbewahrung und unabhängige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivprüfung.",
+      "title": "Artefakte vor Manipulation schützen",
+      "tools": [
+        "SHA-256",
+        "GitHub Artifacts"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-012",
+      "evidence_refs": [
+        "image-ha-sync/subject.json",
+        "image-query-api/subject.json",
+        "image-semantic-enrichment/subject.json",
+        "image-world-model-chat/subject.json",
+        "image-neo4j/subject.json"
+      ],
+      "observation": "Image-IDs und Quell-Commit sind durchgängig zugeordnet.",
+      "remaining": "Identität ist keine Aussage über Freigabe oder Vertrauenswürdigkeit des Producers.",
+      "title": "Artefaktidentität",
+      "tools": [
+        "Docker",
+        "SHA-256"
+      ]
+    },
+    {
+      "assessment": "gap",
+      "control_id": "DSCB-L1-REQ-013",
+      "evidence_refs": [
+        "platform/environments.json"
+      ],
+      "observation": "Umgebungsabfrage HTTP 200; keine autorisierte Deployment-Freigabe im Messvertrag.",
+      "remaining": "Zielumgebung und autorisierte Freigabe für das konkrete Artefakt nachweisen. Merge und grüner Lauf reichen nicht.",
+      "title": "Deployment autorisieren",
+      "tools": [
+        "GitHub API"
+      ]
+    },
+    {
+      "assessment": "gap",
+      "control_id": "DSCB-L1-REQ-014",
+      "evidence_refs": [
+        "runtime/deployment.json"
+      ],
+      "observation": "Query-API und Neo4j wurden mit den gescannten Image-IDs in kurzlebiger CI getestet.",
+      "remaining": "Deployment in eine genehmigte Zielumgebung und dortige Auswahl freigegebener Artefakte nachweisen.",
+      "title": "Nur freigegebene Artefakte deployen",
+      "tools": [
+        "Docker",
+        "pytest"
+      ]
+    },
+    {
+      "assessment": "measured",
+      "control_id": "DSCB-L1-REQ-015",
+      "evidence_refs": [
+        "image-ha-sync/manifest.json",
+        "image-neo4j/manifest.json",
+        "image-query-api/manifest.json",
+        "image-semantic-enrichment/manifest.json",
+        "image-world-model-chat/manifest.json",
+        "platform/manifest.json",
+        "runtime/manifest.json",
+        "source/manifest.json"
+      ],
+      "observation": "Ausgewählte Nachweisdateien an Repository, Commit, Lauf und Versuch gebunden und zentral geprüft.",
+      "remaining": "Keine unabhängige Attestation; nicht heruntergeladene Archivbytes bleiben ungeprüft.",
+      "title": "Maschinenlesbare Nachweise",
+      "tools": [
+        "JSON",
+        "JUnit",
+        "SHA-256"
+      ]
+    },
+    {
+      "assessment": "partial",
+      "control_id": "DSCB-L1-REQ-016",
+      "evidence_refs": [
+        "runtime/deployment.json",
+        "runtime/junit.xml",
+        "runtime/query-api.log",
+        "runtime/neo4j.log"
+      ],
+      "observation": "8 Runtime-Tests bestanden; Image-IDs und CI-Logs erfasst.",
+      "remaining": "VM, Betriebsregister und dauerhafte Security-Ereignisaufbewahrung ergänzen; CI ist kein Betriebsnachweis.",
+      "title": "Betrieb nachvollziehen",
+      "tools": [
+        "pytest",
+        "HTTP",
+        "Neo4j",
+        "Docker"
+      ]
+    }
+  ],
+  "enforcement": "report-only",
+  "evidence_binding": "20970c130e47884c2602e17056bd757b85c0da781a13687b4716e180e772c5cc",
+  "observations": {
+    "component_count": 749,
+    "dependency_inventory": {
+      "application_sbom_components": 32,
+      "ci_sbom_components": 84,
+      "execution_ok": true,
+      "profiles": {
+        "application": {
+          "input_sha256": "8a0c01e39f313f5a4cbb95321d1b60bb443f5751cc58ca9841b161f61c332247",
+          "lock_sha256": "8edbb7a772fff5680e7bf47882667f8c6f322c34f3bf5cb1072d6956f20e1ee6",
+          "package_count": 32
+        },
+        "ci": {
+          "input_sha256": "993d4ee493f93e44490e0a4a4640fed480ce2ceaeafa9819745e1d2c90bf087f",
+          "lock_sha256": "29e976ab11354c038fbf26ab0531055119408db5fe659b7294e82d860fd145c9",
+          "package_count": 84
+        },
+        "ha-sync": {
+          "input_sha256": "e2a1fc46a2b5a83e5f05229e83fa61d04bde0bb4011019c80a675b2090ae13d6",
+          "lock_sha256": "9836d454390e76d4d781c5200d1dc46c069beed1d058a3b0002d5d54ab3c110b",
+          "package_count": 9
+        },
+        "query-api": {
+          "input_sha256": "b211dfea30f454a47f41e5568b49f16a80c354c481835dcda51d6174f0740733",
+          "lock_sha256": "0b97a237f50164befa2e72135c4faf379900c3a75f389c9170bc547b4278dd4d",
+          "package_count": 2
+        },
+        "semantic-enrichment": {
+          "input_sha256": "ad57d1b528fab5e7ffad609a91e6f5a385544be3f739e66bcfdec69bc0eba92a",
+          "lock_sha256": "e87d3c2e729cbff230e4ba4e085840255acd2ad3eccd6cdcf7a4c8e0491b4086",
+          "package_count": 17
+        },
+        "world-model-chat": {
+          "input_sha256": "62fae977c8d05081a48bcbc315e8c1d645a488714f03518ee98bac43c2512820",
+          "lock_sha256": "8e8704ee0bb8364244cd5f6f6c372b16e1c2ff8f93b97270a2bcdacad3c1ab13",
+          "package_count": 27
+        }
+      },
+      "python": "3.12",
+      "resolver": "uv 0.8.22",
+      "vulnerability_count": 0
+    },
+    "images": {
+      "ha-sync": {
+        "archive_sha256_declared": "56e26370f13a064fb5dabed5e41e64417dee0f2a27b185873f3f464dd9d3b986",
+        "image_id": "sha256:896f388770a02235bbbf94004bbbd7da395f86278d1b9b91297445892ac8245f"
+      },
+      "neo4j": {
+        "archive_sha256_declared": "fb22bb999a49b44034d5c735d87c5c4466802c6e1fda0bdc49d70749333c0648",
+        "image_id": "sha256:868e4c594b17b600d302328278b99c37e79bfa8242f8c09397f4f5624ee2bbf2"
+      },
+      "query-api": {
+        "archive_sha256_declared": "c9ff17e74e42d8a441c8bec22387fa9d3636b14fa2d938139201d7d21b4faae9",
+        "image_id": "sha256:ff2a733ff559d0b96951b4fcbfcd457c17448cbcd8fbb38ef8c28edf3cb4592e"
+      },
+      "semantic-enrichment": {
+        "archive_sha256_declared": "30bde7d377b463c65cf1cc10a6233c80d8644fa64cdf1d75f91639addfebec02",
+        "image_id": "sha256:f3c906da55094f90c8680261d8e9003e0d02db835dd773356cd37d0e001b9cd2"
+      },
+      "world-model-chat": {
+        "archive_sha256_declared": "7b40f667c561940536ce38e089f8cf25cc045266d3b7890d48d2f461cc15363c",
+        "image_id": "sha256:0c9fa5553fec1a11627b0bf5af8adc554faa7efc20d327acd98070ca65418bdb"
+      }
+    },
+    "platform": {
+      "author_identified": true,
+      "environments_http": 200,
+      "main_ruleset": {
+        "id": 23678106,
+        "name": "L1 main protection and validation",
+        "required_approvals": 0,
+        "required_checks": [
+          "Architecture Runtime Governance",
+          "DevSecOps Governance",
+          "L1 coverage report",
+          "validate-debian",
+          "validate-ubuntu"
+        ]
+      },
+      "protection_http": 403,
+      "rules_http": 200,
+      "rulesets_http": 200
+    },
+    "static_analysis": {
+      "bandit": 0,
+      "execution_ok": true,
+      "ruff": 0
+    },
+    "tests": {
+      "runtime": {
+        "execution_ok": true,
+        "failed": 0,
+        "passed": 8,
+        "skipped": 0
+      },
+      "source": {
+        "execution_ok": true,
+        "failed": 0,
+        "passed": 54,
+        "skipped": 0
+      }
+    },
+    "traceability": {
+      "links": [
+        {
+          "cases": 18,
+          "id": "HA-TEST-IDENTITY-001",
+          "passed": true
+        },
+        {
+          "cases": 3,
+          "id": "HA-TEST-SYNC-001",
+          "passed": true
+        },
+        {
+          "cases": 6,
+          "id": "HA-TEST-CHAT-001",
+          "passed": true
+        },
+        {
+          "cases": 8,
+          "id": "HA-TEST-API-001",
+          "passed": true
+        },
+        {
+          "cases": 1,
+          "id": "HA-TEST-ENRICH-001",
+          "passed": true
+        }
+      ],
+      "matched": 5,
+      "requirements": 5
+    },
+    "vulnerability_counts": {
+      "CRITICAL": 1,
+      "HIGH": 358,
+      "INFO": 0,
+      "LOW": 639,
+      "MEDIUM": 2259,
+      "UNKNOWN": 12
+    }
+  },
+  "official_compliance_result": false,
+  "production_approval": false,
+  "profile": "ha-cpswms-l1-measured-v2",
+  "reference_baseline": "l1-baseline-v1.1.3",
+  "repository_id": "joku-dev/ha-CPsWMS",
+  "result_type": "measured-l1-assessment",
+  "risk_acceptance": false,
+  "run": {
+    "attempt": 2,
+    "branch": "main",
+    "commit": "5c3b5cb50d2260bfbde736c9ac80667271406d99",
+    "created_at": "2026-10-02T10:44:18Z",
+    "event": "push",
+    "id": "36997124065",
+    "updated_at": "2026-10-02T19:56:16Z"
+  },
+  "schema_version": "1.0.0",
+  "sources": {
+    "image-ha-sync/archive.execution.json": {
+      "artifact_id": "11248853822",
+      "bytes": 290,
+      "sha256": "2075f1d27dae98169d37cf4922b030b780be5fba64402816dc70e93819d6b1e8",
+      "verification": "manifest_sha256"
+    },
+    "image-ha-sync/build.execution.json": {
+      "artifact_id": "11248853822",
+      "bytes": 485,
+      "sha256": "8256b8b6c3b570a19891d2037be062d0717ce91e8124eafbe333fac8ead305a7",
+      "verification": "manifest_sha256"
+    },
+    "image-ha-sync/image-metadata.json": {
+      "artifact_id": "11248853822",
+      "bytes": 198,
+      "sha256": "9baea9bef8f071c0e778ff34cb426f7ffa303fdec89fc6d70bf5825b8a796ad2",
+      "verification": "manifest_sha256"
+    },
+    "image-ha-sync/manifest.json": {
+      "artifact_id": "11248853822",
+      "bytes": 2338,
+      "sha256": "3d950ecdda95fbe5aa81ae0cb8b161b1f69d129e22e1fa6eaf39549b1c0eebd4",
+      "verification": "github_artifact_context"
+    },
+    "image-ha-sync/sbom.cyclonedx.json": {
+      "artifact_id": "11248853822",
+      "bytes": 190319,
+      "sha256": "deb2b00c3b6096abbb9fe6f7406c9c97e4b673c5a53a9fceb035342377bbe72b",
+      "verification": "manifest_sha256"
+    },
+    "image-ha-sync/sbom.execution.json": {
+      "artifact_id": "11248853822",
+      "bytes": 413,
+      "sha256": "c78e37953a7209a904f33d1afa38a5b16af105e8c605c1af18c7d625fa0ca56e",
+      "verification": "manifest_sha256"
+    },
+    "image-ha-sync/subject.json": {
+      "artifact_id": "11248853822",
+      "bytes": 640,
+      "sha256": "78d4dbdc5ebafd0a2aed443c21609bd546c8139c46936cdd037ae4d68befdf7f",
+      "verification": "manifest_sha256"
+    },
+    "image-ha-sync/trivy-version.log": {
+      "artifact_id": "11248853822",
+      "bytes": 210,
+      "sha256": "6a7bfd88083e4080e20abf3726e3fafc9a4059a8d342b30ed85a795fca881f4a",
+      "verification": "manifest_sha256"
+    },
+    "image-ha-sync/vulnerabilities.execution.json": {
+      "artifact_id": "11248853822",
+      "bytes": 468,
+      "sha256": "1529e943e8bad1fc5d8aa600302efd1e394778c32a96875f1de6aaf705052319",
+      "verification": "manifest_sha256"
+    },
+    "image-ha-sync/vulnerabilities.json": {
+      "artifact_id": "11248853822",
+      "bytes": 1021649,
+      "sha256": "49b91f04aaac46cf880e3fcb905bb12af9df1b97c65769428ff8ce3deae529a6",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/archive.execution.json": {
+      "artifact_id": "11247994902",
+      "bytes": 285,
+      "sha256": "e22dceb59aea949b5f8bbf727597d608e21d2ee3b9876740d8e89acf8f7004a7",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/build.execution.json": {
+      "artifact_id": "11247994902",
+      "bytes": 526,
+      "sha256": "414e1438b1521f46757f11da97d3ae0cb656becf1ea76c24def2a038515b187c",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/image-metadata.json": {
+      "artifact_id": "11247994902",
+      "bytes": 197,
+      "sha256": "a6b41fdb3df4ad89bf215db2616966144f850f451cb67932b120efbece9507d6",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/manifest.json": {
+      "artifact_id": "11247994902",
+      "bytes": 2339,
+      "sha256": "11e0f45bb7a6c5c7523979f0dbb693b811cd1c038fe50a9817cba55c2f454726",
+      "verification": "github_artifact_context"
+    },
+    "image-neo4j/sbom.cyclonedx.json": {
+      "artifact_id": "11247994902",
+      "bytes": 447519,
+      "sha256": "4a041878ae59bb829a0561babb0566fdd8b02056771572b5b0223176f28aaf65",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/sbom.execution.json": {
+      "artifact_id": "11247994902",
+      "bytes": 412,
+      "sha256": "ab2ef61606a3e2911540a77d7c4e668db7fd34584fc697aaccb7493efe691121",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/subject.json": {
+      "artifact_id": "11247994902",
+      "bytes": 640,
+      "sha256": "eab4083d63a9c9c9d8c244c0c833a50b1135c2a60391b72bf15c342fbcd646ef",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/trivy-version.log": {
+      "artifact_id": "11247994902",
+      "bytes": 395,
+      "sha256": "76d356c5208a35b213b57e8ff1035700b72ff16a784f21d2725abe075e327193",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/vulnerabilities.execution.json": {
+      "artifact_id": "11247994902",
+      "bytes": 465,
+      "sha256": "be30328af14f2fa513f1bf80b16f6d89eaeb73f2df0e90376de071880ade1445",
+      "verification": "manifest_sha256"
+    },
+    "image-neo4j/vulnerabilities.json": {
+      "artifact_id": "11247994902",
+      "bytes": 8757961,
+      "sha256": "05dd3e47b5d721f042386a7513bf0861e2596b0e12ca115e320b4c084f8181e0",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/archive.execution.json": {
+      "artifact_id": "11248823947",
+      "bytes": 294,
+      "sha256": "0320a2349da85017b857b4c806d4a00c495b6437da02d2b7a5a4e13041a633ec",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/build.execution.json": {
+      "artifact_id": "11248823947",
+      "bytes": 498,
+      "sha256": "9f093145ee3f210b3254f92027f60fd0ab8c046a5e4a73ab3bd935024460f240",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/image-metadata.json": {
+      "artifact_id": "11248823947",
+      "bytes": 197,
+      "sha256": "9045d72b8e878cada3275671f01feeda48ad44d3ef7645805f8088c9ca906905",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/manifest.json": {
+      "artifact_id": "11248823947",
+      "bytes": 2338,
+      "sha256": "2dadfdc38f1f10b396d559b4b087a4662fd5d8f5528eac3041c312f7c756d01c",
+      "verification": "github_artifact_context"
+    },
+    "image-query-api/sbom.cyclonedx.json": {
+      "artifact_id": "11248823947",
+      "bytes": 182799,
+      "sha256": "ca3776a1673af2837e01c3a4278c4da41673a350505a8b12587caaaf984b1eac",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/sbom.execution.json": {
+      "artifact_id": "11248823947",
+      "bytes": 416,
+      "sha256": "2c31eeefd658aa98857fd2492acba00563cc20e33dc6866f02d0a60080c9e7ca",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/subject.json": {
+      "artifact_id": "11248823947",
+      "bytes": 644,
+      "sha256": "b64da6d2d1e56d2e0bb7559cb2da1a17dca093453e7495b9df711d5e43f0c6c0",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/trivy-version.log": {
+      "artifact_id": "11248823947",
+      "bytes": 210,
+      "sha256": "3e2fae2c89108c41bdcee33375dac03ed4be55397990fd2bbded8a89280dff53",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/vulnerabilities.execution.json": {
+      "artifact_id": "11248823947",
+      "bytes": 469,
+      "sha256": "e9d592d7b16b1fc38656c2b9d7f47165f3ad6fa94278e5b59e6842bb231c7634",
+      "verification": "manifest_sha256"
+    },
+    "image-query-api/vulnerabilities.json": {
+      "artifact_id": "11248823947",
+      "bytes": 1015717,
+      "sha256": "ce0b7021415374187475fb193d1a753e9cc0bd52b7984817961b602d58770705",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/archive.execution.json": {
+      "artifact_id": "11248334853",
+      "bytes": 313,
+      "sha256": "3258fce5ea61528b29c0cf4e8880c1a34629bfddc2bd72a4ef783ca7bab069c2",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/build.execution.json": {
+      "artifact_id": "11248334853",
+      "bytes": 529,
+      "sha256": "adf090f5037df43e22cec62f56298d1bf1146b2aa0dc28ea1a98f5a2f93f3edc",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/image-metadata.json": {
+      "artifact_id": "11248334853",
+      "bytes": 198,
+      "sha256": "935e93850b6fb7eae4c2a060ea0593a5dcf66198fa3b175de20852e16e673962",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/manifest.json": {
+      "artifact_id": "11248334853",
+      "bytes": 2338,
+      "sha256": "c87b6c4c6bf569ccb82bc5e0ce8412ada7841bb55d7f82e26b4e45dd15869650",
+      "verification": "github_artifact_context"
+    },
+    "image-semantic-enrichment/sbom.cyclonedx.json": {
+      "artifact_id": "11248334853",
+      "bytes": 197965,
+      "sha256": "5876c0b5e9247162e2e6fe805f4b8fc6beda1715d5ba864104a5976761fc1c2a",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/sbom.execution.json": {
+      "artifact_id": "11248334853",
+      "bytes": 426,
+      "sha256": "71028c4c649438d56f40b143cc9b9f676a9aa05cbd3b37aae948aaedc268a6d1",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/subject.json": {
+      "artifact_id": "11248334853",
+      "bytes": 664,
+      "sha256": "c141b15ff8268fe55fb4d5a4d1c30208fa5b926d63092ced6ec825c8d8bcd42c",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/trivy-version.log": {
+      "artifact_id": "11248334853",
+      "bytes": 209,
+      "sha256": "f926f8124fc23abf0834ace8324fb1619a0aefa3d34e6b8c3cdf96a7597276b7",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/vulnerabilities.execution.json": {
+      "artifact_id": "11248334853",
+      "bytes": 479,
+      "sha256": "b89f10d35d106b32bd2573e01fcd637a5d694e954173fe74deb8e79f16970883",
+      "verification": "manifest_sha256"
+    },
+    "image-semantic-enrichment/vulnerabilities.json": {
+      "artifact_id": "11248334853",
+      "bytes": 1025070,
+      "sha256": "d1a03b01bbb8596ac3a5db1010ef7e4e3050b934e25ba32be7c7dee2ab497208",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/archive.execution.json": {
+      "artifact_id": "11248374606",
+      "bytes": 307,
+      "sha256": "94bea9c9161171cacfb1b42409deb6d839924be1379346c5cd86a3aa69b428d5",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/build.execution.json": {
+      "artifact_id": "11248374606",
+      "bytes": 520,
+      "sha256": "631db956a98b0ee4c769a60bbf4697a2c0e6235951932003eec2a3070f8dd390",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/image-metadata.json": {
+      "artifact_id": "11248374606",
+      "bytes": 198,
+      "sha256": "ac88d86d4c359356bb8561a529ea07d3ea997afd0aacdd0773ae07aa5042784d",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/manifest.json": {
+      "artifact_id": "11248374606",
+      "bytes": 2338,
+      "sha256": "ebe1dcd5cbe723d5e5e0b9811368956dcaa1729c37abb69d2af019c0b72cf5be",
+      "verification": "github_artifact_context"
+    },
+    "image-world-model-chat/sbom.cyclonedx.json": {
+      "artifact_id": "11248374606",
+      "bytes": 208334,
+      "sha256": "d5419486b7181001d87ebfb87e7ea5ce8250e3188992eb13de1e0246642be375",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/sbom.execution.json": {
+      "artifact_id": "11248374606",
+      "bytes": 422,
+      "sha256": "bf6fb9b1d89c0a9ffcef87c9a9bc2178ed0de9d0040d98e010e3620ff96611cd",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/subject.json": {
+      "artifact_id": "11248374606",
+      "bytes": 658,
+      "sha256": "0157a33c48eb787f49e19d87817b268348bd2841543047df26f8ff19735a89ba",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/trivy-version.log": {
+      "artifact_id": "11248374606",
+      "bytes": 210,
+      "sha256": "c69a34153e515da61c7162a22be6753c91b5c0bf13d89aec65d0a91615f91eea",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/vulnerabilities.execution.json": {
+      "artifact_id": "11248374606",
+      "bytes": 477,
+      "sha256": "4d9535e31c258ffcc3867d94ec93a49f3edb3e51ffa15843cb8a867d98c4b059",
+      "verification": "manifest_sha256"
+    },
+    "image-world-model-chat/vulnerabilities.json": {
+      "artifact_id": "11248374606",
+      "bytes": 1031764,
+      "sha256": "a33808af804aca6e11234aa793dc645c884bcf55000d58af89865e806df4f9f3",
+      "verification": "manifest_sha256"
+    },
+    "platform/commit.json": {
+      "artifact_id": "11248965609",
+      "bytes": 8881,
+      "sha256": "52e800ef210690244b855e5001b9083270e98816d113261dc994e4f2aa0ab292",
+      "verification": "manifest_sha256"
+    },
+    "platform/environments.json": {
+      "artifact_id": "11248965609",
+      "bytes": 87,
+      "sha256": "7518d15e6ef19d47716f2a7cb3187fcc3b48ef64915b911584cceda850e94869",
+      "verification": "manifest_sha256"
+    },
+    "platform/manifest.json": {
+      "artifact_id": "11248965609",
+      "bytes": 1597,
+      "sha256": "5a9237e871e80fc90d410d91fc8db0f4523a0de5170a2efa5a944c60f9fe7a46",
+      "verification": "github_artifact_context"
+    },
+    "platform/protection.json": {
+      "artifact_id": "11248965609",
+      "bytes": 92,
+      "sha256": "fcccd9944cb997059e8aaad8f83ece16cb888ef4d72ec8494b37c5cfd06343bf",
+      "verification": "manifest_sha256"
+    },
+    "platform/pulls.json": {
+      "artifact_id": "11248965609",
+      "bytes": 20009,
+      "sha256": "bb63ea69b9f80ee1bd637ff296b4238e98026759b0fa9773427fb3d827e2318c",
+      "verification": "manifest_sha256"
+    },
+    "platform/rules.json": {
+      "artifact_id": "11248965609",
+      "bytes": 1874,
+      "sha256": "be6ace5ec49dd9cbf6252df88b7d4ee6af6cd38d8a6cfe7a8fda31339fb7d1da",
+      "verification": "manifest_sha256"
+    },
+    "platform/ruleset-details.json": {
+      "artifact_id": "11248965609",
+      "bytes": 2438,
+      "sha256": "cc020b1320a290bc6d5b3d465b13944bd708e5fc9f27bb4bd20cbdb211c31be8",
+      "verification": "manifest_sha256"
+    },
+    "platform/rulesets.json": {
+      "artifact_id": "11248965609",
+      "bytes": 651,
+      "sha256": "112e1dbb38a431d27a79b090a26c52225c50f407e3956d80b8d37f0a0e2e976a",
+      "verification": "manifest_sha256"
+    },
+    "platform/run.json": {
+      "artifact_id": "11248965609",
+      "bytes": 13926,
+      "sha256": "5c98dbb5d9c22651b75e2f9cf9278b214094b58b166adeb6b2e37628cd7749c0",
+      "verification": "manifest_sha256"
+    },
+    "report/l1-coverage.json": {
+      "artifact_id": "11248454858",
+      "bytes": 20490,
+      "sha256": "2c37ac01106b7d58ab9b92cb0bee3105d269a341b64b68785e0c09993d69c932",
+      "verification": "github_artifact_context"
+    },
+    "repository/quality/traceability.json": {
+      "artifact_id": "repository",
+      "bytes": 1598,
+      "sha256": "1a99398aa78e7b45bd6bdfa5521e5ab60743290c42207cc1691c83d68226109a",
+      "verification": "git_commit_content"
+    },
+    "runtime/deployment.json": {
+      "artifact_id": "11248639495",
+      "bytes": 1145,
+      "sha256": "0154fa95a1cab39625d13a9843e355a8031ca92a4c870b709de8e9f8248b218b",
+      "verification": "manifest_sha256"
+    },
+    "runtime/junit.xml": {
+      "artifact_id": "11248639495",
+      "bytes": 1139,
+      "sha256": "41e6f12e782302714d04c0e8b1d3b98f8a41bec0bba768092a63e45e12f5327f",
+      "verification": "manifest_sha256"
+    },
+    "runtime/manifest.json": {
+      "artifact_id": "11248639495",
+      "bytes": 1078,
+      "sha256": "0b2b6b4a69316d36e4d56dddeefb200bb396cb4c24369fff2788dbd4aa752e91",
+      "verification": "github_artifact_context"
+    },
+    "runtime/neo4j.log": {
+      "artifact_id": "11248639495",
+      "bytes": 2273,
+      "sha256": "58a636adcbb0b442b348b934703cbf6706bf9973eb2cae2d46ae2d8102e109e8",
+      "verification": "manifest_sha256"
+    },
+    "runtime/query-api.log": {
+      "artifact_id": "11248639495",
+      "bytes": 293580,
+      "sha256": "03d633eebaa77e9dc45e92f8874cbb7451f550f5938d8fa404462d1ac6ab4cd8",
+      "verification": "manifest_sha256"
+    },
+    "runtime/runtime-tests.execution.json": {
+      "artifact_id": "11248639495",
+      "bytes": 350,
+      "sha256": "b83cfb45b355f1d104b1703171453e8696eab3672452e76d2131f724b98f8045",
+      "verification": "manifest_sha256"
+    },
+    "source/bandit.execution.json": {
+      "artifact_id": "11249080380",
+      "bytes": 477,
+      "sha256": "86cbb5fe907339afceac902adceeb25ef86cdacbdf95984c402daa3199c863ec",
+      "verification": "manifest_sha256"
+    },
+    "source/bandit.json": {
+      "artifact_id": "11249080380",
+      "bytes": 17928,
+      "sha256": "b8b3235c63c2cb5c1983bfb9fb77cda31324c15ce5a5cce73a5bf512e45b2224",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-audit.execution.json": {
+      "artifact_id": "11249080380",
+      "bytes": 533,
+      "sha256": "b9218a0cf6bc9bf0f5b2f3761461e2223ebd56da4ea5cbe899e48f69da5fdc9d",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-audit.json": {
+      "artifact_id": "11249080380",
+      "bytes": 1845,
+      "sha256": "4e3c0ae2fb1484e15935df74d37ce117f09a17c4f07ce3f2a8087691f9306185",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/application.in": {
+      "artifact_id": "11249080380",
+      "bytes": 225,
+      "sha256": "8a0c01e39f313f5a4cbb95321d1b60bb443f5751cc58ca9841b161f61c332247",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/application.lock": {
+      "artifact_id": "11249080380",
+      "bytes": 77637,
+      "sha256": "8edbb7a772fff5680e7bf47882667f8c6f322c34f3bf5cb1072d6956f20e1ee6",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/ci.in": {
+      "artifact_id": "11249080380",
+      "bytes": 132,
+      "sha256": "993d4ee493f93e44490e0a4a4640fed480ce2ceaeafa9819745e1d2c90bf087f",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/ci.lock": {
+      "artifact_id": "11249080380",
+      "bytes": 136406,
+      "sha256": "29e976ab11354c038fbf26ab0531055119408db5fe659b7294e82d860fd145c9",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/ha-sync.in": {
+      "artifact_id": "11249080380",
+      "bytes": 40,
+      "sha256": "e2a1fc46a2b5a83e5f05229e83fa61d04bde0bb4011019c80a675b2090ae13d6",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/ha-sync.lock": {
+      "artifact_id": "11249080380",
+      "bytes": 22620,
+      "sha256": "9836d454390e76d4d781c5200d1dc46c069beed1d058a3b0002d5d54ab3c110b",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/query-api.in": {
+      "artifact_id": "11249080380",
+      "bytes": 6,
+      "sha256": "b211dfea30f454a47f41e5568b49f16a80c354c481835dcda51d6174f0740733",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/query-api.lock": {
+      "artifact_id": "11249080380",
+      "bytes": 635,
+      "sha256": "0b97a237f50164befa2e72135c4faf379900c3a75f389c9170bc547b4278dd4d",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/semantic-enrichment.in": {
+      "artifact_id": "11249080380",
+      "bytes": 27,
+      "sha256": "ad57d1b528fab5e7ffad609a91e6f5a385544be3f739e66bcfdec69bc0eba92a",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/semantic-enrichment.lock": {
+      "artifact_id": "11249080380",
+      "bytes": 23960,
+      "sha256": "e87d3c2e729cbff230e4ba4e085840255acd2ad3eccd6cdcf7a4c8e0491b4086",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/world-model-chat.in": {
+      "artifact_id": "11249080380",
+      "bytes": 53,
+      "sha256": "62fae977c8d05081a48bcbc315e8c1d645a488714f03518ee98bac43c2512820",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-files/world-model-chat.lock": {
+      "artifact_id": "11249080380",
+      "bytes": 61660,
+      "sha256": "8e8704ee0bb8364244cd5f6f6c372b16e1c2ff8f93b97270a2bcdacad3c1ab13",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-locks.json": {
+      "artifact_id": "11249080380",
+      "bytes": 2947,
+      "sha256": "ba9eb718d2ce369acafb371c2fb2df10a2cfdab59150b6cfb5bee9979228a3f9",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-sbom-application.cyclonedx.json": {
+      "artifact_id": "11249080380",
+      "bytes": 228829,
+      "sha256": "5397d23364edaa74e55dd6c6adc528d17f0c1ce4dd675c1e3c1f28fff26be91e",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-sbom-application.execution.json": {
+      "artifact_id": "11249080380",
+      "bytes": 451,
+      "sha256": "b4e3a9782dd78bca71a4dd43ddd282f402c4b6f8d371d26d194a08f33b739dcf",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-sbom-ci.cyclonedx.json": {
+      "artifact_id": "11249080380",
+      "bytes": 410651,
+      "sha256": "fb7e2a53c68670eb4931e618dce4907282520cc3bd4fd369c8fab0646448ea63",
+      "verification": "manifest_sha256"
+    },
+    "source/dependency-sbom-ci.execution.json": {
+      "artifact_id": "11249080380",
+      "bytes": 432,
+      "sha256": "5c6c207d3839b6210d88dc8a7184ec4a9615732885800a5db7b98ba4c2b08b4d",
+      "verification": "manifest_sha256"
+    },
+    "source/installed-tools.log": {
+      "artifact_id": "11249080380",
+      "bytes": 1518,
+      "sha256": "586274272a611bb5f6c01f18790248fb796794d9d94520f4eec603f618377d99",
+      "verification": "manifest_sha256"
+    },
+    "source/junit.xml": {
+      "artifact_id": "11249080380",
+      "bytes": 6916,
+      "sha256": "947f06441ce548fb71ed062f9ff888d4cea17e950710bb7db20ca332d2f7f748",
+      "verification": "manifest_sha256"
+    },
+    "source/manifest.json": {
+      "artifact_id": "11249080380",
+      "bytes": 5207,
+      "sha256": "b02821d5c7eefed6f8fd774eb123737b6eb0a25976c24328b411822b0f91f446",
+      "verification": "github_artifact_context"
+    },
+    "source/ruff.execution.json": {
+      "artifact_id": "11249080380",
+      "bytes": 499,
+      "sha256": "e62af126e28f4b6c6e9ffd99950fed1a1d67c0b4a42d5d0819e63e23ed68957b",
+      "verification": "manifest_sha256"
+    },
+    "source/ruff.json": {
+      "artifact_id": "11249080380",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "verification": "manifest_sha256"
+    },
+    "source/tests.execution.json": {
+      "artifact_id": "11249080380",
+      "bytes": 688,
+      "sha256": "d59fd9d67fc2aa23a88261853774c5cd0704cdca1866983a4d4c2893b2ea4798",
+      "verification": "manifest_sha256"
+    }
+  },
+  "summary": {
+    "findings": 1,
+    "gap": 2,
+    "measured": 9,
+    "partial": 4
+  },
+  "verification": {
+    "archive_digest_verified": false,
+    "independent_attestation": false,
+    "selected_raw_files_verified": true
+  }
+}
