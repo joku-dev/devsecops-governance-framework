@@ -1,11 +1,31 @@
 # Aktueller GitHub-Lifecycle-Pilot
 
-Stand: **13. September 2026**, geprüfter Repository-Stand `8df643db37ec4d6da7196b94aaa77b5e0e0844d8`.
+Dokumentationsabgleich: **3. Oktober 2026**, Quellstand `46b33429`.
+Die folgende GRS-002-Aktivierungsbeschreibung hält den historischen Stand vom
+13. September (`8df643db37ec4d6da7196b94aaa77b5e0e0844d8`) fest.
 Diese Seite beschreibt den veröffentlichten Pilotbetrieb. Der aktuelle
 maschinenlesbare Zustand steht in `status/governance-lifecycle-live.json` und
 wird durch `generated/reports/governance-lifecycle-live.md` erläutert.
 
-## Betriebsabnahme und tatsächlicher Stand
+## Aktueller separater Consumer-Pilot
+
+Die übernommene Projektion `status/governance-consumer-lifecycle.json` weist zum
+`2026-10-03T10:58:04Z` eine wirksame Betriebsabnahme und **`finding_state: closed`**
+aus: drei Receipts und vier Aktionsdatensätze. Die persönlich gebundenen Schritte
+`in_progress`, `completed` und die separate Abschlussentscheidung sind inzwischen
+erfasst. Der [erzeugte Bericht](https://github.com/joku-dev/devsecops-governance-framework/blob/46b33429a6f271273e33508f26275ed8ba7f1f2c/generated/reports/governance-consumer-lifecycle.md)
+und die append-only Transaktionen unter `governance/consumer-lifecycle/` sind
+die Nachweise. Die September-Beschreibung am Seitenende ist historische Chronologie,
+nicht eine aktuelle Aufforderung zur erneuten Fortschrittserklärung.
+
+Dies gilt ausschließlich für `governance-framework-demo-consumer` /
+`operation_readiness`, nicht für den zentralen GRS-002-Piloten, andere Consumer
+oder Produktionsfreigaben. Beide Piloten bleiben manuell und report-only.
+Ein späterer zulässiger neuer FAIL kann den Consumer-Fall wieder öffnen.
+Die [Closed-Loop-Lesekarte](../evidence/governance-lifecycle-overview.md)
+trennt die beiden Betriebsscopes und die synthetischen Szenarien.
+
+## Historische GRS-002-Betriebsabnahme und Aktivierung
 
 | Gegenstand | Nachgewiesener Stand |
 |---|---|

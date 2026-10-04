@@ -10,6 +10,27 @@ nicht erforderlich.
 
 ## Bedienung
 
+Änderung und Grenzen: [GCR-2026-111](../../governance/change-requests/GCR-2026-111-viewer-reading-experience.md).
+
+Der Einstieg priorisiert **Handlungsbedarf**, **Herkunft prüfen** und
+**abgeschlossene Pilotfälle**. Die ersten beiden Karten öffnen entsprechend
+gefilterte Repository-Listen; Suche und Filter lassen sich kombinieren.
+Die Fallkarte öffnet eine chronologische, quellverlinkte Closed-Loop-Ansicht
+des separat abgenommenen Consumer-Piloten. Deren Zustand wird beim Build gegen
+die akzeptierte Ledger-Projektion geprüft; ein fehlender oder ungültiger Stand
+wird als nicht verfügbar gezeigt und niemals als null offene Fälle ausgegeben.
+
+Repository-Details beginnen mit Ergebnis, Nachweisqualität, Aktualität und
+nächstem Prüfschritt. „Herkunft verifiziert“ bezeichnet `provenance_verified`;
+„Integrität verifiziert“ bezeichnet `integrity_verified`. Die technischen Codes
+bleiben in der Detailansicht erhalten. „Herkunft prüfen“ zeigt fehlende
+Governance-Ergebnisse oder eine nicht vollständig verifizierte Herkunft der
+beiden Governance-Domänen; es aktiviert keine neue Provenance-Anforderung.
+Typisierte SBOM-/Scan-Evidenz behält ihre separate Trust-Bewertung.
+Zeitangaben zeigen das Alter des gespeicherten Ergebnisses, keine neu berechnete
+Freshness-Entscheidung. Nicht bewertete Prüfungen, fehlende Scans und unbekannte
+Zustände gelten weiterhin nicht als bestanden.
+
 | Bereich | Inhalt |
 |---|---|
 | Übersicht | Repository-Anzahl, gemessene kritische/hohe Meldungen, Governance mit Befunden und abgeleitete nächste Prüfungen |
@@ -32,6 +53,15 @@ Der Graph unterstützt Suche, Typ-/Bereichsfilter und Auswahl per Maus oder Tast
 · [Repository Security öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository-security)
 · [Governance öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#governance/controls)
 · [Betrieb öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/intake)
+· [Lifecycle-Nächster Schritt öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/lifecycle)
+
+Unter **Betrieb → Lifecycle-Nächster Schritt** zeigt der Workspace den aus dem
+offiziellen Consumer-Lifecycle-Index und den akzeptierten Transaktionen
+abgeleiteten nächsten zulässigen Arbeitsschritt. Observationen, persönliche
+Erklärungen, Anträge und Intake-Workflows sind direkt verlinkt. Die Ansicht ist
+read-only: Sie erteilt keine Freigabe und löst keinen Workflow aus. Bei einem
+geschlossenen Finding nennt sie ausdrücklich, dass keine Aktion offen ist und
+der manuelle report-only Pilot nicht kontinuierlich überwacht.
 
 Die frühere Gesamtansicht bleibt als Rückfallansicht unter ihrem bisherigen Pfad
 verfügbar. Ihre bestehenden Deep Links funktionieren weiterhin. Die neue Anwendung

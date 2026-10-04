@@ -12,17 +12,20 @@ from generate_replay_triage_report import build_report, relationship
 
 def trust_record(*, repository="owner/repo", commit="commit-a", run="1", artifact="evidence",
                  subject_id="control_evaluation_report", digest="a" * 64, artifact_digest=None,
-                 replay_result="pass"):
+                 replay_result="pass", evidence_type=None, subjects=None):
     source = {
         "repository_id": repository, "commit_id": commit, "workflow_name": "Governance",
         "run_id": run, "run_attempt": 1, "artifact_name": artifact,
     }
     if artifact_digest:
         source["artifact_digest"] = artifact_digest
+    capture = {"source": source, "subjects": subjects or [{"id": subject_id, "digest": digest}]}
+    if evidence_type:
+        capture["evidence_type"] = evidence_type
     return {
         "model_id": "evidence-trust-model-v1", "effective_level": "integrity_verified",
         "checks": [{"id": "replay_key_unique", "result": replay_result, "reason": "stored"}],
-        "capture": {"source": source, "subjects": [{"id": subject_id, "digest": digest}]},
+        "capture": capture,
     }
 
 
@@ -130,6 +133,51 @@ class ReplayTriageReportTests(unittest.TestCase):
                             trust=trust_record(subject_id="sbom", run="1"))
         self.assertEqual(relationship(current, other_repo)["classification"], "cross_repository_reuse")
         self.assertEqual(relationship(current, other_subject)["classification"], "cross_subject_conflict")
+
+    def test_different_evidence_types_can_reuse_shared_subject_digests(self):
+        shared = {"id": "image_manifest", "digest": "a" * 64}
+        sbom = trust_record(
+            evidence_type="sbom",
+            subjects=[shared, {"id": "sbom_document", "digest": "b" * 64}],
+        )
+        vulnerability = trust_record(
+            evidence_type="vulnerability_scan",
+            subjects=[shared, {"id": "vulnerability_report", "digest": "c" * 64}],
+        )
+        prior = row(generated_at="2026-07-17T10:00:00Z", source_file="status/results/sbom.json", trust=sbom)
+        current = row(generated_at="2026-07-17T11:00:00Z", source_file="status/results/vulnerability.json", trust=vulnerability)
+        self.assertEqual(relationship(current, prior)["classification"], "compatible_reuse")
+
+        same_subjects_other_type = trust_record(evidence_type="vulnerability_scan", subjects=[shared])
+        same_subjects_row = row(
+            generated_at="2026-07-17T11:30:00Z",
+            source_file="status/results/same-subject-other-type.json",
+            trust=same_subjects_other_type,
+        )
+        shared_only_prior = row(
+            generated_at="2026-07-17T10:00:00Z",
+            source_file="status/results/shared-subject.json",
+            trust=trust_record(evidence_type="sbom", subjects=[shared]),
+        )
+        self.assertEqual(relationship(same_subjects_row, shared_only_prior)["classification"], "compatible_reuse")
+
+        report = build_report(rows=[prior, current], official_latest={current["source_file"]})
+        assessment = report["assessments"][1]
+        self.assertEqual(assessment["recorded_result"], "pass")
+        self.assertEqual(assessment["recalculated_result"], "pass")
+        self.assertEqual(assessment["classification"], "compatible_reuse")
+
+    def test_changed_subject_content_within_same_evidence_type_remains_conflict(self):
+        from lib.result_ledger import apply_replay_assessment
+
+        prior = trust_record(evidence_type="sbom", subjects=[{"id": "sbom_document", "digest": "a" * 64}])
+        current = trust_record(evidence_type="sbom", subjects=[{"id": "sbom_document", "digest": "b" * 64}])
+        assessed = apply_replay_assessment(current, [prior])
+        self.assertEqual(assessed["checks"][0]["result"], "fail")
+
+        prior_row = row(generated_at="2026-07-17T10:00:00Z", source_file="status/results/prior.json", trust=prior)
+        current_row = row(generated_at="2026-07-17T11:00:00Z", source_file="status/results/current.json", trust=current)
+        self.assertEqual(relationship(current_row, prior_row)["classification"], "same_context_content_conflict")
 
 
 if __name__ == "__main__":

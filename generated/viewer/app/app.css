@@ -792,3 +792,20 @@ h1 {
 @media(max-width:600px) {.l1-control-heading {align-items:flex-start;flex-direction:column;gap:8px}}
 @media(max-width:900px) {.assurance-grid {grid-template-columns:repeat(2,minmax(0,1fr))}.assurance-overview {align-items:flex-start;flex-direction:column}}
 @media(max-width:600px) {.assurance-grid {grid-template-columns:1fr}.badge-pair {justify-content:flex-start}}
+
+/* Reading order: decisions first, supporting evidence second. */
+.priority-grid,.reading-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:24px 0}
+.priority-card {display:flex;flex-direction:column;gap:10px;background:white;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:10px;padding:22px;color:var(--ink);min-width:0}
+.priority-card:hover {background:#f2f8f7;text-decoration:none}
+.priority-card strong {font-size:36px;line-height:1.1}
+.priority-card span,.reading-grid .label {font-size:13px;font-weight:650}
+.priority-card small,.reading-grid small {color:var(--muted);line-height:1.6}
+.reading-grid>div {display:flex;flex-direction:column;gap:8px;min-width:0;padding:16px;background:#f5f8fa;border-radius:8px}
+.reading-grid strong {font-size:16px;line-height:1.5}
+.decision-summary {border-left:4px solid var(--teal)}
+.case-timeline {list-style:none;margin:24px 0;padding:0;border-left:2px solid var(--line)}
+.case-timeline li {position:relative;margin-left:18px;padding:0 0 24px 14px;display:grid;gap:7px;overflow-wrap:anywhere}
+.case-timeline li::before {content:'';position:absolute;left:-25px;top:5px;width:10px;height:10px;border:2px solid var(--teal);border-radius:50%;background:white}
+.case-timeline small {color:var(--muted)}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible {outline:3px solid #087d73;outline-offset:4px}
+@media(max-width:900px) {.priority-grid,.reading-grid {grid-template-columns:1fr}.priority-card {padding:18px}.priority-card strong {font-size:30px}}

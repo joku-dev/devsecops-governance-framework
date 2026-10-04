@@ -106,7 +106,7 @@ nav:
           - Consumer Lifecycle Case: operations/evidence/consumer-lifecycle-operation-readiness.md
           - Governance Lifecycle Input Candidates: operations/evidence/governance-lifecycle-input-candidates.md
           - Governance Lifecycle Scenario Viewer: operations/evidence/governance-lifecycle-viewer.md
-          - Governance Lifecycle Overview: operations/evidence/governance-lifecycle-overview.md
+          - Closed-Loop Governance Overview: operations/evidence/governance-lifecycle-overview.md
           - Governance Lifecycle Exceptions: operations/evidence/governance-lifecycle-exceptions.md
           - Governance Lifecycle Closure: operations/evidence/governance-lifecycle-closure.md
           - Governance Lifecycle Decisions: operations/evidence/governance-lifecycle-decisions.md
@@ -149,6 +149,7 @@ nav:
           - GitHub Access And Token Maintenance: operations/security/github-access-and-token-maintenance.md
           - Governance Repository Self-Security: operations/security/governance-repository-self-security.md
           - Repository Code Security Assessment: operations/security/repository-code-security-assessment-2026-09-18.md
+          - Repository SBOM And Vulnerability Management: operations/security/repository-sbom-and-vulnerability-management.md
       - Status:
           - Daily Governance Operations: operations/status/daily-governance-operations.md
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md

@@ -1,7 +1,19 @@
 # Erster Consumer-Lifecycle-Fall: Operation Readiness
 
-Stand: 16. September 2026. **Rollen und begrenzter Evidenzumfang vom Maintainer bestätigt;
-Consumer-Lifecycle aktiviert, Behebung persönlich entschieden; Fortschritt und Abschluss ausstehend.**
+Dokumentationsabgleich: **3. Oktober 2026**, Quellstand `46b33429`.
+Der separate Consumer-Fall ist **geschlossen**; Betriebsabnahme bestätigt und
+wirksam. Die Projektion vom `2026-10-03T10:58:04Z` enthält drei Receipts und vier
+Aktionsdatensätze einschließlich persönlichem Fortschritt und Abschluss.
+Maßgeblich sind `status/governance-consumer-lifecycle.json`, der
+[erzeugte Bericht](https://github.com/joku-dev/devsecops-governance-framework/blob/46b33429a6f271273e33508f26275ed8ba7f1f2c/generated/reports/governance-consumer-lifecycle.md)
+und die erhaltenen Beobachtungs-/Aktions-Transaktionen. Das bescheinigt keine
+Produktionsreife und aktiviert keine automatische Behebung.
+
+## Historische Fallchronologie bis 16. September
+
+Die folgenden Abschnitte bewahren Ausgangsbefund und damalige Vorbereitung.
+Aussagen wie „noch kein Fortschritt“ beziehen sich auf diesen historischen
+Zeitpunkt; sie sind keine heutigen offenen Aufgaben oder neuen Freigabeanträge.
 
 ## Konkreter Fall und Nachweise
 
