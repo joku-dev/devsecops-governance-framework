@@ -2,29 +2,32 @@
 
 ## Observation Scope
 
-Documentation observation: **3 October 2026**, source commit
-`46b33429a6f271273e33508f26275ed8ba7f1f2c`. This is a dated read-only summary,
-not a new evaluation. The September sections below are retained reference
-observations, not assertions that every source is still current.
+Documentation observation: **4 October 2026**, source commit
+`e5e53d0f3ccb87bb2d36e94deba25abbb8929140`. This is a dated read-only status
+update, not a new compliance evaluation. Older October and September sections
+below retain their own source dates and are reference observations, not claims
+that every source is still current.
 
 ## Live Readback, 4 October 2026
 
-Read-only GitHub observation at `2026-10-04T08:13Z`; mainline source commit
-`701d7d0d20a461df43ae6667c3947188eb3a3bde`.
+Read-only GitHub observation at `2026-10-04T09:46Z`; mainline source commit
+`e5e53d0f3ccb87bb2d36e94deba25abbb8929140`.
 
 | Area | Current observation | Interpretation |
 |---|---|---|
-| Main workflows | Governance CI, CodeQL, Self-Security and Docs publication succeeded for the PR #204 merge. Repository SBOM run [37185739306](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37185739306) failed in download URL validation. | The mainline SBOM artifact was not produced by that run. Fix PR [#206](https://github.com/joku-dev/devsecops-governance-framework/pull/206) accepts approved apex GitHub download hosts and logs only a rejected hostname. All PR checks passed for head `e5ca36c`; review and merge plus a successful mainline SBOM run are still required. |
-| PR #175 | Open release proposal; branch includes current `main`, is mergeable, and all checks passed. Review is required. | The update resolved its README and status-report conflicts while retaining the proposed v0.3 release content. |
-| PR #176 | Open draft; branch includes current `main`, is mergeable, and all checks passed. Review is required. | Branch synchronization completed; review is still outstanding. |
-| PR #205 | Open draft; based on current `main`, mergeable, and all checks passed. Review is required. | Checks alone do not satisfy the required human review. |
+| Main workflows | Governance CI [37192994398](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37192994398), CodeQL [37192994366](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37192994366), Self-Security [37192994383](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37192994383) and Repository SBOM [37192994387](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37192994387) succeeded on `e5e53d0`. | The SBOM was generated, validated and uploaded as `repository-sbom-e5e53d0f3ccb87bb2d36e94deba25abbb8929140`. The latest Docs publication [37191179026](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37191179026) stopped at the confidential-research guard because `experiments/state_binding/CONFIDENTIAL` is present; Pages publication did not occur. |
+| Repository SBOM fix | PRs [#206](https://github.com/joku-dev/devsecops-governance-framework/pull/206), [#207](https://github.com/joku-dev/devsecops-governance-framework/pull/207) and [#208](https://github.com/joku-dev/devsecops-governance-framework/pull/208) are merged. | #206 addressed the first download-host allowlist gap; the next run identified GitHub's Azure Blob host, and a later run exposed the generated SPDX root relationship. #207 and #208 corrected those cases. The successful run above confirms the end-to-end export on current `main`. |
+| PR #175 | Merged at `2026-10-04T08:47Z`; prepares v0.3.0 public-adoption assets. | This preparation PR did not publish a v0.3.0 release. The latest published release remains `v0.2.0-public-adoption`. |
+| PR #176 | Merged at `2026-10-04T09:08Z`; private state-bound authorization research is now in the private `main`. | The research remains experimental and does not establish operating acceptance, production authorization, novelty or patentability. Its `CONFIDENTIAL` marker prevents Docs publication. |
+| PR #205 | Open draft; base remains `701d7d0d20a461df43ae6667c3947188eb3a3bde`, behind current `main`; review is required. | Update the branch and rerun checks before considering review or merge. |
+| Main protection | Active Ruleset `22622881`: one required approval, CODEOWNER and last-push review, five required checks, no configured bypass; deletion and force-push are blocked. | Short-lived exceptions for PRs #175, #176, #206, #207 and #208 were restored after their merges; no temporary review relaxation remains active. |
 | GRS-002 waiver | The scoped waiver is tracked on `main`, approved, and effective from 4 October through 12 December 2026. | This records scoped risk acceptance; it does not change live branch protection or convert the report-only lifecycle pilot into enforcement. |
 
 This readback updates the older pending-work summary below. It does not refresh
 the dated ha-CPsWMS producer evidence, the 3 October consumer-lifecycle
 projection, or the separate Self-Security assessment artifact.
 
-## October Observation And Authoritative Sources
+## Historical 3 October Source Observation And Authoritative Sources
 
 | Area | Observation at the source revision | Authoritative source for later checks |
 |---|---|---|
@@ -37,14 +40,15 @@ projection, or the separate Self-Security assessment artifact.
 
 ## Changes After The 3 October Observation
 
-The table above is bound to source commit `46b33429`; it is not a live claim
-about later merges. PR #200 subsequently delivered the read-only Lifecycle Next
-Step viewer, and PR #178 delivered the commit-bound repository SBOM export.
-PRs #96, #177 and #194 also merged after the observation: the CodeQL action
-pins were updated, the baseline wrapper pin was aligned to an identical
-reusable-workflow file, and the portfolio projection now reflects the accepted
-October ha-CPsWMS runs. The published adoption release remains v0.2.0; PR #175
-is still a release proposal and requires a refreshed release review.
+The source-bound table above retains the 3 October observations at commit
+`46b33429`; it is not a live claim about later merges. PR #200 subsequently
+delivered the read-only Lifecycle Next Step viewer, and PR #178 delivered the
+commit-bound repository SBOM export. PRs #96, #177 and #194 also merged after
+that observation. Since then, PR #175 merged its v0.3.0 preparation assets, PR
+#176 merged the private research prototype, and PRs #206–#208 completed and
+verified the repository SBOM export fix. The published adoption release remains
+`v0.2.0-public-adoption`; the v0.3.0 preparation has not been published as a
+release.
 
 The successful Self-Security job proves that the assessment ran, not that all
 criteria passed. `None`/unavailable security settings are not proof of disabled
