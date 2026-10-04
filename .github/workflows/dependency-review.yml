@@ -24,7 +24,43 @@ jobs:
     name: Dependency Review
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6.0.2
+        with:
+          fetch-depth: 0
+      - name: Detect dependency manifest changes
+        id: dependency-scope
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.sha || inputs.base_ref || 'main' }}
+          HEAD_REF: ${{ github.event.pull_request.head.sha || inputs.head_ref || github.sha }}
+        run: |
+          dependency_paths=(
+            'requirements*.txt' '**/requirements*.txt'
+            'pyproject.toml' '**/pyproject.toml'
+            'poetry.lock' '**/poetry.lock'
+            'Pipfile' '**/Pipfile' 'Pipfile.lock' '**/Pipfile.lock'
+            'package.json' '**/package.json'
+            'package-lock.json' '**/package-lock.json'
+            'npm-shrinkwrap.json' '**/npm-shrinkwrap.json'
+            'yarn.lock' '**/yarn.lock' 'pnpm-lock.yaml' '**/pnpm-lock.yaml'
+            'Cargo.toml' '**/Cargo.toml' 'Cargo.lock' '**/Cargo.lock'
+            'go.mod' '**/go.mod' 'go.sum' '**/go.sum'
+            'Gemfile' '**/Gemfile' 'Gemfile.lock' '**/Gemfile.lock'
+            'composer.json' '**/composer.json' 'composer.lock' '**/composer.lock'
+          )
+          if git diff --quiet "$BASE_REF" "$HEAD_REF" -- "${dependency_paths[@]}"; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'No dependency manifest changed; native dependency review is not required.'
+          else
+            diff_exit_code=$?
+            if [ "$diff_exit_code" -ne 1 ]; then
+              exit "$diff_exit_code"
+            fi
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+            echo 'Dependency manifest change detected; native dependency review is mandatory.'
+          fi
       - name: Review dependency changes
+        if: steps.dependency-scope.outputs.changed == 'true'
         uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
         with:
           fail-on-severity: high
