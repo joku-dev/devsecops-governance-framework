@@ -1,0 +1,32 @@
+id: waiver-2026-grs-002-review-count
+scope: joku-dev/devsecops-governance-framework refs/heads/main
+object_id: GRS-002:pull_request_review_required
+affected_requirements:
+  - GRS-002
+  - Two independent approving reviews for changes merged to main
+risk_classification: high_cybersecurity
+justification: >-
+  The CISO approved temporary acceptance of the residual risk from requiring one
+  independent approving review rather than two for this repository's main
+  branch. The report-only lifecycle pilot and recurring technical changes make
+  a time-bounded exception operationally appropriate. The approval does not
+  weaken the live one-review minimum or change other branch protections.
+compensating_controls:
+  - At least one approval from a reviewer other than the pull-request author.
+  - Required CODEOWNER review and approval of the latest push.
+  - Dismiss stale approvals and require review conversation resolution.
+  - Keep all five required CI checks active.
+  - Keep branch deletion and non-fast-forward updates prohibited.
+  - Keep the ruleset active with no bypass actors; revoke early if a compensating control fails or risk changes.
+approval_authority: CISO
+approved_by: joku-dev (CISO)
+approved_on: "2026-10-02"
+expiry: "2026-12-12"
+expired: false
+status: approved
+effective_on: "2026-10-04"
+authority_delegation:
+  delegated_by: joku-dev (CSCSO)
+  delegated_to: CISO
+  scope: waiver-2026-grs-002-review-count only
+  effective_on: "2026-10-04"
