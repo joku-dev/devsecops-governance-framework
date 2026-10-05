@@ -15,6 +15,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import zipfile
 
 from lib.identifiers import sanitize_timestamp, slugify_repository
 from lib.evidence_trust import (
@@ -120,7 +121,48 @@ def bool_from_path(payload: dict, path: list[str]) -> bool:
     return bool(value)
 
 
-def evidence_flags(governance_input: dict, artifact_names: set[str]) -> dict:
+def find_pipeline_evidence(extract_dir: Path) -> tuple[dict, Path | None]:
+    preferred = extract_dir / "generated" / "evidence" / "pipeline-evidence.json"
+    if preferred.is_file():
+        return load_json(preferred), preferred
+    matches = sorted(extract_dir.rglob("pipeline-evidence.json"))
+    if len(matches) > 1:
+        raise ValueError("Multiple pipeline-evidence.json files found in downloaded artifact")
+    return (load_json(matches[0]), matches[0]) if matches else ({}, None)
+
+
+def resolve_declared_evidence_file(root: Path, declared_path: object) -> Path | None:
+    """Resolve a producer-declared file only to a unique file in the downloaded artifact."""
+    if not isinstance(declared_path, str) or not declared_path.strip():
+        return None
+    normalized = declared_path.replace("\\", "/").lstrip("/")
+    candidates = [root / normalized, root / "application" / normalized]
+    resolved_root = root.resolve()
+    for candidate in candidates:
+        resolved = candidate.resolve()
+        if resolved.is_relative_to(resolved_root) and resolved.is_file():
+            return resolved
+    basename = Path(normalized).name
+    matches = sorted(
+        resolved
+        for path in root.rglob(basename)
+        if (resolved := path.resolve()).is_relative_to(resolved_root) and resolved.is_file()
+    )
+    return matches[0] if len(matches) == 1 else None
+
+
+def evidence_flags_from_artifacts(
+    pipeline_evidence: dict,
+    evidence_root: Path,
+    governance_input: dict,
+    artifact_names: set[str],
+    governance_control_report: bool,
+) -> dict:
+    evidence = pipeline_evidence.get("evidence", {})
+    artifact = pipeline_evidence.get("artifact", {})
+    sbom = evidence.get("sbom", {}) if isinstance(evidence, dict) else {}
+    scan = evidence.get("vulnerability_scan", {}) if isinstance(evidence, dict) else {}
+    digest = artifact.get("digest", {}) if isinstance(artifact, dict) else {}
     traceability_ok = all(
         bool_from_path(governance_input, ["traceability", key])
         for key in ("requirements_linked", "testcases_linked", "reports_linked")
@@ -129,11 +171,20 @@ def evidence_flags(governance_input: dict, artifact_names: set[str]) -> dict:
         bool_from_path(governance_input, ["operations", key])
         for key in ("deployed_versions_recorded", "security_events_recorded")
     )
+    sbom_file = resolve_declared_evidence_file(evidence_root, sbom.get("path"))
+    scan_file = resolve_declared_evidence_file(evidence_root, scan.get("path"))
+    artifact_file = resolve_declared_evidence_file(evidence_root, digest.get("path") or artifact.get("artifact_id"))
     return {
-        "sbom": bool_from_path(governance_input, ["evidence", "sbom", "exists"]),
-        "vulnerability_scan": bool_from_path(governance_input, ["evidence", "vulnerability_scan", "exists"]),
-        "artifact_digest": bool_from_path(governance_input, ["artifact", "digest", "exists"]),
-        "governance_control_report": "governance-control-evaluation" in artifact_names,
+        "sbom": bool(sbom.get("exists")) and sbom_file is not None,
+        "vulnerability_scan": bool(scan.get("exists")) and scan_file is not None,
+        "artifact_digest": (
+            bool(digest.get("exists"))
+            and digest.get("algorithm") == "sha256"
+            and isinstance(digest.get("value"), str)
+            and artifact_file is not None
+            and compute_sha256(artifact_file) == digest.get("value")
+        ),
+        "governance_control_report": governance_control_report,
         "governance_run_input": bool(governance_input) or "devsecops-governance-run-input" in artifact_names,
         "static_analysis_summary": bool_from_path(governance_input, ["static_analysis", "performed"]),
         "traceability_mapping": traceability_ok,
@@ -199,32 +250,70 @@ def find_governance_input(extract_dir: Path) -> tuple[dict, Path | None]:
     return {}, None
 
 
-def download_artifact_with_gh(repository_id: str, run_id: str, artifact_name: str, destination: Path, token: str | None) -> bool:
+def download_artifact_archive_with_gh(
+    repository_id: str, artifact_id: str, destination: Path, token: str | None
+) -> bool:
+    """Download the raw artifact ZIP through gh so its archive digest remains verifiable."""
     if not shutil.which("gh"):
         return False
-    destination.mkdir(parents=True, exist_ok=True)
+    destination.parent.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
     if token:
-        env.setdefault("GH_TOKEN", token)
-    result = subprocess.run(
-        [
-            "gh",
-            "run",
-            "download",
-            run_id,
-            "--repo",
-            repository_id,
-            "--name",
-            artifact_name,
-            "--dir",
-            str(destination),
-        ],
-        env=env,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    return result.returncode == 0
+        env["GH_TOKEN"] = token
+    with destination.open("wb") as archive_stream:
+        result = subprocess.run(
+            ["gh", "api", f"repos/{repository_id}/actions/artifacts/{artifact_id}/zip"],
+            env=env,
+            stdout=archive_stream,
+            stderr=subprocess.PIPE,
+            check=False,
+        )
+    return result.returncode == 0 and destination.is_file() and zipfile.is_zipfile(destination)
+
+
+def gate_result_status(report: dict) -> str:
+    gate = report.get("baseline_gate_result", report)
+    status = gate.get("status") if isinstance(gate, dict) else None
+    if status == "pass":
+        return "success"
+    if status == "fail":
+        return "failure"
+    return ""
+
+
+def evidence_context(pipeline_evidence: dict, governance_input: dict, report: dict) -> dict:
+    pipeline = pipeline_evidence.get("pipeline", {})
+    security_gates = pipeline.get("security_gates", {})
+    run_input_pipeline = governance_input.get("pipeline", {})
+    run_input_gates = run_input_pipeline.get("security_gates", {})
+    gate_result = report.get("baseline_gate_result", {})
+    return {
+        "pipeline_evidence": {
+            "governance_mode": pipeline.get("governance_mode"),
+            "security_gates": {
+                "enforced": security_gates.get("enforced"),
+                "blocks_merge": security_gates.get("blocks_merge"),
+            },
+            "external_direct_downloads_detected": pipeline.get("external_direct_downloads_detected"),
+            "artifact_digest": pipeline_evidence.get("artifact", {}).get("digest", {}).get("value"),
+        },
+        "governance_run_input_declared": {
+            "security_gates": {
+                "enforced": run_input_gates.get("enforced"),
+                "blocks_merge": run_input_gates.get("blocks_merge"),
+            },
+            "external_direct_downloads_detected": run_input_pipeline.get("external_direct_downloads_detected"),
+        },
+        "baseline_gate_result": {
+            "status": gate_result.get("status"),
+            "governance_mode": gate_result.get("governance_mode"),
+            "blocks_merge": gate_result.get("blocks_merge"),
+        },
+        "interpretation": {
+            "security_gates_enforced": "Gate execution/evaluation; merge blocking is represented separately.",
+            "external_direct_downloads_detected": "Producer-declared observation; not independently inferred by this intake.",
+        },
+    }
 
 
 def write_snapshot(
@@ -241,18 +330,27 @@ def write_snapshot(
     branch_protected: bool,
     artifacts: list[dict],
     selected_artifact: dict | None,
+    governance_input_artifact: dict | None,
+    governance_input_artifact_archive_sha256: str | None,
     artifact_names: set[str],
+    evidence: dict,
+    evidence_context_payload: dict,
+    pipeline_evidence_sha256: str | None,
     trust: dict,
     notes: str,
 ) -> Path:
     control_summary = report.get("summary", report)
-    baseline_gate_status = find_job_status(jobs, "baseline", "gate") or conclusion_to_status(run.get("conclusion"))
+    baseline_gate_job_status = find_job_status(jobs, "baseline", "gate") or conclusion_to_status(run.get("conclusion"))
+    baseline_gate_status = gate_result_status(report) or baseline_gate_job_status
     governance_control_status = find_job_status(jobs, "governance", "control", "evaluation")
     overall_status = "pass" if run.get("conclusion") == "success" and control_summary.get("fail", 0) == 0 else "fail"
     generated_at = run.get("updated_at") or run.get("created_at")
     branch = run.get("head_branch", "unknown")
 
-    checks = {"baseline_gate": baseline_gate_status}
+    checks = {
+        "baseline_gate": baseline_gate_status,
+        "baseline_gate_workflow_job": baseline_gate_job_status,
+    }
     if governance_control_status:
         checks["governance_control_evaluation"] = governance_control_status
 
@@ -264,7 +362,17 @@ def write_snapshot(
             "artifact_size_bytes": artifact_size_bytes(selected_artifact),
             "control_evaluation_report_sha256": report_sha256,
             "governance_run_input_sha256": governance_input_sha256,
+            "pipeline_evidence_sha256": pipeline_evidence_sha256,
             "governance_run_input_refs": governance_input.get("evidence_refs", []),
+            "governance_run_input_artifact": (
+                {
+                    "name": governance_input_artifact.get("name"),
+                    "artifact_id": str(governance_input_artifact.get("id", "unknown")),
+                    "archive_sha256": governance_input_artifact_archive_sha256,
+                }
+                if governance_input_artifact is not None
+                else None
+            ),
         }
 
     payload = {
@@ -288,7 +396,8 @@ def write_snapshot(
             "commit_id": run.get("head_sha", "unknown"),
         },
         "checks": checks,
-        "evidence": evidence_flags(governance_input, artifact_names),
+        "evidence": evidence,
+        "evidence_context": evidence_context_payload,
         "artifact_metadata": {
             "artifact_names": sorted(artifact_names),
             "artifact_sizes": artifact_sizes,
@@ -312,7 +421,7 @@ def main() -> int:
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--baseline-level", default="L1")
     parser.add_argument("--governance-baseline-ref", default="")
-    parser.add_argument("--artifact-name", default="governance-control-evaluation")
+    parser.add_argument("--artifact-name", default="devsecops-pipeline-evidence")
     parser.add_argument("--api-url", default=DEFAULT_API_URL)
     parser.add_argument("--token", default="")
     parser.add_argument(
@@ -345,7 +454,9 @@ def main() -> int:
             github_download(selected_artifact["archive_download_url"], archive, token)
         except HTTPError as error:
             if error.code in {401, 403, 404}:
-                if not download_artifact_with_gh(args.repository_id, args.run_id, args.artifact_name, extract_dir, token):
+                if not download_artifact_archive_with_gh(
+                    args.repository_id, str(selected_artifact.get("id", "")), archive, token
+                ):
                     raise RuntimeError(
                         "Could not download the GitHub Actions artifact. "
                         "Set GH_RESULT_INTAKE_TOKEN to a token with Actions artifact read access "
@@ -358,8 +469,45 @@ def main() -> int:
         report_path = find_report(extract_dir)
         report = normalize_governance_report(load_json(report_path), report_path)
         governance_input, governance_input_path = find_governance_input(extract_dir)
+        governance_input_artifact = None
+        governance_input_artifact_archive_sha256 = None
+        if governance_input_path is None:
+            governance_input_artifact = next(
+                (item for item in artifacts if item.get("name") == "devsecops-governance-run-input"), None
+            )
+            if governance_input_artifact is not None:
+                companion_archive = temp / "governance-run-input.zip"
+                companion_dir = temp / "governance-run-input"
+                companion_dir.mkdir()
+                try:
+                    github_download(governance_input_artifact["archive_download_url"], companion_archive, token)
+                except HTTPError as error:
+                    if error.code not in {401, 403, 404} or not download_artifact_archive_with_gh(
+                        args.repository_id, str(governance_input_artifact.get("id", "")), companion_archive, token
+                    ):
+                        raise RuntimeError(
+                            "Could not download the governance run input artifact. "
+                            f"Set GH_RESULT_INTAKE_TOKEN with Actions read access for {args.repository_id}."
+                        ) from error
+                safe_extract_zip(companion_archive, companion_dir)
+                governance_input, governance_input_path = find_governance_input(companion_dir)
+                if governance_input_path is None:
+                    raise FileNotFoundError(
+                        "The devsecops-governance-run-input artifact does not contain governance-run-input.json"
+                    )
+                governance_input_artifact_archive_sha256 = compute_sha256(companion_archive)
+        pipeline_evidence, pipeline_evidence_path = find_pipeline_evidence(extract_dir)
+        actual_evidence_flags = evidence_flags_from_artifacts(
+            pipeline_evidence,
+            extract_dir,
+            governance_input,
+            artifact_names,
+            report_path.name == "control-evaluation-report.json" or args.artifact_name == "governance-control-evaluation",
+        )
+        actual_evidence_context = evidence_context(pipeline_evidence, governance_input, report)
         report_sha256 = compute_sha256(report_path)
         governance_input_sha256 = compute_sha256(governance_input_path) if governance_input_path is not None else None
+        pipeline_evidence_sha256 = compute_sha256(pipeline_evidence_path) if pipeline_evidence_path is not None else None
         subjects = [
             digest_subject(
                 "control_evaluation_report",
@@ -367,7 +515,7 @@ def main() -> int:
                 "downloaded_artifact.control_evaluation_report_sha256",
             )
         ]
-        if governance_input_path is not None:
+        if governance_input_path is not None and governance_input_artifact is None:
             subjects.append(
                 digest_subject(
                     "governance_run_input",
@@ -375,11 +523,21 @@ def main() -> int:
                     "downloaded_artifact.governance_run_input_sha256",
                 )
             )
+        if pipeline_evidence_path is not None:
+            subjects.append(
+                digest_subject(
+                    "pipeline_evidence",
+                    pipeline_evidence_path,
+                    "downloaded_artifact.pipeline_evidence_sha256",
+                )
+            )
         if archive.exists():
             subjects.append(digest_subject("artifact_archive", archive, "trust.capture.subjects.artifact_archive"))
         subject_paths = {"control_evaluation_report": report_path}
-        if governance_input_path is not None:
+        if governance_input_path is not None and governance_input_artifact is None:
             subject_paths["governance_run_input"] = governance_input_path
+        if pipeline_evidence_path is not None:
+            subject_paths["pipeline_evidence"] = pipeline_evidence_path
         if archive.exists():
             subject_paths["artifact_archive"] = archive
 
@@ -435,7 +593,12 @@ def main() -> int:
         branch_protected=protected,
         artifacts=artifacts,
         selected_artifact=selected_artifact,
+        governance_input_artifact=governance_input_artifact,
+        governance_input_artifact_archive_sha256=governance_input_artifact_archive_sha256,
         artifact_names=artifact_names,
+        evidence=actual_evidence_flags,
+        evidence_context_payload=actual_evidence_context,
+        pipeline_evidence_sha256=pipeline_evidence_sha256,
         trust=trust,
         notes=args.notes,
     )

@@ -150,7 +150,10 @@ def main() -> int:
             "event": context.get("event", "unknown"),
             "governance_mode": args.governance_mode,
             "status": "success",
-            "security_gates": {"enforced": True},
+            "security_gates": {
+                "enforced": True,
+                "blocks_merge": args.governance_mode in {"block-on-error", "waiver-required"},
+            },
             "security_thresholds_exceeded": SEVERITY_ORDER.get(max_seen, 99) > SEVERITY_ORDER.get(max_allowed, 99),
             "external_direct_downloads_detected": as_bool(os.environ.get("EXTERNAL_DIRECT_DOWNLOADS_DETECTED", "false")),
         },
@@ -163,6 +166,7 @@ def main() -> int:
                 "exists": artifact_exists,
                 "linked_to_artifact": artifact_exists,
                 "algorithm": "sha256",
+                "path": str(artifact),
                 "value": sha256(artifact) if artifact_exists else "",
             },
             "signature": {
