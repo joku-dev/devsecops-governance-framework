@@ -173,8 +173,9 @@ It is intended for:
 - L1 baseline v1.1.3 release statement: `docs/releases/l1-baseline-v1.1.3-release-statement.md`
 - L1 baseline v1.2.0: `docs/releases/l1-baseline-v1.2.0.md`
 - L1 baseline v1.2.0 release statement: `docs/releases/l1-baseline-v1.2.0-release-statement.md`
-- Current technical release package: `releases/l1/v1.1.3/baseline-package.md`
+- Previous technical release package: `releases/l1/v1.1.3/baseline-package.md`
 - Current technical release package: `releases/l1/v1.2.0/baseline-package.md`
+- Prepared next technical release package: `releases/l1/v1.2.1/baseline-package.md`
 
 ## Consumer Entrypoints
 
@@ -184,6 +185,7 @@ It is intended for:
 - Prepared patch versioned reusable workflow: `.github/workflows/devsecops-baseline-l1-v1.1.2.yml`
 - Prepared patch versioned reusable workflow: `.github/workflows/devsecops-baseline-l1-v1.1.3.yml`
 - Current minor versioned reusable workflow: `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` (pinned by signed tag `l1-baseline-v1.2.0`)
+- Prepared patch versioned reusable workflow: `.github/workflows/devsecops-baseline-l1-v1.2.1.yml` (candidate; tag not published)
 - Consumer example workflow: `releases/l1/v1.0.0/examples/github-actions/devsecops-baseline-l1-v1.0.0.yml`
 - Consumer example workflow with governance input: `releases/l1/v1.1.0/examples/github-actions/devsecops-baseline-l1-v1.1.0.yml`
 - Consumer example workflow with governance input: `releases/l1/v1.1.1/examples/github-actions/devsecops-baseline-l1-v1.1.1.yml`

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DevSecOps Control Requirement Set",
+  "type": "object",
+  "required": ["level", "name", "required_platform_level", "requirements"],
+  "properties": {
+    "level": {
+      "type": "string",
+      "enum": ["L1", "L2", "L3", "GOV"]
+    },
+    "name": {
+      "type": "string"
+    },
+    "required_platform_level": {
+      "type": "string",
+      "enum": ["PRA-Level 1", "PRA-Level 2", "PRA-Level 3", "Not applicable"]
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "domain",
+          "title",
+          "control_objective",
+          "requirement",
+          "required_platform_level",
+          "platform_capabilities",
+          "evidence",
+          "verification",
+          "policy_as_code",
+          "waiver"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^DSCB-(L1|L2|L3|GOV)-REQ-[0-9]{3}$"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "control_objective": {
+            "type": "string"
+          },
+          "requirement": {
+            "type": "string"
+          },
+          "required_platform_level": {
+            "type": "string",
+            "enum": ["PRA-Level 1", "PRA-Level 2", "PRA-Level 3", "Not applicable"]
+          },
+          "platform_capabilities": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "evidence": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "verification": {
+            "type": "object",
+            "required": ["method", "frequency"],
+            "properties": {
+              "method": {
+                "type": "string",
+                "enum": ["automated", "manual", "hybrid"]
+              },
+              "frequency": {
+                "type": "string"
+              }
+            }
+          },
+          "policy_as_code": {
+            "type": "object",
+            "required": ["candidate", "enforcement"],
+            "properties": {
+              "candidate": { "type": "boolean" },
+              "enforcement": { "type": "string" },
+              "rule": { "type": "string" }
+            }
+          },
+          "waiver": {
+            "type": "object",
+            "required": ["allowed", "authority"],
+            "properties": {
+              "allowed": { "type": "boolean" },
+              "authority": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

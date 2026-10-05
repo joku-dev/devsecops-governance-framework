@@ -92,7 +92,7 @@ ECV-04 through ECV-11 were executed as disposable local fixtures against the iso
 
 ## Governance integrity and current situation
 
-- The governance repository is at `main` commit `bdc993d49d82c4a1fa4cdcabb572011896de17c2`; PR #212 delivered central intake remediation and PR #213 prepared the v1.2.0 release package. The directly SSH-signed `l1-baseline-v1.2.0` tag now resolves to this commit. The official indexes still cover **three registered consumers**. The most recent committed ha-CPsWMS result indexes are dated 2 October and were not refreshed by this pilot.
+- The governance repository is at `main` commit `8b0630fd9e5db3ebfe7ab276c8c4e6575853b84a`; PR #212 delivered central intake remediation, PR #213 published v1.2.0, and PR #214 reconciled release and pilot documentation. The directly SSH-signed `l1-baseline-v1.2.0` tag remains on commit `bdc993d49d82c4a1fa4cdcabb572011896de17c2`. The official indexes still cover **three registered consumers**. The most recent committed ha-CPsWMS result indexes are dated 2 October and were not refreshed by this pilot.
 - In those indexes, ha-CPsWMS DevSecOps run `36997125273` is `pass` (16/16 applicable controls) with Trust `integrity_verified`; Architecture run `36997124090` is `pass` (4/4 gates) with Trust `integrity_verified`. The separate typed vulnerability scan run `36997124065` is `provenance_verified` (9 checks pass, 0 fail, 3 not evaluated), but records **3,269 findings** and maximum severity **critical**, including one critical finding in the `neo4j` image. Provenance verification confirms evidence identity/custody; it is not a clean-security result. The pilot did not refresh or change any of these official records.
 - Governance baseline, policies, schemas, waivers, official result history, viewer, and official consumer registry were not changed by this pilot.
 - The official portfolio remains at **three registered consumers**. Neither private evaluation repository is an official consumer.
@@ -101,7 +101,7 @@ ECV-04 through ECV-11 were executed as disposable local fixtures against the iso
 
 ## Recommended next actions
 
-1. Resolve the remaining `external_direct_downloads_detected` discrepancy. The v1.2.0 pipeline artifact says `false`; both consumer run-input artifacts say `true`. Agree a producer observation method and make both source records consistent without claiming central egress measurement.
+1. Validate the proposed v1.2.1 projection fix with fresh report-only consumer runs. The retained v1.2.0 snapshots still contain `false` in pipeline evidence and `true` in producer run input; those historical values remain unchanged. The patch candidate copies the producer boolean into both evidence files and does not claim central egress measurement.
 2. Resolve cJSON and go-httpbin's separate upstream CI failures before merging their consumer PRs. Keep both workflows report-only.
 3. Review the go-httpbin `CVE-2026-39824`/unknown-severity finding at `examples/custom-instrumentation/go.mod` and rescan a reviewed fix.
 4. Keep ECV-01 open until the source discrepancy is resolved and the consumer updates are reviewed and merged. The pilot runs show that v1.2.0 can carry the evidence through central intake; they do not make these private repositories official consumers.
@@ -197,4 +197,14 @@ For both runs, central intake verified the downloaded build bytes against the de
 
 One source discrepancy remains: central pipeline evidence reports `external_direct_downloads_detected: false`, while both producer run-input artifacts declare `true`. The intake labels both sources and does not independently observe consumer egress. ECV-01 therefore remains open. The two snapshots were written only in the disposable checkout at `/private/tmp/ecv-release-v1.2.0/status/results/`; no official result index, viewer, Trust projection, consumer registry, or ha-CPsWMS status was changed.
 
-The first go-httpbin ECV attempt (attempt 1) failed `TestDrip/handle_cancelation_during_drip` under the race detector when a 250 ms context deadline elapsed. Attempt 2 passed and completed intake. Its separate upstream CI `test (stable)` job shows the same timeout. The `lint-github-actions` job failed during checkout cleanup with `git` exit 128. The cJSON consumer workflow itself passed, but separate upstream CI checks remain red: macOS jobs use CMake against the upstream project's pre-3.5 minimum-version declaration, which current CMake rejects, and the Fuzzing job failed. These failures are separate from the successful report-only governance jobs; the consumer PRs remain open pending review of their full check sets.
+The first go-httpbin ECV attempt (attempt 1) failed `TestDrip/handle_cancelation_during_drip` under the race detector when a 250 ms context deadline elapsed. Attempt 2 passed and completed intake. The separate upstream CI run 37354238102 was rerun once (attempt 2): `test (stable)` passed, so the earlier timeout was not reproduced; `lint-github-actions` failed again because `actions/checkout` could not find the private repository at `https://github.com/joku-dev/governance-eval-go-httpbin`; and Codecov failed because its upload had no token (`Token required - not valid tokenless upload`). These are upstream workflow/configuration findings, not failures in the report-only governance job. The cJSON consumer workflow itself passed, but separate upstream CI checks remain red: macOS jobs use CMake against the upstream project's pre-3.5 minimum-version declaration, which current CMake rejects, and the Fuzzing job failed. Consumer PRs remain open pending review of their full check sets.
+
+### Follow-up: direct-download declaration projection
+
+GCR-2026-115 proposes a v1.2.1 patch to read the producer-declared boolean
+from the configured run-input file when creating pipeline evidence. The
+collector will fail closed if a configured input is missing, malformed, or
+does not contain a boolean. The declaration remains producer supplied; this
+does not measure consumer egress. The change is not yet released, and the
+retained v1.2.0 snapshots have not been modified. ECV-01 remains open pending
+review, signed publication, fresh consumer runs, and central intake.
