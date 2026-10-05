@@ -766,6 +766,13 @@ unabhängig gemessene Tatsachen dargestellt. Insbesondere wird
 gekennzeichnet; die zentrale Intake-Pipeline misst den Netzwerkverkehr des
 Consumers nicht selbst.
 
+Ab der versionierten v1.2.1-Reusable-Workflow-Fassung wird die Producer-Angabe
+aus dem konfigurierten `governance-run-input.json` in die
+`pipeline-evidence.json` übernommen. Beide Artefakte behalten dieselbe
+quellenzugeordnete Behauptung; dadurch entsteht keine zusätzliche unabhängige
+Messung. Fehlt die konfigurierte Datei oder ist der Wert kein Boolean, schlägt
+die Evidence-Erzeugung fehl.
+
 Bei GitHub-Actions-Intake werden Gateentscheidung und Jobausgang getrennt
 abgebildet. `checks.baseline_gate` enthält das Ergebnis aus
 `baseline-gate-result.json`; `checks.baseline_gate_workflow_job` enthält den

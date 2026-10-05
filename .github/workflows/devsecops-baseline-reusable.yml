@@ -199,6 +199,8 @@ jobs:
 
       - name: Collect pipeline evidence
         working-directory: application
+        env:
+          GOVERNANCE_RUN_INPUT_PATH: ${{ inputs.governance_run_input_path }}
         run: |
           python - <<'PY'
           import hashlib
@@ -253,6 +255,24 @@ jobs:
           release_context = as_bool("${{ inputs.release_candidate }}") and event_name == "push" and ref_name == "main"
           run_purpose = "release" if release_context else "diagnostic" if event_name == "workflow_dispatch" else "pull_request_validation" if event_name == "pull_request" else "branch_validation"
 
+          governance_run_input_path = os.environ.get("GOVERNANCE_RUN_INPUT_PATH", "")
+          if governance_run_input_path:
+              run_input_file = Path(governance_run_input_path)
+              if not run_input_file.is_file():
+                  raise SystemExit(f"Configured governance run input not found: {run_input_file}")
+              try:
+                  run_input = json.loads(run_input_file.read_text(encoding="utf-8"))
+              except (OSError, json.JSONDecodeError) as error:
+                  raise SystemExit(f"Configured governance run input is unreadable: {error}") from error
+              run_input_pipeline = run_input.get("pipeline")
+              if not isinstance(run_input_pipeline, dict):
+                  raise SystemExit("Configured governance run input has no pipeline object")
+              external_direct_downloads_detected = run_input_pipeline.get("external_direct_downloads_detected")
+              if not isinstance(external_direct_downloads_detected, bool):
+                  raise SystemExit("Configured governance run input must declare external_direct_downloads_detected as a boolean")
+          else:
+              external_direct_downloads_detected = as_bool(os.environ.get("EXTERNAL_DIRECT_DOWNLOADS_DETECTED", "false"))
+
           evidence = {
               "contract_version": "1.0",
               "release_candidate": as_bool("${{ inputs.release_candidate }}"),
@@ -274,7 +294,7 @@ jobs:
                       "blocks_merge": "${{ inputs.governance_mode }}" in {"block-on-error", "waiver-required"},
                   },
                   "security_thresholds_exceeded": security_thresholds_exceeded,
-                  "external_direct_downloads_detected": as_bool(os.environ.get("EXTERNAL_DIRECT_DOWNLOADS_DETECTED", "false")),
+                  "external_direct_downloads_detected": external_direct_downloads_detected,
               },
               "repository": {
                   "repository_id": repository,
