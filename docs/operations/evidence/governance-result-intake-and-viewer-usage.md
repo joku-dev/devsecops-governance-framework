@@ -325,7 +325,32 @@ python3 scripts/intake_github_actions_run.py \
   --run-id 28314109954
 ```
 
-This script fetches the downstream run metadata, jobs, artifact list, `governance-control-evaluation` artifact, governance run input, and control evaluation summary from GitHub Actions.
+This script fetches the downstream run metadata, jobs, artifact list, the
+`devsecops-pipeline-evidence` artifact, and (when present) the separate
+`devsecops-governance-run-input` artifact. It verifies that declared SBOM,
+scan, and build files are present in the downloaded artifact; the build digest
+is compared with the actual file bytes. A governance-control-evaluation report
+remains available by explicitly selecting its artifact name for older runs.
+
+The snapshot separates `checks.baseline_gate` (the recorded governance decision)
+from `checks.baseline_gate_workflow_job` (the GitHub Actions job conclusion).
+A report-only gate can therefore record `failure` while its Actions job records
+`success`. The snapshot's `evidence_context` retains central pipeline values,
+producer-declared run-input values, and the gate's configured mode separately.
+`external_direct_downloads_detected` remains a producer declaration; this
+intake does not independently observe network traffic.
+
+`pipeline.security_gates.enforced` means that the gate ran and evaluated the
+run. Merge blocking is represented separately as
+`pipeline.security_gates.blocks_merge` and `baseline-gate-result.json`'s
+`blocks_merge` value. A report-only gate is evaluated (`enforced: true`) while
+it does not block merge (`blocks_merge: false`).
+
+If the GitHub artifact download URL is unavailable to Python but `gh` is
+authenticated, the intake downloads the raw artifact ZIP through the Actions
+artifact API. It retains and hashes those original archive bytes before safe
+extraction. It does not treat an extracted directory as a substitute for an
+archive custody subject.
 
 ## What The Script Produces
 
@@ -500,7 +525,8 @@ It can be run manually with:
 
 The workflow then:
 
-1. downloads the downstream governance-control-evaluation artifact
+1. downloads the downstream `devsecops-pipeline-evidence` artifact (or the
+   explicitly selected legacy governance-control-evaluation artifact)
 2. writes a normalized result under `status/results/`
 3. regenerates `status/repository-results-index.json`
 4. regenerates `generated/viewer/status-viewer.html`

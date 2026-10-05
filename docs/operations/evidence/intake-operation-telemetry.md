@@ -99,7 +99,7 @@ python3 scripts/record_intake_event.py \
   --run-id 42 \
   --evidence-type governance_result \
   --collector-id central-governance-intake \
-  --artifact-name governance-control-evaluation \
+  --artifact-name devsecops-pipeline-evidence \
   --intake-type devsecops_governance \
   --status success \
   --started-at 2026-07-17T12:00:00Z \

@@ -180,7 +180,14 @@
           "type": "object",
           "required": ["enforced"],
           "properties": {
-            "enforced": { "type": "boolean" }
+            "enforced": {
+              "type": "boolean",
+              "description": "True when the governance gate is executed and evaluates the run. This does not say that findings block merge."
+            },
+            "blocks_merge": {
+              "type": "boolean",
+              "description": "True only when this gate's configured mode blocks merge on findings."
+            }
           },
           "additionalProperties": true
         },

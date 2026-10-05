@@ -23,9 +23,9 @@ on:
         default: L1
         type: string
       artifact_name:
-        description: Artifact containing the governance control evaluation report.
+        description: Primary downstream evidence artifact to intake.
         required: false
-        default: governance-control-evaluation
+        default: devsecops-pipeline-evidence
         type: string
   repository_dispatch:
     types:
@@ -79,7 +79,7 @@ jobs:
           RUN_ID: ${{ github.event.client_payload.run_id || inputs.run_id }}
           GOVERNANCE_BASELINE_REF: ${{ github.event.client_payload.governance_baseline_ref || inputs.governance_baseline_ref }}
           BASELINE_LEVEL: ${{ github.event.client_payload.baseline_level || inputs.baseline_level || 'L1' }}
-          ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name || inputs.artifact_name || 'governance-control-evaluation' }}
+          ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name || inputs.artifact_name || 'devsecops-pipeline-evidence' }}
         run: |
           if [ -z "${REPOSITORY_ID}" ] || [ -z "${RUN_ID}" ]; then
             echo "repository_id and run_id are required"
@@ -109,7 +109,7 @@ jobs:
           GH_RESULT_INTAKE_TOKEN: ${{ secrets.GH_RESULT_INTAKE_TOKEN || github.token }}
           REPOSITORY_ID: ${{ github.event.client_payload.repository_id || inputs.repository_id }}
           RUN_ID: ${{ github.event.client_payload.run_id || inputs.run_id }}
-          ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name || inputs.artifact_name || 'governance-control-evaluation' }}
+          ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name || inputs.artifact_name || 'devsecops-pipeline-evidence' }}
         run: |
           python3 scripts/record_collection_attempt.py \
             --repository-id "${REPOSITORY_ID}" \
@@ -127,7 +127,7 @@ jobs:
         env:
           REPOSITORY_ID: ${{ github.event.client_payload.repository_id || inputs.repository_id }}
           RUN_ID: ${{ github.event.client_payload.run_id || inputs.run_id }}
-          ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name || inputs.artifact_name || 'governance-control-evaluation' }}
+          ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name || inputs.artifact_name || 'devsecops-pipeline-evidence' }}
           INTAKE_STATUS: ${{ steps.intake.outcome == 'success' && 'success' || 'failed' }}
           STARTED_AT: ${{ steps.telemetry_start.outputs.started_at }}
           COMPLETED_AT: ${{ steps.telemetry_stop.outputs.completed_at }}

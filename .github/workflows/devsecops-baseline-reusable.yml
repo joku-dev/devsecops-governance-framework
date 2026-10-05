@@ -269,7 +269,10 @@ jobs:
                   "event": event_name,
                   "governance_mode": "${{ inputs.governance_mode }}",
                   "status": "success",
-                  "security_gates": {"enforced": True},
+                  "security_gates": {
+                      "enforced": True,
+                      "blocks_merge": "${{ inputs.governance_mode }}" in {"block-on-error", "waiver-required"},
+                  },
                   "security_thresholds_exceeded": security_thresholds_exceeded,
                   "external_direct_downloads_detected": as_bool(os.environ.get("EXTERNAL_DIRECT_DOWNLOADS_DETECTED", "false")),
               },
@@ -289,6 +292,7 @@ jobs:
                       "exists": artifact_exists,
                       "linked_to_artifact": artifact_exists,
                       "algorithm": "sha256",
+                      "path": str(artifact),
                       "value": sha256(artifact) if artifact_exists else "",
                   },
                   "signature": {

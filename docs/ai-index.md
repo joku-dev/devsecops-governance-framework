@@ -74,6 +74,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Review executable-code security and the 18 September intake hardening | `docs/operations/security/repository-code-security-assessment-2026-09-18.md`, `docs/governance/change-requests/GCR-2026-096-repository-code-security-hardening.md` |
 | Operate the vulnerability-scan collector pilot | `docs/operations/evidence/vulnerability-scan-collector-usage.md`, `scripts/collect_vulnerability_scan_evidence.py` |
 | Understand portfolio adoption reporting | `docs/operations/status/portfolio-adoption-reporting.md`, `governance/portfolio-adoption-reporting.yaml` |
+| Inspect external consumer pilot remediation and results | `docs/governance/change-requests/GCR-2026-114-external-consumer-pilot-intake-remediation.md`, `docs/operations/status/external-consumer-validation-pilot-2026-10-05.md` (private exploratory pilot; no official admission) |
 | Implement Bamboo 12.1.9 adapter | `docs/operations/adapters/bitbucket-bamboo-governance-adapter.md`, `pipeline-baseline/templates/bamboo/bamboo-specs/bamboo.yaml` |
 | Understand report-only versus blocking | `docs/operations/processes/operational-governance-enforcement-options.md` |
 | Work as an AI agent | `AGENTS.md`, `docs/operations/ai-working-rules.md` |

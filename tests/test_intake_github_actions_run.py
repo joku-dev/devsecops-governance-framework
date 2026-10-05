@@ -4,6 +4,8 @@ import json
 import sys
 import tempfile
 import unittest
+import zipfile
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,43 +44,6 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
         ):
             with self.subTest(workflow=workflow):
                 self.assertIsNone(intake.resolve_baseline({"referenced_workflows": [workflow]}))
-
-    def test_evidence_flags_are_derived_from_governance_input(self):
-        governance_input = {
-            "traceability": {
-                "requirements_linked": True,
-                "testcases_linked": True,
-                "reports_linked": True,
-            },
-            "static_analysis": {
-                "performed": True,
-            },
-            "evidence": {
-                "sbom": {"exists": True},
-                "vulnerability_scan": {"exists": True},
-            },
-            "artifact": {
-                "digest": {"exists": True},
-            },
-            "operations": {
-                "deployed_versions_recorded": True,
-                "security_events_recorded": True,
-            },
-        }
-
-        flags = intake.evidence_flags(
-            governance_input,
-            {"governance-control-evaluation", "devsecops-governance-run-input"},
-        )
-
-        self.assertTrue(flags["sbom"])
-        self.assertTrue(flags["vulnerability_scan"])
-        self.assertTrue(flags["artifact_digest"])
-        self.assertTrue(flags["governance_control_report"])
-        self.assertTrue(flags["governance_run_input"])
-        self.assertTrue(flags["static_analysis_summary"])
-        self.assertTrue(flags["traceability_mapping"])
-        self.assertTrue(flags["operations_evidence"])
 
     def test_find_job_status_matches_fragments(self):
         jobs = [
@@ -121,6 +86,85 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
             report_path.write_text(json.dumps({"status": "fail"}), encoding="utf-8")
             self.assertEqual(intake.find_report(Path(tempdir)), report_path)
 
+    def test_pipeline_evidence_flags_require_matching_files_in_artifact(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            root = Path(tempdir)
+            evidence_dir = root / "application" / "generated" / "evidence"
+            evidence_dir.mkdir(parents=True)
+            output_dir = root / "application" / "dist"
+            output_dir.mkdir()
+            (evidence_dir / "sbom.json").write_text("{}", encoding="utf-8")
+            (evidence_dir / "scan.json").write_text("{}", encoding="utf-8")
+            (output_dir / "app.tar.gz").write_bytes(b"build")
+            artifact_digest = intake.compute_sha256(output_dir / "app.tar.gz")
+            pipeline = {
+                "evidence": {
+                    "sbom": {"exists": True, "path": "generated/evidence/sbom.json"},
+                    "vulnerability_scan": {"exists": True, "path": "generated/evidence/scan.json"},
+                },
+                "artifact": {"digest": {"exists": True, "algorithm": "sha256", "path": "dist/app.tar.gz", "value": artifact_digest}},
+            }
+            flags = intake.evidence_flags_from_artifacts(pipeline, root, {}, set(), False)
+            self.assertTrue(flags["sbom"])
+            self.assertTrue(flags["vulnerability_scan"])
+            self.assertTrue(flags["artifact_digest"])
+            (evidence_dir / "scan.json").unlink()
+            flags = intake.evidence_flags_from_artifacts(pipeline, root, {}, set(), False)
+            self.assertFalse(flags["vulnerability_scan"])
+
+    def test_declared_evidence_path_cannot_escape_extracted_artifact(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            root = Path(tempdir) / "artifact"
+            root.mkdir()
+            outside = Path(tempdir) / "outside.json"
+            outside.write_text("{}", encoding="utf-8")
+            self.assertIsNone(intake.resolve_declared_evidence_file(root, "../outside.json"))
+
+    def test_gate_status_uses_report_result_not_successful_job_conclusion(self):
+        report = {"baseline_gate_result": {"status": "fail", "governance_mode": "report-only"}}
+        self.assertEqual(intake.gate_result_status(report), "failure")
+        self.assertEqual(intake.find_job_status([{"name": "Baseline Gate", "conclusion": "success"}], "baseline", "gate"), "success")
+
+    def test_evidence_context_keeps_central_and_producer_declarations_separate(self):
+        context = intake.evidence_context(
+            {
+                "pipeline": {
+                    "governance_mode": "report-only",
+                    "security_gates": {"enforced": True, "blocks_merge": False},
+                    "external_direct_downloads_detected": False,
+                }
+            },
+            {
+                "pipeline": {
+                    "security_gates": {"enforced": False},
+                    "external_direct_downloads_detected": True,
+                }
+            },
+            {"baseline_gate_result": {"status": "fail", "governance_mode": "report-only", "blocks_merge": False}},
+        )
+        self.assertTrue(context["pipeline_evidence"]["security_gates"]["enforced"])
+        self.assertFalse(context["pipeline_evidence"]["security_gates"]["blocks_merge"])
+        self.assertFalse(context["governance_run_input_declared"]["security_gates"]["enforced"])
+        self.assertTrue(context["governance_run_input_declared"]["external_direct_downloads_detected"])
+        self.assertFalse(context["pipeline_evidence"]["external_direct_downloads_detected"])
+        self.assertEqual(context["baseline_gate_result"]["status"], "fail")
+
+    def test_gh_artifact_fallback_keeps_raw_zip(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            destination = Path(tempdir) / "artifact.zip"
+
+            def fake_run(args, **kwargs):
+                self.assertIn("repos/owner/repo/actions/artifacts/123/zip", args)
+                with zipfile.ZipFile(kwargs["stdout"], "w") as archive:
+                    archive.writestr("evidence.json", "{}")
+                return type("Result", (), {"returncode": 0})()
+
+            with patch.object(intake.shutil, "which", return_value="/usr/bin/gh"), patch.object(
+                intake.subprocess, "run", side_effect=fake_run
+            ):
+                self.assertTrue(intake.download_artifact_archive_with_gh("owner/repo", "123", destination, "secret"))
+            self.assertTrue(zipfile.is_zipfile(destination))
+
     def test_normalizes_consumer_report_only_gate_result(self):
         report = intake.normalize_governance_report(
             {"status": "fail", "governance_mode": "report-only", "errors": ["branch protection missing"]},
@@ -145,7 +189,7 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 report_path.unlink()
                 governance_input_path.unlink()
                 run = {"id": 1, "conclusion": "success", "updated_at": "2026-07-04T00:00:00Z", "head_branch": "main", "head_sha": "abc123", "html_url": "https://example.com/run/1", "name": "DevSecOps Baseline", "event": "push"}
-                jobs = []
+                jobs = [{"name": "Baseline Gate", "conclusion": "success"}]
                 artifacts = [{"name": "governance-control-evaluation", "size_in_bytes": 5438}]
                 selected_artifact = artifacts[0]
                 trust = intake.build_trust_capture(
@@ -175,14 +219,19 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                     governance_baseline_ref="l1-baseline-v1.1.3",
                     run=run,
                     jobs=jobs,
-                    report={"summary": {"fail": 0}},
+                    report={"summary": {"fail": 1}, "baseline_gate_result": {"status": "fail", "governance_mode": "report-only"}},
                     governance_input={"evidence_refs": ["ref1"]},
                     report_sha256=report_sha256,
                     governance_input_sha256=governance_input_sha256,
                     branch_protected=True,
                     artifacts=artifacts,
                     selected_artifact=selected_artifact,
+                    governance_input_artifact=None,
+                    governance_input_artifact_archive_sha256=None,
                     artifact_names={"governance-control-evaluation"},
+                    evidence={"sbom": False},
+                    evidence_context_payload={"baseline_gate_result": {"status": "fail"}},
+                    pipeline_evidence_sha256=None,
                     trust=trust,
                     notes="test",
                 )
@@ -192,7 +241,13 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 self.assertEqual(data["downloaded_artifact"]["artifact_size_bytes"], 5438)
                 self.assertEqual(data["downloaded_artifact"]["control_evaluation_report_sha256"], report_sha256)
                 self.assertEqual(data["downloaded_artifact"]["governance_run_input_sha256"], governance_input_sha256)
+                self.assertEqual(data["downloaded_artifact"]["pipeline_evidence_sha256"], None)
                 self.assertEqual(data["artifact_metadata"]["artifact_sizes"]["governance-control-evaluation"], 5438)
+                self.assertEqual(data["evidence"], {"sbom": False})
+                self.assertEqual(data["evidence_context"]["baseline_gate_result"]["status"], "fail")
+                self.assertEqual(data["checks"]["baseline_gate"], "failure")
+                self.assertEqual(data["checks"]["baseline_gate_workflow_job"], "success")
+                self.assertEqual(data["overall_status"], "fail")
                 self.assertEqual(data["trust"]["effective_level"], "unverified")
                 self.assertEqual(data["trust"]["capture"]["source"]["run_attempt"], 1)
             finally:

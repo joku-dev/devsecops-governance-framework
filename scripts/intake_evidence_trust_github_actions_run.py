@@ -17,7 +17,7 @@ from intake_github_actions_run import (
     api_repo_path,
     artifact_size_bytes,
     conclusion_to_status,
-    download_artifact_with_gh,
+    download_artifact_archive_with_gh,
     github_download,
     github_get_json,
 )
@@ -176,11 +176,10 @@ def main() -> int:
         try:
             github_download(artifact["archive_download_url"], archive, token)
         except HTTPError as error:
-            if error.code not in {401, 403, 404} or not download_artifact_with_gh(
+            if error.code not in {401, 403, 404} or not download_artifact_archive_with_gh(
                 args.repository_id,
-                args.run_id,
-                args.artifact_name,
-                extract_dir,
+                str(artifact.get("id", "")),
+                archive,
                 token,
             ):
                 raise RuntimeError(

@@ -514,7 +514,8 @@ Für L1 werden unter anderem geprüft:
 | Run-ID vorhanden | `pipeline.pipeline_run_id` ist gesetzt. |
 | Commit vorhanden | `pipeline.commit_id` ist gesetzt. |
 | Pipeline erfolgreich | `pipeline.status` ist `success`. |
-| Security Gates aktiv | `pipeline.security_gates.enforced` ist `true`. |
+| Security Gate ausgewertet | `pipeline.security_gates.enforced` ist `true`, auch wenn der Lauf report-only ist. |
+| Findings blockieren Merge | `pipeline.security_gates.blocks_merge` ist `true`; der Wert folgt dem Governance-Modus. |
 | Repository-ID vorhanden | `repository.repository_id` ist gesetzt. |
 | Direct Push nicht erlaubt | `repository.direct_push_allowed` ist `false`. |
 | Artefakt vorhanden | `artifact.digest.exists` ist `true`. |
@@ -677,10 +678,14 @@ Das Skript macht folgende Dinge:
 4. Es lädt relevante Artifacts herunter.
 5. Es sucht nach `control-evaluation-report.json` oder nutzt einen
    `baseline-gate-result.json` als zusammengefassten Fallback.
-6. Es sucht optional nach `governance-run-input.json`.
-7. Es prüft erneut, ob der Branch geschützt ist.
-8. Es prüft Trust-Kontext und Replay und schreibt den Snapshot append-only.
-9. Der Workflow schlägt Snapshot, Ereignisse und Projektionen in einem Bot-PR
+6. Es sucht nach `pipeline-evidence.json` und verifiziert die darin
+   deklarierten SBOM-, Scan- und Build-Dateien gegen den heruntergeladenen
+   Artefaktinhalt. Der Build-Digest wird gegen die tatsächlichen Bytes geprüft.
+7. Es sucht nach `governance-run-input.json`, zunächst im Haupartefakt und
+   andernfalls im separaten `devsecops-governance-run-input`-Artefakt.
+8. Es prüft erneut, ob der Branch geschützt ist.
+9. Es prüft Trust-Kontext und Replay und schreibt den Snapshot append-only.
+10. Der Workflow schlägt Snapshot, Ereignisse und Projektionen in einem Bot-PR
    vor. Erst Checks, Review und Merge übernehmen sie offiziell; die lokalen
    Skriptbefehle allein veröffentlichen keinen angenommenen zentralen Stand.
 
@@ -734,6 +739,7 @@ Beispiel:
   },
   "checks": {
     "baseline_gate": "success",
+    "baseline_gate_workflow_job": "success",
     "governance_control_evaluation": "success"
   },
   "evidence": {
@@ -751,6 +757,21 @@ Beispiel:
 ```
 
 Diese Datei dient dem Governance-Viewer und Management-Reporting. Sie ist bewusst kompakter als die Pipeline-Evidence.
+
+`evidence_context` dokumentiert außerdem die Werte aus `pipeline-evidence.json`,
+die Producer-Angaben aus `governance-run-input.json` sowie das Ergebnis samt
+Modus und `blocks_merge` des Baseline-Gates. Producer-Angaben werden nicht als
+unabhängig gemessene Tatsachen dargestellt. Insbesondere wird
+`external_direct_downloads_detected` als Producer-deklarierte Beobachtung
+gekennzeichnet; die zentrale Intake-Pipeline misst den Netzwerkverkehr des
+Consumers nicht selbst.
+
+Bei GitHub-Actions-Intake werden Gateentscheidung und Jobausgang getrennt
+abgebildet. `checks.baseline_gate` enthält das Ergebnis aus
+`baseline-gate-result.json`; `checks.baseline_gate_workflow_job` enthält den
+technischen Actions-Jobausgang. Ein report-only Lauf kann daher `failure` für
+das Governance-Gate und `success` für den Actions-Job zeigen. Das bedeutet,
+dass ein Finding korrekt dokumentiert wurde, ohne den Workflow zu blockieren.
 
 Verantwortlich:
 
