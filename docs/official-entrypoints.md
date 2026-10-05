@@ -171,7 +171,10 @@ It is intended for:
 - L1 baseline v1.1.2 release statement: `docs/releases/l1-baseline-v1.1.2-release-statement.md`
 - L1 baseline v1.1.3: `docs/releases/l1-baseline-v1.1.3.md`
 - L1 baseline v1.1.3 release statement: `docs/releases/l1-baseline-v1.1.3-release-statement.md`
+- Prepared L1 baseline v1.2.0 candidate: `docs/releases/l1-baseline-v1.2.0.md`
+- Prepared L1 baseline v1.2.0 release statement: `docs/releases/l1-baseline-v1.2.0-release-statement.md`
 - Current technical release package: `releases/l1/v1.1.3/baseline-package.md`
+- Prepared, unpublished technical release package: `releases/l1/v1.2.0/baseline-package.md`
 
 ## Consumer Entrypoints
 
@@ -180,6 +183,7 @@ It is intended for:
 - Prepared patch versioned reusable workflow: `.github/workflows/devsecops-baseline-l1-v1.1.1.yml`
 - Prepared patch versioned reusable workflow: `.github/workflows/devsecops-baseline-l1-v1.1.2.yml`
 - Prepared patch versioned reusable workflow: `.github/workflows/devsecops-baseline-l1-v1.1.3.yml`
+- Prepared minor versioned reusable workflow: `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` (not usable until signed tag publication)
 - Consumer example workflow: `releases/l1/v1.0.0/examples/github-actions/devsecops-baseline-l1-v1.0.0.yml`
 - Consumer example workflow with governance input: `releases/l1/v1.1.0/examples/github-actions/devsecops-baseline-l1-v1.1.0.yml`
 - Consumer example workflow with governance input: `releases/l1/v1.1.1/examples/github-actions/devsecops-baseline-l1-v1.1.1.yml`

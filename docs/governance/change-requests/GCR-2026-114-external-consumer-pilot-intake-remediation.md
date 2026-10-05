@@ -19,7 +19,7 @@ The evidence and run records for the pilot are documented in [the 2026-10-05 pil
 | Control baseline impact | None; released DevSecOps L1.1.3 package is unchanged |
 | Architecture governance impact | None |
 | Viewer/index impact | Existing status snapshots gain additive `evidence_context` and a distinct workflow-job check. No generated official index or viewer data is edited in this change. |
-| Release impact | No DevSecOps baseline package changes; consumer rollout requires a new versioned reusable workflow reference. Existing `l1-baseline-v1.1.3` remains unchanged. |
+| Release impact | No policy, control-model, or OPA change. The additive evidence fields require a new minor L1 v1.2.0 package and versioned wrapper; existing `l1-baseline-v1.1.3` remains unchanged. |
 | Enforcement impact | None; report-only remains report-only, and gate `blocks_merge` follows the configured mode |
 | Consumer impact | Additive snapshot fields; standard intake now uses `devsecops-pipeline-evidence` by default. Older report artifacts remain selectable explicitly. |
 
@@ -67,9 +67,17 @@ Repository-required validation is `./scripts/bootstrap_validation_env.sh` follow
 
 ## Release Decision
 
-- [x] No DevSecOps baseline policy/package change required
+- [x] No policy, control-model, or OPA behavior change; prepare the additive L1 v1.2.0 evidence package as a minor release
 - [x] No released package or tag mutation
 - [x] No change to blocking mode or lifecycle acceptance
-- [ ] Prepare a new versioned reusable-workflow reference after this change is reviewed and merged; do not mutate `l1-baseline-v1.1.3`
+- [x] Prepared versioned L1 v1.2.0 workflow and package in this follow-up PR; publish only after review and merge, and keep `l1-baseline-v1.1.3` unchanged
 - [ ] Re-run the pilot and close ECV-01 after reviewed implementation is available
 - [ ] Keep ECV-12 and ECV-13 blocked until their independent reviewer and closure authority criteria are met
+
+## Post-Merge Verification
+
+PR #212 merged to `main` on 2026-10-05 as `df15833e0dea51b6415a0ce416243698c656f6ca`. After the merge, the full central `intake_github_actions_run.py` path was executed in a disposable checkout against the retained attempt-3 artifacts for both private pilot consumers. The resulting snapshots remained local under `/private/tmp/ecv-stability-governance/status/results/`.
+
+For both cJSON (`37266266970`) and go-httpbin (`37266263787`), the central intake found the SBOM, vulnerability scan, build artifact and separate run-input artifact; verified the build digest; retained digests for the primary and run-input archives; and recorded `checks.baseline_gate: failure` separately from `checks.baseline_gate_workflow_job: success`. The report-only governance outcome remained `fail`, and Trust for each captured governance-result artifact reached `provenance_verified`.
+
+This replay confirms central processing of the retained historical artifacts. It is not a fresh consumer run or producer adoption test. Both consumers still reference `l1-baseline-v1.1.3`, so their artifacts lack the updated `blocks_merge` declaration and continue to disagree between pipeline evidence and run input about gate evaluation and direct downloads. No pilot snapshot, index, viewer, consumer registry or Trust result was published. A new immutable workflow reference and fresh consumer runs remain necessary to verify producer semantics and close ECV-01; ECV-12 and ECV-13 remain blocked.
