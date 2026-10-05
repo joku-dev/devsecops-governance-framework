@@ -32,7 +32,7 @@ The currently documented release set in the repository is:
 
 The latest prepared packages by release line are:
 
-- `L1 baseline v1.1.3`
+- `L1 baseline v1.2.0` (prepared, not published; `l1-baseline-v1.1.3` remains the supported tag)
 - `Architecture L1 baseline v0.1.0`
 - `Operational assurance repository release v0.3.0`
 
@@ -66,5 +66,7 @@ To understand how releases should evolve and how downstream repositories should 
 - `L1 baseline v1.1.2 release statement`: `l1-baseline-v1.1.2-release-statement.md`
 - `L1 baseline v1.1.3`: `l1-baseline-v1.1.3.md`
 - `L1 baseline v1.1.3 release statement`: `l1-baseline-v1.1.3-release-statement.md`
+- `Prepared L1 baseline v1.2.0 candidate`: `l1-baseline-v1.2.0.md`
+- `Prepared L1 baseline v1.2.0 release statement`: `l1-baseline-v1.2.0-release-statement.md`
 - `Architecture L1 baseline v0.1.0`: `architecture-baseline-l1-v0.1.0.md`
 - `Architecture L1 baseline v0.1.0 release statement`: `architecture-baseline-l1-v0.1.0-release-statement.md`

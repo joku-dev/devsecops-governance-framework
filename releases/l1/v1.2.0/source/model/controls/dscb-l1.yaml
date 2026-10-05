@@ -1,0 +1,374 @@
+level: L1
+name: Enterprise DevSecOps Baseline
+required_platform_level: PRA-Level 1
+requirements:
+- id: DSCB-L1-REQ-001
+  domain: traceability
+  title: Traceability
+  control_objective: Ensure traceability between requirements and implemented software and the corresponding Testcases and Reports.
+  requirement: All software components SHALL be traceable to defined system or software requirements and the corresponding Testcases and Reports.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - evidence_and_traceability_layer
+  - traceability_database
+  - pipeline_audit_logs
+  evidence:
+  - requirements_traceability_records
+  - configuration_management_records
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-002
+  domain: source_code_integrity
+  title: Source Code Integrity
+  control_objective: Ensure integrity and accountability of source code changes.
+  requirement: All software source code SHALL be maintained in approved version control systems and changes SHALL be traceable to an identifiable
+    author.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - approved_version_control
+  - code_review
+  - branch_protection
+  - repository_audit_log
+  evidence:
+  - commit_history
+  - code_review_records
+  - branch_protection_configuration
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-003
+  domain: source_code_integrity
+  title: Source Code Integrity
+  control_objective: Ensure integrity and accountability of source code changes.
+  requirement: Direct modification of protected branches SHALL be prohibited.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - approved_version_control
+  - code_review
+  - branch_protection
+  - repository_audit_log
+  evidence:
+  - commit_history
+  - code_review_records
+  - branch_protection_configuration
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/branch_protection.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-004
+  domain: secure_coding_practices
+  title: Secure Coding Practices
+  control_objective: Reduce introduction of known software vulnerabilities.
+  requirement: Secure coding practices SHALL be applied and security-relevant coding errors SHALL be detected during development or testing.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - static_code_analysis
+  - code_review
+  - secure_coding_guidance
+  evidence:
+  - static_code_analysis_reports
+  - code_review_documentation
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-005
+  domain: software_supply_chain_transparency
+  title: Software Supply Chain Transparency
+  control_objective: Ensure transparency and control of third-party dependencies.
+  requirement: All software dependencies SHALL be identifiable and documented.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - dependency_inventory
+  - sbom_generation
+  - dependency_scanning
+  - evidence_repository
+  evidence:
+  - sbom
+  - dependency_scan_reports
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-006
+  domain: software_supply_chain_transparency
+  title: Software Supply Chain Transparency
+  control_objective: Ensure transparency and control of third-party dependencies.
+  requirement: A Software Bill of Materials (SBOM) SHALL be generated for releasable artifacts.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - dependency_inventory
+  - sbom_generation
+  - dependency_scanning
+  - evidence_repository
+  evidence:
+  - sbom
+  - dependency_scan_reports
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/sbom_required.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-007
+  domain: controlled_build_process
+  title: Controlled Build Process
+  control_objective: Ensure integrity and reproducibility of software builds.
+  requirement: Software builds SHALL be executed through controlled automated pipelines.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - automated_pipeline_execution
+  - build_pipeline_logging
+  - artifact_versioning
+  evidence:
+  - build_pipeline_logs
+  - artifact_version_identifiers
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-008
+  domain: controlled_build_process
+  title: Controlled Build Process
+  control_objective: Ensure integrity and reproducibility of software builds.
+  requirement: Build outputs SHALL be uniquely identifiable.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - automated_pipeline_execution
+  - build_pipeline_logging
+  - artifact_versioning
+  evidence:
+  - build_pipeline_logs
+  - artifact_version_identifiers
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-009
+  domain: vulnerability_identification
+  title: Vulnerability Identification
+  control_objective: Identify known vulnerabilities in software components.
+  requirement: Automated vulnerability scanning SHALL be performed during build or test stages.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - vulnerability_scanning
+  - vulnerability_assessment
+  - pipeline_evidence_generation
+  evidence:
+  - vulnerability_scan_reports
+  - vulnerability_assessment_documentation
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/vulnerability_gate.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-010
+  domain: vulnerability_identification
+  title: Vulnerability Identification
+  control_objective: Identify known vulnerabilities in software components.
+  requirement: Identified vulnerabilities SHALL be evaluated prior to release.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - vulnerability_scanning
+  - vulnerability_assessment
+  - pipeline_evidence_generation
+  evidence:
+  - vulnerability_scan_reports
+  - vulnerability_assessment_documentation
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/vulnerability_gate.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-011
+  domain: artifact_integrity
+  title: Artifact Integrity
+  control_objective: Ensure software artifacts are protected from unauthorized modification.
+  requirement: Releasable software artifacts SHALL be protected against tampering by approved repository integrity controls and cryptographic
+    integrity mechanisms such as checksums, digests, or signatures, as applicable to the required control baseline level.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - artifact_repository_integrity
+  - checksum_or_digest_records
+  - artifact_metadata_management
+  evidence:
+  - artifact_signature_records
+  - artifact_repository_metadata
+  - artifact_checksum_or_digest_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: automated_gate
+    rule: policies/opa/artifact_integrity.rego
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-012
+  domain: artifact_integrity
+  title: Artifact Integrity
+  control_objective: Ensure software artifacts are protected from unauthorized modification.
+  requirement: Artifacts SHALL be uniquely identifiable.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - artifact_repository_integrity
+  - checksum_or_digest_records
+  - artifact_metadata_management
+  evidence:
+  - artifact_signature_records
+  - artifact_repository_metadata
+  - artifact_checksum_or_digest_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-013
+  domain: release_authorization
+  title: Release Authorization
+  control_objective: Ensure controlled and authorized software release.
+  requirement: Deployment of software artifacts SHALL require authorized approval.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - release_approval_workflow
+  - deployment_logging
+  - approved_artifact_selection
+  evidence:
+  - release_approval_records
+  - deployment_logs
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-014
+  domain: release_authorization
+  title: Release Authorization
+  control_objective: Ensure controlled and authorized software release.
+  requirement: Only approved artifacts SHALL be deployed.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - release_approval_workflow
+  - deployment_logging
+  - approved_artifact_selection
+  evidence:
+  - release_approval_records
+  - deployment_logs
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-015
+  domain: pipeline_evidence_generation
+  title: Pipeline Evidence Generation
+  control_objective: Ensure compliance evidence is automatically generated.
+  requirement: DevSecOps pipelines SHALL generate machine-readable evidence artifacts for implemented controls.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - machine_readable_evidence_generation
+  - pipeline_audit_logs
+  - evidence_repository
+  evidence:
+  - pipeline_execution_logs
+  - security_scan_reports
+  - artifact_metadata
+  - approval_records
+  verification:
+    method: automated
+    frequency: release_candidate
+  policy_as_code:
+    candidate: true
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board
+- id: DSCB-L1-REQ-016
+  domain: operational_traceability
+  title: Operational Traceability
+  control_objective: Ensure deployed software versions can be traced in operation.
+  requirement: Operational environments SHALL maintain records of deployed software versions and relevant security events.
+  required_platform_level: PRA-Level 1
+  platform_capabilities:
+  - deployment_records
+  - operational_logging
+  - incident_record_repository
+  evidence:
+  - system_logs
+  - deployment_records
+  - incident_records
+  verification:
+    method: hybrid
+    frequency: release_candidate
+  policy_as_code:
+    candidate: false
+    enforcement: evidence_review
+  waiver:
+    allowed: true
+    authority: DevSecOps Governance Board

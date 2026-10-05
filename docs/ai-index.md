@@ -174,6 +174,8 @@ decision must be recorded by a human reviewer in a governance change request.
 | OPA policies | `policies/opa/*` |
 | Current release | `releases/l1/v1.1.3/`, `docs/releases/l1-baseline-v1.1.3.md` |
 | Reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.1.3.yml` |
+| Prepared, unpublished minor release | `releases/l1/v1.2.0/`, `docs/releases/l1-baseline-v1.2.0.md` |
+| Prepared, unpublished reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` |
 
 Typical validation:
 

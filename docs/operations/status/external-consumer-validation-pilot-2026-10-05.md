@@ -90,7 +90,7 @@ ECV-04 through ECV-11 were executed as disposable local fixtures against the iso
 
 ## Governance integrity and current situation
 
-- The official governance repository is at `main` commit `d7d5e4db5ef550da444bd0047ae012d31f715056`; the official indexes still cover **three registered consumers**. The most recent committed ha-CPsWMS result indexes are dated 2 October and were not refreshed by this pilot.
+- The official governance repository is at `main` commit `df15833e0dea51b6415a0ce416243698c656f6ca`, which merged the central intake remediation in PR #212. The official indexes still cover **three registered consumers**. The most recent committed ha-CPsWMS result indexes are dated 2 October and were not refreshed by this pilot.
 - In those indexes, ha-CPsWMS DevSecOps run `36997125273` is `pass` (16/16 applicable controls) with Trust `integrity_verified`; Architecture run `36997124090` is `pass` (4/4 gates) with Trust `integrity_verified`. The separate typed vulnerability scan run `36997124065` is `provenance_verified` (9 checks pass, 0 fail, 3 not evaluated), but records **3,269 findings** and maximum severity **critical**, including one critical finding in the `neo4j` image. Provenance verification confirms evidence identity/custody; it is not a clean-security result. The pilot did not refresh or change any of these official records.
 - Governance baseline, policies, schemas, waivers, official result history, viewer, and official consumer registry were not changed by this pilot.
 - The official portfolio remains at **three registered consumers**. Neither private evaluation repository is an official consumer.
@@ -99,25 +99,23 @@ ECV-04 through ECV-11 were executed as disposable local fixtures against the iso
 
 ## Recommended next actions
 
-1. Fix central evidence aggregation so consumer run input, application artifact, SBOM and scan are verified and represented together in the result snapshot.
-2. Preserve archive digest/custody when private artifact download falls back to `gh`; investigate why the go-httpbin private artifact path lacks that record.
-3. Align the measured values for external downloads and report-only gate behavior between consumer input and central evidence, and make the displayed gate status distinguish workflow success from governance outcome.
-4. Resolve the go-httpbin finding at `examples/custom-instrumentation/go.mod` through source-owner review and a fixed-version rescan; also classify the upstream flaky test/private lint failure.
-5. Decide the repository protection posture before any official admission. Current pilot repositories permit direct pushes; any review-independence exception must remain an explicit, separately scoped decision.
-6. Keep ECV-12 and ECV-13 blocked until an independent engineer and a properly authorized closure role are available. Re-run ECV-01 after the intake and evidence-binding fixes; then decide admission and Wave 2 separately.
+1. Publish a new immutable, versioned reusable-workflow reference that includes the merged #212 implementation. Keep `l1-baseline-v1.1.3` unchanged; new release tags require the registered SSH signer.
+2. Update both private pilot consumers to that version while keeping them report-only, then run fresh workflows and normal central intake. Confirm producer `blocks_merge` semantics and re-check evidence, archive custody, source attribution, governance outcome, and Trust.
+3. Resolve the go-httpbin finding at `examples/custom-instrumentation/go.mod` through source-owner review and a fixed-version rescan; also classify the upstream flaky test/private lint failure.
+4. Decide the repository protection posture before any official admission. Current pilot repositories permit direct pushes; any review-independence exception must remain an explicit, separately scoped decision.
+5. Keep ECV-12 and ECV-13 blocked until an independent engineer and a properly authorized closure role are available. Decide admission and Wave 2 separately after Wave 1 evidence is complete.
 
 ## Follow-up remediation record
 
 **Recorded:** 2026-10-05
 **Change request:** [GCR-2026-114](../../governance/change-requests/GCR-2026-114-external-consumer-pilot-intake-remediation.md)
-**Implementation state:** PR #212 is open with all required checks passing; a fresh consumer rerun remains outstanding until the fix is reviewed, merged, and published under a new versioned reusable-workflow reference.
+**Implementation state:** PR #212 was merged as `df15833e0dea51b6415a0ce416243698c656f6ca`; a fresh consumer rerun remains outstanding until a new versioned reusable-workflow reference is published and adopted.
 
-Both pilot repositories call the v1.1.3 wrapper. That wrapper pins the
-reusable workflow to immutable commit
-`33d5aa35479b4230525731911757afa4a24d8af2`; changes on `main` do not alter that
-version. Do not move or rewrite the existing v1.1.3 tag. After PR #212 is
-reviewed and merged, publish a new versioned reusable-workflow reference and
-update the private pilot workflows to opt into it before a fresh run.
+Both pilot repositories still call the immutable `l1-baseline-v1.1.3` wrapper.
+Merging PR #212 onto `main` did not alter that tag; do not move or rewrite it.
+The next release step is to publish a new versioned reusable-workflow reference
+with a directly signed tag, then update the private pilot workflows to use it
+before starting fresh runs.
 
 ### Historical artifact replay against the remediation
 
@@ -169,3 +167,16 @@ The follow-up implementation addresses these central repository defects:
 6. Evidence documentation defines `security_gates.enforced` as “gate ran and evaluated”; merge blocking is recorded separately by `blocks_merge`. The reusable evidence generator now emits that separate field.
 
 The cJSON and go-httpbin pilot repositories have not yet been updated or rerun against these changes. No pilot snapshot was added to official status, no consumer was registered, and ECV-12/13 remain blocked. The official portfolio and ha-CPsWMS status cited above therefore remain unchanged.
+
+### Post-merge full central intake replay
+
+**Recorded:** 2026-10-05, after PR #212 merged. Using a fresh disposable checkout at the merged `main` revision, the complete central `intake_github_actions_run.py` command was run against the retained attempt-3 artifacts for both consumers. The resulting snapshots stayed under `/private/tmp/ecv-stability-governance/status/results/`; they were not copied into the official checkout or published.
+
+| Consumer / run | Resolved evidence | Governance / job outcome | Governance-result Trust |
+|---|---|---|---|
+| cJSON / `37266266970` | SBOM, scan, build digest, and separate run input all present and verified; both primary and run-input archive digests recorded | `checks.baseline_gate: failure`; `checks.baseline_gate_workflow_job: success`; overall `fail` | `provenance_verified` |
+| go-httpbin / `37266263787` | SBOM, scan, build digest, and separate run input all present and verified; both primary and run-input archive digests recorded | `checks.baseline_gate: failure`; `checks.baseline_gate_workflow_job: success`; overall `fail` | `provenance_verified` |
+
+Trust applies to the captured governance-result artifact and its provenance/custody; it does not establish trust in the application source or binary. Both runs still reference the old `l1-baseline-v1.1.3` workflow. Accordingly, `blocks_merge` is absent from the producer declarations, and the consumer run input still disagrees with `pipeline-evidence.json` on gate evaluation and direct downloads. The central snapshot preserves those source-labelled values rather than resolving them by assumption.
+
+This confirms the full **central intake path** against retained historical artifacts after #212. It is not a fresh consumer run, does not verify producer adoption of the new evidence semantics, and does not close ECV-01. No official index, viewer, Trust result, consumer registry, or `main` state changed. ECV-12 and ECV-13 remain blocked.
