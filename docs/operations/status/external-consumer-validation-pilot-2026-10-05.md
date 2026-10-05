@@ -6,7 +6,7 @@
 
 ## Executive result
 
-Both consumer workflows built, tested, generated source-tree CycloneDX SBOMs, ran Trivy, and completed the released L1.1.3 report-only workflow. The initial run and two repeated attempts succeeded for each consumer. The governance decision was **not a pass**: each baseline report recorded a failed control while report-only kept the GitHub workflow green. The central result intake verified the governance report, but it did not project the consumer SBOM, scan, or artifact digest into the result snapshot. A separate typed-evidence intake could not proceed because neither consumer artifact contained `governance/vulnerability-scan-trust.json`.
+In the original v1.1.3 measurement, both consumer workflows built, tested, generated source-tree CycloneDX SBOMs, ran Trivy, and completed the report-only workflow. The initial run and two repeated attempts succeeded for each consumer. The governance decision was **not a pass**: each baseline report recorded a failed control while report-only kept the GitHub workflow green. At that time central intake did not project the consumer SBOM, scan, or artifact digest, and typed-evidence intake could not proceed because neither artifact contained `governance/vulnerability-scan-trust.json`. Those intake gaps were remediated in v1.2.0 and verified by the fresh PR runs recorded below.
 
 The isolated central Trust verifier classified the **governance-result artifact** for cJSON as `provenance_verified`; go-httpbin reached `integrity_verified` because the private-artifact fallback path did not preserve an archive digest/custody subject. These are local pilot measurements, not official consumer Trust results, and they do not mean the application binary or source is trusted at those levels.
 
@@ -17,16 +17,18 @@ The isolated central Trust verifier classified the **governance-result artifact*
 | cJSON | `DaveGamble/cJSON` `c859b25da02955fef659d658b8f324b5cde87be3` (`v1.7.19`) | [`governance-eval-cjson`](https://github.com/joku-dev/governance-eval-cjson), `d6340fc34b4a35d4ee2db4aa53826d959ece6034` | [run 37266266970](https://github.com/joku-dev/governance-eval-cjson/actions/runs/37266266970) | CMake 3.31.6, Ninja 1.13.2, GCC 13.3.0; CTest **22/22 passed** | `dist/application-source.tar.gz`, SHA-256 `78b4330eaf28e0345cbd38bfe9bb994a203c03e6cfe9469d28f9960d7c2a1789` |
 | go-httpbin | `mccutchen/go-httpbin` `34888fd21d6667e9f0c842db483ba595b9c8c094` | [`governance-eval-go-httpbin`](https://github.com/joku-dev/governance-eval-go-httpbin), `86118ea5f641f4217f005ab039a6714d557cd3f7` | [run 37266263787](https://github.com/joku-dev/governance-eval-go-httpbin/actions/runs/37266263787) | Go 1.25.0, race detector; 84 top-level test functions, 1,441 passing test/subtest events, 1 skipped, 0 failed | `dist/go-httpbin`, SHA-256 `9e93a8293846baffb6a8ddf98e5d0af76e3007261f671fec8aa811e60dc64289` |
 
-Both repositories remain **private**. The source diff from each verified upstream pin contains only the five pilot integration/configuration files; upstream application source and license files were not edited. No PRs were opened. Both `main` branches were measured as unprotected, with direct pushes allowed and no review requirement.
+Both repositories remain **private**. The source diff from each verified upstream pin contains only the five pilot integration/configuration files; upstream application source and license files were not edited. During the original v1.1.3 measurement, no PRs were opened. The later v1.2.0 adoption updates are now proposed in the open PRs listed below. Both `main` branches were measured as unprotected, with direct pushes allowed and no review requirement.
 
 Both pilot workflows used `actions/checkout` and `actions/upload-artifact` pinned to full commit SHAs, Syft 1.54.0 through the pinned SBOM action, and Trivy 0.70.0. SBOM scope is explicitly **source tree**, not the compiled library/binary or a container. Runner OS/image and compiler/tool versions are recorded; the hosted runner image itself is not immutable.
 
 ## Governance outcome and evidence findings
 
-The consumer and central artifacts disagree on two governance fields:
+In the original v1.1.3 runs, the consumer and central artifacts disagreed on two governance fields:
 
 - Consumer `governance-run-input.json` truthfully records `external_direct_downloads_detected: true` and `security_gates.enforced: false`.
 - The central `pipeline-evidence.json` records `external_direct_downloads_detected: false` and `security_gates.enforced: true`.
+
+Fresh v1.2.0 PR runs now agree on `security_gates.enforced: true` and `blocks_merge: false`. The direct-download declaration still differs (`true` in run input, `false` in pipeline evidence); this remains an open producer-observation issue.
 
 The consumers download build/scanner/toolchain dependencies, and their gate mode is report-only. The central collector currently does not preserve those measured values consistently.
 
@@ -72,7 +74,7 @@ The dedicated pilot build/test job passed on all three attempts. This does not e
 
 | Case | Status | Observed result |
 |---|---|---|
-| ECV-01 Measured evidence | **FAIL** | Real build/SBOM/scan evidence exists and the central verifier binds governance report identity. Central intake does not bring the consumer SBOM, scan, or artifact digest into its result projection; typed Trust intake is unavailable without the trust record. The baseline decisions are failures in report-only mode. |
+| ECV-01 Measured evidence | **OPEN (PARTIAL)** | Fresh v1.2.0 runs and central intake now carry SBOM, scan, build digest, run-input, and provenance evidence. The baseline decisions remain failures in report-only mode. ECV-01 stays open because producer declarations still disagree on direct downloads and both consumer PRs await review; original v1.1.3 intake gaps are described below as historical findings. |
 | ECV-02 Repeatability | **PASS, semantic** | Attempts 2 and 3 preserve inputs, findings, tools, and decision semantics. cJSON archive bytes vary despite identical unpacked contents; see byte-for-byte limit above. |
 | ECV-03 Missing evidence | **PASS, report-only** | A disposable run with the SBOM path missing generated an explicit `SBOM not found` failure with `blocks_merge: false`; no positive evidence was fabricated. |
 | ECV-04 Tampering | **PASS** | Altering a digested report after capture fails `content_digest_verified`. |
@@ -90,7 +92,7 @@ ECV-04 through ECV-11 were executed as disposable local fixtures against the iso
 
 ## Governance integrity and current situation
 
-- The official governance repository is at `main` commit `df15833e0dea51b6415a0ce416243698c656f6ca`, which merged the central intake remediation in PR #212. The official indexes still cover **three registered consumers**. The most recent committed ha-CPsWMS result indexes are dated 2 October and were not refreshed by this pilot.
+- The governance repository is at `main` commit `bdc993d49d82c4a1fa4cdcabb572011896de17c2`; PR #212 delivered central intake remediation and PR #213 prepared the v1.2.0 release package. The directly SSH-signed `l1-baseline-v1.2.0` tag now resolves to this commit. The official indexes still cover **three registered consumers**. The most recent committed ha-CPsWMS result indexes are dated 2 October and were not refreshed by this pilot.
 - In those indexes, ha-CPsWMS DevSecOps run `36997125273` is `pass` (16/16 applicable controls) with Trust `integrity_verified`; Architecture run `36997124090` is `pass` (4/4 gates) with Trust `integrity_verified`. The separate typed vulnerability scan run `36997124065` is `provenance_verified` (9 checks pass, 0 fail, 3 not evaluated), but records **3,269 findings** and maximum severity **critical**, including one critical finding in the `neo4j` image. Provenance verification confirms evidence identity/custody; it is not a clean-security result. The pilot did not refresh or change any of these official records.
 - Governance baseline, policies, schemas, waivers, official result history, viewer, and official consumer registry were not changed by this pilot.
 - The official portfolio remains at **three registered consumers**. Neither private evaluation repository is an official consumer.
@@ -99,23 +101,23 @@ ECV-04 through ECV-11 were executed as disposable local fixtures against the iso
 
 ## Recommended next actions
 
-1. Publish a new immutable, versioned reusable-workflow reference that includes the merged #212 implementation. Keep `l1-baseline-v1.1.3` unchanged; new release tags require the registered SSH signer.
-2. Update both private pilot consumers to that version while keeping them report-only, then run fresh workflows and normal central intake. Confirm producer `blocks_merge` semantics and re-check evidence, archive custody, source attribution, governance outcome, and Trust.
-3. Resolve the go-httpbin finding at `examples/custom-instrumentation/go.mod` through source-owner review and a fixed-version rescan; also classify the upstream flaky test/private lint failure.
-4. Decide the repository protection posture before any official admission. Current pilot repositories permit direct pushes; any review-independence exception must remain an explicit, separately scoped decision.
+1. Resolve the remaining `external_direct_downloads_detected` discrepancy. The v1.2.0 pipeline artifact says `false`; both consumer run-input artifacts say `true`. Agree a producer observation method and make both source records consistent without claiming central egress measurement.
+2. Resolve cJSON and go-httpbin's separate upstream CI failures before merging their consumer PRs. Keep both workflows report-only.
+3. Review the go-httpbin `CVE-2026-39824`/unknown-severity finding at `examples/custom-instrumentation/go.mod` and rescan a reviewed fix.
+4. Keep ECV-01 open until the source discrepancy is resolved and the consumer updates are reviewed and merged. The pilot runs show that v1.2.0 can carry the evidence through central intake; they do not make these private repositories official consumers.
 5. Keep ECV-12 and ECV-13 blocked until an independent engineer and a properly authorized closure role are available. Decide admission and Wave 2 separately after Wave 1 evidence is complete.
 
 ## Follow-up remediation record
 
 **Recorded:** 2026-10-05
 **Change request:** [GCR-2026-114](../../governance/change-requests/GCR-2026-114-external-consumer-pilot-intake-remediation.md)
-**Implementation state:** PR #212 was merged as `df15833e0dea51b6415a0ce416243698c656f6ca`; a fresh consumer rerun remains outstanding until a new versioned reusable-workflow reference is published and adopted.
+**Implementation state:** PR #212 merged as `df15833e0dea51b6415a0ce416243698c656f6ca`; PR #213 merged as `bdc993d49d82c4a1fa4cdcabb572011896de17c2`; signed tag `l1-baseline-v1.2.0` is published. Fresh consumer PR runs completed central intake, but both consumer PRs remain open and ECV-01 remains open.
 
-Both pilot repositories still call the immutable `l1-baseline-v1.1.3` wrapper.
-Merging PR #212 onto `main` did not alter that tag; do not move or rewrite it.
-The next release step is to publish a new versioned reusable-workflow reference
-with a directly signed tag, then update the private pilot workflows to use it
-before starting fresh runs.
+Both private pilot repositories now have open update PRs against their `main`
+branches. The PRs pin the directly SSH-signed v1.2.0 wrapper and keep the
+invocation in `report-only`. Their PR workflow runs produced fresh application
+evidence and completed the central v1.2.0 baseline workflow. Do not move or
+rewrite either the v1.1.3 or v1.2.0 tag.
 
 ### Historical artifact replay against the remediation
 
@@ -180,3 +182,19 @@ The cJSON and go-httpbin pilot repositories have not yet been updated or rerun a
 Trust applies to the captured governance-result artifact and its provenance/custody; it does not establish trust in the application source or binary. Both runs still reference the old `l1-baseline-v1.1.3` workflow. Accordingly, `blocks_merge` is absent from the producer declarations, and the consumer run input still disagrees with `pipeline-evidence.json` on gate evaluation and direct downloads. The central snapshot preserves those source-labelled values rather than resolving them by assumption.
 
 This confirms the full **central intake path** against retained historical artifacts after #212. It is not a fresh consumer run, does not verify producer adoption of the new evidence semantics, and does not close ECV-01. No official index, viewer, Trust result, consumer registry, or `main` state changed. ECV-12 and ECV-13 remain blocked.
+
+
+### Fresh v1.2.0 report-only consumer runs
+
+**Recorded:** 2026-10-05. The v1.2.0 tag was directly SSH-signed with the registered active signer and points to governance main commit `bdc993d49d82c4a1fa4cdcabb572011896de17c2`. Two consumer update PRs ran the integration on their PR branches; both remain private and neither PR has been merged:
+
+| Consumer / PR | Commit / workflow run | Workflow result | Central intake |
+|---|---|---|---|
+| cJSON [PR #1](https://github.com/joku-dev/governance-eval-cjson/pull/1) | `982438218382272b52305448d10ed27cac96cdfe`; [run 37354199541](https://github.com/joku-dev/governance-eval-cjson/actions/runs/37354199541), attempt 1 | Build, CTest, SBOM, Trivy, run-input generation, and v1.2.0 report-only gate job succeeded; gate result `fail` | Local snapshot `status/results/joku-dev__governance-eval-cjson/2026-10-05T18-13-50Z-run-37354199541.json`; Trust `provenance_verified` |
+| go-httpbin [PR #1](https://github.com/joku-dev/governance-eval-go-httpbin/pull/1) | `837c82c0243370ab1c2df4df590ed495c1b0c381`; [run 37354239565](https://github.com/joku-dev/governance-eval-go-httpbin/actions/runs/37354239565), attempt 2 | Race tests, vet/build, SBOM, Trivy, run-input generation, and v1.2.0 report-only gate job succeeded; gate result `fail` | Local snapshot `status/results/joku-dev__governance-eval-go-httpbin/2026-10-05T18-18-00Z-run-37354239565.json`; Trust `provenance_verified` |
+
+For both runs, central intake verified the downloaded build bytes against the declared SHA-256 and found the SBOM, scan, and separate run-input artifact. The pipeline and run-input values now agree that `security_gates.enforced: true` and `blocks_merge: false`; `checks.baseline_gate` is `failure` while `checks.baseline_gate_workflow_job` is `success`. Trust applies to the governance-result artifact's identity and custody, not to the application source or build, and does not mean the vulnerability results are clean.
+
+One source discrepancy remains: central pipeline evidence reports `external_direct_downloads_detected: false`, while both producer run-input artifacts declare `true`. The intake labels both sources and does not independently observe consumer egress. ECV-01 therefore remains open. The two snapshots were written only in the disposable checkout at `/private/tmp/ecv-release-v1.2.0/status/results/`; no official result index, viewer, Trust projection, consumer registry, or ha-CPsWMS status was changed.
+
+The first go-httpbin ECV attempt (attempt 1) failed `TestDrip/handle_cancelation_during_drip` under the race detector when a 250 ms context deadline elapsed. Attempt 2 passed and completed intake. Its separate upstream CI `test (stable)` job shows the same timeout. The `lint-github-actions` job failed during checkout cleanup with `git` exit 128. The cJSON consumer workflow itself passed, but separate upstream CI checks remain red: macOS jobs use CMake against the upstream project's pre-3.5 minimum-version declaration, which current CMake rejects, and the Fuzzing job failed. These failures are separate from the successful report-only governance jobs; the consumer PRs remain open pending review of their full check sets.

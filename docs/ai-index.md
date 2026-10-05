@@ -63,7 +63,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Inspect Codex model selection and its measured limitations | `docs/operations/agents/agent-system-usage.md`, `docs/operations/reference-runs/2026-09-12-gpt6-agent-evaluation.md` |
 | Inspect agent usage | `docs/operations/agents/agent-usage-snapshot-latest.md`, `generated/agent-usage/agent-usage-summary.json` |
 | Find actual L1 tests, SBOMs, scans, Container Security viewer and intake | `docs/operations/evidence/l1-measured-evidence-ha-cpswms.md` |
-| Understand DevSecOps baseline releases | `docs/releases/index.md`, `docs/releases/l1-baseline-v1.1.3.md` |
+| Understand DevSecOps baseline releases | `docs/releases/index.md`, `docs/releases/l1-baseline-v1.2.0.md` |
 | Understand architecture baseline releases | `docs/releases/architecture-baseline-l1-v0.1.0.md` |
 | Understand intake and viewer | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
 | Operate Evidence- und Governance-Hardening | `docs/operations/guides/evidence-and-governance-hardening-guide.md` |
@@ -172,10 +172,9 @@ decision must be recorded by a human reviewer in a governance change request.
 | Evidence | `model/evidence/evidence-types.yaml`, `model/evidence/evidence-trust-model.yaml`, `model/evidence/evidence-freshness-policies.yaml`, `model/evidence/evidence-collector-contract.yaml`, `docs/operations/evidence/governance-evidence-contract.md`, `docs/operations/evidence/evidence-trust-model.md`, `docs/operations/evidence/evidence-collector-contract.md`, `docs/operations/evidence/vulnerability-scan-collector-usage.md` |
 | Pipeline placement | `pipeline-baseline/` |
 | OPA policies | `policies/opa/*` |
-| Current release | `releases/l1/v1.1.3/`, `docs/releases/l1-baseline-v1.1.3.md` |
-| Reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.1.3.yml` |
-| Prepared, unpublished minor release | `releases/l1/v1.2.0/`, `docs/releases/l1-baseline-v1.2.0.md` |
-| Prepared, unpublished reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` |
+| Current release | `releases/l1/v1.2.0/`, `docs/releases/l1-baseline-v1.2.0.md` |
+| Reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` |
+| Previous release | `releases/l1/v1.1.3/`, `docs/releases/l1-baseline-v1.1.3.md` |
 
 Typical validation:
 
@@ -283,7 +282,7 @@ outcomes; the separate DevSecOps replay finding remains open):
 | Domain | Current release | Key files |
 |---|---|---|
 | Repository adoption/operations | `v0.3.0-public-adoption`; publication established by signed tag and GitHub Release | `docs/releases/v0.3.0-public-adoption.md` |
-| DevSecOps L1 | `l1-baseline-v1.1.3` | `docs/releases/l1-baseline-v1.1.3.md`, `releases/l1/v1.1.3/` |
+| DevSecOps L1 | `l1-baseline-v1.2.0` | `docs/releases/l1-baseline-v1.2.0.md`, `releases/l1/v1.2.0/` |
 | Architecture L1 | `architecture-baseline-l1-v0.1.0` | `docs/releases/architecture-baseline-l1-v0.1.0.md`, `releases/architecture/l1/v0.1.0/` |
 
 When creating a new release, update:
