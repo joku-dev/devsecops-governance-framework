@@ -95,29 +95,52 @@ The Gson repository also ran workflows copied from the upstream source. In initi
 
 ## Follow-up verification (2026-10-06)
 
-The central DevSecOps and architecture GitHub Actions intake helpers are being
-updated so only a successful, well-formed branch API response can produce a
-boolean `repository.branch_protected` value. API failures now produce `null`
-and a separate `repository.branch_protection_lookup.status: "unavailable"`;
-HTTP status or error type is recorded without the error message. Existing
+The central DevSecOps and architecture GitHub Actions intake helpers are
+updated in [PR #217](https://github.com/joku-dev/devsecops-governance-framework/pull/217)
+so only a successful, well-formed branch API response can produce a boolean
+`repository.branch_protected` value. API failures now produce `null` and a
+separate `repository.branch_protection_lookup.status: "unavailable"`; HTTP
+status or error type is recorded without the error message. Existing
 append-only snapshots remain historical records and are not rewritten. The
 pilot's previous `false` values must therefore continue to be read as unknown,
 not as confirmed unprotected branches.
 
-Local remediation candidates were applied only to isolated working copies of
-the go-httpbin and Gson pilot source snapshots. Updating the nested
-go-httpbin example module from `golang.org/x/sys` v0.41.0 to v0.44.0 removed
-the reported CVE-2026-39824 finding. For Gson, dependency management scoped to
-the benchmark-only `metrics` module selected Guava 33.7.0-jre and Okio 1.17.6,
-removing CVE-2023-2976, CVE-2020-8908, and CVE-2023-3635 from the scan. Both
-modified source trees had zero vulnerability findings in Trivy 0.70.0 using
-the database downloaded on this date. go-httpbin race tests, vet, and build
-passed; the clean Gson Maven verification reactor passed. These are local
-candidate results: no consumer repository was changed remotely, no upstream
-PR was opened, and no new evidence was added to official status indexes.
+The remediation candidates were first verified in isolated working copies,
+then submitted to the separate private pilot repositories for review:
+[cJSON PR #1](https://github.com/joku-dev/governance-eval-cjson/pull/1),
+[go-httpbin PR #2](https://github.com/joku-dev/governance-eval-go-httpbin/pull/2),
+and [Gson PR #3](https://github.com/joku-dev/governance-eval-gson/pull/3).
+All three point to the published signed tag, and none changes its upstream
+project.
 
-The v1.2.1 package remains prepared but unsigned and unpublished. The signed
-tag and a fresh downstream run are still needed before Trust can advance from
-`integrity_verified` to `provenance_verified`. The private branch-protection
-API restriction also remains; this intake fix preserves that uncertainty
-rather than claiming protection was measured.
+Updating the nested go-httpbin example module from `golang.org/x/sys` v0.41.0
+to v0.44.0 removed the reported CVE-2026-39824 finding. In fresh tagged run
+[37467832720](https://github.com/joku-dev/governance-eval-go-httpbin/actions/runs/37467832720),
+the consumer build, race tests, SBOM, Trivy scan, and report-only baseline job
+succeeded; the scan had zero findings. Its governance decision remains `fail`
+because the producer declares `repository.direct_push_allowed: true`; it does
+not block the PR. A temporary local intake assessment reached
+`provenance_verified`. An earlier retry selected a stale same-name artifact
+and failed to find its run input; the fresh single-attempt run completed
+correctly.
+
+For Gson, dependency management scoped to the benchmark-only `metrics` module
+selected Guava 33.7.0-jre and Okio 1.17.6, removing CVE-2023-2976,
+CVE-2020-8908, and CVE-2023-3635. Remote run
+[37467911213](https://github.com/joku-dev/governance-eval-gson/actions/runs/37467911213)
+completed its Maven build, consumer evidence, and report-only gate; the remote
+Trivy scan had zero findings. Its governance decision also remains `fail`
+because `repository.direct_push_allowed` is `true`. The successful branch
+endpoint lookup reports `protected: false`; detailed ruleset access remains
+unavailable. A temporary local intake assessment reached
+`provenance_verified`.
+
+cJSON run [37467713254](https://github.com/joku-dev/governance-eval-cjson/actions/runs/37467713254)
+also completed its consumer build and report-only gate with zero Trivy
+findings. Its temporary local intake assessment reached `provenance_verified`.
+
+GitHub's authoritative `referenced_workflows` metadata for all three runs
+reports `refs/tags/l1-baseline-v1.2.1` and its signed tag object. The branch
+API reported `protected: false` for these run snapshots; detailed ruleset
+queries remain unavailable. All three consumer PRs remain unmerged. No run
+was added to official status indexes or the viewer.
