@@ -26,6 +26,7 @@ The currently documented release set in the repository is:
 - `L1 baseline v1.1.2`
 - `L1 baseline v1.1.3`
 - `L1 baseline v1.2.0`
+- `L1 baseline v1.2.1` (prepared release candidate; unpublished)
 - `Architecture L1 baseline v0.1.0`
 - `Public adoption release v0.1.0`
 - `Operational pilot repository release v0.2.0`
@@ -36,6 +37,12 @@ The latest packages by release line are:
 - `L1 baseline v1.2.0` (`l1-baseline-v1.2.0`, directly SSH-signed and published)
 - `Architecture L1 baseline v0.1.0`
 - `Operational assurance repository release v0.3.0`
+
+The prepared next DevSecOps patch candidate is
+[L1 baseline v1.2.1](l1-baseline-v1.2.1.md), with its
+[release statement](l1-baseline-v1.2.1-release-statement.md). The supported
+published baseline remains v1.2.0 until the candidate is reviewed, merged,
+signed, and validated downstream.
 
 The working source still remains in `model/`, while approved frozen release packages are published under `releases/`.
 
@@ -69,5 +76,7 @@ To understand how releases should evolve and how downstream repositories should 
 - `L1 baseline v1.1.3 release statement`: `l1-baseline-v1.1.3-release-statement.md`
 - `L1 baseline v1.2.0`: `l1-baseline-v1.2.0.md`
 - `L1 baseline v1.2.0 release statement`: `l1-baseline-v1.2.0-release-statement.md`
+- `Prepared L1 baseline v1.2.1 candidate`: `l1-baseline-v1.2.1.md`
+- `Prepared L1 baseline v1.2.1 release statement`: `l1-baseline-v1.2.1-release-statement.md`
 - `Architecture L1 baseline v0.1.0`: `architecture-baseline-l1-v0.1.0.md`
 - `Architecture L1 baseline v0.1.0 release statement`: `architecture-baseline-l1-v0.1.0-release-statement.md`

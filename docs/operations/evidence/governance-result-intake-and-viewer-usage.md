@@ -340,6 +340,14 @@ producer-declared run-input values, and the gate's configured mode separately.
 `external_direct_downloads_detected` remains a producer declaration; this
 intake does not independently observe network traffic.
 
+In the versioned v1.2.1 workflow, when a consumer supplies
+`governance_run_input_path`, the reusable collector copies the boolean at
+`pipeline.external_direct_downloads_detected` into `pipeline-evidence.json`.
+This keeps the two source records aligned while preserving their producer
+provenance. It is not an independent measurement of network traffic. If the
+configured run-input file or boolean is missing or invalid, evidence collection
+fails rather than substituting `false`.
+
 `pipeline.security_gates.enforced` means that the gate ran and evaluated the
 run. Merge blocking is represented separately as
 `pipeline.security_gates.blocks_merge` and `baseline-gate-result.json`'s
