@@ -20,6 +20,30 @@ spec.loader.exec_module(intake)
 
 
 class GitHubActionsRunIntakeTests(unittest.TestCase):
+    def test_branch_protection_lookup_distinguishes_unprotected_from_unavailable(self):
+        with patch.object(intake, "github_get_json", return_value={"protected": False}):
+            self.assertEqual(
+                intake.branch_protection("https://api.github.com", "owner/repo", "main", None),
+                (False, {"status": "unprotected"}),
+            )
+        with patch.object(intake, "github_get_json", side_effect=RuntimeError("private details")):
+            protected, lookup = intake.branch_protection("https://api.github.com", "owner/repo", "main", None)
+        self.assertIsNone(protected)
+        self.assertEqual(lookup, {"status": "unavailable", "error_type": "RuntimeError"})
+        forbidden = intake.HTTPError("https://api.github.com/branches/main", 403, "Forbidden", None, None)
+        with patch.object(intake, "github_get_json", side_effect=forbidden):
+            protected, lookup = intake.branch_protection("https://api.github.com", "owner/repo", "main", None)
+        self.assertIsNone(protected)
+        self.assertEqual(lookup, {"status": "unavailable", "http_status": 403})
+        with patch.object(intake, "github_get_json", return_value={}):
+            protected, lookup = intake.branch_protection("https://api.github.com", "owner/repo", "main", None)
+        self.assertIsNone(protected)
+        self.assertEqual(lookup, {"status": "unavailable", "error_type": "invalid_response"})
+        with patch.object(intake, "github_get_json", return_value=[]):
+            protected, lookup = intake.branch_protection("https://api.github.com", "owner/repo", "main", None)
+        self.assertIsNone(protected)
+        self.assertEqual(lookup, {"status": "unavailable", "error_type": "invalid_response"})
+
     def test_infers_tagged_baseline_ref(self):
         run = {
             "referenced_workflows": [
@@ -223,7 +247,8 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                     governance_input={"evidence_refs": ["ref1"]},
                     report_sha256=report_sha256,
                     governance_input_sha256=governance_input_sha256,
-                    branch_protected=True,
+                    branch_protected=None,
+                    branch_protection_lookup={"status": "unavailable", "http_status": 403},
                     artifacts=artifacts,
                     selected_artifact=selected_artifact,
                     governance_input_artifact=None,
@@ -243,6 +268,11 @@ class GitHubActionsRunIntakeTests(unittest.TestCase):
                 self.assertEqual(data["downloaded_artifact"]["governance_run_input_sha256"], governance_input_sha256)
                 self.assertEqual(data["downloaded_artifact"]["pipeline_evidence_sha256"], None)
                 self.assertEqual(data["artifact_metadata"]["artifact_sizes"]["governance-control-evaluation"], 5438)
+                self.assertIsNone(data["repository"]["branch_protected"])
+                self.assertEqual(
+                    data["repository"]["branch_protection_lookup"],
+                    {"status": "unavailable", "http_status": 403},
+                )
                 self.assertEqual(data["evidence"], {"sbom": False})
                 self.assertEqual(data["evidence_context"]["baseline_gate_result"]["status"], "fail")
                 self.assertEqual(data["checks"]["baseline_gate"], "failure")

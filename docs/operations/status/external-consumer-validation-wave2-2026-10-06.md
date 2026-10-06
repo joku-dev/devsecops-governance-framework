@@ -39,6 +39,8 @@ Trivy reported `max_severity: unknown`, exceeding the configured `high` maximum.
 
 The pilot repositories are private and were created under the same `joku-dev` owner. GitHub API reads for private-repository branch protection and rulesets returned HTTP 403 under the current plan. An import push to each repository's `main` succeeded, but this does not establish the absence of organization-level rules or bypass conditions. Accordingly, the `direct_push_allowed: true` facts were producer-declared and are consistent with the observed push; the central intake's `branch_protected: false` is **not an authoritative protection measurement**, because its helper maps API errors to `false`.
 
+The four `governance-eval-*` repositories are separate private repositories, not GitHub forks of their upstream projects (`fork=false`, no parent repository in GitHub metadata). They contain imported, pinned source snapshots for the pilot.
+
 The two Wave 2 `.governance/repository-facts.json` files also say that branch rules were queried before import. That statement is inaccurate. A corrected measurement-source sentence was prepared in the isolated local clones but could not be committed or pushed because the configured SSH signing agent was unavailable in the sandbox. The remote facts files were left untouched. If these pilot repositories are retained or retested, correct those files and rerun before relying on their repository-facts record.
 
 ### Security scans and produced artifacts
@@ -90,3 +92,32 @@ The Gson repository also ran workflows copied from the upstream source. In initi
 - No intake snapshot was copied into official `status/`, generated indexes, or the viewer. The official portfolio and ha-CPsWMS status are unchanged.
 - Keep all four consumers report-only. Do not publish the v1.2.1 release tag based solely on this test result.
 - Before another iteration: correct Wave 2 repository-facts measurement text; determine a supported way to measure private branch/ruleset state; resolve the go-httpbin finding; make the candidate baseline resolve through released authoritative metadata; and obtain an independent reviewer/operator if the goal is to validate organizational independence.
+
+## Follow-up verification (2026-10-06)
+
+The central DevSecOps and architecture GitHub Actions intake helpers are being
+updated so only a successful, well-formed branch API response can produce a
+boolean `repository.branch_protected` value. API failures now produce `null`
+and a separate `repository.branch_protection_lookup.status: "unavailable"`;
+HTTP status or error type is recorded without the error message. Existing
+append-only snapshots remain historical records and are not rewritten. The
+pilot's previous `false` values must therefore continue to be read as unknown,
+not as confirmed unprotected branches.
+
+Local remediation candidates were applied only to isolated working copies of
+the go-httpbin and Gson pilot source snapshots. Updating the nested
+go-httpbin example module from `golang.org/x/sys` v0.41.0 to v0.44.0 removed
+the reported CVE-2026-39824 finding. For Gson, dependency management scoped to
+the benchmark-only `metrics` module selected Guava 33.7.0-jre and Okio 1.17.6,
+removing CVE-2023-2976, CVE-2020-8908, and CVE-2023-3635 from the scan. Both
+modified source trees had zero vulnerability findings in Trivy 0.70.0 using
+the database downloaded on this date. go-httpbin race tests, vet, and build
+passed; the clean Gson Maven verification reactor passed. These are local
+candidate results: no consumer repository was changed remotely, no upstream
+PR was opened, and no new evidence was added to official status indexes.
+
+The v1.2.1 package remains prepared but unsigned and unpublished. The signed
+tag and a fresh downstream run are still needed before Trust can advance from
+`integrity_verified` to `provenance_verified`. The private branch-protection
+API restriction also remains; this intake fix preserves that uncertainty
+rather than claiming protection was measured.

@@ -4,6 +4,7 @@ import json
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from jsonschema import Draft202012Validator
 
@@ -36,6 +37,14 @@ from lib.result_ledger import apply_replay_assessment
 
 
 class EvidenceTrustCaptureTests(unittest.TestCase):
+    def test_architecture_branch_protection_lookup_preserves_unknown(self):
+        with patch.object(architecture_intake, "github_get_json", side_effect=RuntimeError("private details")):
+            protected, lookup = architecture_intake.branch_protection(
+                "https://api.github.com", "owner/repo", "main", None
+            )
+        self.assertIsNone(protected)
+        self.assertEqual(lookup, {"status": "unavailable", "error_type": "RuntimeError"})
+
     def build_capture(self, directory: Path) -> dict:
         report = directory / "report.json"
         report.write_text('{"status":"pass"}\n', encoding="utf-8")
@@ -260,7 +269,8 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
                     },
                     report={"summary": {"finding_count": 0}},
                     release_input={"architecture": {}},
-                    branch_protected=True,
+                    branch_protected=None,
+                    branch_protection_lookup={"status": "unavailable", "http_status": 403},
                     artifact_metadata=artifact_metadata,
                     trust=trust,
                     notes="test",
@@ -269,6 +279,11 @@ class EvidenceTrustCaptureTests(unittest.TestCase):
                 Draft202012Validator(SCHEMA).validate(snapshot["trust"])
                 self.assertEqual(snapshot["overall_status"], "pass")
                 self.assertEqual(snapshot["trust"]["effective_level"], "unverified")
+                self.assertIsNone(snapshot["repository"]["branch_protected"])
+                self.assertEqual(
+                    snapshot["repository"]["branch_protection_lookup"],
+                    {"status": "unavailable", "http_status": 403},
+                )
                 self.assertEqual(snapshot["artifact_metadata"], artifact_metadata)
             finally:
                 architecture_intake.STATUS_RESULTS = old_status_results
