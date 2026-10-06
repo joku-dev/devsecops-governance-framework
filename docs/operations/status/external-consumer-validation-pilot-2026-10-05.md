@@ -4,6 +4,8 @@
 **Disposition:** Continue and remediate Wave 1; do not admit these consumers or propose Wave 2 yet.
 **Scope:** Two pinned upstream source states in newly created private repositories. Report-only integration. All local intake outputs remained in the disposable governance checkout under `/private/tmp/ecv-pilot-f6EssS/governance`.
 
+**Status note (2026-10-06):** The disposition above records the state at the time of this report. Wave 1 was subsequently rerun against the merged PR #215 candidate, and Wave 2 was tested with Marked and Gson. See [the 2026-10-06 follow-up](external-consumer-validation-wave2-2026-10-06.md) for the current test results and disposition.
+
 ## Executive result
 
 In the original v1.1.3 measurement, both consumer workflows built, tested, generated source-tree CycloneDX SBOMs, ran Trivy, and completed the report-only workflow. The initial run and two repeated attempts succeeded for each consumer. The governance decision was **not a pass**: each baseline report recorded a failed control while report-only kept the GitHub workflow green. At that time central intake did not project the consumer SBOM, scan, or artifact digest, and typed-evidence intake could not proceed because neither artifact contained `governance/vulnerability-scan-trust.json`. Those intake gaps were remediated in v1.2.0 and verified by the fresh PR runs recorded below.
