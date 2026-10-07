@@ -178,6 +178,8 @@ nav:
           - Consumer Scale Capacity Assessment: operations/planning/consumer-scale-capacity-assessment.md
           - Closed-Loop Governance Implementation Plan: operations/planning/closed-loop-governance-implementation-plan.md
           - Replace Governance Placeholders Plan: operations/planning/replace-governance-placeholders-plan.md
+          - Document Consistency Review Workpackage: operations/planning/document-consistency-review-workpackage.md
+          - Document Consistency Review ADR: operations/planning/document-consistency-review-adr.md
           - Target Structure Plan: operations/planning/repository-target-structure-and-migration-plan.md
           - Documentation Structure Model: operations/planning/document-structure-model.md
           - Documentation Structure Audit: operations/planning/document-structure-audit.md

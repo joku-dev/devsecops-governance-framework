@@ -1,0 +1,44 @@
+{
+  "manifest_version": "1.0.0",
+  "manifest_type": "document_consistency_review_phase0_source_inventory",
+  "repository": "joku-dev/devsecops-governance-framework",
+  "reviewed_commit": "f7e0304421b20e2a5df1d138d84ec14bae88489c",
+  "source_register_path": "model/documents/source-document-register.yaml",
+  "source_register_sha256": "bbc54e21f2e33c0b7406ad33c0fe2084c5dfb6795b4bbdee1a11b883546c052a",
+  "pilot_scope": {
+    "registered_source_ids": [
+      "DSCB-STD-REQ-001",
+      "PRA-STD-REQ-001"
+    ],
+    "synthetic_fixtures": true,
+    "semantic_review": "deferred",
+    "viewer": "deferred"
+  },
+  "source_documents": [
+    {
+      "id": "DSCB-STD-REQ-001",
+      "title": "DevSecOps Control Baseline Requirements Extract",
+      "status": "intake",
+      "version": "requirements-only-sanitized",
+      "owner_routing": "devsecops-owners",
+      "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
+      "content_sha256": "4fdc3922607102df72af15e88725b24726d4d13d06e1d1b0ffc5dbb2b0393e84"
+    },
+    {
+      "id": "PRA-STD-REQ-001",
+      "title": "Platform Reference Architecture Requirements Extract",
+      "status": "intake",
+      "version": "requirements-only-sanitized",
+      "owner_routing": "platform-owners",
+      "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
+      "content_sha256": "730f3a1f5875ec76f3d032c9f620630fc68846d4722c28803b16c8ab50902d3b"
+    }
+  ],
+  "limitations": [
+    "This snapshot binds registered metadata to the exact repository commit and file bytes only.",
+    "Owner values are review routing only and do not confirm source authority.",
+    "Five additional local files are unregistered and excluded from this manifest and pilot.",
+    "This manifest contains no source text, excerpts, semantic findings, or human source-approval decisions.",
+    "The pilot does not derive controls, markers, policies, schemas, or baselines."
+  ]
+}
