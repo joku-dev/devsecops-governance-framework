@@ -3,6 +3,7 @@ from __future__ import annotations
 from copy import deepcopy
 import json
 from pathlib import Path
+import subprocess
 import unittest
 
 from jsonschema import Draft202012Validator
@@ -185,6 +186,13 @@ class DocumentConsistencyReviewModelTests(unittest.TestCase):
         report = self.run_model(model)
         self.assertEqual(self.rule(report, "DCR-002")["status"], "fail")
         self.assertEqual(self.rule(report, "DCR-009")["status"], "fail")
+
+    def test_newer_repository_commit_does_not_stale_unchanged_source_snapshot(self):
+        report = self.run_model(deepcopy(BASE_MODEL))
+        self.assertEqual(self.rule(report, "DCR-009")["status"], "pass")
+        head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+        if MANIFEST["reviewed_commit"] != head:
+            self.assertIn("newer than the recorded source snapshot", self.rule(report, "DCR-009")["details"][0])
 
 
 if __name__ == "__main__":

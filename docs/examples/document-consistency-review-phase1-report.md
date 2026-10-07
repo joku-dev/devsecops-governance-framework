@@ -15,7 +15,7 @@
 | DCR-006 | `not_in_scope` | no structured evidence links supplied |
 | DCR-007 | `pass` | — |
 | DCR-008 | `not_in_scope` | no topic-authority map supplied |
-| DCR-009 | `pass` | — |
+| DCR-009 | `pass` | repository HEAD is newer than the recorded source snapshot; freshness is checked against register and source bytes |
 
 ## Limits
 

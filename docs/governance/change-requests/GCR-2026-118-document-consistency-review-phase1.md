@@ -47,6 +47,10 @@ Lieferung führt keine semantische oder fachliche Dokumentenbewertung durch.
   DCR-001, DCR-002, DCR-004, DCR-007 und DCR-009 prüfbar. Rollen-, Gate-,
   Evidenz- und Autoritätsmodelle fehlen in diesem begrenzten Quellenmodell und
   bleiben für die realen Pilotquellen `not_in_scope`.
+- DCR-009 bindet Modell und Bericht an denselben aufgezeichneten
+  Quellsnapshot. Neuere Repository-Commits machen den Lauf nicht allein
+  veraltet; Register- und Quellbytes werden erneut geprüft und eine neuere
+  Repository-Revision im Report transparent vermerkt.
 - Das Strukturmodell erlaubt die vorgesehenen Relationstypen, markiert
   Beziehungen aber nur als `candidate` oder `confirmed`; eine technische
   Bestätigung behauptet keine fachliche Richtigkeit.
@@ -80,7 +84,7 @@ Validierung auf Basis des aktuellen Phase-0-Stands:
 - `tests.test_document_consistency_review_manifest`: 7 Tests bestanden.
 - Die Manifestsuite und synthetischen Strukturregeln zusammen: 20 Tests bestanden.
 - `./scripts/validate_all.sh`: OPA, Runtime Governance, Repository-Validierung,
-  Provenance-Prüfung und 680 Unit-Tests bestanden. Für lokale Git-Fixture-
+  Provenance-Prüfung und 681 Unit-Tests bestanden. Für lokale Git-Fixture-
   Commits wurde `commit.gpgsign=false` ausschließlich pro Testprozess gesetzt,
   da die Sandbox den SSH-Agenten nicht erreicht; es wurde kein Repository-
   Commit erstellt.

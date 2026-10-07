@@ -224,13 +224,17 @@ def validate_model(root: Path, manifest: dict, model: dict) -> dict:
                 ambiguity.append(f"{topic['topic']}: authority is not unique and no open decision is recorded")
         rules.append(_rule("DCR-008", "fail" if ambiguity else "pass", ambiguity))
 
-    # DCR-009: report and model are bound to the same current commit and source bytes.
+    # DCR-009: report and model refer to the same recorded snapshot; freshness
+    # follows the selected register/source bytes rather than unrelated commits.
     freshness = []
+    snapshot_notes = []
     head = git_head(root)
     if not manifest["reviewed_commit"] or model["reviewed_commit"] != manifest["reviewed_commit"]:
         freshness.append("manifest/model commit is missing or differs")
     elif head and head != manifest["reviewed_commit"]:
-        freshness.append("repository HEAD differs from the reviewed commit")
+        snapshot_notes.append(
+            "repository HEAD is newer than the recorded source snapshot; freshness is checked against register and source bytes"
+        )
     if set(model_sources) != set(manifest_sources):
         freshness.append("model source set differs from manifest")
     register_path = root / manifest["source_register_path"]
@@ -240,7 +244,11 @@ def validate_model(root: Path, manifest: dict, model: dict) -> dict:
         registered = manifest_sources.get(source_id)
         if not registered or source["sha256"] != registered["content_sha256"]:
             freshness.append(f"{source_id}: source review is stale")
-    rules.append(_rule("DCR-009", "fail" if freshness else "pass", freshness))
+            continue
+        source_path = (root / source["source_path"]).resolve()
+        if not source_path.is_file() or sha256_file(source_path) != registered["content_sha256"]:
+            freshness.append(f"{source_id}: current source bytes differ from the reviewed snapshot")
+    rules.append(_rule("DCR-009", "fail" if freshness else "pass", freshness + snapshot_notes))
 
     statuses = [item["status"] for item in rules]
     overall = "fail" if "fail" in statuses else "partial" if "not_in_scope" in statuses else "pass"

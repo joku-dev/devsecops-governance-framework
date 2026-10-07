@@ -64,7 +64,9 @@
     {
       "rule_id": "DCR-009",
       "status": "pass",
-      "details": []
+      "details": [
+        "repository HEAD is newer than the recorded source snapshot; freshness is checked against register and source bytes"
+      ]
     }
   ],
   "limitations": [
