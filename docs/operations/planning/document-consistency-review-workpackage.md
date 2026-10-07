@@ -1,9 +1,9 @@
 # WP-DCR-001 — Doc-as-Code und kontinuierlicher Dokumentenkonsistenzreview
 
-Version: 0.16
+Version: 0.17
 Datum: 2026-10-07
 Zielrepository: https://github.com/joku-dev/devsecops-governance-framework.git
-Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern gemergt; einmaliger begrenzter Live-Lauf am 2026-10-07 ausgeführt, Providerantwort schemaungültig und fail-closed abgewiesen, kein validierter Pilotreport; providerneutrale Projektion und Normalisierung als technische Folgearbeit vorbereitet; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Rollout `pending`, kein weiterer Providerlauf, keine Veröffentlichung und keine normative Governance-Freigabe
+Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern und Stabilisierung gemergt; zweiter begrenzter Live-Lauf am 2026-10-07 Ende zu Ende validiert, Reportstatus `partial`, null Finding-Kandidaten; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Rollout `pending`, kein weiterer Providerlauf, keine Veröffentlichung und keine normative Governance-Freigabe
 
 Änderung v0.2: Verbindliche Review-Leitplanken, fachliche Beziehungsprüfung und getrennte Implementierungsabdeckung ergänzt; Abnahmekriterien und Testfälle erweitert.
 
@@ -32,6 +32,8 @@ Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Struktu
 Änderung v0.15: Den separat genehmigten einmaligen, begrenzten ChatGPT-Pro-Pilotlauf erfasst. Der tatsächliche Modelllauf lieferte eine schemaungültige Antwort, die der Repositoryvalidator fail-closed abwies; die Rohantwort wurde nach technischer Triage gelöscht. Es entstand kein validierter Pilotreport und keine menschliche Finding-Entscheidung. Ein providerkompatibles Projektionsschema und ein normalisierender Adapter bleiben vor einem erneut zu genehmigenden Lauf erforderlich; Rollout bleibt `pending`.
 
 Änderung v0.16: Providerneutrales Projektionsschema, deterministischen Normalisierungsadapter und unveränderliche aktive Adapterkonfiguration als Folge des abgewiesenen Pilotlaufs ergänzt. Die bestehende maßgebliche Repositoryvalidierung bleibt unverändert die Vertrauensgrenze. Ein weiterer Providerlauf und Rollout bleiben separat freigabepflichtig.
+
+Änderung v0.17: Den separat genehmigten zweiten begrenzten Modelllauf dokumentiert. Providerprojektion, Adapter und Repositoryvalidator bestanden Ende zu Ende; der validierte Report bleibt mit null Finding-Kandidaten `partial`. Technische Ausführbarkeit ist belegt, semantische Wirksamkeit und Rollout bleiben offen.
 
 ## 1. Auftrag an Codex
 
