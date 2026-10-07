@@ -97,6 +97,19 @@ catalog. Other reports return `not_applicable`; they do not become false misses
 or passing evidence. Counts describe only the versioned cases and must not be
 reported as population-level recall, precision or false-positive rates.
 
+Prepare a provider-unbound, hash-bound catalog run package with:
+
+```bash
+.venv-validation/bin/python \
+  scripts/prepare_document_consistency_semantic_catalog_run.py \
+  --output-dir /private/tmp/dcr-semantic-catalog-run
+```
+
+The generated `provider-input/` contains exactly six files and deliberately
+excludes the expected-outcome catalog. `run-package.json` binds the catalog by
+digest and remains `prepared_not_run`. Provider and model must be selected and
+authorized separately before execution.
+
 ## Configuration and rollback
 
 Reviewer configurations are versioned and immutable after review. A new rules,
