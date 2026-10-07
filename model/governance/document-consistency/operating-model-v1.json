@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "operating_model_id": "dcr-operating-model-0001",
+  "status": "candidate",
+  "roles": {
+    "document_owner": "existing source-register owner route; review routing only",
+    "review_function": "document-consistency-reviewer",
+    "triage_responsibility": "governance-analyst",
+    "escalation_route": "document-governance-owner"
+  },
+  "authority": {"topic_source_matrix_status": "unconfirmed", "automatic_precedence": false, "normative_decisions": "human_only"},
+  "notifications": {"automatic_messages": false},
+  "service_targets": {"binding_sla": false, "target_date_required": false}
+}

@@ -909,6 +909,17 @@ def main() -> int:
             "Evidence agent provenance validation failed: "
             + (provenance_validation.stderr.strip() or provenance_validation.stdout.strip())
         )
+    document_review_operations = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate_document_consistency_review_operations.py")],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if document_review_operations.returncode != 0:
+        errors.append(
+            "Document consistency review operations validation failed: "
+            + (document_review_operations.stderr.strip() or document_review_operations.stdout.strip())
+        )
 
     for mapping in traceability.get("mappings", []):
         control_id = mapping["control"]

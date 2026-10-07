@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "ledger_type": "document_consistency_finding_continuity",
+  "scope": "synthetic_fixture",
+  "findings": [
+    {
+      "persistent_id": "DCR-F-0001", "kind": "deterministic",
+      "stable_identity": {"rule_or_category": "DCR-004", "entities": ["SYN-REQ-001"], "scope_key": "synthetic-owner-gap"},
+      "occurrences": [
+        {"review_id": "synthetic-review-1", "state": "new", "severity": "medium", "source_ids": ["SYN-SRC-001"], "reassessed": true},
+        {"review_id": "synthetic-review-2", "state": "not_reassessed", "severity": "medium", "source_ids": ["SYN-SRC-001"], "reassessed": false}
+      ],
+      "links": {"predecessors": [], "successors": [], "relationship": "none"},
+      "triage": {"owner_route": null, "priority": "unassigned", "decision": "pending", "next_action": "Assign an existing governance role before resolution.", "target_date": null, "escalation_route": "document-governance-owner", "decision_scope": "synthetic fixture only", "rationale": "No person or binding SLA is invented."}
+    },
+    {
+      "persistent_id": "DCR-F-0002", "kind": "semantic",
+      "stable_identity": {"rule_or_category": "conflict", "entities": ["SYN-REQ-002", "SYN-REQ-003"], "scope_key": "synthetic-role-conflict"},
+      "occurrences": [
+        {"review_id": "synthetic-review-1", "state": "new", "severity": "low", "source_ids": ["SYN-SRC-001", "SYN-SRC-002"], "reassessed": true},
+        {"review_id": "synthetic-review-2", "state": "unchanged", "severity": "low", "source_ids": ["SYN-SRC-001", "SYN-SRC-002"], "reassessed": true}
+      ],
+      "links": {"predecessors": [], "successors": [], "relationship": "none"},
+      "triage": {"owner_route": "governance-analyst", "priority": "low", "decision": "false_positive", "next_action": "Reassess after a relevant scope or authority change.", "target_date": null, "escalation_route": "document-governance-owner", "decision_scope": "synthetic profiles A and B only", "rationale": "The statements apply to different synthetic profiles; the decision is scope-limited."}
+    }
+  ]
+}

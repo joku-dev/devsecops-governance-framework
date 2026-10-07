@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "decision_id": "dcr-rollout-0001",
+  "status": "pending",
+  "basis": "infrastructure_only",
+  "required_before_decision": ["approved_provider_and_model", "approved_data_flow_and_retention", "real_bounded_semantic_pilot", "human_finding_evaluation", "known_misses_and_false_positives", "triage_effort_and_cost_observation", "confirmed_source_scope"],
+  "prohibited_claims": ["full_document_set_reviewed", "semantic_consistency_proven", "governance_compliance_proven", "normative_baseline_approved", "production_rollout_approved"]
+}

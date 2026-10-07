@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "matrix_id": "dcr-trigger-matrix-0001",
+  "default_mode": "full_review",
+  "rules": [
+    {"change_type": "source_document", "scope": "affected_and_dependencies", "invalidate_evidence": true, "required_actions": ["review_changed_source", "review_dependants"]},
+    {"change_type": "source_status", "scope": "affected_and_dependencies", "invalidate_evidence": true, "required_actions": ["recheck_derivation_boundary", "review_dependants"]},
+    {"change_type": "implementation_artifact", "scope": "affected_and_dependencies", "invalidate_evidence": false, "required_actions": ["reassess_implementation_coverage"]},
+    {"change_type": "role", "scope": "full_if_impact_unknown", "invalidate_evidence": true, "required_actions": ["expand_relationship_scope"]},
+    {"change_type": "term", "scope": "full_if_impact_unknown", "invalidate_evidence": true, "required_actions": ["expand_relationship_scope"]},
+    {"change_type": "relationship", "scope": "full_if_impact_unknown", "invalidate_evidence": true, "required_actions": ["recheck_coverage"]},
+    {"change_type": "topic_authority", "scope": "full_review", "invalidate_evidence": true, "required_actions": ["require_human_authority_review"]},
+    {"change_type": "schema", "scope": "full_if_impact_unknown", "invalidate_evidence": true, "required_actions": ["run_regression_catalog"]},
+    {"change_type": "review_rule", "scope": "full_if_impact_unknown", "invalidate_evidence": true, "required_actions": ["run_regression_catalog"]},
+    {"change_type": "converter", "scope": "full_if_impact_unknown", "invalidate_evidence": true, "required_actions": ["recheck_conversion_quality", "run_regression_catalog"]},
+    {"change_type": "prompt", "scope": "methodology_comparison", "invalidate_evidence": false, "required_actions": ["run_curated_catalog", "record_methodology_delta"]},
+    {"change_type": "model", "scope": "methodology_comparison", "invalidate_evidence": false, "required_actions": ["run_curated_catalog", "record_methodology_delta"]},
+    {"change_type": "provider", "scope": "methodology_comparison", "invalidate_evidence": false, "required_actions": ["run_curated_catalog", "record_reproducibility_limit"]},
+    {"change_type": "deletion", "scope": "full_if_impact_unknown", "invalidate_evidence": true, "required_actions": ["review_references", "prevent_silent_resolution"]},
+    {"change_type": "rename", "scope": "full_if_impact_unknown", "invalidate_evidence": true, "required_actions": ["review_references", "preserve_stable_ids"]}
+  ]
+}
