@@ -1,7 +1,7 @@
 # Governance Workspace: Viewer-Anwendung
 
 Die eigenständige, lesende Frontend-Anwendung bündelt Übersicht, Repositories,
-Container-Befunde, Repository Security, Nachweise, Governance und Betrieb. Sie läuft im bestehenden Repository auf GitHub
+Container-Befunde, Repository Security, Dokumentenreview, Nachweise, Governance und Betrieb. Sie läuft im bestehenden Repository auf GitHub
 Pages. Ein Backend oder ein Benutzerkonto ist für die veröffentlichte Ansicht
 nicht erforderlich.
 
@@ -38,6 +38,7 @@ Zustände gelten weiterhin nicht als bestanden.
 | Repository-Detail | Zusammenfassung, Evidence Trust je Governance-Domain, L1-Nachweise je Kontrolle, reales Staging-Deployment, Container-Sicherheit mit Laufvergleich, filterbare Befunde und Nachweise |
 | Befunde | HIGH/CRITICAL nach Repository, Schweregrad, Image und CVE/Paket durchsuchen; 20 Gruppen pro Seite |
 | Repository Security | Aktueller Self-Security-Stand des zentralen Governance-Repositories, alle 16 Kriterien, offene kritische/hohe Punkte und dokumentierte Maßnahmen |
+| Dokumentenreview | Öffentlich redigierte, report-only Metadatenprojektion des begrenzten Document Consistency Reviews mit Hash-Aktualität, getrennten Prüfzuständen, Pilotdokumenten und Finding-Metadaten |
 | Nachweise | Ergebnisnachweise, Evidence Trust, Replay-Prüfung, Nachweisherkunft, vollständige Governance-Laufhistorie, Artefakte und Daten |
 | Governance | Governance-Graph, Runtime-Referenzartefakte, Kontrollen, Modell, Quellenaufnahme und offene Aufgaben |
 | Betrieb | Integrationsstatus, Intake-Zustand, Sammelversuche, Intake-Konflikte und Agent-Nutzung |
@@ -51,6 +52,7 @@ Der Graph unterstützt Suche, Typ-/Bereichsfilter und Auswahl per Maus oder Tast
 
 [Replay-Prüfung öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#evidence/replay)
 · [Repository Security öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository-security)
+· [Dokumentenreview öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#document-review)
 · [Governance öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#governance/controls)
 · [Betrieb öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/intake)
 · [Lifecycle-Nächster Schritt öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/lifecycle)
@@ -94,6 +96,27 @@ auf. Fehlender Trust bleibt ausdrücklich nicht erfasst. Die Trust-Stufen der
 offiziellen Governance-Ergebnisse werden nicht auf andere Ergebnisarten
 übertragen. Typisierte SBOM-/Scan-Nachweise und Kontroll-Assurance verwenden ihre
 jeweils dokumentierten Prüfgrenzen.
+
+## Dokumentenkonsistenzreview
+
+Die Ansicht **Dokumentenreview** liest den schema-validierten Phase-2-Report und
+erzeugt beim Viewer-Build eine eigene öffentliche Allowlist-Projektion. Sie
+zeigt Reviewstatus, getrennte Zustände für formale Validierung, semantischen
+Review, menschliche Entscheidungen und Implementierungsabdeckung sowie die
+IDs, Registerstatus und Versionen der beiden freigegebenen Pilotdokumente.
+
+Aktualität wird aus dem Digest des verwendeten Manifests und den aktuellen
+Hashes der beiden registrierten Quelldateien abgeleitet. Eine Abweichung wird
+als `stale`, ein nicht prüfbarer Vergleich als `unknown` angezeigt. Das Alter
+eines Zeitstempels begründet keinen aktuellen Stand.
+
+Die öffentliche Projektion enthält keine Quellenauszüge, Aussagen,
+Interpretationen, Empfehlungen, Begründungen, Rohantworten, Provider- oder
+Modellkennungen und keine menschlichen Entscheidungsinhalte. Finding-Metadaten
+beschränken sich auf ID, Kategorie, semantischen Zustand, Belegstatus und
+Disposition. Ohne bestehenden Zugriffsschutz wird keine interne Vollansicht
+erzeugt. Ein leerer Finding-Bestand bei `not_run` wird ausdrücklich als nicht
+ausgeführt und niemals als Konsistenznachweis dargestellt.
 
 ## L1-Nachweise je Repository
 
@@ -176,6 +199,10 @@ Die Python-Projektion `scripts/lib/viewer_app.py` validiert den Self-Security-Be
 gegen sein JSON-Schema und verbindet die gemessene Bewertung mit der
 Kontroll-Assurance nur bei identischem Repository, Run, Versuch und Commit. Sie erzeugt ein internes
 Darstellungsformat (`version: 1`), keinen neuen Consumer-Evidence-Vertrag.
+`scripts/lib/document_consistency_view.py` validiert zusätzlich den
+Document-Consistency-Report und seine öffentliche Projektion gegen getrennte
+Schemas. Die Projektion folgt einer expliziten Feld-Allowlist und vergleicht
+Manifest- und Quellenbytes, bevor sie den Aktualitätszustand setzt.
 
 `scripts/generate_status_viewer.py` baut beide Viewer. Die Anwendung liegt danach
 unter `generated/viewer/app/` mit den fünf Frontend-Dateien und `data.json`.
