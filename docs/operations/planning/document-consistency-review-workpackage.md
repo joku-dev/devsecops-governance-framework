@@ -1,9 +1,9 @@
 # WP-DCR-001 — Doc-as-Code und kontinuierlicher Dokumentenkonsistenzreview
 
-Version: 0.8
+Version: 0.9
 Datum: 2026-10-07
 Zielrepository: https://github.com/joku-dev/devsecops-governance-framework.git
-Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; keine normative Governance-Freigabe
+Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; Phase-2-Entscheidungsrahmen vorbereitet, Live-Lauf nicht freigegeben; keine normative Governance-Freigabe
 
 Änderung v0.2: Verbindliche Review-Leitplanken, fachliche Beziehungsprüfung und getrennte Implementierungsabdeckung ergänzt; Abnahmekriterien und Testfälle erweitert.
 
@@ -16,6 +16,8 @@ Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Struktu
 Änderung v0.6: Umsetzung in fünf separat abnehmbare Phasen aufgeteilt und die sechs vorgeschlagenen Dokumentklassen gegen das vorhandene Quellenregister abgeglichen. Fehlende Originalquellen, zulässige Startquellen und Freigabebedingungen für semantischen Review und Viewer konkretisiert.
 
 Änderung v0.7: Begrenzten Phase-1-Strukturkern auf Basis von GCR-2026-118 mit Status `partial` angenommen. Rollen-, Gate-, Evidenz- und Autoritätsmodelle bleiben im requirements-only Pilot `not_in_scope`; Phase 2 wird separat entschieden.
+
+Änderung v0.9: Phase-2-Entscheidungsrahmen mit den beiden registrierten requirements-only Auszügen, synthetischen Pilotfällen, Beleggrenzen und menschlicher Bewertung vorbereitet. Provider, Modellkennung, Aufbewahrung und Live-Lauf bleiben bis zur ausdrücklichen Folgeentscheidung offen.
 
 ## 1. Auftrag an Codex
 
