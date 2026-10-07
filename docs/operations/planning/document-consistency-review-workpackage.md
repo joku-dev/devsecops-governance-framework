@@ -1,9 +1,9 @@
 # WP-DCR-001 — Doc-as-Code und kontinuierlicher Dokumentenkonsistenzreview
 
-Version: 0.14
+Version: 0.15
 Datum: 2026-10-07
 Zielrepository: https://github.com/joku-dev/devsecops-governance-framework.git
-Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern gemergt, Live-Lauf nicht freigegeben; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen, Rollout `pending`; keine Veröffentlichung und keine normative Governance-Freigabe
+Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern gemergt; einmaliger begrenzter Live-Lauf am 2026-10-07 ausgeführt, Providerantwort schemaungültig und fail-closed abgewiesen, kein validierter Pilotreport; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Rollout `pending`, keine Veröffentlichung und keine normative Governance-Freigabe
 
 Änderung v0.2: Verbindliche Review-Leitplanken, fachliche Beziehungsprüfung und getrennte Implementierungsabdeckung ergänzt; Abnahmekriterien und Testfälle erweitert.
 
@@ -28,6 +28,8 @@ Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Struktu
 Änderung v0.13: Providerneutrale Phase-4-Betriebsverträge für Finding-Kontinuität, Triage, Trigger-/Scope-Planung, Reviewer-Konfiguration, Candidate-Paket und Rolloutentscheidung ergänzt. Mangels realem semantischem Pilot bleiben vollständiger Review-Ausgangsstand und Rollout ausdrücklich `blocked` beziehungsweise `pending`.
 
 Änderung v0.14: Persönliche technische Phase-4-Abnahme auf Basis von PR #224 erfasst. Die Abnahme gilt für Finding-Kontinuität, Triage, Trigger-/Scope-Planung, Konfigurationsversionierung und das Candidate-Reviewpaket. Live-Provider-Lauf, Veröffentlichung, normative Bestätigung von Findings und produktiver Rollout bleiben ausdrücklich nicht autorisiert; die Rolloutentscheidung bleibt `pending`.
+
+Änderung v0.15: Den separat genehmigten einmaligen, begrenzten ChatGPT-Pro-Pilotlauf erfasst. Der tatsächliche Modelllauf lieferte eine schemaungültige Antwort, die der Repositoryvalidator fail-closed abwies; die Rohantwort wurde nach technischer Triage gelöscht. Es entstand kein validierter Pilotreport und keine menschliche Finding-Entscheidung. Ein providerkompatibles Projektionsschema und ein normalisierender Adapter bleiben vor einem erneut zu genehmigenden Lauf erforderlich; Rollout bleibt `pending`.
 
 ## 1. Auftrag an Codex
 
