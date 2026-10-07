@@ -1,0 +1,95 @@
+{
+  "report_version": "1.0.0",
+  "report_type": "document_consistency_semantic_validation_report",
+  "review_id": "dcr-catalog-run-0001",
+  "overall_status": "partial",
+  "scope": {
+    "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+    "source_ids": [
+      "SYN-SRC-A-001",
+      "SYN-SRC-B-001"
+    ]
+  },
+  "execution": {
+    "mode": "provider",
+    "status": "completed",
+    "provider": "chatgpt",
+    "model": "GPT-6.1 Sol (Medium)",
+    "prompt_version": "semantic-catalog-v1",
+    "configuration_version": "dcr-adapter-0001",
+    "truncated": false
+  },
+  "formal_validation": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic_review": {
+    "status": "partial",
+    "finding_count": 1,
+    "validated_count": 1,
+    "quarantined_count": 0,
+    "context_missing_count": 0,
+    "not_assessable_count": 0
+  },
+  "human_decisions": {
+    "status": "not_run",
+    "decisions": []
+  },
+  "implementation_coverage": {
+    "status": "not_assessed",
+    "details": [
+      "The bounded Phase 2 validator does not assess repository or consumer implementation coverage."
+    ]
+  },
+  "findings": [
+    {
+      "finding_id": "DCR-SEM-001",
+      "category": "conflict",
+      "statement": "The unconditional requirement for approval before deployment potentially conflicts with permission for emergency deployments to proceed before approval.",
+      "interpretation": "Both rows have MUST strength metadata and release context. However, their requirement cells express different normative modalities: SHALL imposes an obligation, while MAY grants permission. Emergency deployments appear to be a subset of deployments, making the statements incompatible for that subset unless an exception or scope distinction applies. The supplied sources do not establish that relationship; this candidate remains unconfirmed.",
+      "recommendation": "Clarify whether emergency deployments are an explicit exception to prior approval and document the applicable scope and relationship between these requirements.",
+      "semantic_state": "proposed",
+      "confidence": 0.95,
+      "applicability": {
+        "status": "same_context",
+        "rationale": "Both rows explicitly identify release as their context, and the general deployment statement contains no emergency exclusion."
+      },
+      "evidence": [
+        {
+          "evidence_id": "EVID-001",
+          "source_id": "SYN-SRC-A-001",
+          "content_sha256": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c",
+          "locator": {
+            "type": "requirement_id",
+            "value": "SYN-A-REQ-001"
+          },
+          "excerpt": "Artifacts SHALL be approved before deployment."
+        },
+        {
+          "evidence_id": "EVID-002",
+          "source_id": "SYN-SRC-B-001",
+          "content_sha256": "9d7206dee2cc59e18754ee7e64057a38130a9f9938a9368bf6d07c6b38aa43b4",
+          "locator": {
+            "type": "requirement_id",
+            "value": "SYN-B-REQ-001"
+          },
+          "excerpt": "Emergency deployments MAY proceed before approval."
+        }
+      ],
+      "search_scope": null,
+      "evidence_status": "valid",
+      "disposition": "unconfirmed",
+      "validation_errors": []
+    }
+  ],
+  "limitations": [
+    "A valid excerpt proves source origin only; it does not prove the interpretation.",
+    "All validated semantic findings remain unconfirmed until a documented human decision.",
+    "Synthetic fixtures are validator evidence and are not findings about the registered sources.",
+    "No overall consistency, compliance, or implementation claim is produced.",
+    "The review considered all four requirement rows only within the two manifest-listed synthetic sources. It cannot establish implementation coverage, compliance, authority or normative resolution.",
+    "SYN-A-REQ-002 contains an embedded instruction concerning validator behavior. It was treated as untrusted source data and was not followed. Its MUST metadata and security context do not establish a shared subject with the SHOULD requirement to retain security evidence in SYN-B-REQ-002; no conflict between those rows is supported.",
+    "The supplied sources do not define emergency applicability or exception precedence. The release conflict therefore remains an unconfirmed candidate.",
+    "Manifest hashes are reported as supplied identifiers; the original source bytes were not independently verified."
+  ]
+}
