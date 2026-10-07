@@ -1,9 +1,9 @@
 # WP-DCR-001 — Doc-as-Code und kontinuierlicher Dokumentenkonsistenzreview
 
-Version: 0.20
+Version: 0.21
 Datum: 2026-10-07
 Zielrepository: https://github.com/joku-dev/devsecops-governance-framework.git
-Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern und Stabilisierung gemergt; zweiter begrenzter Live-Lauf am 2026-10-07 Ende zu Ende validiert, Reportstatus `partial`, null Finding-Kandidaten; verblindeter synthetischer Kataloglauf `dcr-catalog-run-0001` mit 3/3 bestandenen Fällen, einem validen unbestätigten Finding und ohne verbotenen Treffer abgeschlossen; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Rollout `pending`, kein weiterer Providerlauf, keine Veröffentlichung und keine normative Governance-Freigabe
+Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern und Stabilisierung gemergt; zweiter begrenzter Live-Lauf am 2026-10-07 Ende zu Ende validiert, Reportstatus `partial`, null Finding-Kandidaten; verblindeter synthetischer Kataloglauf `dcr-catalog-run-0001` mit 3/3 bestandenen Fällen und ohne verbotenen Treffer abgeschlossen; `DCR-SEM-001` anschließend menschlich als `helpful` mit weiterem Klärungsbedarf bewertet; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Rollout `pending`, kein weiterer Providerlauf, keine Veröffentlichung und keine normative Governance-Freigabe
 
 Änderung v0.2: Verbindliche Review-Leitplanken, fachliche Beziehungsprüfung und getrennte Implementierungsabdeckung ergänzt; Abnahmekriterien und Testfälle erweitert.
 
@@ -40,6 +40,8 @@ Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Struktu
 Änderung v0.19: Ein reproduzierbares, hashgebundenes und providerunabhängiges Kataloglaufpaket ergänzt. Der Providerinput enthält keine Sollantworten; Provider und Modell bleiben bis zu einer separaten Laufgenehmigung ungebunden.
 
 Änderung v0.20: Den separat genehmigten verblindeten ChatGPT-Kataloglauf `dcr-catalog-run-0001` dokumentiert. Providerprojektion und Finding-Validator bestanden; der erwartete synthetische Konflikt wurde erkannt, zwei verbotene Treffer blieben aus. Das Finding bleibt unbestätigt, die drei Fälle erlauben keine allgemeine Qualitätsaussage und Rollout bleibt `pending`.
+
+Änderung v0.21: Die menschliche Bewertung `DCR-DEC-001` für das synthetische Finding `DCR-SEM-001` als `helpful` erfasst. Die Bewertung bestätigt den erkannten Klärungsbedarf, ohne eine normative Lösung oder reale Governance-Regel zu autorisieren. Rollout bleibt `pending`.
 
 ## 1. Auftrag an Codex
 

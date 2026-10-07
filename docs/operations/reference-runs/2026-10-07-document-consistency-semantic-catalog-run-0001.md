@@ -49,7 +49,7 @@ did not create the prohibited security or terminology findings.
 | Valid evidence | 1 finding, 2 exact excerpts |
 | Quarantined findings | 0 |
 | Finding disposition | `unconfirmed` |
-| Human decision | `not_run` |
+| Human decision at validation time | `not_run` |
 | Implementation coverage | `not_assessed` |
 | Validated report SHA-256 | `fa086ed01d4453b956c15a9d7150546be0bac80dd0a4165e6eec84d90a123732` |
 | Evaluation report SHA-256 | `4a3d4b0abc175183aaf9657053d2bffd46aa44f30226d6712ea47a649a428de2` |
@@ -65,12 +65,26 @@ The retained, non-raw artifacts are:
 - `docs/examples/document-consistency-semantic-catalog-run-0001-report.md`;
 - `docs/examples/document-consistency-semantic-catalog-run-0001-evaluation.json`.
 
+## Subsequent human evaluation
+
+After the technical run, the maintainer classified `DCR-SEM-001` as `helpful`
+in `DCR-DEC-001`. The decision accepts that the candidate correctly exposes a
+clarification need between the general pre-deployment approval obligation and
+the emergency permission. It does not select a normative resolution because
+the synthetic sources do not define the exception conditions or subsequent
+approval process.
+
+The separate decision is bound to the exact manifest and to canonical finding
+SHA-256 `714437a81c8b12048e312bb30afeab44a6bef974c95404f643d50cd8f2f79bba`.
+The original validated report remains unchanged and continues to record that
+no human decision existed at validation time.
+
 ## Decision boundary
 
 The run demonstrates that blinded synthetic input, provider projection,
 provider-neutral adaptation, deterministic evidence validation and curated
 evaluation work end to end for this bounded case. It does not validate the
 full document set or establish compliance, implementation coverage, provider
-quality outside the three cases, or production readiness. The candidate
-finding remains unconfirmed. Rollout remains `pending`.
-
+quality outside the three cases, or production readiness. The synthetic
+finding is now human-classified as helpful but remains non-normative. Rollout
+remains `pending`.

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "decision_type": "document_consistency_human_decision",
+  "decision_id": "DCR-DEC-001",
+  "review_id": "dcr-catalog-run-0001",
+  "finding_id": "DCR-SEM-001",
+  "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+  "finding_sha256": "714437a81c8b12048e312bb30afeab44a6bef974c95404f643d50cd8f2f79bba",
+  "classification": "helpful",
+  "reviewer": {
+    "reviewer_id": "joku-dev",
+    "reviewer_role": "repository-maintainer"
+  },
+  "decided_at": "2026-10-07T19:25:57Z",
+  "rationale": "The finding correctly identifies that the general approval obligation and the emergency-deployment permission can conflict without a documented exception. The available synthetic sources do not authorize a normative resolution, so applicability details and the emergency approval process remain clarification needs.",
+  "next_action": "Retain the case as positive synthetic ground truth and include the human usefulness result in the rollout-readiness assessment; do not derive a rule for registered governance sources."
+}
