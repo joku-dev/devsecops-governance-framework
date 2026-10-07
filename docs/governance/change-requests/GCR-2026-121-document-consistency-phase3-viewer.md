@@ -67,8 +67,23 @@ unverändert.
 - [x] Fehlende Projektion besitzt einen eigenen Fehlerzustand.
 - [x] HTML-/Link-Injection wird durch Escaping und bestehende CSP begrenzt.
 - [x] Mobile Darstellung verwendet das bestehende responsive Layout.
-- [ ] Technische Abnahme der Phase 3.
+- [x] Technische Abnahme der Phase 3 am 7. Oktober 2026 auf Basis von PR #222.
 - [ ] Veröffentlichung oder Deployment; separat zu entscheiden.
+
+## Abnahmeentscheidung
+
+Der Maintainer hat Phase 3 am 7. Oktober 2026 auf Basis von PR #222 mit
+folgendem Scope angenommen:
+
+> Ich nehme Phase 3 auf Basis von PR #222 ab. Die Abnahme gilt für die sichere,
+> öffentliche und redigierte Viewer-Projektion. Sie autorisiert keine
+> Veröffentlichung, keinen Live-Provider-Lauf und keine fachliche Bestätigung
+> von Findings.
+
+Die Entscheidung bindet die technische Abnahme an den in PR #222 gemergten
+Stand. Sie ändert weder Quellenstatus noch normative Governance-Artefakte und
+erteilt keine Betriebs-, Publikations- oder Providerfreigabe. Phase 4 wird als
+separater Änderungssatz vorbereitet.
 
 ## Release-Einordnung
 
