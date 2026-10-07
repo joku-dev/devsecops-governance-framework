@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "dcr-package-0001",
+  "status": "candidate",
+  "normative_approval": false,
+  "completeness": "incomplete",
+  "commit": "7f258b84a8a1993fef85d4715f5de8c51ca3d341",
+  "artifacts": [
+    {"role": "operating_model", "path": "model/governance/document-consistency/operating-model-v1.json", "sha256": "93e0dc8208c0ac8cc5fba5d0576ae1e395a91078ae4ec2951c103cc524bd0c7e"},
+    {"role": "reviewer_configuration", "path": "model/governance/document-consistency/reviewer-config-v1.json", "sha256": "f9730e7c76bd5940db67371e6f7d1596fe8d604dccc5ca86925f4177bdbcbe45"},
+    {"role": "trigger_scope_matrix", "path": "model/governance/document-consistency/trigger-scope-matrix-v1.json", "sha256": "1139e1683b014ad4635fbe2f2af422eae207a133b828d823b2ad198c20b41784"},
+    {"role": "rollout_decision", "path": "model/governance/document-consistency/rollout-decision-v1.json", "sha256": "f263504896c76df11dff20b1b6bdde38526bd5cea48a7fbdae71f5ec7c6f6be4"},
+    {"role": "source_manifest", "path": "docs/examples/document-consistency-review-phase1-source-manifest.json", "sha256": "9aabf243290cff3157ee427647c643c8dbb676f2c9a64092a2067dd0b9628002"},
+    {"role": "not_run_report", "path": "docs/examples/document-consistency-review-phase2-report.json", "sha256": "dfc78bd31601d12ed292dda554f7481d9e6e09d0b78a650a31a38c899c48a779"},
+    {"role": "synthetic_continuity_fixture", "path": "tests/fixtures/document-consistency-review-operations/synthetic-ledger.json", "sha256": "bb9d166e2009de75e14e67b868c7915b768e9c0dcc07d9ee234c9bf9827dff0a"}
+  ],
+  "open_requirements": [
+    "No approved provider, model, data flow or retention decision exists.",
+    "No real semantic pilot has been run.",
+    "No human usefulness, false-positive, known-miss, effort or cost evaluation exists.",
+    "The complete real document set is not registered and authorized.",
+    "The first complete review baseline cannot be established from a not_run report."
+  ],
+  "rollout_decision": "pending"
+}

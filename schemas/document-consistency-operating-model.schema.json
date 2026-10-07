@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Operating Model",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "operating_model_id", "status", "roles", "authority", "notifications", "service_targets"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "operating_model_id": {"type": "string", "pattern": "^dcr-operating-model-[0-9]{4}$"},
+    "status": {"enum": ["candidate", "active", "retired"]},
+    "roles": {"type": "object", "additionalProperties": false, "required": ["document_owner", "review_function", "triage_responsibility", "escalation_route"], "properties": {"document_owner": {"type": "string"}, "review_function": {"type": "string"}, "triage_responsibility": {"type": "string"}, "escalation_route": {"type": "string"}}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["topic_source_matrix_status", "automatic_precedence", "normative_decisions"], "properties": {"topic_source_matrix_status": {"const": "unconfirmed"}, "automatic_precedence": {"const": false}, "normative_decisions": {"const": "human_only"}}},
+    "notifications": {"type": "object", "additionalProperties": false, "required": ["automatic_messages"], "properties": {"automatic_messages": {"const": false}}},
+    "service_targets": {"type": "object", "additionalProperties": false, "required": ["binding_sla", "target_date_required"], "properties": {"binding_sla": {"const": false}, "target_date_required": {"const": false}}}
+  }
+}
