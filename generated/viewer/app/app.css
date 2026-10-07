@@ -151,6 +151,11 @@ button:disabled {
   font-size:11px;
   color:#a0d6c9
 }
+
+.review-status-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+.review-status-grid > div { display:flex; flex-direction:column; gap:.55rem; padding:1rem; border:1px solid var(--line); border-radius:.65rem; }
+@media (max-width: 900px) { .review-status-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width: 560px) { .review-status-grid { grid-template-columns:1fr; } }
 .workspace {
   margin-left:240px
 }

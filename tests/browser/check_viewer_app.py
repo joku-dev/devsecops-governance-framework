@@ -70,6 +70,13 @@ with sync_playwright() as p:
     assert 'report_only' in page.locator('main').inner_text()
     assert page.locator('a[href*="governance-repository-security.json"]').count()==1
     page.screenshot(path='/tmp/viewer-repository-security.png',full_page=True)
+    go('#document-review')
+    assert 'Nicht ausgeführt' in page.locator('main').inner_text()
+    assert 'Kein pauschaler Konsistenznachweis' in page.locator('main').inner_text()
+    assert page.locator('main').get_by_text('DSCB-STD-REQ-001').count()==1
+    assert page.locator('main').get_by_text('PRA-STD-REQ-001').count()==1
+    assert 'keine Konflikte bestehen' in page.locator('main').inner_text()
+    page.screenshot(path='/tmp/viewer-document-review.png',full_page=True)
     go('#repositories')
     page.locator('#repo-search').fill('ha-CPsWMS')
     assert page.locator('tbody tr').count()==1
@@ -83,7 +90,7 @@ with sync_playwright() as p:
     go(REPO+'summary');page.reload();page.wait_for_selector('.tabs')
     for width in (390, 720, 1024):
         page.set_viewport_size({'width':width,'height':844})
-        for hash in ('#overview', REPO+'summary', REPO+'findings', REPO+'trust', '#repository-security', '#evidence'):
+        for hash in ('#overview', REPO+'summary', REPO+'findings', REPO+'trust', '#repository-security', '#document-review', '#evidence'):
             go(hash)
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(width,hash)
         go(REPO+'summary')
@@ -110,6 +117,13 @@ with sync_playwright() as p:
     assert '<img' in safe.locator('main').inner_text()
     assert safe.locator('main img').count()==0
     assert safe.evaluate('window.injected') is None
+    hostile_review=json.loads(json.dumps(original))
+    hostile_review['document_consistency']['findings']=[{'id':'<img src=x onerror="window.injected=true">','category':'conflict','semantic_state':'proposed','evidence_status':'valid','disposition':'unconfirmed'}]
+    redacted=browser.new_page();redacted.route('**/data.json',lambda route:route.fulfill(json=hostile_review))
+    redacted.goto(URL+'#document-review');redacted.wait_for_selector('h1')
+    assert '<img' in redacted.locator('main').inner_text()
+    assert redacted.locator('main img').count()==0
+    assert redacted.evaluate('window.injected') is None
     safe.goto(URL+'#repositories');safe.wait_for_selector('#repo-search')
     safe.locator('#repo-search').fill('<img src=x onerror="window.injected=true">')
     assert safe.locator('main img').count()==0

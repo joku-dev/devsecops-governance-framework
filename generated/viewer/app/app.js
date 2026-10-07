@@ -230,6 +230,20 @@
       <section class="panel"><div class="panel-head"><h2>Alle Self-Security-Kriterien</h2><span class="badge">${count(report.criteria.length)} Kriterien</span></div>${table(['ID','Anforderung / Beobachtung','Schweregrad','Status','Nachweisquellen'],criteriaRows)}</section>
       <section class="panel"><div class="panel-head"><h2>Dokumentierte nächste Schritte</h2><span class="badge">Aus dem Bericht</span></div>${nextSteps||'<p class="muted">Keine nächsten Schritte erfasst.</p>'}<div class="notice">Die Ansicht zeigt einen gespeicherten Zeitpunkt. Änderungen an GitHub-Einstellungen werden erst nach einer neuen Self-Security-Bewertung sichtbar.</div></section>`;
   }
+  function documentReview() {
+    const review=dataModel.document_consistency;
+    if(!review){content.innerHTML=heading('Governance','Dokumentenkonsistenz','Redigierte, lesende Projektion des Document Consistency Reviews.')+'<section class="panel"><div class="notice warn">Kein validierter Review-Snapshot verfügbar. Fehlende Daten gelten nicht als konsistent.</div></section>';return;}
+    const statusText={not_run:'Nicht ausgeführt',synthetic_only:'Nur synthetisch',partial:'Teilweise ausgeführt',provider_failed:'Providerfehler'};
+    const freshnessText={current:'Quellenstände unverändert',stale:'Review veraltet',unknown:'Aktualität unbekannt'};
+    const findingRows=review.findings.map(item=>`<tr><td><code>${esc(item.id)}</code></td><td>${esc(item.category)}</td><td>${badge(item.evidence_status)}</td><td>${esc(item.semantic_state)}</td><td>${esc(item.disposition)}</td></tr>`);
+    content.innerHTML=heading('Governance','Dokumentenkonsistenz','Öffentlich redigierte Metadatenprojektion; report-only und ohne fachliche Freigabewirkung.')+
+      `<div class="notice">Diese Ansicht veröffentlicht keine Quellenauszüge, Modelltexte, Interpretationen, Empfehlungen oder menschlichen Entscheidungen. Eine interne Vollansicht ist ohne Zugriffsschutz nicht vorhanden.</div>`+
+      `<div class="metrics">${metricText('Review',statusText[review.overall_status]||review.overall_status,'Kein pauschaler Konsistenznachweis')}${metricText('Aktualität',freshnessText[review.freshness.status]||review.freshness.status,'Aus Manifest- und Quellenhashes abgeleitet')}${metric('Dokumente',review.scope.source_count,'Begrenzter Pilotumfang')}${metric('Findings',review.findings.length,'Metadaten; fachlich unbestätigt')}</div>`+
+      `<section class="panel"><h2>Prüfbereiche</h2><div class="review-status-grid"><div><strong>Formale Validierung</strong>${badge(review.sections.formal_validation)}</div><div><strong>Semantischer Review</strong>${badge(review.sections.semantic_review)}</div><div><strong>Menschliche Entscheidungen</strong>${badge(review.sections.human_decisions)}</div><div><strong>Implementierungsabdeckung</strong>${badge(review.sections.implementation_coverage)}</div></div><p class="muted">Review <code>${esc(review.review_id)}</code> · geprüfter Commit <code>${short(review.freshness.reviewed_commit)}</code> · Manifest ${review.freshness.manifest_matches===true?'unverändert':review.freshness.manifest_matches===false?'geändert':'nicht prüfbar'} · Quellen ${review.freshness.sources_match===true?'unverändert':review.freshness.sources_match===false?'geändert':'nicht prüfbar'}</p></section>`+
+      `<section class="panel"><h2>Dokumente im Pilotumfang</h2>${table(['Dokument-ID','Registerstatus','Version'],review.documents.map(item=>`<tr><td><code>${esc(item.id)}</code></td><td>${esc(item.status)}</td><td>${esc(item.version)}</td></tr>`))}</section>`+
+      `<section class="panel"><h2>Finding-Metadaten</h2>${findingRows.length?table(['ID','Kategorie','Belegstatus','Semantikstatus','Disposition'],findingRows):`<div class="empty"><strong>Keine Finding-Metadaten vorhanden.</strong><p>${review.execution.status==='not_run'?'Der semantische Review wurde nicht ausgeführt. Dies ist kein Nachweis, dass keine Konflikte bestehen.':'Im ausgewiesenen Scope wurden keine projizierbaren Findings erfasst.'}</p></div>`}</section>`+
+      `<section class="panel"><h2>Grenzen</h2><p>${esc(review.limitations.message)}</p><p class="muted">Öffentliche Projektion: ${review.limitations.redacted?'redigiert':'nicht redigiert'} · kein Konsistenznachweis · keine Veröffentlichung einer internen Vollansicht.</p></section>`;
+  }
   function repository(repo, tab) {
     const tabs={summary:'Zusammenfassung',trust:'Evidence Trust',l1:'L1-Nachweise',staging:'Staging',security:'Container-Sicherheit',findings:'Befunde',evidence:'Nachweise'};
     if(!tabs[tab])tab='summary';
@@ -294,7 +308,7 @@
     try { parts=(location.hash.slice(1)||'overview').split('/').map(decodeURIComponent); } catch { parts=['invalid']; }
     const alias=(dataModel.technical?.sections || []).find(s=>s.id===parts[0]);
     if(alias && parts[0]!=='overview' && !parts[1]) parts=[alias.group,alias.tab];
-    const view=parts[0], names={overview:'Übersicht',cases:'Betrieb',repositories:'Repositories',repository:'Repositories',findings:'Befunde','repository-security':'Repository Security',evidence:'Nachweise',governance:'Governance',operations:'Betrieb'};
+    const view=parts[0], names={overview:'Übersicht',cases:'Betrieb',repositories:'Repositories',repository:'Repositories',findings:'Befunde','repository-security':'Repository Security','document-review':'Dokumentenreview',evidence:'Nachweise',governance:'Governance',operations:'Betrieb'};
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===(view==='repository'?'repositories':view==='cases'?'operations':view))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     document.getElementById('breadcrumb').textContent=names[view]||'Seite nicht gefunden';
     document.title=(names[view]||'Seite nicht gefunden')+' · Governance Workspace';
@@ -305,6 +319,7 @@
     else if(view==='repository') {const repo=dataModel.repositories.find(r=>r.id===parts[1]);if(repo)repository(repo,parts[2]||'summary');else notFound();}
     else if(view==='findings'){content.innerHTML=heading('Sicherheit','Befunde','Gemessene Container-Befunde durchsuchen und die weitere Prüfung vorbereiten.')+findings(dataModel.repositories);bindFindings(dataModel.repositories);}
     else if(view==='repository-security')repositorySecurity();
+    else if(view==='document-review')documentReview();
     else if(view==='evidence')technicalView(view,parts[1]||'summary');
     else if(view==='governance')technicalView(view,parts[1]||'controls');
     else if(view==='operations')technicalView(view,parts[1]||'intake');

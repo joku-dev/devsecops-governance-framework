@@ -16,6 +16,7 @@ from lib.viewer_technical import project_technical
 from lib.measured_security_view import assessment
 from lib.viewer_experience import load_consumer_case
 from lib.consumer_lifecycle_next_step import build as build_consumer_lifecycle_next_step
+from lib.document_consistency_view import project_public as project_document_consistency
 
 
 def load_repository_security(root: Path):
@@ -143,6 +144,8 @@ def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None)
         if consumer_lifecycle_next_step is not None
         else build_consumer_lifecycle_next_step(root)
     )
+    document_review = root / 'docs/examples/document-consistency-review-phase2-report.json'
+    data['document_consistency'] = project_document_consistency(root) if document_review.exists() else None
     if technical_html is None:
         legacy = root / 'generated/viewer/status-viewer.html'
         technical_html = legacy.read_text(encoding='utf-8') if legacy.exists() else ''
