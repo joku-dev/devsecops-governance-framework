@@ -1,0 +1,75 @@
+{
+  "report_version": "1.0.0",
+  "reviewed_commit": "3be081f9e424d3ad5c298a27e4a4a75a544609c2",
+  "scope": {
+    "source_ids": [
+      "DSCB-STD-REQ-001",
+      "PRA-STD-REQ-001"
+    ],
+    "source_count": 2
+  },
+  "overall_status": "partial",
+  "semantic_review": "not_run",
+  "rules": [
+    {
+      "rule_id": "DCR-001",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "rule_id": "DCR-002",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "rule_id": "DCR-003",
+      "status": "not_in_scope",
+      "details": [
+        "model contains no role references"
+      ]
+    },
+    {
+      "rule_id": "DCR-004",
+      "status": "pass",
+      "details": [
+        "102 mandatory requirement(s) have an explicit scope gap for owner/verification mapping."
+      ]
+    },
+    {
+      "rule_id": "DCR-005",
+      "status": "not_in_scope",
+      "details": [
+        "no structured gate records supplied"
+      ]
+    },
+    {
+      "rule_id": "DCR-006",
+      "status": "not_in_scope",
+      "details": [
+        "no structured evidence links supplied"
+      ]
+    },
+    {
+      "rule_id": "DCR-007",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "rule_id": "DCR-008",
+      "status": "not_in_scope",
+      "details": [
+        "no topic-authority map supplied"
+      ]
+    },
+    {
+      "rule_id": "DCR-009",
+      "status": "pass",
+      "details": []
+    }
+  ],
+  "limitations": [
+    "Structural checks do not prove semantic consistency, completeness, implementation, or compliance.",
+    "not_in_scope rules remain open for a later structured governance model.",
+    "Owner metadata is review routing and does not confirm source authority."
+  ]
+}

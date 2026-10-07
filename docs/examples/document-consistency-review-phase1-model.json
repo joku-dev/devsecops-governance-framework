@@ -1,0 +1,1610 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_commit": "3be081f9e424d3ad5c298a27e4a4a75a544609c2",
+  "sources": [
+    {
+      "id": "DSCB-STD-REQ-001",
+      "status": "intake",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
+      "sha256": "4fdc3922607102df72af15e88725b24726d4d13d06e1d1b0ffc5dbb2b0393e84",
+      "identifiers": [
+        {
+          "id": "DSCB-L1-REQ-001",
+          "line": 16,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-002",
+          "line": 17,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-003",
+          "line": 18,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-004",
+          "line": 19,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-005",
+          "line": 20,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-006",
+          "line": 21,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-007",
+          "line": 22,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-008",
+          "line": 23,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-009",
+          "line": 24,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-010",
+          "line": 25,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-011",
+          "line": 26,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-012",
+          "line": 27,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-013",
+          "line": 28,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-014",
+          "line": 29,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-015",
+          "line": 30,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L1-REQ-016",
+          "line": 31,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-001",
+          "line": 32,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-002",
+          "line": 33,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-003",
+          "line": 34,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-004",
+          "line": 35,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-005",
+          "line": 36,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-006",
+          "line": 37,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-007",
+          "line": 38,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-008",
+          "line": 39,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-009",
+          "line": 40,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-010",
+          "line": 41,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-011",
+          "line": 42,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-012",
+          "line": 43,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-013",
+          "line": 44,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L2-REQ-014",
+          "line": 45,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-001",
+          "line": 46,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-002",
+          "line": 47,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-003",
+          "line": 48,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-004",
+          "line": 49,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-005",
+          "line": 50,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-006",
+          "line": 51,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-007",
+          "line": 52,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-008",
+          "line": 53,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-009",
+          "line": 54,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-010",
+          "line": 55,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-L3-REQ-011",
+          "line": 56,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-GOV-REQ-001",
+          "line": 57,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-GOV-REQ-002",
+          "line": 58,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-GOV-REQ-003",
+          "line": 59,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-GOV-REQ-004",
+          "line": 60,
+          "kind": "declared"
+        },
+        {
+          "id": "DSCB-GOV-REQ-005",
+          "line": 61,
+          "kind": "declared"
+        }
+      ]
+    },
+    {
+      "id": "PRA-STD-REQ-001",
+      "status": "intake",
+      "version": "requirements-only-sanitized",
+      "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
+      "sha256": "730f3a1f5875ec76f3d032c9f620630fc68846d4722c28803b16c8ab50902d3b",
+      "identifiers": [
+        {
+          "id": "DSCB-L1-REQ-001",
+          "line": 52,
+          "kind": "reference"
+        },
+        {
+          "id": "DSCB-L3-REQ-009",
+          "line": 53,
+          "kind": "reference"
+        }
+      ]
+    }
+  ],
+  "roles": [],
+  "local_role_profiles": [],
+  "requirements": [
+    {
+      "id": "DSCB-STD-SRC-001-REQ-001",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-002",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-003",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-004",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-005",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-006",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-007",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-008",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-009",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-010",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-011",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-012",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-013",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-014",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-015",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-016",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-017",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-018",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-019",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-020",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-021",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-022",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-023",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-024",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-025",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-026",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-027",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-028",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-029",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-030",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-031",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-032",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-033",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-034",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-035",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-036",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-037",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-038",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-039",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-040",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-041",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-042",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-043",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-044",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-045",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-046",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-047",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-048",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-049",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-050",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-051",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-052",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-053",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-054",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "DSCB-STD-SRC-001-REQ-055",
+      "source_id": "DSCB-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-001",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-002",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-003",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-004",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-005",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-006",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-007",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-008",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-009",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-010",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-011",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-012",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-013",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-014",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-015",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-016",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-017",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-018",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-019",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-020",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-021",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-022",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-023",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-024",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-025",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-026",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-027",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-028",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-029",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-030",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-031",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-032",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-033",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-034",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-035",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-036",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-037",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-038",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-039",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-040",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-041",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-042",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-043",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-044",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-045",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-046",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-047",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "REQUIREMENT",
+      "mandatory": false,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": null
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-048",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-049",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-050",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-051",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-052",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-053",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-054",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-055",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    },
+    {
+      "id": "PRA-STD-SRC-001-REQ-056",
+      "source_id": "PRA-STD-REQ-001",
+      "strength": "MUST",
+      "mandatory": true,
+      "owner_role_id": null,
+      "verification_artifact_id": null,
+      "open_gap": "Owner and verification mappings are outside this requirements-only input."
+    }
+  ],
+  "gates": [],
+  "artifacts": [],
+  "evidence_links": [],
+  "relationships": [
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-010",
+      "target_entity_id": "DSCB-L1-REQ-001",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-011",
+      "target_entity_id": "DSCB-L1-REQ-002",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-012",
+      "target_entity_id": "DSCB-L1-REQ-003",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-013",
+      "target_entity_id": "DSCB-L1-REQ-004",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-014",
+      "target_entity_id": "DSCB-L1-REQ-005",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-015",
+      "target_entity_id": "DSCB-L1-REQ-006",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-016",
+      "target_entity_id": "DSCB-L1-REQ-007",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-017",
+      "target_entity_id": "DSCB-L1-REQ-008",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-018",
+      "target_entity_id": "DSCB-L1-REQ-009",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-019",
+      "target_entity_id": "DSCB-L1-REQ-010",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-020",
+      "target_entity_id": "DSCB-L1-REQ-011",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-021",
+      "target_entity_id": "DSCB-L1-REQ-012",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-022",
+      "target_entity_id": "DSCB-L1-REQ-013",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-023",
+      "target_entity_id": "DSCB-L1-REQ-014",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-024",
+      "target_entity_id": "DSCB-L1-REQ-015",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-025",
+      "target_entity_id": "DSCB-L1-REQ-016",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-026",
+      "target_entity_id": "DSCB-L2-REQ-001",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-027",
+      "target_entity_id": "DSCB-L2-REQ-002",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-028",
+      "target_entity_id": "DSCB-L2-REQ-003",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-029",
+      "target_entity_id": "DSCB-L2-REQ-004",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-030",
+      "target_entity_id": "DSCB-L2-REQ-005",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-031",
+      "target_entity_id": "DSCB-L2-REQ-006",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-032",
+      "target_entity_id": "DSCB-L2-REQ-007",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-033",
+      "target_entity_id": "DSCB-L2-REQ-008",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-034",
+      "target_entity_id": "DSCB-L2-REQ-009",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-035",
+      "target_entity_id": "DSCB-L2-REQ-010",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-036",
+      "target_entity_id": "DSCB-L2-REQ-011",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-037",
+      "target_entity_id": "DSCB-L2-REQ-012",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-038",
+      "target_entity_id": "DSCB-L2-REQ-013",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-039",
+      "target_entity_id": "DSCB-L2-REQ-014",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-040",
+      "target_entity_id": "DSCB-L3-REQ-001",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-041",
+      "target_entity_id": "DSCB-L3-REQ-002",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-042",
+      "target_entity_id": "DSCB-L3-REQ-003",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-043",
+      "target_entity_id": "DSCB-L3-REQ-004",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-044",
+      "target_entity_id": "DSCB-L3-REQ-005",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-045",
+      "target_entity_id": "DSCB-L3-REQ-006",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-046",
+      "target_entity_id": "DSCB-L3-REQ-007",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-047",
+      "target_entity_id": "DSCB-L3-REQ-008",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-048",
+      "target_entity_id": "DSCB-L3-REQ-009",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-049",
+      "target_entity_id": "DSCB-L3-REQ-010",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-050",
+      "target_entity_id": "DSCB-L3-REQ-011",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-051",
+      "target_entity_id": "DSCB-GOV-REQ-001",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-052",
+      "target_entity_id": "DSCB-GOV-REQ-002",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-053",
+      "target_entity_id": "DSCB-GOV-REQ-003",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-054",
+      "target_entity_id": "DSCB-GOV-REQ-004",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "DSCB-STD-SRC-001-REQ-055",
+      "target_entity_id": "DSCB-GOV-REQ-005",
+      "source_document_id": "DSCB-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "PRA-STD-SRC-001-REQ-046",
+      "target_entity_id": "DSCB-L1-REQ-001",
+      "source_document_id": "PRA-STD-REQ-001",
+      "status": "candidate"
+    },
+    {
+      "type": "references",
+      "source_entity_id": "PRA-STD-SRC-001-REQ-047",
+      "target_entity_id": "DSCB-L3-REQ-009",
+      "source_document_id": "PRA-STD-REQ-001",
+      "status": "candidate"
+    }
+  ],
+  "derivation_relationships": [],
+  "topic_authorities": []
+}
