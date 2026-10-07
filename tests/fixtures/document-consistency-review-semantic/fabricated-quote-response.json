@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "response_type": "document_consistency_semantic_response",
+  "review_id": "synthetic-fabricated-quote",
+  "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+  "execution": {
+    "mode": "synthetic_fixture",
+    "status": "completed",
+    "provider": null,
+    "model": null,
+    "prompt_version": "synthetic-1",
+    "configuration_version": "synthetic-1",
+    "truncated": false
+  },
+  "findings": [
+    {
+      "finding_id": "DCR-SEM-002",
+      "category": "terminology",
+      "statement": "Synthetic response containing a fabricated quotation.",
+      "interpretation": "The quotation does not exist at the supplied locator.",
+      "recommendation": null,
+      "semantic_state": "proposed",
+      "confidence": 0.99,
+      "applicability": {
+        "status": "same_context",
+        "rationale": "Synthetic fixture."
+      },
+      "evidence": [
+        {
+          "evidence_id": "EVID-001",
+          "source_id": "SYN-SRC-A-001",
+          "content_sha256": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c",
+          "locator": {"type": "requirement_id", "value": "SYN-A-REQ-001"},
+          "excerpt": "Artifacts SHALL always bypass approval."
+        }
+      ],
+      "search_scope": null
+    }
+  ],
+  "limitations": [
+    "This response is intentionally invalid and must be quarantined."
+  ]
+}

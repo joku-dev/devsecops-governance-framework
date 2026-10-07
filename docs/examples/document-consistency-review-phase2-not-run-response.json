@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "response_type": "document_consistency_semantic_response",
+  "review_id": "dcr-phase2-provider-not-run",
+  "source_manifest_sha256": "9aabf243290cff3157ee427647c643c8dbb676f2c9a64092a2067dd0b9628002",
+  "execution": {
+    "mode": "provider",
+    "status": "not_run",
+    "provider": null,
+    "model": null,
+    "prompt_version": "phase2-draft-1",
+    "configuration_version": "phase2-draft-1",
+    "truncated": false
+  },
+  "findings": [],
+  "limitations": [
+    "No provider was invoked because provider, model and retention approval remain open.",
+    "The empty finding list is not evidence of semantic consistency."
+  ]
+}

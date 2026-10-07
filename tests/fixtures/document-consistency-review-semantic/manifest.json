@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_type": "document_consistency_review_source_manifest",
+  "repository": "synthetic/document-consistency-review",
+  "reviewed_commit": "0000000000000000000000000000000000000000",
+  "source_register_path": "model/documents/source-document-register.yaml",
+  "source_register_sha256": "9f8378415b581c04e67caeaa398f76d70cc45fd6edf1785aa7092d5cc5127fa5",
+  "source_count": 2,
+  "source_documents": [
+    {
+      "id": "SYN-SRC-A-001",
+      "title": "Synthetic source A",
+      "status": "intake",
+      "version": "synthetic-1",
+      "owner": "synthetic-owner-a",
+      "governance_domains": ["devsecops"],
+      "source_path": "docs/governance/source-documents/SYN-SRC-A-001.md",
+      "content_sha256": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c"
+    },
+    {
+      "id": "SYN-SRC-B-001",
+      "title": "Synthetic source B",
+      "status": "intake",
+      "version": "synthetic-1",
+      "owner": "synthetic-owner-b",
+      "governance_domains": ["platform"],
+      "source_path": "docs/governance/source-documents/SYN-SRC-B-001.md",
+      "content_sha256": "9d7206dee2cc59e18754ee7e64057a38130a9f9938a9368bf6d07c6b38aa43b4"
+    }
+  ],
+  "limitations": [
+    "Synthetic source bytes exist only to test deterministic semantic-response validation.",
+    "The fixture contains no finding about a registered governance source."
+  ]
+}

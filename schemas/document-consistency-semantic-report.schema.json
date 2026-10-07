@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Semantic Review Validation Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_version",
+    "report_type",
+    "review_id",
+    "overall_status",
+    "scope",
+    "execution",
+    "formal_validation",
+    "semantic_review",
+    "human_decisions",
+    "implementation_coverage",
+    "findings",
+    "limitations"
+  ],
+  "properties": {
+    "report_version": {"const": "1.0.0"},
+    "report_type": {"const": "document_consistency_semantic_validation_report"},
+    "review_id": {"type": "string", "minLength": 1},
+    "overall_status": {"enum": ["synthetic_only", "not_run", "partial", "provider_failed"]},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_manifest_sha256", "source_ids"],
+      "properties": {
+        "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "status", "provider", "model", "prompt_version", "configuration_version", "truncated"],
+      "properties": {
+        "mode": {"enum": ["synthetic_fixture", "provider"]},
+        "status": {"enum": ["completed", "failed", "not_run"]},
+        "provider": {"type": ["string", "null"]},
+        "model": {"type": ["string", "null"]},
+        "prompt_version": {"type": "string"},
+        "configuration_version": {"type": "string"},
+        "truncated": {"type": "boolean"}
+      }
+    },
+    "formal_validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "errors"],
+      "properties": {
+        "status": {"enum": ["pass", "fail"]},
+        "errors": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "semantic_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "finding_count",
+        "validated_count",
+        "quarantined_count",
+        "context_missing_count",
+        "not_assessable_count"
+      ],
+      "properties": {
+        "status": {"enum": ["synthetic_only", "not_run", "partial", "provider_failed"]},
+        "finding_count": {"type": "integer", "minimum": 0},
+        "validated_count": {"type": "integer", "minimum": 0},
+        "quarantined_count": {"type": "integer", "minimum": 0},
+        "context_missing_count": {"type": "integer", "minimum": 0},
+        "not_assessable_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "human_decisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "decisions"],
+      "properties": {
+        "status": {"const": "not_run"},
+        "decisions": {"type": "array", "maxItems": 0}
+      }
+    },
+    "implementation_coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "details"],
+      "properties": {
+        "status": {"const": "not_assessed"},
+        "details": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "finding_id",
+          "category",
+          "statement",
+          "interpretation",
+          "recommendation",
+          "semantic_state",
+          "confidence",
+          "applicability",
+          "evidence",
+          "search_scope",
+          "evidence_status",
+          "disposition",
+          "validation_errors"
+        ],
+        "properties": {
+          "finding_id": {"type": "string"},
+          "category": {"type": "string"},
+          "statement": {"type": "string"},
+          "interpretation": {"type": "string"},
+          "recommendation": {"type": ["string", "null"]},
+          "semantic_state": {"type": "string"},
+          "confidence": {"type": "number"},
+          "applicability": {"type": "object"},
+          "evidence": {"type": "array", "items": {"type": "object"}},
+          "search_scope": {"type": ["object", "null"]},
+          "evidence_status": {"enum": ["valid", "invalid", "stale", "incomplete"]},
+          "disposition": {"enum": ["unconfirmed", "quarantined", "context_missing", "not_assessable"]},
+          "validation_errors": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    }
+  }
+}
