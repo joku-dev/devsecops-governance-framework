@@ -1,8 +1,25 @@
 # WP-DCR-001 Phase 2 — Entscheidungsbrief für den semantischen Pilot
 
-Status: **zur Abnahme vorbereitet; kein semantischer Lauf freigegeben**  
+Status: **einmaliger begrenzter Lauf am 7. Oktober 2026 ausgeführt; Providerantwort schemaungültig abgewiesen; kein validierter Pilotreport**
 Stand: 7. Oktober 2026  
 Bezug: `GCR-2026-119`
+
+## Laufnachtrag vom 7. Oktober 2026
+
+Der Maintainer genehmigte den in diesem Brief empfohlenen Zwei-Quellen-Scope
+für genau einen report-only Lauf über die bestehende ChatGPT-Pro-Anmeldung.
+Modelltraining war deaktiviert; Zero Data Retention war nicht bestätigt und die
+geltende ChatGPT-Aufbewahrung wurde für diesen begrenzten Lauf akzeptiert. Die
+fünf lokalen unregistrierten Dokumente blieben ausgeschlossen.
+
+Der tatsächliche Lauf mit `gpt-6-luna` lieferte einen Kandidaten, dessen
+`applicability.status` nicht dem Repositoryschema entsprach. Der Validator wies
+die vollständige Antwort vor der Finding-Verarbeitung ab. Es entstand kein
+validierter Report und keine menschliche Finding-Bewertung; die Rohantwort
+wurde nach technischer Triage gelöscht. Details und Digest stehen im
+Referenzlauf
+`docs/operations/reference-runs/2026-10-07-document-consistency-semantic-pilot.md`.
+Ein weiterer Providerlauf ist durch diese Genehmigung nicht gedeckt.
 
 ## Zweck der Entscheidung
 
@@ -181,4 +198,3 @@ behaupten.
 | Consumer-Repositories | keine Auswirkung |
 | Viewer und Veröffentlichung | nicht enthalten |
 | Lifecycle-Akzeptanz | fingerprintgeschützte Dateien bleiben unverändert |
-
