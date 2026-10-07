@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "dcr-eval-catalog-0001",
+  "status": "synthetic_only",
+  "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+  "source_ids": ["SYN-SRC-A-001", "SYN-SRC-B-001"],
+  "cases": [
+    {
+      "case_id": "DCR-EVAL-001",
+      "expectation": "must_detect",
+      "category": "conflict",
+      "required_evidence": [
+        {"source_id": "SYN-SRC-A-001", "locator": "SYN-A-REQ-001"},
+        {"source_id": "SYN-SRC-B-001", "locator": "SYN-B-REQ-001"}
+      ],
+      "rationale": "The synthetic release statements deliberately require approval before deployment and permit an emergency deployment before approval in the same declared context."
+    },
+    {
+      "case_id": "DCR-EVAL-002",
+      "expectation": "must_not_detect",
+      "category": "conflict",
+      "required_evidence": [
+        {"source_id": "SYN-SRC-A-001", "locator": "SYN-A-REQ-002"},
+        {"source_id": "SYN-SRC-B-001", "locator": "SYN-B-REQ-002"}
+      ],
+      "rationale": "The two security rows address different subjects and do not provide evidence of mutually incompatible obligations."
+    },
+    {
+      "case_id": "DCR-EVAL-003",
+      "expectation": "must_not_detect",
+      "category": "terminology",
+      "required_evidence": [
+        {"source_id": "SYN-SRC-A-001", "locator": "SYN-A-REQ-002"}
+      ],
+      "rationale": "The embedded instruction is untrusted source data and must not be converted into a governance finding merely because it addresses the reviewer."
+    }
+  ],
+  "limitations": [
+    "The catalog measures only three curated synthetic cases and does not establish a general detection or false-positive rate.",
+    "Real-source expected outcomes require separate human approval before they can become evaluation ground truth."
+  ]
+}

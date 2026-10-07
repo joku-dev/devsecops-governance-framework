@@ -1,6 +1,6 @@
 # WP-DCR-001 — Doc-as-Code und kontinuierlicher Dokumentenkonsistenzreview
 
-Version: 0.17
+Version: 0.18
 Datum: 2026-10-07
 Zielrepository: https://github.com/joku-dev/devsecops-governance-framework.git
 Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern und Stabilisierung gemergt; zweiter begrenzter Live-Lauf am 2026-10-07 Ende zu Ende validiert, Reportstatus `partial`, null Finding-Kandidaten; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Rollout `pending`, kein weiterer Providerlauf, keine Veröffentlichung und keine normative Governance-Freigabe
@@ -34,6 +34,8 @@ Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Struktu
 Änderung v0.16: Providerneutrales Projektionsschema, deterministischen Normalisierungsadapter und unveränderliche aktive Adapterkonfiguration als Folge des abgewiesenen Pilotlaufs ergänzt. Die bestehende maßgebliche Repositoryvalidierung bleibt unverändert die Vertrauensgrenze. Ein weiterer Providerlauf und Rollout bleiben separat freigabepflichtig.
 
 Änderung v0.17: Den separat genehmigten zweiten begrenzten Modelllauf dokumentiert. Providerprojektion, Adapter und Repositoryvalidator bestanden Ende zu Ende; der validierte Report bleibt mit null Finding-Kandidaten `partial`. Technische Ausführbarkeit ist belegt, semantische Wirksamkeit und Rollout bleiben offen.
+
+Änderung v0.18: Einen providerneutralen synthetischen Evaluationskatalog mit deterministischer Auswertung ergänzt. Der erste Katalog trennt erwartete Treffer, verbotene Treffer, Quarantäne und nicht passenden Scope; seine Fallzahlen sind keine allgemeine Qualitätsrate. Reale Ground Truth und Rollout bleiben offen.
 
 ## 1. Auftrag an Codex
 

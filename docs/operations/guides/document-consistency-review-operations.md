@@ -17,6 +17,7 @@ The current rollout decision is `pending`. The checked-in Phase-2 report remains
 | `model/governance/document-consistency/operating-model-v1.json` | Existing role routes, unconfirmed authority and escalation boundary |
 | `model/governance/document-consistency/reviewer-config-v1.json` | Immutable candidate configuration with provider `not_configured` |
 | `model/governance/document-consistency/provider-adapter-config-v1.json` | Active provider-neutral normalization contract; runtime provider binding remains required |
+| `model/governance/document-consistency/semantic-evaluation-catalog-v1.json` | Curated synthetic expected outcomes for bounded provider and model comparisons |
 | `model/governance/document-consistency/trigger-scope-matrix-v1.json` | Machine-readable incremental, full and methodology-comparison triggers |
 | `model/governance/document-consistency/rollout-decision-v1.json` | Explicit prerequisites and prohibited claims while rollout is pending |
 | `docs/examples/document-consistency-review-phase4-candidate-package.json` | Hash-bound incomplete candidate package; no normative approval |
@@ -76,6 +77,25 @@ source precedence. Normative decisions remain human-only.
 
 Source freshness and methodology freshness remain separate. A methodology
 change can limit comparability without erasing the historical observation.
+
+## Curated semantic evaluation
+
+The synthetic catalog evaluates explicit expected detections and prohibited
+detections by category and exact evidence locators. Only non-quarantined
+findings with valid evidence are eligible. Run it with:
+
+```bash
+.venv-validation/bin/python \
+  scripts/evaluate_document_consistency_semantic_report.py \
+  --catalog model/governance/document-consistency/semantic-evaluation-catalog-v1.json \
+  --report <validated-semantic-report.json> \
+  --output <evaluation-report.json>
+```
+
+The report must use the same source manifest and exact source set as the
+catalog. Other reports return `not_applicable`; they do not become false misses
+or passing evidence. Counts describe only the versioned cases and must not be
+reported as population-level recall, precision or false-positive rates.
 
 ## Configuration and rollback
 

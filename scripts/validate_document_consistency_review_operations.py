@@ -17,6 +17,7 @@ FILES = {
     "operating": (MODEL / "operating-model-v1.json", Path("schemas/document-consistency-operating-model.schema.json")),
     "configuration": (MODEL / "reviewer-config-v1.json", Path("schemas/document-consistency-reviewer-config.schema.json")),
     "provider_adapter": (MODEL / "provider-adapter-config-v1.json", Path("schemas/document-consistency-provider-adapter-config.schema.json")),
+    "semantic_evaluation_catalog": (MODEL / "semantic-evaluation-catalog-v1.json", Path("schemas/document-consistency-semantic-evaluation-catalog.schema.json")),
     "triggers": (MODEL / "trigger-scope-matrix-v1.json", Path("schemas/document-consistency-trigger-scope.schema.json")),
     "rollout": (MODEL / "rollout-decision-v1.json", Path("schemas/document-consistency-rollout-decision.schema.json")),
     "ledger": (Path("tests/fixtures/document-consistency-review-operations/synthetic-ledger.json"), Path("schemas/document-consistency-finding-ledger.schema.json")),

@@ -20,6 +20,8 @@ den Validator und sind keine Findings über die registrierten Pilotquellen.
 | `schemas/document-consistency-semantic-response.schema.json` | Normalisierte, noch unbestätigte Provider- oder Fixture-Antwort |
 | `schemas/document-consistency-provider-projection.schema.json` | Enger, providerseitig erzeugbarer Austauschvertrag ohne die im Pilot inkompatiblen Schemaelemente |
 | `schemas/document-consistency-provider-adapter-config.schema.json` | Unveränderliche Konfiguration der zulässigen Normalisierung |
+| `schemas/document-consistency-semantic-evaluation-catalog.schema.json` | Kuratierte synthetische Sollfälle für Provider- und Modellvergleiche |
+| `schemas/document-consistency-semantic-evaluation-report.schema.json` | Begrenztes Auswertungsergebnis ohne globale Qualitätsbehauptung |
 | `schemas/document-consistency-semantic-report.schema.json` | Deterministisch validierter report-only Bericht einschließlich Quarantäne |
 | `schemas/document-consistency-human-decision.schema.json` | Separate, an Manifest und Finding gebundene menschliche Bewertung |
 
@@ -155,3 +157,7 @@ Aufbewahrung, Rohantwortbehandlung, Kosten-/Kontextlimit und menschliche
 Reviewer gemäß GCR-2026-119 ausdrücklich zu bestätigen. Ein weiterer echter
 Pilotreport und operative menschliche Decision-Intake werden erst danach
 separat ausgeführt und abgenommen.
+
+Der synthetische Evaluationskatalog kann unabhängig von einem Live-Provider
+ausgeführt werden. Reale Quellen werden erst dann zu Ground Truth, wenn ihre
+erwarteten Ergebnisse separat fachlich bestätigt wurden.

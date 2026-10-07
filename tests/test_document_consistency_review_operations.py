@@ -21,7 +21,7 @@ class DocumentConsistencyOperationsTests(unittest.TestCase):
 
     def test_checked_in_operations_package_is_valid_and_pending(self):
         result = validate(ROOT)
-        self.assertEqual({"status":"pass", "artifacts":7, "rollout":"pending", "provider":"not_configured"}, result)
+        self.assertEqual({"status":"pass", "artifacts":8, "rollout":"pending", "provider":"not_configured"}, result)
 
     def test_continuity_states_do_not_resolve_unassessed_findings(self):
         previous = {"state":"unchanged", "severity":"medium", "source_ids":["A"]}
