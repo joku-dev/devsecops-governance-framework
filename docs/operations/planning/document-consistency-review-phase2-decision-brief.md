@@ -1,8 +1,25 @@
 # WP-DCR-001 Phase 2 — Entscheidungsbrief für den semantischen Pilot
 
-Status: **einmaliger begrenzter Lauf am 7. Oktober 2026 ausgeführt; Providerantwort schemaungültig abgewiesen; kein validierter Pilotreport**
+Status: **zweiter begrenzter Lauf am 7. Oktober 2026 ausgeführt; validierter report-only Report mit Status `partial` und null Finding-Kandidaten**
 Stand: 7. Oktober 2026  
 Bezug: `GCR-2026-119`
+
+## Zweiter Laufnachtrag vom 7. Oktober 2026
+
+Nach Merge der providerneutralen Stabilisierung in PR #227 genehmigte der
+Maintainer genau einen weiteren Lauf im unveränderten Zwei-Quellen-Scope. Die
+Providerprojektion war schema-valide, der Adapter benötigte keine
+Normalisierung und der maßgebliche Repositoryvalidator bestand ohne Fehler oder
+Quarantäne. Der validierte Report enthält null Finding-Kandidaten und bleibt
+wegen der engen Quellen- und Kontextgrenze `partial`.
+
+Damit ist der technische Datenfluss erstmals Ende zu Ende belegt. Semantischer
+Nutzen, Fehlalarme, bekannte Auslassungen und menschlicher Triageaufwand sind
+weiterhin nicht bewertet. Null Findings dürfen nicht als Konsistenz- oder
+Complianceaussage verwendet werden. Details stehen im Referenzlauf
+`docs/operations/reference-runs/2026-10-07-document-consistency-semantic-pilot-2.md`.
+Ein weiterer Provider- oder Vergleichslauf ist durch diese Freigabe nicht
+gedeckt.
 
 ## Laufnachtrag vom 7. Oktober 2026
 
