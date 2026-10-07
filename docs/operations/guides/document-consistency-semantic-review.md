@@ -4,8 +4,9 @@
 
 Der Phase-2-Kern validiert untrusted semantische Reviewer-Ausgaben gegen ein
 exaktes Quellenmanifest. Er akzeptiert keine Modellinterpretation als
-Governance-Entscheidung. Der aktuelle Repository-Stand enthält keinen
-Provideradapter und führt keinen Modellaufruf aus.
+Governance-Entscheidung. Ein providerneutraler Adapter stabilisiert die
+technische Grenze vor dem maßgeblichen Validator; er führt selbst keinen
+Modellaufruf aus und enthält keine Providerfreigabe.
 
 Der mitgelieferte Beispielreport hat deshalb den Status `not_run`. Die
 synthetischen Fixtures unter
@@ -17,17 +18,24 @@ den Validator und sind keine Findings über die registrierten Pilotquellen.
 | Vertrag | Zweck |
 | --- | --- |
 | `schemas/document-consistency-semantic-response.schema.json` | Normalisierte, noch unbestätigte Provider- oder Fixture-Antwort |
+| `schemas/document-consistency-provider-projection.schema.json` | Enger, providerseitig erzeugbarer Austauschvertrag ohne die im Pilot inkompatiblen Schemaelemente |
+| `schemas/document-consistency-provider-adapter-config.schema.json` | Unveränderliche Konfiguration der zulässigen Normalisierung |
 | `schemas/document-consistency-semantic-report.schema.json` | Deterministisch validierter report-only Bericht einschließlich Quarantäne |
 | `schemas/document-consistency-human-decision.schema.json` | Separate, an Manifest und Finding gebundene menschliche Bewertung |
 
-Der Provideradapter muss später ausschließlich den normalisierten
-Antwortvertrag erzeugen. Er darf den Finding-Validator weder ersetzen noch
-dessen Ergebnis als menschliche Entscheidung deklarieren.
+Der Adapter `scripts/adapt_document_consistency_provider_response.py` erzeugt
+ausschließlich den normalisierten Antwortvertrag. Er darf den
+Finding-Validator weder ersetzen noch dessen Ergebnis als menschliche
+Entscheidung deklarieren. Provider und Modell werden erst zur Laufzeit explizit
+gebunden; die aktive Adapterkonfiguration `dcr-adapter-0001` wählt keinen
+Provider aus.
 
 ## Validierungskette
 
 ```text
 manifestierte Quelle
+  -> Provider-Projektion
+  -> deterministische Normalisierung
   -> normalisierte untrusted Antwort
   -> Schema- und Laufstatusprüfung
   -> Manifest-, Hash- und Scopeprüfung
@@ -52,6 +60,13 @@ Der Validator prüft:
 Eine hohe Modellkonfidenz ändert kein ungültiges Belegergebnis. Ein valider
 Beleg bestätigt nur die Herkunft des Textes. Interpretation, Anwendbarkeit und
 Lösung bleiben unbestätigt.
+
+Der Adapter wandelt leere optionale Empfehlungen und explizit nicht
+anwendbare Suchscopes in die kanonische Darstellung um. Ein im
+Anwendbarkeitsfeld abgelegtes `context_missing` oder `not_assessable` wird nur
+dann in den semantischen Zustand verschoben, wenn kein widersprüchlicher Zustand
+vorliegt. Jede solche Änderung erscheint in den Limitationen. Unbekannte oder
+mehrdeutige Werte werden abgewiesen.
 
 ## Zustände
 
@@ -84,6 +99,24 @@ Verhalten. Nicht lesbare oder schema-ungültige Eingaben liefern Exit-Code `2`.
 Quarantäne und Providerfehler bleiben im Report sichtbar und dürfen von einem
 späteren Workflow nicht in einen grünen semantischen Nachweis umgedeutet
 werden.
+
+Der Adapter kann ausschließlich mit einer bereits vorliegenden Projektion
+aufgerufen werden. Dieser Befehl kontaktiert keinen Provider:
+
+```bash
+./.venv-validation/bin/python \
+  scripts/adapt_document_consistency_provider_response.py \
+  --input provider-projection.json \
+  --output normalized-response.json \
+  --review-id bounded-review-id \
+  --source-manifest-sha256 <sha256> \
+  --provider <exact-provider-id> \
+  --model <exact-model-id> \
+  --prompt-version <prompt-version>
+```
+
+`normalized-response.json` muss danach mit dem bestehenden Validator gegen das
+exakte Laufmanifest geprüft werden.
 
 ## Menschliche Bewertung
 
@@ -119,6 +152,6 @@ Bewertung auf.
 
 Vor einem echten Modelllauf bleiben Provider, exakte Modellkennung,
 Aufbewahrung, Rohantwortbehandlung, Kosten-/Kontextlimit und menschliche
-Reviewer gemäß GCR-2026-119 ausdrücklich zu bestätigen. Ein Provideradapter,
-ein echter Pilotreport und operative menschliche Decision-Intake werden erst
-danach separat umgesetzt und abgenommen.
+Reviewer gemäß GCR-2026-119 ausdrücklich zu bestätigen. Ein weiterer echter
+Pilotreport und operative menschliche Decision-Intake werden erst danach
+separat ausgeführt und abgenommen.

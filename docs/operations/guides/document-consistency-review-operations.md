@@ -16,6 +16,7 @@ The current rollout decision is `pending`. The checked-in Phase-2 report remains
 | --- | --- |
 | `model/governance/document-consistency/operating-model-v1.json` | Existing role routes, unconfirmed authority and escalation boundary |
 | `model/governance/document-consistency/reviewer-config-v1.json` | Immutable candidate configuration with provider `not_configured` |
+| `model/governance/document-consistency/provider-adapter-config-v1.json` | Active provider-neutral normalization contract; runtime provider binding remains required |
 | `model/governance/document-consistency/trigger-scope-matrix-v1.json` | Machine-readable incremental, full and methodology-comparison triggers |
 | `model/governance/document-consistency/rollout-decision-v1.json` | Explicit prerequisites and prohibited claims while rollout is pending |
 | `docs/examples/document-consistency-review-phase4-candidate-package.json` | Hash-bound incomplete candidate package; no normative approval |
@@ -83,9 +84,10 @@ prompt, model, provider, parameter, schema, validator, converter or source
 manifest combination gets a new configuration ID. Rollback selects a previously
 reviewed configuration; it never edits an existing configuration in place.
 
-The first configuration is `candidate`. Provider name, model and parameters are
-empty because no live provider decision exists. Live comparison remains
-`pending`.
+The first reviewer configuration is `candidate`. Provider name, model and
+parameters are empty because no reusable live-provider decision exists. The
+separate adapter configuration is active for deterministic normalization only;
+it does not authorize or select a provider. Live comparison remains `pending`.
 
 ## Candidate package and rollout
 
