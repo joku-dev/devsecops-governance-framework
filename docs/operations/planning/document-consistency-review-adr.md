@@ -1,6 +1,6 @@
 # ADR-DCR-001 — Quellenidentität und Grenzen der Dokumentenprüfung
 
-- **Status:** Phase 0 angenommen; Phase 1 nicht begonnen
+- **Status:** Phase 0 und begrenzter Phase-1-Strukturkern angenommen; Phase-2-Live-Lauf nicht freigegeben
 - **Entscheidungsdatum:** 2026-10-07
 - **Repository-Basis:** `a8fc36f3de7f33cd2a26dff94f9a28985e78d64f`
 **Änderungsantrag:** [GCR-2026-116](../../governance/change-requests/GCR-2026-116-document-consistency-review.md)
@@ -56,6 +56,7 @@ Repository-Manifestsnapshot übernommen.
   Compliance.
 - Die Entscheidung nimmt Phase 0 ab, aber genehmigt keine der fünf lokalen
   Quellen und ändert keine bestehende Quellen- oder Baselinefreigabe.
-- Phase 1 benötigt einen eigenen Änderungssatz und eine eigene Prüfung.
+- Phase 1 wurde mit GCR-2026-118 als begrenzter technischer Strukturkern mit
+  Ergebnis `partial` angenommen.
 - Ein semantischer Pilot, Viewer-Integration, Quellenpromotion und
   Veröffentlichung bleiben separate spätere Entscheidungen.
