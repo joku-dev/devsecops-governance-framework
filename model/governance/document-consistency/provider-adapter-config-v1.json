@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "configuration_id": "dcr-adapter-0001",
+  "status": "active",
+  "provider_binding": "runtime_required",
+  "projection_schema": "schemas/document-consistency-provider-projection.schema.json",
+  "canonical_schema": "schemas/document-consistency-semantic-response.schema.json",
+  "normalization": {
+    "misplaced_semantic_states": {"context_missing": "context_missing", "not_assessable": "not_assessable"},
+    "empty_recommendation": "null",
+    "search_scope": "explicit_status",
+    "unknown_values": "reject"
+  },
+  "decision_boundary": "Adapter output remains untrusted and must pass the authoritative repository validator before it can enter a report."
+}

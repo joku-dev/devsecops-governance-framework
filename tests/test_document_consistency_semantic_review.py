@@ -14,6 +14,10 @@ from scripts.validate_document_consistency_semantic_review import (
     markdown_report,
     validate_semantic_response,
 )
+from scripts.adapt_document_consistency_provider_response import (
+    ProviderAdapterError,
+    adapt_provider_response,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +35,13 @@ HUMAN_DECISION_SCHEMA = json.loads(
 )
 SYNTHETIC_HUMAN_DECISION = json.loads(
     (FIXTURES / "synthetic-human-decision.json").read_text(encoding="utf-8")
+)
+PROVIDER_PROJECTION = json.loads((FIXTURES / "provider-projection.json").read_text(encoding="utf-8"))
+ADAPTER_CONFIG = json.loads(
+    (ROOT / "model/governance/document-consistency/provider-adapter-config-v1.json").read_text(encoding="utf-8")
+)
+PROVIDER_SCHEMA = json.loads(
+    (ROOT / "schemas/document-consistency-provider-projection.schema.json").read_text(encoding="utf-8")
 )
 
 
@@ -66,6 +77,56 @@ class DocumentConsistencySemanticReviewTests(unittest.TestCase):
         )
         Draft202012Validator(REPORT_SCHEMA).validate(report)
         return report
+
+    def adapt(self, projection: dict) -> dict:
+        return adapt_provider_response(
+            deepcopy(projection),
+            deepcopy(ADAPTER_CONFIG),
+            review_id="provider-adapter-regression",
+            source_manifest_sha256=MANIFEST_SHA256,
+            provider="provider-under-test",
+            model="model-under-test",
+            prompt_version="phase2-provider-neutral-1",
+        )
+
+    def test_provider_projection_adapts_to_authoritative_contract(self):
+        response = self.adapt(PROVIDER_PROJECTION)
+        self.assertEqual(response["execution"]["configuration_version"], "dcr-adapter-0001")
+        self.assertEqual(response["findings"][0]["search_scope"], None)
+        report = self.validate(response)
+        self.assertEqual(report["formal_validation"]["status"], "pass")
+        self.assertEqual(report["findings"][0]["disposition"], "unconfirmed")
+
+    def test_misplaced_context_missing_is_normalized_and_recorded(self):
+        projection = deepcopy(PROVIDER_PROJECTION)
+        finding = projection["findings"][0]
+        finding["applicability"]["status"] = "context_missing"
+        response = self.adapt(projection)
+        finding = response["findings"][0]
+        self.assertEqual(finding["semantic_state"], "context_missing")
+        self.assertEqual(finding["applicability"]["status"], "unknown")
+        self.assertIn("Adapter normalization", response["limitations"][-1])
+        self.assertEqual(self.validate(response)["findings"][0]["disposition"], "context_missing")
+
+    def test_conflicting_enum_states_are_rejected(self):
+        projection = deepcopy(PROVIDER_PROJECTION)
+        finding = projection["findings"][0]
+        finding["semantic_state"] = "not_assessable"
+        finding["applicability"]["status"] = "context_missing"
+        with self.assertRaisesRegex(ProviderAdapterError, "conflicting semantic_state"):
+            self.adapt(projection)
+
+    def test_invalid_or_ambiguous_search_scope_is_rejected(self):
+        projection = deepcopy(PROVIDER_PROJECTION)
+        projection["findings"][0]["search_scope"]["source_ids"] = ["SYN-SRC-A-001"]
+        with self.assertRaisesRegex(ProviderAdapterError, "must be empty"):
+            self.adapt(projection)
+
+    def test_projection_avoids_known_structured_output_incompatibilities(self):
+        serialized = json.dumps(PROVIDER_SCHEMA)
+        self.assertNotIn('"oneOf"', serialized)
+        self.assertNotIn('"uniqueItems"', serialized)
+        self.assertNotIn('"const"', serialized)
 
     def test_valid_synthetic_conflict_remains_unconfirmed(self):
         report = self.validate(VALID_RESPONSE)

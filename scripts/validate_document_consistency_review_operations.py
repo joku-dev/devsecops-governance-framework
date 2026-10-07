@@ -16,6 +16,7 @@ MODEL = Path("model/governance/document-consistency")
 FILES = {
     "operating": (MODEL / "operating-model-v1.json", Path("schemas/document-consistency-operating-model.schema.json")),
     "configuration": (MODEL / "reviewer-config-v1.json", Path("schemas/document-consistency-reviewer-config.schema.json")),
+    "provider_adapter": (MODEL / "provider-adapter-config-v1.json", Path("schemas/document-consistency-provider-adapter-config.schema.json")),
     "triggers": (MODEL / "trigger-scope-matrix-v1.json", Path("schemas/document-consistency-trigger-scope.schema.json")),
     "rollout": (MODEL / "rollout-decision-v1.json", Path("schemas/document-consistency-rollout-decision.schema.json")),
     "ledger": (Path("tests/fixtures/document-consistency-review-operations/synthetic-ledger.json"), Path("schemas/document-consistency-finding-ledger.schema.json")),
@@ -104,6 +105,16 @@ def validate(root: Path = ROOT) -> dict:
     manifest_path = root / config["source_manifest"]["path"]
     if digest(manifest_path) != config["source_manifest"]["sha256"]:
         raise OperationsValidationError("reviewer configuration source manifest digest mismatch")
+
+    adapter = loaded["provider_adapter"]
+    for key in ("projection_schema", "canonical_schema"):
+        candidate = (root / adapter[key]).resolve()
+        try:
+            candidate.relative_to(root.resolve())
+        except ValueError as exc:
+            raise OperationsValidationError(f"provider adapter path escapes repository: {adapter[key]}") from exc
+        if not candidate.is_file():
+            raise OperationsValidationError(f"provider adapter contract is missing: {adapter[key]}")
 
     package = loaded["package"]
     for artifact in package["artifacts"]:
