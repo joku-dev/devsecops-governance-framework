@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "decision_type": "document_consistency_human_decision",
+  "decision_id": "DCR-DEC-001",
+  "review_id": "synthetic-conflict-validation",
+  "finding_id": "DCR-SEM-001",
+  "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+  "finding_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "classification": "unclear",
+  "reviewer": {
+    "reviewer_id": "synthetic-reviewer",
+    "reviewer_role": "synthetic-test-role"
+  },
+  "decided_at": "2026-10-07T00:00:00Z",
+  "rationale": "Synthetic fixture used only to validate the human-decision schema.",
+  "next_action": "Do not treat this fixture as an actual review decision."
+}

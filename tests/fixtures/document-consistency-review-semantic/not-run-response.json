@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "response_type": "document_consistency_semantic_response",
+  "review_id": "provider-not-run",
+  "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+  "execution": {
+    "mode": "provider",
+    "status": "not_run",
+    "provider": null,
+    "model": null,
+    "prompt_version": "phase2-draft-1",
+    "configuration_version": "phase2-draft-1",
+    "truncated": false
+  },
+  "findings": [],
+  "limitations": [
+    "No provider was invoked and no semantic result is claimed."
+  ]
+}

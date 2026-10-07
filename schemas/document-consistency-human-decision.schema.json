@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Review Human Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_type",
+    "decision_id",
+    "review_id",
+    "finding_id",
+    "source_manifest_sha256",
+    "finding_sha256",
+    "classification",
+    "reviewer",
+    "decided_at",
+    "rationale",
+    "next_action"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "decision_type": {"const": "document_consistency_human_decision"},
+    "decision_id": {"type": "string", "pattern": "^DCR-DEC-[0-9]{3}$"},
+    "review_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "finding_id": {"type": "string", "pattern": "^DCR-SEM-[0-9]{3}$"},
+    "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "finding_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "classification": {"enum": ["helpful", "false_positive", "unclear", "not_assessable"]},
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer_id", "reviewer_role"],
+      "properties": {
+        "reviewer_id": {"type": "string", "minLength": 1},
+        "reviewer_role": {"type": "string", "minLength": 1}
+      }
+    },
+    "decided_at": {"type": "string", "format": "date-time"},
+    "rationale": {"type": "string", "minLength": 1},
+    "next_action": {"type": ["string", "null"]}
+  }
+}
