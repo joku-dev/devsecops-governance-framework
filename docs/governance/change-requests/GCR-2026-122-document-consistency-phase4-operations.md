@@ -71,6 +71,24 @@ Review-Ausgangsstand festgeschrieben werden.
 | Rolloutentscheidung | `pending` | Voraussetzungen maschinenlesbar offen |
 | Veröffentlichung | `not_in_scope` | separat zu autorisieren |
 
+## Abnahmeentscheidung
+
+Der Maintainer hat Phase 4 am 7. Oktober 2026 auf Basis von PR #224 mit
+folgendem technischen Scope angenommen:
+
+> Ich nehme Phase 4 auf Basis von PR #224 technisch ab. Die Abnahme gilt für
+> Finding-Kontinuität, Triage, Trigger- und Scope-Planung,
+> Konfigurationsversionierung und das Candidate-Reviewpaket. Sie autorisiert
+> keinen Live-Provider-Lauf, keine Veröffentlichung, keine normative
+> Bestätigung von Findings und keinen produktiven Rollout. Die
+> Rolloutentscheidung bleibt `pending`.
+
+Die Entscheidung bindet die technische Abnahme an den in PR #224 gemergten
+Stand. Sie ändert den `pending`-Status der maschinenlesbaren Rolloutentscheidung
+nicht und erteilt keine Provider-, Publikations-, Betriebs- oder normative
+Freigabe. Ein realer semantischer Pilot und seine menschliche Bewertung
+benötigen eine separate, konkret begrenzte Folgeentscheidung.
+
 ## Release-Einordnung
 
 Kein Release und keine Consumer-Migration. Die Verträge sind interne
