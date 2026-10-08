@@ -200,8 +200,11 @@ gegen sein JSON-Schema und verbindet die gemessene Bewertung mit der
 Kontroll-Assurance nur bei identischem Repository, Run, Versuch und Commit. Sie erzeugt ein internes
 Darstellungsformat (`version: 1`), keinen neuen Consumer-Evidence-Vertrag.
 `scripts/lib/document_consistency_view.py` validiert zusätzlich den
-Document-Consistency-Report und seine öffentliche Projektion gegen getrennte
-Schemas. Die Projektion folgt einer expliziten Feld-Allowlist und vergleicht
+abgeschlossenen, begrenzten Phase-2-Pilotbericht
+`docs/examples/document-consistency-review-phase2-live-pilot-report.json` und
+seine öffentliche Projektion gegen getrennte Schemas. Der separate
+`phase2-report.json`-Report mit `not_run` bleibt ein Validator- und
+Vorlagenbeispiel; er ist nicht die aktive Viewer-Eingabe. Die Projektion folgt einer expliziten Feld-Allowlist und vergleicht
 Manifest- und Quellenbytes, bevor sie den Aktualitätszustand setzt.
 Die DCR-Ansicht ergänzt diesen Snapshot um einen lesenden Ablaufstatus der vier
 Prüfphasen und verweist auf Betriebsmodell und Rollout-Entscheid. Sie führt
