@@ -18,10 +18,15 @@ FILES = {
     "configuration": (MODEL / "reviewer-config-v1.json", Path("schemas/document-consistency-reviewer-config.schema.json")),
     "provider_adapter": (MODEL / "provider-adapter-config-v1.json", Path("schemas/document-consistency-provider-adapter-config.schema.json")),
     "semantic_evaluation_catalog": (MODEL / "semantic-evaluation-catalog-v1.json", Path("schemas/document-consistency-semantic-evaluation-catalog.schema.json")),
+    "semantic_evaluation_catalog_v2": (MODEL / "semantic-evaluation-catalog-v2.json", Path("schemas/document-consistency-semantic-evaluation-catalog.schema.json")),
     "triggers": (MODEL / "trigger-scope-matrix-v1.json", Path("schemas/document-consistency-trigger-scope.schema.json")),
     "rollout": (MODEL / "rollout-decision-v2.json", Path("schemas/document-consistency-rollout-decision-v2.schema.json")),
     "ledger": (Path("tests/fixtures/document-consistency-review-operations/synthetic-ledger.json"), Path("schemas/document-consistency-finding-ledger.schema.json")),
     "package": (Path("docs/examples/document-consistency-review-phase4-candidate-package.json"), Path("schemas/document-consistency-review-package.schema.json")),
+}
+CATALOG_MANIFESTS = {
+    "semantic_evaluation_catalog": Path("tests/fixtures/document-consistency-review-semantic/manifest.json"),
+    "semantic_evaluation_catalog_v2": Path("tests/fixtures/document-consistency-review-semantic-v2/manifest.json"),
 }
 SEVERITY = {"info": 0, "low": 1, "medium": 2, "high": 3, "critical": 4}
 
@@ -98,6 +103,15 @@ def validate(root: Path = ROOT) -> dict:
         value = read_json(root / path)
         validate_schema(value, read_json(root / schema_path), label)
         loaded[label] = value
+
+    for label, manifest_path in CATALOG_MANIFESTS.items():
+        catalog = loaded[label]
+        manifest = read_json(root / manifest_path)
+        validate_schema(manifest, read_json(root / "schemas/document-consistency-review-manifest.schema.json"), f"{label} manifest")
+        if digest(root / manifest_path) != catalog["source_manifest_sha256"]:
+            raise OperationsValidationError(f"{label} source manifest digest mismatch")
+        if catalog["source_ids"] != [item["id"] for item in manifest["source_documents"]]:
+            raise OperationsValidationError(f"{label} source IDs differ from its manifest")
 
     config = loaded["configuration"]
     provider = config["provider"]

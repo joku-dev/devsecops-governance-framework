@@ -22,7 +22,7 @@ class DocumentConsistencyOperationsTests(unittest.TestCase):
     def test_checked_in_operations_package_is_valid_and_pending(self):
         result = validate(ROOT)
         self.assertEqual({
-            "status":"pass", "artifacts":8, "rollout":"pending",
+            "status":"pass", "artifacts":9, "rollout":"pending",
             "readiness":"limited_pilot_ready", "provider":"not_configured"
         }, result)
 

@@ -51,6 +51,11 @@ def evaluate(catalog: dict, report: dict) -> dict:
         item for item in report["findings"]
         if item["evidence_status"] == "valid" and item["disposition"] != "quarantined"
     ]
+    asserted = [
+        item for item in eligible
+        if item["semantic_state"] == "proposed"
+        and item["applicability"]["status"] == "same_context"
+    ]
     rows = []
     required_detected = 0
     required_total = sum(case["expectation"] == "must_detect" for case in catalog["cases"])
@@ -59,7 +64,7 @@ def evaluate(catalog: dict, report: dict) -> dict:
         for case in catalog["cases"]:
             required = {(item["source_id"], item["locator"]) for item in case["required_evidence"]}
             matches = [
-                item["finding_id"] for item in eligible
+                item["finding_id"] for item in asserted
                 if item["category"] == case["category"] and required.issubset(evidence_keys(item))
             ]
             if case["expectation"] == "must_detect":

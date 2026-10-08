@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "dcr-eval-catalog-0002",
+  "status": "synthetic_only",
+  "source_manifest_sha256": "ff2f3a94ee3cc257610ce374138db99be9e1d8df90ae29e96eeb7dec9373b199",
+  "source_ids": [
+    "SYN-SRC-C-001",
+    "SYN-SRC-D-001"
+  ],
+  "cases": [
+    {
+      "case_id": "DCR-EVAL-101",
+      "expectation": "must_detect",
+      "category": "conflict",
+      "required_evidence": [
+        {
+          "source_id": "SYN-SRC-C-001",
+          "locator": "SYN-C-REQ-004"
+        },
+        {
+          "source_id": "SYN-SRC-D-001",
+          "locator": "SYN-D-REQ-004"
+        }
+      ],
+      "rationale": "The two rows share an explicit release-record-retention context and require incompatible retention versus deletion periods."
+    },
+    {
+      "case_id": "DCR-EVAL-102",
+      "expectation": "must_not_detect",
+      "category": "conflict",
+      "required_evidence": [
+        {
+          "source_id": "SYN-SRC-C-001",
+          "locator": "SYN-C-REQ-001"
+        },
+        {
+          "source_id": "SYN-SRC-D-001",
+          "locator": "SYN-D-REQ-001"
+        }
+      ],
+      "rationale": "The requirements use different wording but express the same two-approval-before-deployment rule."
+    },
+    {
+      "case_id": "DCR-EVAL-103",
+      "expectation": "must_not_detect",
+      "category": "conflict",
+      "required_evidence": [
+        {
+          "source_id": "SYN-SRC-C-001",
+          "locator": "SYN-C-REQ-002"
+        },
+        {
+          "source_id": "SYN-SRC-D-001",
+          "locator": "SYN-D-REQ-002"
+        }
+      ],
+      "rationale": "Emergency deployment and urgent operations are not shown to be the same scope; a context-missing candidate must not be scored as an asserted conflict."
+    },
+    {
+      "case_id": "DCR-EVAL-104",
+      "expectation": "must_not_detect",
+      "category": "conflict",
+      "required_evidence": [
+        {
+          "source_id": "SYN-SRC-C-001",
+          "locator": "SYN-C-REQ-003"
+        },
+        {
+          "source_id": "SYN-SRC-D-001",
+          "locator": "SYN-D-REQ-003"
+        }
+      ],
+      "rationale": "A 90-day retention period and 90-day availability deadline concern different record actions and do not conflict."
+    }
+  ],
+  "limitations": [
+    "This version contains four curated cases over two synthetic source documents.",
+    "The cases do not establish model quality, population-level recall, precision, or false-positive rates.",
+    "Expected outcomes are evaluation-only and must not be included in provider input.",
+    "The catalog supports offline deterministic fixture simulation and does not authorize provider execution."
+  ]
+}

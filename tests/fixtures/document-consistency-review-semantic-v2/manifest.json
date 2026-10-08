@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_type": "document_consistency_review_source_manifest",
+  "repository": "synthetic/document-consistency-review-catalog-v2",
+  "reviewed_commit": "0000000000000000000000000000000000000000",
+  "source_register_path": "model/documents/source-document-register.yaml",
+  "source_register_sha256": "ba706f92036dcb6d5e3b72173cdf73873eec7e00230bc2ed20b1a242eb1f4ab6",
+  "source_count": 2,
+  "source_documents": [
+    {
+      "id": "SYN-SRC-C-001",
+      "title": "Synthetic source C",
+      "status": "intake",
+      "version": "synthetic-2",
+      "owner": "synthetic-owner-c",
+      "governance_domains": [
+        "devsecops"
+      ],
+      "source_path": "docs/governance/source-documents/SYN-SRC-C-001.md",
+      "content_sha256": "602c9ad61fdd3d3f9c95e35d6e16501809e7b437d547198c6346a2514daefc0a"
+    },
+    {
+      "id": "SYN-SRC-D-001",
+      "title": "Synthetic source D",
+      "status": "intake",
+      "version": "synthetic-2",
+      "owner": "synthetic-owner-d",
+      "governance_domains": [
+        "platform"
+      ],
+      "source_path": "docs/governance/source-documents/SYN-SRC-D-001.md",
+      "content_sha256": "9a89726d0f7eb094e3e651df73115c2ee94b3d50f88b5bc8260e752c4a896a53"
+    }
+  ],
+  "limitations": [
+    "All source text exists only for synthetic regression and evaluator tests.",
+    "The fixture contains no finding about a registered governance source."
+  ]
+}

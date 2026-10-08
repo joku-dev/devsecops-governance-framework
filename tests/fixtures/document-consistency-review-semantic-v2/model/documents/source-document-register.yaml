@@ -1,0 +1,20 @@
+schema_version: '1.0.0'
+documents:
+  - id: SYN-SRC-C-001
+    title: Synthetic source C
+    status: intake
+    source_path: docs/governance/source-documents/SYN-SRC-C-001.md
+    governance_domains: [devsecops]
+    owner: synthetic-owner-c
+    version: synthetic-2
+    intake_date: '2026-10-08'
+    derived_artifact_areas: []
+  - id: SYN-SRC-D-001
+    title: Synthetic source D
+    status: intake
+    source_path: docs/governance/source-documents/SYN-SRC-D-001.md
+    governance_domains: [platform]
+    owner: synthetic-owner-d
+    version: synthetic-2
+    intake_date: '2026-10-08'
+    derived_artifact_areas: []

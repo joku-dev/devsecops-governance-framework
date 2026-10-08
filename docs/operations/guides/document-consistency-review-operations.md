@@ -21,6 +21,7 @@ complete production review baseline exists yet.
 | `model/governance/document-consistency/reviewer-config-v1.json` | Immutable candidate configuration with provider `not_configured` |
 | `model/governance/document-consistency/provider-adapter-config-v1.json` | Active provider-neutral normalization contract; runtime provider binding remains required |
 | `model/governance/document-consistency/semantic-evaluation-catalog-v1.json` | Curated synthetic expected outcomes for bounded provider and model comparisons |
+| `model/governance/document-consistency/semantic-evaluation-catalog-v2.json` | Expanded synthetic regression cases; local fixture evaluation only until separately authorized and packaged |
 | `model/governance/document-consistency/trigger-scope-matrix-v1.json` | Machine-readable incremental, full and methodology-comparison triggers |
 | `model/governance/document-consistency/rollout-decision-v1.json` | Historical infrastructure-only rollout decision retained for Phase-4 evidence |
 | `model/governance/document-consistency/rollout-decision-v2.json` | Current hash-bound readiness assessment: limited pilots ready, production pending |
@@ -84,24 +85,34 @@ change can limit comparability without erasing the historical observation.
 
 ## Curated semantic evaluation
 
-The synthetic catalog evaluates explicit expected detections and prohibited
-detections by category and exact evidence locators. Only non-quarantined
-findings with valid evidence are eligible. Run it with:
+The synthetic catalogs evaluate expected detections and prohibited detections
+by category and exact evidence locators. A detection must also be a proposed
+finding with same-context applicability; context-missing candidates are not
+scored as asserted conflicts. Only non-quarantined findings with valid
+evidence are eligible. Run the expanded local fixture evaluation with:
 
 ```bash
 .venv-validation/bin/python \
   scripts/evaluate_document_consistency_semantic_report.py \
-  --catalog model/governance/document-consistency/semantic-evaluation-catalog-v1.json \
+  --catalog model/governance/document-consistency/semantic-evaluation-catalog-v2.json \
   --report <validated-semantic-report.json> \
   --output <evaluation-report.json>
 ```
 
 The report must use the same source manifest and exact source set as the
 catalog. Other reports return `not_applicable`; they do not become false misses
-or passing evidence. Counts describe only the versioned cases and must not be
+or passing evidence. Catalog v1 and its run-0001 bindings remain unchanged.
+Catalog v2 is synthetic regression material and does not authorize provider
+execution; any future provider comparison needs its own proposal, package and
+per-run approval. Counts describe only the versioned cases and must not be
 reported as population-level recall, precision or false-positive rates.
 
-Prepare a provider-unbound, hash-bound catalog run package with:
+The existing preparation command below remains bound to catalog v1 and
+run-package schema `dcr-eval-catalog-0001`. It does not prepare or authorize a
+provider run against catalog v2. A future v2 provider comparison needs a
+versioned package update and separate approval.
+
+Prepare the existing provider-unbound, hash-bound catalog v1 package with:
 
 ```bash
 .venv-validation/bin/python \
