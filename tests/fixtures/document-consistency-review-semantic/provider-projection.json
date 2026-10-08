@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "response_type": "document_consistency_provider_projection",
+  "findings": [
+    {
+      "finding_id": "DCR-SEM-001",
+      "category": "conflict",
+      "statement": "Synthetic fixture with two intentionally incompatible release statements.",
+      "interpretation": "The fixture marks both statements as applying to the same synthetic release context.",
+      "recommendation": "Route the synthetic case for human classification only.",
+      "semantic_state": "proposed",
+      "confidence": 0.5,
+      "applicability": {"status": "same_context", "rationale": "Both synthetic rows use the release context."},
+      "evidence": [
+        {
+          "evidence_id": "EVID-001",
+          "source_id": "SYN-SRC-A-001",
+          "content_sha256": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c",
+          "locator": {"type": "requirement_id", "value": "SYN-A-REQ-001"},
+          "excerpt": "Artifacts SHALL be approved before deployment."
+        },
+        {
+          "evidence_id": "EVID-002",
+          "source_id": "SYN-SRC-B-001",
+          "content_sha256": "9d7206dee2cc59e18754ee7e64057a38130a9f9938a9368bf6d07c6b38aa43b4",
+          "locator": {"type": "requirement_id", "value": "SYN-B-REQ-001"},
+          "excerpt": "Emergency deployments MAY proceed before approval."
+        }
+      ],
+      "search_scope": {"status": "not_applicable", "source_ids": [], "method": "", "limitations": []}
+    }
+  ],
+  "limitations": ["Provider output is untrusted until repository validation completes."]
+}

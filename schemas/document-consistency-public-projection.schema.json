@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public Document Consistency Review Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projection_version", "projection_type", "audience", "review_id",
+    "overall_status", "freshness", "scope", "execution", "sections",
+    "documents", "findings", "limitations"
+  ],
+  "properties": {
+    "projection_version": {"const": "1.0.0"},
+    "projection_type": {"const": "document_consistency_public_projection"},
+    "audience": {"const": "public_redacted"},
+    "review_id": {"type": "string", "minLength": 1},
+    "overall_status": {"enum": ["synthetic_only", "not_run", "partial", "provider_failed"]},
+    "freshness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "reviewed_commit", "manifest_matches", "sources_match"],
+      "properties": {
+        "status": {"enum": ["current", "stale", "unknown"]},
+        "reviewed_commit": {"type": ["string", "null"]},
+        "manifest_matches": {"type": ["boolean", "null"]},
+        "sources_match": {"type": ["boolean", "null"]}
+      }
+    },
+    "scope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_count", "source_ids"],
+      "properties": {
+        "source_count": {"type": "integer", "minimum": 0},
+        "source_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }
+    },
+    "execution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "status", "truncated"],
+      "properties": {
+        "mode": {"enum": ["synthetic_fixture", "provider"]},
+        "status": {"enum": ["completed", "failed", "not_run"]},
+        "truncated": {"type": "boolean"}
+      }
+    },
+    "sections": {
+      "type": "object", "additionalProperties": false,
+      "required": ["formal_validation", "semantic_review", "human_decisions", "implementation_coverage"],
+      "properties": {
+        "formal_validation": {"type": "string"},
+        "semantic_review": {"type": "string"},
+        "human_decisions": {"type": "string"},
+        "implementation_coverage": {"type": "string"}
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "status", "version"],
+        "properties": {"id": {"type": "string"}, "status": {"type": "string"}, "version": {"type": "string"}}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "category", "semantic_state", "evidence_status", "disposition"],
+        "properties": {
+          "id": {"type": "string"}, "category": {"type": "string"},
+          "semantic_state": {"type": "string"}, "evidence_status": {"type": "string"},
+          "disposition": {"type": "string"}
+        }
+      }
+    },
+    "limitations": {
+      "type": "object", "additionalProperties": false,
+      "required": ["redacted", "no_consistency_claim", "no_public_internal_view", "message"],
+      "properties": {
+        "redacted": {"const": true}, "no_consistency_claim": {"const": true},
+        "no_public_internal_view": {"const": true}, "message": {"type": "string"}
+      }
+    }
+  }
+}

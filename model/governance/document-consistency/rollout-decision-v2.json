@@ -1,0 +1,123 @@
+{
+  "schema_version": "2.0.0",
+  "decision_id": "dcr-rollout-0002",
+  "assessed_at": "2026-10-08T04:33:27Z",
+  "production_rollout": "pending",
+  "readiness_level": "limited_pilot_ready",
+  "basis": "validated_bounded_pilots",
+  "authorization": {
+    "allowed_mode": "separately_authorized_report_only_pilot",
+    "per_run_authorization_required": true,
+    "automatic_execution": false,
+    "blocking_enforcement": false,
+    "publication": false
+  },
+  "criteria": [
+    {
+      "id": "provider_and_model",
+      "status": "partial",
+      "rationale": "Provider and exact displayed model were bound for one authorized ChatGPT catalog run; no reusable provider or model approval exists.",
+      "evidence_ids": ["DCR-EV-002"]
+    },
+    {
+      "id": "data_flow_and_retention",
+      "status": "partial",
+      "rationale": "The bounded synthetic data flow and raw-response deletion were accepted for one run. Reusable retention approval and Zero Data Retention remain unconfirmed.",
+      "evidence_ids": ["DCR-EV-002"]
+    },
+    {
+      "id": "real_bounded_semantic_pilot",
+      "status": "met",
+      "rationale": "A bounded run over the two registered requirements-only pilot sources completed provider projection, adaptation and authoritative validation end to end.",
+      "evidence_ids": ["DCR-EV-001"]
+    },
+    {
+      "id": "blinded_synthetic_evaluation",
+      "status": "met",
+      "rationale": "The provider did not receive expected outcomes; all three versioned synthetic catalog cases passed with one required detection and no prohibited detections.",
+      "evidence_ids": ["DCR-EV-003", "DCR-EV-005"]
+    },
+    {
+      "id": "human_finding_evaluation",
+      "status": "met",
+      "rationale": "The maintainer classified the exact synthetic finding as helpful while withholding normative resolution.",
+      "evidence_ids": ["DCR-EV-004"]
+    },
+    {
+      "id": "known_misses_and_false_positives",
+      "status": "partial",
+      "rationale": "One required and two prohibited synthetic outcomes were evaluated. The catalog is too small and contains no approved real-source ground truth for general quality claims.",
+      "evidence_ids": ["DCR-EV-003"]
+    },
+    {
+      "id": "triage_effort_and_cost",
+      "status": "partial",
+      "rationale": "The run, deterministic validation and human triage were completed, but structured effort duration and provider cost were not captured; ChatGPT subscription cost attribution was unavailable.",
+      "evidence_ids": ["DCR-EV-002", "DCR-EV-004"]
+    },
+    {
+      "id": "confirmed_production_source_scope",
+      "status": "open",
+      "rationale": "The pilot scopes are explicit, but the intended production document population is not registered, authorized and approved for semantic review.",
+      "evidence_ids": ["DCR-EV-001", "DCR-EV-002"]
+    },
+    {
+      "id": "implementation_coverage",
+      "status": "open",
+      "rationale": "The bounded semantic reports do not assess repository or consumer implementation coverage.",
+      "evidence_ids": ["DCR-EV-005"]
+    },
+    {
+      "id": "publication_and_automation",
+      "status": "open",
+      "rationale": "The successful catalog run is not wired into the public viewer, scheduled execution or blocking enforcement, and no such rollout is authorized.",
+      "evidence_ids": ["DCR-EV-002"]
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "DCR-EV-001",
+      "path": "docs/operations/reference-runs/2026-10-07-document-consistency-semantic-pilot-2.md",
+      "sha256": "c1df038d5c4702f1d8de12807a0f47aa39f602a6b7f32e7b6f97e598f2a6efa4"
+    },
+    {
+      "evidence_id": "DCR-EV-002",
+      "path": "docs/operations/reference-runs/2026-10-07-document-consistency-semantic-catalog-run-0001.md",
+      "sha256": "5595aa2374841d7e1cf20410aebb4064232d437b9b077f2a3496d5358786f4c7"
+    },
+    {
+      "evidence_id": "DCR-EV-003",
+      "path": "docs/examples/document-consistency-semantic-catalog-run-0001-evaluation.json",
+      "sha256": "4a3d4b0abc175183aaf9657053d2bffd46aa44f30226d6712ea47a649a428de2"
+    },
+    {
+      "evidence_id": "DCR-EV-004",
+      "path": "docs/examples/document-consistency-semantic-catalog-run-0001-human-decision.json",
+      "sha256": "00d0c61d6ba7535aaa9b3809c6483e292bc86bb556e64c0941300fc2da625603"
+    },
+    {
+      "evidence_id": "DCR-EV-005",
+      "path": "docs/examples/document-consistency-semantic-catalog-run-0001-report.json",
+      "sha256": "fa086ed01d4453b956c15a9d7150546be0bac80dd0a4165e6eec84d90a123732"
+    }
+  ],
+  "open_requirements": [
+    "Approve a reusable provider, exact model policy, data flow and retention profile.",
+    "Register and authorize the intended production source population.",
+    "Expand approved ground truth to measure known misses and false positives beyond three synthetic cases.",
+    "Capture structured execution time, human triage effort and attributable provider cost.",
+    "Assess implementation coverage separately from document consistency.",
+    "Authorize and design publication, scheduling or blocking enforcement separately if desired."
+  ],
+  "prohibited_claims": [
+    "full_document_set_reviewed",
+    "semantic_consistency_proven",
+    "governance_compliance_proven",
+    "general_model_quality_proven",
+    "normative_baseline_approved",
+    "automatic_execution_approved",
+    "blocking_enforcement_approved",
+    "publication_approved",
+    "production_rollout_approved"
+  ]
+}

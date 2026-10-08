@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Reviewer Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "configuration_id", "status", "rules", "prompt", "provider", "tooling", "source_manifest", "rollback"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "configuration_id": {"type": "string", "pattern": "^dcr-config-[0-9]{4}$"},
+    "status": {"enum": ["candidate", "active", "retired"]},
+    "rules": {"type": "object", "additionalProperties": false, "required": ["deterministic_version", "semantic_contract_version"], "properties": {"deterministic_version": {"type": "string"}, "semantic_contract_version": {"type": "string"}}},
+    "prompt": {"type": "object", "additionalProperties": false, "required": ["version", "live_comparison_status"], "properties": {"version": {"type": "string"}, "live_comparison_status": {"enum": ["pending", "completed", "not_required"]}}},
+    "provider": {"type": "object", "additionalProperties": false, "required": ["status", "name", "model", "parameters", "reproducibility_limit"], "properties": {"status": {"enum": ["not_configured", "configured"]}, "name": {"type": ["string", "null"]}, "model": {"type": ["string", "null"]}, "parameters": {"type": "object"}, "reproducibility_limit": {"type": "string"}}},
+    "tooling": {"type": "object", "additionalProperties": false, "required": ["validator", "report_schema", "converter"], "properties": {"validator": {"type": "string"}, "report_schema": {"type": "string"}, "converter": {"type": ["string", "null"]}}},
+    "source_manifest": {"type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "rollback": {"type": "object", "additionalProperties": false, "required": ["previous_configuration_id", "procedure"], "properties": {"previous_configuration_id": {"type": ["string", "null"]}, "procedure": {"type": "string", "minLength": 1}}}
+  }
+}

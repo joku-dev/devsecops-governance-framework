@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "report_type": "document_consistency_semantic_evaluation_report",
+  "catalog_id": "dcr-eval-catalog-0001",
+  "review_id": "dcr-catalog-run-0001",
+  "status": "pass",
+  "scope_match": true,
+  "summary": {
+    "case_count": 3,
+    "passed": 3,
+    "failed": 0,
+    "required_detected": 1,
+    "required_total": 1,
+    "prohibited_triggered": 0,
+    "eligible_finding_count": 1
+  },
+  "cases": [
+    {
+      "case_id": "DCR-EVAL-001",
+      "expectation": "must_detect",
+      "result": "pass",
+      "matching_finding_ids": [
+        "DCR-SEM-001"
+      ]
+    },
+    {
+      "case_id": "DCR-EVAL-002",
+      "expectation": "must_not_detect",
+      "result": "pass",
+      "matching_finding_ids": []
+    },
+    {
+      "case_id": "DCR-EVAL-003",
+      "expectation": "must_not_detect",
+      "result": "pass",
+      "matching_finding_ids": []
+    }
+  ],
+  "limitations": [
+    "The catalog measures only three curated synthetic cases and does not establish a general detection or false-positive rate.",
+    "Real-source expected outcomes require separate human approval before they can become evaluation ground truth.",
+    "Metrics are bounded catalog counts, not population-level recall, precision or false-positive rates."
+  ]
+}

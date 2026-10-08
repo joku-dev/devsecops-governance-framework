@@ -1,0 +1,53 @@
+{
+  "report_version": "1.0.0",
+  "report_type": "document_consistency_semantic_validation_report",
+  "review_id": "dcr-semantic-pilot-20261007-run2",
+  "overall_status": "partial",
+  "scope": {
+    "source_manifest_sha256": "9aabf243290cff3157ee427647c643c8dbb676f2c9a64092a2067dd0b9628002",
+    "source_ids": [
+      "DSCB-STD-REQ-001",
+      "PRA-STD-REQ-001"
+    ]
+  },
+  "execution": {
+    "mode": "provider",
+    "status": "completed",
+    "provider": "openai-codex-chatgpt",
+    "model": "gpt-6-luna",
+    "prompt_version": "phase2-live-pilot-2",
+    "configuration_version": "dcr-adapter-0001",
+    "truncated": false
+  },
+  "formal_validation": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic_review": {
+    "status": "partial",
+    "finding_count": 0,
+    "validated_count": 0,
+    "quarantined_count": 0,
+    "context_missing_count": 0,
+    "not_assessable_count": 0
+  },
+  "human_decisions": {
+    "status": "not_run",
+    "decisions": []
+  },
+  "implementation_coverage": {
+    "status": "not_assessed",
+    "details": [
+      "The bounded Phase 2 validator does not assess repository or consumer implementation coverage."
+    ]
+  },
+  "findings": [],
+  "limitations": [
+    "A valid excerpt proves source origin only; it does not prove the interpretation.",
+    "All validated semantic findings remain unconfirmed until a documented human decision.",
+    "Synthetic fixtures are validator evidence and are not findings about the registered sources.",
+    "No overall consistency, compliance, or implementation claim is produced.",
+    "No evidence-backed candidate was identified in the two permitted requirement extracts. This result does not establish overall consistency, compliance, implementation coverage, source authority, or normative resolution.",
+    "The extracts do not provide enough context to establish whether potentially related requirements apply to the same circumstances; no conflict or coverage gap is asserted on that basis."
+  ]
+}

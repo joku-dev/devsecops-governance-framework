@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "configuration_id": "dcr-config-0001",
+  "status": "candidate",
+  "rules": {"deterministic_version": "phase1-v1", "semantic_contract_version": "1.0.0"},
+  "prompt": {"version": "phase2-draft-1", "live_comparison_status": "pending"},
+  "provider": {"status": "not_configured", "name": null, "model": null, "parameters": {}, "reproducibility_limit": "No live provider or exact model version is approved; semantic execution remains not_run."},
+  "tooling": {"validator": "scripts/validate_document_consistency_semantic_review.py", "report_schema": "schemas/document-consistency-semantic-report.schema.json", "converter": null},
+  "source_manifest": {"path": "docs/examples/document-consistency-review-phase1-source-manifest.json", "sha256": "9aabf243290cff3157ee427647c643c8dbb676f2c9a64092a2067dd0b9628002"},
+  "rollback": {"previous_configuration_id": null, "procedure": "Select a previously reviewed immutable configuration by ID; never rewrite an existing configuration in place."}
+}
