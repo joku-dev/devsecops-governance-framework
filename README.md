@@ -1,5 +1,14 @@
 # DevSecOps Governance Framework
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/publishing/branding/axiom-logo-dark.png">
+  <img src="docs/publishing/branding/axiom-logo.png" alt="AXIOM — Governance, engineered." width="720">
+</picture>
+
+**AXIOM — Governance, engineered.**
+
+AXIOM is the brand of the DevSecOps Governance Framework.
+
 Aktueller Funktionsumfang: [detaillierter Katalog mit 21 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
