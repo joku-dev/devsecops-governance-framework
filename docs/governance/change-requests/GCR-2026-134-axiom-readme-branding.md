@@ -1,4 +1,4 @@
-# GCR-2026-133: AXIOM README Branding
+# GCR-2026-134: AXIOM README Branding
 
 ## Summary
 
@@ -8,7 +8,7 @@
 
 ## Change ID
 
-`GCR-2026-133`
+`GCR-2026-134`
 
 ## Artifact Intake Classification
 
