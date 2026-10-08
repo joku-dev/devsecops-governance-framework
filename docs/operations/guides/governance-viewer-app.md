@@ -203,6 +203,10 @@ Darstellungsformat (`version: 1`), keinen neuen Consumer-Evidence-Vertrag.
 Document-Consistency-Report und seine öffentliche Projektion gegen getrennte
 Schemas. Die Projektion folgt einer expliziten Feld-Allowlist und vergleicht
 Manifest- und Quellenbytes, bevor sie den Aktualitätszustand setzt.
+Die DCR-Ansicht ergänzt diesen Snapshot um einen lesenden Ablaufstatus der vier
+Prüfphasen und verweist auf Betriebsmodell und Rollout-Entscheid. Sie führt
+keine Phase aus und bietet weder Provider-Aufruf noch Entscheidungs- oder
+Freigabeschreibpfad.
 
 `scripts/generate_status_viewer.py` baut beide Viewer. Die Anwendung liegt danach
 unter `generated/viewer/app/` mit den fünf Frontend-Dateien und `data.json`.
