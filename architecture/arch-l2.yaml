@@ -1,6 +1,6 @@
 level: ARCH-L2
 name: Integration and Release Readiness
-source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md
 requirements:
 - id: ARCH-L2-REQ-001
   domain: Interface and Data

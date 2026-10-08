@@ -92,23 +92,23 @@ Interpretation:
 - The recorded `ha-CPsWMS` mainline evidence demonstrates both governance domains at that revision.
 - The result is not production approval or evidence of current freshness. A passing result alone does not establish the enforcement mode of a later run.
 
-## Public Source Placeholders
+## Sanitized Source Requirement Extracts
 
-The public source placeholders live under:
+The sanitized source requirement extracts live under:
 
 ```text
 docs/governance/source-documents/
 ```
 
-Original source documents are withheld from the public repository. Current public placeholders:
+Original source documents are withheld from the repository. Current registered requirement extracts:
 
 | Source document | Governance domain |
 |---|---|
-| `DSCB-STD-SRC-001.public.md` | DevSecOps control baseline |
-| `PRA-STD-SRC-001.public.md` | DevSecOps platform reference architecture |
-| `DEVSECOPS-DIR-SRC-001.public.md` | DevSecOps directive |
-| `DEVSECOPS-POL-SRC-001.public.md` | DevSecOps policy |
-| `ARCH-SDD-SRC-001.public.md` | Architecture runtime governance |
+| `DSCB-STD-SRC-001.requirements.md` | DevSecOps control baseline |
+| `PRA-STD-SRC-001.requirements.md` | DevSecOps platform reference architecture |
+| `DEVSECOPS-DIR-SRC-001.requirements.md` | DevSecOps directive |
+| `DEVSECOPS-POL-SRC-001.requirements.md` | DevSecOps policy |
+| `ARCH-SDD-SRC-001.requirements.md` | Architecture runtime governance |
 
 Why this matters:
 
@@ -220,7 +220,7 @@ Explain:
 
 - The source documents are the human governance input.
 - The lineage report is the machine-readable accountability layer.
-- For architecture, the `ARCH-SDD-SRC-001.public.md` source document leads to architecture levels, quality markers, guardrails, OPA policies, schemas, release package and viewer output.
+- For architecture, the `ARCH-SDD-SRC-001.requirements.md` source document leads to architecture levels, quality markers, guardrails, OPA policies, schemas, release package and viewer output.
 - For DevSecOps, the source documents lead to control models, policy-as-code, release baselines, generated reports and viewer output.
 
 Expected interpretation:

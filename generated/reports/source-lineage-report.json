@@ -1,18 +1,10 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-09T06:10:47Z",
+  "generated_at": "2026-10-08T20:06:50Z",
   "source_document_root": "docs/governance/source-documents",
   "source_documents": [
     {
-      "path": "docs/governance/source-documents/ARCH-EA-SRC-001.public.md",
-      "exists": true
-    },
-    {
       "path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
-      "exists": true
-    },
-    {
-      "path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
       "exists": true
     },
     {
@@ -20,15 +12,7 @@
       "exists": true
     },
     {
-      "path": "docs/governance/source-documents/ARCH-PA-SRC-001.public.md",
-      "exists": true
-    },
-    {
       "path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
-      "exists": true
-    },
-    {
-      "path": "docs/governance/source-documents/ARCH-SA-SRC-001.public.md",
       "exists": true
     },
     {
@@ -36,15 +20,7 @@
       "exists": true
     },
     {
-      "path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
-      "exists": true
-    },
-    {
       "path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
-      "exists": true
-    },
-    {
-      "path": "docs/governance/source-documents/ARCH-TPL-SRC-001.public.md",
       "exists": true
     },
     {
@@ -52,11 +28,7 @@
       "exists": true
     },
     {
-      "path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
-      "exists": true
-    },
-    {
-      "path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md",
+      "path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
       "exists": true
     },
     {
@@ -64,15 +36,7 @@
       "exists": true
     },
     {
-      "path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md",
-      "exists": true
-    },
-    {
       "path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
-      "exists": true
-    },
-    {
-      "path": "docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
       "exists": true
     },
     {
@@ -80,159 +44,29 @@
       "exists": true
     },
     {
-      "path": "docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "path": "docs/governance/source-documents/DevSecOps_Policy_Review_Integrated_v2_CHANGE_MARKED.md",
+      "exists": true
+    },
+    {
+      "path": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
       "exists": true
     },
     {
       "path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
       "exists": true
+    },
+    {
+      "path": "docs/governance/source-documents/Software_Development_Process_DevSecOps_V5_Activity_RACI_Artifacts.md",
+      "exists": true
+    },
+    {
+      "path": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
+      "exists": true
     }
   ],
   "lineage": [
     {
-      "source_document": "docs/governance/source-documents/ARCH-EA-SRC-001.public.md",
-      "derived_artifacts": [
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "model/documents/source-document-register.yaml",
-          "artifact_type": "governance_model",
-          "role": "source_document_intake",
-          "exists": true
-        }
-      ]
-    },
-    {
       "source_document": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
-      "derived_artifacts": [
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "model/documents/source-document-register.yaml",
-          "artifact_type": "governance_model",
-          "role": "source_document_intake",
-          "exists": true
-        }
-      ]
-    },
-    {
-      "source_document": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -374,149 +208,7 @@
       ]
     },
     {
-      "source_document": "docs/governance/source-documents/ARCH-PA-SRC-001.public.md",
-      "derived_artifacts": [
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "model/documents/source-document-register.yaml",
-          "artifact_type": "governance_model",
-          "role": "source_document_intake",
-          "exists": true
-        }
-      ]
-    },
-    {
       "source_document": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
-      "derived_artifacts": [
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "model/documents/source-document-register.yaml",
-          "artifact_type": "governance_model",
-          "role": "source_document_intake",
-          "exists": true
-        }
-      ]
-    },
-    {
-      "source_document": "docs/governance/source-documents/ARCH-SA-SRC-001.public.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -659,6 +351,41 @@
     },
     {
       "source_document": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+      "derived_artifacts": [
+        {
+          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/arch-l1.yaml",
+          "artifact_type": "release_snapshot",
+          "role": "architecture-baseline-l1-v0.1.0",
+          "exists": true
+        },
+        {
+          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/guardrails.yaml",
+          "artifact_type": "release_snapshot",
+          "role": "architecture-baseline-l1-v0.1.0",
+          "exists": true
+        },
+        {
+          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/quality-markers.yaml",
+          "artifact_type": "release_snapshot",
+          "role": "architecture-baseline-l1-v0.1.0",
+          "exists": true
+        },
+        {
+          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/remediation-actions.yaml",
+          "artifact_type": "release_snapshot",
+          "role": "architecture-baseline-l1-v0.1.0",
+          "exists": true
+        },
+        {
+          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/review-gates.yaml",
+          "artifact_type": "release_snapshot",
+          "role": "architecture-baseline-l1-v0.1.0",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_document": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
       "derived_artifacts": [
         {
           "artifact_path": "architecture/arch-gov.yaml",
@@ -845,178 +572,6 @@
           "artifact_type": "release_metadata",
           "role": "architecture-baseline-l1-v0.1.0",
           "exists": true
-        },
-        {
-          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/arch-l1.yaml",
-          "artifact_type": "release_snapshot",
-          "role": "architecture-baseline-l1-v0.1.0",
-          "exists": true
-        },
-        {
-          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/guardrails.yaml",
-          "artifact_type": "release_snapshot",
-          "role": "architecture-baseline-l1-v0.1.0",
-          "exists": true
-        },
-        {
-          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/quality-markers.yaml",
-          "artifact_type": "release_snapshot",
-          "role": "architecture-baseline-l1-v0.1.0",
-          "exists": true
-        },
-        {
-          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/remediation-actions.yaml",
-          "artifact_type": "release_snapshot",
-          "role": "architecture-baseline-l1-v0.1.0",
-          "exists": true
-        },
-        {
-          "artifact_path": "releases/architecture/l1/v0.1.0/source/architecture/review-gates.yaml",
-          "artifact_type": "release_snapshot",
-          "role": "architecture-baseline-l1-v0.1.0",
-          "exists": true
-        }
-      ]
-    },
-    {
-      "source_document": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
-      "derived_artifacts": [
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "model/documents/source-document-register.yaml",
-          "artifact_type": "governance_model",
-          "role": "source_document_intake",
-          "exists": true
-        }
-      ]
-    },
-    {
-      "source_document": "docs/governance/source-documents/ARCH-TPL-SRC-001.public.md",
-      "derived_artifacts": [
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "model/documents/source-document-register.yaml",
-          "artifact_type": "governance_model",
-          "role": "source_document_intake",
-          "exists": true
         }
       ]
     },
@@ -1092,7 +647,7 @@
       ]
     },
     {
-      "source_document": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "source_document": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -1163,7 +718,7 @@
       ]
     },
     {
-      "source_document": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md",
+      "source_document": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -1246,78 +801,7 @@
       ]
     },
     {
-      "source_document": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
-      "derived_artifacts": [
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "model/documents/source-document-register.yaml",
-          "artifact_type": "governance_model",
-          "role": "source_document_intake",
-          "exists": true
-        }
-      ]
-    },
-    {
-      "source_document": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md",
+      "source_document": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -1400,7 +884,7 @@
       ]
     },
     {
-      "source_document": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
+      "source_document": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -1463,78 +947,7 @@
           "exists": true
         },
         {
-          "artifact_path": "model/documents/source-document-register.yaml",
-          "artifact_type": "governance_model",
-          "role": "source_document_intake",
-          "exists": true
-        }
-      ]
-    },
-    {
-      "source_document": "docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
-      "derived_artifacts": [
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/governance-change-impact.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-intake-status.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.json",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "generated/reports/source-document-requirement-delta.md",
-          "artifact_type": "derived_artifact",
-          "role": "governance_change_impact",
-          "exists": true
-        },
-        {
-          "artifact_path": "docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+          "artifact_path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
           "artifact_type": "governance_document",
           "role": "DSCB-STD-001",
           "exists": true
@@ -2070,7 +1483,7 @@
       ]
     },
     {
-      "source_document": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
+      "source_document": "docs/governance/source-documents/DevSecOps_Policy_Review_Integrated_v2_CHANGE_MARKED.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -2141,7 +1554,78 @@
       ]
     },
     {
-      "source_document": "docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "source_document": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
+      "derived_artifacts": [
+        {
+          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/governance-change-impact.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/governance-change-impact.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-status.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-status.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-requirement-delta.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-requirement-delta.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "model/documents/source-document-register.yaml",
+          "artifact_type": "governance_model",
+          "role": "source_document_intake",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_document": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -2240,7 +1724,7 @@
           "exists": true
         },
         {
-          "artifact_path": "docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+          "artifact_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
           "artifact_type": "governance_document",
           "role": "PRA-STD-001",
           "exists": true
@@ -2392,7 +1876,78 @@
       ]
     },
     {
-      "source_document": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
+      "source_document": "docs/governance/source-documents/Software_Development_Process_DevSecOps_V5_Activity_RACI_Artifacts.md",
+      "derived_artifacts": [
+        {
+          "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/architecture-source-replacement-assessment.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/governance-change-impact.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/governance-change-impact.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-review-briefs.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-review-briefs.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-status.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-intake-status.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-requirement-delta.json",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "generated/reports/source-document-requirement-delta.md",
+          "artifact_type": "derived_artifact",
+          "role": "governance_change_impact",
+          "exists": true
+        },
+        {
+          "artifact_path": "model/documents/source-document-register.yaml",
+          "artifact_type": "governance_model",
+          "role": "source_document_intake",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_document": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
       "derived_artifacts": [
         {
           "artifact_path": "generated/reports/architecture-source-replacement-assessment.json",
@@ -2464,9 +2019,9 @@
     }
   ],
   "summary": {
-    "source_document_count": 21,
-    "lineage_source_count": 21,
-    "derived_artifact_count": 378,
+    "source_document_count": 15,
+    "lineage_source_count": 16,
+    "derived_artifact_count": 312,
     "missing_derived_artifacts": 0
   },
   "missing_derived_artifacts": []

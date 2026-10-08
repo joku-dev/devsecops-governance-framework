@@ -35,14 +35,16 @@ class SourceDocumentIntakeStatusTests(unittest.TestCase):
             payload["summary"]["registered_source_documents"],
         )
         self.assertGreaterEqual(payload["summary"]["status_counts"]["candidate"], 1)
-        self.assertEqual(payload["summary"]["replacement_review_items"], 1)
+        self.assertEqual(payload["summary"]["replacement_review_items"], 2)
         self.assertEqual(payload["decision"]["runtime_governance_changed"], False)
         self.assertEqual(payload["decision"]["stricter_rules_enabled"], False)
 
         document_ids = {item["id"] for item in payload["documents"]}
-        self.assertIn("ARCH-GOV-SRC-002", document_ids)
+        self.assertIn("ARCH-GOV-REQ-001", document_ids)
+        self.assertIn("DEVSECOPS-POL-CAND-002", document_ids)
         self.assertIn("CISO-REQ-SRC-001", document_ids)
         open_ids = {item["id"] for item in payload["open_items"]}
-        self.assertIn("ARCH-GOV-SRC-002", open_ids)
+        self.assertIn("ARCH-GOV-REQ-001", open_ids)
+        self.assertIn("DEVSECOPS-POL-CAND-002", open_ids)
         self.assertIn("CISO-REQ-SRC-001", open_ids)
         self.assertIn("Source Document Intake Status", output_md.read_text(encoding="utf-8"))

@@ -20,8 +20,11 @@ import re
 import subprocess
 import sys
 
+import yaml
+
 
 ROOT = Path(__file__).resolve().parents[1]
+REGISTER_PATH = ROOT / "model" / "documents" / "source-document-register.yaml"
 REPLACEMENT_JSON = ROOT / "generated" / "reports" / "architecture-source-replacement-assessment.json"
 OUT_JSON = ROOT / "generated" / "reports" / "source-document-requirement-delta.json"
 OUT_MD = ROOT / "generated" / "reports" / "source-document-requirement-delta.md"
@@ -56,6 +59,10 @@ MATCH_THRESHOLD = 0.5
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_yaml(path: Path) -> dict:
+    return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
 
 
 def rel(path: Path) -> str:
@@ -324,11 +331,39 @@ def compare_requirements(candidate_requirements: list[dict], target_requirements
 
 
 def likely_replacement_pairs(replacement_report: dict) -> list[dict]:
-    return [
+    pairs = [
         item
         for item in replacement_report.get("comparisons", [])
         if item.get("classification") in {"registered_replacement_candidate", "replacement_candidate"}
     ]
+    register = load_yaml(REGISTER_PATH)
+    documents = {item.get("id"): item for item in register.get("documents", [])}
+    for candidate in register.get("documents", []):
+        if candidate.get("status") != "candidate":
+            continue
+        for target_id in candidate.get("candidate_replacement_for", []):
+            target = documents.get(target_id)
+            if not target:
+                continue
+            pairs.append(
+                {
+                    "candidate_id": candidate["id"],
+                    "candidate_title": candidate["title"],
+                    "candidate_source_path": candidate["source_path"],
+                    "target_id": target["id"],
+                    "target_title": target["title"],
+                    "target_source_path": target["source_path"],
+                    "classification": "registered_replacement_candidate",
+                    "title_overlap": 0.0,
+                    "content_overlap": 0.0,
+                    "shared_heading_count": 0,
+                }
+            )
+    unique = {}
+    for pair in pairs:
+        key = (pair["candidate_id"], pair["target_id"])
+        unique[key] = pair
+    return [unique[key] for key in sorted(unique)]
 
 
 def build_pair_delta(comparison: dict) -> dict:
@@ -387,6 +422,7 @@ def build_report() -> dict:
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "inputs": {
             "architecture_source_replacement_assessment": rel(REPLACEMENT_JSON),
+            "source_document_register": rel(REGISTER_PATH),
         },
         "decision": {
             "current_state": "review_support_only",

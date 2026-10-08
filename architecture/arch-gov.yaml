@@ -1,6 +1,6 @@
 level: ARCH-GOV
 name: Architecture Governance
-source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md
 requirements:
 - id: ARCH-GOV-REQ-001
   domain: Guardrails

@@ -116,23 +116,23 @@ These files are architectural and strategic guardrails. They do not replace appr
 
 ## Source Documents
 
-The public source placeholders live in:
+The sanitized source requirement extracts live in:
 
 ```text
 docs/governance/source-documents/
 ```
 
-The original source documents are withheld from the public repository. The files below preserve lineage and review state only.
+The original source documents are withheld from the repository. The files below provide bounded requirement content for intake review and traceability.
 
-Current public placeholders:
+Current registered requirement extracts:
 
 | Source document | Main derived area |
 |---|---|
-| `DSCB-STD-SRC-001.public.md` | DevSecOps controls and OPA policy candidates |
-| `PRA-STD-SRC-001.public.md` | Platform levels and pipeline baseline |
-| `DEVSECOPS-DIR-SRC-001.public.md` | Governance directive |
-| `DEVSECOPS-POL-SRC-001.public.md` | Governance policy |
-| `ARCH-SDD-SRC-001.public.md` | Architecture runtime governance |
+| `DSCB-STD-SRC-001.requirements.md` | DevSecOps controls and OPA policy candidates |
+| `PRA-STD-SRC-001.requirements.md` | Platform levels and pipeline baseline |
+| `DEVSECOPS-DIR-SRC-001.requirements.md` | Governance directive |
+| `DEVSECOPS-POL-SRC-001.requirements.md` | Governance policy |
+| `ARCH-SDD-SRC-001.requirements.md` | Architecture runtime governance |
 
 When adding or changing derived governance artifacts, update or validate lineage:
 

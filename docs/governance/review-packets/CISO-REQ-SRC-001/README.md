@@ -29,7 +29,7 @@ human_decision_required: true
 2. [Harmonized Requirements Candidate](harmonized-requirements-candidate.md)
    for the technical model boundary, harmonization method, coverage
    interpretation, public-hygiene controls, and required reviewers.
-3. [Public Source Placeholder](../../source-documents/CISO-REQ-SRC-001.public.md)
+3. [Candidate Intake Record](../../source-documents/CISO-REQ-SRC-001.candidate-intake.md)
    for the neutral source identity and intake boundary.
 4. [Governance Change Request](../../change-requests/GCR-2026-047-harmonized-requirements-candidate.md)
    for the recorded scope, decision boundary, validation evidence, and future

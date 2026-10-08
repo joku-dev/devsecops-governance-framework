@@ -44,7 +44,7 @@ Interpretation:
 Start with:
 
 ```text
-docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md
 ```
 
 Then show the derived runtime governance artifacts:
