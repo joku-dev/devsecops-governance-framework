@@ -21,7 +21,27 @@ class DocumentConsistencyOperationsTests(unittest.TestCase):
 
     def test_checked_in_operations_package_is_valid_and_pending(self):
         result = validate(ROOT)
-        self.assertEqual({"status":"pass", "artifacts":8, "rollout":"pending", "provider":"not_configured"}, result)
+        self.assertEqual({
+            "status":"pass", "artifacts":8, "rollout":"pending",
+            "readiness":"limited_pilot_ready", "provider":"not_configured"
+        }, result)
+
+    def test_limited_pilot_readiness_keeps_production_and_automation_closed(self):
+        rollout = json.loads((ROOT / FILES["rollout"][0]).read_text())
+        self.assertEqual("pending", rollout["production_rollout"])
+        self.assertEqual("limited_pilot_ready", rollout["readiness_level"])
+        self.assertTrue(rollout["authorization"]["per_run_authorization_required"])
+        self.assertFalse(rollout["authorization"]["automatic_execution"])
+        self.assertFalse(rollout["authorization"]["blocking_enforcement"])
+        self.assertFalse(rollout["authorization"]["publication"])
+
+    def test_rollout_evidence_is_hash_bound_and_criteria_resolve(self):
+        rollout = json.loads((ROOT / FILES["rollout"][0]).read_text())
+        evidence = {item["evidence_id"]: item for item in rollout["evidence"]}
+        self.assertEqual(len(evidence), len(rollout["evidence"]))
+        for item in evidence.values():
+            self.assertEqual(item["sha256"], __import__("hashlib").sha256((ROOT / item["path"]).read_bytes()).hexdigest())
+        self.assertTrue(all(set(item["evidence_ids"]) <= set(evidence) for item in rollout["criteria"]))
 
     def test_continuity_states_do_not_resolve_unassessed_findings(self):
         previous = {"state":"unchanged", "severity":"medium", "source_ids":["A"]}

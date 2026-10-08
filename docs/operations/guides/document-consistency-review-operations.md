@@ -7,8 +7,11 @@ continuity, review scope, reviewer configuration, triage and a candidate review
 package. It does not execute a semantic provider, accept a finding, publish the
 viewer or approve rollout.
 
-The current rollout decision is `pending`. The checked-in Phase-2 report remains
-`not_run`; therefore no complete review baseline exists yet.
+The production rollout decision is `pending`. The current readiness assessment
+is `limited_pilot_ready`: only separately authorized report-only runs are
+allowed. Automatic execution, blocking enforcement and publication remain
+disabled. The checked-in Phase-2 viewer report remains `not_run`; therefore no
+complete production review baseline exists yet.
 
 ## Governed artifacts
 
@@ -19,7 +22,8 @@ The current rollout decision is `pending`. The checked-in Phase-2 report remains
 | `model/governance/document-consistency/provider-adapter-config-v1.json` | Active provider-neutral normalization contract; runtime provider binding remains required |
 | `model/governance/document-consistency/semantic-evaluation-catalog-v1.json` | Curated synthetic expected outcomes for bounded provider and model comparisons |
 | `model/governance/document-consistency/trigger-scope-matrix-v1.json` | Machine-readable incremental, full and methodology-comparison triggers |
-| `model/governance/document-consistency/rollout-decision-v1.json` | Explicit prerequisites and prohibited claims while rollout is pending |
+| `model/governance/document-consistency/rollout-decision-v1.json` | Historical infrastructure-only rollout decision retained for Phase-4 evidence |
+| `model/governance/document-consistency/rollout-decision-v2.json` | Current hash-bound readiness assessment: limited pilots ready, production pending |
 | `docs/examples/document-consistency-review-phase4-candidate-package.json` | Hash-bound incomplete candidate package; no normative approval |
 | `tests/fixtures/document-consistency-review-operations/synthetic-ledger.json` | Synthetic continuity and triage evidence only |
 
