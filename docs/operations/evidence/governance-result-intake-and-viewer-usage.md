@@ -91,6 +91,15 @@ is compatible; reuse across an incompatible decision context is a report-only
 finding. Replay findings do not alter the independently derived integrity
 level or governance outcome.
 
+GitHub Actions intake records the default branch protection lookup separately
+from the boolean result. `repository.branch_protected` is `true` or `false`
+only when the GitHub API returned a valid branch record; API errors, inaccessible
+repositories, missing fields, and malformed responses are stored as `null`.
+`repository.branch_protection_lookup.status` identifies `protected`,
+`unprotected`, or `unavailable`, with only a safe HTTP status or error type for
+unavailable lookups. A failed lookup must never be interpreted as evidence that
+branch protection is disabled.
+
 `scripts/generate_replay_triage_report.py` provides the operational
 interpretation layer over this immutable history. It records both the original
 check and its result under current rules, classifies the relationship, and
