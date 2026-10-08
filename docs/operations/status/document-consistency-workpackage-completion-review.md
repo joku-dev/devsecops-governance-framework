@@ -1,7 +1,7 @@
 # WP-DCR-001 — Completion Review
 
 Stand: 8. Oktober 2026  
-Bewertungsstatus: **`ready_for_completion_review`**  
+Bewertungsstatus: **`accepted`**
 Erreichter Reifegrad: **`limited_pilot_ready`**  
 Produktiver Rollout: **`pending`**
 
@@ -12,9 +12,17 @@ fachlich abgeschlossen werden. Alle fünf geplanten Phasen besitzen einen
 reviewfähigen und validierten Liefergegenstand. Der Abschluss bestätigt die
 Pilotfähigkeit, aber keine produktive Einführung.
 
-Eine persönliche Abnahme durch den Maintainer ist noch nicht in diesem Status
-enthalten. Bis zu dieser Entscheidung bleibt der Status
-`ready_for_completion_review`.
+## Maintainer-Abnahme
+
+Am 8. Oktober 2026 hat der Repository-Maintainer `joku-dev` WP-DCR-001 als
+begrenzten, report-only Document-Consistency-Review-Piloten auf Basis des
+aktuellen Repository-Stands angenommen. Die Abnahme bestätigt `limited_pilot_ready`.
+Der produktive Rollout bleibt `pending`. Automatisierung, Blocking,
+Veröffentlichung, ein wiederverwendbarer Provider und die Verarbeitung weiterer
+Quellen bleiben separat freigabepflichtig. `WP-MDG-001` bleibt ein getrenntes
+Folgevorhaben. Die Entscheidung ist in
+`docs/governance/change-requests/GCR-2026-133-document-consistency-pilot-acceptance.md`
+nachvollziehbar festgehalten.
 
 ## Phasenbilanz
 
@@ -60,10 +68,6 @@ Quellenautorität oder freigegebene Baselines nicht automatisch verändern.
 
 ## Abnahmeformulierung
 
-> Ich nehme WP-DCR-001 als begrenzten, report-only Document-Consistency-Review-
-> Pilot auf Basis des aktuellen Repository-Stands ab. Die Abnahme bestätigt den
-> Reifegrad `limited_pilot_ready`. Der produktive Rollout bleibt `pending`.
-> Automatisierung, Blocking, Veröffentlichung, ein wiederverwendbarer Provider
-> und die Verarbeitung weiterer Quellen bleiben separat freigabepflichtig.
-> WP-MDG-001 bleibt ein getrenntes Folgevorhaben.
-
+Die oben dokumentierte Maintainer-Entscheidung entspricht der für diesen
+Abschlussreview vorgeschlagenen Abnahmeformulierung. Sie nimmt ausschließlich
+den begrenzten Piloten an und erteilt keine darüber hinausgehende Freigabe.
