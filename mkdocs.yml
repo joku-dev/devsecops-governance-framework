@@ -163,6 +163,7 @@ nav:
           - Current Governance Platform State: operations/status/current-governance-platform-state.md
           - Document Consistency Rollout Readiness: operations/status/document-consistency-rollout-readiness.md
           - Document Consistency Management Summary: operations/status/document-consistency-rollout-management-summary.md
+          - Document Consistency Workpackage Completion Review: operations/status/document-consistency-workpackage-completion-review.md
           - External Consumer Validation Pilot Results: operations/status/external-consumer-validation-pilot-2026-10-05.md
           - ha-CPsWMS Validation Status: operations/status/ha-cpswms-governance-validation-status.md
           - ha-CPsWMS Lessons Learned: operations/status/ha-cpswms-governance-lessons-learned.md
@@ -183,6 +184,7 @@ nav:
           - Replace Governance Placeholders Plan: operations/planning/replace-governance-placeholders-plan.md
           - Document Consistency Review Workpackage: operations/planning/document-consistency-review-workpackage.md
           - Document Consistency Review ADR: operations/planning/document-consistency-review-adr.md
+          - Model-driven Governance Documentation Backlog: operations/planning/model-driven-governance-documentation-backlog.md
           - Target Structure Plan: operations/planning/repository-target-structure-and-migration-plan.md
           - Documentation Structure Model: operations/planning/document-structure-model.md
           - Documentation Structure Audit: operations/planning/document-structure-audit.md

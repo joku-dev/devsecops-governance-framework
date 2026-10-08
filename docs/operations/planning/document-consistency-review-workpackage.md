@@ -1,6 +1,6 @@
 # WP-DCR-001 — Doc-as-Code und kontinuierlicher Dokumentenkonsistenzreview
 
-Version: 0.22
+Version: 0.23
 Datum: 2026-10-07
 Zielrepository: https://github.com/joku-dev/devsecops-governance-framework.git
 Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern und Stabilisierung gemergt; zweiter begrenzter Live-Lauf am 2026-10-07 Ende zu Ende validiert, Reportstatus `partial`, null Finding-Kandidaten; verblindeter synthetischer Kataloglauf `dcr-catalog-run-0001` mit 3/3 bestandenen Fällen und ohne verbotenen Treffer abgeschlossen; `DCR-SEM-001` anschließend menschlich als `helpful` mit weiterem Klärungsbedarf bewertet; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Readiness `limited_pilot_ready` für separat genehmigte report-only Einzelläufe, produktiver Rollout `pending`, keine Veröffentlichung und keine normative Governance-Freigabe
@@ -44,6 +44,8 @@ Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Struktu
 Änderung v0.21: Die menschliche Bewertung `DCR-DEC-001` für das synthetische Finding `DCR-SEM-001` als `helpful` erfasst. Die Bewertung bestätigt den erkannten Klärungsbedarf, ohne eine normative Lösung oder reale Governance-Regel zu autorisieren. Rollout bleibt `pending`.
 
 Änderung v0.22: Die Evidenz aus realem Pilot, verblindetem Kataloglauf und menschlicher Bewertung in einer hashgebundenen Rollout-Readiness-Entscheidung zusammengeführt. Weitere separat genehmigte report-only Piloten sind `limited_pilot_ready`; Automatisierung, Blocking, Veröffentlichung und produktiver Rollout bleiben geschlossen beziehungsweise `pending`.
+
+Änderung v0.23: Die Liefergegenstände der fünf Phasen in einem formalen Abschlussreview zusammengeführt. WP-DCR-001 ist `ready_for_completion_review`; die persönliche Maintainer-Abnahme bleibt ausstehend. Model-to-Document-Generierung ist ausdrücklich nicht Teil dieses Workpackages und als separates Folgevorhaben `WP-MDG-001` im Planungs-Backlog erfasst.
 
 ## 1. Auftrag an Codex
 
