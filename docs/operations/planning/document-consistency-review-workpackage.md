@@ -1,9 +1,9 @@
 # WP-DCR-001 — Doc-as-Code und kontinuierlicher Dokumentenkonsistenzreview
 
-Version: 0.23
+Version: 0.24
 Datum: 2026-10-07
 Zielrepository: https://github.com/joku-dev/devsecops-governance-framework.git
-Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern und Stabilisierung gemergt; zweiter begrenzter Live-Lauf am 2026-10-07 Ende zu Ende validiert, Reportstatus `partial`, null Finding-Kandidaten; verblindeter synthetischer Kataloglauf `dcr-catalog-run-0001` mit 3/3 bestandenen Fällen und ohne verbotenen Treffer abgeschlossen; `DCR-SEM-001` anschließend menschlich als `helpful` mit weiterem Klärungsbedarf bewertet; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Readiness `limited_pilot_ready` für separat genehmigte report-only Einzelläufe, produktiver Rollout `pending`, keine Veröffentlichung und keine normative Governance-Freigabe
+Status: WP-DCR-001 am 2026-10-08 durch den Maintainer als begrenzter, report-only Pilot angenommen; Reifegrad `limited_pilot_ready`; produktiver Rollout `pending`; keine automatische Ausführung, Veröffentlichung, Blocking-Enforcement oder normative Governance-Freigabe. Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Strukturkern am 2026-10-07 angenommen, Ergebnis `partial`; providerneutraler Phase-2-Validierungskern und Stabilisierung gemergt; zweiter begrenzter Live-Lauf am 2026-10-07 Ende zu Ende validiert, Reportstatus `partial`, null Finding-Kandidaten; verblindeter synthetischer Kataloglauf `dcr-catalog-run-0001` mit 3/3 bestandenen Fällen und ohne verbotenen Treffer abgeschlossen; `DCR-SEM-001` anschließend menschlich als `helpful` mit weiterem Klärungsbedarf bewertet; sichere Phase-3-Viewer-Projektion auf Basis von PR #222 am 2026-10-07 angenommen; providerneutrale Phase-4-Betriebsinfrastruktur auf Basis von PR #224 am 2026-10-07 technisch angenommen; Readiness `limited_pilot_ready` für separat genehmigte report-only Einzelläufe, produktiver Rollout `pending`, keine Veröffentlichung und keine normative Governance-Freigabe
 
 Änderung v0.2: Verbindliche Review-Leitplanken, fachliche Beziehungsprüfung und getrennte Implementierungsabdeckung ergänzt; Abnahmekriterien und Testfälle erweitert.
 
@@ -46,6 +46,8 @@ Status: Phase 0 am 2026-10-07 angenommen; Phase 1 begrenzter technischer Struktu
 Änderung v0.22: Die Evidenz aus realem Pilot, verblindetem Kataloglauf und menschlicher Bewertung in einer hashgebundenen Rollout-Readiness-Entscheidung zusammengeführt. Weitere separat genehmigte report-only Piloten sind `limited_pilot_ready`; Automatisierung, Blocking, Veröffentlichung und produktiver Rollout bleiben geschlossen beziehungsweise `pending`.
 
 Änderung v0.23: Die Liefergegenstände der fünf Phasen in einem formalen Abschlussreview zusammengeführt. WP-DCR-001 ist `ready_for_completion_review`; die persönliche Maintainer-Abnahme bleibt ausstehend. Model-to-Document-Generierung ist ausdrücklich nicht Teil dieses Workpackages und als separates Folgevorhaben `WP-MDG-001` im Planungs-Backlog erfasst.
+
+Änderung v0.24: Die persönliche Maintainer-Abnahme des begrenzten, report-only Piloten am 2026-10-08 in GCR-2026-133 erfasst. `limited_pilot_ready` bleibt der erreichte Reifegrad; produktiver Rollout, Automatisierung, Blocking, Veröffentlichung, wiederverwendbare Providerfreigabe und zusätzliche Quellen bleiben separat freigabepflichtig.
 
 ## 1. Auftrag an Codex
 
