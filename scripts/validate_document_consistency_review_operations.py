@@ -19,7 +19,7 @@ FILES = {
     "provider_adapter": (MODEL / "provider-adapter-config-v1.json", Path("schemas/document-consistency-provider-adapter-config.schema.json")),
     "semantic_evaluation_catalog": (MODEL / "semantic-evaluation-catalog-v1.json", Path("schemas/document-consistency-semantic-evaluation-catalog.schema.json")),
     "triggers": (MODEL / "trigger-scope-matrix-v1.json", Path("schemas/document-consistency-trigger-scope.schema.json")),
-    "rollout": (MODEL / "rollout-decision-v1.json", Path("schemas/document-consistency-rollout-decision.schema.json")),
+    "rollout": (MODEL / "rollout-decision-v2.json", Path("schemas/document-consistency-rollout-decision-v2.schema.json")),
     "ledger": (Path("tests/fixtures/document-consistency-review-operations/synthetic-ledger.json"), Path("schemas/document-consistency-finding-ledger.schema.json")),
     "package": (Path("docs/examples/document-consistency-review-phase4-candidate-package.json"), Path("schemas/document-consistency-review-package.schema.json")),
 }
@@ -129,6 +129,30 @@ def validate(root: Path = ROOT) -> dict:
     if package["completeness"] == "incomplete" and package["rollout_decision"] != "pending":
         raise OperationsValidationError("incomplete package cannot carry a rollout decision")
 
+    rollout = loaded["rollout"]
+    evidence_ids = [item["evidence_id"] for item in rollout["evidence"]]
+    if len(evidence_ids) != len(set(evidence_ids)):
+        raise OperationsValidationError("rollout evidence IDs must be unique")
+    evidence_by_id = {item["evidence_id"]: item for item in rollout["evidence"]}
+    for item in rollout["evidence"]:
+        candidate = (root / item["path"]).resolve()
+        try:
+            candidate.relative_to(root.resolve())
+        except ValueError as exc:
+            raise OperationsValidationError(f"rollout evidence path escapes repository: {item['path']}") from exc
+        if not candidate.is_file() or digest(candidate) != item["sha256"]:
+            raise OperationsValidationError(f"rollout evidence digest mismatch: {item['path']}")
+    for criterion in rollout["criteria"]:
+        unknown = sorted(set(criterion["evidence_ids"]) - set(evidence_by_id))
+        if unknown:
+            raise OperationsValidationError(
+                f"rollout criterion references unknown evidence: {criterion['id']}: {', '.join(unknown)}"
+            )
+    if rollout["readiness_level"] == "limited_pilot_ready":
+        authorization = rollout["authorization"]
+        if not authorization["per_run_authorization_required"] or authorization["automatic_execution"]:
+            raise OperationsValidationError("limited pilot readiness requires per-run authorization and disabled automation")
+
     for finding in loaded["ledger"]["findings"]:
         occurrences = finding["occurrences"]
         if occurrences[0]["state"] != "new":
@@ -139,7 +163,13 @@ def validate(root: Path = ROOT) -> dict:
         if finding["triage"]["decision"] in {"false_positive", "accepted_exception"} and not finding["triage"]["decision_scope"]:
             raise OperationsValidationError(f"scope-limited decision is missing scope: {finding['persistent_id']}")
 
-    return {"status": "pass", "artifacts": len(loaded), "rollout": loaded["rollout"]["status"], "provider": provider["status"]}
+    return {
+        "status": "pass",
+        "artifacts": len(loaded),
+        "rollout": loaded["rollout"]["production_rollout"],
+        "readiness": loaded["rollout"]["readiness_level"],
+        "provider": provider["status"],
+    }
 
 
 def main() -> int:
