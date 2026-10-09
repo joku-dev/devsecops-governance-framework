@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "case_id": "RLC-DSCB-STD-REQ-001-MIGRATION",
   "intake_type": "source_document",
-  "status": "decision_required",
+  "status": "partially_activated",
   "created_at": "2026-10-09T16:33:09Z",
   "source": {
     "source_id": "DSCB-STD-REQ-001",
@@ -273,7 +273,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000001",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0011",
@@ -323,7 +328,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000002",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0012",
@@ -374,7 +384,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000003",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0013",
@@ -408,7 +423,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000004",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
@@ -458,7 +478,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000005",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0015",
@@ -509,7 +534,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000006",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
@@ -559,7 +589,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000007",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
@@ -609,7 +644,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000008",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0018",
@@ -660,7 +700,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000009",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0019",
@@ -711,7 +756,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000010",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0020",
@@ -741,7 +791,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000011",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
@@ -791,7 +846,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000012",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0022",
@@ -841,7 +901,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000013",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
@@ -891,7 +956,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000014",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0024",
@@ -941,7 +1011,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000015",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0025",
@@ -991,7 +1066,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000016",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
@@ -1041,7 +1121,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000017",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0027",
@@ -1091,7 +1176,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000018",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0028",
@@ -1141,7 +1231,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000019",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0029",
@@ -1192,7 +1287,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000020",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
@@ -1242,7 +1342,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000021",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0031",
@@ -1293,7 +1398,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000022",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
@@ -1344,7 +1454,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000023",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0033",
@@ -1394,7 +1509,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000024",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0034",
@@ -1445,7 +1565,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000025",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
@@ -1496,7 +1621,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000026",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
@@ -1547,7 +1677,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000027",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0037",
@@ -1586,7 +1721,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000028",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0038",
@@ -1636,7 +1776,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000029",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0039",
@@ -1686,7 +1831,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000030",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
@@ -1736,7 +1886,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000031",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
@@ -1786,7 +1941,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000032",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
@@ -1836,7 +1996,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000033",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0043",
@@ -1886,7 +2051,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000034",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0044",
@@ -1936,7 +2106,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000035",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0045",
@@ -1986,7 +2161,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000036",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
@@ -2036,7 +2216,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000037",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0047",
@@ -2086,7 +2271,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000038",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0048",
@@ -2128,7 +2318,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000039",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0049",
@@ -2178,7 +2373,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000040",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0050",
@@ -2220,7 +2420,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000041",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0051",
@@ -2262,7 +2467,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000042",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0052",
@@ -2312,7 +2522,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000043",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0053",
@@ -2342,7 +2557,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000044",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0054",
@@ -2384,7 +2604,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000045",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     },
     {
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0055",
@@ -2435,7 +2660,12 @@
         ],
         "runtime_enforcement": "none"
       },
-      "activation": null
+      "activation": {
+        "requirement_id": "GRQ-000046",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
     }
   ]
 }

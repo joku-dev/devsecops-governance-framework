@@ -13,7 +13,7 @@ sources:
     total: 55
     analyzed: 55
     decided: 46
-    effective: 0
+    effective: 46
     unresolved: 9
 - source_id: PRA-STD-REQ-001
   source_version: requirements-only-sanitized
