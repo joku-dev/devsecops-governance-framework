@@ -20,6 +20,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Find detailed repository functions and implementation boundaries | `docs/operations/guides/repository-function-catalog.md` |
 | Understand the repository | `README.md`, `docs/official-entrypoints.md` |
 | Understand the current as-built Governance-as-Code system architecture | `docs/governance/architecture/governance-as-code-system-architecture.md` |
+| Trace a source document through canonical requirements to executable OPA policy | `docs/governance/architecture/document-intake-to-opa-rulebook.md` |
 | Understand foundation, direction, and architectural guardrails | `docs/foundation/01_VISION.md`, `docs/foundation/02_CONSTITUTION.md`, `docs/foundation/03_ARCHITECTURE_PRINCIPLES.md`, `docs/foundation/05_CURRENT_DIRECTION.md` |
 | Run the live demo | `docs/demos/demo-end-to-end-governance.md` |
 | Understand current ha-CPsWMS status | `docs/operations/status/ha-cpswms-governance-validation-status.md`, `docs/demos/ha-cpswms-architecture-governance-results.md` |
