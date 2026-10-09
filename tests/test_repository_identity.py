@@ -62,6 +62,10 @@ class RepositoryIdentityTests(unittest.TestCase):
         violations = []
         for relative_path in sorted(tracked):
             path = ROOT / relative_path
+            if not path.is_file():
+                # A tracked path may be intentionally deleted in the working
+                # tree while this test runs on an unmerged change branch.
+                continue
             try:
                 content = path.read_text(encoding="utf-8")
             except (UnicodeDecodeError, IsADirectoryError):

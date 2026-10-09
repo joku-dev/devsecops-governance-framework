@@ -78,8 +78,8 @@ Sie beantworten vor allem die Fragen:
 
 In diesem Repository sind die importierten Ursprungsdokumente derzeit:
 
-- `docs/governance/source-documents/DSCB-STD-SRC-001.public.md`
-- `docs/governance/source-documents/PRA-STD-SRC-001.public.md`
+- `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md`
+- `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md`
 
 Zusätzlich liegt die strukturierte Repräsentation der Anforderungen in YAML-Dateien, insbesondere unter:
 
@@ -150,7 +150,7 @@ documents:
     type: standard
     title: DevSecOps Control Baseline Standard
     status: imported
-    repository_path: docs/governance/source-documents/DSCB-STD-SRC-001.public.md
+    repository_path: docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md
 ```
 
 Diese Struktur macht maschinenlesbar sichtbar:
@@ -712,8 +712,8 @@ Für diesen Zusammenhang sind insbesondere diese Dateien wichtig:
 
 - `docs/governance/devsecops-policy.md`
 - `docs/governance/devsecops-directive.md`
-- `docs/governance/source-documents/DSCB-STD-SRC-001.public.md`
-- `docs/governance/source-documents/PRA-STD-SRC-001.public.md`
+- `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md`
+- `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md`
 - `model/documents/governance-documents.yaml`
 - `model/traceability/document-to-control.yaml`
 - `model/evidence/evidence-types.yaml`

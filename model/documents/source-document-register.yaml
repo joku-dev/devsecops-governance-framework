@@ -1,185 +1,5 @@
 schema_version: "1.0.0"
 documents:
-  - id: DEVSECOPS-POL-SRC-001
-    title: DevSecOps Policy Version 1 draft 3
-    status: draft
-    source_path: docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md
-    governance_domains:
-      - policy
-      - devsecops
-    owner: governance-owners
-    version: "1 draft 3"
-    intake_date: "2026-06-26"
-    supersedes: null
-    derived_artifact_areas:
-      - docs/governance/devsecops-policy.md
-      - model/documents/governance-documents.yaml
-      - model/traceability/document-to-control.yaml
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: DEVSECOPS-DIR-SRC-001
-    title: DevSecOps Directive Version 0 draft 1
-    status: draft
-    source_path: docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md
-    governance_domains:
-      - directive
-      - devsecops
-    owner: governance-owners
-    version: "0 draft 1"
-    intake_date: "2026-06-26"
-    supersedes: null
-    derived_artifact_areas:
-      - docs/governance/devsecops-directive.md
-      - model/documents/governance-documents.yaml
-      - model/traceability/document-to-control.yaml
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: DSCB-STD-SRC-001
-    title: DevSecOps Control Baseline Standard aligned with Platform Levels
-    status: intake
-    source_path: docs/governance/source-documents/DSCB-STD-SRC-001.public.md
-    governance_domains:
-      - devsecops
-    owner: devsecops-owners
-    version: public-placeholder
-    intake_date: "2026-06-26"
-    supersedes: null
-    derived_artifact_areas:
-      - model/controls
-      - model/evidence
-      - policies/opa
-      - schemas
-      - scripts
-      - .github/workflows
-      - docs/operations/security
-      - releases/l1
-      - generated/reports
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: PRA-STD-SRC-001
-    title: DevSecOps Platform Reference Architecture Standard aligned with Control Baseline
-    status: intake
-    source_path: docs/governance/source-documents/PRA-STD-SRC-001.public.md
-    governance_domains:
-      - platform
-      - devsecops
-    owner: platform-owners
-    version: public-placeholder
-    intake_date: "2026-06-26"
-    supersedes: null
-    derived_artifact_areas:
-      - model/platform
-      - pipeline-baseline
-      - model/traceability
-      - .github/workflows
-      - docs/operations/security
-      - generated/reports
-      - generated/viewer
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: ARCH-SDD-SRC-001
-    title: SDD Architecture Governance Framework
-    status: intake
-    source_path: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
-    governance_domains:
-      - architecture
-    owner: architecture-owners
-    version: public-placeholder
-    intake_date: "2026-07-02"
-    supersedes: null
-    derived_artifact_areas:
-      - architecture
-      - policies/opa/architecture_*.rego
-      - schemas/architecture-*.json
-      - releases/architecture
-      - status/architecture-results-index.json
-      - generated/viewer
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: ARCH-TPL-SRC-001
-    title: SDD Architecture Template and Checklists
-    status: candidate
-    source_path: docs/governance/source-documents/ARCH-TPL-SRC-001.public.md
-    governance_domains:
-      - architecture
-    owner: architecture-owners
-    version: public-placeholder
-    intake_date: "2026-07-02"
-    supersedes: null
-    candidate_replacement_for: []
-    similarity_assessment:
-      assessment: not_assessed
-      compared_to: []
-      notes: Public placeholder only; original source content is withheld from the public repository.
-    derived_artifact_areas: []
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: ARCH-EA-SRC-001
-    title: SDD Enterprise Architecture Guidelines
-    status: candidate
-    source_path: docs/governance/source-documents/ARCH-EA-SRC-001.public.md
-    governance_domains:
-      - architecture
-    owner: architecture-owners
-    version: public-placeholder
-    intake_date: "2026-07-02"
-    supersedes: null
-    candidate_replacement_for: []
-    similarity_assessment:
-      assessment: not_assessed
-      compared_to: []
-      notes: Public placeholder only; original source content is withheld from the public repository.
-    derived_artifact_areas: []
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: ARCH-SA-SRC-001
-    title: SDD Solution Architecture Guidelines
-    status: candidate
-    source_path: docs/governance/source-documents/ARCH-SA-SRC-001.public.md
-    governance_domains:
-      - architecture
-    owner: architecture-owners
-    version: public-placeholder
-    intake_date: "2026-07-02"
-    supersedes: null
-    candidate_replacement_for: []
-    similarity_assessment:
-      assessment: not_assessed
-      compared_to: []
-      notes: Public placeholder only; original source content is withheld from the public repository.
-    derived_artifact_areas: []
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: ARCH-PA-SRC-001
-    title: SDD Product Architecture Guidelines
-    status: candidate
-    source_path: docs/governance/source-documents/ARCH-PA-SRC-001.public.md
-    governance_domains:
-      - architecture
-    owner: architecture-owners
-    version: public-placeholder
-    intake_date: "2026-07-02"
-    supersedes: null
-    candidate_replacement_for: []
-    similarity_assessment:
-      assessment: not_assessed
-      compared_to: []
-      notes: Public placeholder only; original source content is withheld from the public repository.
-    derived_artifact_areas: []
-    notes: Public placeholder only. Original source content is withheld from the public repository.
-  - id: ARCH-GOV-SRC-002
-    title: SDD Architecture Governance Framework
-    status: candidate
-    source_path: docs/governance/source-documents/ARCH-GOV-SRC-002.public.md
-    governance_domains:
-      - architecture
-    owner: architecture-owners
-    version: public-placeholder
-    intake_date: "2026-07-02"
-    supersedes: null
-    candidate_replacement_for:
-      - ARCH-SDD-SRC-001
-    similarity_assessment:
-      assessment: replacement_candidate
-      compared_to:
-        - source_id: ARCH-SDD-SRC-001
-          similarity: high
-          notes: Public placeholder only; replacement relationship preserved for private review.
-      notes: Public placeholder only; original source content is withheld from the public repository.
-    derived_artifact_areas: []
-    notes: Public placeholder only. Original source content is withheld from the public repository.
   - id: DEVSECOPS-POL-REQ-001
     title: DevSecOps Policy Requirements Extract
     status: review
@@ -302,7 +122,15 @@ documents:
     notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
   - id: ARCH-GOV-REQ-001
     title: Architecture Governance Framework Requirements Extract
-    status: intake
+    status: candidate
+    candidate_replacement_for:
+      - ARCH-SDD-REQ-001
+    similarity_assessment:
+      assessment: replacement_candidate
+      compared_to:
+        - source_id: ARCH-SDD-REQ-001
+          similarity: high
+          notes: The sanitized extract remains a non-normative replacement candidate pending owner review.
     source_path: docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md
     governance_domains:
       - architecture
@@ -310,13 +138,12 @@ documents:
     version: requirements-only-sanitized
     intake_date: "2026-07-15"
     supersedes: null
-    derived_artifact_areas:
-      - docs/governance/source-documents
+    derived_artifact_areas: []
     notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
   - id: CISO-REQ-SRC-001
     title: CISO Standards Requirements Catalog Candidate
     status: candidate
-    source_path: docs/governance/source-documents/CISO-REQ-SRC-001.public.md
+    source_path: docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md
     governance_domains:
       - devsecops
       - platform
@@ -329,15 +156,104 @@ documents:
     similarity_assessment:
       assessment: related_source
       compared_to:
-        - source_id: DSCB-STD-SRC-001
+        - source_id: DSCB-STD-REQ-001
           similarity: high
           notes: Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review.
-        - source_id: PRA-STD-SRC-001
+        - source_id: PRA-STD-REQ-001
           similarity: medium
           notes: Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement.
-        - source_id: ARCH-SDD-SRC-001
+        - source_id: ARCH-SDD-REQ-001
           similarity: medium
           notes: Product security, threat modeling, and verification topics overlap architecture governance and require routing review.
       notes: Classified as a related and overlapping candidate without asserting duplicate or replacement status.
     derived_artifact_areas: []
     notes: Private workbook withheld. Candidate review artifacts are non-normative, contain no source requirement text, and must not influence controls, policies, schemas, workflows, releases, or baselines before human approval.
+  - id: DEVSECOPS-POL-CAND-002
+    title: DevSecOps Policy Integrated v2 Change-Marked Candidate
+    status: candidate
+    source_path: docs/governance/source-documents/DevSecOps_Policy_Review_Integrated_v2_CHANGE_MARKED.md
+    governance_domains:
+      - policy
+      - devsecops
+    owner: governance-owners
+    version: v2-change-marked
+    intake_date: "2026-10-08"
+    supersedes: null
+    candidate_replacement_for:
+      - DEVSECOPS-POL-REQ-001
+    similarity_assessment:
+      assessment: replacement_candidate
+      compared_to:
+        - source_id: DEVSECOPS-POL-REQ-001
+          similarity: high
+          notes: Change-marked integrated policy appears to revise the registered policy requirements extract; confirm source authority and exact target revision.
+    derived_artifact_areas: []
+    notes: Non-normative policy revision candidate. Human intake decision on 2026-10-08 is to keep the candidate pending authority, change-history, and replacement review (GCR-2026-113). Do not derive policy controls or change existing policy status until a separate approval.
+  - id: TOOLCHAIN-ARCH-CAND-001
+    title: Enterprise SDLC Toolchain Reference Architecture v0.3
+    status: candidate
+    source_path: docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md
+    governance_domains:
+      - architecture
+      - platform
+      - devsecops
+    owner: platform-owners
+    version: v0.3
+    intake_date: "2026-10-08"
+    supersedes: null
+    candidate_replacement_for: []
+    similarity_assessment:
+      assessment: related_source
+      compared_to:
+        - source_id: PRA-STD-REQ-001
+          similarity: medium
+          notes: Toolchain architecture adds broad lifecycle and platform integration intent; replacement or extension relationship requires owner decision.
+        - source_id: DSCB-STD-REQ-001
+          similarity: medium
+          notes: Candidate refers to control levels and evidence; retain explicit source precedence during review.
+    derived_artifact_areas: []
+    notes: Human intake decision on 2026-10-08 is to keep this related source as a candidate pending the authority, source-precedence, control-ID, and ownership decisions recorded in GCR-2026-114. No derivation is authorized.
+  - id: SDLC-PROC-CAND-001
+    title: Software Development Process DevSecOps V5 Activity RACI and Artifacts
+    status: candidate
+    source_path: docs/governance/source-documents/Software_Development_Process_DevSecOps_V5_Activity_RACI_Artifacts.md
+    governance_domains:
+      - devsecops
+      - directive
+    owner: governance-owners
+    version: V5-candidate
+    intake_date: "2026-10-08"
+    supersedes: null
+    candidate_replacement_for: []
+    similarity_assessment:
+      assessment: related_source
+      compared_to:
+        - source_id: DEVSECOPS-DIR-REQ-001
+          similarity: medium
+          notes: Lifecycle process, roles, approvals, and governance interfaces overlap the directive; source precedence and accountable process owner require confirmation.
+    derived_artifact_areas: []
+    notes: Human intake decision on 2026-10-08 is to keep this related process source as a candidate pending confirmation of authority, approval, version, process owner, and gate semantics recorded in GCR-2026-114. No derivation is authorized.
+  - id: SW-INDUSTRIALISATION-OM-CAND-001
+    title: Software Industrialisation Enterprise Operating Model Proposal
+    status: candidate
+    source_path: docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md
+    governance_domains:
+      - devsecops
+      - platform
+      - architecture
+    owner: governance-owners
+    version: revised-extended-scope-polished-proposal
+    intake_date: "2026-10-08"
+    supersedes: null
+    candidate_replacement_for: []
+    similarity_assessment:
+      assessment: related_source
+      compared_to:
+        - source_id: DEVSECOPS-POL-REQ-001
+          similarity: medium
+          notes: Enterprise operating model may extend governance scope; owner must decide coexistence, precedence, and approval status.
+        - source_id: PRA-STD-REQ-001
+          similarity: medium
+          notes: Industrialisation operating model intersects platform ownership and federated delivery but is not presumed to replace PRA.
+    derived_artifact_areas: []
+    notes: Human intake decision on 2026-10-08 is to keep this operating-model proposal as a candidate pending executive sponsorship, mandate, scope, and approval path recorded in GCR-2026-114. No authority, promotion, or governance derivation is implied by registration.

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -27,12 +28,16 @@ class DocumentConsistencyReviewModelTests(unittest.TestCase):
     def rule(report: dict, rule_id: str) -> dict:
         return next(item for item in report["rules"] if item["rule_id"] == rule_id)
 
-    def test_bounded_source_inventory_is_partial_and_semantics_remain_not_run(self):
+    def test_bounded_source_inventory_reports_stale_register_snapshot(self):
         report = self.run_model(deepcopy(BASE_MODEL))
-        self.assertEqual(report["overall_status"], "partial")
+        self.assertEqual(report["overall_status"], "fail")
         self.assertEqual(report["semantic_review"], "not_run")
-        for rule_id in ("DCR-001", "DCR-002", "DCR-007", "DCR-009"):
+        for rule_id in ("DCR-001", "DCR-007"):
             self.assertEqual(self.rule(report, rule_id)["status"], "pass")
+        self.assertEqual(self.rule(report, "DCR-002")["status"], "fail")
+        self.assertIn("source register bytes differ", self.rule(report, "DCR-002")["details"][0])
+        self.assertEqual(self.rule(report, "DCR-009")["status"], "fail")
+        self.assertIn("source register snapshot is stale", self.rule(report, "DCR-009")["details"])
         for rule_id in ("DCR-003", "DCR-005", "DCR-006", "DCR-008"):
             self.assertEqual(self.rule(report, rule_id)["status"], "not_in_scope")
         self.assertEqual(self.rule(report, "DCR-004")["status"], "pass")
@@ -188,7 +193,10 @@ class DocumentConsistencyReviewModelTests(unittest.TestCase):
         self.assertEqual(self.rule(report, "DCR-009")["status"], "fail")
 
     def test_newer_repository_commit_does_not_stale_unchanged_source_snapshot(self):
-        report = self.run_model(deepcopy(BASE_MODEL))
+        manifest = deepcopy(MANIFEST)
+        register_path = ROOT / manifest["source_register_path"]
+        manifest["source_register_sha256"] = hashlib.sha256(register_path.read_bytes()).hexdigest()
+        report = self.run_model(deepcopy(BASE_MODEL), manifest)
         self.assertEqual(self.rule(report, "DCR-009")["status"], "pass")
         head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
         if MANIFEST["reviewed_commit"] != head:

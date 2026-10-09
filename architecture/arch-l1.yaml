@@ -1,6 +1,6 @@
 level: ARCH-L1
 name: Architecture Minimum Evidence
-source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md
 requirements:
 - id: ARCH-L1-REQ-001
   domain: BAPO

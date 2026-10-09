@@ -1,10 +1,9 @@
 # CISO Standards Requirements Catalog Candidate
 
-## Public Placeholder
+## Candidate Intake Record
 
-This file represents a private standards-requirements workbook submitted for
-governance review. The original workbook is intentionally withheld from the
-public repository.
+This file records a private standards-requirements workbook submitted for
+governance review. The original workbook remains withheld from this repository.
 
 The candidate aggregates requirement references from public standards and
 sanitized private sources. Public repository artifacts retain only neutral

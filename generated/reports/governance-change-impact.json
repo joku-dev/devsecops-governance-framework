@@ -1,49 +1,47 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-09T06:10:47Z",
+  "generated_at": "2026-10-08T20:06:49Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
   },
   "summary": {
-    "registered_source_documents": 21,
-    "source_documents_with_lineage": 21,
-    "derived_artifact_links": 378,
+    "registered_source_documents": 15,
+    "source_documents_with_lineage": 16,
+    "derived_artifact_links": 307,
     "domains": {
-      "architecture": 13,
+      "architecture": 9,
       "devsecops": 9,
       "directive": 2,
-      "platform": 3,
+      "platform": 4,
       "policy": 2
     },
     "statuses": {
       "candidate": 6,
-      "draft": 2,
-      "intake": 10,
+      "intake": 6,
       "review": 3
     },
     "release_considerations": {
       "baseline_release_review": 2,
-      "no_release_by_default": 18,
+      "no_release_by_default": 12,
       "release_candidate_recommended": 1
     },
     "artifact_types": {
       "architecture_model": 8,
-      "derived_artifact": 222,
+      "derived_artifact": 162,
       "governance_document": 4,
-      "governance_model": 115,
+      "governance_model": 109,
       "policy_as_code": 15,
       "release_document": 1,
       "release_metadata": 1,
       "release_package": 3,
-      "release_snapshot": 5,
       "traceability_mapping": 4
     },
     "review_lanes": {
-      "architecture-review": 13,
+      "architecture-review": 9,
       "devsecops-review": 9,
       "governance-review": 4,
-      "platform-review": 3,
+      "platform-review": 4,
       "policy-as-code-review": 2,
       "release-review": 2,
       "schema-review": 3,
@@ -52,20 +50,18 @@
   },
   "source_impacts": [
     {
-      "id": "DEVSECOPS-POL-SRC-001",
-      "title": "DevSecOps Policy Version 1 draft 3",
-      "status": "draft",
-      "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md",
+      "id": "DEVSECOPS-POL-REQ-001",
+      "title": "DevSecOps Policy Requirements Extract",
+      "status": "review",
+      "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
       "owner": "governance-owners",
-      "version": "1 draft 3",
+      "version": "requirements-only-sanitized",
       "governance_domains": [
         "policy",
         "devsecops"
       ],
       "derived_artifact_areas": [
-        "docs/governance/devsecops-policy.md",
-        "model/documents/governance-documents.yaml",
-        "model/traceability/document-to-control.yaml"
+        "docs/governance/source-documents"
       ],
       "lineage_artifact_count": 13,
       "lineage_artifact_types": {
@@ -79,7 +75,7 @@
         "governance-review"
       ],
       "release_consideration": "no_release_by_default",
-      "source_state": "draft_with_lineage",
+      "source_state": "active_source",
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
@@ -103,20 +99,18 @@
       ]
     },
     {
-      "id": "DEVSECOPS-DIR-SRC-001",
-      "title": "DevSecOps Directive Version 0 draft 1",
-      "status": "draft",
-      "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md",
+      "id": "DEVSECOPS-DIR-REQ-001",
+      "title": "DevSecOps Directive Requirements Extract",
+      "status": "review",
+      "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
       "owner": "governance-owners",
-      "version": "0 draft 1",
+      "version": "requirements-only-sanitized",
       "governance_domains": [
         "directive",
         "devsecops"
       ],
       "derived_artifact_areas": [
-        "docs/governance/devsecops-directive.md",
-        "model/documents/governance-documents.yaml",
-        "model/traceability/document-to-control.yaml"
+        "docs/governance/source-documents"
       ],
       "lineage_artifact_count": 13,
       "lineage_artifact_types": {
@@ -130,7 +124,7 @@
         "governance-review"
       ],
       "release_consideration": "no_release_by_default",
-      "source_state": "draft_with_lineage",
+      "source_state": "active_source",
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
@@ -154,25 +148,17 @@
       ]
     },
     {
-      "id": "DSCB-STD-SRC-001",
-      "title": "DevSecOps Control Baseline Standard aligned with Platform Levels",
+      "id": "DSCB-STD-REQ-001",
+      "title": "DevSecOps Control Baseline Requirements Extract",
       "status": "intake",
-      "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.public.md",
+      "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
       "owner": "devsecops-owners",
-      "version": "public-placeholder",
+      "version": "requirements-only-sanitized",
       "governance_domains": [
         "devsecops"
       ],
       "derived_artifact_areas": [
-        "model/controls",
-        "model/evidence",
-        "policies/opa",
-        "schemas",
-        "scripts",
-        ".github/workflows",
-        "docs/operations/security",
-        "releases/l1",
-        "generated/reports"
+        "docs/governance/source-documents"
       ],
       "lineage_artifact_count": 99,
       "lineage_artifact_types": {
@@ -217,24 +203,18 @@
       ]
     },
     {
-      "id": "PRA-STD-SRC-001",
-      "title": "DevSecOps Platform Reference Architecture Standard aligned with Control Baseline",
+      "id": "PRA-STD-REQ-001",
+      "title": "Platform Reference Architecture Requirements Extract",
       "status": "intake",
-      "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+      "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
       "owner": "platform-owners",
-      "version": "public-placeholder",
+      "version": "requirements-only-sanitized",
       "governance_domains": [
         "platform",
         "devsecops"
       ],
       "derived_artifact_areas": [
-        "model/platform",
-        "pipeline-baseline",
-        "model/traceability",
-        ".github/workflows",
-        "docs/operations/security",
-        "generated/reports",
-        "generated/viewer"
+        "docs/governance/source-documents"
       ],
       "lineage_artifact_count": 41,
       "lineage_artifact_types": {
@@ -269,38 +249,32 @@
         ".github/workflows/governance-repository-security.yml",
         "SECURITY.md",
         "docs/examples/governance-repository-security-observation.example.json",
-        "docs/governance/source-documents/PRA-STD-SRC-001.public.md",
+        "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
         "docs/operations/security/governance-repository-self-security.md",
         "generated/reports/architecture-source-replacement-assessment.json"
       ]
     },
     {
-      "id": "ARCH-SDD-SRC-001",
-      "title": "SDD Architecture Governance Framework",
-      "status": "intake",
-      "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+      "id": "ARCH-SDD-REQ-001",
+      "title": "Integrated SDD Architecture Governance Requirements Extract",
+      "status": "review",
+      "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
       "owner": "architecture-owners",
-      "version": "public-placeholder",
+      "version": "requirements-only-sanitized",
       "governance_domains": [
         "architecture"
       ],
       "derived_artifact_areas": [
-        "architecture",
-        "policies/opa/architecture_*.rego",
-        "schemas/architecture-*.json",
-        "releases/architecture",
-        "status/architecture-results-index.json",
-        "generated/viewer"
+        "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 36,
+      "lineage_artifact_count": 31,
       "lineage_artifact_types": {
         "architecture_model": 8,
         "derived_artifact": 16,
         "governance_model": 1,
         "policy_as_code": 4,
         "release_document": 1,
-        "release_metadata": 1,
-        "release_snapshot": 5
+        "release_metadata": 1
       },
       "review_lanes": [
         "architecture-review",
@@ -334,486 +308,6 @@
         "architecture/review-gates.yaml",
         "generated/csv/architecture_runtime_traceability.csv",
         "generated/reports/architecture-source-replacement-assessment.json"
-      ]
-    },
-    {
-      "id": "ARCH-TPL-SRC-001",
-      "title": "SDD Architecture Template and Checklists",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.public.md",
-      "owner": "architecture-owners",
-      "version": "public-placeholder",
-      "governance_domains": [
-        "architecture"
-      ],
-      "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "architecture-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "candidate_pending_similarity_review",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      },
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py",
-        "python3 scripts/validate_runtime_governance.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "ARCH-EA-SRC-001",
-      "title": "SDD Enterprise Architecture Guidelines",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.public.md",
-      "owner": "architecture-owners",
-      "version": "public-placeholder",
-      "governance_domains": [
-        "architecture"
-      ],
-      "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "architecture-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "candidate_pending_similarity_review",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      },
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py",
-        "python3 scripts/validate_runtime_governance.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "ARCH-SA-SRC-001",
-      "title": "SDD Solution Architecture Guidelines",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.public.md",
-      "owner": "architecture-owners",
-      "version": "public-placeholder",
-      "governance_domains": [
-        "architecture"
-      ],
-      "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "architecture-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "candidate_pending_similarity_review",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      },
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py",
-        "python3 scripts/validate_runtime_governance.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "ARCH-PA-SRC-001",
-      "title": "SDD Product Architecture Guidelines",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.public.md",
-      "owner": "architecture-owners",
-      "version": "public-placeholder",
-      "governance_domains": [
-        "architecture"
-      ],
-      "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "architecture-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "candidate_pending_similarity_review",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      },
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py",
-        "python3 scripts/validate_runtime_governance.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "ARCH-GOV-SRC-002",
-      "title": "SDD Architecture Governance Framework",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
-      "owner": "architecture-owners",
-      "version": "public-placeholder",
-      "governance_domains": [
-        "architecture"
-      ],
-      "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "architecture-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "candidate_replacement_review",
-      "candidate_replacement_for": [
-        "ARCH-SDD-SRC-001"
-      ],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {
-        "assessment": "replacement_candidate",
-        "compared_to": [
-          {
-            "source_id": "ARCH-SDD-SRC-001",
-            "similarity": "high",
-            "notes": "Public placeholder only; replacement relationship preserved for private review."
-          }
-        ],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      },
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py",
-        "python3 scripts/validate_runtime_governance.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "DEVSECOPS-POL-REQ-001",
-      "title": "DevSecOps Policy Requirements Extract",
-      "status": "review",
-      "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
-      "owner": "governance-owners",
-      "version": "requirements-only-sanitized",
-      "governance_domains": [
-        "policy",
-        "devsecops"
-      ],
-      "derived_artifact_areas": [
-        "docs/governance/source-documents"
-      ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "devsecops-review",
-        "governance-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "active_source",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {},
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "DEVSECOPS-DIR-REQ-001",
-      "title": "DevSecOps Directive Requirements Extract",
-      "status": "review",
-      "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
-      "owner": "governance-owners",
-      "version": "requirements-only-sanitized",
-      "governance_domains": [
-        "directive",
-        "devsecops"
-      ],
-      "derived_artifact_areas": [
-        "docs/governance/source-documents"
-      ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "devsecops-review",
-        "governance-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "active_source",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {},
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "DSCB-STD-REQ-001",
-      "title": "DevSecOps Control Baseline Requirements Extract",
-      "status": "intake",
-      "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
-      "owner": "devsecops-owners",
-      "version": "requirements-only-sanitized",
-      "governance_domains": [
-        "devsecops"
-      ],
-      "derived_artifact_areas": [
-        "docs/governance/source-documents"
-      ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "devsecops-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "active_source",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {},
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "PRA-STD-REQ-001",
-      "title": "Platform Reference Architecture Requirements Extract",
-      "status": "intake",
-      "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
-      "owner": "platform-owners",
-      "version": "requirements-only-sanitized",
-      "governance_domains": [
-        "platform",
-        "devsecops"
-      ],
-      "derived_artifact_areas": [
-        "docs/governance/source-documents"
-      ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "devsecops-review",
-        "platform-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "active_source",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {},
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
-    },
-    {
-      "id": "ARCH-SDD-REQ-001",
-      "title": "Integrated SDD Architecture Governance Requirements Extract",
-      "status": "review",
-      "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
-      "owner": "architecture-owners",
-      "version": "requirements-only-sanitized",
-      "governance_domains": [
-        "architecture"
-      ],
-      "derived_artifact_areas": [
-        "docs/governance/source-documents"
-      ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
-      "review_lanes": [
-        "architecture-review"
-      ],
-      "release_consideration": "no_release_by_default",
-      "source_state": "active_source",
-      "candidate_replacement_for": [],
-      "supersedes": null,
-      "superseded_by": null,
-      "similarity_assessment": {},
-      "suggested_validation": [
-        "python3 -m unittest discover -s tests",
-        "python3 scripts/validate_governance_repo.py",
-        "python3 scripts/validate_runtime_governance.py"
-      ],
-      "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
       ]
     },
     {
@@ -1003,16 +497,14 @@
     {
       "id": "ARCH-GOV-REQ-001",
       "title": "Architecture Governance Framework Requirements Extract",
-      "status": "intake",
+      "status": "candidate",
       "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md",
       "owner": "architecture-owners",
       "version": "requirements-only-sanitized",
       "governance_domains": [
         "architecture"
       ],
-      "derived_artifact_areas": [
-        "docs/governance/source-documents"
-      ],
+      "derived_artifact_areas": [],
       "lineage_artifact_count": 11,
       "lineage_artifact_types": {
         "derived_artifact": 10,
@@ -1022,11 +514,22 @@
         "architecture-review"
       ],
       "release_consideration": "no_release_by_default",
-      "source_state": "active_source",
-      "candidate_replacement_for": [],
+      "source_state": "candidate_replacement_review",
+      "candidate_replacement_for": [
+        "ARCH-SDD-REQ-001"
+      ],
       "supersedes": null,
       "superseded_by": null,
-      "similarity_assessment": {},
+      "similarity_assessment": {
+        "assessment": "replacement_candidate",
+        "compared_to": [
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "high",
+            "notes": "The sanitized extract remains a non-normative replacement candidate pending owner review."
+          }
+        ]
+      },
       "suggested_validation": [
         "python3 -m unittest discover -s tests",
         "python3 scripts/validate_governance_repo.py",
@@ -1050,7 +553,7 @@
       "id": "CISO-REQ-SRC-001",
       "title": "CISO Standards Requirements Catalog Candidate",
       "status": "candidate",
-      "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
       "owner": "governance-owners",
       "version": "0.1",
       "governance_domains": [
@@ -1078,22 +581,256 @@
         "assessment": "related_source",
         "compared_to": [
           {
-            "source_id": "DSCB-STD-SRC-001",
+            "source_id": "DSCB-STD-REQ-001",
             "similarity": "high",
             "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
           },
           {
-            "source_id": "PRA-STD-SRC-001",
+            "source_id": "PRA-STD-REQ-001",
             "similarity": "medium",
             "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
           },
           {
-            "source_id": "ARCH-SDD-SRC-001",
+            "source_id": "ARCH-SDD-REQ-001",
             "similarity": "medium",
             "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
           }
         ],
         "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
+      },
+      "suggested_validation": [
+        "python3 -m unittest discover -s tests",
+        "python3 scripts/validate_governance_repo.py",
+        "python3 scripts/validate_runtime_governance.py"
+      ],
+      "change_request_required_for_source_update": true,
+      "representative_artifacts": [
+        "generated/reports/architecture-source-replacement-assessment.json",
+        "generated/reports/architecture-source-replacement-assessment.md",
+        "generated/reports/governance-change-impact.json",
+        "generated/reports/governance-change-impact.md",
+        "generated/reports/source-document-intake-review-briefs.json",
+        "generated/reports/source-document-intake-review-briefs.md",
+        "generated/reports/source-document-intake-status.json",
+        "generated/reports/source-document-intake-status.md",
+        "generated/reports/source-document-requirement-delta.json",
+        "generated/reports/source-document-requirement-delta.md"
+      ]
+    },
+    {
+      "id": "DEVSECOPS-POL-CAND-002",
+      "title": "DevSecOps Policy Integrated v2 Change-Marked Candidate",
+      "status": "candidate",
+      "source_path": "docs/governance/source-documents/DevSecOps_Policy_Review_Integrated_v2_CHANGE_MARKED.md",
+      "owner": "governance-owners",
+      "version": "v2-change-marked",
+      "governance_domains": [
+        "policy",
+        "devsecops"
+      ],
+      "derived_artifact_areas": [],
+      "lineage_artifact_count": 11,
+      "lineage_artifact_types": {
+        "derived_artifact": 10,
+        "governance_model": 1
+      },
+      "review_lanes": [
+        "devsecops-review",
+        "governance-review"
+      ],
+      "release_consideration": "no_release_by_default",
+      "source_state": "candidate_replacement_review",
+      "candidate_replacement_for": [
+        "DEVSECOPS-POL-REQ-001"
+      ],
+      "supersedes": null,
+      "superseded_by": null,
+      "similarity_assessment": {
+        "assessment": "replacement_candidate",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-POL-REQ-001",
+            "similarity": "high",
+            "notes": "Change-marked integrated policy appears to revise the registered policy requirements extract; confirm source authority and exact target revision."
+          }
+        ]
+      },
+      "suggested_validation": [
+        "python3 -m unittest discover -s tests",
+        "python3 scripts/validate_governance_repo.py"
+      ],
+      "change_request_required_for_source_update": true,
+      "representative_artifacts": [
+        "generated/reports/architecture-source-replacement-assessment.json",
+        "generated/reports/architecture-source-replacement-assessment.md",
+        "generated/reports/governance-change-impact.json",
+        "generated/reports/governance-change-impact.md",
+        "generated/reports/source-document-intake-review-briefs.json",
+        "generated/reports/source-document-intake-review-briefs.md",
+        "generated/reports/source-document-intake-status.json",
+        "generated/reports/source-document-intake-status.md",
+        "generated/reports/source-document-requirement-delta.json",
+        "generated/reports/source-document-requirement-delta.md"
+      ]
+    },
+    {
+      "id": "TOOLCHAIN-ARCH-CAND-001",
+      "title": "Enterprise SDLC Toolchain Reference Architecture v0.3",
+      "status": "candidate",
+      "source_path": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
+      "owner": "platform-owners",
+      "version": "v0.3",
+      "governance_domains": [
+        "architecture",
+        "platform",
+        "devsecops"
+      ],
+      "derived_artifact_areas": [],
+      "lineage_artifact_count": 11,
+      "lineage_artifact_types": {
+        "derived_artifact": 10,
+        "governance_model": 1
+      },
+      "review_lanes": [
+        "architecture-review",
+        "devsecops-review",
+        "platform-review"
+      ],
+      "release_consideration": "no_release_by_default",
+      "source_state": "candidate_related_source_review",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Toolchain architecture adds broad lifecycle and platform integration intent; replacement or extension relationship requires owner decision."
+          },
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Candidate refers to control levels and evidence; retain explicit source precedence during review."
+          }
+        ]
+      },
+      "suggested_validation": [
+        "python3 -m unittest discover -s tests",
+        "python3 scripts/validate_governance_repo.py",
+        "python3 scripts/validate_runtime_governance.py"
+      ],
+      "change_request_required_for_source_update": true,
+      "representative_artifacts": [
+        "generated/reports/architecture-source-replacement-assessment.json",
+        "generated/reports/architecture-source-replacement-assessment.md",
+        "generated/reports/governance-change-impact.json",
+        "generated/reports/governance-change-impact.md",
+        "generated/reports/source-document-intake-review-briefs.json",
+        "generated/reports/source-document-intake-review-briefs.md",
+        "generated/reports/source-document-intake-status.json",
+        "generated/reports/source-document-intake-status.md",
+        "generated/reports/source-document-requirement-delta.json",
+        "generated/reports/source-document-requirement-delta.md"
+      ]
+    },
+    {
+      "id": "SDLC-PROC-CAND-001",
+      "title": "Software Development Process DevSecOps V5 Activity RACI and Artifacts",
+      "status": "candidate",
+      "source_path": "docs/governance/source-documents/Software_Development_Process_DevSecOps_V5_Activity_RACI_Artifacts.md",
+      "owner": "governance-owners",
+      "version": "V5-candidate",
+      "governance_domains": [
+        "devsecops",
+        "directive"
+      ],
+      "derived_artifact_areas": [],
+      "lineage_artifact_count": 11,
+      "lineage_artifact_types": {
+        "derived_artifact": 10,
+        "governance_model": 1
+      },
+      "review_lanes": [
+        "devsecops-review",
+        "governance-review"
+      ],
+      "release_consideration": "no_release_by_default",
+      "source_state": "candidate_related_source_review",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-DIR-REQ-001",
+            "similarity": "medium",
+            "notes": "Lifecycle process, roles, approvals, and governance interfaces overlap the directive; source precedence and accountable process owner require confirmation."
+          }
+        ]
+      },
+      "suggested_validation": [
+        "python3 -m unittest discover -s tests",
+        "python3 scripts/validate_governance_repo.py"
+      ],
+      "change_request_required_for_source_update": true,
+      "representative_artifacts": [
+        "generated/reports/architecture-source-replacement-assessment.json",
+        "generated/reports/architecture-source-replacement-assessment.md",
+        "generated/reports/governance-change-impact.json",
+        "generated/reports/governance-change-impact.md",
+        "generated/reports/source-document-intake-review-briefs.json",
+        "generated/reports/source-document-intake-review-briefs.md",
+        "generated/reports/source-document-intake-status.json",
+        "generated/reports/source-document-intake-status.md",
+        "generated/reports/source-document-requirement-delta.json",
+        "generated/reports/source-document-requirement-delta.md"
+      ]
+    },
+    {
+      "id": "SW-INDUSTRIALISATION-OM-CAND-001",
+      "title": "Software Industrialisation Enterprise Operating Model Proposal",
+      "status": "candidate",
+      "source_path": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
+      "owner": "governance-owners",
+      "version": "revised-extended-scope-polished-proposal",
+      "governance_domains": [
+        "devsecops",
+        "platform",
+        "architecture"
+      ],
+      "derived_artifact_areas": [],
+      "lineage_artifact_count": 11,
+      "lineage_artifact_types": {
+        "derived_artifact": 10,
+        "governance_model": 1
+      },
+      "review_lanes": [
+        "architecture-review",
+        "devsecops-review",
+        "platform-review"
+      ],
+      "release_consideration": "no_release_by_default",
+      "source_state": "candidate_related_source_review",
+      "candidate_replacement_for": [],
+      "supersedes": null,
+      "superseded_by": null,
+      "similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-POL-REQ-001",
+            "similarity": "medium",
+            "notes": "Enterprise operating model may extend governance scope; owner must decide coexistence, precedence, and approval status."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Industrialisation operating model intersects platform ownership and federated delivery but is not presumed to replace PRA."
+          }
+        ]
       },
       "suggested_validation": [
         "python3 -m unittest discover -s tests",
