@@ -26,29 +26,14 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 ## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
 
 <!-- DOCS_REFRESH_CATALOG:start -->
-### PR #244: Source-Document-Intake und Kandidatenregister (`430550f00aa9`)
+### PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195192e`)
 
-Die Änderung gehört zu den bestehenden Bereichen **1. Governance-Quellen
-verwalten**, **2. Änderungen an Vorgaben vorbereiten** und **3. Herkunft und
-Zusammenhänge nachweisen**. Sie erweitert keinen der 22 Funktionsbereiche.
+- Add the approved one-time, redacted DCR pilot snapshot to the governance Viewer.
+- Show the pilot's partial status, structural inventory and three targeted comparisons without source IDs, document rows, excerpts, semantic prose or decision rationale.
+- Keep semantic population coverage unmeasured; the projection is report-only and does not establish consistency, compliance, implementation or normative approval.
+- Record the bounded maintainer decision in GCR-2026-139. No recurring publication, blocking behavior or production rollout is enabled.
 
-- Die ungültigen `*.public.md`-Platzhalter wurden entfernt. Die getrackten,
-  vom Maintainer bestätigten `*.requirements.md`-Fassungen bleiben die
-  autorisierten Vergleichs- und Quellversionen.
-- Fünf neu aufgenommene Dokumente sind im Quellenregister als `candidate`
-  eingetragen. Die Entscheidungen in [GCR-2026-113](../../governance/change-requests/GCR-2026-113-devsecops-policy-v2-candidate-review-decision.md)
-  und [GCR-2026-114](../../governance/change-requests/GCR-2026-114-source-candidate-decisions.md)
-  halten die offenen Autoritäts-, Ersetzungs- und Zuständigkeitsfragen fest.
-- Intake-Status, Review-Briefs, Anforderungsdeltas, Architektur-Ersetzungsprüfung
-  und Source-Lineage wurden neu projiziert. Die Berichte helfen bei der
-  Entscheidung; sie genehmigen keine Quelle.
-- Es wurden keine Kontrollen, Marker, Policies, Schemas, Baselines,
-  Durchsetzungsmodi oder Consumer-Freigaben aus Kandidaten abgeleitet.
-
-Die Dokumentationsprüfung ordnet die Arbeit den Bereichen 1–3 zu. Foundation-,
-Release-, Demo- und Consumer-Verhalten ändern sich dadurch nicht; die bestehenden
-Intake- und Quellentscheidungsdokumente enthalten bereits den notwendigen
-Verfahrens- und Entscheidungsnachweis.
+Die fachliche Zuordnung und Auswirkungen auf bestehende Funktionsbereiche sind vor dem Merge dieses Dokumentations-PRs redaktionell zu prüfen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
