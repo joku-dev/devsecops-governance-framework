@@ -21,6 +21,7 @@ on:
       - "schemas/measured-l1-assessment.schema.json"
       - "apps/governance-viewer/**"
       - "scripts/generate_governance_graph.py"
+      - "doc-as-code/**"
       - "generated/graph/**"
       - "status/**"
       - ".github/workflows/publish-docs.yml"
@@ -38,7 +39,7 @@ concurrency:
 jobs:
   publish-docs:
     if: ${{ github.event.repository.private == false }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -73,11 +74,36 @@ jobs:
           python3 scripts/generate_governance_graph.py
           python3 scripts/generate_status_viewer.py
 
+      - name: Build Git-authored publication exports
+        uses: ./doc-as-code
+
       - name: Build docs site
         run: |
           mkdocs build --strict
           mkdir -p site/generated
           cp -R generated/. site/generated/
+          mkdir -p site/downloads/doc-as-code
+          cp build/doc-as-code/doc-as-code-pilot-001.html site/downloads/doc-as-code/
+          cp build/doc-as-code/doc-as-code-pilot-001.docx site/downloads/doc-as-code/
+          cp build/doc-as-code/doc-as-code-pilot-001.pdf site/downloads/doc-as-code/
+          cp build/doc-as-code/publication-provenance.json site/downloads/doc-as-code/
+          cp build/doc-as-code/doc-as-code.css site/downloads/doc-as-code/
+          python3 - <<'PY'
+          from pathlib import Path
+
+          page = Path("site/publishing/doc-as-code-pilot/index.html")
+          html = page.read_text(encoding="utf-8")
+          downloads = (
+              '<aside aria-label="Publication downloads"><strong>Downloads:</strong> '
+              '<a href="../../downloads/doc-as-code/doc-as-code-pilot-001.html">HTML</a> · '
+              '<a href="../../downloads/doc-as-code/doc-as-code-pilot-001.docx">Word</a> · '
+              '<a href="../../downloads/doc-as-code/doc-as-code-pilot-001.pdf">PDF</a> · '
+              '<a href="../../downloads/doc-as-code/publication-provenance.json">Provenance</a></aside>'
+          )
+          if "</body>" not in html:
+              raise SystemExit("Could not attach publication downloads to the pilot page")
+          page.write_text(html.replace("</body>", downloads + "</body>"), encoding="utf-8")
+          PY
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
