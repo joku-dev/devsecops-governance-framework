@@ -4,18 +4,18 @@
   "profile_id": "governance-repository-self-security",
   "profile_version": "0.4.0",
   "repository_id": "joku-dev/devsecops-governance-framework",
-  "observed_at": "2026-09-19T12:08:52Z",
+  "observed_at": "2026-10-09T11:26:09Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "overall_status": "findings",
   "summary": {
     "criteria": 16,
-    "pass": 14,
-    "fail": 2,
-    "critical_failures": 1,
+    "pass": 13,
+    "fail": 3,
+    "critical_failures": 2,
     "high_failures": 1
   },
-  "risk_statement": "2 of 16 self-security criteria are not evidenced as satisfied: GRS-002 (Pull request and two independent approvals required); GRS-005 (Signed changes required on the default branch). Review the observations and remediation steps below.",
+  "risk_statement": "3 of 16 self-security criteria are not evidenced as satisfied: GRS-002 (Pull request and two independent approvals required); GRS-005 (Signed changes required on the default branch); GRS-013 (Automation cannot push operational data directly to the default branch). Review the observations and remediation steps below.",
   "criteria": [
     {
       "id": "GRS-001",
@@ -162,7 +162,7 @@
       "expected": true,
       "status": "pass",
       "observed": true,
-      "detail": "default=read, explicit=22/22",
+      "detail": "default=read, explicit=26/26",
       "evidence_refs": [
         "github:actions/permissions/workflow",
         ".github/workflows/"
@@ -187,9 +187,9 @@
       "title": "Automation cannot push operational data directly to the default branch",
       "severity": "critical",
       "expected": true,
-      "status": "pass",
-      "observed": true,
-      "detail": "direct_main_write_workflows=[]",
+      "status": "fail",
+      "observed": false,
+      "detail": "direct_main_write_workflows=[\".github/workflows/documentation-refresh.yml\"]",
       "evidence_refs": [
         ".github/workflows/"
       ]
@@ -202,7 +202,7 @@
       "expected": true,
       "status": "pass",
       "observed": true,
-      "detail": "direct_verified=[\"v0.2.0-public-adoption\"], legacy_manifest_verified=[\"architecture-baseline-l1-v0.1.0\", \"l1-baseline-v1.1.3\", \"v0.1.0-public-adoption\"], unverified=[]",
+      "detail": "direct_verified=[\"architecture-baseline-l1-v0.1.0\", \"l1-baseline-v1.1.3\", \"l1-baseline-v1.2.0\", \"l1-baseline-v1.2.1\", \"v0.1.0-public-adoption\", \"v0.2.0-public-adoption\"], legacy_manifest_verified=[], unverified=[]",
       "evidence_refs": [
         "git:release-tags",
         "model/governance/release-signing-policy.yaml",
@@ -240,6 +240,16 @@
   ],
   "next_steps": [
     {
+      "priority": "P0",
+      "title": "Migrate automated writes away from direct main pushes",
+      "addresses": [
+        "GRS-013"
+      ],
+      "prerequisites": [],
+      "action": "Replace intake and portfolio git pushes with reviewed bot pull requests or a separately protected operational evidence store. Keep normative governance outside the automation write authority.",
+      "acceptance_criteria": "No active workflow combines contents: write with git push to the default branch."
+    },
+    {
       "priority": "P1",
       "title": "Protect the default branch as the governance authority",
       "addresses": [
@@ -269,7 +279,7 @@
   ],
   "observation": {
     "repository_id": "joku-dev/devsecops-governance-framework",
-    "observed_at": "2026-09-19T12:08:52Z",
+    "observed_at": "2026-10-09T11:26:09Z",
     "api_errors": [
       "repos/joku-dev/devsecops-governance-framework/branches/main/protection: gh: Branch not protected (HTTP 404)",
       "repos/joku-dev/devsecops-governance-framework/branches/main/protection/required_signatures: gh: Branch not protected (HTTP 404)"
@@ -305,10 +315,12 @@
       "sha_pinning_required": true,
       "default_workflow_permissions": "read",
       "can_approve_pull_request_reviews": true,
-      "workflow_count": 22,
-      "explicit_permissions_count": 22,
+      "workflow_count": 26,
+      "explicit_permissions_count": 26,
       "third_party_unpinned_refs": [],
-      "direct_main_write_workflows": [],
+      "direct_main_write_workflows": [
+        ".github/workflows/documentation-refresh.yml"
+      ],
       "operational_review_workflows": [
         ".github/workflows/consumer-lifecycle-update.yml",
         ".github/workflows/intake-architecture-result.yml",
@@ -329,51 +341,70 @@
       "release_tags": [
         "architecture-baseline-l1-v0.1.0",
         "l1-baseline-v1.1.3",
+        "l1-baseline-v1.2.0",
+        "l1-baseline-v1.2.1",
         "v0.1.0-public-adoption",
         "v0.2.0-public-adoption"
       ],
       "tag_assessments": [
         {
           "tag": "architecture-baseline-l1-v0.1.0",
-          "tag_object_sha": "407ee1013e9f3d4fadcd5bc27011d65a78cd6505",
-          "target_commit_sha": "19e281d323eb69be26bdb2cbf4368caadfbccaa7",
+          "tag_object_sha": "32259f10c3ceaafdee35f75ba941576cae873a66",
+          "target_commit_sha": "9fd5249b74e329ae36e9fecec7ede49032bffd7c",
           "status": "verified",
-          "assurance_mode": "legacy_manifest_verified",
-          "detail": "Immutable historical tag and release artifacts match the signed retrospective manifest."
+          "assurance_mode": "direct_signature_verified",
+          "detail": "Tag signature verified against an active release signer."
         },
         {
           "tag": "l1-baseline-v1.1.3",
-          "tag_object_sha": "54e9635a3fad1640e3ace69cac3029263d267585",
-          "target_commit_sha": "308bfcb357ef049c4680db59b5d907b0cddf2473",
+          "tag_object_sha": "7d77d26dcec8f8ca6aabb1286b01674961f2fedb",
+          "target_commit_sha": "89075f1eb0521f0c36d9958f94d0a3e1ea9d7088",
           "status": "verified",
-          "assurance_mode": "legacy_manifest_verified",
-          "detail": "Immutable historical tag and release artifacts match the signed retrospective manifest."
+          "assurance_mode": "direct_signature_verified",
+          "detail": "Tag signature verified against an active release signer."
+        },
+        {
+          "tag": "l1-baseline-v1.2.0",
+          "tag_object_sha": "90aefb65b5cca8bc2141840eb4078582f4f99a5d",
+          "target_commit_sha": "bdc993d49d82c4a1fa4cdcabb572011896de17c2",
+          "status": "verified",
+          "assurance_mode": "direct_signature_verified",
+          "detail": "Tag signature verified against an active release signer."
+        },
+        {
+          "tag": "l1-baseline-v1.2.1",
+          "tag_object_sha": "23224bfaaa27001ad43de024e2c5c6f89de81d51",
+          "target_commit_sha": "901d06d0c2f5ff62bb9aff987d04fbd9d35e8235",
+          "status": "verified",
+          "assurance_mode": "direct_signature_verified",
+          "detail": "Tag signature verified against an active release signer."
         },
         {
           "tag": "v0.1.0-public-adoption",
-          "tag_object_sha": "eb699c64b07687438fb883061442b9837515322f",
-          "target_commit_sha": "e5400ce5a83cdebd50470d4a53f1a0a3b518cadd",
+          "tag_object_sha": "be18cb9ae66ab17f63a5e31269d0df47fef5b5e7",
+          "target_commit_sha": "d0be124efced36aa494929ac7c382caca276c28b",
           "status": "verified",
-          "assurance_mode": "legacy_manifest_verified",
-          "detail": "Immutable historical tag and release artifacts match the signed retrospective manifest."
+          "assurance_mode": "direct_signature_verified",
+          "detail": "Tag signature verified against an active release signer."
         },
         {
           "tag": "v0.2.0-public-adoption",
-          "tag_object_sha": "dfa68ffa9a92e97b7a6c35eaeab44ce16b412f3f",
-          "target_commit_sha": "5311182c220548474fcd90b04c38dc46b144937a",
+          "tag_object_sha": "aa57ab1c00ed74794a838b4359c9cf8ff9183b9c",
+          "target_commit_sha": "406c8e988e949642955b8bea2311fb45cbf5e76e",
           "status": "verified",
           "assurance_mode": "direct_signature_verified",
           "detail": "Tag signature verified against an active release signer."
         }
       ],
       "direct_verified_release_tags": [
-        "v0.2.0-public-adoption"
-      ],
-      "legacy_manifest_verified_tags": [
         "architecture-baseline-l1-v0.1.0",
         "l1-baseline-v1.1.3",
-        "v0.1.0-public-adoption"
+        "l1-baseline-v1.2.0",
+        "l1-baseline-v1.2.1",
+        "v0.1.0-public-adoption",
+        "v0.2.0-public-adoption"
       ],
+      "legacy_manifest_verified_tags": [],
       "unverified_release_tags": [],
       "verification_errors": [],
       "future_tags_require_direct_signature": true
