@@ -64,6 +64,8 @@ Use it as the first navigation point after `AGENTS.md`.
 | Verify the personal GitHub channel probe | `docs/operations/evidence/governance-lifecycle-personal-channel.md`, `scripts/check_lifecycle_personal_channel.py` (personal statement required; no lifecycle authorization) |
 | Validate action-specific GitHub consent | `docs/operations/evidence/governance-lifecycle-action-consent.md`, `scripts/intake_lifecycle_pilot_action.py` (pilot eligibility; effective LD-07 gates official publication) |
 | Read the complete technical function inventory | `docs/operations/guides/repository-technical-function-inventory.md` |
+| Understand and review post-merge documentation proposals | `docs/operations/guides/documentation-after-merge.md`, `.github/workflows/documentation-refresh.yml`, `scripts/reconcile_documentation_after_merge.py` |
+| Review the authorized scope of post-merge documentation maintenance | `docs/governance/change-requests/GCR-2026-137-post-merge-documentation-refresh.md` |
 | Inspect the accepted live pilot state | `docs/operations/status/governance-lifecycle-current-state.md`, `status/governance-lifecycle-live.json` |
 | Inspect or operate the GitHub pilot after LD-07 | `docs/operations/evidence/governance-lifecycle-live-operation.md`, `scripts/run_lifecycle_pilot_update.py` (personal acceptance captured and merged; manual report-only pilot) |
 | Open CLG-06.2 read-only scenario viewer | `docs/operations/evidence/governance-lifecycle-viewer.md`, `scripts/generate_governance_lifecycle_viewer.py` (synthetic; separate from official status) |
