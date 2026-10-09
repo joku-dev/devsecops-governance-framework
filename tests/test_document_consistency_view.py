@@ -14,12 +14,17 @@ from lib.document_consistency_view import project_public
 class DocumentConsistencyViewTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.report = json.loads((ROOT / "docs/examples/document-consistency-review-phase2-report.json").read_text())
+        cls.report = json.loads((ROOT / "docs/examples/document-consistency-review-phase2-live-pilot-report.json").read_text())
         cls.manifest = json.loads((ROOT / "docs/examples/document-consistency-review-phase1-source-manifest.json").read_text())
 
-    def test_checked_in_report_projects_current_not_run_state(self):
+    def test_checked_in_pilot_report_projects_completed_review_state(self):
         result = project_public(ROOT)
-        self.assertEqual("not_run", result["overall_status"])
+        self.assertEqual("dcr-semantic-pilot-20261007-run2", result["review_id"])
+        self.assertEqual("partial", result["overall_status"])
+        self.assertEqual("completed", result["execution"]["status"])
+        self.assertEqual("partial", result["sections"]["semantic_review"])
+        self.assertEqual("not_run", result["sections"]["human_decisions"])
+        self.assertEqual("not_assessed", result["sections"]["implementation_coverage"])
         self.assertEqual("current", result["freshness"]["status"])
         self.assertEqual(2, result["scope"]["source_count"])
         self.assertEqual([], result["findings"])
