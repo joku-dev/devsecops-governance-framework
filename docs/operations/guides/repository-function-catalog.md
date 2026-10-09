@@ -26,6 +26,13 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 ## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
 
 <!-- DOCS_REFRESH_CATALOG:start -->
+### PR #247: fix(ci): resolve dependency review refs on dispatch (`c63724b30cd4`)
+
+- Resolve dispatched base/head names to commit SHAs before dependency-manifest detection, including remote-tracking refs such as origin/main.
+- Start the Dependency Review dispatch from main while passing the documentation PR branch as its head, so it uses the corrected workflow version.
+- Add regression coverage for ref resolution and the dispatch ref.
+
+Die fachliche Zuordnung und Auswirkungen auf bestehende Funktionsbereiche sind vor dem Merge dieses Dokumentations-PRs redaktionell zu prüfen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
