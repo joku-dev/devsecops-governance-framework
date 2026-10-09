@@ -282,7 +282,9 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
         self.assertIn("workflow_dispatch", workflow["on"])
         steps = workflow["jobs"]["dependency-review"]["steps"]
         detector = next(step for step in steps if step.get("id") == "dependency-scope")
-        self.assertIn("git diff --quiet", detector["run"])
+        self.assertIn("resolve_commit()", detector["run"])
+        self.assertIn("refs/remotes/origin/$input_ref", detector["run"])
+        self.assertIn('git diff --quiet "$BASE_COMMIT" "$HEAD_COMMIT"', detector["run"])
         action = next(
             step for step in steps
             if "actions/dependency-review-action@" in step.get("uses", "")
