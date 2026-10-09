@@ -145,7 +145,12 @@ def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None)
         else build_consumer_lifecycle_next_step(root)
     )
     document_review = root / 'docs/examples/document-consistency-review-phase2-report.json'
-    data['document_consistency'] = project_document_consistency(root) if document_review.exists() else None
+    public_document_review = root / 'status/document-consistency-public-projection.json'
+    data['document_consistency'] = (
+        project_document_consistency(root)
+        if public_document_review.exists() or document_review.exists()
+        else None
+    )
     if technical_html is None:
         legacy = root / 'generated/viewer/status-viewer.html'
         technical_html = legacy.read_text(encoding='utf-8') if legacy.exists() else ''
