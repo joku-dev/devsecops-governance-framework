@@ -12,12 +12,12 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #244: source-document intake and candidate registration (`430550f00aa9`)
+## PR #255: feat(docs): add modular doc-as-code publication pilot (`a451a7c407ac`)
 
-- Remove obsolete `*.public.md` placeholders and point source lineage to the tracked, maintainer-confirmed `*.requirements.md` versions.
-- Register five incoming documents as candidates and record the human decisions in GCR-2026-113/114. Candidate status does not authorize derivation.
-- Refresh intake, requirement-delta, architecture-replacement, lineage, graph, and viewer projections; update tests for the revised source register.
-- Keep the existing 22 functional areas: this extends source management, change preparation, and lineage functions without changing controls, policies, baselines, or enforcement.
+- Add a modular doc-as-code/ publication component with one Git-authored Markdown pilot.
+- Generate standalone HTML, DOCX and PDF with pinned Pandoc 3.12, XeLaTeX and a SHA-256 provenance manifest.
+- Build review artifacts on pull requests and publish the downloads beside the MkDocs pilot page after merge to main.
+- Record architecture and governance boundaries; keep model-to-document generation deferred.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
