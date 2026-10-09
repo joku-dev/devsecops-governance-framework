@@ -1,5 +1,5 @@
 name: Build Doc-as-Code Publication
-description: Install the pinned publication toolchain and build the Git-authored pilot.
+description: Install the pinned publication toolchain and build the manifest-controlled pilot.
 
 runs:
   using: composite

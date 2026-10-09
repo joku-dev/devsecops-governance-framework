@@ -23,7 +23,7 @@ GCR-2026-140
 | Full source-document intake required? | no |
 | New or updated source document? | no; the pilot is explanatory publication material |
 | Source document path | not applicable |
-| Reviewed non-source path | `docs/publishing/doc-as-code-pilot.md`, architecture decision and publication workflow |
+| Reviewed non-source path | Original `docs/publishing/doc-as-code-pilot.md` (migrated by GCR-2026-141 to `docs/publishing/doc-as-code-pilot/`), architecture decision and publication workflow |
 | Register updated? | no |
 | Supersedes existing source? | no |
 | Possible duplicate or replacement candidate? | no |
@@ -36,7 +36,7 @@ GCR-2026-140
 |---|---|
 | Artifact name | Git-authored documentation publication pilot |
 | Artifact type | documentation / workflow / generated publication |
-| Target path | `docs/operations/planning/doc-as-code-architecture-decision.md`; `docs/publishing/doc-as-code-pilot.md`; `doc-as-code/`; `.github/workflows/doc-as-code-preview.yml`; `.github/workflows/publish-docs.yml` |
+| Target path | `docs/operations/planning/doc-as-code-architecture-decision.md`; original `docs/publishing/doc-as-code-pilot.md` (current modular path: `docs/publishing/doc-as-code-pilot/`); `doc-as-code/`; `.github/workflows/doc-as-code-preview.yml`; `.github/workflows/publish-docs.yml` |
 | Owner | Repository Maintainer / Governance Platform Lead |
 | Source Document Intake required? | no |
 | Evidence contract impact | none; the publication provenance is a build record, not governance evidence |

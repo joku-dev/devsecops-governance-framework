@@ -3,7 +3,7 @@ name: Doc-as-Code Publication Preview
 on:
   pull_request:
     paths:
-      - "docs/publishing/doc-as-code-pilot.md"
+      - "docs/publishing/doc-as-code-pilot/**"
       - "doc-as-code/**"
       - "requirements-validation.lock"
       - ".github/workflows/doc-as-code-preview.yml"
@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -29,6 +31,14 @@ jobs:
 
       - name: Build publication exports
         uses: ./doc-as-code
+
+      - name: Summarize requirement changes
+        if: ${{ github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          python3 doc-as-code/scripts/summarize_requirement_changes.py \
+            --base-ref "origin/${{ github.base_ref }}"
+          cat build/doc-as-code/requirements-change-summary.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload reviewable publication files
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

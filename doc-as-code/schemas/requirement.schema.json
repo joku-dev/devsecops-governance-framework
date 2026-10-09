@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/doc-as-code/requirement.schema.json",
+  "title": "Doc-as-Code publication requirement metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "status", "normative_level", "owner", "effective_from", "source_ids", "control_ids", "evidence_types", "supersedes"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^DAC-REQ-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "effective", "retired"]},
+    "normative_level": {"enum": ["informative", "recommended", "required"]},
+    "owner": {"type": "string", "minLength": 1},
+    "effective_from": {"type": "string", "format": "date"},
+    "source_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "control_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "evidence_types": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "supersedes": {"type": ["string", "null"], "pattern": "^DAC-REQ-[0-9]{3}$"}
+  }
+}

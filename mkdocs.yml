@@ -42,6 +42,7 @@ nav:
       - Change Requests:
           - GCR-2026-114 External Consumer Pilot Intake Remediation: governance/change-requests/GCR-2026-114-external-consumer-pilot-intake-remediation.md
           - GCR-2026-140 Git-native Documentation Pilot: governance/change-requests/GCR-2026-140-doc-as-code-pilot.md
+          - GCR-2026-141 Modular Doc-as-Code Model: governance/change-requests/GCR-2026-141-modular-doc-as-code-model.md
   - Platform:
       - Control Baseline and Platform Architecture: platform/control-baseline-and-platform-architecture-relationship-explained.md
   - Controls:
@@ -54,7 +55,7 @@ nav:
       - Artifact Intake Checklist Template: examples/artifact-intake-checklist.template.md
   - Publishing:
       - Overview: publishing/index.md
-      - Git-native Documentation Pilot: publishing/doc-as-code-pilot.md
+      - Git-native Documentation Pilot: publishing/doc-as-code-pilot/index.md
       - Executive Whitepaper And Presentation: publishing/executive-briefing/README.md
       - Executive Whitepaper: publishing/executive-briefing/whitepaper.md
       - Repository Function Presentation: publishing/repository-walkthrough/README.md
