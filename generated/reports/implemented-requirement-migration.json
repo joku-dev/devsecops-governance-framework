@@ -4,7 +4,7 @@
   "status": "review_required",
   "summary": {
     "source_requirements": 867,
-    "artifact_records": 503,
+    "artifact_records": 504,
     "requirements_with_candidates": 824,
     "requirements_without_candidates": 43,
     "confirmed_register_entries": 8,
@@ -14,7 +14,7 @@
       "platform": 74,
       "policies": 14,
       "releases": 201,
-      "schemas": 126,
+      "schemas": 127,
       "workflows": 28
     }
   },
@@ -1858,6 +1858,13 @@
       "source_basis": null
     },
     {
+      "path": "schemas/pra-requirement-platform-review.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "f563748bb769905711868162c82e3257390a1f60ac6349fa54ff7808c6ae6f98",
+      "source_basis": null
+    },
+    {
       "path": "schemas/quality-marker.schema.json",
       "type": "schemas",
       "artifact_id": null,
@@ -2155,7 +2162,7 @@
       "path": ".github/workflows/requirement-lifecycle.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "967bac20c07e8c8c9b48f0523eaab464d0d44f12990ef8dc4e2cdacbc2635ee7",
+      "sha256": "1397a67707b1289df9c117305d3aafc24a9e35d4bfa6e145276ebb3ebabc7ced",
       "source_basis": null
     },
     {

@@ -5,7 +5,7 @@ This report is advisory. It inventories active artifacts and proposes mappings; 
 ## Summary
 
 - Source requirements: 867
-- Active artifact records: 503
+- Active artifact records: 504
 - Requirements with candidates: 824
 - Requirements without candidates: 43
 - Confirmed register entries: 8
