@@ -97,7 +97,7 @@ def decide(args) -> None:
         classification=args.classification, target_requirement_id=args.target,
         decided_by=args.decided_by, decision_role=args.decision_role,
         rationale=args.rationale, authorized_derivations=args.authorized_derivation,
-        runtime_enforcement=args.runtime_enforcement,
+        runtime_enforcement=args.runtime_enforcement, decision_ref=args.decision_ref,
     )
     write_json(case_path(args.case_id), case)
     refresh_ledger(case)
@@ -302,6 +302,7 @@ def parser() -> argparse.ArgumentParser:
     decision.add_argument("--disposition", choices=["approve", "reject"], required=True)
     decision.add_argument("--classification", choices=["duplicate", "new", "extend", "change", "supersede", "conflict"], required=True)
     decision.add_argument("--target")
+    decision.add_argument("--decision-ref", help="Versioned decision record; defaults to the lifecycle case reference")
     decision.add_argument("--authorized-derivation", action="append", default=[])
     decision.add_argument("--runtime-enforcement", choices=["none", "report_only", "blocking"], default="none")
     decision.set_defaults(handler=decide)

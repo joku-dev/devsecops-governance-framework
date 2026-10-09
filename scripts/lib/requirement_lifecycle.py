@@ -211,7 +211,8 @@ def build_native_case(*, case_id: str, source_id: str, source_path: Path, owner:
 
 def record_decision(case: dict, *, proposal_id: str, disposition: str, classification: str,
                     target_requirement_id: str | None, decided_by: str, decision_role: str,
-                    rationale: str, authorized_derivations: list[str], runtime_enforcement: str) -> None:
+                    rationale: str, authorized_derivations: list[str], runtime_enforcement: str,
+                    decision_ref: str | None = None) -> None:
     if classification not in CLASSIFICATIONS:
         raise ValueError(f"unsupported classification: {classification}")
     if disposition not in {"approve", "reject"}:
@@ -234,6 +235,7 @@ def record_decision(case: dict, *, proposal_id: str, disposition: str, classific
         "decided_by": decided_by,
         "decision_role": decision_role,
         "decided_at": utc_now(),
+        "decision_ref": decision_ref or case["source"]["decision_ref"],
         "rationale": rationale,
         "authorized_derivations": authorized_derivations,
         "runtime_enforcement": runtime_enforcement,
@@ -315,7 +317,7 @@ def activate_case(case: dict, catalog: dict, *, effective_from: str, commit: str
             "effective_until": None,
             "source_refs": [proposal["source_requirement_id"]],
             "relationships": relationships,
-            "decision_ref": case["source"]["decision_ref"],
+            "decision_ref": decision["decision_ref"],
             "authorized_derivations": decision["authorized_derivations"],
             "runtime_enforcement": decision["runtime_enforcement"],
         })

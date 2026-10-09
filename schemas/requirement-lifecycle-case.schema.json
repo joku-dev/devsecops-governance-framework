@@ -50,13 +50,14 @@
           "decision": {
             "oneOf": [
               {"type": "null"},
-              {"type": "object", "additionalProperties": false, "required": ["disposition", "classification", "target_requirement_id", "decided_by", "decision_role", "decided_at", "rationale", "authorized_derivations", "runtime_enforcement"], "properties": {
+              {"type": "object", "additionalProperties": false, "required": ["disposition", "classification", "target_requirement_id", "decided_by", "decision_role", "decided_at", "decision_ref", "rationale", "authorized_derivations", "runtime_enforcement"], "properties": {
                 "disposition": {"enum": ["approve", "reject"]},
                 "classification": {"enum": ["duplicate", "new", "extend", "change", "supersede", "conflict"]},
                 "target_requirement_id": {"type": ["string", "null"]},
                 "decided_by": {"type": "string", "minLength": 1},
                 "decision_role": {"type": "string", "minLength": 1},
                 "decided_at": {"type": "string", "format": "date-time"},
+                "decision_ref": {"type": "string", "minLength": 1},
                 "rationale": {"type": "string", "minLength": 1},
                 "authorized_derivations": {"type": "array", "uniqueItems": true, "items": {"enum": ["documentation", "controls", "platform", "architecture", "policies", "schemas", "workflows", "releases"]}},
                 "runtime_enforcement": {"enum": ["none", "report_only", "blocking"]}
