@@ -241,12 +241,43 @@ def record_decision(case: dict, *, proposal_id: str, disposition: str, classific
     case["status"] = "approved" if all(item["decision"] is not None for item in case["proposals"]) else "decision_required"
 
 
-def activate_case(case: dict, catalog: dict, *, effective_from: str, commit: str) -> None:
-    if any(item["decision"] is None for item in case["proposals"]):
-        raise ValueError("all proposals require an explicit decision before activation")
+def _update_case_status(case: dict) -> None:
+    open_items = [item for item in case["proposals"] if item["decision"] is None]
+    incomplete = [
+        item for item in case["proposals"]
+        if item["decision"] is not None
+        and item["decision"]["disposition"] == "approve"
+        and item["decision"]["classification"] != "duplicate"
+        and item["activation"] is None
+    ]
+    progressed = any(item["decision"] is not None or item["activation"] is not None for item in case["proposals"])
+    if not open_items and not incomplete:
+        case["status"] = "activated"
+    elif progressed:
+        case["status"] = "partially_activated"
+    else:
+        case["status"] = "decision_required"
+
+
+def activate_case(case: dict, catalog: dict, *, effective_from: str, commit: str,
+                  proposal_ids: list[str] | None = None) -> None:
+    """Activate approved proposals, optionally as an explicit partial batch."""
+    selected = set(proposal_ids or [item["proposal_id"] for item in case["proposals"]])
+    known_proposals = {item["proposal_id"] for item in case["proposals"]}
+    unknown = selected - known_proposals
+    if unknown:
+        raise ValueError(f"unknown proposals: {', '.join(sorted(unknown))}")
+    if not proposal_ids and any(item["decision"] is None for item in case["proposals"]):
+        raise ValueError("all proposals require an explicit decision before full-case activation")
     known = {item["id"]: item for item in catalog["requirements"]}
     for proposal in case["proposals"]:
+        if proposal["proposal_id"] not in selected:
+            continue
+        if proposal["activation"] is not None:
+            raise ValueError(f"proposal already activated: {proposal['proposal_id']}")
         decision = proposal["decision"]
+        if decision is None:
+            raise ValueError(f"proposal requires an explicit decision: {proposal['proposal_id']}")
         if decision["disposition"] == "reject" or decision["classification"] == "duplicate":
             continue
         if decision["classification"] == "conflict":
@@ -295,7 +326,7 @@ def activate_case(case: dict, catalog: dict, *, effective_from: str, commit: str
             "effective_from": effective_from,
             "commit": commit,
         }
-    case["status"] = "activated"
+    _update_case_status(case)
 
 
 def render_requirement_markdown(requirement: dict) -> str:

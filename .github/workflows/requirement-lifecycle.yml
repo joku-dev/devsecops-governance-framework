@@ -8,9 +8,11 @@ on:
       - "schemas/*requirement*.json"
       - "scripts/manage_requirement_lifecycle.py"
       - "scripts/validate_requirement_lifecycle.py"
+      - "scripts/generate_implemented_requirement_migration.py"
       - "scripts/lib/requirement_lifecycle.py"
       - "docs/governance/requirements/**"
       - "docs/publishing/governance-requirement-catalog/**"
+      - "generated/reports/implemented-requirement-migration.*"
       - "doc-as-code/**"
       - ".github/workflows/requirement-lifecycle.yml"
   push:
@@ -20,9 +22,11 @@ on:
       - "schemas/*requirement*.json"
       - "scripts/manage_requirement_lifecycle.py"
       - "scripts/validate_requirement_lifecycle.py"
+      - "scripts/generate_implemented_requirement_migration.py"
       - "scripts/lib/requirement_lifecycle.py"
       - "docs/governance/requirements/**"
       - "docs/publishing/governance-requirement-catalog/**"
+      - "generated/reports/implemented-requirement-migration.*"
       - "doc-as-code/**"
       - ".github/workflows/requirement-lifecycle.yml"
 
@@ -45,7 +49,9 @@ jobs:
           BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
           python scripts/manage_requirement_lifecycle.py generate-publication
+          python scripts/generate_implemented_requirement_migration.py
           git diff --exit-code -- docs/publishing/governance-requirement-catalog/
+          git diff --exit-code -- generated/reports/implemented-requirement-migration.json generated/reports/implemented-requirement-migration.md
           if [ -n "$BASE_REF" ] && git cat-file -e "$BASE_REF^{commit}" 2>/dev/null; then
             python scripts/validate_requirement_lifecycle.py --base-ref "$BASE_REF"
           else
@@ -53,7 +59,7 @@ jobs:
           fi
           python doc-as-code/scripts/build_publication.py --validate-only --manifest docs/publishing/governance-requirement-catalog/publication.yaml
       - name: Run requirement lifecycle tests
-        run: python -m unittest tests.test_requirement_lifecycle
+        run: python -m unittest tests.test_requirement_lifecycle tests.test_requirement_artifact_register
       - name: Summarize review state
         run: python scripts/manage_requirement_lifecycle.py report >> "$GITHUB_STEP_SUMMARY"
       - name: Build catalog HTML, Word, and PDF preview

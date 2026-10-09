@@ -8,7 +8,7 @@
     "schema_version": {"const": "1.0.0"},
     "case_id": {"type": "string", "pattern": "^RLC-[A-Z0-9-]+$"},
     "intake_type": {"enum": ["source_document", "native_git"]},
-    "status": {"enum": ["proposed", "analyzed", "decision_required", "approved", "activated", "closed"]},
+    "status": {"enum": ["proposed", "analyzed", "decision_required", "approved", "partially_activated", "activated", "closed"]},
     "created_at": {"type": "string", "format": "date-time"},
     "source": {
       "type": "object",
@@ -58,7 +58,7 @@
                 "decision_role": {"type": "string", "minLength": 1},
                 "decided_at": {"type": "string", "format": "date-time"},
                 "rationale": {"type": "string", "minLength": 1},
-                "authorized_derivations": {"type": "array", "uniqueItems": true, "items": {"enum": ["documentation", "controls", "architecture", "policies", "schemas", "workflows", "releases"]}},
+                "authorized_derivations": {"type": "array", "uniqueItems": true, "items": {"enum": ["documentation", "controls", "platform", "architecture", "policies", "schemas", "workflows", "releases"]}},
                 "runtime_enforcement": {"enum": ["none", "report_only", "blocking"]}
               }}
             ]

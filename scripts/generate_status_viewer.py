@@ -1640,6 +1640,35 @@ def build_source_document_intake_section(
     )
 
 
+def build_requirement_migration_section(report: dict) -> str:
+    if not report:
+        return ""
+    summary = report.get("summary", {})
+    rows = []
+    for source_id, state in sorted(report.get("sources", {}).items()):
+        migrated = state["total"] - state["open"]
+        status = "open" if state["open"] == state["total"] else ("migrated" if state["open"] == 0 else "partially migrated")
+        rows.append([
+            f"<code>{escape(source_id)}</code>", str(state["total"]), str(state["with_candidates"]),
+            str(migrated), str(state["open"]), badge(status, "ok" if status == "migrated" else "warn"),
+        ])
+    return (
+        '<section id="requirement-migration" class="viewer-section">'
+        '<div class="section-title"><h2>Requirement Migration</h2>'
+        '<p>Review state for implemented-requirement-first migration. Suggestions remain non-normative until both human decisions are recorded.</p></div>'
+        '<section class="cards">'
+        f'<section class="card"><h3>Source Requirements</h3><div class="value">{summary.get("source_requirements", 0)}</div><p>Approved document inputs</p></section>'
+        f'<section class="card"><h3>With Candidates</h3><div class="value">{summary.get("requirements_with_candidates", 0)}</div><p>Automated review suggestions</p></section>'
+        f'<section class="card"><h3>Confirmed Mappings</h3><div class="value">{summary.get("confirmed_register_entries", 0)}</div><p>Effective register entries</p></section>'
+        '</section><section class="panel"><h2>Migration by Source</h2>'
+        + html_table(["Source", "Total", "Candidates", "Migrated", "Open", "Status"], rows)
+        + '</section><section class="panel"><h2>Migration Artifacts</h2><ul class="artifact-list">'
+        '<li><a href="../reports/implemented-requirement-migration.md">Implemented Requirement Migration</a></li>'
+        '<li><a href="../../model/requirements/requirement-to-artifact-register.yaml">Requirement-to-Artifact Register</a></li>'
+        '</ul></section></section>'
+    )
+
+
 def main() -> int:
     measured_security_html = render_measured_security(load_snapshots(ROOT / "status/measured-security-results"))
     controls = []
@@ -1717,6 +1746,8 @@ def main() -> int:
     source_intake_review_briefs = load_json(source_intake_review_briefs_path) if source_intake_review_briefs_path.exists() else {}
     source_requirement_delta_path = ROOT / "generated" / "reports" / "source-document-requirement-delta.json"
     source_requirement_delta = load_json(source_requirement_delta_path) if source_requirement_delta_path.exists() else {}
+    requirement_migration_path = ROOT / "generated" / "reports" / "implemented-requirement-migration.json"
+    requirement_migration = load_json(requirement_migration_path) if requirement_migration_path.exists() else {}
     replay_triage_path = ROOT / "generated" / "reports" / "replay-triage.json"
     replay_triage = load_json(replay_triage_path) if replay_triage_path.exists() else {}
     latest_result_with_summary = None
@@ -2019,6 +2050,7 @@ def main() -> int:
         source_intake_review_briefs or {},
         source_requirement_delta or {},
     )
+    requirement_migration_html = build_requirement_migration_section(requirement_migration)
     architecture_gate_rows = build_architecture_gate_rows(architecture_report)
     runtime_domain_rows = build_runtime_domain_rows(end_to_end_report)
     runtime_governance_html = (
@@ -2219,6 +2251,7 @@ def main() -> int:
       <a href="#intake-health">Intake Health</a>
       <a href="#intake-conflicts">Intake Conflicts</a>
       <a href="#source-intake">Source Intake</a>
+      <a href="#requirement-migration">Requirement Migration</a>
       <a href="#agent-usage">Agent Usage</a>
       <a href="#runs">Runs</a>
       <a href="#controls">Controls</a>
@@ -2263,6 +2296,8 @@ def main() -> int:
     {evidence_agent_provenance_html}
 
     {source_intake_html}
+
+    {requirement_migration_html}
 
     {agent_usage_html}
 
@@ -2344,6 +2379,7 @@ def main() -> int:
             <li><a href="../reports/source-document-intake-status.md">Source Document Intake Status</a></li>
             <li><a href="../reports/source-document-intake-review-briefs.md">Source Document Intake Review Briefs</a></li>
             <li><a href="../reports/source-document-requirement-delta.md">Source Document Requirement Delta</a></li>
+            <li><a href="../reports/implemented-requirement-migration.md">Implemented Requirement Migration</a></li>
             <li><a href="../reports/governance-change-impact.md">Governance Change Impact Report</a></li>
             <li><a href="../reports/architecture-source-replacement-assessment.md">Architecture Source Replacement Assessment</a></li>
             <li><a href="../reports/document-control-matrix.md">Document To Control Matrix</a></li>
