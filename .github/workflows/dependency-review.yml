@@ -48,7 +48,22 @@ jobs:
             'Gemfile' '**/Gemfile' 'Gemfile.lock' '**/Gemfile.lock'
             'composer.json' '**/composer.json' 'composer.lock' '**/composer.lock'
           )
-          if git diff --quiet "$BASE_REF" "$HEAD_REF" -- "${dependency_paths[@]}"; then
+          resolve_commit() {
+            local input_ref="$1"
+            local candidate
+            for candidate in "$input_ref" "refs/remotes/origin/$input_ref"; do
+              if resolved="$(git rev-parse --verify --quiet --end-of-options "${candidate}^{commit}")"; then
+                printf '%s\n' "$resolved"
+                return 0
+              fi
+            done
+            echo "Unable to resolve Git ref '$input_ref' as a commit or origin remote-tracking ref." >&2
+            return 1
+          }
+
+          BASE_COMMIT="$(resolve_commit "$BASE_REF")"
+          HEAD_COMMIT="$(resolve_commit "$HEAD_REF")"
+          if git diff --quiet "$BASE_COMMIT" "$HEAD_COMMIT" -- "${dependency_paths[@]}"; then
             echo 'changed=false' >> "$GITHUB_OUTPUT"
             echo 'No dependency manifest changed; native dependency review is not required.'
           else
