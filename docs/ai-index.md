@@ -26,6 +26,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Understand source-document lineage | `generated/reports/source-lineage-report.md` |
 | Classify a new artifact before adding it | `docs/operations/processes/new-artifact-intake-process.md` |
 | Understand the modular Git-native documentation publication model | `docs/operations/planning/doc-as-code-architecture-decision.md`, `docs/publishing/doc-as-code-pilot/publication.yaml`, `docs/publishing/doc-as-code-pilot/requirements/`, `doc-as-code/`, `docs/governance/change-requests/GCR-2026-141-modular-doc-as-code-model.md` |
+| Operate the hybrid document-to-Git requirement lifecycle | `docs/operations/processes/hybrid-requirement-lifecycle.md`, `model/requirements/requirement-authority-ledger.yaml`, `model/requirements/governance-requirement-catalog.yaml`, `model/requirements/lifecycle-cases/`, `docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md` |
 | Add a new artifact safely | `docs/operations/guides/how-to-add-a-new-artifact.md` |
 | Intake updated input documents | `docs/governance/governance-change-lifecycle.md`, `docs/operations/processes/source-document-intake-process.md`, `docs/operations/processes/source-document-intake-review-operating-model.md`, `model/documents/source-document-register.yaml` |
 | Understand ADO and DevSecOps-as-Code as one system | `docs/governance/architecture/ado-devsecops-integrated-governance-model.md` |

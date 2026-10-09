@@ -18,6 +18,14 @@ documents in this repository.
 | Shared CI build action | `doc-as-code/action.yml` |
 | CI entrypoints | `.github/workflows/doc-as-code-preview.yml` and `publish-docs.yml` |
 
+The component also renders the canonical governance requirement catalog from
+`docs/publishing/governance-requirement-catalog/publication.yaml`. That
+publication is generated from the active catalog revisions by
+`scripts/manage_requirement_lifecycle.py generate-publication`. Its
+`publication_class: normative` identifies the content class; the Requirement
+Authority Ledger still determines whether Git or an external source document
+is authoritative for each migrating source.
+
 The split is deliberate: MkDocs continues to own the repository's full
 documentation tree, while the renderer, toolchain and publication styling have
 their own directory boundary. GitHub Actions workflow definitions stay under

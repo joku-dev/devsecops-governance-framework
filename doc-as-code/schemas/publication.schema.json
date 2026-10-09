@@ -12,8 +12,8 @@
     "title": {"type": "string", "minLength": 1},
     "language": {"type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$"},
     "status": {"enum": ["draft", "pilot", "approved", "retired"]},
-    "publication_class": {"const": "explanatory"},
-    "source_of_truth": {"const": "modular_markdown"},
+    "publication_class": {"enum": ["explanatory", "normative"]},
+    "source_of_truth": {"enum": ["modular_markdown", "canonical_requirement_catalog"]},
     "outputs": {
       "type": "array",
       "uniqueItems": true,

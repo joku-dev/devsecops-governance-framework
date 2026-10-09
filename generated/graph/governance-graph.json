@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "graph_id": "governance-intelligence-graph",
-  "generated_at": "2026-10-08T20:06:40Z",
+  "generated_at": "2026-10-09T16:54:42Z",
   "source_inputs": [
     "model/documents/source-document-register.yaml",
     "generated/reports/source-lineage-report.json",
@@ -1760,7 +1760,7 @@
       "properties": {
         "path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
         "document_id": "ARCH-EA-REQ-001",
-        "status": "intake",
+        "status": "approved",
         "owner": "architecture-owners",
         "governance_domains": [
           "architecture"
@@ -1788,7 +1788,7 @@
       "properties": {
         "path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
         "document_id": "ARCH-PA-REQ-001",
-        "status": "intake",
+        "status": "approved",
         "owner": "architecture-owners",
         "governance_domains": [
           "architecture"
@@ -1802,7 +1802,7 @@
       "properties": {
         "path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
         "document_id": "ARCH-SA-REQ-001",
-        "status": "intake",
+        "status": "approved",
         "owner": "architecture-owners",
         "governance_domains": [
           "architecture"
@@ -1840,7 +1840,7 @@
       "properties": {
         "path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
         "document_id": "ARCH-TPL-REQ-001",
-        "status": "intake",
+        "status": "approved",
         "owner": "architecture-owners",
         "governance_domains": [
           "architecture"
@@ -1900,7 +1900,7 @@
       "properties": {
         "path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
         "document_id": "DSCB-STD-REQ-001",
-        "status": "intake",
+        "status": "approved",
         "owner": "devsecops-owners",
         "governance_domains": [
           "devsecops"
@@ -1945,7 +1945,7 @@
       "properties": {
         "path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
         "document_id": "PRA-STD-REQ-001",
-        "status": "intake",
+        "status": "approved",
         "owner": "platform-owners",
         "governance_domains": [
           "platform",
