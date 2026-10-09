@@ -26,11 +26,13 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 ## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
 
 <!-- DOCS_REFRESH_CATALOG:start -->
-### PR #245: feat: refresh documentation after implementation merges (`01e633e95b0e`)
+### PR #244: feat(intake): register source candidates and remove public placeholders (`430550f00aa9`)
 
-- Add a post-merge workflow that detects implementation changes on main, updates the README, functional catalog and technical inventory, runs a local Markdown link audit and strict MkDocs build, then opens a separate documentation PR.
-- Keep semantic interpretation and final edits with human reviewers; documentation-only merges are skipped, preventing a follow-up loop.
-- Add GCR-2026-137, an operating guide, generator tests, and reconcile the catalog and technical inventory counts.
+- Remove invalid *.public.md placeholders and reference the tracked requirements versions.
+- Register five incoming source documents as candidates with human decision records; no candidate-derived governance artifacts are introduced.
+- Regenerate intake, lineage, delta, impact, graph, and viewer projections.
+- Update tests for removed placeholders and the stale historical DCR source-register snapshot.
+- Fix the accidental 36  prefix in GCR-2026-107.
 
 Die fachliche Zuordnung und Auswirkungen auf bestehende Funktionsbereiche sind vor dem Merge dieses Dokumentations-PRs redaktionell zu prüfen.
 <!-- DOCS_REFRESH_CATALOG:end -->

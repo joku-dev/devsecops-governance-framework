@@ -12,10 +12,26 @@ mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbol
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-### PR #245: feat: refresh documentation after implementation merges (`01e633e95b0e`)
+### PR #244: feat(intake): register source candidates and remove public placeholders (`430550f00aa9`)
 
-- `.github/workflows/documentation-refresh.yml`
-- `scripts/reconcile_documentation_after_merge.py`
+- `architecture/arch-gov.yaml`
+- `architecture/arch-l1.yaml`
+- `architecture/arch-l2.yaml`
+- `architecture/arch-l3.yaml`
+- `architecture/guardrails.yaml`
+- `architecture/quality-markers.yaml`
+- `architecture/remediation-actions.yaml`
+- `architecture/review-gates.yaml`
+- `model/controls/governance-repository-security.yaml`
+- `model/documents/governance-documents.yaml`
+- `model/documents/source-document-register.yaml`
+- `model/evidence/evidence-collector-contract.yaml`
+- `model/evidence/evidence-freshness-policies.yaml`
+- `model/evidence/evidence-trust-model.yaml`
+- `scripts/generate_architecture_source_replacement_assessment.py`
+- `scripts/generate_source_document_intake_status.py`
+- `scripts/generate_source_document_requirement_delta.py`
+- `scripts/generate_source_lineage_report.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
