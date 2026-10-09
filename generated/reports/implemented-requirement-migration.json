@@ -42,7 +42,7 @@
     "DSCB-STD-REQ-001": {
       "total": 55,
       "with_candidates": 55,
-      "open": 55
+      "open": 9
     },
     "PRA-STD-REQ-001": {
       "total": 56,
@@ -1903,7 +1903,7 @@
       "path": "schemas/requirement-lifecycle-case.schema.json",
       "type": "schemas",
       "artifact_id": null,
-      "sha256": "f1232668a6e5b26dfc97b2002a19b4c6596d18428ee422a590cb7dda3b9c760c",
+      "sha256": "b96a6e72d4da2533c166e2724dda8816558187068211d608cb292b3ee9ef7546",
       "source_basis": null
     },
     {
@@ -39926,7 +39926,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0010",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-010",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -40007,7 +40007,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0011",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-011",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40088,7 +40088,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0012",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-012",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40169,7 +40169,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0013",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-013",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40250,7 +40250,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-014",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40331,7 +40331,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0015",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-015",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40412,7 +40412,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-016",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40493,7 +40493,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-017",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40574,7 +40574,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0018",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-018",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40655,7 +40655,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0019",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-019",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40736,7 +40736,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0020",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-020",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40817,7 +40817,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-021",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40898,7 +40898,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0022",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-022",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -40979,7 +40979,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-023",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -41060,7 +41060,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0024",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-024",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -41141,7 +41141,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0025",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-025",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l1.yaml",
@@ -41222,7 +41222,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-026",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41303,7 +41303,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0027",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-027",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41384,7 +41384,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0028",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-028",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41465,7 +41465,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0029",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-029",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41546,7 +41546,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-030",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41627,7 +41627,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0031",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-031",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41708,7 +41708,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-032",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41789,7 +41789,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0033",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-033",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41870,7 +41870,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0034",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-034",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -41951,7 +41951,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-035",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -42032,7 +42032,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-036",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -42113,7 +42113,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0037",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-037",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -42194,7 +42194,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0038",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-038",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -42275,7 +42275,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0039",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-039",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l2.yaml",
@@ -42356,7 +42356,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-040",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -42437,7 +42437,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-041",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -42518,7 +42518,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-042",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -42599,7 +42599,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0043",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-043",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -42680,7 +42680,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0044",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-044",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -42761,7 +42761,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0045",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-045",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -42842,7 +42842,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-046",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -42923,7 +42923,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0047",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-047",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -43004,7 +43004,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0048",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-048",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -43085,7 +43085,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0049",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-049",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -43166,7 +43166,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0050",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-050",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-l3.yaml",
@@ -43247,7 +43247,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0051",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-051",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-gov.yaml",
@@ -43328,7 +43328,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0052",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-052",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-gov.yaml",
@@ -43409,7 +43409,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0053",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-053",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-gov.yaml",
@@ -43490,7 +43490,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0054",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-054",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-gov.yaml",
@@ -43571,7 +43571,7 @@
       "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0055",
       "source_id": "DSCB-STD-REQ-001",
       "source_requirement_id": "DSCB-STD-SRC-001-REQ-055",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/controls/dscb-gov.yaml",

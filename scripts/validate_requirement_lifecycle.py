@@ -244,6 +244,12 @@ def main() -> int:
                 errors.append(f"{case['case_id']} native source invalid: {exc}")
         for proposal in case["proposals"]:
             decision = proposal["decision"]
+            if decision:
+                proposal_decision_ref = ROOT / decision["decision_ref"]
+                if not proposal_decision_ref.is_file() or not proposal_decision_ref.resolve().is_relative_to(
+                    (ROOT / "docs/governance/change-requests").resolve()
+                ):
+                    errors.append(f"{proposal['proposal_id']} decision reference is invalid")
             if decision and decision["disposition"] == "approve" and decision["classification"] != "new":
                 target = decision["target_requirement_id"]
                 valid_targets = known | proposal_ids if decision["classification"] == "duplicate" else known

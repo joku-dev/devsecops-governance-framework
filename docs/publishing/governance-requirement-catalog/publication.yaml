@@ -1,6 +1,6 @@
 schema_version: 1
 id: GOVERNANCE-REQUIREMENT-CATALOG
-version: 0.1.0
+version: 0.2.0
 title: Governance Requirement Catalog
 language: de-DE
 status: approved
@@ -13,3 +13,95 @@ outputs:
 sections:
 - path: chapters/01-authority.md
   kind: chapter
+- path: requirements/GRQ-000001.md
+  kind: requirement
+- path: requirements/GRQ-000002.md
+  kind: requirement
+- path: requirements/GRQ-000003.md
+  kind: requirement
+- path: requirements/GRQ-000004.md
+  kind: requirement
+- path: requirements/GRQ-000005.md
+  kind: requirement
+- path: requirements/GRQ-000006.md
+  kind: requirement
+- path: requirements/GRQ-000007.md
+  kind: requirement
+- path: requirements/GRQ-000008.md
+  kind: requirement
+- path: requirements/GRQ-000009.md
+  kind: requirement
+- path: requirements/GRQ-000010.md
+  kind: requirement
+- path: requirements/GRQ-000011.md
+  kind: requirement
+- path: requirements/GRQ-000012.md
+  kind: requirement
+- path: requirements/GRQ-000013.md
+  kind: requirement
+- path: requirements/GRQ-000014.md
+  kind: requirement
+- path: requirements/GRQ-000015.md
+  kind: requirement
+- path: requirements/GRQ-000016.md
+  kind: requirement
+- path: requirements/GRQ-000017.md
+  kind: requirement
+- path: requirements/GRQ-000018.md
+  kind: requirement
+- path: requirements/GRQ-000019.md
+  kind: requirement
+- path: requirements/GRQ-000020.md
+  kind: requirement
+- path: requirements/GRQ-000021.md
+  kind: requirement
+- path: requirements/GRQ-000022.md
+  kind: requirement
+- path: requirements/GRQ-000023.md
+  kind: requirement
+- path: requirements/GRQ-000024.md
+  kind: requirement
+- path: requirements/GRQ-000025.md
+  kind: requirement
+- path: requirements/GRQ-000026.md
+  kind: requirement
+- path: requirements/GRQ-000027.md
+  kind: requirement
+- path: requirements/GRQ-000028.md
+  kind: requirement
+- path: requirements/GRQ-000029.md
+  kind: requirement
+- path: requirements/GRQ-000030.md
+  kind: requirement
+- path: requirements/GRQ-000031.md
+  kind: requirement
+- path: requirements/GRQ-000032.md
+  kind: requirement
+- path: requirements/GRQ-000033.md
+  kind: requirement
+- path: requirements/GRQ-000034.md
+  kind: requirement
+- path: requirements/GRQ-000035.md
+  kind: requirement
+- path: requirements/GRQ-000036.md
+  kind: requirement
+- path: requirements/GRQ-000037.md
+  kind: requirement
+- path: requirements/GRQ-000038.md
+  kind: requirement
+- path: requirements/GRQ-000039.md
+  kind: requirement
+- path: requirements/GRQ-000040.md
+  kind: requirement
+- path: requirements/GRQ-000041.md
+  kind: requirement
+- path: requirements/GRQ-000042.md
+  kind: requirement
+- path: requirements/GRQ-000043.md
+  kind: requirement
+- path: requirements/GRQ-000044.md
+  kind: requirement
+- path: requirements/GRQ-000045.md
+  kind: requirement
+- path: requirements/GRQ-000046.md
+  kind: requirement
