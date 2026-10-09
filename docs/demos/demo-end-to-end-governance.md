@@ -95,7 +95,7 @@ Interpretation:
 
 - The recorded `ha-CPsWMS` mainline evidence demonstrates both governance domains at that revision.
 - The result is not production approval or evidence of current freshness. A passing result alone does not establish the enforcement mode of a later run.
-- The latest accepted typed vulnerability evidence is run `36997124065` from 2 October, `report_only`, with `provenance_verified` trust and critical findings. See the [typed-evidence index](../../status/typed-evidence-results-index.json) and do not interpret it as an assessment of newer images.
+- The latest accepted typed vulnerability evidence is run `36997124065` from 2 October, `report_only`, with `provenance_verified` trust and critical findings. See the [typed-evidence index](https://github.com/joku-dev/devsecops-governance-framework/blob/main/status/typed-evidence-results-index.json) and do not interpret it as an assessment of newer images.
 
 ## Public Source Placeholders
 
