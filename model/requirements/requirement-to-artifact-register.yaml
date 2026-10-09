@@ -1,4 +1,68 @@
 schema_version: 1.0.0
 register_id: REQUIREMENT-TO-ARTIFACT-REGISTER
-version: 0.1.0
-entries: []
+version: 0.2.0
+entries:
+- id: RTA-000001
+  requirement_ref: GRQ-000003@rev1
+  source_requirement_refs: [DSCB-STD-SRC-001-REQ-012]
+  artifact: {path: policies/opa/branch_protection.rego, type: policies, artifact_id: DSCB-L1-REQ-003, sha256: 220789bb1ccce8ac9dd0a1fa51501ce9cd82085052f34754b6b96557d9172c04}
+  relationship: enforces
+  decision:
+    kind: adoption
+    status: effective
+    decided_by: joku
+    decision_role: governance-owner
+    decided_at: '2026-10-09T19:23:40Z'
+    decision_ref: docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md
+    equivalence: equivalent
+    equivalence_evidence: [docs/governance/review-packets/OPA-DSCB-2026-001/review.json]
+  enforcement: none
+- id: RTA-000002
+  requirement_ref: GRQ-000006@rev1
+  source_requirement_refs: [DSCB-STD-SRC-001-REQ-015]
+  artifact: {path: policies/opa/sbom_required.rego, type: policies, artifact_id: DSCB-L1-REQ-006, sha256: b5c2865d9fc3a99b799898f01ac81e3abb5176fdcae3a2860733634412faa484}
+  relationship: enforces
+  decision: {kind: adoption, status: effective, decided_by: joku, decision_role: governance-owner, decided_at: '2026-10-09T19:23:40Z', decision_ref: docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md, equivalence: equivalent, equivalence_evidence: [docs/governance/review-packets/OPA-DSCB-2026-001/review.json]}
+  enforcement: none
+- id: RTA-000003
+  requirement_ref: GRQ-000020@rev1
+  source_requirement_refs: [DSCB-STD-SRC-001-REQ-029]
+  artifact: {path: policies/opa/access_control.rego, type: policies, artifact_id: DSCB-L2-REQ-004, sha256: ddca4015919b0ca3115d2d7a6510947398a68fb13215094eec5784be8420da38}
+  relationship: enforces
+  decision: {kind: adoption, status: effective, decided_by: joku, decision_role: governance-owner, decided_at: '2026-10-09T19:23:40Z', decision_ref: docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md, equivalence: equivalent, equivalence_evidence: [docs/governance/review-packets/OPA-DSCB-2026-001/review.json]}
+  enforcement: none
+- id: RTA-000004
+  requirement_ref: GRQ-000022@rev1
+  source_requirement_refs: [DSCB-STD-SRC-001-REQ-031]
+  artifact: {path: policies/opa/dependency_source_control.rego, type: policies, artifact_id: DSCB-L2-REQ-006, sha256: 2371c0d9ea978659399c5210550b6a142d3736b4149274082aacfec4f79ef201}
+  relationship: enforces
+  decision: {kind: adoption, status: effective, decided_by: joku, decision_role: governance-owner, decided_at: '2026-10-09T19:23:40Z', decision_ref: docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md, equivalence: equivalent, equivalence_evidence: [docs/governance/review-packets/OPA-DSCB-2026-001/review.json]}
+  enforcement: none
+- id: RTA-000005
+  requirement_ref: GRQ-000023@rev1
+  source_requirement_refs: [DSCB-STD-SRC-001-REQ-032]
+  artifact: {path: policies/opa/artifact_signing.rego, type: policies, artifact_id: DSCB-L2-REQ-007, sha256: 1c0d59a4587d9ed21f81f1b27318de66b24db55b30f4cfaa20cb52b85ab3013c}
+  relationship: enforces
+  decision: {kind: adoption, status: effective, decided_by: joku, decision_role: governance-owner, decided_at: '2026-10-09T19:23:40Z', decision_ref: docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md, equivalence: equivalent, equivalence_evidence: [docs/governance/review-packets/OPA-DSCB-2026-001/review.json]}
+  enforcement: none
+- id: RTA-000006
+  requirement_ref: GRQ-000025@rev1
+  source_requirement_refs: [DSCB-STD-SRC-001-REQ-034]
+  artifact: {path: policies/opa/iac_required.rego, type: policies, artifact_id: DSCB-L2-REQ-009, sha256: fbed44d90463e190da05083d0652f048efa124ae10fbd333cedb82ea91f0ee15}
+  relationship: enforces
+  decision: {kind: adoption, status: effective, decided_by: joku, decision_role: governance-owner, decided_at: '2026-10-09T19:23:40Z', decision_ref: docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md, equivalence: equivalent, equivalence_evidence: [docs/governance/review-packets/OPA-DSCB-2026-001/review.json]}
+  enforcement: none
+- id: RTA-000007
+  requirement_ref: GRQ-000026@rev1
+  source_requirement_refs: [DSCB-STD-SRC-001-REQ-035]
+  artifact: {path: policies/opa/iac_required.rego, type: policies, artifact_id: DSCB-L2-REQ-010, sha256: fbed44d90463e190da05083d0652f048efa124ae10fbd333cedb82ea91f0ee15}
+  relationship: enforces
+  decision: {kind: adoption, status: effective, decided_by: joku, decision_role: governance-owner, decided_at: '2026-10-09T19:23:40Z', decision_ref: docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md, equivalence: equivalent, equivalence_evidence: [docs/governance/review-packets/OPA-DSCB-2026-001/review.json]}
+  enforcement: none
+- id: RTA-000008
+  requirement_ref: GRQ-000027@rev1
+  source_requirement_refs: [DSCB-STD-SRC-001-REQ-036]
+  artifact: {path: policies/opa/pipeline_security_gates.rego, type: policies, artifact_id: DSCB-L2-REQ-011, sha256: b28553b35fff00ec527e6e099395cf9011a295da6e2effd8ea256414f1db5b43}
+  relationship: enforces
+  decision: {kind: adoption, status: effective, decided_by: joku, decision_role: governance-owner, decided_at: '2026-10-09T19:23:40Z', decision_ref: docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md, equivalence: equivalent, equivalence_evidence: [docs/governance/review-packets/OPA-DSCB-2026-001/review.json]}
+  enforcement: none
