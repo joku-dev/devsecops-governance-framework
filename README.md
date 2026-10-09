@@ -12,12 +12,12 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #244: source-document intake and candidate registration (`430550f00aa9`)
+## PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
 
-- Remove obsolete `*.public.md` placeholders and point source lineage to the tracked, maintainer-confirmed `*.requirements.md` versions.
-- Register five incoming documents as candidates and record the human decisions in GCR-2026-113/114. Candidate status does not authorize derivation.
-- Refresh intake, requirement-delta, architecture-replacement, lineage, graph, and viewer projections; update tests for the revised source register.
-- Keep the existing 22 functional areas: this extends source management, change preparation, and lineage functions without changing controls, policies, baselines, or enforcement.
+- add a versioned equivalence review for all 14 proposed GRQ-to-OPA mappings
+- pin the exact active GRQ revisions and SHA-256 hashes of ten Rego files
+- recommend eight mappings for adoption, four for remediation, and two for rejection/correction
+- validate future OPA review packets against active revisions, policy authorization, current hashes, and summary arithmetic
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
