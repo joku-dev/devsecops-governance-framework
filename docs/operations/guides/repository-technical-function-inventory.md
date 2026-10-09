@@ -12,6 +12,10 @@ mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbol
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
+### PR #247: fix(ci): resolve dependency review refs on dispatch (`c63724b30cd4`)
+
+- `.github/workflows/dependency-review.yml`
+- `.github/workflows/documentation-refresh.yml`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
