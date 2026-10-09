@@ -1,6 +1,6 @@
 # Source Document Intake Status
 
-Generated: `2026-10-08T20:06:50Z`
+Generated: `2026-10-09T16:12:29Z`
 
 ## Decision State
 
@@ -20,16 +20,16 @@ Generated: `2026-10-08T20:06:50Z`
 
 | Status | Count |
 |---|---:|
+| `approved` | `6` |
 | `candidate` | `6` |
-| `intake` | `6` |
 | `review` | `3` |
 
 ## Review State Counts
 
 | Review state | Count |
 |---|---:|
-| `accepted_intake` | `6` |
 | `active_review_in_progress` | `3` |
+| `approved_normative_source` | `6` |
 | `candidate_related_source_review_required` | `4` |
 | `candidate_replacement_review_required` | `2` |
 
@@ -70,13 +70,13 @@ Generated: `2026-10-08T20:06:50Z`
 |---|---|---|---|---:|
 | `DEVSECOPS-POL-REQ-001` | `review` | `policy, devsecops` | `active_review_in_progress` | `2` |
 | `DEVSECOPS-DIR-REQ-001` | `review` | `directive, devsecops` | `active_review_in_progress` | `2` |
-| `DSCB-STD-REQ-001` | `intake` | `devsecops` | `accepted_intake` | `88` |
-| `PRA-STD-REQ-001` | `intake` | `platform, devsecops` | `accepted_intake` | `30` |
+| `DSCB-STD-REQ-001` | `approved` | `devsecops` | `approved_normative_source` | `88` |
+| `PRA-STD-REQ-001` | `approved` | `platform, devsecops` | `approved_normative_source` | `30` |
 | `ARCH-SDD-REQ-001` | `review` | `architecture` | `active_review_in_progress` | `20` |
-| `ARCH-TPL-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
-| `ARCH-EA-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
-| `ARCH-SA-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
-| `ARCH-PA-REQ-001` | `intake` | `architecture` | `accepted_intake` | `0` |
+| `ARCH-TPL-REQ-001` | `approved` | `architecture` | `approved_normative_source` | `0` |
+| `ARCH-EA-REQ-001` | `approved` | `architecture` | `approved_normative_source` | `0` |
+| `ARCH-SA-REQ-001` | `approved` | `architecture` | `approved_normative_source` | `0` |
+| `ARCH-PA-REQ-001` | `approved` | `architecture` | `approved_normative_source` | `0` |
 | `ARCH-GOV-REQ-001` | `candidate` | `architecture` | `candidate_replacement_review_required` | `0` |
 | `CISO-REQ-SRC-001` | `candidate` | `devsecops, platform, architecture` | `candidate_related_source_review_required` | `0` |
 | `DEVSECOPS-POL-CAND-002` | `candidate` | `policy, devsecops` | `candidate_replacement_review_required` | `0` |

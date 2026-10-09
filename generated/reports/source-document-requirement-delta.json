@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-08T20:07:12Z",
+  "generated_at": "2026-10-09T16:12:55Z",
   "inputs": {
     "architecture_source_replacement_assessment": "generated/reports/architecture-source-replacement-assessment.json",
     "source_document_register": "model/documents/source-document-register.yaml"
