@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0.0",
+  "review_id": "OPA-DSCB-2026-001",
+  "status": "decision_required",
+  "reviewed_at": "2026-10-09",
+  "scope": "Existing OPA implementations for the first 46 canonical DSCB requirements",
+  "summary": {
+    "mapping_count": 14,
+    "policy_file_count": 10,
+    "equivalent": 8,
+    "partial": 4,
+    "not_equivalent": 2,
+    "effective_register_entries": 0
+  },
+  "runtime_change_authorized": false,
+  "mappings": [
+    {
+      "requirement_ref": "GRQ-000003@rev1",
+      "control_id": "DSCB-L1-REQ-003",
+      "policy_path": "policies/opa/branch_protection.rego",
+      "policy_sha256": "220789bb1ccce8ac9dd0a1fa51501ce9cd82085052f34754b6b96557d9172c04",
+      "assessment": "equivalent",
+      "recommendation": "approve_adoption",
+      "basis": "The policy denies direct pushes to protected branches and additionally requires review for protected-branch integration.",
+      "limitations": []
+    },
+    {
+      "requirement_ref": "GRQ-000006@rev1",
+      "control_id": "DSCB-L1-REQ-006",
+      "policy_path": "policies/opa/sbom_required.rego",
+      "policy_sha256": "b5c2865d9fc3a99b799898f01ac81e3abb5176fdcae3a2860733634412faa484",
+      "assessment": "equivalent",
+      "recommendation": "approve_adoption",
+      "basis": "For every release candidate the policy requires an SBOM and verifies its link to the releasable artifact.",
+      "limitations": []
+    },
+    {
+      "requirement_ref": "GRQ-000009@rev1",
+      "control_id": "DSCB-L1-REQ-009",
+      "policy_path": "policies/opa/vulnerability_gate.rego",
+      "policy_sha256": "f25504187acd7b8cfe6c3632bcfc4d13edc5d6d6824e551278a39f3915e3a809",
+      "assessment": "partial",
+      "recommendation": "remediate_before_adoption",
+      "basis": "The policy checks that vulnerability-scan evidence exists for a release candidate.",
+      "limitations": ["It does not prove that scanning ran during the build or test stage.", "It does not validate evidence provenance or freshness."]
+    },
+    {
+      "requirement_ref": "GRQ-000010@rev1",
+      "control_id": "DSCB-L1-REQ-010",
+      "policy_path": "policies/opa/vulnerability_gate.rego",
+      "policy_sha256": "f25504187acd7b8cfe6c3632bcfc4d13edc5d6d6824e551278a39f3915e3a809",
+      "assessment": "partial",
+      "recommendation": "remediate_before_adoption",
+      "basis": "The policy evaluates critical vulnerabilities for an approved, non-expired waiver.",
+      "limitations": ["The requirement covers all identified vulnerabilities, while the policy evaluates only critical findings.", "The policy does not establish that each non-critical finding was evaluated."]
+    },
+    {
+      "requirement_ref": "GRQ-000011@rev1",
+      "control_id": "DSCB-L1-REQ-011",
+      "policy_path": "policies/opa/artifact_integrity.rego",
+      "policy_sha256": "36052a619e7c3b8a4e60f32ff6f039776dad3bed35f45e3613b9586e6cdeea50",
+      "assessment": "partial",
+      "recommendation": "remediate_before_adoption",
+      "basis": "The policy requires digest or signature evidence and checks digest linkage for release candidates.",
+      "limitations": ["It does not verify approved repository integrity controls.", "It does not validate a present signature or link that signature to the artifact."]
+    },
+    {
+      "requirement_ref": "GRQ-000020@rev1",
+      "control_id": "DSCB-L2-REQ-004",
+      "policy_path": "policies/opa/access_control.rego",
+      "policy_sha256": "ddca4015919b0ca3115d2d7a6510947398a68fb13215094eec5784be8420da38",
+      "assessment": "equivalent",
+      "recommendation": "approve_adoption",
+      "basis": "The policy denies privileged access when MFA is not enforced.",
+      "limitations": []
+    },
+    {
+      "requirement_ref": "GRQ-000022@rev1",
+      "control_id": "DSCB-L2-REQ-006",
+      "policy_path": "policies/opa/dependency_source_control.rego",
+      "policy_sha256": "2371c0d9ea978659399c5210550b6a142d3736b4149274082aacfec4f79ef201",
+      "assessment": "equivalent",
+      "recommendation": "approve_adoption",
+      "basis": "The policy unconditionally denies detected direct external downloads and separately governs unapproved dependency sources.",
+      "limitations": []
+    },
+    {
+      "requirement_ref": "GRQ-000023@rev1",
+      "control_id": "DSCB-L2-REQ-007",
+      "policy_path": "policies/opa/artifact_signing.rego",
+      "policy_sha256": "1c0d59a4587d9ed21f81f1b27318de66b24db55b30f4cfaa20cb52b85ab3013c",
+      "assessment": "equivalent",
+      "recommendation": "approve_adoption",
+      "basis": "For PRA-Level 2 release candidates the policy requires a cryptographic artifact signature.",
+      "limitations": []
+    },
+    {
+      "requirement_ref": "GRQ-000025@rev1",
+      "control_id": "DSCB-L2-REQ-009",
+      "policy_path": "policies/opa/iac_required.rego",
+      "policy_sha256": "fbed44d90463e190da05083d0652f048efa124ae10fbd333cedb82ea91f0ee15",
+      "assessment": "equivalent",
+      "recommendation": "approve_adoption",
+      "basis": "When deployment is required the policy requires an Infrastructure-as-Code repository.",
+      "limitations": []
+    },
+    {
+      "requirement_ref": "GRQ-000026@rev1",
+      "control_id": "DSCB-L2-REQ-010",
+      "policy_path": "policies/opa/iac_required.rego",
+      "policy_sha256": "fbed44d90463e190da05083d0652f048efa124ae10fbd333cedb82ea91f0ee15",
+      "assessment": "equivalent",
+      "recommendation": "approve_adoption",
+      "basis": "The policy denies an existing IaC repository when it is not version controlled.",
+      "limitations": []
+    },
+    {
+      "requirement_ref": "GRQ-000027@rev1",
+      "control_id": "DSCB-L2-REQ-011",
+      "policy_path": "policies/opa/pipeline_security_gates.rego",
+      "policy_sha256": "b28553b35fff00ec527e6e099395cf9011a295da6e2effd8ea256414f1db5b43",
+      "assessment": "equivalent",
+      "recommendation": "approve_adoption",
+      "basis": "The policy requires security gates to be enforced for every release candidate.",
+      "limitations": []
+    },
+    {
+      "requirement_ref": "GRQ-000028@rev1",
+      "control_id": "DSCB-L2-REQ-012",
+      "policy_path": "policies/opa/pipeline_security_gates.rego",
+      "policy_sha256": "b28553b35fff00ec527e6e099395cf9011a295da6e2effd8ea256414f1db5b43",
+      "assessment": "partial",
+      "recommendation": "remediate_before_adoption",
+      "basis": "The policy blocks a release candidate when security thresholds are exceeded unless waiver evidence exists.",
+      "limitations": ["The rule checks only that approved-waiver evidence exists; it does not validate approval, scope, or expiry.", "Full equivalence depends on reliable composition with waiver validation."]
+    },
+    {
+      "requirement_ref": "GRQ-000044@rev1",
+      "control_id": "DSCB-GOV-REQ-003",
+      "policy_path": "policies/opa/waiver_validity.rego",
+      "policy_sha256": "ac0a8fe0982a9b97bf845a6e21673b9482776ea467d0e2c310fa494e56b7ace5",
+      "assessment": "not_equivalent",
+      "recommendation": "reject_adoption",
+      "basis": "The policy validates fields of waiver records that already have status approved.",
+      "limitations": ["It has no non-compliance input and cannot detect non-compliance without a waiver.", "It cannot establish the required link between a non-compliance record and its approved waiver."]
+    },
+    {
+      "requirement_ref": "GRQ-000046@rev1",
+      "control_id": "DSCB-GOV-REQ-005",
+      "policy_path": "policies/opa/waiver_validity.rego",
+      "policy_sha256": "ac0a8fe0982a9b97bf845a6e21673b9482776ea467d0e2c310fa494e56b7ace5",
+      "assessment": "not_equivalent",
+      "recommendation": "correct_requirement_before_review",
+      "basis": "The active canonical statement is incomplete: '[DSCB-GOV-REQ-005]All deviations SHALL:'.",
+      "limitations": ["Semantic equivalence cannot be established against an incomplete requirement.", "The policy checks only waiver records whose status is already approved, so other deviations are outside its scope."]
+    }
+  ],
+  "test_evidence": {
+    "opa_version": "1.18.2",
+    "opa_check": "passed",
+    "full_regression_tests": 764,
+    "full_regression_result": "passed",
+    "direct_policy_unit_coverage": {
+      "branch_protection.rego": "positive-path repository test exists",
+      "other_reviewed_policies": "no dedicated positive-and-negative policy unit tests found"
+    }
+  },
+  "decision_options": {
+    "recommended_now": ["GRQ-000003@rev1", "GRQ-000006@rev1", "GRQ-000020@rev1", "GRQ-000022@rev1", "GRQ-000023@rev1", "GRQ-000025@rev1", "GRQ-000026@rev1", "GRQ-000027@rev1"],
+    "remediation_required": ["GRQ-000009@rev1", "GRQ-000010@rev1", "GRQ-000011@rev1", "GRQ-000028@rev1"],
+    "reject_or_correct": ["GRQ-000044@rev1", "GRQ-000046@rev1"]
+  }
+}

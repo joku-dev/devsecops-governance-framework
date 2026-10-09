@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requirement Policy Equivalence Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "review_id", "status", "reviewed_at", "scope", "summary", "runtime_change_authorized", "mappings", "test_evidence", "decision_options"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "review_id": {"type": "string", "pattern": "^OPA-[A-Z0-9-]+$"},
+    "status": {"enum": ["decision_required", "decided", "superseded"]},
+    "reviewed_at": {"type": "string", "format": "date"},
+    "scope": {"type": "string", "minLength": 1},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mapping_count", "policy_file_count", "equivalent", "partial", "not_equivalent", "effective_register_entries"],
+      "properties": {
+        "mapping_count": {"type": "integer", "minimum": 1},
+        "policy_file_count": {"type": "integer", "minimum": 1},
+        "equivalent": {"type": "integer", "minimum": 0},
+        "partial": {"type": "integer", "minimum": 0},
+        "not_equivalent": {"type": "integer", "minimum": 0},
+        "effective_register_entries": {"type": "integer", "minimum": 0}
+      }
+    },
+    "runtime_change_authorized": {"type": "boolean"},
+    "mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["requirement_ref", "control_id", "policy_path", "policy_sha256", "assessment", "recommendation", "basis", "limitations"],
+        "properties": {
+          "requirement_ref": {"type": "string", "pattern": "^GRQ-[0-9]{6}@rev[1-9][0-9]*$"},
+          "control_id": {"type": "string", "pattern": "^DSCB-(L1|L2|L3|GOV)-REQ-[0-9]{3}$"},
+          "policy_path": {"type": "string", "pattern": "^policies/opa/.+\\.rego$"},
+          "policy_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "assessment": {"enum": ["equivalent", "partial", "not_equivalent"]},
+          "recommendation": {"enum": ["approve_adoption", "remediate_before_adoption", "reject_adoption", "correct_requirement_before_review"]},
+          "basis": {"type": "string", "minLength": 1},
+          "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "test_evidence": {"type": "object"},
+    "decision_options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recommended_now", "remediation_required", "reject_or_correct"],
+      "properties": {
+        "recommended_now": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "remediation_required": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "reject_or_correct": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }
+    }
+  }
+}

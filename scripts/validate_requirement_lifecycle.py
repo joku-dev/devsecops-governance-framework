@@ -22,6 +22,7 @@ LEDGER = ROOT / "model/requirements/requirement-authority-ledger.yaml"
 CASES = ROOT / "model/requirements/lifecycle-cases"
 PUBLICATION = ROOT / "docs/publishing/governance-requirement-catalog/publication.yaml"
 ARTIFACT_REGISTER = ROOT / "model/requirements/requirement-to-artifact-register.yaml"
+POLICY_REVIEW_ROOT = ROOT / "docs/governance/review-packets"
 DERIVED_PREFIXES = ("model/controls/", "model/platform/", "architecture/", "policies/opa/")
 
 
@@ -154,6 +155,41 @@ def validate_artifact_register(register: dict, catalog: dict, ledger: dict, base
                 errors.append(f"new or changed normative artifact requires an effective GRQ mapping: {path}")
 
 
+def validate_policy_reviews(catalog: dict, errors: list[str]) -> None:
+    active = {
+        f"{requirement['id']}@rev{requirement['active_revision']}": next(
+            item for item in requirement["revisions"] if item["revision"] == requirement["active_revision"]
+        )
+        for requirement in catalog["requirements"] if requirement["active_revision"] is not None
+    }
+    for path in sorted(POLICY_REVIEW_ROOT.glob("OPA-*/review.json")):
+        validate_schema(path, "requirement-policy-equivalence-review.schema.json", errors)
+        review = read(path)
+        mappings = review.get("mappings", [])
+        pairs = set()
+        for mapping in mappings:
+            pair = (mapping["requirement_ref"], mapping["policy_path"])
+            if pair in pairs:
+                errors.append(f"{review['review_id']} contains duplicate mapping {pair}")
+            pairs.add(pair)
+            revision = active.get(mapping["requirement_ref"])
+            if revision is None:
+                errors.append(f"{review['review_id']} references inactive requirement {mapping['requirement_ref']}")
+            elif "policies" not in revision["authorized_derivations"]:
+                errors.append(f"{mapping['requirement_ref']} does not authorize policy derivation")
+            policy = ROOT / mapping["policy_path"]
+            if not policy.is_file():
+                errors.append(f"{review['review_id']} policy is missing: {mapping['policy_path']}")
+            elif hashlib.sha256(policy.read_bytes()).hexdigest() != mapping["policy_sha256"]:
+                errors.append(f"{review['review_id']} policy hash changed: {mapping['policy_path']}")
+        counts = {name: sum(item["assessment"] == name for item in mappings) for name in ("equivalent", "partial", "not_equivalent")}
+        summary = review["summary"]
+        if summary["mapping_count"] != len(mappings) or any(summary[name] != value for name, value in counts.items()):
+            errors.append(f"{review['review_id']} summary does not match its mappings")
+        if summary["policy_file_count"] != len({item["policy_path"] for item in mappings}):
+            errors.append(f"{review['review_id']} policy file count is incorrect")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-ref")
@@ -169,6 +205,7 @@ def main() -> int:
     catalog = read(CATALOG)
     ledger = read(LEDGER)
     artifact_register = read(ARTIFACT_REGISTER)
+    validate_policy_reviews(catalog, errors)
     ids = [item["id"] for item in catalog["requirements"]]
     if len(ids) != len(set(ids)):
         errors.append("canonical requirement IDs must be unique")
