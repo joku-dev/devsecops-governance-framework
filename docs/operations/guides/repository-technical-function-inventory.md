@@ -7,13 +7,50 @@ den genannten Oktober-Quellstand. Historische Links sind keine Latest-Code-Links
 
 Dies ist die vollständige Dateiliste der implementierten Skripte und Bibliotheksmodule
 unter `scripts/`, der GitHub-Workflows und der OPA-Module am genannten Stand.
-Der [fachliche Katalog](repository-function-catalog.md) erläutert die 21 Aufgabenbereiche
+Der [fachliche Katalog](repository-function-catalog.md) erläutert die 22 Aufgabenbereiche
 mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbole
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
+<!-- DOCS_REFRESH_INVENTORY:start -->
+### PR #245: feat: refresh documentation after implementation merges (`01e633e95b0e`)
+
+- `.github/workflows/documentation-refresh.yml`
+- `scripts/reconcile_documentation_after_merge.py`
+<!-- DOCS_REFRESH_INVENTORY:end -->
+
+## Dokumentationsabgleich nach Implementierungs-Merges
+
+| Datei | Aufgabe |
+|---|---|
+| `.github/workflows/documentation-refresh.yml` | Reagiert auf gemergte Implementierungs-PRs, baut einen Dokumentationsvorschlag, prüft MkDocs und öffnet einen Draft-PR; schreibt nicht direkt nach `main`. |
+| `scripts/reconcile_documentation_after_merge.py` | Erstellt aus PR-Zusammenfassung, Diff-Pfaden, lokaler Markdown-Linkprüfung und Build-Ergebnis den nachvollziehbaren Dokumentationsentwurf und Auditbericht. |
+| `tests/test_reconcile_documentation_after_merge.py` | Prüft Zusammenfassungsbereinigung, Scope-Erkennung, idempotente Marker und die Erstellung der Dokumentationsflächen. |
+| `docs/operations/guides/documentation-after-merge.md` | Beschreibt Ausführung, Freigabe und Grenzen des Post-Merge-Dokumentationsablaufs. |
+
+## Ergänzte technische Abdeckung
+
+| Datei | Aufgabe |
+|---|---|
+| `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` | Wiederverwendbares Workflow-Gate für den veröffentlichten DevSecOps-L1-Baseline-Stand v1.2.0. |
+| `.github/workflows/devsecops-baseline-l1-v1.2.1.yml` | Wiederverwendbares Workflow-Gate für den vorbereiteten DevSecOps-L1-Baseline-Stand v1.2.1. |
+| `.github/workflows/repository-sbom.yml` | Erzeugt das Repository-SBOM bei Main-Push, Wochenplan oder manuellem Start. |
+| `scripts/adapt_document_consistency_provider_response.py` | Überführt neutrale Provider-Ausgaben in den autoritativen semantischen Review-Vertrag. |
+| `scripts/evaluate_document_consistency_semantic_report.py` | Bewertet einen validierten semantischen Bericht gegen einen begrenzten kuratierten Katalog. |
+| `scripts/generate_document_consistency_review_manifest.py` | Erstellt ein textfreies, commit- und hashgebundenes Manifest ausgewählter registrierter Quellen. |
+| `scripts/generate_document_consistency_review_model.py` | Erstellt aus einem Quellenmanifest eine deterministische, textfreie Strukturaufnahme. |
+| `scripts/lib/document_consistency_view.py` | Validiert und redigiert Document-Consistency-Daten für die lesende Viewer-Projektion. |
+| `scripts/lib/measured_l1.py` | Bewertet gemessene L1-Nachweise konservativ, ohne ein veröffentlichtes Compliance-Ergebnis zu erzeugen. |
+| `scripts/prepare_document_consistency_semantic_catalog_run.py` | Bereitet ein isoliertes, provider-ungebundenes Paket für einen semantischen Kataloglauf vor. |
+| `scripts/validate_document_consistency_review.py` | Führt deterministische Strukturprüfungen ohne semantische Interpretation durch. |
+| `scripts/validate_document_consistency_review_operations.py` | Validiert provider-neutrale Betriebsartefakte des Document Consistency Review. |
+| `scripts/validate_document_consistency_semantic_review.py` | Prüft nicht vertrauenswürdige semantische Review-Ausgaben gegen ein exaktes Quellenmanifest. |
+
 Umfang am historischen Quellstand: **142 Python-Skripte/Module**, **2 Shell-Skripte**,
-**22 Workflows**, **15 OPA-Module**. Nach den unten aufgeführten Ergänzungen
-enthält der aktuelle Main **145 Python-Skripte/Module**.
+**22 Workflows**, **15 OPA-Module**. Mit den hier beschriebenen Ergänzungen
+umfasst der Stand nach Merge dieses PRs **155 Python-Skripte/Module**, **2
+Shell-Skripte**, **26 Workflows** und **15 OPA-Module**. Die Zählung umfasst
+alle versionierten Python-Dateien unter `scripts/` und alle versionierten
+Workflow-YAML-Dateien unter `.github/workflows/`.
 
 Einträge wurden aus den versionierten Dateien, Python-Modulbeschreibungen und
 Workflow-Definitionen ermittelt. Englische Beschreibungen übernehmen die
@@ -31,7 +68,8 @@ Quellsprache der Module; unvollständige Paketbeschreibungen wurden fachlich pr�
 Am genannten Quellstand waren die Repository-SBOM (#178) und die
 Lifecycle-Next-Step-Ansicht (#200) noch offene PRs. Beide wurden danach gemergt.
 Die folgenden drei ergänzten Python-Dateien sind im historischen Zähler 142
-nicht enthalten und erhöhen den Bestand im aktuellen Main auf 145.
+nicht enthalten und erhöhten den Bestand zunächst auf 145; die späteren
+Ergänzungen und aktuellen Gesamtzahlen sind getrennt ausgewiesen.
 
 ## Ergänzungen nach dem 3.-Oktober-Quellstand
 
