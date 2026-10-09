@@ -12,6 +12,10 @@ mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbol
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
+### PR #245: feat: refresh documentation after implementation merges (`01e633e95b0e`)
+
+- `.github/workflows/documentation-refresh.yml`
+- `scripts/reconcile_documentation_after_merge.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges

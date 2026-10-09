@@ -26,6 +26,13 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 ## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
 
 <!-- DOCS_REFRESH_CATALOG:start -->
+### PR #245: feat: refresh documentation after implementation merges (`01e633e95b0e`)
+
+- Add a post-merge workflow that detects implementation changes on main, updates the README, functional catalog and technical inventory, runs a local Markdown link audit and strict MkDocs build, then opens a separate documentation PR.
+- Keep semantic interpretation and final edits with human reviewers; documentation-only merges are skipped, preventing a follow-up loop.
+- Add GCR-2026-137, an operating guide, generator tests, and reconcile the catalog and technical inventory counts.
+
+Die fachliche Zuordnung und Auswirkungen auf bestehende Funktionsbereiche sind vor dem Merge dieses Dokumentations-PRs redaktionell zu prüfen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
