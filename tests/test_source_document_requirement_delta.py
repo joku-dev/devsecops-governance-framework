@@ -33,14 +33,17 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
         self.assertEqual(payload["decision"]["runtime_governance_changed"], False)
         self.assertEqual(payload["decision"]["candidate_promoted"], False)
         self.assertEqual(payload["decision"]["stricter_rules_enabled"], False)
-        self.assertEqual(payload["summary"]["replacement_pairs"], 1)
+        self.assertEqual(payload["summary"]["replacement_pairs"], 2)
 
-        pair = payload["requirement_delta_pairs"][0]
-        self.assertEqual(pair["candidate_id"], "ARCH-GOV-SRC-002")
-        self.assertEqual(pair["target_id"], "ARCH-SDD-SRC-001")
+        pairs = {
+            (pair["candidate_id"], pair["target_id"]): pair
+            for pair in payload["requirement_delta_pairs"]
+        }
+        pair = pairs[("ARCH-GOV-REQ-001", "ARCH-SDD-REQ-001")]
         self.assertGreater(pair["summary"]["candidate_requirements"], 0)
         self.assertGreater(pair["summary"]["target_requirements"], 0)
         self.assertGreater(pair["summary"]["differences_requiring_review"], 0)
         self.assertIn("changed", pair["summary"]["status_counts"])
         self.assertIn("removed", pair["summary"]["status_counts"])
+        self.assertIn(("DEVSECOPS-POL-CAND-002", "DEVSECOPS-POL-REQ-001"), pairs)
         self.assertIn("Source Document Requirement Delta", output_md.read_text(encoding="utf-8"))

@@ -9,7 +9,7 @@ Office metadata.
 This document is part of the
 [`CISO-REQ-SRC-001` review packet](README.md). The packet index is the stable
 entry point for reviewers and links the candidate description, CISO brief,
-source placeholder, change request, models, and generated reports.
+candidate intake record, change request, models, and generated reports.
 
 The authoritative candidate artifacts are:
 

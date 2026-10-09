@@ -2,15 +2,15 @@
 
 ## Current State
 
-Original source documents are withheld. The public source register includes placeholders; the foundational examples are:
+Original source documents are withheld. Registered sanitized requirement extracts are used for review and traceability; the foundational examples are:
 
-- `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.public.md`
-- `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.public.md`
-- `docs/governance/source-documents/DSCB-STD-SRC-001.public.md`
-- `docs/governance/source-documents/PRA-STD-SRC-001.public.md`
-- `docs/governance/source-documents/ARCH-SDD-SRC-001.public.md`
+- `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md`
+- `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md`
+- `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md`
+- `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md`
+- `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md`
 
-The original source documents are withheld from the public repository. The repository contains working draft representations for:
+The original source documents are withheld from the repository. The repository contains working draft representations for:
 
 - `docs/governance/devsecops-policy.md`
 - `docs/governance/devsecops-directive.md`

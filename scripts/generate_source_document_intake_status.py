@@ -160,7 +160,7 @@ def next_action(document: dict) -> str:
     return actions[state]
 
 
-def replacement_items_by_candidate(replacement_report: dict) -> dict[str, list[dict]]:
+def replacement_items_by_candidate(replacement_report: dict, register: dict) -> dict[str, list[dict]]:
     candidates = defaultdict(list)
     for item in replacement_report.get("comparisons", []):
         if item.get("classification") not in {"registered_replacement_candidate", "replacement_candidate"}:
@@ -174,6 +174,19 @@ def replacement_items_by_candidate(replacement_report: dict) -> dict[str, list[d
                 "recommendation": item["recommendation"],
             }
         )
+    for document in register.get("documents", []):
+        targets = document.get("candidate_replacement_for", [])
+        for target_id in targets:
+            item = {
+                "target_id": target_id,
+                "classification": "registered_replacement_candidate",
+                "title_overlap": None,
+                "content_overlap": None,
+                "recommendation": "Review the registered replacement relationship before promotion.",
+            }
+            existing = candidates[document["id"]]
+            if not any(comparison["target_id"] == target_id for comparison in existing):
+                existing.append(item)
     return dict(candidates)
 
 
@@ -186,7 +199,7 @@ def build_report() -> dict:
         item["source_document"]: item.get("derived_artifacts", [])
         for item in lineage_report.get("lineage", [])
     }
-    replacement_by_candidate = replacement_items_by_candidate(replacement_report)
+    replacement_by_candidate = replacement_items_by_candidate(replacement_report, register)
 
     status_counter = Counter()
     domain_counter = Counter()

@@ -22,7 +22,7 @@ GCR-2026-048
 | Field | Value |
 |---|---|
 | Change type | governance authority hardening and report-only assessment |
-| Source basis | accepted DSCB and PRA source placeholders |
+| Source basis | registered DSCB and PRA requirements extracts |
 | Enforcement | report-only |
 | Consumer contract impact | none |
 | Evidence contract impact | none |

@@ -1,296 +1,372 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-18T10:45:05Z",
+  "generated_at": "2026-10-08T20:06:50Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml"
   },
   "summary": {
-    "architecture_source_documents": 13,
-    "active_architecture_sources": 1,
-    "candidate_architecture_sources": 6,
-    "comparisons": 6,
+    "architecture_source_documents": 9,
+    "active_architecture_sources": 5,
+    "candidate_architecture_sources": 4,
+    "comparisons": 20,
     "likely_replacements": 1
   },
   "active_sources": [
     {
-      "id": "ARCH-SDD-SRC-001",
-      "title": "SDD Architecture Governance Framework",
-      "status": "intake",
-      "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
-      "version": "public-placeholder",
+      "id": "ARCH-SDD-REQ-001",
+      "title": "Integrated SDD Architecture Governance Requirements Extract",
+      "status": "review",
+      "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
+      "version": "requirements-only-sanitized",
       "doc_id": "",
-      "detected_title": "SDD Architecture Governance Framework",
-      "line_count": 22,
-      "word_count": 113,
-      "heading_count": 1,
+      "detected_title": "Integrated SDD Architecture Governance Requirements Extract",
+      "line_count": 950,
+      "word_count": 32696,
+      "heading_count": 2,
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {}
+    },
+    {
+      "id": "ARCH-TPL-REQ-001",
+      "title": "Architecture Templates and Checklists Requirements Extract",
+      "status": "intake",
+      "source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "version": "requirements-only-sanitized",
+      "doc_id": "",
+      "detected_title": "Architecture Templates and Checklists Requirements Extract",
+      "line_count": 202,
+      "word_count": 6209,
+      "heading_count": 2,
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {}
+    },
+    {
+      "id": "ARCH-EA-REQ-001",
+      "title": "Enterprise Architecture Requirements Extract",
+      "status": "intake",
+      "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
+      "version": "requirements-only-sanitized",
+      "doc_id": "",
+      "detected_title": "Enterprise Architecture Requirements Extract",
+      "line_count": 165,
+      "word_count": 5503,
+      "heading_count": 2,
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {}
+    },
+    {
+      "id": "ARCH-SA-REQ-001",
+      "title": "Solution Architecture Requirements Extract",
+      "status": "intake",
+      "source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
+      "version": "requirements-only-sanitized",
+      "doc_id": "",
+      "detected_title": "Solution Architecture Requirements Extract",
+      "line_count": 202,
+      "word_count": 6898,
+      "heading_count": 2,
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {}
+    },
+    {
+      "id": "ARCH-PA-REQ-001",
+      "title": "Product Architecture Requirements Extract",
+      "status": "intake",
+      "source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
+      "version": "requirements-only-sanitized",
+      "doc_id": "",
+      "detected_title": "Product Architecture Requirements Extract",
+      "line_count": 235,
+      "word_count": 7667,
+      "heading_count": 2,
       "registered_candidate_replacement_for": [],
       "registered_similarity_assessment": {}
     }
   ],
   "candidates": [
     {
-      "id": "ARCH-TPL-SRC-001",
-      "title": "SDD Architecture Template and Checklists",
+      "id": "ARCH-GOV-REQ-001",
+      "title": "Architecture Governance Framework Requirements Extract",
       "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.public.md",
-      "version": "public-placeholder",
+      "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md",
+      "version": "requirements-only-sanitized",
       "doc_id": "",
-      "detected_title": "SDD Architecture Template and Checklists",
-      "line_count": 15,
-      "word_count": 73,
-      "heading_count": 1,
-      "registered_candidate_replacement_for": [],
-      "registered_similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      }
-    },
-    {
-      "id": "ARCH-EA-SRC-001",
-      "title": "SDD Enterprise Architecture Guidelines",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.public.md",
-      "version": "public-placeholder",
-      "doc_id": "",
-      "detected_title": "SDD Enterprise Architecture Guidelines",
-      "line_count": 15,
-      "word_count": 72,
-      "heading_count": 1,
-      "registered_candidate_replacement_for": [],
-      "registered_similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      }
-    },
-    {
-      "id": "ARCH-SA-SRC-001",
-      "title": "SDD Solution Architecture Guidelines",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.public.md",
-      "version": "public-placeholder",
-      "doc_id": "",
-      "detected_title": "SDD Solution Architecture Guidelines",
-      "line_count": 15,
-      "word_count": 72,
-      "heading_count": 1,
-      "registered_candidate_replacement_for": [],
-      "registered_similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      }
-    },
-    {
-      "id": "ARCH-PA-SRC-001",
-      "title": "SDD Product Architecture Guidelines",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.public.md",
-      "version": "public-placeholder",
-      "doc_id": "",
-      "detected_title": "SDD Product Architecture Guidelines",
-      "line_count": 15,
-      "word_count": 72,
-      "heading_count": 1,
-      "registered_candidate_replacement_for": [],
-      "registered_similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      }
-    },
-    {
-      "id": "ARCH-GOV-SRC-002",
-      "title": "SDD Architecture Governance Framework",
-      "status": "candidate",
-      "source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
-      "version": "public-placeholder",
-      "doc_id": "",
-      "detected_title": "SDD Architecture Governance Framework",
-      "line_count": 21,
-      "word_count": 100,
-      "heading_count": 1,
+      "detected_title": "Architecture Governance Framework Requirements Extract",
+      "line_count": 283,
+      "word_count": 9371,
+      "heading_count": 2,
       "registered_candidate_replacement_for": [
-        "ARCH-SDD-SRC-001"
+        "ARCH-SDD-REQ-001"
       ],
       "registered_similarity_assessment": {
         "assessment": "replacement_candidate",
         "compared_to": [
           {
-            "source_id": "ARCH-SDD-SRC-001",
+            "source_id": "ARCH-SDD-REQ-001",
             "similarity": "high",
-            "notes": "Public placeholder only; replacement relationship preserved for private review."
+            "notes": "The sanitized extract remains a non-normative replacement candidate pending owner review."
           }
-        ],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
+        ]
       }
     },
     {
       "id": "CISO-REQ-SRC-001",
       "title": "CISO Standards Requirements Catalog Candidate",
       "status": "candidate",
-      "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
+      "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
       "version": "0.1",
       "doc_id": "",
       "detected_title": "CISO Standards Requirements Catalog Candidate",
-      "line_count": 39,
-      "word_count": 173,
+      "line_count": 38,
+      "word_count": 172,
       "heading_count": 4,
       "registered_candidate_replacement_for": [],
       "registered_similarity_assessment": {
         "assessment": "related_source",
         "compared_to": [
           {
-            "source_id": "DSCB-STD-SRC-001",
+            "source_id": "DSCB-STD-REQ-001",
             "similarity": "high",
             "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
           },
           {
-            "source_id": "PRA-STD-SRC-001",
+            "source_id": "PRA-STD-REQ-001",
             "similarity": "medium",
             "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
           },
           {
-            "source_id": "ARCH-SDD-SRC-001",
+            "source_id": "ARCH-SDD-REQ-001",
             "similarity": "medium",
             "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
           }
         ],
         "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
       }
+    },
+    {
+      "id": "TOOLCHAIN-ARCH-CAND-001",
+      "title": "Enterprise SDLC Toolchain Reference Architecture v0.3",
+      "status": "candidate",
+      "source_path": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
+      "version": "v0.3",
+      "doc_id": "",
+      "detected_title": "Enterprise SDLC Toolchain Reference Architecture v0.3",
+      "line_count": 538,
+      "word_count": 5765,
+      "heading_count": 0,
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Toolchain architecture adds broad lifecycle and platform integration intent; replacement or extension relationship requires owner decision."
+          },
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Candidate refers to control levels and evidence; retain explicit source precedence during review."
+          }
+        ]
+      }
+    },
+    {
+      "id": "SW-INDUSTRIALISATION-OM-CAND-001",
+      "title": "Software Industrialisation Enterprise Operating Model Proposal",
+      "status": "candidate",
+      "source_path": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
+      "version": "revised-extended-scope-polished-proposal",
+      "doc_id": "",
+      "detected_title": "Software Industrialisation Enterprise Operating Model Proposal",
+      "line_count": 1665,
+      "word_count": 17552,
+      "heading_count": 0,
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-POL-REQ-001",
+            "similarity": "medium",
+            "notes": "Enterprise operating model may extend governance scope; owner must decide coexistence, precedence, and approval status."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Industrialisation operating model intersects platform ownership and federated delivery but is not presumed to replace PRA."
+          }
+        ]
+      }
     }
   ],
   "comparisons": [
     {
-      "candidate_id": "ARCH-TPL-SRC-001",
-      "candidate_title": "SDD Architecture Template and Checklists",
-      "candidate_source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.public.md",
-      "target_id": "ARCH-SDD-SRC-001",
-      "target_title": "SDD Architecture Governance Framework",
-      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+      "candidate_id": "ARCH-GOV-REQ-001",
+      "candidate_title": "Architecture Governance Framework Requirements Extract",
+      "candidate_source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md",
+      "target_id": "ARCH-SDD-REQ-001",
+      "target_title": "Integrated SDD Architecture Governance Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
       "candidate_doc_id": "",
       "target_doc_id": "",
-      "title_overlap": 0.0,
-      "content_overlap": 0.562,
-      "shared_heading_count": 0,
-      "shared_headings": [],
-      "classification": "independent_candidate",
-      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
-      "registered_candidate_replacement_for": [],
-      "registered_similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      }
-    },
-    {
-      "candidate_id": "ARCH-EA-SRC-001",
-      "candidate_title": "SDD Enterprise Architecture Guidelines",
-      "candidate_source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.public.md",
-      "target_id": "ARCH-SDD-SRC-001",
-      "target_title": "SDD Architecture Governance Framework",
-      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
-      "candidate_doc_id": "",
-      "target_doc_id": "",
-      "title_overlap": 0.0,
-      "content_overlap": 0.562,
-      "shared_heading_count": 0,
-      "shared_headings": [],
-      "classification": "independent_candidate",
-      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
-      "registered_candidate_replacement_for": [],
-      "registered_similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      }
-    },
-    {
-      "candidate_id": "ARCH-SA-SRC-001",
-      "candidate_title": "SDD Solution Architecture Guidelines",
-      "candidate_source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.public.md",
-      "target_id": "ARCH-SDD-SRC-001",
-      "target_title": "SDD Architecture Governance Framework",
-      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
-      "candidate_doc_id": "",
-      "target_doc_id": "",
-      "title_overlap": 0.0,
-      "content_overlap": 0.562,
-      "shared_heading_count": 0,
-      "shared_headings": [],
-      "classification": "independent_candidate",
-      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
-      "registered_candidate_replacement_for": [],
-      "registered_similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      }
-    },
-    {
-      "candidate_id": "ARCH-PA-SRC-001",
-      "candidate_title": "SDD Product Architecture Guidelines",
-      "candidate_source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.public.md",
-      "target_id": "ARCH-SDD-SRC-001",
-      "target_title": "SDD Architecture Governance Framework",
-      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
-      "candidate_doc_id": "",
-      "target_doc_id": "",
-      "title_overlap": 0.0,
-      "content_overlap": 0.562,
-      "shared_heading_count": 0,
-      "shared_headings": [],
-      "classification": "independent_candidate",
-      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
-      "registered_candidate_replacement_for": [],
-      "registered_similarity_assessment": {
-        "assessment": "not_assessed",
-        "compared_to": [],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
-      }
-    },
-    {
-      "candidate_id": "ARCH-GOV-SRC-002",
-      "candidate_title": "SDD Architecture Governance Framework",
-      "candidate_source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.public.md",
-      "target_id": "ARCH-SDD-SRC-001",
-      "target_title": "SDD Architecture Governance Framework",
-      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
-      "candidate_doc_id": "",
-      "target_doc_id": "",
-      "title_overlap": 1.0,
-      "content_overlap": 0.71,
-      "shared_heading_count": 0,
-      "shared_headings": [],
+      "title_overlap": 0.6,
+      "content_overlap": 0.466,
+      "shared_heading_count": 1,
+      "shared_headings": [
+        "Extraction Notes"
+      ],
       "classification": "registered_replacement_candidate",
       "recommendation": "Review as likely replacement before moving lineage or creating a new architecture baseline.",
       "registered_candidate_replacement_for": [
-        "ARCH-SDD-SRC-001"
+        "ARCH-SDD-REQ-001"
       ],
       "registered_similarity_assessment": {
         "assessment": "replacement_candidate",
         "compared_to": [
           {
-            "source_id": "ARCH-SDD-SRC-001",
+            "source_id": "ARCH-SDD-REQ-001",
             "similarity": "high",
-            "notes": "Public placeholder only; replacement relationship preserved for private review."
+            "notes": "The sanitized extract remains a non-normative replacement candidate pending owner review."
           }
-        ],
-        "notes": "Public placeholder only; original source content is withheld from the public repository."
+        ]
+      }
+    },
+    {
+      "candidate_id": "ARCH-GOV-REQ-001",
+      "candidate_title": "Architecture Governance Framework Requirements Extract",
+      "candidate_source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md",
+      "target_id": "ARCH-TPL-REQ-001",
+      "target_title": "Architecture Templates and Checklists Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.333,
+      "content_overlap": 0.464,
+      "shared_heading_count": 1,
+      "shared_headings": [
+        "Extraction Notes"
+      ],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [
+        "ARCH-SDD-REQ-001"
+      ],
+      "registered_similarity_assessment": {
+        "assessment": "replacement_candidate",
+        "compared_to": [
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "high",
+            "notes": "The sanitized extract remains a non-normative replacement candidate pending owner review."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "ARCH-GOV-REQ-001",
+      "candidate_title": "Architecture Governance Framework Requirements Extract",
+      "candidate_source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md",
+      "target_id": "ARCH-EA-REQ-001",
+      "target_title": "Enterprise Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.4,
+      "content_overlap": 0.463,
+      "shared_heading_count": 1,
+      "shared_headings": [
+        "Extraction Notes"
+      ],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [
+        "ARCH-SDD-REQ-001"
+      ],
+      "registered_similarity_assessment": {
+        "assessment": "replacement_candidate",
+        "compared_to": [
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "high",
+            "notes": "The sanitized extract remains a non-normative replacement candidate pending owner review."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "ARCH-GOV-REQ-001",
+      "candidate_title": "Architecture Governance Framework Requirements Extract",
+      "candidate_source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md",
+      "target_id": "ARCH-SA-REQ-001",
+      "target_title": "Solution Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.4,
+      "content_overlap": 0.483,
+      "shared_heading_count": 1,
+      "shared_headings": [
+        "Extraction Notes"
+      ],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [
+        "ARCH-SDD-REQ-001"
+      ],
+      "registered_similarity_assessment": {
+        "assessment": "replacement_candidate",
+        "compared_to": [
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "high",
+            "notes": "The sanitized extract remains a non-normative replacement candidate pending owner review."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "ARCH-GOV-REQ-001",
+      "candidate_title": "Architecture Governance Framework Requirements Extract",
+      "candidate_source_path": "docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md",
+      "target_id": "ARCH-PA-REQ-001",
+      "target_title": "Product Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.4,
+      "content_overlap": 0.505,
+      "shared_heading_count": 1,
+      "shared_headings": [
+        "Extraction Notes"
+      ],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [
+        "ARCH-SDD-REQ-001"
+      ],
+      "registered_similarity_assessment": {
+        "assessment": "replacement_candidate",
+        "compared_to": [
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "high",
+            "notes": "The sanitized extract remains a non-normative replacement candidate pending owner review."
+          }
+        ]
       }
     },
     {
       "candidate_id": "CISO-REQ-SRC-001",
       "candidate_title": "CISO Standards Requirements Catalog Candidate",
-      "candidate_source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.public.md",
-      "target_id": "ARCH-SDD-SRC-001",
-      "target_title": "SDD Architecture Governance Framework",
-      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+      "candidate_source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
+      "target_id": "ARCH-SDD-REQ-001",
+      "target_title": "Integrated SDD Architecture Governance Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
       "candidate_doc_id": "",
       "target_doc_id": "",
-      "title_overlap": 0.0,
-      "content_overlap": 0.167,
+      "title_overlap": 0.125,
+      "content_overlap": 0.026,
       "shared_heading_count": 0,
       "shared_headings": [],
       "classification": "independent_candidate",
@@ -300,22 +376,494 @@
         "assessment": "related_source",
         "compared_to": [
           {
-            "source_id": "DSCB-STD-SRC-001",
+            "source_id": "DSCB-STD-REQ-001",
             "similarity": "high",
             "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
           },
           {
-            "source_id": "PRA-STD-SRC-001",
+            "source_id": "PRA-STD-REQ-001",
             "similarity": "medium",
             "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
           },
           {
-            "source_id": "ARCH-SDD-SRC-001",
+            "source_id": "ARCH-SDD-REQ-001",
             "similarity": "medium",
             "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
           }
         ],
         "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
+      }
+    },
+    {
+      "candidate_id": "CISO-REQ-SRC-001",
+      "candidate_title": "CISO Standards Requirements Catalog Candidate",
+      "candidate_source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
+      "target_id": "ARCH-TPL-REQ-001",
+      "target_title": "Architecture Templates and Checklists Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.125,
+      "content_overlap": 0.051,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "high",
+            "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
+          },
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "medium",
+            "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
+          }
+        ],
+        "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
+      }
+    },
+    {
+      "candidate_id": "CISO-REQ-SRC-001",
+      "candidate_title": "CISO Standards Requirements Catalog Candidate",
+      "candidate_source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
+      "target_id": "ARCH-EA-REQ-001",
+      "target_title": "Enterprise Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.143,
+      "content_overlap": 0.059,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "high",
+            "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
+          },
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "medium",
+            "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
+          }
+        ],
+        "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
+      }
+    },
+    {
+      "candidate_id": "CISO-REQ-SRC-001",
+      "candidate_title": "CISO Standards Requirements Catalog Candidate",
+      "candidate_source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
+      "target_id": "ARCH-SA-REQ-001",
+      "target_title": "Solution Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.143,
+      "content_overlap": 0.057,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "high",
+            "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
+          },
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "medium",
+            "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
+          }
+        ],
+        "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
+      }
+    },
+    {
+      "candidate_id": "CISO-REQ-SRC-001",
+      "candidate_title": "CISO Standards Requirements Catalog Candidate",
+      "candidate_source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
+      "target_id": "ARCH-PA-REQ-001",
+      "target_title": "Product Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.143,
+      "content_overlap": 0.051,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "high",
+            "notes": "Strong overlap with existing lifecycle, supply-chain, build, vulnerability, integrity, and evidence controls; extension intent requires human review."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Some requirements imply platform capabilities, but the candidate is not a platform architecture replacement."
+          },
+          {
+            "source_id": "ARCH-SDD-REQ-001",
+            "similarity": "medium",
+            "notes": "Product security, threat modeling, and verification topics overlap architecture governance and require routing review."
+          }
+        ],
+        "notes": "Classified as a related and overlapping candidate without asserting duplicate or replacement status."
+      }
+    },
+    {
+      "candidate_id": "TOOLCHAIN-ARCH-CAND-001",
+      "candidate_title": "Enterprise SDLC Toolchain Reference Architecture v0.3",
+      "candidate_source_path": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
+      "target_id": "ARCH-SDD-REQ-001",
+      "target_title": "Integrated SDD Architecture Governance Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.199,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Toolchain architecture adds broad lifecycle and platform integration intent; replacement or extension relationship requires owner decision."
+          },
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Candidate refers to control levels and evidence; retain explicit source precedence during review."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "TOOLCHAIN-ARCH-CAND-001",
+      "candidate_title": "Enterprise SDLC Toolchain Reference Architecture v0.3",
+      "candidate_source_path": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
+      "target_id": "ARCH-TPL-REQ-001",
+      "target_title": "Architecture Templates and Checklists Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.236,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Toolchain architecture adds broad lifecycle and platform integration intent; replacement or extension relationship requires owner decision."
+          },
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Candidate refers to control levels and evidence; retain explicit source precedence during review."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "TOOLCHAIN-ARCH-CAND-001",
+      "candidate_title": "Enterprise SDLC Toolchain Reference Architecture v0.3",
+      "candidate_source_path": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
+      "target_id": "ARCH-EA-REQ-001",
+      "target_title": "Enterprise Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.167,
+      "content_overlap": 0.233,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Toolchain architecture adds broad lifecycle and platform integration intent; replacement or extension relationship requires owner decision."
+          },
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Candidate refers to control levels and evidence; retain explicit source precedence during review."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "TOOLCHAIN-ARCH-CAND-001",
+      "candidate_title": "Enterprise SDLC Toolchain Reference Architecture v0.3",
+      "candidate_source_path": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
+      "target_id": "ARCH-SA-REQ-001",
+      "target_title": "Solution Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.243,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Toolchain architecture adds broad lifecycle and platform integration intent; replacement or extension relationship requires owner decision."
+          },
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Candidate refers to control levels and evidence; retain explicit source precedence during review."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "TOOLCHAIN-ARCH-CAND-001",
+      "candidate_title": "Enterprise SDLC Toolchain Reference Architecture v0.3",
+      "candidate_source_path": "docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md",
+      "target_id": "ARCH-PA-REQ-001",
+      "target_title": "Product Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.24,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Toolchain architecture adds broad lifecycle and platform integration intent; replacement or extension relationship requires owner decision."
+          },
+          {
+            "source_id": "DSCB-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Candidate refers to control levels and evidence; retain explicit source precedence during review."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "SW-INDUSTRIALISATION-OM-CAND-001",
+      "candidate_title": "Software Industrialisation Enterprise Operating Model Proposal",
+      "candidate_source_path": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
+      "target_id": "ARCH-SDD-REQ-001",
+      "target_title": "Integrated SDD Architecture Governance Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.25,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-POL-REQ-001",
+            "similarity": "medium",
+            "notes": "Enterprise operating model may extend governance scope; owner must decide coexistence, precedence, and approval status."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Industrialisation operating model intersects platform ownership and federated delivery but is not presumed to replace PRA."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "SW-INDUSTRIALISATION-OM-CAND-001",
+      "candidate_title": "Software Industrialisation Enterprise Operating Model Proposal",
+      "candidate_source_path": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
+      "target_id": "ARCH-TPL-REQ-001",
+      "target_title": "Architecture Templates and Checklists Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.214,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-POL-REQ-001",
+            "similarity": "medium",
+            "notes": "Enterprise operating model may extend governance scope; owner must decide coexistence, precedence, and approval status."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Industrialisation operating model intersects platform ownership and federated delivery but is not presumed to replace PRA."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "SW-INDUSTRIALISATION-OM-CAND-001",
+      "candidate_title": "Software Industrialisation Enterprise Operating Model Proposal",
+      "candidate_source_path": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
+      "target_id": "ARCH-EA-REQ-001",
+      "target_title": "Enterprise Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.125,
+      "content_overlap": 0.222,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-POL-REQ-001",
+            "similarity": "medium",
+            "notes": "Enterprise operating model may extend governance scope; owner must decide coexistence, precedence, and approval status."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Industrialisation operating model intersects platform ownership and federated delivery but is not presumed to replace PRA."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "SW-INDUSTRIALISATION-OM-CAND-001",
+      "candidate_title": "Software Industrialisation Enterprise Operating Model Proposal",
+      "candidate_source_path": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
+      "target_id": "ARCH-SA-REQ-001",
+      "target_title": "Solution Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.217,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-POL-REQ-001",
+            "similarity": "medium",
+            "notes": "Enterprise operating model may extend governance scope; owner must decide coexistence, precedence, and approval status."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Industrialisation operating model intersects platform ownership and federated delivery but is not presumed to replace PRA."
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "SW-INDUSTRIALISATION-OM-CAND-001",
+      "candidate_title": "Software Industrialisation Enterprise Operating Model Proposal",
+      "candidate_source_path": "docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md",
+      "target_id": "ARCH-PA-REQ-001",
+      "target_title": "Product Architecture Requirements Extract",
+      "target_source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
+      "candidate_doc_id": "",
+      "target_doc_id": "",
+      "title_overlap": 0.0,
+      "content_overlap": 0.228,
+      "shared_heading_count": 0,
+      "shared_headings": [],
+      "classification": "independent_candidate",
+      "recommendation": "Keep as candidate or classify as separate source; no replacement action recommended yet.",
+      "registered_candidate_replacement_for": [],
+      "registered_similarity_assessment": {
+        "assessment": "related_source",
+        "compared_to": [
+          {
+            "source_id": "DEVSECOPS-POL-REQ-001",
+            "similarity": "medium",
+            "notes": "Enterprise operating model may extend governance scope; owner must decide coexistence, precedence, and approval status."
+          },
+          {
+            "source_id": "PRA-STD-REQ-001",
+            "similarity": "medium",
+            "notes": "Industrialisation operating model intersects platform ownership and federated delivery but is not presumed to replace PRA."
+          }
+        ]
       }
     }
   ],

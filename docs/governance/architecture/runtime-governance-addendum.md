@@ -2,7 +2,7 @@
 
 ## Status
 
-This addendum extends `docs/governance/source-documents/ARCH-SDD-SRC-001.public.md` with a machine-readable runtime governance layer.
+This addendum extends `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md` with a machine-readable runtime governance layer.
 
 The source document remains the normative architecture governance reference. This addendum defines how selected governance concepts are represented as structured data, evidence contracts and policy-as-code checks.
 

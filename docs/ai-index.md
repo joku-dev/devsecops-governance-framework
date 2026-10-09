@@ -64,6 +64,8 @@ Use it as the first navigation point after `AGENTS.md`.
 | Verify the personal GitHub channel probe | `docs/operations/evidence/governance-lifecycle-personal-channel.md`, `scripts/check_lifecycle_personal_channel.py` (personal statement required; no lifecycle authorization) |
 | Validate action-specific GitHub consent | `docs/operations/evidence/governance-lifecycle-action-consent.md`, `scripts/intake_lifecycle_pilot_action.py` (pilot eligibility; effective LD-07 gates official publication) |
 | Read the complete technical function inventory | `docs/operations/guides/repository-technical-function-inventory.md` |
+| Understand and review post-merge documentation proposals | `docs/operations/guides/documentation-after-merge.md`, `.github/workflows/documentation-refresh.yml`, `scripts/reconcile_documentation_after_merge.py` |
+| Review the authorized scope of post-merge documentation maintenance | `docs/governance/change-requests/GCR-2026-137-post-merge-documentation-refresh.md` |
 | Inspect the accepted live pilot state | `docs/operations/status/governance-lifecycle-current-state.md`, `status/governance-lifecycle-live.json` |
 | Inspect or operate the GitHub pilot after LD-07 | `docs/operations/evidence/governance-lifecycle-live-operation.md`, `scripts/run_lifecycle_pilot_update.py` (personal acceptance captured and merged; manual report-only pilot) |
 | Open CLG-06.2 read-only scenario viewer | `docs/operations/evidence/governance-lifecycle-viewer.md`, `scripts/generate_governance_lifecycle_viewer.py` (synthetic; separate from official status) |
@@ -116,23 +118,23 @@ These files are architectural and strategic guardrails. They do not replace appr
 
 ## Source Documents
 
-The public source placeholders live in:
+The sanitized source requirement extracts live in:
 
 ```text
 docs/governance/source-documents/
 ```
 
-The original source documents are withheld from the public repository. The files below preserve lineage and review state only.
+The original source documents are withheld from the repository. The files below provide bounded requirement content for intake review and traceability.
 
-Current public placeholders:
+Current registered requirement extracts:
 
 | Source document | Main derived area |
 |---|---|
-| `DSCB-STD-SRC-001.public.md` | DevSecOps controls and OPA policy candidates |
-| `PRA-STD-SRC-001.public.md` | Platform levels and pipeline baseline |
-| `DEVSECOPS-DIR-SRC-001.public.md` | Governance directive |
-| `DEVSECOPS-POL-SRC-001.public.md` | Governance policy |
-| `ARCH-SDD-SRC-001.public.md` | Architecture runtime governance |
+| `DSCB-STD-SRC-001.requirements.md` | DevSecOps controls and OPA policy candidates |
+| `PRA-STD-SRC-001.requirements.md` | Platform levels and pipeline baseline |
+| `DEVSECOPS-DIR-SRC-001.requirements.md` | Governance directive |
+| `DEVSECOPS-POL-SRC-001.requirements.md` | Governance policy |
+| `ARCH-SDD-SRC-001.requirements.md` | Architecture runtime governance |
 
 When adding or changing derived governance artifacts, update or validate lineage:
 

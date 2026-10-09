@@ -21,7 +21,7 @@ The repository now models not only controls and platform capabilities, but also 
 
 Human decision material for a registered candidate source is grouped under
 `docs/governance/review-packets/<source-id>/`. Each packet provides one stable
-entry point for its review brief, candidate explanation, source placeholder,
+entry point for its review brief, candidate explanation, candidate intake record,
 change request, structured models, and generated reports.
 
 Review packets are not an additional normative layer. They do not approve a
@@ -31,7 +31,7 @@ the source-document register and governance change request.
 
 Private input files used to prepare a public-neutral review packet must remain
 outside the public `docs/` tree in a Git-ignored local source area. Only the
-registered public placeholder and sanitized review artifacts belong in the
+registered sanitized intake records and review artifacts belong in the
 repository.
 
 ## Why This Matters
