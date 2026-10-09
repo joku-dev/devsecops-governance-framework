@@ -12,12 +12,13 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #244: source-document intake and candidate registration (`430550f00aa9`)
+## PR #263: Implement implemented-requirement-first migration (`91c448049764`)
 
-- Remove obsolete `*.public.md` placeholders and point source lineage to the tracked, maintainer-confirmed `*.requirements.md` versions.
-- Register five incoming documents as candidates and record the human decisions in GCR-2026-113/114. Candidate status does not authorize derivation.
-- Refresh intake, requirement-delta, architecture-replacement, lineage, graph, and viewer projections; update tests for the revised source register.
-- Keep the existing 22 functional areas: this extends source management, change preparation, and lineage functions without changing controls, policies, baselines, or enforcement.
+- add partial activation for explicitly selected requirement proposals
+- add a versioned requirement-to-artifact register with exact GRQ revision, artifact hash, equivalence decision, and enforcement metadata
+- inventory active controls, platform models, architecture rules, OPA mappings, schemas, workflows, and releases
+- generate review candidates for all 867 approved source requirements without treating suggestions as approvals
+- enforce active revisions, authorized artifact types, hash integrity, legacy transition rules, and released-package immutability
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
