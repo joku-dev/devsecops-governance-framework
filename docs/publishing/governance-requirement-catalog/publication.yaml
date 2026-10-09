@@ -1,0 +1,15 @@
+schema_version: 1
+id: GOVERNANCE-REQUIREMENT-CATALOG
+version: 0.1.0
+title: Governance Requirement Catalog
+language: de-DE
+status: approved
+publication_class: normative
+source_of_truth: canonical_requirement_catalog
+outputs:
+- html
+- docx
+- pdf
+sections:
+- path: chapters/01-authority.md
+  kind: chapter

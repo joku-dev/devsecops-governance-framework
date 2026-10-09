@@ -12,6 +12,7 @@ This process supports the transition from externally supplied normative document
 | `model/requirements/lifecycle-cases/` | Preserves analysis, human decisions and activation evidence per requirement |
 | `model/requirements/governance-requirement-catalog.yaml` | Canonical Git requirement revisions after activation |
 | `docs/governance/requirements/` | Human-readable projection generated during activation |
+| `docs/publishing/governance-requirement-catalog/` | Deterministic publication input generated from active catalog revisions |
 
 Authority modes are `external_authoritative`, `migration_in_progress`, `git_authoritative`, and `retired`. During `migration_in_progress`, the approved source document remains normative for unresolved requirements. Git becomes normative only after every proposal has a human decision, activation is complete, and `complete-migration` records a catalog release.
 
@@ -26,10 +27,11 @@ Authority modes are `external_authoritative`, `migration_in_progress`, `git_auth
 7. Run `activate`; this creates or revises immutable canonical requirement records. Rejected and duplicate proposals retain their decisions but create no new requirement.
 8. Review and update authorized derived artifacts. `report_only` may be selected; blocking needs a separate enforcement authorization.
 9. Run `complete-migration` only after complete coverage. This changes the ledger to `git_authoritative`.
+10. CI builds reviewable HTML, Word, and PDF previews from the same catalog projection. Publication as an official release remains an explicit release decision.
 
 ## Use case 2: Git-native requirement
 
-Create a small source Markdown file under `docs/governance/requirements/native-sources/`, then run `start-native`. Analysis, human decision, activation, derivation and PR validation follow the same steps. A Git-native proposal does not need a source-document register entry or a ledger migration.
+Create a source Markdown file from `docs/governance/requirements/native-sources/TEMPLATE.md`, then run `start-native`. The CLI reads identity, ownership, decision reference and the requirement body from that one versioned file. Analysis, human decision, activation, derivation and PR validation follow the same steps. A Git-native proposal does not need a source-document register entry or a ledger migration.
 
 ## Commands
 
@@ -37,9 +39,12 @@ Create a small source Markdown file under `docs/governance/requirements/native-s
 python3 scripts/manage_requirement_lifecycle.py import-source --case-id RLC-EXAMPLE-MIGRATION --source-id EXAMPLE-REQ-001
 python3 scripts/manage_requirement_lifecycle.py reanalyze-all
 python3 scripts/manage_requirement_lifecycle.py report
+python3 scripts/manage_requirement_lifecycle.py next-decision --case-id RLC-EXAMPLE-MIGRATION
 python3 scripts/manage_requirement_lifecycle.py decide --case-id RLC-EXAMPLE-MIGRATION --proposal-id RLC-EXAMPLE-MIGRATION-P0001 --disposition approve --classification new --decided-by jane.doe --decision-role governance-owner --rationale "Approved as a new requirement" --authorized-derivation documentation
 python3 scripts/manage_requirement_lifecycle.py activate --case-id RLC-EXAMPLE-MIGRATION --effective-from 2026-10-09 --commit <commit>
 python3 scripts/manage_requirement_lifecycle.py complete-migration --case-id RLC-EXAMPLE-MIGRATION --catalog-release requirement-catalog-v1 --effective-from 2026-10-09 --decision-ref docs/governance/change-requests/GCR-....md
+python3 scripts/manage_requirement_lifecycle.py generate-publication
+python3 doc-as-code/scripts/build_publication.py --validate-only --manifest docs/publishing/governance-requirement-catalog/publication.yaml
 python3 scripts/validate_requirement_lifecycle.py
 ```
 
@@ -47,6 +52,7 @@ python3 scripts/validate_requirement_lifecycle.py
 
 - Analysis is advisory. A human decision is mandatory for every proposal.
 - Decisions and activated revisions are append-only evidence.
+- Prior revision bytes are immutable. `active_revision` identifies the current revision; a later revision does not rewrite the prior record.
 - `change` and `supersede` create a new revision and close the prior revision.
 - `extend` creates a separate requirement linked to its target.
 - `duplicate` and rejected proposals remain traceable and do not create catalog entries.

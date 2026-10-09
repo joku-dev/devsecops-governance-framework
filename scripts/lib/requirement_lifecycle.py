@@ -73,6 +73,25 @@ def parse_requirement_table(path: Path) -> list[dict]:
     return requirements
 
 
+def parse_native_requirement(path: Path) -> dict:
+    content = path.read_text(encoding="utf-8")
+    match = re.match(r"\A---\s*\n(.*?)\n---\s*(?:\n|$)(.*)\Z", content, re.DOTALL)
+    if not match:
+        raise ValueError(f"native requirement must start with YAML frontmatter: {path}")
+    metadata = yaml.safe_load(match.group(1))
+    statement = match.group(2).strip()
+    if not isinstance(metadata, dict) or not statement:
+        raise ValueError(f"native requirement metadata and statement are required: {path}")
+    required = {"id", "title", "normative_strength", "domain", "owner", "decision_ref"}
+    missing = sorted(required - metadata.keys())
+    extra = sorted(metadata.keys() - required)
+    if missing or extra:
+        raise ValueError(f"native requirement metadata mismatch; missing={missing}, extra={extra}")
+    if metadata["normative_strength"] not in {"MUST", "SHOULD", "MAY", "REQUIREMENT"}:
+        raise ValueError("invalid native requirement normative_strength")
+    return {**metadata, "statement": statement}
+
+
 def active_revisions(catalog: dict) -> list[tuple[str, dict]]:
     active = []
     for requirement in catalog.get("requirements", []):
@@ -161,7 +180,8 @@ def build_source_case(*, case_id: str, source: dict, source_path: Path, catalog:
 
 
 def build_native_case(*, case_id: str, source_id: str, source_path: Path, owner: str, domain: str,
-                      title: str, statement: str, strength: str, decision_ref: str, catalog: dict) -> dict:
+                      title: str, statement: str, strength: str, decision_ref: str, catalog: dict,
+                      source_file: Path | None = None) -> dict:
     return {
         "schema_version": "1.0.0",
         "case_id": case_id,
@@ -171,7 +191,7 @@ def build_native_case(*, case_id: str, source_id: str, source_path: Path, owner:
         "source": {
             "source_id": source_id,
             "source_path": source_path.as_posix(),
-            "source_sha256": digest(source_path),
+            "source_sha256": digest(source_file or source_path),
             "owner": owner,
             "decision_ref": decision_ref,
         },
@@ -243,9 +263,6 @@ def activate_case(case: dict, catalog: dict, *, effective_from: str, commit: str
                 raise ValueError(f"unknown target requirement: {target_id}")
             requirement_id = target_id
             requirement = known[target_id]
-            previous = next(item for item in requirement["revisions"] if item["revision"] == requirement["active_revision"])
-            previous["status"] = "superseded"
-            previous["effective_until"] = effective_from
         revision_number = len(requirement["revisions"]) + 1
         relationships = [{"type": "derived_from", "target": proposal["source_requirement_id"]}]
         relationship = RELATIONSHIP_BY_CLASSIFICATION.get(decision["classification"])

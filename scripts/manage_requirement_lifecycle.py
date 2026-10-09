@@ -8,11 +8,13 @@ import json
 import sys
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.requirement_lifecycle import (
     activate_case, analyze_statement, build_native_case, build_source_case, digest, load_yaml,
-    shortlist_candidates,
+    parse_native_requirement, shortlist_candidates,
     record_decision, render_requirement_markdown, write_json, write_yaml,
 )
 
@@ -21,6 +23,7 @@ LEDGER_PATH = ROOT / "model/requirements/requirement-authority-ledger.yaml"
 REGISTER_PATH = ROOT / "model/documents/source-document-register.yaml"
 CASE_ROOT = ROOT / "model/requirements/lifecycle-cases"
 DOC_ROOT = ROOT / "docs/governance/requirements"
+PUBLICATION_ROOT = ROOT / "docs/publishing/governance-requirement-catalog"
 
 
 def case_path(case_id: str) -> Path:
@@ -73,10 +76,15 @@ def start_native(args) -> None:
     source_path = ROOT / args.source_path
     if not source_path.is_file():
         raise ValueError("native source path must exist before the case is created")
+    if not source_path.resolve().is_relative_to((DOC_ROOT / "native-sources").resolve()):
+        raise ValueError("native source must stay under docs/governance/requirements/native-sources/")
+    if case_path(args.case_id).exists():
+        raise ValueError(f"lifecycle case already exists: {args.case_id}")
+    native = parse_native_requirement(source_path)
     case = build_native_case(
-        case_id=args.case_id, source_id=args.source_id, source_path=Path(args.source_path),
-        owner=args.owner, domain=args.domain, title=args.title, statement=args.statement,
-        strength=args.strength, decision_ref=args.decision_ref, catalog=load_yaml(CATALOG_PATH),
+        case_id=args.case_id, source_id=native["id"], source_path=Path(args.source_path), source_file=source_path,
+        owner=native["owner"], domain=native["domain"], title=native["title"], statement=native["statement"],
+        strength=native["normative_strength"], decision_ref=native["decision_ref"], catalog=load_yaml(CATALOG_PATH),
     )
     write_json(case_path(args.case_id), case)
     print(f"Created {case_path(args.case_id).relative_to(ROOT)}")
@@ -121,13 +129,62 @@ def activate(args) -> None:
     write_json(case_path(args.case_id), case)
     write_yaml(CATALOG_PATH, catalog)
     refresh_ledger(case)
-    for requirement in catalog["requirements"]:
-        if requirement["active_revision"] is not None:
-            target = DOC_ROOT / requirement["id"] / f"v{requirement['active_revision']:04d}.md"
-            target.parent.mkdir(parents=True, exist_ok=True)
-            if not target.exists():
-                target.write_text(render_requirement_markdown(requirement), encoding="utf-8")
+    sync_publication(catalog)
     print(f"Activated {args.case_id}")
+
+
+def publication_requirement_markdown(requirement: dict) -> str:
+    revision = next(item for item in requirement["revisions"] if item["revision"] == requirement["active_revision"])
+    strength = {"MUST": "required", "REQUIREMENT": "required", "SHOULD": "recommended", "MAY": "informative"}[revision["normative_strength"]]
+    supersedes = next((item["target"].split("@rev", 1)[0] for item in revision["relationships"] if item["type"] == "supersedes"), None)
+    metadata = {
+        "id": requirement["id"], "title": revision["title"], "status": "effective",
+        "normative_level": strength, "owner": revision["owner"], "effective_from": revision["effective_from"],
+        "source_ids": revision["source_refs"], "control_ids": [], "evidence_types": ["requirement-lifecycle-decision"],
+        "supersedes": supersedes,
+    }
+    return "---\n" + yaml.safe_dump(metadata, allow_unicode=True, sort_keys=False).strip() + "\n---\n\n" + revision["statement"] + "\n"
+
+
+def sync_publication(catalog: dict) -> None:
+    requirements_root = PUBLICATION_ROOT / "requirements"
+    requirements_root.mkdir(parents=True, exist_ok=True)
+    chapter = PUBLICATION_ROOT / "chapters/01-authority.md"
+    chapter.parent.mkdir(parents=True, exist_ok=True)
+    chapter.write_text(
+        "# Governance Requirement Catalog\n\nThis publication is generated from the active revisions in "
+        "`model/requirements/governance-requirement-catalog.yaml`. The Requirement Authority Ledger determines the normative "
+        "representation for every migrating source. Catalog revisions are authoritative only for their recorded active scope.\n",
+        encoding="utf-8",
+    )
+    sections = [{"path": "chapters/01-authority.md", "kind": "chapter"}]
+    active_ids = set()
+    for requirement in sorted(catalog["requirements"], key=lambda item: item["id"]):
+        if requirement["active_revision"] is None:
+            continue
+        active_ids.add(requirement["id"])
+        canonical = DOC_ROOT / requirement["id"] / f"v{requirement['active_revision']:04d}.md"
+        canonical.parent.mkdir(parents=True, exist_ok=True)
+        if not canonical.exists():
+            canonical.write_text(render_requirement_markdown(requirement), encoding="utf-8")
+        publication = requirements_root / f"{requirement['id']}.md"
+        publication.write_text(publication_requirement_markdown(requirement), encoding="utf-8")
+        sections.append({"path": f"requirements/{requirement['id']}.md", "kind": "requirement"})
+    for stale in requirements_root.glob("GRQ-*.md"):
+        if stale.stem not in active_ids:
+            stale.unlink()
+    manifest = {
+        "schema_version": 1, "id": "GOVERNANCE-REQUIREMENT-CATALOG", "version": catalog["version"],
+        "title": "Governance Requirement Catalog", "language": "de-DE", "status": "approved",
+        "publication_class": "normative", "source_of_truth": "canonical_requirement_catalog",
+        "outputs": ["html", "docx", "pdf"], "sections": sections,
+    }
+    write_yaml(PUBLICATION_ROOT / "publication.yaml", manifest)
+
+
+def generate_publication(_) -> None:
+    sync_publication(load_yaml(CATALOG_PATH))
+    print(f"Synchronized {PUBLICATION_ROOT.relative_to(ROOT)}")
 
 
 def refresh_ledger(case: dict) -> None:
@@ -158,6 +215,12 @@ def complete_migration(args) -> None:
         raise ValueError("migration can complete only after all decisions and activation")
     if entry["coverage"]["effective"] != entry["coverage"]["total"]:
         raise ValueError("migration coverage is incomplete")
+    expected_release = f"requirement-catalog-v{load_yaml(CATALOG_PATH)['version']}"
+    if args.catalog_release != expected_release:
+        raise ValueError(f"catalog release must be {expected_release}")
+    decision_path = ROOT / args.decision_ref
+    if not decision_path.is_file() or not decision_path.resolve().is_relative_to((ROOT / "docs/governance/change-requests").resolve()):
+        raise ValueError("migration completion decision must reference an existing governance change request")
     entry["authority_mode"] = "git_authoritative"
     entry["catalog_release"] = args.catalog_release
     entry["effective_from"] = args.effective_from
@@ -189,6 +252,25 @@ def report(_) -> None:
         print(f"- {item['source_id']}: {item['authority_mode']} · {coverage['decided']}/{coverage['total']} decided")
 
 
+def next_decision(args) -> None:
+    case = load_case(args.case_id)
+    proposal = next((item for item in case["proposals"] if item["decision"] is None), None)
+    if proposal is None:
+        print(f"{args.case_id} has no open decisions")
+        return
+    analysis = proposal["analysis"]
+    print(f"Case: {args.case_id}")
+    print(f"Proposal: {proposal['proposal_id']} ({proposal['source_requirement_id']})")
+    print(f"Title: {proposal['title']}")
+    print(f"Strength/domain: {proposal['normative_strength']} / {proposal['domain']}")
+    print(f"Statement: {proposal['statement']}")
+    print(f"Suggestion: {analysis['suggested_classification']} ({analysis['confidence']:.4f}, {analysis['method']})")
+    print("Candidates:")
+    for candidate in analysis["candidate_matches"]:
+        print(f"- {candidate['requirement_id']}: {candidate['similarity']:.4f}")
+    print("Human decision required: duplicate | new | extend | change | supersede | conflict")
+
+
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(description=__doc__)
     commands = root.add_subparsers(dest="command", required=True)
@@ -197,9 +279,8 @@ def parser() -> argparse.ArgumentParser:
     source.add_argument("--source-id", required=True)
     source.set_defaults(handler=import_source)
     native = commands.add_parser("start-native")
-    for name in ("case-id", "source-id", "source-path", "owner", "domain", "title", "statement", "decision-ref"):
-        native.add_argument(f"--{name}", required=True)
-    native.add_argument("--strength", choices=["MUST", "SHOULD", "MAY", "REQUIREMENT"], required=True)
+    native.add_argument("--case-id", required=True)
+    native.add_argument("--source-path", required=True)
     native.set_defaults(handler=start_native)
     decision = commands.add_parser("decide")
     for name in ("case-id", "proposal-id", "decided-by", "decision-role", "rationale"):
@@ -223,6 +304,11 @@ def parser() -> argparse.ArgumentParser:
     completion.set_defaults(handler=complete_migration)
     status = commands.add_parser("report")
     status.set_defaults(handler=report)
+    next_item = commands.add_parser("next-decision")
+    next_item.add_argument("--case-id", required=True)
+    next_item.set_defaults(handler=next_decision)
+    publication = commands.add_parser("generate-publication")
+    publication.set_defaults(handler=generate_publication)
     return root
 
 

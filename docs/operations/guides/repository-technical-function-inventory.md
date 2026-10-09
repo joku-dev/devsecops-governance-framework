@@ -429,3 +429,5 @@ Baseline-Änderung oder Live-Freigabe.
 | `schemas/requirement-authority-ledger.schema.json` | Contract for source authority and migration coverage. |
 | `schemas/governance-requirement-catalog.schema.json` | Contract for canonical requirement revisions. |
 | `schemas/requirement-lifecycle-case.schema.json` | Contract for proposal analysis, decision, and activation evidence. |
+| `schemas/native-requirement-source.schema.json` | Contract for a directly authored Git-native requirement source. |
+| `docs/publishing/governance-requirement-catalog/` | Generated Doc-as-Code input for HTML, Word and PDF catalog previews. |

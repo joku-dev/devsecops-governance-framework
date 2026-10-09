@@ -1,11 +1,12 @@
 from copy import deepcopy
 from pathlib import Path
 import sys
+import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from lib.requirement_lifecycle import analyze_statement, activate_case, record_decision
+from lib.requirement_lifecycle import analyze_statement, activate_case, parse_native_requirement, record_decision
 
 
 def catalog_with(statement="Existing requirement"):
@@ -35,6 +36,19 @@ def lifecycle_case(statement="New requirement"):
 
 
 class RequirementLifecycleTests(unittest.TestCase):
+    def test_native_requirement_uses_versioned_markdown_body(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "requirement.md"
+            path.write_text(
+                "---\nid: NATIVE-REQ-2026-001\ntitle: Native\nnormative_strength: MUST\n"
+                "domain: devsecops\nowner: owner\ndecision_ref: docs/governance/change-requests/GCR-1.md\n"
+                "---\n\nThe governed statement.\n",
+                encoding="utf-8",
+            )
+            parsed = parse_native_requirement(path)
+            self.assertEqual(parsed["id"], "NATIVE-REQ-2026-001")
+            self.assertEqual(parsed["statement"], "The governed statement.")
+
     def test_exact_match_is_duplicate(self):
         analysis = analyze_statement("Existing requirement", catalog_with())
         self.assertEqual(analysis["suggested_classification"], "duplicate")
@@ -84,8 +98,18 @@ class RequirementLifecycleTests(unittest.TestCase):
                         rationale="change approved", authorized_derivations=[], runtime_enforcement="none")
         activate_case(case, catalog, effective_from="2026-10-10", commit="abc")
         revisions = catalog["requirements"][0]["revisions"]
-        self.assertEqual([item["status"] for item in revisions], ["superseded", "effective"])
+        self.assertEqual([item["status"] for item in revisions], ["effective", "effective"])
+        self.assertIsNone(revisions[0]["effective_until"])
         self.assertEqual(catalog["requirements"][0]["active_revision"], 2)
+
+    def test_conflict_cannot_activate(self):
+        case = lifecycle_case()
+        catalog = catalog_with()
+        record_decision(case, proposal_id="RLC-TEST-P0001", disposition="approve", classification="conflict",
+                        target_requirement_id="GRQ-000001", decided_by="user", decision_role="owner",
+                        rationale="unresolved conflict", authorized_derivations=[], runtime_enforcement="none")
+        with self.assertRaisesRegex(ValueError, "conflict"):
+            activate_case(case, catalog, effective_from="2026-10-10", commit="abc")
 
 
 if __name__ == "__main__":

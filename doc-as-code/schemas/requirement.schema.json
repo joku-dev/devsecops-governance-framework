@@ -6,7 +6,7 @@
   "additionalProperties": false,
   "required": ["id", "title", "status", "normative_level", "owner", "effective_from", "source_ids", "control_ids", "evidence_types", "supersedes"],
   "properties": {
-    "id": {"type": "string", "pattern": "^DAC-REQ-[0-9]{3}$"},
+    "id": {"type": "string", "pattern": "^(DAC-REQ-[0-9]{3}|GRQ-[0-9]{6})$"},
     "title": {"type": "string", "minLength": 1},
     "status": {"enum": ["draft", "effective", "retired"]},
     "normative_level": {"enum": ["informative", "recommended", "required"]},
@@ -15,6 +15,6 @@
     "source_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
     "control_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
     "evidence_types": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
-    "supersedes": {"type": ["string", "null"], "pattern": "^DAC-REQ-[0-9]{3}$"}
+    "supersedes": {"type": ["string", "null"], "pattern": "^(DAC-REQ-[0-9]{3}|GRQ-[0-9]{6})$"}
   }
 }
