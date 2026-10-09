@@ -125,12 +125,16 @@ def reanalyze_all(_) -> None:
 def activate(args) -> None:
     case = load_case(args.case_id)
     catalog = load_yaml(CATALOG_PATH)
-    activate_case(case, catalog, effective_from=args.effective_from, commit=args.commit)
+    activate_case(
+        case, catalog, effective_from=args.effective_from, commit=args.commit,
+        proposal_ids=args.proposal_id or None,
+    )
     write_json(case_path(args.case_id), case)
     write_yaml(CATALOG_PATH, catalog)
     refresh_ledger(case)
     sync_publication(catalog)
-    print(f"Activated {args.case_id}")
+    scope = ", ".join(args.proposal_id) if args.proposal_id else "complete case"
+    print(f"Activated {args.case_id}: {scope}")
 
 
 def publication_requirement_markdown(requirement: dict) -> str:
@@ -195,13 +199,23 @@ def refresh_ledger(case: dict) -> None:
     if entry is None:
         raise ValueError(f"authority ledger entry missing for {case['source']['source_id']}")
     decided = sum(item["decision"] is not None for item in case["proposals"])
-    effective = sum(
-        item["activation"] is not None or (
-            item["decision"] is not None and (
-                item["decision"]["disposition"] == "reject" or item["decision"]["classification"] == "duplicate"
-            )
-        ) for item in case["proposals"]
-    )
+    proposal_activations = {}
+    for path in CASE_ROOT.glob("*.json"):
+        other = json.loads(path.read_text(encoding="utf-8"))
+        proposal_activations.update({item["proposal_id"]: item["activation"] for item in other["proposals"]})
+    def is_effective(item: dict) -> bool:
+        if item["activation"] is not None:
+            return True
+        decision = item["decision"]
+        if decision is None:
+            return False
+        if decision["disposition"] == "reject":
+            return True
+        if decision["classification"] == "duplicate":
+            target = decision["target_requirement_id"] or ""
+            return target.startswith("GRQ-") or proposal_activations.get(target) is not None
+        return False
+    effective = sum(is_effective(item) for item in case["proposals"])
     entry["coverage"].update(decided=decided, effective=effective, unresolved=len(case["proposals"]) - decided)
     write_yaml(LEDGER_PATH, ledger)
 
@@ -297,6 +311,8 @@ def parser() -> argparse.ArgumentParser:
     activation.add_argument("--case-id", required=True)
     activation.add_argument("--effective-from", required=True)
     activation.add_argument("--commit", required=True)
+    activation.add_argument("--proposal-id", action="append", default=[],
+                            help="Activate only the named approved proposal; repeat for a batch")
     activation.set_defaults(handler=activate)
     completion = commands.add_parser("complete-migration")
     for name in ("case-id", "catalog-release", "effective-from", "decision-ref"):

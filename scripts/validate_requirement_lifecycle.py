@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import subprocess
 import sys
@@ -20,6 +21,8 @@ CATALOG = ROOT / "model/requirements/governance-requirement-catalog.yaml"
 LEDGER = ROOT / "model/requirements/requirement-authority-ledger.yaml"
 CASES = ROOT / "model/requirements/lifecycle-cases"
 PUBLICATION = ROOT / "docs/publishing/governance-requirement-catalog/publication.yaml"
+ARTIFACT_REGISTER = ROOT / "model/requirements/requirement-to-artifact-register.yaml"
+DERIVED_PREFIXES = ("model/controls/", "model/platform/", "architecture/", "policies/opa/")
 
 
 def read(path: Path):
@@ -49,6 +52,11 @@ def git_value(base_ref: str, path: Path):
     if completed.returncode:
         return None
     return json.loads(completed.stdout) if path.suffix == ".json" else yaml.safe_load(completed.stdout)
+
+
+def git_path_exists(base_ref: str, path: str) -> bool:
+    completed = subprocess.run(["git", "cat-file", "-e", f"{base_ref}:{path}"], cwd=ROOT, capture_output=True)
+    return completed.returncode == 0
 
 
 def validate_immutable_history(base_ref: str, catalog: dict, case_paths: list[Path], errors: list[str]) -> None:
@@ -81,6 +89,71 @@ def validate_immutable_history(base_ref: str, catalog: dict, case_paths: list[Pa
                 errors.append(f"recorded activation changed: {before['proposal_id']}")
 
 
+def changed_paths(base_ref: str) -> set[str]:
+    completed = subprocess.run(
+        ["git", "diff", "--name-only", f"{base_ref}...HEAD"], cwd=ROOT, capture_output=True, text=True,
+    )
+    if completed.returncode:
+        completed = subprocess.run(
+            ["git", "diff", "--name-only", base_ref], cwd=ROOT, capture_output=True, text=True,
+        )
+    return set(completed.stdout.splitlines()) if completed.returncode == 0 else set()
+
+
+def validate_artifact_register(register: dict, catalog: dict, ledger: dict, base_ref: str | None,
+                               errors: list[str], source_map: dict[str, str] | None = None) -> None:
+    active: dict[str, dict] = {}
+    for requirement in catalog["requirements"]:
+        revision = next(
+            (item for item in requirement["revisions"] if item["revision"] == requirement["active_revision"]), None,
+        )
+        if revision and revision["status"] == "effective":
+            active[f"{requirement['id']}@rev{revision['revision']}"] = revision
+    effective_entries: dict[str, list[dict]] = {}
+    ids = set()
+    for entry in register["entries"]:
+        if entry["id"] in ids:
+            errors.append(f"duplicate artifact register ID: {entry['id']}")
+        ids.add(entry["id"])
+        revision = active.get(entry["requirement_ref"])
+        if revision is None:
+            errors.append(f"{entry['id']} references an unknown or inactive requirement revision")
+            continue
+        artifact = entry["artifact"]
+        if artifact["type"] not in revision["authorized_derivations"]:
+            errors.append(f"{entry['id']} uses unauthorized artifact type {artifact['type']}")
+        if entry["enforcement"] != revision["runtime_enforcement"]:
+            errors.append(f"{entry['id']} enforcement differs from its exact requirement revision")
+        path = ROOT / artifact["path"]
+        if not path.is_file():
+            errors.append(f"{entry['id']} artifact is missing: {artifact['path']}")
+        elif hashlib.sha256(path.read_bytes()).hexdigest() != artifact["sha256"]:
+            errors.append(f"{entry['id']} artifact hash changed: {artifact['path']}")
+        decision_ref = ROOT / entry["decision"]["decision_ref"]
+        if not decision_ref.is_file():
+            errors.append(f"{entry['id']} decision reference is missing")
+        if entry["decision"]["status"] == "effective":
+            if entry["decision"]["equivalence"] != "equivalent":
+                errors.append(f"{entry['id']} is effective without confirmed equivalence")
+            effective_entries.setdefault(artifact["path"], []).append(entry)
+    git_sources = {item["source_id"] for item in ledger["sources"] if item["authority_mode"] == "git_authoritative"}
+    source_map = source_map or {}
+    for entry in register["entries"]:
+        entry_sources = {source_map.get(ref, ref) for ref in entry["source_requirement_refs"]}
+        if git_sources.intersection(entry_sources) and entry["decision"]["kind"] != "derivation":
+            errors.append(f"{entry['id']} retains legacy adoption after source became git_authoritative")
+    if not base_ref:
+        return
+    changes = changed_paths(base_ref)
+    for path in sorted(changes):
+        if path.startswith("releases/") and git_path_exists(base_ref, path):
+            errors.append(f"published release artifact changed: {path}")
+        if path.startswith(DERIVED_PREFIXES):
+            current = ROOT / path
+            if current.is_file() and path not in effective_entries:
+                errors.append(f"new or changed normative artifact requires an effective GRQ mapping: {path}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-ref")
@@ -88,12 +161,14 @@ def main() -> int:
     errors: list[str] = []
     validate_schema(CATALOG, "governance-requirement-catalog.schema.json", errors)
     validate_schema(LEDGER, "requirement-authority-ledger.schema.json", errors)
+    validate_schema(ARTIFACT_REGISTER, "requirement-artifact-register.schema.json", errors)
     case_paths = sorted(CASES.glob("*.json")) if CASES.exists() else []
     for path in case_paths:
         validate_schema(path, "requirement-lifecycle-case.schema.json", errors)
 
     catalog = read(CATALOG)
     ledger = read(LEDGER)
+    artifact_register = read(ARTIFACT_REGISTER)
     ids = [item["id"] for item in catalog["requirements"]]
     if len(ids) != len(set(ids)):
         errors.append("canonical requirement IDs must be unique")
@@ -140,12 +215,18 @@ def main() -> int:
                 errors.append(f"git-authoritative source is incomplete: {source['source_id']}")
 
     activated_refs = set()
+    source_map = {}
     proposal_ids = {
         proposal["proposal_id"]
         for path in case_paths for proposal in read(path)["proposals"]
     }
+    proposal_activations = {
+        proposal["proposal_id"]: proposal["activation"]
+        for path in case_paths for proposal in read(path)["proposals"]
+    }
     for path in case_paths:
         case = read(path)
+        source_map.update({item["source_requirement_id"]: case["source"]["source_id"] for item in case["proposals"]})
         source_path = ROOT / case["source"]["source_path"]
         if not source_path.is_file():
             errors.append(f"lifecycle source missing: {case['source']['source_path']}")
@@ -168,6 +249,8 @@ def main() -> int:
                 valid_targets = known | proposal_ids if decision["classification"] == "duplicate" else known
                 if target not in valid_targets:
                     errors.append(f"{proposal['proposal_id']} has invalid decision target {target}")
+                if decision["classification"] == "duplicate" and target in proposal_ids and proposal_activations[target] is None:
+                    errors.append(f"{proposal['proposal_id']} duplicate target is not canonically activated: {target}")
             activation = proposal["activation"]
             if activation:
                 activated_refs.add(proposal["source_requirement_id"])
@@ -181,6 +264,7 @@ def main() -> int:
         errors.append("activated proposal source references are missing from the canonical catalog")
     if args.base_ref:
         validate_immutable_history(args.base_ref, catalog, case_paths, errors)
+    validate_artifact_register(artifact_register, catalog, ledger, args.base_ref, errors, source_map)
     if not PUBLICATION.is_file():
         errors.append("canonical catalog publication manifest is missing")
     else:
