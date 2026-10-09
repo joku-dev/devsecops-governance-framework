@@ -118,6 +118,15 @@ Disposition. Ohne bestehenden Zugriffsschutz wird keine interne Vollansicht
 erzeugt. Ein leerer Finding-Bestand bei `not_run` wird ausdrücklich als nicht
 ausgeführt und niemals als Konsistenznachweis dargestellt.
 
+Gemäß [GCR-2026-138](../../governance/change-requests/GCR-2026-138-dcr-viewer-publication.md)
+ist ausschließlich der feste, bereits validierte Pilotbericht
+`dcr-semantic-pilot-20261007-run2` für die öffentliche Projektion freigegeben.
+Er zeigt `partial`, menschliche Entscheidungen `not_run` und
+Implementierungsabdeckung `not_assessed`. Der Viewer entdeckt keine neuen
+Review-IDs automatisch; andere oder geänderte Berichte benötigen eine neue
+Entscheidung. Diese Einzelfreigabe genehmigt weder einen Produktionsrollout noch
+eine automatische oder blockierende Ausführung.
+
 ## L1-Nachweise je Repository
 
 Unter **Repositories → ha-CPsWMS → L1-Nachweise** stehen 16 zentrale
