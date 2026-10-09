@@ -12,49 +12,10 @@ mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbol
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-### PR #244: Source-Document-Intake und Kandidatenregister (`430550f00aa9`)
+### PR #257: Professionalize modular Doc-as-Code publications (`253f1227f585`)
 
-Die Änderung erweitert technische Unterstützung für drei vorhandene
-Funktionsbereiche des Katalogs: Quellenstatus, Vorbereitung des Quellenreviews
-und Lineage. Sie führt keinen neuen Kontroll- oder Evaluationspfad ein.
-
-| Komponente | Aufgabe und Grenze |
-|---|---|
-| `model/documents/source-document-register.yaml`, `model/documents/governance-documents.yaml` | Registrieren Quellenidentität, Pfad, Beziehungen und Status. Fünf neue Eingänge bleiben `candidate`; Status im Register ist keine Quellenfreigabe. |
-| `scripts/generate_source_document_intake_status.py` und `scripts/generate_source_document_intake_review_briefs.py` | Projizieren Registerstatus und vorbereitete menschliche Entscheidungsoptionen. Sie genehmigen oder promoten keine Quelle. |
-| `scripts/generate_source_document_requirement_delta.py` | Vergleicht eingehende Kandidaten mit den autorisierten getrackten Anforderungsfassungen; Deltas sind Prüfhinweise, keine semantische Gleichwertigkeitsentscheidung. |
-| `scripts/generate_architecture_source_replacement_assessment.py` | Stellt mögliche Architekturquellen-Ersetzungen und offene Abhängigkeiten für das Review dar. |
-| `scripts/generate_source_lineage_report.py` und die aktualisierten Architektur-/Evidenzmodelle | Erzeugen aktualisierte Herkunftsprojektionen und verweisen auf die registrierten Anforderungen; die Korrektur der Quellenreferenz ändert keine Gate-Semantik. |
-| `generated/reports/`, `generated/graph/`, `generated/viewer/status-viewer.html` | Neu erzeugte Berichts- und Viewer-Projektionen; sie sind keine neue Abnahme oder Laufzeitevidenz. |
-| `tests/test_source_document_intake_status.py`, `tests/test_source_document_requirement_delta.py`, `tests/test_repository_identity.py`, weitere betroffene Tests | Prüfen Registerpfade, Kandidatenabgrenzung, Deltas und entfernte Platzhalter. |
-
-Die fünf Kandidaten und deren menschliche Disposition sind in
-[GCR-2026-113](../../governance/change-requests/GCR-2026-113-devsecops-policy-v2-candidate-review-decision.md)
-und [GCR-2026-114](../../governance/change-requests/GCR-2026-114-source-candidate-decisions.md)
-belegt. Foundation-, Release-, Demo- und Consumer-Dokumente müssen hier nicht
-angepasst werden: der Merge hat keine Kandidatenquelle freigegeben und keine
-Governance-Auswertung, Baseline oder Durchsetzung geändert.
-
-Geänderte Implementierungspfade des PR:
-
-- `architecture/arch-gov.yaml`
-- `architecture/arch-l1.yaml`
-- `architecture/arch-l2.yaml`
-- `architecture/arch-l3.yaml`
-- `architecture/guardrails.yaml`
-- `architecture/quality-markers.yaml`
-- `architecture/remediation-actions.yaml`
-- `architecture/review-gates.yaml`
-- `model/controls/governance-repository-security.yaml`
-- `model/documents/governance-documents.yaml`
-- `model/documents/source-document-register.yaml`
-- `model/evidence/evidence-collector-contract.yaml`
-- `model/evidence/evidence-freshness-policies.yaml`
-- `model/evidence/evidence-trust-model.yaml`
-- `scripts/generate_architecture_source_replacement_assessment.py`
-- `scripts/generate_source_document_intake_status.py`
-- `scripts/generate_source_document_requirement_delta.py`
-- `scripts/generate_source_lineage_report.py`
+- `.github/workflows/doc-as-code-preview.yml`
+- `.github/workflows/publish-docs.yml`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
