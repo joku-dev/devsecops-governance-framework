@@ -3,8 +3,10 @@
 ## Entscheidungsrahmen
 
 Diese Empfehlung dispositioniert alle 56 Einträge aus `PRA-STD-REQ-001`.
-Sie ist noch keine menschliche Entscheidung und autorisiert weder eine
-GRQ-Aktivierung noch eine Artefaktübernahme. Maßgeblich waren in dieser
+Der Platform Owner hat sie am 9. Oktober 2026 vollständig angenommen. Die
+versionierte Entscheidung steht in
+`docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md`.
+Maßgeblich waren in dieser
 Reihenfolge:
 
 1. der normative Source-Text,
@@ -137,9 +139,9 @@ Die fachlichen Inhalte von `REQ-046` und `REQ-047` sind bereits im
 Control-to-Platform-Modell repräsentiert. Ihre Source-IDs bleiben als
 Lineage-Evidenz erhalten.
 
-## Empfohlene menschliche Entscheidung
+## Menschliche Entscheidung
 
-Der Platform Owner sollte jetzt ausschließlich Folgendes bestätigen:
+Der Platform Owner hat Folgendes bestätigt:
 
 1. die 16 Einträge der ersten Welle mit den angegebenen Requirement-
    Klassifikationen;

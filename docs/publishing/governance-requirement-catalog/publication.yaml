@@ -105,3 +105,19 @@ sections:
   kind: requirement
 - path: requirements/GRQ-000046.md
   kind: requirement
+- path: requirements/GRQ-000047.md
+  kind: requirement
+- path: requirements/GRQ-000048.md
+  kind: requirement
+- path: requirements/GRQ-000049.md
+  kind: requirement
+- path: requirements/GRQ-000050.md
+  kind: requirement
+- path: requirements/GRQ-000051.md
+  kind: requirement
+- path: requirements/GRQ-000052.md
+  kind: requirement
+- path: requirements/GRQ-000053.md
+  kind: requirement
+- path: requirements/GRQ-000054.md
+  kind: requirement

@@ -1,7 +1,7 @@
 schema_version: 1.0.0
 catalog_id: GOVERNANCE-REQUIREMENT-CATALOG
 version: 0.2.0
-next_sequence: 47
+next_sequence: 55
 requirements:
 - id: GRQ-000001
   active_revision: 1
@@ -1035,4 +1035,194 @@ requirements:
     authorized_derivations:
     - controls
     - policies
+    runtime_enforcement: none
+- id: GRQ-000047
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Access rights shall follow role-based access control.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-009
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-009
+    - type: extends
+      target: GRQ-000019
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000048
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Code changes shall require review before integration into protected branches.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-012
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-012
+    - type: extends
+      target: GRQ-000003
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000049
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Pipeline definitions shall be version-controlled.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-015
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-015
+    - type: extends
+      target: GRQ-000032
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000050
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Deployment processes shall verify artifact integrity prior to release.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-022
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-022
+    - type: extends
+      target: GRQ-000011
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000051
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Deployment activities shall be logged.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-024
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-024
+    - type: extends
+      target: GRQ-000016
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000052
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Evidence shall be stored in approved repositories.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-026
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-026
+    - type: extends
+      target: GRQ-000015
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000053
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Monitoring capabilities shall support incident investigation.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-029
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-029
+    - type: extends
+      target: GRQ-000030
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000054
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Mapping to Control Baseline Levels
+    statement: The required platform level shall be derived from the applicable DevSecOps Control Baseline level.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-037
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-037
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
     runtime_enforcement: none

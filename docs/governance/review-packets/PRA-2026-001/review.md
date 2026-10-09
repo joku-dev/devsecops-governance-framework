@@ -2,7 +2,7 @@
 
 ## Decision brief
 
-This packet prepares the human review of all 56 PRA source requirements. It does not record a lifecycle decision, activate a GRQ revision, adopt a platform artifact, or change runtime enforcement.
+This packet tracks the moderated review of all 56 PRA source requirements. Recorded decisions and effective platform mappings are read from the governed lifecycle case and Requirement-to-Artifact Register. It does not change runtime enforcement.
 
 The source is pinned to `730f3a1f5875ec76f3d032c9f620630fc68846d4722c28803b16c8ab50902d3b`. Existing control-to-platform allocation and capability metadata are primary review evidence; text similarity is advisory only.
 
@@ -12,6 +12,8 @@ The source is pinned to `730f3a1f5875ec76f3d032c9f620630fc68846d4722c28803b16c8a
 | With platform candidates | 55 |
 | Without platform candidates | 1 |
 | With explicit DSCB references | 2 |
+| Requirements decided | 38 |
+| Effective platform mappings | 11 |
 | Lowest top similarity | 0.3094 |
 | Highest top similarity | 0.5631 |
 
