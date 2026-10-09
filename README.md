@@ -12,11 +12,12 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #245: feat: refresh documentation after implementation merges (`01e633e95b0e`)
+## PR #244: source-document intake and candidate registration (`430550f00aa9`)
 
-- Add a post-merge workflow that detects implementation changes on main, updates the README, functional catalog and technical inventory, runs a local Markdown link audit and strict MkDocs build, then opens a separate documentation PR.
-- Keep semantic interpretation and final edits with human reviewers; documentation-only merges are skipped, preventing a follow-up loop.
-- Add GCR-2026-137, an operating guide, generator tests, and reconcile the catalog and technical inventory counts.
+- Remove obsolete `*.public.md` placeholders and point source lineage to the tracked, maintainer-confirmed `*.requirements.md` versions.
+- Register five incoming documents as candidates and record the human decisions in GCR-2026-113/114. Candidate status does not authorize derivation.
+- Refresh intake, requirement-delta, architecture-replacement, lineage, graph, and viewer projections; update tests for the revised source register.
+- Keep the existing 22 functional areas: this extends source management, change preparation, and lineage functions without changing controls, policies, baselines, or enforcement.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
