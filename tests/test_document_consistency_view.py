@@ -14,12 +14,16 @@ from lib.document_consistency_view import project_public
 class DocumentConsistencyViewTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.report = json.loads((ROOT / "docs/examples/document-consistency-review-phase2-report.json").read_text())
+        cls.report = json.loads((ROOT / "docs/examples/document-consistency-review-phase2-live-pilot-report.json").read_text())
         cls.manifest = json.loads((ROOT / "docs/examples/document-consistency-review-phase1-source-manifest.json").read_text())
 
     def test_one_time_public_snapshot_is_redacted_and_fresh(self):
         result = project_public(ROOT)
         self.assertEqual("partial", result["overall_status"])
+        self.assertEqual("dcr-codex-once-2026-10-09", result["review_id"])
+        self.assertEqual("completed", result["execution"]["status"])
+        self.assertEqual("recorded_locally_details_withheld", result["sections"]["human_decisions"])
+        self.assertEqual("not_assessed", result["sections"]["implementation_coverage"])
         self.assertEqual("current", result["freshness"]["status"])
         self.assertEqual(10, result["scope"]["source_count"])
         self.assertEqual([], result["scope"]["source_ids"])
@@ -43,8 +47,18 @@ class DocumentConsistencyViewTests(unittest.TestCase):
         self.assertEqual(3, len(result["findings"]))
         self.assertTrue(result["limitations"]["no_consistency_claim"])
 
-    def test_checked_in_example_remains_available_as_explicit_projection(self):
+    def test_checked_in_pilot_report_projects_completed_review_state(self):
         result = project_public(ROOT, report=self.report, manifest=self.manifest)
+        self.assertEqual("dcr-semantic-pilot-20261007-run2", result["review_id"])
+        self.assertEqual("partial", result["overall_status"])
+        self.assertEqual("completed", result["execution"]["status"])
+        self.assertEqual("partial", result["sections"]["semantic_review"])
+        self.assertEqual("not_run", result["sections"]["human_decisions"])
+        self.assertEqual("not_assessed", result["sections"]["implementation_coverage"])
+
+    def test_checked_in_example_remains_available_as_explicit_projection(self):
+        example = json.loads((ROOT / "docs/examples/document-consistency-review-phase2-report.json").read_text())
+        result = project_public(ROOT, report=example, manifest=self.manifest)
         self.assertEqual("not_run", result["overall_status"])
         self.assertEqual(2, result["scope"]["source_count"])
 

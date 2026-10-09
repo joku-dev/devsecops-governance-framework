@@ -13,7 +13,7 @@ from jsonschema import Draft202012Validator
 from generate_document_consistency_review_model import generate_model
 
 
-REPORT = Path("docs/examples/document-consistency-review-phase2-report.json")
+REPORT = Path("docs/examples/document-consistency-review-phase2-live-pilot-report.json")
 MANIFEST = Path("docs/examples/document-consistency-review-phase1-source-manifest.json")
 REPORT_SCHEMA = Path("schemas/document-consistency-semantic-report.schema.json")
 MANIFEST_SCHEMA = Path("schemas/document-consistency-review-manifest.schema.json")
