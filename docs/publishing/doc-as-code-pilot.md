@@ -22,13 +22,15 @@ Exportdateien sind abgeleitete Publikationen.
 
 ## So ist die Architektur aufgebaut
 
-| Ebene | Verantwortung | Maßgebliche Ablage |
-|---|---|---|
-| Quelle | Inhalt, Metadaten, Änderungen und Reviews | Markdown in `docs/publishing/` |
-| Website | Navigation und lesbare HTML-Seite | MkDocs aus denselben Git-Quellen |
-| Exporte | Standalone HTML, Word und PDF | Pandoc Build-Ausgabe |
-| Herkunftsnachweis | Quellhash, Commit, Werkzeugversion und Exporthashes | `publication-provenance.json` im Build |
-| Freigabe | Fachliche, normative und Veröffentlichungsentscheidung | Pull Request und anwendbarer Governance-Prozess |
+- **Quelle:** Markdown in `docs/publishing/` hält Inhalt, Metadaten,
+  Änderungen und Reviews.
+- **Website:** MkDocs erzeugt Navigation und die lesbare HTML-Seite aus
+  denselben Git-Quellen.
+- **Exporte:** Pandoc erzeugt Standalone-HTML, Word und PDF.
+- **Herkunftsnachweis:** `publication-provenance.json` hält Quellhash,
+  Commit, Werkzeugversion und Exporthashes fest.
+- **Freigabe:** Pull Request und anwendbarer Governance-Prozess erfassen
+  fachliche, normative und Veröffentlichungsentscheidungen.
 
 Der Build verwendet Pandoc 3.12 sowie XeLaTeX für PDF. Version und Binärhash
 von Pandoc sind in der CI-Konfiguration fixiert. Fehlende Werkzeuge oder
