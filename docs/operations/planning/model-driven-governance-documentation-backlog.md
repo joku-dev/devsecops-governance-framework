@@ -4,6 +4,12 @@ Status: **`deferred`**
 Abhängigkeit: formaler Abschluss von `WP-DCR-001`  
 Startfreigabe: separat erforderlich
 
+Abgrenzung: GCR-2026-140 setzt einen begrenzten Markdown-zu-Publikations-Pilot
+für redaktionelle Erläuterungen um. Dieser technische Exportpfad startet nicht
+den Modell-zu-Dokument-Umfang von WP-MDG-001; dessen Status bleibt `deferred`,
+bis Eingabemodell, Ergebnisdokument und fachliche Ableitungsregeln gesondert
+entschieden sind.
+
 ## Ziel
 
 Governance-Modelle sollen künftig reproduzierbare, nachvollziehbare und klar

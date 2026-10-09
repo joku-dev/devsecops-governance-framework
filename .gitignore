@@ -5,6 +5,7 @@ __pycache__/
 .venv-docs/
 .venv-docs-release/
 site/
+/build/doc-as-code/
 .local/governance-sources/
 
 # Local lifecycle append coordination and unpublished transactions.
