@@ -4,9 +4,12 @@ The separate [GRS-002 lifecycle pilot](../operations/status/governance-lifecycle
 now has personal operating acceptance. It does not change the ha-CPsWMS results
 or demonstrate a real consumer remediation/closure.
 
-This runbook contains accepted September mainline results and older, explicitly
-dated reference examples. For
-current operations, use the [operations handbook](../operations/guides/governance-repository-operations-handbook.md).
+This runbook contains the latest results currently accepted in the repository
+indexes plus older, explicitly dated reference examples. The latest accepted
+ha-CPsWMS results are from 2 October 2026; no newer producer mainline runs were
+found during the 9 October documentation readback. For current operations, use
+the [operations handbook](../operations/guides/governance-repository-operations-handbook.md)
+and [current platform status](../operations/status/current-governance-platform-state.md).
 The existing ha-CPsWMS DevSecOps integration is a preserved legacy blocking risk,
 with review due 12 December 2026; see [mode alignment](../operations/status/blocking-mode-alignment.md).
 Explicitly select report-only for a diagnostic demonstration and inspect the
@@ -70,27 +73,29 @@ Why this matters:
 
 ## Current Mainline Results
 
-These values record the 16 September 2026 mainline runs, accepted through
-intake PRs #109 and #110. Original artifact hashes and GitHub run/commit bindings
-were checked during reconciliation. Earlier results remain in the immutable
-history; this table is not a production approval.
+These values are the latest accepted mainline results in the domain indexes,
+generated on 2 October and observed again on 9 October. Original artifact hashes
+and GitHub run/commit bindings were checked during intake. Earlier results remain
+in immutable history; this table is not a 9 October evaluation or production
+approval.
 
 | Domain | Repository | Status | Baseline | Last mainline run | Commit | Generated |
 |---|---|---|---|---|---|---|
-| DevSecOps | `joku-dev/ha-CPsWMS` | `pass` | `l1-baseline-v1.1.3` | `35131186298` | `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3` | `2026-09-16T17:57:22Z` |
-| Architecture | `joku-dev/ha-CPsWMS` | `PASS` | `architecture-baseline-l1-v0.1.0` | `35131185047` | `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3` | `2026-09-16T17:55:49Z` |
+| DevSecOps | `joku-dev/ha-CPsWMS` | `pass`, 16/16 applicable controls | `l1-baseline-v1.1.3` | [`36997125273`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997125273) | `5c3b5cb50d2260bfbde736c9ac80667271406d99` | `2026-10-02T10:45:37Z` |
+| Architecture | `joku-dev/ha-CPsWMS` | `PASS`, 4/4 gates, 0 findings | `architecture-baseline-l1-v0.1.0` | [`36997124090`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997124090) | `5c3b5cb50d2260bfbde736c9ac80667271406d99` | `2026-10-02T10:44:34Z` |
 
 Expected summaries:
 
 | Domain | Expected result |
 |---|---|
-| DevSecOps | `16/16` controls pass, `0` fail |
+| DevSecOps | `16/16` applicable controls pass, `0` fail; 30 controls not applicable |
 | Architecture | `4/4` gates pass, `0` findings |
 
 Interpretation:
 
 - The recorded `ha-CPsWMS` mainline evidence demonstrates both governance domains at that revision.
 - The result is not production approval or evidence of current freshness. A passing result alone does not establish the enforcement mode of a later run.
+- The latest accepted typed vulnerability evidence is run `36997124065` from 2 October, `report_only`, with `provenance_verified` trust and critical findings. See the [typed-evidence index](../../status/typed-evidence-results-index.json) and do not interpret it as an assessment of newer images.
 
 ## Public Source Placeholders
 
@@ -441,16 +446,17 @@ Interpretation:
 
 ## Demo Step 6: Observe Downstream App Runs
 
-Current known-good app runs:
+Latest accepted ha-CPsWMS mainline runs (2 October 2026):
 
 | Workflow | Run | Expected status |
 |---|---:|---|
-| Architecture Runtime Governance | `35131185047` | Success |
-| DevSecOps Baseline | `35131186298` | Success |
-| DevSecOps Governance | `35131185030` | Success |
-| CI | `35131185111` | Success |
+| Architecture Runtime Governance | [`36997124090`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997124090) | Success; 4/4 gates pass |
+| DevSecOps Baseline | [`36997125273`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997125273) | Success; 16/16 applicable controls pass |
+| DevSecOps Governance | [`36997124109`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997124109) | Success |
+| CI | [`36997124104`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997124104) | Success |
 
-Open the run URLs:
+Open the run URLs above. The 16 September run records below are retained history,
+not the latest accepted mainline state:
 
 ```text
 https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185047
@@ -529,10 +535,11 @@ Expected interpretation:
 - DevSecOps should show `pass` for baseline `l1-baseline-v1.1.3`.
 - Architecture should show `PASS` for baseline `architecture-baseline-l1-v0.1.0`.
 - Existing pre-Trust snapshots should show evidence Trust `unverified` without changing either governance result.
-- The latest ha-CPsWMS DevSecOps run `35131186298` retains a report-only
-  Replay `fail` for cross-commit subject reuse. Architecture run `35131185047`
-  has Replay `pass`. Passing controls do not clear the separate Trust finding.
-  Historical replay assessments remain available under Evidence → Replay.
+- The retained 16 September DevSecOps run `35131186298` has a report-only
+  Replay `fail` for cross-commit subject reuse. The latest accepted DevSecOps
+  run is `36997125273`; its accepted result and Trust fields are in the current
+  repository index. Historical replay assessments remain available under
+  Evidence → Replay. Passing controls do not clear a separate Trust finding.
 - A resolved Collection Attempt proves only that collection later succeeded;
   it does not upgrade or weaken the collected governance outcome.
 - Intake Health derives its counts and durations from the accepted operation
