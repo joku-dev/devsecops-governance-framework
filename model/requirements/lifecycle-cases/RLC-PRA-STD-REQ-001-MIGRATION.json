@@ -1,0 +1,1336 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "RLC-PRA-STD-REQ-001-MIGRATION",
+  "intake_type": "source_document",
+  "status": "decision_required",
+  "created_at": "2026-10-09T16:33:09Z",
+  "source": {
+    "source_id": "PRA-STD-REQ-001",
+    "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
+    "source_sha256": "730f3a1f5875ec76f3d032c9f620630fc68846d4722c28803b16c8ab50902d3b",
+    "owner": "platform-owners",
+    "decision_ref": "docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md"
+  },
+  "proposals": [
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0001",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-001",
+      "title": "Aim and Purpose",
+      "statement": "The DevSecOps platform shall enable a controlled and repeatable software delivery across all programs.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0002",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-002",
+      "title": "The Chief Digitalisation Office",
+      "statement": "When a version is quoted, this version shall be used.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0004",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0015",
+            "similarity": 0.4242
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0003",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-003",
+      "title": "Scope",
+      "statement": "Domain-specific variants (e.g., classified environments) shall conform to this reference architecture.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0004",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-004",
+      "title": "DevSecOps Platform Stack Architecture Overview Strategic Authority",
+      "statement": "The enterprise DevSecOps platform shall implement the following logical architecture layers:",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3977,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0051",
+            "similarity": 0.6023
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0006",
+            "similarity": 0.5904
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0022",
+            "similarity": 0.559
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0005",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-005",
+      "title": "Operational Monitoring Layer",
+      "statement": "Platform Stack Capability Requirements",
+      "normative_strength": "REQUIREMENT",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0006",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-006",
+      "title": "Operational Monitoring Layer",
+      "statement": "Each platform instance shall implement the following mandatory capabilities.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3976,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0004",
+            "similarity": 0.6024
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0007",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-007",
+      "title": "Objective",
+      "statement": "Developers shall use approved development environments.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0008",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-008",
+      "title": "Objective",
+      "statement": "Access to development environments shall be authenticated via enterprise identity management.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4315,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0028",
+            "similarity": 0.5685
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0011",
+            "similarity": 0.4414
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0009",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-009",
+      "title": "Objective",
+      "statement": "Access rights shall follow role-based access control.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0010",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-010",
+      "title": "Objective",
+      "statement": "Source code shall be stored in enterprise-approved version control systems.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3984,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.6016
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0019",
+            "similarity": 0.5417
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0011",
+            "similarity": 0.5286
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.5032
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0011",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-011",
+      "title": "Objective",
+      "statement": "Access shall be restricted according to defined roles.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.531,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0008",
+            "similarity": 0.469
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0012",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-012",
+      "title": "Objective",
+      "statement": "Code changes shall require review before integration into protected branches.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0013",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-013",
+      "title": "Objective",
+      "statement": "All software builds shall be executed through automated pipelines.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.1765,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.8235
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.6621
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0014",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-014",
+      "title": "Objective",
+      "statement": "Pipeline execution environments shall be controlled and auditable.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3805,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0015",
+            "similarity": 0.6195
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.6066
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0043",
+            "similarity": 0.4795
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0015",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-015",
+      "title": "Objective",
+      "statement": "Pipeline definitions shall be version-controlled.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3214,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.6786
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.6357
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.6195
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5714
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0004",
+            "similarity": 0.404
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0016",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-016",
+      "title": "Objective",
+      "statement": "Security scanning shall be integrated into pipelines.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0017",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-017",
+      "title": "Objective",
+      "statement": "Supply chain integrity controls shall be implemented.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0018",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-018",
+      "title": "Objective",
+      "statement": "Security and compliance checks shall be automated where technically feasible.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0019",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-019",
+      "title": "Objective",
+      "statement": "Releasable artifacts shall be stored in approved artifact repositories.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2605,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.7395
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0010",
+            "similarity": 0.5556
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.4252
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0020",
+            "similarity": 0.3281
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0020",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-020",
+      "title": "Objective",
+      "statement": "Artifact repositories shall maintain integrity protections.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4803,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0022",
+            "similarity": 0.5197
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0019",
+            "similarity": 0.3281
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0021",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-021",
+      "title": "Objective",
+      "statement": "Dependency repositories shall be controlled and monitored.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3934,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.6066
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0015",
+            "similarity": 0.5143
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0002",
+            "similarity": 0.4274
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.3396
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0022",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-022",
+      "title": "Objective",
+      "statement": "Deployment processes shall verify artifact integrity prior to release.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4803,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0020",
+            "similarity": 0.5197
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0023",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-023",
+      "title": "Objective",
+      "statement": "Deployment authorization shall be enforced.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3165,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0024",
+            "similarity": 0.6835
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0024",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-024",
+      "title": "Objective",
+      "statement": "Deployment activities shall be logged.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3165,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.6835
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0025",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-025",
+      "title": "Objective",
+      "statement": "DevSecOps pipelines shall generate machine-readable evidence artifacts.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2265,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0024",
+            "similarity": 0.7735
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0050",
+            "similarity": 0.6813
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0026",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-026",
+      "title": "Objective",
+      "statement": "Evidence shall be stored in approved repositories.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2605,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0019",
+            "similarity": 0.7395
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.6515
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0010",
+            "similarity": 0.6341
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.3396
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0027",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-027",
+      "title": "Objective",
+      "statement": "Evidence shall support internal and external audits.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0028",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-028",
+      "title": "Objective",
+      "statement": "Operational environments shall record relevant security events.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3261,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0025",
+            "similarity": 0.6739
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0038",
+            "similarity": 0.6131
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0029",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-029",
+      "title": "Objective",
+      "statement": "Monitoring capabilities shall support incident investigation.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0030",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-030",
+      "title": "Objective",
+      "statement": "Monitoring data retention shall comply with applicable regulations.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0031",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-031",
+      "title": "Platform Reference Architecture Levels",
+      "statement": "They describe what the platform must provide in order to support programs subject to the corresponding DevSecOps Control Baseline level.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0038",
+            "similarity": 0.6
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.569
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0032",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-032",
+      "title": "Platform Reference Architecture Levels",
+      "statement": "It is a minimum architectural capability level required to implement, enforce, and evidence the applicable control baseline in a repeatable and auditable manner.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4257,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0006",
+            "similarity": 0.5743
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0052",
+            "similarity": 0.5159
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0043",
+            "similarity": 0.451
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-033",
+      "title": "Platform Reference Architecture Levels",
+      "statement": "PRA-Level 1 provides the minimum platform capabilities required for enterprise DevSecOps adoption and Control Baseline Level 1 implementation.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4874,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.5126
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0006",
+            "similarity": 0.4895
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0034",
+            "similarity": 0.4706
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0043",
+            "similarity": 0.4637
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+            "similarity": 0.4622
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0034",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-034",
+      "title": "SBOM generation and storage for releasable artifacts",
+      "statement": "PRA-Level 2 extends PRA-Level 1 with centrally managed security, access control, policy enforcement, and operational monitoring capabilities required for secure DevSecOps implementation.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4985,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.5015
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0035",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-035",
+      "title": "SBOM generation and storage for releasable artifacts",
+      "statement": "PRA-Level 3 extends PRA-Level 2 with trusted software supply chain capabilities required for mission-critical, classified, or Software Defined Defence contexts.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0036",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-036",
+      "title": "SBOM generation and storage for releasable artifacts",
+      "statement": "end-to-end traceability from requirements to source code, verification results, build artifacts, deployment, and runtime state",
+      "normative_strength": "REQUIREMENT",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.362,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0048",
+            "similarity": 0.638
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0047",
+            "similarity": 0.4161
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-037",
+      "title": "Mapping to Control Baseline Levels",
+      "statement": "The required platform level shall be derived from the applicable DevSecOps Control Baseline level.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.8969,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+            "similarity": 0.8969
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0031",
+            "similarity": 0.5776
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.4622
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0044",
+            "similarity": 0.4494
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0038",
+            "similarity": 0.4127
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0038",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-038",
+      "title": "Mapping to Control Baseline Levels",
+      "statement": "A platform instance may provide a higher level than required, but shall not provide a lower level for programs subject to the corresponding control baseline.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4138,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0031",
+            "similarity": 0.5862
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+            "similarity": 0.4524
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.4048
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0039",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-039",
+      "title": "Mapping to Control Baseline Levels",
+      "statement": "Control Baseline Level | Required Platform Level | Rationale",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.1545,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0008",
+            "similarity": 0.8455
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0045",
+            "similarity": 0.6241
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+            "similarity": 0.4575
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.4575
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.3249
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0040",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-040",
+      "title": "Mapping to Control Baseline Levels",
+      "statement": "Level 1: Enterprise DevSecOps Baseline | PRA-Level 1 | Provides the minimum platform capabilities required to execute controlled pipelines, maintain traceability, manage artifacts, and generate baseline evidence.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4593,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.5407
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0043",
+            "similarity": 0.5014
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0006",
+            "similarity": 0.4598
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0041",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-041",
+      "title": "Minimum Capability Matrix",
+      "statement": "Source Control | Approved VCS; review before protected-branch integration | Central RBAC; branch protection enforcement; audit logs | Signed commits or tags where required; traceability to controlled changes",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0042",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-042",
+      "title": "Minimum Capability Matrix",
+      "statement": "Evidence and Traceability | Pipeline logs, SBOM records, vulnerability reports, assessment records, and baseline evidence repository | Machine-readable evidence linked to controls, gates, waivers, and releases | End-to-end evidence chain from requirement to runtime state",
+      "normative_strength": "REQUIREMENT",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5902,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0047",
+            "similarity": 0.4098
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0043",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-043",
+      "title": "Traceability Between Control Baseline and Platform Capabilities",
+      "statement": "The following traceability view links key Control Baseline requirements to the minimum platform capabilities required to implement and evidence them.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3788,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0006",
+            "similarity": 0.6212
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.4637
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0052",
+            "similarity": 0.4469
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0032",
+            "similarity": 0.4444
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0040",
+            "similarity": 0.0912
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0044",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-044",
+      "title": "Traceability Between Control Baseline and Platform Capabilities",
+      "statement": "It shall be maintained together with the Control Baseline requirement identifiers.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.52,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0056",
+            "similarity": 0.48
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.4607
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+            "similarity": 0.4382
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0045",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-045",
+      "title": "Traceability Between Control Baseline and Platform Capabilities",
+      "statement": "Control Baseline Requirement | Required PRA-Level | Platform Capability | Expected Evidence",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3901,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0039",
+            "similarity": 0.6099
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0008",
+            "similarity": 0.5789
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.3451
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+            "similarity": 0.2418
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.2418
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0046",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-046",
+      "title": "Traceability Between Control Baseline and Platform Capabilities",
+      "statement": "DSCB-L1-REQ-001 Traceability | PRA-Level 1 | Evidence and Traceability Layer; traceability database; pipeline audit logs | requirements traceability records; configuration records",
+      "normative_strength": "REQUIREMENT",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0047",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-047",
+      "title": "Traceability Between Control Baseline and Platform Capabilities",
+      "statement": "DSCB-L3-REQ-009 End-to-End Traceability | PRA-Level 3 | End-to-end evidence chain from requirement to runtime state | traceability records; deployment metadata",
+      "normative_strength": "REQUIREMENT",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5839,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.4161
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.3756
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0048",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-048",
+      "title": "Applicability of Domain-Specific Variants",
+      "statement": "Domain-specific platform variants, including classified, air-gapped, or restricted operational environments, shall implement the minimum PRA-Level required by the supported programs.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0049",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-049",
+      "title": "Applicability of Domain-Specific Variants",
+      "statement": "Additional domain-specific restrictions may be applied, but shall not remove mandatory capabilities required by the applicable Platform Reference Architecture Level unless a formal waiver has been approved.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0050",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-050",
+      "title": "Domain-Specific Platform Variants",
+      "statement": "Where required by operational constraints, platform variants may be deployed for:",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0051",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-051",
+      "title": "Domain-Specific Platform Variants",
+      "statement": "These variants shall implement the same logical architecture defined in this Standard.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3864,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0004",
+            "similarity": 0.6136
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0054",
+            "similarity": 0.3737
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0052",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-052",
+      "title": "Platform Stack Governance",
+      "statement": "The DevSecOps Platform Stack Lead (role not yet implemented) shall be responsible for:",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.7667,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.2333
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0053",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-053",
+      "title": "Platform Stack Governance",
+      "statement": "Platform modifications that affect control baselines shall require approval by the DevSecOps Governance Board.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0054",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-054",
+      "title": "Compliance Verification",
+      "statement": "Compliance with this Standard shall be verified through:",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.8661,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0052",
+            "similarity": 0.8661
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0056",
+            "similarity": 0.6263
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0055",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-055",
+      "title": "DevSecOps maturity assessments",
+      "statement": "Non-compliant platforms shall not be approved for production software delivery unless formally waived.",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0056",
+      "source_requirement_id": "PRA-STD-SRC-001-REQ-056",
+      "title": "Relationship to Other DevSecOps Documents",
+      "statement": "This Standard shall be applied together with:",
+      "normative_strength": "MUST",
+      "domain": "platform",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3737,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0054",
+            "similarity": 0.6263
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0052",
+            "similarity": 0.5345
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0044",
+            "similarity": 0.464
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+name: Requirement Lifecycle
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "model/requirements/**"
+      - "schemas/*requirement*.json"
+      - "scripts/manage_requirement_lifecycle.py"
+      - "scripts/validate_requirement_lifecycle.py"
+      - "scripts/lib/requirement_lifecycle.py"
+      - "docs/governance/requirements/**"
+  push:
+    branches: [main]
+    paths:
+      - "model/requirements/**"
+      - "schemas/*requirement*.json"
+      - "scripts/manage_requirement_lifecycle.py"
+      - "scripts/validate_requirement_lifecycle.py"
+      - "scripts/lib/requirement_lifecycle.py"
+      - "docs/governance/requirements/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements-validation.txt
+      - name: Validate requirement lifecycle
+        run: python scripts/validate_requirement_lifecycle.py
+      - name: Run requirement lifecycle tests
+        run: python -m unittest tests.test_requirement_lifecycle
+      - name: Summarize review state
+        run: python scripts/manage_requirement_lifecycle.py report >> "$GITHUB_STEP_SUMMARY"
