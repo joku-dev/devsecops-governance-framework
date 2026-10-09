@@ -5,7 +5,7 @@
 Dieser Katalog beschreibt die fachlichen und betrieblichen Funktionen von
 `joku-dev/devsecops-governance-framework`. Er erklärt, welche Aufgaben das
 Repository übernimmt, wie Daten verarbeitet werden und welche Ergebnisse
-entstehen. Die Gliederung umfasst 21 Funktionsbereiche einschließlich des GitHub-Lifecycle-Piloten.
+entstehen. Die Gliederung umfasst 22 Funktionsbereiche einschließlich des GitHub-Lifecycle-Piloten und des Dokumentationsabgleichs nach Implementierungs-Merges.
 Interne Hilfsfunktionen werden ihrem jeweiligen Funktionsbereich zugeordnet.
 Die [technische Funktionsliste](repository-technical-function-inventory.md) erfasst
 zusätzlich alle Skripte, Bibliotheksmodule, Workflows und OPA-Module des Quellstands.
@@ -24,6 +24,9 @@ neue fachliche Vorgabe. Genehmigte Quellen, Modelle, Schemas und veröffentlicht
 Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 
 ## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
+
+<!-- DOCS_REFRESH_CATALOG:start -->
+<!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
 zeigt nun einen validierten, lesenden Lifecycle-Nächste-Schritte-Bereich mit
@@ -862,6 +865,39 @@ Die konkrete Consumer-Konfiguration ist deshalb entscheidend. Die bestehende
 ha-CPsWMS-DevSecOps-Integration ist als älteres Blocking-Bestandsrisiko mit
 Überprüfung bis 12. Dezember 2026 dokumentiert. Daraus folgt keine Freigabe für
 neues Blocking.
+
+## 22. Dokumentation nach Implementierungs-Merges abgleichen
+
+**Zweck:** Nach einem Merge von Implementierung nach `main` einen geprüften
+Dokumentationsvorschlag für README, Funktionskatalog, technisches Inventar und
+Querverweise bereitstellen.
+
+**Eingaben:** Zusammenfassung und Titel des gemergten PRs, dessen Merge-Commit,
+die geänderten Implementierungspfade und der aktuelle Main-Stand.
+
+**Ablauf:** `Documentation Refresh` reagiert auf den geschlossenen, gemergten
+PR. Der Generator übernimmt die PR-Zusammenfassung als redaktionellen Entwurf,
+listet betroffene Implementierungspfade und aktualisiert markierte Abschnitte
+in README, Katalog und Inventar. Eine lokale Markdown-Linkprüfung und ein
+strikter MkDocs-Build werden im Auditbericht festgehalten. Bei Änderungen an
+Implementierungspfaden erstellt die Action einen Draft-PR und dispatcht die
+erforderlichen Prüfungen. Reine Dokumentations-Merges erzeugen keinen Folge-PR.
+
+**Ergebnisse:** Ein Draft-PR mit vorgeschlagenen Dokumentationsänderungen und
+`generated/reports/documentation-refresh-audit.md`. Nach menschlicher
+Vervollständigung und Freigabe werden sie über den normalen PR-Prozess nach
+`main` gemergt.
+
+**Implementierungsstellen:** `.github/workflows/documentation-refresh.yml`,
+`scripts/reconcile_documentation_after_merge.py` und
+`docs/operations/guides/documentation-after-merge.md`.
+
+**Einordnung und Grenzen:** Der Workflow schreibt nie direkt nach `main` und
+führt keinen semantischen Document Consistency Review aus. Die PR-Zusammenfassung
+und Pfadliste sind nur ein Ausgangspunkt. Maintainer müssen die fachliche
+Zuordnung, Auswirkungen auf weitere Dokumente und Vollständigkeit des Katalogs
+prüfen. Der MkDocs-Build und die Linkprüfung beurteilen Form und Pfade, nicht
+fachliche Konsistenz.
 
 ## Pflege und Überprüfung dieses Katalogs
 

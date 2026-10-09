@@ -82,6 +82,7 @@ nav:
       - Guides:
           - Detailed Function Catalog: operations/guides/repository-function-catalog.md
           - Complete Technical Function Inventory: operations/guides/repository-technical-function-inventory.md
+          - Documentation After Merge: operations/guides/documentation-after-merge.md
           - Operations Handbook: operations/guides/governance-repository-operations-handbook.md
           - Overview: operations/guides/index.md
           - How To Use This Repo: operations/guides/how-to-use-this-repo.md

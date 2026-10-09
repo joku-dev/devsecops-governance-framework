@@ -1,0 +1,171 @@
+name: Documentation Refresh
+
+on:
+  pull_request_target:
+    types: [closed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      base_sha:
+        description: Base commit before the merged implementation PR
+        required: true
+        type: string
+      merge_sha:
+        description: Merged commit to document
+        required: true
+        type: string
+      pull_number:
+        description: Merged implementation PR number
+        required: true
+        type: string
+      pull_title:
+        description: Merged implementation PR title
+        required: true
+        type: string
+      pull_body:
+        description: Merged implementation PR body
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  prepare-documentation-pr:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out trusted main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned documentation dependencies
+        run: python -m pip install --require-hashes -r requirements-docs.lock
+
+      - name: Read merged PR context
+        id: context
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          EVENT_MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+          EVENT_PR_NUMBER: ${{ github.event.pull_request.number }}
+          EVENT_PR_TITLE: ${{ github.event.pull_request.title }}
+          EVENT_PR_BODY: ${{ github.event.pull_request.body }}
+          INPUT_BASE_SHA: ${{ inputs.base_sha }}
+          INPUT_MERGE_SHA: ${{ inputs.merge_sha }}
+          INPUT_PR_NUMBER: ${{ inputs.pull_number }}
+          INPUT_PR_TITLE: ${{ inputs.pull_title }}
+          INPUT_PR_BODY: ${{ inputs.pull_body }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "base=$INPUT_BASE_SHA" >> "$GITHUB_OUTPUT"
+            echo "merge=$INPUT_MERGE_SHA" >> "$GITHUB_OUTPUT"
+            echo "number=$INPUT_PR_NUMBER" >> "$GITHUB_OUTPUT"
+            safe_title="$(printf '%s' "$INPUT_PR_TITLE" | tr '\r\n' '  ' | cut -c1-240)"
+            echo "title=$safe_title" >> "$GITHUB_OUTPUT"
+            printf '%s' "$INPUT_PR_BODY" > /tmp/merged-pr-body.md
+          else
+            # The first parent is the exact target-main state immediately before merge
+            # for merge, squash and rebase merges.
+            echo "base=$(git rev-parse "${EVENT_MERGE_SHA}^1")" >> "$GITHUB_OUTPUT"
+            echo "merge=$EVENT_MERGE_SHA" >> "$GITHUB_OUTPUT"
+            echo "number=$EVENT_PR_NUMBER" >> "$GITHUB_OUTPUT"
+            safe_title="$(printf '%s' "$EVENT_PR_TITLE" | tr '\r\n' '  ' | cut -c1-240)"
+            echo "title=$safe_title" >> "$GITHUB_OUTPUT"
+            printf '%s' "$EVENT_PR_BODY" > /tmp/merged-pr-body.md
+          fi
+
+      - name: Detect functional changes and prepare docs
+        id: generate
+        env:
+          BASE_SHA: ${{ steps.context.outputs.base }}
+          MERGE_SHA: ${{ steps.context.outputs.merge }}
+          PR_NUMBER: ${{ steps.context.outputs.number }}
+          PR_TITLE: ${{ steps.context.outputs.title }}
+        run: |
+          set +e
+          python3 scripts/reconcile_documentation_after_merge.py \
+            --base "$BASE_SHA" --merge "$MERGE_SHA" --pr "$PR_NUMBER" \
+            --title "$PR_TITLE" --body-file /tmp/merged-pr-body.md \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Skip documentation-only merges
+        if: steps.generate.outputs.required != 'true'
+        run: echo 'No implementation paths changed; no documentation refresh PR is needed.'
+
+      - name: Build documentation site
+        id: docs-build
+        if: steps.generate.outputs.required == 'true'
+        run: |
+          if mkdocs build --strict; then
+            echo 'status=passed' >> "$GITHUB_OUTPUT"
+          else
+            echo 'status=failed; see this workflow run for details' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Record documentation checks
+        if: steps.generate.outputs.required == 'true'
+        env:
+          BASE_SHA: ${{ steps.context.outputs.base }}
+          MERGE_SHA: ${{ steps.context.outputs.merge }}
+          PR_NUMBER: ${{ steps.context.outputs.number }}
+          PR_TITLE: ${{ steps.context.outputs.title }}
+          DOCS_BUILD_STATUS: ${{ steps.docs-build.outputs.status }}
+        run: |
+          python3 scripts/reconcile_documentation_after_merge.py \
+            --base "$BASE_SHA" --merge "$MERGE_SHA" --pr "$PR_NUMBER" \
+            --title "$PR_TITLE" --body-file /tmp/merged-pr-body.md \
+            --docs-build-status "$DOCS_BUILD_STATUS"
+
+      - name: Open a draft documentation PR
+        if: steps.generate.outputs.required == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ steps.context.outputs.base }}
+          MERGE_SHA: ${{ steps.context.outputs.merge }}
+          PR_NUMBER: ${{ steps.context.outputs.number }}
+          PR_TITLE: ${{ steps.context.outputs.title }}
+          DOCS_BUILD_STATUS: ${{ steps.docs-build.outputs.status }}
+        run: |
+          branch="automation/docs-refresh-pr-${PR_NUMBER}-${MERGE_SHA:0:12}"
+          existing_pr="$(gh pr list --state open --head "$branch" --json number --jq '.[0].number // empty')"
+          if [ -z "$existing_pr" ]; then
+            if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+              echo "Remote branch $branch exists without an open PR; refusing to overwrite it." >&2
+              exit 1
+            fi
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git switch -c "$branch"
+            git add README.md docs/operations/guides/repository-function-catalog.md \
+              docs/operations/guides/repository-technical-function-inventory.md \
+              generated/reports/documentation-refresh-audit.md
+            git commit -m "docs: reconcile documentation after PR #${PR_NUMBER}"
+            git push origin "$branch"
+            cat > /tmp/documentation-refresh-pr.md <<EOF
+          Automated documentation proposal for PR #${PR_NUMBER} (${MERGE_SHA}).
+
+          Review the README, function catalog, technical inventory, and generated audit. The catalog entry is a starting point from the merged PR summary; complete its functional mapping and all impacted documentation before marking this PR ready.
+
+          Strict MkDocs build: ${DOCS_BUILD_STATUS}. Local Markdown links are listed in the audit. No changes are written directly to main.
+          EOF
+            gh pr create --draft --base main --head "$branch" \
+              --title "docs: document merged implementation from PR #${PR_NUMBER}" \
+              --body-file /tmp/documentation-refresh-pr.md
+          else
+            echo "Reusing existing documentation draft PR #$existing_pr on $branch."
+          fi
+          for workflow in governance-ci.yml codeql.yml governance-repository-security.yml consumer-lifecycle-guard.yml; do
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/${workflow}/dispatches" -f ref="$branch"
+          done
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/dependency-review.yml/dispatches" \
+            -f ref="$branch" -f inputs[base_ref]=main -f inputs[head_ref]="$branch"
