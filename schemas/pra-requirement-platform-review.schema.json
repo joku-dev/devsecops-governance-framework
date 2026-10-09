@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PRA Requirement To Platform Review",
+  "type": "object",
+  "required": ["schema_version", "review_id", "status", "source", "review_basis", "summary", "decision_rules", "requirements"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "review_id": {"type": "string", "pattern": "^PRA-[0-9]{4}-[0-9]{3}$"},
+    "status": {"enum": ["review_required", "decided"]},
+    "source": {
+      "type": "object",
+      "required": ["source_id", "source_path", "source_sha256", "lifecycle_case"],
+      "properties": {
+        "source_id": {"const": "PRA-STD-REQ-001"},
+        "source_path": {"type": "string"},
+        "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "lifecycle_case": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "review_basis": {"type": "object"},
+    "summary": {"type": "object"},
+    "decision_rules": {"type": "object"},
+    "requirements": {
+      "type": "array",
+      "minItems": 56,
+      "maxItems": 56,
+      "items": {
+        "type": "object",
+        "required": ["proposal_id", "source_requirement_id", "title", "statement", "normative_strength", "form_assessment", "requirement_recommendation", "explicit_control_refs", "control_allocated_capabilities", "platform_candidates", "requirement_decision", "platform_equivalence_decision"],
+        "properties": {
+          "proposal_id": {"type": "string"},
+          "source_requirement_id": {"type": "string", "pattern": "^PRA-STD-SRC-001-REQ-[0-9]{3}$"},
+          "title": {"type": "string"},
+          "statement": {"type": "string"},
+          "normative_strength": {"type": "string"},
+          "form_assessment": {"enum": ["normative_statement", "conditional_normative_statement", "descriptive_or_traceability_row", "incomplete_list_intro", "context_dependent_statement", "section_heading", "table_header"]},
+          "requirement_recommendation": {"enum": ["review_for_activation", "review_as_supporting_model", "correct_or_reject", "reject_non_requirement"]},
+          "explicit_control_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "control_allocated_capabilities": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "platform_candidates": {"type": "array", "items": {"type": "object"}},
+          "requirement_decision": {"type": ["object", "null"]},
+          "platform_equivalence_decision": {"type": ["object", "null"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

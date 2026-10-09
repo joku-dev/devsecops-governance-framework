@@ -210,6 +210,25 @@ def validate_policy_reviews(catalog: dict, artifact_register: dict, errors: list
                 errors.append(f"{review['review_id']} effective register entries do not match its approvals")
 
 
+def validate_pra_reviews(errors: list[str]) -> None:
+    for path in sorted(POLICY_REVIEW_ROOT.glob("PRA-*/review.json")):
+        validate_schema(path, "pra-requirement-platform-review.schema.json", errors)
+        review = read(path)
+        source_path = ROOT / review["source"]["source_path"]
+        if not source_path.is_file():
+            errors.append(f"{review['review_id']} source is missing")
+        elif hashlib.sha256(source_path.read_bytes()).hexdigest() != review["source"]["source_sha256"]:
+            errors.append(f"{review['review_id']} source hash changed")
+        ids = [row["source_requirement_id"] for row in review["requirements"]]
+        if len(ids) != len(set(ids)):
+            errors.append(f"{review['review_id']} contains duplicate source requirements")
+        if review["status"] == "review_required" and any(
+            row["requirement_decision"] is not None or row["platform_equivalence_decision"] is not None
+            for row in review["requirements"]
+        ):
+            errors.append(f"{review['review_id']} records decisions while review is still required")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-ref")
@@ -226,6 +245,7 @@ def main() -> int:
     ledger = read(LEDGER)
     artifact_register = read(ARTIFACT_REGISTER)
     validate_policy_reviews(catalog, artifact_register, errors)
+    validate_pra_reviews(errors)
     ids = [item["id"] for item in catalog["requirements"]]
     if len(ids) != len(set(ids)):
         errors.append("canonical requirement IDs must be unique")
