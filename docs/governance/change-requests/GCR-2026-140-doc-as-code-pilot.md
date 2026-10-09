@@ -117,10 +117,11 @@ mandatory or baseline content requires the normal governance review.
   expansion to additional publications and formal accessibility certification
   need a follow-up decision after the rendering review.
 - Pandoc and XeLaTeX are build-time dependencies. The workflow pins the Pandoc
-  archive to its upstream SHA-256; the PDF engine version is captured in the
-  provenance manifest and comes from the Ubuntu 24.04 runner's package
-  repositories. Byte-for-byte PDF identity across package updates is not
-  claimed.
+  archive to its upstream SHA-256; XeLaTeX and the Liberation Sans/lmodern
+  fonts/packages are installed on the Ubuntu 24.04 runner. The PDF engine
+  version is captured in the provenance manifest and comes from the runner's
+  package repositories. Byte-for-byte PDF identity across package updates is
+  not claimed.
 - Local pre-PR validation: `./scripts/bootstrap_validation_env.sh`, the OPA,
   runtime-governance and repository-governance validators, and
   `.venv-docs/bin/mkdocs build --strict` passed. All 742 unit tests passed with
