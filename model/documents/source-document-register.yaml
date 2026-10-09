@@ -30,7 +30,7 @@ documents:
     notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
   - id: DSCB-STD-REQ-001
     title: DevSecOps Control Baseline Requirements Extract
-    status: intake
+    status: approved
     source_path: docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md
     governance_domains:
       - devsecops
@@ -40,10 +40,10 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the human maintainer decision recorded in GCR-2026-142 on 2026-10-09.
   - id: PRA-STD-REQ-001
     title: Platform Reference Architecture Requirements Extract
-    status: intake
+    status: approved
     source_path: docs/governance/source-documents/PRA-STD-SRC-001.requirements.md
     governance_domains:
       - platform
@@ -54,7 +54,7 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the human maintainer decision recorded in GCR-2026-142 on 2026-10-09.
   - id: ARCH-SDD-REQ-001
     title: Integrated SDD Architecture Governance Requirements Extract
     status: review
@@ -70,7 +70,7 @@ documents:
     notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
   - id: ARCH-TPL-REQ-001
     title: Architecture Templates and Checklists Requirements Extract
-    status: intake
+    status: approved
     source_path: docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md
     governance_domains:
       - architecture
@@ -80,10 +80,10 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the human maintainer decision recorded in GCR-2026-142 on 2026-10-09.
   - id: ARCH-EA-REQ-001
     title: Enterprise Architecture Requirements Extract
-    status: intake
+    status: approved
     source_path: docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md
     governance_domains:
       - architecture
@@ -93,10 +93,10 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the human maintainer decision recorded in GCR-2026-142 on 2026-10-09.
   - id: ARCH-SA-REQ-001
     title: Solution Architecture Requirements Extract
-    status: intake
+    status: approved
     source_path: docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md
     governance_domains:
       - architecture
@@ -106,10 +106,10 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the human maintainer decision recorded in GCR-2026-142 on 2026-10-09.
   - id: ARCH-PA-REQ-001
     title: Product Architecture Requirements Extract
-    status: intake
+    status: approved
     source_path: docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md
     governance_domains:
       - architecture
@@ -119,7 +119,7 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the human maintainer decision recorded in GCR-2026-142 on 2026-10-09.
   - id: ARCH-GOV-REQ-001
     title: Architecture Governance Framework Requirements Extract
     status: candidate

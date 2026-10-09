@@ -17,14 +17,15 @@ class DocumentConsistencyViewTests(unittest.TestCase):
         cls.report = json.loads((ROOT / "docs/examples/document-consistency-review-phase2-live-pilot-report.json").read_text())
         cls.manifest = json.loads((ROOT / "docs/examples/document-consistency-review-phase1-source-manifest.json").read_text())
 
-    def test_one_time_public_snapshot_is_redacted_and_fresh(self):
+    def test_one_time_public_snapshot_is_redacted_and_stale_after_source_approval(self):
         result = project_public(ROOT)
         self.assertEqual("partial", result["overall_status"])
         self.assertEqual("dcr-codex-once-2026-10-09", result["review_id"])
         self.assertEqual("completed", result["execution"]["status"])
         self.assertEqual("recorded_locally_details_withheld", result["sections"]["human_decisions"])
         self.assertEqual("not_assessed", result["sections"]["implementation_coverage"])
-        self.assertEqual("current", result["freshness"]["status"])
+        self.assertEqual("stale", result["freshness"]["status"])
+        self.assertFalse(result["freshness"]["source_register_matches"])
         self.assertEqual(10, result["scope"]["source_count"])
         self.assertEqual([], result["scope"]["source_ids"])
         self.assertEqual([], result["documents"])

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-08T20:06:50Z",
+  "generated_at": "2026-10-09T16:12:29Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml"
   },
@@ -29,7 +29,7 @@
     {
       "id": "ARCH-TPL-REQ-001",
       "title": "Architecture Templates and Checklists Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
       "version": "requirements-only-sanitized",
       "doc_id": "",
@@ -43,7 +43,7 @@
     {
       "id": "ARCH-EA-REQ-001",
       "title": "Enterprise Architecture Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
       "version": "requirements-only-sanitized",
       "doc_id": "",
@@ -57,7 +57,7 @@
     {
       "id": "ARCH-SA-REQ-001",
       "title": "Solution Architecture Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
       "version": "requirements-only-sanitized",
       "doc_id": "",
@@ -71,7 +71,7 @@
     {
       "id": "ARCH-PA-REQ-001",
       "title": "Product Architecture Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
       "version": "requirements-only-sanitized",
       "doc_id": "",
