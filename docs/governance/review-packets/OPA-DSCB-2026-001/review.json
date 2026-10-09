@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "review_id": "OPA-DSCB-2026-001",
-  "status": "decision_required",
+  "status": "decided",
   "reviewed_at": "2026-10-09",
   "scope": "Existing OPA implementations for the first 46 canonical DSCB requirements",
   "summary": {
@@ -10,9 +10,19 @@
     "equivalent": 8,
     "partial": 4,
     "not_equivalent": 2,
-    "effective_register_entries": 0
+    "effective_register_entries": 8
   },
   "runtime_change_authorized": false,
+  "decision": {
+    "decided_by": "joku",
+    "decision_role": "governance-owner",
+    "decided_at": "2026-10-09T19:23:40Z",
+    "decision_ref": "docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md",
+    "approved": ["GRQ-000003@rev1", "GRQ-000006@rev1", "GRQ-000020@rev1", "GRQ-000022@rev1", "GRQ-000023@rev1", "GRQ-000025@rev1", "GRQ-000026@rev1", "GRQ-000027@rev1"],
+    "withheld": ["GRQ-000009@rev1", "GRQ-000010@rev1", "GRQ-000011@rev1", "GRQ-000028@rev1"],
+    "rejected": ["GRQ-000044@rev1"],
+    "correction_required": ["GRQ-000046@rev1"]
+  },
   "mappings": [
     {
       "requirement_ref": "GRQ-000003@rev1",

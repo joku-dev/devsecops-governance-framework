@@ -155,7 +155,7 @@ def validate_artifact_register(register: dict, catalog: dict, ledger: dict, base
                 errors.append(f"new or changed normative artifact requires an effective GRQ mapping: {path}")
 
 
-def validate_policy_reviews(catalog: dict, errors: list[str]) -> None:
+def validate_policy_reviews(catalog: dict, artifact_register: dict, errors: list[str]) -> None:
     active = {
         f"{requirement['id']}@rev{requirement['active_revision']}": next(
             item for item in requirement["revisions"] if item["revision"] == requirement["active_revision"]
@@ -188,6 +188,26 @@ def validate_policy_reviews(catalog: dict, errors: list[str]) -> None:
             errors.append(f"{review['review_id']} summary does not match its mappings")
         if summary["policy_file_count"] != len({item["policy_path"] for item in mappings}):
             errors.append(f"{review['review_id']} policy file count is incorrect")
+        decision = review.get("decision")
+        if review["status"] == "decided" and decision:
+            decision_ref = ROOT / decision["decision_ref"]
+            if not decision_ref.is_file():
+                errors.append(f"{review['review_id']} decision reference is missing")
+            dispositions = decision["approved"] + decision["withheld"] + decision["rejected"] + decision["correction_required"]
+            refs = [item["requirement_ref"] for item in mappings]
+            if len(dispositions) != len(set(dispositions)) or set(dispositions) != set(refs):
+                errors.append(f"{review['review_id']} decision does not disposition every mapping exactly once")
+            assessment = {item["requirement_ref"]: item["assessment"] for item in mappings}
+            if any(assessment.get(ref) != "equivalent" for ref in decision["approved"]):
+                errors.append(f"{review['review_id']} approves a mapping not assessed equivalent")
+            effective = {
+                entry["requirement_ref"] for entry in artifact_register["entries"]
+                if entry["decision"]["status"] == "effective"
+                and entry["artifact"]["type"] == "policies"
+                and entry["decision"]["decision_ref"] == decision["decision_ref"]
+            }
+            if effective != set(decision["approved"]) or summary["effective_register_entries"] != len(effective):
+                errors.append(f"{review['review_id']} effective register entries do not match its approvals")
 
 
 def main() -> int:
@@ -205,7 +225,7 @@ def main() -> int:
     catalog = read(CATALOG)
     ledger = read(LEDGER)
     artifact_register = read(ARTIFACT_REGISTER)
-    validate_policy_reviews(catalog, errors)
+    validate_policy_reviews(catalog, artifact_register, errors)
     ids = [item["id"] for item in catalog["requirements"]]
     if len(ids) != len(set(ids)):
         errors.append("canonical requirement IDs must be unique")

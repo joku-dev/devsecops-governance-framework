@@ -3,7 +3,7 @@
   "title": "Requirement Policy Equivalence Review",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "review_id", "status", "reviewed_at", "scope", "summary", "runtime_change_authorized", "mappings", "test_evidence", "decision_options"],
+  "required": ["schema_version", "review_id", "status", "reviewed_at", "scope", "summary", "runtime_change_authorized", "mappings", "test_evidence", "decision_options", "decision"],
   "properties": {
     "schema_version": {"const": "1.0.0"},
     "review_id": {"type": "string", "pattern": "^OPA-[A-Z0-9-]+$"},
@@ -24,6 +24,26 @@
       }
     },
     "runtime_change_authorized": {"type": "boolean"},
+    "decision": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["decided_by", "decision_role", "decided_at", "decision_ref", "approved", "withheld", "rejected", "correction_required"],
+          "properties": {
+            "decided_by": {"type": "string", "minLength": 1},
+            "decision_role": {"type": "string", "minLength": 1},
+            "decided_at": {"type": "string", "format": "date-time"},
+            "decision_ref": {"type": "string", "minLength": 1},
+            "approved": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+            "withheld": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+            "rejected": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+            "correction_required": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
     "mappings": {
       "type": "array",
       "minItems": 1,
@@ -54,5 +74,9 @@
         "reject_or_correct": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
       }
     }
-  }
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"const": "decided"}}}, "then": {"properties": {"decision": {"type": "object"}}}},
+    {"if": {"properties": {"status": {"const": "decision_required"}}}, "then": {"properties": {"decision": {"type": "null"}}}}
+  ]
 }

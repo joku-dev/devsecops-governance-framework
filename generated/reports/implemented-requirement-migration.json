@@ -4,17 +4,17 @@
   "status": "review_required",
   "summary": {
     "source_requirements": 867,
-    "artifact_records": 502,
+    "artifact_records": 503,
     "requirements_with_candidates": 824,
     "requirements_without_candidates": 43,
-    "confirmed_register_entries": 0,
+    "confirmed_register_entries": 8,
     "artifact_types": {
       "architecture": 14,
       "controls": 46,
       "platform": 74,
       "policies": 14,
       "releases": 201,
-      "schemas": 125,
+      "schemas": 126,
       "workflows": 28
     }
   },
@@ -1904,6 +1904,13 @@
       "type": "schemas",
       "artifact_id": null,
       "sha256": "b96a6e72d4da2533c166e2724dda8816558187068211d608cb292b3ee9ef7546",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/requirement-policy-equivalence-review.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "5e58318a1c43019d3c17e484b0a76329c3d9d12c09a8287765eb980b411968b2",
       "source_basis": null
     },
     {

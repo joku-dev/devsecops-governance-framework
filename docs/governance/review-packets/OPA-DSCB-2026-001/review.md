@@ -2,7 +2,9 @@
 
 ## Decision brief
 
-This review compares the 14 proposed OPA links with the exact active canonical requirement revisions. It authorizes no runtime or enforcement change and creates no effective artifact-register entry.
+This review compares the 14 proposed OPA links with the exact active canonical requirement revisions. The governance owner accepted the recommended disposition on 9 October 2026. The decision authorizes eight existing-policy adoptions and no runtime or enforcement change.
+
+Decision reference: `docs/governance/change-requests/GCR-2026-146-dscb-opa-adoption-decision.md`
 
 | Result | Count | Proposed decision |
 |---|---:|---|
@@ -23,7 +25,7 @@ This review compares the 14 proposed OPA links with the exact active canonical r
 | `GRQ-000026@rev1` | `DSCB-L2-REQ-010` | `iac_required.rego` | equivalent | Requires the IaC repository to be version controlled. |
 | `GRQ-000027@rev1` | `DSCB-L2-REQ-011` | `pipeline_security_gates.rego` | equivalent | Requires enforced security gates for release candidates. |
 
-Approval of these eight mappings would create eight adoption entries in the requirement-to-artifact register. The entries would pin the exact GRQ revision and current Rego SHA-256. They would record `enforcement: none`, matching the current GRQ revisions, and would not change current consumer behavior.
+The eight approved mappings have effective adoption entries in the requirement-to-artifact register. The entries pin the exact GRQ revision and current Rego SHA-256. They record `enforcement: none`, matching the current GRQ revisions, and do not change current consumer behavior.
 
 ## Remediation before adoption
 
@@ -70,9 +72,9 @@ Before any remediation is adopted, each policy should receive representative all
 | `pipeline_security_gates.rego` | `b28553b35fff00ec527e6e099395cf9011a295da6e2effd8ea256414f1db5b43` |
 | `waiver_validity.rego` | `ac0a8fe0982a9b97bf845a6e21673b9482776ea467d0e2c310fa494e56b7ace5` |
 
-## Human decision requested
+## Human decision
 
-The recommended decision is:
+The governance owner decided to:
 
 1. approve the eight equivalent mappings listed above;
 2. withhold adoption of the four partial mappings pending remediation;
