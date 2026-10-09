@@ -33,9 +33,10 @@ publication through a concrete SBOM example.
 
 ## Git-native publication pilot
 
-The [Doc-as-Code pilot](doc-as-code-pilot.md) is authored in Markdown and
-builds standalone HTML, DOCX and PDF files with a source and output hash
-manifest. Its architecture and governance boundaries are recorded in
+The [Doc-as-Code pilot](doc-as-code-pilot/index.md) uses a manifest, modular
+chapters and individually editable requirement files. It builds standalone
+HTML, DOCX and PDF files with a requirement index and provenance record. Its
+architecture and governance boundaries are recorded in
 [`ADR-DAC-001`](../operations/planning/doc-as-code-architecture-decision.md).
 
 ## Documents
