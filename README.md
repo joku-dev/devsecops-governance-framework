@@ -12,13 +12,12 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #244: feat(intake): register source candidates and remove public placeholders (`430550f00aa9`)
+## PR #244: source-document intake and candidate registration (`430550f00aa9`)
 
-- Remove invalid *.public.md placeholders and reference the tracked requirements versions.
-- Register five incoming source documents as candidates with human decision records; no candidate-derived governance artifacts are introduced.
-- Regenerate intake, lineage, delta, impact, graph, and viewer projections.
-- Update tests for removed placeholders and the stale historical DCR source-register snapshot.
-- Fix the accidental 36  prefix in GCR-2026-107.
+- Remove obsolete `*.public.md` placeholders and point source lineage to the tracked, maintainer-confirmed `*.requirements.md` versions.
+- Register five incoming documents as candidates and record the human decisions in GCR-2026-113/114. Candidate status does not authorize derivation.
+- Refresh intake, requirement-delta, architecture-replacement, lineage, graph, and viewer projections; update tests for the revised source register.
+- Keep the existing 22 functional areas: this extends source management, change preparation, and lineage functions without changing controls, policies, baselines, or enforcement.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
