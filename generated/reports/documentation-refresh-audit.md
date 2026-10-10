@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
+Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Ergebnis
 
@@ -10,9 +10,12 @@ Auslöser: PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
 
 ## Betroffene Implementierungspfade
 
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
 - `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/requirement-policy-equivalence-review.schema.json`
-- `scripts/validate_requirement_lifecycle.py`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
 
 ## Fehlende lokale Markdown-Ziele
 

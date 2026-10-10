@@ -12,12 +12,9 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
+## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
-- add a versioned equivalence review for all 14 proposed GRQ-to-OPA mappings
-- pin the exact active GRQ revisions and SHA-256 hashes of ten Rego files
-- recommend eight mappings for adoption, four for remediation, and two for rejection/correction
-- validate future OPA review packets against active revisions, policy authorization, current hashes, and summary arithmetic
+- docs: PRA-Review-Empfehlung dokumentieren
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)

@@ -26,6 +26,18 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 ## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
 
 <!-- DOCS_REFRESH_CATALOG:start -->
+### PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+
+- docs: PRA-Review-Empfehlung dokumentieren
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7ef33a3e`)
+
+- feat: PRA-Plattformzuordnungen fachlich vorbereiten
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
 ### PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
 
 - add a versioned equivalence review for all 14 proposed GRQ-to-OPA mappings
@@ -33,7 +45,7 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 - recommend eight mappings for adoption, four for remediation, and two for rejection/correction
 - validate future OPA review packets against active revisions, policy authorization, current hashes, and summary arithmetic
 
-Die fachliche Zuordnung und Auswirkungen auf bestehende Funktionsbereiche sind vor dem Merge dieses Dokumentations-PRs redaktionell zu prüfen.
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
