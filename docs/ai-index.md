@@ -20,12 +20,14 @@ Use it as the first navigation point after `AGENTS.md`.
 | Find detailed repository functions and implementation boundaries | `docs/operations/guides/repository-function-catalog.md` |
 | Understand the repository | `README.md`, `docs/official-entrypoints.md` |
 | Understand the current as-built Governance-as-Code system architecture | `docs/governance/architecture/governance-as-code-system-architecture.md` |
+| Trace a source document through canonical requirements to executable OPA policy | `docs/governance/architecture/document-intake-to-opa-rulebook.md` |
 | Understand foundation, direction, and architectural guardrails | `docs/foundation/01_VISION.md`, `docs/foundation/02_CONSTITUTION.md`, `docs/foundation/03_ARCHITECTURE_PRINCIPLES.md`, `docs/foundation/05_CURRENT_DIRECTION.md` |
 | Run the live demo | `docs/demos/demo-end-to-end-governance.md` |
 | Understand current ha-CPsWMS status | `docs/operations/status/ha-cpswms-governance-validation-status.md`, `docs/demos/ha-cpswms-architecture-governance-results.md` |
 | Understand source-document lineage | `generated/reports/source-lineage-report.md` |
 | Classify a new artifact before adding it | `docs/operations/processes/new-artifact-intake-process.md` |
 | Understand the modular Git-native documentation publication model | `docs/operations/planning/doc-as-code-architecture-decision.md`, `docs/publishing/doc-as-code-pilot/publication.yaml`, `docs/publishing/doc-as-code-pilot/requirements/`, `doc-as-code/`, `docs/governance/change-requests/GCR-2026-141-modular-doc-as-code-model.md` |
+| Operate the hybrid document-to-Git requirement lifecycle | `docs/operations/processes/hybrid-requirement-lifecycle.md`, `model/requirements/requirement-authority-ledger.yaml`, `model/requirements/governance-requirement-catalog.yaml`, `model/requirements/lifecycle-cases/`, `docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md` |
 | Add a new artifact safely | `docs/operations/guides/how-to-add-a-new-artifact.md` |
 | Intake updated input documents | `docs/governance/governance-change-lifecycle.md`, `docs/operations/processes/source-document-intake-process.md`, `docs/operations/processes/source-document-intake-review-operating-model.md`, `model/documents/source-document-register.yaml` |
 | Understand ADO and DevSecOps-as-Code as one system | `docs/governance/architecture/ado-devsecops-integrated-governance-model.md` |

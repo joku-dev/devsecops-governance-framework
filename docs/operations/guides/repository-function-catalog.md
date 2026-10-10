@@ -993,3 +993,7 @@ Snapshots und ihre individuellen Zeit-/Run-Bindungen stehen unter
 `status/typed-evidence-results/`. Der
 [Plattformstatus](../status/current-governance-platform-state.md) zeigt den
 datierten Dokumentationsabgleich und verweist auf die maßgeblichen Quellen.
+
+## Hybrid requirement authority and migration
+
+`scripts/manage_requirement_lifecycle.py` guides approved source documents and Git-native proposals through deterministic comparison, explicit human decision, immutable catalog activation, and authority transition. The Authority Ledger prevents an incomplete migration from silently replacing the external normative source. `scripts/validate_requirement_lifecycle.py` enforces schemas, coverage, source fingerprints, append-only history, catalog integrity, and the separation of blocking enforcement. Active catalog revisions feed the shared Doc-as-Code renderer for reviewable HTML, Word and PDF outputs.

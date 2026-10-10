@@ -418,3 +418,16 @@ beschreibt den geprüften Umfang und die getrennten historischen Artefakte.
 Automatische Aufnahme nach erfolgreichem Consumer-Mainline-Lauf; keine
 Baseline-Änderung oder Live-Freigabe.
 [Details](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle).
+
+## Hybrid requirement lifecycle additions
+
+| Artifact | Function |
+|---|---|
+| `scripts/manage_requirement_lifecycle.py` | Imports, analyzes, decides, activates, reports, and completes requirement migrations. |
+| `scripts/lib/requirement_lifecycle.py` | Parses requirement extracts and implements deterministic classification and immutable revisions. |
+| `scripts/validate_requirement_lifecycle.py` | Validates the Authority Ledger, catalog, cases, fingerprints, coverage, and enforcement boundary. |
+| `schemas/requirement-authority-ledger.schema.json` | Contract for source authority and migration coverage. |
+| `schemas/governance-requirement-catalog.schema.json` | Contract for canonical requirement revisions. |
+| `schemas/requirement-lifecycle-case.schema.json` | Contract for proposal analysis, decision, and activation evidence. |
+| `schemas/native-requirement-source.schema.json` | Contract for a directly authored Git-native requirement source. |
+| `docs/publishing/governance-requirement-catalog/` | Generated Doc-as-Code input for HTML, Word and PDF catalog previews. |
