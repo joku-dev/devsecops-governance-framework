@@ -56,6 +56,16 @@ Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 - publish the 46 canonical requirements through the Doc-as-Code catalog
 
 Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #263: Implement implemented-requirement-first migration (`91c448049764`)
+
+- add partial activation for explicitly selected requirement proposals
+- add a versioned requirement-to-artifact register with exact GRQ revision, artifact hash, equivalence decision, and enforcement metadata
+- inventory active controls, platform models, architecture rules, OPA mappings, schemas, workflows, and releases
+- generate review candidates for all 867 approved source requirements without treating suggestions as approvals
+- enforce active revisions, authorized artifact types, hash integrity, legacy transition rules, and released-package immutability
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer

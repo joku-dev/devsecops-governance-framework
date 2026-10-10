@@ -43,6 +43,20 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 - `scripts/lib/requirement_lifecycle.py`
 - `scripts/manage_requirement_lifecycle.py`
 - `scripts/validate_requirement_lifecycle.py`
+
+### PR #263: Implement implemented-requirement-first migration (`91c448049764`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/governance-requirement-catalog.schema.json`
+- `schemas/requirement-artifact-register.schema.json`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/generate_implemented_requirement_migration.py`
+- `scripts/generate_status_viewer.py`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/lib/viewer_technical.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
