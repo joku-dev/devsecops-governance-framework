@@ -4,6 +4,7 @@ __pycache__/
 .venv-validation/
 .venv-docs/
 .venv-docs-release/
+.venv-source-document-intake/
 site/
 /build/doc-as-code/
 .local/governance-sources/

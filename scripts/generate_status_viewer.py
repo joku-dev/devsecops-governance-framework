@@ -1453,9 +1453,14 @@ def build_source_intake_cards(
             f"Equivalent: {delta_summary.get('status_counts', {}).get('equivalent', 0)}",
         ),
         (
-            "Author-Identified Requirements (P1)",
+            "Confirmed Author IDs (P1)",
             str(identification_counts.get("author_identified", 0)),
-            "Per source; overlapping sources count separately",
+            "Only where source provenance is recorded",
+        ),
+        (
+            "Extraction Row IDs (Unverified)",
+            str(inventory_summary.get("extraction_row_id_count", 0)),
+            "Normalized row IDs; origin in original source unverified",
         ),
         (
             "Inferred Candidates (P2)",
@@ -1634,6 +1639,7 @@ def build_source_document_intake_section(
     intake_status: dict,
     review_briefs: dict,
     requirement_delta: dict,
+    process_status: dict,
 ) -> str:
     if not intake_status:
         return ""
@@ -1643,6 +1649,16 @@ def build_source_document_intake_section(
         "<h2>Source Document Intake</h2>"
         "<p>Report-only source-document intake status, review briefs, and requirement deltas for candidate replacement decisions.</p>"
         "</div>"
+        "<section class=\"panel\"><h2>End-to-End Intake Process</h2>"
+        f"<p>Autorisierte Quellen: {process_status.get('summary', {}).get('authorized_sources', 0)}; "
+        f"Baseline: {escape(process_status.get('summary', {}).get('baseline_status', 'unknown'))}; "
+        f"offene Konsistenzbefunde: {process_status.get('summary', {}).get('consistency_findings_open', 0)}.</p>"
+        + html_table(
+            ["Phase", "Status", "Umfang", "Nächster Schritt"],
+            [[escape(item.get("title", item.get("id", ""))), badge(item.get("status", "unknown"), "warn" if item.get("status") not in {"complete", "not_started"} else "ok"), escape(", ".join(f"{key}: {value}" for key, value in item.get("counts", {}).items())), escape(item.get("next_action", ""))] for item in process_status.get("phases", [])],
+        )
+        + "<p>Die Baseline wird erst nach vollständiger Konsistenzprüfung und dokumentierter menschlicher Freigabe bereitgestellt.</p>"
+        "</section>"
         f"<section class=\"cards\">{build_source_intake_cards(intake_status, review_briefs, requirement_delta)}</section>"
         "<section class=\"panels\">"
         "<section class=\"panel\">"
@@ -1676,6 +1692,7 @@ def build_source_document_intake_section(
         "<li><a href=\"../reports/source-document-intake-status.md\">Source Document Intake Status</a></li>"
         "<li><a href=\"../reports/source-document-intake-review-briefs.md\">Source Document Intake Review Briefs</a></li>"
         "<li><a href=\"../reports/source-document-requirement-delta.md\">Source Document Requirement Delta</a></li>"
+        "<li><a href=\"../reports/source-document-process-status.md\">End-to-End Source Intake Process Status</a></li>"
         "<li><a href=\"../reports/architecture-source-replacement-assessment.md\">Architecture Source Replacement Assessment</a></li>"
         "<li><a href=\"../reports/source-lineage-report.md\">Source Lineage Report</a></li>"
         "</ul>"
@@ -1791,6 +1808,8 @@ def main() -> int:
     source_intake_review_briefs = load_json(source_intake_review_briefs_path) if source_intake_review_briefs_path.exists() else {}
     source_requirement_delta_path = ROOT / "generated" / "reports" / "source-document-requirement-delta.json"
     source_requirement_delta = load_json(source_requirement_delta_path) if source_requirement_delta_path.exists() else {}
+    source_process_status_path = ROOT / "generated" / "reports" / "source-document-process-status.json"
+    source_process_status = load_json(source_process_status_path) if source_process_status_path.exists() else {}
     requirement_migration_path = ROOT / "generated" / "reports" / "implemented-requirement-migration.json"
     requirement_migration = load_json(requirement_migration_path) if requirement_migration_path.exists() else {}
     replay_triage_path = ROOT / "generated" / "reports" / "replay-triage.json"
@@ -2094,6 +2113,7 @@ def main() -> int:
         source_intake_status or {},
         source_intake_review_briefs or {},
         source_requirement_delta or {},
+        source_process_status or {},
     )
     requirement_migration_html = build_requirement_migration_section(requirement_migration)
     architecture_gate_rows = build_architecture_gate_rows(architecture_report)
