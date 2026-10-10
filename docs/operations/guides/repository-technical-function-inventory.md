@@ -27,6 +27,12 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 - `schemas/pra-requirement-platform-review.schema.json`
 - `scripts/generate_pra_requirement_platform_review.py`
 - `scripts/validate_requirement_lifecycle.py`
+
+### PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
+
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/requirement-policy-equivalence-review.schema.json`
+- `scripts/validate_requirement_lifecycle.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
