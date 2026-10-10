@@ -106,6 +106,15 @@ Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 - Record the bounded maintainer decision in GCR-2026-139. No recurring publication, blocking behavior or production rollout is enabled.
 
 Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #243: Show completed DCR pilot status in viewer (`24a940763822`)
+
+- Point the read-only Document Consistency Review projection at the completed, bounded Phase 2 pilot report instead of the not_run template report.
+- Keep the public allowlist, source freshness checks, and redaction behavior unchanged.
+- Record the one-time publication decision in GCR-2026-138 and explain its limits in the viewer and rollout documentation.
+- Assert the projected pilot status in the focused test.
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer

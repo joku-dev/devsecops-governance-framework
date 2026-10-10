@@ -101,6 +101,11 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 - `scripts/lib/document_consistency_view.py`
 - `scripts/lib/viewer_app.py`
 - `scripts/publish_document_consistency_projection.py`
+
+### PR #243: Show completed DCR pilot status in viewer (`24a940763822`)
+
+- `scripts/lib/document_consistency_view.py`
+- `scripts/lib/viewer_app.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
