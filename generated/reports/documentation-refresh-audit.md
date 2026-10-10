@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #263: Implement implemented-requirement-first migration (`91c448049764`)
+Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Ergebnis
 
@@ -10,17 +10,12 @@ Auslöser: PR #263: Implement implemented-requirement-first migration (`91c44804
 
 ## Betroffene Implementierungspfade
 
-- `.github/workflows/requirement-lifecycle.yml`
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
 - `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/governance-requirement-catalog.schema.json`
-- `schemas/requirement-artifact-register.schema.json`
-- `schemas/requirement-lifecycle-case.schema.json`
-- `scripts/generate_implemented_requirement_migration.py`
-- `scripts/generate_status_viewer.py`
-- `scripts/lib/requirement_lifecycle.py`
-- `scripts/lib/viewer_technical.py`
-- `scripts/manage_requirement_lifecycle.py`
-- `scripts/validate_requirement_lifecycle.py`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
 
 ## Fehlende lokale Markdown-Ziele
 

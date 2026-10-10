@@ -1,5 +1,1228 @@
 schema_version: 1.0.0
 catalog_id: GOVERNANCE-REQUIREMENT-CATALOG
-version: 0.1.0
-next_sequence: 1
-requirements: []
+version: 0.2.0
+next_sequence: 55
+requirements:
+- id: GRQ-000001
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-001]All software components SHALL be traceable to defined system or software requirements and
+      the corresponding Testcases and Reports.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-010
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-010
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000002
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-002]All software source code SHALL be maintained in approved version control systems and changes
+      SHALL be traceable to an identifiable author.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-011
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-011
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000003
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-003]Direct modification of protected branches SHALL be prohibited.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-012
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-012
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000004
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-004]Secure coding practices SHALL be applied and security-relevant coding errors SHALL be detected
+      during development or testing.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-013
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-013
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000005
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-005]All software dependencies SHALL be identifiable and documented.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-014
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-014
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000006
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-006]A Software Bill of Materials (SBOM) SHALL be generated for releasable artifacts.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-015
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-015
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000007
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-007]Software builds SHALL be executed through controlled automated pipelines.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-016
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-016
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000008
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-008]Build outputs SHALL be uniquely identifiable.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-017
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-017
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000009
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-009]Automated vulnerability scanning SHALL be performed during build or test stages.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-018
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-018
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000010
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-010]Identified vulnerabilities SHALL be evaluated prior to release.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-019
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-019
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000011
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-011]Releasable software artifacts SHALL be protected against tampering by approved repository
+      integrity controls and cryptographic integrity mechanisms such as checksums, digests, or signatures, as applicable to
+      the required control baseline level.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-020
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-020
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000012
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-012]Artifacts SHALL be uniquely identifiable.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-021
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-021
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000013
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-013]Deployment of software artifacts SHALL require authorized approval.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-022
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-022
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000014
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-014]Only approved artifacts SHALL be deployed.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-023
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-023
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000015
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-015]DevSecOps pipelines SHALL generate machine-readable evidence artifacts for implemented controls.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-024
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-024
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000016
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L1-REQ-016]Operational environments SHALL maintain records of deployed software versions and relevant
+      security events.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-025
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-025
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000017
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-001]Development environments SHALL be centrally managed.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-026
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-026
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000018
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-002]Development environments SHALL comply with enterprise security configuration standards.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-027
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-027
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000019
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-003]Access to DevSecOps platforms SHALL be controlled through centralized identity management'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-028
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-028
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000020
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-004]Multi-factor authentication SHALL be enforced for privileged access.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-029
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-029
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000021
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-005]Software dependencies SHALL be retrieved from approved repositories.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-030
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-030
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000022
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-006]Direct downloads from external sources SHALL NOT be permitted.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-031
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-031
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000023
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-007]Software artifacts SHALL be cryptographically signed before release.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-032
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-032
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000024
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-008]Signing keys SHALL be protected and managed according to enterprise security policies.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-033
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-033
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000025
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-009]Infrastructure used for software deployment SHALL be defined through Infrastructure as Code.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-034
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-034
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000026
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-010]Infrastructure definitions SHALL be maintained in version control.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-035
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-035
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000027
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-011]DevSecOps pipelines SHALL enforce security gates.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-036
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-036
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000028
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-012]Releases SHALL NOT proceed when defined security thresholds are exceeded.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-037
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-037
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000029
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-013]Operational systems SHALL generate security-relevant events.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-038
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-038
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000030
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L2-REQ-014]Security events SHALL be forwarded to monitoring systems.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-039
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-039
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000031
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-001]Software builds SHALL be reproducible using identical source code and build configuration.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-040
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-040
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000032
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-002]Build configurations SHALL be version controlled.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-041
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-041
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000033
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-003]Software builds SHALL be executed in isolated build environments.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-042
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-042
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000034
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-004]Build environments SHALL be recreated for each pipeline execution.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-043
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-043
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000035
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-005]Software dependencies SHALL include verifiable provenance information.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-044
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-044
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000036
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-006]Dependency provenance SHALL be recorded during the build process.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-045
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-045
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000037
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-007]Software artifacts SHALL be signed using enterprise signing infrastructure.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-046
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-046
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000038
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-008]Signing keys SHALL be centrally managed.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-047
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-047
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000039
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-009]Traceability SHALL exist between requirements, source code, verification Cases / Procedures
+      and Test result, build artifacts, and deployed software.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-048
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-048
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000040
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-010]Runtime environments SHALL verify the integrity of deployed software artifacts.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-049
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-049
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000041
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Control Objective
+    statement: '[DSCB-L3-REQ-011]DevSecOps platforms SHALL generate machine-readable compliance evidence for lifecycle activities.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-050
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-050
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000042
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Applicability
+    statement: '[DSCB-GOV-REQ-001]All programs SHALL implement the Level 1 Control Baseline.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-051
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-051
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000043
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Compliance Verification
+    statement: '[DSCB-GOV-REQ-002]Compliance with this Standard SHALL be verified through:'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-052
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-052
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000044
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: DevSecOps maturity assessments
+    statement: '[DSCB-GOV-REQ-003]Non-compliance requires an approved waiver.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-053
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-053
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000045
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Deviations
+    statement: '[DSCB-GOV-REQ-004]Deviations from this Standard SHALL follow the waiver process defined in the DevSecOps Directive.'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-054
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-054
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    runtime_enforcement: none
+- id: GRQ-000046
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Deviations
+    statement: '[DSCB-GOV-REQ-005]All deviations SHALL:'
+    normative_strength: MUST
+    domain: devsecops
+    owner: devsecops-owners
+    approved_at: '2026-10-09T18:53:50Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - DSCB-STD-SRC-001-REQ-055
+    relationships:
+    - type: derived_from
+      target: DSCB-STD-SRC-001-REQ-055
+    decision_ref: docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md
+    authorized_derivations:
+    - controls
+    - policies
+    runtime_enforcement: none
+- id: GRQ-000047
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Access rights shall follow role-based access control.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-009
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-009
+    - type: extends
+      target: GRQ-000019
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000048
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Code changes shall require review before integration into protected branches.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-012
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-012
+    - type: extends
+      target: GRQ-000003
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000049
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Pipeline definitions shall be version-controlled.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-015
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-015
+    - type: extends
+      target: GRQ-000032
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000050
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Deployment processes shall verify artifact integrity prior to release.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-022
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-022
+    - type: extends
+      target: GRQ-000011
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000051
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Deployment activities shall be logged.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-024
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-024
+    - type: extends
+      target: GRQ-000016
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000052
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Evidence shall be stored in approved repositories.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-026
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-026
+    - type: extends
+      target: GRQ-000015
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000053
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Objective
+    statement: Monitoring capabilities shall support incident investigation.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-029
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-029
+    - type: extends
+      target: GRQ-000030
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none
+- id: GRQ-000054
+  active_revision: 1
+  revisions:
+  - revision: 1
+    status: effective
+    title: Mapping to Control Baseline Levels
+    statement: The required platform level shall be derived from the applicable DevSecOps Control Baseline level.
+    normative_strength: MUST
+    domain: platform
+    owner: platform-owners
+    approved_at: '2026-10-09T20:11:18Z'
+    effective_from: '2026-10-09'
+    effective_until: null
+    source_refs:
+    - PRA-STD-SRC-001-REQ-037
+    relationships:
+    - type: derived_from
+      target: PRA-STD-SRC-001-REQ-037
+    decision_ref: docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md
+    authorized_derivations:
+    - platform
+    runtime_enforcement: none

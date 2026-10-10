@@ -5,10 +5,10 @@ This report is advisory. It inventories active artifacts and proposes mappings; 
 ## Summary
 
 - Source requirements: 867
-- Active artifact records: 502
+- Active artifact records: 504
 - Requirements with candidates: 824
 - Requirements without candidates: 43
-- Confirmed register entries: 0
+- Confirmed register entries: 19
 
 ## Source status
 
@@ -18,8 +18,8 @@ This report is advisory. It inventories active artifacts and proposes mappings; 
 | `ARCH-PA-REQ-001` | 223 | 208 | 223 |
 | `ARCH-SA-REQ-001` | 190 | 184 | 190 |
 | `ARCH-TPL-REQ-001` | 190 | 176 | 190 |
-| `DSCB-STD-REQ-001` | 55 | 55 | 55 |
-| `PRA-STD-REQ-001` | 56 | 55 | 56 |
+| `DSCB-STD-REQ-001` | 55 | 55 | 9 |
+| `PRA-STD-REQ-001` | 56 | 55 | 18 |
 
 ## Review rule
 

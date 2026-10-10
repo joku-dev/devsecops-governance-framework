@@ -12,13 +12,9 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #263: Implement implemented-requirement-first migration (`91c448049764`)
+## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
-- add partial activation for explicitly selected requirement proposals
-- add a versioned requirement-to-artifact register with exact GRQ revision, artifact hash, equivalence decision, and enforcement metadata
-- inventory active controls, platform models, architecture rules, OPA mappings, schemas, workflows, and releases
-- generate review candidates for all 867 approved source requirements without treating suggestions as approvals
-- enforce active revisions, authorized artifact types, hash integrity, legacy transition rules, and released-package immutability
+- docs: PRA-Review-Empfehlung dokumentieren
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)

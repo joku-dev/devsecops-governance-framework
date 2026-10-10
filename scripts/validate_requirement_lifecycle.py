@@ -22,6 +22,7 @@ LEDGER = ROOT / "model/requirements/requirement-authority-ledger.yaml"
 CASES = ROOT / "model/requirements/lifecycle-cases"
 PUBLICATION = ROOT / "docs/publishing/governance-requirement-catalog/publication.yaml"
 ARTIFACT_REGISTER = ROOT / "model/requirements/requirement-to-artifact-register.yaml"
+POLICY_REVIEW_ROOT = ROOT / "docs/governance/review-packets"
 DERIVED_PREFIXES = ("model/controls/", "model/platform/", "architecture/", "policies/opa/")
 
 
@@ -154,6 +155,80 @@ def validate_artifact_register(register: dict, catalog: dict, ledger: dict, base
                 errors.append(f"new or changed normative artifact requires an effective GRQ mapping: {path}")
 
 
+def validate_policy_reviews(catalog: dict, artifact_register: dict, errors: list[str]) -> None:
+    active = {
+        f"{requirement['id']}@rev{requirement['active_revision']}": next(
+            item for item in requirement["revisions"] if item["revision"] == requirement["active_revision"]
+        )
+        for requirement in catalog["requirements"] if requirement["active_revision"] is not None
+    }
+    for path in sorted(POLICY_REVIEW_ROOT.glob("OPA-*/review.json")):
+        validate_schema(path, "requirement-policy-equivalence-review.schema.json", errors)
+        review = read(path)
+        mappings = review.get("mappings", [])
+        pairs = set()
+        for mapping in mappings:
+            pair = (mapping["requirement_ref"], mapping["policy_path"])
+            if pair in pairs:
+                errors.append(f"{review['review_id']} contains duplicate mapping {pair}")
+            pairs.add(pair)
+            revision = active.get(mapping["requirement_ref"])
+            if revision is None:
+                errors.append(f"{review['review_id']} references inactive requirement {mapping['requirement_ref']}")
+            elif "policies" not in revision["authorized_derivations"]:
+                errors.append(f"{mapping['requirement_ref']} does not authorize policy derivation")
+            policy = ROOT / mapping["policy_path"]
+            if not policy.is_file():
+                errors.append(f"{review['review_id']} policy is missing: {mapping['policy_path']}")
+            elif hashlib.sha256(policy.read_bytes()).hexdigest() != mapping["policy_sha256"]:
+                errors.append(f"{review['review_id']} policy hash changed: {mapping['policy_path']}")
+        counts = {name: sum(item["assessment"] == name for item in mappings) for name in ("equivalent", "partial", "not_equivalent")}
+        summary = review["summary"]
+        if summary["mapping_count"] != len(mappings) or any(summary[name] != value for name, value in counts.items()):
+            errors.append(f"{review['review_id']} summary does not match its mappings")
+        if summary["policy_file_count"] != len({item["policy_path"] for item in mappings}):
+            errors.append(f"{review['review_id']} policy file count is incorrect")
+        decision = review.get("decision")
+        if review["status"] == "decided" and decision:
+            decision_ref = ROOT / decision["decision_ref"]
+            if not decision_ref.is_file():
+                errors.append(f"{review['review_id']} decision reference is missing")
+            dispositions = decision["approved"] + decision["withheld"] + decision["rejected"] + decision["correction_required"]
+            refs = [item["requirement_ref"] for item in mappings]
+            if len(dispositions) != len(set(dispositions)) or set(dispositions) != set(refs):
+                errors.append(f"{review['review_id']} decision does not disposition every mapping exactly once")
+            assessment = {item["requirement_ref"]: item["assessment"] for item in mappings}
+            if any(assessment.get(ref) != "equivalent" for ref in decision["approved"]):
+                errors.append(f"{review['review_id']} approves a mapping not assessed equivalent")
+            effective = {
+                entry["requirement_ref"] for entry in artifact_register["entries"]
+                if entry["decision"]["status"] == "effective"
+                and entry["artifact"]["type"] == "policies"
+                and entry["decision"]["decision_ref"] == decision["decision_ref"]
+            }
+            if effective != set(decision["approved"]) or summary["effective_register_entries"] != len(effective):
+                errors.append(f"{review['review_id']} effective register entries do not match its approvals")
+
+
+def validate_pra_reviews(errors: list[str]) -> None:
+    for path in sorted(POLICY_REVIEW_ROOT.glob("PRA-*/review.json")):
+        validate_schema(path, "pra-requirement-platform-review.schema.json", errors)
+        review = read(path)
+        source_path = ROOT / review["source"]["source_path"]
+        if not source_path.is_file():
+            errors.append(f"{review['review_id']} source is missing")
+        elif hashlib.sha256(source_path.read_bytes()).hexdigest() != review["source"]["source_sha256"]:
+            errors.append(f"{review['review_id']} source hash changed")
+        ids = [row["source_requirement_id"] for row in review["requirements"]]
+        if len(ids) != len(set(ids)):
+            errors.append(f"{review['review_id']} contains duplicate source requirements")
+        if review["status"] == "review_required" and any(
+            row["requirement_decision"] is not None or row["platform_equivalence_decision"] is not None
+            for row in review["requirements"]
+        ):
+            errors.append(f"{review['review_id']} records decisions while review is still required")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-ref")
@@ -169,6 +244,8 @@ def main() -> int:
     catalog = read(CATALOG)
     ledger = read(LEDGER)
     artifact_register = read(ARTIFACT_REGISTER)
+    validate_policy_reviews(catalog, artifact_register, errors)
+    validate_pra_reviews(errors)
     ids = [item["id"] for item in catalog["requirements"]]
     if len(ids) != len(set(ids)):
         errors.append("canonical requirement IDs must be unique")
@@ -244,6 +321,12 @@ def main() -> int:
                 errors.append(f"{case['case_id']} native source invalid: {exc}")
         for proposal in case["proposals"]:
             decision = proposal["decision"]
+            if decision:
+                proposal_decision_ref = ROOT / decision["decision_ref"]
+                if not proposal_decision_ref.is_file() or not proposal_decision_ref.resolve().is_relative_to(
+                    (ROOT / "docs/governance/change-requests").resolve()
+                ):
+                    errors.append(f"{proposal['proposal_id']} decision reference is invalid")
             if decision and decision["disposition"] == "approve" and decision["classification"] != "new":
                 target = decision["target_requirement_id"]
                 valid_targets = known | proposal_ids if decision["classification"] == "duplicate" else known
