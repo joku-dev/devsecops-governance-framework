@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #278: Implement end-to-end source document intake (`dba840c5f33d`)
 
 ## Ergebnis
 
@@ -10,12 +10,23 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.agents/roles/source-document-intake.yaml`
+- `.agents/skills/source-document-intake/SKILL.md`
+- `.github/workflows/source-document-intake.yml`
+- `model/documents/authorized-source-baselines/README.md`
+- `model/documents/source-document-register.yaml`
+- `schemas/authorized-source-baseline.schema.json`
+- `schemas/document-consistency-review-model.schema.json`
+- `schemas/source-document-process-status.schema.json`
+- `schemas/source-document-register.schema.json`
+- `scripts/bootstrap_source_document_intake_env.sh`
+- `scripts/generate_document_consistency_review_model.py`
+- `scripts/generate_source_document_process_status.py`
+- `scripts/generate_source_document_requirement_delta.py`
+- `scripts/generate_status_viewer.py`
+- `scripts/lib/source_document_text.py`
+- `scripts/validate_document_consistency_review.py`
+- `scripts/validate_governance_repo.py`
 
 ## Fehlende lokale Markdown-Ziele
 
