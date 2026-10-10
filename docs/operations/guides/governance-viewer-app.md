@@ -40,7 +40,7 @@ Zustände gelten weiterhin nicht als bestanden.
 | Repository Security | Aktueller Self-Security-Stand des zentralen Governance-Repositories, alle 16 Kriterien, offene kritische/hohe Punkte und dokumentierte Maßnahmen |
 | Dokumentenreview | Öffentlich redigierte, report-only Metadatenprojektion des begrenzten Document Consistency Reviews mit Hash-Aktualität, getrennten Prüfzuständen, Pilotdokumenten und Finding-Metadaten |
 | Nachweise | Ergebnisnachweise, Evidence Trust, Replay-Prüfung, Nachweisherkunft, vollständige Governance-Laufhistorie, Artefakte und Daten |
-| Governance | Governance-Graph, Runtime-Referenzartefakte, Kontrollen, Modell, Quellenaufnahme und offene Aufgaben |
+| Governance | Governance-Graph, Runtime-Referenzartefakte, Kontrollen, Modell, Quellenaufnahme, offene Aufgaben und Requirement-Lifecycle von Intake bis OPA |
 | Betrieb | Integrationsstatus, Intake-Zustand, Sammelversuche, Intake-Konflikte und Agent-Nutzung |
 
 Die technischen Funktionen sind direkt in die Anwendung integriert. Pro Bereich
@@ -54,6 +54,7 @@ Der Graph unterstützt Suche, Typ-/Bereichsfilter und Auswahl per Maus oder Tast
 · [Repository Security öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#repository-security)
 · [Dokumentenreview öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#document-review)
 · [Governance öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#governance/controls)
+· [Anforderung bis OPA öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#governance/lifecycle)
 · [Betrieb öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/intake)
 · [Lifecycle-Nächster Schritt öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html#operations/lifecycle)
 
@@ -64,6 +65,17 @@ Erklärungen, Anträge und Intake-Workflows sind direkt verlinkt. Die Ansicht is
 read-only: Sie erteilt keine Freigabe und löst keinen Workflow aus. Bei einem
 geschlossenen Finding nennt sie ausdrücklich, dass keine Aktion offen ist und
 der manuelle report-only Pilot nicht kontinuierlich überwacht.
+
+Unter **Governance → Anforderung bis OPA** zeigt die Anwendung einen
+quellverlinkten, read-only Überblick über registrierte Quellen, strukturierte
+Anforderungsfälle, menschliche Entscheidungen, Aktivierungen, wirksame
+Requirement-to-Artifact-Zuordnungen und OPA-Policy-Verknüpfungen. Kandidaten
+und Quellen in Review werden nicht als freigegebene Ableitungsgrundlage
+behandelt. Entscheidungen, Umsetzung, OPA-Validierung und Runtime Enforcement
+bleiben getrennte Zustände. Da kein letzter OPA-Prüflauf im Viewer-Datenmodell
+gespeichert ist, wird er ausdrücklich als nicht erfasst angezeigt. Die Änderung
+ist durch [GCR-2026-149](../../governance/change-requests/GCR-2026-149-governance-requirement-lifecycle-viewer.md)
+klassifiziert.
 
 Die frühere Gesamtansicht bleibt als Rückfallansicht unter ihrem bisherigen Pfad
 verfügbar. Ihre bestehenden Deep Links funktionieren weiterhin. Die neue Anwendung

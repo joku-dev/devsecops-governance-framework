@@ -609,6 +609,10 @@ maschinenlesbarer Graph. Im Graph lassen sich Knoten suchen, Typen filtern und
 Beziehungen untersuchen. Integrierte Ansichten zeigen Befunde, Trust, Replay, Laufhistorie,
 Sammlungsfehler, Modelle und Agent-Nutzung. Technische Tabellen unterstützen
 Suche und Seitennavigation; auf Mobilgeräten werden Unterbereiche ausgewählt.
+Die Governance-Ansicht **Anforderung bis OPA** verbindet pro registrierter Quelle
+Intake-Status, Lifecycle-Fall, Entscheidungen, Aktivierungen und wirksame
+Artefaktzuordnungen. Sie unterscheidet Policy-Zuordnungen von OPA-Prüfläufen und
+Runtime Enforcement; fehlende Prüfnachweise bleiben offen sichtbar.
 Die L1-Detailansicht zeigt für jede der 16 Kontrollen zusätzlich Trust, Freshness,
 Integrität, Provenienz, Replay, Custody, Attestation und fehlende Nachweisgruppen.
 Der Repository-Reiter **Staging** zeigt reale Deployment-Identität, Approval,
@@ -623,7 +627,8 @@ L1-Reiter die daraus erzeugte konsolidierte Bewertung als primäre Sicht.
 `scripts/lib/consolidated_l1.py`,
 `scripts/generate_governance_graph.py`, `scripts/generate_status_viewer.py`,
 `generated/viewer/status-viewer.html`, `generated/graph/governance-graph.json`,
-`apps/governance-viewer/`, `scripts/lib/viewer_app.py`, `generated/viewer/app/`.
+`apps/governance-viewer/`, `scripts/lib/viewer_app.py`,
+`scripts/lib/governance_requirement_lifecycle_view.py`, `generated/viewer/app/`.
 
 **Einordnung und Grenzen:** Implementiert und lesend. Der Viewer verändert keine
 Nachweise, Regeln oder Freigaben. Seine Daten sind abgeleitete Sichten.
