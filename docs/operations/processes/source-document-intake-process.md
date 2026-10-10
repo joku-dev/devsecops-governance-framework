@@ -178,6 +178,19 @@ source, then classifies them as:
 - `removed`
 - `equivalent`
 
+Each extracted statement also receives an intake identification class and
+priority:
+
+- `author_identified` / `p1` when the source marks the requirement with an
+  identifier in its requirement field
+- `inferred_candidate` / `p2` when the wording looks normative but has no
+  explicit requirement identifier
+
+The delta's `review_priority` remains a separate impact-review ranking. An
+`inferred_candidate` is not a confirmed requirement; preserve the source
+location and obtain owner confirmation. Source approval status remains a
+separate decision.
+
 This helps reviewers see where requirements, review gates, evidence
 expectations, quality markers or runtime-governance concerns may differ. The
 classification is review support only. It does not replace architecture-owner

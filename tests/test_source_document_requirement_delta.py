@@ -35,6 +35,33 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
         self.assertEqual(payload["decision"]["stricter_rules_enabled"], False)
         self.assertEqual(payload["summary"]["replacement_pairs"], 2)
 
+        intake_inventory = payload["requirement_intake_inventory"]
+        inventory_summary = intake_inventory["summary"]
+        self.assertEqual(inventory_summary["registered_source_documents"], 15)
+        self.assertEqual(inventory_summary["scanned_source_documents"], 14)
+        self.assertEqual(inventory_summary["skipped_source_documents"], 1)
+        self.assertEqual(
+            inventory_summary["identification_counts"]["author_identified"],
+            sum(
+                source["identification_counts"]["author_identified"]
+                for source in intake_inventory["sources"]
+            ),
+        )
+        self.assertEqual(
+            inventory_summary["identification_counts"]["inferred_candidate"],
+            len(intake_inventory["inferred_candidates"]),
+        )
+        self.assertGreater(inventory_summary["inferred_candidate_count"], 0)
+        self.assertTrue(
+            all(
+                item["identification_class"] == "inferred_candidate"
+                and item["intake_priority"] == "p2"
+                and item["source_path"]
+                and item["line"] > 0
+                for item in intake_inventory["inferred_candidates"]
+            )
+        )
+
         pairs = {
             (pair["candidate_id"], pair["target_id"]): pair
             for pair in payload["requirement_delta_pairs"]
@@ -42,8 +69,35 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
         pair = pairs[("ARCH-GOV-REQ-001", "ARCH-SDD-REQ-001")]
         self.assertGreater(pair["summary"]["candidate_requirements"], 0)
         self.assertGreater(pair["summary"]["target_requirements"], 0)
+        self.assertEqual(
+            pair["summary"]["candidate_identification_counts"].get("author_identified"),
+            pair["summary"]["candidate_requirements"],
+        )
+        self.assertEqual(
+            pair["summary"]["target_identification_counts"].get("author_identified"),
+            pair["summary"]["target_requirements"],
+        )
         self.assertGreater(pair["summary"]["differences_requiring_review"], 0)
         self.assertIn("changed", pair["summary"]["status_counts"])
         self.assertIn("removed", pair["summary"]["status_counts"])
-        self.assertIn(("DEVSECOPS-POL-CAND-002", "DEVSECOPS-POL-REQ-001"), pairs)
-        self.assertIn("Source Document Requirement Delta", output_md.read_text(encoding="utf-8"))
+        policy_pair = pairs[("DEVSECOPS-POL-CAND-002", "DEVSECOPS-POL-REQ-001")]
+        self.assertGreater(
+            policy_pair["summary"]["candidate_identification_counts"].get("inferred_candidate", 0),
+            0,
+        )
+        self.assertGreater(
+            policy_pair["summary"]["target_identification_counts"].get("author_identified", 0),
+            0,
+        )
+        inferred_delta = next(
+            item
+            for item in policy_pair["deltas"]
+            if item.get("candidate_requirement")
+            and item["candidate_requirement"]["identification_class"] == "inferred_candidate"
+        )
+        self.assertEqual(inferred_delta["candidate_requirement"]["intake_priority"], "p2")
+        markdown = output_md.read_text(encoding="utf-8")
+        self.assertIn("Source Document Requirement Delta", markdown)
+        self.assertIn("inferred_candidate (P2)", markdown)
+        self.assertIn("## Requirement Intake Identification", markdown)
+        self.assertIn("### `inferred_candidate` Prose Findings", markdown)
