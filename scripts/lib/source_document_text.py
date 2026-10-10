@@ -128,6 +128,11 @@ def _extract_pdf(path: Path) -> ExtractedSourceDocument:
         values = []
         empty_pages = []
         for page_number, page in enumerate(reader.pages, start=1):
+            # A valid blank page may omit its content stream entirely. Treat
+            # it as an OCR/extraction gap instead of a malformed PDF.
+            if "/Contents" not in page:
+                empty_pages.append(page_number)
+                continue
             text = page.extract_text(extraction_mode="layout") or ""
             if not text.strip():
                 empty_pages.append(page_number)
