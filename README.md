@@ -1,13 +1,18 @@
-# DevSecOps Governance Framework
+# AXIOM — Engineering Governance Runtime
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/publishing/branding/axiom-logo-dark.png">
   <img src="docs/publishing/branding/axiom-logo.png" alt="AXIOM — Governance, engineered." width="720">
 </picture>
 
-**AXIOM — Governance, engineered.**
+**Governance, engineered.**
 
-AXIOM is the brand of the DevSecOps Governance Framework.
+AXIOM is a technology-agnostic reference implementation of an Engineering
+Governance Runtime. It demonstrates executable governance across DevSecOps,
+architecture governance, evidence, policy-as-code, and multi-platform delivery.
+DevSecOps remains a core domain within this wider scope.
+
+The GitHub repository retains its historical name, `devsecops-governance-framework`.
 
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
