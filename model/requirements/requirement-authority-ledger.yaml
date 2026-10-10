@@ -12,9 +12,9 @@ sources:
   coverage:
     total: 55
     analyzed: 55
-    decided: 0
-    effective: 0
-    unresolved: 55
+    decided: 46
+    effective: 46
+    unresolved: 9
 - source_id: PRA-STD-REQ-001
   source_version: requirements-only-sanitized
   source_path: docs/governance/source-documents/PRA-STD-SRC-001.requirements.md
@@ -27,9 +27,9 @@ sources:
   coverage:
     total: 56
     analyzed: 56
-    decided: 0
-    effective: 0
-    unresolved: 56
+    decided: 38
+    effective: 38
+    unresolved: 18
 - source_id: ARCH-TPL-REQ-001
   source_version: requirements-only-sanitized
   source_path: docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md

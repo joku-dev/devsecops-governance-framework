@@ -111,6 +111,38 @@ class RequirementLifecycleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "conflict"):
             activate_case(case, catalog, effective_from="2026-10-10", commit="abc")
 
+    def test_partial_activation_preserves_open_proposals(self):
+        case = lifecycle_case("First requirement")
+        second = dict(case["proposals"][0])
+        second.update(proposal_id="RLC-TEST-P0002", source_requirement_id="SRC-2", statement="Second requirement")
+        case["proposals"].append(second)
+        catalog = catalog_with()
+        record_decision(case, proposal_id="RLC-TEST-P0001", disposition="approve", classification="new",
+                        target_requirement_id=None, decided_by="user", decision_role="owner",
+                        rationale="approved", authorized_derivations=["controls"], runtime_enforcement="none")
+        activate_case(case, catalog, effective_from="2026-10-10", commit="abc",
+                      proposal_ids=["RLC-TEST-P0001"])
+        self.assertEqual(case["status"], "partially_activated")
+        self.assertIsNotNone(case["proposals"][0]["activation"])
+        self.assertIsNone(case["proposals"][1]["decision"])
+        self.assertEqual(len(catalog["requirements"]), 2)
+
+    def test_partial_activation_rejects_undecided_selection(self):
+        case = lifecycle_case()
+        with self.assertRaisesRegex(ValueError, "explicit decision"):
+            activate_case(case, catalog_with(), effective_from="2026-10-10", commit="abc",
+                          proposal_ids=["RLC-TEST-P0001"])
+
+    def test_duplicate_resolves_to_existing_canonical_requirement(self):
+        case = lifecycle_case()
+        catalog = catalog_with()
+        record_decision(case, proposal_id="RLC-TEST-P0001", disposition="approve", classification="duplicate",
+                        target_requirement_id="GRQ-000001", decided_by="user", decision_role="owner",
+                        rationale="same requirement", authorized_derivations=[], runtime_enforcement="none")
+        activate_case(case, catalog, effective_from="2026-10-10", commit="abc")
+        self.assertEqual(case["status"], "activated")
+        self.assertEqual(len(catalog["requirements"]), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
