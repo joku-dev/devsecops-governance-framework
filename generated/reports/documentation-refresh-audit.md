@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #259: Approve six registered normative sources (`6447602a7055`)
+Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Ergebnis
 
@@ -10,8 +10,12 @@ Auslöser: PR #259: Approve six registered normative sources (`6447602a7055`)
 
 ## Betroffene Implementierungspfade
 
-- `model/documents/source-document-register.yaml`
-- `scripts/generate_source_document_intake_status.py`
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
 
 ## Fehlende lokale Markdown-Ziele
 
