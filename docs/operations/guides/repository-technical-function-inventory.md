@@ -91,6 +91,16 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 - `.github/workflows/doc-as-code-preview.yml`
 - `.github/workflows/publish-docs.yml`
+
+### PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195192e`)
+
+- `apps/governance-viewer/app.js`
+- `schemas/document-consistency-public-projection.schema.json`
+- `schemas/document-consistency-review-model.schema.json`
+- `scripts/generate_document_consistency_review_model.py`
+- `scripts/lib/document_consistency_view.py`
+- `scripts/lib/viewer_app.py`
+- `scripts/publish_document_consistency_projection.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges

@@ -97,6 +97,15 @@ Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 - Record architecture and governance boundaries; keep model-to-document generation deferred.
 
 Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195192e`)
+
+- Add the approved one-time, redacted DCR pilot snapshot to the governance Viewer.
+- Show the pilot's partial status, structural inventory and three targeted comparisons without source IDs, document rows, excerpts, semantic prose or decision rationale.
+- Keep semantic population coverage unmeasured; the projection is report-only and does not establish consistency, compliance, implementation or normative approval.
+- Record the bounded maintainer decision in GCR-2026-139. No recurring publication, blocking behavior or production rollout is enabled.
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
