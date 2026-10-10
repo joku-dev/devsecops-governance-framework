@@ -46,6 +46,16 @@ Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 - validate future OPA review packets against active revisions, policy authorization, current hashes, and summary arithmetic
 
 Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
+
+- record the governance-owner approval for the 46 implemented DSCB control requirements
+- activate GRQ-000001@rev1 through GRQ-000046@rev1
+- keep the DSCB lifecycle case partially_activated with nine non-control proposals still open
+- keep DSCB-STD-REQ-001 in migration_in_progress
+- publish the 46 canonical requirements through the Doc-as-Code catalog
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer

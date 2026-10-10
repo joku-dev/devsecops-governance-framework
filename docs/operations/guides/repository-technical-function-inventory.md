@@ -33,6 +33,16 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 - `model/requirements/requirement-to-artifact-register.yaml`
 - `schemas/requirement-policy-equivalence-review.schema.json`
 - `scripts/validate_requirement_lifecycle.py`
+
+### PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
+
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-DSCB-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
