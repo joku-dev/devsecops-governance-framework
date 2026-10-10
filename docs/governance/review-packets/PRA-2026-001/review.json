@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "review_id": "PRA-2026-001",
-  "status": "review_required",
+  "status": "partially_decided",
   "source": {
     "source_id": "PRA-STD-REQ-001",
     "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
@@ -20,6 +20,8 @@
     "with_platform_candidates": 55,
     "without_platform_candidates": 1,
     "with_explicit_control_refs": 2,
+    "decided_requirements": 38,
+    "effective_platform_mappings": 11,
     "form_assessments": {
       "context_dependent_statement": 3,
       "descriptive_or_traceability_row": 10,
@@ -701,7 +703,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -864,7 +877,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -1033,7 +1057,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -1349,7 +1384,20 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "duplicate",
+        "target_requirement_id": "GRQ-000019",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -1510,8 +1558,29 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
-      "platform_equivalence_decision": null
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "extend",
+        "target_requirement_id": "GRQ-000019",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "platform_equivalence_decision": {
+        "status": "effective",
+        "register_entries": [
+          "RTA-000009"
+        ],
+        "artifacts": [
+          "rbac"
+        ]
+      }
     },
     {
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0010",
@@ -1668,7 +1737,20 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "duplicate",
+        "target_requirement_id": "GRQ-000002",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -1846,7 +1928,20 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "duplicate",
+        "target_requirement_id": "GRQ-000047",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved as a duplicate of the canonical RBAC requirement created from PRA REQ-009.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -2010,8 +2105,31 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
-      "platform_equivalence_decision": null
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "extend",
+        "target_requirement_id": "GRQ-000003",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "platform_equivalence_decision": {
+        "status": "effective",
+        "register_entries": [
+          "RTA-000010",
+          "RTA-000011"
+        ],
+        "artifacts": [
+          "code_review",
+          "branch_protection"
+        ]
+      }
     },
     {
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0013",
@@ -2178,7 +2296,20 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "duplicate",
+        "target_requirement_id": "GRQ-000007",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -2534,8 +2665,29 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
-      "platform_equivalence_decision": null
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "extend",
+        "target_requirement_id": "GRQ-000032",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "platform_equivalence_decision": {
+        "status": "effective",
+        "register_entries": [
+          "RTA-000012"
+        ],
+        "artifacts": [
+          "version_controlled_build_configuration"
+        ]
+      }
     },
     {
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0016",
@@ -3347,7 +3499,20 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "duplicate",
+        "target_requirement_id": "GRQ-000011",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -3671,8 +3836,31 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
-      "platform_equivalence_decision": null
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "extend",
+        "target_requirement_id": "GRQ-000011",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "platform_equivalence_decision": {
+        "status": "effective",
+        "register_entries": [
+          "RTA-000013",
+          "RTA-000014"
+        ],
+        "artifacts": [
+          "checksum_or_digest_records",
+          "signature_verification"
+        ]
+      }
     },
     {
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0023",
@@ -3838,7 +4026,20 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "duplicate",
+        "target_requirement_id": "GRQ-000013",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -3992,8 +4193,29 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
-      "platform_equivalence_decision": null
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "extend",
+        "target_requirement_id": "GRQ-000016",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "platform_equivalence_decision": {
+        "status": "effective",
+        "register_entries": [
+          "RTA-000015"
+        ],
+        "artifacts": [
+          "deployment_logging"
+        ]
+      }
     },
     {
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0025",
@@ -4160,7 +4382,20 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "duplicate",
+        "target_requirement_id": "GRQ-000015",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -4339,8 +4574,29 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
-      "platform_equivalence_decision": null
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "extend",
+        "target_requirement_id": "GRQ-000015",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "platform_equivalence_decision": {
+        "status": "effective",
+        "register_entries": [
+          "RTA-000016"
+        ],
+        "artifacts": [
+          "evidence_repository"
+        ]
+      }
     },
     {
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0027",
@@ -4650,7 +4906,20 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "duplicate",
+        "target_requirement_id": "GRQ-000016",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -4817,8 +5086,31 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
-      "platform_equivalence_decision": null
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "extend",
+        "target_requirement_id": "GRQ-000030",
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "platform_equivalence_decision": {
+        "status": "effective",
+        "register_entries": [
+          "RTA-000017",
+          "RTA-000018"
+        ],
+        "artifacts": [
+          "monitoring_integration",
+          "incident_record_repository"
+        ]
+      }
     },
     {
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0030",
@@ -5149,7 +5441,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -5306,7 +5609,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -5375,7 +5689,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -5480,7 +5805,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -5494,7 +5830,18 @@
       "explicit_control_refs": [],
       "control_allocated_capabilities": [],
       "platform_candidates": [],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -5648,7 +5995,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -5825,8 +6183,29 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
-      "platform_equivalence_decision": null
+      "requirement_decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Approved according to the complete PRA-2026-001 human review recommendation.",
+        "authorized_derivations": [
+          "platform"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "platform_equivalence_decision": {
+        "status": "effective",
+        "register_entries": [
+          "RTA-000019"
+        ],
+        "artifacts": [
+          "control-baseline-to-pra-level-allocation"
+        ]
+      }
     },
     {
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0038",
@@ -6020,7 +6399,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -6072,7 +6462,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -6123,7 +6524,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -6209,7 +6621,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -6292,7 +6715,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -6454,7 +6888,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -6613,7 +7058,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -6785,7 +7241,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -6946,7 +7413,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -7331,7 +7809,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -7604,7 +8093,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -7834,7 +8334,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     },
     {
@@ -8141,7 +8652,18 @@
           "review_state": "human_equivalence_confirmation_required"
         }
       ],
-      "requirement_decision": null,
+      "requirement_decision": {
+        "disposition": "reject",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "platform-owner",
+        "decided_at": "2026-10-09T20:11:18Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-147-pra-first-wave-decision.md",
+        "rationale": "Rejected as a standalone canonical requirement according to PRA-2026-001; source evidence remains preserved.",
+        "authorized_derivations": [],
+        "runtime_enforcement": "none"
+      },
       "platform_equivalence_decision": null
     }
   ]

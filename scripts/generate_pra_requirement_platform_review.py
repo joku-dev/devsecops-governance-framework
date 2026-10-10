@@ -17,6 +17,7 @@ CASE = ROOT / "model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.
 CANDIDATES = ROOT / "generated/reports/implemented-requirement-migration.json"
 CAPABILITIES = ROOT / "model/platform/platform-capabilities.yaml"
 ALLOCATIONS = ROOT / "model/traceability/control-to-platform.yaml"
+ARTIFACT_REGISTER = ROOT / "model/requirements/requirement-to-artifact-register.yaml"
 SOURCE = ROOT / "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md"
 OUT = ROOT / "docs/governance/review-packets/PRA-2026-001"
 CONTROL_PATTERN = re.compile(r"DSCB-(?:L[123]|GOV)-REQ-[0-9]{3}")
@@ -65,6 +66,12 @@ def build() -> dict:
     }
     capabilities = {row["id"]: row for row in load_yaml(CAPABILITIES)["capabilities"]}
     allocations = load_yaml(ALLOCATIONS)["mappings"]
+    register = load_yaml(ARTIFACT_REGISTER)
+    register_by_source: dict[str, list[dict]] = defaultdict(list)
+    for entry in register["entries"]:
+        if entry["artifact"]["type"] == "platform" and entry["decision"]["status"] == "effective":
+            for source_ref in entry["source_requirement_refs"]:
+                register_by_source[source_ref].append(entry)
     allocation_by_control = {row["control"]: row for row in allocations}
     controls_by_capability: dict[str, list[str]] = defaultdict(list)
     evidence_by_capability: dict[str, set[str]] = defaultdict(set)
@@ -99,6 +106,7 @@ def build() -> dict:
                 "allocation_levels": sorted(levels_by_capability.get(capability_id, [])),
                 "review_state": "human_equivalence_confirmation_required",
             })
+        effective_entries = register_by_source.get(proposal["source_requirement_id"], [])
         rows.append({
             "proposal_id": proposal["proposal_id"],
             "source_requirement_id": proposal["source_requirement_id"],
@@ -110,8 +118,12 @@ def build() -> dict:
             "explicit_control_refs": explicit_controls,
             "control_allocated_capabilities": allocated_capabilities,
             "platform_candidates": candidates,
-            "requirement_decision": None,
-            "platform_equivalence_decision": None,
+            "requirement_decision": proposal["decision"],
+            "platform_equivalence_decision": ({
+                "status": "effective",
+                "register_entries": [entry["id"] for entry in effective_entries],
+                "artifacts": [entry["artifact"]["artifact_id"] for entry in effective_entries],
+            } if effective_entries else None),
         })
 
     forms = Counter(row["form_assessment"] for row in rows)
@@ -120,10 +132,12 @@ def build() -> dict:
         row["platform_candidates"][0]["similarity"]
         for row in rows if row["platform_candidates"]
     ]
+    decided = sum(row["requirement_decision"] is not None for row in rows)
+    status = "decided" if decided == len(rows) else "partially_decided" if decided else "review_required"
     return {
         "schema_version": "1.0.0",
         "review_id": "PRA-2026-001",
-        "status": "review_required",
+        "status": status,
         "source": {
             "source_id": "PRA-STD-REQ-001",
             "source_path": SOURCE.relative_to(ROOT).as_posix(),
@@ -142,6 +156,11 @@ def build() -> dict:
             "with_platform_candidates": sum(bool(row["platform_candidates"]) for row in rows),
             "without_platform_candidates": sum(not row["platform_candidates"] for row in rows),
             "with_explicit_control_refs": sum(bool(row["explicit_control_refs"]) for row in rows),
+            "decided_requirements": decided,
+            "effective_platform_mappings": sum(
+                len(row["platform_equivalence_decision"]["register_entries"])
+                for row in rows if row["platform_equivalence_decision"]
+            ),
             "form_assessments": dict(sorted(forms.items())),
             "recommendations": dict(sorted(recommendations.items())),
             "top_similarity_min": min(similarities),
@@ -162,13 +181,15 @@ def render(report: dict) -> str:
     lines = [
         "# PRA-2026-001: Requirement-to-Platform Review", "",
         "## Decision brief", "",
-        "This packet prepares the human review of all 56 PRA source requirements. It does not record a lifecycle decision, activate a GRQ revision, adopt a platform artifact, or change runtime enforcement.", "",
+        "This packet tracks the moderated review of all 56 PRA source requirements. Recorded decisions and effective platform mappings are read from the governed lifecycle case and Requirement-to-Artifact Register. It does not change runtime enforcement.", "",
         f"The source is pinned to `{report['source']['source_sha256']}`. Existing control-to-platform allocation and capability metadata are primary review evidence; text similarity is advisory only.", "",
         "| Measure | Value |", "|---|---:|",
         f"| Source requirements | {summary['requirements']} |",
         f"| With platform candidates | {summary['with_platform_candidates']} |",
         f"| Without platform candidates | {summary['without_platform_candidates']} |",
         f"| With explicit DSCB references | {summary['with_explicit_control_refs']} |",
+        f"| Requirements decided | {summary['decided_requirements']} |",
+        f"| Effective platform mappings | {summary['effective_platform_mappings']} |",
         f"| Lowest top similarity | {summary['top_similarity_min']:.4f} |",
         f"| Highest top similarity | {summary['top_similarity_max']:.4f} |", "",
         "## Required decisions", "",
