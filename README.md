@@ -12,9 +12,12 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+## PR #278: Implement end-to-end source document intake (`dba840c5f33d`)
 
-- docs: PRA-Review-Empfehlung dokumentieren
+- Add Markdown, DOCX, and optional PDF extraction with source locators and warnings for OCR, comments, and tracked changes.
+- Add an end-to-end intake status projection for P1 source-identified requirements, P2 inferred candidates, lifecycle decisions, consistency findings, and implementation mapping; show it in the viewer.
+- Add a conservative authorized-source baseline gate and versioned human-decision schema. The report does not approve sources or resolve conflicts.
+- Preserve the existing requirement-identifier provenance distinction: extracted row IDs remain unverified until source authorship is evidenced.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
