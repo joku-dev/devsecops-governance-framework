@@ -45,6 +45,9 @@ PROHIBITION_PATTERN = re.compile(r"\b(must not|shall not|should not)\b", re.IGNO
 RECOMMENDED_PATTERN = re.compile(r"\b(should|recommended)\b", re.IGNORECASE)
 TABLE_SEPARATOR_PATTERN = re.compile(r"^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$")
 LINK_ONLY_PATTERN = re.compile(r"^\[[^\]]+\]\(#[^)]+\)$")
+REQUIREMENT_ID_FIRST_CELL_PATTERN = re.compile(
+    r"^\|\s*`?([A-Z][A-Z0-9-]*-REQ-\d{3,})`?\s*\|"
+)
 NON_NORMATIVE_HEADING_TERMS = (
     "abbreviation",
     "definition",
@@ -176,7 +179,18 @@ def should_skip_line(stripped: str) -> bool:
         return True
     if TABLE_SEPARATOR_PATTERN.match(stripped):
         return True
+    cells = [cell.strip().strip("`").lower() for cell in stripped.strip("|").split("|")]
+    if len(cells) >= 4 and cells[:4] == ["id", "strength", "context", "requirement"]:
+        return True
     return False
+
+
+def requirement_identification(raw_line: str) -> tuple[str, str, str | None]:
+    """Classify an item by whether its source author explicitly identified it."""
+    match = REQUIREMENT_ID_FIRST_CELL_PATTERN.match(raw_line.strip())
+    if match:
+        return "author_identified", "p1", match.group(1)
+    return "inferred_candidate", "p2", None
 
 
 def extract_requirements(source_id: str, path: Path) -> list[dict]:
@@ -215,6 +229,11 @@ def extract_requirements(source_id: str, path: Path) -> list[dict]:
             "strength": requirement_strength(statement),
             "potential_impacts": potential_impacts(heading, statement),
         }
+        (
+            requirement["identification_class"],
+            requirement["intake_priority"],
+            requirement["source_requirement_id"],
+        ) = requirement_identification(raw_line)
         requirements.append(requirement)
 
     deduplicated = []
@@ -375,6 +394,12 @@ def build_pair_delta(comparison: dict) -> dict:
     status_counts = Counter(item["status"] for item in deltas)
     priority_counts = Counter(item["review_priority"] for item in deltas)
     impact_counts = Counter(impact for item in deltas for impact in item["potential_impacts"])
+    candidate_identification_counts = Counter(
+        item["identification_class"] for item in candidate_requirements
+    )
+    target_identification_counts = Counter(
+        item["identification_class"] for item in target_requirements
+    )
 
     return {
         "candidate_id": comparison["candidate_id"],
@@ -396,6 +421,8 @@ def build_pair_delta(comparison: dict) -> dict:
             "status_counts": dict(sorted(status_counts.items())),
             "review_priority_counts": dict(sorted(priority_counts.items())),
             "potential_impact_counts": dict(sorted(impact_counts.items())),
+            "candidate_identification_counts": dict(sorted(candidate_identification_counts.items())),
+            "target_identification_counts": dict(sorted(target_identification_counts.items())),
             "differences_requiring_review": sum(
                 status_counts.get(status, 0)
                 for status in ["added", "changed", "removed"]
@@ -405,10 +432,103 @@ def build_pair_delta(comparison: dict) -> dict:
     }
 
 
+def build_requirement_intake_inventory() -> dict:
+    """Inventory author-identified requirements and prose-only candidates."""
+    register = load_yaml(REGISTER_PATH)
+    sources = []
+    inferred_candidates = []
+    status_counts: dict[str, Counter] = {}
+    skipped_sources = []
+
+    for document in register.get("documents", []):
+        source_path = ROOT / document["source_path"]
+        # This record describes a withheld workbook; it contains no source
+        # requirement text to classify.
+        if source_path.name.endswith(".candidate-intake.md"):
+            skipped_sources.append(
+                {
+                    "source_id": document["id"],
+                    "source_path": rel(source_path),
+                    "reason": "Intake metadata only; underlying source text is withheld.",
+                }
+            )
+            sources.append(
+                {
+                    "source_id": document["id"],
+                    "title": document["title"],
+                    "source_status": document["status"],
+                    "source_path": rel(source_path),
+                    "identification_counts": {
+                        "author_identified": 0,
+                        "inferred_candidate": 0,
+                    },
+                    "scanned": False,
+                }
+            )
+            continue
+
+        requirements = extract_requirements(document["id"], source_path)
+        counts = Counter(item["identification_class"] for item in requirements)
+        counts.setdefault("author_identified", 0)
+        counts.setdefault("inferred_candidate", 0)
+        source_counts = status_counts.setdefault(document["status"], Counter())
+        source_counts.update(counts)
+        sources.append(
+            {
+                "source_id": document["id"],
+                "title": document["title"],
+                "source_status": document["status"],
+                "source_path": rel(source_path),
+                "identification_counts": dict(sorted(counts.items())),
+                "scanned": True,
+            }
+        )
+        for requirement in requirements:
+            if requirement["identification_class"] != "inferred_candidate":
+                continue
+            inferred_candidates.append(
+                {
+                    "source_id": document["id"],
+                    "source_title": document["title"],
+                    "source_status": document["status"],
+                    "source_path": requirement["source_path"],
+                    "line": requirement["line"],
+                    "heading": requirement["heading"],
+                    "strength": requirement["strength"],
+                    "identification_class": "inferred_candidate",
+                    "intake_priority": "p2",
+                    "statement": requirement["statement"],
+                    "potential_impacts": requirement["potential_impacts"],
+                }
+            )
+
+    identification_counts = Counter()
+    for source in sources:
+        identification_counts.update(source["identification_counts"])
+
+    return {
+        "summary": {
+            "registered_source_documents": len(sources),
+            "scanned_source_documents": sum(source["scanned"] for source in sources),
+            "skipped_source_documents": len(skipped_sources),
+            "identification_counts": dict(sorted(identification_counts.items())),
+            "source_status_counts": {
+                status: dict(sorted(counts.items()))
+                for status, counts in sorted(status_counts.items())
+            },
+            "inferred_candidate_count": len(inferred_candidates),
+        },
+        "sources": sources,
+        "inferred_candidates": inferred_candidates,
+        "skipped_sources": skipped_sources,
+    }
+
+
 def build_report() -> dict:
     ensure_inputs()
     replacement_report = load_json(REPLACEMENT_JSON)
     pair_deltas = [build_pair_delta(pair) for pair in likely_replacement_pairs(replacement_report)]
+    intake_inventory = build_requirement_intake_inventory()
     aggregate_status = Counter()
     aggregate_priority = Counter()
     aggregate_impacts = Counter()
@@ -435,12 +555,19 @@ def build_report() -> dict:
             "status_counts": dict(sorted(aggregate_status.items())),
             "review_priority_counts": dict(sorted(aggregate_priority.items())),
             "potential_impact_counts": dict(sorted(aggregate_impacts.items())),
+            "requirement_intake_inventory": intake_inventory["summary"],
         },
+        "requirement_intake_inventory": intake_inventory,
         "requirement_delta_pairs": pair_deltas,
         "review_notes": [
             "This is a keyword-based normative statement delta, not a final legal or architecture decision.",
+            "The requirement intake inventory scans registered source text and separates source-identified IDs from inferred prose candidates; repeated or overlapping sources are counted per source.",
+            "Prose extraction is a review aid: inferred_candidate items may be context or explanation and require source-owner confirmation.",
+            "Candidate-intake records whose underlying source text is withheld are listed as unscanned and are not counted.",
             "Changed, added, and removed mandatory or prohibition statements require human architecture-owner review.",
             "Removed statements may indicate content deleted from the candidate or moved into companion documents; confirm against the full architecture source set before deciding.",
+            "Author-identified requirements with a source ID receive intake priority p1; prose-only inferred_candidate items receive p2 and require owner confirmation.",
+            "Intake identification class and priority are separate from delta review priority and source approval status.",
             "No source document status, lineage, runtime governance, policy, schema, or release package is changed by this report.",
         ],
     }
@@ -460,6 +587,18 @@ def requirement_text(requirement: dict | None) -> str:
     return statement.replace("|", "\\|")
 
 
+def requirement_intake_class(requirement: dict | None) -> str:
+    if not requirement:
+        return "`n/a`"
+    identification_class = requirement.get("identification_class", "inferred_candidate")
+    intake_priority = requirement.get("intake_priority", "p2")
+    return f"`{identification_class} ({intake_priority.upper()})`"
+
+
+def format_identification_counts(counts: dict[str, int]) -> str:
+    return ", ".join(f"{name}={count}" for name, count in sorted(counts.items())) or "none"
+
+
 def render_delta_table(lines: list[str], title: str, deltas: list[dict]) -> None:
     lines.extend(["", f"### {title}", ""])
     if not deltas:
@@ -467,14 +606,15 @@ def render_delta_table(lines: list[str], title: str, deltas: list[dict]) -> None
         return
     lines.extend(
         [
-            "| Priority | Candidate ref | Target ref | Similarity | Potential impacts | Candidate statement | Target statement |",
-            "|---|---|---|---:|---|---|---|",
+            "| Delta review priority | Candidate intake class | Target intake class | Candidate ref | Target ref | Similarity | Potential impacts | Candidate statement | Target statement |",
+            "|---|---|---|---|---|---:|---|---|---|",
         ]
     )
     for item in deltas:
         lines.append(
-            f"| `{item['review_priority']}` | {requirement_ref(item['candidate_requirement'])} | "
-            f"{requirement_ref(item['target_requirement'])} | `{item['similarity']}` | "
+            f"| `{item['review_priority']}` | {requirement_intake_class(item['candidate_requirement'])} | "
+            f"{requirement_intake_class(item['target_requirement'])} | "
+            f"{requirement_ref(item['candidate_requirement'])} | {requirement_ref(item['target_requirement'])} | `{item['similarity']}` | "
             f"`{', '.join(item['potential_impacts'])}` | {requirement_text(item['candidate_requirement'])} | "
             f"{requirement_text(item['target_requirement'])} |"
         )
@@ -483,6 +623,8 @@ def render_delta_table(lines: list[str], title: str, deltas: list[dict]) -> None
 def render_markdown(report: dict) -> str:
     decision = report["decision"]
     summary = report["summary"]
+    intake_inventory = report["requirement_intake_inventory"]
+    inventory_summary = intake_inventory["summary"]
     lines = [
         "# Source Document Requirement Delta",
         "",
@@ -511,6 +653,75 @@ def render_markdown(report: dict) -> str:
     for priority, count in summary["review_priority_counts"].items():
         lines.append(f"| `{priority}` | `{count}` |")
 
+    lines.extend(
+        [
+            "",
+            "## Requirement Intake Identification",
+            "",
+            f"- Registered source documents: `{inventory_summary['registered_source_documents']}`",
+            f"- Scanned source documents: `{inventory_summary['scanned_source_documents']}`",
+            f"- Not scanned because source text is withheld: `{inventory_summary['skipped_source_documents']}`",
+            f"- Inferred prose candidates: `{inventory_summary['inferred_candidate_count']}`",
+            "",
+            "Counts are per source document; semantically overlapping or replacement sources are not deduplicated. Prose matches are candidates, not confirmed requirements.",
+            "",
+            "### Counts By Source Status",
+            "",
+            "| Source status | `author_identified` / p1 | `inferred_candidate` / p2 |",
+            "|---|---:|---:|",
+        ]
+    )
+    status_counts = inventory_summary["source_status_counts"]
+    for status in sorted({source["source_status"] for source in intake_inventory["sources"]}):
+        counts = status_counts.get(status, {})
+        lines.append(
+            f"| `{status}` | `{counts.get('author_identified', 0)}` | `{counts.get('inferred_candidate', 0)}` |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "### Counts By Source Document",
+            "",
+            "| Source ID | Source status | `author_identified` / p1 | `inferred_candidate` / p2 | Scanned |",
+            "|---|---|---:|---:|---|",
+        ]
+    )
+    for source in intake_inventory["sources"]:
+        counts = source["identification_counts"]
+        lines.append(
+            f"| `{source['source_id']}` | `{source['source_status']}` | "
+            f"`{counts.get('author_identified', 0)}` | `{counts.get('inferred_candidate', 0)}` | "
+            f"`{str(source['scanned']).lower()}` |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "### `inferred_candidate` Prose Findings",
+            "",
+            "Each entry is a keyword-screened prose candidate with intake priority p2. Confirm it with the source owner before treating it as an actual requirement.",
+            "",
+            "| Source ID | Source status | Source location | Strength | Potential impacts | Candidate statement |",
+            "|---|---|---|---|---|---|",
+        ]
+    )
+    for item in intake_inventory["inferred_candidates"]:
+        candidate_statement = item["statement"].replace("|", "\\|")
+        lines.append(
+            f"| `{item['source_id']}` | `{item['source_status']}` | "
+            f"`{item['source_path']}:{item['line']}` | `{item['strength']}` | "
+            f"`{', '.join(item['potential_impacts'])}` | {candidate_statement} |"
+        )
+
+    for item in intake_inventory["skipped_sources"]:
+        lines.extend(
+            [
+                "",
+                f"Unscanned source `{item['source_id']}`: {item['reason']}",
+            ]
+        )
+
     lines.extend(["", "## Replacement Pair Deltas", ""])
     for pair in report["requirement_delta_pairs"]:
         pair_summary = pair["summary"]
@@ -526,6 +737,13 @@ def render_markdown(report: dict) -> str:
                 f"- Differences requiring review: `{pair_summary['differences_requiring_review']}`",
                 "",
                 "Pair status counts:",
+                "",
+            ]
+        )
+        lines.extend(
+            [
+                f"- Candidate intake classes: `{format_identification_counts(pair_summary['candidate_identification_counts'])}`",
+                f"- Target intake classes: `{format_identification_counts(pair_summary['target_identification_counts'])}`",
                 "",
             ]
         )
