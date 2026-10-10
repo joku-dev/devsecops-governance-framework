@@ -4,7 +4,7 @@
   "profile_id": "governance-repository-self-security",
   "profile_version": "0.4.0",
   "repository_id": "joku-dev/devsecops-governance-framework",
-  "observed_at": "2026-10-09T11:26:09Z",
+  "observed_at": "2026-10-10T10:43:43Z",
   "enforcement": "report_only",
   "enforcement_change_authorized": false,
   "overall_status": "findings",
@@ -162,7 +162,7 @@
       "expected": true,
       "status": "pass",
       "observed": true,
-      "detail": "default=read, explicit=26/26",
+      "detail": "default=read, explicit=28/28",
       "evidence_refs": [
         "github:actions/permissions/workflow",
         ".github/workflows/"
@@ -279,7 +279,7 @@
   ],
   "observation": {
     "repository_id": "joku-dev/devsecops-governance-framework",
-    "observed_at": "2026-10-09T11:26:09Z",
+    "observed_at": "2026-10-10T10:43:43Z",
     "api_errors": [
       "repos/joku-dev/devsecops-governance-framework/branches/main/protection: gh: Branch not protected (HTTP 404)",
       "repos/joku-dev/devsecops-governance-framework/branches/main/protection/required_signatures: gh: Branch not protected (HTTP 404)"
@@ -315,8 +315,8 @@
       "sha_pinning_required": true,
       "default_workflow_permissions": "read",
       "can_approve_pull_request_reviews": true,
-      "workflow_count": 26,
-      "explicit_permissions_count": 26,
+      "workflow_count": 28,
+      "explicit_permissions_count": 28,
       "third_party_unpinned_refs": [],
       "direct_main_write_workflows": [
         ".github/workflows/documentation-refresh.yml"
