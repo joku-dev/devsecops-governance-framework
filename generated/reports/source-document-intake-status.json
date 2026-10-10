@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-08T20:06:50Z",
+  "generated_at": "2026-10-09T16:54:54Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json",
@@ -14,8 +14,8 @@
   "summary": {
     "registered_source_documents": 15,
     "status_counts": {
+      "approved": 6,
       "candidate": 6,
-      "intake": 6,
       "review": 3
     },
     "governance_domain_counts": {
@@ -32,8 +32,8 @@
       "platform-owners": 2
     },
     "review_state_counts": {
-      "accepted_intake": 6,
       "active_review_in_progress": 3,
+      "approved_normative_source": 6,
       "candidate_related_source_review_required": 4,
       "candidate_replacement_review_required": 2
     },
@@ -222,7 +222,7 @@
     {
       "id": "DSCB-STD-REQ-001",
       "title": "DevSecOps Control Baseline Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "owner": "devsecops-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
@@ -230,9 +230,9 @@
         "devsecops"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "accepted_intake",
+      "review_state": "approved_normative_source",
       "attention": "ok",
-      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,
@@ -254,7 +254,7 @@
     {
       "id": "PRA-STD-REQ-001",
       "title": "Platform Reference Architecture Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "owner": "platform-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
@@ -263,9 +263,9 @@
         "devsecops"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "accepted_intake",
+      "review_state": "approved_normative_source",
       "attention": "ok",
-      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,
@@ -318,7 +318,7 @@
     {
       "id": "ARCH-TPL-REQ-001",
       "title": "Architecture Templates and Checklists Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "owner": "architecture-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
@@ -326,9 +326,9 @@
         "architecture"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "accepted_intake",
+      "review_state": "approved_normative_source",
       "attention": "ok",
-      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,
@@ -344,7 +344,7 @@
     {
       "id": "ARCH-EA-REQ-001",
       "title": "Enterprise Architecture Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "owner": "architecture-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
@@ -352,9 +352,9 @@
         "architecture"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "accepted_intake",
+      "review_state": "approved_normative_source",
       "attention": "ok",
-      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,
@@ -370,7 +370,7 @@
     {
       "id": "ARCH-SA-REQ-001",
       "title": "Solution Architecture Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "owner": "architecture-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
@@ -378,9 +378,9 @@
         "architecture"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "accepted_intake",
+      "review_state": "approved_normative_source",
       "attention": "ok",
-      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,
@@ -396,7 +396,7 @@
     {
       "id": "ARCH-PA-REQ-001",
       "title": "Product Architecture Requirements Extract",
-      "status": "intake",
+      "status": "approved",
       "owner": "architecture-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
@@ -404,9 +404,9 @@
         "architecture"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "accepted_intake",
+      "review_state": "approved_normative_source",
       "attention": "ok",
-      "next_action": "Maintain lineage and run impact review for future source updates.",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,

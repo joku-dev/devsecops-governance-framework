@@ -87,6 +87,7 @@ jobs:
           cp build/doc-as-code/doc-as-code-pilot-001.docx site/downloads/doc-as-code/
           cp build/doc-as-code/doc-as-code-pilot-001.pdf site/downloads/doc-as-code/
           cp build/doc-as-code/publication-provenance.json site/downloads/doc-as-code/
+          cp build/doc-as-code/requirements-index.json site/downloads/doc-as-code/
           cp build/doc-as-code/doc-as-code.css site/downloads/doc-as-code/
           python3 - <<'PY'
           from pathlib import Path
@@ -98,6 +99,7 @@ jobs:
               '<a href="../../downloads/doc-as-code/doc-as-code-pilot-001.html">HTML</a> · '
               '<a href="../../downloads/doc-as-code/doc-as-code-pilot-001.docx">Word</a> · '
               '<a href="../../downloads/doc-as-code/doc-as-code-pilot-001.pdf">PDF</a> · '
+              '<a href="../../downloads/doc-as-code/requirements-index.json">Requirements</a> · '
               '<a href="../../downloads/doc-as-code/publication-provenance.json">Provenance</a></aside>'
           )
           if "</body>" not in html:

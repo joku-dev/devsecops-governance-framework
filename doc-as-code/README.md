@@ -8,13 +8,23 @@ documents in this repository.
 | Concern | Location |
 |---|---|
 | Publication source and reader-facing navigation | `docs/publishing/` |
-| Document metadata | YAML frontmatter in each publishable Markdown source |
+| Publication catalog and order | `publication.yaml` beside each publication |
+| Individual requirements | `requirements/*.md` with validated YAML frontmatter |
+| Publication and requirement contracts | `doc-as-code/schemas/` |
 | Shared HTML styling | `doc-as-code/styles/` |
 | Renderer | `doc-as-code/scripts/build_publication.py` |
 | Renderer and PDF toolchain pins | `doc-as-code/toolchain.env` |
 | Generated local output | `build/doc-as-code/` (ignored by Git) |
 | Shared CI build action | `doc-as-code/action.yml` |
 | CI entrypoints | `.github/workflows/doc-as-code-preview.yml` and `publish-docs.yml` |
+
+The component also renders the canonical governance requirement catalog from
+`docs/publishing/governance-requirement-catalog/publication.yaml`. That
+publication is generated from the active catalog revisions by
+`scripts/manage_requirement_lifecycle.py generate-publication`. Its
+`publication_class: normative` identifies the content class; the Requirement
+Authority Ledger still determines whether Git or an external source document
+is authoritative for each migrating source.
 
 The split is deliberate: MkDocs continues to own the repository's full
 documentation tree, while the renderer, toolchain and publication styling have
@@ -25,8 +35,15 @@ and export behavior have one implementation.
 
 ## Build
 
+Validate the manifest, referenced files and requirement metadata without a
+rendering toolchain:
+
+```bash
+python3 doc-as-code/scripts/build_publication.py --validate-only
+```
+
 Install the Pandoc release listed in `toolchain.env` and the configured PDF
-engine/packages, then run:
+engine/packages, then build the ordered publication:
 
 ```bash
 python3 doc-as-code/scripts/build_publication.py
