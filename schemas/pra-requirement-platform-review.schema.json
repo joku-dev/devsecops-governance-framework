@@ -6,7 +6,7 @@
   "properties": {
     "schema_version": {"const": "1.0.0"},
     "review_id": {"type": "string", "pattern": "^PRA-[0-9]{4}-[0-9]{3}$"},
-    "status": {"enum": ["review_required", "decided"]},
+    "status": {"enum": ["review_required", "partially_decided", "decided"]},
     "source": {
       "type": "object",
       "required": ["source_id", "source_path", "source_sha256", "lifecycle_case"],

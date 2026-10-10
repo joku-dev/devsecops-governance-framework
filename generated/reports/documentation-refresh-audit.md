@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7ef33a3e`)
+Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Ergebnis
 
@@ -10,10 +10,12 @@ Auslöser: PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7e
 
 ## Betroffene Implementierungspfade
 
-- `.github/workflows/requirement-lifecycle.yml`
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `model/requirements/requirement-to-artifact-register.yaml`
 - `schemas/pra-requirement-platform-review.schema.json`
 - `scripts/generate_pra_requirement_platform_review.py`
-- `scripts/validate_requirement_lifecycle.py`
 
 ## Fehlende lokale Markdown-Ziele
 

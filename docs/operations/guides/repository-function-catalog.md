@@ -26,11 +26,17 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 ## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
 
 <!-- DOCS_REFRESH_CATALOG:start -->
+### PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+
+- docs: PRA-Review-Empfehlung dokumentieren
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
 ### PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7ef33a3e`)
 
 - feat: PRA-Plattformzuordnungen fachlich vorbereiten
 
-Die fachliche Zuordnung und Auswirkungen auf bestehende Funktionsbereiche sind vor dem Merge dieses Dokumentations-PRs redaktionell zu prüfen.
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
