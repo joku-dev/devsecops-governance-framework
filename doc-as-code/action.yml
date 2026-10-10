@@ -1,6 +1,16 @@
 name: Build Doc-as-Code Publication
 description: Install the pinned publication toolchain and build the manifest-controlled pilot.
 
+inputs:
+  manifest:
+    description: Publication manifest below docs/publishing/
+    required: false
+    default: docs/publishing/doc-as-code-pilot/publication.yaml
+  output:
+    description: Build output directory
+    required: false
+    default: build/doc-as-code
+
 runs:
   using: composite
   steps:
@@ -30,4 +40,6 @@ runs:
       run: |
         source doc-as-code/toolchain.env
         python3 doc-as-code/scripts/build_publication.py \
+          --manifest "${{ inputs.manifest }}" \
+          --output "${{ inputs.output }}" \
           --pandoc-archive "$RUNNER_TEMP/$PANDOC_ARCHIVE_NAME"
