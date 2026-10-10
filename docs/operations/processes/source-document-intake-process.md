@@ -44,6 +44,7 @@ being promoted into `docs/governance/source-documents/`.
 - Intake status report: `generated/reports/source-document-intake-status.md`
 - Intake review briefs: `generated/reports/source-document-intake-review-briefs.md`
 - Requirement delta report: `generated/reports/source-document-requirement-delta.md`
+- End-to-end process status: `generated/reports/source-document-process-status.md`
 
 ## Non-Source Change Classification
 
@@ -181,12 +182,18 @@ source, then classifies them as:
 Each extracted statement also receives an intake identification class and
 priority:
 
-- `author_identified` / `p1` when the source marks the requirement with an
-  identifier in its requirement field
+- `author_identified` / `p1` only when the source register records that the
+  identifier was provided by the source author
+- `extraction_row_id` / `unassigned` when a normalized extraction has a row
+  identifier but its origin in the original source is not verified
 - `inferred_candidate` / `p2` when the wording looks normative but has no
   explicit requirement identifier
 
-The delta's `review_priority` remains a separate impact-review ranking. An
+An identifier generated for or present in a normalized extraction is not
+evidence that the original author assigned it. The register-level default is
+`requirement_identifier_origin_default: unverified`; an individual source may
+be marked `author_provided` only when its provenance is established. The
+delta's `review_priority` remains a separate impact-review ranking. An
 `inferred_candidate` is not a confirmed requirement; preserve the source
 location and obtain owner confirmation. Source approval status remains a
 separate decision.
@@ -196,6 +203,48 @@ expectations, quality markers or runtime-governance concerns may differ. The
 classification is review support only. It does not replace architecture-owner
 judgment and does not change source status, lineage, runtime governance,
 policies, schemas or releases.
+
+## End-to-End Target Process
+
+Run the integrated, read-only projection after updating the source register,
+extraction, lifecycle decisions, or consistency review:
+
+```bash
+python3 scripts/generate_source_document_requirement_delta.py
+python3 scripts/generate_source_document_process_status.py
+```
+
+The generator produces `generated/reports/source-document-process-status.json`
+and `.md`. It joins the existing source intake report, requirement extraction,
+P1 lifecycle cases, P2 inferred candidates, Document Consistency Review (DCR),
+and requirement-to-artifact links. The viewer presents all phases and their
+current status together.
+
+| Phase | Target behavior | Review authority |
+|---|---|---|
+| 1. Receive and register | Register each Markdown, PDF, or DOCX source, its version, owner, status, provenance and hashes. Candidate sources remain non-deriving. | Source owner / intake reviewer |
+| 2. Extract and classify | Preserve source locations; identify author-marked IDs only when register provenance confirms them; label unnumbered normative-looking prose `inferred_candidate`. | Intake tooling prepares; reviewer checks extraction |
+| 3. P1 lifecycle | Resolve clearly identified requirements first, including new, changed, superseded, retired and still-open decisions. | Requirement owner |
+| 4. P2 review | Check inferred candidates against the source text, P1 decisions, and related sources; confirm, reject or leave undecided. | Source and domain owners |
+| 5. Consistency review | Compare the exact approved source set. Structural checks and semantic review coverage are reported separately. A partial, stale or report-only review cannot establish contradiction-free status. | Architecture / DevSecOps reviewers |
+| 6. Decision proposals | Record each proposed contradiction or lifecycle ambiguity with evidence, impacted sources and explicit decision options. No proposal is silently resolved by extraction. | Named decision authority |
+| 7. Versioned baseline | Hash the exact approved-source set and bind it to completed lifecycle and exhaustive consistency evidence. Record approval as a versioned decision artifact conforming to `schemas/authorized-source-baseline.schema.json`. | Authorized human approver |
+| 8. Governance implementation | Derive controls, platform requirements, architecture markers, schemas and OPA behavior only from requirements authorized by the recorded source and requirement decisions. | Domain owner and release process |
+
+Markdown and DOCX extraction are built in. Text-based PDF extraction is
+available through the optional pinned environment created by
+`scripts/bootstrap_source_document_intake_env.sh`. Scanned PDFs need OCR before
+they can pass extraction; DOCX comments and tracked changes are surfaced as
+review warnings. Extraction warnings block a clean consistency result. The
+pipeline does not call an external semantic provider automatically.
+
+The process status report is a readiness projection, not the baseline approval
+record. It hashes the current authorized source set and lists blockers. A
+baseline is not approved until a human records the matching hash, complete
+requirement lifecycle review, exact-scope consistency review with zero open
+findings, reviewer identity, date and decision record in a versioned baseline
+artifact. A DCR operational rollout decision is independent from source
+baseline approval.
 
 ## Review Rules
 
@@ -212,9 +261,9 @@ policies, schemas or releases.
 
 ## Validation
 
-The repository validator now checks that the intake status report can be
-generated, that review briefs stay decision-support-only, and that requirement
-deltas stay review-support-only:
+The repository validator checks that intake and end-to-end status reports can
+be generated, schemas match, review briefs stay decision-support-only, and
+requirement deltas stay review-support-only:
 
 ```bash
 python3 scripts/validate_governance_repo.py

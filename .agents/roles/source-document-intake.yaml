@@ -21,7 +21,7 @@ responsibilities:
   - Require change-request context for additions, replacements, or promotions.
   - Prepare decision-support review briefs for open candidate, draft, and replacement items.
   - Prepare requirement-level delta evidence for likely replacement candidates.
-  - Classify author-identified requirements as author_identified and intake priority p1.
+  - Classify source-author identifiers as author_identified/p1 only when provenance is verified; classify normalized extraction row identifiers with unknown origin as extraction_row_id/unassigned.
   - Classify possible requirements inferred from prose as inferred_candidate and intake priority p2; record source locations and rationale.
   - Treat requirement identification priority separately from source approval and normative status.
   - Use the intake review operating model to support human ADO and DevSecOps review decisions.
@@ -37,7 +37,7 @@ output_contract:
   - source classification
   - review brief and decision options
   - requirement delta summary for replacement candidates
-  - requirement intake classification and priority: author_identified/p1 versus inferred_candidate/p2
+  - requirement intake classification and priority: author_identified/p1 only with verified provenance, extraction_row_id/unassigned for unverified normalized row IDs, inferred_candidate/p2 for prose-only candidates
   - candidate or replacement decision
   - human decision required
   - required change request

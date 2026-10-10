@@ -42,8 +42,12 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
         self.assertEqual(inventory_summary["skipped_source_documents"], 1)
         self.assertEqual(
             inventory_summary["identification_counts"]["author_identified"],
+            0,
+        )
+        self.assertEqual(
+            inventory_summary["identification_counts"]["extraction_row_id"],
             sum(
-                source["identification_counts"]["author_identified"]
+                source["identification_counts"]["extraction_row_id"]
                 for source in intake_inventory["sources"]
             ),
         )
@@ -70,11 +74,11 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
         self.assertGreater(pair["summary"]["candidate_requirements"], 0)
         self.assertGreater(pair["summary"]["target_requirements"], 0)
         self.assertEqual(
-            pair["summary"]["candidate_identification_counts"].get("author_identified"),
+            pair["summary"]["candidate_identification_counts"].get("extraction_row_id"),
             pair["summary"]["candidate_requirements"],
         )
         self.assertEqual(
-            pair["summary"]["target_identification_counts"].get("author_identified"),
+            pair["summary"]["target_identification_counts"].get("extraction_row_id"),
             pair["summary"]["target_requirements"],
         )
         self.assertGreater(pair["summary"]["differences_requiring_review"], 0)
@@ -86,7 +90,7 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
             0,
         )
         self.assertGreater(
-            policy_pair["summary"]["target_identification_counts"].get("author_identified", 0),
+            policy_pair["summary"]["target_identification_counts"].get("extraction_row_id", 0),
             0,
         )
         inferred_delta = next(
@@ -101,3 +105,5 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
         self.assertIn("inferred_candidate (P2)", markdown)
         self.assertIn("## Requirement Intake Identification", markdown)
         self.assertIn("### `inferred_candidate` Prose Findings", markdown)
+        self.assertIn("Confirmed source-author identifiers (P1): `0`", markdown)
+        self.assertIn("Extracted row identifiers with unverified origin: `2138`", markdown)

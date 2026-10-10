@@ -13,6 +13,7 @@ useful for the pilot than pure schema validation:
 
 from pathlib import Path
 from collections import Counter
+import hashlib
 import json
 import shutil
 import subprocess
@@ -559,6 +560,76 @@ def validate_source_document_requirement_delta(errors):
             )
 
 
+def validate_source_document_process_status(errors, source_document_register):
+    command = [sys.executable, str(ROOT / "scripts" / "generate_source_document_process_status.py")]
+    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        errors.append(f"Source document process status generation failed: {result.stderr.strip() or result.stdout.strip()}")
+        return
+    report_path = ROOT / "generated" / "reports" / "source-document-process-status.json"
+    if not report_path.exists():
+        errors.append("Source document process status JSON was not generated")
+        return
+    validate_schema(errors, ROOT / "schemas" / "source-document-process-status.schema.json", report_path)
+    report = load_json(report_path)
+    if report.get("summary", {}).get("registered_sources") != len(source_document_register.get("documents", [])):
+        errors.append("Source document process status source count does not match register")
+    if report.get("authorized_source_baseline", {}).get("final_source_baseline_approval") != "not_recorded":
+        errors.append("Generated source baseline readiness must not record human approval")
+    if report.get("authorized_source_baseline", {}).get("status") == "ready_for_human_approval" and report.get("authorized_source_baseline", {}).get("blocking_reasons"):
+        errors.append("Source baseline cannot be ready while blocking reasons remain")
+
+
+def validate_authorized_source_baselines(errors, source_document_register):
+    records_root = MODEL / "documents" / "authorized-source-baselines"
+    schema_path = ROOT / "schemas" / "authorized-source-baseline.schema.json"
+    records = {}
+    for path in sorted(records_root.glob("source-baseline-*.json")) if records_root.exists() else []:
+        validate_schema(errors, schema_path, path)
+        try:
+            record = load_json(path)
+        except (OSError, json.JSONDecodeError) as exc:
+            errors.append(f"Could not read authorized source baseline {path.relative_to(ROOT)}: {exc}")
+            continue
+        baseline_id = record.get("baseline_id")
+        if baseline_id in records:
+            errors.append(f"Duplicate authorized source baseline ID: {baseline_id}")
+        records[baseline_id] = record
+
+    for baseline_id, record in records.items():
+        supersedes = record.get("supersedes")
+        if supersedes and supersedes not in records:
+            errors.append(f"Authorized source baseline {baseline_id} supersedes an unknown record: {supersedes}")
+        if record.get("status") != "approved":
+            continue
+        sources = record.get("sources", [])
+        source_ids = [item.get("source_id") for item in sources]
+        if len(source_ids) != len(set(source_ids)):
+            errors.append(f"Authorized source baseline {baseline_id} contains duplicate source IDs")
+        canonical_sources = sorted(sources, key=lambda item: item.get("source_id", ""))
+        canonical = json.dumps(canonical_sources, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+        if hashlib.sha256(canonical.encode("utf-8")).hexdigest() != record.get("authorized_source_set_sha256"):
+            errors.append(f"Authorized source baseline {baseline_id} has a mismatched source-set hash")
+        decision = record.get("decision", {})
+        if not decision.get("decided_by") or not decision.get("decided_at") or not decision.get("record"):
+            errors.append(f"Approved source baseline {baseline_id} lacks a named, dated decision record")
+        register_by_id = {
+            item.get("id"): item for item in source_document_register.get("documents", [])
+        }
+        for source in sources:
+            registered = register_by_id.get(source.get("source_id"))
+            source_path = ROOT / source.get("path", "")
+            if not registered or registered.get("status") != "approved" or registered.get("source_path") != source.get("path"):
+                errors.append(f"Approved source baseline {baseline_id} has a source that is not currently approved: {source.get('source_id')}")
+            elif not source_path.is_file() or hashlib.sha256(source_path.read_bytes()).hexdigest() != source.get("sha256"):
+                errors.append(f"Approved source baseline {baseline_id} is stale for source {source.get('source_id')}")
+        if set(source_ids) != {
+            item.get("id") for item in source_document_register.get("documents", [])
+            if item.get("status") == "approved"
+        }:
+            errors.append(f"Approved source baseline {baseline_id} does not bind the exact currently approved source set")
+
+
 def validate_app_architecture_evidence_templates(errors):
     if not APP_ARCHITECTURE_EVIDENCE_TEMPLATE_DIR.exists():
         errors.append(
@@ -892,6 +963,8 @@ def main() -> int:
     validate_source_document_requirement_delta(errors)
     validate_source_document_intake_review_briefs(errors, source_document_register)
     validate_source_document_intake_status(errors, source_document_register)
+    validate_source_document_process_status(errors, source_document_register)
+    validate_authorized_source_baselines(errors, source_document_register)
     source_lineage_report = validate_source_lineage_report(errors) or {}
     validate_governance_graph(errors)
     validate_source_document_register(errors, source_document_register, source_lineage_report)
