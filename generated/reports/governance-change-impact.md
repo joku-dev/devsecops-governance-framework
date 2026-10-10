@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-10-08T20:06:49Z`
+Generated: `2026-10-09T16:54:53Z`
 
 ## Inputs
 
@@ -120,7 +120,7 @@ Representative artifacts:
 
 - Title: DevSecOps Control Baseline Requirements Extract
 - Source: `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md`
-- Status: `intake`
+- Status: `approved`
 - Owner: `devsecops-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `devsecops`
@@ -157,7 +157,7 @@ Representative artifacts:
 
 - Title: Platform Reference Architecture Requirements Extract
 - Source: `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md`
-- Status: `intake`
+- Status: `approved`
 - Owner: `platform-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `platform, devsecops`
@@ -231,7 +231,7 @@ Representative artifacts:
 
 - Title: Architecture Templates and Checklists Requirements Extract
 - Source: `docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md`
-- Status: `intake`
+- Status: `approved`
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
@@ -267,7 +267,7 @@ Representative artifacts:
 
 - Title: Enterprise Architecture Requirements Extract
 - Source: `docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md`
-- Status: `intake`
+- Status: `approved`
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
@@ -303,7 +303,7 @@ Representative artifacts:
 
 - Title: Solution Architecture Requirements Extract
 - Source: `docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md`
-- Status: `intake`
+- Status: `approved`
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
@@ -339,7 +339,7 @@ Representative artifacts:
 
 - Title: Product Architecture Requirements Extract
 - Source: `docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md`
-- Status: `intake`
+- Status: `approved`
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`

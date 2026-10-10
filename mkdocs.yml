@@ -41,6 +41,9 @@ nav:
               - CISO Review Brief: governance/review-packets/CISO-REQ-SRC-001/ciso-review-brief.md
       - Change Requests:
           - GCR-2026-114 External Consumer Pilot Intake Remediation: governance/change-requests/GCR-2026-114-external-consumer-pilot-intake-remediation.md
+          - GCR-2026-140 Git-native Documentation Pilot: governance/change-requests/GCR-2026-140-doc-as-code-pilot.md
+          - GCR-2026-141 Modular Doc-as-Code Model: governance/change-requests/GCR-2026-141-modular-doc-as-code-model.md
+          - GCR-2026-142 Normative Source Approval: governance/change-requests/GCR-2026-142-normative-source-approval.md
   - Platform:
       - Control Baseline and Platform Architecture: platform/control-baseline-and-platform-architecture-relationship-explained.md
   - Controls:
@@ -53,6 +56,7 @@ nav:
       - Artifact Intake Checklist Template: examples/artifact-intake-checklist.template.md
   - Publishing:
       - Overview: publishing/index.md
+      - Git-native Documentation Pilot: publishing/doc-as-code-pilot/index.md
       - Executive Whitepaper And Presentation: publishing/executive-briefing/README.md
       - Executive Whitepaper: publishing/executive-briefing/whitepaper.md
       - Repository Function Presentation: publishing/repository-walkthrough/README.md
@@ -185,6 +189,7 @@ nav:
           - Replace Governance Placeholders Plan: operations/planning/replace-governance-placeholders-plan.md
           - Document Consistency Review Workpackage: operations/planning/document-consistency-review-workpackage.md
           - Document Consistency Review ADR: operations/planning/document-consistency-review-adr.md
+          - Git-native Documentation Architecture Decision: operations/planning/doc-as-code-architecture-decision.md
           - Model-driven Governance Documentation Backlog: operations/planning/model-driven-governance-documentation-backlog.md
           - Target Structure Plan: operations/planning/repository-target-structure-and-migration-plan.md
           - Documentation Structure Model: operations/planning/document-structure-model.md

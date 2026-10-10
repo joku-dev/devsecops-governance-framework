@@ -213,8 +213,19 @@ abgeschlossenen, begrenzten Phase-2-Pilotbericht
 `docs/examples/document-consistency-review-phase2-live-pilot-report.json` und
 seine öffentliche Projektion gegen getrennte Schemas. Der separate
 `phase2-report.json`-Report mit `not_run` bleibt ein Validator- und
-Vorlagenbeispiel; er ist nicht die aktive Viewer-Eingabe. Die Projektion folgt einer expliziten Feld-Allowlist und vergleicht
-Manifest- und Quellenbytes, bevor sie den Aktualitätszustand setzt.
+Vorlagenbeispiel; er ist nicht die aktive Viewer-Eingabe. Die Projektion folgt
+einer expliziten Feld-Allowlist und vergleicht Manifest- und Quellenbytes,
+bevor sie den Aktualitätszustand setzt. Die einmalige öffentliche
+DCR-Projektion liegt als redigierter
+Snapshot in `status/document-consistency-public-projection.json`. Der Erzeuger
+`scripts/publish_document_consistency_projection.py` prüft Report, Manifest und
+hashgebundene menschliche Entscheidungen aus nicht öffentlichen Eingaben. Er
+schreibt keine Rohberichte oder Entscheidungsdetails ins Repository. Der
+Viewer vergleicht beim Build die Hashes des registrierten Quellbestands mit
+dem Snapshot und setzt ihn bei Änderungen auf `stale`.
+Die Projektion enthält keine Quell- oder Dokument-IDs. Sie trennt die
+strukturelle Bestandsaufnahme von der Zahl gezielter semantischer Vergleiche;
+die semantische Gesamtabdeckung bleibt ungemessen.
 Die DCR-Ansicht ergänzt diesen Snapshot um einen lesenden Ablaufstatus der vier
 Prüfphasen und verweist auf Betriebsmodell und Rollout-Entscheid. Sie führt
 keine Phase aus und bietet weder Provider-Aufruf noch Entscheidungs- oder

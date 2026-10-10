@@ -57,7 +57,7 @@ def extract_identifiers(source_id: str, source_path: Path) -> list[dict]:
         match = ID_CELL.match(line)
         if not match:
             continue
-        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        cells = [cell.replace("\\|", "|").strip() for cell in re.split(r"(?<!\\)\|", line.strip().strip("|"))]
         row_id = match.group(1)
         for identifier in sorted(set(STABLE_ID.findall(" | ".join(cells[1:]))) - {row_id}):
             kind = "declared" if identifier.split("-", 1)[0] == source_id.split("-", 1)[0] else "reference"
@@ -66,24 +66,26 @@ def extract_identifiers(source_id: str, source_path: Path) -> list[dict]:
 
 
 def extract_requirement_rows(source_id: str, source_path: Path) -> tuple[list[dict], list[dict]]:
-    """Extract only stable row IDs and explicit strength labels, never source prose."""
+    """Extract stable row IDs, strength, and opaque section references without source prose."""
     requirements = []
     references = []
     for line_number, line in enumerate(source_path.read_text(encoding="utf-8").splitlines(), 1):
         match = ID_CELL.match(line)
         if not match:
             continue
-        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        if len(cells) < 2 or cells[1] not in {"MUST", "SHALL", "REQUIREMENT"}:
+        cells = [cell.replace("\\|", "|").strip() for cell in re.split(r"(?<!\\)\|", line.strip().strip("|"))]
+        if len(cells) < 4 or cells[1] not in {"MUST", "SHALL", "SHOULD", "REQUIREMENT"}:
             continue
         requirement_id = match.group(1)
         mandatory = cells[1] in {"MUST", "SHALL"}
+        section_ref = "SEC-" + hashlib.sha256(f"{source_id}\0{cells[2]}".encode("utf-8")).hexdigest()[:12].upper()
         requirements.append(
             {
                 "id": requirement_id,
                 "source_id": source_id,
                 "strength": cells[1],
                 "mandatory": mandatory,
+                "section_ref": section_ref,
                 "owner_role_id": None,
                 "verification_artifact_id": None,
                 "open_gap": (
@@ -93,7 +95,7 @@ def extract_requirement_rows(source_id: str, source_path: Path) -> tuple[list[di
                 ),
             }
         )
-        for target_id in sorted(set(STABLE_ID.findall(" | ".join(cells[2:]))) - {requirement_id}):
+        for target_id in sorted(set(STABLE_ID.findall(" | ".join(cells[3:]))) - {requirement_id}):
             references.append(
                 {
                     "type": "references",

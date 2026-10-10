@@ -1,0 +1,31 @@
+schema_version: 1
+id: DOC-AS-CODE-PILOT-001
+version: 0.2.0
+title: Professionelle Dokumente aus Git
+language: de-DE
+status: pilot
+publication_class: explanatory
+source_of_truth: modular_markdown
+outputs:
+  - html
+  - docx
+  - pdf
+sections:
+  - path: chapters/01-purpose.md
+    kind: chapter
+  - path: requirements/DAC-REQ-001.md
+    kind: requirement
+  - path: requirements/DAC-REQ-002.md
+    kind: requirement
+  - path: requirements/DAC-REQ-003.md
+    kind: requirement
+  - path: requirements/DAC-REQ-004.md
+    kind: requirement
+  - path: requirements/DAC-REQ-005.md
+    kind: requirement
+  - path: chapters/02-workflow.md
+    kind: chapter
+  - path: chapters/03-local-build.md
+    kind: chapter
+  - path: chapters/04-boundaries.md
+    kind: chapter

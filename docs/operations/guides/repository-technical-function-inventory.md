@@ -12,49 +12,100 @@ mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbol
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-### PR #244: Source-Document-Intake und Kandidatenregister (`430550f00aa9`)
+### PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
-Die Änderung erweitert technische Unterstützung für drei vorhandene
-Funktionsbereiche des Katalogs: Quellenstatus, Vorbereitung des Quellenreviews
-und Lineage. Sie führt keinen neuen Kontroll- oder Evaluationspfad ein.
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
 
-| Komponente | Aufgabe und Grenze |
-|---|---|
-| `model/documents/source-document-register.yaml`, `model/documents/governance-documents.yaml` | Registrieren Quellenidentität, Pfad, Beziehungen und Status. Fünf neue Eingänge bleiben `candidate`; Status im Register ist keine Quellenfreigabe. |
-| `scripts/generate_source_document_intake_status.py` und `scripts/generate_source_document_intake_review_briefs.py` | Projizieren Registerstatus und vorbereitete menschliche Entscheidungsoptionen. Sie genehmigen oder promoten keine Quelle. |
-| `scripts/generate_source_document_requirement_delta.py` | Vergleicht eingehende Kandidaten mit den autorisierten getrackten Anforderungsfassungen; Deltas sind Prüfhinweise, keine semantische Gleichwertigkeitsentscheidung. |
-| `scripts/generate_architecture_source_replacement_assessment.py` | Stellt mögliche Architekturquellen-Ersetzungen und offene Abhängigkeiten für das Review dar. |
-| `scripts/generate_source_lineage_report.py` und die aktualisierten Architektur-/Evidenzmodelle | Erzeugen aktualisierte Herkunftsprojektionen und verweisen auf die registrierten Anforderungen; die Korrektur der Quellenreferenz ändert keine Gate-Semantik. |
-| `generated/reports/`, `generated/graph/`, `generated/viewer/status-viewer.html` | Neu erzeugte Berichts- und Viewer-Projektionen; sie sind keine neue Abnahme oder Laufzeitevidenz. |
-| `tests/test_source_document_intake_status.py`, `tests/test_source_document_requirement_delta.py`, `tests/test_repository_identity.py`, weitere betroffene Tests | Prüfen Registerpfade, Kandidatenabgrenzung, Deltas und entfernte Platzhalter. |
+### PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7ef33a3e`)
 
-Die fünf Kandidaten und deren menschliche Disposition sind in
-[GCR-2026-113](../../governance/change-requests/GCR-2026-113-devsecops-policy-v2-candidate-review-decision.md)
-und [GCR-2026-114](../../governance/change-requests/GCR-2026-114-source-candidate-decisions.md)
-belegt. Foundation-, Release-, Demo- und Consumer-Dokumente müssen hier nicht
-angepasst werden: der Merge hat keine Kandidatenquelle freigegeben und keine
-Governance-Auswertung, Baseline oder Durchsetzung geändert.
+- `.github/workflows/requirement-lifecycle.yml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
+- `scripts/validate_requirement_lifecycle.py`
 
-Geänderte Implementierungspfade des PR:
+### PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
 
-- `architecture/arch-gov.yaml`
-- `architecture/arch-l1.yaml`
-- `architecture/arch-l2.yaml`
-- `architecture/arch-l3.yaml`
-- `architecture/guardrails.yaml`
-- `architecture/quality-markers.yaml`
-- `architecture/remediation-actions.yaml`
-- `architecture/review-gates.yaml`
-- `model/controls/governance-repository-security.yaml`
-- `model/documents/governance-documents.yaml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/requirement-policy-equivalence-review.schema.json`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
+
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-DSCB-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #263: Implement implemented-requirement-first migration (`91c448049764`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/governance-requirement-catalog.schema.json`
+- `schemas/requirement-artifact-register.schema.json`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/generate_implemented_requirement_migration.py`
+- `scripts/generate_status_viewer.py`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/lib/viewer_technical.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #261: feat: add hybrid requirement lifecycle (`a11b21955233`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-ARCH-EA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-PA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-SA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-TPL-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-DSCB-STD-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `schemas/governance-requirement-catalog.schema.json`
+- `schemas/native-requirement-source.schema.json`
+- `schemas/requirement-authority-ledger.schema.json`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #259: Approve six registered normative sources (`6447602a7055`)
+
 - `model/documents/source-document-register.yaml`
-- `model/evidence/evidence-collector-contract.yaml`
-- `model/evidence/evidence-freshness-policies.yaml`
-- `model/evidence/evidence-trust-model.yaml`
-- `scripts/generate_architecture_source_replacement_assessment.py`
 - `scripts/generate_source_document_intake_status.py`
-- `scripts/generate_source_document_requirement_delta.py`
-- `scripts/generate_source_lineage_report.py`
+
+### PR #257: Professionalize modular Doc-as-Code publications (`253f1227f585`)
+
+- `.github/workflows/doc-as-code-preview.yml`
+- `.github/workflows/publish-docs.yml`
+
+### PR #255: feat(docs): add modular doc-as-code publication pilot (`a451a7c407ac`)
+
+- `.github/workflows/doc-as-code-preview.yml`
+- `.github/workflows/publish-docs.yml`
+
+### PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195192e`)
+
+- `apps/governance-viewer/app.js`
+- `schemas/document-consistency-public-projection.schema.json`
+- `schemas/document-consistency-review-model.schema.json`
+- `scripts/generate_document_consistency_review_model.py`
+- `scripts/lib/document_consistency_view.py`
+- `scripts/lib/viewer_app.py`
+- `scripts/publish_document_consistency_projection.py`
+
+### PR #243: Show completed DCR pilot status in viewer (`24a940763822`)
+
+- `scripts/lib/document_consistency_view.py`
+- `scripts/lib/viewer_app.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
@@ -418,3 +469,16 @@ beschreibt den geprüften Umfang und die getrennten historischen Artefakte.
 Automatische Aufnahme nach erfolgreichem Consumer-Mainline-Lauf; keine
 Baseline-Änderung oder Live-Freigabe.
 [Details](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle).
+
+## Hybrid requirement lifecycle additions
+
+| Artifact | Function |
+|---|---|
+| `scripts/manage_requirement_lifecycle.py` | Imports, analyzes, decides, activates, reports, and completes requirement migrations. |
+| `scripts/lib/requirement_lifecycle.py` | Parses requirement extracts and implements deterministic classification and immutable revisions. |
+| `scripts/validate_requirement_lifecycle.py` | Validates the Authority Ledger, catalog, cases, fingerprints, coverage, and enforcement boundary. |
+| `schemas/requirement-authority-ledger.schema.json` | Contract for source authority and migration coverage. |
+| `schemas/governance-requirement-catalog.schema.json` | Contract for canonical requirement revisions. |
+| `schemas/requirement-lifecycle-case.schema.json` | Contract for proposal analysis, decision, and activation evidence. |
+| `schemas/native-requirement-source.schema.json` | Contract for a directly authored Git-native requirement source. |
+| `docs/publishing/governance-requirement-catalog/` | Generated Doc-as-Code input for HTML, Word and PDF catalog previews. |

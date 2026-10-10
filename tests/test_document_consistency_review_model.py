@@ -10,6 +10,7 @@ import unittest
 from jsonschema import Draft202012Validator
 
 from scripts.generate_document_consistency_review_model import generate_model
+from scripts.generate_document_consistency_review_model import extract_requirement_rows
 from scripts.validate_document_consistency_review import validate_model
 
 
@@ -57,6 +58,16 @@ class DocumentConsistencyReviewModelTests(unittest.TestCase):
         serialized = json.dumps(model)
         self.assertNotIn("controlled and repeatable software delivery", serialized)
         self.assertNotIn("All software components SHALL be traceable", serialized)
+
+    def test_generator_covers_should_rows_and_opaque_sections(self):
+        source = ROOT / "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md"
+        requirements, _ = extract_requirement_rows("ARCH-SDD-REQ-001", source)
+        self.assertEqual(938, len(requirements))
+        should_rows = [item for item in requirements if item["strength"] == "SHOULD"]
+        self.assertEqual(345, len(should_rows))
+        self.assertTrue(all(item["section_ref"].startswith("SEC-") for item in requirements))
+        self.assertTrue(all(item["mandatory"] for item in requirements if item["strength"] in {"MUST", "SHALL"}))
+        self.assertTrue(all(not item["mandatory"] for item in should_rows))
 
     def test_duplicate_stable_identifier_fails_dcr_001(self):
         model = deepcopy(BASE_MODEL)

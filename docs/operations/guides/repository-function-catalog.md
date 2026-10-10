@@ -26,29 +26,95 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 ## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
 
 <!-- DOCS_REFRESH_CATALOG:start -->
-### PR #244: Source-Document-Intake und Kandidatenregister (`430550f00aa9`)
+### PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
-Die Änderung gehört zu den bestehenden Bereichen **1. Governance-Quellen
-verwalten**, **2. Änderungen an Vorgaben vorbereiten** und **3. Herkunft und
-Zusammenhänge nachweisen**. Sie erweitert keinen der 22 Funktionsbereiche.
+- docs: PRA-Review-Empfehlung dokumentieren
 
-- Die ungültigen `*.public.md`-Platzhalter wurden entfernt. Die getrackten,
-  vom Maintainer bestätigten `*.requirements.md`-Fassungen bleiben die
-  autorisierten Vergleichs- und Quellversionen.
-- Fünf neu aufgenommene Dokumente sind im Quellenregister als `candidate`
-  eingetragen. Die Entscheidungen in [GCR-2026-113](../../governance/change-requests/GCR-2026-113-devsecops-policy-v2-candidate-review-decision.md)
-  und [GCR-2026-114](../../governance/change-requests/GCR-2026-114-source-candidate-decisions.md)
-  halten die offenen Autoritäts-, Ersetzungs- und Zuständigkeitsfragen fest.
-- Intake-Status, Review-Briefs, Anforderungsdeltas, Architektur-Ersetzungsprüfung
-  und Source-Lineage wurden neu projiziert. Die Berichte helfen bei der
-  Entscheidung; sie genehmigen keine Quelle.
-- Es wurden keine Kontrollen, Marker, Policies, Schemas, Baselines,
-  Durchsetzungsmodi oder Consumer-Freigaben aus Kandidaten abgeleitet.
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 
-Die Dokumentationsprüfung ordnet die Arbeit den Bereichen 1–3 zu. Foundation-,
-Release-, Demo- und Consumer-Verhalten ändern sich dadurch nicht; die bestehenden
-Intake- und Quellentscheidungsdokumente enthalten bereits den notwendigen
-Verfahrens- und Entscheidungsnachweis.
+### PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7ef33a3e`)
+
+- feat: PRA-Plattformzuordnungen fachlich vorbereiten
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
+
+- add a versioned equivalence review for all 14 proposed GRQ-to-OPA mappings
+- pin the exact active GRQ revisions and SHA-256 hashes of ten Rego files
+- recommend eight mappings for adoption, four for remediation, and two for rejection/correction
+- validate future OPA review packets against active revisions, policy authorization, current hashes, and summary arithmetic
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
+
+- record the governance-owner approval for the 46 implemented DSCB control requirements
+- activate GRQ-000001@rev1 through GRQ-000046@rev1
+- keep the DSCB lifecycle case partially_activated with nine non-control proposals still open
+- keep DSCB-STD-REQ-001 in migration_in_progress
+- publish the 46 canonical requirements through the Doc-as-Code catalog
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #263: Implement implemented-requirement-first migration (`91c448049764`)
+
+- add partial activation for explicitly selected requirement proposals
+- add a versioned requirement-to-artifact register with exact GRQ revision, artifact hash, equivalence decision, and enforcement metadata
+- inventory active controls, platform models, architecture rules, OPA mappings, schemas, workflows, and releases
+- generate review candidates for all 867 approved source requirements without treating suggestions as approvals
+- enforce active revisions, authorized artifact types, hash integrity, legacy transition rules, and released-package immutability
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #261: feat: add hybrid requirement lifecycle (`a11b21955233`)
+
+- introduce the hybrid source-document and Git-native requirement lifecycle
+- add the Requirement Authority Ledger, immutable canonical requirement revisions, and six initial migration cases
+- analyze 867 proposals across DSCB, PRA, ARCH-TPL, ARCH-EA, ARCH-SA, and ARCH-PA
+- add guarded human decisions for duplicate, new, extend, change, supersede, and conflict
+- generate the canonical catalog publication for HTML, Word, and PDF review artifacts
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #259: Approve six registered normative sources (`6447602a7055`)
+
+- Approve six registered normative sources
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #257: Professionalize modular Doc-as-Code publications (`253f1227f585`)
+
+- Professionalize modular Doc-as-Code publications
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #255: feat(docs): add modular doc-as-code publication pilot (`a451a7c407ac`)
+
+- Add a modular doc-as-code/ publication component with one Git-authored Markdown pilot.
+- Generate standalone HTML, DOCX and PDF with pinned Pandoc 3.12, XeLaTeX and a SHA-256 provenance manifest.
+- Build review artifacts on pull requests and publish the downloads beside the MkDocs pilot page after merge to main.
+- Record architecture and governance boundaries; keep model-to-document generation deferred.
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195192e`)
+
+- Add the approved one-time, redacted DCR pilot snapshot to the governance Viewer.
+- Show the pilot's partial status, structural inventory and three targeted comparisons without source IDs, document rows, excerpts, semantic prose or decision rationale.
+- Keep semantic population coverage unmeasured; the projection is report-only and does not establish consistency, compliance, implementation or normative approval.
+- Record the bounded maintainer decision in GCR-2026-139. No recurring publication, blocking behavior or production rollout is enabled.
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #243: Show completed DCR pilot status in viewer (`24a940763822`)
+
+- Point the read-only Document Consistency Review projection at the completed, bounded Phase 2 pilot report instead of the not_run template report.
+- Keep the public allowlist, source freshness checks, and redaction behavior unchanged.
+- Record the one-time publication decision in GCR-2026-138 and explain its limits in the viewer and rollout documentation.
+- Assert the projected pilot status in the focused test.
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
@@ -993,3 +1059,7 @@ Snapshots und ihre individuellen Zeit-/Run-Bindungen stehen unter
 `status/typed-evidence-results/`. Der
 [Plattformstatus](../status/current-governance-platform-state.md) zeigt den
 datierten Dokumentationsabgleich und verweist auf die maßgeblichen Quellen.
+
+## Hybrid requirement authority and migration
+
+`scripts/manage_requirement_lifecycle.py` guides approved source documents and Git-native proposals through deterministic comparison, explicit human decision, immutable catalog activation, and authority transition. The Authority Ledger prevents an incomplete migration from silently replacing the external normative source. `scripts/validate_requirement_lifecycle.py` enforces schemas, coverage, source fingerprints, append-only history, catalog integrity, and the separation of blocking enforcement. Active catalog revisions feed the shared Doc-as-Code renderer for reviewable HTML, Word and PDF outputs.

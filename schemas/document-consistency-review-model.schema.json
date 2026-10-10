@@ -59,8 +59,9 @@
         "properties": {
           "id": {"type": "string", "minLength": 1},
           "source_id": {"type": "string", "minLength": 1},
-          "strength": {"enum": ["MUST", "SHALL", "REQUIREMENT"]},
+          "strength": {"enum": ["MUST", "SHALL", "SHOULD", "REQUIREMENT"]},
           "mandatory": {"type": "boolean"},
+          "section_ref": {"type": "string", "pattern": "^SEC-[0-9A-F]{12}$"},
           "owner_role_id": {"type": ["string", "null"]},
           "verification_artifact_id": {"type": ["string", "null"]},
           "open_gap": {"type": ["string", "null"]}
