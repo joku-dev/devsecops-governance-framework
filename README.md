@@ -12,12 +12,9 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195192e`)
+## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
-- Add the approved one-time, redacted DCR pilot snapshot to the governance Viewer.
-- Show the pilot's partial status, structural inventory and three targeted comparisons without source IDs, document rows, excerpts, semantic prose or decision rationale.
-- Keep semantic population coverage unmeasured; the projection is report-only and does not establish consistency, compliance, implementation or normative approval.
-- Record the bounded maintainer decision in GCR-2026-139. No recurring publication, blocking behavior or production rollout is enabled.
+- docs: PRA-Review-Empfehlung dokumentieren
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)

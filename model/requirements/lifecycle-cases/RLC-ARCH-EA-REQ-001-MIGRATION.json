@@ -1,0 +1,4013 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "RLC-ARCH-EA-REQ-001-MIGRATION",
+  "intake_type": "source_document",
+  "status": "decision_required",
+  "created_at": "2026-10-09T16:33:09Z",
+  "source": {
+    "source_id": "ARCH-EA-REQ-001",
+    "source_path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
+    "source_sha256": "ce3cb3ad8cf00c45b5a3754f328cecb27658a7f5e509511324e3cf6af1fc52d3",
+    "owner": "architecture-owners",
+    "decision_ref": "docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md"
+  },
+  "proposals": [
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0001",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-001",
+      "title": "SDD Enterprise Architecture Guidelines / Purpose",
+      "statement": "It describes the guardrails, reference assets, governance mechanisms and evidence expectations required to keep SDD-relevant products and solutions aligned across Reference Organization divisions.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5585,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0017",
+            "similarity": 0.4415
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0002",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-002",
+      "title": "SDD Enterprise Architecture Guidelines / Purpose",
+      "statement": "Enterprise guardrails shall be strict where local divergence would create interoperability, security, data, technology, platform or release-compatibility risk.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.9102,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0020",
+            "similarity": 0.0898
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0003",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-003",
+      "title": "SDD Enterprise Architecture Guidelines / Purpose",
+      "statement": "They shall remain flexible where product or solution autonomy does not endanger cross-division architecture coherence.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0004",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-004",
+      "title": "SDD Enterprise Architecture Guidelines / Purpose",
+      "statement": "Those mechanisms define the required enterprise architecture roles, communities of practice and ownership structures.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5472,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0040",
+            "similarity": 0.4528
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0017",
+            "similarity": 0.362
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0005",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-005",
+      "title": "SDD Enterprise Architecture Guidelines / Purpose",
+      "statement": "Enterprise Architecture should therefore focus on decisions that are difficult to reverse or expensive to harmonize later.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4887,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0088",
+            "similarity": 0.5113
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0059",
+            "similarity": 0.325
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0006",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-006",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Scope",
+      "statement": "Enterprise Architecture governs architecture areas that must remain consistent across Reference Organization divisions where Software-Defined Defence applies.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0007",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-007",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level BAPO Alignment Challenge",
+      "statement": "Business priorities such as interoperability, digital sovereignty, faster capability evolution and product-line reuse must be reflected in enterprise architecture decisions for interfaces, data models, technology standards, security, runtime platforms and DevSecOps.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.9207,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0022",
+            "similarity": 0.0793
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0109",
+            "similarity": 0.0318
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0008",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-008",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level BAPO Alignment Challenge",
+      "statement": "These architecture decisions must then define the minimum governance processes required to maintain alignment, such as guardrail reviews, exception handling, adoption tracking and KPI monitoring.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.6048,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0023",
+            "similarity": 0.3952
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0009",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-009",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level BAPO Alignment Challenge",
+      "statement": "Clear ownership is required so that enterprise architects, data owners, security owners, platform owners and architecture communities can keep the guardrails current, usable and aligned with evolving business and mission needs.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.7426,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0024",
+            "similarity": 0.2574
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0010",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-010",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Decision Rights",
+      "statement": "Reference architectures | Which reference architectures must be reused?",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3803,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0050",
+            "similarity": 0.6197
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0008",
+            "similarity": 0.4196
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0011",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-011",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Decision Rights",
+      "statement": "Exception governance | Which deviations require formal approval and expiration dates?",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0012",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-012",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Decision Rights",
+      "statement": "Portfolio investment | Which cross-division architecture gaps require portfolio funding?",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0013",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-013",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Decision Rights",
+      "statement": "Enterprise Architecture must avoid over-centralization.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5122,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0001",
+            "similarity": 0.4878
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0014",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-014",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Decision Rights",
+      "statement": "It should define guardrails, not micromanage implementation.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5041,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0030",
+            "similarity": 0.4959
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0026",
+            "similarity": 0.4706
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0005",
+            "similarity": 0.4286
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0015",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-015",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Deliverables",
+      "statement": "The following deliverables define the minimum set of enterprise-level architecture assets required to create cross-division alignment for Software-Defined Defence.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3582,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0010",
+            "similarity": 0.6418
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0094",
+            "similarity": 0.4048
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0016",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-016",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Deliverables",
+      "statement": "Each enterprise deliverable should be owned, versioned, published in a discoverable location and reviewed regularly.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3761,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0011",
+            "similarity": 0.6239
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0017",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-017",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Deliverables",
+      "statement": "Solution and Product Architects must be able to understand which enterprise deliverables apply to their work, how compliance is demonstrated and how deviations are requested.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.6619,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0027",
+            "similarity": 0.3381
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0012",
+            "similarity": 0.014
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0018",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-018",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Deliverables",
+      "statement": "Where a deliverable is not yet mature, this should be made visible as enterprise architecture runway or enterprise technical debt.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2867,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0013",
+            "similarity": 0.7133
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0100",
+            "similarity": 0.5586
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0040",
+            "similarity": 0.556
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0065",
+            "similarity": 0.5155
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0080",
+            "similarity": 0.4965
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0019",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-019",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Deliverables",
+      "statement": "Enterprise Process Impact Register | Identifies which architecture guardrails require new or changed governance, delivery, or release mechanisms",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0020",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-020",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Level Architecture Governance Overview / Enterprise Level Architecture Quality Markers",
+      "statement": "E0 BAPO traceability | Are enterprise guardrails traceable from business strategy to architecture decision, minimum process requirement, and organizational ownership?",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.6202,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0040",
+            "similarity": 0.3798
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0021",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-021",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "Enterprise guardrails shall be written in a consistent BAPO structure so that they are usable across Enterprise, Solution and Product Architecture.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4183,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0027",
+            "similarity": 0.5817
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0115",
+            "similarity": 0.557
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0018",
+            "similarity": 0.5442
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0027",
+            "similarity": 0.3063
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0022",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-022",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "Every enterprise guardrail shall therefore use the following structure:",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2587,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0029",
+            "similarity": 0.7413
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5634
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0004",
+            "similarity": 0.5466
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0023",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-023",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "Element | Required content | Purpose",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3659,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0039",
+            "similarity": 0.6341
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0093",
+            "similarity": 0.6237
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0083",
+            "similarity": 0.6061
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0120",
+            "similarity": 0.5946
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0038",
+            "similarity": 0.5938
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0024",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-024",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "Architecture guardrail | Reference architecture, standard, technology decision, data rule, security rule, runtime rule, interoperability rule, or DevSecOps rule | Defines the architecture expectation that must be applied consistently",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5991,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0025",
+            "similarity": 0.4009
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0001",
+            "similarity": 0.3574
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0146",
+            "similarity": 0.1594
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0025",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-025",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "Process requirement | Review mechanism, governance workflow, exception process, test requirement, KPI tracking, release rule, or compliance check | Defines how the guardrail is applied, verified, governed and improved",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5703,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0026",
+            "similarity": 0.4297
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0123",
+            "similarity": 0.0438
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0026",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-026",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "Ownership requirement | Enterprise Architect, data owner, interface owner, security owner, platform owner, DevSecOps owner, product-line owner, or architecture community | Clarifies who owns, maintains, reviews and evolves the guardrail",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4625,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0040",
+            "similarity": 0.5375
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0086",
+            "similarity": 0.4211
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0017",
+            "similarity": 0.3582
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0027",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-027",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "Each enterprise guardrail must be written so that Solution and Product Architects can apply it in practice.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2549,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0018",
+            "similarity": 0.7451
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5896
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0110",
+            "similarity": 0.5464
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0057",
+            "similarity": 0.5395
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0149",
+            "similarity": 0.4681
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0028",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-028",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "The right level of detail defines what must be consistent while leaving room for local implementation choices where variation does not create enterprise risk.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2609,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0028",
+            "similarity": 0.7391
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0029",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-029",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "A good enterprise guardrail must therefore answer the following questions:",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2587,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0022",
+            "similarity": 0.7413
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0029",
+            "similarity": 0.5605
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0030",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-030",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "The lifecycle view is important because enterprise guardrails must remain both stable and adaptive.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0031",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-031",
+      "title": "SDD Enterprise Architecture Guidelines / BAPO Structure of Enterprise Guardrails",
+      "statement": "They must provide enough consistency to enable Software-Defined Defence across divisions, but they must also evolve when solution integration, product implementation, technology change or operational evidence shows that the guardrail needs to be clarified, strengthened, relaxed or retired.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0032",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-032",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Guardrail Feedback",
+      "statement": "Product or solution findings may reveal that a guardrail is unclear, too restrictive, outdated, missing an accepted variant or not supported by the required platform or process capability.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.659,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0128",
+            "similarity": 0.341
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0177",
+            "similarity": 0.0509
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0039",
+            "similarity": 0.0363
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0033",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-033",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Guardrail Feedback",
+      "statement": "Enterprise Architecture shall review recurring feedback patterns, especially repeated exceptions, recurring interface issues, data incompatibility, security evidence gaps, deployment problems, DevSecOps gaps or repeated release-readiness issues.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0034",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-034",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "Strategic alignment does not mean that every product or solution must use the same implementation approach.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0035",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-035",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "It means that architecture decisions shall be assessed against the enterprise concerns that are critical for Software-Defined Defence, including openness, modularity, interoperability, security, digital sovereignty, DevSecOps readiness, data alignment and edge/fog/cloud deployment readiness.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.682,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0055",
+            "similarity": 0.318
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0038",
+            "similarity": 0.0495
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0036",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-036",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "It should be used as a check when portfolio epics, solution initiatives, product-line investments or major architecture decisions claim SDD relevance.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2434,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0042",
+            "similarity": 0.7566
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0036",
+            "similarity": 0.4031
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0181",
+            "similarity": 0.3515
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0039",
+            "similarity": 0.0539
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0037",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-037",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "Business driver | Reference Organization must enable adaptable, software-based defence capabilities and reduce dependency on rigid hardware-bound modernization cycles. | Connects architecture governance to strategic business and mission value.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0038",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-038",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "Architecture guardrail | All relevant SDD architectures shall be assessed against open architecture, modularity, interoperability, DevSecOps, security, digital sovereignty, data alignment and edge/fog/cloud readiness. | Ensures that architecture decisions support long-term adaptability, integration and sovereign capability evolution.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5814,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0055",
+            "similarity": 0.4186
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0047",
+            "similarity": 0.0602
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0035",
+            "similarity": 0.0462
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0039",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-039",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "Process requirement | Portfolio architecture review shall check whether epics, initiatives, solution concepts and major product investments align with the applicable SDD guardrails. | Embeds SDD alignment into portfolio and architecture decision points instead of treating it as a separate document review.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.582,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0036",
+            "similarity": 0.418
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0040",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-040",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "Ownership requirement | Enterprise Architecture owns the SDD architecture principles and guardrails.",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2913,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0057",
+            "similarity": 0.7087
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0086",
+            "similarity": 0.6517
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0070",
+            "similarity": 0.6468
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0029",
+            "similarity": 0.6095
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0035",
+            "similarity": 0.5619
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0041",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-041",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "Solution and Product Architects provide implementation and evidence feedback. | Clarifies that SDD alignment requires shared ownership across business, architecture and delivery roles.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0042",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-042",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "This guideline should be used whenever a portfolio epic, solution initiative, product-line investment, platform decision or major architecture decision claims relevance for Software-Defined Defence.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2434,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0036",
+            "similarity": 0.7566
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0098",
+            "similarity": 0.5904
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0145",
+            "similarity": 0.4581
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0181",
+            "similarity": 0.4138
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0043",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-043",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "The review should ask whether the proposed architecture improves adaptability, interoperability, reuse, security, deployability, data consistency or digital sovereignty.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0044",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-044",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "If the answer is unclear, the architecture item should either be refined, linked to a clearer business driver, or treated as an architecture risk.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4207,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0136",
+            "similarity": 0.5793
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0065",
+            "similarity": 0.4953
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0129",
+            "similarity": 0.4089
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0045",
+            "similarity": 0.3794
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0017",
+            "similarity": 0.3609
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0045",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-045",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "The SDD alignment check should also remain proportional.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0046",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-046",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "Not every product decision requires a full enterprise-level review.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0047",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-047",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "However, decisions that affect cross-division interoperability, solution integration, enterprise data models, platform direction, DevSecOps capability, security posture or long-term technology dependency should be assessed against the SDD guardrails.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5539,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0139",
+            "similarity": 0.4461
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0038",
+            "similarity": 0.0743
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0124",
+            "similarity": 0.0663
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0048",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-048",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "Where an architecture item does not fully meet the SDD guardrails, the deviation shall be documented through the architecture exception process.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2829,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0092",
+            "similarity": 0.7171
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0105",
+            "similarity": 0.6962
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0078",
+            "similarity": 0.6604
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0166",
+            "similarity": 0.4495
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0049",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-049",
+      "title": "SDD Enterprise Architecture Guidelines / Software-Defined Defence Strategic Alignment",
+      "statement": "The exception should explain the reason, affected scope, risk, owner, mitigation, review date and expected path back to alignment.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3731,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0079",
+            "similarity": 0.6269
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0093",
+            "similarity": 0.5493
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0157",
+            "similarity": 0.5327
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0106",
+            "similarity": 0.5152
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0141",
+            "similarity": 0.5098
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0050",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-050",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Reference Architecture Catalogue",
+      "statement": "Reference architectures should be treated as reusable architectural assets.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3662,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0010",
+            "similarity": 0.6338
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0160",
+            "similarity": 0.6176
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0065",
+            "similarity": 0.6164
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0092",
+            "similarity": 0.521
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0046",
+            "similarity": 0.4651
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0051",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-051",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Reference Architecture Catalogue",
+      "statement": "They should include not only diagrams, but also principles, applicability rules, quality expectations, required interfaces, security assumptions, deployment patterns, and known trade-offs.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4773,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0073",
+            "similarity": 0.5227
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0053",
+            "similarity": 0.4972
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0052",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-052",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Reference Architecture Catalogue",
+      "statement": "Therefore, each reference architecture should include examples, mandatory elements, optional elements, allowed variations, and evidence expectations.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0053",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-053",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Reference Architecture Catalogue",
+      "statement": "The table below defines how the enterprise reference architecture catalogue shall be governed and used by Solution and Product Architecture.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5615,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0101",
+            "similarity": 0.4385
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0153",
+            "similarity": 0.437
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0115",
+            "similarity": 0.3983
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0034",
+            "similarity": 0.3972
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0173",
+            "similarity": 0.381
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0054",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-054",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Reference Architecture Catalogue",
+      "statement": "Business driver | Cross-division reuse and interoperability require common reference patterns",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4248,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0064",
+            "similarity": 0.5752
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0055",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-055",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Reference Architecture Catalogue",
+      "statement": "Architecture guardrail | Enterprise Architecture shall maintain approved reference architectures for reference solution, edge/fog/cloud, DevSecOps, data, security, runtime, observability, and integration",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.8605,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0038",
+            "similarity": 0.1395
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0035",
+            "similarity": 0.0586
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0056",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-056",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Reference Architecture Catalogue",
+      "statement": "Process requirement | Solution and product architectures shall declare which reference architectures they use or why they deviate",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0057",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-057",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Reference Architecture Catalogue",
+      "statement": "Ownership requirement | Enterprise Architect owns catalogue; Solution Architects and Product Architects apply it",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2913,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0040",
+            "similarity": 0.7087
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0062",
+            "similarity": 0.6816
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0070",
+            "similarity": 0.6479
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0084",
+            "similarity": 0.6294
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0029",
+            "similarity": 0.6216
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0058",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-058",
+      "title": "SDD Enterprise Architecture Guidelines / Technology Radar and Technology Governance",
+      "statement": "Technology governance should not be used to block innovation.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5207,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0179",
+            "similarity": 0.4793
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0046",
+            "similarity": 0.4724
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0153",
+            "similarity": 0.4091
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0059",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-059",
+      "title": "SDD Enterprise Architecture Guidelines / Technology Radar and Technology Governance",
+      "statement": "Business driver | Technology choices must support long-term maintainability, interoperability, security, and product-line evolution",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0060",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-060",
+      "title": "SDD Enterprise Architecture Guidelines / Technology Radar and Technology Governance",
+      "statement": "Architecture guardrail | Technologies shall be classified as strategic, approved, tolerated, deprecated, or prohibited",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0061",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-061",
+      "title": "SDD Enterprise Architecture Guidelines / Technology Radar and Technology Governance",
+      "statement": "Process requirement | New technologies require architecture review; deprecated technologies require migration plans",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0062",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-062",
+      "title": "SDD Enterprise Architecture Guidelines / Technology Radar and Technology Governance",
+      "statement": "Ownership requirement | Enterprise Architect owns radar; Product Architects own product-level technology declarations",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3184,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0057",
+            "similarity": 0.6816
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0080",
+            "similarity": 0.6486
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0073",
+            "similarity": 0.6479
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0029",
+            "similarity": 0.5991
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5652
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0063",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-063",
+      "title": "SDD Enterprise Architecture Guidelines / Interface Standards and Interoperability Guardrails",
+      "statement": "Enterprise interface standards should therefore define not only technical formats, but also ownership, versioning, deprecation, compatibility, security, testing, and documentation expectations.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3203,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0053",
+            "similarity": 0.6797
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0086",
+            "similarity": 0.4928
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0073",
+            "similarity": 0.3529
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0064",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-064",
+      "title": "SDD Enterprise Architecture Guidelines / Interface Standards and Interoperability Guardrails",
+      "statement": "Business driver | Cross-division interoperability, partner integration, and independent product releases require stable interface standards",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4513,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0054",
+            "similarity": 0.5487
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0065",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-065",
+      "title": "SDD Enterprise Architecture Guidelines / Interface Standards and Interoperability Guardrails",
+      "statement": "Architecture guardrail | Mandatory interface standards shall define API styles, messaging, topics, schemas, versioning, compatibility, and error handling",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0066",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-066",
+      "title": "SDD Enterprise Architecture Guidelines / Interface Standards and Interoperability Guardrails",
+      "statement": "Process requirement | Interfaces require review, contract testing, schema validation, and compatibility checks",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.292,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0020",
+            "similarity": 0.708
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0072",
+            "similarity": 0.6792
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0059",
+            "similarity": 0.5744
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0049",
+            "similarity": 0.5302
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0067",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-067",
+      "title": "SDD Enterprise Architecture Guidelines / Interface Standards and Interoperability Guardrails",
+      "statement": "Ownership requirement | Interface owners are mandatory for enterprise-level and solution-level interfaces",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2128,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0050",
+            "similarity": 0.7872
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0060",
+            "similarity": 0.5537
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5023
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0057",
+            "similarity": 0.4623
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0068",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-068",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Data and Semantic Architecture",
+      "statement": "The enterprise data architecture should define the common language used across SDD solutions.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.6204,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0113",
+            "similarity": 0.3796
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0115",
+            "similarity": 0.2609
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0069",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-069",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Data and Semantic Architecture",
+      "statement": "It should also define who owns data definitions, how schemas evolve, how metadata and provenance are handled, and how data quality is measured.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5931,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0062",
+            "similarity": 0.4069
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0133",
+            "similarity": 0.0649
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0070",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-070",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Data and Semantic Architecture",
+      "statement": "Business driver | Information superiority requires trusted, consistent, and mission-relevant data across products and domains",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0058",
+            "similarity": 0.5
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0071",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-071",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Data and Semantic Architecture",
+      "statement": "Architecture guardrail | Enterprise shall define common data models, semantic concepts, metadata, provenance, classification, quality rules, and lifecycle rules",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.538,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0086",
+            "similarity": 0.462
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0072",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-072",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Data and Semantic Architecture",
+      "statement": "Process requirement | Data contracts require review, schema validation, quality checks, and lifecycle governance",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2893,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0059",
+            "similarity": 0.7107
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0066",
+            "similarity": 0.6792
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0049",
+            "similarity": 0.5806
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0073",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-073",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Data and Semantic Architecture",
+      "statement": "Ownership requirement | Data Architect owns data architecture; data owners own domain data definitions",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3396,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0029",
+            "similarity": 0.6604
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0062",
+            "similarity": 0.6385
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0021",
+            "similarity": 0.6326
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0060",
+            "similarity": 0.6243
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0080",
+            "similarity": 0.6184
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0074",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-074",
+      "title": "SDD Enterprise Architecture Guidelines / Security, Safety and Sovereignty Guardrails",
+      "statement": "Security, safety, and sovereignty must be treated as architecture constraints.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4342,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0045",
+            "similarity": 0.5658
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0069",
+            "similarity": 0.5207
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0085",
+            "similarity": 0.5036
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0069",
+            "similarity": 0.4861
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0160",
+            "similarity": 0.4818
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0075",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-075",
+      "title": "SDD Enterprise Architecture Guidelines / Security, Safety and Sovereignty Guardrails",
+      "statement": "Enterprise guardrails should ensure that trust boundaries, identity, cryptography, monitoring, audit, vulnerability handling, secure updates, and data classification are considered early enough to influence design.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.9951,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0078",
+            "similarity": 0.0049
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0076",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-076",
+      "title": "SDD Enterprise Architecture Guidelines / Security, Safety and Sovereignty Guardrails",
+      "statement": "Where defence-specific safety, compliance, classification, or export-control constraints apply, these must be connected to architecture evidence and release readiness criteria.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0077",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-077",
+      "title": "SDD Enterprise Architecture Guidelines / Security, Safety and Sovereignty Guardrails",
+      "statement": "Business driver | Defence systems require trustworthy, sovereign, secure, and mission-safe operation",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0078",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-078",
+      "title": "SDD Enterprise Architecture Guidelines / Security, Safety and Sovereignty Guardrails",
+      "statement": "Architecture guardrail | Enterprise shall define zero-trust principles, identity, authentication, authorization, cryptography, key management, trust zones, audit, monitoring, secure update, and vulnerability handling",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.9902,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0075",
+            "similarity": 0.0098
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0079",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-079",
+      "title": "SDD Enterprise Architecture Guidelines / Security, Safety and Sovereignty Guardrails",
+      "statement": "Process requirement | Threat modelling, security review, vulnerability management, and security test evidence are mandatory for applicable systems",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5152,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0059",
+            "similarity": 0.4848
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0080",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-080",
+      "title": "SDD Enterprise Architecture Guidelines / Security, Safety and Sovereignty Guardrails",
+      "statement": "Ownership requirement | Security Architect owns guardrails; product security owners own implementation evidence",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3527,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0073",
+            "similarity": 0.6473
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0062",
+            "similarity": 0.6306
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0070",
+            "similarity": 0.5943
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0060",
+            "similarity": 0.5824
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0084",
+            "similarity": 0.5816
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0081",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-081",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "The guardrails are therefore required to prevent each product or solution from making incompatible runtime, deployment, observability, update or configuration decisions.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0082",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-082",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "Instead, Enterprise Architecture shall define the minimum runtime and platform expectations that solutions and products must consider when they are intended to operate across edge, fog or cloud environments.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4074,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0094",
+            "similarity": 0.5926
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0083",
+            "similarity": 0.0206
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0083",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-083",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "Business driver | SDD capabilities must operate across tactical edge, fog and cloud environments while remaining deployable, observable, secure and maintainable. | Connects runtime and platform architecture to mission adaptability, operational availability and long-term capability evolution.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.9959,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0082",
+            "similarity": 0.0041
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0084",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-084",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "Architecture guardrail | Enterprise Architecture shall define runtime, containerization, orchestration, deployment, observability, service discovery, configuration, update, rollback and environment-compatibility principles. | Ensures that products and solutions can be deployed consistently across target environments without creating incompatible platform assumptions.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0085",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-085",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "Process requirement | Deployment configurations, update mechanisms and environment assumptions must be tested and declared release-compatible for the relevant solution baseline. | Makes deployment readiness, runtime compatibility and operational resilience verifiable before release.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.8027,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0083",
+            "similarity": 0.1973
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0139",
+            "similarity": 0.098
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0091",
+            "similarity": 0.09
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0086",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-086",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "Ownership requirement | The Platform Architect owns runtime and platform guardrails.",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3034,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0040",
+            "similarity": 0.6966
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0070",
+            "similarity": 0.6378
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0084",
+            "similarity": 0.6272
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0060",
+            "similarity": 0.6194
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0057",
+            "similarity": 0.6105
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0087",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-087",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "This guideline should be used whenever a product or solution is expected to run in more than one operational environment, or where deployment location, connectivity, resource constraints, security classification, latency, observability or updateability materially affect the architecture.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.494,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0098",
+            "similarity": 0.506
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0151",
+            "similarity": 0.2927
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0088",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-088",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "The review should ask whether the architecture defines where workloads run, how they are configured, how services discover each other, how operational health is monitored, how updates are performed, how rollback works, and how the deployment remains compatible with the relevant solution baseline.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0089",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-089",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "The guardrail should also make environment assumptions explicit.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3934,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0087",
+            "similarity": 0.6066
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0029",
+            "similarity": 0.5965
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0090",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-090",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "Conversely, cloud or fog environments may introduce different scalability, observability, data-protection and dependency-management requirements.",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0091",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-091",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "These differences must be visible in the architecture evidence.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4478,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0123",
+            "similarity": 0.5522
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0128",
+            "similarity": 0.4043
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0001",
+            "similarity": 0.3817
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0016",
+            "similarity": 0.3684
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0092",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-092",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "Where a product or solution cannot fully comply with the runtime and platform guardrails, the deviation shall be handled through the architecture exception process.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.8929,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0105",
+            "similarity": 0.8929
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0078",
+            "similarity": 0.7988
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0048",
+            "similarity": 0.7434
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0128",
+            "similarity": 0.4792
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0177",
+            "similarity": 0.3353
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0093",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-093",
+      "title": "SDD Enterprise Architecture Guidelines / Runtime, Platform and Edge / Fog / Cloud Guardrails",
+      "statement": "The exception should identify the affected environment, the reason for the deviation, the operational risk, the owner, the mitigation and the follow-up review point.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3467,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0106",
+            "similarity": 0.6533
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0079",
+            "similarity": 0.6053
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0141",
+            "similarity": 0.5556
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0049",
+            "similarity": 0.5282
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0169",
+            "similarity": 0.4664
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0094",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-094",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "Enterprise Architecture shall define the minimum DevSecOps expectations that products and solutions must satisfy when they contribute to Software-Defined Defence capabilities.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5864,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0094",
+            "similarity": 0.4136
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0015",
+            "similarity": 0.3988
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0082",
+            "similarity": 0.2646
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0095",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-095",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "Architecture guardrail | Products and solutions shall support CI/CD, automated testing, security scanning, deployment automation, monitoring, vulnerability handling and traceable release evidence. | Ensures that architecture quality can be verified through repeatable engineering mechanisms instead of manual claims.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0096",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-096",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "Process requirement | Release readiness shall include automated build evidence, test evidence, security evidence, deployment evidence, compatibility evidence and release declaration evidence. | Makes product and solution release decisions evidence-based and reviewable.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0097",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-097",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "Ownership requirement | Platform teams own pipeline enablement and shared DevSecOps capabilities.",
+      "normative_strength": "REQUIREMENT",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3943,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0086",
+            "similarity": 0.6057
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0098",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-098",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "This guideline should be used whenever a product or solution is expected to contribute to a releasable Software-Defined Defence capability.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4036,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0042",
+            "similarity": 0.5964
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0151",
+            "similarity": 0.5019
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0074",
+            "similarity": 0.4436
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0181",
+            "similarity": 0.4299
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0087",
+            "similarity": 0.3819
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0099",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-099",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "The review should ask whether the architecture can be built reproducibly, tested automatically, scanned for security risks, deployed consistently, monitored in operation and linked to release evidence.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.7303,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0127",
+            "similarity": 0.2697
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0100",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-100",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "Where the answer depends on manual steps or undocumented assumptions, the gap should be treated as architecture runway, process debt or product-level technical debt.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3688,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0013",
+            "similarity": 0.6312
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0040",
+            "similarity": 0.56
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0018",
+            "similarity": 0.5517
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0090",
+            "similarity": 0.5444
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0046",
+            "similarity": 0.5302
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0101",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-101",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "This is especially important when independently evolving products must remain compatible with a solution baseline.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3784,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0092",
+            "similarity": 0.6216
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0003",
+            "similarity": 0.293
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0102",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-102",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "DevSecOps evidence should also feed back into architecture governance.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3147,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0108",
+            "similarity": 0.6853
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0103",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-103",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "Failed tests, recurring security findings, deployment failures, compatibility issues, observability gaps or operational incidents may indicate that architecture guardrails, product architecture decisions, platform assumptions or release processes need to be improved.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0104",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-104",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "These findings should be captured through Inspect & Adapt, technical debt registers, architecture runway or guardrail updates.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4241,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0115",
+            "similarity": 0.5759
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0147",
+            "similarity": 0.5581
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0080",
+            "similarity": 0.5233
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0040",
+            "similarity": 0.5214
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0118",
+            "similarity": 0.5208
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0105",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-105",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "Where a product or solution cannot fully comply with the DevSecOps and continuous release guardrails, the deviation shall be handled through the architecture exception process.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.8929,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0092",
+            "similarity": 0.8929
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0078",
+            "similarity": 0.76
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0048",
+            "similarity": 0.7215
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0128",
+            "similarity": 0.4733
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0077",
+            "similarity": 0.3206
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0106",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-106",
+      "title": "SDD Enterprise Architecture Guidelines / DevSecOps and Continuous Release Guardrails",
+      "statement": "The exception should identify the missing capability, release risk, security or integration impact, owner, mitigation and follow-up review point.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3667,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0093",
+            "similarity": 0.6333
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0079",
+            "similarity": 0.5493
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0049",
+            "similarity": 0.5152
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0141",
+            "similarity": 0.4969
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0147",
+            "similarity": 0.4693
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0107",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-107",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture KPIs",
+      "statement": "Architecture KPIs shall be used to improve the architecture system, not to punish teams.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5172,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0051",
+            "similarity": 0.4828
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0002",
+            "similarity": 0.3973
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0108",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-108",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture KPIs",
+      "statement": "KPIs should therefore be reviewed as feedback into architecture governance.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3147,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0102",
+            "similarity": 0.6853
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0160",
+            "similarity": 0.5588
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0170",
+            "similarity": 0.5174
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0109",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-109",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Architecture Quality Marker Catalogue",
+      "statement": "They focus on the architecture concerns that must be consistent beyond individual products or solutions, such as strategic alignment, reference architectures, interface standards, data models, security guardrails, technology governance, platform alignment, DevSecOps expectations, reuse and enterprise technical debt.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.9707,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0132",
+            "similarity": 0.0293
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0007",
+            "similarity": 0.0177
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0110",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-110",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Architecture Quality Marker Catalogue",
+      "statement": "They should be used during enterprise architecture reviews, guardrail reviews, technology governance reviews, portfolio alignment discussions, exception reviews and architecture KPI reviews.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4477,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0174",
+            "similarity": 0.5523
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0176",
+            "similarity": 0.5455
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0151",
+            "similarity": 0.5131
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0148",
+            "similarity": 0.4795
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0133",
+            "similarity": 0.2531
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0111",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-111",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Architecture Quality Marker Catalogue",
+      "statement": "A marker should only be considered mature when the required evidence is available, owned, versioned, communicated to Solution and Product Architecture, and reviewed through an appropriate governance mechanism.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2911,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0177",
+            "similarity": 0.7089
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0152",
+            "similarity": 0.6482
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0078",
+            "similarity": 0.3958
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0173",
+            "similarity": 0.3846
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0143",
+            "similarity": 0.3222
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0112",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-112",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Architecture Quality Marker Catalogue",
+      "statement": "ID | Marker | Review question | Required enterprise evidence",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.8762,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0178",
+            "similarity": 0.8762
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0153",
+            "similarity": 0.8491
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0121",
+            "similarity": 0.6286
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0113",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-113",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Architecture Quality Marker Catalogue",
+      "statement": "The enterprise markers should be scored using the common maturity scale defined in the SDD Architecture Governance Framework.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.935,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0154",
+            "similarity": 0.935
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0181",
+            "similarity": 0.7535
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0068",
+            "similarity": 0.3889
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0173",
+            "similarity": 0.2946
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0114",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-114",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Architecture Quality Marker Catalogue",
+      "statement": "Enterprise Architecture reviews should therefore distinguish between three questions.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.9212,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0182",
+            "similarity": 0.9212
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0155",
+            "similarity": 0.9036
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0115",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-115",
+      "title": "SDD Enterprise Architecture Guidelines / Enterprise Architecture Quality Marker Catalogue",
+      "statement": "Where an enterprise marker scores low, the resulting action should be captured as enterprise architecture runway, enterprise technical debt, a guardrail improvement, a governance-process improvement, or a portfolio-level decision.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4038,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0131",
+            "similarity": 0.5962
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0018",
+            "similarity": 0.5455
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0161",
+            "similarity": 0.5191
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0090",
+            "similarity": 0.5166
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0156",
+            "similarity": 0.4865
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0116",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-116",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "An exception may be required when a product, solution or initiative cannot fully comply with an enterprise guardrail because of customer constraints, mission needs, legacy dependencies, technology limitations, delivery timing, security constraints or integration realities.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.6796,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0217",
+            "similarity": 0.3204
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0185",
+            "similarity": 0.3013
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0117",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-117",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Such deviations shall not remain informal.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4043,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0210",
+            "similarity": 0.5957
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0118",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-118",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "They must be documented as explicit architecture decisions with clear rationale, impact, ownership, mitigation and review date.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4658,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0144",
+            "similarity": 0.5342
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0119",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-119",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "It must explain why the deviation is needed, what risk it creates, who accepts or mitigates the risk, how long the exception is valid, and whether the guardrail itself needs to be clarified or improved.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4382,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0163",
+            "similarity": 0.5618
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0162",
+            "similarity": 0.4173
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0147",
+            "similarity": 0.0659
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0120",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-120",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Step | Description | Required content / evidence",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3514,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0038",
+            "similarity": 0.6486
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0101",
+            "similarity": 0.6452
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0039",
+            "similarity": 0.6087
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0135",
+            "similarity": 0.6022
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0023",
+            "similarity": 0.5405
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0121",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-121",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Assess BAPO implications | The deviation is checked against Business, Architecture, Process and Organization consequences. | Business priority, architecture risk, required process change, responsible owner or governance body",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.7926,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0151",
+            "similarity": 0.2074
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0168",
+            "similarity": 0.1931
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0122",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-122",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Decide exception | The Architecture Review Board or responsible architecture owner approves, rejects or requests rework. | Decision record, approval status, conditions, required mitigation, escalation if required",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0123",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-123",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "The exception process should be applied proportionally.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4211,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0002",
+            "similarity": 0.5789
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0029",
+            "similarity": 0.419
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0109",
+            "similarity": 0.4
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0124",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-124",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Major deviations that affect multiple products, multiple solutions, enterprise guardrails, security posture, customer commitments or long-term technology direction should be reviewed by the Architecture Review Board or the responsible enterprise architecture governance body.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3602,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0170",
+            "similarity": 0.6398
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0047",
+            "similarity": 0.1287
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0125",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-125",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Every approved exception must remain visible until it is closed, expired or renewed.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.9167,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0171",
+            "similarity": 0.9167
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0155",
+            "similarity": 0.9012
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0222",
+            "similarity": 0.8098
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0189",
+            "similarity": 0.7683
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0126",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-126",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Exceptions should not become permanent undocumented alternatives to the guardrails.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0127",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-127",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Where an exception remains necessary over multiple review cycles, the governance body should decide whether the guardrail is still correct, whether a controlled variant should be added, or whether the deviation represents enterprise technical debt that requires funding or remediation.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.9327,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0115",
+            "similarity": 0.0673
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0128",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-128",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "If several products or solutions request similar deviations, this may indicate that the enterprise guardrail is unclear, too restrictive, outdated or not supported by the required platform or process capabilities.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2621,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0032",
+            "similarity": 0.7379
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0176",
+            "similarity": 0.4731
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0177",
+            "similarity": 0.0239
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0129",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-129",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "In such cases, the feedback should trigger guardrail improvement rather than repeated isolated approvals.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.502,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0161",
+            "similarity": 0.498
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0032",
+            "similarity": 0.4
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0130",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-130",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Enterprise Architecture shall review exception trends.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4729,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0166",
+            "similarity": 0.5271
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0152",
+            "similarity": 0.1696
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0131",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-131",
+      "title": "SDD Enterprise Architecture Guidelines / Architecture Exception Process",
+      "statement": "Repeated exceptions shall trigger guardrail review, architecture runway, enterprise technical debt, platform improvement or portfolio-level decision.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2683,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0161",
+            "similarity": 0.7317
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0144",
+            "similarity": 0.5347
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0188",
+            "similarity": 0.4357
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0147",
+            "similarity": 0.4074
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0172",
+            "similarity": 0.3814
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0132",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-132",
+      "title": "Enterprise Architecture Review and Feedback Process / Purpose",
+      "statement": "Enterprise Architecture reviews assess whether an architecture topic requires enterprise-level guardrails, reference architectures, standards, technology governance, data alignment, security guardrails, runtime guardrails, DevSecOps expectations, architecture KPIs, exception governance or portfolio-level improvement.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.9154,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0109",
+            "similarity": 0.0846
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0133",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-133",
+      "title": "Enterprise Architecture Review and Feedback Process / Purpose",
+      "statement": "Enterprise reviews should be practical and decision-oriented.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.8889,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0184",
+            "similarity": 0.8889
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0157",
+            "similarity": 0.8644
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0145",
+            "similarity": 0.5185
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0110",
+            "similarity": 0.3592
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0134",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-134",
+      "title": "Enterprise Architecture Review and Feedback Process / Purpose",
+      "statement": "They should confirm whether the enterprise architecture concern is clear, whether the required evidence exists, whether ownership is assigned, whether deviations are controlled, and whether follow-up action is required.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2488,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0185",
+            "similarity": 0.7512
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0158",
+            "similarity": 0.6681
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0004",
+            "similarity": 0.4591
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0117",
+            "similarity": 0.4111
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0135",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-135",
+      "title": "Enterprise Architecture Review and Feedback Process / Purpose",
+      "statement": "A useful enterprise review should result in one of the following outcomes: acceptance, acceptance with actions, conditional acceptance, rejection, deferral, escalation, exception handling, guardrail update, architecture runway or enterprise technical debt.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.6392,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0161",
+            "similarity": 0.3608
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0186",
+            "similarity": 0.3223
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0159",
+            "similarity": 0.2737
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0136",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-136",
+      "title": "Enterprise Architecture Review and Feedback Process / Purpose",
+      "statement": "Accepted with actions | Architecture is acceptable but improvement actions are required",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0187",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0161",
+            "similarity": 1.0
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0137",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-137",
+      "title": "Enterprise Architecture Review and Feedback Process / Purpose",
+      "statement": "Conditionally accepted | A risk or gap must be resolved before a defined milestone",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0188",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0162",
+            "similarity": 1.0
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0138",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-138",
+      "title": "Enterprise Architecture Review and Feedback Process / Purpose",
+      "statement": "Escalated | Decision requires higher-level architecture or portfolio involvement",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0189",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0163",
+            "similarity": 1.0
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0139",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-139",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Enterprise reviews shall focus only on decisions with cross-division, cross-solution, security, data, technology, runtime, DevSecOps or long-term strategic impact.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.7794,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0047",
+            "similarity": 0.2206
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0140",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-140",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Product- or solution-local decisions shall remain with the responsible Solution or Product Architecture unless they affect enterprise guardrails or create risk beyond the local boundary.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.571,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0120",
+            "similarity": 0.429
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0141",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-141",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Claims of interoperability should be supported by interface contracts and integration evidence.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0192",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0165",
+            "similarity": 0.8901
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0166",
+            "similarity": 0.6837
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0167",
+            "similarity": 0.6632
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0144",
+            "similarity": 0.663
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0142",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-142",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Claims of data alignment should be supported by data models, semantic mappings or data contracts.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2995,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0166",
+            "similarity": 0.7005
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0143",
+            "similarity": 0.6146
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0193",
+            "similarity": 0.6146
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0194",
+            "similarity": 0.5728
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0167",
+            "similarity": 0.567
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0143",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-143",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Claims of security should be supported by threat models, security reviews or verification evidence.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0193",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0167",
+            "similarity": 0.8571
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0141",
+            "similarity": 0.6492
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0192",
+            "similarity": 0.6492
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0166",
+            "similarity": 0.6432
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0144",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-144",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Claims of release compatibility should be supported by baseline and compatibility evidence.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2414,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0168",
+            "similarity": 0.7586
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0195",
+            "similarity": 0.7064
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0141",
+            "similarity": 0.6848
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0192",
+            "similarity": 0.6848
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0167",
+            "similarity": 0.6667
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0145",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-145",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Enterprise reviews should be lightweight but mandatory where critical enterprise concerns are affected.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4815,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0133",
+            "similarity": 0.5185
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0148",
+            "similarity": 0.4831
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0200",
+            "similarity": 0.4831
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0173",
+            "similarity": 0.4831
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0146",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-146",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "They should identify missing evidence, unclear ownership, exception needs, adoption gaps, architecture debt and feedback into guardrail improvement.",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0147",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-147",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Evidence over presentation | Claims must be proven through documents, tests, demos, measurements, or operational evidence",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0199",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0172",
+            "similarity": 1.0
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0148",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-148",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Lightweight but mandatory | Reviews should be efficient, but critical architecture markers cannot be skipped",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0200",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0173",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0145",
+            "similarity": 0.4348
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0149",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-149",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Cross-level alignment | Enterprise, Solution, and Product implications must be visible",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0201",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0174",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0115",
+            "similarity": 0.4483
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0027",
+            "similarity": 0.4255
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0008",
+            "similarity": 0.4204
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0150",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-150",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Early review | Critical architecture issues should be reviewed before implementation becomes expensive",
+      "normative_strength": "SHOULD",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0202",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0175",
+            "similarity": 1.0
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0151",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-151",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Review Principles",
+      "statement": "Continuous feedback | System demos, Inspect & Adapt, and operational findings must update architecture",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0203",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0176",
+            "similarity": 1.0
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0152",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-152",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Guardrail Feedback",
+      "statement": "Architecture review findings, exception trends, KPI results, solution integration findings and product implementation feedback shall be used to update enterprise guardrails, enterprise architecture runway and enterprise technical debt.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.6243,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0164",
+            "similarity": 0.3757
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0053",
+            "similarity": 0.3469
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0101",
+            "similarity": 0.3362
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0130",
+            "similarity": 0.212
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0153",
+      "source_requirement_id": "ARCH-EA-SRC-001-REQ-153",
+      "title": "Enterprise Architecture Review and Feedback Process / Enterprise Contribution to Release Readiness",
+      "statement": "Enterprise Architecture contributes to release readiness by defining the guardrails that product and solution releases must respect.",
+      "normative_strength": "MUST",
+      "domain": "architecture",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.38,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-ARCH-SA-REQ-001-MIGRATION-P0001",
+            "similarity": 0.62
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0138",
+            "similarity": 0.4395
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0072",
+            "similarity": 0.4064
+          },
+          {
+            "requirement_id": "RLC-ARCH-PA-REQ-001-MIGRATION-P0012",
+            "similarity": 0.3883
+          },
+          {
+            "requirement_id": "RLC-ARCH-EA-REQ-001-MIGRATION-P0053",
+            "similarity": 0.3704
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195192e`)
+Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Ergebnis
 
@@ -10,13 +10,12 @@ Auslöser: PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195
 
 ## Betroffene Implementierungspfade
 
-- `apps/governance-viewer/app.js`
-- `schemas/document-consistency-public-projection.schema.json`
-- `schemas/document-consistency-review-model.schema.json`
-- `scripts/generate_document_consistency_review_model.py`
-- `scripts/lib/document_consistency_view.py`
-- `scripts/lib/viewer_app.py`
-- `scripts/publish_document_consistency_projection.py`
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
 
 ## Fehlende lokale Markdown-Ziele
 

@@ -116,8 +116,10 @@ def review_state(document: dict) -> str:
         return "draft_source_of_truth_decision_required"
     if status == "review":
         return "active_review_in_progress"
-    if status in {"intake", "approved"}:
+    if status == "intake":
         return "accepted_intake"
+    if status == "approved":
+        return "approved_normative_source"
     if status in CLOSED_STATUSES:
         return "closed_source"
     return "unknown_status"
@@ -154,6 +156,9 @@ def next_action(document: dict) -> str:
         ),
         "active_review_in_progress": "Complete review and record the intake decision.",
         "accepted_intake": "Maintain lineage and run impact review for future source updates.",
+        "approved_normative_source": (
+            "Use as a normative input only through governed derivation and release changes."
+        ),
         "closed_source": "Keep for history; do not derive new governance behavior.",
         "unknown_status": "Normalize source status in the source-document register.",
     }
