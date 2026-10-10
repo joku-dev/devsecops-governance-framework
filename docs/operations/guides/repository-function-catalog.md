@@ -66,6 +66,16 @@ Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 - enforce active revisions, authorized artifact types, hash integrity, legacy transition rules, and released-package immutability
 
 Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #261: feat: add hybrid requirement lifecycle (`a11b21955233`)
+
+- introduce the hybrid source-document and Git-native requirement lifecycle
+- add the Requirement Authority Ledger, immutable canonical requirement revisions, and six initial migration cases
+- analyze 867 proposals across DSCB, PRA, ARCH-TPL, ARCH-EA, ARCH-SA, and ARCH-PA
+- add guarded human decisions for duplicate, new, extend, change, supersede, and conflict
+- generate the canonical catalog publication for HTML, Word, and PDF review artifacts
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer

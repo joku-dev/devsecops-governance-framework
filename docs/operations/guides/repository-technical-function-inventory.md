@@ -57,6 +57,25 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 - `scripts/lib/viewer_technical.py`
 - `scripts/manage_requirement_lifecycle.py`
 - `scripts/validate_requirement_lifecycle.py`
+
+### PR #261: feat: add hybrid requirement lifecycle (`a11b21955233`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-ARCH-EA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-PA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-SA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-TPL-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-DSCB-STD-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `schemas/governance-requirement-catalog.schema.json`
+- `schemas/native-requirement-source.schema.json`
+- `schemas/requirement-authority-ledger.schema.json`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
