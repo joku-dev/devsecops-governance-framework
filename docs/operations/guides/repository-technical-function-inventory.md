@@ -20,6 +20,13 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 - `model/requirements/requirement-to-artifact-register.yaml`
 - `schemas/pra-requirement-platform-review.schema.json`
 - `scripts/generate_pra_requirement_platform_review.py`
+
+### PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7ef33a3e`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
+- `scripts/validate_requirement_lifecycle.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
