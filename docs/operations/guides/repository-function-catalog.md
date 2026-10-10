@@ -76,6 +76,12 @@ Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 - generate the canonical catalog publication for HTML, Word, and PDF review artifacts
 
 Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #259: Approve six registered normative sources (`6447602a7055`)
+
+- Approve six registered normative sources
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer

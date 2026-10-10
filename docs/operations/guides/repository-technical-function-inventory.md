@@ -76,6 +76,11 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 - `scripts/lib/requirement_lifecycle.py`
 - `scripts/manage_requirement_lifecycle.py`
 - `scripts/validate_requirement_lifecycle.py`
+
+### PR #259: Approve six registered normative sources (`6447602a7055`)
+
+- `model/documents/source-document-register.yaml`
+- `scripts/generate_source_document_intake_status.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
