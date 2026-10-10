@@ -86,6 +86,11 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 - `.github/workflows/doc-as-code-preview.yml`
 - `.github/workflows/publish-docs.yml`
+
+### PR #255: feat(docs): add modular doc-as-code publication pilot (`a451a7c407ac`)
+
+- `.github/workflows/doc-as-code-preview.yml`
+- `.github/workflows/publish-docs.yml`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges

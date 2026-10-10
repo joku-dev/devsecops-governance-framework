@@ -88,6 +88,15 @@ Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 - Professionalize modular Doc-as-Code publications
 
 Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
+
+### PR #255: feat(docs): add modular doc-as-code publication pilot (`a451a7c407ac`)
+
+- Add a modular doc-as-code/ publication component with one Git-authored Markdown pilot.
+- Generate standalone HTML, DOCX and PDF with pinned Pandoc 3.12, XeLaTeX and a SHA-256 provenance manifest.
+- Build review artifacts on pull requests and publish the downloads beside the MkDocs pilot page after merge to main.
+- Record architecture and governance boundaries; keep model-to-document generation deferred.
+
+Die fachliche Einordnung wurde vom Maintainer fachlich abgenommen.
 <!-- DOCS_REFRESH_CATALOG:end -->
 
 Seit der Beobachtung `46b33429` wurden PR #200 und PR #178 gemergt. Der Viewer
