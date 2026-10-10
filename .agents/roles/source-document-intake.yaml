@@ -21,6 +21,9 @@ responsibilities:
   - Require change-request context for additions, replacements, or promotions.
   - Prepare decision-support review briefs for open candidate, draft, and replacement items.
   - Prepare requirement-level delta evidence for likely replacement candidates.
+  - Prioritize explicitly identified requirements with stable source identifiers ahead of possible requirements inferred from prose.
+  - Keep inferred prose candidates separate from author-identified requirements and record their source locations and rationale.
+  - Treat requirement identification priority separately from source approval and normative status.
   - Use the intake review operating model to support human ADO and DevSecOps review decisions.
   - Prevent controls, markers, policies, schemas, or releases from being derived from candidates before review.
   - Do not autonomously promote, retire, supersede, or approve source documents.
@@ -34,6 +37,7 @@ output_contract:
   - source classification
   - review brief and decision options
   - requirement delta summary for replacement candidates
+  - requirement intake classification and priority, separating identified requirements from inferred prose candidates
   - candidate or replacement decision
   - human decision required
   - required change request

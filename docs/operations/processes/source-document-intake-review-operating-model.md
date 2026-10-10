@@ -82,6 +82,24 @@ The Intake Agent prepares these review inputs:
 - derivation guardrail status
 - validation commands and observed validation results
 
+### Requirement Identification And Intake Priority
+
+Classify requirement candidates separately from the authority and approval
+status of their source:
+
+| Intake class | Identification rule | Review priority | Treatment |
+|---|---|---|---|
+| Explicitly identified requirement | The source author marks the item as a requirement and gives it a stable requirement identifier. | Higher; review these first. | Preserve the identifier and source location. Assess normative status through the source's authority and intake decision. |
+| Potential requirement from prose | No explicit requirement identifier exists, but the wording may express an obligation or expected outcome. | Lower; review after explicitly identified requirements. | Keep as an inferred candidate with its exact source location and rationale. Require owner confirmation before treating it as a requirement. |
+| Contextual statement | The passage provides explanation, examples, rationale, or background without expressing a requirement. | No requirement-review priority. | Do not count it as a requirement unless a human reviewer confirms otherwise. |
+
+An explicit identifier signals that the source author intentionally identified
+the item for requirement tracking, so it takes precedence in the intake review
+queue. The identifier alone does not approve the source or make the item
+normative: source authority, approval status, and any required human decision
+remain separate checks. Inferred prose candidates must remain visibly distinct
+from author-identified requirements in reports and review packets.
+
 The primary reports are:
 
 - `generated/reports/source-document-intake-status.md`
@@ -158,6 +176,13 @@ When ADO architecture source material is involved, also refresh:
 ```bash
 python3 scripts/generate_architecture_source_replacement_assessment.py
 ```
+
+When identifying requirement content, list explicitly identified requirements
+first, preserving their source identifiers and locations. Record possible
+requirements inferred from prose in a separate, lower-priority list with the
+source location and the reason they may express an obligation. Do not merge
+inferred candidates into the author-identified requirement count. Keep both
+groups subject to the source's approval status and the human review decision.
 
 ### 4. Hold Human Review
 
