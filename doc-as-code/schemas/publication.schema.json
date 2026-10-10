@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/doc-as-code/publication.schema.json",
+  "title": "Doc-as-Code publication manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "version", "title", "language", "status", "publication_class", "source_of_truth", "outputs", "sections"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9-]{2,63}$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "language": {"type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$"},
+    "status": {"enum": ["draft", "pilot", "approved", "retired"]},
+    "publication_class": {"enum": ["explanatory", "normative"]},
+    "source_of_truth": {"enum": ["modular_markdown", "canonical_requirement_catalog"]},
+    "outputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"enum": ["html", "docx", "pdf"]},
+      "allOf": [
+        {"contains": {"const": "html"}},
+        {"contains": {"const": "docx"}},
+        {"contains": {"const": "pdf"}}
+      ]
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "kind"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^[^/].*\\.md$"},
+          "kind": {"enum": ["chapter", "requirement"]}
+        }
+      }
+    }
+  }
+}

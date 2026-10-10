@@ -31,6 +31,14 @@ The German [repository function presentation](repository-walkthrough/README.md)
 explains source intake, executable controls, application runs and reviewed result
 publication through a concrete SBOM example.
 
+## Git-native publication pilot
+
+The [Doc-as-Code pilot](doc-as-code-pilot/index.md) uses a manifest, modular
+chapters and individually editable requirement files. It builds standalone
+HTML, DOCX and PDF files with a requirement index and provenance record. Its
+architecture and governance boundaries are recorded in
+[`ADR-DAC-001`](../operations/planning/doc-as-code-architecture-decision.md).
+
 ## Documents
 
 | Document | Purpose |

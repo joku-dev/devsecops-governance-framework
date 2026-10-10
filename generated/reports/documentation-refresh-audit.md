@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #243: Show completed DCR pilot status in viewer (`24a940763822`)
+Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Ergebnis
 
@@ -10,8 +10,12 @@ Auslöser: PR #243: Show completed DCR pilot status in viewer (`24a940763822`)
 
 ## Betroffene Implementierungspfade
 
-- `scripts/lib/document_consistency_view.py`
-- `scripts/lib/viewer_app.py`
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
 
 ## Fehlende lokale Markdown-Ziele
 
