@@ -81,6 +81,11 @@ werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 - `model/documents/source-document-register.yaml`
 - `scripts/generate_source_document_intake_status.py`
+
+### PR #257: Professionalize modular Doc-as-Code publications (`253f1227f585`)
+
+- `.github/workflows/doc-as-code-preview.yml`
+- `.github/workflows/publish-docs.yml`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Dokumentationsabgleich nach Implementierungs-Merges
