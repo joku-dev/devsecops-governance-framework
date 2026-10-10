@@ -23,9 +23,17 @@ def _read_json(path: Path) -> dict:
 
 def project(root: Path) -> dict:
     """Summarize intake through effective artifacts without inferring compliance."""
-    register = _read_yaml(root / "model/documents/source-document-register.yaml")
-    artifact_register = _read_yaml(root / "model/requirements/requirement-to-artifact-register.yaml")
-    migration = _read_json(root / "generated/reports/implemented-requirement-migration.json")
+    required_inputs = (
+        root / "model/documents/source-document-register.yaml",
+        root / "model/requirements/requirement-to-artifact-register.yaml",
+        root / "generated/reports/implemented-requirement-migration.json",
+    )
+    if not all(path.is_file() for path in required_inputs):
+        return {"available": False, "unavailable_reason": "lifecycle_source_data_unavailable"}
+
+    register = _read_yaml(required_inputs[0])
+    artifact_register = _read_yaml(required_inputs[1])
+    migration = _read_json(required_inputs[2])
     sources = register.get("documents", [])
     intake_counts = Counter(item.get("status", "unknown") for item in sources)
 
