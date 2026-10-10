@@ -17,12 +17,9 @@ The GitHub repository retains its historical name, `devsecops-governance-framewo
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #244: source-document intake and candidate registration (`430550f00aa9`)
+## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
-- Remove obsolete `*.public.md` placeholders and point source lineage to the tracked, maintainer-confirmed `*.requirements.md` versions.
-- Register five incoming documents as candidates and record the human decisions in GCR-2026-113/114. Candidate status does not authorize derivation.
-- Refresh intake, requirement-delta, architecture-replacement, lineage, graph, and viewer projections; update tests for the revised source register.
-- Keep the existing 22 functional areas: this extends source management, change preparation, and lineage functions without changing controls, policies, baselines, or enforcement.
+- docs: PRA-Review-Empfehlung dokumentieren
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
