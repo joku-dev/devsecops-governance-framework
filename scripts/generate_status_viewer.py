@@ -1646,22 +1646,22 @@ def build_requirement_migration_section(report: dict) -> str:
     summary = report.get("summary", {})
     rows = []
     for source_id, state in sorted(report.get("sources", {}).items()):
-        migrated = state["total"] - state["open"]
-        status = "open" if state["open"] == state["total"] else ("migrated" if state["open"] == 0 else "partially migrated")
+        decided = state["total"] - state["open"]
+        status = "no decisions recorded" if decided == 0 else ("all decisions recorded" if state["open"] == 0 else "decisions recorded; items open")
         rows.append([
             f"<code>{escape(source_id)}</code>", str(state["total"]), str(state["with_candidates"]),
-            str(migrated), str(state["open"]), badge(status, "ok" if status == "migrated" else "warn"),
+            str(decided), str(state["open"]), badge(status, "ok" if state["open"] == 0 else "warn"),
         ])
     return (
         '<section id="requirement-migration" class="viewer-section">'
         '<div class="section-title"><h2>Requirement Migration</h2>'
-        '<p>Review state for implemented-requirement-first migration. Suggestions remain non-normative until both human decisions are recorded.</p></div>'
+        '<p>Recorded lifecycle decisions, remaining proposals, and effective artifact mappings are separate states. Suggestions remain non-normative until human review.</p></div>'
         '<section class="cards">'
         f'<section class="card"><h3>Source Requirements</h3><div class="value">{summary.get("source_requirements", 0)}</div><p>Approved document inputs</p></section>'
         f'<section class="card"><h3>With Candidates</h3><div class="value">{summary.get("requirements_with_candidates", 0)}</div><p>Automated review suggestions</p></section>'
         f'<section class="card"><h3>Confirmed Mappings</h3><div class="value">{summary.get("confirmed_register_entries", 0)}</div><p>Effective register entries</p></section>'
         '</section><section class="panel"><h2>Migration by Source</h2>'
-        + html_table(["Source", "Total", "Candidates", "Migrated", "Open", "Status"], rows)
+        + html_table(["Source", "Total", "Candidates", "Decided", "Open", "Decision status"], rows)
         + '</section><section class="panel"><h2>Migration Artifacts</h2><ul class="artifact-list">'
         '<li><a href="../reports/implemented-requirement-migration.md">Implemented Requirement Migration</a></li>'
         '<li><a href="../../model/requirements/requirement-to-artifact-register.yaml">Requirement-to-Artifact Register</a></li>'

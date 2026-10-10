@@ -53,6 +53,14 @@
 .section-picker { display: none; }
 .technical .artifact-list { padding-left: 20px; columns: 2; column-gap: 28px; }
 .technical .artifact-list li { break-inside: avoid; padding: 5px 0; font-size: 13px; }
+.lifecycle-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+.lifecycle-stage { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; background: white; border: 1px solid var(--line); border-radius: 10px; padding: 16px; min-width: 0; }
+.lifecycle-stage-number { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #e8f3f2; color: var(--teal); font-weight: 700; }
+.lifecycle-stage h2 { font-size: 16px; margin: 0; }
+.lifecycle-stage p { margin: 10px 0 6px; }
+.lifecycle-stage small { color: var(--muted); overflow-wrap: anywhere; }
+.lifecycle-intro { margin-top: 18px; }
+@media (max-width: 1100px) { .lifecycle-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 1100px) {
   .technical .graph-workspace { grid-template-columns: 1fr; }
   .technical #governance-graph-canvas { min-height: 360px; }
@@ -68,6 +76,7 @@
   .technical .filters input, .technical .filters select { min-width: 0; max-width: 100%; width: 100%; }
   .technical .graph-toolbar select { max-width: 100%; }
   .technical #governance-graph-canvas { min-height: 240px; }
+  .lifecycle-flow { grid-template-columns: 1fr; }
   .section-picker { display: grid; gap: 6px; color: var(--muted); font-size: 12px; margin: 18px 0; }
   .section-picker select { width: 100%; max-width: none; }
   .workspace-tabs { display: none; }

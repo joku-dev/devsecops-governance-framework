@@ -20,6 +20,7 @@ from lib.document_consistency_view import (
     REPORT as DOCUMENT_REVIEW_REPORT,
     project_public as project_document_consistency,
 )
+from lib.governance_requirement_lifecycle_view import project as project_governance_requirement_lifecycle
 
 
 def load_repository_security(root: Path):
@@ -158,6 +159,7 @@ def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None)
         legacy = root / 'generated/viewer/status-viewer.html'
         technical_html = legacy.read_text(encoding='utf-8') if legacy.exists() else ''
     data['technical'] = project_technical(technical_html)
+    data['governance_requirement_lifecycle'] = project_governance_requirement_lifecycle(root)
     target = root / 'generated/viewer/app'
     target.mkdir(parents=True, exist_ok=True)
     for name in ('index.html', 'app.css', 'app.js', 'technical.js', 'technical.css'):

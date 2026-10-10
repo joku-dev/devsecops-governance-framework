@@ -271,8 +271,36 @@
   };
   function workspaceTabs(group, tab) {
     const sections = (dataModel.technical?.sections || []).filter(s => s.group === group);
-    const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : group === 'operations' ? [...sections, {tab:'lifecycle',title:'Lifecycle-Nächster Schritt'}] : sections;
+    const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : group === 'operations' ? [...sections, {tab:'lifecycle',title:'Lifecycle-Nächster Schritt'}] : group === 'governance' ? [...sections, {tab:'lifecycle',title:'Anforderung bis OPA'}] : sections;
     return `<nav class="tabs workspace-tabs" aria-label="${groupNames[group]}-Bereiche">${entries.map(s=>`<a href="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'aria-current="page"':''}>${esc(s.title)}</a>`).join('')}</nav><label class="section-picker">Bereich auswählen<select id="section-picker">${entries.map(s=>`<option value="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'selected':''}>${esc(s.title)}</option>`).join('')}</select></label>`;
+  }
+  function governanceRequirementLifecycleView() {
+    const model=dataModel.governance_requirement_lifecycle;
+    if(!model?.available) {
+      content.insertAdjacentHTML('beforeend','<section class="panel"><div class="notice warn">Die Lifecycle-Projektion ist nicht verfügbar. Fehlende Daten gelten nicht als abgeschlossene Schritte.</div></section>');
+      return;
+    }
+    const intake=model.source_summary, req=model.requirement_summary, impl=model.implementation_summary, opa=model.opa_summary;
+    const statusCounts=Object.entries(intake.status_counts).map(([status,value])=>`${count(value)} ${status}`).join(' · ');
+    const platformMappings=impl.by_artifact_type.platform||0, policyMappings=impl.by_artifact_type.policies||0;
+    const openRows=model.sources.filter(item=>item.case_available&&item.open>0).length;
+    const stage=(number,title,status,description,detail)=>`<article class="lifecycle-stage"><div class="lifecycle-stage-number">${number}</div><div><div class="panel-head"><h2>${esc(title)}</h2>${badge(status)}</div><p>${esc(description)}</p><small>${esc(detail)}</small></div></article>`;
+    const stageRows=[
+      stage(1,'Intake',`${count(intake.total)} Quellen`,`${count(intake.with_lifecycle_case)} Quellen haben einen strukturierten Anforderungsfall.`,statusCounts),
+      stage(2,'Review',`${count(req.decided)} entschieden`,`${count(req.approved_decisions)} angenommen · ${count(req.rejected_decisions)} abgelehnt · ${count(req.open)} offen.`,`${count(openRows)} Quellenfälle haben offene Entscheidungen.`),
+      stage(3,'Modell und Umsetzung',`${count(impl.effective_register_entries)} wirksame Zuordnungen`,`${count(platformMappings)} Plattform · ${count(policyMappings)} OPA-Policy-Zuordnungen.`,`${count(req.activated)} Anforderungen aktiviert; Zuordnung belegt keine Bereitstellung im Programm.`),
+      stage(4,'OPA',`${count(opa.effective_mapping_entries)} Zuordnungen`,`${count(opa.distinct_mapped_policy_files)} eindeutige Policy-Dateien von ${count(opa.policy_files_present)} vorhandenen .rego-Dateien zugeordnet.`,`Runtime enforcement: ${Object.entries(opa.enforcement_counts).map(([key,value])=>`${count(value)} ${key}`).join(' · ')||'nicht erfasst'}; letzter OPA-Prüflauf ist im Viewer nicht gespeichert.`)
+    ].join('');
+    const rows=model.sources.map(item=>{
+      const mappings=Object.entries(item.mappings_by_type).map(([kind,value])=>`${count(value)} ${kind}`).join(' · ')||'—';
+      return `<tr><td><strong>${esc(item.source_id)}</strong><small>${esc(item.title)}</small></td><td>${badge(item.intake_status)}</td><td>${item.case_available?badge(item.case_status):'<span class="muted">Keine Fallakte</span>'}</td><td>${item.case_available?`${count(item.total)} gesamt<small>${count(item.with_candidates)} mit Vorschlägen</small>`:'—'}</td><td>${item.case_available?`${count(item.decided)} entschieden<small>${count(item.open)} offen · ${count(item.activated)} aktiviert</small>`:'—'}</td><td>${esc(mappings)}<small>${count(item.effective_mappings)} wirksame Einträge</small></td><td>${item.case_available?esc(item.next_step):'Intake- oder Reviewentscheidung erforderlich'}</td></tr>`;
+    });
+    content.insertAdjacentHTML('beforeend',`
+      <section class="panel lifecycle-intro"><div class="panel-head"><h2>Geschlossene Lesekette</h2><span class="badge">Read-only · gespeicherter Modellstand</span></div><p>Verfolgt registrierte Quellen über menschliche Entscheidungen und wirksame Modellzuordnungen bis zu OPA. Die Ansicht erzeugt keine Entscheidungen, Zuordnungen oder Freigaben.</p><p class="muted">Quellen mit Status <code>candidate</code> oder <code>review</code> werden nicht als genehmigte Grundlage für Ableitungen behandelt.</p></section>
+      <section class="lifecycle-flow" aria-label="Governance-Lifecycle von Intake bis OPA">${stageRows}</section>
+      <div class="notice warn"><strong>Leseregel:</strong> Eine Anforderungsentscheidung ist kein Implementierungsnachweis. Eine wirksame Zuordnung belegt keine Aktivierung in einem Programm. Eine OPA-Policy-Zuordnung belegt weder einen aktuellen erfolgreichen Prüflauf noch Runtime-Durchsetzung. Für diesen Viewer ist kein letzter OPA-Prüflauf gespeichert.</div>
+      <section class="panel"><div class="panel-head"><h2>Quellen und nächste Schritte</h2><span class="badge">${count(model.sources.length)} Quellen</span></div>${table(['Quelle','Intake','Review-Fall','Anforderungen','Entscheidungen','Zuordnungen','Nächste Aktion'],rows)}</section>
+      <section class="panel"><h2>Weiterführende Details</h2><p><a href="${sourceURL(model.links.source_register)}">Quellenregister ↗</a> · <a href="${sourceURL(model.links.requirement_register)}">Requirement-to-Artifact-Register ↗</a> · <a href="${sourceURL(model.links.migration_report)}">Migrationsbericht ↗</a> · <a href="${sourceURL(model.links.pra_review)}">PRA-Fachreview ↗</a> · <a href="${sourceURL(model.links.golden_path_workpackage)}">Golden-Path-Arbeitsplan ↗</a> · <a href="${sourceURL(model.links.opa_directory)}">OPA-Policies ↗</a></p><p class="muted">Die technische OPA-Validierung wird bei der Repository-Validierung ausgeführt. Ein passender, zeitgestempelter Prüflauf ist derzeit nicht Teil dieser Viewer-Projektion.</p></section>`);
   }
   function lifecycleNextStepView() {
     const model=dataModel.consumer_lifecycle_next_step;
@@ -297,10 +325,12 @@
   function technicalView(group, tab) {
     const section = (dataModel.technical?.sections || []).find(s => s.group === group && s.tab === tab);
     const lifecyclePage=group==='operations'&&tab==='lifecycle';
-    if (!(group === 'evidence' && tab === 'summary') && !section && !lifecyclePage) { notFound(); return; }
-    content.innerHTML = heading(groupNames[group], lifecyclePage?'Lifecycle-Nächster Schritt':tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
+    const governanceLifecyclePage=group==='governance'&&tab==='lifecycle';
+    if (!(group === 'evidence' && tab === 'summary') && !section && !lifecyclePage && !governanceLifecyclePage) { notFound(); return; }
+    content.innerHTML = heading(groupNames[group], lifecyclePage?'Lifecycle-Nächster Schritt':governanceLifecyclePage?'Anforderung bis OPA':tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
     document.getElementById('section-picker')?.addEventListener('change', e => {location.hash=e.target.value;});
     if(lifecyclePage){lifecycleNextStepView();return;}
+    if(governanceLifecyclePage){governanceRequirementLifecycleView();return;}
     if (group==='evidence' && tab==='summary') {
       content.insertAdjacentHTML('beforeend', evidence(dataModel.repositories));
       return;

@@ -179,12 +179,13 @@ Diese Dateien ergänzen den unten datierten Bestand. Die
 | `scripts/intake_measured_security.py` | Nimmt echte Container-Scans mit Run-, Rohdatei- und Image-Prüfung auf. |
 | `scripts/lib/measured_security.py` | Validiert und speichert separate unveränderliche Container-Sicherheitsnachweise. |
 | `scripts/lib/measured_security_view.py` | Erzeugt den Sicherheitsbereich im technischen Viewer. |
-| `scripts/lib/viewer_app.py` | Projiziert offizielle Governance-Indizes und validierte Scans in die eigenständige Anwendung. |
+| `scripts/lib/viewer_app.py` | Projiziert offizielle Governance-Indizes, validierte Scans und Requirement-Lifecycle-Daten in die eigenständige Anwendung. |
+| `scripts/lib/governance_requirement_lifecycle_view.py` | Verbindet Quellenregister, Lifecycle-Fälle, Migrationsergebnisse, wirksame Artefaktzuordnungen und OPA-Policy-Mappings; weist nicht gespeicherte OPA-Prüfläufe und Runtime Enforcement getrennt aus. |
 | `scripts/lib/viewer_technical.py` | Integriert alle technischen Abschnitte mit sicherer HTML-Projektion und Linkauflösung in die Anwendung. |
 | `apps/governance-viewer/technical.js` | Bindet technische Tabellenfilter, Seitennavigation und Graphinteraktionen. |
 | `apps/governance-viewer/technical.css` | Gestaltet technische Ansichten im gemeinsamen Layout. |
 | `apps/governance-viewer/index.html` | Anwendungseinstieg, Navigation und Content Security Policy. |
-| `apps/governance-viewer/app.js` | Lesende Ansichten, Hash-Routing, Suche, Filter, Vergleich und Seitennavigation. |
+| `apps/governance-viewer/app.js` | Lesende Ansichten, Hash-Routing, Suche, Filter, Vergleich, Seitennavigation und Requirement-Lifecycle von Intake bis OPA. |
 | `apps/governance-viewer/app.css` | Responsive Gestaltung für Desktop und Mobilgeräte. |
 
 ## Kontrollnachweis-Assurance (GCR-2026-092)
