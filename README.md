@@ -12,13 +12,9 @@ AXIOM is the brand of the DevSecOps Governance Framework.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
+## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
-- record the governance-owner approval for the 46 implemented DSCB control requirements
-- activate GRQ-000001@rev1 through GRQ-000046@rev1
-- keep the DSCB lifecycle case partially_activated with nine non-control proposals still open
-- keep DSCB-STD-REQ-001 in migration_in_progress
-- publish the 46 canonical requirements through the Doc-as-Code catalog
+- docs: PRA-Review-Empfehlung dokumentieren
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)

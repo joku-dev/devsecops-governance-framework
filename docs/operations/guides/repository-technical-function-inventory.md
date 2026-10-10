@@ -12,6 +12,28 @@ mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbol
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
+### PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
+
+### PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7ef33a3e`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
+
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/requirement-policy-equivalence-review.schema.json`
+- `scripts/validate_requirement_lifecycle.py`
+
 ### PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
 
 - `model/requirements/governance-requirement-catalog.yaml`

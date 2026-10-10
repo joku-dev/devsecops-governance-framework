@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
+Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Ergebnis
 
@@ -11,12 +11,11 @@ Auslöser: PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
 ## Betroffene Implementierungspfade
 
 - `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-DSCB-STD-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
 - `model/requirements/requirement-authority-ledger.yaml`
-- `schemas/requirement-lifecycle-case.schema.json`
-- `scripts/lib/requirement_lifecycle.py`
-- `scripts/manage_requirement_lifecycle.py`
-- `scripts/validate_requirement_lifecycle.py`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
 
 ## Fehlende lokale Markdown-Ziele
 

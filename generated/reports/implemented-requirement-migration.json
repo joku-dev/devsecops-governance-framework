@@ -4,17 +4,17 @@
   "status": "review_required",
   "summary": {
     "source_requirements": 867,
-    "artifact_records": 502,
+    "artifact_records": 504,
     "requirements_with_candidates": 824,
     "requirements_without_candidates": 43,
-    "confirmed_register_entries": 0,
+    "confirmed_register_entries": 19,
     "artifact_types": {
       "architecture": 14,
       "controls": 46,
       "platform": 74,
       "policies": 14,
       "releases": 201,
-      "schemas": 125,
+      "schemas": 127,
       "workflows": 28
     }
   },
@@ -47,7 +47,7 @@
     "PRA-STD-REQ-001": {
       "total": 56,
       "with_candidates": 55,
-      "open": 56
+      "open": 18
     }
   },
   "artifact_inventory": [
@@ -1858,6 +1858,13 @@
       "source_basis": null
     },
     {
+      "path": "schemas/pra-requirement-platform-review.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "a3e4337b7dd070cb7315adea2cdf9931fe7d03a786ff2c07b6cdeea858d2a31a",
+      "source_basis": null
+    },
+    {
       "path": "schemas/quality-marker.schema.json",
       "type": "schemas",
       "artifact_id": null,
@@ -1904,6 +1911,13 @@
       "type": "schemas",
       "artifact_id": null,
       "sha256": "b96a6e72d4da2533c166e2724dda8816558187068211d608cb292b3ee9ef7546",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/requirement-policy-equivalence-review.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "5e58318a1c43019d3c17e484b0a76329c3d9d12c09a8287765eb980b411968b2",
       "source_basis": null
     },
     {
@@ -2148,7 +2162,7 @@
       "path": ".github/workflows/requirement-lifecycle.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "967bac20c07e8c8c9b48f0523eaab464d0d44f12990ef8dc4e2cdacbc2635ee7",
+      "sha256": "1397a67707b1289df9c117305d3aafc24a9e35d4bfa6e145276ebb3ebabc7ced",
       "source_basis": null
     },
     {
@@ -43895,7 +43909,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0004",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-004",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -43976,7 +43990,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0005",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-005",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -44057,7 +44071,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0006",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-006",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -44219,7 +44233,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0008",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-008",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -44300,7 +44314,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0009",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-009",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -44381,7 +44395,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0010",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-010",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -44462,7 +44476,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0011",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-011",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -44543,7 +44557,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0012",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-012",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -44624,7 +44638,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0013",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-013",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -44786,7 +44800,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0015",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-015",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -45191,7 +45205,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0020",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-020",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -45353,7 +45367,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0022",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-022",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -45434,7 +45448,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0023",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-023",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -45515,7 +45529,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0024",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-024",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -45596,7 +45610,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0025",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-025",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -45677,7 +45691,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0026",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-026",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -45839,7 +45853,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0028",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-028",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -45920,7 +45934,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0029",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-029",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46082,7 +46096,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0031",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-031",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46163,7 +46177,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0032",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-032",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46244,7 +46258,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-033",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46280,7 +46294,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0034",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-034",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46334,7 +46348,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0035",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-035",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": []
     },
     {
@@ -46342,7 +46356,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0036",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-036",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46423,7 +46437,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-037",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46522,7 +46536,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0039",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-039",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46603,7 +46617,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0040",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-040",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46630,7 +46644,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0041",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-041",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46657,7 +46671,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0042",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-042",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46702,7 +46716,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0043",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-043",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46747,7 +46761,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0044",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-044",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46828,7 +46842,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0045",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-045",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46909,7 +46923,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0046",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-046",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -46990,7 +47004,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0047",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-047",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -47179,7 +47193,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0050",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-050",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -47314,7 +47328,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0052",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-052",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -47422,7 +47436,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0054",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-054",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
@@ -47566,7 +47580,7 @@
       "proposal_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0056",
       "source_id": "PRA-STD-REQ-001",
       "source_requirement_id": "PRA-STD-SRC-001-REQ-056",
-      "lifecycle_decision_state": "open",
+      "lifecycle_decision_state": "recorded",
       "mapping_candidates": [
         {
           "artifact_path": "model/platform/platform-capabilities.yaml",
