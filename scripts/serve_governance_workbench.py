@@ -393,10 +393,15 @@ class Handler(BaseHTTPRequestHandler):
         if not self.boundary():
             return
         path = urlparse(self.path).path
-        static = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css')}
+        static = {
+            '/': (ASSETS / 'index.html', 'text/html'),
+            '/app.js': (ASSETS / 'app.js', 'text/javascript'),
+            '/style.css': (ASSETS / 'style.css', 'text/css'),
+            '/axiom-logo.png': (ROOT / 'docs/publishing/branding/axiom-logo.png', 'image/png'),
+        }
         if path in static:
-            name, mime = static[path]
-            return self.send(200, (ASSETS / name).read_bytes(), mime)
+            asset, mime = static[path]
+            return self.send(200, asset.read_bytes(), mime)
         session = self.session()
         if not session:
             return self.send(401, {'error': 'Sign in with the local access key'})

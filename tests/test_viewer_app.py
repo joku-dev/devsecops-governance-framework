@@ -141,6 +141,7 @@ class ViewerAppTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
             shutil.copytree(ROOT/'apps/governance-viewer',root/'apps/governance-viewer')
+            shutil.copytree(ROOT/'docs/publishing/branding',root/'docs/publishing/branding')
             (root/'status').mkdir()
             for name,data in [('repository-results-index.json',self.dev),('architecture-results-index.json',self.arch)]:
                 (root/'status'/name).write_text(json.dumps(data))
@@ -156,7 +157,7 @@ class ViewerAppTests(unittest.TestCase):
             first={p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()}
             build(root,consumer_lifecycle_next_step=lifecycle)
             self.assertEqual(first,{p.name:p.read_bytes() for p in (root/'generated/viewer/app').iterdir()})
-            self.assertEqual({'index.html','app.css','app.js','technical.js','technical.css','data.json'},set(first))
+            self.assertEqual({'index.html','app.css','app.js','technical.js','technical.css','data.json','axiom-logo.png'},set(first))
             self.assertIn(b"script-src 'self'",first['index.html'])
             payload=json.loads(first['data.json'])
             self.assertEqual(14,payload['repository_security']['summary']['pass'])

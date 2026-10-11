@@ -69,31 +69,20 @@ button:disabled {
 }
 .brand {
   display:flex;
-  gap:12px;
   align-items:center;
-  color:white;
-  font-size:20px;
-  font-weight:650;
-  padding:0 10px
+  width:100%;
+  padding:0 4px
 }
 .brand:hover {
   text-decoration:none
 }
-.brand small {
+.brand-logo {
   display:block;
-  font-size:10px;
-  letter-spacing:2.8px;
-  color:#abc6d2;
-  margin-top:2px
-}
-.brand-mark {
-  display:grid;
-  place-items:center;
-  background:#147e78;
-  width:38px;
-  height:42px;
-  border-radius:10px;
-  color:white
+  width:100%;
+  height:auto;
+  padding:5px 7px;
+  border-radius:7px;
+  background:#fff
 }
 .nav-label {
   font-size:10px;
@@ -625,15 +614,8 @@ noscript {
     padding:15px 18px 8px
   }
   .brand {
-    font-size:16px;
+    width:190px;
     padding:0
-  }
-  .brand small {
-    font-size:8px
-  }
-  .brand-mark {
-    width:31px;
-    height:35px
   }
   .nav-label,.sidebar-bottom {
     display:none

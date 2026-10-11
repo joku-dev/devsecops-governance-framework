@@ -11,19 +11,19 @@ it is not included in GitHub Pages or the generated public viewer.
 
 ## Start
 
-From the repository checkout:
+From the repository checkout, run one command:
 
 ```bash
-./scripts/bootstrap_validation_env.sh
-.venv-validation/bin/python scripts/serve_governance_workbench.py
+./scripts/start_governance_workbench.sh
 ```
 
-Open `http://127.0.0.1:8765` in the browser on that computer. Enter the local
-access key printed by the application in the terminal. Keep the terminal open;
-stop the service with Ctrl+C. The session expires after eight hours or logout.
-A new process creates a new random key. An optional `AXIOM_WORKBENCH_KEY`
-environment value must contain at least 24 characters; never put it in Git,
-URLs, chat, or a browser application configuration file.
+On first use, the script prepares the pinned local validation environment;
+later starts reuse it. Open the URL printed in the terminal, usually
+`http://127.0.0.1:8765`, and enter the local access key printed below it. Keep
+the terminal open; stop the service with Ctrl+C. The session expires after
+eight hours or logout. A new process creates a new random key. An optional
+`AXIOM_WORKBENCH_KEY` environment value must contain at least 24 characters;
+never put it in Git, URLs, chat, or a browser application configuration file.
 
 For PDF extraction, add the optional pinned parser to the same runtime:
 
@@ -37,6 +37,15 @@ PDFs and DOCX comments/tracked changes are not silently accepted as complete
 review content; the existing extractor's warnings/errors remain visible.
 
 ## Guided operation
+
+The worklist now shows the repository's current intake phases and the next
+reported action for each: source intake, extraction, P1 identifier/lifecycle
+review, P2 `inferred_candidate` review, consistency, decision proposals,
+baseline, and implementation. “Bereich öffnen” takes the user to the closest
+available workbench area. Phase statuses and counts come from the intake report
+and are a status projection, not proof that the workbench itself performed or
+approved that phase. In particular, P1 requires a verified author identifier;
+unverified extraction row IDs stay separate, and prose candidates stay P2.
 
 1. **Meine Arbeitsliste:** see candidate/draft/review sources, owners and the
    next suggested action, along with persisted local drafts.
