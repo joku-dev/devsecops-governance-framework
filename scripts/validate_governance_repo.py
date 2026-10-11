@@ -442,6 +442,10 @@ def validate_source_lineage_report(errors):
     report = load_json(report_path)
     if report.get("summary", {}).get("missing_derived_artifacts", 0):
         errors.append("Source lineage report contains missing derived artifacts")
+    if report.get("summary", {}).get("missing_registered_source_count", 0):
+        errors.append("Source lineage report contains registered source documents missing from disk")
+    if report.get("summary", {}).get("unregistered_source_file_count", 0):
+        errors.append("Source lineage report contains source files missing from the source document register")
     return report
 
 
