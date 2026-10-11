@@ -17,3 +17,6 @@ governance/consumer-lifecycle/**/.pending-*
 
 # Viewer presentation data is rebuilt from versioned evidence for Pages/local use.
 /generated/viewer/app/data.json
+
+# Private source-review workspace and publication worktrees.
+.local/governance-workbench/

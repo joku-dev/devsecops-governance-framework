@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Local Governance Workbench Draft (non-authoritative)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "draft_id", "kind", "created_at", "status", "context", "notes", "pr", "limits"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "draft_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "kind": {"enum": ["source_candidate", "review_package"]},
+    "created_at": {"type": "string"},
+    "status": {"const": "local_draft"},
+    "context": {"type": "object", "required": ["commit", "register_sha256", "sources"], "additionalProperties": false,
+      "properties": {"commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "register_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "sources": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}},
+    "source": {"type": "object", "required": ["id", "status", "derived_artifact_areas"],
+      "properties": {"status": {"const": "candidate"}, "derived_artifact_areas": {"type": "array", "maxItems": 0}}},
+    "original_filename": {"type": "string"},
+    "upload_name": {"type": "string", "pattern": "^source\\.(md|markdown|pdf|docx)$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "lines": {"type": "array", "items": {"type": "object"}},
+    "requirements": {"type": "array", "items": {"type": "object"}},
+    "deltas": {"type": "array", "items": {"type": "object"}},
+    "target": {"type": ["object", "null"]},
+    "manifest": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["source_id", "source_path", "sha256", "status", "warnings", "requirements_count"], "properties": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}},
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution": {"const": "not_run"},
+    "notes": {"type": "array", "items": {"type": "object", "additionalProperties": false,
+      "required": ["subject", "reviewer", "outcome", "rationale", "recorded_at", "authority"],
+      "properties": {"subject": {"type": "string"}, "reviewer": {"type": "string", "minLength": 1}, "outcome": {"enum": ["confirm_candidate", "reject_candidate", "needs_clarification", "propose_resolution"]}, "rationale": {"type": "string", "minLength": 1}, "recorded_at": {"type": "string"}, "authority": {"const": "proposal_only"}}}},
+    "pr": {"type": ["object", "null"]},
+    "limits": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+  },
+  "allOf": [
+    {"if": {"properties": {"kind": {"const": "source_candidate"}}}, "then": {"required": ["source", "upload_name", "original_filename", "sha256", "warnings", "lines", "requirements", "deltas", "target"]}},
+    {"if": {"properties": {"kind": {"const": "review_package"}}}, "then": {"required": ["manifest", "manifest_sha256", "execution"]}}
+  ]
+}
