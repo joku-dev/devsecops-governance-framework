@@ -44,14 +44,15 @@ GCR-2026-149
 The previous lineage report counted the same ten shared intake and impact
 reports as direct derivations from every registered source. It also did not
 surface a historical source path embedded in the released architecture
-package. That path belonged to an example placeholder intentionally removed by
-PR #244 and replaced with the real `ARCH-SDD-SRC-001.requirements.md` source;
-the current register and working models use that replacement. The immutable
-release snapshot still contains the former path, so the report makes that
-historical metadata visible. It does not indicate a missing current source or
-derived artifact. Missing or unregistered source files remain report findings
-and do not fail the repository validator automatically. Missing derived
-artifact paths remain a validation error.
+package. That path belonged to one of the `*.public.md` example placeholders
+intentionally removed by PR #244. Those placeholders were replaced with real
+source documents; for this architecture source the replacement is
+`ARCH-SDD-SRC-001.requirements.md`, which the current register and working
+models use. The immutable release snapshot still contains the former path, so
+the report makes that historical metadata visible. It does not indicate a
+missing current source or derived artifact. Missing or unregistered source
+files remain report findings and do not fail the repository validator
+automatically. Missing derived artifact paths remain a validation error.
 
 ## Impact Analysis
 

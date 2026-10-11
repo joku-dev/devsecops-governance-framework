@@ -38,9 +38,11 @@ models, while its source status remains `review`.
 
 The released architecture baseline `architecture-baseline-l1-v0.1.0` contains
 five source-model files that refer to
-`docs/governance/source-documents/ARCH-SDD-SRC-001.public.md`. This was an
-example placeholder, intentionally removed in the source cleanup recorded by
-PR #244 (`430550f`) and replaced by the real requirements extract at
+`docs/governance/source-documents/ARCH-SDD-SRC-001.public.md`. It was one of
+the `*.public.md` example placeholders intentionally removed in the source
+cleanup recorded by PR #244 (`430550f`). The placeholders were replaced by
+real source documents; for this architecture source the replacement is the
+requirements extract at
 `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md`. The
 register and current working architecture models use that real source.
 
