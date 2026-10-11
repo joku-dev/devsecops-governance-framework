@@ -11,6 +11,12 @@ import re
 import sys
 
 from jsonschema import Draft202012Validator
+from lib.source_document_text import (
+    ExtractedSourceDocument,
+    SourceDocumentExtractionError,
+    extract_source_document,
+    line_for_markdown_parser,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,9 +57,16 @@ def validate_schema(payload: dict, schema_path: Path, label: str) -> None:
         raise InventoryError(f"{label} schema error at {location}: {error.message}")
 
 
-def extract_identifiers(source_id: str, source_path: Path) -> list[dict]:
+def extract_identifiers(
+    source_id: str,
+    source_path: Path,
+    document: ExtractedSourceDocument | None = None,
+) -> list[dict]:
     identifiers = []
-    for line_number, line in enumerate(source_path.read_text(encoding="utf-8").splitlines(), 1):
+    document = document or extract_source_document(source_path)
+    for source_line in document.lines:
+        line_number = source_line.number
+        line = line_for_markdown_parser(source_line)
         match = ID_CELL.match(line)
         if not match:
             continue
@@ -65,11 +78,18 @@ def extract_identifiers(source_id: str, source_path: Path) -> list[dict]:
     return identifiers
 
 
-def extract_requirement_rows(source_id: str, source_path: Path) -> tuple[list[dict], list[dict]]:
+def extract_requirement_rows(
+    source_id: str,
+    source_path: Path,
+    document: ExtractedSourceDocument | None = None,
+) -> tuple[list[dict], list[dict]]:
     """Extract stable row IDs, strength, and opaque section references without source prose."""
     requirements = []
     references = []
-    for line_number, line in enumerate(source_path.read_text(encoding="utf-8").splitlines(), 1):
+    document = document or extract_source_document(source_path)
+    for source_line in document.lines:
+        line_number = source_line.number
+        line = line_for_markdown_parser(source_line)
         match = ID_CELL.match(line)
         if not match:
             continue
@@ -121,6 +141,17 @@ def generate_model(root: Path, manifest: dict) -> dict:
             raise InventoryError(f"source path escapes governed source directory: {item['id']}") from exc
         if not path.is_file() or sha256_file(path) != item["content_sha256"]:
             raise InventoryError(f"source bytes do not match manifest: {item['id']}")
+        extraction_error = None
+        try:
+            extracted_document = extract_source_document(path)
+        except SourceDocumentExtractionError as exc:
+            extracted_document = None
+            extraction_error = str(exc)
+        extraction_warnings = (
+            list(extracted_document.warnings)
+            if extracted_document
+            else [f"source_document_extraction_blocked:{extraction_error}"]
+        )
         sources.append(
             {
                 "id": item["id"],
@@ -128,10 +159,20 @@ def generate_model(root: Path, manifest: dict) -> dict:
                 "version": item["version"],
                 "source_path": item["source_path"],
                 "sha256": item["content_sha256"],
-                "identifiers": extract_identifiers(item["id"], path),
+                "identifiers": extract_identifiers(item["id"], path, extracted_document)
+                if extracted_document
+                else [],
+                "extraction_format": extracted_document.format
+                if extracted_document
+                else path.suffix.lower().lstrip("."),
+                "extraction_warnings": extraction_warnings,
             }
         )
-        extracted_requirements, extracted_references = extract_requirement_rows(item["id"], path)
+        if extracted_document is None:
+            continue
+        extracted_requirements, extracted_references = extract_requirement_rows(
+            item["id"], path, extracted_document
+        )
         requirements.extend(extracted_requirements)
         relationships.extend(extracted_references)
 

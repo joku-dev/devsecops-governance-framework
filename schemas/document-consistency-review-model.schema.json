@@ -44,7 +44,9 @@
                 "kind": {"enum": ["declared", "reference"]}
               }
             }
-          }
+          },
+          "extraction_format": {"enum": ["markdown", "docx", "pdf"]},
+          "extraction_warnings": {"type": "array", "items": {"type": "string"}}
         }
       }
     },

@@ -1,32 +1,32 @@
 # Default owners
-* @joku-dev
+* @joku-dev @devaxiom26
 
 # Core governance documents
-/docs/governance/ @joku-dev
-/docs/examples/ @joku-dev
+/docs/governance/ @joku-dev @devaxiom26
+/docs/examples/ @joku-dev @devaxiom26
 
 # Operational governance documentation
-/docs/operations/ @joku-dev
-/docs/releases/ @joku-dev
-/docs/onboarding/ @joku-dev
-/docs/platform/ @joku-dev
-/docs/controls/ @joku-dev
-/docs/publishing/ @joku-dev
+/docs/operations/ @joku-dev @devaxiom26
+/docs/releases/ @joku-dev @devaxiom26
+/docs/onboarding/ @joku-dev @devaxiom26
+/docs/platform/ @joku-dev @devaxiom26
+/docs/controls/ @joku-dev @devaxiom26
+/docs/publishing/ @joku-dev @devaxiom26
 
 # Governance model and validation surface
-/model/controls/ @joku-dev
-/model/evidence/ @joku-dev
-/model/governance/ @joku-dev
-/model/platform/ @joku-dev
-/model/traceability/ @joku-dev
-/policies/opa/ @joku-dev
-/schemas/ @joku-dev
-/scripts/ @joku-dev
-/.github/workflows/ @joku-dev
-/releases/ @joku-dev
-/status/ @joku-dev
-/generated/viewer/ @joku-dev
+/model/controls/ @joku-dev @devaxiom26
+/model/evidence/ @joku-dev @devaxiom26
+/model/governance/ @joku-dev @devaxiom26
+/model/platform/ @joku-dev @devaxiom26
+/model/traceability/ @joku-dev @devaxiom26
+/policies/opa/ @joku-dev @devaxiom26
+/schemas/ @joku-dev @devaxiom26
+/scripts/ @joku-dev @devaxiom26
+/.github/workflows/ @joku-dev @devaxiom26
+/releases/ @joku-dev @devaxiom26
+/status/ @joku-dev @devaxiom26
+/generated/viewer/ @joku-dev @devaxiom26
 
 # Root governance entrypoints
-/README.md @joku-dev
-/mkdocs.yml @joku-dev
+/README.md @joku-dev @devaxiom26
+/mkdocs.yml @joku-dev @devaxiom26

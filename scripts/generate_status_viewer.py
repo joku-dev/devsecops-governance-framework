@@ -1433,6 +1433,8 @@ def build_source_intake_cards(
 ) -> str:
     intake_summary = intake_status.get("summary", {})
     delta_summary = requirement_delta.get("summary", {})
+    inventory_summary = delta_summary.get("requirement_intake_inventory", {})
+    identification_counts = inventory_summary.get("identification_counts", {})
     decision = requirement_delta.get("decision", {})
     cards = [
         (
@@ -1449,6 +1451,21 @@ def build_source_intake_cards(
             "Requirement Deltas",
             str(delta_summary.get("status_counts", {}).get("added", 0) + delta_summary.get("status_counts", {}).get("changed", 0) + delta_summary.get("status_counts", {}).get("removed", 0)),
             f"Equivalent: {delta_summary.get('status_counts', {}).get('equivalent', 0)}",
+        ),
+        (
+            "Confirmed Author IDs (P1)",
+            str(identification_counts.get("author_identified", 0)),
+            "Only where source provenance is recorded",
+        ),
+        (
+            "Extraction Row IDs (Unverified)",
+            str(inventory_summary.get("extraction_row_id_count", 0)),
+            "Normalized row IDs; origin in original source unverified",
+        ),
+        (
+            "Inferred Candidates (P2)",
+            str(inventory_summary.get("inferred_candidate_count", 0)),
+            "Prose screen; owner confirmation required",
         ),
         (
             "Decision State",
@@ -1539,6 +1556,23 @@ def build_requirement_delta_pair_rows(requirement_delta: dict) -> list[list[str]
     return rows
 
 
+def build_inferred_requirement_candidate_rows(requirement_delta: dict, limit: int = 12) -> list[list[str]]:
+    inventory = requirement_delta.get("requirement_intake_inventory", {})
+    rows = []
+    for item in inventory.get("inferred_candidates", [])[:limit]:
+        rows.append(
+            [
+                badge("inferred_candidate / p2", "warn"),
+                f"<code>{escape(item.get('source_id', 'unknown'))}</code>",
+                badge(item.get("source_status", "unknown"), source_status_tone(item.get("source_status", "unknown"))),
+                f"<code>{escape(item.get('source_path', 'unknown'))}:{item.get('line', 'unknown')}</code>",
+                badge(item.get("strength", "review"), "warn"),
+                escape(compact_statement(item)),
+            ]
+        )
+    return rows
+
+
 def requirement_ref(requirement: dict | None) -> str:
     if not requirement:
         return "n/a"
@@ -1552,6 +1586,15 @@ def compact_statement(requirement: dict | None, limit: int = 180) -> str:
     if len(statement) <= limit:
         return statement
     return statement[: limit - 3].rstrip() + "..."
+
+
+def requirement_intake_class_badge(requirement: dict | None) -> str:
+    if not requirement:
+        return badge("n/a", "warn")
+    identification_class = requirement.get("identification_class", "inferred_candidate")
+    priority = requirement.get("intake_priority", "p2").upper()
+    tone = "info" if identification_class == "author_identified" else "warn"
+    return badge(f"{identification_class} / {priority}", tone)
 
 
 def build_requirement_delta_review_rows(requirement_delta: dict, limit: int = 14) -> list[list[str]]:
@@ -1581,6 +1624,8 @@ def build_requirement_delta_review_rows(requirement_delta: dict, limit: int = 14
             [
                 badge(status, tone),
                 badge(delta.get("review_priority", "unknown"), "danger" if delta.get("review_priority") == "high" else "warn"),
+                requirement_intake_class_badge(candidate),
+                requirement_intake_class_badge(target),
                 f"<code>{escape(requirement_ref(candidate))}</code>",
                 f"<code>{escape(requirement_ref(target))}</code>",
                 escape(", ".join(delta.get("potential_impacts", []))),
@@ -1594,6 +1639,7 @@ def build_source_document_intake_section(
     intake_status: dict,
     review_briefs: dict,
     requirement_delta: dict,
+    process_status: dict,
 ) -> str:
     if not intake_status:
         return ""
@@ -1603,6 +1649,16 @@ def build_source_document_intake_section(
         "<h2>Source Document Intake</h2>"
         "<p>Report-only source-document intake status, review briefs, and requirement deltas for candidate replacement decisions.</p>"
         "</div>"
+        "<section class=\"panel\"><h2>End-to-End Intake Process</h2>"
+        f"<p>Autorisierte Quellen: {process_status.get('summary', {}).get('authorized_sources', 0)}; "
+        f"Baseline: {escape(process_status.get('summary', {}).get('baseline_status', 'unknown'))}; "
+        f"offene Konsistenzbefunde: {process_status.get('summary', {}).get('consistency_findings_open', 0)}.</p>"
+        + html_table(
+            ["Phase", "Status", "Umfang", "Nächster Schritt"],
+            [[escape(item.get("title", item.get("id", ""))), badge(item.get("status", "unknown"), "warn" if item.get("status") not in {"complete", "not_started"} else "ok"), escape(", ".join(f"{key}: {value}" for key, value in item.get("counts", {}).items())), escape(item.get("next_action", ""))] for item in process_status.get("phases", [])],
+        )
+        + "<p>Die Baseline wird erst nach vollständiger Konsistenzprüfung und dokumentierter menschlicher Freigabe bereitgestellt.</p>"
+        "</section>"
         f"<section class=\"cards\">{build_source_intake_cards(intake_status, review_briefs, requirement_delta)}</section>"
         "<section class=\"panels\">"
         "<section class=\"panel\">"
@@ -1618,8 +1674,13 @@ def build_source_document_intake_section(
         + html_table(["Candidate", "Target", "Candidate Requirements", "Target Requirements", "Differences", "Counts"], build_requirement_delta_pair_rows(requirement_delta))
         + "</section>"
         "<section class=\"panel\">"
+        "<h2>Inferred Requirement Candidates</h2>"
+        f"<p>Showing up to 12 of {requirement_delta.get('summary', {}).get('requirement_intake_inventory', {}).get('inferred_candidate_count', 0)} prose candidates. Confirm each with its source owner before treating it as a requirement.</p>"
+        + html_table(["Intake Class", "Source", "Source Status", "Location", "Strength", "Candidate Statement"], build_inferred_requirement_candidate_rows(requirement_delta))
+        + "</section>"
+        "<section class=\"panel\">"
         "<h2>High Priority Requirement Delta Review</h2>"
-        + html_table(["Status", "Priority", "Candidate Ref", "Target Ref", "Potential Impacts", "Statement"], build_requirement_delta_review_rows(requirement_delta))
+        + html_table(["Status", "Delta Review Priority", "Candidate Intake Class", "Target Intake Class", "Candidate Ref", "Target Ref", "Potential Impacts", "Statement"], build_requirement_delta_review_rows(requirement_delta))
         + "</section>"
         "<section class=\"panel\">"
         "<h2>Source Documents</h2>"
@@ -1631,6 +1692,7 @@ def build_source_document_intake_section(
         "<li><a href=\"../reports/source-document-intake-status.md\">Source Document Intake Status</a></li>"
         "<li><a href=\"../reports/source-document-intake-review-briefs.md\">Source Document Intake Review Briefs</a></li>"
         "<li><a href=\"../reports/source-document-requirement-delta.md\">Source Document Requirement Delta</a></li>"
+        "<li><a href=\"../reports/source-document-process-status.md\">End-to-End Source Intake Process Status</a></li>"
         "<li><a href=\"../reports/architecture-source-replacement-assessment.md\">Architecture Source Replacement Assessment</a></li>"
         "<li><a href=\"../reports/source-lineage-report.md\">Source Lineage Report</a></li>"
         "</ul>"
@@ -1746,6 +1808,8 @@ def main() -> int:
     source_intake_review_briefs = load_json(source_intake_review_briefs_path) if source_intake_review_briefs_path.exists() else {}
     source_requirement_delta_path = ROOT / "generated" / "reports" / "source-document-requirement-delta.json"
     source_requirement_delta = load_json(source_requirement_delta_path) if source_requirement_delta_path.exists() else {}
+    source_process_status_path = ROOT / "generated" / "reports" / "source-document-process-status.json"
+    source_process_status = load_json(source_process_status_path) if source_process_status_path.exists() else {}
     requirement_migration_path = ROOT / "generated" / "reports" / "implemented-requirement-migration.json"
     requirement_migration = load_json(requirement_migration_path) if requirement_migration_path.exists() else {}
     replay_triage_path = ROOT / "generated" / "reports" / "replay-triage.json"
@@ -2049,6 +2113,7 @@ def main() -> int:
         source_intake_status or {},
         source_intake_review_briefs or {},
         source_requirement_delta or {},
+        source_process_status or {},
     )
     requirement_migration_html = build_requirement_migration_section(requirement_migration)
     architecture_gate_rows = build_architecture_gate_rows(architecture_report)

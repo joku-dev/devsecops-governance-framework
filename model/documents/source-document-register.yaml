@@ -1,4 +1,5 @@
 schema_version: "1.0.0"
+requirement_identifier_origin_default: unverified
 documents:
   - id: DEVSECOPS-POL-REQ-001
     title: DevSecOps Policy Requirements Extract
