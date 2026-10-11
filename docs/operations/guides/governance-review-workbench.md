@@ -63,7 +63,13 @@ unverified extraction row IDs stay separate, and prose candidates stay P2.
    The existing heuristic English normative extractor and delta matcher supply
    suggestions, not exhaustive extraction, authoritative equivalence or
    semantic findings. Unverified table identifiers remain extraction row IDs
-   and do not receive P1.
+   and do not receive P1. Recognized identifiers embedded in statements, such
+   as `DSCB-L1-REQ-002`, are also used as stable keys to pair a candidate
+   requirement with the corresponding requirement in the selected source. The
+   comparison shows both source locations and wording, including when wording
+   changes substantially. This pairing does not verify identifier provenance,
+   establish normative status, or replace human review; otherwise the matcher
+   falls back to text similarity.
 5. Save reasoned **Notizen** against the source or an extracted requirement.
    Reviewer names are declarations; this local application does not verify
    enterprise reviewer authority. All notes remain `proposal_only`.

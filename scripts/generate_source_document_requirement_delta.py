@@ -53,6 +53,12 @@ LINK_ONLY_PATTERN = re.compile(r"^\[[^\]]+\]\(#[^)]+\)$")
 REQUIREMENT_ID_FIRST_CELL_PATTERN = re.compile(
     r"^\|\s*`?([A-Z][A-Z0-9-]*-REQ-\d{3,})`?\s*\|"
 )
+# These are stable, human-facing control requirement identifiers. They often
+# appear inside a requirement statement rather than in the source row's first
+# table cell (or appear as a Markdown bullet in a candidate document).
+RECOGNIZED_REQUIREMENT_ID_PATTERN = re.compile(
+    r"\b([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-L1-REQ-\d{3,})\b"
+)
 NON_NORMATIVE_HEADING_TERMS = (
     "abbreviation",
     "definition",
@@ -246,6 +252,9 @@ def extract_requirements(
             "heading": heading,
             "statement": statement,
             "normalized": normalized,
+            "recognized_requirement_ids": sorted(
+                set(RECOGNIZED_REQUIREMENT_ID_PATTERN.findall(statement))
+            ),
             "strength": requirement_strength(statement),
             "potential_impacts": potential_impacts(heading, statement),
         }
@@ -303,6 +312,14 @@ def delta_status(score: float, candidate: dict, target: dict) -> str:
     return "added"
 
 
+def requirement_identifier_index(requirements: list[dict]) -> dict[str, list[int]]:
+    index: dict[str, list[int]] = {}
+    for position, requirement in enumerate(requirements):
+        for identifier in requirement.get("recognized_requirement_ids", []):
+            index.setdefault(identifier, []).append(position)
+    return index
+
+
 def review_priority(status: str, candidate: dict | None, target: dict | None) -> str:
     strength = (candidate or target or {}).get("strength")
     if status in {"added", "removed"} and strength in {"mandatory", "prohibition"}:
@@ -326,11 +343,37 @@ def merge_impacts(candidate: dict | None, target: dict | None) -> list[str]:
 def compare_requirements(candidate_requirements: list[dict], target_requirements: list[dict]) -> list[dict]:
     deltas = []
     unmatched_target_indexes = set(range(len(target_requirements)))
+    candidate_identifier_index = requirement_identifier_index(candidate_requirements)
+    target_identifier_index = requirement_identifier_index(target_requirements)
 
-    for candidate in candidate_requirements:
-        match_index, score = best_match(candidate, target_requirements, unmatched_target_indexes)
+    for candidate_index, candidate in enumerate(candidate_requirements):
+        shared_identifiers = sorted(
+            set(candidate.get("recognized_requirement_ids", []))
+            & set(target_identifier_index)
+        )
+        unique_shared_identifiers = [
+            identifier
+            for identifier in shared_identifiers
+            if len(candidate_identifier_index.get(identifier, [])) == 1
+            and len(target_identifier_index.get(identifier, [])) == 1
+            and target_identifier_index[identifier][0] in unmatched_target_indexes
+        ]
+        matched_identifier = unique_shared_identifiers[0] if unique_shared_identifiers else None
+        if matched_identifier:
+            match_index = target_identifier_index[matched_identifier][0]
+            score = similarity(candidate, target_requirements[match_index])
+            match_basis = "recognized_requirement_id"
+        else:
+            match_index, score = best_match(candidate, target_requirements, unmatched_target_indexes)
+            match_basis = "text_similarity" if match_index is not None else "unmatched"
         best_target = target_requirements[match_index] if match_index is not None else None
-        status = delta_status(score, candidate, best_target) if best_target else "added"
+        if best_target and matched_identifier:
+            # A stable requirement ID establishes correspondence even when the
+            # wording changed enough that text similarity alone would split it
+            # into an unrelated add/remove pair.
+            status = "equivalent" if score >= UNCHANGED_THRESHOLD and candidate["strength"] == best_target["strength"] else "changed"
+        else:
+            status = delta_status(score, candidate, best_target) if best_target else "added"
         target = best_target if status != "added" else None
         if target is not None and match_index is not None:
             unmatched_target_indexes.remove(match_index)
@@ -339,6 +382,8 @@ def compare_requirements(candidate_requirements: list[dict], target_requirements
             {
                 "status": status,
                 "similarity": score,
+                "match_basis": match_basis,
+                "matched_identifier": matched_identifier,
                 "review_priority": review_priority(status, candidate, target),
                 "potential_impacts": merge_impacts(candidate, target),
                 "candidate_requirement": candidate,
@@ -352,6 +397,8 @@ def compare_requirements(candidate_requirements: list[dict], target_requirements
             {
                 "status": "removed",
                 "similarity": 0.0,
+                "match_basis": "unmatched",
+                "matched_identifier": None,
                 "review_priority": review_priority("removed", None, target),
                 "potential_impacts": merge_impacts(None, target),
                 "candidate_requirement": None,
