@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-09T16:54:53Z",
+  "generated_at": "2026-10-11T11:20:42Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
@@ -8,7 +8,7 @@
   "summary": {
     "registered_source_documents": 15,
     "source_documents_with_lineage": 16,
-    "derived_artifact_links": 307,
+    "derived_artifact_links": 142,
     "domains": {
       "architecture": 9,
       "devsecops": 9,
@@ -28,9 +28,9 @@
     },
     "artifact_types": {
       "architecture_model": 8,
-      "derived_artifact": 162,
+      "derived_artifact": 12,
       "governance_document": 4,
-      "governance_model": 109,
+      "governance_model": 94,
       "policy_as_code": 15,
       "release_document": 1,
       "release_metadata": 1,
@@ -63,11 +63,9 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 13,
+      "lineage_artifact_count": 2,
       "lineage_artifact_types": {
-        "derived_artifact": 10,
         "governance_document": 1,
-        "governance_model": 1,
         "traceability_mapping": 1
       },
       "review_lanes": [
@@ -87,15 +85,7 @@
       "change_request_required_for_source_update": true,
       "representative_artifacts": [
         "docs/governance/devsecops-policy.md",
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json"
+        "model/traceability/document-to-control.yaml"
       ]
     },
     {
@@ -112,11 +102,9 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 13,
+      "lineage_artifact_count": 2,
       "lineage_artifact_types": {
-        "derived_artifact": 10,
         "governance_document": 1,
-        "governance_model": 1,
         "traceability_mapping": 1
       },
       "review_lanes": [
@@ -136,15 +124,7 @@
       "change_request_required_for_source_update": true,
       "representative_artifacts": [
         "docs/governance/devsecops-directive.md",
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json"
+        "model/traceability/document-to-control.yaml"
       ]
     },
     {
@@ -160,11 +140,10 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 99,
+      "lineage_artifact_count": 88,
       "lineage_artifact_types": {
-        "derived_artifact": 10,
         "governance_document": 1,
-        "governance_model": 73,
+        "governance_model": 72,
         "policy_as_code": 11,
         "release_package": 3,
         "traceability_mapping": 1
@@ -216,11 +195,11 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 41,
+      "lineage_artifact_count": 30,
       "lineage_artifact_types": {
-        "derived_artifact": 16,
+        "derived_artifact": 6,
         "governance_document": 1,
-        "governance_model": 23,
+        "governance_model": 22,
         "traceability_mapping": 1
       },
       "review_lanes": [
@@ -251,7 +230,7 @@
         "docs/examples/governance-repository-security-observation.example.json",
         "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
         "docs/operations/security/governance-repository-self-security.md",
-        "generated/reports/architecture-source-replacement-assessment.json"
+        "generated/reports/control-coverage-report.md"
       ]
     },
     {
@@ -267,11 +246,10 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 31,
+      "lineage_artifact_count": 20,
       "lineage_artifact_types": {
         "architecture_model": 8,
-        "derived_artifact": 16,
-        "governance_model": 1,
+        "derived_artifact": 6,
         "policy_as_code": 4,
         "release_document": 1,
         "release_metadata": 1
@@ -307,7 +285,7 @@
         "architecture/remediation-actions.yaml",
         "architecture/review-gates.yaml",
         "generated/csv/architecture_runtime_traceability.csv",
-        "generated/reports/architecture-source-replacement-assessment.json"
+        "generated/viewer/status-viewer.html"
       ]
     },
     {
@@ -323,11 +301,8 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "architecture-review"
       ],
@@ -343,18 +318,7 @@
         "python3 scripts/validate_runtime_governance.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "ARCH-EA-REQ-001",
@@ -369,11 +333,8 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "architecture-review"
       ],
@@ -389,18 +350,7 @@
         "python3 scripts/validate_runtime_governance.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "ARCH-SA-REQ-001",
@@ -415,11 +365,8 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "architecture-review"
       ],
@@ -435,18 +382,7 @@
         "python3 scripts/validate_runtime_governance.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "ARCH-PA-REQ-001",
@@ -461,11 +397,8 @@
       "derived_artifact_areas": [
         "docs/governance/source-documents"
       ],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "architecture-review"
       ],
@@ -481,18 +414,7 @@
         "python3 scripts/validate_runtime_governance.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "ARCH-GOV-REQ-001",
@@ -505,11 +427,8 @@
         "architecture"
       ],
       "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "architecture-review"
       ],
@@ -536,18 +455,7 @@
         "python3 scripts/validate_runtime_governance.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "CISO-REQ-SRC-001",
@@ -562,11 +470,8 @@
         "architecture"
       ],
       "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "architecture-review",
         "devsecops-review",
@@ -604,18 +509,7 @@
         "python3 scripts/validate_runtime_governance.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "DEVSECOPS-POL-CAND-002",
@@ -629,11 +523,8 @@
         "devsecops"
       ],
       "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "devsecops-review",
         "governance-review"
@@ -660,18 +551,7 @@
         "python3 scripts/validate_governance_repo.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "TOOLCHAIN-ARCH-CAND-001",
@@ -686,11 +566,8 @@
         "devsecops"
       ],
       "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "architecture-review",
         "devsecops-review",
@@ -722,18 +599,7 @@
         "python3 scripts/validate_runtime_governance.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "SDLC-PROC-CAND-001",
@@ -747,11 +613,8 @@
         "directive"
       ],
       "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "devsecops-review",
         "governance-review"
@@ -776,18 +639,7 @@
         "python3 scripts/validate_governance_repo.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     },
     {
       "id": "SW-INDUSTRIALISATION-OM-CAND-001",
@@ -802,11 +654,8 @@
         "architecture"
       ],
       "derived_artifact_areas": [],
-      "lineage_artifact_count": 11,
-      "lineage_artifact_types": {
-        "derived_artifact": 10,
-        "governance_model": 1
-      },
+      "lineage_artifact_count": 0,
+      "lineage_artifact_types": {},
       "review_lanes": [
         "architecture-review",
         "devsecops-review",
@@ -838,18 +687,7 @@
         "python3 scripts/validate_runtime_governance.py"
       ],
       "change_request_required_for_source_update": true,
-      "representative_artifacts": [
-        "generated/reports/architecture-source-replacement-assessment.json",
-        "generated/reports/architecture-source-replacement-assessment.md",
-        "generated/reports/governance-change-impact.json",
-        "generated/reports/governance-change-impact.md",
-        "generated/reports/source-document-intake-review-briefs.json",
-        "generated/reports/source-document-intake-review-briefs.md",
-        "generated/reports/source-document-intake-status.json",
-        "generated/reports/source-document-intake-status.md",
-        "generated/reports/source-document-requirement-delta.json",
-        "generated/reports/source-document-requirement-delta.md"
-      ]
+      "representative_artifacts": []
     }
   ],
   "open_questions": [

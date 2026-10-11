@@ -1,99 +1,76 @@
 # Source Lineage Report
 
-Generated: `2026-10-09T16:54:53Z`
+Generated: `2026-10-11T11:20:42Z`
 
 ## Summary
 
 - Source documents: `15`
-- Source documents with lineage entries: `16`
-- Derived artifact links: `312`
+- Source paths with direct lineage entries: `16`
+- Direct derived artifact links: `147`
 - Missing derived artifacts: `0`
+- Registered sources missing from disk: `0`
+- Unregistered source files: `0`
+- Unresolved source references: `1`
+
+Intake and impact reports are shared register-wide outputs. They are listed separately and are not counted as direct derivations from every source.
 
 ## Source Documents
 
-| Source document | Exists | Derived artifacts |
-|---|---:|---:|
-| `docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md` | `true` | `31` |
-| `docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md` | `true` | `11` |
-| `docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md` | `true` | `11` |
-| `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `13` |
-| `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `13` |
-| `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `99` |
-| `docs/governance/source-documents/DevSecOps_Policy_Review_Integrated_v2_CHANGE_MARKED.md` | `true` | `11` |
-| `docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md` | `true` | `11` |
-| `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md` | `true` | `41` |
-| `docs/governance/source-documents/Software_Development_Process_DevSecOps_V5_Activity_RACI_Artifacts.md` | `true` | `11` |
-| `docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md` | `true` | `11` |
+| ID | Status | Source document | Exists | Direct artifacts |
+|---|---|---|---:|---:|
+| `ARCH-EA-REQ-001` | `approved` | `docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md` | `true` | `0` |
+| `ARCH-GOV-REQ-001` | `candidate` | `docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md` | `true` | `0` |
+| `ARCH-PA-REQ-001` | `approved` | `docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md` | `true` | `0` |
+| `ARCH-SA-REQ-001` | `approved` | `docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md` | `true` | `0` |
+| `ARCH-SDD-REQ-001` | `review` | `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md` | `true` | `20` |
+| `ARCH-TPL-REQ-001` | `approved` | `docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md` | `true` | `0` |
+| `CISO-REQ-SRC-001` | `candidate` | `docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md` | `true` | `0` |
+| `DEVSECOPS-DIR-REQ-001` | `review` | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `2` |
+| `DEVSECOPS-POL-REQ-001` | `review` | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `2` |
+| `DSCB-STD-REQ-001` | `approved` | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `88` |
+| `DEVSECOPS-POL-CAND-002` | `candidate` | `docs/governance/source-documents/DevSecOps_Policy_Review_Integrated_v2_CHANGE_MARKED.md` | `true` | `0` |
+| `TOOLCHAIN-ARCH-CAND-001` | `candidate` | `docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md` | `true` | `0` |
+| `PRA-STD-REQ-001` | `approved` | `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md` | `true` | `30` |
+| `SDLC-PROC-CAND-001` | `candidate` | `docs/governance/source-documents/Software_Development_Process_DevSecOps_V5_Activity_RACI_Artifacts.md` | `true` | `0` |
+| `SW-INDUSTRIALISATION-OM-CAND-001` | `candidate` | `docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md` | `true` | `0` |
+
+## Shared Intake And Impact Outputs
+
+- `generated/reports/architecture-source-replacement-assessment.json` (exists: `true`)
+- `generated/reports/architecture-source-replacement-assessment.md` (exists: `true`)
+- `generated/reports/governance-change-impact.json` (exists: `true`)
+- `generated/reports/governance-change-impact.md` (exists: `true`)
+- `generated/reports/source-document-intake-status.json` (exists: `true`)
+- `generated/reports/source-document-intake-status.md` (exists: `true`)
+- `generated/reports/source-document-intake-review-briefs.json` (exists: `true`)
+- `generated/reports/source-document-intake-review-briefs.md` (exists: `true`)
+- `generated/reports/source-document-requirement-delta.json` (exists: `true`)
+- `generated/reports/source-document-requirement-delta.md` (exists: `true`)
+
+## Unresolved Source References
+
+These references occur in model or release artifacts but do not match a registered source path.
+
+- `docs/governance/source-documents/ARCH-SDD-SRC-001.public.md` (exists: `false`; referenced by: `releases/architecture/l1/v0.1.0/source/architecture/arch-l1.yaml`, `releases/architecture/l1/v0.1.0/source/architecture/guardrails.yaml`, `releases/architecture/l1/v0.1.0/source/architecture/quality-markers.yaml`, `releases/architecture/l1/v0.1.0/source/architecture/remediation-actions.yaml`, `releases/architecture/l1/v0.1.0/source/architecture/review-gates.yaml`)
+
 
 ## Lineage Details
 
 ### `docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/ARCH-SDD-SRC-001.public.md`
 
@@ -118,22 +95,11 @@ Generated: `2026-10-09T16:54:53Z`
 | `architecture/remediation-actions.yaml` | `architecture_model` | `working_model` | `true` |
 | `architecture/review-gates.yaml` | `architecture_model` | `working_model` | `true` |
 | `generated/csv/architecture_runtime_traceability.csv` | `derived_artifact` | `architecture_runtime_governance` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `generated/viewer/status-viewer.html` | `derived_artifact` | `architecture_runtime_governance` | `true` |
 | `schemas/app-architecture-evidence.schema.json` | `derived_artifact` | `architecture_runtime_governance` | `true` |
 | `schemas/architecture-release-candidate.schema.json` | `derived_artifact` | `architecture_runtime_governance` | `true` |
 | `schemas/architecture-results-index.schema.json` | `derived_artifact` | `architecture_runtime_governance` | `true` |
 | `status/architecture-results-index.json` | `derived_artifact` | `architecture_runtime_governance` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
 | `policies/opa/architecture_integration_readiness.rego` | `policy_as_code` | `architecture_runtime_governance` | `true` |
 | `policies/opa/architecture_operation_readiness.rego` | `policy_as_code` | `architecture_runtime_governance` | `true` |
 | `policies/opa/architecture_readiness.rego` | `policy_as_code` | `architecture_runtime_governance` | `true` |
@@ -143,86 +109,30 @@ Generated: `2026-10-09T16:54:53Z`
 
 ### `docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md`
 
 | Artifact | Type | Role | Exists |
 |---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `docs/governance/devsecops-directive.md` | `governance_document` | `DEVSECOPS-DIR-001` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
 | `model/traceability/document-to-control.yaml` | `traceability_mapping` | `DEVSECOPS-DIR-001` | `true` |
 
 ### `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md`
 
 | Artifact | Type | Role | Exists |
 |---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `docs/governance/devsecops-policy.md` | `governance_document` | `DEVSECOPS-POL-001` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
 | `model/traceability/document-to-control.yaml` | `traceability_mapping` | `DEVSECOPS-POL-001` | `true` |
 
 ### `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md`
 
 | Artifact | Type | Role | Exists |
 |---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `governance_document` | `DSCB-STD-001` | `true` |
 | `.github/CODEOWNERS` | `governance_model` | `DSCB-STD-001` | `true` |
 | `.github/dependabot.yml` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -253,7 +163,6 @@ Generated: `2026-10-09T16:54:53Z`
 | `model/controls/dscb-l2.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/dscb-l3.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/controls/governance-repository-security.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
 | `model/evidence/evidence-collector-contract.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/evidence/evidence-freshness-policies.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
 | `model/evidence/evidence-trust-model.yaml` | `governance_model` | `DSCB-STD-001` | `true` |
@@ -315,52 +224,18 @@ Generated: `2026-10-09T16:54:53Z`
 
 ### `docs/governance/source-documents/DevSecOps_Policy_Review_Integrated_v2_CHANGE_MARKED.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md`
 
 | Artifact | Type | Role | Exists |
 |---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `generated/reports/control-coverage-report.md` | `derived_artifact` | `devsecops_baseline` | `true` |
 | `generated/reports/document-control-matrix.md` | `derived_artifact` | `devsecops_baseline` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
 | `generated/viewer/status-viewer.html` | `derived_artifact` | `devsecops_baseline` | `true` |
 | `generated/xlsx/document_control_matrix.csv` | `derived_artifact` | `devsecops_baseline` | `true` |
 | `generated/xlsx/traceability_matrix.csv` | `derived_artifact` | `devsecops_baseline` | `true` |
@@ -375,7 +250,6 @@ Generated: `2026-10-09T16:54:53Z`
 | `docs/examples/governance-repository-security-observation.example.json` | `governance_model` | `PRA-STD-001` | `true` |
 | `docs/operations/security/governance-repository-self-security.md` | `governance_model` | `PRA-STD-001` | `true` |
 | `model/controls/governance-repository-security.yaml` | `governance_model` | `PRA-STD-001` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
 | `model/platform/platform-capabilities.yaml` | `governance_model` | `PRA-STD-001` | `true` |
 | `model/platform/pra-levels.yaml` | `governance_model` | `PRA-STD-001` | `true` |
 | `model/traceability/control-to-platform.yaml` | `governance_model` | `PRA-STD-001` | `true` |
@@ -393,32 +267,8 @@ Generated: `2026-10-09T16:54:53Z`
 
 ### `docs/governance/source-documents/Software_Development_Process_DevSecOps_V5_Activity_RACI_Artifacts.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
 
 ### `docs/governance/source-documents/Software_Industrialisation_Enterprise_Operating_Model_revised_extended_scope_polished.md`
 
-| Artifact | Type | Role | Exists |
-|---|---|---|---:|
-| `generated/reports/architecture-source-replacement-assessment.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/architecture-source-replacement-assessment.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/governance-change-impact.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-review-briefs.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-intake-status.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.json` | `derived_artifact` | `governance_change_impact` | `true` |
-| `generated/reports/source-document-requirement-delta.md` | `derived_artifact` | `governance_change_impact` | `true` |
-| `model/documents/source-document-register.yaml` | `governance_model` | `source_document_intake` | `true` |
+No derived artifacts recorded.
