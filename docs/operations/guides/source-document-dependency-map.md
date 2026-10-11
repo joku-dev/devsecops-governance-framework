@@ -13,7 +13,9 @@ The reporting change is recorded in
 
 The report separates direct model or release lineage from shared intake and
 impact reports. A shared report may mention every registered source, but it is
-not a direct derivation from every source.
+not a direct derivation from every source. Missing or unregistered source
+counts remain informational; the source-lineage validator still fails when a
+referenced derived artifact is missing.
 
 ## Current disposition
 

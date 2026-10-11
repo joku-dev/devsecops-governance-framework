@@ -1,6 +1,8 @@
 import importlib.util
 from pathlib import Path
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -8,6 +10,11 @@ MODULE_PATH = ROOT / "scripts" / "generate_source_lineage_report.py"
 SPEC = importlib.util.spec_from_file_location("generate_source_lineage_report", MODULE_PATH)
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
+VALIDATOR_SPEC = importlib.util.spec_from_file_location(
+    "validate_governance_repo", ROOT / "scripts" / "validate_governance_repo.py"
+)
+VALIDATOR = importlib.util.module_from_spec(VALIDATOR_SPEC)
+VALIDATOR_SPEC.loader.exec_module(VALIDATOR)
 
 
 class SourceLineageReportTests(unittest.TestCase):
@@ -40,6 +47,39 @@ class SourceLineageReportTests(unittest.TestCase):
         self.assertIn(historical_path, references)
         self.assertFalse(references[historical_path]["exists"])
         self.assertEqual(len(references[historical_path]["referenced_by"]), 5)
+
+    def test_source_inventory_discrepancies_are_report_only_for_validator(self):
+        report = {
+            "summary": {
+                "missing_derived_artifacts": 0,
+                "missing_registered_source_count": 1,
+                "unregistered_source_file_count": 1,
+            }
+        }
+        errors = []
+        completed = SimpleNamespace(returncode=0, stderr="", stdout="")
+
+        with (
+            patch.object(VALIDATOR.subprocess, "run", return_value=completed),
+            patch.object(VALIDATOR, "load_json", return_value=report),
+        ):
+            result = VALIDATOR.validate_source_lineage_report(errors)
+
+        self.assertEqual(result, report)
+        self.assertEqual(errors, [])
+
+    def test_missing_derived_artifacts_remain_a_validator_error(self):
+        report = {"summary": {"missing_derived_artifacts": 1}}
+        errors = []
+        completed = SimpleNamespace(returncode=0, stderr="", stdout="")
+
+        with (
+            patch.object(VALIDATOR.subprocess, "run", return_value=completed),
+            patch.object(VALIDATOR, "load_json", return_value=report),
+        ):
+            VALIDATOR.validate_source_lineage_report(errors)
+
+        self.assertEqual(errors, ["Source lineage report contains missing derived artifacts"])
 
 
 if __name__ == "__main__":

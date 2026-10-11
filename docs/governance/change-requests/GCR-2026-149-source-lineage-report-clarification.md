@@ -4,7 +4,8 @@
 
 - Count direct source-to-artifact lineage separately from register-wide intake and impact reports.
 - Build the source inventory from the source document register and check the register against files on disk.
-- Report unresolved source paths referenced by model or release artifacts without editing released packages.
+- Show missing or unregistered source files in the report without making them validator failures.
+- Keep missing derived artifact paths as validator failures; do not edit released packages to resolve the historical source reference.
 - Document the current source dependency groups and the no-deletion disposition.
 
 ## Change ID
@@ -44,6 +45,9 @@ The previous lineage report counted the same ten shared intake and impact
 reports as direct derivations from every registered source. It also did not
 surface a missing source path embedded in the released architecture package.
 This obscured which source files currently have direct model or release links.
+Missing or unregistered source files should remain visible for follow-up but
+must not fail the repository validator automatically. Missing derived artifact
+paths remain a validation error.
 
 ## Impact Analysis
 
