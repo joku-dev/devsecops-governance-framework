@@ -38,17 +38,18 @@ review content; the existing extractor's warnings/errors remain visible.
 
 ## Guided operation
 
-The worklist now shows the repository's current intake phases and the next
-reported action for each: source intake, extraction, P1 identifier/lifecycle
-review, P2 `inferred_candidate` review, consistency, decision proposals,
-baseline, and implementation. “Bereich öffnen” takes the user to the closest
+The worklist shows the repository's current intake phases and highlights the
+next reported action. Each phase can be expanded to explain its purpose, what
+to do, and what completion means. “Bereich öffnen” takes the user to the closest
 available workbench area. Phase statuses and counts come from the intake report
 and are a status projection, not proof that the workbench itself performed or
 approved that phase. In particular, P1 requires a verified author identifier;
 unverified extraction row IDs stay separate, and prose candidates stay P2.
 
 1. **Meine Arbeitsliste:** see candidate/draft/review sources, owners and the
-   next suggested action, along with persisted local drafts.
+   next suggested action, along with persisted local drafts. The highlighted
+   next phase is a report projection; follow its explanation and open the
+   closest available area.
 2. **Quellenbibliothek:** filter by owner, ID, title or status; inspect original
    extracted text and requirement candidates with source locators.
 3. **Quelle einreichen:** choose a Markdown, DOCX or PDF file (maximum 5 MiB),
@@ -56,10 +57,13 @@ unverified extraction row IDs stay separate, and prose candidates stay P2.
    registered source it may replace. A new version uses a new ID so existing
    history is preserved. The upload remains a local candidate, not a register
    change or an authority decision.
-4. Inspect **Anforderungen & Original** and **Versionsvergleich**. The existing
-   heuristic English normative extractor and delta matcher supply suggestions,
-   not exhaustive extraction, authoritative equivalence or semantic findings.
-   Unverified table identifiers remain extraction row IDs and do not receive P1.
+4. Inspect **Kandidaten prüfen** and **Änderungen vergleichen**. P1 candidates
+   have priority only when author identifier origin is verified. P2
+   `inferred_candidate` items are prose suggestions that need human review.
+   The existing heuristic English normative extractor and delta matcher supply
+   suggestions, not exhaustive extraction, authoritative equivalence or
+   semantic findings. Unverified table identifiers remain extraction row IDs
+   and do not receive P1.
 5. Save reasoned **Notizen** against the source or an extracted requirement.
    Reviewer names are declarations; this local application does not verify
    enterprise reviewer authority. All notes remain `proposal_only`.
@@ -72,7 +76,7 @@ unverified extraction row IDs stay separate, and prose candidates stay P2.
    workbench creates a hashed scope package and allows source-level notes. This
    is not an approved DCR manifest, provider input or a semantic execution. It
    does not convert candidate sources to approved sources.
-8. **Baseline & Freigabe** shows the existing readiness projection and blocking
+8. **Baseline prüfen** shows the existing readiness projection and blocking
    reasons. It consumes existing report snapshots and cannot establish fresh,
    exhaustive consistency or approve a versioned baseline.
 
