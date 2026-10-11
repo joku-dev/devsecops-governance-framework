@@ -5,7 +5,7 @@
 - Count direct source-to-artifact lineage separately from register-wide intake and impact reports.
 - Build the source inventory from the source document register and check the register against files on disk.
 - Show missing or unregistered source files in the report without making them validator failures.
-- Keep missing derived artifact paths as validator failures; do not edit released packages to resolve the historical source reference.
+- Keep missing derived artifact paths as validator failures; document the historical release reference to the intentionally retired example and its real replacement without editing the immutable package.
 - Document the current source dependency groups and the no-deletion disposition.
 
 ## Change ID
@@ -43,11 +43,15 @@ GCR-2026-149
 
 The previous lineage report counted the same ten shared intake and impact
 reports as direct derivations from every registered source. It also did not
-surface a missing source path embedded in the released architecture package.
-This obscured which source files currently have direct model or release links.
-Missing or unregistered source files should remain visible for follow-up but
-must not fail the repository validator automatically. Missing derived artifact
-paths remain a validation error.
+surface a historical source path embedded in the released architecture
+package. That path belonged to an example placeholder intentionally removed by
+PR #244 and replaced with the real `ARCH-SDD-SRC-001.requirements.md` source;
+the current register and working models use that replacement. The immutable
+release snapshot still contains the former path, so the report makes that
+historical metadata visible. It does not indicate a missing current source or
+derived artifact. Missing or unregistered source files remain report findings
+and do not fail the repository validator automatically. Missing derived
+artifact paths remain a validation error.
 
 ## Impact Analysis
 
@@ -56,7 +60,7 @@ paths remain a validation error.
 | Policy or directive | none |
 | DevSecOps controls | none |
 | Platform model | none |
-| Architecture governance | no runtime change; one historical missing source reference is made visible |
+| Architecture governance | no runtime change; the historical reference to a retired example and its real replacement are documented |
 | OPA policies | none |
 | Schemas and evidence contracts | none |
 | Viewer, status indexes or intake | lineage and change-impact reports clarify direct versus shared report relationships |
@@ -95,7 +99,8 @@ or change enforcement behavior.
 
 - Confirm that the distinction between direct lineage and register-wide reports
   is useful for maintainers.
-- The released architecture package still refers to the removed
-  `ARCH-SDD-SRC-001.public.md` path in five historical files. Resolve its
-  provenance through a separately reviewed follow-up; this change deliberately
-  leaves the released package untouched.
+- The released architecture package retains the removed example path
+  `ARCH-SDD-SRC-001.public.md` in five historical files. The real replacement
+  is `ARCH-SDD-SRC-001.requirements.md`, used by the register and current
+  working models. The immutable release is left untouched; a future baseline
+  should record the real source path.

@@ -34,19 +34,22 @@ extracts feed their working governance documents and document-to-control
 traceability. The SDD extract is referenced by the current working architecture
 models, while its source status remains `review`.
 
-## Historical release reference
+## Historical reference to the retired example
 
 The released architecture baseline `architecture-baseline-l1-v0.1.0` contains
 five source-model files that refer to
-`docs/governance/source-documents/ARCH-SDD-SRC-001.public.md`. That path does
-not exist and is not registered; the public placeholder was removed in the
-source cleanup recorded by PR #244 (`430550f`). The sanitized requirements
-extract at `ARCH-SDD-SRC-001.requirements.md` is present, but it must not be
-silently substituted into an immutable release package. The lineage report now
-lists the missing reference and the five release files that contain it.
+`docs/governance/source-documents/ARCH-SDD-SRC-001.public.md`. This was an
+example placeholder, intentionally removed in the source cleanup recorded by
+PR #244 (`430550f`) and replaced by the real requirements extract at
+`docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md`. The
+register and current working architecture models use that real source.
 
-Resolve this through a separately reviewed provenance or release follow-up.
-Until then, preserve the historical package and keep the exception visible.
+The immutable v0.1.0 release snapshot still records the former example path.
+The lineage report surfaces that literal historical reference because the
+removed path is not registered today. It is not a missing current source or a
+missing derived artifact. This PR leaves the released package unchanged; if a
+future architecture baseline is issued, its source metadata should use the real
+requirements extract.
 
 ## Cleanup decision
 
