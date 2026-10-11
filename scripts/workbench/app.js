@@ -3,6 +3,8 @@ const $ = (id) => document.getElementById(id);
 const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const e = escapeHTML;
 const labels = {candidate:'Kandidat',draft:'Entwurf',intake:'Aufgenommen',review:'In Prüfung',approved:'Quelle freigegeben',superseded:'Ersetzt',retired:'Stillgelegt'};
+const phaseLabels = {complete:'Abgeschlossen',partial:'Teilweise',blocked:'Blockiert',review_required:'Review nötig',decision_required:'Entscheidung offen',in_progress:'In Umsetzung'};
+const phaseTargets = {source_intake:'sources',extract_and_classify:'sources',p1_requirement_lifecycle:'review',p2_inferred_review:'review',consistency_review:'review',decision_proposals:'review',source_baseline:'baseline',governance_implementation:'baseline'};
 const outcomeLabels = {confirm_candidate:'Bestätigung vorschlagen',reject_candidate:'Ablehnung vorschlagen',needs_clarification:'Klärung erforderlich',propose_resolution:'Lösung vorschlagen'};
 const titleOf = d => d.kind === 'source_candidate' ? d.source.title : `Review-Paket · ${d.manifest.length} Quellen`;
 let state, page = 'overview', activeDraft, toastTimer;
@@ -22,10 +24,17 @@ function docOptions(includeEmpty=false){return (includeEmpty?'<option value="">N
 function nextAction(d){if(d.status==='candidate')return 'Autorität und Aufnahmeentscheidung klären';if(d.status==='review'||d.status==='draft')return 'Owner-Review abschließen';if(d.status==='approved')return 'Anforderungsentscheidungen / Baseline prüfen';return 'Historie und Ablösung beachten';}
 function table(docs){return `<div class="tablewrap"><table><thead><tr><th>Quelle</th><th>Status</th><th>Zuständig</th><th>Nächster Schritt</th><th></th></tr></thead><tbody>${docs.map(d=>`<tr><td><strong>${e(d.title)}</strong><div class="muted">${e(d.id)} · ${e(d.version)}</div></td><td>${pill(d.status)}</td><td>${e(d.owner)}</td><td>${e(nextAction(d))}</td><td><button class="quiet" data-source="${e(d.id)}">Öffnen →</button></td></tr>`).join('')}</tbody></table></div>`;}
 function draftCards(){return state.drafts.length ? state.drafts.map(d=>`<div class="card row"><div><h3>${e(titleOf(d))}</h3><span class="muted">${e(d.created_at.slice(0,10))} · ${d.notes.length} Notizen · ${d.pr?'PR eingereicht':d.stale?'Quellenstand geändert':'Lokaler Entwurf'}</span></div><button class="quiet" data-draft="${e(d.draft_id)}">Bearbeiten →</button></div>`).join('') : '<div class="empty">Noch keine lokalen Entwürfe. Reiche eine Quelle ein oder bereite einen Review vor.</div>';}
+function phaseCounts(counts={}){return Object.entries(counts).filter(([,value])=>value!==null&&value!==undefined).slice(0,3).map(([key,value])=>`${key.replaceAll('_',' ')}: ${value}`).join(' · ');}
+function processPhases(){
+ const process=state.process||{}, phases=process.phases||[];
+ if(!phases.length)return '<div class="notice">Der Intake-Phasenbericht ist in diesem Checkout nicht verfügbar.</div>';
+ return `<section class="panel phase-panel"><div class="sectionhead"><div><p class="eyebrow">Durchgängiger Prozess</p><h2>Von der Quelle bis zur Umsetzung</h2></div><span class="muted">Berichtsstand ${e(process.generated_at||'unbekannt')}</span></div><ol class="workflow">${phases.map((phase,index)=>`<li class="workflow-step status-${e(phase.status)}"><span class="workflow-mark" aria-hidden="true">${phase.status==='complete'?'✓':index+1}</span><div class="workflow-content"><div class="workflow-title"><strong>${e(phase.title)}</strong><span class="phase-status">${e(phaseLabels[phase.status]||phase.status)}</span></div><p>${e(phase.next_action||'Status prüfen.')}</p><small>${e(phaseCounts(phase.counts))}</small></div><button class="quiet phase-action" data-process-target="${e(phaseTargets[phase.id]||'review')}">Bereich öffnen →</button></li>`).join('')}</ol><p class="muted phase-footnote">Phasenstatus aus dem Intake-Bericht. Ein lokaler Entwurf, eine Review-Vorlage oder ein Snapshot ist keine formale Freigabe.</p></section>`;
+}
 function overview(){
  const open=state.documents.filter(d=>['candidate','draft','review'].includes(d.status));
  $('content').innerHTML=heading('Arbeitsliste','Der nächste Schritt ist sichtbar.','Quellen einordnen, Anforderungen prüfen und Entscheidungen nachvollziehbar vorbereiten.','<button id="new-intake">＋ Quelle einreichen</button>')+
  `<div class="metrics"><div class="metric"><span class="label">Registrierte Quellen</span><strong>${state.documents.length}</strong><span class="hint">Aktuelles Quellenregister</span></div><div class="metric"><span class="label">Offene Quellenreviews</span><strong>${open.length}</strong><span class="hint">Kandidaten, Entwürfe &amp; Review</span></div><div class="metric"><span class="label">Lokale Arbeitsentwürfe</span><strong>${state.drafts.length}</strong><span class="hint">Noch keine Governance-Freigabe</span></div><div class="metric"><span class="label">DCR-Befunde im Snapshot</span><strong>${(state.dcr.findings||[]).length}</strong><span class="hint">${e(state.dcr.overall_status||'Nicht verfügbar')} · begrenzter Umfang</span></div></div>`+
+ processPhases()+
  '<div class="notice info"><strong>KI und Tooling bereiten vor. Menschen entscheiden.</strong> Dieser Arbeitsbereich führt keine Quellenpromotion und keinen semantischen Providerlauf aus.</div>'+
  `<section class="panel"><div class="sectionhead"><h2>Was braucht deine Aufmerksamkeit?</h2><span class="muted">${open.length} Quellen</span></div>${table(open)}</section><section class="panel"><h2>Deine Entwürfe &amp; Review-Pakete</h2>${draftCards()}</section>`;
  bind('new-intake','click',()=>navigate('intake'));
@@ -105,7 +114,7 @@ if(typeof document!=='undefined'){
  bind('logout','click',async()=>{await api('/api/logout',{});state=null;activeDraft=null;$('detail-content').textContent='';$('content').textContent='';$('workspace').hidden=true;$('login').hidden=false;$('detail').close();});
  bind('close-detail','click',()=>{$('detail').close();});
  document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
- document.addEventListener('click',async ev=>{const source=ev.target.closest('[data-source]'),draft=ev.target.closest('[data-draft]'),note=ev.target.closest('[data-note-subject]');try{if(source)await showSource(source.dataset.source);if(draft)await showDraft(draft.dataset.draft);if(note){renderDraft('notes');$('note-subject').value=note.dataset.noteSubject;$('note-rationale').focus();}}catch(error){tell(error.message);}});
+ document.addEventListener('click',async ev=>{const source=ev.target.closest('[data-source]'),draft=ev.target.closest('[data-draft]'),note=ev.target.closest('[data-note-subject]'),phase=ev.target.closest('[data-process-target]');try{if(source)await showSource(source.dataset.source);if(draft)await showDraft(draft.dataset.draft);if(note){renderDraft('notes');$('note-subject').value=note.dataset.noteSubject;$('note-rationale').focus();}if(phase)navigate(phase.dataset.processTarget);}catch(error){tell(error.message);}});
  refresh().catch(()=>{});
 }
 if(typeof module!=='undefined')module.exports={escapeHTML};

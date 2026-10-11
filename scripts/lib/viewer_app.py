@@ -162,5 +162,6 @@ def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None)
     target.mkdir(parents=True, exist_ok=True)
     for name in ('index.html', 'app.css', 'app.js', 'technical.js', 'technical.css'):
         shutil.copyfile(root / 'apps/governance-viewer' / name, target / name)
+    shutil.copyfile(root / 'docs/publishing/branding/axiom-logo.png', target / 'axiom-logo.png')
     (target / 'data.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     return data
