@@ -30,6 +30,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Operate the hybrid document-to-Git requirement lifecycle | `docs/operations/processes/hybrid-requirement-lifecycle.md`, `model/requirements/requirement-authority-ledger.yaml`, `model/requirements/governance-requirement-catalog.yaml`, `model/requirements/lifecycle-cases/`, `docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md` |
 | Add a new artifact safely | `docs/operations/guides/how-to-add-a-new-artifact.md` |
 | Intake updated input documents | `docs/governance/governance-change-lifecycle.md`, `docs/operations/processes/source-document-intake-process.md`, `docs/operations/processes/source-document-intake-review-operating-model.md`, `model/documents/source-document-register.yaml` |
+| Operate guided private source intake and review | `docs/operations/guides/governance-review-workbench.md`, `scripts/serve_governance_workbench.py` (local maintainer app; proposal-only; optional Draft-PR adapter) |
 | Understand ADO and DevSecOps-as-Code as one system | `docs/governance/architecture/ado-devsecops-integrated-governance-model.md` |
 | Explain the repository as an answer to software industrialisation problems | `docs/governance/architecture/software-industrialisation-problem-capability-map.md` |
 | Compare governance with central repository versus without central repository | `docs/governance/architecture/governance-repository-architecture-comparison.md` |
