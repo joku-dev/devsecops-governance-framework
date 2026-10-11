@@ -205,6 +205,19 @@ legend { margin-bottom: 7px; font-size: 12px; font-weight: 600; }
 .workflow-content small { color: #758591; font-size: 10px; text-transform: capitalize; }
 .phase-action { white-space: nowrap; }
 .phase-footnote { margin: 12px 0 0; font-size: 11px; }
+.next-step { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: 18px 0 8px; padding: 20px 22px; border: 1px solid #b9d8d0; border-radius: 9px; background: #eff8f5; }
+.next-step .eyebrow { margin-bottom: 5px; }
+.next-step h3 { margin: 0; font-size: 16px; }
+.next-step p:not(.eyebrow) { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.phase-help { margin-top: 8px; color: var(--muted); font-size: 11px; }
+.phase-help summary { width: fit-content; color: var(--teal); cursor: pointer; font-weight: 650; }
+.phase-help dl { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 4px 10px; margin: 10px 0 0; padding: 12px; border-radius: 6px; background: #f6f8f8; }
+.phase-help dt { color: var(--ink); font-weight: 650; }
+.phase-help dd { margin: 0; }
+.field-help { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; font-weight: 400; }
+.priority-badge { display: inline-block; padding: 4px 8px; border-radius: 5px; background: #eef1f3; color: var(--muted); font-size: 10px; font-weight: 700; }
+.priority-badge.p1 { background: #eaf3ed; color: #286647; }
+.priority-badge.p2 { background: #fff3da; color: #916315; }
 .panel { margin-bottom: 22px; padding: 24px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
 .sectionhead { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 18px; }
 .sectionhead h2 { margin: 0; }
@@ -295,6 +308,9 @@ dialog::backdrop { background: #122c3490; }
   .metrics { gap: 10px; margin: 20px 0; }
   .workflow-step { grid-template-columns: 30px minmax(0, 1fr); align-items: start; gap: 10px; }
   .phase-action { grid-column: 2; justify-self: start; }
+  .next-step { align-items: flex-start; flex-direction: column; }
+  .phase-help dl { grid-template-columns: 1fr; gap: 2px; }
+  .phase-help dd { margin-bottom: 8px; }
   .metric { padding: 15px; }
   .metric strong { font-size: 30px; }
   .panel { margin: 18px 0; padding: 18px; }
