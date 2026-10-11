@@ -14,9 +14,13 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+## PR #287: fix: clarify source document lineage report (`3be195afbc01`)
 
-- docs: PRA-Review-Empfehlung dokumentieren
+- Separate direct source-to-artifact lineage from shared intake and impact outputs.
+- Build the source inventory from the register and check registered paths against files on disk.
+- Keep missing or unregistered source files visible as report findings without making them repository-validator failures; missing derived artifacts remain blocking.
+- Surface the five historical architecture-release files that still point to the removed ARCH-SDD-SRC-001.public.md path, without changing the released package.
+- Add the source dependency map and GCR-2026-149.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
