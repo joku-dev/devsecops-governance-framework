@@ -81,6 +81,7 @@ or change enforcement behavior.
 - [x] `python3 -m unittest tests.test_source_lineage_report`
 - [x] `python3 scripts/validate_runtime_governance.py`
 - [x] `python3 scripts/validate_governance_repo.py`
+- [x] `mkdocs build --strict`
 - [x] Full unit test suite; 783 tests covered, two skipped. The sandboxed
   loopback bind test passed in a separate non-sandboxed run.
 - [x] Source lineage and governance change impact reports regenerated

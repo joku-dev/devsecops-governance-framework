@@ -4,9 +4,9 @@
 
 This page explains which files in `docs/governance/source-documents/` currently
 support governed models and which files are held for intake or human review.
-The generated [source lineage report](../../../generated/reports/source-lineage-report.md)
-lists the current direct artifact links, shared intake outputs, and unresolved
-source references.
+The generated report at `generated/reports/source-lineage-report.md` lists the
+current direct artifact links, shared intake outputs, and unresolved source
+references.
 
 The reporting change is recorded in
 [GCR-2026-149](../../governance/change-requests/GCR-2026-149-source-lineage-report-clarification.md).
