@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #283: feat: guide AXIOM workbench intake flow (`d902fef40d81`)
 
 ## Ergebnis
 
@@ -10,12 +10,14 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `apps/governance-viewer/app.css`
+- `apps/governance-viewer/index.html`
+- `scripts/lib/viewer_app.py`
+- `scripts/serve_governance_workbench.py`
+- `scripts/start_governance_workbench.sh`
+- `scripts/workbench/app.js`
+- `scripts/workbench/index.html`
+- `scripts/workbench/style.css`
 
 ## Fehlende lokale Markdown-Ziele
 
