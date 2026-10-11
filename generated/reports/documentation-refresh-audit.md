@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #289: Match Workbench requirements by DSCB L1 identifier (`66e405641472`)
 
 ## Ergebnis
 
@@ -10,12 +10,8 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `scripts/generate_source_document_requirement_delta.py`
+- `scripts/workbench/app.js`
 
 ## Fehlende lokale Markdown-Ziele
 
