@@ -18,14 +18,14 @@ Use this document when the demo audience wants to go deeper into the architectur
 | Application branch | `main` |
 | Architecture governance baseline | `architecture-baseline-l1-v0.1.0` |
 | Solution baseline | `ha-CPsWMS-demo-baseline` |
-| Latest mainline run | `35131185047` |
-| Latest mainline commit | `4c57eb1cffcd1750c468ffba76a327bf78a8e8d3` |
-| Generated | `2026-09-16T17:55:49Z` |
+| Latest accepted mainline run | [`36997124090`](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997124090) |
+| Latest accepted mainline commit | `5c3b5cb50d2260bfbde736c9ac80667271406d99` |
+| Generated | `2026-10-02T10:44:34Z` |
 | Current result | `PASS`, `4/4 gates`, `0 findings` |
 
 Interpretation:
 
-- These are the accepted 16 September 2026 mainline observations, not proof of current freshness.
+- These are the latest accepted 2 October 2026 mainline observations, confirmed against GitHub on 9 October. No newer ha-CPsWMS `main` producer run was found; these results do not prove current freshness.
 - The checks are currently used report-only for the demo.
 - A `PASS` means the recorded evidence satisfies the released L1 architecture governance checks. It is not a formal production approval.
 
@@ -44,7 +44,7 @@ Interpretation:
 Start with:
 
 ```text
-docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md
 ```
 
 Then show the derived runtime governance artifacts:
@@ -323,10 +323,10 @@ Expected current gate summary:
 
 ## GitHub Actions Result
 
-Current known-good architecture run:
+Latest accepted architecture mainline run:
 
 ```text
-https://github.com/joku-dev/ha-CPsWMS/actions/runs/35131185047
+https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997124090
 ```
 
 Expected interpretation:
@@ -358,7 +358,7 @@ Expected current viewer values:
 | Repository | `joku-dev/ha-CPsWMS` |
 | Status | `PASS` |
 | Baseline | `architecture-baseline-l1-v0.1.0` |
-| Last Mainline Run | `35131185047` |
+| Last Mainline Run | `36997124090` |
 | Summary | `4/4 gates pass`, `0 findings` |
 | Evidence Trust | `integrity_verified` after central re-verification |
 

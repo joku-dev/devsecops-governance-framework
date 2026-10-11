@@ -1,0 +1,2671 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "RLC-DSCB-STD-REQ-001-MIGRATION",
+  "intake_type": "source_document",
+  "status": "partially_activated",
+  "created_at": "2026-10-09T16:33:09Z",
+  "source": {
+    "source_id": "DSCB-STD-REQ-001",
+    "source_path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
+    "source_sha256": "4fdc3922607102df72af15e88725b24726d4d13d06e1d1b0ffc5dbb2b0393e84",
+    "owner": "devsecops-owners",
+    "decision_ref": "docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md"
+  },
+  "proposals": [
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0001",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-001",
+      "title": "DevSecOps Control Baseline Standard",
+      "statement": "0.2 | Aligned with Platform Reference Architecture Levels; clarified artifact integrity evidence and added requirement identifiers | 3/4/5",
+      "normative_strength": "REQUIREMENT",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0002",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-002",
+      "title": "Aim and Purpose",
+      "statement": "The Control Baseline specifies the minimum mandatory lifecycle controls and required evidence artifacts that must be implemented for all software developed within the scope of the DevSecOps Policy.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0003",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-003",
+      "title": "Aim and Purpose",
+      "statement": "compliant with cybersecurity and safety requirements.",
+      "normative_strength": "REQUIREMENT",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0004",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-004",
+      "title": "The Chief Digitalisation Office",
+      "statement": "When a version is quoted, this version shall be used.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "duplicate",
+        "confidence": 1.0,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0002",
+            "similarity": 1.0
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0015",
+            "similarity": 0.4242
+          }
+        ],
+        "method": "deterministic_exact"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0005",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-005",
+      "title": "ISO/IEC 27001",
+      "statement": "These frameworks inform the definition of lifecycle security controls and software supply chain integrity requirements.",
+      "normative_strength": "REQUIREMENT",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0006",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-006",
+      "title": "Relationship to Platform Reference Architecture Levels",
+      "statement": "The DevSecOps Platform Reference Architecture defines the minimum platform capabilities required to implement, enforce, and evidence those controls.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3857,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0043",
+            "similarity": 0.6143
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0032",
+            "similarity": 0.5743
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0148",
+            "similarity": 0.5299
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.4965
+          },
+          {
+            "requirement_id": "RLC-ARCH-TPL-REQ-001-MIGRATION-P0052",
+            "similarity": 0.4963
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-007",
+      "title": "Relationship to Platform Reference Architecture Levels",
+      "statement": "The required platform level shall therefore be derived from the applicable Control Baseline level.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.8969,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.8969
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.479
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0038",
+            "similarity": 0.4286
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0044",
+            "similarity": 0.427
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0008",
+            "similarity": 0.4024
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0008",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-008",
+      "title": "Relationship to Platform Reference Architecture Levels",
+      "statement": "Control Baseline Level | Required Platform Level | Purpose of Alignment",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.1545,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0039",
+            "similarity": 0.8455
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0045",
+            "similarity": 0.5789
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.4756
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+            "similarity": 0.439
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.2981
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0009",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-009",
+      "title": "Control Objective",
+      "statement": "Ensure traceability between requirements and implemented software and the corresponding Testcases and Reports.",
+      "normative_strength": "REQUIREMENT",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4094,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0010",
+            "similarity": 0.5906
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": null,
+      "activation": null
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0010",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-010",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-001]All software components SHALL be traceable to defined system or software requirements and the corresponding Testcases and Reports.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4173,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0009",
+            "similarity": 0.5827
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.5112
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0011",
+            "similarity": 0.4698
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000001",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0011",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-011",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-002]All software source code SHALL be maintained in approved version control systems and changes SHALL be traceable to an identifiable author.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4632,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.5368
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0010",
+            "similarity": 0.5286
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.5214
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0010",
+            "similarity": 0.4564
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
+            "similarity": 0.3876
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000002",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0012",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-012",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-003]Direct modification of protected branches SHALL be prohibited.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3881,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.6119
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0031",
+            "similarity": 0.6104
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0019",
+            "similarity": 0.529
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
+            "similarity": 0.4964
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0022",
+            "similarity": 0.4906
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000003",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0013",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-013",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-004]Secure coding practices SHALL be applied and security-relevant coding errors SHALL be detected during development or testing.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.5319,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0018",
+            "similarity": 0.4681
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000004",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-014",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-005]All software dependencies SHALL be identifiable and documented.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2638,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0044",
+            "similarity": 0.7362
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.6832
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
+            "similarity": 0.6232
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.597
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0015",
+            "similarity": 0.5965
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000005",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0015",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-015",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-006]A Software Bill of Materials (SBOM) SHALL be generated for releasable artifacts.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4152,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.5848
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.5414
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0012",
+            "similarity": 0.4941
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.48
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.4564
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000006",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-016",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-007]Software builds SHALL be executed through controlled automated pipelines.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.1765,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0013",
+            "similarity": 0.8235
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.7381
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.6199
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
+            "similarity": 0.5803
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.5789
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000007",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-017",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-008]Build outputs SHALL be uniquely identifiable.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.1724,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.8276
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.6452
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.5812
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0047",
+            "similarity": 0.5739
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0043",
+            "similarity": 0.5674
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000008",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0018",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-018",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-009]Automated vulnerability scanning SHALL be performed during build or test stages.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3829,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0045",
+            "similarity": 0.6171
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.4868
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0013",
+            "similarity": 0.4681
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.4528
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.4238
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000009",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0019",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-019",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-010]Identified vulnerabilities SHALL be evaluated prior to release.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4214,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.5786
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
+            "similarity": 0.5714
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5672
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
+            "similarity": 0.5507
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.5422
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000010",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0020",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-020",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-011]Releasable software artifacts SHALL be protected against tampering by approved repository integrity controls and cryptographic integrity mechanisms such as checksums, digests, or signatures, as applicable to the required control baseline level.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000011",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-021",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-012]Artifacts SHALL be uniquely identifiable.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.1724,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
+            "similarity": 0.8276
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.6726
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
+            "similarity": 0.6043
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.597
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
+            "similarity": 0.5753
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000012",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0022",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-022",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-013]Deployment of software artifacts SHALL require authorized approval.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4101,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.5899
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5507
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
+            "similarity": 0.5465
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
+            "similarity": 0.5455
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.5375
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000013",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-023",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-014]Only approved artifacts SHALL be deployed.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3274,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.6726
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0022",
+            "similarity": 0.6043
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
+            "similarity": 0.6
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0012",
+            "similarity": 0.5821
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0039",
+            "similarity": 0.5581
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000014",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0024",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-024",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-015]DevSecOps pipelines SHALL generate machine-readable evidence artifacts for implemented controls.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2265,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0025",
+            "similarity": 0.7735
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0050",
+            "similarity": 0.6996
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.5486
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.381
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.3713
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000015",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0025",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-025",
+      "title": "Control Objective",
+      "statement": "[DSCB-L1-REQ-016]Operational environments SHALL maintain records of deployed software versions and relevant security events.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3261,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0028",
+            "similarity": 0.6739
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0049",
+            "similarity": 0.6389
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0038",
+            "similarity": 0.599
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0022",
+            "similarity": 0.4216
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.41
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000016",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-026",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-001]Development environments SHALL be centrally managed.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2951,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0047",
+            "similarity": 0.7049
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0027",
+            "similarity": 0.6746
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0043",
+            "similarity": 0.5811
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.5802
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.5649
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000017",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0027",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-027",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-002]Development environments SHALL comply with enterprise security configuration standards.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3728,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.6272
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.5542
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0038",
+            "similarity": 0.5537
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.5123
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0052",
+            "similarity": 0.4368
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000018",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0028",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-028",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-003]Access to DevSecOps platforms SHALL be controlled through centralized identity management",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3807,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0008",
+            "similarity": 0.6193
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.5698
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0034",
+            "similarity": 0.5283
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.5207
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.5181
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000019",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0029",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-029",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-004]Multi-factor authentication SHALL be enforced for privileged access.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4458,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.5542
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0039",
+            "similarity": 0.5419
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.5366
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.52
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0034",
+            "similarity": 0.5158
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000020",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-030",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-005]Software dependencies SHALL be retrieved from approved repositories.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2857,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0044",
+            "similarity": 0.7143
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.646
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.6364
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.6199
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
+            "similarity": 0.6145
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000021",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0031",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-031",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-006]Direct downloads from external sources SHALL NOT be permitted.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3377,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0012",
+            "similarity": 0.6623
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.5
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0039",
+            "similarity": 0.4966
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.4625
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.443
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000022",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-032",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-007]Software artifacts SHALL be cryptographically signed before release.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3757,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
+            "similarity": 0.6243
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.5904
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5899
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.5767
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.5731
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000023",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0033",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-033",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-008]Signing keys SHALL be protected and managed according to enterprise security policies.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3974,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0047",
+            "similarity": 0.6026
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0027",
+            "similarity": 0.5419
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
+            "similarity": 0.5236
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0039",
+            "similarity": 0.5087
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.4643
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000024",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0034",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-034",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-009]Infrastructure used for software deployment SHALL be defined through Infrastructure as Code.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4043,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.5957
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.5579
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0028",
+            "similarity": 0.5189
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0029",
+            "similarity": 0.5053
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.5026
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000025",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-035",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-010]Infrastructure definitions SHALL be maintained in version control.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3241,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.6759
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0015",
+            "similarity": 0.6357
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0034",
+            "similarity": 0.5957
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0019",
+            "similarity": 0.5912
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.561
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000026",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-036",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-011]DevSecOps pipelines SHALL enforce security gates.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3525,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0038",
+            "similarity": 0.6475
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.6107
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0027",
+            "similarity": 0.6024
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0024",
+            "similarity": 0.5714
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.5658
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000027",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0037",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-037",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-012]Releases SHALL NOT proceed when defined security thresholds are exceeded.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4211,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.5789
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0038",
+            "similarity": 0.5644
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000028",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0038",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-038",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-013]Operational systems SHALL generate security-relevant events.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3525,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.6475
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.589
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0028",
+            "similarity": 0.5839
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0025",
+            "similarity": 0.5685
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0027",
+            "similarity": 0.5424
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000029",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0039",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-039",
+      "title": "Control Objective",
+      "statement": "[DSCB-L2-REQ-014]Security events SHALL be forwarded to monitoring systems.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4194,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.5806
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0029",
+            "similarity": 0.5677
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.549
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.5468
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.5271
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000030",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-040",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-001]Software builds SHALL be reproducible using identical source code and build configuration.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3405,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.6595
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.5574
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
+            "similarity": 0.5538
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.5492
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0045",
+            "similarity": 0.4973
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000031",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-041",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-002]Build configurations SHALL be version controlled.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3241,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0035",
+            "similarity": 0.6759
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0015",
+            "similarity": 0.6607
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
+            "similarity": 0.6452
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0047",
+            "similarity": 0.6387
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.5789
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000032",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-042",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-003]Software builds SHALL be executed in isolated build environments.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2857,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.7143
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
+            "similarity": 0.6595
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0013",
+            "similarity": 0.6483
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0045",
+            "similarity": 0.6125
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.589
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000033",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0043",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-043",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-004]Build environments SHALL be recreated for each pipeline execution.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4324,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.5676
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
+            "similarity": 0.5674
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0045",
+            "similarity": 0.559
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0029",
+            "similarity": 0.5488
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.5379
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000034",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0044",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-044",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-005]Software dependencies SHALL include verifiable provenance information.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2883,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.7117
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.7024
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.5697
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
+            "similarity": 0.5371
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0045",
+            "similarity": 0.4727
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000035",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0045",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-045",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-006]Dependency provenance SHALL be recorded during the build process.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3943,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0018",
+            "similarity": 0.6057
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.5875
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0043",
+            "similarity": 0.559
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
+            "similarity": 0.4973
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0044",
+            "similarity": 0.4848
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000036",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0046",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-046",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-007]Software artifacts SHALL be signed using enterprise signing infrastructure.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3642,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0032",
+            "similarity": 0.6358
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
+            "similarity": 0.5744
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0044",
+            "similarity": 0.5486
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0022",
+            "similarity": 0.5465
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.5412
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000037",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0047",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-047",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-008]Signing keys SHALL be centrally managed.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2623,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0026",
+            "similarity": 0.7377
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.6218
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0033",
+            "similarity": 0.6154
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0017",
+            "similarity": 0.5913
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0021",
+            "similarity": 0.5586
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000038",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0048",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-048",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-009]Traceability SHALL exist between requirements, source code, verification Cases / Procedures and Test result, build artifacts, and deployed software.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3333,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.6667
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0040",
+            "similarity": 0.5038
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0049",
+            "similarity": 0.4382
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000039",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0049",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-049",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-010]Runtime environments SHALL verify the integrity of deployed software artifacts.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.3519,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0025",
+            "similarity": 0.6481
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0022",
+            "similarity": 0.4545
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0048",
+            "similarity": 0.4462
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0023",
+            "similarity": 0.4106
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0042",
+            "similarity": 0.3793
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000040",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0050",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-050",
+      "title": "Control Objective",
+      "statement": "[DSCB-L3-REQ-011]DevSecOps platforms SHALL generate machine-readable compliance evidence for lifecycle activities.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.2825,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0024",
+            "similarity": 0.7175
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0025",
+            "similarity": 0.6813
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0036",
+            "similarity": 0.4886
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000041",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0051",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-051",
+      "title": "Applicability",
+      "statement": "[DSCB-GOV-REQ-001]All programs SHALL implement the Level 1 Control Baseline.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4955,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0055",
+            "similarity": 0.5045
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0037",
+            "similarity": 0.5029
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0007",
+            "similarity": 0.4795
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000042",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0052",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-052",
+      "title": "Compliance Verification",
+      "statement": "[DSCB-GOV-REQ-002]Compliance with this Standard SHALL be verified through:",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "change",
+        "confidence": 0.8661,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0054",
+            "similarity": 0.8661
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0054",
+            "similarity": 0.5622
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0056",
+            "similarity": 0.5345
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0041",
+            "similarity": 0.5294
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0016",
+            "similarity": 0.5
+          }
+        ],
+        "method": "deterministic_similarity"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000043",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0053",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-053",
+      "title": "DevSecOps maturity assessments",
+      "statement": "[DSCB-GOV-REQ-003]Non-compliance requires an approved waiver.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 1.0,
+        "candidate_matches": [],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000044",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0054",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-054",
+      "title": "Deviations",
+      "statement": "[DSCB-GOV-REQ-004]Deviations from this Standard SHALL follow the waiver process defined in the DevSecOps Directive.",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4919,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0052",
+            "similarity": 0.5081
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0055",
+            "similarity": 0.4267
+          },
+          {
+            "requirement_id": "RLC-PRA-STD-REQ-001-MIGRATION-P0051",
+            "similarity": 0.2525
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000045",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    },
+    {
+      "proposal_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0055",
+      "source_requirement_id": "DSCB-STD-SRC-001-REQ-055",
+      "title": "Deviations",
+      "statement": "[DSCB-GOV-REQ-005]All deviations SHALL:",
+      "normative_strength": "MUST",
+      "domain": "devsecops",
+      "analysis": {
+        "suggested_classification": "new",
+        "confidence": 0.4862,
+        "candidate_matches": [
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0052",
+            "similarity": 0.5138
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0051",
+            "similarity": 0.5045
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0014",
+            "similarity": 0.487
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0030",
+            "similarity": 0.4333
+          },
+          {
+            "requirement_id": "RLC-DSCB-STD-REQ-001-MIGRATION-P0054",
+            "similarity": 0.4267
+          }
+        ],
+        "method": "no_catalog_match"
+      },
+      "decision": {
+        "disposition": "approve",
+        "classification": "new",
+        "target_requirement_id": null,
+        "decided_by": "joku",
+        "decision_role": "governance-owner",
+        "decided_at": "2026-10-09T18:53:50Z",
+        "decision_ref": "docs/governance/change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md",
+        "rationale": "Approved as part of the implemented-requirements-first DSCB wave in GCR-2026-145.",
+        "authorized_derivations": [
+          "controls",
+          "policies"
+        ],
+        "runtime_enforcement": "none"
+      },
+      "activation": {
+        "requirement_id": "GRQ-000046",
+        "revision": 1,
+        "effective_from": "2026-10-09",
+        "commit": "9326972f0e6e2ea714fd056082f62ea51cc0544e"
+      }
+    }
+  ]
+}

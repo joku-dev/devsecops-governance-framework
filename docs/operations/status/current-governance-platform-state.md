@@ -2,30 +2,30 @@
 
 ## Observation Scope
 
-Documentation observation: **4 October 2026**, source commit
-`e5e53d0f3ccb87bb2d36e94deba25abbb8929140`. This is a dated read-only status
-update, not a new compliance evaluation. Older October and September sections
-below retain their own source dates and are reference observations, not claims
-that every source is still current.
+Documentation observation: **9 October 2026**, source commit
+`cf3c0344f65d4946fc5a205a6235edc1917b437e`. This is a dated read-only status
+update, not a new compliance evaluation. Older sections retain their source
+dates and are reference observations, not claims that every source is current.
 
-## Live Readback, 4 October 2026
+## Live Readback, 9 October 2026
 
-Read-only GitHub observation at `2026-10-04T09:46Z`; mainline source commit
-`e5e53d0f3ccb87bb2d36e94deba25abbb8929140`.
+Read-only GitHub observation at `2026-10-09T07:41Z`; mainline source commit
+`cf3c0344f65d4946fc5a205a6235edc1917b437e` (PR #246 merge).
 
 | Area | Current observation | Interpretation |
 |---|---|---|
-| Main workflows | Governance CI [37192994398](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37192994398), CodeQL [37192994366](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37192994366), Self-Security [37192994383](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37192994383) and Repository SBOM [37192994387](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37192994387) succeeded on `e5e53d0`. | The SBOM was generated, validated and uploaded as `repository-sbom-e5e53d0f3ccb87bb2d36e94deba25abbb8929140`. The latest Docs publication [37191179026](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37191179026) stopped at the confidential-research guard because `experiments/state_binding/CONFIDENTIAL` is present; Pages publication did not occur. |
-| Repository SBOM fix | PRs [#206](https://github.com/joku-dev/devsecops-governance-framework/pull/206), [#207](https://github.com/joku-dev/devsecops-governance-framework/pull/207) and [#208](https://github.com/joku-dev/devsecops-governance-framework/pull/208) are merged. | #206 addressed the first download-host allowlist gap; the next run identified GitHub's Azure Blob host, and a later run exposed the generated SPDX root relationship. #207 and #208 corrected those cases. The successful run above confirms the end-to-end export on current `main`. |
-| PR #175 | Merged at `2026-10-04T08:47Z`; prepares v0.3.0 public-adoption assets. | This preparation PR did not publish a v0.3.0 release. The latest published release remains `v0.2.0-public-adoption`. |
-| PR #176 | Merged at `2026-10-04T09:08Z`; private state-bound authorization research is now in the private `main`. | The research remains experimental and does not establish operating acceptance, production authorization, novelty or patentability. Its `CONFIDENTIAL` marker prevents Docs publication. |
-| PR #205 | Open draft; base remains `701d7d0d20a461df43ae6667c3947188eb3a3bde`, behind current `main`; review is required. | Update the branch and rerun checks before considering review or merge. |
-| Main protection | Active Ruleset `22622881`: one required approval, CODEOWNER and last-push review, five required checks, no configured bypass; deletion and force-push are blocked. | Short-lived exceptions for PRs #175, #176, #206, #207 and #208 were restored after their merges; no temporary review relaxation remains active. |
-| GRS-002 waiver | The scoped waiver is tracked on `main`, approved, and effective from 4 October through 12 December 2026. | This records scoped risk acceptance; it does not change live branch protection or convert the report-only lifecycle pilot into enforcement. |
+| Main workflows | On `cf3c034`, Governance CI [37899276112](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37899276112), CodeQL [37899276000](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37899276000), Self-Security [37899276169](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37899276169), Consumer Lifecycle Guard [37899276129](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37899276129), Repository SBOM [37899276078](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37899276078) and Docs publication [37899276011](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37899276011) succeeded. | These runs validate repository workflows and publish the current docs. Self-Security job success means the assessment ran; it does not mean every criterion passed. A separate `workflow_run` Consumer Lifecycle Guard event [37899621930](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/37899621930) was skipped by its event filter and is not a failed main push check. |
+| Accepted ha-CPsWMS results | The latest accepted DevSecOps result is run [36997125273](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997125273), `pass` (16/16 applicable controls) on commit `5c3b5cb`; architecture is run [36997124090](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997124090), `PASS` (4/4 gates, zero findings) on the same commit. | The domain indexes were generated on 2 October. GitHub Actions lookup found no newer ha-CPsWMS `main` producer runs through this observation. These are the latest accepted results, not fresh 9 October evaluations. |
+| ha-CPsWMS typed evidence | Latest accepted vulnerability evidence is run [36997124065](https://github.com/joku-dev/ha-CPsWMS/actions/runs/36997124065), captured 2 October; trust is `provenance_verified`, enforcement `report_only`, with 3,269 observations and maximum severity `critical`. | This is a historical scan snapshot. It does not establish current image contents, accepted risk, or production approval. No newer producer run was found. |
+| Separate demo-consumer pilot | Its lifecycle projection remains `finding_state: closed`, 3 receipts and 4 actions, as of `2026-10-03T10:58:04Z`. The latest observed consumer main CI is [37119254018](https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/37119254018), 3 October. | Successful CI is not a new accepted lifecycle receipt or a new current governance result. The projection remains limited to `governance-framework-demo-consumer` / `operation_readiness`, manual and report-only. |
+| GRS-002 lifecycle pilot | The accepted repository pilot projection remains as of `2026-09-13T16:50:22Z`, with two receipts, no finding, no actions, and report-only enforcement. | This scope is separate from the demo-consumer lifecycle projection. Documentation readback does not refresh the pilot evidence. |
+| Main protection | Live Ruleset `22622881` is active on `main`, requires one approval, CODEOWNER and last-push approval, resolved review threads and five required checks; force-push and deletion are blocked; `bypass_actors` is empty. | The live GitHub ruleset was read back on 9 October. No temporary bypass is active. |
+| Open PRs | #244 is open against `main`, head `e57f67e`, base recorded as `411c038`, two commits ahead and six commits behind current main. #248 is an open draft documentation PR; #243 is a draft; #238 and #211 are also open. | PR #244 has passing reported checks on its existing head but needs synchronization and fresh checks; it still requires review. The current open-PR list is not approval to merge any PR. |
 
 This readback updates the older pending-work summary below. It does not refresh
-the dated ha-CPsWMS producer evidence, the 3 October consumer-lifecycle
-projection, or the separate Self-Security assessment artifact.
+consumer evidence or lifecycle projections. Read the accepted indexes and
+producer workflow records together; successful repository CI does not substitute
+for a new consumer evaluation or intake.
 
 ## Historical 3 October Source Observation And Authoritative Sources
 

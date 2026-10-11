@@ -7,6 +7,11 @@
     "schema_version": {
       "type": "string"
     },
+    "requirement_identifier_origin_default": {
+      "type": "string",
+      "enum": ["author_provided", "repository_assigned", "unverified"],
+      "description": "Default provenance for requirement identifiers in normalized source extracts. Only author_provided identifiers receive P1."
+    },
     "documents": {
       "type": "array",
       "items": {
@@ -50,6 +55,11 @@
           },
           "version": {
             "type": "string"
+          },
+          "requirement_identifier_origin": {
+            "type": "string",
+            "enum": ["author_provided", "repository_assigned", "unverified"],
+            "description": "Provenance of requirement identifiers in this source's normalized extract; overrides the register default."
           },
           "intake_date": {
             "type": "string",

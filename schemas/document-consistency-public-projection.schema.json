@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "required": [
     "projection_version", "projection_type", "audience", "review_id",
-    "overall_status", "freshness", "scope", "execution", "sections",
+    "overall_status", "freshness", "scope", "semantic_comparison_coverage", "coverage", "execution", "sections",
     "documents", "findings", "limitations"
   ],
   "properties": {
@@ -16,12 +16,15 @@
     "overall_status": {"enum": ["synthetic_only", "not_run", "partial", "provider_failed"]},
     "freshness": {
       "type": "object", "additionalProperties": false,
-      "required": ["status", "reviewed_commit", "manifest_matches", "sources_match"],
+      "required": ["status", "reviewed_commit", "manifest_matches", "sources_match", "source_register_matches", "source_register_sha256", "source_population_sha256"],
       "properties": {
         "status": {"enum": ["current", "stale", "unknown"]},
         "reviewed_commit": {"type": ["string", "null"]},
         "manifest_matches": {"type": ["boolean", "null"]},
-        "sources_match": {"type": ["boolean", "null"]}
+        "sources_match": {"type": ["boolean", "null"]},
+        "source_register_matches": {"type": ["boolean", "null"]},
+        "source_register_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$|^$"},
+        "source_population_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$|^$"}
       }
     },
     "scope": {
@@ -30,6 +33,42 @@
       "properties": {
         "source_count": {"type": "integer", "minimum": 0},
         "source_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }
+    },
+    "semantic_comparison_coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assessed_count", "population_count", "status"],
+      "properties": {
+        "assessed_count": {"type": ["integer", "null"], "minimum": 0},
+        "population_count": {"type": ["integer", "null"], "minimum": 0},
+        "status": {"enum": ["targeted_non_exhaustive", "not_measured"]}
+      }
+    },
+    "coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "source_population_count", "in_scope_source_count", "omitted_source_count",
+        "source_integrity_verified_count", "source_scope_status", "section_count",
+        "structurally_inventoried_section_count", "semantically_assessed_section_count",
+        "semantic_section_coverage_status", "requirement_count",
+        "structurally_inventoried_requirement_count", "semantically_assessed_requirement_count",
+        "semantic_item_coverage_status", "semantic_review_status"
+      ],
+      "properties": {
+        "source_population_count": {"type": "integer", "minimum": 0},
+        "in_scope_source_count": {"type": "integer", "minimum": 0},
+        "omitted_source_count": {"type": "integer", "minimum": 0},
+        "source_integrity_verified_count": {"type": "integer", "minimum": 0},
+        "source_scope_status": {"enum": ["complete", "partial"]},
+        "section_count": {"type": "integer", "minimum": 0},
+        "structurally_inventoried_section_count": {"type": "integer", "minimum": 0},
+        "semantically_assessed_section_count": {"type": ["integer", "null"], "minimum": 0},
+        "semantic_section_coverage_status": {"enum": ["not_run", "not_measured"]},
+        "requirement_count": {"type": "integer", "minimum": 0},
+        "structurally_inventoried_requirement_count": {"type": "integer", "minimum": 0},
+        "semantically_assessed_requirement_count": {"type": ["integer", "null"], "minimum": 0},
+        "semantic_item_coverage_status": {"enum": ["not_run", "not_measured"]},
+        "semantic_review_status": {"enum": ["synthetic_only", "not_run", "partial", "provider_failed"]}
       }
     },
     "execution": {

@@ -39,6 +39,8 @@ Trivy reported `max_severity: unknown`, exceeding the configured `high` maximum.
 
 The pilot repositories are private and were created under the same `joku-dev` owner. GitHub API reads for private-repository branch protection and rulesets returned HTTP 403 under the current plan. An import push to each repository's `main` succeeded, but this does not establish the absence of organization-level rules or bypass conditions. Accordingly, the `direct_push_allowed: true` facts were producer-declared and are consistent with the observed push; the central intake's `branch_protected: false` is **not an authoritative protection measurement**, because its helper maps API errors to `false`.
 
+The four `governance-eval-*` repositories are separate private repositories, not GitHub forks of their upstream projects (`fork=false`, no parent repository in GitHub metadata). They contain imported, pinned source snapshots for the pilot.
+
 The two Wave 2 `.governance/repository-facts.json` files also say that branch rules were queried before import. That statement is inaccurate. A corrected measurement-source sentence was prepared in the isolated local clones but could not be committed or pushed because the configured SSH signing agent was unavailable in the sandbox. The remote facts files were left untouched. If these pilot repositories are retained or retested, correct those files and rerun before relying on their repository-facts record.
 
 ### Security scans and produced artifacts
@@ -90,3 +92,55 @@ The Gson repository also ran workflows copied from the upstream source. In initi
 - No intake snapshot was copied into official `status/`, generated indexes, or the viewer. The official portfolio and ha-CPsWMS status are unchanged.
 - Keep all four consumers report-only. Do not publish the v1.2.1 release tag based solely on this test result.
 - Before another iteration: correct Wave 2 repository-facts measurement text; determine a supported way to measure private branch/ruleset state; resolve the go-httpbin finding; make the candidate baseline resolve through released authoritative metadata; and obtain an independent reviewer/operator if the goal is to validate organizational independence.
+
+## Follow-up verification (2026-10-06)
+
+The central DevSecOps and architecture GitHub Actions intake helpers are
+updated in [PR #217](https://github.com/joku-dev/devsecops-governance-framework/pull/217)
+so only a successful, well-formed branch API response can produce a boolean
+`repository.branch_protected` value. API failures now produce `null` and a
+separate `repository.branch_protection_lookup.status: "unavailable"`; HTTP
+status or error type is recorded without the error message. Existing
+append-only snapshots remain historical records and are not rewritten. The
+pilot's previous `false` values must therefore continue to be read as unknown,
+not as confirmed unprotected branches.
+
+The remediation candidates were first verified in isolated working copies,
+then submitted to the separate private pilot repositories for review:
+[cJSON PR #1](https://github.com/joku-dev/governance-eval-cjson/pull/1),
+[go-httpbin PR #2](https://github.com/joku-dev/governance-eval-go-httpbin/pull/2),
+and [Gson PR #3](https://github.com/joku-dev/governance-eval-gson/pull/3).
+All three point to the published signed tag, and none changes its upstream
+project.
+
+Updating the nested go-httpbin example module from `golang.org/x/sys` v0.41.0
+to v0.44.0 removed the reported CVE-2026-39824 finding. In fresh tagged run
+[37467832720](https://github.com/joku-dev/governance-eval-go-httpbin/actions/runs/37467832720),
+the consumer build, race tests, SBOM, Trivy scan, and report-only baseline job
+succeeded; the scan had zero findings. Its governance decision remains `fail`
+because the producer declares `repository.direct_push_allowed: true`; it does
+not block the PR. A temporary local intake assessment reached
+`provenance_verified`. An earlier retry selected a stale same-name artifact
+and failed to find its run input; the fresh single-attempt run completed
+correctly.
+
+For Gson, dependency management scoped to the benchmark-only `metrics` module
+selected Guava 33.7.0-jre and Okio 1.17.6, removing CVE-2023-2976,
+CVE-2020-8908, and CVE-2023-3635. Remote run
+[37467911213](https://github.com/joku-dev/governance-eval-gson/actions/runs/37467911213)
+completed its Maven build, consumer evidence, and report-only gate; the remote
+Trivy scan had zero findings. Its governance decision also remains `fail`
+because `repository.direct_push_allowed` is `true`. The successful branch
+endpoint lookup reports `protected: false`; detailed ruleset access remains
+unavailable. A temporary local intake assessment reached
+`provenance_verified`.
+
+cJSON run [37467713254](https://github.com/joku-dev/governance-eval-cjson/actions/runs/37467713254)
+also completed its consumer build and report-only gate with zero Trivy
+findings. Its temporary local intake assessment reached `provenance_verified`.
+
+GitHub's authoritative `referenced_workflows` metadata for all three runs
+reports `refs/tags/l1-baseline-v1.2.1` and its signed tag object. The branch
+API reported `protected: false` for these run snapshots; detailed ruleset
+queries remain unavailable. All three consumer PRs remain unmerged. No run
+was added to official status indexes or the viewer.

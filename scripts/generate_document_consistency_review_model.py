@@ -11,6 +11,12 @@ import re
 import sys
 
 from jsonschema import Draft202012Validator
+from lib.source_document_text import (
+    ExtractedSourceDocument,
+    SourceDocumentExtractionError,
+    extract_source_document,
+    line_for_markdown_parser,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,13 +57,20 @@ def validate_schema(payload: dict, schema_path: Path, label: str) -> None:
         raise InventoryError(f"{label} schema error at {location}: {error.message}")
 
 
-def extract_identifiers(source_id: str, source_path: Path) -> list[dict]:
+def extract_identifiers(
+    source_id: str,
+    source_path: Path,
+    document: ExtractedSourceDocument | None = None,
+) -> list[dict]:
     identifiers = []
-    for line_number, line in enumerate(source_path.read_text(encoding="utf-8").splitlines(), 1):
+    document = document or extract_source_document(source_path)
+    for source_line in document.lines:
+        line_number = source_line.number
+        line = line_for_markdown_parser(source_line)
         match = ID_CELL.match(line)
         if not match:
             continue
-        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        cells = [cell.replace("\\|", "|").strip() for cell in re.split(r"(?<!\\)\|", line.strip().strip("|"))]
         row_id = match.group(1)
         for identifier in sorted(set(STABLE_ID.findall(" | ".join(cells[1:]))) - {row_id}):
             kind = "declared" if identifier.split("-", 1)[0] == source_id.split("-", 1)[0] else "reference"
@@ -65,25 +78,34 @@ def extract_identifiers(source_id: str, source_path: Path) -> list[dict]:
     return identifiers
 
 
-def extract_requirement_rows(source_id: str, source_path: Path) -> tuple[list[dict], list[dict]]:
-    """Extract only stable row IDs and explicit strength labels, never source prose."""
+def extract_requirement_rows(
+    source_id: str,
+    source_path: Path,
+    document: ExtractedSourceDocument | None = None,
+) -> tuple[list[dict], list[dict]]:
+    """Extract stable row IDs, strength, and opaque section references without source prose."""
     requirements = []
     references = []
-    for line_number, line in enumerate(source_path.read_text(encoding="utf-8").splitlines(), 1):
+    document = document or extract_source_document(source_path)
+    for source_line in document.lines:
+        line_number = source_line.number
+        line = line_for_markdown_parser(source_line)
         match = ID_CELL.match(line)
         if not match:
             continue
-        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        if len(cells) < 2 or cells[1] not in {"MUST", "SHALL", "REQUIREMENT"}:
+        cells = [cell.replace("\\|", "|").strip() for cell in re.split(r"(?<!\\)\|", line.strip().strip("|"))]
+        if len(cells) < 4 or cells[1] not in {"MUST", "SHALL", "SHOULD", "REQUIREMENT"}:
             continue
         requirement_id = match.group(1)
         mandatory = cells[1] in {"MUST", "SHALL"}
+        section_ref = "SEC-" + hashlib.sha256(f"{source_id}\0{cells[2]}".encode("utf-8")).hexdigest()[:12].upper()
         requirements.append(
             {
                 "id": requirement_id,
                 "source_id": source_id,
                 "strength": cells[1],
                 "mandatory": mandatory,
+                "section_ref": section_ref,
                 "owner_role_id": None,
                 "verification_artifact_id": None,
                 "open_gap": (
@@ -93,7 +115,7 @@ def extract_requirement_rows(source_id: str, source_path: Path) -> tuple[list[di
                 ),
             }
         )
-        for target_id in sorted(set(STABLE_ID.findall(" | ".join(cells[2:]))) - {requirement_id}):
+        for target_id in sorted(set(STABLE_ID.findall(" | ".join(cells[3:]))) - {requirement_id}):
             references.append(
                 {
                     "type": "references",
@@ -119,6 +141,17 @@ def generate_model(root: Path, manifest: dict) -> dict:
             raise InventoryError(f"source path escapes governed source directory: {item['id']}") from exc
         if not path.is_file() or sha256_file(path) != item["content_sha256"]:
             raise InventoryError(f"source bytes do not match manifest: {item['id']}")
+        extraction_error = None
+        try:
+            extracted_document = extract_source_document(path)
+        except SourceDocumentExtractionError as exc:
+            extracted_document = None
+            extraction_error = str(exc)
+        extraction_warnings = (
+            list(extracted_document.warnings)
+            if extracted_document
+            else [f"source_document_extraction_blocked:{extraction_error}"]
+        )
         sources.append(
             {
                 "id": item["id"],
@@ -126,10 +159,20 @@ def generate_model(root: Path, manifest: dict) -> dict:
                 "version": item["version"],
                 "source_path": item["source_path"],
                 "sha256": item["content_sha256"],
-                "identifiers": extract_identifiers(item["id"], path),
+                "identifiers": extract_identifiers(item["id"], path, extracted_document)
+                if extracted_document
+                else [],
+                "extraction_format": extracted_document.format
+                if extracted_document
+                else path.suffix.lower().lstrip("."),
+                "extraction_warnings": extraction_warnings,
             }
         )
-        extracted_requirements, extracted_references = extract_requirement_rows(item["id"], path)
+        if extracted_document is None:
+            continue
+        extracted_requirements, extracted_references = extract_requirement_rows(
+            item["id"], path, extracted_document
+        )
         requirements.extend(extracted_requirements)
         relationships.extend(extracted_references)
 

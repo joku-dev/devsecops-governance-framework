@@ -2,8 +2,8 @@
 
 ## Summary
 
-- Register the private standards-requirements catalog as a public-neutral
-  candidate source placeholder.
+- Register the private standards-requirements catalog as a candidate source
+  intake record.
 - Add a non-normative harmonized requirements candidate and source-ID mapping.
 - Add a non-normative L1-L3/GOV maturity assignment for all harmonized
   requirements.
@@ -24,7 +24,7 @@ GCR-2026-047
 |---|---|
 | Artifact | CISO standards requirements catalog and harmonized model |
 | Type | candidate source plus review-only governance model |
-| Public source path | `docs/governance/source-documents/CISO-REQ-SRC-001.public.md` |
+| Candidate intake record | `docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md` |
 | Review packet | `docs/governance/review-packets/CISO-REQ-SRC-001/README.md` |
 | Private workbook | local-only under `.local/governance-sources/CISO-REQ-SRC-001/` and excluded from Git |
 | Owner | Governance Owner, subject to CISO confirmation |

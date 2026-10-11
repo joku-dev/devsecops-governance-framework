@@ -73,6 +73,10 @@ with sync_playwright() as p:
     go('#document-review')
     assert 'Nicht ausgeführt' in page.locator('main').inner_text()
     assert 'Kein pauschaler Konsistenznachweis' in page.locator('main').inner_text()
+    assert 'Nächster offener Prüfschritt: Semantischer Review: Nicht ausgeführt' in page.locator('main').inner_text()
+    assert page.locator('.dcr-process li').count()==4
+    assert page.locator('a[href*="document-consistency-review-operations.md"]').count()==1
+    assert page.locator('form, input, select, textarea, button').count()==0
     assert page.locator('main').get_by_text('DSCB-STD-REQ-001').count()==1
     assert page.locator('main').get_by_text('PRA-STD-REQ-001').count()==1
     assert 'keine Konflikte bestehen' in page.locator('main').inner_text()

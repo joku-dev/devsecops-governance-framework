@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Authorized Source Baseline Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "baseline_id", "status", "created_at", "authorized_source_set_sha256", "sources", "requirement_lifecycle_review", "consistency_review", "decision", "supersedes"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "baseline_id": {"type": "string", "pattern": "^source-baseline-[0-9]{8}$"},
+    "status": {"enum": ["candidate", "approved", "superseded"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "authorized_source_set_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "sources": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["source_id", "version", "path", "status", "sha256"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "version": {"type": ["string", "null"]},
+          "path": {"type": "string"},
+          "status": {"const": "approved"},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "requirement_lifecycle_review": {"type": "object", "additionalProperties": false, "required": ["record", "status"], "properties": {"record": {"type": "string"}, "status": {"const": "complete"}}},
+    "consistency_review": {"type": "object", "additionalProperties": false, "required": ["review_id", "status", "scope_sha256", "unresolved_findings"], "properties": {"review_id": {"type": "string"}, "status": {"const": "complete"}, "scope_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "unresolved_findings": {"const": 0}}},
+    "decision": {"type": "object", "additionalProperties": false, "required": ["status", "decided_by", "decided_at", "record"], "properties": {"status": {"enum": ["pending", "approved", "rejected"]}, "decided_by": {"type": ["string", "null"]}, "decided_at": {"type": ["string", "null"], "format": "date-time"}, "record": {"type": ["string", "null"]}}},
+    "supersedes": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"const": "approved"}}}, "then": {"properties": {"decision": {"properties": {"status": {"const": "approved"}}}}}},
+    {"if": {"properties": {"decision": {"properties": {"status": {"const": "approved"}}}}, "required": ["decision"]}, "then": {"properties": {"status": {"enum": ["approved", "superseded"]}}}}
+  ]
+}

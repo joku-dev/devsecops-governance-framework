@@ -107,7 +107,10 @@ def document_profile(document: dict) -> dict:
 
 
 def participates_in_replacement_assessment(document: dict) -> bool:
-    return document.get("version") != "requirements-only-sanitized"
+    # The source repository now retains registered sanitized requirement
+    # extracts instead of placeholder full-document records. Compare those
+    # bounded extracts as review evidence; the output remains advisory.
+    return True
 
 
 def overlap_ratio(left: set[str], right: set[str]) -> float:
@@ -118,9 +121,13 @@ def overlap_ratio(left: set[str], right: set[str]) -> float:
 
 def classify(candidate: dict, target: dict, title_overlap: float, content_overlap: float, shared_headings: list[str]) -> str:
     registered_assessment = candidate.get("registered_similarity_assessment", {}).get("assessment")
+    registered_targets = {
+        item.get("source_id")
+        for item in candidate.get("registered_similarity_assessment", {}).get("compared_to", [])
+    }
     if target["id"] in candidate.get("registered_candidate_replacement_for", []):
         return "registered_replacement_candidate"
-    if registered_assessment == "replacement_candidate":
+    if registered_assessment == "replacement_candidate" and target["id"] in registered_targets:
         return "registered_replacement_candidate"
     if title_overlap >= 0.75 and content_overlap >= 0.25:
         return "replacement_candidate"

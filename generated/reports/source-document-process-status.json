@@ -1,0 +1,254 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-10T12:23:28Z",
+  "report_type": "source_document_process_status",
+  "source_of_truth": {
+    "register": "model/documents/source-document-register.yaml",
+    "requirement_authority_ledger": "model/requirements/requirement-authority-ledger.yaml",
+    "consistency_projection": "status/document-consistency-public-projection.json",
+    "artifact_register": "model/requirements/requirement-to-artifact-register.yaml"
+  },
+  "summary": {
+    "registered_sources": 15,
+    "authorized_sources": 6,
+    "source_status_counts": {
+      "approved": 6,
+      "candidate": 6,
+      "review": 3
+    },
+    "requirement_identification_counts": {
+      "author_identified": 0,
+      "extraction_row_id": 2138,
+      "inferred_candidate": 237
+    },
+    "authorized_source_requirement_identification_counts": {
+      "author_identified": 0,
+      "extraction_row_id": 867,
+      "inferred_candidate": 0
+    },
+    "lifecycle": {
+      "activated": 54,
+      "approved_sources_without_cases": 0,
+      "approved_sources_without_ledger_entry": 0,
+      "authority_mode:migration_in_progress": 6,
+      "decided": 84,
+      "proposals": 867,
+      "sources_with_cases": 6,
+      "undecided": 783,
+      "unresolved": 783
+    },
+    "inferred_candidate_count": 237,
+    "consistency_findings_open": 3,
+    "effective_requirement_artifact_links": 19,
+    "baseline_status": "blocked"
+  },
+  "phases": [
+    {
+      "id": "source_intake",
+      "title": "Source Documents aufnehmen und registrieren",
+      "status": "complete",
+      "counts": {
+        "registered": 15,
+        "approved": 6,
+        "missing_files": 0,
+        "unregistered_files": 0
+      },
+      "next_action": "Eingaben sind registriert; Quellenstatus separat prüfen."
+    },
+    {
+      "id": "extract_and_classify",
+      "title": "Dokumente extrahieren und Anforderungen klassifizieren",
+      "status": "partial",
+      "counts": {
+        "scanned": 14,
+        "withheld": 1,
+        "extraction_blocked": 0
+      },
+      "next_action": "Extraktionslücken oder zurückgehaltene Quellen bearbeiten."
+    },
+    {
+      "id": "p1_requirement_lifecycle",
+      "title": "P1: gekennzeichnete Anforderungen und Status prüfen",
+      "status": "blocked",
+      "counts": {
+        "confirmed_author_ids": 0,
+        "unverified_extraction_ids": 867,
+        "decided": 84,
+        "undecided": 783,
+        "activated": 54
+      },
+      "next_action": "Kennungsherkunft belegen und offene Requirement-Entscheidungen bearbeiten."
+    },
+    {
+      "id": "p2_inferred_review",
+      "title": "P2: Inferred Candidates prüfen",
+      "status": "review_required",
+      "counts": {
+        "inferred_candidates": 237
+      },
+      "next_action": "Kandidaten gegen die Quelldokumente und P1-Anforderungen prüfen."
+    },
+    {
+      "id": "consistency_review",
+      "title": "Quellen auf Widersprüche und Konsistenz prüfen",
+      "status": "partial",
+      "counts": {
+        "review_scope_sources": 10,
+        "proposed_or_unresolved_findings": 3,
+        "semantically_assessed_requirements": null
+      },
+      "next_action": "Vollständigen, frischen Review über exakt die autorisierte Quellenmenge durchführen."
+    },
+    {
+      "id": "decision_proposals",
+      "title": "Entscheidungsvorlagen bearbeiten",
+      "status": "decision_required",
+      "counts": {
+        "consistency_findings_open": 3,
+        "requirements_undecided": 783
+      },
+      "next_action": "Befunde und Requirement-Vorschläge durch die zuständigen Rollen entscheiden lassen."
+    },
+    {
+      "id": "source_baseline",
+      "title": "Widerspruchsfreie Quellenbaseline freigeben",
+      "status": "blocked",
+      "counts": {
+        "authorized_sources": 6,
+        "blocking_reasons": 5
+      },
+      "next_action": "requirement identifier origin remains unverified for extracted row IDs"
+    },
+    {
+      "id": "governance_implementation",
+      "title": "Freigegebene Anforderungen auf Governance-Artefakte abbilden",
+      "status": "in_progress",
+      "counts": {
+        "effective_requirement_artifact_links": 19,
+        "all_links": 19
+      },
+      "next_action": "Nur durch menschliche Entscheidung autorisierte Anforderungen in Controls, Plattformmodelle und OPA ableiten."
+    }
+  ],
+  "source_extraction": {
+    "scanned_sources": 14,
+    "skipped_sources": [
+      {
+        "source_id": "CISO-REQ-SRC-001",
+        "source_path": "docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md",
+        "reason": "Intake metadata only; underlying source text is withheld."
+      }
+    ],
+    "extraction_errors": [],
+    "missing_source_ids": [],
+    "unregistered_source_paths": []
+  },
+  "consistency_review": {
+    "review_id": "dcr-codex-once-2026-10-09",
+    "status": "partial",
+    "freshness": "current",
+    "scope_source_count": 10,
+    "scope_source_ids_available": false,
+    "semantic_review_status": "partial",
+    "semantic_item_coverage_status": "not_measured",
+    "findings": [
+      {
+        "id": "DCR-SEM-001",
+        "category": "conflict",
+        "disposition": "unconfirmed"
+      },
+      {
+        "id": "DCR-SEM-002",
+        "category": "conflict",
+        "disposition": "unconfirmed"
+      },
+      {
+        "id": "DCR-SEM-003",
+        "category": "conflict",
+        "disposition": "unconfirmed"
+      }
+    ],
+    "rollout_readiness": "limited_pilot_ready",
+    "production_rollout": "pending"
+  },
+  "requirement_lifecycle": {
+    "summary": {
+      "activated": 54,
+      "approved_sources_without_cases": 0,
+      "approved_sources_without_ledger_entry": 0,
+      "authority_mode:migration_in_progress": 6,
+      "decided": 84,
+      "proposals": 867,
+      "sources_with_cases": 6,
+      "undecided": 783,
+      "unresolved": 783
+    },
+    "missing_case_source_ids": [],
+    "case_errors": []
+  },
+  "authorized_source_baseline": {
+    "status": "blocked",
+    "authorized_source_count": 6,
+    "authorized_source_set_sha256": "5b787f53777ac1a426f663bf85f5636a615e588bd5575d3d78fe25dea9377eef",
+    "sources": [
+      {
+        "source_id": "ARCH-EA-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "ce3cb3ad8cf00c45b5a3754f328cecb27658a7f5e509511324e3cf6af1fc52d3"
+      },
+      {
+        "source_id": "ARCH-PA-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "45b9a581dc62dbf6db8686dd0936811edc3b98f0bd6db08bfa2ee326ebf4101c"
+      },
+      {
+        "source_id": "ARCH-SA-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "2ed7ea9a8e4a9e38d8ea051868558453e6001f7f72fd0c4c53b9362be8d45b1d"
+      },
+      {
+        "source_id": "ARCH-TPL-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "4ecbb9e7343d816e7dc6448758cea5e09dd1d49079885738a2766f69b912c038"
+      },
+      {
+        "source_id": "DSCB-STD-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "4fdc3922607102df72af15e88725b24726d4d13d06e1d1b0ffc5dbb2b0393e84"
+      },
+      {
+        "source_id": "PRA-STD-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/PRA-STD-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "730f3a1f5875ec76f3d032c9f620630fc68846d4722c28803b16c8ab50902d3b"
+      }
+    ],
+    "blocking_reasons": [
+      "requirement identifier origin remains unverified for extracted row IDs",
+      "approved-source requirement lifecycle decisions remain open",
+      "Document Consistency Review scope does not expose an exact approved-source set",
+      "semantic consistency review is not exhaustive for the approved source set",
+      "proposed or unresolved consistency findings remain"
+    ],
+    "consistency_review_id": "dcr-codex-once-2026-10-09",
+    "consistency_review_status": "partial",
+    "unresolved_finding_count": 3,
+    "final_source_baseline_approval": "not_recorded"
+  },
+  "limitations": [
+    "This report joins existing governed records and does not make human source, requirement, conflict or release decisions.",
+    "A report-only consistency result is not proof that no semantic contradiction exists.",
+    "The authorized-source baseline remains blocked until source provenance, requirement lifecycle, exhaustive consistency review and human decision conditions are met."
+  ]
+}

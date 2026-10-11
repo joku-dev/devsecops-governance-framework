@@ -44,8 +44,8 @@ class SourceDocumentIntakeReviewBriefTests(unittest.TestCase):
         }
         self.assertIn("ARCH-SDD-REQ-001", briefs_by_source)
         self.assertIn("CISO-REQ-SRC-001", briefs_by_source)
-        self.assertNotIn("ARCH-GOV-REQ-001", briefs_by_source)
-        replacement_brief = briefs_by_source["ARCH-GOV-SRC-002"]
+        self.assertIn("ARCH-GOV-REQ-001", briefs_by_source)
+        replacement_brief = briefs_by_source["ARCH-GOV-REQ-001"]
         self.assertEqual(replacement_brief["prepared_by_agent"], "source-document-intake")
         self.assertEqual(replacement_brief["autonomous_decision"], False)
         self.assertEqual(replacement_brief["review_focus"], "replacement decision")
@@ -54,6 +54,9 @@ class SourceDocumentIntakeReviewBriefTests(unittest.TestCase):
         self.assertIn("replacement_confirmed", option_ids)
         self.assertIn("related_source_keep_candidate", option_ids)
         self.assertIn("duplicate_or_not_relevant_retire", option_ids)
+
+        policy_replacement_brief = briefs_by_source["DEVSECOPS-POL-CAND-002"]
+        self.assertEqual(policy_replacement_brief["review_focus"], "replacement decision")
 
         related_brief = briefs_by_source["CISO-REQ-SRC-001"]
         self.assertEqual(related_brief["review_focus"], "coexistence and derivation scope")

@@ -32,6 +32,8 @@ packages or another governed repository area.
 
 ## Lifecycle Overview
 
+Requirement-level changes also follow `docs/operations/processes/hybrid-requirement-lifecycle.md`. Source Document Intake decides whether a document may enter governed analysis; the Requirement Authority Ledger and lifecycle cases then control the separate transition of each requirement into the canonical Git catalog.
+
 | Step | Purpose | Output |
 |---|---|---|
 | 0. Artifact classification | Classify any new artifact before it enters a governed area | Artifact intake classification in the change request |

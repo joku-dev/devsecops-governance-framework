@@ -5,8 +5,8 @@ title: Governance Repository Self-Security Profile
 status: active_report_only
 repository_id: joku-dev/devsecops-governance-framework
 source_documents:
-  - docs/governance/source-documents/DSCB-STD-SRC-001.public.md
-  - docs/governance/source-documents/PRA-STD-SRC-001.public.md
+  - docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md
+  - docs/governance/source-documents/PRA-STD-SRC-001.requirements.md
 owner: governance-owners
 enforcement: report_only
 enforcement_change_authorized: false

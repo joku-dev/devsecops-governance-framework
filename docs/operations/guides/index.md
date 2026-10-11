@@ -18,7 +18,8 @@ behavior by themselves.
 
 | Guide | Purpose |
 |---|---|
-| [Detailed Function Catalog](repository-function-catalog.md) | German catalog of twenty functional areas, processing steps, implementation files and limitations. |
+| [Detailed Function Catalog](repository-function-catalog.md) | German catalog of twenty-two functional areas, processing steps, implementation files and limitations. |
+| [Documentation after merge](documentation-after-merge.md) | Post-merge documentation proposal, validation, draft PR and human review. |
 | `docs/operations/guides/how-to-use-this-repo.md` | General orientation for using the governance repository. |
 | `docs/operations/guides/beginner-step-by-step-operations-guide.md` | Beginner-friendly operational walkthrough. |
 | `docs/operations/guides/how-to-add-a-new-artifact.md` | Practical step-by-step guide for adding a new artifact safely. |

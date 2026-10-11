@@ -1,6 +1,6 @@
 # Aktueller GitHub-Lifecycle-Pilot
 
-Dokumentationsabgleich: **3. Oktober 2026**, Quellstand `46b33429`.
+Dokumentationsabgleich: **9. Oktober 2026**, Quellstand `cf3c0344`.
 Die folgende GRS-002-Aktivierungsbeschreibung hält den historischen Stand vom
 13. September (`8df643db37ec4d6da7196b94aaa77b5e0e0844d8`) fest.
 Diese Seite beschreibt den veröffentlichten Pilotbetrieb. Der aktuelle
@@ -9,11 +9,12 @@ wird durch `generated/reports/governance-lifecycle-live.md` erläutert.
 
 ## Aktueller separater Consumer-Pilot
 
-Die übernommene Projektion `status/governance-consumer-lifecycle.json` weist zum
+Die bei diesem Dokumentationsabgleich erneut geprüfte Projektion
+`status/governance-consumer-lifecycle.json` weist weiterhin zum
 `2026-10-03T10:58:04Z` eine wirksame Betriebsabnahme und **`finding_state: closed`**
 aus: drei Receipts und vier Aktionsdatensätze. Die persönlich gebundenen Schritte
 `in_progress`, `completed` und die separate Abschlussentscheidung sind inzwischen
-erfasst. Der [erzeugte Bericht](https://github.com/joku-dev/devsecops-governance-framework/blob/46b33429a6f271273e33508f26275ed8ba7f1f2c/generated/reports/governance-consumer-lifecycle.md)
+erfasst. Der [erzeugte Bericht](https://github.com/joku-dev/devsecops-governance-framework/blob/cf3c0344f65d4946fc5a205a6235edc1917b437e/generated/reports/governance-consumer-lifecycle.md)
 und die append-only Transaktionen unter `governance/consumer-lifecycle/` sind
 die Nachweise. Die September-Beschreibung am Seitenende ist historische Chronologie,
 nicht eine aktuelle Aufforderung zur erneuten Fortschrittserklärung.

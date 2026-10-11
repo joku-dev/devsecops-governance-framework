@@ -2,7 +2,7 @@ schema_version: 1.0.0
 contract_id: evidence-collector-contract
 version: 0.1.0
 status: provisional
-source_document: docs/governance/source-documents/DSCB-STD-SRC-001.public.md
+source_document: docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md
 owner: governance-maintainers
 enforcement: report_only
 purpose: Normalize evidence identity, time, source, subjects, custody, and collection errors before Trust verification.

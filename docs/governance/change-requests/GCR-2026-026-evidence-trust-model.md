@@ -35,7 +35,7 @@ GCR-2026-026
 |---|---|
 | Full source-document intake required? | no |
 | New or updated source document? | no |
-| Source document path | `docs/governance/source-documents/DSCB-STD-SRC-001.public.md` |
+| Source document path | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` |
 | Reviewed non-source paths | model, schema, evidence operations documentation, tests |
 | Register updated? | no; `model/evidence` is already a DSCB derived-artifact area |
 | Supersedes existing source? | no |

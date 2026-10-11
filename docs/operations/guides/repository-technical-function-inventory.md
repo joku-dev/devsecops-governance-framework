@@ -7,13 +7,140 @@ den genannten Oktober-Quellstand. Historische Links sind keine Latest-Code-Links
 
 Dies ist die vollständige Dateiliste der implementierten Skripte und Bibliotheksmodule
 unter `scripts/`, der GitHub-Workflows und der OPA-Module am genannten Stand.
-Der [fachliche Katalog](repository-function-catalog.md) erläutert die 21 Aufgabenbereiche
+Der [fachliche Katalog](repository-function-catalog.md) erläutert die 22 Aufgabenbereiche
 mit Eingaben, Verarbeitung, Ausgaben und Grenzen. Einzelne interne Python-Symbole
 werden ihrem Modul zugeordnet; diese Liste ist keine öffentliche API-Zusage.
 
+<!-- DOCS_REFRESH_INVENTORY:start -->
+### PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
+
+### PR #270: feat: PRA-Plattformzuordnungen fachlich vorbereiten (`d4fa7ef33a3e`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `schemas/pra-requirement-platform-review.schema.json`
+- `scripts/generate_pra_requirement_platform_review.py`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #267: Add DSCB OPA equivalence review (`1706b784161c`)
+
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/requirement-policy-equivalence-review.schema.json`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #265: Activate 46 canonical DSCB requirements (`abddf0df3c20`)
+
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-DSCB-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #263: Implement implemented-requirement-first migration (`91c448049764`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `model/requirements/requirement-to-artifact-register.yaml`
+- `schemas/governance-requirement-catalog.schema.json`
+- `schemas/requirement-artifact-register.schema.json`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/generate_implemented_requirement_migration.py`
+- `scripts/generate_status_viewer.py`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/lib/viewer_technical.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #261: feat: add hybrid requirement lifecycle (`a11b21955233`)
+
+- `.github/workflows/requirement-lifecycle.yml`
+- `model/requirements/governance-requirement-catalog.yaml`
+- `model/requirements/lifecycle-cases/RLC-ARCH-EA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-PA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-SA-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-ARCH-TPL-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-DSCB-STD-REQ-001-MIGRATION.json`
+- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
+- `model/requirements/requirement-authority-ledger.yaml`
+- `schemas/governance-requirement-catalog.schema.json`
+- `schemas/native-requirement-source.schema.json`
+- `schemas/requirement-authority-ledger.schema.json`
+- `schemas/requirement-lifecycle-case.schema.json`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/manage_requirement_lifecycle.py`
+- `scripts/validate_requirement_lifecycle.py`
+
+### PR #259: Approve six registered normative sources (`6447602a7055`)
+
+- `model/documents/source-document-register.yaml`
+- `scripts/generate_source_document_intake_status.py`
+
+### PR #257: Professionalize modular Doc-as-Code publications (`253f1227f585`)
+
+- `.github/workflows/doc-as-code-preview.yml`
+- `.github/workflows/publish-docs.yml`
+
+### PR #255: feat(docs): add modular doc-as-code publication pilot (`a451a7c407ac`)
+
+- `.github/workflows/doc-as-code-preview.yml`
+- `.github/workflows/publish-docs.yml`
+
+### PR #253: feat(viewer): publish redacted DCR pilot snapshot (`cb1c1195192e`)
+
+- `apps/governance-viewer/app.js`
+- `schemas/document-consistency-public-projection.schema.json`
+- `schemas/document-consistency-review-model.schema.json`
+- `scripts/generate_document_consistency_review_model.py`
+- `scripts/lib/document_consistency_view.py`
+- `scripts/lib/viewer_app.py`
+- `scripts/publish_document_consistency_projection.py`
+
+### PR #243: Show completed DCR pilot status in viewer (`24a940763822`)
+
+- `scripts/lib/document_consistency_view.py`
+- `scripts/lib/viewer_app.py`
+<!-- DOCS_REFRESH_INVENTORY:end -->
+
+## Dokumentationsabgleich nach Implementierungs-Merges
+
+| Datei | Aufgabe |
+|---|---|
+| `.github/workflows/documentation-refresh.yml` | Reagiert auf gemergte Implementierungs-PRs, baut einen Dokumentationsvorschlag, prüft MkDocs und öffnet einen Draft-PR; schreibt nicht direkt nach `main`. |
+| `scripts/reconcile_documentation_after_merge.py` | Erstellt aus PR-Zusammenfassung, Diff-Pfaden, lokaler Markdown-Linkprüfung und Build-Ergebnis den nachvollziehbaren Dokumentationsentwurf und Auditbericht. |
+| `tests/test_reconcile_documentation_after_merge.py` | Prüft Zusammenfassungsbereinigung, Scope-Erkennung, idempotente Marker und die Erstellung der Dokumentationsflächen. |
+| `docs/operations/guides/documentation-after-merge.md` | Beschreibt Ausführung, Freigabe und Grenzen des Post-Merge-Dokumentationsablaufs. |
+
+## Ergänzte technische Abdeckung
+
+| Datei | Aufgabe |
+|---|---|
+| `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` | Wiederverwendbares Workflow-Gate für den veröffentlichten DevSecOps-L1-Baseline-Stand v1.2.0. |
+| `.github/workflows/devsecops-baseline-l1-v1.2.1.yml` | Wiederverwendbares Workflow-Gate für den vorbereiteten DevSecOps-L1-Baseline-Stand v1.2.1. |
+| `.github/workflows/repository-sbom.yml` | Erzeugt das Repository-SBOM bei Main-Push, Wochenplan oder manuellem Start. |
+| `scripts/adapt_document_consistency_provider_response.py` | Überführt neutrale Provider-Ausgaben in den autoritativen semantischen Review-Vertrag. |
+| `scripts/evaluate_document_consistency_semantic_report.py` | Bewertet einen validierten semantischen Bericht gegen einen begrenzten kuratierten Katalog. |
+| `scripts/generate_document_consistency_review_manifest.py` | Erstellt ein textfreies, commit- und hashgebundenes Manifest ausgewählter registrierter Quellen. |
+| `scripts/generate_document_consistency_review_model.py` | Erstellt aus einem Quellenmanifest eine deterministische, textfreie Strukturaufnahme. |
+| `scripts/lib/document_consistency_view.py` | Validiert und redigiert Document-Consistency-Daten für die lesende Viewer-Projektion. |
+| `scripts/lib/measured_l1.py` | Bewertet gemessene L1-Nachweise konservativ, ohne ein veröffentlichtes Compliance-Ergebnis zu erzeugen. |
+| `scripts/prepare_document_consistency_semantic_catalog_run.py` | Bereitet ein isoliertes, provider-ungebundenes Paket für einen semantischen Kataloglauf vor. |
+| `scripts/validate_document_consistency_review.py` | Führt deterministische Strukturprüfungen ohne semantische Interpretation durch. |
+| `scripts/validate_document_consistency_review_operations.py` | Validiert provider-neutrale Betriebsartefakte des Document Consistency Review. |
+| `scripts/validate_document_consistency_semantic_review.py` | Prüft nicht vertrauenswürdige semantische Review-Ausgaben gegen ein exaktes Quellenmanifest. |
+
 Umfang am historischen Quellstand: **142 Python-Skripte/Module**, **2 Shell-Skripte**,
-**22 Workflows**, **15 OPA-Module**. Nach den unten aufgeführten Ergänzungen
-enthält der aktuelle Main **145 Python-Skripte/Module**.
+**22 Workflows**, **15 OPA-Module**. Mit den hier beschriebenen Ergänzungen
+umfasst der Stand nach Merge dieses PRs **155 Python-Skripte/Module**, **2
+Shell-Skripte**, **26 Workflows** und **15 OPA-Module**. Die Zählung umfasst
+alle versionierten Python-Dateien unter `scripts/` und alle versionierten
+Workflow-YAML-Dateien unter `.github/workflows/`.
 
 Einträge wurden aus den versionierten Dateien, Python-Modulbeschreibungen und
 Workflow-Definitionen ermittelt. Englische Beschreibungen übernehmen die
@@ -31,7 +158,8 @@ Quellsprache der Module; unvollständige Paketbeschreibungen wurden fachlich pr�
 Am genannten Quellstand waren die Repository-SBOM (#178) und die
 Lifecycle-Next-Step-Ansicht (#200) noch offene PRs. Beide wurden danach gemergt.
 Die folgenden drei ergänzten Python-Dateien sind im historischen Zähler 142
-nicht enthalten und erhöhen den Bestand im aktuellen Main auf 145.
+nicht enthalten und erhöhten den Bestand zunächst auf 145; die späteren
+Ergänzungen und aktuellen Gesamtzahlen sind getrennt ausgewiesen.
 
 ## Ergänzungen nach dem 3.-Oktober-Quellstand
 
@@ -341,3 +469,16 @@ beschreibt den geprüften Umfang und die getrennten historischen Artefakte.
 Automatische Aufnahme nach erfolgreichem Consumer-Mainline-Lauf; keine
 Baseline-Änderung oder Live-Freigabe.
 [Details](../evidence/l1-measured-evidence-ha-cpswms.md#zentrale-bewertung-je-l1-kontrolle).
+
+## Hybrid requirement lifecycle additions
+
+| Artifact | Function |
+|---|---|
+| `scripts/manage_requirement_lifecycle.py` | Imports, analyzes, decides, activates, reports, and completes requirement migrations. |
+| `scripts/lib/requirement_lifecycle.py` | Parses requirement extracts and implements deterministic classification and immutable revisions. |
+| `scripts/validate_requirement_lifecycle.py` | Validates the Authority Ledger, catalog, cases, fingerprints, coverage, and enforcement boundary. |
+| `schemas/requirement-authority-ledger.schema.json` | Contract for source authority and migration coverage. |
+| `schemas/governance-requirement-catalog.schema.json` | Contract for canonical requirement revisions. |
+| `schemas/requirement-lifecycle-case.schema.json` | Contract for proposal analysis, decision, and activation evidence. |
+| `schemas/native-requirement-source.schema.json` | Contract for a directly authored Git-native requirement source. |
+| `docs/publishing/governance-requirement-catalog/` | Generated Doc-as-Code input for HTML, Word and PDF catalog previews. |

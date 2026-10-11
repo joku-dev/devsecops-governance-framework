@@ -13,9 +13,12 @@ Quellen über Providerprojektion, Normalisierung, deterministische Belegprüfung
 verblindete Katalogauswertung und menschliche Bewertung wurde erfolgreich
 demonstriert.
 
-Die Freigabe gilt nicht für automatischen Betrieb, blockierendes Enforcement,
-Viewer-Veröffentlichung oder produktiven Rollout. Dafür fehlen insbesondere
-eine wiederverwendbare Provider- und Aufbewahrungsentscheidung, ein bestätigter
+Die Freigabe gilt nicht für automatischen Betrieb, blockierendes Enforcement
+oder produktiven Rollout. Eine eng begrenzte Einmalveröffentlichung des
+redigierten Phase-2-Pilots wurde am 9. Oktober 2026 separat in
+[GCR-2026-138](../../governance/change-requests/GCR-2026-138-dcr-viewer-publication.md)
+genehmigt. Sie ändert die übrigen Rollout-Grenzen nicht. Weiterhin fehlen eine
+wiederverwendbare Provider- und Aufbewahrungsentscheidung, ein bestätigter
 produktiver Quellenscope, breitere Ground Truth, strukturierte Aufwand- und
 Kostenmessung sowie eine getrennte Implementierungsabdeckung.
 
@@ -29,7 +32,7 @@ Kostenmessung sowie eine getrennte Implementierungsabdeckung.
 | Daten und Aufbewahrung | pro Lauf ausdrücklich zu bestätigen |
 | Automatische oder geplante Ausführung | nicht autorisiert |
 | Blocking | nicht autorisiert |
-| Viewer-Veröffentlichung | nicht autorisiert |
+| Viewer-Veröffentlichung | Einmalig nur für den redigierten Snapshot gemäß GCR-2026-138; allgemein und automatisch nicht autorisiert |
 | Produktiver Rollout | `pending` |
 
 ## Kriterienbewertung
@@ -45,7 +48,18 @@ Kostenmessung sowie eine getrennte Implementierungsabdeckung.
 | Triageaufwand und Kosten | `partial` | Ablauf durchgeführt; strukturierte Zeit- und Kostendaten fehlen. |
 | Produktiver Quellenscope | `open` | Zielpopulation noch nicht vollständig registriert und autorisiert. |
 | Implementierungsabdeckung | `open` | Im semantischen Pilot nicht bewertet. |
-| Veröffentlichung und Automatisierung | `open` | Weder verdrahtet noch autorisiert. |
+| Veröffentlichung und Automatisierung | `open` | Einmalige Projektion dieses Snapshots ist nach GCR-2026-138 erlaubt; weitere oder automatische Veröffentlichungen bleiben nicht autorisiert. |
+
+## Einmalige Veröffentlichung im Viewer
+
+Die bisherige Bewertung `dcr-rollout-0002` und GCR-2026-133 bleiben als
+historische, allgemeine Rollout-Entscheidungen unverändert. Die separate
+Entscheidung GCR-2026-138 erlaubt einmalig die öffentliche Projektion des bereits
+validierten Laufs `dcr-semantic-pilot-20261007-run2`. Der Viewer zeigt weiterhin
+`partial`, Freshness aus Quellhashes, `human_decisions: not_run` und
+`implementation_coverage: not_assessed`. Das ist weder ein Konsistenznachweis
+noch eine Quellenfreigabe. Andere oder zukünftige Läufe dürfen dadurch nicht
+automatisch veröffentlicht werden.
 
 ## Nachweisbasis
 

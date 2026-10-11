@@ -17,6 +17,7 @@ SECTIONS = {
     'controls': ('governance', 'controls', 'Kontrollen'),
     'model': ('governance', 'model', 'Governance-Modell'),
     'source-intake': ('governance', 'sources', 'Quellenaufnahme'),
+    'requirement-migration': ('governance', 'requirements', 'Anforderungsmigration'),
     'open-work': ('governance', 'work', 'Offene Aufgaben'),
     'evidence-trust': ('evidence', 'trust', 'Evidence Trust'),
     'replay-triage': ('evidence', 'replay', 'Replay-Prüfung'),

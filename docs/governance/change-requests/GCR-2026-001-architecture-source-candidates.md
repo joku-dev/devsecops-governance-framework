@@ -19,7 +19,7 @@ GCR-2026-001
 |---|---|
 | Full source-document intake required? | yes |
 | New or updated source document? | New architecture source candidates |
-| Source document path | `docs/governance/source-documents/ARCH-*.public.md` |
+| Source document path | `docs/governance/source-documents/ARCH-*.requirements.md` |
 | Reviewed non-source path | not applicable |
 | Register updated? | yes |
 | Supersedes existing source? | not confirmed |

@@ -24,7 +24,7 @@ Der produktive Rollout bleibt **`pending`**.
 - breitere reale Ground Truth für Misses und False Positives;
 - strukturierte Kosten-, Laufzeit- und Triageaufwandsmessung;
 - getrennte Implementierungsabdeckung;
-- separate Freigaben für Viewer, Automatisierung oder Blocking.
+- separate Freigaben für Automatisierung oder Blocking; eine eng begrenzte einmalige Viewer-Projektion ist in GCR-2026-138 genehmigt.
 
 ## Empfohlene nächste Managemententscheidung
 

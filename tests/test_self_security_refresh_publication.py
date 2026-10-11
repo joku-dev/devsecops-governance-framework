@@ -282,7 +282,9 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
         self.assertIn("workflow_dispatch", workflow["on"])
         steps = workflow["jobs"]["dependency-review"]["steps"]
         detector = next(step for step in steps if step.get("id") == "dependency-scope")
-        self.assertIn("git diff --quiet", detector["run"])
+        self.assertIn("resolve_commit()", detector["run"])
+        self.assertIn("refs/remotes/origin/$input_ref", detector["run"])
+        self.assertIn('git diff --quiet "$BASE_COMMIT" "$HEAD_COMMIT"', detector["run"])
         action = next(
             step for step in steps
             if "actions/dependency-review-action@" in step.get("uses", "")
@@ -292,6 +294,20 @@ class SelfSecurityRefreshWorkflowTests(unittest.TestCase):
         )
         self.assertIn("inputs.base_ref", action["with"]["base-ref"])
         self.assertIn("inputs.head_ref", action["with"]["head-ref"])
+
+    def test_documentation_refresh_runs_dependency_review_from_main(self):
+        workflow = yaml.load(
+            (ROOT / ".github/workflows/documentation-refresh.yml").read_text(),
+            Loader=yaml.BaseLoader,
+        )
+        steps = workflow["jobs"]["prepare-documentation-pr"]["steps"]
+        dispatch = next(
+            step for step in steps
+            if "dependency-review.yml/dispatches" in step.get("run", "")
+        )
+        self.assertIn("-f ref=main", dispatch["run"])
+        self.assertIn('-f inputs[base_ref]=main', dispatch["run"])
+        self.assertIn('-f inputs[head_ref]="$branch"', dispatch["run"])
 
     def test_codeql_can_read_private_repository_workflow_metadata(self):
         workflow = yaml.load(

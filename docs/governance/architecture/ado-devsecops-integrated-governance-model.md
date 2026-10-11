@@ -49,7 +49,7 @@ The integrated model is based on the following source families:
 
 | Source family | Repository location | Role in the integrated model |
 |---|---|---|
-| ADO architecture source documents | `docs/governance/source-documents/*ADO*.md` and `docs/governance/source-documents/ARCH-SDD-SRC-001.public.md` | Define architecture intent, BAPO alignment, architecture levels, quality markers, review logic, release readiness and exception governance. |
+| ADO architecture source documents | `docs/governance/source-documents/*ADO*.md` and `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md` | Define architecture intent, BAPO alignment, architecture levels, quality markers, review logic, release readiness and exception governance. |
 | DevSecOps policy and directive | `docs/governance/devsecops-policy.md`, `docs/governance/devsecops-directive.md` | Define DevSecOps mandate, governance structure, waiver logic and operating rules. |
 | Structured DevSecOps controls | `model/controls/` | Represent executable or reviewable DevSecOps requirements by baseline level. |
 | Structured architecture governance | `architecture/` | Represents architecture levels, guardrails, quality markers, review gates and remediation actions. |

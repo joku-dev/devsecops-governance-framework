@@ -74,13 +74,20 @@ def conclusion_to_status(value: str | None) -> str:
     return "unknown"
 
 
-def branch_protection(api_url: str, repository_id: str, branch: str, token: str | None) -> bool:
+def branch_protection(api_url: str, repository_id: str, branch: str, token: str | None) -> tuple[bool | None, dict]:
     url = f"{api_url}{api_repo_path(repository_id)}/branches/{quote(branch, safe='')}"
     try:
         payload = github_get_json(url, token)
-    except Exception:
-        return False
-    return bool(payload.get("protected"))
+    except HTTPError as error:
+        return None, {"status": "unavailable", "http_status": error.code}
+    except Exception as error:
+        return None, {"status": "unavailable", "error_type": type(error).__name__}
+    if not isinstance(payload, dict):
+        return None, {"status": "unavailable", "error_type": "invalid_response"}
+    protected = payload.get("protected")
+    if not isinstance(protected, bool):
+        return None, {"status": "unavailable", "error_type": "invalid_response"}
+    return protected, {"status": "protected" if protected else "unprotected"}
 
 
 def find_json(extract_dir: Path, filename: str) -> Path:
@@ -149,7 +156,8 @@ def write_snapshot(
     run: dict,
     report: dict,
     release_input: dict,
-    branch_protected: bool,
+    branch_protected: bool | None,
+    branch_protection_lookup: dict,
     artifact_metadata: dict,
     trust: dict,
     notes: str,
@@ -177,6 +185,7 @@ def write_snapshot(
         "repository": {
             "branch": branch,
             "branch_protected": branch_protected,
+            "branch_protection_lookup": branch_protection_lookup,
             "commit_id": run.get("head_sha", "unknown"),
         },
         "target": report.get("target", {}),
@@ -303,7 +312,7 @@ def main() -> int:
         )
         trust = apply_replay_assessment(trust, load_snapshot_payloads(TRUST_RESULT_ROOTS))
 
-    protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
+    protected, protection_lookup = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
     output_path = write_snapshot(
         repository_id=args.repository_id,
         architecture_baseline_ref=args.architecture_baseline_ref,
@@ -311,6 +320,7 @@ def main() -> int:
         report=report,
         release_input=release_input,
         branch_protected=protected,
+        branch_protection_lookup=protection_lookup,
         artifact_metadata=artifact_metadata,
         trust=trust,
         notes=args.notes,

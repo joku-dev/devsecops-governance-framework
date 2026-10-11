@@ -62,14 +62,14 @@ def architecture_lineage(lineage: dict) -> None:
                     add_lineage(lineage, source_path, rel(asset_path), "release_snapshot", metadata["release_id"])
         add_lineage(
             lineage,
-            "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+            "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
             rel(release_metadata),
             "release_metadata",
             metadata.get("release_id", "architecture-release"),
         )
         add_lineage(
             lineage,
-            "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+            "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
             rel(release_root / "baseline-package.md"),
             "release_document",
             metadata.get("release_id", "architecture-release"),
@@ -78,7 +78,7 @@ def architecture_lineage(lineage: dict) -> None:
     for path in sorted((ROOT / "policies" / "opa").glob("architecture_*.rego")):
         add_lineage(
             lineage,
-            "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+            "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
             rel(path),
             "policy_as_code",
             "architecture_runtime_governance",
@@ -94,7 +94,7 @@ def architecture_lineage(lineage: dict) -> None:
     ]:
         add_lineage(
             lineage,
-            "docs/governance/source-documents/ARCH-SDD-SRC-001.public.md",
+            "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
             rel(path),
             "derived_artifact",
             "architecture_runtime_governance",

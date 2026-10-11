@@ -827,7 +827,7 @@ Die Analyse ist im Repository über folgende Artefakte nachvollziehbar:
 | `model/traceability/harmonized-requirements-to-maturity-levels.yaml` | Reviewpflichtige Zuordnung aller 44 Anforderungen zu L1-L3/GOV |
 | `generated/reports/harmonized-requirements-maturity.md` | Vollständiger lesbarer Maturity-Report mit Begründungen |
 | `generated/reports/harmonized-requirements-maturity.json` | Maschinenlesbarer Maturity-Report |
-| `docs/governance/source-documents/CISO-REQ-SRC-001.public.md` | Öffentliche neutrale Quellenbeschreibung |
+| `docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md` | Öffentliche neutrale Quellenbeschreibung |
 | `docs/governance/change-requests/GCR-2026-047-harmonized-requirements-candidate.md` | Governance Change Request |
 | `scripts/import_harmonized_requirements_workbook.py` | Reproduzierbarer lokaler Import |
 | `scripts/check_public_artifact_hygiene.py` | Prüfung öffentlicher Artefakte auf vertrauliche Begriffe und Metadaten |

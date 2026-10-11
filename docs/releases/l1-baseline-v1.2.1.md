@@ -1,8 +1,8 @@
-# L1 Baseline v1.2.1 — Prepared Release Candidate
+# L1 Baseline v1.2.1 — Published
 
 ## Status
 
-Prepared for review; not published. Publication requires merge to `main`, a directly SSH-signed tag verified against the release-signing policy, and downstream pilot validation. The existing v1.2.0 package and tag remain unchanged.
+Published on 2026-10-06 under signed tag `l1-baseline-v1.2.1`, targeting merge commit `901d06d0c2f5ff62bb9aff987d04fbd9d35e8235`. The tag object `23224bfaaa27001ad43de024e2c5c6f89de81d51` verifies against the active release-signing policy. Downstream report-only validation continues. The existing v1.2.0 package and tag remain unchanged.
 
 ## Release classification
 
@@ -16,12 +16,12 @@ Both fields remain producer-declared. The central intake does not observe consum
 
 ## Package and consumer reference
 
-The prepared package is under `releases/l1/v1.2.1/`. Its reusable workflow source is frozen at implementation commit `43490ec9d0490e67cf6b05b4a28110d2a7d683e0`.
+The immutable package is under `releases/l1/v1.2.1/`. Its reusable workflow source is frozen at implementation commit `43490ec9d0490e67cf6b05b4a28110d2a7d683e0`.
 
-After merge and signed-tag publication, consumers may opt in with:
+Consumers may opt in with:
 
     uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-l1-v1.2.1.yml@l1-baseline-v1.2.1
 
 ## Validation and remaining decisions
 
-The implementation includes a regression fixture for true, false, missing, and invalid producer declarations. Fresh consumer runs against the signed release and central intake are still required before ECV-01 can be closed. Both pilot repositories remain private, report-only, and outside the official consumer registry. Their independent CI findings, branch-protection posture, and the ECV-12/13 blockers remain separate decisions.
+The implementation includes a regression fixture for true, false, missing, and invalid producer declarations. cJSON run 37467713254, go-httpbin run 37467832720, and Gson run 37467911213 all used the signed tag; local-only central intake assessments reached `provenance_verified` for each. Their report-only governance decisions remain `fail` because the pilots declare direct pushes allowed. ECV-01 remains open until those findings and remaining controls are reviewed. All three private pilots stay outside the official consumer registry, and no run was added to official status. Their independent CI failures, branch-protection posture, and the ECV-12/13 blockers remain separate decisions. Release files inside the tagged package are frozen; publication state is recorded here, outside the package.

@@ -1,0 +1,82 @@
+{
+  "projection_version": "1.0.0",
+  "projection_type": "document_consistency_public_projection",
+  "audience": "public_redacted",
+  "review_id": "dcr-codex-once-2026-10-09",
+  "overall_status": "partial",
+  "freshness": {
+    "status": "current",
+    "reviewed_commit": "0fb6809ba26a5ef587d58ea16b1791f91f48c159",
+    "manifest_matches": true,
+    "sources_match": true,
+    "source_register_matches": true,
+    "source_register_sha256": "e5ad77573fcf27f7f58abb52f039203d807de17efc67476f47694825e5719e46",
+    "source_population_sha256": "f04283f702d45b529bf56d76b567db9b16bca9e8f5cd6086b5ab7e1bbc7ffc2a"
+  },
+  "scope": {
+    "source_count": 10,
+    "source_ids": []
+  },
+  "semantic_comparison_coverage": {
+    "assessed_count": 3,
+    "population_count": null,
+    "status": "targeted_non_exhaustive"
+  },
+  "coverage": {
+    "source_population_count": 10,
+    "in_scope_source_count": 10,
+    "omitted_source_count": 0,
+    "source_integrity_verified_count": 10,
+    "source_scope_status": "complete",
+    "section_count": 310,
+    "structurally_inventoried_section_count": 310,
+    "semantically_assessed_section_count": null,
+    "semantic_section_coverage_status": "not_measured",
+    "requirement_count": 2138,
+    "structurally_inventoried_requirement_count": 2138,
+    "semantically_assessed_requirement_count": null,
+    "semantic_item_coverage_status": "not_measured",
+    "semantic_review_status": "partial"
+  },
+  "execution": {
+    "mode": "provider",
+    "status": "completed",
+    "truncated": false
+  },
+  "sections": {
+    "formal_validation": "pass",
+    "semantic_review": "partial",
+    "human_decisions": "recorded_locally_details_withheld",
+    "implementation_coverage": "not_assessed"
+  },
+  "documents": [],
+  "findings": [
+    {
+      "id": "DCR-SEM-001",
+      "category": "conflict",
+      "semantic_state": "proposed",
+      "evidence_status": "valid",
+      "disposition": "unconfirmed"
+    },
+    {
+      "id": "DCR-SEM-002",
+      "category": "conflict",
+      "semantic_state": "proposed",
+      "evidence_status": "valid",
+      "disposition": "unconfirmed"
+    },
+    {
+      "id": "DCR-SEM-003",
+      "category": "conflict",
+      "semantic_state": "proposed",
+      "evidence_status": "valid",
+      "disposition": "unconfirmed"
+    }
+  ],
+  "limitations": {
+    "redacted": true,
+    "no_consistency_claim": true,
+    "no_public_internal_view": true,
+    "message": "One-time redacted, report-only pilot projection. Structural inventory is not semantic coverage. Three targeted comparisons do not represent exhaustive review or prove consistency, compliance, implementation or normative approval. Human decision details are withheld."
+  }
+}

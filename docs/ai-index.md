@@ -20,13 +20,17 @@ Use it as the first navigation point after `AGENTS.md`.
 | Find detailed repository functions and implementation boundaries | `docs/operations/guides/repository-function-catalog.md` |
 | Understand the repository | `README.md`, `docs/official-entrypoints.md` |
 | Understand the current as-built Governance-as-Code system architecture | `docs/governance/architecture/governance-as-code-system-architecture.md` |
+| Trace a source document through canonical requirements to executable OPA policy | `docs/governance/architecture/document-intake-to-opa-rulebook.md` |
 | Understand foundation, direction, and architectural guardrails | `docs/foundation/01_VISION.md`, `docs/foundation/02_CONSTITUTION.md`, `docs/foundation/03_ARCHITECTURE_PRINCIPLES.md`, `docs/foundation/05_CURRENT_DIRECTION.md` |
 | Run the live demo | `docs/demos/demo-end-to-end-governance.md` |
 | Understand current ha-CPsWMS status | `docs/operations/status/ha-cpswms-governance-validation-status.md`, `docs/demos/ha-cpswms-architecture-governance-results.md` |
 | Understand source-document lineage | `generated/reports/source-lineage-report.md` |
 | Classify a new artifact before adding it | `docs/operations/processes/new-artifact-intake-process.md` |
+| Understand the modular Git-native documentation publication model | `docs/operations/planning/doc-as-code-architecture-decision.md`, `docs/publishing/doc-as-code-pilot/publication.yaml`, `docs/publishing/doc-as-code-pilot/requirements/`, `doc-as-code/`, `docs/governance/change-requests/GCR-2026-141-modular-doc-as-code-model.md` |
+| Operate the hybrid document-to-Git requirement lifecycle | `docs/operations/processes/hybrid-requirement-lifecycle.md`, `model/requirements/requirement-authority-ledger.yaml`, `model/requirements/governance-requirement-catalog.yaml`, `model/requirements/lifecycle-cases/`, `docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md` |
 | Add a new artifact safely | `docs/operations/guides/how-to-add-a-new-artifact.md` |
 | Intake updated input documents | `docs/governance/governance-change-lifecycle.md`, `docs/operations/processes/source-document-intake-process.md`, `docs/operations/processes/source-document-intake-review-operating-model.md`, `model/documents/source-document-register.yaml` |
+| Operate guided private source intake and review | `docs/operations/guides/governance-review-workbench.md`, `scripts/serve_governance_workbench.py` (local maintainer app; proposal-only; optional Draft-PR adapter) |
 | Understand ADO and DevSecOps-as-Code as one system | `docs/governance/architecture/ado-devsecops-integrated-governance-model.md` |
 | Explain the repository as an answer to software industrialisation problems | `docs/governance/architecture/software-industrialisation-problem-capability-map.md` |
 | Compare governance with central repository versus without central repository | `docs/governance/architecture/governance-repository-architecture-comparison.md` |
@@ -38,15 +42,17 @@ Use it as the first navigation point after `AGENTS.md`.
 | Inspect the validated second semantic pilot | `docs/operations/reference-runs/2026-10-07-document-consistency-semantic-pilot-2.md`, `docs/examples/document-consistency-review-phase2-live-pilot-report.json`, `docs/governance/change-requests/GCR-2026-125-document-consistency-semantic-pilot-2.md` (`partial`, zero candidates, no consistency claim, rollout pending) |
 | Validate Phase 2 semantic responses | `docs/operations/guides/document-consistency-semantic-review.md`, `docs/governance/change-requests/GCR-2026-120-document-consistency-phase2-infrastructure.md`, `scripts/validate_document_consistency_semantic_review.py` (synthetic fixtures and fail-closed provider-output validation) |
 | Adapt provider output for Phase 2 validation | `docs/governance/change-requests/GCR-2026-124-document-consistency-provider-neutral-stabilization.md`, `scripts/adapt_document_consistency_provider_response.py`, `model/governance/document-consistency/provider-adapter-config-v1.json` (provider-neutral normalization; no provider call or approval) |
-| Evaluate semantic providers against curated cases | `docs/governance/change-requests/GCR-2026-126-document-consistency-semantic-evaluation-catalog.md`, `model/governance/document-consistency/semantic-evaluation-catalog-v1.json`, `scripts/evaluate_document_consistency_semantic_report.py` (synthetic bounded metrics; real reports require matching approved ground truth) |
+| Evaluate semantic providers against curated cases | `docs/governance/change-requests/GCR-2026-126-document-consistency-semantic-evaluation-catalog.md`, `docs/governance/change-requests/GCR-2026-136-document-consistency-catalog-v2.md`, `model/governance/document-consistency/semantic-evaluation-catalog-v1.json`, `model/governance/document-consistency/semantic-evaluation-catalog-v2.json`, `scripts/evaluate_document_consistency_semantic_report.py` (synthetic bounded metrics; real reports require matching approved ground truth) |
 | Prepare a blinded semantic catalog run | `docs/governance/change-requests/GCR-2026-127-document-consistency-semantic-catalog-run-package.md`, `scripts/prepare_document_consistency_semantic_catalog_run.py`, `model/governance/document-consistency/semantic-catalog-prompt-v1.txt` (six-file provider input; provider and model remain unbound) |
 | Inspect blinded semantic catalog run 0001 | `docs/operations/reference-runs/2026-10-07-document-consistency-semantic-catalog-run-0001.md`, `docs/examples/document-consistency-semantic-catalog-run-0001-report.json`, `docs/examples/document-consistency-semantic-catalog-run-0001-evaluation.json`, `docs/governance/change-requests/GCR-2026-128-document-consistency-semantic-catalog-run-0001.md` (3/3 bounded synthetic cases passed; one finding remains unconfirmed; rollout pending) |
 | Inspect the human decision for catalog run 0001 | `docs/examples/document-consistency-semantic-catalog-run-0001-human-decision.json`, `docs/governance/change-requests/GCR-2026-129-document-consistency-catalog-human-decision.md` (`DCR-SEM-001` classified `helpful` for the synthetic case; no normative resolution; rollout pending) |
 | Present the Document Consistency Review | `docs/demos/presentation-guide-document-consistency-review-de.md` (German speaker guide, architecture, functions, methods, security boundaries, evidence and live demo) |
 | Assess Document Consistency Review rollout readiness | `docs/operations/status/document-consistency-rollout-readiness.md`, `docs/operations/status/document-consistency-rollout-management-summary.md`, `model/governance/document-consistency/rollout-decision-v2.json` (`limited_pilot_ready` for separately authorized report-only runs; production pending) |
 | Review completion of WP-DCR-001 | `docs/operations/status/document-consistency-workpackage-completion-review.md`, `docs/governance/change-requests/GCR-2026-132-document-consistency-completion-review.md`, `docs/governance/change-requests/GCR-2026-133-document-consistency-pilot-acceptance.md` (accepted as a bounded report-only pilot on 2026-10-08; production remains pending) |
+| Approve one-time public publication of the redacted DCR pilot projection | `docs/governance/change-requests/GCR-2026-138-dcr-viewer-publication.md` (one existing report only; no production rollout, recurring publication or automatic execution) |
+| Prepare a separately authorized DCR method comparison | `docs/governance/change-requests/GCR-2026-135-document-consistency-method-comparison-proposal.md` (second-provider synthetic comparison proposed; execution not authorized) |
 | Track future model-driven document generation | `docs/operations/planning/model-driven-governance-documentation-backlog.md` (`WP-MDG-001`, deferred and separately authorized) |
-| View the redacted Document Consistency Review projection | `docs/operations/guides/governance-viewer-app.md`, `docs/governance/change-requests/GCR-2026-121-document-consistency-phase3-viewer.md`, `scripts/lib/document_consistency_view.py` (local/read-only; publication not authorized) |
+| View the redacted Document Consistency Review projection | `docs/operations/guides/governance-viewer-app.md`, `docs/governance/change-requests/GCR-2026-121-document-consistency-phase3-viewer.md`, `docs/governance/change-requests/GCR-2026-138-dcr-viewer-publication.md`, `scripts/lib/document_consistency_view.py` (one existing report may be published; broader publication remains unauthorized) |
 | Operate the provider-neutral Document Consistency Review lifecycle | `docs/operations/guides/document-consistency-review-operations.md`, `docs/governance/change-requests/GCR-2026-122-document-consistency-phase4-operations.md`, `model/governance/document-consistency/`, `scripts/validate_document_consistency_review_operations.py` (candidate infrastructure; rollout pending) |
 | Plan the closed-loop finding, decision and remediation pilot | `docs/operations/planning/closed-loop-governance-implementation-plan.md` (CLG-01–06.3 implementation and accepted limited GitHub pilot) |
 | Assess capacity for 300 to 1,500 consumer repositories | `docs/operations/planning/consumer-scale-capacity-assessment.md`, `scripts/simulate_consumer_scale.py` |
@@ -63,6 +69,8 @@ Use it as the first navigation point after `AGENTS.md`.
 | Verify the personal GitHub channel probe | `docs/operations/evidence/governance-lifecycle-personal-channel.md`, `scripts/check_lifecycle_personal_channel.py` (personal statement required; no lifecycle authorization) |
 | Validate action-specific GitHub consent | `docs/operations/evidence/governance-lifecycle-action-consent.md`, `scripts/intake_lifecycle_pilot_action.py` (pilot eligibility; effective LD-07 gates official publication) |
 | Read the complete technical function inventory | `docs/operations/guides/repository-technical-function-inventory.md` |
+| Understand and review post-merge documentation proposals | `docs/operations/guides/documentation-after-merge.md`, `.github/workflows/documentation-refresh.yml`, `scripts/reconcile_documentation_after_merge.py` |
+| Review the authorized scope of post-merge documentation maintenance | `docs/governance/change-requests/GCR-2026-137-post-merge-documentation-refresh.md` |
 | Inspect the accepted live pilot state | `docs/operations/status/governance-lifecycle-current-state.md`, `status/governance-lifecycle-live.json` |
 | Inspect or operate the GitHub pilot after LD-07 | `docs/operations/evidence/governance-lifecycle-live-operation.md`, `scripts/run_lifecycle_pilot_update.py` (personal acceptance captured and merged; manual report-only pilot) |
 | Open CLG-06.2 read-only scenario viewer | `docs/operations/evidence/governance-lifecycle-viewer.md`, `scripts/generate_governance_lifecycle_viewer.py` (synthetic; separate from official status) |
@@ -115,23 +123,23 @@ These files are architectural and strategic guardrails. They do not replace appr
 
 ## Source Documents
 
-The public source placeholders live in:
+The sanitized source requirement extracts live in:
 
 ```text
 docs/governance/source-documents/
 ```
 
-The original source documents are withheld from the public repository. The files below preserve lineage and review state only.
+The original source documents are withheld from the repository. The files below provide bounded requirement content for intake review and traceability.
 
-Current public placeholders:
+Current registered requirement extracts:
 
 | Source document | Main derived area |
 |---|---|
-| `DSCB-STD-SRC-001.public.md` | DevSecOps controls and OPA policy candidates |
-| `PRA-STD-SRC-001.public.md` | Platform levels and pipeline baseline |
-| `DEVSECOPS-DIR-SRC-001.public.md` | Governance directive |
-| `DEVSECOPS-POL-SRC-001.public.md` | Governance policy |
-| `ARCH-SDD-SRC-001.public.md` | Architecture runtime governance |
+| `DSCB-STD-SRC-001.requirements.md` | DevSecOps controls and OPA policy candidates |
+| `PRA-STD-SRC-001.requirements.md` | Platform levels and pipeline baseline |
+| `DEVSECOPS-DIR-SRC-001.requirements.md` | Governance directive |
+| `DEVSECOPS-POL-SRC-001.requirements.md` | Governance policy |
+| `ARCH-SDD-SRC-001.requirements.md` | Architecture runtime governance |
 
 When adding or changing derived governance artifacts, update or validate lineage:
 

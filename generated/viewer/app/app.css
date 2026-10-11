@@ -154,6 +154,13 @@ button:disabled {
 
 .review-status-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
 .review-status-grid > div { display:flex; flex-direction:column; gap:.55rem; padding:1rem; border:1px solid var(--line); border-radius:.65rem; }
+.dcr-process { list-style:none; margin:0; padding:0; display:grid; gap:.75rem; }
+.dcr-process li { display:grid; grid-template-columns:2.25rem minmax(0,1fr); gap:.8rem; align-items:start; padding:1rem; border:1px solid var(--line); border-radius:.65rem; }
+.dcr-step-number { display:grid; place-items:center; width:2rem; height:2rem; border-radius:50%; background:var(--bg); color:var(--ink); font-weight:700; }
+.dcr-process .panel-head { margin-bottom:0; }
+.dcr-process h3 { margin:0; }
+.dcr-process p { margin:.4rem 0 0; color:var(--muted); }
+.dcr-next-step p { margin-bottom:.5rem; }
 @media (max-width: 900px) { .review-status-grid { grid-template-columns:1fr 1fr; } }
 @media (max-width: 560px) { .review-status-grid { grid-template-columns:1fr; } }
 .workspace {

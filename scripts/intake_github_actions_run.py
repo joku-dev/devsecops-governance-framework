@@ -192,13 +192,20 @@ def evidence_flags_from_artifacts(
     }
 
 
-def branch_protection(api_url: str, repository_id: str, branch: str, token: str | None) -> bool:
+def branch_protection(api_url: str, repository_id: str, branch: str, token: str | None) -> tuple[bool | None, dict]:
     url = f"{api_url}{api_repo_path(repository_id)}/branches/{quote(branch, safe='')}"
     try:
         payload = github_get_json(url, token)
-    except Exception:
-        return False
-    return bool(payload.get("protected"))
+    except HTTPError as error:
+        return None, {"status": "unavailable", "http_status": error.code}
+    except Exception as error:
+        return None, {"status": "unavailable", "error_type": type(error).__name__}
+    if not isinstance(payload, dict):
+        return None, {"status": "unavailable", "error_type": "invalid_response"}
+    protected = payload.get("protected")
+    if not isinstance(protected, bool):
+        return None, {"status": "unavailable", "error_type": "invalid_response"}
+    return protected, {"status": "protected" if protected else "unprotected"}
 
 
 def find_report(extract_dir: Path) -> Path:
@@ -327,7 +334,8 @@ def write_snapshot(
     governance_input: dict,
     report_sha256: str,
     governance_input_sha256: str | None,
-    branch_protected: bool,
+    branch_protected: bool | None,
+    branch_protection_lookup: dict,
     artifacts: list[dict],
     selected_artifact: dict | None,
     governance_input_artifact: dict | None,
@@ -393,6 +401,7 @@ def write_snapshot(
         "repository": {
             "branch": branch,
             "branch_protected": branch_protected,
+            "branch_protection_lookup": branch_protection_lookup,
             "commit_id": run.get("head_sha", "unknown"),
         },
         "checks": checks,
@@ -579,7 +588,7 @@ def main() -> int:
         trust = apply_replay_assessment(trust, load_snapshot_payloads(TRUST_RESULT_ROOTS))
         trust["effective_level"] = promote_effective_level(trust["effective_level"], trust["checks"])
 
-    protected = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
+    protected, protection_lookup = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
     output_path = write_snapshot(
         repository_id=args.repository_id,
         baseline_level=args.baseline_level,
@@ -591,6 +600,7 @@ def main() -> int:
         report_sha256=report_sha256,
         governance_input_sha256=governance_input_sha256,
         branch_protected=protected,
+        branch_protection_lookup=protection_lookup,
         artifacts=artifacts,
         selected_artifact=selected_artifact,
         governance_input_artifact=governance_input_artifact,

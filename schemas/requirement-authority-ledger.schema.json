@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requirement Authority Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "sources"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "source_version", "source_path", "document_sha256", "authority_mode", "owner", "decision_ref", "effective_from", "catalog_release", "coverage"],
+        "properties": {
+          "source_id": {"type": "string", "minLength": 1},
+          "source_version": {"type": "string", "minLength": 1},
+          "source_path": {"type": "string", "pattern": "^docs/governance/source-documents/.+"},
+          "document_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "authority_mode": {"enum": ["external_authoritative", "migration_in_progress", "git_authoritative", "retired"]},
+          "owner": {"type": "string", "minLength": 1},
+          "decision_ref": {"type": "string", "minLength": 1},
+          "effective_from": {"type": "string", "format": "date"},
+          "catalog_release": {"type": ["string", "null"]},
+          "coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["total", "analyzed", "decided", "effective", "unresolved"],
+            "properties": {
+              "total": {"type": "integer", "minimum": 0},
+              "analyzed": {"type": "integer", "minimum": 0},
+              "decided": {"type": "integer", "minimum": 0},
+              "effective": {"type": "integer", "minimum": 0},
+              "unresolved": {"type": "integer", "minimum": 0}
+            }
+          }
+        }
+      }
+    }
+  }
+}

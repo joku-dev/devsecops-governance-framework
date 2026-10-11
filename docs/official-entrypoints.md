@@ -63,6 +63,7 @@ It is intended for:
 - Source of Truth: `docs/governance/source-of-truth.md`
 - Operating Model: `docs/governance/operating-model.md`
 - Governance-as-Code System Architecture: `docs/governance/architecture/governance-as-code-system-architecture.md`
+- Document Intake to OPA Rulebook Architecture: `docs/governance/architecture/document-intake-to-opa-rulebook.md`
 - ADO and DevSecOps-as-Code integrated governance model: `docs/governance/architecture/ado-devsecops-integrated-governance-model.md`
 - Software Industrialisation Problem and Capability Map: `docs/governance/architecture/software-industrialisation-problem-capability-map.md`
 - Governance Repository Architecture Comparison: `docs/governance/architecture/governance-repository-architecture-comparison.md`
@@ -110,6 +111,7 @@ It is intended for:
 - Governance Intelligence Graph Viewer: `docs/operations/status/governance-intelligence-graph-viewer.md`
 - How to read control evaluation status: `docs/operations/evidence/how-to-read-control-evaluation-status.md`
 - Governance result intake and viewer usage: `docs/operations/evidence/governance-result-intake-and-viewer-usage.md`
+- Protected source-review workbench: [Start and usage](operations/guides/governance-review-workbench.md)
 - Governance Workspace guide: `docs/operations/guides/governance-viewer-app.md`
 - Measured ha-CPsWMS L1 evidence and control assurance: `docs/operations/evidence/l1-measured-evidence-ha-cpswms.md`
 - Intake operation telemetry: `docs/operations/evidence/intake-operation-telemetry.md`

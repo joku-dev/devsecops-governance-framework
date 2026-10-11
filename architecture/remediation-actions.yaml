@@ -1,4 +1,4 @@
-source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.public.md
+source_document: docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md
 model_version: 0.1.0
 remediations:
 - id: REM-REL-DECL

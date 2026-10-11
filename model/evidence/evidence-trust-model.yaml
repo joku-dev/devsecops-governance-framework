@@ -2,7 +2,7 @@ schema_version: "1.0.0"
 model_id: evidence-trust-model-v1
 title: Evidence Trust Model v1
 status: active_report_only
-source_document: docs/governance/source-documents/DSCB-STD-SRC-001.public.md
+source_document: docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md
 owner: governance-owners
 
 adoption:

@@ -1,0 +1,92 @@
+schema_version: 1.0.0
+sources:
+- source_id: DSCB-STD-REQ-001
+  source_version: requirements-only-sanitized
+  source_path: docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md
+  document_sha256: 4fdc3922607102df72af15e88725b24726d4d13d06e1d1b0ffc5dbb2b0393e84
+  authority_mode: migration_in_progress
+  owner: devsecops-owners
+  decision_ref: docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md
+  effective_from: '2026-10-09'
+  catalog_release: null
+  coverage:
+    total: 55
+    analyzed: 55
+    decided: 46
+    effective: 46
+    unresolved: 9
+- source_id: PRA-STD-REQ-001
+  source_version: requirements-only-sanitized
+  source_path: docs/governance/source-documents/PRA-STD-SRC-001.requirements.md
+  document_sha256: 730f3a1f5875ec76f3d032c9f620630fc68846d4722c28803b16c8ab50902d3b
+  authority_mode: migration_in_progress
+  owner: platform-owners
+  decision_ref: docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md
+  effective_from: '2026-10-09'
+  catalog_release: null
+  coverage:
+    total: 56
+    analyzed: 56
+    decided: 38
+    effective: 38
+    unresolved: 18
+- source_id: ARCH-TPL-REQ-001
+  source_version: requirements-only-sanitized
+  source_path: docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md
+  document_sha256: 4ecbb9e7343d816e7dc6448758cea5e09dd1d49079885738a2766f69b912c038
+  authority_mode: migration_in_progress
+  owner: architecture-owners
+  decision_ref: docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md
+  effective_from: '2026-10-09'
+  catalog_release: null
+  coverage:
+    total: 190
+    analyzed: 190
+    decided: 0
+    effective: 0
+    unresolved: 190
+- source_id: ARCH-EA-REQ-001
+  source_version: requirements-only-sanitized
+  source_path: docs/governance/source-documents/ARCH-EA-SRC-001.requirements.md
+  document_sha256: ce3cb3ad8cf00c45b5a3754f328cecb27658a7f5e509511324e3cf6af1fc52d3
+  authority_mode: migration_in_progress
+  owner: architecture-owners
+  decision_ref: docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md
+  effective_from: '2026-10-09'
+  catalog_release: null
+  coverage:
+    total: 153
+    analyzed: 153
+    decided: 0
+    effective: 0
+    unresolved: 153
+- source_id: ARCH-SA-REQ-001
+  source_version: requirements-only-sanitized
+  source_path: docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md
+  document_sha256: 2ed7ea9a8e4a9e38d8ea051868558453e6001f7f72fd0c4c53b9362be8d45b1d
+  authority_mode: migration_in_progress
+  owner: architecture-owners
+  decision_ref: docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md
+  effective_from: '2026-10-09'
+  catalog_release: null
+  coverage:
+    total: 190
+    analyzed: 190
+    decided: 0
+    effective: 0
+    unresolved: 190
+- source_id: ARCH-PA-REQ-001
+  source_version: requirements-only-sanitized
+  source_path: docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md
+  document_sha256: 45b9a581dc62dbf6db8686dd0936811edc3b98f0bd6db08bfa2ee326ebf4101c
+  authority_mode: migration_in_progress
+  owner: architecture-owners
+  decision_ref: docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md
+  effective_from: '2026-10-09'
+  catalog_release: null
+  coverage:
+    total: 223
+    analyzed: 223
+    decided: 0
+    effective: 0
+    unresolved: 223

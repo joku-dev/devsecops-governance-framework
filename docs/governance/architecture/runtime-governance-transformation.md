@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The input document `docs/governance/source-documents/ARCH-SDD-SRC-001.public.md` is a strong normative architecture governance framework, but it is not yet optimized for runtime governance.
+The input document `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md` is a strong normative architecture governance framework, but it is not yet optimized for runtime governance.
 
 Runtime governance requires the framework to be expressed as:
 
