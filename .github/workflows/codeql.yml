@@ -14,6 +14,12 @@ permissions:
   contents: read
   security-events: write
 
+# Supersede only obsolete PR revisions. Preserve every main, scheduled and
+# dispatched scan, including the explicit checks for bot-created review PRs.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   analyze:
     # Keep this context name stable because the protected branch requires it.
