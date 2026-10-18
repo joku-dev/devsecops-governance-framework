@@ -14,9 +14,12 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+## PR #289: Match Workbench requirements by DSCB L1 identifier (`66e405641472`)
 
-- docs: PRA-Review-Empfehlung dokumentieren
+- Detect human-facing *-L1-REQ-* identifiers embedded in requirement statements.
+- Pair candidate requirements with the current source by a unique shared identifier before falling back to text similarity.
+- Keep identifier matches paired as changed when wording similarity is low, and show the matched ID plus both source locations in the Workbench.
+- Document that identifier matching does not verify authorship, normative status, or replace human review.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
