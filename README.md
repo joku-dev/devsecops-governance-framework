@@ -14,9 +14,13 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+## PR #281: Add protected AXIOM source intake and review workbench (`35f8b4846a35`)
 
-- docs: PRA-Review-Empfehlung dokumentieren
+- Worklist and searchable source library use the real repository register.
+- Markdown/DOCX/PDF intake reuses existing extraction and delta logic; warnings and identifier provenance remain visible.
+- Durable private drafts bind HEAD, register and source hashes; stale or tampered packets are rejected.
+- Review scope packages remain preparation-only. Notes remain unconfirmed proposals.
+- Loopback session authentication, Host/Origin allowlists, CSRF protection, CSP, escaped rendering and upload/archive limits protect the local surface.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
