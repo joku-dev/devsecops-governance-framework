@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #303: ci: reduce obsolete PR work while preserving governance evidence (`0e5771592f3b`)
 
 ## Ergebnis
 
@@ -10,12 +10,11 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.github/workflows/codeql.yml`
+- `.github/workflows/documentation-refresh.yml`
+- `.github/workflows/governance-operations.yml`
+- `.github/workflows/governance-repository-security.yml`
+- `.github/workflows/portfolio-status.yml`
 
 ## Fehlende lokale Markdown-Ziele
 
