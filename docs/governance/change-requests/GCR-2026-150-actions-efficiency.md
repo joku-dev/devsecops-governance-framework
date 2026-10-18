@@ -29,13 +29,15 @@ Source revision: `66e40564147266ed8134a945b3152ed7b368ee54`.
 The full run inventory contains 2,215 runs created from 1 October 08:55:31 UTC
 through 18 October 11:42:58 UTC. All job pages were read with `filter=all`,
 including earlier attempts; no response exceeded the requested 100-job page.
-Total observed job time is 2,226.95 minutes. The sum rounded separately per
-job is 3,347 minutes, which is **not an invoice or quota-deduction claim**.
+One cancelled CodeQL job had no runner allocation or steps; its 902 seconds
+of waiting are excluded. Total observed job time is 2,211.92 minutes. The sum
+rounded separately per job is 3,331 minutes, which is **not an invoice or
+quota-deduction claim**.
 
 | Workflow | Runs | Actual job minutes | Rounded job minutes |
 |---|---:|---:|---:|
 | Governance CI | 356 | 1,217.67 | 1,356 |
-| CodeQL | 355 | 584.22 | 732 |
+| CodeQL | 355 | 569.18 | 716 |
 | Publish Docs | 78 | 106.55 | 142 |
 | Consumer Lifecycle Guard | 602 | 77.92 | 299 |
 | Repository Self-Security | 353 | 62.22 | 312 |
@@ -113,8 +115,9 @@ until each query stayed below GitHub's filtered-result limit. Run IDs were
 deduplicated. Job endpoint:
 `GET /repos/joku-dev/devsecops-governance-framework/actions/runs/{run_id}/jobs?filter=all&per_page=100`.
 
-Actual duration is summed from each non-skipped job's start/end timestamps;
-workflow update times, approval waits and skipped jobs are excluded.
+Actual duration is summed from each non-skipped, runner-allocated job's start/end
+timestamps; workflow update times, approval waits, jobs without a runner or
+steps, and skipped jobs are excluded.
 Rounded duration is the sum of the ceiling of each job's seconds / 60.
 The public repository's run URLs and API records make these observations
 reproducible; no private repository activity or personal billing export is
