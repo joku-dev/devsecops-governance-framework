@@ -38,51 +38,62 @@ review content; the existing extractor's warnings/errors remain visible.
 
 ## Guided operation
 
-The worklist shows the repository's current intake phases and highlights the
-next reported action. Each phase can be expanded to explain its purpose, what
-to do, and what completion means. “Bereich öffnen” takes the user to the closest
-available workbench area. Phase statuses and counts come from the intake report
-and are a status projection, not proof that the workbench itself performed or
-approved that phase. In particular, P1 requires a verified author identifier;
-unverified extraction row IDs stay separate, and prose candidates stay P2.
+The start page offers **Dokument hinzufügen** and **Dokumente öffnen**. Local
+work in progress appears under **Deine Entwürfe**. The full governance process
+and open registered-source reviews are expandable details; they are status
+projections, not proof that the Workbench performed or approved those phases.
 
-1. **Meine Arbeitsliste:** see candidate/draft/review sources, owners and the
-   next suggested action, along with persisted local drafts. The highlighted
-   next phase is a report projection; follow its explanation and open the
-   closest available area.
-2. **Quellenbibliothek:** filter by owner, ID, title or status; inspect original
-   extracted text and requirement candidates with source locators.
-3. **Quelle einreichen:** choose a Markdown, DOCX or PDF file (maximum 5 MiB),
-   a new stable ID, title, owner, version and domains. Optionally select the
-   registered source it may replace. A new version uses a new ID so existing
-   history is preserved. The upload remains a local candidate, not a register
-   change or an authority decision.
-4. Inspect **Kandidaten prüfen** and **Änderungen vergleichen**. Only explicit
-   requirement declarations such as `[DSCB-L1-REQ-001] ...` are extracted.
-   L2, L3, GOV and other requirement prefixes use the same rule. Unlabelled
-   prose, modal keywords, synthetic extraction row IDs and reference-only
-   mentions do not create requirements. P1 requires verified author-provided
-   identifier provenance; otherwise the explicit identifier stays unassigned.
-   Requirement labels are supported in paragraphs/list items, ID headings
-   followed by their statement, and requirement tables. Compare each declaration
-   with its original source location. Matching explicit IDs pair changed wording;
-   text similarity is a fallback for different IDs and does not establish
-   equivalence or source authority. No P2 prose suggestions are generated.
-5. Save reasoned **Notizen** against the source or an extracted requirement.
-   Reviewer names are declarations; this local application does not verify
-   enterprise reviewer authority. All notes remain `proposal_only`.
-6. Download **Entscheidungspaket** as ZIP. For source candidates it contains the
-   exact uploaded bytes, a proposed candidate-only register and change proposal,
-   plus local packet metadata. Inspect the packet before copying the repository
-   paths into a review branch. Do not copy the local packet metadata to a
-   normative catalog.
-7. Alternatively, select registered sources under **Review vorbereiten**. The
-   workbench creates a hashed scope package and allows source-level notes. This
-   is not an approved DCR manifest, provider input or a semantic execution. It
-   does not convert candidate sources to approved sources.
-8. **Baseline prüfen** shows the existing readiness projection and blocking
-   reasons. It consumes existing report snapshots and cannot establish fresh,
-   exhaustive consistency or approve a versioned baseline.
+### Prepare a document in three steps
+
+1. **Datei auswählen:** choose Markdown, DOCX or a text-based PDF (maximum
+   5 MiB). The filename suggests an editable title and, when explicitly present
+   as `v0.5` or similar, a version. No version is invented from a date or other
+   filename number. The document needs explicit requirement labels such as
+   `DSCB-L1-REQ-001`; no requirements are inferred from prose.
+2. **Dokument einordnen:** choose a new document or a new version of a registered
+   document. For a version candidate, select the existing document. Its owner
+   and domains can fill empty fields; these suggestions remain editable.
+   Confirm the version, responsible team/role and affected areas. A free
+   technical document ID is suggested against registered sources and local
+   drafts. **Technische Dokument-ID anpassen** allows a custom ID. This is a
+   document identifier, separate from requirement identifiers; a new version
+   receives a new ID and preserves history.
+3. **Angaben prüfen:** inspect the summary and use **Zurück** to correct it.
+   Only **Dokument vorbereiten** submits the file to the existing local API and
+   creates a candidate draft. No source register or normative authority changes.
+
+Back navigation and moving between sections retain the selected file and
+entered metadata in browser memory. Nothing is persisted in browser storage.
+Logout clears this temporary form state. Successfully prepared drafts continue
+under the existing private local filesystem storage. Missing fields and format
+or size errors appear beside the form and focus the relevant field.
+
+### Continue with the prepared draft
+
+- **Anforderungen ansehen:** compare the explicit declarations with the document
+  text and source locations. P1 requires verified author-provided provenance;
+  an unverified explicit identifier does not gain authority. No P2 prose
+  candidates are generated. Historical proposals remain historical records.
+- **Änderungen ansehen**, when a predecessor was selected: matching explicit IDs
+  pair declarations even with changed wording. Similarity fallback is review
+  support, not authoritative equivalence or a replacement decision.
+- **Notizen:** record a reasoned proposal for a requirement or the document.
+  Names are declarations, not enterprise-authenticated reviewer authority.
+  Notes remain `proposal_only`. Next-step buttons guide the user between views;
+  navigation does not attest that a review was completed.
+- **Weitergeben:** download the review ZIP. It contains exact source bytes,
+  candidate-only register/change proposals and notes. Technical hashes and
+  additional review conditions are expandable. Inspect the packet before copying
+  repository paths to a review branch; do not copy local packet metadata to a
+  normative catalog. Optional Draft-PR publication still requires explicit
+  publication confirmation.
+
+**Dokumente** shows the registered library. **Dokumente gemeinsam prüfen**
+prepares a hashed review scope or displays two originals side by side; this
+is not an approved DCR manifest, semantic execution or source promotion.
+**Freigabestand** explains existing baseline prerequisites in plain language.
+The original contracts and reports remain authoritative; the view cannot
+establish fresh consistency or approve a baseline.
 
 Exports and new notes are rejected if HEAD, the source register or any registered
 source bytes changed since preparation. If an uploaded file changes on disk,

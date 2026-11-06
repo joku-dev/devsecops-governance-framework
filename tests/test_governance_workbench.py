@@ -195,6 +195,13 @@ class WorkbenchTests(unittest.TestCase):
         result=subprocess.run(['node','-e',"const {escapeHTML}=require('./scripts/workbench/app.js'); process.stdout.write(escapeHTML('<img src=x onerror=alert(1)>'));"],cwd=ROOT,text=True,capture_output=True,check=True)
         self.assertEqual(result.stdout,'&lt;img src=x onerror=alert(1)&gt;')
 
+    def test_guided_intake_client_validation_and_metadata_suggestions(self):
+        if not shutil.which('node'):
+            self.skipTest('Node unavailable; JS checks can run with the external Node runtime')
+        result = subprocess.run(['node', 'tests/workbench-guided-intake.test.cjs'], cwd=ROOT,
+                                text=True, capture_output=True, check=False)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
     def test_http_login_csrf_host_and_private_data(self):
         server=wb.make_server(self.app,'test-key-long-enough-for-session',port=0)
         thread=threading.Thread(target=server.serve_forever,daemon=True)
