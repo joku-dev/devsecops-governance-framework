@@ -55,6 +55,11 @@ This refresh records current artifact paths and hashes; it preserves historical
 requirement cases, mappings and decisions. The catalog and PRA review packet
 remain reproducible without changes.
 
+The subsequent catalog PDF preview exposed missing German Babel support on the
+CI runner (`Unknown option 'ngerman'`). Add `texlive-lang-german` to the shared
+PDF package list so the existing German publication can render. This is a
+build dependency correction; publication content and authority are unchanged.
+
 ## Release decision
 
 No baseline release or enforcement change.

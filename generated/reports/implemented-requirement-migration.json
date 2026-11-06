@@ -2008,7 +2008,7 @@
       "path": ".github/workflows/codeql.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "85ea850170574e7ff1986e56c43e9b241fa0728f16fc38d9408e1503b3449da4",
+      "sha256": "cf6730db040c5ca366bb27162a14f97088a4c83cc6ac83db73176964ac7a98e9",
       "source_basis": null
     },
     {

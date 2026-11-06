@@ -42,6 +42,9 @@ rendering toolchain:
 python3 doc-as-code/scripts/build_publication.py --validate-only
 ```
 
+The shared PDF packages include German Babel support for the governance
+requirement catalog's `de-DE` publication language.
+
 Install the Pandoc release listed in `toolchain.env` and the configured PDF
 engine/packages, then build the ordered publication:
 
