@@ -48,6 +48,13 @@ explicit-only extraction and byte-identical ZIP content. Safari login, start
 and first-step validation were observed; native file-picker automation was
 unreliable, so no complete native-browser acceptance is claimed.
 
+During PR integration, Requirement Lifecycle CI detected an outdated advisory
+artifact inventory. Regenerate `implemented-requirement-migration.json` and
+`.md` with the existing generator against the current integration branch.
+This refresh records current artifact paths and hashes; it preserves historical
+requirement cases, mappings and decisions. The catalog and PRA review packet
+remain reproducible without changes.
+
 ## Release decision
 
 No baseline release or enforcement change.
