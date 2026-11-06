@@ -84,27 +84,30 @@ The Intake Agent prepares these review inputs:
 
 ### Requirement Identification And Intake Priority
 
-Classify requirement candidates separately from the authority and approval
-status of their source:
+Only explicitly labelled requirement declarations are admitted, for example
+`[DSCB-L1-REQ-001] All software components SHALL be traceable ...`.
+The same rule covers L2, L3, GOV and other requirement prefixes. A declaration
+can use a labelled paragraph/list item, a requirement-ID heading followed by its
+statement, or an ID/Requirement table. Markdown, DOCX and text-based PDF use
+the same declaration parser.
 
-| Intake class | Identification rule | Review priority | Treatment |
-|---|---|---|---|
-| `author_identified` | Provenance confirms that the source author assigned the requirement identifier. | `p1`; review these first. | Preserve the identifier and source location. Assess normative status through the source's authority and intake decision. |
-| `extraction_row_id` | A normalized extraction has a row identifier, but its origin in the original source is not verified. | Unassigned until provenance is checked. | Preserve it as an extraction row ID. Do not count it as source-author identification or assign P1. |
-| `inferred_candidate` | No explicit requirement identifier exists, but the wording may express an obligation or expected outcome. | `p2`; review after `author_identified` items. | Keep it as an inferred candidate with its exact source location and rationale. Require owner confirmation before treating it as a requirement. |
-| Contextual statement | The passage provides explanation, examples, rationale, or background without expressing a requirement. | No requirement-review priority. | Do not count it as a requirement unless a human reviewer confirms otherwise. |
+Do not infer requirements from MUST/SHALL/SHOULD, narrative text, headings,
+version history or context. A reference to an existing requirement is not a new
+declaration. Synthetic extraction IDs such as `DSCB-STD-SRC-001-REQ-001` are
+locators only; a normalized row needs an explicit requirement label in its
+statement. Traceability mapping tables are not requirement definitions.
 
-Only verified source-author identifiers signal that the author intentionally
-identified an item for requirement tracking, so those items receive `p1`. A
-first-column identifier in a normalized extraction does not establish that
-provenance; the source register defaults identifier origin to `unverified`.
-Record `requirement_identifier_origin: author_provided` for an individual
-source only when provenance has been established. A prose-only
-`inferred_candidate` receives `p2`. Neither identifier origin nor priority
-approves a source or makes an item normative: source authority, approval
-status, and any required human decision remain separate checks. Keep the
-identification class and intake priority visibly distinct from delta review
-priority in reports and review packets.
+| Intake class | Rule | Priority |
+|---|---|---|
+| `author_identified` | Explicit declaration and verified author-provided identifier provenance in the register. | `p1` |
+| `explicit_identifier` | Explicit declaration; author-provided provenance has not been verified. | `unassigned` |
+| Unlabelled prose / synthetic row ID / reference | Excluded from requirement extraction. | None |
+
+An identifier does not approve its source or authorize derivation. Existing
+source authority and human-review requirements continue to apply. Historical
+`inferred_candidate` items, lifecycle proposals and recorded decisions are not
+automatically deleted or reclassified by this extraction change. The legacy
+P2 report fields remain zero; no new prose candidates are produced.
 
 The primary reports are:
 
@@ -183,13 +186,11 @@ When ADO architecture source material is involved, also refresh:
 python3 scripts/generate_architecture_source_replacement_assessment.py
 ```
 
-When identifying requirement content, label source-author identifiers as
-`author_identified` / `p1` only when their origin is verified in the source
-register. Label IDs in normalized extracts with unverified origin as
-`extraction_row_id` / `unassigned`. Label possible requirements inferred from
-prose as `inferred_candidate` / `p2`, recording the source location and why
-the passage may express an obligation. Keep these groups separate and subject
-to the source's approval status and the human review decision.
+When identifying requirement content, extract only explicit declarations.
+Verified author-provided identifiers receive `author_identified` / `p1`;
+otherwise use `explicit_identifier` / `unassigned`. Preserve the source
+location. Do not derive requirements from prose or synthetic extraction IDs.
+Source approval and the human review decision remain separate.
 
 ### 4. Hold Human Review
 

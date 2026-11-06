@@ -110,7 +110,7 @@ class Workbench:
         return {'source': source, 'sha256': digest(path.read_bytes()),
                 'lines': [vars(x) for x in extracted.lines], 'warnings': list(extracted.warnings),
                 'requirements': extract_requirements(source['id'], path, origin),
-                'extraction_limit': 'Heuristic English normative wording; not an exhaustive requirement inventory. Unverified row IDs are not P1.'}
+                'extraction_limit': 'Only explicitly labelled requirements (for example DSCB-L1-REQ-001); no prose inference. Identifier provenance and source authority still require review.'}
 
     def draft_dir(self, draft_id):
         if not DRAFT_PATTERN.fullmatch(draft_id):
@@ -203,7 +203,7 @@ class Workbench:
                     'sha256': digest(raw), 'context': self.context(), 'warnings': list(extraction.warnings),
                     'lines': [vars(x) for x in extraction.lines], 'requirements': requirements, 'deltas': deltas,
                     'target': target, 'notes': [], 'pr': None,
-                    'limits': ['Heuristic English extraction; review the complete source, including unclassified text.',
+                    'limits': ['Only explicitly labelled requirements are extracted; prose, synthetic row IDs and reference-only mentions do not create requirements.',
                                'Local draft is not registered or approved. Notes are decision proposals only.']}
             self.save(folder, data)
             return data

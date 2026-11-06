@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-10T12:23:28Z",
+  "generated_at": "2026-11-06T15:53:38Z",
   "report_type": "source_document_process_status",
   "source_of_truth": {
     "register": "model/documents/source-document-register.yaml",
@@ -18,12 +18,14 @@
     },
     "requirement_identification_counts": {
       "author_identified": 0,
-      "extraction_row_id": 2138,
-      "inferred_candidate": 237
+      "explicit_identifier": 46,
+      "extraction_row_id": 0,
+      "inferred_candidate": 0
     },
     "authorized_source_requirement_identification_counts": {
       "author_identified": 0,
-      "extraction_row_id": 867,
+      "explicit_identifier": 46,
+      "extraction_row_id": 0,
       "inferred_candidate": 0
     },
     "lifecycle": {
@@ -37,7 +39,7 @@
       "undecided": 783,
       "unresolved": 783
     },
-    "inferred_candidate_count": 237,
+    "inferred_candidate_count": 0,
     "consistency_findings_open": 3,
     "effective_requirement_artifact_links": 19,
     "baseline_status": "blocked"
@@ -72,7 +74,7 @@
       "status": "blocked",
       "counts": {
         "confirmed_author_ids": 0,
-        "unverified_extraction_ids": 867,
+        "unverified_explicit_ids": 46,
         "decided": 84,
         "undecided": 783,
         "activated": 54
@@ -81,12 +83,12 @@
     },
     {
       "id": "p2_inferred_review",
-      "title": "P2: Inferred Candidates prüfen",
-      "status": "review_required",
+      "title": "Freitextableitung deaktiviert",
+      "status": "complete",
       "counts": {
-        "inferred_candidates": 237
+        "inferred_candidates": 0
       },
-      "next_action": "Kandidaten gegen die Quelldokumente und P1-Anforderungen prüfen."
+      "next_action": "Nur explizit gekennzeichnete Anforderungen aufnehmen; keine P2-Freitextvorschläge erzeugen."
     },
     {
       "id": "consistency_review",
@@ -117,7 +119,7 @@
         "authorized_sources": 6,
         "blocking_reasons": 5
       },
-      "next_action": "requirement identifier origin remains unverified for extracted row IDs"
+      "next_action": "requirement identifier origin remains unverified for explicit identifiers"
     },
     {
       "id": "governance_implementation",
@@ -235,7 +237,7 @@
       }
     ],
     "blocking_reasons": [
-      "requirement identifier origin remains unverified for extracted row IDs",
+      "requirement identifier origin remains unverified for explicit identifiers",
       "approved-source requirement lifecycle decisions remain open",
       "Document Consistency Review scope does not expose an exact approved-source set",
       "semantic consistency review is not exhaustive for the approved source set",
@@ -248,6 +250,7 @@
   },
   "limitations": [
     "This report joins existing governed records and does not make human source, requirement, conflict or release decisions.",
+    "New extraction reads explicit identifiers only. Existing lifecycle counts retain historical proposals and decisions; they are not a fresh extraction or automatic reclassification.",
     "A report-only consistency result is not proof that no semantic contradiction exists.",
     "The authorized-source baseline remains blocked until source provenance, requirement lifecycle, exhaustive consistency review and human decision conditions are met."
   ]

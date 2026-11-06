@@ -15,7 +15,7 @@ description: Register and classify incoming governance source documents, prepare
 6. Generate or review `generated/reports/source-document-intake-status.md`.
 7. Prepare review briefs with decision options using `generated/reports/source-document-intake-review-briefs.md` and the intake review packet model.
 8. For likely replacement candidates, generate requirement-level deltas using `generated/reports/source-document-requirement-delta.md`.
-9. Classify requirement candidates as `author_identified`/`p1` only when the source register verifies author-provided identifier provenance, `extraction_row_id`/`unassigned` for normalized extraction IDs with unknown origin, `inferred_candidate`/`p2` for possible obligations inferred from prose, or contextual; keep the classes separate.
+9. Extract only explicitly labelled requirement declarations such as `DSCB-L1-REQ-001`. Do not infer requirements from prose, SHALL/MUST keywords, headings, version history, reference-only mentions or synthetic extraction row IDs. Classify explicit identifiers as `author_identified`/`p1` only when the register verifies author-provided provenance; otherwise use `explicit_identifier`/`unassigned`.
 10. Verify that no controls, architecture markers, OPA policies, schemas, or release packages were derived from a candidate before review.
 11. Escalate the final source decision to the documented owner or change-request reviewer.
 
@@ -28,7 +28,7 @@ The agent may prepare:
 - decision options
 - register update candidates
 - requirement-level added, changed, removed, and equivalent summaries
-- requirement intake classification and priority, with verified `author_identified`/`p1`, unverified `extraction_row_id`/`unassigned`, and `inferred_candidate`/`p2` separated
+- explicit requirement identification and priority, with verified `author_identified`/`p1` and unverified `explicit_identifier`/`unassigned` separated; no prose-derived candidates
 - validation and release considerations
 - change-request text snippets
 
@@ -54,4 +54,4 @@ python3 scripts/validate_governance_repo.py
 
 ## Output
 
-Report source classification, review brief, decision options, requirement delta summary for replacement candidates, requirement identification classes and intake priority, human decision requirement, required change request, derivation status, and validation results. Use `author_identified`/`p1` only for source identifiers whose author-provided provenance is recorded; use `extraction_row_id`/`unassigned` for normalized row identifiers with unknown origin and `inferred_candidate`/`p2` for possible requirements detected in prose. An identifier does not itself confer normative status; keep source approval status separate from intake priority and delta review priority.
+Report source classification, review brief, decision options, requirement delta summary for replacement candidates, requirement identification classes and intake priority, human decision requirement, required change request, derivation status, and validation results. Use `author_identified`/`p1` only for source identifiers whose author-provided provenance is recorded; use `explicit_identifier`/`unassigned` when that provenance is not recorded. Do not generate requirements from prose or synthetic row identifiers. Preserve historical decisions and source text. An identifier does not itself confer normative status; keep source approval status separate from intake priority and delta review priority.

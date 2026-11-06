@@ -55,55 +55,25 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
             inventory_summary["identification_counts"]["inferred_candidate"],
             len(intake_inventory["inferred_candidates"]),
         )
-        self.assertGreater(inventory_summary["inferred_candidate_count"], 0)
-        self.assertTrue(
-            all(
-                item["identification_class"] == "inferred_candidate"
-                and item["intake_priority"] == "p2"
-                and item["source_path"]
-                and item["line"] > 0
-                for item in intake_inventory["inferred_candidates"]
-            )
-        )
-
-        pairs = {
-            (pair["candidate_id"], pair["target_id"]): pair
-            for pair in payload["requirement_delta_pairs"]
-        }
-        pair = pairs[("ARCH-GOV-REQ-001", "ARCH-SDD-REQ-001")]
-        self.assertGreater(pair["summary"]["candidate_requirements"], 0)
-        self.assertGreater(pair["summary"]["target_requirements"], 0)
-        self.assertEqual(
-            pair["summary"]["candidate_identification_counts"].get("extraction_row_id"),
-            pair["summary"]["candidate_requirements"],
-        )
-        self.assertEqual(
-            pair["summary"]["target_identification_counts"].get("extraction_row_id"),
-            pair["summary"]["target_requirements"],
-        )
-        self.assertGreater(pair["summary"]["differences_requiring_review"], 0)
-        self.assertIn("changed", pair["summary"]["status_counts"])
-        self.assertIn("removed", pair["summary"]["status_counts"])
-        policy_pair = pairs[("DEVSECOPS-POL-CAND-002", "DEVSECOPS-POL-REQ-001")]
-        self.assertGreater(
-            policy_pair["summary"]["candidate_identification_counts"].get("inferred_candidate", 0),
-            0,
-        )
-        self.assertGreater(
-            policy_pair["summary"]["target_identification_counts"].get("extraction_row_id", 0),
-            0,
-        )
-        inferred_delta = next(
-            item
-            for item in policy_pair["deltas"]
-            if item.get("candidate_requirement")
-            and item["candidate_requirement"]["identification_class"] == "inferred_candidate"
-        )
-        self.assertEqual(inferred_delta["candidate_requirement"]["intake_priority"], "p2")
+        self.assertEqual(inventory_summary["inferred_candidate_count"], 0)
+        self.assertEqual(intake_inventory["inferred_candidates"], [])
+        self.assertEqual(inventory_summary["extraction_mode"], "explicit_identifiers_only")
+        self.assertEqual(inventory_summary["extraction_row_id_count"], 0)
+        self.assertEqual(inventory_summary["explicit_identifier_count"], 46)
+        sources = {source["source_id"]: source for source in intake_inventory["sources"]}
+        self.assertEqual(sources["DSCB-STD-REQ-001"]["identification_counts"]["explicit_identifier"], 46)
+        self.assertEqual(sources["PRA-STD-REQ-001"]["identification_counts"]["explicit_identifier"], 0)
+        self.assertEqual(len(payload["requirement_delta_pairs"]), 2)
+        for pair in payload["requirement_delta_pairs"]:
+            # Neither replacement pair contains explicit declarations. An empty
+            # comparison must not revive the former keyword-based extraction.
+            self.assertEqual(pair["summary"]["candidate_requirements"], 0)
+            self.assertEqual(pair["summary"]["target_requirements"], 0)
+            self.assertEqual(pair["deltas"], [])
         markdown = output_md.read_text(encoding="utf-8")
         self.assertIn("Source Document Requirement Delta", markdown)
-        self.assertIn("inferred_candidate (P2)", markdown)
+        self.assertNotIn("inferred_candidate (P2)", markdown)
         self.assertIn("## Requirement Intake Identification", markdown)
-        self.assertIn("### `inferred_candidate` Prose Findings", markdown)
+        self.assertIn("explicit_identifiers_only", markdown)
         self.assertIn("Confirmed source-author identifiers (P1): `0`", markdown)
-        self.assertIn("Extracted row identifiers with unverified origin: `2138`", markdown)
+        self.assertIn("Explicit requirement identifiers with unverified origin: `46`", markdown)

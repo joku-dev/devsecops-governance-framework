@@ -57,19 +57,17 @@ unverified extraction row IDs stay separate, and prose candidates stay P2.
    registered source it may replace. A new version uses a new ID so existing
    history is preserved. The upload remains a local candidate, not a register
    change or an authority decision.
-4. Inspect **Kandidaten prüfen** and **Änderungen vergleichen**. P1 candidates
-   have priority only when author identifier origin is verified. P2
-   `inferred_candidate` items are prose suggestions that need human review.
-   The existing heuristic English normative extractor and delta matcher supply
-   suggestions, not exhaustive extraction, authoritative equivalence or
-   semantic findings. Unverified table identifiers remain extraction row IDs
-   and do not receive P1. Recognized identifiers embedded in statements, such
-   as `DSCB-L1-REQ-002`, are also used as stable keys to pair a candidate
-   requirement with the corresponding requirement in the selected source. The
-   comparison shows both source locations and wording, including when wording
-   changes substantially. This pairing does not verify identifier provenance,
-   establish normative status, or replace human review; otherwise the matcher
-   falls back to text similarity.
+4. Inspect **Kandidaten prüfen** and **Änderungen vergleichen**. Only explicit
+   requirement declarations such as `[DSCB-L1-REQ-001] ...` are extracted.
+   L2, L3, GOV and other requirement prefixes use the same rule. Unlabelled
+   prose, modal keywords, synthetic extraction row IDs and reference-only
+   mentions do not create requirements. P1 requires verified author-provided
+   identifier provenance; otherwise the explicit identifier stays unassigned.
+   Requirement labels are supported in paragraphs/list items, ID headings
+   followed by their statement, and requirement tables. Compare each declaration
+   with its original source location. Matching explicit IDs pair changed wording;
+   text similarity is a fallback for different IDs and does not establish
+   equivalence or source authority. No P2 prose suggestions are generated.
 5. Save reasoned **Notizen** against the source or an extracted requirement.
    Reviewer names are declarations; this local application does not verify
    enterprise reviewer authority. All notes remain `proposal_only`.
