@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-10-03T08:05:25Z",
+  "generated_at": "2026-10-29T08:27:40Z",
   "summary": {
     "repository_count": 3,
-    "stale_or_missing_count": 0,
+    "stale_or_missing_count": 2,
     "report_only_count": 2,
     "active_count": 1
   },
@@ -51,14 +51,14 @@
         "run_id": "34503074356",
         "generated_at": "2026-09-11T12:56:37Z",
         "freshness": {
-          "status": "current",
+          "status": "stale",
           "stale_after": "2026-10-11T12:56:37Z"
         }
       },
       "architecture_in_scope": false,
       "target_architecture_baseline": null,
       "latest_architecture": null,
-      "stale_or_missing": false,
+      "stale_or_missing": true,
       "governance_mode": "report-only",
       "next_action": "Review report-only findings"
     },
@@ -74,7 +74,7 @@
         "run_id": "34778861276",
         "generated_at": "2026-09-13T19:49:58Z",
         "freshness": {
-          "status": "current",
+          "status": "stale",
           "stale_after": "2026-10-13T19:49:58Z"
         }
       },
@@ -85,11 +85,11 @@
         "run_id": "34778861076",
         "generated_at": "2026-09-13T19:49:41Z",
         "freshness": {
-          "status": "current",
+          "status": "stale",
           "stale_after": "2026-10-13T19:49:41Z"
         }
       },
-      "stale_or_missing": false,
+      "stale_or_missing": true,
       "governance_mode": "report-only",
       "next_action": "Review report-only findings"
     }
