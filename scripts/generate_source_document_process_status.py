@@ -183,8 +183,8 @@ def build_report() -> dict:
         baseline_blockers.append("one or more source documents could not be extracted")
     if approved_skipped_sources:
         baseline_blockers.append("one or more approved source inputs have withheld source text")
-    if approved_identification_counts.get("extraction_row_id", 0):
-        baseline_blockers.append("requirement identifier origin remains unverified for extracted row IDs")
+    if approved_identification_counts.get("explicit_identifier", 0) or approved_identification_counts.get("extraction_row_id", 0):
+        baseline_blockers.append("requirement identifier origin remains unverified for explicit identifiers")
     if lifecycle_counts.get("unresolved", 0) or lifecycle_counts.get("undecided", 0):
         baseline_blockers.append("approved-source requirement lifecycle decisions remain open")
     if lifecycle["missing_case_source_ids"]:
@@ -232,16 +232,16 @@ def build_report() -> dict:
         {
             "id": "p1_requirement_lifecycle",
             "title": "P1: gekennzeichnete Anforderungen und Status prüfen",
-            "status": "blocked" if approved_identification_counts.get("extraction_row_id", 0) else "in_progress" if lifecycle_counts.get("undecided", 0) else "complete",
-            "counts": {"confirmed_author_ids": approved_identification_counts.get("author_identified", 0), "unverified_extraction_ids": approved_identification_counts.get("extraction_row_id", 0), "decided": lifecycle_counts.get("decided", 0), "undecided": lifecycle_counts.get("undecided", 0), "activated": lifecycle_counts.get("activated", 0)},
+            "status": "blocked" if approved_identification_counts.get("explicit_identifier", 0) or approved_identification_counts.get("extraction_row_id", 0) else "in_progress" if lifecycle_counts.get("undecided", 0) else "complete",
+            "counts": {"confirmed_author_ids": approved_identification_counts.get("author_identified", 0), "unverified_explicit_ids": approved_identification_counts.get("explicit_identifier", 0), "decided": lifecycle_counts.get("decided", 0), "undecided": lifecycle_counts.get("undecided", 0), "activated": lifecycle_counts.get("activated", 0)},
             "next_action": "Kennungsherkunft belegen und offene Requirement-Entscheidungen bearbeiten.",
         },
         {
             "id": "p2_inferred_review",
-            "title": "P2: Inferred Candidates prüfen",
+            "title": "Freitextableitung deaktiviert",
             "status": "review_required" if inventory_summary.get("inferred_candidate_count", 0) else "complete",
             "counts": {"inferred_candidates": inventory_summary.get("inferred_candidate_count", 0)},
-            "next_action": "Kandidaten gegen die Quelldokumente und P1-Anforderungen prüfen.",
+            "next_action": "Nur explizit gekennzeichnete Anforderungen aufnehmen; keine P2-Freitextvorschläge erzeugen.",
         },
         {
             "id": "consistency_review",
@@ -322,6 +322,7 @@ def build_report() -> dict:
         "authorized_source_baseline": baseline,
         "limitations": [
             "This report joins existing governed records and does not make human source, requirement, conflict or release decisions.",
+            "New extraction reads explicit identifiers only. Existing lifecycle counts retain historical proposals and decisions; they are not a fresh extraction or automatic reclassification.",
             "A report-only consistency result is not proof that no semantic contradiction exists.",
             "The authorized-source baseline remains blocked until source provenance, requirement lifecycle, exhaustive consistency review and human decision conditions are met.",
         ],
@@ -336,8 +337,8 @@ def render_markdown(report: dict) -> str:
         f"- Registered sources: `{report['summary']['registered_sources']}`",
         f"- Authorized sources: `{report['summary']['authorized_sources']}`",
         f"- Confirmed source-author IDs (P1): `{report['summary']['requirement_identification_counts'].get('author_identified', 0)}`",
-        f"- Unverified extraction row IDs in approved sources: `{report['summary']['authorized_source_requirement_identification_counts'].get('extraction_row_id', 0)}`",
-        f"- Unverified extraction row IDs across all registered sources: `{report['summary']['requirement_identification_counts'].get('extraction_row_id', 0)}`",
+        f"- Explicit requirement IDs with unverified origin in approved sources: `{report['summary']['authorized_source_requirement_identification_counts'].get('explicit_identifier', 0)}`",
+        f"- Explicit requirement IDs with unverified origin across all registered sources: `{report['summary']['requirement_identification_counts'].get('explicit_identifier', 0)}`",
         f"- Inferred candidates (P2): `{report['summary']['inferred_candidate_count']}`",
         "",
         "## Process Phases",

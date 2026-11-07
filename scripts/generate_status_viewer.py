@@ -1458,14 +1458,14 @@ def build_source_intake_cards(
             "Only where source provenance is recorded",
         ),
         (
-            "Extraction Row IDs (Unverified)",
-            str(inventory_summary.get("extraction_row_id_count", 0)),
-            "Normalized row IDs; origin in original source unverified",
+            "Explicit Requirement IDs (Unverified)",
+            str(inventory_summary.get("explicit_identifier_count", 0)),
+            "Explicit declarations; author provenance requires review",
         ),
         (
-            "Inferred Candidates (P2)",
-            str(inventory_summary.get("inferred_candidate_count", 0)),
-            "Prose screen; owner confirmation required",
+            "Extraction Mode",
+            "Explicit IDs only",
+            "No requirements inferred from prose",
         ),
         (
             "Decision State",
@@ -1556,23 +1556,6 @@ def build_requirement_delta_pair_rows(requirement_delta: dict) -> list[list[str]
     return rows
 
 
-def build_inferred_requirement_candidate_rows(requirement_delta: dict, limit: int = 12) -> list[list[str]]:
-    inventory = requirement_delta.get("requirement_intake_inventory", {})
-    rows = []
-    for item in inventory.get("inferred_candidates", [])[:limit]:
-        rows.append(
-            [
-                badge("inferred_candidate / p2", "warn"),
-                f"<code>{escape(item.get('source_id', 'unknown'))}</code>",
-                badge(item.get("source_status", "unknown"), source_status_tone(item.get("source_status", "unknown"))),
-                f"<code>{escape(item.get('source_path', 'unknown'))}:{item.get('line', 'unknown')}</code>",
-                badge(item.get("strength", "review"), "warn"),
-                escape(compact_statement(item)),
-            ]
-        )
-    return rows
-
-
 def requirement_ref(requirement: dict | None) -> str:
     if not requirement:
         return "n/a"
@@ -1591,8 +1574,8 @@ def compact_statement(requirement: dict | None, limit: int = 180) -> str:
 def requirement_intake_class_badge(requirement: dict | None) -> str:
     if not requirement:
         return badge("n/a", "warn")
-    identification_class = requirement.get("identification_class", "inferred_candidate")
-    priority = requirement.get("intake_priority", "p2").upper()
+    identification_class = requirement.get("identification_class", "explicit_identifier")
+    priority = requirement.get("intake_priority", "unassigned").upper()
     tone = "info" if identification_class == "author_identified" else "warn"
     return badge(f"{identification_class} / {priority}", tone)
 
@@ -1674,10 +1657,11 @@ def build_source_document_intake_section(
         + html_table(["Candidate", "Target", "Candidate Requirements", "Target Requirements", "Differences", "Counts"], build_requirement_delta_pair_rows(requirement_delta))
         + "</section>"
         "<section class=\"panel\">"
-        "<h2>Inferred Requirement Candidates</h2>"
-        f"<p>Showing up to 12 of {requirement_delta.get('summary', {}).get('requirement_intake_inventory', {}).get('inferred_candidate_count', 0)} prose candidates. Confirm each with its source owner before treating it as a requirement.</p>"
-        + html_table(["Intake Class", "Source", "Source Status", "Location", "Strength", "Candidate Statement"], build_inferred_requirement_candidate_rows(requirement_delta))
-        + "</section>"
+        "<h2>Requirement Extraction</h2>"
+        "<p>Only explicitly labelled requirement declarations such as DSCB-L1-REQ-001 are extracted. "
+        "Prose, synthetic extraction row IDs and reference-only mentions do not create requirements. "
+        "Historical lifecycle counts retain previously recorded proposals and decisions.</p>"
+        "</section>"
         "<section class=\"panel\">"
         "<h2>High Priority Requirement Delta Review</h2>"
         + html_table(["Status", "Delta Review Priority", "Candidate Intake Class", "Target Intake Class", "Candidate Ref", "Target Ref", "Potential Impacts", "Statement"], build_requirement_delta_review_rows(requirement_delta))

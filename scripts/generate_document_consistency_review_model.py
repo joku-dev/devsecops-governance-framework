@@ -11,6 +11,7 @@ import re
 import sys
 
 from jsonschema import Draft202012Validator
+from lib.explicit_requirements import extract_explicit_requirements
 from lib.source_document_text import (
     ExtractedSourceDocument,
     SourceDocumentExtractionError,
@@ -83,48 +84,28 @@ def extract_requirement_rows(
     source_path: Path,
     document: ExtractedSourceDocument | None = None,
 ) -> tuple[list[dict], list[dict]]:
-    """Extract stable row IDs, strength, and opaque section references without source prose."""
+    """Inventory explicit declarations without including source prose."""
     requirements = []
     references = []
     document = document or extract_source_document(source_path)
-    for source_line in document.lines:
-        line_number = source_line.number
-        line = line_for_markdown_parser(source_line)
-        match = ID_CELL.match(line)
-        if not match:
-            continue
-        cells = [cell.replace("\\|", "|").strip() for cell in re.split(r"(?<!\\)\|", line.strip().strip("|"))]
-        if len(cells) < 4 or cells[1] not in {"MUST", "SHALL", "SHOULD", "REQUIREMENT"}:
-            continue
-        requirement_id = match.group(1)
-        mandatory = cells[1] in {"MUST", "SHALL"}
-        section_ref = "SEC-" + hashlib.sha256(f"{source_id}\0{cells[2]}".encode("utf-8")).hexdigest()[:12].upper()
-        requirements.append(
-            {
-                "id": requirement_id,
-                "source_id": source_id,
-                "strength": cells[1],
-                "mandatory": mandatory,
-                "section_ref": section_ref,
-                "owner_role_id": None,
-                "verification_artifact_id": None,
-                "open_gap": (
-                    "Owner and verification mappings are outside this requirements-only input."
-                    if mandatory
-                    else None
-                ),
-            }
-        )
-        for target_id in sorted(set(STABLE_ID.findall(" | ".join(cells[3:]))) - {requirement_id}):
-            references.append(
-                {
-                    "type": "references",
-                    "source_entity_id": requirement_id,
-                    "target_entity_id": target_id,
-                    "source_document_id": source_id,
-                    "status": "candidate",
-                }
-            )
+    for declaration in extract_explicit_requirements(document):
+        requirement_id = declaration.identifier
+        strength = declaration.strength if declaration.strength in {"MUST", "SHALL", "SHOULD"} else "REQUIREMENT"
+        mandatory = strength in {"MUST", "SHALL"}
+        section_ref = "SEC-" + hashlib.sha256(f"{source_id}\0{declaration.context}".encode("utf-8")).hexdigest()[:12].upper()
+        requirements.append({
+            "id": requirement_id, "source_id": source_id,
+            "strength": strength, "mandatory": mandatory,
+            "section_ref": section_ref, "owner_role_id": None,
+            "verification_artifact_id": None,
+            "open_gap": "Owner and verification mappings are outside this requirements-only input." if mandatory else None,
+        })
+        for target_id in sorted(set(STABLE_ID.findall(declaration.statement)) - {requirement_id}):
+            references.append({
+                "type": "references", "source_entity_id": requirement_id,
+                "target_entity_id": target_id, "source_document_id": source_id,
+                "status": "candidate",
+            })
     return requirements, references
 
 
