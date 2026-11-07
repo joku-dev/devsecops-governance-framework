@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #326: Use explicit requirement intake and guide Workbench document preparation (`34f5a20bd5b2`)
 
 ## Ergebnis
 
@@ -10,12 +10,19 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.agents/roles/source-document-intake.yaml`
+- `.agents/skills/source-document-intake/SKILL.md`
+- `scripts/generate_document_consistency_review_model.py`
+- `scripts/generate_source_document_process_status.py`
+- `scripts/generate_source_document_requirement_delta.py`
+- `scripts/generate_status_viewer.py`
+- `scripts/lib/explicit_requirements.py`
+- `scripts/lib/requirement_lifecycle.py`
+- `scripts/serve_governance_workbench.py`
+- `scripts/validate_governance_repo.py`
+- `scripts/workbench/app.js`
+- `scripts/workbench/index.html`
+- `scripts/workbench/style.css`
 
 ## Fehlende lokale Markdown-Ziele
 
