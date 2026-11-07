@@ -6,7 +6,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from lib.requirement_lifecycle import analyze_statement, activate_case, parse_native_requirement, record_decision
+from lib.requirement_lifecycle import analyze_statement, activate_case, parse_native_requirement, parse_requirement_table, record_decision
 
 
 def catalog_with(statement="Existing requirement"):
@@ -48,6 +48,22 @@ class RequirementLifecycleTests(unittest.TestCase):
             parsed = parse_native_requirement(path)
             self.assertEqual(parsed["id"], "NATIVE-REQ-2026-001")
             self.assertEqual(parsed["statement"], "The governed statement.")
+
+    def test_new_import_excludes_unlabelled_rows_and_preserves_explicit_id(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "source.md"
+            path.write_text(
+                "| ID | Strength | Context | Requirement |\n|---|---|---|---|\n"
+                "| `DSCB-STD-SRC-001-REQ-001` | MUST | Purpose | All software shall be safe. |\n"
+                "| `DSCB-STD-SRC-001-REQ-002` | MUST | Control | [DSCB-L1-REQ-001] Retain logs. |\n",
+                encoding="utf-8",
+            )
+            rows = parse_requirement_table(path)
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["source_requirement_id"], "DSCB-L1-REQ-001")
+            path.write_text("The system SHALL retain logs.", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "no explicitly labelled"):
+                parse_requirement_table(path)
 
     def test_exact_match_is_duplicate(self):
         analysis = analyze_statement("Existing requirement", catalog_with())

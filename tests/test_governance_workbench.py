@@ -26,14 +26,14 @@ import generate_source_document_requirement_delta as delta
 class WorkbenchTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
-        self.root = Path(self.tmp.name)
+        self.root = Path(self.tmp.name).resolve()
         (self.root / 'docs/governance/source-documents').mkdir(parents=True)
         (self.root / 'model/documents').mkdir(parents=True)
         (self.root / 'schemas').mkdir()
         for name in ('source-document-register.schema.json', 'governance-workbench-draft.schema.json'):
             shutil.copy(ROOT / 'schemas' / name, self.root / 'schemas' / name)
         self.path = self.root / 'docs/governance/source-documents/TEST-SRC-001.md'
-        self.path.write_text('# Test\nThe system shall retain evidence for twelve months.\n')
+        self.path.write_text('# Test\n[DSCB-L1-REQ-001] The system shall retain evidence for twelve months.\n')
         self.reg = self.root / wb.REGISTER
         self.reg.write_text(yaml.safe_dump({'schema_version':'1.0.0','documents':[{'id':'TEST-SRC-001','title':'Test source','status':'approved','source_path':str(self.path.relative_to(self.root)),'owner':'test-owner','version':'1','intake_date':'2026-10-11','governance_domains':['devsecops'],'derived_artifact_areas':[]}]}))
         for args in (['git','init','-q'],['git','add','.'],['git','-c','user.name=Test','-c','user.email=test@example.invalid','commit','-qm','fixture']):
@@ -47,7 +47,7 @@ class WorkbenchTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def upload(self, **changes):
-        payload={'filename':'proposal.md','content_base64':base64.b64encode(b'# Candidate\nThe system shall retain evidence for eighteen months.\n').decode(),
+        payload={'filename':'proposal.md','content_base64':base64.b64encode(b'# Candidate\n[DSCB-L1-REQ-001] The system shall retain evidence for eighteen months.\n').decode(),
                  'metadata':{'id':'TEST-CAND-002','title':'Replacement','owner':'test-owner','version':'2','governance_domains':['devsecops'],'replacement_for':'TEST-SRC-001'}}
         payload.update(changes)
         return self.app.create_draft(payload)
@@ -59,7 +59,10 @@ class WorkbenchTests(unittest.TestCase):
         self.assertFalse((self.root/draft['source']['source_path']).exists())
         self.assertEqual(draft['source']['status'],'candidate')
         self.assertEqual(draft['source']['derived_artifact_areas'],[])
-        self.assertTrue(draft['deltas'])
+        self.assertEqual(len(draft['deltas']), 1)
+        self.assertEqual(draft['deltas'][0]['matched_identifier'], 'DSCB-L1-REQ-001')
+        self.assertEqual(draft['requirements'][0]['source_requirement_id'], 'DSCB-L1-REQ-001')
+        self.assertEqual(draft['requirements'][0]['identification_class'], 'explicit_identifier')
         with zipfile.ZipFile(io.BytesIO(self.app.packet(draft['draft_id']))) as archive:
             jsonschema.validate(json.loads(archive.read('workbench-package.json')), wb.read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
             reg=yaml.safe_load(archive.read(wb.REGISTER))
@@ -67,6 +70,13 @@ class WorkbenchTests(unittest.TestCase):
             self.assertIsNone(reg['documents'][-1]['supersedes'])
             self.assertEqual(wb.digest(archive.read(draft['source']['source_path'])),draft['sha256'])
         self.assertEqual(self.reg.read_bytes(),before)
+
+    def test_unlabelled_upload_produces_no_requirement_candidates(self):
+        draft = self.upload(content_base64=base64.b64encode(
+            b"# Requirements\nThe system SHALL retain evidence.\nSee DSCB-L1-REQ-001 for details.\n"
+        ).decode())
+        self.assertEqual(draft['requirements'], [])
+        self.assertTrue(draft['lines'])
 
     def test_changed_source_blocks_note_and_export(self):
         draft=self.upload()
@@ -184,6 +194,13 @@ class WorkbenchTests(unittest.TestCase):
             self.skipTest('Node unavailable')
         result=subprocess.run(['node','-e',"const {escapeHTML}=require('./scripts/workbench/app.js'); process.stdout.write(escapeHTML('<img src=x onerror=alert(1)>'));"],cwd=ROOT,text=True,capture_output=True,check=True)
         self.assertEqual(result.stdout,'&lt;img src=x onerror=alert(1)&gt;')
+
+    def test_guided_intake_client_validation_and_metadata_suggestions(self):
+        if not shutil.which('node'):
+            self.skipTest('Node unavailable; JS checks can run with the external Node runtime')
+        result = subprocess.run(['node', 'tests/workbench-guided-intake.test.cjs'], cwd=ROOT,
+                                text=True, capture_output=True, check=False)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_http_login_csrf_host_and_private_data(self):
         server=wb.make_server(self.app,'test-key-long-enough-for-session',port=0)
