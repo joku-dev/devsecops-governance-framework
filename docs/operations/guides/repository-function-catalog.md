@@ -12,8 +12,8 @@ zusätzlich alle Skripte, Bibliotheksmodule, Workflows und OPA-Module des Quells
 
 | Merkmal | Wert |
 | --- | --- |
-| Dokumentationsabgleich | 3. Oktober 2026; gezielter Status-/Inventarabgleich, keine neue fachliche Abnahme |
-| Betrachteter Quellstand | `46b33429a6f271273e33508f26275ed8ba7f1f2c`; ursprünglicher Katalog vom 19. September bleibt Grundlage |
+| Dokumentationsabgleich | 7. November 2026; Implementierungs- und Dokumentationsabgleich, keine neue fachliche Abnahme |
+| Betrachteter Quellstand | `ae423f34f75451b70b1ebffc71ea3683e4763c52`; historische Beobachtungen bleiben datiert erhalten |
 | Zielgruppe | Geschäftsführung, Governance-Verantwortliche, Architektur, Security, Plattformbetrieb und Anwendungsteams |
 | Dokumenttyp | Erläuternder Funktionskatalog |
 | Änderungsnachweis | Ursprung: [GCR-2026-056](../../governance/change-requests/GCR-2026-056-detailed-function-catalog.md); Aktualisierungen: [GCR-2026-058](../../governance/change-requests/GCR-2026-058-current-documentation-refresh.md), [GCR-2026-078](../../governance/change-requests/GCR-2026-078-documentation-and-function-audit.md), [GCR-2026-093](../../governance/change-requests/GCR-2026-093-current-documentation-capabilities-refresh.md), [GCR-2026-101](../../governance/change-requests/GCR-2026-101-consumer-scale-capacity-assessment.md) |
@@ -23,7 +23,31 @@ bestätigt keine aktuelle Betriebsbereitschaft einer Anwendung und erzeugt keine
 neue fachliche Vorgabe. Genehmigte Quellen, Modelle, Schemas und veröffentlichte
 Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 
-## Ergänzungen nach dem dokumentierten 3.-Oktober-Quellstand
+## Aktueller Intake- und Review-Ablauf
+
+Die private lokale [Review Workbench](governance-review-workbench.md) führt durch
+Dateiauswahl, Dokumenteinordnung, Anforderungsprüfung und Weitergabe als ZIP.
+Registrierte Dokumente können ohne erneuten Upload zur Prüfung vorbereitet werden.
+Markdown und DOCX werden unterstützt; textbasierte PDFs benötigen den optionalen
+Parser. Nur explizit deklarierte Requirements wie `DSCB-L1-REQ-001` werden
+extrahiert. Fließtext, reine ID-Verweise und technische `*-SRC-…-REQ-*`-Zeilen-IDs
+erzeugen keine Anforderungen. P1 erfordert zusätzlich bestätigte
+`author_provided`-Herkunft; ein sichtbarer Identifier bestätigt diese Herkunft nicht.
+
+Je Anforderung zeigt die Workbench Text, Fundstelle, Originalkontext und Prüfnotizen.
+Fortschritt zählt Anforderungen mit Prüfnotiz. Frühere Vorschläge, Entscheidungen
+und Aktivierungen stehen separat als lesende Historie. Lokale Notizen sind
+`proposal_only`; Quellenfreigabe, kanonische Aktivierung, OPA-Zuordnung und
+Baseline-Freigabe bleiben eigene versionierte Entscheidungen.
+Der öffentliche Viewer veröffentlicht lesende Projektionen.
+Der [Abgleich vom 7. November](../status/repository-documentation-reconciliation-2026-11-07.md)
+ordnet die offenen Dokumentationsentwürfe und ihre abgelösten Aussagen ein.
+
+## Historisch übernommene Implementierungsnotizen
+
+Die folgenden Notizen dokumentieren frühere Merges und deren damalige Einordnung.
+Insbesondere sind die 867 Lifecycle-Proposals erhaltene Aufzeichnungen; sie sind
+keine Zählung heute neu extrahierter expliziter Anforderungen.
 
 <!-- DOCS_REFRESH_CATALOG:start -->
 ### PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
@@ -178,7 +202,7 @@ Statuswechsel ist eine fachliche Entscheidung. Aus einem ungeprüften Kandidaten
 dürfen keine aktiven Kontrollen oder Baselines abgeleitet werden. Die früheren
 `*.public.md`-Platzhalter wurden entfernt; die getrackten
 `*.requirements.md`-Dateien sind die bestätigten, sanitisierten Anforderungen,
-nicht die Originalvolltexte. Fünf neue Intake-Dokumente bleiben `candidate`, bis
+nicht die Originalvolltexte. Sechs Intake-Dokumente bleiben `candidate`, bis
 ihre dokumentierten offenen Entscheidungen abgeschlossen sind.
 
 ## 2. Änderungen an Vorgaben vorbereiten
@@ -191,8 +215,9 @@ Dokumente und ein Governance Change Request.
 
 **Ablauf:** Generatoren erstellen einen Änderungsfolgebericht, den Intake-Status
 und menschlich lesbare Review-Briefe. Der Anforderungsvergleich untersucht
-normativ wirkende Aussagen auf Ergänzungen, Änderungen, Entfernungen und
-Übereinstimmungen. Für mögliche Architektur-Ablösungen gibt es eine zusätzliche
+explizit deklarierte Requirements auf Ergänzungen, Änderungen, Entfernungen und
+Übereinstimmungen. Gleiche explizite IDs werden vor Textähnlichkeit zugeordnet;
+Ähnlichkeit bleibt eine Review-Hilfe. Für mögliche Architektur-Ablösungen gibt es eine zusätzliche
 Bewertung. Der Change Request hält Anlass, Entscheidung und Umsetzungsumfang fest.
 
 **Ergebnisse:** Review-Unterlagen, Hinweise auf betroffene Artefakte und ein
@@ -234,7 +259,10 @@ Modellen, Regeln und weiteren Artefakten. Diese unterstützen Audits,
 
 **Einordnung und Grenzen:** Implementiert. Eine vorhandene Verknüpfung belegt,
 dass eine Beziehung dokumentiert wurde. Ihre fachliche Richtigkeit und
-Vollständigkeit benötigen weiterhin Review.
+Vollständigkeit benötigen weiterhin Review. Direkte Quellableitungen und
+gemeinsame Publikationsausgaben werden getrennt ausgewiesen. Ein fehlender
+Quellvolltext ist sichtbar, aber kein automatischer Baseline-Fehler. Historische
+Release-Pakete behalten ihre ursprünglichen Pfade.
 
 ## 4. DevSecOps-Kontrollen modellieren
 
