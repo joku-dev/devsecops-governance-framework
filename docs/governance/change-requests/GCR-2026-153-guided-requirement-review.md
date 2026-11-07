@@ -82,6 +82,10 @@ A separate synthetic jsdom flow exercised registered-source preparation,
 highlighted original context, HTML escaping, read-only history, unsaved text
 across item/tab navigation, append-only progress, clarification handoff, export,
 reopening, stale locks, empty extraction and logout reset.
+Delayed-save cases additionally verify that switching items/tabs during an
+in-flight save preserves text entered for another item, blocks duplicate edits
+to the pending note and restores the empty-extraction question action after
+search/filter redraws.
 
 The real `DSCB-STD-REQ-001` acceptance run found 46 explicit declarations and 55
 retained historical proposals with matching source binding. A proposal-only
