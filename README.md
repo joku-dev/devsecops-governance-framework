@@ -14,19 +14,28 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+## Implementation readback — 7 November 2026
 
-- docs: PRA-Review-Empfehlung dokumentieren
+The local [Review Workbench](docs/operations/guides/governance-review-workbench.md)
+guides document intake, explicit requirement review and review-packet handoff.
+Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
+prose is not converted into requirements. Notes prepare human decisions.
+The public Viewer presents reviewed projections read-only.
+
+The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
+records source commit `ae423f3`, draft coverage and remaining limits.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
 ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
 13. September 2026 aktiv, manuell und report-only.
 
-The [v0.3.0 adoption/operations release](docs/releases/v0.3.0-public-adoption.md)
-packages the current operational assurance, evidence, viewer, security and
-scale-readiness state; its release statement explains publication status,
-known limits and separate baseline pins.
+The latest published repository adoption release observed on 7 November is
+[v0.2.0](docs/releases/v0.2.0-public-adoption.md).
+[v0.3.0](docs/releases/v0.3.0-public-adoption.md) contains preparation assets;
+no `v0.3.0-public-adoption` remote tag or published GitHub Release was present.
+The [release index](docs/releases/index.md) distinguishes baseline tags,
+repository releases and the versions pinned by accepted consumer results.
 
 The dated operating observations, current-state source links, measured
 ha-CPsWMS evidence and historical staging deployment are recorded in the
@@ -55,7 +64,8 @@ The repository models a governance stack where a `Policy` defines mandatory inte
 | Try the framework in an application repo | `docs/onboarding/public-repo-quickstart.md` |
 | Copy ready-to-use templates | `adoption-package/README.md` |
 | Inspect the validated neutral consumer | `docs/onboarding/validated-demo-consumer.md` |
-| Review the current public release | `docs/releases/v0.3.0-public-adoption.md` |
+| Review publication status and baseline versions | [Release index](docs/releases/index.md) |
+| Prepare document intake and requirement review locally | [Review Workbench](docs/operations/guides/governance-review-workbench.md) |
 | Inspect current repository capabilities | `docs/operations/guides/repository-function-catalog.md` |
 | Open the governance viewer | `https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html` |
 | Open the published documentation | `https://joku-dev.github.io/devsecops-governance-framework/` |
@@ -73,7 +83,7 @@ The repository separates these concerns:
 | Area | Purpose |
 |---|---|
 | `docs/` | Human-readable governance documentation, onboarding guides, adapter guidance, and operational explanations. |
-| `docs/governance/source-documents` | Public source placeholders for lineage only; original source documents are withheld from the public repository. |
+| `docs/governance/source-documents` | Registered source artifacts, including sanitized requirements extracts and candidate documents; source status and lineage are recorded in the register. |
 | `model/documents` | Structured catalog of policy, directive, and standard source documents. |
 | `model/controls` | Structured DevSecOps control baseline requirements. |
 | `model/platform` | Platform Reference Architecture levels and platform capabilities. |
@@ -161,8 +171,8 @@ The addendum keeps the original framework document as the normative reference an
 - Release integrity verifies the directly signed operational-pilot tag and a signed, closed retrospective manifest for the three immutable historical tags; every future release tag requires a direct trusted signature.
 - Central intake stores append-only DevSecOps, architecture, typed evidence, measured L1, control-assurance and staging-deployment snapshots under `status/`; reviewed operational PRs update the official indexes.
 - Evidence Trust records integrity, provenance, freshness, replay, custody and attestation without turning evidence quality into a compliance or release decision.
-- The ha-CPsWMS pilot produces real tests, SAST, five container builds, CycloneDX SBOMs, Trivy scans and HTTP/Neo4j integration evidence. Its latest measured L1 assessment covers all 16 controls and leaves missing or partial evidence explicit.
-- The isolated ha-CPsWMS staging VM runs the verified query-api and Neo4j images. Its first recorded deployment passed 19 health, function, persistence, restart, outage/recovery, identity and runtime-hardening checks; the Viewer keeps this staging-only decision separate from production approval and vulnerability risk acceptance.
+- The ha-CPsWMS pilot produces real tests, SAST, five container builds, CycloneDX SBOMs, Trivy scans and HTTP/Neo4j integration evidence. The retained measured L1 assessment covers all 16 controls and leaves missing or partial evidence explicit.
+- The retained ha-CPsWMS staging evidence records deployment of verified query-api and Neo4j images. Its first recorded deployment passed 19 health, function, persistence, restart, outage/recovery, identity and runtime-hardening checks; the Viewer keeps this staging-only decision separate from production approval and vulnerability risk acceptance.
 - The manual closed-loop lifecycle pilot can record observations, decisions, actions, receipts, closure and revocation for its narrowly accepted scope. It remains report-only and subject to personal action consent.
 - `governance-framework-demo-consumer` is the neutral public reference consumer for first adoption validation.
 - Platform-neutral evidence generation, validation and bundle intake support adapter paths for GitHub Actions, Bamboo with Bitbucket Data Center, Bitbucket Pipelines, Jenkins and GitLab CI. The non-GitHub paths are reference implementations that require environment-specific integration and validation.
@@ -180,8 +190,9 @@ PASS remains distinct from open scanner findings, replay deviations and
 production approval.
 
 The [current-state overview](docs/operations/status/current-governance-platform-state.md)
-records the 3 October documentation observation and links to the authoritative
-accepted indexes. The separate demo-consumer lifecycle case is now closed;
+records the 7 November implementation readback, preserves dated earlier observations
+and links to the authoritative accepted indexes. The indexed ha-CPsWMS results
+remain dated 2 October; repository validation does not refresh consumer evidence. The separate demo-consumer lifecycle case is now closed;
 newly captured ha-CPsWMS container SBOM evidence reaches `provenance_verified`.
 Neither statement grants production approval or retroactively promotes old evidence.
 The [Closed-Loop Governance reading map](docs/operations/evidence/governance-lifecycle-overview.md)

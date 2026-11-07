@@ -7,9 +7,9 @@
 | Document type | Current-state, as-built system architecture |
 | Status | Current explanatory architecture |
 | Effective date | 2026-07-17 |
-| Last implementation review | 2026-09-13, repository `8df643d` |
+| Last implementation review | 2026-11-07, repository `ae423f3`; older evidence observations retain their dates |
 | Owner | Governance Platform Maintainers |
-| Change request | `GCR-2026-035`; documentation refreshes `GCR-2026-058`, `GCR-2026-078` |
+| Change request | `GCR-2026-035`; documentation refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154` |
 | Governance effect | None; documentation-only |
 | Released baseline effect | None |
 | Source Document Intake | Not required; no new governance source |
@@ -42,6 +42,8 @@ The document complements rather than replaces:
 In scope:
 
 - the central `devsecops-governance-framework` repository
+- authenticated local document intake and requirement-review preparation
+- hybrid external/Git requirement authority, canonical revisions and artifact mappings
 - multiple application and service repositories consuming released baselines
 - DevSecOps and architecture runtime evaluation
 - collector, evidence, Trust, replay, ledger, and failed-attempt handling
@@ -51,10 +53,52 @@ In scope:
 Out of scope:
 
 - deployment architecture of consumer applications
-- a long-running governance API, database, or event broker
+- a centrally hosted multi-user governance API, database, or event broker
 - Kubernetes as the current runtime platform
 - automatic approval by an AI agent
 - enterprise-wide approval workflows outside this repository
+
+## Local preparation, requirement authority and public projection
+
+The [Review Workbench](../../operations/guides/governance-review-workbench.md)
+is a loopback HTTP service, separate from the static public Viewer. It reads
+registered sources and stores private candidate drafts and append-only review
+notes outside the tracked governance model. Markdown/DOCX and optional text-PDF
+extraction use the shared explicit-declaration parser. A label such as
+`DSCB-L1-REQ-001` identifies a declaration; prose and synthetic row identifiers
+are excluded. Identifier origin remains a separate provenance assertion.
+
+The guided intake prepares a candidate. Registered-source review prepares the
+existing version and exact source bytes. Item review combines the original
+locator and context with proposal-only confirmation, rejection or clarification
+notes. A review ZIP can carry incomplete preparation and open questions to the
+human review process. Retained lifecycle proposals and decisions are read-only
+history, outside current extraction and note-progress counts.
+
+Authentication, CSRF protection, source hashes, stale-draft and publication
+guards constrain local writes. Threaded connection handling prevents idle browser
+sockets from blocking the service; actual request handlers serialize session and
+draft operations. This remains a local operational surface, with no hosted
+enterprise identity or automatic governance approval.
+
+```mermaid
+flowchart LR
+    S[Registered source or candidate] --> W[Private local Workbench]
+    W --> P[Review packet and proposed notes]
+    P --> H[Human source and requirement decisions]
+    H --> C[Lifecycle case and canonical catalog]
+    C --> A[Reviewed requirement-to-artifact mappings]
+    A --> R[Controlled policy and baseline changes]
+    C --> V[Read-only publication and Viewer]
+```
+
+The Requirement Authority Ledger distinguishes external authority, migration
+in progress and complete Git authority. Immutable canonical revisions carry
+explicit decisions and authorized derivations. Activation does not approve an
+OPA equivalence mapping, release or blocking mode. The
+[document-to-OPA rulebook](document-intake-to-opa-rulebook.md) describes these
+boundaries. The [dated reconciliation](../../operations/status/repository-documentation-reconciliation-2026-11-07.md)
+records current implementation coverage without refreshing consumer evidence.
 
 ## Implemented closed-loop pilot
 
