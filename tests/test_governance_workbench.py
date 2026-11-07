@@ -7,9 +7,11 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import socket
 import sys
 import tempfile
 import threading
+from concurrent.futures import ThreadPoolExecutor
 import unittest
 from unittest.mock import patch
 import zipfile
@@ -77,6 +79,99 @@ class WorkbenchTests(unittest.TestCase):
         ).decode())
         self.assertEqual(draft['requirements'], [])
         self.assertTrue(draft['lines'])
+
+    def test_registered_source_review_notes_reopen_and_packet_preserve_authority(self):
+        original, register = self.path.read_bytes(), self.reg.read_bytes()
+        draft = self.app.source_review({'source_id': 'TEST-SRC-001'})
+        self.assertEqual(draft['kind'], 'source_review')
+        self.assertEqual(draft['source']['status'], 'approved')
+        subject = draft['requirements'][0]['id']
+        note = {'subject': subject, 'reviewer': 'Review test', 'outcome': 'needs_clarification',
+                'rationale': 'Check the recorded identifier origin.'}
+        self.app.note(draft['draft_id'], note)
+        result = self.app.note(draft['draft_id'], {**note, 'outcome': 'confirm_candidate',
+                                                'rationale': 'Proposal only; owner decision remains separate.'})
+        self.assertEqual(len(result['notes']), 2)
+        self.assertEqual(self.app.draft(draft['draft_id'])['notes'], result['notes'])
+        with zipfile.ZipFile(io.BytesIO(self.app.packet(draft['draft_id']))) as archive:
+            self.assertEqual(archive.read(draft['source']['source_path']), original)
+            self.assertNotIn(wb.REGISTER, archive.namelist())
+            packet = json.loads(archive.read('workbench-package.json'))
+            jsonschema.validate(packet, wb.read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
+            self.assertEqual(packet['source']['status'], 'approved')
+            self.assertTrue(all(n['authority'] == 'proposal_only' for n in packet['notes']))
+            change = archive.read(f'docs/governance/change-requests/GCR-WB-{draft["draft_id"]}.md').decode()
+            self.assertIn('Explicit requirements: 1; with item notes: 1.', change)
+            self.assertIn('Clarification required: none.', change)
+        self.assertEqual(self.reg.read_bytes(), register)
+        self.assertEqual(self.path.read_bytes(), original)
+
+    def test_registered_review_blocks_stale_sources_and_published_notes(self):
+        tampered = self.app.source_review({'source_id': 'TEST-SRC-001'})
+        tampered['source']['status'] = 'candidate'
+        self.app.save(self.app.draft_dir(tampered['draft_id']), tampered)
+        self.assertTrue(self.app.draft(tampered['draft_id'])['stale'])
+        with self.assertRaisesRegex(ValueError, 'stale'):
+            self.app.packet(tampered['draft_id'])
+        draft = self.app.source_review({'source_id': 'TEST-SRC-001'})
+        draft['pr'] = {'url': 'https://github.com/owner/repo/pull/1'}
+        self.app.save(self.app.draft_dir(draft['draft_id']), draft)
+        with self.assertRaisesRegex(ValueError, 'already been submitted'):
+            self.app.note(draft['draft_id'], {})
+        self.path.write_text('Changed registered source')
+        with self.assertRaisesRegex(ValueError, 'stale'):
+            self.app.packet(draft['draft_id'])
+        with self.assertRaisesRegex(ValueError, 'changed'):
+            self.app.note(draft['draft_id'], {})
+
+    def test_history_is_read_only_and_retains_unlabelled_proposals_and_decisions(self):
+        directory = self.root / 'model/requirements/lifecycle-cases'
+        directory.mkdir(parents=True)
+        case = {'case_id': 'RLC-TEST', 'status': 'partially_activated',
+                'source': {'source_id': 'TEST-SRC-001', 'source_path': str(self.path.relative_to(self.root)),
+                           'source_sha256': wb.digest(self.path.read_bytes())},
+                'proposals': [{'proposal_id': 'OLD-1', 'source_requirement_id': 'TEST-SRC-001-REQ-001',
+                               'statement': 'A historical version table row.', 'decision': {'disposition': 'reject'},
+                               'activation': None}]}
+        path = directory / 'RLC-TEST.json'
+        path.write_text(json.dumps(case))
+        before = path.read_bytes()
+        history = self.app.requirement_history('TEST-SRC-001')
+        self.assertTrue(history['cases'][0]['source_matches'])
+        self.assertEqual(history['cases'][0]['proposals'], case['proposals'])
+        self.assertEqual(path.read_bytes(), before)
+        self.path.write_text('Changed source version')
+        self.assertFalse(self.app.requirement_history('TEST-SRC-001')['cases'][0]['source_matches'])
+        with self.assertRaisesRegex(ValueError, 'Unknown registered source'):
+            self.app.requirement_history('OTHER-SRC-001')
+
+    def test_older_draft_rows_remain_read_only_and_do_not_count_as_current(self):
+        draft = self.upload()
+        draft['requirements'].append({'id': 'old-row', 'source_requirement_id': 'TEST-SRC-001-REQ-002',
+                                      'identification_class': 'inferred_candidate', 'statement': 'Historical narrative.'})
+        old_note = {'subject': 'old-row', 'reviewer': 'Previous reviewer', 'outcome': 'confirm_candidate',
+                    'rationale': 'Retained earlier proposal.', 'recorded_at': '2026-10-01', 'authority': 'proposal_only'}
+        draft['notes'].append(old_note)
+        self.app.save(self.app.draft_dir(draft['draft_id']), draft)
+        with self.assertRaisesRegex(ValueError, 'historical entries are read-only'):
+            self.app.note(draft['draft_id'], {**old_note, 'rationale': 'Do not treat this as current.'})
+        summary = wb.preparation_summary(self.app.draft(draft['draft_id']))
+        self.assertIn('Explicit requirements: 1; with item notes: 0.', summary)
+        self.assertEqual(self.app.draft(draft['draft_id'])['notes'], [old_note])
+
+    def test_review_rejects_source_changes_during_preparation_and_candidate_schema_stays_strict(self):
+        inspect = self.app.inspect
+        def changed(source):
+            result = inspect(source)
+            self.path.write_text('Concurrent source change')
+            return result
+        with patch.object(self.app, 'inspect', side_effect=changed), self.assertRaisesRegex(ValueError, 'Source changed'):
+            self.app.source_review({'source_id': 'TEST-SRC-001'})
+        self.assertEqual(list(self.app.state_dir.iterdir()), [])
+        draft = self.upload()
+        draft['source']['status'] = 'approved'
+        with self.assertRaises(jsonschema.ValidationError):
+            self.app.save(self.app.draft_dir(draft['draft_id']), draft)
 
     def test_changed_source_blocks_note_and_export(self):
         draft=self.upload()
@@ -202,6 +297,13 @@ class WorkbenchTests(unittest.TestCase):
                                 text=True, capture_output=True, check=False)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_guided_requirement_review_progress_and_history_separation(self):
+        if not shutil.which('node'):
+            self.skipTest('Node unavailable')
+        result = subprocess.run(['node', 'tests/workbench-requirement-review.test.cjs'], cwd=ROOT,
+                                text=True, capture_output=True, check=False)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
     def test_http_login_csrf_host_and_private_data(self):
         server=wb.make_server(self.app,'test-key-long-enough-for-session',port=0)
         thread=threading.Thread(target=server.serve_forever,daemon=True)
@@ -217,6 +319,7 @@ class WorkbenchTests(unittest.TestCase):
             response=conn.getresponse();body=response.read();return response,body
         try:
             r,b=request('GET','/api/state');self.assertEqual(r.status,401)
+            r,b=request('GET','/api/sources/TEST-SRC-001/history');self.assertEqual(r.status,401)
             r,b=request('GET','/',extra={'Host':'evil.example'});self.assertEqual(r.status,403)
             r,b=request('POST','/api/login',{'key':'test-key-long-enough-for-session'},{'Origin':'https://evil.example'});self.assertEqual(r.status,403)
             r,b=request('POST','/api/login',{'key':'test-key-long-enough-for-session'});self.assertEqual(r.status,200)
@@ -229,8 +332,61 @@ class WorkbenchTests(unittest.TestCase):
             r,b=request('GET','/api/sources/TEST-SRC-001',extra={'Cookie':cookie});self.assertEqual(r.status,200)
             self.assertIn('Content-Security-Policy',dict(r.getheaders()))
             self.assertEqual(r.getheader('Cache-Control'),'no-store')
+            r,b=request('POST','/api/source-reviews',{'source_id':'TEST-SRC-001'},{'Cookie':cookie});self.assertEqual(r.status,403)
+            r,b=request('POST','/api/source-reviews',{'source_id':'TEST-SRC-001'},{'Cookie':cookie,'X-CSRF-Token':state['csrf']});self.assertEqual(r.status,201)
+            draft=json.loads(b)
+            r,b=request('POST',f'/api/drafts/{draft["draft_id"]}/notes',{'subject':draft['requirements'][0]['id'],'reviewer':'HTTP test','outcome':'needs_clarification','rationale':'Verify origin.'},{'Cookie':cookie,'X-CSRF-Token':state['csrf']});self.assertEqual(r.status,200)
+            r,b=request('GET',f'/api/drafts/{draft["draft_id"]}',extra={'Cookie':cookie});self.assertEqual(r.status,200)
+            self.assertEqual(json.loads(b)['notes'][0]['authority'],'proposal_only')
+            r,b=request('GET',f'/api/drafts/{draft["draft_id"]}/packet',extra={'Cookie':cookie});self.assertEqual(r.status,200)
+            with zipfile.ZipFile(io.BytesIO(b)) as archive:
+                self.assertEqual(archive.read(str(self.path.relative_to(self.root))),self.path.read_bytes())
+                self.assertNotIn(wb.REGISTER,archive.namelist())
+            r,b=request('GET','/api/sources/TEST-SRC-001/history',extra={'Cookie':cookie});self.assertEqual(r.status,200)
+            self.assertEqual(json.loads(b)['cases'],[])
         finally:
             conn.close();server.shutdown();server.server_close();thread.join(timeout=5)
+
+    def test_idle_browser_connection_and_parallel_notes_do_not_block_or_lose_data(self):
+        draft = self.app.source_review({'source_id': 'TEST-SRC-001'})
+        key = 'parallel-browser-test-access-key'
+        server = wb.make_server(self.app, key, port=0)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        port = server.server_address[1]
+        idle = socket.create_connection(('127.0.0.1', port), timeout=2)
+        def request(method, path, payload=None, headers=None):
+            conn = http.client.HTTPConnection('127.0.0.1', port, timeout=2)
+            try:
+                data = json.dumps(payload) if payload is not None else None
+                fields = {'Content-Type': 'application/json', 'Origin': f'http://127.0.0.1:{port}', **(headers or {})}
+                conn.request(method, path, data, fields)
+                response = conn.getresponse()
+                body = response.read()
+                return response.status, dict(response.getheaders()), body
+            finally:
+                conn.close()
+        try:
+            # The first TCP connection deliberately sends no HTTP request.
+            # An ordinary HTTPServer waits on it instead of serving this page.
+            self.assertEqual(request('GET', '/')[0], 200)
+            status, headers, _ = request('POST', '/api/login', {'key': key})
+            self.assertEqual(status, 200)
+            cookie = headers['Set-Cookie']
+            _, _, body = request('GET', '/api/state', headers={'Cookie': cookie})
+            token = json.loads(body)['csrf']
+            def note(index):
+                return request('POST', f'/api/drafts/{draft["draft_id"]}/notes',
+                               {'subject': draft['requirements'][0]['id'], 'reviewer': 'Concurrent test',
+                                'outcome': 'needs_clarification', 'rationale': f'Question {index}'},
+                               {'Cookie': cookie, 'X-CSRF-Token': token})[0]
+            with ThreadPoolExecutor(max_workers=4) as executor:
+                self.assertEqual(list(executor.map(note, range(8))), [200] * 8)
+            notes = self.app.draft(draft['draft_id'])['notes']
+            self.assertEqual(len(notes), 8)
+            self.assertEqual({n['rationale'] for n in notes}, {f'Question {i}' for i in range(8)})
+        finally:
+            idle.close();server.shutdown();server.server_close();thread.join(timeout=5)
 
 
 if __name__=='__main__':
