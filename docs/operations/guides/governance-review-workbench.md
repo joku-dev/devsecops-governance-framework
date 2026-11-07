@@ -68,21 +68,55 @@ Logout clears this temporary form state. Successfully prepared drafts continue
 under the existing private local filesystem storage. Missing fields and format
 or size errors appear beside the form and focus the relevant field.
 
+### Review a registered document
+
+Open **Dokumente**, select an existing document, then choose **Prüfung
+vorbereiten**. This creates a local `source_review` for the existing version
+and its exact bytes. Uploading the document as a new candidate is unnecessary.
+The source register, source status and recorded decisions remain unchanged.
+
+The document's read-only view uses the same requirement selection and source
+context as the editable local preparation. **Frühere Vorschläge und
+Entscheidungen** displays retained lifecycle cases, including recorded decisions
+and activations. A different source hash/path is marked explicitly; no earlier
+decision is automatically applied to the current extraction.
+
 ### Continue with the prepared draft
 
-- **Anforderungen ansehen:** compare the explicit declarations with the document
-  text and source locations. P1 requires verified author-provided provenance;
-  an unverified explicit identifier does not gain authority. No P2 prose
-  candidates are generated. Historical proposals remain historical records.
+- **Anforderungen prüfen:** select or search an explicit declaration. Its ID,
+  full statement, origin status and highlighted original locator appear together.
+  The complete original remains expandable. Record a named reviewer, a reason
+  and **Bestätigung vorschlagen**, **Ablehnung vorschlagen** or **Klärung
+  erforderlich** beside that item. P1 still requires verified author-provided
+  provenance. Search and the **Ohne Prüfnotiz** / **Klärungsbedarf** filters do
+  not change the progress denominator.
+- The progress counter is **Anforderungen mit Prüfnotiz**, never an approval
+  count. The latest appended item note determines the local display; all earlier
+  notes remain readable. Clarifications remain open until another note records
+  a different proposal. Unsaved item and general-note text survives item/tab
+  navigation and closing/reopening in the same session. Logout clears temporary
+  text; saved notes remain in the local draft.
+- **Frühere Vorschläge:** retained lifecycle cases and older draft rows are
+  read-only history. Older inferred/row-ID entries never contribute to current
+  extraction or preparation progress. Lifecycle counters in the overall process
+  are separately labelled **Frühere Lifecycle-Aufzeichnungen**; their decisions
+  and open items retain their governance meaning.
 - **Änderungen ansehen**, when a predecessor was selected: matching explicit IDs
   pair declarations even with changed wording. Similarity fallback is review
   support, not authoritative equivalence or a replacement decision.
-- **Notizen:** record a reasoned proposal for a requirement or the document.
+- **Alle Notizen:** read saved proposals or add a general document note.
   Names are declarations, not enterprise-authenticated reviewer authority.
   Notes remain `proposal_only`. Next-step buttons guide the user between views;
   navigation does not attest that a review was completed.
-- **Weitergeben:** download the review ZIP. It contains exact source bytes,
-  candidate-only register/change proposals and notes. Technical hashes and
+- **Weitergeben:** inspect the summary of items with/without notes and open
+  clarification questions, then download the review ZIP. Partial preparation
+  can be handed off; the display does not claim completed review. If no explicit
+  requirements were found, check the original and use **Frage zum Dokument
+  notieren**; an empty extraction never counts as complete.
+  Candidate packets contain exact source bytes, candidate-only register/change
+  proposals and notes. Registered-source review packets contain byte-identical
+  existing source content, proposal-only notes and a change proposal, with no
+  new-source register proposal. Technical hashes and
   additional review conditions are expandable. Inspect the packet before copying
   repository paths to a review branch; do not copy local packet metadata to a
   normative catalog. Optional Draft-PR publication still requires explicit
