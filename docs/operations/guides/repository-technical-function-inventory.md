@@ -1,5 +1,24 @@
 # Technische Funktionsliste des Repositories
 
+## Nachtrag: nachvollziehbare Agentenreviews (GCR-2026-155)
+
+Die Agentenreview-Erweiterung ergänzt zwei Produktionsmodule. Damit wächst die
+Python-Dateimenge gegenüber dem unten gebundenen Stand von 165 auf **167**;
+Shell-, Workflow-, OPA- und sonstige Skript-Dateimengen bleiben gleich. Der
+folgende vollständige Ausgangskatalog mit seinen Commit-Links bleibt als
+Quellstand erhalten. Die neuen Module und der geänderte Einstieg sind:
+
+| Datei | Aufgabe |
+|---|---|
+| `scripts/lib/agent_routing.py` | Produktives Routing, Vertragsprüfung, Auswahlgründe und Validierungen aus neutralen Rollen; vom Harness importiert. |
+| `scripts/lib/agent_review.py` | Vollständige Git-Scope-Ermittlung, private Review-Pläne und Abschlussprüfung gegen Revision, Index, Bytes, Verträge und deklarierte Ergebnisse. |
+| `scripts/dispatch_governance_agents.py` | Bestehender Einstieg mit zusätzlicher Plan-/Ergebnisbedienung; startet keine Modelle oder Subagenten. |
+
+Gemeinsames Protokoll: `.agents/review-protocol.yaml`.
+[Bedienung und Aussagegrenzen](../agents/how-to-run-agent-review.md).
+
+## Gebundener Ausgangskatalog
+
 Inventarabgleich: **7. November 2026**, Quellstand `ae423f34f75451b70b1ebffc71ea3683e4763c52`.
 Die Tabellen erfassen exakt die versionierten Python-, Shell-, JavaScript-,
 HTML- und CSS-Dateien unter `scripts/`, Workflow-YAML unter

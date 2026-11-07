@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: architecture-runtime-governance
+skill: architecture-runtime-governance
 name: Architecture Runtime Governance Agent
 description: Maintain architecture markers, gates, policies, schemas, and architecture baseline integrity.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md

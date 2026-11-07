@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: demo-readiness
+skill: demo-readiness
 name: Demo Readiness Agent
 description: Keep demo runbooks, viewer data, and ha-CPsWMS current-main story consistent.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md

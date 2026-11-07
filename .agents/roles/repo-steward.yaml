@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: repo-steward
+skill: repo-steward
 name: Repo Steward Agent
 description: Protect repository hygiene, validation discipline, focused commits, and safe generated-output handling.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md

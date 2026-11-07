@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: release-manager
+skill: release-management
 name: Release Manager Agent
 description: Classify release impact and protect released baselines, reusable workflows, and release packages.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md

@@ -97,6 +97,24 @@ retain their original Trust level. Use the Closed-Loop reading map in
 
 Use `docs/demos/demo-end-to-end-governance.md` as the primary demo runbook.
 
+## Accountable Agent Reviews
+
+For cross-domain or governance-behavior changes, prepare a revision-bound review
+plan with `scripts/dispatch_governance_agents.py --plan-output` and follow
+`docs/operations/agents/how-to-run-agent-review.md`. The shared execution contract
+is `.agents/review-protocol.yaml`; each role declares its `skill` explicitly.
+
+Selection does not mean execution. Identify role-lens work by one coordinator,
+actual subagents and human reviews accurately. Use read-only role reviews by
+default. Delegated implementation requires explicit authorization and disjoint
+file ownership; do not start parallel writers from routing alone. Repo Steward
+synthesizes the specialist reviews last. Recorded results and validation outcomes
+are declared evidence and do not replace independent human approval.
+
+Keep private review plans/results outside the checkout. Regenerate a plan after
+source, index, HEAD or contract changes. A small explanatory edit may use the
+ordinary focused review without creating a full packet.
+
 ## Required Validation
 
 Before committing governance behavior, schemas, generated reports, viewer data, or docs that describe current results, run:

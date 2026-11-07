@@ -1,312 +1,143 @@
 # How To Run A Governance Agent Review
 
-## Purpose
+Use this workflow for cross-domain changes, governance behavior and release-sensitive
+work. A small explanatory edit may keep the ordinary focused review. The shared
+procedure is `.agents/review-protocol.yaml`; responsibilities and outputs remain
+in `.agents/roles/*.yaml`, with explicit `skill` bindings.
 
-Use this runbook when you want to review a branch, pull request, or local change with the governance agent system.
+## 1. Understand scope and responsibility
 
-The process is model-neutral first. Codex and Mistral are provider adapters. GitHub Actions, Bitbucket Pipelines, Bamboo, Jenkins, and GitLab CI are platform adapters.
-
-## Quick Path
-
-1. Identify changed files.
-2. Run deterministic dispatch.
-3. Read the selected role contracts and skill workflows.
-4. Execute each selected role review.
-5. Run or record the required validation.
-6. Write findings and commit readiness.
-7. Keep provider and platform details out of the governance core.
-
-## Step 1: Identify Changed Files
-
-For a local branch, run:
+Prepare and activate the pinned environment:
 
 ```bash
-git diff --name-only origin/main
+./scripts/bootstrap_validation_env.sh
+source .venv-validation/bin/activate
+python scripts/dispatch_governance_agents.py --base-ref origin/main
 ```
 
-For an already staged change, run:
+The dispatcher includes committed branch changes since the merge base, staged
+and unstaged edits, and untracked files. Renames route both old and new paths.
+It reports selected roles, matching routing prefixes and required validations
+read from the actual role contracts. It executes no model and starts no subagents.
+Functional paths without a specific rule receive a visible Governance Analyst
+fallback; classify their domain before accepting routing as complete.
+Without `--base-ref` it reports local staged/unstaged/untracked changes.
+
+Explicit paths are useful for focused work:
 
 ```bash
-git diff --cached --name-only
+python scripts/dispatch_governance_agents.py --json scripts/workbench/app.js
 ```
 
-For the complete branch scope compared with `main`, run:
+Explicit-path results cover only those paths, even if the rest of the repository
+has changes. Paths must be repository-relative POSIX paths; absolute paths,
+traversal and symlink inputs escaping the checkout are rejected for review plans.
 
-```bash
-git diff --name-only origin/main...HEAD
-```
-
-Use repository-relative paths in the dispatch input.
-
-## Step 2: Run Dispatch
-
-For the current local diff:
-
-```bash
-python3 scripts/dispatch_governance_agents.py --base-ref origin/main
-```
-
-For explicit paths:
-
-```bash
-python3 scripts/dispatch_governance_agents.py pipeline-baseline/templates/bitbucket/README.md
-```
-
-For machine-readable output:
-
-```bash
-python3 scripts/dispatch_governance_agents.py --json --base-ref origin/main
-```
-
-The dispatch result tells you:
-
-- changed files
-- selected agents
-- release impact
-- required validation
-- warnings
-
-## Step 3: Interpret Selected Agents
-
-Always expect `repo-steward` when a meaningful repository change exists.
-
-Common path examples:
-
-| Changed path | Expected additional agents |
+| Area | Specialist examples |
 |---|---|
-| `pipeline-baseline/templates/bitbucket/` | `devsecops-baseline`, `release-manager` |
-| `pipeline-baseline/templates/bamboo/` | `devsecops-baseline`, `release-manager` |
-| `policies/opa/` | `policy-as-code`, `release-manager` |
-| `schemas/` | `evidence-and-intake`, `release-manager` |
-| `architecture/` | `architecture-runtime-governance`, `policy-as-code` |
-| `model/controls/` | `devsecops-baseline`, `governance-analyst` |
-| `docs/governance/source-documents/` | `source-document-intake`, `governance-analyst` |
-| `releases/` | `release-manager` |
+| Sources and register | Source Document Intake, Governance Analyst |
+| Canonical requirements | Governance Analyst, Release Manager |
+| Controls and platform | DevSecOps Baseline, Governance Analyst |
+| OPA and reusable workflows | Policy-as-Code or DevSecOps Baseline, Release Manager |
+| Workbench | Evidence and Intake, Governance Analyst |
+| Public Viewer and results | Evidence and Intake, Demo Readiness |
+| Provider adapters and routing | Governance Analyst, Release Manager |
 
-If dispatch emits a warning, handle it before commit readiness.
+`repo-steward` is selected for every nonempty scope. A change request by itself
+does not trigger full source-document intake. A release-impact value of
+`candidate` is a review classification, not publication or authorization to alter
+a released baseline.
 
-## Step 4: Read Role And Skill Contracts
+## 2. Implement and validate the intended change
 
-For each selected agent, read the neutral role contract:
-
-```text
-.agents/roles/<agent-id>.yaml
-```
-
-Then read the matching skill workflow:
-
-```text
-.agents/skills/<skill-name>/SKILL.md
-```
-
-Examples:
-
-| Agent | Role contract | Skill workflow |
-|---|---|---|
-| `repo-steward` | `.agents/roles/repo-steward.yaml` | `.agents/skills/repo-steward/SKILL.md` |
-| `devsecops-baseline` | `.agents/roles/devsecops-baseline.yaml` | `.agents/skills/devsecops-baseline/SKILL.md` |
-| `release-manager` | `.agents/roles/release-manager.yaml` | `.agents/skills/release-management/SKILL.md` |
-| `policy-as-code` | `.agents/roles/policy-as-code.yaml` | `.agents/skills/policy-as-code/SKILL.md` |
-| `evidence-and-intake` | `.agents/roles/evidence-and-intake.yaml` | `.agents/skills/evidence-and-intake/SKILL.md` |
-
-The role contract decides responsibility and required output. The skill workflow decides review procedure.
-
-## Step 5: Execute The Review
-
-For each selected agent, answer the output contract from its role file.
-
-A `devsecops-baseline` review should report:
-
-```text
-control impact
-evidence impact
-release impact
-validation results
-```
-
-A `release-manager` review should report:
-
-```text
-release impact
-baseline mutation decision
-migration impact
-validation results
-```
-
-A `repo-steward` review should report:
-
-```text
-scope review
-hygiene findings
-validation summary
-commit readiness
-```
-
-A `source-document-intake` review should report:
-
-```text
-source classification
-review brief and decision options
-requirement delta summary for replacement candidates
-human decision required
-candidate derivation blocked or allowed
-validation results
-```
-
-Keep findings concrete:
-
-```text
-<severity>: <file/path>: <issue>
-```
-
-Use `none` when no findings exist.
-
-## Step 6: Run Validation
-
-Run the commands from dispatch first.
-
-Common commands:
+Read the selected role/skill contracts and implement the authorized scope.
+Complete relevant checks using the pinned environment, including the required
+repository validation:
 
 ```bash
+./scripts/validate_all.sh > /tmp/axiom-validation.log 2>&1
 git diff --check
-python3 scripts/validate_governance_repo.py
-python3 scripts/validate_runtime_governance.py
-python3 -m unittest discover -s tests
+git status --short
 ```
 
-For source-document intake changes, also run:
+Keep command outcomes and concrete log/run references. The full validation log
+can cover individual commands only when it actually ran them. Run additional
+role-specific generators or demo checks where requested by dispatch. Inspect
+generated changes and retain only intended output; preserve unrelated user edits
+and historical evidence. Stage the intended files before preparing the final
+packet, because the plan binds both index and worktree state.
+
+## 3. Prepare a private review packet
+
+Use fresh output filenames outside the checkout:
 
 ```bash
-python3 scripts/generate_source_document_intake_status.py
-python3 scripts/generate_source_document_intake_review_briefs.py
-python3 scripts/generate_source_document_requirement_delta.py
+python scripts/dispatch_governance_agents.py \
+  --base-ref origin/main \
+  --goal "Describe the concrete change and acceptance criteria" \
+  --plan-output /tmp/axiom-review/plan.json \
+  --results-template /tmp/axiom-review/results.json
 ```
 
-For OPA policy changes, also run:
+The files are created with private permissions and never overwrite existing
+files. Plans/results inside the checkout are rejected. The packet binds HEAD,
+the resolved merge base, changed paths, source hashes, executable modes, index
+entries and selected role/skill/routing/protocol contracts. New tasks remain
+pending. Preparation does not record a provider review or complete a task.
+Preparation/checking does not append usage events, even if continuous recording
+is active. Ordinary dispatch retains the existing usage-recording behavior.
+
+## 4. Execute and record each role review
+
+Keep the plan unchanged. Fill the separate results file after actually performing
+each task. The plan supplies read-only scope, required outputs and selection
+reasons. It does not grant permission to implement further changes.
+
+For each role, record:
+
+- `execution_kind`: `role_lens` for one coordinator applying a review perspective,
+  `subagent` for an actually executed separate agent, or `human` for human work.
+- `executor`, `provider` and the actual `model`, using null when unknown. Do not
+  copy a configured model name as evidence of the executing model.
+- `status`: completed, failed or skipped; a skipped required role remains incomplete.
+- `summary`, every required `outputs` entry and the exact `reviewed_paths`.
+- Findings with severity, path, issue and open/resolved status; use an empty list
+  only after review found no findings.
+
+Complete specialists first. Repo Steward synthesizes them last and lists their
+role IDs under `reviewed_roles`. If a fix changes sources, index, HEAD or contracts,
+validate it as appropriate and prepare a fresh packet. New paths also invalidate
+a full working-tree plan.
+
+Routing alone does not authorize delegation. When parallel implementation is
+explicitly authorized, give workers disjoint file ownership, tell them they share
+the checkout and preserve others' edits. Record actual execution accurately.
+Several role lenses by one coordinator are not independent agent reviews.
+
+In `validations`, record each required command, its actual outcome and an evidence
+reference. Do not mark a check passed because a role suggested running it.
+
+## 5. Check completeness and hand off
 
 ```bash
-opa check policies/opa
+python scripts/dispatch_governance_agents.py \
+  --check-review /tmp/axiom-review/plan.json \
+  --review-results /tmp/axiom-review/results.json
 ```
 
-If the full test suite updates only generated report timestamps, remove that timestamp-only noise from the commit unless a refreshed report timestamp is intentional.
+Exit 0 means the declared packet is complete for its stated scope and eligible
+for human review. Exit 1 means work is incomplete, failed, skipped or has open
+high/critical findings. Exit 2 means invalid/stale input or scope mismatch.
+Missing or duplicated roles/validation commands are rejected. Repo Steward must
+account for every specialist, and required outputs and paths must be covered.
+The checker neither executes commands nor authenticates a reviewer, model,
+log reference or execution claim. It evaluates **self-reported review evidence**.
+Semantic quality needs human judgment and separate evaluations.
 
-## Step 7: Write The Review Result
+Summarize findings, validation and material limits in the PR. Human CODEOWNER
+approval, governance decisions, baseline releases and blocking authorization
+retain their existing processes. A plan or complete packet grants none of them.
+A commit changes HEAD; a later review must prepare a packet for the new revision.
 
-Use this format:
-
-```text
-Selected agents:
-- <agent>: <reason>
-
-Impact:
-- release impact: none|governance_model|candidate|released_baseline
-- enforcement behavior: unchanged|report-only|blocking
-- evidence context: none|mainline|branch|pull_request|manual
-- provider: codex|mistral|none
-- platform: github-actions|bitbucket-pipelines|bamboo|jenkins|gitlab-ci|local|unknown
-
-Required validation:
-- <command>: run|not run|not applicable
-
-Findings:
-- <severity>: <file/path>: <issue>
-
-Commit readiness:
-- ready|not ready
-- reason
-```
-
-Optionally record usage for reference runs or audit evidence:
-
-```bash
-python3 scripts/dispatch_governance_agents.py \
-  --log-usage \
-  --run-type provider_review \
-  --provider codex \
-  --platform local \
-  --source reference-run \
-  <changed-paths>
-```
-
-For details, see:
-
-```text
-docs/operations/agents/agent-usage-tracking.md
-```
-
-## Step 8: Provider Choices
-
-### Codex
-
-For Codex, use:
-
-```text
-.github/codex/prompts/governance-agent-dispatch.md
-.codex/agents/*.toml
-```
-
-Codex adapter files must point back to:
-
-```text
-.agents/roles/
-.agents/skills/
-.agents/routing/governance-agent-routing.yaml
-```
-
-### Mistral
-
-For Mistral, use:
-
-```text
-.agents/providers/mistral/governance-agent-dispatch.prompt.md
-.agents/providers/mistral/role-execution-contract.md
-```
-
-Mistral must also read the same neutral contracts under `.agents/`.
-
-Do not create Mistral-only role ownership, routing, validation rules, or governance invariants.
-
-## Step 9: Platform Choices
-
-Keep CI/CD platform details in platform adapter files:
-
-```text
-pipeline-baseline/templates/bitbucket/
-pipeline-baseline/templates/bamboo/
-pipeline-baseline/templates/jenkins/
-pipeline-baseline/templates/gitlab-ci/
-.github/workflows/
-```
-
-Platform adapters should emit normalized evidence and use central validators. They should not fork governance logic.
-
-## Step 10: Commit Readiness Rules
-
-Mark ready only when:
-
-- dispatch has been run or the selected agents are otherwise justified
-- selected role and skill contracts were read
-- required validation passed or skipped with a clear reason
-- findings are resolved or explicitly accepted
-- generated timestamp-only noise is excluded unless intentional
-- no local artifacts are included
-- release impact is classified
-- enforcement behavior is classified when policies or workflows change
-
-Mark not ready when:
-
-- released baselines are changed without release-manager approval
-- candidate source documents produce derived artifacts before review
-- policy behavior changes from report-only to blocking without explicit classification
-- evidence from branch, pull request, or manual context is treated as official latest state without intent
-- validation is missing and no acceptable reason is documented
-
-## Reference Runs
-
-Use these as examples:
-
-```text
-docs/operations/reference-runs/2026-07-06-agent-system-dispatch-reference-run.md
-docs/operations/reference-runs/2026-07-06-codex-provider-agent-review-pr12.md
-docs/operations/reference-runs/2026-07-06-codex-multi-agent-platform-adapter-review.md
-```
+For historical metadata-only logs see [Agent Usage Tracking](agent-usage-tracking.md).
+For deterministic regressions see [Agent Harness Usage](agent-harness-usage.md).

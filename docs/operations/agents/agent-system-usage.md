@@ -11,6 +11,17 @@ The model-neutral layer is the durable repository contract. Codex files project 
 
 This separation is intentional. GitHub and Codex are the private learning and prototyping path, while company environments may use Bitbucket, Bamboo, and Mistral. Those company-specific surfaces must be added as adapters around the same `.agents/` contracts instead of forking the governance model.
 
+## Current Review Workflow
+
+The [operator workflow](how-to-run-agent-review.md) prepares private plans and
+checks role results against HEAD, changed paths, working/index bytes and neutral
+contracts. Routing reasons, explicit role-to-skill bindings and required outputs
+are inspectable. The shared protocol is `.agents/review-protocol.yaml`;
+`scripts/lib/agent_routing.py` owns production routing and
+`scripts/lib/agent_review.py` owns plan/completion checks. The deterministic test
+harness imports production behavior. It neither invokes models nor proves review
+quality. A completed result packet remains declared evidence for human review.
+
 ## Model-Neutral Layer
 
 ```text

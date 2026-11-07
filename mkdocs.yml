@@ -151,6 +151,7 @@ nav:
           - Architecture Evidence EA Package: operations/evidence/architecture-evidence-ea-package.md
           - Detailed Architecture Evidence Adoption Guide: operations/evidence/detailed-architecture-evidence-adoption-guide.md
       - Agent System Usage: operations/agents/agent-system-usage.md
+      - Run An Agent Review: operations/agents/how-to-run-agent-review.md
       - Agent Harness Usage: operations/agents/agent-harness-usage.md
       - Agent Usage Tracking: operations/agents/agent-usage-tracking.md
       - Agent Usage Snapshot Latest: operations/agents/agent-usage-snapshot-latest.md

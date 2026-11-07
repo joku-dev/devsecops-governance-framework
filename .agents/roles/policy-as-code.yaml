@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: policy-as-code
+skill: policy-as-code
 name: Policy-as-Code Agent
 description: Maintain executable OPA policy behavior and explicit report-only versus blocking semantics.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md

@@ -1,0 +1,34 @@
+schema_version: 1.0.0
+purpose: Prepare accountable role reviews without granting governance authority.
+execution:
+  default_mode: role_lens
+  default_access: read_only
+  final_role: repo-steward
+  parallelism: Explicit authorization and disjoint write ownership are required before delegating implementation.
+required_inputs:
+  - user_goal
+  - changed_paths
+  - repository_revision
+  - source_and_contract_fingerprints
+required_role_result:
+  - role_id
+  - execution_kind
+  - executor
+  - provider
+  - model
+  - status
+  - summary
+  - outputs
+  - reviewed_paths
+  - findings
+authority:
+  result_is: self_reported_review_evidence
+  independent_human_approval: false
+  source_or_requirement_approval: false
+  release_or_blocking_authorization: false
+completion:
+  - All selected specialist reviews precede the final repo-steward review.
+  - Missing, failed, stale or skipped required reviews remain incomplete.
+  - Required validations need an explicit outcome and evidence reference.
+  - Open high or critical findings prevent readiness for human review.
+  - A provider declaration is not proof of a separate agent or authenticated identity.

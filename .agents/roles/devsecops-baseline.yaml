@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: devsecops-baseline
+skill: devsecops-baseline
 name: DevSecOps Baseline Agent
 description: Maintain DevSecOps controls, platform mapping, traceability, and evidence expectations.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md
