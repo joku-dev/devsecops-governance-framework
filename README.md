@@ -14,9 +14,9 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+## PR #331: Guide Workbench requirement review and separate retained history (`ae423f34f754`)
 
-- docs: PRA-Review-Empfehlung dokumentieren
+- Guide Workbench requirement review and separate retained history
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
