@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #334: feat: add accountable governance agent review workflow (`dfd374cd2051`)
 
 ## Ergebnis
 
@@ -10,12 +10,32 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.agents/providers/mistral/governance-agent-dispatch.prompt.md`
+- `.agents/providers/mistral/role-execution-contract.md`
+- `.agents/review-protocol.yaml`
+- `.agents/roles/architecture-runtime-governance.yaml`
+- `.agents/roles/demo-readiness.yaml`
+- `.agents/roles/devsecops-baseline.yaml`
+- `.agents/roles/evidence-and-intake.yaml`
+- `.agents/roles/governance-analyst.yaml`
+- `.agents/roles/policy-as-code.yaml`
+- `.agents/roles/release-manager.yaml`
+- `.agents/roles/repo-steward.yaml`
+- `.agents/roles/source-document-intake.yaml`
+- `.agents/routing/governance-agent-routing.yaml`
+- `.agents/skills/repo-steward/SKILL.md`
+- `.codex/agents/architecture-runtime-governance.toml`
+- `.codex/agents/demo-readiness.toml`
+- `.codex/agents/devsecops-baseline.toml`
+- `.codex/agents/evidence-and-intake.toml`
+- `.codex/agents/governance-analyst.toml`
+- `.codex/agents/policy-as-code.toml`
+- `.codex/agents/release-manager.toml`
+- `.codex/agents/repo-steward.toml`
+- `.codex/agents/source-document-intake.toml`
+- `scripts/dispatch_governance_agents.py`
+- `scripts/lib/agent_review.py`
+- `scripts/lib/agent_routing.py`
 
 ## Fehlende lokale Markdown-Ziele
 

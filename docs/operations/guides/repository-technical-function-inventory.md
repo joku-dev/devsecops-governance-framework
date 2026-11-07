@@ -33,10 +33,34 @@ zusätzlich die öffentlichen Viewer-Assets; Modelle, Schemas, Vorlagen und Test
 werden als Verzeichnisse unten eingeordnet.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-Der [konsolidierte Abgleich](../status/repository-documentation-reconciliation-2026-11-07.md) deckt die
-14 offenen Dokumentationsentwürfe ab. Frühere Inventare und Implementierungsnotizen
-bleiben im [Quellstand vor diesem Abgleich](https://github.com/joku-dev/devsecops-governance-framework/blob/ae423f34f75451b70b1ebffc71ea3683e4763c52/docs/operations/guides/repository-technical-function-inventory.md)
-nachlesbar. Deren P2-Fließtextableitung beschreibt nicht das heutige Verhalten.
+### PR #334: feat: add accountable governance agent review workflow (`dfd374cd2051`)
+
+- `.agents/providers/mistral/governance-agent-dispatch.prompt.md`
+- `.agents/providers/mistral/role-execution-contract.md`
+- `.agents/review-protocol.yaml`
+- `.agents/roles/architecture-runtime-governance.yaml`
+- `.agents/roles/demo-readiness.yaml`
+- `.agents/roles/devsecops-baseline.yaml`
+- `.agents/roles/evidence-and-intake.yaml`
+- `.agents/roles/governance-analyst.yaml`
+- `.agents/roles/policy-as-code.yaml`
+- `.agents/roles/release-manager.yaml`
+- `.agents/roles/repo-steward.yaml`
+- `.agents/roles/source-document-intake.yaml`
+- `.agents/routing/governance-agent-routing.yaml`
+- `.agents/skills/repo-steward/SKILL.md`
+- `.codex/agents/architecture-runtime-governance.toml`
+- `.codex/agents/demo-readiness.toml`
+- `.codex/agents/devsecops-baseline.toml`
+- `.codex/agents/evidence-and-intake.toml`
+- `.codex/agents/governance-analyst.toml`
+- `.codex/agents/policy-as-code.toml`
+- `.codex/agents/release-manager.toml`
+- `.codex/agents/repo-steward.toml`
+- `.codex/agents/source-document-intake.toml`
+- `scripts/dispatch_governance_agents.py`
+- `scripts/lib/agent_review.py`
+- `scripts/lib/agent_routing.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Python-Skripte und Bibliotheksmodule
