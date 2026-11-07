@@ -392,3 +392,45 @@ button.requirement-choice.selected { border-color: var(--teal); background: #eff
   .login h1 { font-size: 29px; }
   dialog { padding: 20px; }
 }
+
+/* Full document workspace: shared review context stays visible while editing. */
+#review-page { min-width: 0; }
+#detail-content > h1 { margin: 16px 0 8px; font-size: 28px; line-height: 1.25; }
+.back-link { display: inline-block; margin-bottom: 16px; }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 30; padding: 12px 20px; background: white; }
+.skip-link:focus { top: 12px; }
+.work-status { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; margin: 22px 0 8px; }
+.work-status > div { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 16px; }
+.work-status span, .work-status strong, .work-status small { display: block; }
+.work-status span { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+.work-status strong { font-size: 15px; }
+.work-status small, .status-explanation { color: var(--muted); font-size: 12px; }
+.save-status { color: var(--teal); font-size: 13px; min-height: 22px; }
+.stale-notice { margin: 20px 0; }
+.stale-notice h2 { font-size: 19px; }
+.requirement-review-grid { grid-template-columns: 215px minmax(260px,1fr) minmax(300px,1fr); gap: 20px; }
+.requirement-list { position: sticky; top: 20px; max-height: 75vh; }
+.original-pane { position: sticky; top: 20px; min-width: 0; background: white; border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+.original-pane h2 { margin-top: 0; font-size: 18px; }
+.original-lines { max-height: 67vh; overflow: auto; overscroll-behavior: contain; }
+.original-lines .line { overflow-wrap: anywhere; }
+.current-source-line { border-left: 4px solid var(--teal); background: #e8f4ef; }
+.current-source-line mark { background: #d2ecdf; color: inherit; }
+.reading-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.reading-tabs [aria-selected=true] { background: var(--teal); color: white; }
+@media (max-width: 1350px) {
+ .requirement-review-grid { grid-template-columns: minmax(260px,1fr) minmax(280px,1fr); }
+ .requirement-list { grid-column: 1 / -1; position: static; display: flex; overflow-x: auto; max-height: 170px; }
+ .requirement-choice { min-width: 200px; max-width: 270px; flex: 0 0 230px; }
+ .work-status { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 900px) {
+ .requirement-review-grid { grid-template-columns: minmax(0,1fr); }
+ .original-pane { position: static; }
+ .original-lines { max-height: 65vh; }
+ .reading-tabs { flex-wrap: wrap; }
+}
+@media (max-width: 520px) {
+ .work-status { grid-template-columns: minmax(0,1fr); }
+ .item-navigation { flex-wrap: wrap; }
+}

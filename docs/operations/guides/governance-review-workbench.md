@@ -39,7 +39,7 @@ review content; the existing extractor's warnings/errors remain visible.
 ## Guided operation
 
 The start page offers **Dokument hinzufügen** and **Dokumente öffnen**. Local
-work in progress appears under **Deine Entwürfe**. The full governance process
+work in progress appears under **Offene Vorbereitungen und Weitergaben**. The full governance process
 and open registered-source reviews are expandable details; they are status
 projections, not proof that the Workbench performed or approved those phases.
 
@@ -85,7 +85,9 @@ decision is automatically applied to the current extraction.
 
 - **Anforderungen prüfen:** select or search an explicit declaration. Its ID,
   full statement, origin status and highlighted original locator appear together.
-  The complete original remains expandable. Record a named reviewer, a reason
+  The complete original stays beside the edit pane on wide screens; on narrow
+  screens, use the keyboard-accessible **Anforderung und Prüfnotiz** and
+  **Originaltext** tabs. Record a named reviewer, a reason
   and **Bestätigung vorschlagen**, **Ablehnung vorschlagen** or **Klärung
   erforderlich** beside that item. P1 still requires verified author-provided
   provenance. Search and the **Ohne Prüfnotiz** / **Klärungsbedarf** filters do
@@ -94,7 +96,7 @@ decision is automatically applied to the current extraction.
   count. The latest appended item note determines the local display; all earlier
   notes remain readable. Clarifications remain open until another note records
   a different proposal. Unsaved item and general-note text survives item/tab
-  navigation and closing/reopening in the same session. Logout clears temporary
+  navigation, Browser Back/Forward and reopening in the same session. Logout clears temporary
   text; saved notes remain in the local draft.
 - **Frühere Vorschläge:** retained lifecycle cases and older draft rows are
   read-only history. Older inferred/row-ID entries never contribute to current
@@ -122,17 +124,54 @@ decision is automatically applied to the current extraction.
   normative catalog. Optional Draft-PR publication still requires explicit
   publication confirmation.
 
-**Dokumente** shows the registered library. **Dokumente gemeinsam prüfen**
+**Dokumente** shows the registered library. **Dokumentvergleich vorbereiten**
 prepares a hashed review scope or displays two originals side by side; this
 is not an approved DCR manifest, semantic execution or source promotion.
-**Freigabestand** explains existing baseline prerequisites in plain language.
+**Freigabevoraussetzungen** explains existing baseline prerequisites in plain language.
 The original contracts and reports remain authoritative; the view cannot
 establish fresh consistency or approve a baseline.
 
+### Find, interrupt and resume a review
+
+Document and draft reviews are full pages. Hash links identify a document, draft,
+view and optionally a technical requirement-row ID, for example
+`#/documents/TEST-SRC-001/current` or
+`#/reviews/<draft-id>/requirements?item=<row-id>`. Opening such a link still
+requires authentication. Invalid links produce an explicit empty state; an old
+requirement link never silently selects an unrelated current requirement.
+
+Browser Back/Forward retains document-list search/status filters, requirement
+filters, selection and unsaved inputs within this browser session. Navigation
+alone never saves a note. Reload opens the persisted local draft; unsaved inputs
+trigger the browser's leave-page warning. Source text, note text and filters are
+never written into routes, history state, localStorage or sessionStorage. Logout
+clears temporary inputs. A successful save updates the local draft even if the
+user navigated elsewhere during the request; it does not move the user back.
+
+Start and document-list actions resume a usable current preparation. They open
+the next requirement without a note first, then highlight unresolved
+clarifications, then offer handoff. Published preparations point to the existing
+Draft PR; no second publication form is offered. The four status cards distinguish
+**Quellenstatus**, **Vorbereitungsfortschritt**, **Klärungsbedarf** and **formaler
+Entscheidungsstand**. Recorded decisions/activations are read from retained
+lifecycle records matching the exact saved source ID/path/hash. They are neither
+local-note outcomes nor a new source or baseline approval.
+
+### Changed or missing source inputs
+
 Exports and new notes are rejected if HEAD, the source register or any registered
-source bytes changed since preparation. If an uploaded file changes on disk,
-its package export is rejected too. Recreate the draft/package against the
-updated checkout; old notes are retained for audit, not silently rebound.
+source bytes changed since preparation. The additive read-only `stale_details`
+response explains repository/register/source changes and missing source files;
+`formal_status` provides the separate historical counts. Both fields are computed
+on reads and excluded from stored draft JSON and review packets. Existing draft
+storage and the `stale` flag remain compatible.
+
+Changed/missing uploaded originals also lock the preparation. A saved preparation
+remains readable even when its registered original or registration was removed.
+The recovery action opens the current registered document, the comparison setup,
+or a fresh upload, depending on the preparation kind. Restore a missing file or
+registration before preparing it again. New preparations start without copied
+notes or decisions; the earlier preparation stays intact for manual comparison.
 
 ## Optional GitHub Draft-PR adapter
 
@@ -190,6 +229,9 @@ packages through their existing reviewed change flow.
 
 ```bash
 .venv-validation/bin/python -m unittest discover -s tests -p test_governance_workbench.py
+# Optional development-only DOM regression environment: Node from .node-version
+npm ci --ignore-scripts
+npm run test:workbench
 node --check scripts/workbench/app.js
 ./scripts/validate_all.sh
 ```
@@ -197,6 +239,11 @@ node --check scripts/workbench/app.js
 Tests cover real upload-to-packet behavior, replacement deltas, proposal-only
 notes, exact source binding, tampered file rejection, DOCX warning/decompression
 handling, filename traversal, session authentication, Origin/Host/CSRF protection,
-source escaping and the disabled/explicit PR boundary. A live GitHub publication
-is not part of automated tests. Browser layout and live PR adapter operation
-require a maintainer smoke test before broader adoption.
+source escaping and the disabled/explicit PR boundary. DOM regressions additionally cover direct links, Back/Forward, filter and edit
+retention, delayed saves/publication, narrow reading tabs, empty extraction,
+partial handoff and published/stale states. Python tests exercise the real HTTP
+boundary, missing sources, read-only diagnostics and unchanged packet schemas.
+`workbench-ui.yml` runs the DOM suite with pinned Node and locked dev dependencies;
+production assets need no Node runtime or build. A live GitHub publication is
+not part of automated tests. Before broader adoption, smoke-test browser layout
+and the optional PR adapter against its intended repository.

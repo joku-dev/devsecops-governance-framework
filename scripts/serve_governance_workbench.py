@@ -128,7 +128,8 @@ class Workbench:
 
     def context(self):
         return {'commit': self.head(), 'register_sha256': digest((self.root / REGISTER).read_bytes()),
-                'sources': {x['id']: digest(self.source_path(x).read_bytes()) for x in self.register()['documents']}}
+                'sources': {x['id']: digest(self.source_path(x).read_bytes()) for x in self.register()['documents']
+                            if self.source_path(x).is_file()}}
 
     def document(self, source_id):
         for source in self.register()['documents']:
@@ -143,11 +144,12 @@ class Workbench:
         return {'source': source, 'sha256': digest(path.read_bytes()),
                 'lines': [vars(x) for x in extracted.lines], 'warnings': list(extracted.warnings),
                 'requirements': extract_requirements(source['id'], path, origin),
+                'formal_status': self.formal_status(source, digest(path.read_bytes())),
                 'extraction_limit': 'Only explicitly labelled requirements (for example DSCB-L1-REQ-001); no prose inference. Identifier provenance and source authority still require review.'}
 
     def requirement_history(self, source_id):
-        source = self.document(source_id)
-        current_hash = digest(self.source_path(source).read_bytes())
+        source = next((s for s in self.register()['documents'] if s['id'] == source_id), None)
+        current_hash = digest(self.source_path(source).read_bytes()) if source and self.source_path(source).is_file() else None
         directory = self.root / 'model/requirements/lifecycle-cases'
         cases = []
         for path in sorted(directory.glob('*.json')):
@@ -157,10 +159,33 @@ class Workbench:
                 continue
             cases.append({'path': str(path.relative_to(self.root)), 'case_id': case['case_id'],
                           'status': case['status'], 'source': binding,
-                          'source_matches': binding.get('source_sha256') == current_hash
+                          'source_matches': bool(source) and binding.get('source_sha256') == current_hash
                           and binding.get('source_path') == source['source_path'],
                           'proposals': case.get('proposals', [])})
+        if source is None and not cases:
+            raise ValueError('Unknown registered source')
         return {'source_id': source_id, 'available': directory.is_dir(), 'cases': cases}
+
+    def formal_status(self, source, source_hash):
+        """Read recorded decisions for an exact source binding, not review progress."""
+        directory = self.root / 'model/requirements/lifecycle-cases'
+        matching, other = [], 0
+        for path in sorted(directory.glob('*.json')):
+            case = read_json(path)
+            binding = case.get('source', {})
+            if binding.get('source_id') != source['id']:
+                continue
+            if (source_hash and binding.get('source_sha256') == source_hash
+                    and binding.get('source_path') == source['source_path']):
+                matching.extend(case.get('proposals', []))
+            else:
+                other += 1
+        return {'recorded_proposals': len(matching),
+                'recorded_decisions': sum(bool(p.get('decision')) for p in matching),
+                'recorded_activations': sum(bool(p.get('activation')) for p in matching),
+                'open_historical_proposals': sum(not p.get('decision') for p in matching),
+                'other_source_cases': other, 'source_sha256': source_hash,
+                'authority': 'recorded_history_only'}
 
     def source_review(self, payload):
         source_id = payload.get('source_id')
@@ -199,11 +224,37 @@ class Workbench:
     def draft(self, draft_id):
         data = read_json(self.draft_dir(draft_id) / 'draft.json')
         context = self.context()
-        data['stale'] = data['context'] != context
+        old = data['context']
+        reasons = []
+        if old['commit'] != context['commit']:
+            reasons.append({'code': 'repository_changed', 'previous': old['commit'], 'current': context['commit']})
+        if old['register_sha256'] != context['register_sha256']:
+            reasons.append({'code': 'register_changed', 'previous': old['register_sha256'], 'current': context['register_sha256']})
+        registered = {s['id']: s for s in self.register()['documents']}
+        for source_id in sorted(set(old['sources']) | set(context['sources']) | set(registered)):
+            previous, current = old['sources'].get(source_id), context['sources'].get(source_id)
+            if source_id in registered and current is None:
+                reasons.append({'code': 'source_missing', 'source_id': source_id, 'previous': previous, 'current': None})
+            elif previous != current:
+                reasons.append({'code': 'source_changed', 'source_id': source_id, 'previous': previous, 'current': current})
+        data['stale'] = bool(reasons) or old != context
         if data['kind'] == 'source_review':
             source_id = data['source']['id']
-            data['stale'] = (data['stale'] or data['source'] != self.document(source_id)
+            current_source = registered.get(source_id)
+            if data['source'] != current_source:
+                reasons.append({'code': 'source_metadata_changed', 'source_id': source_id})
+            data['stale'] = (data['stale'] or data['source'] != current_source
                              or data['sha256'] != context['sources'].get(source_id))
+        if data['kind'] == 'source_candidate':
+            uploaded = self.draft_dir(draft_id) / data['upload_name']
+            current_hash = digest(uploaded.read_bytes()) if uploaded.is_file() else None
+            if current_hash != data['sha256']:
+                reasons.append({'code': 'uploaded_source_missing' if current_hash is None else 'uploaded_source_changed',
+                                'previous': data['sha256'], 'current': current_hash})
+                data['stale'] = True
+        # Additive response-only diagnostics; old drafts and notes stay byte-identical.
+        data['stale_details'] = {'reasons': reasons, 'current_commit': context['commit']}
+        data['formal_status'] = self.formal_status(data['source'], data.get('sha256')) if data.get('source') else None
         return data
 
     def state(self):
@@ -293,7 +344,7 @@ class Workbench:
             raise
 
     def save(self, folder, data):
-        clean = {k: v for k, v in data.items() if k != 'stale'}
+        clean = {k: v for k, v in data.items() if k not in {'stale', 'stale_details', 'formal_status'}}
         jsonschema.validate(clean, read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
         atomic_json(folder / 'draft.json', clean)
 
@@ -344,8 +395,10 @@ class Workbench:
     def packet_files(self, draft_id):
         data = self.draft(draft_id)
         if data['stale']:
+            if any(r['code'].startswith('uploaded_source_') for r in data['stale_details']['reasons']):
+                raise ValueError('Local upload bytes changed or are missing; prepare a fresh draft')
             raise ValueError('Package is stale; repository identity or source bytes changed')
-        files = {'workbench-package.json': json.dumps({k: v for k, v in data.items() if k != 'stale'}, ensure_ascii=False, indent=2).encode()}
+        files = {'workbench-package.json': json.dumps({k: v for k, v in data.items() if k not in {'stale', 'stale_details', 'formal_status'}}, ensure_ascii=False, indent=2).encode()}
         notes = '\n'.join(f"- {x['subject']}: {x['outcome']} ({x['reviewer']}) — {x['rationale']}" for x in data['notes']) or '- No proposal recorded.'
         if data['kind'] == 'source_candidate':
             source = data['source']
@@ -489,6 +542,7 @@ class Handler(BaseHTTPRequestHandler):
             '/': (ASSETS / 'index.html', 'text/html'),
             '/app.js': (ASSETS / 'app.js', 'text/javascript'),
             '/requirement-review.js': (ASSETS / 'requirement-review.js', 'text/javascript'),
+            '/workspace-navigation.js': (ASSETS / 'workspace-navigation.js', 'text/javascript'),
             '/style.css': (ASSETS / 'style.css', 'text/css'),
             '/axiom-logo.png': (ROOT / 'docs/publishing/branding/axiom-logo.png', 'image/png'),
         }

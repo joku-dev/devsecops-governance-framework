@@ -73,6 +73,104 @@ class WorkbenchTests(unittest.TestCase):
             self.assertEqual(wb.digest(archive.read(draft['source']['source_path'])),draft['sha256'])
         self.assertEqual(self.reg.read_bytes(),before)
 
+
+    def test_draft_diagnostics_are_response_only_and_saved_history_is_unchanged(self):
+        draft = self.app.source_review({'source_id': 'TEST-SRC-001'})
+        stored = self.app.draft_dir(draft['draft_id']) / 'draft.json'
+        before = stored.read_bytes()
+        self.assertFalse(draft['stale'])
+        self.assertEqual(draft['stale_details']['reasons'], [])
+        self.assertEqual(draft['formal_status']['authority'], 'recorded_history_only')
+        self.path.write_text(self.path.read_text() + '\nA changed source.\n')
+        current = self.app.draft(draft['draft_id'])
+        self.assertTrue(current['stale'])
+        self.assertIn('source_changed', {r['code'] for r in current['stale_details']['reasons']})
+        self.assertEqual(stored.read_bytes(), before)
+        with self.assertRaises(ValueError):
+            self.app.note(draft['draft_id'], {'subject':'source', 'reviewer':'Test', 'outcome':'needs_clarification', 'rationale':'Blocked'})
+        with self.assertRaises(ValueError):
+            self.app.packet(draft['draft_id'])
+
+    def test_missing_registered_source_keeps_draft_and_state_readable_but_locked(self):
+        draft = self.app.source_review({'source_id': 'TEST-SRC-001'})
+        self.path.unlink()
+        current = self.app.draft(draft['draft_id'])
+        self.assertTrue(current['stale'])
+        reason = next(r for r in current['stale_details']['reasons'] if r['code'] == 'source_missing')
+        self.assertEqual(reason['source_id'], 'TEST-SRC-001')
+        self.assertIsNone(reason['current'])
+        self.assertEqual(self.app.state()['drafts'][0]['draft_id'], draft['draft_id'])
+        self.assertEqual(self.app.requirement_history('TEST-SRC-001')['cases'], [])
+        with self.assertRaises(ValueError):
+            self.app.packet(draft['draft_id'])
+
+    def test_removed_registration_does_not_hide_existing_preparation(self):
+        draft = self.app.source_review({'source_id': 'TEST-SRC-001'})
+        register = yaml.safe_load(self.reg.read_text()); register['documents'] = []
+        self.reg.write_text(yaml.safe_dump(register))
+        current = self.app.draft(draft['draft_id'])
+        self.assertTrue(current['stale'])
+        self.assertIn('source_metadata_changed', {r['code'] for r in current['stale_details']['reasons']})
+        self.assertEqual(current['source']['id'], 'TEST-SRC-001')
+
+    def test_commit_and_register_changes_explain_independent_stale_causes(self):
+        draft = self.app.source_review({'source_id': 'TEST-SRC-001'})
+        with patch.object(self.app, 'head', return_value='f' * 40):
+            current = self.app.draft(draft['draft_id'])
+            self.assertTrue(current['stale'])
+            self.assertEqual([r['code'] for r in current['stale_details']['reasons']], ['repository_changed'])
+        register = yaml.safe_load(self.reg.read_text()); register['documents'][0]['owner'] = 'Another owner'
+        self.reg.write_text(yaml.safe_dump(register))
+        codes = {r['code'] for r in self.app.draft(draft['draft_id'])['stale_details']['reasons']}
+        self.assertTrue({'register_changed', 'source_metadata_changed'}.issubset(codes))
+
+    def test_formal_status_uses_exact_source_hash_and_never_local_notes(self):
+        directory = self.root / 'model/requirements/lifecycle-cases'; directory.mkdir(parents=True)
+        binding = {'source_id':'TEST-SRC-001', 'source_path':str(self.path.relative_to(self.root)), 'source_sha256':wb.digest(self.path.read_bytes())}
+        (directory / 'matching.json').write_text(json.dumps({'source':binding, 'proposals':[{'decision':{'disposition':'approve'}, 'activation':{'requirement_id':'GRQ-1'}}, {'decision':None}]}))
+        (directory / 'other.json').write_text(json.dumps({'source':{**binding, 'source_sha256':'a' * 64}, 'proposals':[{'decision':{'disposition':'approve'}}]}))
+        draft = self.app.source_review({'source_id':'TEST-SRC-001'})
+        formal = draft['formal_status']
+        self.assertEqual(formal['recorded_proposals'], 2)
+        self.assertEqual(formal['recorded_decisions'], 1)
+        self.assertEqual(formal['recorded_activations'], 1)
+        self.assertEqual(formal['open_historical_proposals'], 1)
+        self.assertEqual(formal['other_source_cases'], 1)
+        updated = self.app.note(draft['draft_id'], {'subject':'source', 'reviewer':'Test', 'outcome':'confirm_candidate', 'rationale':'Proposal only'})
+        self.assertEqual(updated['formal_status'], formal)
+        self.assertEqual(self.app.inspect(self.app.document('TEST-SRC-001'))['formal_status'], formal)
+        saved = json.loads((self.app.draft_dir(draft['draft_id']) / 'draft.json').read_text())
+        self.assertNotIn('formal_status', saved); self.assertNotIn('stale_details', saved)
+        with zipfile.ZipFile(io.BytesIO(self.app.packet(draft['draft_id']))) as archive:
+            packet = json.loads(archive.read('workbench-package.json'))
+            self.assertNotIn('formal_status', packet); self.assertNotIn('stale_details', packet)
+            jsonschema.validate(packet, wb.read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
+
+    def test_new_source_review_preserves_old_notes_without_inheriting_them(self):
+        old = self.app.source_review({'source_id':'TEST-SRC-001'})
+        old = self.app.note(old['draft_id'], {'subject':'source', 'reviewer':'Test', 'outcome':'needs_clarification', 'rationale':'An earlier question'})
+        old_file = self.app.draft_dir(old['draft_id']) / 'draft.json'; before = old_file.read_bytes()
+        fresh = self.app.source_review({'source_id':'TEST-SRC-001'})
+        self.assertNotEqual(old['draft_id'], fresh['draft_id'])
+        self.assertEqual(fresh['notes'], [])
+        self.assertEqual(old_file.read_bytes(), before)
+
+    def test_changed_or_missing_uploaded_original_is_diagnosed_and_locked(self):
+        for missing in (False, True):
+            with self.subTest(missing=missing):
+                draft = self.upload()
+                original = self.app.draft_dir(draft['draft_id']) / draft['upload_name']
+                if missing:
+                    original.unlink()
+                else:
+                    original.write_bytes(b'Changed original')
+                result = self.app.draft(draft['draft_id'])
+                self.assertTrue(result['stale'])
+                self.assertIn('uploaded_source_missing' if missing else 'uploaded_source_changed',
+                              {r['code'] for r in result['stale_details']['reasons']})
+                with self.assertRaises(ValueError):
+                    self.app.packet(draft['draft_id'])
+
     def test_unlabelled_upload_produces_no_requirement_candidates(self):
         draft = self.upload(content_base64=base64.b64encode(
             b"# Requirements\nThe system SHALL retain evidence.\nSee DSCB-L1-REQ-001 for details.\n"
@@ -290,6 +388,13 @@ class WorkbenchTests(unittest.TestCase):
         result=subprocess.run(['node','-e',"const {escapeHTML}=require('./scripts/workbench/app.js'); process.stdout.write(escapeHTML('<img src=x onerror=alert(1)>'));"],cwd=ROOT,text=True,capture_output=True,check=True)
         self.assertEqual(result.stdout,'&lt;img src=x onerror=alert(1)&gt;')
 
+    def test_workspace_navigation_client(self):
+        if not shutil.which('node'):
+            self.skipTest('Node is required for the focused client regression')
+        result = subprocess.run(['node', 'tests/workbench-navigation.test.cjs'], cwd=ROOT,
+                                capture_output=True, text=True, check=True)
+        self.assertIn('state-based next actions passed', result.stdout)
+
     def test_guided_intake_client_validation_and_metadata_suggestions(self):
         if not shutil.which('node'):
             self.skipTest('Node unavailable; JS checks can run with the external Node runtime')
@@ -344,6 +449,18 @@ class WorkbenchTests(unittest.TestCase):
                 self.assertNotIn(wb.REGISTER,archive.namelist())
             r,b=request('GET','/api/sources/TEST-SRC-001/history',extra={'Cookie':cookie});self.assertEqual(r.status,200)
             self.assertEqual(json.loads(b)['cases'],[])
+            r,b=request('GET','/workspace-navigation.js');self.assertEqual(r.status,200)
+            self.assertIn(b'WorkspaceNavigation',b)
+            stored = self.app.draft_dir(draft['draft_id']) / 'draft.json'; before = stored.read_bytes()
+            self.path.unlink()
+            r,b=request('GET',f'/api/drafts/{draft["draft_id"]}',extra={'Cookie':cookie});self.assertEqual(r.status,200)
+            current=json.loads(b);self.assertTrue(current['stale'])
+            self.assertIn('source_missing',{x['code'] for x in current['stale_details']['reasons']})
+            self.assertEqual(current['formal_status']['authority'],'recorded_history_only')
+            self.assertEqual(stored.read_bytes(),before)
+            r,b=request('GET','/api/state',extra={'Cookie':cookie});self.assertEqual(r.status,200)
+            self.assertTrue(next(d for d in json.loads(b)['drafts'] if d['draft_id']==draft['draft_id'])['stale'])
+            r,b=request('GET',f'/api/drafts/{draft["draft_id"]}/packet',extra={'Cookie':cookie});self.assertEqual(r.status,409)
         finally:
             conn.close();server.shutdown();server.server_close();thread.join(timeout=5)
 
