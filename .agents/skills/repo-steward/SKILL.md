@@ -13,6 +13,16 @@ description: Review repository hygiene, scope control, validation evidence, gene
 4. Identify generated timestamp-only noise and keep it out of commits unless intentional.
 5. Verify validation commands were run or clearly explain why they were not.
 
+## Review completion
+
+When a revision-bound review plan is in use, apply `.agents/review-protocol.yaml`
+and synthesize all specialist results last. Account for their scope, required
+outputs, findings and validation evidence. Identify missing or stale reviews;
+never count a selection as execution or a coordinator's role lenses as separate
+independent agents. Use the completion check in
+`docs/operations/agents/how-to-run-agent-review.md`. Its result is declared review
+evidence, not human approval. Small focused changes can retain ordinary review.
+
 ## Validation
 
 Run or request:

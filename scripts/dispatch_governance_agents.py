@@ -5,6 +5,7 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -13,13 +14,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tests.agent_harness.routing import evaluate_scenario  # noqa: E402
+from scripts.lib.agent_routing import ROLE_CONTRACTS, evaluate_scenario, normalize_path, routing_reasons  # noqa: E402
+from scripts.lib.agent_review import changed_files, prepare_plan, results_template, check_results  # noqa: E402
+import jsonschema  # noqa: E402
 
 
 SOURCE_DOCUMENT_PREFIXES = (
     "docs/governance/source-documents/",
     "model/documents/",
-    "docs/governance/change-requests/",
 )
 DERIVED_GOVERNANCE_PREFIXES = (
     "architecture/",
@@ -30,17 +32,7 @@ DERIVED_GOVERNANCE_PREFIXES = (
 )
 DEFAULT_USAGE_LOG = ROOT / "generated" / "agent-usage" / "agent-usage.jsonl"
 DEFAULT_USAGE_STATE = ROOT / "generated" / "agent-usage" / "recording-state.json"
-SKILL_BY_AGENT = {
-    "architecture-runtime-governance": "architecture-runtime-governance",
-    "demo-readiness": "demo-readiness",
-    "devsecops-baseline": "devsecops-baseline",
-    "evidence-and-intake": "evidence-and-intake",
-    "governance-analyst": "governance-analysis",
-    "policy-as-code": "policy-as-code",
-    "release-manager": "release-management",
-    "repo-steward": "repo-steward",
-    "source-document-intake": "source-document-intake",
-}
+SKILL_BY_AGENT = {name: role["skill"] for name, role in ROLE_CONTRACTS.items()}
 
 
 def now_utc() -> str:
@@ -48,34 +40,11 @@ def now_utc() -> str:
 
 
 def changed_files_from_git(base_ref: str | None = None) -> list[str]:
-    command = ["git", "diff", "--name-only"]
-    if base_ref:
-        command.append(base_ref)
-    result = subprocess.run(
-        command,
-        cwd=ROOT,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if result.returncode != 0:
-        raise RuntimeError(result.stderr.strip() or "git diff --name-only failed")
-    changed = [line.strip() for line in result.stdout.splitlines() if line.strip()]
-
-    untracked_result = subprocess.run(
-        ["git", "ls-files", "--others", "--exclude-standard"],
-        cwd=ROOT,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if untracked_result.returncode != 0:
-        raise RuntimeError(untracked_result.stderr.strip() or "git ls-files --others failed")
-    changed.extend(line.strip() for line in untracked_result.stdout.splitlines() if line.strip())
-    return sorted(dict.fromkeys(changed))
+    return changed_files(ROOT, base_ref)
 
 
 def build_dispatch(changed_files: list[str]) -> dict:
+    changed_files = sorted({normalize_path(path) for path in changed_files})
     result = evaluate_scenario({"changed_files": changed_files})
     warnings: list[str] = []
     has_source_document_change = any(path.startswith(SOURCE_DOCUMENT_PREFIXES) for path in changed_files)
@@ -91,6 +60,7 @@ def build_dispatch(changed_files: list[str]) -> dict:
         "release_impact": result["release_impact"],
         "required_validations": result["required_validations"],
         "warnings": warnings,
+        "selection_reasons": routing_reasons(changed_files),
     }
 
 
@@ -316,7 +286,7 @@ def render_text(dispatch: dict) -> str:
 
     lines.extend(["", "Selected agents:"])
     if dispatch["selected_agents"]:
-        lines.extend(f"- {agent}" for agent in dispatch["selected_agents"])
+        lines.extend(f"- {agent}: {', '.join(dispatch['selection_reasons'][agent])}" for agent in dispatch["selected_agents"])
     else:
         lines.append("- none")
 
@@ -347,11 +317,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument(
         "paths",
         nargs="*",
-        help="Changed repository paths. If omitted, git diff --name-only is used.",
+        help="Changed repository paths. If omitted, staged/unstaged/untracked Git paths are used.",
     )
     parser.add_argument(
         "--base-ref",
-        help="Optional base ref for git diff --name-only, for example origin/main.",
+        help="Also include branch changes since this ref's merge base, for example origin/main.",
     )
     parser.add_argument(
         "--json",
@@ -419,11 +389,33 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         default="manual",
         help="Usage event source, for example manual, pull-request, ci, or reference-run.",
     )
+    parser.add_argument("--plan-output", type=Path, help="Write a revision-bound review plan to a new private JSON file; no agents are executed.")
+    parser.add_argument("--results-template", type=Path, help="Write pending role/validation results alongside --plan-output.")
+    parser.add_argument("--goal", help="User goal for --plan-output.")
+    parser.add_argument("--check-review", type=Path, help="Check a saved plan against declared --review-results and current source bytes.")
+    parser.add_argument("--review-results", type=Path, help="Private role results for --check-review.")
     return parser.parse_args(argv)
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = parse_args(argv or sys.argv[1:])
+    args = parse_args(sys.argv[1:] if argv is None else argv)
+    if args.check_review or args.review_results:
+        if not args.check_review or not args.review_results or args.plan_output or args.paths or args.base_ref:
+            print("error: --check-review and --review-results must be used together without dispatch inputs", file=sys.stderr)
+            return 2
+        try:
+            report = check_results(ROOT, json.loads(args.check_review.read_text()), json.loads(args.review_results.read_text()))
+        except (ValueError, OSError, KeyError, TypeError, jsonschema.ValidationError) as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 2
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return 0 if report["eligible_for_human_review"] else 1
+    if (args.results_template or args.goal) and not args.plan_output:
+        print("error: --results-template and --goal require --plan-output", file=sys.stderr)
+        return 2
+    if args.plan_output and (not args.goal or args.log_usage or args.provider_review or args.run_type != "dispatch" or args.record_next is not None or args.record_continuous or args.recording_status or args.usage_summary):
+        print("error: --plan-output requires --goal and a dispatch, not an execution/recording operation", file=sys.stderr)
+        return 2
     if args.provider_review:
         if args.provider_review == "none":
             print("error: --provider-review must name a real provider such as codex or mistral", file=sys.stderr)
@@ -490,9 +482,30 @@ def main(argv: list[str] | None = None) -> int:
     try:
         changed_files = args.paths or changed_files_from_git(args.base_ref)
         dispatch = build_dispatch(changed_files)
-    except RuntimeError as exc:
+    except (RuntimeError, ValueError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
+
+    if args.plan_output:
+        try:
+            outputs = [args.plan_output] + ([args.results_template] if args.results_template else [])
+            if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() for p in outputs):
+                raise ValueError("Plan/result outputs must be distinct new files; existing files are never overwritten")
+            if any(p.resolve().is_relative_to(ROOT.resolve()) for p in outputs):
+                raise ValueError("Keep private review plans and results outside the repository checkout")
+            plan = prepare_plan(ROOT, dispatch, args.goal, base_ref=args.base_ref, explicit_paths=bool(args.paths))
+            payloads = [plan] + ([results_template(plan)] if args.results_template else [])
+            for path, payload in zip(outputs, payloads):
+                path.parent.mkdir(parents=True, exist_ok=True)
+                with os.fdopen(os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w", encoding="utf-8") as handle:
+                    handle.write(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+        except (ValueError, OSError) as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 2
+        # Preparing a packet must not append to in-repository usage logs after
+        # capturing the source snapshot, including when continuous recording is on.
+        print(json.dumps(dispatch, indent=2, sort_keys=True) if args.json else render_text(dispatch), end="\n" if args.json else "")
+        return 0
 
     try:
         recording_state = load_recording_state(usage_state)

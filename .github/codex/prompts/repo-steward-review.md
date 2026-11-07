@@ -39,3 +39,13 @@ Commit readiness:
 - ready|not ready
 - reason
 ```
+
+## Revision-bound review evidence
+
+Follow `.agents/review-protocol.yaml` and the preparation/completion commands in
+`docs/operations/agents/how-to-run-agent-review.md`. Dispatch creates pending
+role tasks, not provider execution. Record role outputs, reviewed paths and the
+actual execution kind (`role_lens`, `subagent` or `human`); use a null model when
+unknown. Specialists precede the final Repo Steward synthesis. Do not relabel
+one coordinator's role lenses as independent agents. Results and validation
+references are self-reported evidence; they do not grant human approval.

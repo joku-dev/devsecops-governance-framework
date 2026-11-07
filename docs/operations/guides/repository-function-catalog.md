@@ -810,6 +810,18 @@ Stichprobenumfang.
 
 ## 20. Reviews, Validierung und Kommunikation unterstützen
 
+Der Dispatcher verwendet produktive Bibliotheken statt Testcode und liest
+Validierungen sowie Skill-Zuordnungen aus den Rollenverträgen. Für Änderungen
+über mehrere Bereiche oder am Governance-Verhalten können private, an HEAD,
+Index, Quellbytes und Verträge gebundene Review-Pakete vorbereitet werden.
+Auswahlgründe, Zuständigkeiten und erforderliche Rollenausgaben sind sichtbar.
+Die Abschlussprüfung erkennt fehlende/übersprungene Rollen, unvollständige
+Prüfungsnachweise und veraltete Eingaben. Repo Steward fasst die Spezialisten
+zuletzt zusammen. Das Ergebnis bleibt deklarierte Review-Evidenz; tatsächliche
+Modellausführung, fachliche Qualität und menschliche Freigabe sind separate Fragen.
+Der [Bedienablauf](../agents/how-to-run-agent-review.md) beschreibt die Befehle.
+
+
 **Zweck:** Die Pflege des Governance-Systems wiederholbar organisieren und seine
 Inhalte nutzbar vermitteln.
 

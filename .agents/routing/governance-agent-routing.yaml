@@ -2,7 +2,38 @@ schema_version: 1.0.0
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md
 always_select:
   - repo-steward
+fallback:
+  path_prefixes: [.agents/, .codex/, .github/, scripts/, model/, tests/, apps/]
+  agents: [governance-analyst]
 rules:
+  - path_prefix: .agents/review-protocol.yaml
+    agents: [governance-analyst, release-manager]
+  - path_prefix: .codex/agents/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: .github/codex/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: scripts/lib/agent_
+    agents: [governance-analyst, release-manager]
+  - path_prefix: scripts/dispatch_governance_agents.py
+    agents: [governance-analyst, release-manager]
+  - path_prefix: model/requirements/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: model/platform/
+    agents: [devsecops-baseline, governance-analyst]
+  - path_prefix: model/evidence/
+    agents: [devsecops-baseline, evidence-and-intake]
+  - path_prefix: model/traceability/
+    agents: [devsecops-baseline, governance-analyst]
+  - path_prefix: apps/governance-viewer/
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: scripts/serve_governance_workbench.py
+    agents: [evidence-and-intake, governance-analyst]
+  - path_prefix: scripts/start_governance_workbench.sh
+    agents: [evidence-and-intake, governance-analyst]
+  - path_prefix: scripts/workbench/
+    agents: [evidence-and-intake, governance-analyst]
+  - path_prefix: docs/operations/agents/
+    agents: [governance-analyst]
   - path_prefix: .agents/routing/
     agents: [governance-analyst, release-manager]
   - path_prefix: .agents/roles/
@@ -18,7 +49,7 @@ rules:
   - path_prefix: model/documents/
     agents: [source-document-intake, governance-analyst]
   - path_prefix: docs/governance/change-requests/
-    agents: [source-document-intake, governance-analyst]
+    agents: [governance-analyst]
   - path_prefix: model/controls/
     agents: [devsecops-baseline, governance-analyst]
   - path_prefix: architecture/

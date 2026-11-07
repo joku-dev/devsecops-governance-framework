@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: source-document-intake
+skill: source-document-intake
 name: Source Document Intake Agent
 description: Register and classify incoming governance source documents without premature derivation.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md
@@ -7,8 +8,8 @@ primary_files:
   - docs/governance/source-documents/
   - model/documents/source-document-register.yaml
   - docs/governance/change-requests/
-  - docs/operations/source-document-intake-process.md
-  - docs/operations/source-document-intake-review-operating-model.md
+  - docs/operations/processes/source-document-intake-process.md
+  - docs/operations/processes/source-document-intake-review-operating-model.md
   - generated/reports/source-lineage-report.md
   - generated/reports/governance-change-impact.md
   - generated/reports/source-document-intake-status.md
@@ -37,7 +38,7 @@ output_contract:
   - source classification
   - review brief and decision options
   - requirement delta summary for replacement candidates
-  - requirement intake classification and priority: author_identified/p1 only with verified provenance, explicit_identifier/unassigned otherwise; no prose-derived candidates
+  - "requirement intake classification and priority: author_identified/p1 only with verified provenance, explicit_identifier/unassigned otherwise; no prose-derived candidates"
   - candidate or replacement decision
   - human decision required
   - required change request
