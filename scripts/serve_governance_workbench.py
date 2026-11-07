@@ -321,6 +321,8 @@ class Workbench:
             extraction = extract_source_document(upload)
             requirements = extract_requirements(source_id, upload)
             target = self.inspect(self.document(replacement)) if replacement else None
+            if target:
+                target.pop('formal_status', None)  # A live projection is not part of the saved predecessor.
             deltas = compare_requirements(requirements, target['requirements']) if target else []
             entry = {'id': source_id, 'title': metadata['title'].strip(), 'owner': metadata['owner'].strip(),
                      'version': metadata['version'].strip(), 'governance_domains': sorted(set(domains)),
