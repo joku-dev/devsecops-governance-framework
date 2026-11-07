@@ -1,0 +1,9 @@
+{
+  "name": "axiom-workbench-regressions",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Development-only DOM regressions for the dependency-free Workbench frontend",
+  "engines": {"node": ">=24.22.2 <25"},
+  "scripts": {"test:workbench": "node --test tests/workbench-*.test.cjs"},
+  "devDependencies": {"jsdom": "31.0.0"}
+}

@@ -20,3 +20,6 @@ governance/consumer-lifecycle/**/.pending-*
 
 # Private source-review workspace and publication worktrees.
 .local/governance-workbench/
+
+# Workbench development-only DOM test dependencies
+node_modules/

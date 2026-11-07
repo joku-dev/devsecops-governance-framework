@@ -1,5 +1,6 @@
 'use strict';
 const reviewTools = typeof module !== 'undefined' ? require('./requirement-review.js') : RequirementReview;
+const workspaceTools = typeof module !== 'undefined' ? require('./workspace-navigation.js') : WorkspaceNavigation;
 const $ = (id) => document.getElementById(id);
 const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const e = escapeHTML;
@@ -40,24 +41,102 @@ const phaseGuides = {
 const countLabels = {registered:'registriert',approved:'freigegeben',missing_files:'Dateien fehlen',unregistered_files:'nicht registriert',scanned:'geprüft',withheld:'zurückgehalten',extraction_blocked:'Extraktion blockiert',confirmed_author_ids:'bestätigte Kennungen',unverified_extraction_ids:'historische Kennungen ungeprüft',unverified_explicit_ids:'explizite Kennungen ungeprüft',decided:'entschieden',undecided:'offen',activated:'aktiviert',inferred_candidates:'Textkandidaten',review_scope_sources:'Quellen im Prüfumfang',proposed_or_unresolved_findings:'offene Befunde',semantically_assessed_requirements:'semantisch geprüfte Anforderungen',consistency_findings_open:'offene Konsistenzbefunde',requirements_undecided:'Anforderungen ohne Entscheidung',authorized_sources:'autorisierte Quellen',blocking_reasons:'Blockierungsgründe',effective_requirement_artifact_links:'wirksame Zuordnungen',all_links:'Zuordnungen'};
 const outcomeLabels = {confirm_candidate:'Bestätigung vorschlagen',reject_candidate:'Ablehnung vorschlagen',needs_clarification:'Klärung erforderlich',propose_resolution:'Lösung vorschlagen'};
 const titleOf = d => d.source ? d.source.title : `Review-Paket · ${d.manifest.length} Quellen`;
-let state, page = 'overview', activeDraft, toastTimer;
+let state, page = 'overview', activeDraft, activeSource, toastTimer;
+let currentRoute = {page:'overview'}, routeVersion = 0;
+const routeMemory = new Map();
+const documentListView = {query:'', status:''};
 const reviewViews = new Map();
-function tell(text) { if($('detail').open){$('detail-message').textContent=text;$('detail-message').hidden=false;} $('message').textContent = text; $('message').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('message').hidden = true, 7000); }
+function tell(text,error=false) { const target=$('review-page').hidden?$('page-message'):$('detail-message');target.classList.toggle('form-error',error);target.classList.toggle('info',!error);target.textContent=text;target.hidden=false; $('message').textContent = text; $('message').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('message').hidden = true, 7000); }
 async function api(path, payload) {
   const options = payload === undefined ? {} : {method:'POST',headers:{'Content-Type':'application/json','X-CSRF-Token':state?.csrf || ''},body:JSON.stringify(payload)};
   const response = await fetch(path, options); const data = await response.json();
   if (!response.ok) { if(response.status === 401) { $('workspace').hidden = true; $('login').hidden = false; } throw new Error(data.error || 'Aktion fehlgeschlagen'); }
   return data;
 }
-async function refresh(){if(page==='intake'&&$('intake-form'))captureIntake();state = await api('/api/state'); $('login').hidden = true; $('workspace').hidden = false; render();}
+async function refresh(redraw=true){
+ captureWorkspace();
+ state=await api('/api/state');$('login').hidden=true;$('workspace').hidden=false;
+ if(redraw)await applyRoute(true);
+}
+function captureWorkspace(){
+ captureItemNote();
+ if(page==='intake'&&$('intake-form'))captureIntake();
+ if(currentRoute.page==='source'||currentRoute.page==='draft'){
+  const key=currentRoute.page+':'+currentRoute.id, view=reviewView(key);
+  routeMemory.set(workspaceTools.routeHash(currentRoute),{query:view.query,filter:view.filter,selected:view.selected,pane:view.pane});
+ }
+}
+function hasUnsavedWork(){
+ captureWorkspace();
+ return !!(intakeDraft.file||intakeDraft.title||intakeDraft.version||intakeDraft.owner)
+  || [...reviewViews.values()].some(v=>Object.keys(v.unsaved).length||v.generalNote||v.saving.size||v.savingGeneral||v.publishing);
+}
+function rememberDraft(updated){
+ if(state){const index=state.drafts.findIndex(d=>d.draft_id===updated.draft_id);if(index<0)state.drafts.push(updated);else if((state.drafts[index].notes?.length||0)<=updated.notes.length)state.drafts[index]=updated;else return state.drafts[index];}
+ return updated;
+}
+function reviewPage(){
+ $('content').hidden=true;$('review-page').hidden=false;$('page-message').hidden=true;$('detail-message').hidden=true;
+}
+function routeSelection(id,replace=false){
+ const next={...currentRoute};if(id)next.item=id;else delete next.item;
+ const hash=workspaceTools.routeHash(next);
+ if(hash!==location.hash){history[replace?'replaceState':'pushState'](null,'',hash);currentRoute=next;}
+}
+function navigateRoute(next,replace=false){
+ captureWorkspace();
+ const hash=workspaceTools.routeHash(next);
+ if(location.hash!==hash)history[replace?'replaceState':'pushState'](null,'',hash);
+ return applyRoute();
+}
+async function applyRoute(force=false){
+ captureWorkspace();
+ const next=workspaceTools.parseRoute(location.hash), version=++routeVersion;
+ const same=currentRoute.page===next.page&&currentRoute.id===next.id;
+ currentRoute=next;page=next.page;
+ if(!state)return;
+ const names={overview:'Start',sources:'Dokumente',intake:'Dokument hinzufügen',review:'Dokumentvergleich vorbereiten',baseline:'Freigabevoraussetzungen',source:'Dokument ansehen',draft:'Prüfung vorbereiten',invalid:'Seite nicht gefunden'};
+ $('breadcrumb').textContent=names[page]||names.invalid;document.title=($('breadcrumb').textContent)+' · AXIOM';
+ const navPage=['source','draft'].includes(page)?'sources':page;
+ document.querySelectorAll('[data-page]').forEach(button=>{button.classList.toggle('active',button.dataset.page===navPage);if(button.dataset.page===navPage)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
+ if(page==='source'||page==='draft'){
+  reviewPage();
+  const view=reviewView(page+':'+next.id), saved=routeMemory.get(workspaceTools.routeHash(next));
+  if(saved)Object.assign(view,saved);
+  if(next.item)view.selected=next.item;
+  if(!force&&same&&(page==='draft'?activeDraft?.draft_id===next.id:activeSource?.source.id===next.id)){
+   if(page==='draft')renderDraft(next.tab);else renderSource(activeSource,next.tab);
+  }else{
+   activeDraft=null;activeSource=null;$('detail-content').innerHTML='<p role="status" class="panel">Arbeitsstand wird geladen …</p>';
+   try{
+    const data=await api(page==='draft'?'/api/drafts/'+next.id:'/api/sources/'+next.id);
+    if(version!==routeVersion)return;
+    if(page==='draft'){activeDraft=data;rememberDraft(data);renderDraft(next.tab);}else{activeSource=data;renderSource(data,next.tab);}
+   }catch(error){if(version!==routeVersion)return;$('detail-content').innerHTML='<section class="panel"><h1 tabindex="-1">Arbeitsstand nicht verfügbar</h1><p>'+e(error.message)+'</p><p>Prüfe den Link und die registrierte Quelldatei. Vorbereitungen und Historie werden nicht verändert.</p><a href="#/documents">Zur Dokumentübersicht</a></section>';}
+  }
+ }else{
+  activeDraft=null;activeSource=null;$('detail-content').textContent='';$('review-page').hidden=true;$('content').hidden=false;$('page-message').hidden=true;
+  if({overview,sources,intake,review,baseline}[page])({overview,sources,intake,review,baseline}[page])();
+  else $('content').innerHTML='<section class="panel"><h1>Seite nicht gefunden</h1><p>Dieser Link gehört zu keinem verfügbaren Arbeitsstand.</p><a href="#/start">Zur Startseite</a></section>';
+ }
+ if(version===routeVersion&&!same){const title=document.querySelector('#main-content h1');if(title){title.tabIndex=-1;title.focus();}}
+}
+function continueDraft(id){
+ const draft=state.drafts.find(d=>d.draft_id===id);if(!draft)return;
+ const task=workspaceTools.nextTask(draft), view=reviewView('draft:'+id);
+ if(task.filter){view.filter=task.filter;view.query='';view.selected=reviewTools.filteredRequirements(draft.requirements,draft.notes,'',task.filter)[0]?.id||null;}
+ const next={page:'draft',id,tab:task.tab,...(view.selected?{item:view.selected}:{})};
+ routeMemory.delete(workspaceTools.routeHash(next));
+ return navigateRoute(next);
+}
 function pill(status){return `<span class="pill ${e(status)}">${e(labels[status] || status)}</span>`;}
 function heading(kicker,title,text,action=''){return `<div class="intro"><div><p class="eyebrow">${e(kicker)}</p><h1>${e(title)}</h1><p class="muted">${e(text)}</p></div>${action}</div>`;}
-function bind(id,event,fn){const el=$(id); if(el) el.addEventListener(event,async ev=>{try{await fn(ev);}catch(error){tell(error.message);}});}
-function navigate(next){if(page==='intake'&&$('intake-form'))captureIntake();page=next;render();}
+function bind(id,event,fn){const el=$(id); if(el) el.addEventListener(event,async ev=>{try{await fn(ev);}catch(error){tell(error.message,true);}});}
+function navigate(next){return navigateRoute({page:next});}
 function docOptions(includeEmpty=false){return (includeEmpty?'<option value="">Neue, eigenständige Quelle</option>':'')+state.documents.map(d=>`<option value="${e(d.id)}">${e(d.title)} · ${e(d.id)}</option>`).join('');}
-function nextAction(d){if(d.status==='candidate')return 'Autorität und Aufnahmeentscheidung klären';if(d.status==='review'||d.status==='draft')return 'Owner-Review abschließen';if(d.status==='approved')return 'Anforderungsentscheidungen / Baseline prüfen';return 'Historie und Ablösung beachten';}
-function table(docs){return `<div class="tablewrap"><table><thead><tr><th>Quelle</th><th>Status</th><th>Zuständig</th><th>Nächster Schritt</th><th></th></tr></thead><tbody>${docs.map(d=>`<tr><td><strong>${e(d.title)}</strong><div class="muted">${e(d.id)} · ${e(d.version)}</div></td><td>${pill(d.status)}</td><td>${e(d.owner)}</td><td>${e(nextAction(d))}</td><td><button class="quiet" data-source="${e(d.id)}">Öffnen →</button></td></tr>`).join('')}</tbody></table></div>`;}
-function draftCards(){return state.drafts.length ? state.drafts.map(d=>`<div class="card row"><div><h3>${e(titleOf(d))}</h3><span class="muted">${e(d.created_at.slice(0,10))} · ${d.notes.length} Notizen · ${d.pr?'PR eingereicht':d.stale?'Quellenstand geändert':'Lokaler Entwurf'}</span></div><button class="quiet" data-draft="${e(d.draft_id)}">Bearbeiten →</button></div>`).join('') : '<div class="empty">Hier erscheinen deine vorbereiteten Dokumente. Beginne mit „Dokument auswählen“ oder bereite ein gemeinsames Review vor.</div>';}
+function nextAction(d){const draft=workspaceTools.sourceDraft(d.id,state.drafts);return draft?workspaceTools.nextTask(draft).label:'Anforderungen im Original ansehen';}
+function table(docs){return `<div class="tablewrap"><table><thead><tr><th>Quelle</th><th>Quellenstatus</th><th>Zuständig</th><th>Nächster Schritt</th><th></th></tr></thead><tbody>${docs.map(d=>{const draft=workspaceTools.sourceDraft(d.id,state.drafts);return `<tr><td><a href="${workspaceTools.routeHash({page:'source',id:d.id})}"><strong>${e(d.title)}</strong></a><div class="muted">${e(d.id)} · ${e(d.version)}</div></td><td>${pill(d.status)}</td><td>${e(d.owner)}</td><td>${e(nextAction(d))}</td><td>${draft?`<button class="quiet" data-continue-draft="${e(draft.draft_id)}">${e(nextAction(d))} →</button>`:`<button class="quiet" data-source="${e(d.id)}">Öffnen →</button>`}</td></tr>`;}).join('')}</tbody></table></div>`;}
+function draftCards(){return state.drafts.length ? state.drafts.map(d=>{const task=workspaceTools.nextTask(d),p=reviewTools.reviewProgress(d.requirements,d.notes);return `<div class="card row"><div><h3><a href="${workspaceTools.routeHash({page:'draft',id:d.draft_id})}">${e(titleOf(d))}</a></h3><p class="muted">${e(d.created_at.slice(0,10))} · ${d.pr?'PR eingereicht':d.stale?'Quellenstand geändert':'Lokale Vorbereitung'}${d.source?` · ${p.noted}/${p.total} mit Prüfnotiz · ${p.clarification} Klärungen`:''}</p></div><button class="quiet" data-continue-draft="${e(d.draft_id)}">${e(task.label)} →</button></div>`;}).join('') : '<div class="empty">Hier erscheinen deine vorbereiteten Dokumente. Beginne mit „Dokument auswählen“ oder bereite einen Dokumentvergleich vor.</div>';}
 const historicalCountKeys = new Set(['decided','undecided','activated','requirements_undecided']);
 function phaseCounts(counts={},historical=false){return Object.entries(counts).filter(([key,value])=>value!==null&&value!==undefined&&historicalCountKeys.has(key)===historical).slice(0,3).map(([key,value])=>`${countLabels[key]||key.replaceAll('_',' ')}: ${Number(value).toLocaleString('de-DE')}`).join(' · ');}
 function phaseAction(phase){return humanReason(phase.next_action||'Status prüfen.');}
@@ -72,7 +151,7 @@ function overview(){
  const open=state.documents.filter(d=>['candidate','draft','review'].includes(d.status));
  $('content').innerHTML=heading('Start','Was möchtest du tun?','Bereite ein Dokument vor oder setze deine Arbeit an einem vorhandenen Entwurf fort.')+
  `<div class="task-grid"><section class="panel task-card"><p class="eyebrow">Neu beginnen</p><h2>Ein Dokument hinzufügen</h2><p>Neue Dokumente und neue Versionen in drei kurzen Schritten vorbereiten.</p><button id="new-intake">Dokument auswählen →</button></section><section class="panel task-card"><p class="eyebrow">Weiterarbeiten</p><h2>Vorhandene Dokumente ansehen</h2><p>${state.documents.length} registrierte Dokumente mit Originaltext, Anforderungen und zuständigem Team.</p><button id="browse-documents" class="quiet">Dokumente öffnen →</button></section></div>`+
- `<section class="panel"><div class="sectionhead"><h2>Deine Entwürfe</h2><span class="muted">${state.drafts.length} lokal gespeichert</span></div><p class="muted">Öffne einen Entwurf, um Anforderungen anzusehen, Notizen zu ergänzen oder dein Review-Paket herunterzuladen.</p>${draftCards()}</section>`+
+ `<section class="panel"><div class="sectionhead"><h2>Offene Vorbereitungen und Weitergaben</h2><span class="muted">${state.drafts.length} lokal gespeichert</span></div><p class="muted">Öffne einen Entwurf, um Anforderungen anzusehen, Notizen zu ergänzen oder dein Review-Paket herunterzuladen.</p>${draftCards()}</section>`+
  `<details class="panel"><summary>Dokumente mit offenem Review (${open.length})</summary><p class="muted">Diese Einträge kommen aus dem Quellenregister. Eine offene Aufnahme ist von deinen lokalen Entwürfen getrennt.</p>${table(open)}</details>`+
  `<details class="panel process-disclosure"><summary>Gesamtprozess und Voraussetzungen für eine Freigabe</summary><p class="muted">Hier siehst du den gespeicherten Stand aller Governance-Schritte. Die Übersicht erteilt keine Freigabe.</p>${processPhases()}</details>`;
  bind('new-intake','click',()=>navigate('intake'));bind('browse-documents','click',()=>navigate('sources'));
@@ -81,7 +160,8 @@ function sources(){
  $('content').innerHTML=heading('Dokumente','Registrierte Dokumente ansehen.','Öffne ein Dokument, um den Originaltext und seine gekennzeichneten Anforderungen zu lesen.')+
  `<section class="panel"><div class="toolbar"><input id="search" aria-label="Quellen suchen" placeholder="Titel, Dokument-ID oder Team suchen …"><select id="status-filter" aria-label="Status filtern"><option value="">Alle Status</option>${Object.entries(labels).filter(([k])=>['candidate','draft','intake','review','approved','superseded','retired'].includes(k)).map(([k,v])=>`<option value="${e(k)}">${e(v)}</option>`).join('')}</select></div><div id="source-table">${table(state.documents)}</div></section>`;
  const filter=()=>{const q=$('search').value.toLowerCase();$('source-table').innerHTML=table(state.documents.filter(d=>(!$('status-filter').value||d.status===$('status-filter').value)&&`${d.id} ${d.title} ${d.owner}`.toLowerCase().includes(q)));};
- bind('search','input',filter);bind('status-filter','change',filter);
+ $('search').value=documentListView.query;$('status-filter').value=documentListView.status;filter();
+ bind('search','input',()=>{documentListView.query=$('search').value;filter();});bind('status-filter','change',()=>{documentListView.status=$('status-filter').value;filter();});
 }
 const domainLabels = {devsecops:'Entwicklung & Sicherheit',architecture:'Architektur',platform:'Plattform',policy:'Richtlinien',directive:'Verbindliche Vorgaben'};
 function emptyIntake(){return {file:null,title:'',sourceId:'',idEdited:false,version:'',owner:'',domains:[],mode:'new',replacement:''};}
@@ -147,57 +227,61 @@ function intake(){
   try{
    const buffer=new Uint8Array(await d.file.arrayBuffer());let binary='';for(let i=0;i<buffer.length;i+=8192)binary+=String.fromCharCode(...buffer.subarray(i,i+8192));
    const draft=await api('/api/drafts',{filename:d.file.name,content_base64:btoa(binary),metadata:{id:d.sourceId,title:d.title.trim(),version:d.version.trim(),owner:d.owner.trim(),governance_domains:d.domains,replacement_for:d.mode==='replacement'?d.replacement:''}});
-   intakeDraft=emptyIntake();intakeStep=1;await refresh();await showDraft(draft.draft_id);tell(`Dokument vorbereitet: ${draft.requirements.length} gekennzeichnete Anforderungen gefunden.`);
+   intakeDraft=emptyIntake();intakeStep=1;await refresh(false);await showDraft(draft.draft_id);tell(`Dokument vorbereitet: ${draft.requirements.length} gekennzeichnete Anforderungen gefunden.`);
   }catch(error){showIntakeError({message:error.message});}finally{if($('upload-button')){$('upload-button').disabled=false;$('upload-button').textContent='Dokument vorbereiten →';}}
  });
 }
 function review(){
- $('content').innerHTML=heading('Dokumente gemeinsam prüfen','Vergleichen und ein Review vorbereiten.','Hier kontrollierst du erkannte Anforderungen, prüfst mögliche Widersprüche und erstellst einen klar abgegrenzten Review-Umfang.')+
+ $('content').innerHTML=heading('Dokumentvergleich vorbereiten','Vergleichen und ein Review vorbereiten.','Hier kontrollierst du erkannte Anforderungen, prüfst mögliche Widersprüche und erstellst einen klar abgegrenzten Review-Umfang.')+
  `<div class="notice info"><strong>Gekennzeichnete Anforderungen prüfen:</strong> Ob die Kennung aus dem Original stammt, wird im Review bestätigt. Freitext und technische Zeilen-IDs erzeugen keine Anforderungen. Auswahl von Quellen erstellt nur ein Paket; sie startet keine automatische oder semantische Prüfung.</div><div class="grid2"><section class="panel"><h2>1. Quellen für ein Review auswählen</h2><p class="muted">Wähle nur Quellen, die gemeinsam geprüft werden sollen. Das Paket hält Quellenstand und Umfang per Hash fest.</p><form id="review-form">${state.documents.map(d=>`<div class="card"><label class="checks"><input type="checkbox" name="review-source" value="${e(d.id)}">${e(d.title)}</label><p class="muted">${e(d.id)} · ${e(d.owner)} · ${e(labels[d.status])}</p></div>`).join('')}<button id="package-button" type="submit">Gewählten Umfang vorbereiten →</button></form></section><section class="panel"><h2>2. Vorhandene Prüfergebnisse</h2><p>${pill(state.dcr.overall_status||'not_run')}</p><p class="muted">Review: ${e(state.dcr.review_id||'Kein Snapshot')}<br>Quellenstand: ${e(state.dcr.freshness?.status||'unbekannt')}</p><p class="small">Dieser gespeicherte Snapshot deckt nur seinen eigenen Umfang ab. Deine Auswahl links führt keine neue Prüfung aus.</p>${(state.dcr.findings||[]).map(f=>`<div class="card"><div class="row"><h3>${e(f.id)}</h3>${pill(f.disposition)}</div><p>${e(f.category)} · Belegstatus: ${e(f.evidence_status)}</p><p class="muted">Diese Ansicht enthält keine Originalbelege oder vollständige Interpretation. Prüfe die fachliche Entscheidung im zugehörigen privaten Review-Datensatz.</p></div>`).join('')||'<p class="muted">In dieser Projektion sind keine Befunde enthalten. Das beweist nicht, dass die Quellen widerspruchsfrei sind.</p>'}<h3>Originaltexte nebeneinander lesen</h3><p class="muted">Der Direktvergleich erleichtert das Auffinden von Unterschieden. Er bewertet sie nicht.</p><label>Erstes Dokument<select id="compare-a">${docOptions()}</select></label><label>Zweites Dokument<select id="compare-b">${docOptions()}</select></label><div class="actions"><button id="compare-button" class="quiet">Dokumente anzeigen →</button></div></section></div>`;
- bind('review-form','submit',async ev=>{ev.preventDefault();const ids=[...document.querySelectorAll('[name=review-source]:checked')].map(x=>x.value);if(!ids.length)throw new Error('Wähle mindestens eine Quelle.');const d=await api('/api/review-packages',{source_ids:ids});await refresh();await showDraft(d.draft_id);});
- bind('compare-button','click',async()=>{const [a,b]=await Promise.all([api('/api/sources/'+$('compare-a').value),api('/api/sources/'+$('compare-b').value)]);$('detail-content').innerHTML='<p class="eyebrow">Originalvergleich · kein semantischer Review</p><h2>Fundstellen im direkten Vergleich</h2><div class="grid2">'+[a,b].map(v=>`<section><h3>${e(v.source.title)}</h3><details class="technical-details"><summary>Technischer Dateinachweis</summary><p class="hash">SHA-256: ${e(v.sha256)}</p></details>${sourceLines(v.lines)}</section>`).join('')+'</div>';$('detail').showModal();});
+ bind('review-form','submit',async ev=>{ev.preventDefault();const ids=[...document.querySelectorAll('[name=review-source]:checked')].map(x=>x.value);if(!ids.length)throw new Error('Wähle mindestens eine Quelle.');const d=await api('/api/review-packages',{source_ids:ids});await refresh(false);await showDraft(d.draft_id);});
+ bind('compare-button','click',async()=>{const [a,b]=await Promise.all([api('/api/sources/'+$('compare-a').value),api('/api/sources/'+$('compare-b').value)]);$('comparison-content').innerHTML='<p class="eyebrow">Originalvergleich · kein semantischer Review</p><h2>Fundstellen im direkten Vergleich</h2><div class="grid2">'+[a,b].map(v=>`<section><h3>${e(v.source.title)}</h3><details class="technical-details"><summary>Technischer Dateinachweis</summary><p class="hash">SHA-256: ${e(v.sha256)}</p></details>${sourceLines(v.lines)}</section>`).join('')+'</div>';$('detail').showModal();});
 }
 function baseline(){
  const baseline=state.process.authorized_source_baseline||{};
- $('content').innerHTML=heading('Freigabestand','Freigabeentscheidung vorbereiten.','Diese Ansicht zeigt die vorhandene Bereitschaft und fehlende Voraussetzungen. Sie startet keine neue Vollständigkeits- oder Konsistenzprüfung und erteilt keine Freigabe.')+
+ $('content').innerHTML=heading('Freigabevoraussetzungen','Freigabeentscheidung vorbereiten.','Diese Ansicht zeigt die vorhandene Bereitschaft und fehlende Voraussetzungen. Sie startet keine neue Vollständigkeits- oder Konsistenzprüfung und erteilt keine Freigabe.')+
  `<section class="panel"><div class="sectionhead"><h2>Gemeldeter Stand und offene Voraussetzungen</h2>${pill(baseline.status||'unknown')}</div><p class="muted">Berichtsstand: ${e(state.process.generated_at||'Nicht verfügbar')} · vorhandene Projektion, keine neue Prüfung.</p>${(baseline.blocking_reasons||[]).map(x=>`<div class="baseline-blocker">${e(humanReason(x))}</div>`).join('')||'<p class="muted">Der Bericht nennt keine Blocker. Die formale Baseline-Entscheidung muss trotzdem durch die zuständige Autorität erfolgen.</p>'}<h3>Worauf bezieht sich dieser Stand?</h3><p>Auf den Checkout und das Quellenregister mit den folgenden Identitäten:</p><p class="hash">Checkout: ${e(state.context.commit)}<br>Quellenregister: ${e(state.context.register_sha256)}</p></section><section class="panel"><h2>Vor der formalen Freigabe</h2>${[['1','Quellenumfang und Autorität bestätigen','Genau die geprüften Quellen und Versionen festlegen.'],['2','Anforderungsentscheidungen abschließen','Offene Lifecycle- und Kandidatenentscheidungen klären.'],['3','Konsistenznachweise prüfen','Vollständigen, aktuellen Prüfumfang und die Behandlung aller Befunde belegen.'],['4','Freigabe versioniert dokumentieren','Zuständige Autorität, Datum, Entscheidung und Quellenhash erfassen.']].map(([n,t,s])=>`<div class="step"><b>${n}</b><div><h3>${t}</h3><p>${s}</p></div></div>`).join('')}<div class="notice info">Die Workbench bereitet die Entscheidung vor. Die formale Baseline-Freigabe wird außerhalb dieser App durch die benannte Autorität dokumentiert.</div></section>`;
 }
 function sourceLines(lines){return lines.map(x=>`<div class="line"><small>${e(locatorLabel(x.locator))}</small>${e(x.text)}</div>`).join('');}
 function reqClassName(value){return ({author_identified:'Autorenkennung bestätigt',explicit_identifier:'explizite Kennung · Herkunft ungeprüft',extraction_row_id:'historische Extraktionskennung',inferred_candidate:'historischer Freitextvorschlag'})[value]||String(value||'Klasse ungeklärt').replaceAll('_',' ');}
-async function showSource(id){
- captureItemNote();
- const v=await api('/api/sources/'+id);
- const brief=(state.briefs||[]).find(x=>x.source_id===id);
- $('detail-message').hidden=true;
- $('detail-content').innerHTML=`<p class="eyebrow">Registriertes Dokument</p><h2>${e(v.source.title)}</h2><p>${pill(v.source.status)} <span class="muted">${e(v.source.owner)} · ${e(v.source.version)}</span></p><div class="actions"><button id="prepare-source-review">Prüfung vorbereiten →</button></div><p class="muted">Lege einen lokalen Prüfentwurf für diese Version an. Das Dokument und sein Quellenstatus bleiben erhalten.</p><details class="technical-details"><summary>Technischer Dateinachweis</summary><p class="hash">SHA-256: ${e(v.sha256)}</p></details>${v.warnings.length?`<div class="notice">${v.warnings.map(e).join('<br>')}</div>`:''}${brief?`<details class="card"><summary>Vorhandenes Aufnahme-Briefing</summary><pre class="line">${e(JSON.stringify(brief,null,2))}</pre></details>`:''}<div class="tabs"><button id="source-current" class="selected">Aktuelle Extraktion</button><button id="source-history">Frühere Vorschläge und Entscheidungen</button></div><div id="source-body"></div>`;
+function showSource(id){return navigateRoute({page:'source',id,tab:'current'});}
+function statusSummary(data,editable){
+ const p=reviewTools.reviewProgress(data.requirements||[],data.notes||[]),formal=data.formal_status;
+ return `<section class="work-status" aria-label="Getrennte Prüf- und Entscheidungsstände"><div><span>Quellenstatus${data.stale?' · gespeicherter Stand':''}</span><strong>${e(labels[data.source?.status]||'Dokumentauswahl')}</strong></div><div><span>Vorbereitungsfortschritt</span><strong>${editable&&data.source?`${p.noted} von ${p.total} mit Prüfnotiz`:data.source?'Noch keine lokale Prüfung':'Umfang vorbereitet'}</strong><small>Prüfnotizen sind Vorschläge</small></div><div><span>Klärungsbedarf</span><strong>${editable?`${p.clarification} Anforderungen`:'Noch nicht vorbereitet'}</strong></div><div><span>Formaler Entscheidungsstand</span><strong>${formal?.recorded_proposals?`${formal.recorded_decisions} Entscheidungen aufgezeichnet`:'Keine passenden Entscheidungen erfasst'}</strong>${formal?`<small>${formal.recorded_activations} Aktivierungen · ${formal.open_historical_proposals} offene historische Vorschläge${formal.other_source_cases?` · ${formal.other_source_cases} Fälle zu anderem Quellenstand`:''}</small>`:''}</div></section><p class="muted status-explanation">Formale Angaben sind gespeicherte Historie zum gebundenen Quellenstand, kein Ergebnis deiner lokalen Vorbereitung und keine Baseline-Freigabe.</p>`;
+}
+function renderSource(v,tab='current'){
+ const id=v.source.id,brief=(state.briefs||[]).find(x=>x.source_id===id),draft=workspaceTools.sourceDraft(id,state.drafts);
+ $('detail-content').innerHTML=`<a class="back-link" href="#/documents">← Dokumente</a>${heading('Registriertes Dokument',e(v.source.title),'Original, explizite Anforderungen und gespeicherte Entscheidungen gemeinsam nachvollziehen.')}<p>${e(id)} · ${e(v.source.owner)} · ${e(v.source.version)}</p>${statusSummary(v,false)}<div class="actions">${draft?`<button data-continue-draft="${e(draft.draft_id)}">${e(workspaceTools.nextTask(draft).label)} →</button>`:''}<button id="prepare-source-review" class="${draft?'quiet':''}">Neue Prüfung vorbereiten →</button></div><p class="muted">Eine neue lokale Vorbereitung verändert weder die Quelle noch vorhandene Entscheidungen.</p><details class="technical-details"><summary>Technischer Dateinachweis</summary><p class="hash">SHA-256: ${e(v.sha256)}</p></details>${v.warnings.length?`<div class="notice">${v.warnings.map(e).join('<br>')}</div>`:''}${brief?`<details class="card"><summary>Vorhandenes Aufnahme-Briefing</summary><pre class="line">${e(JSON.stringify(brief,null,2))}</pre></details>`:''}<nav class="tabs" aria-label="Dokumentansichten"><button id="source-current" class="${tab==='current'?'selected':''}" ${tab==='current'?'aria-current="page"':''}>Aktuelle Extraktion</button><button id="source-history" class="${tab==='history'?'selected':''}" ${tab==='history'?'aria-current="page"':''}>Frühere Vorschläge und Entscheidungen</button></nav><div id="source-body"></div>`;
  bind('prepare-source-review','click',async()=>{
-  $('prepare-source-review').disabled=true;
-  try {const draft=await api('/api/source-reviews',{source_id:id});await refresh();await showDraft(draft.draft_id);}
-  finally {if($('prepare-source-review'))$('prepare-source-review').disabled=false;}
+  const button=$('prepare-source-review');button.disabled=true;button.textContent='Prüfung wird vorbereitet …';
+  try{const prepared=await api('/api/source-reviews',{source_id:id});await refresh(false);await showDraft(prepared.draft_id);}finally{if(button.isConnected){button.disabled=false;button.textContent='Neue Prüfung vorbereiten →';}}
  });
- const selectTab=historical=>{
-  $('source-current').classList.toggle('selected',!historical);$('source-history').classList.toggle('selected',historical);
-  if(historical)loadHistory(id,'source-body',reviewTools.partitionRequirements(v.requirements).historical);
-  else {$('source-body').innerHTML='<div id="requirement-workspace"></div>';mountRequirementReview(v,'source:'+id,false);}
- };
- bind('source-current','click',()=>selectTab(false));bind('source-history','click',()=>selectTab(true));selectTab(false);
- if(!$('detail').open)$('detail').showModal();
+ bind('source-current','click',()=>navigateRoute({page:'source',id,tab:'current'}));bind('source-history','click',()=>navigateRoute({page:'source',id,tab:'history'}));
+ if(tab==='history')loadHistory(id,'source-body',reviewTools.partitionRequirements(v.requirements).historical);
+ else{$('source-body').innerHTML='<div id="requirement-workspace"></div>';mountRequirementReview(v,'source:'+id,false);}
+}
+function staleNotice(d){
+ if(!d.stale)return '';
+ const reasons=d.stale_details?.reasons||[];
+ return `<section class="notice stale-notice" aria-label="Geänderter Quellenstand"><h2>Vorbereitung an einen früheren Stand gebunden</h2><p>Notizen und Export sind gesperrt. Deine bisherige Vorbereitung und Historie bleiben lesbar erhalten.</p><ul>${reasons.map(r=>`<li>${e(workspaceTools.staleMessages[r.code]||'Der gespeicherte Stand weicht vom aktuellen ab.')}${r.source_id?` <strong>${e(r.source_id)}</strong>`:''}${r.previous||r.current?`<details><summary>Änderungsnachweis</summary><p class="hash">Bisher: ${e(r.previous||'Nicht vorhanden')}<br>Aktuell: ${e(r.current||'Nicht vorhanden')}</p></details>`:''}</li>`).join('')||'<li>Der gespeicherte Repository- oder Quellenstand ist nicht mehr aktuell.</li>'}</ul><p>Eine neue Vorbereitung beginnt ohne übernommene Notizen oder Entscheidungen. Vergleiche die beiden Stände, bevor du Vorschläge erneut erfasst.</p><button id="restart-preparation">Neue Vorbereitung starten →</button></section>`;
 }
 function reviewView(key){
- if(!reviewViews.has(key))reviewViews.set(key,{selected:null,query:'',filter:'all',unsaved:{},reviewer:'',saving:new Set(),savingGeneral:false});
+ if(!reviewViews.has(key))reviewViews.set(key,{selected:null,query:'',filter:'all',pane:'requirement',unsaved:{},reviewer:'',saving:new Set(),savingGeneral:false});
  return reviewViews.get(key);
 }
 function captureItemNote(){
  const form=$('item-note-form');
  if(form){
   const view=reviewView(form.dataset.reviewKey);
-  view.unsaved[form.dataset.subject]={reviewer:$('item-reviewer').value,outcome:$('item-outcome').value,rationale:$('item-rationale').value};
+  const values={reviewer:$('item-reviewer').value,outcome:$('item-outcome').value,rationale:$('item-rationale').value};
+  if(view.unsaved[form.dataset.subject]||JSON.stringify(values)!==form.dataset.initialValues)view.unsaved[form.dataset.subject]=values;
   view.reviewer=$('item-reviewer').value;
  }
  const general=$('note-form');
  if(general){
   const view=reviewView(general.dataset.reviewKey);
-  view.generalNote={subject:$('note-subject').value,reviewer:$('note-reviewer').value,outcome:$('note-outcome').value,rationale:$('note-rationale').value};
+  const values={subject:$('note-subject').value,reviewer:$('note-reviewer').value,outcome:$('note-outcome').value,rationale:$('note-rationale').value};
+  if(view.generalNote||JSON.stringify(values)!==general.dataset.initialValues)view.generalNote=values;
   view.reviewer=$('note-reviewer').value;
  }
 }
@@ -211,39 +295,80 @@ function handoffQuestions(data){
  const open=current.filter(r=>!latest.has(r.id)||latest.get(r.id).outcome==='needs_clarification');
  return open.length?`<details class="handoff-questions" open><summary>Für den anschließenden Review offen (${open.length})</summary><ul>${open.map(r=>`<li><strong>${e(reviewTools.requirementLabel(r))}</strong>: ${latest.has(r.id)?'Klärungsbedarf – '+e(latest.get(r.id).rationale):'noch ohne Prüfnotiz'}</li>`).join('')}</ul></details>`:'';
 }
-function mountRequirementReview(data,key,editable){
- const view=reviewView(key), notes=data.notes||[], rows=data.requirements||[];
- const {current,historical}=reviewTools.partitionRequirements(rows);
- const visible=reviewTools.filteredRequirements(rows,notes,view.query,view.filter), latest=reviewTools.latestNotes(notes);
- if(!visible.some(r=>r.id===view.selected))view.selected=visible[0]?.id||null;
- const selected=visible.find(r=>r.id===view.selected), locked=data.stale||!!data.pr||view.saving.has(selected?.id);
- const status=r=>latest.has(r.id)?outcomeLabels[latest.get(r.id).outcome]:'Ohne Prüfnotiz';
- let detail='';
- if(selected){
-  const excerpt=reviewTools.sourceExcerpt(data.lines,selected), itemNotes=notes.filter(n=>n.subject===selected.id);
-  const pending=view.unsaved[selected.id]||{reviewer:view.reviewer||notes.at(-1)?.reviewer||'',outcome:'confirm_candidate',rationale:''};
-  detail=`<section class="review-item" aria-label="Ausgewählte Anforderung"><p class="eyebrow">Anforderung ${current.indexOf(selected)+1} von ${current.length}</p><h3 id="selected-requirement" tabindex="-1">${e(reviewTools.requirementLabel(selected))}</h3><p class="requirement-statement">${e(selected.statement)}</p><p class="muted">${e(reqClassName(selected.identification_class))} · ${e(locatorLabel(selected.source_locator))}</p><h4>Originalfundstelle</h4><div class="source-context">${excerpt.length?excerpt.map(line=>`<div class="line"><small>${e(locatorLabel(line.locator))}</small>${line.locator===selected.source_locator?`<mark>${e(line.text)}</mark>`:e(line.text)}</div>`).join(''):'<p class="notice">Die Fundstelle ist im gespeicherten Textauszug nicht verfügbar. Prüfe den vollständigen Originaltext und halte den Klärungsbedarf fest.</p>'}</div><p class="muted">Vergleiche Wortlaut und Fundstelle. Eine erkannte Kennung bestätigt weder ihre Herkunft noch die fachliche Freigabe.</p>`;
-  if(editable){
-   detail+=`<h4>Deine Einschätzung</h4><p class="muted">${e(status(selected))}</p><form id="item-note-form" data-review-key="${e(key)}" data-subject="${e(selected.id)}"><fieldset id="item-fields" ${locked?'disabled':''}><label>Bearbeiter / Reviewer<input id="item-reviewer" required maxlength="200" autocomplete="name" value="${e(pending.reviewer)}"></label><label>Was schlägst du vor?<select id="item-outcome">${['confirm_candidate','reject_candidate','needs_clarification'].map(outcome=>`<option value="${outcome}" ${pending.outcome===outcome?'selected':''}>${e(outcomeLabels[outcome])}</option>`).join('')}</select></label><label>Begründung oder offene Frage<textarea id="item-rationale" required maxlength="4000">${e(pending.rationale)}</textarea></label><button type="submit" id="save-item-note">Einschätzung speichern</button></fieldset></form>`;
-  }
-  if(itemNotes.length)detail+=`<details class="technical-details"><summary>Alle Prüfnotizen zu dieser Anforderung (${itemNotes.length})</summary>${itemNotes.map(n=>`<article class="card"><strong>${e(outcomeLabels[n.outcome])}</strong><p>${e(n.rationale)}</p><small>${e(n.reviewer)} · ${e(n.recorded_at)} · Vorschlag</small></article>`).join('')}</details>`;
-  const index=visible.indexOf(selected);
-  detail+=`<div class="item-navigation"><button class="quiet" id="review-previous" ${index===0?'disabled':''}>← Vorherige</button><button class="quiet" id="review-next" ${index===visible.length-1?'disabled':''}>Nächste Anforderung →</button></div></section>`;
+function syncReadingLayout(){
+ const tabs=$('reading-tabs');if(!tabs)return;
+ const small=window.innerWidth<=900, key=tabs.dataset.reviewKey, view=reviewView(key);
+ tabs.hidden=!small;
+ for(const name of ['requirement','original']){
+  const panel=$('reading-'+name),button=$('reading-tab-'+name);
+  panel.hidden=small&&view.pane!==name;
+  panel.setAttribute('role',small?'tabpanel':'region');
+  button.setAttribute('aria-selected',String(view.pane===name));button.tabIndex=view.pane===name?0:-1;
  }
- $('requirement-workspace').innerHTML=`${editable?preparationSummary(data):`<p class="muted">${current.length} explizit gekennzeichnete Anforderungen aus diesem Dokumentstand. Wähle „Prüfung vorbereiten“, um Einschätzungen festzuhalten.</p>`}${historical.length?`<div class="notice">${historical.length} ältere Einträge stehen separat unter „Frühere Vorschläge“. Sie zählen nicht zur aktuellen Extraktion.</div>`:''}<div class="toolbar review-toolbar"><input id="requirement-search" aria-label="Anforderungen suchen" placeholder="Kennung oder Wortlaut suchen …" value="${e(view.query)}">${editable?`<select id="requirement-filter" aria-label="Prüfnotizen filtern"><option value="all">Alle Anforderungen</option><option value="unnoted" ${view.filter==='unnoted'?'selected':''}>Ohne Prüfnotiz</option><option value="clarification" ${view.filter==='clarification'?'selected':''}>Klärungsbedarf</option></select>`:''}</div>${visible.length?`<div class="requirement-review-grid"><nav class="requirement-list" aria-label="Anforderungen auswählen">${visible.map(row=>`<button type="button" class="requirement-choice ${row.id===view.selected?'selected':''}" data-review-select="${e(row.id)}" ${row.id===view.selected?'aria-current="true"':''}><strong>${e(reviewTools.requirementLabel(row))}</strong><span>${e(row.statement.slice(0,100))}${row.statement.length>100?' …':''}</span>${editable?`<small>${e(status(row))}</small>`:''}</button>`).join('')}</nav>${detail}</div>`:current.length?'<div class="empty">Kein Treffer für diese Suche oder diesen Filter. Ändere die Auswahl, um weitere Anforderungen zu sehen.</div>':'<div class="empty">Keine expliziten Anforderungen erkannt. Prüfe die Kennungen im Originaltext.</div>'}<details class="technical-details"><summary>Gesamten Originaltext anzeigen</summary>${sourceLines(data.lines||[])}</details>`;
+}
+function mountRequirementReview(data,key,editable){
+ const view=reviewView(key),notes=data.notes||[],rows=data.requirements||[];
+ const {current,historical}=reviewTools.partitionRequirements(rows);
+ const visible=reviewTools.filteredRequirements(rows,notes,view.query,view.filter),latest=reviewTools.latestNotes(notes);
+ const invalidItem=!!currentRoute.item&&!current.some(r=>r.id===currentRoute.item);
+ if(!invalidItem&&!visible.some(r=>r.id===view.selected)&&visible.length)view.selected=visible[0].id;
+ const selected=invalidItem?null:visible.find(r=>r.id===view.selected);
+ const locked=data.stale||!!data.pr||view.saving.has(selected?.id);
+ const status=r=>latest.has(r.id)?outcomeLabels[latest.get(r.id).outcome]:'Ohne Prüfnotiz';
+ let detail=invalidItem?'<div class="notice">Die verlinkte Anforderung gehört nicht zur aktuellen expliziten Extraktion. Frühere Einträge bleiben in der Historie.<button type="button" id="reset-item" class="quiet">Aktuelle Anforderungen ansehen</button></div>':
+  '<div class="empty">'+(current.length?'Kein Treffer. Ändere Suche oder Filter; der Originaltext bleibt verfügbar.':'Keine expliziten Anforderungen erkannt. Prüfe die Kennungen im Originaltext.')+'</div>';
+ let initialValues;
+ if(selected){
+  const itemNotes=notes.filter(n=>n.subject===selected.id);
+  const pending=view.unsaved[selected.id]||{reviewer:view.reviewer||notes.at(-1)?.reviewer||'',outcome:'confirm_candidate',rationale:''};
+  initialValues={reviewer:pending.reviewer,outcome:pending.outcome,rationale:pending.rationale};
+  detail=`<p class="eyebrow">Anforderung ${current.indexOf(selected)+1} von ${current.length}</p><h2 id="selected-requirement" tabindex="-1">${e(reviewTools.requirementLabel(selected))}</h2><p class="requirement-statement">${e(selected.statement)}</p><p class="muted">${e(reqClassName(selected.identification_class))} · ${e(locatorLabel(selected.source_locator))}</p><p class="muted">Vergleiche Wortlaut und hervorgehobene Originalfundstelle. Eine Kennung bestätigt weder ihre Herkunft noch eine fachliche Freigabe.</p>`;
+  if(editable){
+   detail+=`<h3>Deine Einschätzung</h3><p class="muted">${e(status(selected))}</p><form id="item-note-form" data-review-key="${e(key)}" data-subject="${e(selected.id)}"><fieldset id="item-fields" ${locked?'disabled':''}><label>Bearbeiter / Reviewer<input id="item-reviewer" required maxlength="200" autocomplete="name" value="${e(pending.reviewer)}"></label><label>Was schlägst du vor?<select id="item-outcome">${['confirm_candidate','reject_candidate','needs_clarification'].map(outcome=>`<option value="${outcome}" ${pending.outcome===outcome?'selected':''}>${e(outcomeLabels[outcome])}</option>`).join('')}</select></label><label>Begründung oder offene Frage<textarea id="item-rationale" required maxlength="4000">${e(pending.rationale)}</textarea></label><button type="submit" id="save-item-note">${view.saving.has(selected.id)?'Wird gespeichert …':'Einschätzung speichern'}</button></fieldset><p id="item-save-status" class="save-status" role="status" aria-live="polite">${view.saving.has(selected.id)?'Speichern läuft.':view.unsaved[selected.id]?'Ungespeicherte Eingaben':'Bereit für deine Prüfnotiz'}</p></form>`;
+  }
+  if(itemNotes.length)detail+=`<details class="technical-details"><summary>Alle Prüfnotizen (${itemNotes.length})</summary>${itemNotes.map(n=>`<article class="card"><strong>${e(outcomeLabels[n.outcome])}</strong><p>${e(n.rationale)}</p><small>${e(n.reviewer)} · ${e(n.recorded_at)} · Vorschlag</small></article>`).join('')}</details>`;
+  const index=visible.indexOf(selected);
+  detail+=`<div class="item-navigation"><button class="quiet" id="review-previous" ${index===0?'disabled':''}>← Vorherige</button><button class="quiet" id="review-next" ${index===visible.length-1?'disabled':''}>Nächste Anforderung →</button></div>`;
+ }
+ const locator=selected?.source_locator;
+ const original=(data.lines||[]).map(line=>`<div class="line ${locator===line.locator?'current-source-line':''}" ${locator===line.locator?'data-selected-locator="true"':''}><small>${e(locatorLabel(line.locator))}</small>${locator===line.locator?`<mark>${e(line.text)}</mark>`:e(line.text)}</div>`).join('');
+ $('requirement-workspace').innerHTML=`${editable?preparationSummary(data):`<p class="muted">${current.length} explizit gekennzeichnete Anforderungen. Zum Erfassen von Vorschlägen eine lokale Prüfung vorbereiten.</p>`}${historical.length?`<div class="notice">${historical.length} ältere Einträge stehen separat in der Historie und zählen nicht zur aktuellen Extraktion.</div>`:''}<div class="toolbar review-toolbar"><input id="requirement-search" aria-label="Anforderungen suchen" placeholder="Kennung oder Wortlaut suchen …" value="${e(view.query)}">${editable?`<select id="requirement-filter" aria-label="Prüfnotizen filtern"><option value="all">Alle Anforderungen</option><option value="unnoted" ${view.filter==='unnoted'?'selected':''}>Ohne Prüfnotiz</option><option value="clarification" ${view.filter==='clarification'?'selected':''}>Klärungsbedarf</option></select>`:''}</div><div id="reading-tabs" class="reading-tabs" role="tablist" aria-label="Prüfansichten" data-review-key="${e(key)}"><button id="reading-tab-requirement" type="button" role="tab" aria-controls="reading-requirement">Anforderung und Prüfnotiz</button><button id="reading-tab-original" type="button" role="tab" aria-controls="reading-original">Originaltext</button></div><div class="requirement-review-grid"><nav class="requirement-list" aria-label="Anforderungen auswählen">${visible.map(row=>`<button type="button" class="requirement-choice ${row.id===selected?.id?'selected':''}" data-review-select="${e(row.id)}" ${row.id===selected?.id?'aria-current="true"':''}><strong>${e(reviewTools.requirementLabel(row))}</strong><span>${e(row.statement.slice(0,100))}${row.statement.length>100?' …':''}</span>${editable?`<small>${e(status(row))}</small>`:''}</button>`).join('')||'<p class="muted">Keine passenden Anforderungen</p>'}</nav><section id="reading-requirement" class="review-item" aria-label="Anforderung und Prüfnotiz" aria-labelledby="reading-tab-requirement">${detail}</section><section id="reading-original" class="original-pane" aria-label="Originaltext" aria-labelledby="reading-tab-original"><h2>Originaltext</h2><p class="muted">${locator?e(locatorLabel(locator))+' hervorgehoben':'Gespeicherter Textauszug'} · ${e(data.source?.version||'')}</p><div class="original-lines">${original||'<p class="notice">Kein lesbarer Originaltext vorhanden. Prüfe die Quelldatei und dokumentiere diese Lücke.</p>'}</div></section></div>`;
+ if($('item-note-form'))$('item-note-form').dataset.initialValues=JSON.stringify(initialValues);
  const redraw=focus=>{captureItemNote();const position=$('requirement-search')?.selectionStart;mountRequirementReview(data,key,editable);if(focus){$(focus)?.focus();if(focus==='requirement-search'&&position!==null)$('requirement-search').setSelectionRange(position,position);}};
+ const select=id=>{captureWorkspace();view.selected=id;routeSelection(id);redraw('selected-requirement');const line=document.querySelector('[data-selected-locator]');if(line?.scrollIntoView)line.scrollIntoView({block:'nearest'});};
  bind('requirement-search','input',()=>{view.query=$('requirement-search').value;redraw('requirement-search');});
  bind('requirement-filter','change',()=>{view.filter=$('requirement-filter').value;redraw('requirement-filter');});
- $('requirement-workspace').querySelectorAll('[data-review-select]').forEach(button=>button.addEventListener('click',()=>{view.selected=button.dataset.reviewSelect;redraw('selected-requirement');}));
- const move=offset=>{view.selected=visible[visible.indexOf(selected)+offset]?.id;redraw('selected-requirement');};
- bind('review-previous','click',()=>move(-1));bind('review-next','click',()=>move(1));
+ $('requirement-workspace').querySelectorAll('[data-review-select]').forEach(button=>button.addEventListener('click',()=>select(button.dataset.reviewSelect)));
+ bind('reset-item','click',()=>{view.query='';view.filter='all';view.selected=current[0]?.id||null;routeSelection(view.selected,true);redraw('selected-requirement');});
+ bind('review-previous','click',()=>select(visible[visible.indexOf(selected)-1]?.id));
+ bind('review-next','click',()=>select(visible[visible.indexOf(selected)+1]?.id));
+ const choosePane=(name,focus=false)=>{view.pane=name;syncReadingLayout();if(focus)$('reading-tab-'+name).focus();};
+ for(const name of ['requirement','original']){
+  const button=$('reading-tab-'+name);button.addEventListener('click',()=>choosePane(name));
+  button.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();choosePane(event.key==='Home'?'requirement':event.key==='End'?'original':name==='original'?'requirement':'original',true);}});
+ }
+ syncReadingLayout();
+ bind('item-note-form','input',()=>{captureItemNote();$('item-save-status').textContent='Ungespeicherte Eingaben';});
  bind('item-note-form','submit',async ev=>{
-  ev.preventDefault();if(locked||view.saving.has(selected.id))return;captureItemNote();view.saving.add(selected.id);$('item-fields').disabled=true;
-  try {const updated=await api('/api/drafts/'+data.draft_id+'/notes',{subject:selected.id,...view.unsaved[selected.id]});captureItemNote();view.saving.delete(selected.id);delete view.unsaved[selected.id];if(activeDraft?.draft_id===data.draft_id){activeDraft=updated;if($('item-note-form')?.dataset.reviewKey===key)renderDraft('requirements',false);}tell('Einschätzung gespeichert. Die formale Entscheidung bleibt im anschließenden Review.');}
-  finally {view.saving.delete(selected.id);const form=$('item-note-form');if(form?.dataset.reviewKey===key)$('item-fields').disabled=!!activeDraft?.stale||!!activeDraft?.pr||view.saving.has(form.dataset.subject);}
+  ev.preventDefault();if(locked||view.saving.has(selected.id))return;captureItemNote();
+  const payload={subject:selected.id,reviewer:$('item-reviewer').value,outcome:$('item-outcome').value,rationale:$('item-rationale').value};
+  view.saving.add(selected.id);$('item-fields').disabled=true;$('save-item-note').textContent='Wird gespeichert …';$('item-save-status').textContent='Speichern läuft.';
+  try{
+   const updated=await api('/api/drafts/'+data.draft_id+'/notes',payload);captureItemNote();rememberDraft(updated);view.saving.delete(selected.id);delete view.unsaved[selected.id];
+   if(activeDraft?.draft_id===data.draft_id){activeDraft=rememberDraft(updated);if($('item-note-form')?.dataset.reviewKey===key)renderDraft('requirements',false);}
+   tell('Einschätzung gespeichert. Die formale Entscheidung bleibt im anschließenden Review.');
+  }catch(error){
+   try{const fresh=await api('/api/drafts/'+data.draft_id);rememberDraft(fresh);if(activeDraft?.draft_id===data.draft_id){captureItemNote();activeDraft=fresh;renderDraft(currentRoute.tab,false);}}catch(_){}
+   throw error;
+  }finally{
+   view.saving.delete(selected.id);const form=$('item-note-form');
+   if(form?.dataset.reviewKey===key){$('item-fields').disabled=!!activeDraft?.stale||!!activeDraft?.pr||view.saving.has(form.dataset.subject);$('save-item-note').textContent='Einschätzung speichern';$('item-save-status').textContent=view.saving.has(form.dataset.subject)?'Speichern läuft.':view.unsaved[form.dataset.subject]?'Ungespeicherte Eingaben':'Bereit für deine Prüfnotiz';}
+  }
  });
  bind('add-document-question','click',()=>{renderDraft('notes');$('note-subject').value='source';$('note-rationale').focus();});
+ if(selected&&!invalidItem)routeSelection(selected.id,true);
 }
+
 async function loadHistory(sourceId,containerId,olderRows=[],notes=[]){
  const container=$(containerId);container.innerHTML='<p class="muted">Frühere Aufzeichnungen werden geladen …</p>';
  try {
@@ -252,14 +377,19 @@ async function loadHistory(sourceId,containerId,olderRows=[],notes=[]){
   container.innerHTML=`<h3>Frühere Vorschläge und Entscheidungen</h3><p class="muted">Diese Aufzeichnungen bleiben unverändert erhalten. Sie sind keine aktuelle Extraktion und zählen nicht zum lokalen Prüffortschritt.</p>${history.cases.map(c=>`<section class="history-case"><h4>${e(c.case_id)}</h4><p class="muted">${e(c.source.source_id)} · ${c.proposals.length} aufgezeichnete Vorschläge</p>${!c.source_matches?'<div class="notice">Der aufgezeichnete Quellenstand weicht vom heutigen Dokument ab. Entscheidungen nicht ungeprüft auf die aktuelle Extraktion übertragen.</div>':''}<details class="technical-details"><summary>Quellenbindung des früheren Falls</summary><p class="hash">${e(c.path)}<br>SHA-256: ${e(c.source.source_sha256)}</p></details>${c.proposals.map(p=>`<details class="history-record"><summary>${e(p.source_requirement_id)} · ${p.decision?'Entscheidung aufgezeichnet':'Ohne aufgezeichnete Entscheidung'}${p.activation?' · Umsetzung aufgezeichnet':''}</summary><p>${e(p.statement)}</p>${p.decision?`<h4>Aufgezeichnete Entscheidung</h4><p>${e(p.decision.rationale)}</p><p class="muted">${e(p.decision.decided_by)} · ${e(p.decision.decided_at)} · ${e(p.decision.disposition)}</p>`:''}<details class="technical-details"><summary>Vollständiger früherer Datensatz</summary><pre class="line">${e(JSON.stringify(p,null,2))}</pre></details></details>`).join('')}</section>`).join('')}${olderRows.length?`<h4>Ältere Einträge dieses lokalen Entwurfs (${olderRows.length})</h4>${olderRows.map(r=>`<details class="history-record"><summary>${e(reviewTools.requirementLabel(r))} · ${e(reqClassName(r.identification_class))}</summary><p>${e(r.statement)}</p>${notes.filter(n=>n.subject===r.id).map(n=>`<p>${e(outcomeLabels[n.outcome])}: ${e(n.rationale)} · ${e(n.reviewer)}</p>`).join('')}</details>`).join('')}`:''}${!history.cases.length&&!olderRows.length?'<div class="empty">Keine früheren Lifecycle-Vorschläge für dieses Dokument gespeichert.</div>':''}`;
  }catch(error){if(container.isConnected)container.innerHTML='<div class="notice">Frühere Aufzeichnungen konnten nicht geladen werden. Versuche es erneut; die aktuelle Extraktion bleibt davon getrennt.</div>';}
 }
-async function showDraft(id){
- captureItemNote();activeDraft=await api('/api/drafts/'+id);$('detail-message').hidden=true;renderDraft('requirements');if(!$('detail').open)$('detail').showModal();
-}
+function showDraft(id){return navigateRoute({page:'draft',id,tab:'requirements'});}
 function renderDraft(tab,capture=true){
+ if(!activeDraft)return;
+ if(currentRoute.page==='draft'&&currentRoute.tab!==tab)return navigateRoute({...currentRoute,tab});
  if(capture)captureItemNote();
  const d=activeDraft, source=d.source;
- const link=d.pr?.url;const safePR=typeof link==='string'&&/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/pull\/\d+$/.test(link);
- $('detail-content').innerHTML=`<p class="eyebrow">${d.kind==='source_candidate'?'Lokaler Dokumententwurf':source?'Lokale Prüfung eines registrierten Dokuments':'Vorbereitetes gemeinsames Review'}</p><h2>${e(titleOf(d))}</h2><p class="muted">${source?e(source.id)+' · '+e(source.owner)+' · ':''}${e(d.created_at)} · Entwurf</p>${d.stale?'<div class="notice">Der Repository-Stand hat sich geändert. Export und Notizen sind gesperrt. Erstelle einen neuen Entwurf auf dem aktuellen Stand.</div>':''}${d.warnings?.length?`<div class="notice">${d.warnings.map(e).join('<br>')}</div>`:''}<div class="tabs"><button data-tab="requirements" class="${tab==='requirements'?'selected':''}">${source?'Anforderungen prüfen':'Dokumentauswahl'}</button>${d.target?`<button data-tab="delta" class="${tab==='delta'?'selected':''}">Änderungen ansehen</button>`:''}<button data-tab="notes" class="${tab==='notes'?'selected':''}">Alle Notizen (${d.notes.length})</button>${source?`<button data-tab="history" class="${tab==='history'?'selected':''}">Frühere Vorschläge</button>`:''}<button data-tab="packet" class="${tab==='packet'?'selected':''}">Weitergeben</button></div><div id="draft-body"></div>`;
+ const link=d.pr?.url;const safePR=workspaceTools.safePR(link);
+ $('detail-content').innerHTML=`<a class="back-link" href="#/start">← Vorbereitungen</a><p class="eyebrow">${d.kind==='source_candidate'?'Lokaler Dokumententwurf':source?'Lokale Prüfung eines registrierten Dokuments':'Vorbereitetes gemeinsames Review'}</p><h1 tabindex="-1">${e(titleOf(d))}</h1><p class="muted">${source?e(source.id)+' · '+e(source.owner)+' · ':''}${e(d.created_at)} · Entwurf</p>${statusSummary(d,true)}${staleNotice(d)}${d.warnings?.length?`<div class="notice">${d.warnings.map(e).join('<br>')}</div>`:''}<div class="tabs"><button data-tab="requirements" class="${tab==='requirements'?'selected':''}">${source?'Anforderungen prüfen':'Dokumentauswahl'}</button>${d.target?`<button data-tab="delta" class="${tab==='delta'?'selected':''}">Änderungen ansehen</button>`:''}<button data-tab="notes" class="${tab==='notes'?'selected':''}">Alle Notizen (${d.notes.length})</button>${source?`<button data-tab="history" class="${tab==='history'?'selected':''}">Frühere Vorschläge</button>`:''}<button data-tab="packet" class="${tab==='packet'?'selected':''}">Weitergeben</button></div><div id="draft-body"></div>`;
+ bind('restart-preparation','click',async()=>{
+  if(d.kind==='source_review'&&state.documents.some(x=>x.id===d.source.id))return showSource(d.source.id);
+  if(d.kind==='review_package')return navigate('review');
+  intakeDraft=emptyIntake();intakeStep=1;await navigate('intake');tell('Wähle die aktuelle Originaldatei und bestätige ihre Angaben erneut. Der frühere Entwurf bleibt erhalten.');
+ });
  const body=$('draft-body');
  if(tab==='requirements'){
   body.innerHTML=source?'<div id="requirement-workspace"></div>':
@@ -271,40 +401,51 @@ function renderDraft(tab,capture=true){
  if(tab==='notes'){
   const noteView=reviewView('draft:'+d.draft_id);
   const options=source?[{id:'source',name:'Dokument insgesamt'},...reviewTools.partitionRequirements(d.requirements).current.map(x=>({id:x.id,name:reviewTools.requirementLabel(x)}))]:d.manifest.map(m=>({id:m.source_id,name:m.source_id}));
-  body.innerHTML=`<div class="notice info">Deine Einschätzung wird als Vorschlag gespeichert. Die formale Entscheidung erfolgt im anschließenden Review.</div>${d.notes.map(n=>`<div class="card"><h3>${e(outcomeLabels[n.outcome])}</h3><p>${e(n.rationale)}</p><span class="muted">${e(n.subject)} · ${e(n.reviewer)} · ${e(n.recorded_at)}</span></div>`).join('')}<form id="note-form" data-review-key="${e('draft:'+d.draft_id)}"><fieldset id="general-note-fields" ${d.stale||d.pr||noteView.savingGeneral?'disabled':''}><div class="formgrid"><label>Bezug<select id="note-subject">${options.map(o=>`<option value="${e(o.id)}">${e(o.name)}</option>`).join('')}</select></label><label>Reviewer / Bearbeiter<input id="note-reviewer" maxlength="200" required placeholder="Name oder eindeutige Kennung"></label><label class="full">Vorschlag<select id="note-outcome">${Object.entries(outcomeLabels).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label><label class="full">Begründung und offene Fragen<textarea id="note-rationale" required maxlength="4000"></textarea></label></div><div class="actions"><button ${d.stale||d.pr?'disabled':''} type="submit">Notiz speichern</button></div></fieldset></form>`;
+  body.innerHTML=`<div class="notice info">Deine Einschätzung wird als Vorschlag gespeichert. Die formale Entscheidung erfolgt im anschließenden Review.</div>${d.notes.map(n=>`<div class="card"><h3>${e(outcomeLabels[n.outcome])}</h3><p>${e(n.rationale)}</p><span class="muted">${e(n.subject)} · ${e(n.reviewer)} · ${e(n.recorded_at)}</span></div>`).join('')}<form id="note-form" data-review-key="${e('draft:'+d.draft_id)}"><fieldset id="general-note-fields" ${d.stale||d.pr||noteView.savingGeneral?'disabled':''}><div class="formgrid"><label>Bezug<select id="note-subject">${options.map(o=>`<option value="${e(o.id)}">${e(o.name)}</option>`).join('')}</select></label><label>Reviewer / Bearbeiter<input id="note-reviewer" maxlength="200" required placeholder="Name oder eindeutige Kennung"></label><label class="full">Vorschlag<select id="note-outcome">${Object.entries(outcomeLabels).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label><label class="full">Begründung und offene Fragen<textarea id="note-rationale" required maxlength="4000"></textarea></label></div><div class="actions"><button ${d.stale||d.pr?'disabled':''} type="submit">${noteView.savingGeneral?'Wird gespeichert …':'Notiz speichern'}</button></div></fieldset><p id="general-save-status" role="status" class="save-status">${noteView.savingGeneral?'Speichern läuft.':noteView.generalNote?'Ungespeicherte Eingaben':'Bereit für deine Prüfnotiz'}</p></form>`;
   const saved=reviewView('draft:'+d.draft_id).generalNote;
   if(saved){for(const field of ['subject','reviewer','outcome','rationale'])$('note-'+field).value=saved[field];}
   else $('note-reviewer').value=reviewView('draft:'+d.draft_id).reviewer||d.notes.at(-1)?.reviewer||'';
+  $('note-form').dataset.initialValues=JSON.stringify({subject:$('note-subject').value,reviewer:$('note-reviewer').value,outcome:$('note-outcome').value,rationale:$('note-rationale').value});
+  bind('note-form','input',()=>{captureItemNote();$('general-save-status').textContent='Ungespeicherte Eingaben';});
   bind('note-form','submit',async ev=>{
-   ev.preventDefault();if(d.stale||d.pr||noteView.savingGeneral)return;captureItemNote();noteView.savingGeneral=true;$('general-note-fields').disabled=true;
-   try {const updated=await api('/api/drafts/'+d.draft_id+'/notes',noteView.generalNote);captureItemNote();delete noteView.generalNote;noteView.savingGeneral=false;if(activeDraft?.draft_id===d.draft_id){activeDraft=updated;if($('note-form')?.dataset.reviewKey==='draft:'+d.draft_id)renderDraft('notes',false);}tell('Prüfnotiz gespeichert.');}
-   finally {noteView.savingGeneral=false;if($('note-form')?.dataset.reviewKey==='draft:'+d.draft_id)$('general-note-fields').disabled=!!activeDraft?.stale||!!activeDraft?.pr;}
+   ev.preventDefault();if(d.stale||d.pr||noteView.savingGeneral)return;captureItemNote();noteView.savingGeneral=true;$('general-note-fields').disabled=true;$('general-save-status').textContent='Speichern läuft.';
+   try {const updated=await api('/api/drafts/'+d.draft_id+'/notes',noteView.generalNote);captureItemNote();rememberDraft(updated);delete noteView.generalNote;noteView.savingGeneral=false;if(activeDraft?.draft_id===d.draft_id){activeDraft=rememberDraft(updated);if($('note-form')?.dataset.reviewKey==='draft:'+d.draft_id)renderDraft('notes',false);}tell('Prüfnotiz gespeichert.');}
+   catch(error){try{const fresh=await api('/api/drafts/'+d.draft_id);rememberDraft(fresh);if(activeDraft?.draft_id===d.draft_id){captureItemNote();activeDraft=fresh;renderDraft(currentRoute.tab,false);}}catch(_){}throw error;}
+   finally {noteView.savingGeneral=false;if($('note-form')?.dataset.reviewKey==='draft:'+d.draft_id){$('general-note-fields').disabled=!!activeDraft?.stale||!!activeDraft?.pr;$('general-save-status').textContent=noteView.generalNote?'Ungespeicherte Eingaben':'Bereit für deine Prüfnotiz';}}
   });
  }
  if(tab==='packet'){
-  body.innerHTML=`<div class="notice">Das Paket enthält private Quelldaten und Vorschläge. Vor einem PR prüfen, ob diese Inhalte in das Zielrepo dürfen. Der PR bleibt ein Draft und wird nicht durch die App gemergt.</div><h3>Vorbereitung zur Übergabe</h3>${source?preparationSummary(d)+handoffQuestions(d):''}<h3>Das enthält dein Review-Paket</h3><p>${d.kind==='source_candidate'?'Originaldatei · Vorschlag für das Quellenregister · Änderungsbeschreibung · Prüfnotizen':source?'Unveränderte registrierte Originaldatei · Änderungsbeschreibung · Prüfnotizen':'Liste der ausgewählten Dokumente mit Dateinachweisen · Änderungsbeschreibung · Prüfnotizen'}</p><details class="technical-details"><summary>Technische Paketdaten und weiterführende Prüfungen</summary><p class="hash">Basis-Commit: ${e(d.context.commit)}<br>Register: ${e(d.context.register_sha256)}</p><p class="muted">Das Paket startet keine inhaltliche Konsistenzprüfung. Dafür sind ein festgelegter Prüfumfang und eine gesonderte Laufentscheidung erforderlich.</p></details><div class="actions"><button id="export-packet" ${d.stale?'disabled':''}>Review-Paket herunterladen</button></div>${safePR?`<p class="actions"><a href="${e(link)}" target="_blank" rel="noopener noreferrer">Draft-PR öffnen →</a></p>`:state.pr_enabled?`<form id="pr-form"><div class="checks actions"><label><input id="publish-confirm" type="checkbox" required>Ich habe die Inhalte geprüft und möchte sie im Repository als Draft-PR veröffentlichen.</label></div><div class="actions"><button id="pr-button" ${d.stale?'disabled':''}>Draft-PR erstellen</button></div></form>`:'<p class="muted actions">Die direkte PR-Erstellung ist hier nicht aktiviert. Lade das Review-Paket herunter und gib es über euren üblichen Review-Weg weiter.</p>'}`;
-  bind('export-packet','click',async()=>{const r=await fetch('/api/drafts/'+d.draft_id+'/packet');if(!r.ok){const error=await r.json();throw new Error(error.error);}const url=URL.createObjectURL(await r.blob());const a=document.createElement('a');a.href=url;a.download=`AXIOM-${d.draft_id}.zip`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
-  bind('pr-form','submit',async ev=>{ev.preventDefault();$('pr-button').disabled=true;$('pr-button').textContent='Draft-PR wird vorbereitet …';try{await api('/api/drafts/'+d.draft_id+'/pr',{confirm_publication:$('publish-confirm').checked});await showDraft(d.draft_id);renderDraft('packet');}finally{if($('pr-button')){$('pr-button').disabled=false;$('pr-button').textContent='Draft-PR erstellen';}}});
+  const packetView=reviewView('draft:'+d.draft_id);
+  body.innerHTML=`<div class="notice">Das Paket enthält private Quelldaten und Vorschläge. Vor einem PR prüfen, ob diese Inhalte in das Zielrepo dürfen. Der PR bleibt ein Draft und wird nicht durch die App gemergt.</div><h3>Vorbereitung zur Übergabe</h3>${source?preparationSummary(d)+handoffQuestions(d):''}<h3>Das enthält dein Review-Paket</h3><p>${d.kind==='source_candidate'?'Originaldatei · Vorschlag für das Quellenregister · Änderungsbeschreibung · Prüfnotizen':source?'Unveränderte registrierte Originaldatei · Änderungsbeschreibung · Prüfnotizen':'Liste der ausgewählten Dokumente mit Dateinachweisen · Änderungsbeschreibung · Prüfnotizen'}</p><details class="technical-details"><summary>Technische Paketdaten und weiterführende Prüfungen</summary><p class="hash">Basis-Commit: ${e(d.context.commit)}<br>Register: ${e(d.context.register_sha256)}</p><p class="muted">Das Paket startet keine inhaltliche Konsistenzprüfung. Dafür sind ein festgelegter Prüfumfang und eine gesonderte Laufentscheidung erforderlich.</p></details><div class="actions"><button id="export-packet" ${d.stale||packetView.exporting?'disabled':''}>${packetView.exporting?'Paket wird geladen …':'Review-Paket herunterladen'}</button></div>${safePR?`<p class="actions"><a href="${e(link)}" target="_blank" rel="noopener noreferrer">Draft-PR öffnen →</a></p>`:!d.pr&&state.pr_enabled?`<form id="pr-form"><div class="checks actions"><label><input id="publish-confirm" type="checkbox" required>Ich habe die Inhalte geprüft und möchte sie im Repository als Draft-PR veröffentlichen.</label></div><div class="actions"><button id="pr-button" ${d.stale||packetView.publishing?'disabled':''}>${packetView.publishing?'Draft-PR wird vorbereitet …':'Draft-PR erstellen'}</button></div></form>`:'<p class="muted actions">Die direkte PR-Erstellung ist hier nicht aktiviert. Lade das Review-Paket herunter und gib es über euren üblichen Review-Weg weiter.</p>'}`;
+  bind('export-packet','click',async()=>{
+   if(d.stale||packetView.exporting)return;packetView.exporting=true;$('export-packet').disabled=true;$('export-packet').textContent='Paket wird geladen …';
+   try{const r=await fetch('/api/drafts/'+d.draft_id+'/packet');if(!r.ok){const error=await r.json();throw new Error(error.error);}const url=URL.createObjectURL(await r.blob());const a=document.createElement('a');a.href=url;a.download=`AXIOM-${d.draft_id}.zip`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);tell('Review-Paket heruntergeladen.');}
+   finally{packetView.exporting=false;if(activeDraft?.draft_id===d.draft_id&&$('export-packet')){$('export-packet').disabled=!!activeDraft.stale;$('export-packet').textContent='Review-Paket herunterladen';}}
+  });
+  bind('pr-form','submit',async ev=>{
+   ev.preventDefault();if(d.stale||d.pr||packetView.publishing)return;packetView.publishing=true;const confirmation=$('publish-confirm').checked;$('pr-button').disabled=true;$('pr-button').textContent='Draft-PR wird vorbereitet …';
+   try{await api('/api/drafts/'+d.draft_id+'/pr',{confirm_publication:confirmation});const updated=await api('/api/drafts/'+d.draft_id);rememberDraft(updated);if(activeDraft?.draft_id===d.draft_id){captureItemNote();activeDraft=rememberDraft(updated);renderDraft(currentRoute.tab,false);}tell('Draft-PR erstellt. Die formale Freigabe erfolgt im Repository.');}
+   finally{packetView.publishing=false;if(activeDraft?.draft_id===d.draft_id&&$('pr-button')){$('pr-button').disabled=!!activeDraft.stale;$('pr-button').textContent='Draft-PR erstellen';}}
+  });
  }
  const order=source?(d.target?['requirements','delta','packet']:['requirements','packet']):['requirements','notes','packet'];
  const next=tab==='notes'?'packet':order[order.indexOf(tab)+1];
  if(next&&tab!=='history'){body.insertAdjacentHTML('beforeend',`<div class="review-next"><button id="draft-next" type="button">${next==='delta'?'Weiter: Änderungen ansehen →':next==='notes'?'Weiter: Notizen ergänzen →':'Weiter: Übergabe vorbereiten →'}</button></div>`);bind('draft-next','click',()=>renderDraft(next));}
- document.querySelectorAll('[data-tab]').forEach(button=>button.addEventListener('click',()=>renderDraft(button.dataset.tab)));
+ document.querySelectorAll('[data-tab]').forEach(button=>{if(button.dataset.tab===tab)button.setAttribute('aria-current','page');button.addEventListener('click',()=>renderDraft(button.dataset.tab));});
  if(tab==='packet')bind('add-document-question','click',()=>{renderDraft('notes');$('note-subject').value='source';$('note-rationale').focus();});
 }
-function render(){
- const names={overview:'Start',sources:'Dokumente',intake:'Dokument hinzufügen',review:'Dokumente gemeinsam prüfen',baseline:'Freigabestand'};
- $('breadcrumb').textContent=names[page];document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
- ({overview,sources,intake,review,baseline}[page])();
-}
+function render(){return applyRoute();}
 if(typeof document!=='undefined'){
+ bind('skip-to-workspace','click',event=>{event.preventDefault();$('main-content').focus();});
  bind('login-form','submit',async ev=>{ev.preventDefault();await api('/api/login',{key:$('key').value});$('key').value='';await refresh();});
  bind('refresh','click',async()=>{await refresh();tell('Aktueller Checkout geladen.');});
- bind('logout','click',async()=>{await api('/api/logout',{});state=null;activeDraft=null;reviewViews.clear();intakeDraft=emptyIntake();intakeStep=1;$('detail-content').textContent='';$('content').textContent='';$('workspace').hidden=true;$('login').hidden=false;$('detail').close();});
- bind('close-detail','click',()=>{captureItemNote();$('detail').close();});
- bind('detail','close',captureItemNote);
- document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
- document.addEventListener('click',async ev=>{const source=ev.target.closest('[data-source]'),draft=ev.target.closest('[data-draft]'),note=ev.target.closest('[data-note-subject]'),phase=ev.target.closest('[data-process-target]');try{if(source)await showSource(source.dataset.source);if(draft)await showDraft(draft.dataset.draft);if(note){renderDraft('notes');$('note-subject').value=note.dataset.noteSubject;$('note-rationale').focus();}if(phase)navigate(phase.dataset.processTarget);}catch(error){tell(error.message);}});
+ bind('logout','click',async()=>{await api('/api/logout',{});state=null;activeDraft=null;activeSource=null;reviewViews.clear();routeMemory.clear();documentListView.query='';documentListView.status='';intakeDraft=emptyIntake();intakeStep=1;$('detail-content').textContent='';$('comparison-content').textContent='';$('content').textContent='';$('workspace').hidden=true;$('login').hidden=false;if($('detail').open)$('detail').close();});
+ bind('close-detail','click',()=>{if($('detail').open)$('detail').close();});
+ document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page).catch(error=>tell(error.message,true))));
+ document.addEventListener('click',async ev=>{const source=ev.target.closest('[data-source]'),draft=ev.target.closest('[data-draft]'),resume=ev.target.closest('[data-continue-draft]'),note=ev.target.closest('[data-note-subject]'),phase=ev.target.closest('[data-process-target]');try{if(source)await showSource(source.dataset.source);if(draft)await showDraft(draft.dataset.draft);if(resume)await continueDraft(resume.dataset.continueDraft);if(note){renderDraft('notes');$('note-subject').value=note.dataset.noteSubject;$('note-rationale').focus();}if(phase)await navigate(phase.dataset.processTarget);}catch(error){tell(error.message,true);}});
+ window.addEventListener('hashchange',()=>applyRoute().catch(error=>tell(error.message,true)));
+ window.addEventListener('beforeunload',event=>{if(state&&hasUnsavedWork()){event.preventDefault();event.returnValue='';}});
+ window.addEventListener('resize',syncReadingLayout);
  refresh().catch(()=>{});
 }
 if(typeof module!=='undefined')module.exports={escapeHTML,emptyIntake,suggestDocumentId,suggestFileMetadata,validateIntake,locatorLabel,humanReason};

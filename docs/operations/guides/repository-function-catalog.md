@@ -34,7 +34,17 @@ extrahiert. Fließtext, reine ID-Verweise und technische `*-SRC-…-REQ-*`-Zeile
 erzeugen keine Anforderungen. P1 erfordert zusätzlich bestätigte
 `author_provided`-Herkunft; ein sichtbarer Identifier bestätigt diese Herkunft nicht.
 
+Dokument- und Entwurfsprüfungen öffnen vollständige Seiten mit Direktlinks.
+Browsernavigation erhält Filter und ungespeicherte Eingaben innerhalb der Sitzung;
+Neuladen öffnet nach Verlustwarnung den gespeicherten Stand. Fortsetzen führt zu
+Anforderungen ohne Notiz und danach zu offenen Klärungen. Änderungen an Repository,
+Register oder Quellen sperren die gebundene Vorbereitung mit konkretem Hinweis
+und einem Weg zur neuen Vorbereitung. Alte Notizen werden dabei nicht kopiert.
 Je Anforderung zeigt die Workbench Text, Fundstelle, Originalkontext und Prüfnotizen.
+Auf schmalen Bildschirmen wechseln zugängliche Reiter zwischen Bearbeitung und
+Original. Quellenstatus, Notizfortschritt, Klärungsbedarf und exakt quellengebundene
+historische Entscheidungen werden getrennt angezeigt. Details und Prüfumfang:
+[GCR-2026-156](../../governance/change-requests/GCR-2026-156-document-workspace.md).
 Fortschritt zählt Anforderungen mit Prüfnotiz. Frühere Vorschläge, Entscheidungen
 und Aktivierungen stehen separat als lesende Historie. Lokale Notizen sind
 `proposal_only`; Quellenfreigabe, kanonische Aktivierung, OPA-Zuordnung und

@@ -1,5 +1,23 @@
 # Technische Funktionsliste des Repositories
 
+## Nachtrag: Dokument-Arbeitsplatz (GCR-2026-156)
+
+Der [Dokument-Arbeitsplatz](governance-review-workbench.md) ergänzt
+`scripts/workbench/workspace-navigation.js` für Hash-Routen, Fortsetzungsaktionen
+und Stale-Hinweise sowie `.github/workflows/workbench-ui.yml` für isolierte
+DOM-Regressionen. Damit umfassen die hier inventarisierten Produktionspfade
+**167 Python-Dateien, 4 Shell-Dateien, 8 weitere Skript-/Workbench-Dateien,
+30 Workflows und 15 OPA-Module**. Die datierten Ausgangstabellen und ihre
+Commit-Links bleiben erhalten.
+
+Der bestehende Workbench-Server liefert additive lesende Diagnosen und getrennte
+historische Entscheidungszähler. HTML/CSS/Frontend führen vollständige Review-Seiten
+mit Browsernavigation und Sitzungseingaben ein. `package.json`, `package-lock.json`
+und `.node-version` pinnen ausschließlich die Entwicklungs-/CI-Tests;
+`tests/workbench-*.test.cjs` und die Python-HTTP-Regressionen prüfen das Verhalten.
+Öffentlicher Viewer, fachliche Quellen, Baselines und Enforcement erhalten keine
+neue Funktion. Siehe [GCR-2026-156](../../governance/change-requests/GCR-2026-156-document-workspace.md).
+
 ## Nachtrag: nachvollziehbare Agentenreviews (GCR-2026-155)
 
 Die Agentenreview-Erweiterung ergänzt zwei Produktionsmodule. Damit wächst die
