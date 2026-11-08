@@ -23,3 +23,6 @@ governance/consumer-lifecycle/**/.pending-*
 
 # Workbench development-only DOM test dependencies
 node_modules/
+
+# Checksum-verified local validation tool cache
+.local/tool-cache/

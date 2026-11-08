@@ -1,0 +1,40 @@
+name: Set up checksum-verified OPA
+description: Restore verified OPA or download with bounded retries and alternative official transport.
+inputs:
+  mirror:
+    description: Optional HTTPS base serving /vVERSION/ASSET, without inline credentials.
+    default: ''
+  destination:
+    description: Installation path; defaults to the runner temporary directory.
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: Read pinned OPA identity
+      id: config
+      shell: bash
+      run: python3 "$GITHUB_ACTION_PATH/../../../scripts/install_validation_opa.py" --describe >> "$GITHUB_OUTPUT"
+    - name: Restore OPA cache
+      id: cache
+      continue-on-error: true
+      uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
+      with:
+        path: ${{ runner.tool_cache }}/axiom-opa
+        key: ${{ steps.config.outputs.cache_key }}
+    - name: Verify or download OPA
+      shell: bash
+      env:
+        OPA_INSTALL_DESTINATION: ${{ inputs.destination }}
+        AXIOM_OPA_MIRROR_URL: ${{ inputs.mirror }}
+      run: |
+        destination="${OPA_INSTALL_DESTINATION:-$RUNNER_TEMP/axiom-opa/bin/opa}"
+        python3 "$GITHUB_ACTION_PATH/../../../scripts/install_validation_opa.py" \
+          --destination "$destination" --cache "$RUNNER_TOOL_CACHE/axiom-opa"
+        echo "$(dirname "$(realpath "$destination")")" >> "$GITHUB_PATH"
+    - name: Save verified OPA cache
+      if: steps.cache.outputs.cache-hit != 'true'
+      continue-on-error: true
+      uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
+      with:
+        path: ${{ runner.tool_cache }}/axiom-opa
+        key: ${{ steps.config.outputs.cache_key }}

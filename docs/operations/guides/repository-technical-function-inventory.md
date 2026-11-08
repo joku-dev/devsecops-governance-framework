@@ -1,5 +1,20 @@
 # Technische Funktionsliste des Repositories
 
+## Nachtrag: robuster OPA-Transport (GCR-2026-157)
+
+`scripts/install_validation_opa.py`, `scripts/opa-download-sources.json` und die
+Composite-Action `.github/actions/setup-opa-verified/action.yml` ergänzen einen
+prüfsummengebundenen Installer mit Cache, Wiederholungen und alternativen offiziellen
+Transporten. `.github/workflows/governance-ci-v2.yml` ist ein separater Nachfolger;
+`publish-docs.yml` nutzt die gemeinsame Action. Die akzeptierte Legacy-CI und alle
+fingerprintgebundenen Dateien bleiben erhalten. Siehe [Betrieb und Migration](reliable-opa-download.md).
+
+Damit zählen die inventarisierten Produktionspfade **168 Python-Dateien,
+4 Shell-Dateien, 8 weitere Skript-/Workbench-Dateien, 31 Workflows und 15 OPA-Module**.
+Die neue Composite-Action und JSON-Transportmetadaten werden zusätzlich benannt,
+aber nicht als Workflow/Python-Datei gezählt. Die datierten Ausgangsstände bleiben
+als Historie erhalten.
+
 ## Nachtrag: Dokument-Arbeitsplatz (GCR-2026-156)
 
 Der [Dokument-Arbeitsplatz](governance-review-workbench.md) ergänzt
