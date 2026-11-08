@@ -1,0 +1,34 @@
+name: Workbench UI
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/workbench/**'
+      - 'tests/workbench-*.test.cjs'
+      - 'package*.json'
+      - '.node-version'
+      - '.github/workflows/workbench-ui.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/workbench/**'
+      - 'tests/workbench-*.test.cjs'
+      - 'package*.json'
+      - '.node-version'
+      - '.github/workflows/workbench-ui.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-dom-regressions:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:workbench
