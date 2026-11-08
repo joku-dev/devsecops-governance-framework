@@ -820,6 +820,17 @@ Stichprobenumfang.
 
 ## 20. Reviews, Validierung und Kommunikation unterstützen
 
+Der [OPA-Transport-Nachfolger](reliable-opa-download.md) ergänzt Prüfsummenprüfung
+vor Ausführung, begrenzte Wiederholungen, einen erneut geprüften Cache und einen
+alternativen offiziellen API-Download. Die Docs-Veröffentlichung nutzt den
+geteilten Installer. „Governance CI v2“ ist eine parallele Nachfolgeversion;
+die an persönliche Betriebsabnahme gebundene Legacy-CI und ihre Pflichtchecks
+bleiben bis zur separat freigegebenen Migration erhalten. Ein interner Mirror
+ist noch nicht verfügbar und kann später über eine HTTPS-Basisadresse ergänzt
+werden. [GCR-2026-157](../../governance/change-requests/GCR-2026-157-reliable-opa-download.md)
+beschreibt Grenzen und Abnahmebedarf.
+
+
 Der Dispatcher verwendet produktive Bibliotheken statt Testcode und liest
 Validierungen sowie Skill-Zuordnungen aus den Rollenverträgen. Für Änderungen
 über mehrere Bereiche oder am Governance-Verhalten können private, an HEAD,
