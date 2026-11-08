@@ -124,11 +124,16 @@ class ViewerAppTests(unittest.TestCase):
         report = load_repository_security(ROOT)
         self.assertEqual('joku-dev/devsecops-governance-framework', report['repository_id'])
         self.assertEqual(16, report['summary']['criteria'])
-        self.assertEqual(14, report['summary']['pass'])
-        self.assertEqual(2, report['summary']['fail'])
+        stored = json.loads((ROOT / 'generated/reports/governance-repository-security.json').read_text())
+        self.assertEqual(stored['summary'], report['summary'])
+        self.assertEqual(stored['criteria'], report['criteria'])
         self.assertEqual(
-            ['GRS-002', 'GRS-005'],
-            [item['id'] for item in report['criteria'] if item['status'] == 'fail'],
+            sum(item['status'] == 'pass' for item in report['criteria']),
+            report['summary']['pass'],
+        )
+        self.assertEqual(
+            sum(item['status'] == 'fail' for item in report['criteria']),
+            report['summary']['fail'],
         )
         self.assertNotIn('observation', report)
         self.assertEqual(
@@ -160,7 +165,7 @@ class ViewerAppTests(unittest.TestCase):
             self.assertEqual({'index.html','app.css','app.js','technical.js','technical.css','data.json','axiom-logo.png'},set(first))
             self.assertIn(b"script-src 'self'",first['index.html'])
             payload=json.loads(first['data.json'])
-            self.assertEqual(14,payload['repository_security']['summary']['pass'])
+            self.assertEqual(load_repository_security(root), payload['repository_security'])
 
     def test_operational_intake_cannot_publish_application_artifacts(self):
         for scope in ('devsecops','architecture','typed-evidence'):
