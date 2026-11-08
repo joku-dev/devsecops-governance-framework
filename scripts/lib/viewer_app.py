@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 import json
 import shutil
+import subprocess
 
 from jsonschema import Draft202012Validator, FormatChecker
 
@@ -20,6 +21,7 @@ from lib.document_consistency_view import (
     REPORT as DOCUMENT_REVIEW_REPORT,
     project_public as project_document_consistency,
 )
+from lib.requirement_journey_view import project as project_requirement_journeys
 from lib.governance_requirement_lifecycle_view import project as project_governance_requirement_lifecycle
 
 
@@ -132,6 +134,22 @@ def project(devsecops, architecture, snapshots, l1_snapshots=(), assurance_snaps
     return {'version': 1, 'repositories': sorted(repositories.values(), key=lambda r: (r['id'] != 'joku-dev/ha-CPsWMS', r['id']))}
 
 
+def requirement_journey_revision(root: Path):
+    """Do not pin dirty authority inputs to a clean commit."""
+    try:
+        revision = subprocess.check_output(['git', '-C', str(root), 'rev-parse', 'HEAD'], stderr=subprocess.DEVNULL, text=True).strip()
+        # Dirty authority inputs must not be presented as evidence at HEAD.
+        changes = subprocess.check_output(
+            ['git', '-C', str(root), 'status', '--porcelain', '--untracked-files=all', '--',
+             'model/', 'architecture/', 'policies/opa/', 'docs/governance/source-documents/'],
+            stderr=subprocess.DEVNULL, text=True)
+        if changes.strip():
+            return None
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return revision
+
+
 def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None):
     def read(name):
         return json.loads((root / 'status' / name).read_text(encoding='utf-8'))
@@ -159,6 +177,8 @@ def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None)
         legacy = root / 'generated/viewer/status-viewer.html'
         technical_html = legacy.read_text(encoding='utf-8') if legacy.exists() else ''
     data['technical'] = project_technical(technical_html)
+    revision = requirement_journey_revision(root)
+    data['requirement_journeys'] = project_requirement_journeys(root, revision)
     data['governance_requirement_lifecycle'] = project_governance_requirement_lifecycle(root)
     target = root / 'generated/viewer/app'
     target.mkdir(parents=True, exist_ok=True)

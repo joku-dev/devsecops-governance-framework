@@ -1,5 +1,14 @@
 # Detaillierter Funktionskatalog des Governance-Repositories
 
+## Ergänzung: individuelle Anforderungswege (GCR-2026-162)
+
+Der öffentliche Viewer zeigt unter **Governance → Anforderung bis OPA** sechs
+fest ausgewählte Fälle in fünf Phasen. Exakte GRQ-Revisionen und historische
+Proposals bleiben getrennt; Quellen- und Artefakthashes sowie fehlende
+Veröffentlichungs-/Laufzeitbindungen sind sichtbar. Die Ansicht liest nur Daten
+und führt keine Entscheidung aus. [Bedienung und Grenzen](governance-viewer-app.md#einzelne-anforderungswege-pilot-mit-sechs-fallen).
+
+
 ## Dokumentzweck und Geltungsbereich
 
 Dieser Katalog beschreibt die fachlichen und betrieblichen Funktionen von

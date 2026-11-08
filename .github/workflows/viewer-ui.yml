@@ -1,0 +1,38 @@
+name: Viewer UI
+
+on:
+  pull_request:
+    paths:
+      - 'apps/governance-viewer/**'
+      - 'scripts/lib/requirement_journey_view.py'
+      - 'scripts/lib/viewer_app.py'
+      - 'tests/viewer-*.test.cjs'
+      - 'package*.json'
+      - '.node-version'
+      - '.github/workflows/viewer-ui.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'apps/governance-viewer/**'
+      - 'scripts/lib/requirement_journey_view.py'
+      - 'scripts/lib/viewer_app.py'
+      - 'tests/viewer-*.test.cjs'
+      - 'package*.json'
+      - '.node-version'
+      - '.github/workflows/viewer-ui.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-dom-regressions:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:viewer

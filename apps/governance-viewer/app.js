@@ -274,7 +274,47 @@
     const entries = group === 'evidence' ? [{tab:'summary',title:'Ergebnisnachweise'}, ...sections] : group === 'operations' ? [...sections, {tab:'lifecycle',title:'Lifecycle-Nächster Schritt'}] : group === 'governance' ? [...sections, {tab:'lifecycle',title:'Anforderung bis OPA'}] : sections;
     return `<nav class="tabs workspace-tabs" aria-label="${groupNames[group]}-Bereiche">${entries.map(s=>`<a href="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'aria-current="page"':''}>${esc(s.title)}</a>`).join('')}</nav><label class="section-picker">Bereich auswählen<select id="section-picker">${entries.map(s=>`<option value="#${encodeURIComponent(group)}/${encodeURIComponent(s.tab)}" ${s.tab===tab?'selected':''}>${esc(s.title)}</option>`).join('')}</select></label>`;
   }
+  const journeyRoute = id => '#governance/lifecycle/' + encodeURIComponent(id);
+  function journeyLinks(items) {
+    return (items||[]).map(item=>{
+      // Public evidence is restricted to immutable files in this repository.
+      const url=String(item.url||'');
+      return /^https:\/\/github\.com\/joku-dev\/devsecops-governance-framework\/blob\/[a-f0-9]{40}\//.test(url)
+        ? `<a href="${esc(url)}">${esc(item.label)} ↗</a>` : `<span>${esc(item.label)} · Beleglink nicht verfügbar</span>`;
+    }).join(' · ');
+  }
+  function journeyPhaseBody(phase) {
+    return `<dl><dt>Fachliche Entscheidung</dt><dd>${esc(phase.decision)}</dd><dt>Nachweiszustand</dt><dd>${esc(phase.evidence)}</dd></dl>${phase.explanation?`<p>${esc(phase.explanation)}</p>`:''}
+      ${journeyLinks(phase.links)}${(phase.branches||[]).map(branch=>`<details class="journey-branch"><summary>${esc(branch.label)} · Belege und Bindung</summary><dl>${Object.entries(branch.fields).map(([label,value])=>`<dt>${esc(label)}</dt><dd>${esc(value??'Nicht erfasst')}</dd>`).join('')}</dl><p>${journeyLinks(branch.links)}</p></details>`).join('')}`;
+  }
+  function requirementJourneyView(id) {
+    const cases=dataModel.requirement_journeys?.cases||[];
+    const item=cases.find(c=>c.id===id);
+    if(!item){
+      content.insertAdjacentHTML('beforeend','<section class="panel" role="status"><h2>Pilotfall nicht gefunden</h2><p>Diese Kennung gehört nicht zur verfügbaren Pilot-Auswahl.</p><a href="#governance/lifecycle">Zur Pilot-Auswahl</a></section>');return;
+    }
+    document.title=item.id+' · Anforderungsweg · AXIOM';
+    content.insertAdjacentHTML('beforeend',`<section class="panel journey-intro"><p><a href="#governance/lifecycle">← Zur Pilot-Auswahl</a></p><span class="badge">Pilot · ${item.kind==='history'?'Lifecycle-Historie':'Kanonische Anforderung'}</span><h2>${esc(item.title)}</h2><p><code>${esc(item.id)}</code></p>
+      ${item.statement?`<h3>Freigegebener Katalogtext</h3><blockquote class="journey-statement">${esc(item.statement)}</blockquote>`:''}
+      ${item.kind==='history'?'<p>Historischer Vorschlag; keine heutige Extraktion und keine neue gültige Anforderung. Vorschlags- und Reviewtexte werden hier nicht veröffentlicht.</p>':''}
+      <p class="muted">Lesender Modellstand · Repository-Revision <code>${esc(dataModel.requirement_journeys.repository_revision||'nicht verfügbar')}</code>. Entscheidungen und Nachweiszustände sind getrennt; kein Gesamtfreigabestatus.</p>
+      <p><a href="#journey-text">Zur vollständigen Textdarstellung ↓</a></p></section>
+      ${(item.issues||[]).length?`<section class="notice warn" aria-label="Offene Datenprüfungen"><h3>Daten und Bindungen prüfen</h3><ul>${item.issues.map(issue=>`<li>${esc(issue)}</li>`).join('')}</ul></section>`:''}
+      <ol class="journey-flow" aria-label="Anforderungsweg in fünf Phasen">${item.phases.map(phase=>`<li class="panel journey-phase"><h3><span class="journey-number">${esc(phase.number)}</span> ${esc(phase.title)}</h3>${journeyPhaseBody(phase)}</li>`).join('')}</ol>
+      <section class="panel"><h2>Empfohlener nächster Prüfschritt</h2><p>${esc(item.next_step)}</p><p>Diese Empfehlung führt keine Aktion aus und erteilt keine Freigabe.</p></section>
+      <section class="panel journey-text" id="journey-text" tabindex="-1"><h2>Vollständige Textdarstellung</h2>${item.phases.map(phase=>`<article><h3>${esc(phase.number)}. ${esc(phase.title)}</h3>${journeyPhaseBody(phase)}</article>`).join('')}</section>`);
+    // Keep the hash for the selected case; the in-page text link must not change routing.
+    content.querySelector('a[href="#journey-text"]').addEventListener('click',e=>{
+      e.preventDefault();const target=document.getElementById('journey-text');target.scrollIntoView();target.focus();
+    });
+  }
+  function requirementJourneySelection() {
+    const model=dataModel.requirement_journeys;
+    content.insertAdjacentHTML('beforeend',`<section class="panel journey-selection"><div class="panel-head"><h2>Einzelne Anforderungswege · Pilot</h2><span class="badge">Lesend · sechs Fälle</span></div><p>Herkunft, Entscheidungen, Umsetzung und offene Nachweise in fünf Phasen. Historische Vorschläge bleiben von aktiven Kataloganforderungen getrennt.</p>${model?.cases?.length?`<ul>${model.cases.map(item=>`<li><a href="${journeyRoute(item.id)}"><strong>${esc(item.title)}</strong><br><code>${esc(item.id)}</code></a><span>${item.kind==='history'?'Lifecycle-Historie':'Kanonische Anforderung'}</span></li>`).join('')}</ul>`:'<p>Die Pilotdaten sind in diesem Viewer-Stand nicht verfügbar.</p>'}</section>`);
+  }
+
   function governanceRequirementLifecycleView() {
+    requirementJourneySelection();
     const model=dataModel.governance_requirement_lifecycle;
     if(!model?.available) {
       content.insertAdjacentHTML('beforeend','<section class="panel"><div class="notice warn">Die Lifecycle-Projektion ist nicht verfügbar. Fehlende Daten gelten nicht als abgeschlossene Schritte.</div></section>');
@@ -322,7 +362,7 @@
       </section>
       <section class="panel"><div class="panel-head"><h2>Beleg- und PR-Verlauf</h2><span class="badge">${count(model.history.length)} Einträge</span></div>${table(['Zeit','Typ','Schritt','Status','Direktlinks'],history)}</section>`);
   }
-  function technicalView(group, tab) {
+  function technicalView(group, tab, journeyId) {
     const section = (dataModel.technical?.sections || []).find(s => s.group === group && s.tab === tab);
     const lifecyclePage=group==='operations'&&tab==='lifecycle';
     const governanceLifecyclePage=group==='governance'&&tab==='lifecycle';
@@ -330,7 +370,7 @@
     content.innerHTML = heading(groupNames[group], lifecyclePage?'Lifecycle-Nächster Schritt':governanceLifecyclePage?'Anforderung bis OPA':tab==='summary'?'Nachweise':section.title, groupDescriptions[group]) + workspaceTabs(group,tab);
     document.getElementById('section-picker')?.addEventListener('change', e => {location.hash=e.target.value;});
     if(lifecyclePage){lifecycleNextStepView();return;}
-    if(governanceLifecyclePage){governanceRequirementLifecycleView();return;}
+    if(governanceLifecyclePage){if(journeyId!==undefined)requirementJourneyView(journeyId);else governanceRequirementLifecycleView();return;}
     if (group==='evidence' && tab==='summary') {
       content.insertAdjacentHTML('beforeend', evidence(dataModel.repositories));
       return;
@@ -363,7 +403,7 @@
     else if(view==='repository-security')repositorySecurity();
     else if(view==='document-review')documentReview();
     else if(view==='evidence')technicalView(view,parts[1]||'summary');
-    else if(view==='governance')technicalView(view,parts[1]||'controls');
+    else if(view==='governance')technicalView(view,parts[1]||'controls',parts.length>3?'':parts[2]);
     else if(view==='operations')technicalView(view,parts[1]||'intake');
     else notFound();
     window.scrollTo(0,0);content.focus({preventScroll:true});

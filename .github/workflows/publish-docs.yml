@@ -13,6 +13,7 @@ on:
       - "requirements-validation.lock"
       - "scripts/generate_status_viewer.py"
       - "scripts/lib/viewer_app.py"
+      - "scripts/lib/requirement_journey_view.py"
       - "scripts/lib/viewer_technical.py"
       - "scripts/lib/viewer_experience.py"
       - "scripts/lib/consumer_lifecycle_next_step.py"
