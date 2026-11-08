@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 640" width="660" height="640" role="img" aria-labelledby="title description">
+  <title id="title">Der Anforderungsweg in fünf Phasen / Five-phase requirement journey</title>
+  <desc id="description">Quelle freigeben, Anforderung entscheiden, Umsetzung bestätigen, Regelstand veröffentlichen, anwenden und Ergebnisse prüfen. Approve source, decide requirement, confirm implementation, publish rule set, apply and review results.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#1b716c"/>
+    </marker>
+  </defs>
+  <rect width="660" height="640" fill="#ffffff"/>
+  <g stroke="#1b716c" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M 330 110 V 134"/>
+    <path d="M 330 234 V 258"/>
+    <path d="M 330 358 V 382"/>
+    <path d="M 330 482 V 506"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <g id="phase-1">
+      <rect x="16" y="16" width="628" height="94" rx="12" fill="#f2f8f7" stroke="#b5cecc"/>
+      <circle cx="53" cy="63" r="20" fill="#1b716c"/>
+      <text x="53" y="70" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">1</text>
+      <text x="92" y="57" fill="#15333e" font-size="22" font-weight="700">Quelle freigeben</text>
+      <text x="92" y="83" fill="#405b63" font-size="16">Approve source</text>
+    </g>
+    <g id="phase-2">
+      <rect x="16" y="140" width="628" height="94" rx="12" fill="#f2f8f7" stroke="#b5cecc"/>
+      <circle cx="53" cy="187" r="20" fill="#1b716c"/>
+      <text x="53" y="194" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">2</text>
+      <text x="92" y="181" fill="#15333e" font-size="22" font-weight="700">Anforderung entscheiden</text>
+      <text x="92" y="207" fill="#405b63" font-size="16">Decide requirement</text>
+    </g>
+    <g id="phase-3">
+      <rect x="16" y="264" width="628" height="94" rx="12" fill="#f2f8f7" stroke="#b5cecc"/>
+      <circle cx="53" cy="311" r="20" fill="#1b716c"/>
+      <text x="53" y="318" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">3</text>
+      <text x="92" y="305" fill="#15333e" font-size="22" font-weight="700">Umsetzung bestätigen</text>
+      <text x="92" y="331" fill="#405b63" font-size="16">Confirm implementation</text>
+    </g>
+    <g id="phase-4">
+      <rect x="16" y="388" width="628" height="94" rx="12" fill="#f2f8f7" stroke="#b5cecc"/>
+      <circle cx="53" cy="435" r="20" fill="#1b716c"/>
+      <text x="53" y="442" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">4</text>
+      <text x="92" y="429" fill="#15333e" font-size="22" font-weight="700">Regelstand veröffentlichen</text>
+      <text x="92" y="455" fill="#405b63" font-size="16">Publish rule set</text>
+    </g>
+    <g id="phase-5">
+      <rect x="16" y="512" width="628" height="94" rx="12" fill="#f2f8f7" stroke="#b5cecc"/>
+      <circle cx="53" cy="559" r="20" fill="#1b716c"/>
+      <text x="53" y="566" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">5</text>
+      <text x="92" y="553" fill="#15333e" font-size="22" font-weight="700">Anwenden und Ergebnisse prüfen</text>
+      <text x="92" y="579" fill="#405b63" font-size="16">Apply and review results</text>
+    </g>
+  </g>
+</svg>
