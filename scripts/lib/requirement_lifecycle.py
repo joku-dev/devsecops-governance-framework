@@ -11,6 +11,9 @@ from pathlib import Path
 
 import yaml
 
+from .explicit_requirements import extract_explicit_requirements
+from .source_document_text import extract_source_document
+
 
 CLASSIFICATIONS = {"duplicate", "new", "extend", "change", "supersede", "conflict"}
 RELATIONSHIP_BY_CLASSIFICATION = {
@@ -53,23 +56,15 @@ def write_json(path: Path, value: dict) -> None:
 
 def parse_requirement_table(path: Path) -> list[dict]:
     requirements = []
-    pattern = re.compile(r"^\| `([^`]+)` \| ([^|]+) \| ([^|]+) \| (.*) \|$")
-    for line in path.read_text(encoding="utf-8").splitlines():
-        match = pattern.match(line)
-        if not match:
-            continue
-        source_id, strength, context, statement = (part.strip() for part in match.groups())
-        strength = strength.upper()
-        if strength not in {"MUST", "SHOULD", "MAY", "REQUIREMENT"}:
-            strength = "REQUIREMENT"
+    for declaration in extract_explicit_requirements(extract_source_document(path)):
         requirements.append({
-            "source_requirement_id": source_id,
-            "normative_strength": strength,
-            "context": context,
-            "statement": statement.replace("\\|", "|").strip(),
+            "source_requirement_id": declaration.identifier,
+            "normative_strength": declaration.strength or "REQUIREMENT",
+            "context": declaration.context or declaration.identifier,
+            "statement": declaration.statement,
         })
     if not requirements:
-        raise ValueError(f"no requirement rows found in {path}")
+        raise ValueError(f"no explicitly labelled requirements found in {path}")
     return requirements
 
 

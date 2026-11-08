@@ -9,7 +9,8 @@ from datetime import datetime, timezone
 import hashlib
 import hmac
 from http.cookies import SimpleCookie
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from functools import wraps
 import io
 import json
 import os
@@ -19,6 +20,7 @@ import secrets
 import shutil
 import subprocess
 import tempfile
+import threading
 import time
 from urllib.parse import urlparse
 import zipfile
@@ -29,6 +31,7 @@ from lib.source_document_text import extract_source_document, SourceDocumentExtr
 from generate_source_document_requirement_delta import extract_requirements, compare_requirements
 from generate_source_document_process_status import build_report
 from lib.document_consistency_view import project_public
+from lib.explicit_requirements import is_requirement_id
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).resolve().parent / 'workbench'
@@ -46,6 +49,25 @@ def now():
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def current_requirements(data):
+    return [row for row in data.get('requirements', [])
+            if row.get('identification_class') in {'author_identified', 'explicit_identifier'}
+            and any(is_requirement_id(value) for value in row.get('recognized_requirement_ids', [row.get('source_requirement_id', '')]))]
+
+
+def preparation_summary(data):
+    current = current_requirements(data)
+    latest = {note['subject']: note for note in data['notes']}
+    unnoted = [row['source_requirement_id'] for row in current if row['id'] not in latest]
+    clarification = [row['source_requirement_id'] for row in current
+                     if latest.get(row['id'], {}).get('outcome') == 'needs_clarification']
+    return ('\n## Local preparation (proposal-only)\n\n'
+            f'Explicit requirements: {len(current)}; with item notes: {len(current) - len(unnoted)}.\n\n'
+            f'Without item notes: {", ".join(unnoted) or "none"}.\n\n'
+            f'Clarification required: {", ".join(clarification) or "none"}.\n\n'
+            'These counts do not confirm complete extraction, requirement approval or source authority.\n')
 
 
 def read_json(path):
@@ -69,6 +91,17 @@ def run(args, cwd, timeout=30):
         # Never propagate subprocess stderr, which may contain credentials or source text.
         raise ValueError('Repository operation failed; inspect the local checkout and Git authentication.')
     return result.stdout.strip()
+
+
+def serialized_request(method):
+    @wraps(method)
+    def handle(self):
+        # A browser's idle/preconnected socket must not hold this lock. Headers
+        # are read before do_GET/do_POST; actual session/draft operations remain
+        # serialized so concurrent note requests cannot overwrite one another.
+        with self.server.request_lock:
+            return method(self)
+    return handle
 
 
 class Workbench:
@@ -95,7 +128,8 @@ class Workbench:
 
     def context(self):
         return {'commit': self.head(), 'register_sha256': digest((self.root / REGISTER).read_bytes()),
-                'sources': {x['id']: digest(self.source_path(x).read_bytes()) for x in self.register()['documents']}}
+                'sources': {x['id']: digest(self.source_path(x).read_bytes()) for x in self.register()['documents']
+                            if self.source_path(x).is_file()}}
 
     def document(self, source_id):
         for source in self.register()['documents']:
@@ -110,7 +144,74 @@ class Workbench:
         return {'source': source, 'sha256': digest(path.read_bytes()),
                 'lines': [vars(x) for x in extracted.lines], 'warnings': list(extracted.warnings),
                 'requirements': extract_requirements(source['id'], path, origin),
-                'extraction_limit': 'Heuristic English normative wording; not an exhaustive requirement inventory. Unverified row IDs are not P1.'}
+                'formal_status': self.formal_status(source, digest(path.read_bytes())),
+                'extraction_limit': 'Only explicitly labelled requirements (for example DSCB-L1-REQ-001); no prose inference. Identifier provenance and source authority still require review.'}
+
+    def requirement_history(self, source_id):
+        source = next((s for s in self.register()['documents'] if s['id'] == source_id), None)
+        current_hash = digest(self.source_path(source).read_bytes()) if source and self.source_path(source).is_file() else None
+        directory = self.root / 'model/requirements/lifecycle-cases'
+        cases = []
+        for path in sorted(directory.glob('*.json')):
+            case = read_json(path)
+            binding = case.get('source', {})
+            if binding.get('source_id') != source_id:
+                continue
+            cases.append({'path': str(path.relative_to(self.root)), 'case_id': case['case_id'],
+                          'status': case['status'], 'source': binding,
+                          'source_matches': bool(source) and binding.get('source_sha256') == current_hash
+                          and binding.get('source_path') == source['source_path'],
+                          'proposals': case.get('proposals', [])})
+        if source is None and not cases:
+            raise ValueError('Unknown registered source')
+        return {'source_id': source_id, 'available': directory.is_dir(), 'cases': cases}
+
+    def formal_status(self, source, source_hash):
+        """Read recorded decisions for an exact source binding, not review progress."""
+        directory = self.root / 'model/requirements/lifecycle-cases'
+        matching, other = [], 0
+        for path in sorted(directory.glob('*.json')):
+            case = read_json(path)
+            binding = case.get('source', {})
+            if binding.get('source_id') != source['id']:
+                continue
+            if (source_hash and binding.get('source_sha256') == source_hash
+                    and binding.get('source_path') == source['source_path']):
+                matching.extend(case.get('proposals', []))
+            else:
+                other += 1
+        return {'recorded_proposals': len(matching),
+                'recorded_decisions': sum(bool(p.get('decision')) for p in matching),
+                'recorded_activations': sum(bool(p.get('activation')) for p in matching),
+                'open_historical_proposals': sum(not p.get('decision') for p in matching),
+                'other_source_cases': other, 'source_sha256': source_hash,
+                'authority': 'recorded_history_only'}
+
+    def source_review(self, payload):
+        source_id = payload.get('source_id')
+        if not isinstance(source_id, str):
+            raise ValueError('Choose a registered source')
+        context = self.context()
+        detail = self.inspect(self.document(source_id))
+        if context != self.context() or detail['sha256'] != context['sources'][source_id]:
+            raise ValueError('Source changed while preparing review; refresh and try again')
+        data = {'schema_version': '1.0.0', 'draft_id': secrets.token_hex(16), 'kind': 'source_review',
+                'created_at': now(), 'status': 'local_draft', 'context': context,
+                'source': detail['source'], 'sha256': detail['sha256'],
+                'original_filename': Path(detail['source']['source_path']).name,
+                'lines': detail['lines'], 'warnings': detail['warnings'],
+                'requirements': detail['requirements'], 'target': None, 'deltas': [],
+                'notes': [], 'pr': None,
+                'limits': ['Registered-source review preparation only; source status and recorded lifecycle decisions remain unchanged.',
+                           'Item notes and preparation progress are proposal-only, not requirement or source approval.']}
+        folder = self.state_dir / data['draft_id']
+        folder.mkdir(mode=0o700)
+        try:
+            self.save(folder, data)
+        except Exception:
+            shutil.rmtree(folder)
+            raise
+        return self.draft(data['draft_id'])
 
     def draft_dir(self, draft_id):
         if not DRAFT_PATTERN.fullmatch(draft_id):
@@ -122,7 +223,38 @@ class Workbench:
 
     def draft(self, draft_id):
         data = read_json(self.draft_dir(draft_id) / 'draft.json')
-        data['stale'] = data['context'] != self.context()
+        context = self.context()
+        old = data['context']
+        reasons = []
+        if old['commit'] != context['commit']:
+            reasons.append({'code': 'repository_changed', 'previous': old['commit'], 'current': context['commit']})
+        if old['register_sha256'] != context['register_sha256']:
+            reasons.append({'code': 'register_changed', 'previous': old['register_sha256'], 'current': context['register_sha256']})
+        registered = {s['id']: s for s in self.register()['documents']}
+        for source_id in sorted(set(old['sources']) | set(context['sources']) | set(registered)):
+            previous, current = old['sources'].get(source_id), context['sources'].get(source_id)
+            if source_id in registered and current is None:
+                reasons.append({'code': 'source_missing', 'source_id': source_id, 'previous': previous, 'current': None})
+            elif previous != current:
+                reasons.append({'code': 'source_changed', 'source_id': source_id, 'previous': previous, 'current': current})
+        data['stale'] = bool(reasons) or old != context
+        if data['kind'] == 'source_review':
+            source_id = data['source']['id']
+            current_source = registered.get(source_id)
+            if data['source'] != current_source:
+                reasons.append({'code': 'source_metadata_changed', 'source_id': source_id})
+            data['stale'] = (data['stale'] or data['source'] != current_source
+                             or data['sha256'] != context['sources'].get(source_id))
+        if data['kind'] == 'source_candidate':
+            uploaded = self.draft_dir(draft_id) / data['upload_name']
+            current_hash = digest(uploaded.read_bytes()) if uploaded.is_file() else None
+            if current_hash != data['sha256']:
+                reasons.append({'code': 'uploaded_source_missing' if current_hash is None else 'uploaded_source_changed',
+                                'previous': data['sha256'], 'current': current_hash})
+                data['stale'] = True
+        # Additive response-only diagnostics; old drafts and notes stay byte-identical.
+        data['stale_details'] = {'reasons': reasons, 'current_commit': context['commit']}
+        data['formal_status'] = self.formal_status(data['source'], data.get('sha256')) if data.get('source') else None
         return data
 
     def state(self):
@@ -189,6 +321,8 @@ class Workbench:
             extraction = extract_source_document(upload)
             requirements = extract_requirements(source_id, upload)
             target = self.inspect(self.document(replacement)) if replacement else None
+            if target:
+                target.pop('formal_status', None)  # A live projection is not part of the saved predecessor.
             deltas = compare_requirements(requirements, target['requirements']) if target else []
             entry = {'id': source_id, 'title': metadata['title'].strip(), 'owner': metadata['owner'].strip(),
                      'version': metadata['version'].strip(), 'governance_domains': sorted(set(domains)),
@@ -203,7 +337,7 @@ class Workbench:
                     'sha256': digest(raw), 'context': self.context(), 'warnings': list(extraction.warnings),
                     'lines': [vars(x) for x in extraction.lines], 'requirements': requirements, 'deltas': deltas,
                     'target': target, 'notes': [], 'pr': None,
-                    'limits': ['Heuristic English extraction; review the complete source, including unclassified text.',
+                    'limits': ['Only explicitly labelled requirements are extracted; prose, synthetic row IDs and reference-only mentions do not create requirements.',
                                'Local draft is not registered or approved. Notes are decision proposals only.']}
             self.save(folder, data)
             return data
@@ -212,7 +346,7 @@ class Workbench:
             raise
 
     def save(self, folder, data):
-        clean = {k: v for k, v in data.items() if k != 'stale'}
+        clean = {k: v for k, v in data.items() if k not in {'stale', 'stale_details', 'formal_status'}}
         jsonschema.validate(clean, read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
         atomic_json(folder / 'draft.json', clean)
 
@@ -228,11 +362,11 @@ class Workbench:
             raise ValueError('Subject, reviewer, outcome and rationale are required (maximum 4000 characters)')
         if fields['outcome'] not in {'confirm_candidate', 'reject_candidate', 'needs_clarification', 'propose_resolution'}:
             raise ValueError('Unsupported proposal outcome')
-        allowed = {x['id'] for x in data.get('requirements', [])} | {'source'}
+        allowed = {x['id'] for x in current_requirements(data)} | {'source'}
         if data['kind'] == 'review_package':
             allowed = {x['source_id'] for x in data['manifest']}
         if fields['subject'] not in allowed:
-            raise ValueError('Proposal must refer to an item in this exact package')
+            raise ValueError('Proposal must refer to a current item in this exact package; historical entries are read-only')
         fields.update({'recorded_at': now(), 'authority': 'proposal_only'})
         data['notes'].append(fields)
         self.save(folder, data)
@@ -263,8 +397,10 @@ class Workbench:
     def packet_files(self, draft_id):
         data = self.draft(draft_id)
         if data['stale']:
+            if any(r['code'].startswith('uploaded_source_') for r in data['stale_details']['reasons']):
+                raise ValueError('Local upload bytes changed or are missing; prepare a fresh draft')
             raise ValueError('Package is stale; repository identity or source bytes changed')
-        files = {'workbench-package.json': json.dumps({k: v for k, v in data.items() if k != 'stale'}, ensure_ascii=False, indent=2).encode()}
+        files = {'workbench-package.json': json.dumps({k: v for k, v in data.items() if k not in {'stale', 'stale_details', 'formal_status'}}, ensure_ascii=False, indent=2).encode()}
         notes = '\n'.join(f"- {x['subject']}: {x['outcome']} ({x['reviewer']}) — {x['rationale']}" for x in data['notes']) or '- No proposal recorded.'
         if data['kind'] == 'source_candidate':
             source = data['source']
@@ -279,11 +415,21 @@ class Workbench:
             files[REGISTER] = yaml.safe_dump(register, sort_keys=False, allow_unicode=True).encode()
             title = source['title'].replace('\n', ' ')
             summary = f'Candidate intake: {title}\n\nSource ID: `{source["id"]}`\n\nSHA-256: `{data["sha256"]}`'
+        elif data['kind'] == 'source_review':
+            source = data['source']
+            original = self.source_path(source).read_bytes()
+            if digest(original) != data['sha256']:
+                raise ValueError('Registered source changed; prepare a fresh review')
+            files[source['source_path']] = original
+            summary = (f'Registered source review: {source["id"]}\n\n'
+                       f'Existing version: `{source["version"]}`\n\nSHA-256: `{data["sha256"]}`\n\n'
+                       'Existing source bytes and source authority are retained; no new-source register proposal.')
         else:
             summary = 'Review scope preparation only. No semantic review has run.\n\n' + '\n'.join(f'- `{x["source_id"]}`: `{x["sha256"]}` ({x["status"]})' for x in data['manifest'])
         gcr = (f'# Workbench Change Proposal\n\n{summary}\n\n## State and authority\n\n'
                'Candidate / proposal only. No promotion, supersession, source approval, semantic execution, baseline approval or governance derivation.\n\n'
                f'Base commit: `{data["context"]["commit"]}`\n\n## Review notes (unconfirmed proposals)\n\n{notes}\n\n'
+               f'{preparation_summary(data) if data.get("source") else ""}\n'
                '## Validation before merge\n\nRun `./scripts/bootstrap_validation_env.sh` and `./scripts/validate_all.sh`. '
                'Inspect extraction warnings, source authority, lineage, requirement decisions and exact review scope. '
                'A PR merge admitting a candidate does not approve the source.\n')
@@ -389,6 +535,7 @@ class Handler(BaseHTTPRequestHandler):
             return value
         return None
 
+    @serialized_request
     def do_GET(self):
         if not self.boundary():
             return
@@ -396,6 +543,8 @@ class Handler(BaseHTTPRequestHandler):
         static = {
             '/': (ASSETS / 'index.html', 'text/html'),
             '/app.js': (ASSETS / 'app.js', 'text/javascript'),
+            '/requirement-review.js': (ASSETS / 'requirement-review.js', 'text/javascript'),
+            '/workspace-navigation.js': (ASSETS / 'workspace-navigation.js', 'text/javascript'),
             '/style.css': (ASSETS / 'style.css', 'text/css'),
             '/axiom-logo.png': (ROOT / 'docs/publishing/branding/axiom-logo.png', 'image/png'),
         }
@@ -408,6 +557,9 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if path == '/api/state':
                 return self.send(200, {**self.server.workbench.state(), 'csrf': session['csrf']})
+            history = re.fullmatch(r'/api/sources/([A-Z0-9-]+)/history', path)
+            if history:
+                return self.send(200, self.server.workbench.requirement_history(history[1]))
             if path.startswith('/api/sources/'):
                 return self.send(200, self.server.workbench.inspect(self.server.workbench.document(path.rsplit('/', 1)[1])))
             match = re.fullmatch(r'/api/drafts/([0-9a-f]{32})(/packet)?', path)
@@ -419,6 +571,7 @@ class Handler(BaseHTTPRequestHandler):
         except (ValueError, OSError, SourceDocumentExtractionError) as exc:
             self.send(409, {'error': str(exc)})
 
+    @serialized_request
     def do_POST(self):
         if not self.boundary():
             return
@@ -460,6 +613,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(200, {'signed_in': False})
             if path == '/api/drafts':
                 return self.send(201, self.server.workbench.create_draft(payload))
+            if path == '/api/source-reviews':
+                return self.send(201, self.server.workbench.source_review(payload))
             if path == '/api/review-packages':
                 return self.send(201, self.server.workbench.review_package(payload))
             match = re.fullmatch(r'/api/drafts/([0-9a-f]{32})/(notes|pr)', path)
@@ -474,7 +629,8 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def make_server(workbench, key, port=8765):
-    server = HTTPServer(('127.0.0.1', port), Handler)
+    server = ThreadingHTTPServer(('127.0.0.1', port), Handler)
+    server.request_lock = threading.RLock()
     actual_port = server.server_address[1]
     server.workbench = workbench
     server.access_key = key

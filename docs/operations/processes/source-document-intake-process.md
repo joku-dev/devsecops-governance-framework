@@ -171,38 +171,23 @@ The generator writes:
 - `generated/reports/source-document-requirement-delta.json`
 - `generated/reports/source-document-requirement-delta.md`
 
-The report extracts normative-looking statements from the candidate and current
-source, then classifies them as:
+The report extracts only explicitly labelled requirement declarations, such as
+`DSCB-L1-REQ-001`, and compares them as `added`, `changed`, `removed` or
+`equivalent`. Matching explicit IDs pair declarations even when wording changes.
 
-- `added`
-- `changed`
-- `removed`
-- `equivalent`
+No requirement is inferred from prose or modal words such as SHALL or MUST.
+Synthetic normalized extraction row IDs, reference-only mentions, table
+headings and version history do not create requirements. The shared parser is
+also used by the Workbench, new source-lifecycle imports and new DCR structural
+inventories. Existing source files, historical lifecycle decisions and retained
+DCR snapshots are preserved.
 
-Each extracted statement also receives an intake identification class and
-priority:
-
-- `author_identified` / `p1` only when the source register records that the
-  identifier was provided by the source author
-- `extraction_row_id` / `unassigned` when a normalized extraction has a row
-  identifier but its origin in the original source is not verified
-- `inferred_candidate` / `p2` when the wording looks normative but has no
-  explicit requirement identifier
-
-An identifier generated for or present in a normalized extraction is not
-evidence that the original author assigned it. The register-level default is
-`requirement_identifier_origin_default: unverified`; an individual source may
-be marked `author_provided` only when its provenance is established. The
-delta's `review_priority` remains a separate impact-review ranking. An
-`inferred_candidate` is not a confirmed requirement; preserve the source
-location and obtain owner confirmation. Source approval status remains a
-separate decision.
-
-This helps reviewers see where requirements, review gates, evidence
-expectations, quality markers or runtime-governance concerns may differ. The
-classification is review support only. It does not replace architecture-owner
-judgment and does not change source status, lineage, runtime governance,
-policies, schemas or releases.
+`author_identified` / `p1` still requires verified author-provided identifier
+provenance in the source register. Other explicit identifiers are classified as
+`explicit_identifier` / `unassigned`; source authority and normative approval
+remain separate. Legacy prose-candidate counters are retained as zero for
+report compatibility. An empty extraction means no supported explicit
+declarations were found; it is not proof of completeness or consistency.
 
 ## End-to-End Target Process
 
@@ -216,16 +201,16 @@ python3 scripts/generate_source_document_process_status.py
 
 The generator produces `generated/reports/source-document-process-status.json`
 and `.md`. It joins the existing source intake report, requirement extraction,
-P1 lifecycle cases, P2 inferred candidates, Document Consistency Review (DCR),
+existing lifecycle cases, the explicit-only intake inventory, Document Consistency Review (DCR),
 and requirement-to-artifact links. The viewer presents all phases and their
 current status together.
 
 | Phase | Target behavior | Review authority |
 |---|---|---|
 | 1. Receive and register | Register each Markdown, PDF, or DOCX source, its version, owner, status, provenance and hashes. Candidate sources remain non-deriving. | Source owner / intake reviewer |
-| 2. Extract and classify | Preserve source locations; identify author-marked IDs only when register provenance confirms them; label unnumbered normative-looking prose `inferred_candidate`. | Intake tooling prepares; reviewer checks extraction |
+| 2. Extract and classify | Preserve source locations; admit explicit declarations only. Verify author provenance separately; do not generate requirements from prose or synthetic row IDs. | Intake tooling prepares; reviewer checks extraction |
 | 3. P1 lifecycle | Resolve clearly identified requirements first, including new, changed, superseded, retired and still-open decisions. | Requirement owner |
-| 4. P2 review | Check inferred candidates against the source text, P1 decisions, and related sources; confirm, reject or leave undecided. | Source and domain owners |
+| 4. Prose inference disabled | Unlabelled text stays available as source context and creates no requirement candidates. | Intake tooling |
 | 5. Consistency review | Compare the exact approved source set. Structural checks and semantic review coverage are reported separately. A partial, stale or report-only review cannot establish contradiction-free status. | Architecture / DevSecOps reviewers |
 | 6. Decision proposals | Record each proposed contradiction or lifecycle ambiguity with evidence, impacted sources and explicit decision options. No proposal is silently resolved by extraction. | Named decision authority |
 | 7. Versioned baseline | Hash the exact approved-source set and bind it to completed lifecycle and exhaustive consistency evidence. Record approval as a versioned decision artifact conforming to `schemas/authorized-source-baseline.schema.json`. | Authorized human approver |

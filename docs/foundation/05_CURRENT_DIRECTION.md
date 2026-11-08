@@ -28,6 +28,9 @@ Trust
 
 ## Current Scope
 
+- Controlled source-document intake and explicit requirement-review preparation
+- Hybrid external/Git requirement authority and immutable canonical revisions
+- Private local Review Workbench and read-only public Governance Workspace
 - DevSecOps governance
 - Security controls
 - Secure software supply-chain evidence

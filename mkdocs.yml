@@ -151,6 +151,7 @@ nav:
           - Architecture Evidence EA Package: operations/evidence/architecture-evidence-ea-package.md
           - Detailed Architecture Evidence Adoption Guide: operations/evidence/detailed-architecture-evidence-adoption-guide.md
       - Agent System Usage: operations/agents/agent-system-usage.md
+      - Run An Agent Review: operations/agents/how-to-run-agent-review.md
       - Agent Harness Usage: operations/agents/agent-harness-usage.md
       - Agent Usage Tracking: operations/agents/agent-usage-tracking.md
       - Agent Usage Snapshot Latest: operations/agents/agent-usage-snapshot-latest.md
@@ -167,6 +168,7 @@ nav:
           - Blocking Mode Alignment: operations/status/blocking-mode-alignment.md
           - Governance Intelligence Graph Viewer: operations/status/governance-intelligence-graph-viewer.md
           - Current Governance Platform State: operations/status/current-governance-platform-state.md
+          - Documentation Reconciliation (7 November): operations/status/repository-documentation-reconciliation-2026-11-07.md
           - Document Consistency Rollout Readiness: operations/status/document-consistency-rollout-readiness.md
           - Document Consistency Management Summary: operations/status/document-consistency-rollout-management-summary.md
           - Document Consistency Workpackage Completion Review: operations/status/document-consistency-workpackage-completion-review.md

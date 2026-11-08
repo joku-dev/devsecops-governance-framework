@@ -553,7 +553,9 @@ def validate_source_document_requirement_delta(errors):
         errors.append("Source document requirement delta replacement pair count does not match item list")
     for pair in pairs:
         status_counts = pair.get("summary", {}).get("status_counts", {})
-        if not any(status_counts.get(status, 0) for status in ["added", "changed", "removed", "equivalent"]):
+        if sum(status_counts.values()) != len(pair.get("deltas", [])):
+            errors.append("Source document requirement delta pair counts do not match deltas")
+        if not pair.get("deltas") and (pair.get("summary", {}).get("candidate_requirements", 0) or pair.get("summary", {}).get("target_requirements", 0)):
             errors.append(
                 "Source document requirement delta pair has no classified statements: "
                 f"{pair.get('candidate_id')} versus {pair.get('target_id')}"

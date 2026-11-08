@@ -4,7 +4,7 @@
   "status": "review_required",
   "summary": {
     "source_requirements": 867,
-    "artifact_records": 504,
+    "artifact_records": 508,
     "requirements_with_candidates": 824,
     "requirements_without_candidates": 43,
     "confirmed_register_entries": 19,
@@ -14,8 +14,8 @@
       "platform": 74,
       "policies": 14,
       "releases": 201,
-      "schemas": 127,
-      "workflows": 28
+      "schemas": 130,
+      "workflows": 29
     }
   },
   "sources": {
@@ -1137,6 +1137,13 @@
       "source_basis": null
     },
     {
+      "path": "schemas/authorized-source-baseline.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "5b6dfb14d651e8e5c786e81c20482365430428e27dcc7371a4a4de4fd11eac1c",
+      "source_basis": null
+    },
+    {
       "path": "schemas/blocking-mode-alignment-model.schema.json",
       "type": "schemas",
       "artifact_id": null,
@@ -1245,7 +1252,7 @@
       "path": "schemas/document-consistency-review-model.schema.json",
       "type": "schemas",
       "artifact_id": null,
-      "sha256": "37e83b1839e2819282762ca2f136530b17cba54ff807ba4f32149b23638ebe29",
+      "sha256": "69fe1ee24bdb1307ba5efc0fa39b683c4d6ed52974060607e168ae03b917410b",
       "source_basis": null
     },
     {
@@ -1767,6 +1774,13 @@
       "source_basis": null
     },
     {
+      "path": "schemas/governance-workbench-draft.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "c848655c6db434117b6d7bac7fc90102b6a3c37148dc6ab5246f6e04de73346c",
+      "source_basis": null
+    },
+    {
       "path": "schemas/harmonized-requirements-coverage.schema.json",
       "type": "schemas",
       "artifact_id": null,
@@ -1928,10 +1942,17 @@
       "source_basis": null
     },
     {
+      "path": "schemas/source-document-process-status.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "f0395013e12f28fd23020428c2c144d1b77c8ebeee2bf13a3e9830dc3d4abda6",
+      "source_basis": null
+    },
+    {
       "path": "schemas/source-document-register.schema.json",
       "type": "schemas",
       "artifact_id": null,
-      "sha256": "e99511dda36060aaf82ead2b4e1bd12264c0ace6a0beca0d440fc8e86fad64b5",
+      "sha256": "b0a0c41dc248caee83506269c8727ef13034bc575b083f33403fa3690075f801",
       "source_basis": null
     },
     {
@@ -1987,7 +2008,7 @@
       "path": ".github/workflows/codeql.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "5624b9ccd5d69c2f6e8a09762dd7ef2b8e6ff15e3d8f71f4e02c27c6f3caf338",
+      "sha256": "cf6730db040c5ca366bb27162a14f97088a4c83cc6ac83db73176964ac7a98e9",
       "source_basis": null
     },
     {
@@ -2043,28 +2064,28 @@
       "path": ".github/workflows/devsecops-baseline-l1-v1.1.3.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "aa24ec3f45187d8f3f999269d29ae86688d15ddd2dffe2e8a380d26a918b5736",
+      "sha256": "577018a9672c0b6fabdb690000565b174558defafdae0076f05d40c88a5b21fe",
       "source_basis": null
     },
     {
       "path": ".github/workflows/devsecops-baseline-l1-v1.2.0.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "9c33828f7a7e06f9bfbbffd01956e7b708699e11157111c4dcc098deec5c4fb7",
+      "sha256": "925f6c70842f3a46feab1418c82abd3957dfcad551d632c328252bc1551c9b5d",
       "source_basis": null
     },
     {
       "path": ".github/workflows/devsecops-baseline-l1-v1.2.1.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "c055279569c1a5c61d3a3ecf70d72ad676a9f4982818e690432959b9ff8dd6dd",
+      "sha256": "5953f16f11290e383e8d1d0a3954424cb4141e09361181259942eddea7b7cd95",
       "source_basis": null
     },
     {
       "path": ".github/workflows/devsecops-baseline-reusable.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "70bed24e1bc03d79aa321e293442b7bc7629344152603421dc291b1dd5ed5576",
+      "sha256": "2fbb9b86f5fffb2d9f1e62419aae2c1076e63b554d67f1a9a3f5e5f463572f13",
       "source_basis": null
     },
     {
@@ -2078,7 +2099,7 @@
       "path": ".github/workflows/documentation-refresh.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "31ecd5a1a8c9d084884eb366a238b59bdc78e18d08729bea24fea319453febbb",
+      "sha256": "3e4ed2ffa574dd6748b30b435ebeebb99c687ff71f5dfb2a832e05d0c1df684b",
       "source_basis": null
     },
     {
@@ -2092,14 +2113,14 @@
       "path": ".github/workflows/governance-operations.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "b75e53996443670a91247c0ca0f3049c0054a9613f7d19390304448d76c102eb",
+      "sha256": "ff46c35a959fa9848b40a829f8e5fb47cb1e936a40a017eb4995a4fa5ad7ad8d",
       "source_basis": null
     },
     {
       "path": ".github/workflows/governance-repository-security.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "30b0f45c914e3ac1c0f5404313b8065fccab1adaf6ecd5750f8e707f5edbf457",
+      "sha256": "7c06d417f4153b15a7c161dab869126a3bf27aedbb3d8d4e3323c3b84dfa2029",
       "source_basis": null
     },
     {
@@ -2134,7 +2155,7 @@
       "path": ".github/workflows/portfolio-status.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "e48683794a306951aa6d45a7be152b85845bfcc3bcdbde0231e54eab144f23a1",
+      "sha256": "6883f79c9bd02e787cc4389fc9f12b854268e48d18f640a1bb26eaa318772074",
       "source_basis": null
     },
     {
@@ -2170,6 +2191,13 @@
       "type": "workflows",
       "artifact_id": null,
       "sha256": "c7874ff172751fa4e68e3d4da3095035b238081ab7abb822659aa87621598f47",
+      "source_basis": null
+    },
+    {
+      "path": ".github/workflows/source-document-intake.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "b8f6498b3fc8706b005786eba7454171352fcadbdf2faa2de6d8f450bc8adcdc",
       "source_basis": null
     },
     {

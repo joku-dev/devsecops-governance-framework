@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Generate requirement-level deltas for source-document replacement candidates.
 
-This report is intentionally conservative. It extracts normative-looking
-statements from likely replacement pairs and classifies them as added, changed,
+This report reads only explicitly labelled requirement declarations from
+likely replacement pairs and classifies them as added, changed,
 removed, or equivalent. It supports human review only and must not promote a
 candidate source or change runtime governance behavior.
 """
@@ -21,6 +21,7 @@ import subprocess
 import sys
 
 import yaml
+from lib.explicit_requirements import extract_explicit_requirements
 from lib.source_document_text import (
     SourceDocumentExtractionError,
     extract_source_document,
@@ -34,33 +35,12 @@ REPLACEMENT_JSON = ROOT / "generated" / "reports" / "architecture-source-replace
 OUT_JSON = ROOT / "generated" / "reports" / "source-document-requirement-delta.json"
 OUT_MD = ROOT / "generated" / "reports" / "source-document-requirement-delta.md"
 
-NORMATIVE_PATTERN = re.compile(
-    r"\b("
-    r"must|shall|should|mandatory|required|requires|require|requirement|"
-    r"needs to|need to|has to|have to|is required|are required|"
-    r"must not|shall not|should not"
-    r")\b",
-    re.IGNORECASE,
-)
 MANDATORY_PATTERN = re.compile(
     r"\b(must|shall|mandatory|required|requires|require|needs to|need to|has to|have to|is required|are required)\b",
     re.IGNORECASE,
 )
 PROHIBITION_PATTERN = re.compile(r"\b(must not|shall not|should not)\b", re.IGNORECASE)
 RECOMMENDED_PATTERN = re.compile(r"\b(should|recommended)\b", re.IGNORECASE)
-TABLE_SEPARATOR_PATTERN = re.compile(r"^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$")
-LINK_ONLY_PATTERN = re.compile(r"^\[[^\]]+\]\(#[^)]+\)$")
-REQUIREMENT_ID_FIRST_CELL_PATTERN = re.compile(
-    r"^\|\s*`?([A-Z][A-Z0-9-]*-REQ-\d{3,})`?\s*\|"
-)
-NON_NORMATIVE_HEADING_TERMS = (
-    "abbreviation",
-    "definition",
-    "glossary",
-    "terminology",
-    "terms",
-)
-
 UNCHANGED_THRESHOLD = 0.9
 MATCH_THRESHOLD = 0.5
 
@@ -175,97 +155,53 @@ def potential_impacts(heading: str, statement: str) -> list[str]:
     return sorted(impacts)
 
 
-def should_skip_line(stripped: str) -> bool:
-    if not stripped:
-        return True
-    if stripped.startswith("[") and "](#" in stripped:
-        return True
-    if LINK_ONLY_PATTERN.match(stripped):
-        return True
-    if TABLE_SEPARATOR_PATTERN.match(stripped):
-        return True
-    cells = [cell.strip().strip("`").lower() for cell in stripped.strip("|").split("|")]
-    if len(cells) >= 4 and cells[:4] == ["id", "strength", "context", "requirement"]:
-        return True
-    return False
-
-
-def requirement_identification(
-    raw_line: str,
-    identifier_origin: str = "unverified",
-) -> tuple[str, str, str | None, str | None]:
-    """Classify identifiers only when their source authorship is recorded."""
-    match = REQUIREMENT_ID_FIRST_CELL_PATTERN.match(raw_line.strip())
-    if match:
-        identifier = match.group(1)
-        if identifier_origin == "author_provided":
-            return "author_identified", "p1", identifier, None
-        return "extraction_row_id", "unassigned", None, identifier
-    return "inferred_candidate", "p2", None, None
-
-
 def extract_requirements(
     source_id: str,
     path: Path,
     identifier_origin: str = "unverified",
 ) -> list[dict]:
-    requirements = []
-    heading_stack: list[str] = []
-
+    """Read explicit declarations only; words such as SHALL never create one."""
     extracted_document = extract_source_document(path)
+    headings = {}
+    heading_stack = []
     for source_line in extracted_document.lines:
-        line_number = source_line.number
-        raw_line = line_for_markdown_parser(source_line)
-        stripped = raw_line.strip()
+        stripped = line_for_markdown_parser(source_line).strip()
         if stripped.startswith("#"):
             level = len(stripped) - len(stripped.lstrip("#"))
-            heading = clean_markdown(stripped.lstrip("#").strip())
-            heading_stack = heading_stack[: max(level - 1, 0)]
-            heading_stack.append(heading)
-            continue
-        if should_skip_line(stripped):
-            continue
-        heading = " > ".join(item for item in heading_stack if item) or "<document>"
-        heading_lower = heading.lower()
-        if any(term in heading_lower for term in NON_NORMATIVE_HEADING_TERMS):
-            continue
-        if not NORMATIVE_PATTERN.search(stripped):
-            continue
+            heading_stack = heading_stack[:max(level - 1, 0)]
+            heading_stack.append(clean_markdown(stripped.lstrip("#").strip()))
+        headings[source_line.number] = " > ".join(heading_stack) or "<document>"
 
-        statement = clean_markdown(stripped)
-        if len(statement) < 35:
-            continue
+    requirements = []
+    seen = set()
+    for declaration in extract_explicit_requirements(extracted_document):
+        statement = clean_markdown(declaration.statement)
         normalized = normalize_statement(statement)
-        requirement = {
-            "id": stable_id(source_id, line_number, normalized),
+        key = (declaration.identifier, normalized)
+        if key in seen:
+            continue
+        seen.add(key)
+        heading = declaration.context or headings[declaration.source_line.number]
+        verified = identifier_origin == "author_provided"
+        requirements.append({
+            "id": stable_id(source_id, declaration.source_line.number, declaration.identifier + normalized),
             "source_id": source_id,
             "source_path": rel(path),
-            "line": line_number,
-            "source_locator": source_line.locator,
+            "line": declaration.source_line.number,
+            "source_locator": declaration.source_line.locator,
             "extraction_warnings": list(extracted_document.warnings),
             "heading": heading,
             "statement": statement,
             "normalized": normalized,
+            "recognized_requirement_ids": [declaration.identifier],
             "strength": requirement_strength(statement),
             "potential_impacts": potential_impacts(heading, statement),
-        }
-        (
-            requirement["identification_class"],
-            requirement["intake_priority"],
-            requirement["source_requirement_id"],
-            requirement["extraction_row_id"],
-        ) = requirement_identification(raw_line, identifier_origin)
-        requirements.append(requirement)
-
-    deduplicated = []
-    seen = set()
-    for requirement in requirements:
-        key = requirement["normalized"]
-        if key in seen:
-            continue
-        seen.add(key)
-        deduplicated.append(requirement)
-    return deduplicated
+            "identification_class": "author_identified" if verified else "explicit_identifier",
+            "intake_priority": "p1" if verified else "unassigned",
+            "source_requirement_id": declaration.identifier,
+            "extraction_row_id": declaration.extraction_row_id,
+        })
+    return requirements
 
 
 def similarity(left: dict, right: dict) -> float:
@@ -303,6 +239,14 @@ def delta_status(score: float, candidate: dict, target: dict) -> str:
     return "added"
 
 
+def requirement_identifier_index(requirements: list[dict]) -> dict[str, list[int]]:
+    index: dict[str, list[int]] = {}
+    for position, requirement in enumerate(requirements):
+        for identifier in requirement.get("recognized_requirement_ids", []):
+            index.setdefault(identifier, []).append(position)
+    return index
+
+
 def review_priority(status: str, candidate: dict | None, target: dict | None) -> str:
     strength = (candidate or target or {}).get("strength")
     if status in {"added", "removed"} and strength in {"mandatory", "prohibition"}:
@@ -326,11 +270,37 @@ def merge_impacts(candidate: dict | None, target: dict | None) -> list[str]:
 def compare_requirements(candidate_requirements: list[dict], target_requirements: list[dict]) -> list[dict]:
     deltas = []
     unmatched_target_indexes = set(range(len(target_requirements)))
+    candidate_identifier_index = requirement_identifier_index(candidate_requirements)
+    target_identifier_index = requirement_identifier_index(target_requirements)
 
-    for candidate in candidate_requirements:
-        match_index, score = best_match(candidate, target_requirements, unmatched_target_indexes)
+    for candidate_index, candidate in enumerate(candidate_requirements):
+        shared_identifiers = sorted(
+            set(candidate.get("recognized_requirement_ids", []))
+            & set(target_identifier_index)
+        )
+        unique_shared_identifiers = [
+            identifier
+            for identifier in shared_identifiers
+            if len(candidate_identifier_index.get(identifier, [])) == 1
+            and len(target_identifier_index.get(identifier, [])) == 1
+            and target_identifier_index[identifier][0] in unmatched_target_indexes
+        ]
+        matched_identifier = unique_shared_identifiers[0] if unique_shared_identifiers else None
+        if matched_identifier:
+            match_index = target_identifier_index[matched_identifier][0]
+            score = similarity(candidate, target_requirements[match_index])
+            match_basis = "recognized_requirement_id"
+        else:
+            match_index, score = best_match(candidate, target_requirements, unmatched_target_indexes)
+            match_basis = "text_similarity" if match_index is not None else "unmatched"
         best_target = target_requirements[match_index] if match_index is not None else None
-        status = delta_status(score, candidate, best_target) if best_target else "added"
+        if best_target and matched_identifier:
+            # A stable requirement ID establishes correspondence even when the
+            # wording changed enough that text similarity alone would split it
+            # into an unrelated add/remove pair.
+            status = "equivalent" if score >= UNCHANGED_THRESHOLD and candidate["strength"] == best_target["strength"] else "changed"
+        else:
+            status = delta_status(score, candidate, best_target) if best_target else "added"
         target = best_target if status != "added" else None
         if target is not None and match_index is not None:
             unmatched_target_indexes.remove(match_index)
@@ -339,6 +309,8 @@ def compare_requirements(candidate_requirements: list[dict], target_requirements
             {
                 "status": status,
                 "similarity": score,
+                "match_basis": match_basis,
+                "matched_identifier": matched_identifier,
                 "review_priority": review_priority(status, candidate, target),
                 "potential_impacts": merge_impacts(candidate, target),
                 "candidate_requirement": candidate,
@@ -352,6 +324,8 @@ def compare_requirements(candidate_requirements: list[dict], target_requirements
             {
                 "status": "removed",
                 "similarity": 0.0,
+                "match_basis": "unmatched",
+                "matched_identifier": None,
                 "review_priority": review_priority("removed", None, target),
                 "potential_impacts": merge_impacts(None, target),
                 "candidate_requirement": None,
@@ -491,14 +465,14 @@ def build_pair_delta(comparison: dict) -> dict:
                 status_counts.get(status, 0)
                 for status in ["added", "changed", "removed"]
             ),
-            "comparison_status": "complete",
+            "comparison_status": "complete" if candidate_requirements or target_requirements else "no_explicit_requirements",
         },
         "deltas": deltas,
     }
 
 
 def build_requirement_intake_inventory() -> dict:
-    """Inventory author-identified requirements and prose-only candidates."""
+    """Inventory explicit requirement declarations only; retain zero legacy counters."""
     register = load_yaml(REGISTER_PATH)
     sources = []
     inferred_candidates = []
@@ -526,6 +500,7 @@ def build_requirement_intake_inventory() -> dict:
                     "source_path": rel(source_path),
                     "identification_counts": {
                         "author_identified": 0,
+                        "explicit_identifier": 0,
                         "extraction_row_id": 0,
                         "inferred_candidate": 0,
                     },
@@ -556,6 +531,7 @@ def build_requirement_intake_inventory() -> dict:
                     "source_path": rel(source_path),
                     "identification_counts": {
                         "author_identified": 0,
+                        "explicit_identifier": 0,
                         "extraction_row_id": 0,
                         "inferred_candidate": 0,
                     },
@@ -567,6 +543,7 @@ def build_requirement_intake_inventory() -> dict:
             continue
         counts = Counter(item["identification_class"] for item in requirements)
         counts.setdefault("author_identified", 0)
+        counts.setdefault("explicit_identifier", 0)
         counts.setdefault("extraction_row_id", 0)
         counts.setdefault("inferred_candidate", 0)
         source_counts = status_counts.setdefault(document["status"], Counter())
@@ -582,23 +559,6 @@ def build_requirement_intake_inventory() -> dict:
                 "scan_status": "complete",
             }
         )
-        for requirement in requirements:
-            if requirement["identification_class"] == "inferred_candidate":
-                inferred_candidates.append(
-                    {
-                        "source_id": document["id"],
-                        "source_title": document["title"],
-                        "source_status": document["status"],
-                        "source_path": requirement["source_path"],
-                        "line": requirement["line"],
-                        "heading": requirement["heading"],
-                        "strength": requirement["strength"],
-                        "identification_class": "inferred_candidate",
-                        "intake_priority": "p2",
-                        "statement": requirement["statement"],
-                        "potential_impacts": requirement["potential_impacts"],
-                    }
-                )
 
     identification_counts = Counter()
     for source in sources:
@@ -617,9 +577,11 @@ def build_requirement_intake_inventory() -> dict:
             },
             "inferred_candidate_count": len(inferred_candidates),
             "extraction_row_id_count": identification_counts.get("extraction_row_id", 0),
+            "explicit_identifier_count": identification_counts.get("explicit_identifier", 0),
+            "extraction_mode": "explicit_identifiers_only",
             "author_identified_count": identification_counts.get("author_identified", 0),
             "identifier_provenance_note": (
-                "A first-column identifier in a normalized extract is not treated as source-authored unless the register records requirement_identifier_origin: author_provided."
+                "Only explicit requirement declarations are extracted. Synthetic extraction row IDs and prose do not create requirements. P1 still requires recorded author-provided identifier provenance."
             ),
         },
         "sources": sources,
@@ -665,13 +627,13 @@ def build_report() -> dict:
         "requirement_intake_inventory": intake_inventory,
         "requirement_delta_pairs": pair_deltas,
         "review_notes": [
-            "This is a keyword-based normative statement delta, not a final legal or architecture decision.",
-            "The requirement intake inventory scans registered source text and separates source-identified IDs from inferred prose candidates; repeated or overlapping sources are counted per source.",
-            "Prose extraction is a review aid: inferred_candidate items may be context or explanation and require source-owner confirmation.",
+            "This delta compares explicit requirement declarations only; it is not a final legal or architecture decision.",
+            "Only explicitly labelled requirements such as DSCB-L1-REQ-001 are inventoried; repeated or overlapping sources are counted per source.",
+            "Unlabelled prose, headings, version history, synthetic extraction row IDs and reference-only mentions do not create requirements.",
             "Candidate-intake records whose underlying source text is withheld are listed as unscanned and are not counted.",
             "Changed, added, and removed mandatory or prohibition statements require human architecture-owner review.",
             "Removed statements may indicate content deleted from the candidate or moved into companion documents; confirm against the full architecture source set before deciding.",
-            "Author-identified requirements with a source ID receive intake priority p1; prose-only inferred_candidate items receive p2 and require owner confirmation.",
+            "P1 requires confirmed source-author identifier provenance; otherwise an explicit identifier remains unassigned. No P2 prose candidates are generated.",
             "Intake identification class and priority are separate from delta review priority and source approval status.",
             "No source document status, lineage, runtime governance, policy, schema, or release package is changed by this report.",
         ],
@@ -695,8 +657,8 @@ def requirement_text(requirement: dict | None) -> str:
 def requirement_intake_class(requirement: dict | None) -> str:
     if not requirement:
         return "`n/a`"
-    identification_class = requirement.get("identification_class", "inferred_candidate")
-    intake_priority = requirement.get("intake_priority", "p2")
+    identification_class = requirement.get("identification_class", "explicit_identifier")
+    intake_priority = requirement.get("intake_priority", "unassigned")
     return f"`{identification_class} ({intake_priority.upper()})`"
 
 
@@ -766,23 +728,24 @@ def render_markdown(report: dict) -> str:
             f"- Registered source documents: `{inventory_summary['registered_source_documents']}`",
             f"- Scanned source documents: `{inventory_summary['scanned_source_documents']}`",
             f"- Not scanned because source text is withheld: `{inventory_summary['skipped_source_documents']}`",
-            f"- Inferred prose candidates: `{inventory_summary['inferred_candidate_count']}`",
+            "- Extraction mode: `explicit_identifiers_only` (no prose inference)",
+            f"- Explicit requirement identifiers with unverified origin: `{inventory_summary['explicit_identifier_count']}`",
             f"- Extracted row identifiers with unverified origin: `{inventory_summary['extraction_row_id_count']}`",
             f"- Confirmed source-author identifiers (P1): `{inventory_summary['author_identified_count']}`",
             "",
-            "Counts are per source document; semantically overlapping or replacement sources are not deduplicated. Prose matches are candidates, not confirmed requirements. An identifier in a normalized extraction is not treated as source-author assigned unless its origin is recorded as `author_provided` in the source register.",
+            "Counts are per source document. Only labelled requirement declarations are included; prose and synthetic row IDs are excluded. P1 requires `author_provided` provenance in the source register.",
             "",
             "### Counts By Source Status",
             "",
-            "| Source status | Confirmed author IDs / P1 | Extract row IDs / unverified | `inferred_candidate` / P2 |",
-            "|---|---:|---:|---:|",
+            "| Source status | Confirmed author IDs / P1 | Explicit IDs / unverified |",
+            "|---|---:|---:|",
         ]
     )
     status_counts = inventory_summary["source_status_counts"]
     for status in sorted({source["source_status"] for source in intake_inventory["sources"]}):
         counts = status_counts.get(status, {})
         lines.append(
-            f"| `{status}` | `{counts.get('author_identified', 0)}` | `{counts.get('extraction_row_id', 0)}` | `{counts.get('inferred_candidate', 0)}` |"
+            f"| `{status}` | `{counts.get('author_identified', 0)}` | `{counts.get('explicit_identifier', 0)}` |"
         )
 
     lines.extend(
@@ -790,35 +753,16 @@ def render_markdown(report: dict) -> str:
             "",
             "### Counts By Source Document",
             "",
-            "| Source ID | Source status | Confirmed author IDs / P1 | Extract row IDs / unverified | `inferred_candidate` / P2 | Scanned |",
-            "|---|---|---:|---:|---:|---|",
+            "| Source ID | Source status | Confirmed author IDs / P1 | Explicit IDs / unverified | Scanned |",
+            "|---|---|---:|---:|---|",
         ]
     )
     for source in intake_inventory["sources"]:
         counts = source["identification_counts"]
         lines.append(
             f"| `{source['source_id']}` | `{source['source_status']}` | "
-            f"`{counts.get('author_identified', 0)}` | `{counts.get('extraction_row_id', 0)}` | `{counts.get('inferred_candidate', 0)}` | "
+            f"`{counts.get('author_identified', 0)}` | `{counts.get('explicit_identifier', 0)}` | "
             f"`{str(source['scanned']).lower()}` |"
-        )
-
-    lines.extend(
-        [
-            "",
-            "### `inferred_candidate` Prose Findings",
-            "",
-            "Each entry is a keyword-screened prose candidate with intake priority p2. Confirm it with the source owner before treating it as an actual requirement.",
-            "",
-            "| Source ID | Source status | Source location | Strength | Potential impacts | Candidate statement |",
-            "|---|---|---|---|---|---|",
-        ]
-    )
-    for item in intake_inventory["inferred_candidates"]:
-        candidate_statement = item["statement"].replace("|", "\\|")
-        lines.append(
-            f"| `{item['source_id']}` | `{item['source_status']}` | "
-            f"`{item['source_path']}:{item['line']}` | `{item['strength']}` | "
-            f"`{', '.join(item['potential_impacts'])}` | {candidate_statement} |"
         )
 
     for item in intake_inventory["skipped_sources"]:
@@ -842,6 +786,7 @@ def render_markdown(report: dict) -> str:
                 f"- Candidate requirement statements: `{pair_summary['candidate_requirements']}`",
                 f"- Target requirement statements: `{pair_summary['target_requirements']}`",
                 f"- Differences requiring review: `{pair_summary['differences_requiring_review']}`",
+                f"- Comparison status: `{pair_summary['comparison_status']}`",
                 "",
                 "Pair status counts:",
                 "",

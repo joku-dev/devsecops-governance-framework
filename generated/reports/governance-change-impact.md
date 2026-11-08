@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-10-09T16:54:53Z`
+Generated: `2026-10-11T11:20:42Z`
 
 ## Inputs
 
@@ -11,7 +11,7 @@ Generated: `2026-10-09T16:54:53Z`
 
 - Registered source documents: `15`
 - Source documents with lineage: `16`
-- Derived artifact links: `307`
+- Derived artifact links: `142`
 
 ## Domain Coverage
 
@@ -54,7 +54,7 @@ Generated: `2026-10-09T16:54:53Z`
 - Owner: `governance-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `policy, devsecops`
-- Lineage artifacts: `13`
+- Lineage artifacts: `2`
 - Source state: `active_source`
 - Release consideration: `no_release_by_default`
 - Review lanes: `devsecops-review, governance-review`
@@ -71,15 +71,7 @@ Suggested validation:
 Representative artifacts:
 
 - `docs/governance/devsecops-policy.md`
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
+- `model/traceability/document-to-control.yaml`
 
 ### `DEVSECOPS-DIR-REQ-001`
 
@@ -89,7 +81,7 @@ Representative artifacts:
 - Owner: `governance-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `directive, devsecops`
-- Lineage artifacts: `13`
+- Lineage artifacts: `2`
 - Source state: `active_source`
 - Release consideration: `no_release_by_default`
 - Review lanes: `devsecops-review, governance-review`
@@ -106,15 +98,7 @@ Suggested validation:
 Representative artifacts:
 
 - `docs/governance/devsecops-directive.md`
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
+- `model/traceability/document-to-control.yaml`
 
 ### `DSCB-STD-REQ-001`
 
@@ -124,7 +108,7 @@ Representative artifacts:
 - Owner: `devsecops-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `devsecops`
-- Lineage artifacts: `99`
+- Lineage artifacts: `88`
 - Source state: `active_source`
 - Release consideration: `baseline_release_review`
 - Review lanes: `devsecops-review, policy-as-code-review, release-review, schema-review, viewer-status-review`
@@ -161,7 +145,7 @@ Representative artifacts:
 - Owner: `platform-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `platform, devsecops`
-- Lineage artifacts: `41`
+- Lineage artifacts: `30`
 - Source state: `active_source`
 - Release consideration: `release_candidate_recommended`
 - Review lanes: `devsecops-review, platform-review, schema-review, viewer-status-review`
@@ -187,7 +171,7 @@ Representative artifacts:
 - `docs/examples/governance-repository-security-observation.example.json`
 - `docs/governance/source-documents/PRA-STD-SRC-001.requirements.md`
 - `docs/operations/security/governance-repository-self-security.md`
-- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/reports/control-coverage-report.md`
 
 ### `ARCH-SDD-REQ-001`
 
@@ -197,7 +181,7 @@ Representative artifacts:
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
-- Lineage artifacts: `31`
+- Lineage artifacts: `20`
 - Source state: `active_source`
 - Release consideration: `baseline_release_review`
 - Review lanes: `architecture-review, policy-as-code-review, release-review, schema-review, viewer-status-review`
@@ -225,7 +209,7 @@ Representative artifacts:
 - `architecture/remediation-actions.yaml`
 - `architecture/review-gates.yaml`
 - `generated/csv/architecture_runtime_traceability.csv`
-- `generated/reports/architecture-source-replacement-assessment.json`
+- `generated/viewer/status-viewer.html`
 
 ### `ARCH-TPL-REQ-001`
 
@@ -235,7 +219,7 @@ Representative artifacts:
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `active_source`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review`
@@ -252,16 +236,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `ARCH-EA-REQ-001`
 
@@ -271,7 +245,7 @@ Representative artifacts:
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `active_source`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review`
@@ -288,16 +262,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `ARCH-SA-REQ-001`
 
@@ -307,7 +271,7 @@ Representative artifacts:
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `active_source`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review`
@@ -324,16 +288,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `ARCH-PA-REQ-001`
 
@@ -343,7 +297,7 @@ Representative artifacts:
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `active_source`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review`
@@ -360,16 +314,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `ARCH-GOV-REQ-001`
 
@@ -379,7 +323,7 @@ Representative artifacts:
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `candidate_replacement_review`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review`
@@ -400,16 +344,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `CISO-REQ-SRC-001`
 
@@ -419,7 +353,7 @@ Representative artifacts:
 - Owner: `governance-owners`
 - Version: `0.1`
 - Domains: `devsecops, platform, architecture`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `candidate_related_source_review`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review, devsecops-review, platform-review`
@@ -439,16 +373,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `DEVSECOPS-POL-CAND-002`
 
@@ -458,7 +382,7 @@ Representative artifacts:
 - Owner: `governance-owners`
 - Version: `v2-change-marked`
 - Domains: `policy, devsecops`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `candidate_replacement_review`
 - Release consideration: `no_release_by_default`
 - Review lanes: `devsecops-review, governance-review`
@@ -478,16 +402,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `TOOLCHAIN-ARCH-CAND-001`
 
@@ -497,7 +411,7 @@ Representative artifacts:
 - Owner: `platform-owners`
 - Version: `v0.3`
 - Domains: `architecture, platform, devsecops`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `candidate_related_source_review`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review, devsecops-review, platform-review`
@@ -517,16 +431,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `SDLC-PROC-CAND-001`
 
@@ -536,7 +440,7 @@ Representative artifacts:
 - Owner: `governance-owners`
 - Version: `V5-candidate`
 - Domains: `devsecops, directive`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `candidate_related_source_review`
 - Release consideration: `no_release_by_default`
 - Review lanes: `devsecops-review, governance-review`
@@ -555,16 +459,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ### `SW-INDUSTRIALISATION-OM-CAND-001`
 
@@ -574,7 +468,7 @@ Representative artifacts:
 - Owner: `governance-owners`
 - Version: `revised-extended-scope-polished-proposal`
 - Domains: `devsecops, platform, architecture`
-- Lineage artifacts: `11`
+- Lineage artifacts: `0`
 - Source state: `candidate_related_source_review`
 - Release consideration: `no_release_by_default`
 - Review lanes: `architecture-review, devsecops-review, platform-review`
@@ -594,16 +488,6 @@ Suggested validation:
 
 Representative artifacts:
 
-- `generated/reports/architecture-source-replacement-assessment.json`
-- `generated/reports/architecture-source-replacement-assessment.md`
-- `generated/reports/governance-change-impact.json`
-- `generated/reports/governance-change-impact.md`
-- `generated/reports/source-document-intake-review-briefs.json`
-- `generated/reports/source-document-intake-review-briefs.md`
-- `generated/reports/source-document-intake-status.json`
-- `generated/reports/source-document-intake-status.md`
-- `generated/reports/source-document-requirement-delta.json`
-- `generated/reports/source-document-requirement-delta.md`
 
 ## Open Questions For Change Requests
 

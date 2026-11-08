@@ -113,8 +113,12 @@ und `complete-migration` eine Katalogfreigabe dokumentiert.
 ## 3. Zerlegung in Requirement Proposals
 
 Für eine freigegebene Dokumentquelle erzeugt `import-source` einen Lifecycle
-Case unter `model/requirements/lifecycle-cases/`. Jede extrahierte Anforderung
-wird zu einem einzeln entscheidbaren Proposal. Intake-Daten und spätere
+Case unter `model/requirements/lifecycle-cases/`. Nur explizit deklarierte Anforderungen,
+beispielsweise `DSCB-L1-REQ-001`, werden zu einzeln entscheidbaren Proposals.
+Aus Fließtext werden keine Anforderungen abgeleitet. ID-Verweise und synthetische
+Extraktionszeilen-IDs sind keine Requirement-Deklarationen. Eine explizite ID
+bestätigt weder die Urheberschaft noch die fachliche Gültigkeit; P1 benötigt
+zusätzlich bestätigte `author_provided`-Provenienz im Register. Intake-Daten und spätere
 Entscheidungen bleiben als append-only Historie erhalten.
 
 Der Analyseprozess vergleicht das Proposal deterministisch mit dem vorhandenen
@@ -136,6 +140,21 @@ Die zulässigen fachlichen Entscheidungen sind:
 Die menschliche Entscheidung enthält Entscheider, Rolle, Begründung,
 Entscheidungsreferenz und die erlaubten Ableitungsarten. Damit werden
 inhaltliche Annahme und technische Verwendung gemeinsam nachvollziehbar.
+
+### Lokale Vorbereitung in der Workbench
+
+Die [Review Workbench](../../operations/guides/governance-review-workbench.md)
+führt durch Aufnahme, Prüfung und Weitergabe. Für registrierte Dokumente kann
+eine Prüfung der vorhandenen Version ohne erneuten Upload vorbereitet werden.
+Prüfnotizen mit Name und Begründung bleiben `proposal_only`. Der Fortschritt
+zählt Anforderungen mit Prüfnotiz; ein ZIP kann offene Klärungsfragen enthalten.
+Quellenfreigabe, Lifecycle-Entscheidung und Aktivierung erfolgen anschließend
+über die dafür vorgesehenen versionierten Verfahren.
+
+Frühere Lifecycle-Proposals, Entscheidungen und Aktivierungen bleiben erhalten.
+Sie werden separat angezeigt und zählen nicht als heutige Extraktion. Die
+Umstellung auf explizite Deklarationen verwirft keine historischen Entscheidungen
+und erklärt keine offenen Proposals automatisch für genehmigt oder abgelehnt.
 
 ## 4. Aktivierung im kanonischen Requirement-Katalog
 

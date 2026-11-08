@@ -14,6 +14,11 @@ contains a bounded comparison; its calls are not part of this harness or CI.
 
 The harness currently covers:
 
+- production path-to-agent routing, including Workbench, requirements and provider adapters
+- staged, unstaged, renamed, deleted and untracked Git paths
+- revision/source/index/contract binding of private review plans
+- incomplete, skipped and stale reviews, required role outputs and final stewardship
+- path traversal rejection and unknown role/skill contract failures
 - path-to-agent routing for governance repository areas
 - mandatory `repo-steward` selection for meaningful changes
 - required validation commands per selected role

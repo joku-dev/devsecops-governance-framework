@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: evidence-and-intake
+skill: evidence-and-intake
 name: Evidence And Intake Agent
 description: Maintain downstream evidence intake, result indexes, run contexts, and viewer state.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md

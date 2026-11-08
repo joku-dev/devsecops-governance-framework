@@ -25,6 +25,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Run the live demo | `docs/demos/demo-end-to-end-governance.md` |
 | Understand current ha-CPsWMS status | `docs/operations/status/ha-cpswms-governance-validation-status.md`, `docs/demos/ha-cpswms-architecture-governance-results.md` |
 | Understand source-document lineage | `generated/reports/source-lineage-report.md` |
+| See which registered sources currently feed models and which remain under review | `docs/operations/guides/source-document-dependency-map.md` |
 | Classify a new artifact before adding it | `docs/operations/processes/new-artifact-intake-process.md` |
 | Understand the modular Git-native documentation publication model | `docs/operations/planning/doc-as-code-architecture-decision.md`, `docs/publishing/doc-as-code-pilot/publication.yaml`, `docs/publishing/doc-as-code-pilot/requirements/`, `doc-as-code/`, `docs/governance/change-requests/GCR-2026-141-modular-doc-as-code-model.md` |
 | Operate the hybrid document-to-Git requirement lifecycle | `docs/operations/processes/hybrid-requirement-lifecycle.md`, `model/requirements/requirement-authority-ledger.yaml`, `model/requirements/governance-requirement-catalog.yaml`, `model/requirements/lifecycle-cases/`, `docs/governance/change-requests/GCR-2026-143-hybrid-requirement-lifecycle.md` |
@@ -122,6 +123,10 @@ The foundation documents define the strategic and architectural context for this
 These files are architectural and strategic guardrails. They do not replace approved policy, directive, standards, released baselines, source-document registers, or recorded governance decisions.
 
 ## Source Documents
+
+Use the [source-document dependency map](operations/guides/source-document-dependency-map.md)
+to distinguish effective model inputs, approved sources with unresolved requirement
+decisions, and review or candidate material.
 
 The sanitized source requirement extracts live in:
 

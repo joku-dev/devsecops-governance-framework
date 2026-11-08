@@ -20,6 +20,31 @@ Use these profiles to decide:
 - which validation commands must run
 - whether a new baseline or release candidate is needed
 
+## Accountable Execution
+
+`.agents/review-protocol.yaml` defines the shared review procedure. Roles declare
+an explicit `skill`; the production router reads required validations directly
+from these YAML contracts. `scripts/lib/agent_routing.py` is the implementation;
+the test harness imports it. A changed-path selection is not evidence that a
+model or subagent executed a review.
+
+For cross-domain or governance-behavior work, prepare a private revision-bound
+plan and record the selected roles' outputs, reviewed paths, execution kind,
+executor/provider and actual model if known. One coordinator may apply multiple
+role lenses; describe that as `role_lens`. A separate agent is `subagent`, and a
+human review is `human`. These declarations do not authenticate an identity.
+Specialists review first; Repo Steward accounts for their results last.
+Missing/skipped work, stale inputs and open high/critical findings remain visible.
+The [operator workflow](../operations/agents/how-to-run-agent-review.md)
+explains preparation and completion checks.
+
+Review selection does not authorize parallel implementation. If delegation is
+explicitly authorized, assign disjoint write ownership, tell workers they share
+the checkout and preserve others' edits. Role reviews default to read-only access.
+Only existing human processes may approve sources, canonical requirements,
+blocking modes, releases or protected PRs. The completion checker grants none
+of these authorities and runs no validation command itself.
+
 ## Role Summary
 
 | Role | Primary responsibility | Typical trigger |

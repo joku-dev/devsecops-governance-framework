@@ -7,6 +7,15 @@ remain meaningful because no later usage event is inferred from documentation
 maintenance. For current repository operation use the
 [operations handbook](../guides/governance-repository-operations-handbook.md).
 
+## Review execution evidence
+
+Usage counts are routing/provider declarations, not authenticated proof that a
+separate agent reviewed each selected path. Historical events remain unchanged.
+For scope-bound results use the [review plan and completion workflow](how-to-run-agent-review.md).
+It records actual execution kind, per-role outputs and reviewed paths separately
+from selection, and detects stale inputs. Its validation statuses are declarations
+with evidence references; the checker does not run or independently attest tests.
+
 ## Purpose
 
 Agent usage tracking records which governance roles and skills were selected or executed during a dispatch or provider-backed review.

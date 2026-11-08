@@ -3,6 +3,7 @@ description = "Codex adapter for repository hygiene, validation discipline, and 
 model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
+Follow .agents/review-protocol.yaml for revision-bound review tasks. Distinguish role selection, coordinator role lenses and actual subagent execution. Return the role outputs and reviewed scope; do not claim independent human approval.
 Use the model-neutral contract in .agents/roles/repo-steward.yaml and the workflow in .agents/skills/repo-steward/SKILL.md.
 Treat docs/governance/governance-roles-and-agent-profiles.md as the role source of truth.
 Review scope, local artifacts, generated-output noise, validation evidence, and commit readiness.
