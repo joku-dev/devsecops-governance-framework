@@ -803,3 +803,22 @@ h1 {
 .case-timeline small {color:var(--muted)}
 a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible {outline:3px solid #087d73;outline-offset:4px}
 @media(max-width:900px) {.priority-grid,.reading-grid {grid-template-columns:1fr}.priority-card {padding:18px}.priority-card strong {font-size:30px}}
+
+/* The requirement pilot is an ordered, connected flow; semantics stay textual. */
+.journey-selection ul {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:1rem;list-style:none;padding:0}
+.journey-selection li {border:1px solid var(--border,#ccd4df);border-radius:.65rem;padding:1rem;overflow-wrap:anywhere}
+.journey-selection li span {display:block;margin-top:.6rem;font-size:.85rem}
+.journey-flow {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem;list-style:none;padding:0;margin:1.5rem 0}
+.journey-flow .journey-phase {position:relative;margin:0;padding:1rem;min-width:0;overflow-wrap:anywhere}
+.journey-phase:not(:last-child)::after {content:'→';position:absolute;right:-.85rem;top:1rem;font-size:1.2rem}
+.journey-number {display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border:1px solid currentColor;border-radius:50%;font-size:.9rem}
+.journey-flow h3 {font-size:1rem;line-height:1.5}
+.journey-flow dl {display:block}.journey-flow dt {font-weight:600;margin-top:.8rem}.journey-flow dd {margin:.2rem 0 .6rem}
+.journey-branch {margin:.8rem 0;padding:.6rem;border:1px solid var(--border,#ccd4df);border-radius:.4rem}
+.journey-branch summary {cursor:pointer;overflow-wrap:anywhere}
+.journey-branch code,.journey-branch dd,.journey-intro code {overflow-wrap:anywhere}
+.journey-statement {margin:1rem 0;padding:1rem;border-left:3px solid currentColor;white-space:pre-wrap;overflow-wrap:anywhere}
+.journey-text article {margin:1.5rem 0;padding-top:1rem;border-top:1px solid var(--border,#ccd4df)}
+.journey-text .journey-branch dl {display:block}.journey-text dd {margin:.2rem 0 .8rem;overflow-wrap:anywhere}
+.journey-text:focus,summary:focus-visible {outline:3px solid #356ce0;outline-offset:3px}
+@media(max-width:1100px){.journey-flow{grid-template-columns:1fr}.journey-phase:not(:last-child)::after{content:'↓';right:1rem;top:auto;bottom:-1.25rem}}

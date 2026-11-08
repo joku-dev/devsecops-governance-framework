@@ -1,5 +1,21 @@
 # Technische Funktionsliste des Repositories
 
+## Ergänzung: Anforderungsweg-Pilot (GCR-2026-162)
+
+`scripts/lib/requirement_journey_view.py` ergänzt eine reine, allowlistbasierte
+Projektion von sechs Fällen. `scripts/lib/viewer_app.py` bindet sie additiv als
+`requirement_journeys` in Datenversion 1 ein. Die bestehenden Viewer-Assets
+rendern Hash-Detailrouten, fünf Phasenkarten und eine vollständige Textdarstellung.
+`tests/test_requirement_journey_view.py` prüft exakte Bindungen und Datenlücken;
+`tests/viewer-requirement-journey.test.cjs` prüft DOM und Navigation mit dem
+bestehenden gepinnten jsdom. `.github/workflows/viewer-ui.yml` führt diese Tests
+als separaten Job aus; gebundene Governance-Workflows bleiben unverändert.
+Gegenüber dem Nachtrag GCR-2026-157 und dem zusätzlichen Lifecycle-Modul aus
+GCR-2026-159 ergeben sich **170 Python-Dateien und 32 Workflows** in den dort
+definierten Produktionspfaden; die datierten Ausgangsinventare bleiben erhalten.
+[Bedienung und Nachweisgrenzen](governance-viewer-app.md#einzelne-anforderungswege-pilot-mit-sechs-fallen).
+
+
 ## Nachtrag: robuster OPA-Transport (GCR-2026-157)
 
 `scripts/install_validation_opa.py`, `scripts/opa-download-sources.json` und die
