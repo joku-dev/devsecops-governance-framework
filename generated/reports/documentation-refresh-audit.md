@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #338: fix(ci): verify and cache OPA downloads; prepare CI v2 (`ffad111c5472`)
 
 ## Ergebnis
 
@@ -10,12 +10,10 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.github/workflows/governance-ci-v2.yml`
+- `.github/workflows/publish-docs.yml`
+- `scripts/install_validation_opa.py`
+- `scripts/opa-download-sources.json`
 
 ## Fehlende lokale Markdown-Ziele
 
