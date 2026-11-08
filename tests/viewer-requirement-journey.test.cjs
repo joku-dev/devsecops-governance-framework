@@ -21,7 +21,7 @@ test('all six encoded direct links render five phases and text, without script e
   assert.equal(doc.querySelectorAll('.journey-text article').length,5);
   assert.match(doc.querySelector('.journey-intro').textContent,new RegExp(id));
   assert.equal(doc.querySelectorAll('script').length,0);assert.equal(d.window.PWNED,undefined);
-  if(i<3)assert.match(doc.querySelector('blockquote').textContent,/<script>/);
+  if(i<3)assert.equal(doc.querySelector('blockquote').textContent,cases[i].statement);
   else assert.equal(doc.querySelectorAll('blockquote').length,0);
   if(i===2)assert.equal(doc.querySelectorAll('.journey-flow details').length,2);
   d.window.close();
