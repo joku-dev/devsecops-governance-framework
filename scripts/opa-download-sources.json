@@ -1,0 +1,10 @@
+{
+  "version": "1.18.2",
+  "source": "https://api.github.com/repos/open-policy-agent/opa/releases/tags/v1.18.2",
+  "assets": {
+    "opa_darwin_amd64": 464348285,
+    "opa_darwin_arm64": 464348291,
+    "opa_linux_amd64_static": 464348303,
+    "opa_linux_arm64_static": 464348332
+  }
+}
