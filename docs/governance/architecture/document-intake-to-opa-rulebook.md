@@ -213,9 +213,9 @@ freigegebene Eingangsdokumente für noch nicht migrierte Anforderungen normativ.
 Anforderungen, die menschliches Urteil benötigen, werden durch Reviews,
 Evidenzanforderungen oder Freigaben umgesetzt.
 
-## 1. Eingang und Klassifizierung eines Dokuments
+### 1. Eingang und Klassifizierung eines Dokuments
 
-### 1.1 Ablage
+#### 1.1 Ablage
 
 Ein normatives Eingangsdokument oder ein kontrollierter Requirements-Auszug
 wird unter `docs/governance/source-documents/` abgelegt. Private
@@ -227,7 +227,7 @@ klassifiziert. Dadurch wird verhindert, dass beispielsweise ein Bericht, ein
 Evidenzresultat oder eine erläuternde Dokumentation irrtümlich als normative
 Quelle behandelt wird.
 
-### 1.2 Registrierung
+#### 1.2 Registrierung
 
 Jede Quelle erhält in
 `model/documents/source-document-register.yaml` mindestens:
@@ -244,7 +244,7 @@ Unklare, überlappende oder möglicherweise ersetzende Quellen beginnen als
 Ableitung von Controls, Architekturregeln, OPA-Policies, Schemas, Workflows
 oder Releases.
 
-### 1.3 Intake Review
+#### 1.3 Intake Review
 
 Der Intake erzeugt reproduzierbare Entscheidungsgrundlagen:
 
@@ -260,7 +260,7 @@ Entscheidung wird in einem Governance Change Request unter
 `docs/governance/change-requests/` versioniert. Erst eine freigegebene Quelle
 darf in den Requirement Lifecycle eingehen.
 
-## 2. Autorität während der Mischphase
+### 2. Autorität während der Mischphase
 
 `model/requirements/requirement-authority-ledger.yaml` steuert pro Quelle,
 welche Darstellung normativ ist. Der Speicherort allein ändert keine
@@ -278,7 +278,7 @@ führt `total`, `analyzed`, `decided`, `effective` und `unresolved`. Der Wechsel
 zu `git_authoritative` ist erst erlaubt, wenn die Abdeckung vollständig ist
 und `complete-migration` eine Katalogfreigabe dokumentiert.
 
-## 3. Zerlegung in Requirement Proposals
+### 3. Zerlegung in Requirement Proposals
 
 Für eine freigegebene Dokumentquelle erzeugt `import-source` einen Lifecycle
 Case unter `model/requirements/lifecycle-cases/`. Nur explizit deklarierte Anforderungen,
@@ -309,7 +309,7 @@ Die menschliche Entscheidung enthält Entscheider, Rolle, Begründung,
 Entscheidungsreferenz und die erlaubten Ableitungsarten. Damit werden
 inhaltliche Annahme und technische Verwendung gemeinsam nachvollziehbar.
 
-### Lokale Vorbereitung in der Workbench
+#### Lokale Vorbereitung in der Workbench
 
 Die [Review Workbench](../../operations/guides/governance-review-workbench.md)
 führt durch Aufnahme, Prüfung und Weitergabe. Für registrierte Dokumente kann
@@ -324,7 +324,7 @@ Sie werden separat angezeigt und zählen nicht als heutige Extraktion. Die
 Umstellung auf explizite Deklarationen verwirft keine historischen Entscheidungen
 und erklärt keine offenen Proposals automatisch für genehmigt oder abgelehnt.
 
-## 4. Aktivierung im kanonischen Requirement-Katalog
+### 4. Aktivierung im kanonischen Requirement-Katalog
 
 `activate` schreibt ein freigegebenes Proposal als `GRQ-xxxxxx@revN` nach
 `model/requirements/governance-requirement-catalog.yaml`. Eine aktive Revision
@@ -351,7 +351,7 @@ durchlaufen sie dieselbe Analyse, Entscheidung, Aktivierung und
 Artefaktableitung. Sie benötigen keinen Dokumentmigrations-Ledger, weil sie
 bereits nativ in Git entstehen.
 
-## 5. Vom Requirement zum Governance-Artefakt
+### 5. Vom Requirement zum Governance-Artefakt
 
 Ein aktives GRQ Requirement erzeugt nicht automatisch Code. Zuerst wird
 entschieden, welche Umsetzung fachlich geeignet ist. Mögliche Artefakttypen
@@ -377,7 +377,7 @@ Neuerstellung oder Änderung aus dem aktiven Requirement. Ein Requirement kann
 mehrere Artefakte autorisieren; ein Artefakt kann mehrere Requirements
 umsetzen.
 
-## 6. Ableitung von Controls und OPA-Policies
+### 6. Ableitung von Controls und OPA-Policies
 
 Controls bilden die fachliche Kontrollstruktur, stabile Runtime-IDs,
 Evidenzerwartungen und Maturity-Zuordnung ab. OPA-Policies implementieren nur
@@ -401,7 +401,7 @@ Rego-Datei, stimmt der Hash nicht mehr und die Validierung verlangt eine neue
 Ableitungsentscheidung. Eine bloße Pfadreferenz kann daher keine nachträgliche
 inhaltliche Änderung autorisieren.
 
-## 7. Funktionsweise von OPA zur Laufzeit
+### 7. Funktionsweise von OPA zur Laufzeit
 
 OPA erhält zwei getrennte Eingaben:
 
@@ -445,7 +445,7 @@ OPA selbst erzeugt eine Entscheidung oder Finding-Liste. Der aufrufende
 Workflow entscheidet anhand des freigegebenen Modus, ob dieses Ergebnis nur
 berichtet oder als Blocker behandelt wird.
 
-## 8. Validierungs- und Governance-Gates
+### 8. Validierungs- und Governance-Gates
 
 Die CI schützt die Kette auf mehreren Ebenen:
 
@@ -472,7 +472,7 @@ generiert die Publikationsquellen und Migrationsberichte neu, verlangt einen
 leeren Diff zu eingecheckten Projektionen, validiert die Historie und baut
 HTML-, Word- und PDF-Previews als CI-Artefakt.
 
-## 9. Versionierung und Nachvollziehbarkeit
+### 9. Versionierung und Nachvollziehbarkeit
 
 Eine vollständige Nachweiskette sieht so aus:
 
@@ -499,7 +499,7 @@ den ausgewerteten Commit und die verwendete Baseline. Damit kann später
 beantwortet werden, welche Regelversion aus welcher Anforderung abgeleitet
 wurde und warum sie bei einem bestimmten Lauf zu einem Ergebnis führte.
 
-## 10. Aktueller Implementierungsstand am 9. Oktober 2026
+### 10. Aktueller Implementierungsstand am 9. Oktober 2026
 
 **Historische Momentaufnahme vom 9. Oktober 2026.** Die Zahlen und offenen
 Entscheidungen dieses Abschnitts beschreiben den damaligen Stand. Für spätere
@@ -527,9 +527,9 @@ Wahrheit ist erst erreicht, wenn alle offenen Proposals entschieden, alle
 benötigten Ableitungen bestätigt und die betroffenen Quellen kontrolliert auf
 `git_authoritative` umgestellt wurden.
 
-## 11. Operativer Ablauf für neue Änderungen
+### 11. Operativer Ablauf für neue Änderungen
 
-### Neues externes Dokument
+#### Neues externes Dokument
 
 1. Artefakt klassifizieren und als Kandidat registrieren.
 2. Intake Reports und Delta erzeugen.
@@ -543,7 +543,7 @@ benötigten Ableitungen bestätigt und die betroffenen Quellen kontrolliert auf
 10. Vollständig validieren, per PR reviewen und mergen.
 11. Bei vollständiger Migration die Quelle auf `git_authoritative` setzen.
 
-### Neue Git-native Anforderung
+#### Neue Git-native Anforderung
 
 1. Native Requirement-Quelldatei aus dem Template anlegen.
 2. Lifecycle Case mit `start-native` öffnen.
@@ -553,7 +553,7 @@ benötigten Ableitungen bestätigt und die betroffenen Quellen kontrolliert auf
 6. OPA-Verhalten, Tests und Enforcement-Modus reviewen.
 7. Vollständig validieren und per PR aktivieren.
 
-## Maßgebliche Implementierungsartefakte
+### Maßgebliche Implementierungsartefakte
 
 | Funktion | Pfad |
 |---|---|
