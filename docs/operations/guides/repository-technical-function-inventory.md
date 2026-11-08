@@ -88,10 +88,14 @@ zusätzlich die öffentlichen Viewer-Assets; Modelle, Schemas, Vorlagen und Test
 werden als Verzeichnisse unten eingeordnet.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-Der [konsolidierte Abgleich](../status/repository-documentation-reconciliation-2026-11-07.md) deckt die
-14 offenen Dokumentationsentwürfe ab. Frühere Inventare und Implementierungsnotizen
-bleiben im [Quellstand vor diesem Abgleich](https://github.com/joku-dev/devsecops-governance-framework/blob/ae423f34f75451b70b1ebffc71ea3683e4763c52/docs/operations/guides/repository-technical-function-inventory.md)
-nachlesbar. Deren P2-Fließtextableitung beschreibt nicht das heutige Verhalten.
+### PR #345: feat(viewer): trace six requirement journeys through five phases (`6ce1d66bd139`)
+
+- `.github/workflows/publish-docs.yml`
+- `.github/workflows/viewer-ui.yml`
+- `apps/governance-viewer/app.css`
+- `apps/governance-viewer/app.js`
+- `scripts/lib/requirement_journey_view.py`
+- `scripts/lib/viewer_app.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Python-Skripte und Bibliotheksmodule
