@@ -1,6 +1,6 @@
 # Governance Repository Self-Security Assessment
 
-Observed: `2026-10-11T10:56:35Z`
+Observed: `2026-11-08T11:25:21Z`
 
 ## Executive Assessment
 
