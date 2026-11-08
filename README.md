@@ -21,6 +21,8 @@ guides document intake, explicit requirement review and review-packet handoff.
 Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
 prose is not converted into requirements. Notes prepare human decisions.
 The public Viewer presents reviewed projections read-only.
+The Governance view links registered sources, requirement decisions, effective
+artifact mappings and the OPA inventory under **Anforderung bis OPA**.
 
 The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
 records source commit `ae423f3`, draft coverage and remaining limits.

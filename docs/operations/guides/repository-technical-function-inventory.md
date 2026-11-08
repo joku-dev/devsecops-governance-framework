@@ -50,6 +50,12 @@ Quellstand erhalten. Die neuen Module und der geänderte Einstieg sind:
 Gemeinsames Protokoll: `.agents/review-protocol.yaml`.
 [Bedienung und Aussagegrenzen](../agents/how-to-run-agent-review.md).
 
+## Nachtrag: Requirement-Lifecycle-Viewer (GCR-2026-159)
+
+`scripts/lib/governance_requirement_lifecycle_view.py` projiziert Quellenstatus,
+Lifecycle-Entscheidungen, wirksame Artefaktzuordnungen und das OPA-Inventar lesend.
+Die Projektion belegt keine Implementierung, Freigabe oder Laufzeitdurchsetzung.
+
 ## Gebundener Ausgangskatalog
 
 Inventarabgleich: **7. November 2026**, Quellstand `ae423f34f75451b70b1ebffc71ea3683e4763c52`.
