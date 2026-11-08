@@ -14,16 +14,12 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## Implementation readback — 7 November 2026
+## PR #336: feat(workbench): resumable AXIOM document review workspace (`7a00a13fcb22`)
 
-The local [Review Workbench](docs/operations/guides/governance-review-workbench.md)
-guides document intake, explicit requirement review and review-packet handoff.
-Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
-prose is not converted into requirements. Notes prepare human decisions.
-The public Viewer presents reviewed projections read-only.
-
-The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
-records source commit `ae423f3`, draft coverage and remaining limits.
+- Dokument- und Entwurfsreviews als vollständige Seiten mit Anforderungsliste, Bearbeitung und Originaltext; zugängliche Lesereiter für schmale Ansichten.
+- Hash-Direktlinks, Browsernavigation, erhaltene Sitzungsfilter/-eingaben, Verlustwarnung und konkrete Fortsetzungsaktionen.
+- Getrennte Quellen-, Notiz-, Klärungs- und historische Entscheidungsstände; additive lesende Stale-Diagnosen mit Wiederanlauf.
+- DOM-/HTTP-Regressionen, gepinnte Entwicklungsabhängigkeiten, eigener UI-Testworkflow und aktualisierte Anleitung/Kataloge.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
