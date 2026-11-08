@@ -57,6 +57,8 @@
 .lifecycle-stage { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; background: white; border: 1px solid var(--line); border-radius: 10px; padding: 16px; min-width: 0; }
 .lifecycle-stage-number { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #e8f3f2; color: var(--teal); font-weight: 700; }
 .lifecycle-stage h2 { font-size: 16px; margin: 0; }
+.lifecycle-stage .panel-head { display: grid; justify-content: start; gap: 8px; }
+.lifecycle-stage .badge { white-space: normal; overflow-wrap: anywhere; max-width: 100%; justify-self: start; }
 .lifecycle-stage p { margin: 10px 0 6px; }
 .lifecycle-stage small { color: var(--muted); overflow-wrap: anywhere; }
 .lifecycle-intro { margin-top: 18px; }
