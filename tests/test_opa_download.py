@@ -103,7 +103,7 @@ class OpaDownloadTests(unittest.TestCase):
 
     def test_optional_mirror_keeps_the_same_hash_and_falls_back_on_corruption(self):
         def fetch(url,path,**options):
-            self.calls.append(url);path.write_bytes(b'bad mirror bytes' if url.startswith('https://mirror.example') else PAYLOAD)
+            self.calls.append(url);path.write_bytes(b'bad mirror bytes' if url == 'https://mirror.example/opa/v1.18.2/opa_linux_amd64_static' else PAYLOAD)
         self.assertEqual(self.run_install(fetch=fetch,mirror='https://mirror.example/opa'),'official release')
         self.assertEqual(self.calls[0],'https://mirror.example/opa/v1.18.2/opa_linux_amd64_static')
         for url in ['http://mirror.example','https://name:secret@mirror.example','https://mirror.example/?token=secret','https://mirror.example/#fragment']:
