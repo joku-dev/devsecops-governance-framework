@@ -4,6 +4,7 @@ __pycache__/
 .venv-validation/
 .venv-docs/
 .venv-docs-release/
+.venv-source-document-intake/
 site/
 /build/doc-as-code/
 .local/governance-sources/
@@ -16,3 +17,12 @@ governance/consumer-lifecycle/**/.pending-*
 
 # Viewer presentation data is rebuilt from versioned evidence for Pages/local use.
 /generated/viewer/app/data.json
+
+# Private source-review workspace and publication worktrees.
+.local/governance-workbench/
+
+# Workbench development-only DOM test dependencies
+node_modules/
+
+# Checksum-verified local validation tool cache
+.local/tool-cache/

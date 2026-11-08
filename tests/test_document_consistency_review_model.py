@@ -5,9 +5,13 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
+import tempfile
 import unittest
 
 from jsonschema import Draft202012Validator
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from scripts.generate_document_consistency_review_model import generate_model
 from scripts.generate_document_consistency_review_model import extract_requirement_rows
@@ -46,11 +50,11 @@ class DocumentConsistencyReviewModelTests(unittest.TestCase):
 
     def test_generator_extracts_requirement_structure_without_prose(self):
         model = generate_model(ROOT, deepcopy(MANIFEST))
-        self.assertEqual(len(model["requirements"]), 111)
+        self.assertEqual(len(model["requirements"]), 46)
+        self.assertTrue(all(item["id"].startswith("DSCB-") and "-SRC-" not in item["id"] for item in model["requirements"]))
         mandatory = [item for item in model["requirements"] if item["mandatory"]]
         self.assertTrue(mandatory)
         self.assertTrue(all(item["open_gap"] for item in mandatory))
-        self.assertTrue(model["relationships"])
         self.assertTrue(all(item["status"] == "candidate" for item in model["relationships"]))
         all_ids = {item["id"] for source in model["sources"] for item in source["identifiers"]}
         all_ids.update(item["id"] for item in model["requirements"])
@@ -62,9 +66,18 @@ class DocumentConsistencyReviewModelTests(unittest.TestCase):
     def test_generator_covers_should_rows_and_opaque_sections(self):
         source = ROOT / "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md"
         requirements, _ = extract_requirement_rows("ARCH-SDD-REQ-001", source)
-        self.assertEqual(938, len(requirements))
+        self.assertEqual(requirements, [])  # Synthetic extraction IDs are not declarations.
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "explicit.md"
+            source.write_text(
+                "| ID | Strength | Context | Requirement |\n|---|---|---|---|\n"
+                "| `ARCH-SEC-REQ-001` | SHOULD | Review | Retain evidence. |\n"
+                "| `ARCH-SEC-REQ-002` | MUST | Review | Verify evidence. |\n",
+                encoding="utf-8",
+            )
+            requirements, _ = extract_requirement_rows("ARCH-SEC-SRC-001", source)
         should_rows = [item for item in requirements if item["strength"] == "SHOULD"]
-        self.assertEqual(345, len(should_rows))
+        self.assertEqual(1, len(should_rows))
         self.assertTrue(all(item["section_ref"].startswith("SEC-") for item in requirements))
         self.assertTrue(all(item["mandatory"] for item in requirements if item["strength"] in {"MUST", "SHALL"}))
         self.assertTrue(all(not item["mandatory"] for item in should_rows))

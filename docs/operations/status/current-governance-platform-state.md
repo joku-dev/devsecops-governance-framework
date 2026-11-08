@@ -2,12 +2,31 @@
 
 ## Observation Scope
 
-Documentation observation: **9 October 2026**, source commit
-`cf3c0344f65d4946fc5a205a6235edc1917b437e`. This is a dated read-only status
+Implementation/documentation observation: **7 November 2026**, source commit
+`ae423f34f75451b70b1ebffc71ea3683e4763c52`. This is a dated read-only status
 update, not a new compliance evaluation. Older sections retain their source
 dates and are reference observations, not claims that every source is current.
 
-## Live Readback, 9 October 2026
+## Implementation Readback, 7 November 2026
+
+This readback inspects the merged repository and its accepted indexes. It does
+not query new consumer runs, intake new evidence or grant governance decisions.
+
+| Area | Observation at `ae423f3` | Boundary |
+|---|---|---|
+| Document intake | Local guided Workbench, explicit-declaration extraction, item review, separate history and ZIP handoff delivered through PRs #326/#331 | Notes remain proposal-only; no source or requirement approval follows from progress |
+| Source register | 15 registered sources: 6 approved, 6 candidate, 3 review | A source approval does not approve every extracted requirement |
+| DSCB | 46 current explicit declarations; 55 retained lifecycle proposals, including 46 activated decisions and 9 open proposals | Current extraction and retained lifecycle coverage are separate |
+| Consumer DevSecOps | Accepted ha-CPsWMS run `36997125273`, `pass`, generated `2026-10-02T10:45:37Z`, pin `l1-baseline-v1.1.3` | Retained indexed result, not a fresh November evaluation |
+| Consumer architecture | Accepted ha-CPsWMS run `36997124090`, `pass`, generated `2026-10-02T10:44:34Z`, pin `architecture-baseline-l1-v0.1.0` | Retained indexed result; architecture remains report-only |
+| Portfolio | Versioned portfolio report records all 3 repositories as stale or missing | Review target selection is advisory; no consumer rerun was triggered by this documentation task |
+| Publications | GitHub Releases list v0.2.0 and v0.1.0; remote baseline tags also include v1.2.0/v1.2.1 | v0.3.0 preparation is present, but its remote tag and GitHub Release are absent |
+
+See the [reconciliation and draft coverage](repository-documentation-reconciliation-2026-11-07.md)
+and [release index](../../releases/index.md). The following 9 October and older
+readbacks retain their original dates, open-work lists and source bindings.
+
+## Historical Live Readback, 9 October 2026
 
 Read-only GitHub observation at `2026-10-09T07:41Z`; mainline source commit
 `cf3c0344f65d4946fc5a205a6235edc1917b437e` (PR #246 merge).

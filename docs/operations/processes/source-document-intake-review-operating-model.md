@@ -82,6 +82,33 @@ The Intake Agent prepares these review inputs:
 - derivation guardrail status
 - validation commands and observed validation results
 
+### Requirement Identification And Intake Priority
+
+Only explicitly labelled requirement declarations are admitted, for example
+`[DSCB-L1-REQ-001] All software components SHALL be traceable ...`.
+The same rule covers L2, L3, GOV and other requirement prefixes. A declaration
+can use a labelled paragraph/list item, a requirement-ID heading followed by its
+statement, or an ID/Requirement table. Markdown, DOCX and text-based PDF use
+the same declaration parser.
+
+Do not infer requirements from MUST/SHALL/SHOULD, narrative text, headings,
+version history or context. A reference to an existing requirement is not a new
+declaration. Synthetic extraction IDs such as `DSCB-STD-SRC-001-REQ-001` are
+locators only; a normalized row needs an explicit requirement label in its
+statement. Traceability mapping tables are not requirement definitions.
+
+| Intake class | Rule | Priority |
+|---|---|---|
+| `author_identified` | Explicit declaration and verified author-provided identifier provenance in the register. | `p1` |
+| `explicit_identifier` | Explicit declaration; author-provided provenance has not been verified. | `unassigned` |
+| Unlabelled prose / synthetic row ID / reference | Excluded from requirement extraction. | None |
+
+An identifier does not approve its source or authorize derivation. Existing
+source authority and human-review requirements continue to apply. Historical
+`inferred_candidate` items, lifecycle proposals and recorded decisions are not
+automatically deleted or reclassified by this extraction change. The legacy
+P2 report fields remain zero; no new prose candidates are produced.
+
 The primary reports are:
 
 - `generated/reports/source-document-intake-status.md`
@@ -158,6 +185,12 @@ When ADO architecture source material is involved, also refresh:
 ```bash
 python3 scripts/generate_architecture_source_replacement_assessment.py
 ```
+
+When identifying requirement content, extract only explicit declarations.
+Verified author-provided identifiers receive `author_identified` / `p1`;
+otherwise use `explicit_identifier` / `unassigned`. Preserve the source
+location. Do not derive requirements from prose or synthetic extraction IDs.
+Source approval and the human review decision remain separate.
 
 ### 4. Hold Human Review
 

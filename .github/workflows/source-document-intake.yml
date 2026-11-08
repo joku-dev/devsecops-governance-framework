@@ -1,0 +1,58 @@
+name: Source Document Intake
+
+on:
+  pull_request:
+    paths:
+      - "docs/governance/source-documents/**"
+      - "model/documents/source-document-register.yaml"
+      - "model/requirements/requirement-authority-ledger.yaml"
+      - "model/requirements/lifecycle-cases/**"
+      - "status/document-consistency-public-projection.json"
+      - "scripts/lib/source_document_text.py"
+      - "scripts/generate_source_document_*.py"
+      - "scripts/validate_document_consistency_review.py"
+      - "tests/test_source_document_text.py"
+      - "requirements-source-document-intake.lock"
+      - "schemas/source-document-process-status.schema.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract-review-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: Install validation and format extraction dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-validation.txt
+          python -m pip install --require-hashes -r requirements-source-document-intake.lock
+
+      - name: Test document extraction
+        run: python -m unittest tests/test_source_document_text.py
+
+      - name: Generate intake process projection
+        run: |
+          python scripts/generate_source_document_requirement_delta.py
+          python scripts/generate_source_document_process_status.py
+
+      - name: Validate process report schema
+        run: |
+          python - <<'PY'
+          import json
+          from jsonschema import Draft202012Validator
+          with open("schemas/source-document-process-status.schema.json", encoding="utf-8") as schema_file:
+              schema = json.load(schema_file)
+          with open("generated/reports/source-document-process-status.json", encoding="utf-8") as report_file:
+              report = json.load(report_file)
+          Draft202012Validator(schema).validate(report)
+          PY

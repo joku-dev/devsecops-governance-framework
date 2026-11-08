@@ -4,7 +4,7 @@ Status: **planning baseline; implementation and compliance not asserted**
 Basis: approved [PRA source](../../governance/source-documents/PRA-STD-SRC-001.requirements.md)
 and [decision GCR-2026-147](../../governance/change-requests/GCR-2026-147-pra-first-wave-decision.md); Golden Path direction
 confirmed by the maintainer on 10 October 2026.
-Change classification: [GCR-2026-148](../../governance/change-requests/GCR-2026-148-golden-path-pra-capability-workpackage.md).
+Change classification: [GCR-2026-158](../../governance/change-requests/GCR-2026-158-golden-path-pra-capability-workpackage.md).
 
 The approved recommendation is maintained in
 [`PRA-2026-001`](../../governance/review-packets/PRA-2026-001/recommendation.md).

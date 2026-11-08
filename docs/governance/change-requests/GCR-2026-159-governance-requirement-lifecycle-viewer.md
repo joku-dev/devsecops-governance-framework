@@ -1,4 +1,4 @@
-# GCR-2026-149: Governance Requirement Lifecycle Viewer
+# GCR-2026-159: Governance Requirement Lifecycle Viewer
 
 ## Summary
 
@@ -40,7 +40,7 @@ validation snapshot is stored in the viewer data; this is shown as unrecorded.
 
 - Creating or changing requirement decisions, lifecycle cases, controls,
   platform capabilities, effective mappings, evidence contracts, OPA policies,
-  tests, enforcement, workflows, releases, or baselines.
+  enforcement, workflows, releases, or baselines.
 - Claiming that an effective mapping proves deployment in a program.
 - Claiming that an OPA policy file or mapping proves a current successful check
   or runtime enforcement.
@@ -61,3 +61,9 @@ validation snapshot is stored in the viewer data; this is shown as unrecorded.
 - [x] Run `git diff --check` and review generated-output scope.
 - [x] Run repository governance validation; `scripts/validate_governance_repo.py`
   passed. Strict MkDocs build also passed.
+
+Reconciled with current main on 8 November 2026. Duplicate requirement references
+in one effective artifact entry are counted once per source. Added regressions
+for missing inputs, candidate visibility, open decisions, runtime separation,
+input immutability and inconsistent migration data. Full pinned validation:
+861 tests passed; strict MkDocs and demo generation passed.

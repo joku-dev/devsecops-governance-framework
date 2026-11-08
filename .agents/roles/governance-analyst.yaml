@@ -1,5 +1,6 @@
 schema_version: 1.0.0
 id: governance-analyst
+skill: governance-analysis
 name: Governance Analyst Agent
 description: Translate governance intent into structured requirements and affected artifacts.
 source_of_truth: docs/governance/governance-roles-and-agent-profiles.md

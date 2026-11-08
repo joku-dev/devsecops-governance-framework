@@ -1,0 +1,86 @@
+# Versioned successor under review; the accepted governance-ci.yml remains unchanged.
+name: Governance CI v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+jobs:
+  validate-and-report-v2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: Set up verified OPA
+        uses: ./.github/actions/setup-opa-verified
+        with:
+          destination: .venv-validation/bin/opa
+          mirror: ${{ vars.AXIOM_OPA_MIRROR_URL }}
+
+      - name: Bootstrap preserved validation environment
+        run: |
+          ./scripts/bootstrap_validation_env.sh
+          echo "$PWD/.venv-validation/bin" >> "$GITHUB_PATH"
+          .venv-validation/bin/python -m pip install --require-hashes -r requirements-docs.lock
+
+      - name: Validate repository model
+        run: python3 scripts/validate_governance_repo.py
+
+      - name: Validate accepted lifecycle history
+        if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LIFECYCLE_EVENT: ${{ github.event_name }}
+          LIFECYCLE_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ "$LIFECYCLE_EVENT" = "workflow_dispatch" ]; then
+            LIFECYCLE_BASE_SHA="$(git rev-parse refs/remotes/origin/main)"
+          fi
+          if [ "$LIFECYCLE_EVENT" = "pull_request" ] || [ "$LIFECYCLE_EVENT" = "workflow_dispatch" ]; then
+            python3 scripts/validate_governance_lifecycle_ledger.py --base-ref "$LIFECYCLE_BASE_SHA" --verify-new-provider
+          else
+            python3 scripts/validate_governance_lifecycle_ledger.py --base-ref "$LIFECYCLE_BASE_SHA"
+          fi
+
+      - name: Run pinned validation and regression tests
+        run: ./scripts/validate_all.sh
+
+      - name: Generate governance artifacts
+        run: |
+          python3 scripts/generate_traceability_csv.py
+          python3 scripts/generate_document_control_matrix.py
+          python3 scripts/generate_open_gap_report.py
+          python3 scripts/render_governance_documents.py
+          python3 scripts/generate_governance_graph.py
+          python3 scripts/generate_status_viewer.py
+
+      - name: Build docs site
+        run: mkdocs build --strict
+
+      - name: Upload generated artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: governance-reports-v2
+          path: |
+            generated/xlsx/
+            generated/reports/
+            generated/documents/
+            generated/graph/
+            generated/viewer/

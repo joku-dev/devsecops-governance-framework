@@ -35,15 +35,45 @@ class SourceDocumentRequirementDeltaTests(unittest.TestCase):
         self.assertEqual(payload["decision"]["stricter_rules_enabled"], False)
         self.assertEqual(payload["summary"]["replacement_pairs"], 2)
 
-        pairs = {
-            (pair["candidate_id"], pair["target_id"]): pair
-            for pair in payload["requirement_delta_pairs"]
-        }
-        pair = pairs[("ARCH-GOV-REQ-001", "ARCH-SDD-REQ-001")]
-        self.assertGreater(pair["summary"]["candidate_requirements"], 0)
-        self.assertGreater(pair["summary"]["target_requirements"], 0)
-        self.assertGreater(pair["summary"]["differences_requiring_review"], 0)
-        self.assertIn("changed", pair["summary"]["status_counts"])
-        self.assertIn("removed", pair["summary"]["status_counts"])
-        self.assertIn(("DEVSECOPS-POL-CAND-002", "DEVSECOPS-POL-REQ-001"), pairs)
-        self.assertIn("Source Document Requirement Delta", output_md.read_text(encoding="utf-8"))
+        intake_inventory = payload["requirement_intake_inventory"]
+        inventory_summary = intake_inventory["summary"]
+        self.assertEqual(inventory_summary["registered_source_documents"], 15)
+        self.assertEqual(inventory_summary["scanned_source_documents"], 14)
+        self.assertEqual(inventory_summary["skipped_source_documents"], 1)
+        self.assertEqual(
+            inventory_summary["identification_counts"]["author_identified"],
+            0,
+        )
+        self.assertEqual(
+            inventory_summary["identification_counts"]["extraction_row_id"],
+            sum(
+                source["identification_counts"]["extraction_row_id"]
+                for source in intake_inventory["sources"]
+            ),
+        )
+        self.assertEqual(
+            inventory_summary["identification_counts"]["inferred_candidate"],
+            len(intake_inventory["inferred_candidates"]),
+        )
+        self.assertEqual(inventory_summary["inferred_candidate_count"], 0)
+        self.assertEqual(intake_inventory["inferred_candidates"], [])
+        self.assertEqual(inventory_summary["extraction_mode"], "explicit_identifiers_only")
+        self.assertEqual(inventory_summary["extraction_row_id_count"], 0)
+        self.assertEqual(inventory_summary["explicit_identifier_count"], 46)
+        sources = {source["source_id"]: source for source in intake_inventory["sources"]}
+        self.assertEqual(sources["DSCB-STD-REQ-001"]["identification_counts"]["explicit_identifier"], 46)
+        self.assertEqual(sources["PRA-STD-REQ-001"]["identification_counts"]["explicit_identifier"], 0)
+        self.assertEqual(len(payload["requirement_delta_pairs"]), 2)
+        for pair in payload["requirement_delta_pairs"]:
+            # Neither replacement pair contains explicit declarations. An empty
+            # comparison must not revive the former keyword-based extraction.
+            self.assertEqual(pair["summary"]["candidate_requirements"], 0)
+            self.assertEqual(pair["summary"]["target_requirements"], 0)
+            self.assertEqual(pair["deltas"], [])
+        markdown = output_md.read_text(encoding="utf-8")
+        self.assertIn("Source Document Requirement Delta", markdown)
+        self.assertNotIn("inferred_candidate (P2)", markdown)
+        self.assertIn("## Requirement Intake Identification", markdown)
+        self.assertIn("explicit_identifiers_only", markdown)
+        self.assertIn("Confirmed source-author identifiers (P1): `0`", markdown)
+        self.assertIn("Explicit requirement identifiers with unverified origin: `46`", markdown)

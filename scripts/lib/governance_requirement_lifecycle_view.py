@@ -1,6 +1,6 @@
 """Read-only lifecycle projection from registered governance artifacts."""
 
-from collections import Counter, defaultdict
+from collections import Counter
 import json
 from pathlib import Path
 
@@ -41,10 +41,6 @@ def project(root: Path) -> dict:
         item for item in artifact_register.get("entries", [])
         if item.get("decision", {}).get("status") == "effective"
     ]
-    source_mappings: dict[str, list[dict]] = defaultdict(list)
-    for item in effective_entries:
-        for source_ref in item.get("source_requirement_refs", []):
-            source_mappings[source_ref].append(item)
 
     cases = {}
     case_dir = root / "model/requirements/lifecycle-cases"
@@ -54,7 +50,6 @@ def project(root: Path) -> dict:
 
     rows = []
     totals = Counter()
-    implementations = Counter()
     opa_paths = set()
     opa_enforcement = Counter()
     for source in sources:
@@ -98,9 +93,8 @@ def project(root: Path) -> dict:
 
             source_prefix = source_id.replace("-REQ-001", "-SRC-001") + "-REQ-"
             mappings = [
-                entry for ref, entries in source_mappings.items()
-                if ref.startswith(source_prefix)
-                for entry in entries
+                entry for entry in effective_entries
+                if any(ref.startswith(source_prefix) for ref in entry.get("source_requirement_refs", []))
             ]
             by_type = Counter(item.get("artifact", {}).get("type", "unknown") for item in mappings)
             row["effective_mappings"] = len(mappings)
@@ -120,7 +114,6 @@ def project(root: Path) -> dict:
                 "open": row["open"],
                 "activated": row["activated"],
             })
-            implementations.update(by_type)
             row["next_step"] = (
                 "Offene fachliche Entscheidungen bearbeiten" if row["open"]
                 else "Umsetzung und Nachweise prüfen" if row["activated"]
@@ -156,7 +149,9 @@ def project(root: Path) -> dict:
         },
         "opa_summary": {
             "policy_files_present": len(policy_files),
-            "effective_mapping_entries": implementations.get("policies", 0),
+            "effective_mapping_entries": sum(
+                entry.get("artifact", {}).get("type") == "policies" for entry in effective_entries
+            ),
             "distinct_mapped_policy_files": len(opa_paths),
             "enforcement_counts": dict(sorted(opa_enforcement.items())),
             "latest_validation": "not_recorded_in_viewer_data",

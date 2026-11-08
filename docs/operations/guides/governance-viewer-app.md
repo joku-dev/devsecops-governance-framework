@@ -74,7 +74,7 @@ und Quellen in Review werden nicht als freigegebene Ableitungsgrundlage
 behandelt. Entscheidungen, Umsetzung, OPA-Validierung und Runtime Enforcement
 bleiben getrennte Zustände. Da kein letzter OPA-Prüflauf im Viewer-Datenmodell
 gespeichert ist, wird er ausdrücklich als nicht erfasst angezeigt. Die Änderung
-ist durch [GCR-2026-149](../../governance/change-requests/GCR-2026-149-governance-requirement-lifecycle-viewer.md)
+ist durch [GCR-2026-159](../../governance/change-requests/GCR-2026-159-governance-requirement-lifecycle-viewer.md)
 klassifiziert.
 
 Die frühere Gesamtansicht bleibt als Rückfallansicht unter ihrem bisherigen Pfad

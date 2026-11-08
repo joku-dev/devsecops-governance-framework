@@ -44,6 +44,7 @@ being promoted into `docs/governance/source-documents/`.
 - Intake status report: `generated/reports/source-document-intake-status.md`
 - Intake review briefs: `generated/reports/source-document-intake-review-briefs.md`
 - Requirement delta report: `generated/reports/source-document-requirement-delta.md`
+- End-to-end process status: `generated/reports/source-document-process-status.md`
 
 ## Non-Source Change Classification
 
@@ -170,19 +171,65 @@ The generator writes:
 - `generated/reports/source-document-requirement-delta.json`
 - `generated/reports/source-document-requirement-delta.md`
 
-The report extracts normative-looking statements from the candidate and current
-source, then classifies them as:
+The report extracts only explicitly labelled requirement declarations, such as
+`DSCB-L1-REQ-001`, and compares them as `added`, `changed`, `removed` or
+`equivalent`. Matching explicit IDs pair declarations even when wording changes.
 
-- `added`
-- `changed`
-- `removed`
-- `equivalent`
+No requirement is inferred from prose or modal words such as SHALL or MUST.
+Synthetic normalized extraction row IDs, reference-only mentions, table
+headings and version history do not create requirements. The shared parser is
+also used by the Workbench, new source-lifecycle imports and new DCR structural
+inventories. Existing source files, historical lifecycle decisions and retained
+DCR snapshots are preserved.
 
-This helps reviewers see where requirements, review gates, evidence
-expectations, quality markers or runtime-governance concerns may differ. The
-classification is review support only. It does not replace architecture-owner
-judgment and does not change source status, lineage, runtime governance,
-policies, schemas or releases.
+`author_identified` / `p1` still requires verified author-provided identifier
+provenance in the source register. Other explicit identifiers are classified as
+`explicit_identifier` / `unassigned`; source authority and normative approval
+remain separate. Legacy prose-candidate counters are retained as zero for
+report compatibility. An empty extraction means no supported explicit
+declarations were found; it is not proof of completeness or consistency.
+
+## End-to-End Target Process
+
+Run the integrated, read-only projection after updating the source register,
+extraction, lifecycle decisions, or consistency review:
+
+```bash
+python3 scripts/generate_source_document_requirement_delta.py
+python3 scripts/generate_source_document_process_status.py
+```
+
+The generator produces `generated/reports/source-document-process-status.json`
+and `.md`. It joins the existing source intake report, requirement extraction,
+existing lifecycle cases, the explicit-only intake inventory, Document Consistency Review (DCR),
+and requirement-to-artifact links. The viewer presents all phases and their
+current status together.
+
+| Phase | Target behavior | Review authority |
+|---|---|---|
+| 1. Receive and register | Register each Markdown, PDF, or DOCX source, its version, owner, status, provenance and hashes. Candidate sources remain non-deriving. | Source owner / intake reviewer |
+| 2. Extract and classify | Preserve source locations; admit explicit declarations only. Verify author provenance separately; do not generate requirements from prose or synthetic row IDs. | Intake tooling prepares; reviewer checks extraction |
+| 3. P1 lifecycle | Resolve clearly identified requirements first, including new, changed, superseded, retired and still-open decisions. | Requirement owner |
+| 4. Prose inference disabled | Unlabelled text stays available as source context and creates no requirement candidates. | Intake tooling |
+| 5. Consistency review | Compare the exact approved source set. Structural checks and semantic review coverage are reported separately. A partial, stale or report-only review cannot establish contradiction-free status. | Architecture / DevSecOps reviewers |
+| 6. Decision proposals | Record each proposed contradiction or lifecycle ambiguity with evidence, impacted sources and explicit decision options. No proposal is silently resolved by extraction. | Named decision authority |
+| 7. Versioned baseline | Hash the exact approved-source set and bind it to completed lifecycle and exhaustive consistency evidence. Record approval as a versioned decision artifact conforming to `schemas/authorized-source-baseline.schema.json`. | Authorized human approver |
+| 8. Governance implementation | Derive controls, platform requirements, architecture markers, schemas and OPA behavior only from requirements authorized by the recorded source and requirement decisions. | Domain owner and release process |
+
+Markdown and DOCX extraction are built in. Text-based PDF extraction is
+available through the optional pinned environment created by
+`scripts/bootstrap_source_document_intake_env.sh`. Scanned PDFs need OCR before
+they can pass extraction; DOCX comments and tracked changes are surfaced as
+review warnings. Extraction warnings block a clean consistency result. The
+pipeline does not call an external semantic provider automatically.
+
+The process status report is a readiness projection, not the baseline approval
+record. It hashes the current authorized source set and lists blockers. A
+baseline is not approved until a human records the matching hash, complete
+requirement lifecycle review, exact-scope consistency review with zero open
+findings, reviewer identity, date and decision record in a versioned baseline
+artifact. A DCR operational rollout decision is independent from source
+baseline approval.
 
 ## Review Rules
 
@@ -199,9 +246,9 @@ policies, schemas or releases.
 
 ## Validation
 
-The repository validator now checks that the intake status report can be
-generated, that review briefs stay decision-support-only, and that requirement
-deltas stay review-support-only:
+The repository validator checks that intake and end-to-end status reports can
+be generated, schemas match, review briefs stay decision-support-only, and
+requirement deltas stay review-support-only:
 
 ```bash
 python3 scripts/validate_governance_repo.py

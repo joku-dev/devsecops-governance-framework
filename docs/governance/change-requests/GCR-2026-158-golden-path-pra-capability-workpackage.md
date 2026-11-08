@@ -1,4 +1,4 @@
-# GCR-2026-148: Golden Path PRA capability workpackage
+# GCR-2026-158: Golden Path PRA capability workpackage
 
 ## Summary
 
@@ -63,6 +63,10 @@ platform mappings remain subject to a new versioned decision based on evidence.
 
 ## Validation
 
-- [ ] Review the 18-row mapping against the approved PRA source and GCR-2026-147.
-- [ ] Build documentation with strict MkDocs validation.
-- [ ] Run repository documentation/governance validation before merge.
+- [x] Review the 18-row mapping against the approved PRA source and GCR-2026-147.
+- [x] Build documentation with strict MkDocs validation.
+- [x] Run repository documentation/governance validation before merge.
+
+Reconciled with current main on 8 November 2026. The 12 partial and six
+not-confirmed entries match the accepted PRA recommendation; no deferred
+requirement is activated. Full pinned validation: 861 tests; strict MkDocs passed.

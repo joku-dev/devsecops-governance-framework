@@ -250,6 +250,15 @@ def validate_model(root: Path, manifest: dict, model: dict) -> dict:
             freshness.append(f"{source_id}: current source bytes differ from the reviewed snapshot")
     rules.append(_rule("DCR-009", "fail" if freshness else "pass", freshness + snapshot_notes))
 
+    # DCR-010: every source was extracted without known loss or unresolved
+    # authoring markup. OCR gaps and tracked DOCX revisions remain open review
+    # conditions and cannot produce a clean baseline assessment.
+    extraction_gaps = []
+    for source in model["sources"]:
+        for warning in source.get("extraction_warnings", []):
+            extraction_gaps.append(f"{source['id']}: {warning}")
+    rules.append(_rule("DCR-010", "fail" if extraction_gaps else "pass", extraction_gaps))
+
     statuses = [item["status"] for item in rules]
     overall = "fail" if "fail" in statuses else "partial" if "not_in_scope" in statuses else "pass"
     return {
@@ -262,6 +271,7 @@ def validate_model(root: Path, manifest: dict, model: dict) -> dict:
         "limitations": [
             "Structural checks do not prove semantic consistency, completeness, implementation, or compliance.",
             "not_in_scope rules remain open for a later structured governance model.",
+            "Known conversion gaps, tracked DOCX revisions, comments, or OCR-required PDF pages block a clean structural result.",
             "Owner metadata is review routing and does not confirm source authority.",
         ],
     }

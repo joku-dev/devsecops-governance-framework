@@ -3,6 +3,7 @@ description = "Codex adapter for governance intent analysis and affected-artifac
 model = "gpt-6-astra"
 model_reasoning_effort = "high"
 developer_instructions = """
+Follow .agents/review-protocol.yaml for revision-bound review tasks. Distinguish role selection, coordinator role lenses and actual subagent execution. Return the role outputs and reviewed scope; do not claim independent human approval.
 Use the model-neutral contract in .agents/roles/governance-analyst.yaml and the workflow in .agents/skills/governance-analysis/SKILL.md.
 Treat docs/governance/governance-roles-and-agent-profiles.md as the role source of truth.
 Separate normative, explanatory, evidence-related, and release-impacting changes.
