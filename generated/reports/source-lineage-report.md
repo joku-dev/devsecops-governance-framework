@@ -1,6 +1,6 @@
 # Source Lineage Report
 
-Generated: `2026-10-11T11:20:42Z`
+Generated: `2026-11-08T14:17:55Z`
 
 ## Summary
 
@@ -22,11 +22,11 @@ Intake and impact reports are shared register-wide outputs. They are listed sepa
 | `ARCH-GOV-REQ-001` | `candidate` | `docs/governance/source-documents/ARCH-GOV-SRC-002.requirements.md` | `true` | `0` |
 | `ARCH-PA-REQ-001` | `approved` | `docs/governance/source-documents/ARCH-PA-SRC-001.requirements.md` | `true` | `0` |
 | `ARCH-SA-REQ-001` | `approved` | `docs/governance/source-documents/ARCH-SA-SRC-001.requirements.md` | `true` | `0` |
-| `ARCH-SDD-REQ-001` | `review` | `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md` | `true` | `20` |
+| `ARCH-SDD-REQ-001` | `approved` | `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md` | `true` | `20` |
 | `ARCH-TPL-REQ-001` | `approved` | `docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md` | `true` | `0` |
 | `CISO-REQ-SRC-001` | `candidate` | `docs/governance/source-documents/CISO-REQ-SRC-001.candidate-intake.md` | `true` | `0` |
-| `DEVSECOPS-DIR-REQ-001` | `review` | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `2` |
-| `DEVSECOPS-POL-REQ-001` | `review` | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `2` |
+| `DEVSECOPS-DIR-REQ-001` | `approved` | `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md` | `true` | `2` |
+| `DEVSECOPS-POL-REQ-001` | `approved` | `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md` | `true` | `2` |
 | `DSCB-STD-REQ-001` | `approved` | `docs/governance/source-documents/DSCB-STD-SRC-001.requirements.md` | `true` | `88` |
 | `DEVSECOPS-POL-CAND-002` | `candidate` | `docs/governance/source-documents/DevSecOps_Policy_Review_Integrated_v2_CHANGE_MARKED.md` | `true` | `0` |
 | `TOOLCHAIN-ARCH-CAND-001` | `candidate` | `docs/governance/source-documents/Enterprise_SDLC_Toolchain_Reference_Architecture_v0.3.md` | `true` | `0` |

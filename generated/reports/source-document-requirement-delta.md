@@ -1,6 +1,6 @@
 # Source Document Requirement Delta
 
-Generated: `2026-11-06T15:53:41Z`
+Generated: `2026-11-08T14:17:54Z`
 
 ## Decision State
 
@@ -41,17 +41,16 @@ Counts are per source document. Only labelled requirement declarations are inclu
 |---|---:|---:|
 | `approved` | `0` | `46` |
 | `candidate` | `0` | `0` |
-| `review` | `0` | `0` |
 
 ### Counts By Source Document
 
 | Source ID | Source status | Confirmed author IDs / P1 | Explicit IDs / unverified | Scanned |
 |---|---|---:|---:|---|
-| `DEVSECOPS-POL-REQ-001` | `review` | `0` | `0` | `true` |
-| `DEVSECOPS-DIR-REQ-001` | `review` | `0` | `0` | `true` |
+| `DEVSECOPS-POL-REQ-001` | `approved` | `0` | `0` | `true` |
+| `DEVSECOPS-DIR-REQ-001` | `approved` | `0` | `0` | `true` |
 | `DSCB-STD-REQ-001` | `approved` | `0` | `46` | `true` |
 | `PRA-STD-REQ-001` | `approved` | `0` | `0` | `true` |
-| `ARCH-SDD-REQ-001` | `review` | `0` | `0` | `true` |
+| `ARCH-SDD-REQ-001` | `approved` | `0` | `0` | `true` |
 | `ARCH-TPL-REQ-001` | `approved` | `0` | `0` | `true` |
 | `ARCH-EA-REQ-001` | `approved` | `0` | `0` | `true` |
 | `ARCH-SA-REQ-001` | `approved` | `0` | `0` | `true` |

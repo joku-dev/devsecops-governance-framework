@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-11T11:20:42Z",
+  "generated_at": "2026-11-08T14:17:55Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json"
@@ -17,9 +17,8 @@
       "policy": 2
     },
     "statuses": {
-      "approved": 6,
-      "candidate": 6,
-      "review": 3
+      "approved": 9,
+      "candidate": 6
     },
     "release_considerations": {
       "baseline_release_review": 2,
@@ -52,7 +51,7 @@
     {
       "id": "DEVSECOPS-POL-REQ-001",
       "title": "DevSecOps Policy Requirements Extract",
-      "status": "review",
+      "status": "approved",
       "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
       "owner": "governance-owners",
       "version": "requirements-only-sanitized",
@@ -91,7 +90,7 @@
     {
       "id": "DEVSECOPS-DIR-REQ-001",
       "title": "DevSecOps Directive Requirements Extract",
-      "status": "review",
+      "status": "approved",
       "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
       "owner": "governance-owners",
       "version": "requirements-only-sanitized",
@@ -236,7 +235,7 @@
     {
       "id": "ARCH-SDD-REQ-001",
       "title": "Integrated SDD Architecture Governance Requirements Extract",
-      "status": "review",
+      "status": "approved",
       "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
       "owner": "architecture-owners",
       "version": "requirements-only-sanitized",

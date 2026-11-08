@@ -42,7 +42,8 @@ class SourceDocumentIntakeReviewBriefTests(unittest.TestCase):
             brief["source_document"]["id"]: brief
             for brief in payload["review_briefs"]
         }
-        self.assertIn("ARCH-SDD-REQ-001", briefs_by_source)
+        for source_id in ("ARCH-SDD-REQ-001", "DEVSECOPS-POL-REQ-001", "DEVSECOPS-DIR-REQ-001"):
+            self.assertNotIn(source_id, briefs_by_source)
         self.assertIn("CISO-REQ-SRC-001", briefs_by_source)
         self.assertIn("ARCH-GOV-REQ-001", briefs_by_source)
         replacement_brief = briefs_by_source["ARCH-GOV-REQ-001"]

@@ -3,7 +3,7 @@ requirement_identifier_origin_default: unverified
 documents:
   - id: DEVSECOPS-POL-REQ-001
     title: DevSecOps Policy Requirements Extract
-    status: review
+    status: approved
     source_path: docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md
     governance_domains:
       - policy
@@ -14,10 +14,10 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the explicit human maintainer decision recorded in GCR-2026-160 on 2026-11-08; the exact source version is bound there by SHA-256.
   - id: DEVSECOPS-DIR-REQ-001
     title: DevSecOps Directive Requirements Extract
-    status: review
+    status: approved
     source_path: docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md
     governance_domains:
       - directive
@@ -28,7 +28,7 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the explicit human maintainer decision recorded in GCR-2026-160 on 2026-11-08; the exact source version is bound there by SHA-256.
   - id: DSCB-STD-REQ-001
     title: DevSecOps Control Baseline Requirements Extract
     status: approved
@@ -58,7 +58,7 @@ documents:
     notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the human maintainer decision recorded in GCR-2026-142 on 2026-10-09.
   - id: ARCH-SDD-REQ-001
     title: Integrated SDD Architecture Governance Requirements Extract
-    status: review
+    status: approved
     source_path: docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md
     governance_domains:
       - architecture
@@ -68,7 +68,7 @@ documents:
     supersedes: null
     derived_artifact_areas:
       - docs/governance/source-documents
-    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted.
+    notes: Sanitized requirements-only extract from private source material. Original metadata, names, organization-specific references, document numbers, and non-requirement content are intentionally omitted. Approved as a normative source by the explicit human maintainer decision recorded in GCR-2026-160 on 2026-11-08; the exact source version is bound there by SHA-256.
   - id: ARCH-TPL-REQ-001
     title: Architecture Templates and Checklists Requirements Extract
     status: approved
