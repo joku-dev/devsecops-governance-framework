@@ -14,16 +14,12 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## Implementation readback — 7 November 2026
+## PR #338: fix(ci): verify and cache OPA downloads; prepare CI v2 (`ffad111c5472`)
 
-The local [Review Workbench](docs/operations/guides/governance-review-workbench.md)
-guides document intake, explicit requirement review and review-packet handoff.
-Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
-prose is not converted into requirements. Notes prepare human decisions.
-The public Viewer presents reviewed projections read-only.
-
-The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
-records source commit `ae423f3`, draft coverage and remaining limits.
+- Gemeinsamer OPA-Installer mit statischem Linux-Binary, fester Version/SHA-256, begrenzten Wiederholungen und atomarer Installation.
+- Erneut geprüfter Cache, alternativer offizieller Release-Asset-API-Download und optionaler HTTPS-Mirror-Anschluss.
+- Docs-Veröffentlichung verwendet die gemeinsame Composite-Action; „Governance CI v2“ führt die vollständige gepinnte Validierung als getrennte Nachfolgeversion aus.
+- GCR-2026-157, Betriebsanleitung, Katalog-/Inventarabgleich und 17 Verhaltensregressionen.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
