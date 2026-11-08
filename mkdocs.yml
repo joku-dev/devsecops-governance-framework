@@ -45,6 +45,7 @@ nav:
           - GCR-2026-141 Modular Doc-as-Code Model: governance/change-requests/GCR-2026-141-modular-doc-as-code-model.md
           - GCR-2026-142 Normative Source Approval: governance/change-requests/GCR-2026-142-normative-source-approval.md
           - GCR-2026-159 Requirement Lifecycle Viewer: governance/change-requests/GCR-2026-159-governance-requirement-lifecycle-viewer.md
+          - GCR-2026-160 Current Source Approval: governance/change-requests/GCR-2026-160-current-source-approval.md
   - Platform:
       - Control Baseline and Platform Architecture: platform/control-baseline-and-platform-architecture-relationship-explained.md
   - Controls:

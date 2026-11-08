@@ -1,5 +1,17 @@
 # Current Governance Platform State
 
+## Source approval update, 8 November 2026
+
+The maintainer approved the existing Policy, Directive and integrated SDD
+requirements extracts through
+[GCR-2026-160](../../governance/change-requests/GCR-2026-160-current-source-approval.md).
+The source register now contains **15 sources: nine approved, six candidates,
+zero in review**. All five sources with direct artifact lineage are approved.
+The decision binds exact source hashes and leaves source bytes, requirement
+decisions, draft document status, runtime behavior and released baselines unchanged.
+It does not establish a complete approved source-set baseline or accept a stale
+consistency review. The dated observations below retain their original counts.
+
 ## Observation Scope
 
 Implementation/documentation observation: **7 November 2026**, source commit

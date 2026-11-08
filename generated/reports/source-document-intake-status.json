@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-09T16:54:54Z",
+  "generated_at": "2026-11-08T14:17:55Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml",
     "source_lineage_report": "generated/reports/source-lineage-report.json",
@@ -14,9 +14,8 @@
   "summary": {
     "registered_source_documents": 15,
     "status_counts": {
-      "approved": 6,
-      "candidate": 6,
-      "review": 3
+      "approved": 9,
+      "candidate": 6
     },
     "governance_domain_counts": {
       "architecture": 9,
@@ -32,45 +31,20 @@
       "platform-owners": 2
     },
     "review_state_counts": {
-      "active_review_in_progress": 3,
-      "approved_normative_source": 6,
+      "approved_normative_source": 9,
       "candidate_related_source_review_required": 4,
       "candidate_replacement_review_required": 2
     },
     "attention_counts": {
-      "attention": 9,
-      "ok": 6
+      "attention": 6,
+      "ok": 9
     },
-    "open_review_items": 9,
+    "open_review_items": 6,
     "replacement_review_items": 2,
     "documents_with_operational_artifacts": 5,
     "documents_without_operational_artifacts": 10
   },
   "open_items": [
-    {
-      "id": "DEVSECOPS-POL-REQ-001",
-      "title": "DevSecOps Policy Requirements Extract",
-      "status": "review",
-      "owner": "governance-owners",
-      "review_state": "active_review_in_progress",
-      "next_action": "Complete review and record the intake decision."
-    },
-    {
-      "id": "DEVSECOPS-DIR-REQ-001",
-      "title": "DevSecOps Directive Requirements Extract",
-      "status": "review",
-      "owner": "governance-owners",
-      "review_state": "active_review_in_progress",
-      "next_action": "Complete review and record the intake decision."
-    },
-    {
-      "id": "ARCH-SDD-REQ-001",
-      "title": "Integrated SDD Architecture Governance Requirements Extract",
-      "status": "review",
-      "owner": "architecture-owners",
-      "review_state": "active_review_in_progress",
-      "next_action": "Complete review and record the intake decision."
-    },
     {
       "id": "ARCH-GOV-REQ-001",
       "title": "Architecture Governance Framework Requirements Extract",
@@ -162,7 +136,7 @@
     {
       "id": "DEVSECOPS-POL-REQ-001",
       "title": "DevSecOps Policy Requirements Extract",
-      "status": "review",
+      "status": "approved",
       "owner": "governance-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
@@ -171,14 +145,14 @@
         "devsecops"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "active_review_in_progress",
-      "attention": "attention",
-      "next_action": "Complete review and record the intake decision.",
+      "review_state": "approved_normative_source",
+      "attention": "ok",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 13,
+      "lineage_artifact_count": 2,
       "operational_artifact_count": 2,
       "operational_artifact_types": {
         "governance_document": 1,
@@ -192,7 +166,7 @@
     {
       "id": "DEVSECOPS-DIR-REQ-001",
       "title": "DevSecOps Directive Requirements Extract",
-      "status": "review",
+      "status": "approved",
       "owner": "governance-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
@@ -201,14 +175,14 @@
         "devsecops"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "active_review_in_progress",
-      "attention": "attention",
-      "next_action": "Complete review and record the intake decision.",
+      "review_state": "approved_normative_source",
+      "attention": "ok",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 13,
+      "lineage_artifact_count": 2,
       "operational_artifact_count": 2,
       "operational_artifact_types": {
         "governance_document": 1,
@@ -237,7 +211,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 99,
+      "lineage_artifact_count": 88,
       "operational_artifact_count": 88,
       "operational_artifact_types": {
         "governance_document": 1,
@@ -270,7 +244,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 41,
+      "lineage_artifact_count": 30,
       "operational_artifact_count": 30,
       "operational_artifact_types": {
         "derived_artifact": 6,
@@ -286,7 +260,7 @@
     {
       "id": "ARCH-SDD-REQ-001",
       "title": "Integrated SDD Architecture Governance Requirements Extract",
-      "status": "review",
+      "status": "approved",
       "owner": "architecture-owners",
       "version": "requirements-only-sanitized",
       "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
@@ -294,14 +268,14 @@
         "architecture"
       ],
       "intake_date": "2026-07-15",
-      "review_state": "active_review_in_progress",
-      "attention": "attention",
-      "next_action": "Complete review and record the intake decision.",
+      "review_state": "approved_normative_source",
+      "attention": "ok",
+      "next_action": "Use as a normative input only through governed derivation and release changes.",
       "similarity_assessment": "not_recorded",
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 31,
+      "lineage_artifact_count": 20,
       "operational_artifact_count": 20,
       "operational_artifact_types": {
         "architecture_model": 8,
@@ -333,7 +307,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [
@@ -359,7 +333,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [
@@ -385,7 +359,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [
@@ -411,7 +385,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [
@@ -439,7 +413,7 @@
       ],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [],
@@ -473,7 +447,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [],
@@ -500,7 +474,7 @@
       ],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [],
@@ -534,7 +508,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [],
@@ -559,7 +533,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [],
@@ -585,7 +559,7 @@
       "candidate_replacement_for": [],
       "supersedes": null,
       "superseded_by": null,
-      "lineage_artifact_count": 11,
+      "lineage_artifact_count": 0,
       "operational_artifact_count": 0,
       "operational_artifact_types": {},
       "derived_artifact_areas": [],

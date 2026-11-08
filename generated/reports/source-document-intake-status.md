@@ -1,6 +1,6 @@
 # Source Document Intake Status
 
-Generated: `2026-10-09T16:54:54Z`
+Generated: `2026-11-08T14:17:55Z`
 
 ## Decision State
 
@@ -11,7 +11,7 @@ Generated: `2026-10-09T16:54:54Z`
 ## Summary
 
 - Registered source documents: `15`
-- Open review items: `9`
+- Open review items: `6`
 - Replacement review items: `2`
 - Documents with operational artifacts: `5`
 - Documents without operational artifacts: `10`
@@ -20,16 +20,14 @@ Generated: `2026-10-09T16:54:54Z`
 
 | Status | Count |
 |---|---:|
-| `approved` | `6` |
+| `approved` | `9` |
 | `candidate` | `6` |
-| `review` | `3` |
 
 ## Review State Counts
 
 | Review state | Count |
 |---|---:|
-| `active_review_in_progress` | `3` |
-| `approved_normative_source` | `6` |
+| `approved_normative_source` | `9` |
 | `candidate_related_source_review_required` | `4` |
 | `candidate_replacement_review_required` | `2` |
 
@@ -47,9 +45,6 @@ Generated: `2026-10-09T16:54:54Z`
 
 | Source ID | Status | Owner | Review state | Next action |
 |---|---|---|---|---|
-| `DEVSECOPS-POL-REQ-001` | `review` | `governance-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
-| `DEVSECOPS-DIR-REQ-001` | `review` | `governance-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
-| `ARCH-SDD-REQ-001` | `review` | `architecture-owners` | `active_review_in_progress` | Complete review and record the intake decision. |
 | `ARCH-GOV-REQ-001` | `candidate` | `architecture-owners` | `candidate_replacement_review_required` | Review replacement decision before promoting the source or moving lineage. |
 | `CISO-REQ-SRC-001` | `candidate` | `governance-owners` | `candidate_related_source_review_required` | Confirm coexistence, scope boundaries, and approved derivation before promoting the related source. |
 | `DEVSECOPS-POL-CAND-002` | `candidate` | `governance-owners` | `candidate_replacement_review_required` | Review replacement decision before promoting the source or moving lineage. |
@@ -68,11 +63,11 @@ Generated: `2026-10-09T16:54:54Z`
 
 | Source ID | Status | Domains | Review state | Operational artifacts |
 |---|---|---|---|---:|
-| `DEVSECOPS-POL-REQ-001` | `review` | `policy, devsecops` | `active_review_in_progress` | `2` |
-| `DEVSECOPS-DIR-REQ-001` | `review` | `directive, devsecops` | `active_review_in_progress` | `2` |
+| `DEVSECOPS-POL-REQ-001` | `approved` | `policy, devsecops` | `approved_normative_source` | `2` |
+| `DEVSECOPS-DIR-REQ-001` | `approved` | `directive, devsecops` | `approved_normative_source` | `2` |
 | `DSCB-STD-REQ-001` | `approved` | `devsecops` | `approved_normative_source` | `88` |
 | `PRA-STD-REQ-001` | `approved` | `platform, devsecops` | `approved_normative_source` | `30` |
-| `ARCH-SDD-REQ-001` | `review` | `architecture` | `active_review_in_progress` | `20` |
+| `ARCH-SDD-REQ-001` | `approved` | `architecture` | `approved_normative_source` | `20` |
 | `ARCH-TPL-REQ-001` | `approved` | `architecture` | `approved_normative_source` | `0` |
 | `ARCH-EA-REQ-001` | `approved` | `architecture` | `approved_normative_source` | `0` |
 | `ARCH-SA-REQ-001` | `approved` | `architecture` | `approved_normative_source` | `0` |

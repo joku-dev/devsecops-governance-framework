@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-09T16:54:54Z",
+  "generated_at": "2026-11-08T14:17:55Z",
   "inputs": {
     "source_document_register": "model/documents/source-document-register.yaml"
   },
@@ -15,7 +15,7 @@
     {
       "id": "ARCH-SDD-REQ-001",
       "title": "Integrated SDD Architecture Governance Requirements Extract",
-      "status": "review",
+      "status": "approved",
       "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
       "version": "requirements-only-sanitized",
       "doc_id": "",

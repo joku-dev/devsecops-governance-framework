@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-06T15:53:38Z",
+  "generated_at": "2026-11-08T14:17:55Z",
   "report_type": "source_document_process_status",
   "source_of_truth": {
     "register": "model/documents/source-document-register.yaml",
@@ -10,11 +10,10 @@
   },
   "summary": {
     "registered_sources": 15,
-    "authorized_sources": 6,
+    "authorized_sources": 9,
     "source_status_counts": {
-      "approved": 6,
-      "candidate": 6,
-      "review": 3
+      "approved": 9,
+      "candidate": 6
     },
     "requirement_identification_counts": {
       "author_identified": 0,
@@ -30,8 +29,8 @@
     },
     "lifecycle": {
       "activated": 54,
-      "approved_sources_without_cases": 0,
-      "approved_sources_without_ledger_entry": 0,
+      "approved_sources_without_cases": 3,
+      "approved_sources_without_ledger_entry": 3,
       "authority_mode:migration_in_progress": 6,
       "decided": 84,
       "proposals": 867,
@@ -51,7 +50,7 @@
       "status": "complete",
       "counts": {
         "registered": 15,
-        "approved": 6,
+        "approved": 9,
         "missing_files": 0,
         "unregistered_files": 0
       },
@@ -116,8 +115,8 @@
       "title": "Widerspruchsfreie Quellenbaseline freigeben",
       "status": "blocked",
       "counts": {
-        "authorized_sources": 6,
-        "blocking_reasons": 5
+        "authorized_sources": 9,
+        "blocking_reasons": 6
       },
       "next_action": "requirement identifier origin remains unverified for explicit identifiers"
     },
@@ -176,8 +175,8 @@
   "requirement_lifecycle": {
     "summary": {
       "activated": 54,
-      "approved_sources_without_cases": 0,
-      "approved_sources_without_ledger_entry": 0,
+      "approved_sources_without_cases": 3,
+      "approved_sources_without_ledger_entry": 3,
       "authority_mode:migration_in_progress": 6,
       "decided": 84,
       "proposals": 867,
@@ -185,13 +184,17 @@
       "undecided": 783,
       "unresolved": 783
     },
-    "missing_case_source_ids": [],
+    "missing_case_source_ids": [
+      "ARCH-SDD-REQ-001",
+      "DEVSECOPS-DIR-REQ-001",
+      "DEVSECOPS-POL-REQ-001"
+    ],
     "case_errors": []
   },
   "authorized_source_baseline": {
     "status": "blocked",
-    "authorized_source_count": 6,
-    "authorized_source_set_sha256": "5b787f53777ac1a426f663bf85f5636a615e588bd5575d3d78fe25dea9377eef",
+    "authorized_source_count": 9,
+    "authorized_source_set_sha256": "9316f658ae841c309614dc435084251c4c8c8371b8eccee2a2cac443c4eabbae",
     "sources": [
       {
         "source_id": "ARCH-EA-REQ-001",
@@ -215,11 +218,32 @@
         "sha256": "2ed7ea9a8e4a9e38d8ea051868558453e6001f7f72fd0c4c53b9362be8d45b1d"
       },
       {
+        "source_id": "ARCH-SDD-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "150729e2bec6664195eec8a72f90a1ec3b337765fdd1ac6c08023498c1b020cd"
+      },
+      {
         "source_id": "ARCH-TPL-REQ-001",
         "version": "requirements-only-sanitized",
         "path": "docs/governance/source-documents/ARCH-TPL-SRC-001.requirements.md",
         "status": "approved",
         "sha256": "4ecbb9e7343d816e7dc6448758cea5e09dd1d49079885738a2766f69b912c038"
+      },
+      {
+        "source_id": "DEVSECOPS-DIR-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "879be84e250ec3882802860d34177a332fb895da260f9ffd7493f4e5d0c86ed6"
+      },
+      {
+        "source_id": "DEVSECOPS-POL-REQ-001",
+        "version": "requirements-only-sanitized",
+        "path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
+        "status": "approved",
+        "sha256": "33bcf4291e399f47236b2c6b68413a43a957841c204e9e4f3318342ef65a52cb"
       },
       {
         "source_id": "DSCB-STD-REQ-001",
@@ -239,6 +263,7 @@
     "blocking_reasons": [
       "requirement identifier origin remains unverified for explicit identifiers",
       "approved-source requirement lifecycle decisions remain open",
+      "approved sources are missing requirement lifecycle cases",
       "Document Consistency Review scope does not expose an exact approved-source set",
       "semantic consistency review is not exhaustive for the approved source set",
       "proposed or unresolved consistency findings remain"

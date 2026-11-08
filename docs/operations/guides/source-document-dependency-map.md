@@ -20,19 +20,22 @@ referenced derived artifact is missing.
 ## Current disposition
 
 There are 15 registered source files, and all 15 exist. There are no unregistered
-files in the source-document directory. The files fall into three groups:
+files in the source-document directory. The register contains nine approved
+sources and six candidates, following the maintainer decision in
+[GCR-2026-160](../../governance/change-requests/GCR-2026-160-current-source-approval.md).
+The files fall into four groups:
 
 | Group | Sources | Current use |
 |---|---|---|
-| Approved, partially effective | `DSCB-STD-REQ-001`, `PRA-STD-REQ-001` | Inputs to current DevSecOps controls, platform models, traceability, policies and related artifacts. The authority ledger records 46 of 55 DSCB requirements and 38 of 56 PRA requirements as effective; the rest remain unresolved. |
-| Approved, not yet effective | `ARCH-TPL-REQ-001`, `ARCH-EA-REQ-001`, `ARCH-SA-REQ-001`, `ARCH-PA-REQ-001` | Approved as normative sources by GCR-2026-142. Their 756 analyzed requirements have no effective decisions in the authority ledger yet. Approval permits future governed derivation; it does not mean the requirements are implemented. |
-| Review or candidate | Three `review` sources and six `candidate` sources | Retained for review, replacement assessment, and intake. Candidates do not authorize normative runtime derivation. Some, such as the CISO catalog, have explicitly non-normative review models and packets. |
+| Approved, with effective artifact mappings | `DSCB-STD-REQ-001`, `PRA-STD-REQ-001` | Inputs to current DevSecOps controls, platform models, traceability, policies and related artifacts. Retained cases record decisions for 46 of 55 DSCB proposals and 38 of 56 PRA proposals. The separate effective register contains eight policy mappings and eleven platform mappings; decisions alone do not establish implementation. |
+| Approved, existing working-model lineage | `DEVSECOPS-POL-REQ-001`, `DEVSECOPS-DIR-REQ-001`, `ARCH-SDD-REQ-001` | Approved by GCR-2026-160 at their existing sanitized versions. The Policy and Directive extracts feed working drafts and document-to-control traceability; SDD feeds working architecture models. Source approval does not approve individual requirements or change those drafts, models or runtime behavior. |
+| Approved, no effective artifact mappings yet | `ARCH-TPL-REQ-001`, `ARCH-EA-REQ-001`, `ARCH-SA-REQ-001`, `ARCH-PA-REQ-001` | Approved as normative sources by GCR-2026-142. Their 756 retained lifecycle proposals have no recorded decisions or effective artifact mappings yet. Source approval and current explicit extraction remain separate from this historical review population. |
+| Candidate | Six `candidate` sources | Retained for review, replacement assessment, and intake. Candidates do not authorize normative runtime derivation. Some, such as the CISO catalog, have explicitly non-normative review models and packets. |
 
-The three `review` sources are the DevSecOps Policy extract, DevSecOps Directive
-extract, and integrated SDD architecture extract. The policy and directive
-extracts feed their working governance documents and document-to-control
-traceability. The SDD extract is referenced by the current working architecture
-models, while its source status remains `review`.
+All five sources with direct artifact lineage are now approved as sources.
+No source remains in `review`. The three approvals recorded on 8 November 2026
+bind exact source-file hashes; they are not a security certification, a new
+approved source-set baseline, or an assertion that every requirement is implemented.
 
 ## Historical reference to the retired example
 

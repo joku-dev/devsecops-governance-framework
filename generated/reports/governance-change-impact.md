@@ -1,6 +1,6 @@
 # Governance Change Impact Report
 
-Generated: `2026-10-11T11:20:42Z`
+Generated: `2026-11-08T14:17:55Z`
 
 ## Inputs
 
@@ -50,7 +50,7 @@ Generated: `2026-10-11T11:20:42Z`
 
 - Title: DevSecOps Policy Requirements Extract
 - Source: `docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md`
-- Status: `review`
+- Status: `approved`
 - Owner: `governance-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `policy, devsecops`
@@ -77,7 +77,7 @@ Representative artifacts:
 
 - Title: DevSecOps Directive Requirements Extract
 - Source: `docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md`
-- Status: `review`
+- Status: `approved`
 - Owner: `governance-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `directive, devsecops`
@@ -177,7 +177,7 @@ Representative artifacts:
 
 - Title: Integrated SDD Architecture Governance Requirements Extract
 - Source: `docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md`
-- Status: `review`
+- Status: `approved`
 - Owner: `architecture-owners`
 - Version: `requirements-only-sanitized`
 - Domains: `architecture`

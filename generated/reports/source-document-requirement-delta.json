@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-06T15:53:41Z",
+  "generated_at": "2026-11-08T14:17:54Z",
   "inputs": {
     "architecture_source_replacement_assessment": "generated/reports/architecture-source-replacement-assessment.json",
     "source_document_register": "model/documents/source-document-register.yaml"
@@ -39,12 +39,6 @@
           "explicit_identifier": 0,
           "extraction_row_id": 0,
           "inferred_candidate": 0
-        },
-        "review": {
-          "author_identified": 0,
-          "explicit_identifier": 0,
-          "extraction_row_id": 0,
-          "inferred_candidate": 0
         }
       },
       "inferred_candidate_count": 0,
@@ -79,12 +73,6 @@
           "explicit_identifier": 0,
           "extraction_row_id": 0,
           "inferred_candidate": 0
-        },
-        "review": {
-          "author_identified": 0,
-          "explicit_identifier": 0,
-          "extraction_row_id": 0,
-          "inferred_candidate": 0
         }
       },
       "inferred_candidate_count": 0,
@@ -98,7 +86,7 @@
       {
         "source_id": "DEVSECOPS-POL-REQ-001",
         "title": "DevSecOps Policy Requirements Extract",
-        "source_status": "review",
+        "source_status": "approved",
         "source_path": "docs/governance/source-documents/DEVSECOPS-POL-SRC-001.requirements.md",
         "identification_counts": {
           "author_identified": 0,
@@ -112,7 +100,7 @@
       {
         "source_id": "DEVSECOPS-DIR-REQ-001",
         "title": "DevSecOps Directive Requirements Extract",
-        "source_status": "review",
+        "source_status": "approved",
         "source_path": "docs/governance/source-documents/DEVSECOPS-DIR-SRC-001.requirements.md",
         "identification_counts": {
           "author_identified": 0,
@@ -154,7 +142,7 @@
       {
         "source_id": "ARCH-SDD-REQ-001",
         "title": "Integrated SDD Architecture Governance Requirements Extract",
-        "source_status": "review",
+        "source_status": "approved",
         "source_path": "docs/governance/source-documents/ARCH-SDD-SRC-001.requirements.md",
         "identification_counts": {
           "author_identified": 0,

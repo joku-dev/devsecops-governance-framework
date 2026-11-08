@@ -38,8 +38,8 @@ class SourceDocumentIntakeStatusTests(unittest.TestCase):
         self.assertEqual(payload["summary"]["replacement_review_items"], 2)
         self.assertEqual(payload["decision"]["runtime_governance_changed"], False)
         self.assertEqual(payload["decision"]["stricter_rules_enabled"], False)
-        self.assertEqual(payload["summary"]["status_counts"]["approved"], 6)
-        self.assertEqual(payload["summary"]["review_state_counts"]["approved_normative_source"], 6)
+        self.assertEqual(payload["summary"]["status_counts"]["approved"], 9)
+        self.assertEqual(payload["summary"]["review_state_counts"]["approved_normative_source"], 9)
 
         document_ids = {item["id"] for item in payload["documents"]}
         self.assertIn("ARCH-GOV-REQ-001", document_ids)
@@ -57,6 +57,9 @@ class SourceDocumentIntakeStatusTests(unittest.TestCase):
         self.assertEqual(
             approved_ids,
             {
+                "DEVSECOPS-POL-REQ-001",
+                "DEVSECOPS-DIR-REQ-001",
+                "ARCH-SDD-REQ-001",
                 "DSCB-STD-REQ-001",
                 "PRA-STD-REQ-001",
                 "ARCH-TPL-REQ-001",
