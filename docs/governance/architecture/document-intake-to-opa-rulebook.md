@@ -24,11 +24,16 @@ Blocking-Freigabe bleiben getrennte Entscheidungen.
 | **4. Regelstand veröffentlichen** | Welche freigegebene Version sollen Consumer verwenden? | Veröffentlichter, unveränderlicher Baseline-Stand |
 | **5. Anwenden und Ergebnisse prüfen** | Erfüllt ein konkreter Zustand die Regeln? | Prüfergebnis, Nachweise, Darstellung und freigegebene Gate-Wirkung |
 
-Ein Consumer ist ein Repository oder System, das den veröffentlichten Regelstand
-verwendet. Die Phasen können bei Rückfragen erneut durchlaufen werden. Ein
+Eine **GRQ-Revision** ist der freigegebene Versionsstand einer zentral geführten
+Anforderung. **RTA** bezeichnet den Zuordnungsnachweis zwischen dieser Anforderung
+und ihrer bestätigten Umsetzung. Ein **Consumer** ist ein Repository oder System,
+das den veröffentlichten Regelstand verwendet.
+
+Die Phasen können bei Rückfragen erneut durchlaufen werden. Ein
 Duplikat, eine Ablehnung oder eine offene Klärung führt nicht automatisch zu
-einer neuen Regel. Git-native Anforderungen beginnen mit einer versionierten
-Anforderungsquelle direkt in Phase 2; ihre Herkunft bleibt nachvollziehbar.
+einer neuen Regel. Anforderungen, die direkt im Repository formuliert werden
+(Git-native Anforderungen), beginnen mit einer versionierten Anforderungsquelle
+direkt in Phase 2; ihre Herkunft bleibt nachvollziehbar.
 
 ## Leitfaden durch die fünf Phasen
 
@@ -39,7 +44,7 @@ Anforderungsquelle direkt in Phase 2; ihre Herkunft bleibt nachvollziehbar.
 - **Aufgabe:** Herkunft, Version, Eigentümer und betroffene Themen registrieren;
   Überschneidungen und mögliche Ersatzdokumente prüfen.
 - **Menschliche Entscheidung:** Die zuständige Rolle entscheidet, ob genau
-  dieser Dokumentstand als normative Quelle freigegeben wird.
+  dieser Dokumentstand als verbindliche (normative) Quelle freigegeben wird.
 - **Ergebnis:** Ein freigegebener Registereintrag mit nachvollziehbarem
   Entscheidungsnachweis. Ohne Freigabe bleibt das Dokument im Intake.
 - **Warum diese Phase existiert:** Jede spätere Anforderung braucht eine
@@ -99,7 +104,7 @@ Anforderungsquelle direkt in Phase 2; ihre Herkunft bleibt nachvollziehbar.
   Regeln auswerten und Ergebnisse mit Lauf, Commit und Baseline speichern.
 - **Menschliche Entscheidung:** Verantwortliche bearbeiten die Befunde nach
   dem geltenden Verfahren. Die automatische Workflow-Wirkung folgt dem bereits
-  freigegebenen Enforcement-Modus; Blocking benötigt eine eigene Freigabe.
+  freigegebenen Durchsetzungsmodus (Enforcement); Blocking benötigt eine eigene Freigabe.
 - **Ergebnis:** Nachvollziehbare Prüfergebnisse und Evidenz im Statusindex und
   lesenden Viewer. Ein Gate kann den Workflow im freigegebenen Modus blockieren.
 - **Warum diese Phase existiert:** Eine veröffentlichte Regel allein belegt
