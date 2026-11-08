@@ -66,10 +66,11 @@ zusätzlich die öffentlichen Viewer-Assets; Modelle, Schemas, Vorlagen und Test
 werden als Verzeichnisse unten eingeordnet.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-Der [konsolidierte Abgleich](../status/repository-documentation-reconciliation-2026-11-07.md) deckt die
-14 offenen Dokumentationsentwürfe ab. Frühere Inventare und Implementierungsnotizen
-bleiben im [Quellstand vor diesem Abgleich](https://github.com/joku-dev/devsecops-governance-framework/blob/ae423f34f75451b70b1ebffc71ea3683e4763c52/docs/operations/guides/repository-technical-function-inventory.md)
-nachlesbar. Deren P2-Fließtextableitung beschreibt nicht das heutige Verhalten.
+### PR #305: build(deps): bump joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-reusable.yml from 6447602a70555d7b906a179884ee09266e3edf14 to ffad111c54726d244e5ab131342bac3890b369b4 (`caef97f18914`)
+
+- `.github/workflows/devsecops-baseline-l1-v1.1.3.yml`
+- `.github/workflows/devsecops-baseline-l1-v1.2.0.yml`
+- `.github/workflows/devsecops-baseline-l1-v1.2.1.yml`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Python-Skripte und Bibliotheksmodule
