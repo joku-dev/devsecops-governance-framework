@@ -67,7 +67,7 @@ permissions:
 jobs:
   released-l1-baseline:
     name: Released DevSecOps L1 Baseline v1.2.1
-    uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-reusable.yml@ffad111c54726d244e5ab131342bac3890b369b4 # l1-baseline-v1.2.1
+    uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-baseline-reusable.yml@6ce1d66bd13956bf2b6415c3548b4c9836d4d6d4 # l1-baseline-v1.2.1
     with:
       level: L1
       governance_mode: ${{ inputs.governance_mode }}
