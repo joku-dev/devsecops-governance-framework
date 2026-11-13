@@ -88,10 +88,27 @@ zusätzlich die öffentlichen Viewer-Assets; Modelle, Schemas, Vorlagen und Test
 werden als Verzeichnisse unten eingeordnet.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-Der [konsolidierte Abgleich](../status/repository-documentation-reconciliation-2026-11-07.md) deckt die
-14 offenen Dokumentationsentwürfe ab. Frühere Inventare und Implementierungsnotizen
-bleiben im [Quellstand vor diesem Abgleich](https://github.com/joku-dev/devsecops-governance-framework/blob/ae423f34f75451b70b1ebffc71ea3683e4763c52/docs/operations/guides/repository-technical-function-inventory.md)
-nachlesbar. Deren P2-Fließtextableitung beschreibt nicht das heutige Verhalten.
+### PR #352: feat(agents): bind review receipts and usage to committed scope (`50c684e7d0a9`)
+
+- `.agents/evaluations/README.md`
+- `.agents/evaluations/review-quality-v1.json`
+- `.agents/execution-contract.yaml`
+- `.agents/providers/codex/README.md`
+- `.agents/review-protocol.yaml`
+- `.agents/routing/governance-agent-routing.yaml`
+- `.github/workflows/agent-review-status.yml`
+- `schemas/agent-review-receipt.schema.json`
+- `scripts/evaluate_agent_reviews.py`
+- `scripts/lib/agent_codex.py`
+- `scripts/lib/agent_evaluation.py`
+- `scripts/lib/agent_execution.py`
+- `scripts/lib/agent_receipts.py`
+- `scripts/lib/agent_review.py`
+- `scripts/lib/agent_review_status.py`
+- `scripts/lib/agent_routing.py`
+- `scripts/record_agent_review.py`
+- `scripts/report_agent_review_status.py`
+- `scripts/run_agent_reviews.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Python-Skripte und Bibliotheksmodule
