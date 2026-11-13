@@ -5,6 +5,11 @@ work. A small explanatory edit may keep the ordinary focused review. The shared
 procedure is `.agents/review-protocol.yaml`; responsibilities and outputs remain
 in `.agents/roles/*.yaml`, with explicit `skill` bindings.
 
+For CLI options, artifact layouts, answer/trace formats, PR status meanings and
+failure recovery, use the [Agent Review Tooling Reference](agent-review-tooling-reference.md).
+The steps below give the operator sequence; the reference explains each tool's
+inputs, outputs and limits.
+
 ## 1. Understand scope and responsibility
 
 Prepare and activate the pinned environment:
