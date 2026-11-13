@@ -6,6 +6,18 @@ fallback:
   path_prefixes: [.agents/, .codex/, .github/, scripts/, model/, tests/, apps/]
   agents: [governance-analyst]
 rules:
+  - path_prefix: .agents/evaluations/
+    agents: [governance-analyst, release-manager]
+  - path_prefix: scripts/evaluate_agent_reviews.py
+    agents: [governance-analyst, release-manager]
+  - path_prefix: .agents/execution-contract.yaml
+    agents: [governance-analyst, release-manager]
+  - path_prefix: scripts/run_agent_reviews.py
+    agents: [governance-analyst, release-manager]
+  - path_prefix: scripts/record_agent_review.py
+    agents: [governance-analyst, release-manager]
+  - path_prefix: scripts/report_agent_review_status.py
+    agents: [governance-analyst, release-manager]
   - path_prefix: .agents/review-protocol.yaml
     agents: [governance-analyst, release-manager]
   - path_prefix: .codex/agents/

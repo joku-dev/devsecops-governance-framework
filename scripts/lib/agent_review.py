@@ -78,11 +78,17 @@ def prepare_plan(root: Path, dispatch: dict, goal: str, *, base_ref: str | None 
                  "AGENTS.md", "docs/governance/governance-roles-and-agent-profiles.md",
                  "scripts/lib/agent_review.py", "scripts/lib/agent_routing.py",
                  "scripts/dispatch_governance_agents.py"}
+    for name in (".agents/execution-contract.yaml", ".agents/providers/codex/README.md"):
+        if (root / name).is_file():
+            contracts.add(name)
     for role_id in sorted(set(selected) - {final_role}) + [final_role]:
         role = ROLE_CONTRACTS[role_id]
         role_path = f".agents/roles/{role_id}.yaml"
         skill_path = f".agents/skills/{role['skill']}/SKILL.md"
         contracts.update((role_path, skill_path))
+        adapter_path = f".codex/agents/{role_id}.toml"
+        if (root / adapter_path).is_file():
+            contracts.add(adapter_path)
         tasks.append({
             "role_id": role_id, "phase": "final_review" if role_id == final_role else "specialist_review",
             "role_contract": role_path, "skill": skill_path,

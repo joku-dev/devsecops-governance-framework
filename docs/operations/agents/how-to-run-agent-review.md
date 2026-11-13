@@ -139,5 +139,119 @@ approval, governance decisions, baseline releases and blocking authorization
 retain their existing processes. A plan or complete packet grants none of them.
 A commit changes HEAD; a later review must prepare a packet for the new revision.
 
+## 6. Export metadata for a committed branch
+
+For PR delivery, commit the validated change, keep the checkout clean and prepare
+a fresh full-branch packet against the target branch. Perform the final read-only
+reviews on that exact commit. Then explicitly export allowlisted metadata:
+
+```bash
+python scripts/record_agent_review.py \
+  --plan /tmp/axiom-review/committed-plan.json \
+  --results /tmp/axiom-review/committed-results.json \
+  --output /tmp/axiom-review/public-receipt.json \
+  --usage-log /tmp/axiom-review/review-usage.jsonl
+python scripts/record_agent_review.py --summary \
+  --usage-log /tmp/axiom-review/review-usage.jsonl
+```
+
+The new receipt schema is `schemas/agent-review-receipt.schema.json`. It contains
+commit/scope, opaque plan/result digests, role status and execution kind,
+validation status and finding counts. It excludes user goals, executor names,
+summaries, role outputs, finding text, evidence references and model responses.
+Only this explicitly exported metadata is suitable for intentional publication;
+the private plan and results remain private. A receipt is self-reported evidence,
+not authenticated execution or independent human approval.
+
+The exporter also accepts incomplete results, with readiness false. Selection,
+declared execution (completed/failed with executor/provider declared privately)
+and declared completion are counted separately. Same-review retries preserve the
+first receipt and do not append another usage snapshot. Use new output paths for
+different reviews. A legacy usage log is not a receipt log and is never migrated
+or rewritten automatically. Publication does not append to repository files.
+
+## 7. Show report-only metadata in a PR
+
+Render the explicitly exported receipt and paste only that block into the PR
+description after checking that it identifies the intended commit:
+
+```bash
+python scripts/report_agent_review_status.py \
+  --receipt /tmp/axiom-review/public-receipt.json
+```
+
+The separate **Agent Review Status** workflow reports `missing`, `invalid`,
+`stale`, `incomplete` or `declared_complete`. It uses trusted target-branch code,
+reads proposed role/skill/routing contracts as bounded regular-file data and
+combines target/proposed role requirements. It checks the PR head, merge base,
+paths, roles and required commands against the attached metadata. A deliberate
+role retirement may therefore need an explicit transitional review contract.
+Missing or inconsistent metadata never creates a required merge gate. No private
+packet is fetched; even consistent metadata does not authenticate execution or
+replace CODEOWNER approval. Invalid schema input is omitted from public errors.
+
+On the first installation PR, the reporter is absent from the trusted target
+branch. The workflow explains this bootstrap state and skips inspection until
+the implementation has merged there. It never falls back to executing PR code.
+Local fixtures cover the full inspection flow before rollout.
+
+## 8. Optionally execute read-only specialist sessions
+
+After committing the intended source, create a fresh full-branch plan. Prepare
+private tasks without making any provider call:
+
+```bash
+python scripts/run_agent_reviews.py --plan /tmp/axiom-review/committed-plan.json \
+  --output-dir /tmp/axiom-review/prepared-run
+```
+
+Only an explicit `--execute` starts live provider sessions and may consume account
+credits. Use a different new output directory. Actual previously recorded checks
+may be supplied through `--validation-results /tmp/axiom-review/committed-results.json`.
+The runner does not run validators or turn suggested checks into passed outcomes.
+It refuses live execution when `CI` is set.
+
+The neutral execution contract at `.agents/execution-contract.yaml` limits
+specialist concurrency (default one, maximum three), timeout (default 180 seconds,
+maximum 600), read-only access and final Steward ordering.
+The Codex adapter reads the existing role model/effort without changing it;
+requested configuration is never substituted for unknown runtime identity.
+See `.agents/providers/codex/README.md` for the provider interface and boundaries.
+
+Every role receives its scope, contract, skill and recorded validations. The
+Steward receives all successfully completed specialist results and their input
+digests are retained privately. Failed or invalid specialists leave the Steward
+unexecuted. Source changes abort the run without reverting any edits. There is
+no automatic retry or permission escalation. Check the resulting private
+`results.json` with the ordinary completion command; all human approvals remain
+separate. Only the receipt exporter may project allowlisted public metadata.
+
+## 9. Prepare and grade quality evaluations offline
+
+```bash
+python scripts/evaluate_agent_reviews.py --prepare /tmp/axiom-evaluation/packets
+# After separately authorized model evaluation, grade supplied structured answers:
+python scripts/evaluate_agent_reviews.py \
+  --responses /tmp/axiom-evaluation/answers.json \
+  --output /tmp/axiom-evaluation/report.json
+```
+
+The ten synthetic cases and rubric live in `.agents/evaluations/`. Preparation
+includes role/skill snapshots and per-case response schemas, with no gold answers
+and no provider call. Supply `evaluation_digest` and `packet_set_digest` from the manifest plus `records`
+containing `case_id` and `response` for offline grading. Keep one answer bundle
+per candidate/run. Missing/invalid cases remain visible; duplicates, unrelated
+cases and different dataset or prompt/role/skill revisions are rejected. Grade
+from the same checkout used to prepare the packets.
+
+Optional measurements require a `trace_file` and its `trace_sha256`. The supplied
+runtime record must bind the case, evaluation digest and distinct run identity.
+It records measured elapsed time, token counters and requested/observed model
+identity separately. Hashes do not authenticate these declarations. Unknown
+measurements remain null; totals need complete measurement coverage. Compare the
+same complete case set and conditions, repeat runs and have a human assess the
+reasoning. A good label score is not general model superiority or approval.
+Unit-test gold answers are synthetic fixtures, never live-model results.
+
 For historical metadata-only logs see [Agent Usage Tracking](agent-usage-tracking.md).
 For deterministic regressions see [Agent Harness Usage](agent-harness-usage.md).
