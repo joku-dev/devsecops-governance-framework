@@ -195,5 +195,36 @@ branch. The workflow explains this bootstrap state and skips inspection until
 the implementation has merged there. It never falls back to executing PR code.
 Local fixtures cover the full inspection flow before rollout.
 
+## 8. Optionally execute read-only specialist sessions
+
+After committing the intended source, create a fresh full-branch plan. Prepare
+private tasks without making any provider call:
+
+```bash
+python scripts/run_agent_reviews.py --plan /tmp/axiom-review/committed-plan.json \
+  --output-dir /tmp/axiom-review/prepared-run
+```
+
+Only an explicit `--execute` starts live provider sessions and may consume account
+credits. Use a different new output directory. Actual previously recorded checks
+may be supplied through `--validation-results /tmp/axiom-review/committed-results.json`.
+The runner does not run validators or turn suggested checks into passed outcomes.
+It refuses live execution when `CI` is set.
+
+The neutral execution contract at `.agents/execution-contract.yaml` limits
+specialist concurrency (default one, maximum three), timeout (default 180 seconds,
+maximum 600), read-only access and final Steward ordering.
+The Codex adapter reads the existing role model/effort without changing it;
+requested configuration is never substituted for unknown runtime identity.
+See `.agents/providers/codex/README.md` for the provider interface and boundaries.
+
+Every role receives its scope, contract, skill and recorded validations. The
+Steward receives all successfully completed specialist results and their input
+digests are retained privately. Failed or invalid specialists leave the Steward
+unexecuted. Source changes abort the run without reverting any edits. There is
+no automatic retry or permission escalation. Check the resulting private
+`results.json` with the ordinary completion command; all human approvals remain
+separate. Only the receipt exporter may project allowlisted public metadata.
+
 For historical metadata-only logs see [Agent Usage Tracking](agent-usage-tracking.md).
 For deterministic regressions see [Agent Harness Usage](agent-harness-usage.md).
