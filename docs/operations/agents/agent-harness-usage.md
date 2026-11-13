@@ -140,10 +140,18 @@ An evidence-context failure means a branch, pull request, or manual run may be t
 Update routing only when the repository structure or governance ownership model changes:
 
 ```text
-tests/agent_harness/routing.py
+.agents/routing/governance-agent-routing.yaml
 ```
 
 Keep changes small and add or update a scenario for every new routing rule.
+`tests/agent_harness/routing.py` only imports the production implementation.
+
+The router adds every matching prefix's roles. Architecture OPA therefore keeps
+Policy-as-Code and Release Manager while adding Architecture Runtime Governance.
+Viewer Python projections, result intake/index scripts, lifecycle implementations,
+current-main artifacts, demo runbooks and operational status pages have explicit
+domain routing. An unknown functional path still reports the Analyst fallback;
+it does not silently claim that domain classification is complete.
 
 ## Relationship To Existing Validators
 

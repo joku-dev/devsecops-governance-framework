@@ -26,6 +26,32 @@ rules:
     agents: [devsecops-baseline, governance-analyst]
   - path_prefix: apps/governance-viewer/
     agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: scripts/lib/viewer_
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: scripts/lib/requirement_journey_view.py
+    agents: [evidence-and-intake, demo-readiness, governance-analyst]
+  - path_prefix: scripts/lib/governance_requirement_lifecycle_view.py
+    agents: [evidence-and-intake, demo-readiness, governance-analyst]
+  - path_prefix: scripts/lib/consumer_lifecycle_next_step.py
+    agents: [evidence-and-intake, demo-readiness, governance-analyst]
+  - path_prefix: scripts/generate_status_viewer.py
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: scripts/intake_
+    agents: [evidence-and-intake, governance-analyst]
+  - path_prefix: scripts/intake_architecture_
+    agents: [architecture-runtime-governance]
+  - path_prefix: scripts/generate_repository_results_index.py
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: scripts/generate_architecture_results_index.py
+    agents: [evidence-and-intake, demo-readiness, architecture-runtime-governance]
+  - path_prefix: scripts/generate_typed_evidence_results_index.py
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: scripts/lib/result_ledger.py
+    agents: [evidence-and-intake, governance-analyst, release-manager]
+  - path_prefix: scripts/lib/governance_lifecycle/
+    agents: [evidence-and-intake, governance-analyst, release-manager]
+  - path_prefix: model/governance/lifecycle/
+    agents: [evidence-and-intake, governance-analyst, release-manager]
   - path_prefix: scripts/serve_governance_workbench.py
     agents: [evidence-and-intake, governance-analyst]
   - path_prefix: scripts/start_governance_workbench.sh
@@ -68,11 +94,19 @@ rules:
     agents: [governance-analyst, release-manager]
   - path_prefix: policies/opa/
     agents: [policy-as-code, release-manager]
+  - path_prefix: policies/opa/architecture_
+    agents: [architecture-runtime-governance]
   - path_prefix: schemas/
     agents: [evidence-and-intake, release-manager]
   - path_prefix: status/
     agents: [evidence-and-intake, demo-readiness]
   - path_prefix: generated/viewer/
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: generated/current-main/
+    agents: [evidence-and-intake, demo-readiness]
+  - path_prefix: docs/demos/
+    agents: [demo-readiness]
+  - path_prefix: docs/operations/status/
     agents: [evidence-and-intake, demo-readiness]
   - path_prefix: releases/
     agents: [release-manager]

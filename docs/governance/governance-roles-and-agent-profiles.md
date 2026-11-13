@@ -34,6 +34,11 @@ executor/provider and actual model if known. One coordinator may apply multiple
 role lenses; describe that as `role_lens`. A separate agent is `subagent`, and a
 human review is `human`. These declarations do not authenticate an identity.
 Specialists review first; Repo Steward accounts for their results last.
+Routing follows the implementation as well as published output: Viewer Python
+projections and result intake/index scripts select Evidence and Intake; demo
+runbooks and operational status pages select Demo Readiness; lifecycle code and
+models select Evidence and Intake, Governance Analyst and Release Manager.
+Architecture OPA adds the architecture role to the general policy/release roles.
 Missing/skipped work, stale inputs and open high/critical findings remain visible.
 The [operator workflow](../operations/agents/how-to-run-agent-review.md)
 explains preparation and completion checks.
