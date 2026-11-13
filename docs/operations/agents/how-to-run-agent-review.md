@@ -226,5 +226,32 @@ no automatic retry or permission escalation. Check the resulting private
 `results.json` with the ordinary completion command; all human approvals remain
 separate. Only the receipt exporter may project allowlisted public metadata.
 
+## 9. Prepare and grade quality evaluations offline
+
+```bash
+python scripts/evaluate_agent_reviews.py --prepare /tmp/axiom-evaluation/packets
+# After separately authorized model evaluation, grade supplied structured answers:
+python scripts/evaluate_agent_reviews.py \
+  --responses /tmp/axiom-evaluation/answers.json \
+  --output /tmp/axiom-evaluation/report.json
+```
+
+The ten synthetic cases and rubric live in `.agents/evaluations/`. Preparation
+includes role/skill snapshots and per-case response schemas, with no gold answers
+and no provider call. Supply `evaluation_digest` and `packet_set_digest` from the manifest plus `records`
+containing `case_id` and `response` for offline grading. Keep one answer bundle
+per candidate/run. Missing/invalid cases remain visible; duplicates, unrelated
+cases and different dataset or prompt/role/skill revisions are rejected. Grade
+from the same checkout used to prepare the packets.
+
+Optional measurements require a `trace_file` and its `trace_sha256`. The supplied
+runtime record must bind the case, evaluation digest and distinct run identity.
+It records measured elapsed time, token counters and requested/observed model
+identity separately. Hashes do not authenticate these declarations. Unknown
+measurements remain null; totals need complete measurement coverage. Compare the
+same complete case set and conditions, repeat runs and have a human assess the
+reasoning. A good label score is not general model superiority or approval.
+Unit-test gold answers are synthetic fixtures, never live-model results.
+
 For historical metadata-only logs see [Agent Usage Tracking](agent-usage-tracking.md).
 For deterministic regressions see [Agent Harness Usage](agent-harness-usage.md).

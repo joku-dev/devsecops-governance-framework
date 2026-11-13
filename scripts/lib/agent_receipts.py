@@ -16,6 +16,13 @@ ROOT = Path(__file__).resolve().parents[2]
 SCHEMA = json.loads((ROOT / "schemas/agent-review-receipt.schema.json").read_text())
 
 
+def write_private_artifact(path: Path, payload, *, text=False):
+    """Exclusive private output after the caller has checked its destination."""
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(fd, 'w') as handle:
+        handle.write(payload if text else json.dumps(payload, indent=2, sort_keys=True) + '\n')
+
+
 def private_destination(root: Path, path: Path) -> Path:
     path = path.expanduser().resolve()
     if path.is_relative_to(root.resolve()):

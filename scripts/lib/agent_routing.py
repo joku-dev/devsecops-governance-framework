@@ -140,6 +140,7 @@ AGENT_SYSTEM_PREFIXES = (
     "scripts/lib/agent_",
     "scripts/dispatch_governance_agents.py",
     "scripts/run_agent_reviews.py",
+    "scripts/evaluate_agent_reviews.py",
     "scripts/record_agent_review.py",
     "scripts/report_agent_review_status.py",
     ".agents/roles/",

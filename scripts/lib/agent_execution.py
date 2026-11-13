@@ -15,16 +15,10 @@ import uuid
 
 from jsonschema import Draft202012Validator
 
-from .agent_receipts import private_destination
+from .agent_receipts import private_destination, write_private_artifact as _write
 from .agent_codex import codex_command, load_adapter, observations
 from .agent_review import RESULT_SCHEMA, check_results, digest, fingerprint, git_output, results_template
 from .agent_routing import load_yaml
-
-
-def _write(path: Path, payload, *, text=False):
-    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    with os.fdopen(fd, 'w') as handle:
-        handle.write(payload if text else json.dumps(payload, indent=2, sort_keys=True) + '\n')
 
 
 def _current(root: Path, plan: dict):

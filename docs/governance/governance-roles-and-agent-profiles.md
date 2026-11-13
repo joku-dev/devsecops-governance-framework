@@ -57,6 +57,11 @@ and the execution contract are fingerprinted where present. Runtime traces stay
 private and distinguish requested configuration from observed model identity.
 No live provider calls run in CI or the deterministic harness.
 
+Review quality is evaluated separately with the synthetic, versioned rubric in
+`.agents/evaluations/`. Preparation and grading are offline. Structured label
+accuracy, false alarms and supplied runtime measurements are bounded observations,
+not proof of general model quality, authenticated execution or human approval.
+
 ## Role Summary
 
 | Role | Primary responsibility | Typical trigger |
