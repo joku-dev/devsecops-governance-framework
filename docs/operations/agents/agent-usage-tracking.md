@@ -9,6 +9,11 @@ maintenance. For current repository operation use the
 
 ## Review execution evidence
 
+For new commit-bound review usage, use `scripts/record_agent_review.py` and the
+[receipt export procedure](how-to-run-agent-review.md#6-export-metadata-for-a-committed-branch).
+Its separate metadata log counts selection, declared execution and completion
+without publishing private packets or changing the historical July events.
+
 Usage counts are routing/provider declarations, not authenticated proof that a
 separate agent reviewed each selected path. Historical events remain unchanged.
 For scope-bound results use the [review plan and completion workflow](how-to-run-agent-review.md).

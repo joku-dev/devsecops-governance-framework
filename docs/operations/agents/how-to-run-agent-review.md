@@ -139,5 +139,36 @@ approval, governance decisions, baseline releases and blocking authorization
 retain their existing processes. A plan or complete packet grants none of them.
 A commit changes HEAD; a later review must prepare a packet for the new revision.
 
+## 6. Export metadata for a committed branch
+
+For PR delivery, commit the validated change, keep the checkout clean and prepare
+a fresh full-branch packet against the target branch. Perform the final read-only
+reviews on that exact commit. Then explicitly export allowlisted metadata:
+
+```bash
+python scripts/record_agent_review.py \
+  --plan /tmp/axiom-review/committed-plan.json \
+  --results /tmp/axiom-review/committed-results.json \
+  --output /tmp/axiom-review/public-receipt.json \
+  --usage-log /tmp/axiom-review/review-usage.jsonl
+python scripts/record_agent_review.py --summary \
+  --usage-log /tmp/axiom-review/review-usage.jsonl
+```
+
+The new receipt schema is `schemas/agent-review-receipt.schema.json`. It contains
+commit/scope, opaque plan/result digests, role status and execution kind,
+validation status and finding counts. It excludes user goals, executor names,
+summaries, role outputs, finding text, evidence references and model responses.
+Only this explicitly exported metadata is suitable for intentional publication;
+the private plan and results remain private. A receipt is self-reported evidence,
+not authenticated execution or independent human approval.
+
+The exporter also accepts incomplete results, with readiness false. Selection,
+declared execution (completed/failed with executor/provider declared privately)
+and declared completion are counted separately. Same-review retries preserve the
+first receipt and do not append another usage snapshot. Use new output paths for
+different reviews. A legacy usage log is not a receipt log and is never migrated
+or rewritten automatically. Publication does not append to repository files.
+
 For historical metadata-only logs see [Agent Usage Tracking](agent-usage-tracking.md).
 For deterministic regressions see [Agent Harness Usage](agent-harness-usage.md).
