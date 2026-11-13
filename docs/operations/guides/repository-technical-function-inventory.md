@@ -1,5 +1,32 @@
 # Technische Funktionsliste des Repositories
 
+## Ergänzung: Agentenreview-Werkzeuge (GCR-2026-163–167)
+
+PRs #351–#355 erweitern das Routing und ergänzen neun Python-Dateien sowie
+einen separaten Workflow. Am gemergten Quellstand `50c684e` zählen die unten
+definierten Produktionspfade **179 Python-Dateien und 33 Workflows**;
+Shell-, sonstige Skript-/Workbench- und OPA-Dateimengen bleiben gegenüber
+GCR-2026-162 unverändert. Datierte Ausgangsinventare werden nicht überschrieben.
+
+| Einstieg oder Modul | Aufgabe und Grenze |
+|---|---|
+| `scripts/lib/agent_routing.py` | Erweitertes, additives Bereichsrouting mit sichtbarem Fallback; Auswahl startet keinen Review. |
+| `scripts/record_agent_review.py`, `scripts/lib/agent_receipts.py` | Expliziter Allowlist-Export privater Ergebnisse und idempotente separate Nutzungszählung; keine Authentifizierung. |
+| `scripts/report_agent_review_status.py`, `scripts/lib/agent_review_status.py` | Konsistenzprüfung angehängter PR-Metadaten gegen Head, Scope und Ziel-/Vorschlagsverträge; keine Freigabe. |
+| `.github/workflows/agent-review-status.yml` | Separater Report-only-Job mit vertrauenswürdigem Zielbranch-Code, lesenden Berechtigungen und Summary/Artifact-Ausgabe. |
+| `scripts/run_agent_reviews.py`, `scripts/lib/agent_execution.py` | Standardmäßig private Vorbereitung; explizit beauftragte Live-Ausführung mit begrenzter Parallelität, Timeout und abschließendem Steward. |
+| `scripts/lib/agent_codex.py` | Dünne Codex-CLI-Projektion mit Read-only-Sandbox und getrennten angeforderten/beobachteten Modellangaben. |
+| `scripts/evaluate_agent_reviews.py`, `scripts/lib/agent_evaluation.py` | Offlinepakete und strukturierte Bewertung synthetischer Antworten; keine automatischen Provideraufrufe. |
+
+Zusätzliche Verträge sind `.agents/execution-contract.yaml`,
+`schemas/agent-review-receipt.schema.json` und die versionierte Rubrik unter
+`.agents/evaluations/`. Die bestehende Review-Prozedur bleibt maßgeblich.
+Neue Harness-Regressionen prüfen Receipts, PR-Status, gemockte Ausführung und
+synthetische Bewertung ohne Live-Modelle.
+[Ablauf](../agents/how-to-run-agent-review.md) und
+[CLI-, Format- und Fehlerreferenz](../agents/agent-review-tooling-reference.md)
+erläutern Betrieb und Aussagegrenzen.
+
 ## Ergänzung: Anforderungsweg-Pilot (GCR-2026-162)
 
 `scripts/lib/requirement_journey_view.py` ergänzt eine reine, allowlistbasierte

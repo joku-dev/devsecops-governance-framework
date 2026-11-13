@@ -856,6 +856,16 @@ zuletzt zusammen. Das Ergebnis bleibt deklarierte Review-Evidenz; tatsächliche
 Modellausführung, fachliche Qualität und menschliche Freigabe sind separate Fragen.
 Der [Bedienablauf](../agents/how-to-run-agent-review.md) beschreibt die Befehle.
 
+Die Erweiterungen aus PRs #351–#355 ergänzen konkrete Bereichszuordnungen,
+explizit exportierte Review-Metadaten, getrennte Nutzungszähler und einen
+beratenden PR-Status. Ein optionaler Runner bereitet zunächst nur Aufgaben vor;
+erst `--execute` startet begrenzte, lesende Codex-Sitzungen mit abschließendem
+Steward. Eine separate Offlinebewertung prüft strukturierte Antworten auf zehn
+synthetische Fälle, ohne selbst Modelle aufzurufen. Die
+[Bedienreferenz](../agents/agent-review-tooling-reference.md) erklärt Optionen,
+Dateiformate, Statuswerte, Fehlerbehebung und Aussagegrenzen. Metadatenkonsistenz,
+fachliche Reviewqualität und menschliche Freigabe bleiben getrennt.
+
 
 **Zweck:** Die Pflege des Governance-Systems wiederholbar organisieren und seine
 Inhalte nutzbar vermitteln.
@@ -890,6 +900,10 @@ Anforderungsaufbereitung, verständliche Dokumentation und wiederverwendbare
 Integrationsunterlagen.
 
 **Implementierungsstellen:** `scripts/dispatch_governance_agents.py`,
+`scripts/record_agent_review.py`, `scripts/report_agent_review_status.py`,
+`scripts/run_agent_reviews.py`, `scripts/evaluate_agent_reviews.py`,
+`scripts/lib/agent_*.py`, `.agents/execution-contract.yaml`, `.agents/evaluations/`,
+`.github/workflows/agent-review-status.yml`,
 `scripts/generate_agent_usage_snapshot.py`,
 `scripts/record_evidence_agent_provenance.py`,
 `scripts/validate_evidence_agent_provenance.py`,

@@ -26,6 +26,15 @@ The harness currently covers:
 - candidate source-document protection
 - released baseline protection
 - evidence context protection for non-mainline results
+- receipt allowlisting, private output, retry idempotency and separate usage counts
+- trusted-base PR metadata inspection and target/proposed contract requirements
+- prepare-only execution, mocked provider failures/timeouts and final Steward ordering
+- offline synthetic scoring, revision binding and supplied measurement validation
+
+The execution tests mock provider processes; the evaluation tests use synthetic
+answers and traces. These regressions do not exercise a live CLI/account or
+establish measured model quality. See the [tooling reference](agent-review-tooling-reference.md)
+for the production CLI/artifact map and score interpretation.
 
 The role profile document remains the source of truth:
 
@@ -48,6 +57,11 @@ tests/agent_harness/routing.py
 tests/agent_harness/test_agent_contracts.py
 tests/agent_harness/test_agent_routing.py
 tests/agent_harness/test_agent_scenarios.py
+tests/agent_harness/test_review_execution.py
+tests/agent_harness/test_agent_receipts.py
+tests/agent_harness/test_agent_review_status.py
+tests/agent_harness/test_agent_execution.py
+tests/agent_harness/test_agent_evaluation.py
 tests/agent_harness/scenarios/*.json
 tests/agent_harness/expected/*.expected.json
 .agents/roles/*.yaml
