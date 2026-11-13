@@ -34,7 +34,10 @@ def main(argv=None):
         print(json.dumps({"receipt_id": receipt["receipt_id"], "head_commit": receipt["head_commit"],
                           "eligible_for_human_review": receipt["eligible_for_human_review"], "usage_appended": recorded}))
         return 0
-    except (ValueError, OSError, KeyError, TypeError, ValidationError) as exc:
+    except ValidationError:
+        print('error: Review schema is invalid; private input is omitted.', file=sys.stderr)
+        return 2
+    except (ValueError, OSError, KeyError, TypeError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 

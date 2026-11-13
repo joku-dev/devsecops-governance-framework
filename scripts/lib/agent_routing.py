@@ -83,16 +83,17 @@ def parse_inline_list(value: str) -> frozenset[str]:
     return frozenset(items)
 
 
-def load_routing_contract(path: Path = ROUTING_CONTRACT) -> dict:
+def load_routing_contract(path: Path = ROUTING_CONTRACT, *, known_agents=None) -> dict:
+    known_agents = CORE_AGENTS if known_agents is None else set(known_agents)
     data = load_yaml(path)
     if not isinstance(data, dict) or not isinstance(data.get("rules"), list) or not data["rules"]:
         raise ValueError(f"No routing rules found in {path}")
     always = data.get("always_select")
-    if not string_list(always) or REPO_STEWARD not in always or set(always) - CORE_AGENTS:
+    if not string_list(always) or REPO_STEWARD not in always or set(always) - known_agents:
         raise ValueError(f"{path}: always_select must include known repo-steward role")
     if "fallback" in data:
         fallback = data["fallback"]
-        if not isinstance(fallback, dict) or not string_list(fallback.get("path_prefixes")) or not string_list(fallback.get("agents")) or set(fallback["agents"]) - CORE_AGENTS:
+        if not isinstance(fallback, dict) or not string_list(fallback.get("path_prefixes")) or not string_list(fallback.get("agents")) or set(fallback["agents"]) - known_agents:
             raise ValueError(f"{path}: invalid fallback routing")
         for prefix in fallback["path_prefixes"]:
             if normalize_path(prefix) != prefix or not prefix.endswith("/"):
@@ -108,7 +109,7 @@ def load_routing_contract(path: Path = ROUTING_CONTRACT) -> dict:
             raise ValueError(f"{path}: duplicate prefix {prefix}")
         prefixes.add(prefix)
         agents = rule.get("agents")
-        if not string_list(agents) or set(agents) - CORE_AGENTS:
+        if not string_list(agents) or set(agents) - known_agents:
             raise ValueError(f"{path}: unknown or empty role selection for {prefix}")
     return data
 
@@ -168,19 +169,25 @@ ROUTING_RULES = load_routing_rules()
 
 
 def routing_reasons(changed_files: list[str]) -> dict[str, list[str]]:
+    return routing_reasons_for_contract(changed_files, ROUTING_DATA, ROUTING_RULES)
+
+
+def routing_reasons_for_contract(changed_files: list[str], data: dict, rules=None) -> dict[str, list[str]]:
+    """Apply the same routing to a validated, data-only contract snapshot."""
+    rules = rules if rules is not None else tuple(RoutingRule(r["path_prefix"], frozenset(r["agents"])) for r in data["rules"])
     paths = sorted({normalize_path(path) for path in changed_files})
     reasons: dict[str, set[str]] = {}
     if paths:
-        for agent in ROUTING_DATA["always_select"]:
+        for agent in data["always_select"]:
             reasons.setdefault(agent, set()).add("always_select")
     for path in paths:
         matched = False
-        for rule in ROUTING_RULES:
+        for rule in rules:
             if path.startswith(rule.prefix):
                 matched = True
                 for agent in rule.agents:
                     reasons.setdefault(agent, set()).add(rule.prefix)
-        fallback = ROUTING_DATA.get("fallback", {})
+        fallback = data.get("fallback", {})
         if not matched and any(path.startswith(prefix) for prefix in fallback.get("path_prefixes", [])):
             for agent in fallback["agents"]:
                 reasons.setdefault(agent, set()).add("fallback: unclassified functional path")

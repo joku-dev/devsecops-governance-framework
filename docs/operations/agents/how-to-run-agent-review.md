@@ -170,5 +170,30 @@ first receipt and do not append another usage snapshot. Use new output paths for
 different reviews. A legacy usage log is not a receipt log and is never migrated
 or rewritten automatically. Publication does not append to repository files.
 
+## 7. Show report-only metadata in a PR
+
+Render the explicitly exported receipt and paste only that block into the PR
+description after checking that it identifies the intended commit:
+
+```bash
+python scripts/report_agent_review_status.py \
+  --receipt /tmp/axiom-review/public-receipt.json
+```
+
+The separate **Agent Review Status** workflow reports `missing`, `invalid`,
+`stale`, `incomplete` or `declared_complete`. It uses trusted target-branch code,
+reads proposed role/skill/routing contracts as bounded regular-file data and
+combines target/proposed role requirements. It checks the PR head, merge base,
+paths, roles and required commands against the attached metadata. A deliberate
+role retirement may therefore need an explicit transitional review contract.
+Missing or inconsistent metadata never creates a required merge gate. No private
+packet is fetched; even consistent metadata does not authenticate execution or
+replace CODEOWNER approval. Invalid schema input is omitted from public errors.
+
+On the first installation PR, the reporter is absent from the trusted target
+branch. The workflow explains this bootstrap state and skips inspection until
+the implementation has merged there. It never falls back to executing PR code.
+Local fixtures cover the full inspection flow before rollout.
+
 For historical metadata-only logs see [Agent Usage Tracking](agent-usage-tracking.md).
 For deterministic regressions see [Agent Harness Usage](agent-harness-usage.md).
