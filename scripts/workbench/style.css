@@ -399,7 +399,7 @@ button.requirement-choice.selected { border-color: var(--teal); background: #eff
 .back-link { display: inline-block; margin-bottom: 16px; }
 .skip-link { position: fixed; top: -100px; left: 16px; z-index: 30; padding: 12px 20px; background: white; }
 .skip-link:focus { top: 12px; }
-.work-status { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; margin: 22px 0 8px; }
+.work-status { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin: 22px 0 8px; }
 .work-status > div { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 16px; }
 .work-status span, .work-status strong, .work-status small { display: block; }
 .work-status span { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
@@ -434,3 +434,11 @@ button.requirement-choice.selected { border-color: var(--teal); background: #eff
  .work-status { grid-template-columns: minmax(0,1fr); }
  .item-navigation { flex-wrap: wrap; }
 }
+
+.review-steps { margin-top: 24px; }
+.review-steps a { color: inherit; }
+.review-tools { margin: 20px 0; }
+.implementation-impact { margin: 20px 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #f5faf8; overflow-wrap: anywhere; }
+.implementation-impact summary { cursor: pointer; color: var(--teal); font-weight: 650; }
+.focus-control { max-width: 430px; }
+.implementation-impact .card { background: white; }

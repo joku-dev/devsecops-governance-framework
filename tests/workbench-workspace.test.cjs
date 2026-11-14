@@ -14,7 +14,7 @@ async function workspace(hash=`#/reviews/${id}/requirements`,options={}){
  const second={...first,id:'item-two',source_requirement_id:'DSCB-L1-REQ-002',statement:'Protect logs.',source_locator:'line:3'};
  const legacy={...first,id:'old-row',identification_class:'inferred_candidate',statement:'Earlier prose'};
  const formal={recorded_proposals:3,recorded_decisions:2,recorded_activations:2,open_historical_proposals:1,other_source_cases:0};
- const original={source,sha256:'b'.repeat(64),requirements:options.empty?[]:[first,second,legacy],lines:[{locator:'line:1',text:'# Original'},{locator:'line:2',text:'[DSCB-L1-REQ-001] Retain <img src=x> evidence.'},{locator:'line:3',text:'[DSCB-L1-REQ-002] Protect logs.'}],warnings:[],formal_status:formal};
+ const original={source,implementation:options.implementation||{},sha256:'b'.repeat(64),requirements:options.empty?[]:[first,second,legacy],lines:[{locator:'line:1',text:'# Original'},{locator:'line:2',text:'[DSCB-L1-REQ-001] Retain <img src=x> evidence.'},{locator:'line:3',text:'[DSCB-L1-REQ-002] Protect logs.'}],warnings:[],formal_status:formal};
  const draft={...clone(original),draft_id:id,kind:'source_review',created_at:'2026-11-07T10:00:00Z',notes:[],pr:null,stale:false,context:{commit:'c'.repeat(40)}};
  if(options.stale){draft.stale=true;draft.stale_details={reasons:[{code:'source_missing',source_id:sourceId,previous:'b'.repeat(64),current:null}]};}
  if(options.published)draft.pr={url:'https://github.com/owner/repo/pull/3'};
@@ -28,7 +28,7 @@ async function workspace(hash=`#/reviews/${id}/requirements`,options={}){
  window.fetch=async(url,request={})=>{
   calls.push({url,payload:request.body?JSON.parse(request.body):undefined});
   let value;
-  if(url==='/api/state')value={documents:[clone(source)],drafts:[...drafts.values()].map(clone),csrf:'fixture',briefs:[],dcr:{},pr_enabled:!!(options.published||options.publication),process:{phases:[],authorized_source_baseline:{status:'blocked'}},context:{commit:'c'.repeat(40),register_sha256:'d'.repeat(64)}};
+  if(url==='/api/state')value={documents:[clone(source),...(options.documents||[])],drafts:[...drafts.values()].map(clone),csrf:'fixture',briefs:[],dcr:{},pr_enabled:!!(options.published||options.publication),process:{phases:[],authorized_source_baseline:{status:'blocked'}},context:{commit:'c'.repeat(40),register_sha256:'d'.repeat(64)}};
   else if(url==='/api/logout'||url==='/api/login')value={ok:true};
   else if(url==='/api/source-reviews'){
    const next={...clone(draft),draft_id:'b'.repeat(32),stale:false,notes:[],pr:null};delete next.stale_details;drafts.set(next.draft_id,next);value=next;
@@ -60,8 +60,8 @@ test('direct links select an explicit item on a full page with escaped original 
   assert.equal(ui.$('#selected-requirement').textContent,'DSCB-L1-REQ-002');
   assert.equal(ui.$('#review-page').hidden,false);assert.equal(ui.$('#detail').open,false);
   assert.match(ui.$('#reading-original').textContent,/Protect logs/);
-  assert.match(ui.$('.work-status').textContent,/2 Entscheidungen aufgezeichnet/);
-  assert.match(ui.$('.review-progress').textContent,/0 von 2/);
+  assert.match(ui.$('.formal-history').textContent,/2 Entscheidungen aufgezeichnet/);
+  assert.match(ui.$('.work-status').textContent,/0 von 2/);
   assert.equal(ui.$('#detail-content script'),null);assert.equal(ui.$('#detail-content img'),null);
   assert.equal(ui.dirty(),false);assert.equal(ui.calls.filter(c=>c.payload).length,0);
   const route=ui.window.location.hash;ui.click('#skip-to-workspace');
@@ -100,7 +100,7 @@ test('a delayed item save retains another item note and prohibits duplicate writ
   ui.click('[data-review-select="item-two"]');ui.input('#item-rationale','Second unsaved');
   ui.releaseSave();await until(()=>ui.drafts.get(id).notes.length===1&&ui.$('#item-rationale')?.value==='Second unsaved');
   assert.equal(ui.calls.filter(c=>c.url?.endsWith('/notes')).length,1);
-  assert.match(ui.$('.review-progress').textContent,/1 von 2/);
+  assert.match(ui.$('.work-status').textContent,/1 von 2/);
   assert.match(ui.$('.work-status').textContent,/1 Anforderungen/);
   ui.click('[data-tab="packet"]');assert.match(ui.$('.handoff-questions').textContent,/DSCB-L1-REQ-001/);
   assert.match(ui.$('.handoff-questions').textContent,/DSCB-L1-REQ-002/);
@@ -158,7 +158,7 @@ test('late source responses cannot replace the destination after navigation',asy
  try{
   ui.click('[data-page="sources"]');ui.click('a[href^="#/documents/TEST"]');await until(()=>ui.calls.some(c=>c.url===`/api/sources/${sourceId}`));
   ui.click('[data-page="overview"]');ui.releaseSource();await new Promise(r=>setTimeout(r,15));
-  assert.equal(ui.$('#review-page').hidden,true);assert.match(ui.$('#content').textContent,/Was möchtest du tun/);
+  assert.equal(ui.$('#review-page').hidden,true);assert.match(ui.$('#content').textContent,/Deine Dokumentprüfung/);
  }finally{ui.close();}
 });
 
@@ -189,7 +189,7 @@ test('resume prioritizes unnoted items despite an older route filter',async()=>{
  try{
   ui.input('#item-reviewer','Reviewer');ui.input('#item-rationale','Clarify first');ui.change('#item-outcome','needs_clarification');
   ui.$('#item-note-form').dispatchEvent(new ui.window.Event('submit',{bubbles:true,cancelable:true}));
-  await until(()=>ui.$('.review-progress').textContent.includes('1 von 2'));
+  await until(()=>ui.$('.work-status').textContent.includes('1 von 2'));
   ui.click('[data-review-select="item-two"]');ui.input('#item-rationale','Unfinished second');ui.click('[data-page="overview"]');
   ui.click('[data-continue-draft]');await until(()=>ui.$('#requirement-filter'));
   assert.equal(ui.$('#requirement-filter').value,'unnoted');assert.equal(ui.$('#selected-requirement').textContent,'DSCB-L1-REQ-002');
@@ -223,5 +223,60 @@ test('publication completing after navigation updates the receipt without moving
   assert.equal(ui.window.location.hash,'#/documents');assert.equal(ui.$('#search').value,'Platform');
   ui.click('[data-page="overview"]');ui.click('[data-continue-draft]');await until(()=>ui.$('#export-packet'));
   assert.equal(ui.$('#pr-form'),null);assert.equal(ui.$('a[target="_blank"]').href,'https://github.com/owner/repo/pull/4');
+ }finally{ui.close();}
+});
+
+test('three steps keep auxiliary tools secondary and scope can reveal parked architecture',async()=>{
+ const architecture={id:'ARCH-EA-REQ-001',title:'Enterprise architecture',owner:'Architect',version:'1',status:'approved',governance_domains:['architecture']};
+ const ui=await workspace('#/start',{documents:[architecture]});
+ try{
+  assert.equal(ui.window.document.querySelectorAll('nav[aria-label="Hauptnavigation"] > button').length,2);
+  ui.click('#browse-documents');await until(()=>ui.$('#work-focus'));
+  assert.doesNotMatch(ui.$('#source-table').textContent,/Enterprise architecture/);
+  ui.change('#work-focus','all');assert.match(ui.$('#source-table').textContent,/Enterprise architecture/);
+  ui.change('#work-focus','devsecops');ui.click('[data-continue-draft]');
+  await until(()=>ui.$('.review-steps'));
+  assert.match(ui.$('.review-steps').textContent,/Dokument wählen.*Prüfen.*Weitergeben/);
+  assert.equal(ui.$('.review-tools').open,false);
+  assert.doesNotMatch(ui.$('.work-status').textContent,/Entscheidungen aufgezeichnet/);
+ }finally{ui.close();}
+});
+
+test('save and continue moves only after persistence while skip never saves',async()=>{
+ const ui=await workspace();
+ try{
+  ui.click('#review-next');assert.equal(ui.calls.filter(c=>c.payload).length,0);
+  ui.click('#review-previous');ui.input('#item-reviewer','Reviewer');ui.input('#item-rationale','Checked against original');
+  ui.$('#item-note-form').dispatchEvent(new ui.window.Event('submit',{bubbles:true,cancelable:true}));
+  await until(()=>ui.$('#selected-requirement')?.textContent==='DSCB-L1-REQ-002');
+  assert.equal(ui.drafts.get(id).notes.length,1);
+  assert.match(ui.$('.work-status').textContent,/1 von 2/);
+  ui.click('#draft-next');await until(()=>ui.$('#export-packet'));
+  assert.match(ui.$('.handoff-questions').textContent,/DSCB-L1-REQ-002/);
+ }finally{ui.close();}
+});
+
+test('impact hints show exact revision, multiple rule mappings and escaped evidence without execution claims',async()=>{
+ const mapping={id:'RTA-000001',artifact_id:'DSCB-L1-REQ-001',path:'policies/<img src=x>.rego',confirmed:true,coverage:'partial',enforcement_authorization:'blocking',decided_at:'2026-11-14',reason:'Bound',decision_ref:'docs/<script>bad</script>',sha256:'a'.repeat(64)};
+ const ui=await workspace(undefined,{implementation:{'item-one':{requirement_ref:'GRQ-000001@rev1',risk:'review_required',mappings:[mapping,{...mapping,id:'RTA-000002',confirmed:false}],reasons:['Second mapping needs review'],runtime:'Kein anforderungsbezogener Ausführungsnachweis verknüpft'}}});
+ try{
+  const impact=ui.$('.implementation-impact');
+  assert.equal(impact.open,false);assert.match(impact.textContent,/GRQ-000001@rev1/);
+  assert.match(impact.textContent,/Teilabdeckung bestätigt/);assert.match(impact.textContent,/tatsächliche Ausführung separat/);
+  assert.match(impact.textContent,/Zuordnung ungeklärt/);
+  assert.match(impact.textContent,/Aufgezeichneter Modus ungeprüft: blocking/);
+  assert.equal(impact.querySelectorAll('article').length,2);
+  assert.equal(impact.querySelector('img,script'),null);
+  ui.click('[data-review-select="item-two"]');assert.match(ui.$('.implementation-impact').textContent,/Auswirkung ungeklärt/);
+ }finally{ui.close();}
+});
+
+test('documents with no explicit requirements hand off for clarification rather than completion',async()=>{
+ const ui=await workspace(undefined,{empty:true});
+ try{
+  assert.match(ui.$('.work-status').textContent,/Anforderungskennungen klären/);
+  assert.match(ui.$('#draft-next').textContent,/Zur Klärung weitergeben/);
+  ui.click('#draft-next');await until(()=>ui.$('#export-packet'));
+  assert.doesNotMatch(ui.$('#draft-body').textContent,/Zur Übergabe vorbereitet/);
  }finally{ui.close();}
 });
