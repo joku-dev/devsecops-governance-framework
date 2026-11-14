@@ -38,10 +38,80 @@ review content; the existing extractor's warnings/errors remain visible.
 
 ## Guided operation
 
-The start page offers **Dokument hinzufügen** and **Dokumente öffnen**. Local
-work in progress appears under **Offene Vorbereitungen und Weitergaben**. The full governance process
-and open registered-source reviews are expandable details; they are status
-projections, not proof that the Workbench performed or approved those phases.
+The main workflow is **Dokument wählen → Prüfen → Weitergeben**. The sidebar
+contains **Start** and **Dokument wählen**. Start prioritizes resumable local
+preparations and offers **Prüfung beginnen** for new work. The document selector
+opens an existing preparation or begins a registered-source review directly;
+**Neue Datei hinzufügen** opens the upload form. Document title links retain a
+read-only view of the original and its exact historical decisions.
+
+The session defaults to **DevSecOps · Policy, Directive und Baseline**. The
+**Alle Dokumente einschließlich Architektur** selector reveals the full library
+and parked preparations. This is a display filter, never a change to source
+status, decisions or retention. Document/version, search and status filters remain
+editable; logout resets the session scope.
+
+**Notizen, Vergleich und Historie** contains secondary tools inside a preparation.
+A version candidate exposes its predecessor comparison there. **Hintergrund und
+weitere Werkzeuge** on Start contains document-scope comparison and baseline
+prerequisites. Existing direct links remain supported.
+
+### Three-step review
+
+1. **Dokument wählen:** choose an existing document or prepare a new upload using
+   the metadata form below. Existing usable preparations resume at the next open
+   requirement, clarification or handoff.
+2. **Prüfen:** compare an explicit requirement with its highlighted original and
+   record a proposal and rationale. **Speichern und weiter** advances only after a
+   successful save, without interrupting navigation elsewhere during a delayed
+   request. **Überspringen** leaves the item open and does not save. The three
+   status cards show source status, local note progress and open questions;
+   formal decisions are expandable separately.
+3. **Weitergeben:** review unanswered requirements and document questions and
+   download the review ZIP. Complete local notes without clarifications show
+   **Zur Übergabe vorbereitet**. Partial work can still be handed off. Zero
+   explicit declarations show **Zur Klärung weitergeben**, never completion.
+
+When no explicit declarations are recognized, read the original and choose
+**Frage zum Dokument notieren**. This records a document-level proposal; it does
+not turn prose or synthetic extraction row IDs into requirements.
+
+### Implementation and impact hints
+
+Each current declaration offers expandable **Umsetzung und Auswirkungen**.
+The private response-only projection in `scripts/lib/workbench_impact.py` reads
+the source register, lifecycle cases, canonical catalog and artifact register.
+It requires a current approved source with matching path and SHA-256, a unique
+proposal matching the declaration and wording, an approval evidence path and
+exact activation, and an active effective catalog revision with matching wording,
+source reference and decision. No connection is inferred from text similarity.
+
+Mappings remain separate. A confirmed mapping requires the exact GRQ revision,
+unique mapping ID, matching source references, authorized artifact type, effective
+adoption/derivation, equivalent or partial coverage, available decision/equivalence
+records and the current artifact SHA-256. The view shows the artifact/rule path,
+coverage, decision date, evidence path and authorized enforcement mode.
+
+- **Prüfbedarf:** the exact requirement has confirmed current artifact mappings;
+  assess those artifacts when changing the requirement. Partial coverage remains
+  explicit and never establishes full implementation.
+- **Auswirkung ungeklärt:** authority data, exact bindings or mappings are missing,
+  ambiguous, stale or invalid. One invalid mapping keeps the overall indication
+  unknown even when other mappings are confirmed. No mapping never means low risk.
+
+The indication is advisory, not a semantic assessment of a proposed text edit.
+An authorized `blocking` mapping is not evidence of actual blocking execution.
+The present authority records do not provide exact requirement-to-consumer-run or
+baseline-publication bindings, so the view explicitly leaves both unlinked and
+makes no high/low operational-risk claim. A future high-risk indication needs
+separately supported, exact runtime-use evidence. The projection neither parses
+OPA semantics nor changes enforcement.
+
+For new versions, a same-explicit-ID predecessor may show **Bisherige Version**
+impact separately. This describes the predecessor's authority only and grants no
+approval or implementation to the candidate. Projection data is recomputed from
+the current checkout on reads and excluded from stored drafts, predecessor
+snapshots, ZIP packages and candidate PRs. Saved notes remain proposal-only.
 
 ### Prepare a document in three steps
 
@@ -70,8 +140,7 @@ or size errors appear beside the form and focus the relevant field.
 
 ### Review a registered document
 
-Open **Dokumente**, select an existing document, then choose **Prüfung
-vorbereiten**. This creates a local `source_review` for the existing version
+Open **Dokumente**, select an existing document, then choose **Prüfung beginnen**. This creates a local `source_review` for the existing version
 and its exact bytes. Uploading the document as a new candidate is unnecessary.
 The source register, source status and recorded decisions remain unchanged.
 
@@ -151,9 +220,8 @@ user navigated elsewhere during the request; it does not move the user back.
 Start and document-list actions resume a usable current preparation. They open
 the next requirement without a note first, then highlight unresolved
 clarifications, then offer handoff. Published preparations point to the existing
-Draft PR; no second publication form is offered. The four status cards distinguish
-**Quellenstatus**, **Vorbereitungsfortschritt**, **Klärungsbedarf** and **formaler
-Entscheidungsstand**. Recorded decisions/activations are read from retained
+Draft PR; no second publication form is offered. The three status cards distinguish source status, local preparation and open
+questions. **Formale Entscheidungen und Historie** is expandable separately. Recorded decisions/activations are read from retained
 lifecycle records matching the exact saved source ID/path/hash. They are neither
 local-note outcomes nor a new source or baseline approval.
 

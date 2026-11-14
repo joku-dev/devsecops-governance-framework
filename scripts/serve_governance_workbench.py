@@ -32,6 +32,7 @@ from generate_source_document_requirement_delta import extract_requirements, com
 from generate_source_document_process_status import build_report
 from lib.document_consistency_view import project_public
 from lib.explicit_requirements import is_requirement_id
+from lib.workbench_impact import ImpactProjection
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).resolve().parent / 'workbench'
@@ -141,11 +142,17 @@ class Workbench:
         path = self.source_path(source)
         extracted = extract_source_document(path)
         origin = source.get('requirement_identifier_origin', self.register().get('requirement_identifier_origin_default', 'unverified'))
-        return {'source': source, 'sha256': digest(path.read_bytes()),
+        detail = {'source': source, 'sha256': digest(path.read_bytes()),
                 'lines': [vars(x) for x in extracted.lines], 'warnings': list(extracted.warnings),
                 'requirements': extract_requirements(source['id'], path, origin),
                 'formal_status': self.formal_status(source, digest(path.read_bytes())),
                 'extraction_limit': 'Only explicitly labelled requirements (for example DSCB-L1-REQ-001); no prose inference. Identifier provenance and source authority still require review.'}
+        detail['implementation'] = self.implementation(detail)
+        return detail
+
+    def implementation(self, data):
+        return ImpactProjection(self.root).project(data['source'], data.get('sha256'),
+                                                  data.get('requirements', []), self.register()['documents'])
 
     def requirement_history(self, source_id):
         source = next((s for s in self.register()['documents'] if s['id'] == source_id), None)
@@ -255,6 +262,10 @@ class Workbench:
         # Additive response-only diagnostics; old drafts and notes stay byte-identical.
         data['stale_details'] = {'reasons': reasons, 'current_commit': context['commit']}
         data['formal_status'] = self.formal_status(data['source'], data.get('sha256')) if data.get('source') else None
+        if data.get('source'):
+            data['implementation'] = self.implementation(data)
+        if data.get('target'):
+            data['target']['implementation'] = self.implementation(data['target'])
         return data
 
     def state(self):
@@ -323,6 +334,7 @@ class Workbench:
             target = self.inspect(self.document(replacement)) if replacement else None
             if target:
                 target.pop('formal_status', None)  # A live projection is not part of the saved predecessor.
+                target.pop('implementation', None)
             deltas = compare_requirements(requirements, target['requirements']) if target else []
             entry = {'id': source_id, 'title': metadata['title'].strip(), 'owner': metadata['owner'].strip(),
                      'version': metadata['version'].strip(), 'governance_domains': sorted(set(domains)),
@@ -345,8 +357,15 @@ class Workbench:
             shutil.rmtree(folder)
             raise
 
+    @staticmethod
+    def persisted(data):
+        clean = {k: v for k, v in data.items() if k not in {'stale', 'stale_details', 'formal_status', 'implementation'}}
+        if clean.get('target'):
+            clean['target'] = {k: v for k, v in clean['target'].items() if k not in {'formal_status', 'implementation'}}
+        return clean
+
     def save(self, folder, data):
-        clean = {k: v for k, v in data.items() if k not in {'stale', 'stale_details', 'formal_status'}}
+        clean = self.persisted(data)
         jsonschema.validate(clean, read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
         atomic_json(folder / 'draft.json', clean)
 
@@ -400,7 +419,7 @@ class Workbench:
             if any(r['code'].startswith('uploaded_source_') for r in data['stale_details']['reasons']):
                 raise ValueError('Local upload bytes changed or are missing; prepare a fresh draft')
             raise ValueError('Package is stale; repository identity or source bytes changed')
-        files = {'workbench-package.json': json.dumps({k: v for k, v in data.items() if k not in {'stale', 'stale_details', 'formal_status'}}, ensure_ascii=False, indent=2).encode()}
+        files = {'workbench-package.json': json.dumps(self.persisted(data), ensure_ascii=False, indent=2).encode()}
         notes = '\n'.join(f"- {x['subject']}: {x['outcome']} ({x['reviewer']}) — {x['rationale']}" for x in data['notes']) or '- No proposal recorded.'
         if data['kind'] == 'source_candidate':
             source = data['source']

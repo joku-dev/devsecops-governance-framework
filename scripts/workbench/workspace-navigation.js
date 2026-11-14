@@ -46,6 +46,12 @@ const WorkspaceNavigation = (() => {
       .sort((a,b) => String(b.created_at).localeCompare(String(a.created_at)) || b.draft_id.localeCompare(a.draft_id));
     return matches.find(d => !d.stale && !d.pr) || matches.find(d => !d.pr) || matches[0];
   }
+  function inFocus(document, focus) {
+    if (focus === 'all') return true;
+    const domains = document?.governance_domains || [];
+    return ['DEVSECOPS-POL-REQ-001','DEVSECOPS-DIR-REQ-001','DSCB-STD-REQ-001','DEVSECOPS-POL-CAND-002'].includes(document?.id)
+      || (!domains.includes('architecture') && !domains.includes('platform'));
+  }
   const staleMessages = {
     repository_changed:'Der Repository-Stand hat sich geändert. Die bisherige Prüfung bleibt an ihren gespeicherten Stand gebunden.',
     register_changed:'Das Quellenregister hat sich geändert.',
@@ -55,6 +61,6 @@ const WorkspaceNavigation = (() => {
     uploaded_source_changed:'Die gespeicherte Originaldatei dieses Uploads wurde verändert. Bereite einen neuen Entwurf mit dem aktuellen Original vor.',
     source_metadata_changed:'Die Registrierung dieses Dokuments wurde geändert oder entfernt.'
   };
-  return {routeHash, parseRoute, safePR, nextTask, sourceDraft, staleMessages};
+  return {routeHash, parseRoute, safePR, nextTask, sourceDraft, inFocus, staleMessages};
 })();
 if (typeof module !== 'undefined') module.exports = WorkspaceNavigation;

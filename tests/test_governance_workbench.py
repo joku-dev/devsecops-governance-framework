@@ -141,16 +141,20 @@ class WorkbenchTests(unittest.TestCase):
         self.assertEqual(self.app.inspect(self.app.document('TEST-SRC-001'))['formal_status'], formal)
         saved = json.loads((self.app.draft_dir(draft['draft_id']) / 'draft.json').read_text())
         self.assertNotIn('formal_status', saved); self.assertNotIn('stale_details', saved)
+        self.assertNotIn('implementation', saved)
         with zipfile.ZipFile(io.BytesIO(self.app.packet(draft['draft_id']))) as archive:
             packet = json.loads(archive.read('workbench-package.json'))
             self.assertNotIn('formal_status', packet); self.assertNotIn('stale_details', packet)
+            self.assertNotIn('implementation', packet)
             jsonschema.validate(packet, wb.read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
 
         candidate = self.upload()
         candidate_file = self.app.draft_dir(candidate['draft_id']) / 'draft.json'
         self.assertNotIn('formal_status', json.loads(candidate_file.read_text())['target'])
+        self.assertNotIn('implementation', json.loads(candidate_file.read_text())['target'])
         with zipfile.ZipFile(io.BytesIO(self.app.packet(candidate['draft_id']))) as archive:
             self.assertNotIn('formal_status', json.loads(archive.read('workbench-package.json'))['target'])
+            self.assertNotIn('implementation', json.loads(archive.read('workbench-package.json'))['target'])
 
     def test_new_source_review_preserves_old_notes_without_inheriting_them(self):
         old = self.app.source_review({'source_id':'TEST-SRC-001'})

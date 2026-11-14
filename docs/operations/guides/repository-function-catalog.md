@@ -34,6 +34,17 @@ Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 
 ## Aktueller Intake- und Review-Ablauf
 
+Der vereinfachte Ablauf lautet **Dokument wählen → Prüfen → Weitergeben**.
+Start priorisiert die Wiederaufnahme; Notizen, Vergleich und Historie sind
+sekundäre Werkzeuge. Ein Sitzungsfilter fokussiert Policy, Directive und DSCB;
+Architektur bleibt in der vollständigen Bibliothek erhalten. Je expliziter
+Anforderung zeigt **Umsetzung und Auswirkungen** exakt gebundene aktive
+GRQ-Revisionen und aktuelle bestätigte Artefaktzuordnungen. Fehlende oder
+abweichende Nachweise bleiben „Auswirkung ungeklärt“. Die Indikation ist
+Prüfunterstützung; sie bestätigt weder tatsächliche Regelanwendung noch
+Veröffentlichung, Consumer-Abdeckung oder ein semantisches Änderungsrisiko.
+Siehe [GCR-2026-169](../../governance/change-requests/GCR-2026-169-workbench-guided-impact.md).
+
 Die private lokale [Review Workbench](governance-review-workbench.md) führt durch
 Dateiauswahl, Dokumenteinordnung, Anforderungsprüfung und Weitergabe als ZIP.
 Registrierte Dokumente können ohne erneuten Upload zur Prüfung vorbereitet werden.
