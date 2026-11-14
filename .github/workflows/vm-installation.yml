@@ -20,6 +20,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: vm-installation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   consumer-service-smoke:
     runs-on: ubuntu-24.04

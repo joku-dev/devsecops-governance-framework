@@ -34,7 +34,10 @@ def main():
         raise SystemExit('Requires root on explicitly marked disposable host; never the Proxmox target')
     if 'VERSION_ID="24.04"' not in Path('/etc/os-release').read_text():
         raise SystemExit('Requires Ubuntu 24.04 with real systemd')
-    if options.restore_orbstack_hardening and not Path('/run/systemd/system/service.d/zzz-lxc-service.conf').exists():
+    orb_rules = Path('/run/systemd/system')
+    if options.restore_orbstack_hardening and not (
+            (orb_rules / 'service.d/zzz-lxc-service.conf').exists()
+            or next(orb_rules.glob('*.service.d/zzz-lxc-service.conf'), None)):
         raise SystemExit('The explicit OrbStack option requires its known global service exception file')
     if options.bootstrap_disposable_runtime:
         if Path('/srv/axiom').exists() or Path('/etc/axiom').exists():
@@ -65,6 +68,11 @@ def main():
     for path in source.rglob('*'):
         path.chmod(0o755 if path.is_dir() else 0o644)
     source.chmod(0o755)
+    # Exercise the production main() with normal arguments, but expose the original
+    # exception in this paused, fake-key fixture instead of its redacted CLI shell.
+    diagnostic_entry = source / 'scripts/consumer_fixture_entry.py'
+    diagnostic_entry.write_text('from consumer_intake import main\nraise SystemExit(main())\n')
+    diagnostic_entry.chmod(0o644)
     operations, projection = temporary / 'private', temporary / 'view'
     operations.mkdir(mode=0o700)
     projection.mkdir(mode=0o750)
@@ -102,6 +110,8 @@ def main():
                     vm_consumer_user='axiom-intake', vm_user='axiom', vm_consumer_root=str(operations),
                     vm_consumer_projection=str(projection),
                     vm_consumer_credentials={'results': [{'item': 'reader', 'stat': {'exists': True}}]})
+                if kind == 'service':
+                    rendered = rendered.replace('/scripts/consumer_intake.py', '/scripts/consumer_fixture_entry.py')
                 path.write_text(rendered)
                 path.chmod(0o644)
                 units.append(name)
