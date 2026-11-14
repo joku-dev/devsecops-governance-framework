@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #364: feat: Consumer-Ergebnisse auf der VM sammeln (Schattenbetrieb) (`edf16239e927`)
 
 ## Ergebnis
 
@@ -10,12 +10,21 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.github/workflows/intake-governance-result.yml`
+- `.github/workflows/vm-installation.yml`
+- `scripts/consumer_intake.py`
+- `scripts/intake_github_actions_run.py`
+- `scripts/lib/consumer_github.py`
+- `scripts/lib/consumer_intake.py`
+- `scripts/lib/consumer_intake_store.py`
+- `scripts/lib/consumer_publisher.py`
+- `scripts/lib/consumer_view.py`
+- `scripts/lib/private_credentials.py`
+- `scripts/serve_governance_workbench.py`
+- `scripts/workbench/app.js`
+- `scripts/workbench/consumer-view.js`
+- `scripts/workbench/index.html`
+- `scripts/workbench/workspace-navigation.js`
 
 ## Fehlende lokale Markdown-Ziele
 

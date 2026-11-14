@@ -146,10 +146,23 @@ zusätzlich die öffentlichen Viewer-Assets; Modelle, Schemas, Vorlagen und Test
 werden als Verzeichnisse unten eingeordnet.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-Der [konsolidierte Abgleich](../status/repository-documentation-reconciliation-2026-11-07.md) deckt die
-14 offenen Dokumentationsentwürfe ab. Frühere Inventare und Implementierungsnotizen
-bleiben im [Quellstand vor diesem Abgleich](https://github.com/joku-dev/devsecops-governance-framework/blob/ae423f34f75451b70b1ebffc71ea3683e4763c52/docs/operations/guides/repository-technical-function-inventory.md)
-nachlesbar. Deren P2-Fließtextableitung beschreibt nicht das heutige Verhalten.
+### PR #364: feat: Consumer-Ergebnisse auf der VM sammeln (Schattenbetrieb) (`edf16239e927`)
+
+- `.github/workflows/intake-governance-result.yml`
+- `.github/workflows/vm-installation.yml`
+- `scripts/consumer_intake.py`
+- `scripts/intake_github_actions_run.py`
+- `scripts/lib/consumer_github.py`
+- `scripts/lib/consumer_intake.py`
+- `scripts/lib/consumer_intake_store.py`
+- `scripts/lib/consumer_publisher.py`
+- `scripts/lib/consumer_view.py`
+- `scripts/lib/private_credentials.py`
+- `scripts/serve_governance_workbench.py`
+- `scripts/workbench/app.js`
+- `scripts/workbench/consumer-view.js`
+- `scripts/workbench/index.html`
+- `scripts/workbench/workspace-navigation.js`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Python-Skripte und Bibliotheksmodule
