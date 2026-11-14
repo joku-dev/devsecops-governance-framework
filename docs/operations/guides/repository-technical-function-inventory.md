@@ -1,5 +1,18 @@
 # Technische Funktionsliste des Repositories
 
+## Ergänzung: vereinfachte Workbench und Auswirkungsanzeige (GCR-2026-169)
+
+`scripts/lib/workbench_impact.py` ergänzt eine private lesende Projektion exakter
+Quellen-, Lifecycle-, Katalog- und Artefaktbindungen. Der Workbench-Server liefert
+sie ausschließlich in Antworten; Draft- und Paketverträge bleiben unverändert.
+Die bestehenden Frontend-Dateien bündeln Navigation und Übergabe in drei Schritte.
+Neue Python- und erweiterte DOM-Regressionen prüfen Bindungslücken, Hashabweichungen,
+Kandidaten, Mehrfachzuordnungen, Speichern/Fortsetzen und den Anzeigeumfang.
+Gegenüber GCR-2026-163–167 kommt eine produktive Python-Datei hinzu; historische
+Inventare und ihre Quellstandsangaben bleiben erhalten.
+[Bedienung und Grenzen](governance-review-workbench.md#implementation-and-impact-hints).
+
+
 ## Ergänzung: Agentenreview-Werkzeuge (GCR-2026-163–167)
 
 PRs #351–#355 erweitern das Routing und ergänzen neun Python-Dateien sowie
