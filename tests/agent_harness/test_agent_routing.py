@@ -103,6 +103,47 @@ class AgentRoutingTests(unittest.TestCase):
         selected = route_agents(["README.md"])
         self.assertEqual(selected, {REPO_STEWARD})
 
+    def test_implementation_paths_keep_domain_reviews_without_generated_changes(self):
+        evidence = {"evidence-and-intake", "demo-readiness", REPO_STEWARD}
+        analyst = {"evidence-and-intake", "governance-analyst", REPO_STEWARD}
+        lifecycle = analyst | {"release-manager"}
+        cases = {
+            "docs/demos/demo-end-to-end-governance.md": {"demo-readiness", REPO_STEWARD},
+            "docs/operations/status/current-governance-platform-state.md": evidence,
+            "generated/current-main/ha-cpswms/result.json": evidence,
+            "scripts/lib/viewer_app.py": evidence,
+            "scripts/lib/viewer_technical.py": evidence,
+            "scripts/lib/viewer_experience.py": evidence,
+            "scripts/lib/requirement_journey_view.py": evidence | {"governance-analyst"},
+            "scripts/lib/governance_requirement_lifecycle_view.py": evidence | {"governance-analyst"},
+            "scripts/lib/consumer_lifecycle_next_step.py": evidence | {"governance-analyst"},
+            "scripts/generate_status_viewer.py": evidence,
+            "scripts/intake_governance_result.py": analyst,
+            "scripts/intake_ci_artifact_bundle.py": analyst,
+            "scripts/intake_lifecycle_pilot_action.py": analyst,
+            "scripts/intake_architecture_github_actions_run.py": analyst | {"architecture-runtime-governance"},
+            "scripts/generate_repository_results_index.py": evidence,
+            "scripts/generate_architecture_results_index.py": evidence | {"architecture-runtime-governance"},
+            "scripts/generate_typed_evidence_results_index.py": evidence,
+            "scripts/lib/result_ledger.py": lifecycle,
+            "scripts/lib/governance_lifecycle/kernel.py": lifecycle,
+            "model/governance/lifecycle/consumer-operation/profile.json": lifecycle,
+            "policies/opa/architecture_release_readiness.rego": {
+                "architecture-runtime-governance", "policy-as-code", "release-manager", REPO_STEWARD},
+        }
+        for path, roles in cases.items():
+            with self.subTest(path=path):
+                self.assertEqual(route_agents([path]), roles)
+
+    def test_domain_rules_do_not_overroute_unrelated_docs_scripts_or_policies(self):
+        for path, expected in {
+            "docs/publishing/article.md": {REPO_STEWARD},
+            "scripts/unclassified.py": {"governance-analyst", REPO_STEWARD},
+            "policies/opa/vulnerability_gate.rego": {"policy-as-code", "release-manager", REPO_STEWARD},
+        }.items():
+            with self.subTest(path=path):
+                self.assertEqual(route_agents([path]), expected)
+
     def test_empty_change_set_selects_no_agents(self):
         self.assertEqual(route_agents([]), set())
 

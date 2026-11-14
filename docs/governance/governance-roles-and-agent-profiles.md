@@ -34,6 +34,11 @@ executor/provider and actual model if known. One coordinator may apply multiple
 role lenses; describe that as `role_lens`. A separate agent is `subagent`, and a
 human review is `human`. These declarations do not authenticate an identity.
 Specialists review first; Repo Steward accounts for their results last.
+Routing follows the implementation as well as published output: Viewer Python
+projections and result intake/index scripts select Evidence and Intake; demo
+runbooks and operational status pages select Demo Readiness; lifecycle code and
+models select Evidence and Intake, Governance Analyst and Release Manager.
+Architecture OPA adds the architecture role to the general policy/release roles.
 Missing/skipped work, stale inputs and open high/critical findings remain visible.
 The [operator workflow](../operations/agents/how-to-run-agent-review.md)
 explains preparation and completion checks.
@@ -44,6 +49,18 @@ the checkout and preserve others' edits. Role reviews default to read-only acces
 Only existing human processes may approve sources, canonical requirements,
 blocking modes, releases or protected PRs. The completion checker grants none
 of these authorities and runs no validation command itself.
+
+Optional execution follows `.agents/execution-contract.yaml`. Preparation is the
+default; an explicit operator action starts bounded read-only provider sessions.
+Specialists precede Steward, who receives their exact outputs. Provider settings
+and the execution contract are fingerprinted where present. Runtime traces stay
+private and distinguish requested configuration from observed model identity.
+No live provider calls run in CI or the deterministic harness.
+
+Review quality is evaluated separately with the synthetic, versioned rubric in
+`.agents/evaluations/`. Preparation and grading are offline. Structured label
+accuracy, false alarms and supplied runtime measurements are bounded observations,
+not proof of general model quality, authenticated execution or human approval.
 
 ## Role Summary
 

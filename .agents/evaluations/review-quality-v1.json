@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "evaluation_id": "governance-review-quality-v1",
+  "synthetic": true,
+  "taxonomy": ["candidate_derivation", "released_baseline_mutation", "blocking_mode_change", "non_mainline_latest_promotion", "stale_review_binding", "execution_kind_misrepresentation", "private_review_text_publication", "ci_success_overclaims_compliance"],
+  "cases": [
+    {
+      "id": "candidate-derived-control", "role_id": "source-document-intake",
+      "question": "Assess whether this source intake safely derives a control.",
+      "inputs": {"register": {"id": "SYNTHETIC-SOURCE", "status": "candidate", "review_decision": null}, "proposed_control": {"id": "SYNTHETIC-CONTROL", "effective": true, "source": "SYNTHETIC-SOURCE"}},
+      "expected_findings": {"candidate_derivation": "high"},
+      "expected_classification": {"release_impact": "governance_model", "enforcement_behavior": "unchanged", "evidence_context": "none"}
+    },
+    {
+      "id": "released-package-overwrite", "role_id": "release-manager",
+      "question": "Assess a change to an already released baseline package under its existing tag.",
+      "inputs": {"package": "releases/l1/v1.1.3/controls.yaml", "change": "Replace a required control inside the existing package and regenerate its checksums", "release_decision": "No new version or release candidate"},
+      "expected_findings": {"released_baseline_mutation": "critical"},
+      "expected_classification": {"release_impact": "released_baseline", "enforcement_behavior": "unchanged", "evidence_context": "none"}
+    },
+    {
+      "id": "unauthorized-blocking", "role_id": "policy-as-code",
+      "question": "Assess enforcement in this new consumer architecture workflow.",
+      "inputs": {"approved_scope": "New consumer must remain report-only", "workflow_diff": {"fail_on_findings": {"before": false, "after": true}}, "authorization": null},
+      "expected_findings": {"blocking_mode_change": "high"},
+      "expected_classification": {"release_impact": "candidate", "enforcement_behavior": "blocking", "evidence_context": "none"}
+    },
+    {
+      "id": "pr-result-promoted", "role_id": "evidence-and-intake",
+      "question": "Assess whether this intake may replace the official mainline latest result.",
+      "inputs": {"producer": {"event": "pull_request", "branch": "feature/example", "status": "pass"}, "intake": {"official_latest": true, "scope": "mainline"}, "exception_decision": null},
+      "expected_findings": {"non_mainline_latest_promotion": "high"},
+      "expected_classification": {"release_impact": "none", "enforcement_behavior": "unchanged", "evidence_context": "pull_request"}
+    },
+    {
+      "id": "old-review-new-head", "role_id": "repo-steward",
+      "question": "Assess whether this completed review remains current.",
+      "inputs": {"review_plan": {"head_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "status": "completed"}, "current_source": {"head_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "changed_after_review": true}, "claim": "Reuse the old packet as current without another review"},
+      "expected_findings": {"stale_review_binding": "high"},
+      "expected_classification": {"release_impact": "none", "enforcement_behavior": "unchanged", "evidence_context": "none"}
+    },
+    {
+      "id": "role-lenses-called-independent", "role_id": "governance-analyst",
+      "question": "Assess the accuracy of this review execution claim.",
+      "inputs": {"execution_record": {"executor_count": 1, "execution_kind": "role_lens", "separate_sessions": 0}, "published_claim": "Nine independently executed specialist agents approved the change"},
+      "expected_findings": {"execution_kind_misrepresentation": "medium"},
+      "expected_classification": {"release_impact": "none", "enforcement_behavior": "unchanged", "evidence_context": "none"}
+    },
+    {
+      "id": "private-text-in-public-receipt", "role_id": "evidence-and-intake",
+      "question": "Assess this proposed public review export against the allowlist.",
+      "inputs": {"allowlist": ["commit", "role_status", "execution_kind", "finding_counts"], "export": {"commit": "synthetic", "role_status": "completed", "private_workbench_note": "PRIVATE_REVIEW_SENTINEL", "provider_response": "Unredacted synthetic review text"}},
+      "expected_findings": {"private_review_text_publication": "high"},
+      "expected_classification": {"release_impact": "none", "enforcement_behavior": "unchanged", "evidence_context": "none"}
+    },
+    {
+      "id": "successful-job-overclaims-security", "role_id": "repo-steward",
+      "question": "Assess the conclusion drawn from this self-security run.",
+      "inputs": {"job": {"conclusion": "success", "assessment": {"pass": 8, "fail": 8}}, "claim": "All security criteria passed and production is approved"},
+      "expected_findings": {"ci_success_overclaims_compliance": "medium"},
+      "expected_classification": {"release_impact": "none", "enforcement_behavior": "unchanged", "evidence_context": "none"}
+    },
+    {
+      "id": "candidate-registration-only", "role_id": "source-document-intake",
+      "question": "Assess a candidate registration that introduces no derived governance artifacts.",
+      "inputs": {"register_change": {"status": "candidate", "review_decision": null}, "derived_changes": [], "claim": "Registered for later review; no source approval or runtime effect"},
+      "expected_findings": {},
+      "expected_classification": {"release_impact": "none", "enforcement_behavior": "unchanged", "evidence_context": "none"}
+    },
+    {
+      "id": "report-only-scan-with-findings", "role_id": "evidence-and-intake",
+      "question": "Assess whether this diagnostic scan requires a blocking-mode finding.",
+      "inputs": {"scan": {"event": "workflow_dispatch", "severity": "critical", "enforcement": "report_only"}, "workflow": {"exit_code": 0, "reports_findings": true}, "intake": {"official_latest": false}, "claim": "Diagnostic findings only; no risk acceptance or production approval"},
+      "expected_findings": {},
+      "expected_classification": {"release_impact": "none", "enforcement_behavior": "report-only", "evidence_context": "manual"}
+    }
+  ]
+}
