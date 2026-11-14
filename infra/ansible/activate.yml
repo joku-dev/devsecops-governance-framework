@@ -1,0 +1,244 @@
+---
+- name: Verify the active checkout has no local edits
+  ansible.builtin.command:
+    argv: [git, status, --porcelain, --untracked-files=normal]
+    chdir: '{{ vm_repo }}'
+  become_user: '{{ vm_user }}'
+  changed_when: false
+  register: vm_live_edits
+  failed_when: vm_live_edits.rc != 0 or vm_live_edits.stdout != ''
+  when: vm_existing_receipt.stat.exists
+- name: Verify installed commit agrees with the receipt
+  ansible.builtin.command:
+    argv: [git, rev-parse, HEAD]
+    chdir: '{{ vm_repo }}'
+  become_user: '{{ vm_user }}'
+  changed_when: false
+  register: vm_live_revision
+  failed_when: vm_live_revision.rc != 0 or vm_live_revision.stdout != vm_old.current_revision
+  when: vm_existing_receipt.stat.exists
+- name: Inspect installed unit
+  ansible.builtin.stat:
+    path: '{{ vm_unit }}'
+  register: vm_installed_unit
+- name: Retain prior unit for failure recovery
+  ansible.builtin.slurp:
+    src: '{{ vm_unit }}'
+  register: vm_old_unit
+  when: vm_installed_unit.stat.exists
+- name: Inspect candidate unit
+  ansible.builtin.stat:
+    path: '{{ vm_base }}/config/axiom-workbench.service'
+  register: vm_candidate_unit
+  when: vm_action != 'import-drafts'
+- name: Read service state
+  ansible.builtin.service_facts:
+- name: Decide whether activation is necessary
+  ansible.builtin.set_fact:
+    vm_was_running: "{{ ansible_facts.services.get('axiom-workbench.service', {}).get('state') == 'running' }}"
+    vm_activate: >-
+      {{ vm_action == 'import-drafts' or
+         vm_old.get('current_revision', '') != vm_target_revision or
+         ansible_facts.services.get('axiom-workbench.service', {}).get('state') != 'running' or
+         vm_installed_unit.stat.get('checksum', '') != vm_candidate_unit.stat.get('checksum', '') }}
+- name: Activate with a verified two-location backup and failure recovery
+  when: vm_activate | bool
+  block:
+    - name: Stop the previous service for a consistent backup
+      ansible.builtin.systemd_service:
+        name: axiom-workbench
+        state: stopped
+      when: vm_installed_unit.stat.exists
+    - name: Create the private VM backup
+      ansible.builtin.command:
+        argv: [/usr/bin/python3, '{{ vm_helper }}', backup,
+               --state, '{{ vm_state }}', --config, '{{ vm_environment }}',
+               --receipt, '{{ vm_receipt }}', --unit, '{{ vm_unit }}',
+               --destination, '{{ vm_backup_directory }}/{{ vm_deployment_id }}.zip']
+      changed_when: true
+    - name: Inspect backup size and transport checksum
+      ansible.builtin.stat:
+        path: '{{ vm_backup_directory }}/{{ vm_deployment_id }}.zip'
+        checksum_algorithm: sha256
+      register: vm_backup_stat
+    - name: Check controller disk before fetching the backup
+      ansible.builtin.command:
+        argv:
+          - '{{ ansible_playbook_python }}'
+          - -c
+          - 'import shutil,sys; assert shutil.disk_usage(sys.argv[1]).free > int(sys.argv[2])*2+1024**3, "Controller backup space exhausted"'
+          - '{{ vm_controller_backups }}'
+          - '{{ vm_backup_stat.stat.size | string }}'
+      delegate_to: localhost
+      become: false
+      changed_when: false
+    - name: Copy backup to the private controller storage
+      ansible.builtin.fetch:
+        src: '{{ vm_backup_directory }}/{{ vm_deployment_id }}.zip'
+        dest: '{{ vm_controller_backups }}/{{ vm_deployment_id }}.zip'
+        flat: true
+      no_log: true
+    - name: Enforce private backup permissions on controller
+      ansible.builtin.file:
+        path: '{{ vm_controller_backups }}/{{ vm_deployment_id }}.zip'
+        mode: '0600'
+      delegate_to: localhost
+      become: false
+    - name: Verify all copied backup contents on the controller
+      ansible.builtin.command:
+        argv: ['{{ ansible_playbook_python }}', '{{ vm_controller_helper }}', verify,
+               --archive, '{{ vm_controller_backups }}/{{ vm_deployment_id }}.zip']
+      delegate_to: localhost
+      become: false
+      changed_when: false
+    - name: Check the copied archive against the VM checksum
+      ansible.builtin.stat:
+        path: '{{ vm_controller_backups }}/{{ vm_deployment_id }}.zip'
+        checksum_algorithm: sha256
+      delegate_to: localhost
+      become: false
+      register: vm_copied_backup
+    - name: Require identical backup bytes
+      ansible.builtin.assert:
+        that: vm_copied_backup.stat.checksum == vm_backup_stat.stat.checksum
+    - name: Checkout the exact prepared revision without cleaning private state
+      ansible.builtin.git:
+        repo: '{{ vm_repository_url }}'
+        dest: '{{ vm_repo }}'
+        version: '{{ vm_target_revision }}'
+        force: false
+      become_user: '{{ vm_user }}'
+      when: vm_action != 'import-drafts'
+    - name: Create private runtime state directory
+      ansible.builtin.file:
+        path: '{{ vm_state }}'
+        state: directory
+        owner: '{{ vm_user }}'
+        group: '{{ vm_user }}'
+        mode: '0700'
+    - name: Install the prepared unit
+      ansible.builtin.copy:
+        src: '{{ vm_base }}/config/axiom-workbench.service'
+        dest: '{{ vm_unit }}'
+        remote_src: true
+        owner: root
+        group: root
+        mode: '0644'
+      when: vm_action != 'import-drafts'
+    - name: Import the selected drafts while stopped
+      ansible.builtin.include_tasks: import.yml
+      when: vm_action == 'import-drafts'
+    - name: Start and enable the installed service
+      ansible.builtin.systemd_service:
+        name: axiom-workbench
+        daemon_reload: true
+        enabled: true
+        state: started
+    - name: Verify anonymous boundary, real login, data access and logout
+      ansible.builtin.command:
+        argv: [/usr/bin/python3, '{{ vm_helper }}', smoke, --port, '{{ vm_port | string }}',
+               --environment, '{{ vm_environment }}', --logout]
+      changed_when: false
+      register: vm_smoke
+      retries: 12
+      delay: 5
+      until: vm_smoke.rc == 0
+      no_log: true
+    - name: Record the successful active version
+      ansible.builtin.copy:
+        dest: '{{ vm_receipt }}'
+        owner: root
+        group: root
+        mode: '0600'
+        content: >-
+          {{ {'schema_version': 1,
+              'current_revision': vm_old.current_revision if vm_action == 'import-drafts' else vm_target_revision,
+              'previous_revision': vm_old.get('previous_revision', '') if vm_action == 'import-drafts' else vm_old.get('current_revision', ''),
+              'port': vm_port, 'last_action': vm_action, 'deployment_id': vm_deployment_id,
+              'toolchain': vm_old.get('toolchain', {}) if vm_action == 'import-drafts' else (vm_toolchain.stdout | from_json),
+              'controller_ansible': ansible_version.full,
+              'last_backup': vm_backup_directory + '/' + vm_deployment_id + '.zip',
+              'controller_backup': vm_controller_backups + '/' + vm_deployment_id + '.zip'} | to_nice_json }}
+    - name: Publish non-secret local status metadata
+      ansible.builtin.copy:
+        dest: /etc/axiom/deployment-public.json
+        owner: root
+        group: root
+        mode: '0644'
+        content: >-
+          {{ {'installed': true, 'revision': vm_old.current_revision if vm_action == 'import-drafts' else vm_target_revision,
+              'port': vm_port, 'deployment_id': vm_deployment_id} | to_nice_json }}
+  rescue:
+    - name: Stop the unsuccessful activation
+      ansible.builtin.systemd_service:
+        name: axiom-workbench
+        state: stopped
+      when: vm_installed_unit.stat.exists or vm_action != 'import-drafts'
+      failed_when: false
+    - name: Inspect a partially installed first unit
+      ansible.builtin.stat:
+        path: '{{ vm_unit }}'
+      register: vm_failed_unit
+    - name: Disable an unsuccessful first installation until explicitly retried
+      ansible.builtin.systemd_service:
+        name: axiom-workbench
+        enabled: false
+        state: stopped
+      when: not vm_installed_unit.stat.exists and vm_failed_unit.stat.exists
+    - name: Restore the previous exact checkout
+      ansible.builtin.git:
+        repo: '{{ vm_repository_url }}'
+        dest: '{{ vm_repo }}'
+        version: '{{ vm_old.current_revision }}'
+        force: false
+      become_user: '{{ vm_user }}'
+      when: vm_old.get('current_revision', '') != '' and vm_action != 'import-drafts'
+    - name: Restore the previous unit
+      ansible.builtin.copy:
+        content: '{{ vm_old_unit.content | b64decode }}'
+        dest: '{{ vm_unit }}'
+        mode: '0644'
+        owner: root
+        group: root
+      when: vm_installed_unit.stat.exists
+    - name: Restore the previous private receipt
+      ansible.builtin.copy:
+        content: '{{ vm_old_receipt.content | b64decode }}'
+        dest: '{{ vm_receipt }}'
+        mode: '0600'
+        owner: root
+        group: root
+      when: vm_existing_receipt.stat.exists
+    - name: Clear service failure rate limits before recovery
+      ansible.builtin.command:
+        argv: [systemctl, reset-failed, axiom-workbench]
+      changed_when: false
+      failed_when: false
+      when: vm_was_running | bool
+    - name: Restart the previous service when it was running
+      ansible.builtin.systemd_service:
+        name: axiom-workbench
+        daemon_reload: true
+        state: started
+      when: vm_was_running | bool
+    - name: Verify recovered service
+      ansible.builtin.command:
+        argv: [/usr/bin/python3, '{{ vm_helper }}', smoke, --port, '{{ vm_port | string }}',
+               --environment, '{{ vm_environment }}', --logout]
+      changed_when: false
+      register: vm_recovery_smoke
+      retries: 12
+      delay: 5
+      until: vm_recovery_smoke.rc == 0
+      no_log: true
+      when: vm_was_running | bool
+    - name: Report unsuccessful activation without declaring success
+      ansible.builtin.fail:
+        msg: Activation failed. Previous running service was recovered if present; private drafts were preserved. Inspect private backups and the failed task.
+- name: Verify an unchanged installation without restarting it
+  ansible.builtin.command:
+    argv: [/usr/bin/python3, '{{ vm_helper }}', smoke, --port, '{{ vm_port | string }}',
+           --environment, '{{ vm_environment }}']
+  changed_when: false
+  no_log: true
+  when: not (vm_activate | bool)

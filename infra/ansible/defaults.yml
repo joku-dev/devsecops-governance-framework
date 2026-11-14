@@ -1,0 +1,10 @@
+vm_base: /srv/axiom
+vm_repo: /srv/axiom/repository
+vm_user: axiom
+vm_port: 8766
+vm_environment: /etc/axiom/workbench.env
+vm_receipt: /etc/axiom/deployment.json
+vm_unit: /etc/systemd/system/axiom-workbench.service
+vm_helper: /usr/local/lib/axiom/vm_deployment.py
+vm_state: /srv/axiom/repository/.local/governance-workbench
+vm_backup_directory: /var/backups/axiom

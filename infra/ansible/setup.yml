@@ -1,0 +1,67 @@
+---
+- name: Install host prerequisites from Ubuntu repositories
+  ansible.builtin.apt:
+    name: [git, curl, ca-certificates, python3-venv, openssl, acl]
+    state: present
+    update_cache: true
+    cache_valid_time: 86400
+- name: Create the unprivileged service account
+  ansible.builtin.user:
+    name: '{{ vm_user }}'
+    system: true
+    shell: /usr/sbin/nologin
+    home: '{{ vm_base }}/home'
+    create_home: true
+- name: Create operator-owned directories
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    state: directory
+    owner: root
+    group: root
+    mode: '{{ item.mode }}'
+  loop:
+    - {path: '{{ vm_base }}', mode: '0755'}
+    - {path: '{{ vm_base }}/config', mode: '0700'}
+    - {path: /etc/axiom, mode: '0755'}
+    - {path: '{{ vm_backup_directory }}', mode: '0700'}
+    - {path: /usr/local/lib/axiom, mode: '0755'}
+- name: Create isolated runtime and candidate parents
+  ansible.builtin.file:
+    path: '{{ vm_base }}/{{ item }}'
+    state: directory
+    owner: '{{ vm_user }}'
+    group: '{{ vm_user }}'
+    mode: '0755'
+  loop: [candidates, venvs, jobs]
+- name: Install deployment helper
+  ansible.builtin.copy:
+    src: '{{ vm_controller_helper }}'
+    dest: '{{ vm_helper }}'
+    owner: root
+    group: root
+    mode: '0644'
+- name: Create the stable managed checkout
+  ansible.builtin.file:
+    path: '{{ vm_repo }}'
+    state: directory
+    owner: '{{ vm_user }}'
+    group: '{{ vm_user }}'
+    mode: '0755'
+- name: Create the access key only on first installation
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/python3
+      - -c
+      - |
+        import os,secrets
+        p='/etc/axiom/workbench.env'
+        fd=os.open(p,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+        with os.fdopen(fd,'w') as f: f.write('AXIOM_WORKBENCH_KEY='+secrets.token_urlsafe(32)+'\n')
+    creates: '{{ vm_environment }}'
+  no_log: true
+- name: Enforce private operator ownership of the key file
+  ansible.builtin.file:
+    path: '{{ vm_environment }}'
+    owner: root
+    group: root
+    mode: '0600'
