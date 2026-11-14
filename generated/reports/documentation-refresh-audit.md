@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #353: feat(agents): show advisory PR review status using trusted base code (`50c684e7d0a9`)
 
 ## Ergebnis
 
@@ -10,12 +10,25 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.agents/evaluations/README.md`
+- `.agents/evaluations/review-quality-v1.json`
+- `.agents/execution-contract.yaml`
+- `.agents/providers/codex/README.md`
+- `.agents/review-protocol.yaml`
+- `.agents/routing/governance-agent-routing.yaml`
+- `.github/workflows/agent-review-status.yml`
+- `schemas/agent-review-receipt.schema.json`
+- `scripts/evaluate_agent_reviews.py`
+- `scripts/lib/agent_codex.py`
+- `scripts/lib/agent_evaluation.py`
+- `scripts/lib/agent_execution.py`
+- `scripts/lib/agent_receipts.py`
+- `scripts/lib/agent_review.py`
+- `scripts/lib/agent_review_status.py`
+- `scripts/lib/agent_routing.py`
+- `scripts/record_agent_review.py`
+- `scripts/report_agent_review_status.py`
+- `scripts/run_agent_reviews.py`
 
 ## Fehlende lokale Markdown-Ziele
 
