@@ -272,10 +272,12 @@ packages through their existing reviewed change flow.
 
 ## Security and storage boundary
 
-- Bind only to loopback (`127.0.0.1`), never expose this development server to
-  a LAN, tunnel, public host or reverse proxy. This version is for one local
-  maintainer; enterprise hosting needs an HTTPS service, SSO/RBAC, verified
-  reviewer identities and a separate operational acceptance.
+- Bind only to loopback (`127.0.0.1`). The local development profile must not be
+  exposed to a LAN, public host or reverse proxy. The separately scoped
+  [Linux VM profile](linux-vm-installation.md) permits a personal SSH tunnel for
+  one maintainer, retaining the exact loopback Host/Origin checks and local key.
+  Enterprise hosting needs an HTTPS service, SSO/RBAC, verified reviewer identities
+  and a separate operational acceptance.
 - Private API data requires a session; cookies use HttpOnly and SameSite=Strict.
   Mutations additionally require the local Origin and a session CSRF token.
 - Exact Host allowlisting prevents DNS-rebinding access. CSP, frame protection,

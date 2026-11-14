@@ -1,0 +1,38 @@
+---
+- name: Inspect the single VM without changing its state
+  hosts: axiom
+  gather_facts: false
+  vars_files: [defaults.yml]
+  tasks:
+    - name: Require one explicit host
+      ansible.builtin.assert:
+        that: groups['axiom'] | length == 1
+    - name: Read platform, service and disk feasibility
+      ansible.builtin.command:
+        argv: [/usr/bin/python3, -c, "{{ lookup('ansible.builtin.file', vm_controller_helper) }}", preflight,
+               --base, '{{ vm_base }}', --port, '{{ vm_port | string }}']
+      check_mode: false
+      changed_when: false
+      when: vm_action == 'check'
+      register: vm_preflight
+    - name: Show feasibility result
+      ansible.builtin.debug:
+        msg: '{{ vm_preflight.stdout | from_json }}'
+      when: vm_action == 'check'
+    - name: Read deployment and service metadata
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/python3
+          - -c
+          - |
+            import json,pathlib,subprocess
+            p=pathlib.Path('/etc/axiom/deployment-public.json')
+            d=json.loads(p.read_text()) if p.is_file() else {'installed':False}
+            d['service_active']=subprocess.run(['systemctl','is-active','--quiet','axiom-workbench']).returncode==0
+            print(json.dumps(d))
+      check_mode: false
+      changed_when: false
+      register: vm_status
+    - name: Show installed version and service state
+      ansible.builtin.debug:
+        msg: '{{ vm_status.stdout | from_json }}'

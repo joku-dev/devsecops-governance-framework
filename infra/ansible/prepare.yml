@@ -1,0 +1,84 @@
+---
+- name: Resolve version-specific paths
+  ansible.builtin.set_fact:
+    vm_candidate: '{{ vm_base }}/candidates/{{ vm_target_revision }}'
+    vm_venv: '{{ vm_base }}/venvs/{{ vm_target_revision }}'
+- name: Checkout the target in a disposable candidate directory
+  ansible.builtin.git:
+    repo: '{{ vm_repository_url }}'
+    dest: '{{ vm_candidate }}'
+    version: '{{ vm_target_revision }}'
+    force: true
+  become_user: '{{ vm_user }}'
+- name: Verify that the target supports this deployment profile
+  ansible.builtin.stat:
+    path: '{{ vm_candidate }}/{{ item }}'
+  loop: [scripts/serve_governance_workbench.py, requirements-validation.lock, requirements-source-document-intake.lock]
+  register: vm_required_files
+- name: Reject incomplete target versions
+  ansible.builtin.assert:
+    that: item.stat.isreg | default(false)
+  loop: '{{ vm_required_files.results }}'
+  loop_control:
+    label: '{{ item.item }}'
+- name: Prepare the hash-locked runtime and verify OPA
+  ansible.builtin.shell: |
+    set -euo pipefail
+    python3 -m venv "$VALIDATION_VENV"
+    "$VALIDATION_VENV/bin/python" -m pip install --disable-pip-version-check --require-hashes -r requirements-validation.lock -r requirements-source-document-intake.lock
+    ./scripts/bootstrap_validation_env.sh
+    ./scripts/validate_all.sh --check-tools
+    touch "$VALIDATION_VENV/.axiom-ready"
+  args:
+    chdir: '{{ vm_candidate }}'
+    executable: /bin/bash
+    creates: '{{ vm_venv }}/.axiom-ready'
+  environment:
+    VALIDATION_VENV: '{{ vm_venv }}'
+  become_user: '{{ vm_user }}'
+- name: Validate the prepared candidate using its exact toolchain
+  ansible.builtin.command:
+    argv:
+      - '{{ vm_venv }}/bin/python'
+      - -c
+      - |
+        import os,pathlib,subprocess,sys
+        path=pathlib.Path(sys.prefix)/'validation.log'
+        fd=os.open(path,os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600)
+        with os.fdopen(fd,'wb') as log:
+          result=subprocess.run(['./scripts/validate_all.sh'],stdout=log,stderr=subprocess.STDOUT)
+        raise SystemExit(result.returncode)
+    chdir: '{{ vm_candidate }}'
+  environment:
+    VALIDATION_VENV: '{{ vm_venv }}'
+  become_user: '{{ vm_user }}'
+  changed_when: false
+- name: Prepare the candidate service unit
+  ansible.builtin.template:
+    src: axiom-workbench.service.j2
+    dest: '{{ vm_base }}/config/axiom-workbench.service'
+    owner: root
+    group: root
+    mode: '0644'
+  register: vm_prepared_unit
+- name: Read runtime versions and lock identities
+  ansible.builtin.command:
+    argv:
+      - '{{ vm_venv }}/bin/python'
+      - -c
+      - |
+        import hashlib,json,pathlib,subprocess,sys
+        root=pathlib.Path.cwd()
+        print(json.dumps({'python':sys.version.split()[0],
+          'opa':subprocess.check_output([sys.prefix+'/bin/opa','version'],text=True).splitlines()[0],
+          'validation_lock_sha256':hashlib.sha256((root/'requirements-validation.lock').read_bytes()).hexdigest(),
+          'source_intake_lock_sha256':hashlib.sha256((root/'requirements-source-document-intake.lock').read_bytes()).hexdigest()}))
+    chdir: '{{ vm_candidate }}'
+  changed_when: false
+  register: vm_toolchain
+- name: Reset validation output only in the disposable candidate checkout
+  ansible.builtin.command:
+    argv: [git, restore, --worktree, --, .]
+    chdir: '{{ vm_candidate }}'
+  become_user: '{{ vm_user }}'
+  changed_when: false

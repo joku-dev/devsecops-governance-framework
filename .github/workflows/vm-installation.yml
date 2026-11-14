@@ -1,0 +1,36 @@
+name: VM installation
+
+on:
+  pull_request:
+    paths:
+      - 'infra/ansible/**'
+      - 'scripts/deploy_vm.*'
+      - 'scripts/lib/vm_deployment.py'
+      - 'scripts/serve_governance_workbench.py'
+      - 'tests/test_vm_deployment.py'
+      - 'tests/integration/run_vm_deployment.py'
+      - 'requirements-deployment.*'
+      - '.github/workflows/vm-installation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  disposable-ubuntu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Prepare isolated pinned controller
+        run: |
+          python -m venv .venv-deployment
+          .venv-deployment/bin/python -m pip install --require-hashes -r requirements-deployment.lock
+      - name: Test real systemd deployment on this disposable runner only
+        run: .venv-deployment/bin/python tests/integration/run_vm_deployment.py --allow-disposable-host
