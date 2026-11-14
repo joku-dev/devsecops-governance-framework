@@ -64,8 +64,16 @@ def main():
     previous = {}
     active = {}
     overrides = []
-    environment = Environment(undefined=StrictUndefined, keep_trailing_newline=True)
+    environment = Environment(undefined=StrictUndefined, keep_trailing_newline=True, trim_blocks=True)
     try:
+        workbench_template = environment.from_string((ROOT / 'infra/ansible/templates/axiom-workbench.service.j2').read_text())
+        for supported in (True, False):
+            rendered = workbench_template.render(vm_user='axiom', vm_repo=str(source), vm_venv=str(runtime),
+                vm_environment='/etc/axiom/workbench.env', vm_port=8766, vm_state='/private-workbench',
+                vm_consumer_support={'stat': {'exists': supported}}, vm_consumer_projection=str(projection))
+            assert 'Restart=on-failure' in rendered.splitlines()
+            command = next(line for line in rendered.splitlines() if line.startswith('ExecStart='))
+            assert command.endswith(str(projection) if supported else '8766')
         for operation in ('poll', 'work'):
             for kind in ('service', 'timer'):
                 name = f'axiom-consumer-{operation}.{kind}'
