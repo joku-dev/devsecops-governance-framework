@@ -1,0 +1,30 @@
+---
+- name: Copy the explicit private transfer bundle
+  ansible.builtin.copy:
+    src: '{{ vm_import_bundle }}'
+    dest: '{{ vm_base }}/config/import-{{ vm_deployment_id }}.zip'
+    owner: root
+    group: root
+    mode: '0600'
+  no_log: true
+- name: Validate and import the entire selected batch
+  block:
+    - name: Import using the installed schema and exact original bytes
+      ansible.builtin.command:
+        argv: ['{{ vm_base }}/venvs/{{ vm_old.current_revision }}/bin/python', '{{ vm_helper }}', import,
+               --archive, '{{ vm_base }}/config/import-{{ vm_deployment_id }}.zip',
+               --state, '{{ vm_state }}', --schema, '{{ vm_repo }}/schemas/governance-workbench-draft.schema.json']
+      changed_when: true
+      register: vm_imported
+    - name: Give the runtime account ownership of imported draft files
+      ansible.builtin.file:
+        path: '{{ vm_state }}/{{ item }}'
+        owner: '{{ vm_user }}'
+        group: '{{ vm_user }}'
+        recurse: true
+      loop: '{{ (vm_imported.stdout | from_json).imported }}'
+  always:
+    - name: Remove the temporary transfer archive
+      ansible.builtin.file:
+        path: '{{ vm_base }}/config/import-{{ vm_deployment_id }}.zip'
+        state: absent

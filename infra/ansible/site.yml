@@ -1,0 +1,74 @@
+---
+- name: Install or maintain one private AXIOM VM
+  hosts: axiom
+  become: true
+  gather_facts: true
+  vars_files: [defaults.yml]
+  tasks:
+    - name: Require exactly one explicit host
+      ansible.builtin.assert:
+        that: groups['axiom'] | length == 1
+    - name: Acquire the exclusive VM deployment lock
+      ansible.builtin.command:
+        argv: [mkdir, -m, '0700', /run/lock/axiom-deployment]
+      changed_when: false
+    - name: Maintain the VM while holding its deployment lock
+      block:
+        - name: Validate the supported operation and platform
+          ansible.builtin.assert:
+            that:
+              - groups['axiom'] | length == 1
+              - vm_action in ['install', 'update', 'rollback', 'import-drafts']
+              - ansible_facts.distribution == 'Ubuntu'
+              - ansible_facts.distribution_version == '24.04'
+              - ansible_facts.architecture in ['x86_64', 'aarch64']
+              - ansible_facts.python.version.major == 3
+              - ansible_facts.python.version.minor >= 12
+              - vm_deployment_id is match('^[0-9TZ-]+[a-f0-9]{12}$')
+        - name: Probe disk reserve and port before making changes
+          ansible.builtin.command:
+            argv: [/usr/bin/python3, -c, "{{ lookup('ansible.builtin.file', vm_controller_helper) }}", preflight,
+                   --base, '{{ vm_base }}', --port, '{{ vm_port | string }}']
+          changed_when: false
+        - name: Read installed deployment metadata
+          ansible.builtin.stat:
+            path: '{{ vm_receipt }}'
+          register: vm_existing_receipt
+        - name: Read previous version privately
+          ansible.builtin.slurp:
+            src: '{{ vm_receipt }}'
+          when: vm_existing_receipt.stat.exists
+          register: vm_old_receipt
+          no_log: true
+        - name: Resolve the existing state
+          ansible.builtin.set_fact:
+            vm_old: "{{ (vm_old_receipt.content | b64decode | from_json) if vm_existing_receipt.stat.exists else {} }}"
+        - name: Require an existing installation for maintenance
+          ansible.builtin.assert:
+            that: vm_existing_receipt.stat.exists
+          when: vm_action != 'install'
+        - name: Reject install over another deployed version
+          ansible.builtin.assert:
+            that: not vm_existing_receipt.stat.exists or vm_old.current_revision == vm_revision
+            fail_msg: Use update for a different installed version.
+          when: vm_action == 'install'
+        - name: Select the exact target revision
+          ansible.builtin.set_fact:
+            vm_target_revision: "{{ vm_old.get('previous_revision', '') if vm_action == 'rollback' else vm_revision }}"
+        - name: Require an immutable target
+          ansible.builtin.assert:
+            that: vm_target_revision is match('^[a-f0-9]{40}$')
+          when: vm_action != 'import-drafts'
+        - name: Prepare packages, account and deployment directories
+          ansible.builtin.import_tasks: setup.yml
+          when: vm_action != 'import-drafts'
+        - name: Prepare and validate the target without stopping the live service
+          ansible.builtin.include_tasks: prepare.yml
+          when: vm_action != 'import-drafts'
+        - name: Activate the prepared version or import selected drafts
+          ansible.builtin.import_tasks: activate.yml
+      always:
+        - name: Release the VM deployment lock
+          ansible.builtin.command:
+            argv: [rmdir, /run/lock/axiom-deployment]
+          changed_when: false
