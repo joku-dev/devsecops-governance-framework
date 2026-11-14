@@ -71,7 +71,10 @@ def main():
     # Exercise the production main() with normal arguments, but expose the original
     # exception in this paused, fake-key fixture instead of its redacted CLI shell.
     diagnostic_entry = source / 'scripts/consumer_fixture_entry.py'
-    diagnostic_entry.write_text('from consumer_intake import main\nraise SystemExit(main())\n')
+    diagnostic_entry.write_text(
+        'import os\nfrom pathlib import Path\nfrom lib.private_credentials import check_private_file\n'
+        'for path in Path(os.environ["CREDENTIALS_DIRECTORY"]).iterdir(): check_private_file(path)\n'
+        'from consumer_intake import main\nraise SystemExit(main())\n')
     diagnostic_entry.chmod(0o644)
     operations, projection = temporary / 'private', temporary / 'view'
     operations.mkdir(mode=0o700)

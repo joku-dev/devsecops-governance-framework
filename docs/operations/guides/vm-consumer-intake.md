@@ -57,6 +57,14 @@ Credentials referenzieren. Die Konfiguration wird ebenfalls als Credential
 eingelesen. Ohne Reader-Schlüssel und Konfiguration überspringt systemd die
 Dienste. IaC erzeugt keine App, vergibt keine Rechte und speichert keine Tokens.
 
+Systemd kann Credentials intern als root-eigene Dateien mit Modus 0440 und einer
+ACL für genau den Dienstbenutzer bereitstellen. Dieser Fall wird ausschließlich
+im zugehörigen schreibgeschützten Speicher-Mount unter `/run/credentials/`
+akzeptiert; Datei- und Verzeichnis-ACL werden geprüft. Gewöhnliche Schlüssel-
+und Konfigurationsdateien benötigen weiterhin private Rechte ohne Gruppenlesezugriff.
+Der [systemd-Hintergrund](https://github.com/systemd/systemd/issues/29435) erklärt,
+warum die ACL-Maske dabei als Gruppenlesebit erscheint.
+
 Die Units `axiom-consumer-poll.timer` und `axiom-consumer-work.timer` sind
 getrennt. Der erste fragt alle 15 Minuten ab, der zweite startet nach Abschluss
 eines Workers nach einer Minute erneut. Ein laufender Worker wird nicht parallel

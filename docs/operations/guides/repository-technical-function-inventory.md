@@ -7,6 +7,7 @@
 | `scripts/consumer_intake.py` | Private Operator-CLI; Schattenbetrieb, Wiederaufnahme und separate verifizierte Operations-Backups. |
 | `scripts/lib/consumer_intake_store.py` | SQLite-Queue, Sperren, Cachebudget und konsistente Backup-/Restore-Prüfung. |
 | `scripts/lib/consumer_github.py` | Getrennte App-Token, persistierte bedingte Requests und redigierte Fehlerklassen. |
+| `scripts/lib/private_credentials.py` | Private Dateirechte und eng begrenzte Unterstützung root-eigener systemd-ACL-Credentials auf schreibgeschütztem Speicher. |
 | `scripts/lib/consumer_intake.py` | Discovery, Wiederholungsversuche, Abhängigkeitsschutz, bestehender Normalizer und akzeptierte Projektion. |
 | `scripts/lib/consumer_publisher.py` | Eingefrorene Batches und ein serialisierter Review-PR mit echter VM-/Producer-Herkunft. |
 | `scripts/lib/consumer_view.py`, `scripts/workbench/consumer-view.js` | Sitzungsgebundene lesende Projektion ohne Zugriff auf Credentials, Queue oder Rohartefakte. |

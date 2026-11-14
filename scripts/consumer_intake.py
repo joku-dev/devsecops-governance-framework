@@ -13,14 +13,14 @@ import time
 from lib.consumer_github import AppToken, Client, AccessFailure
 from lib.consumer_intake import CENTRAL, CONSUMER, discover, process, project
 from lib.consumer_intake_store import Store, backup, verify_backup, lock
+from lib.private_credentials import check_private_file
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def configuration(path):
     path = Path(path)
-    if path.is_symlink() or path.stat().st_mode & 0o077:
-        raise ValueError('Operator configuration must be a private regular file')
+    check_private_file(path)
     value = json.loads(path.read_text())
     allowed = {'reader_app_id', 'reader_installation_id', 'publisher_app_id', 'publisher_installation_id', 'mode'}
     if not isinstance(value, dict) or set(value) - allowed or value.get('mode', 'shadow') not in {'shadow', 'publish', 'paused'}:

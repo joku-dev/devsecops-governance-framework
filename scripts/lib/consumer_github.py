@@ -14,6 +14,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request
 
 from lib.secure_http import open_https, read_limited
+from lib.private_credentials import check_private_file
 
 API = 'https://api.github.com'
 REPOSITORY = re.compile(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+')
@@ -57,8 +58,10 @@ class AppToken:
     def __call__(self):
         if self.expires > time.time() + 120:
             return self.token
-        if not self.key.is_file() or self.key.is_symlink() or self.key.stat().st_mode & 0o077:
-            raise AccessFailure('credential_unavailable')
+        try:
+            check_private_file(self.key)
+        except (ValueError, OSError):
+            raise AccessFailure('credential_unavailable') from None
         stamp = int(time.time())
         message = (encoded(b'{"alg":"RS256","typ":"JWT"}') + '.' + encoded(json.dumps({
             'iat': stamp - 60, 'exp': stamp + 540, 'iss': self.app_id}).encode())).encode()
