@@ -6,6 +6,12 @@ on:
       - 'infra/ansible/**'
       - 'scripts/deploy_vm.*'
       - 'scripts/lib/vm_deployment.py'
+      - 'scripts/lib/consumer*.py'
+      - 'scripts/lib/private_credentials.py'
+      - 'scripts/consumer_intake.py'
+      - 'tests/test_consumer*.py'
+      - 'tests/test_private_credentials.py'
+      - 'tests/integration/run_consumer_intake.py'
       - 'scripts/serve_governance_workbench.py'
       - 'tests/test_vm_deployment.py'
       - 'tests/integration/run_vm_deployment.py'
@@ -16,10 +22,30 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: vm-installation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  consumer-service-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Prepare pinned smoke controller
+        run: |
+          python -m venv .venv-deployment
+          .venv-deployment/bin/python -m pip install --require-hashes -r requirements-deployment.lock
+      - name: Exercise collector services independently on this fresh disposable host
+        run: sudo --preserve-env=GITHUB_ACTIONS .venv-deployment/bin/python tests/integration/run_consumer_intake.py --allow-disposable-host --bootstrap-disposable-runtime
   disposable-ubuntu:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -34,3 +60,5 @@ jobs:
           .venv-deployment/bin/python -m pip install --require-hashes -r requirements-deployment.lock
       - name: Test real systemd deployment on this disposable runner only
         run: .venv-deployment/bin/python tests/integration/run_vm_deployment.py --allow-disposable-host
+      - name: Test consumer credentials, UID separation and schedules on the same disposable host
+        run: sudo --preserve-env=GITHUB_ACTIONS .venv-deployment/bin/python tests/integration/run_consumer_intake.py --allow-disposable-host

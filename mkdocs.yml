@@ -95,6 +95,7 @@ nav:
           - Beginner Guide: operations/guides/beginner-step-by-step-operations-guide.md
           - Local Validation Toolchain: operations/guides/local-validation-toolchain.md
           - Linux VM Installation: operations/guides/linux-vm-installation.md
+          - VM Consumer Intake: operations/guides/vm-consumer-intake.md
           - Evidence And Governance Hardening: operations/guides/evidence-and-governance-hardening-guide.md
           - How To Add A New Artifact: operations/guides/how-to-add-a-new-artifact.md
           - Updating Baseline Input Documents: operations/guides/how-to-update-baseline-input-documents.md

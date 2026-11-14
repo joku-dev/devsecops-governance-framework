@@ -19,7 +19,9 @@ verwendet; dort ist kein Ansible-Controller erforderlich.
 Es werden weder Proxmox-VMs noch Datenträger angelegt, vergrößert oder formatiert.
 Docker, Kubernetes, SSO, mehrere gleichzeitige Dienstinstanzen, verteilte Worker
 und eine Lastzusage für 1.000–2.000 Repositories gehören zu späteren Schritten.
-Der Dienst startet keine Provider-, Consumer-, Intake- oder Veröffentlichungsjobs.
+Die Workbench selbst startet keine Provider- oder Consumer-Jobs. Der optionale
+[VM-Consumer-Intake](vm-consumer-intake.md) verwendet separate Dienste und startet
+erst mit privat bereitgestellter App-Konfiguration im Schattenbetrieb.
 Die Engine-Werkzeuge stehen für ausdrücklich gestartete Aufgaben bereit;
 schreibende Jobs verwenden separate Arbeitskopien unter `/srv/axiom/jobs`.
 Node und die DOM-Entwicklungsabhängigkeiten gehören zur separaten UI-Validierung,

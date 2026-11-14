@@ -474,6 +474,37 @@ class WorkbenchTests(unittest.TestCase):
         finally:
             conn.close();server.shutdown();server.server_close();thread.join(timeout=5)
 
+    def test_consumer_projection_is_authenticated_read_only_and_no_path_selection(self):
+        from lib.consumer_intake_store import atomic_json
+        projection = self.root / 'consumer-view'
+        atomic_json(projection / 'consumers.json', {'schema_version': 1, 'configured': True, 'jobs': []})
+        self.app.consumer_projection = projection
+        server = wb.make_server(self.app, 'test-key-long-enough-for-session', port=0)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        port = server.server_address[1]
+        def request(method, path, payload=None, cookie=None):
+            connection = http.client.HTTPConnection('127.0.0.1', port, timeout=2)
+            try:
+                headers = {'Origin': f'http://127.0.0.1:{port}', 'Content-Type': 'application/json'}
+                if cookie:
+                    headers['Cookie'] = cookie
+                connection.request(method, path, json.dumps(payload) if payload is not None else None, headers)
+                response = connection.getresponse()
+                return response.status, response.getheader('Set-Cookie'), response.read()
+            finally:
+                connection.close()
+        try:
+            self.assertEqual(request('GET', '/api/consumers')[0], 401)
+            _, cookie, _ = request('POST', '/api/login', {'key': 'test-key-long-enough-for-session'})
+            status, _, body = request('GET', '/api/consumers?root=/etc', cookie=cookie)
+            self.assertEqual(status, 200)
+            self.assertTrue(json.loads(body)['configured'])
+            self.assertEqual(request('POST', '/api/consumers', {}, cookie)[0], 403)
+            self.assertNotIn(b'queue.sqlite', body)
+        finally:
+            server.shutdown();server.server_close();thread.join(timeout=5)
+
     def test_idle_browser_connection_and_parallel_notes_do_not_block_or_lose_data(self):
         draft = self.app.source_review({'source_id': 'TEST-SRC-001'})
         key = 'parallel-browser-test-access-key'

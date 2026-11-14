@@ -230,7 +230,7 @@ test('three steps keep auxiliary tools secondary and scope can reveal parked arc
  const architecture={id:'ARCH-EA-REQ-001',title:'Enterprise architecture',owner:'Architect',version:'1',status:'approved',governance_domains:['architecture']};
  const ui=await workspace('#/start',{documents:[architecture]});
  try{
-  assert.equal(ui.window.document.querySelectorAll('nav[aria-label="Hauptnavigation"] > button').length,2);
+  assert.equal(ui.window.document.querySelectorAll('nav[aria-label="Hauptnavigation"] > button').length,3);
   ui.click('#browse-documents');await until(()=>ui.$('#work-focus'));
   assert.doesNotMatch(ui.$('#source-table').textContent,/Enterprise architecture/);
   ui.change('#work-focus','all');assert.match(ui.$('#source-table').textContent,/Enterprise architecture/);

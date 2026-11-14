@@ -106,7 +106,8 @@ def serialized_request(method):
 
 
 class Workbench:
-    def __init__(self, root=ROOT, state_dir=None, enable_pr=False):
+    def __init__(self, root=ROOT, state_dir=None, enable_pr=False, consumer_projection=None):
+        self.consumer_projection = consumer_projection
         self.root = Path(root).resolve()
         self.state_dir = Path(state_dir or self.root / '.local/governance-workbench').resolve()
         # Existing extraction uses repository-relative source locations. Keep drafts inside the checkout.
@@ -563,6 +564,7 @@ class Handler(BaseHTTPRequestHandler):
             '/': (ASSETS / 'index.html', 'text/html'),
             '/app.js': (ASSETS / 'app.js', 'text/javascript'),
             '/requirement-review.js': (ASSETS / 'requirement-review.js', 'text/javascript'),
+            '/consumer-view.js': (ASSETS / 'consumer-view.js', 'text/javascript'),
             '/workspace-navigation.js': (ASSETS / 'workspace-navigation.js', 'text/javascript'),
             '/style.css': (ASSETS / 'style.css', 'text/css'),
             '/axiom-logo.png': (ROOT / 'docs/publishing/branding/axiom-logo.png', 'image/png'),
@@ -576,6 +578,9 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if path == '/api/state':
                 return self.send(200, {**self.server.workbench.state(), 'csrf': session['csrf']})
+            if path == '/api/consumers':
+                from lib.consumer_view import read_projection
+                return self.send(200, read_projection(self.server.workbench.consumer_projection))
             history = re.fullmatch(r'/api/sources/([A-Z0-9-]+)/history', path)
             if history:
                 return self.send(200, self.server.workbench.requirement_history(history[1]))
@@ -663,13 +668,14 @@ def make_server(workbench, key, port=8765):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=8765)
+    parser.add_argument('--consumer-projection', type=Path, help='Read-only redacted collector projection directory')
     parser.add_argument('--enable-pr', action='store_true', help='Enable explicit publication through local GitHub CLI authentication')
     args = parser.parse_args()
     os.umask(0o077)
     key = os.environ.get('AXIOM_WORKBENCH_KEY') or secrets.token_urlsafe(24)
     if len(key) < 24:
         parser.error('AXIOM_WORKBENCH_KEY must contain at least 24 characters')
-    server = make_server(Workbench(enable_pr=args.enable_pr), key, args.port)
+    server = make_server(Workbench(enable_pr=args.enable_pr, consumer_projection=args.consumer_projection), key, args.port)
     print(f'AXIOM Workbench: http://127.0.0.1:{server.server_address[1]}', flush=True)
     if 'AXIOM_WORKBENCH_KEY' not in os.environ:
         print(f'Local access key: {key}', flush=True)

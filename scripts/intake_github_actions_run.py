@@ -63,6 +63,19 @@ def github_download(url: str, destination: Path, token: str | None) -> None:
     download_https(url, destination, headers=headers)
 
 
+def github_pages(url, token, field):
+    rows, page = [], 1
+    while True:
+        payload = github_get_json(url + '?per_page=100' + (f'&page={page}' if page > 1 else ''), token)
+        current = payload.get(field, [])
+        rows.extend(current)
+        if len(current) < 100:
+            return rows
+        page += 1
+        if page > 10000:
+            raise ValueError('GitHub pagination limit exceeded')
+
+
 def api_repo_path(repository_id: str) -> str:
     owner, repo = repository_id.split("/", 1)
     return f"/repos/{quote(owner)}/{quote(repo)}"
@@ -433,6 +446,10 @@ def main() -> int:
     parser.add_argument("--artifact-name", default="devsecops-pipeline-evidence")
     parser.add_argument("--api-url", default=DEFAULT_API_URL)
     parser.add_argument("--token", default="")
+    parser.add_argument("--expected-run-attempt", type=int)
+    parser.add_argument("--archive-directory", type=Path)
+    parser.add_argument("--snapshot-directory", type=Path,
+                        help="Isolated output for VM verification; never changes official indexes")
     parser.add_argument(
         "--notes",
         default="Intaken automatically from downstream GitHub Actions governance run.",
@@ -444,11 +461,13 @@ def main() -> int:
     repo_path = api_repo_path(args.repository_id)
 
     run = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}", token)
+    check_expected_run(run, args.expected_run_attempt)
+    if args.snapshot_directory:
+        global STATUS_RESULTS
+        STATUS_RESULTS = args.snapshot_directory
     freshness_policy = load_freshness_policy(FRESHNESS_POLICY_PATH, "freshness-governance-result-24h")
-    jobs_payload = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}/jobs?per_page=100", token)
-    artifacts_payload = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}/artifacts?per_page=100", token)
-    jobs = jobs_payload.get("jobs", [])
-    artifacts = artifacts_payload.get("artifacts", [])
+    jobs = github_pages(f"{api_url}{repo_path}/actions/runs/{args.run_id}/jobs", token, 'jobs')
+    artifacts = github_pages(f"{api_url}{repo_path}/actions/runs/{args.run_id}/artifacts", token, 'artifacts')
     artifact_names = {artifact.get("name", "") for artifact in artifacts}
     selected_artifact = next((artifact for artifact in artifacts if artifact.get("name") == args.artifact_name), None)
     if not selected_artifact:
@@ -588,7 +607,34 @@ def main() -> int:
         trust = apply_replay_assessment(trust, load_snapshot_payloads(TRUST_RESULT_ROOTS))
         trust["effective_level"] = promote_effective_level(trust["effective_level"], trust["checks"])
 
+        if args.archive_directory:
+            args.archive_directory.mkdir(parents=True, exist_ok=True)
+            incoming = sum(source.stat().st_size for source in temp.glob('*.zip'))
+            existing = sum(source.stat().st_size for source in args.archive_directory.parent.rglob('*') if source.is_file())
+            if incoming + existing > 1024 ** 3:
+                raise ValueError('Private raw cache exceeds 1 GiB budget')
+            for source in temp.glob('*.zip'):
+                target = args.archive_directory / source.name
+                if target.exists():
+                    if compute_sha256(target) != compute_sha256(source):
+                        raise ValueError('Archived artifact differs from the previous capture')
+                else:
+                    fd, temporary = tempfile.mkstemp(dir=args.archive_directory)
+                    try:
+                        with source.open('rb') as origin, os.fdopen(fd, 'wb') as destination:
+                            shutil.copyfileobj(origin, destination)
+                            destination.flush()
+                            os.fsync(destination.fileno())
+                        os.link(temporary, target)
+                    finally:
+                        Path(temporary).unlink(missing_ok=True)
+
     protected, protection_lookup = branch_protection(api_url, args.repository_id, run.get("head_branch", ""), token)
+    if args.expected_run_attempt is not None:
+        final_run = github_get_json(f"{api_url}{repo_path}/actions/runs/{args.run_id}", token)
+        check_expected_run(final_run, args.expected_run_attempt)
+        if final_run.get('head_sha') != run.get('head_sha') or final_run.get('updated_at') != run.get('updated_at'):
+            raise ValueError('Run changed during collection')
     output_path = write_snapshot(
         repository_id=args.repository_id,
         baseline_level=args.baseline_level,
@@ -612,13 +658,29 @@ def main() -> int:
         trust=trust,
         notes=args.notes,
     )
-    print(output_path.relative_to(ROOT))
+    print(output_path if args.snapshot_directory else output_path.relative_to(ROOT))
     return 0
+
+
+def check_expected_run(run, attempt):
+    if attempt is not None and (attempt < 1 or run.get('run_attempt') != attempt or run.get('status') != 'completed'):
+        raise ValueError('Run attempt changed or is incomplete')
 
 
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except RuntimeError as error:
-        print(f"error: {error}", file=sys.stderr)
-        raise SystemExit(1)
+    except Exception as error:
+        failure = os.environ.get('AXIOM_INTAKE_FAILURE_RECORD')
+        if failure:
+            from lib.consumer_github import collection_error
+            from lib.consumer_intake_store import atomic_json
+            classified = collection_error(error)
+            atomic_json(Path(failure), {'code': classified.code, 'retryable': classified.retryable,
+                                        'delay': classified.delay})
+            print('error: collection failed; private operations record written', file=sys.stderr)
+            raise SystemExit(1)
+        if isinstance(error, RuntimeError):
+            print(f"error: {error}", file=sys.stderr)
+            raise SystemExit(1)
+        raise

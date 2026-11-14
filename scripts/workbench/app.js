@@ -95,7 +95,7 @@ async function applyRoute(force=false){
  const same=currentRoute.page===next.page&&currentRoute.id===next.id;
  currentRoute=next;page=next.page;
  if(!state)return;
- const names={overview:'Start',sources:'Dokumente',intake:'Dokument hinzufügen',review:'Dokumentvergleich vorbereiten',baseline:'Freigabevoraussetzungen',source:'Dokument ansehen',draft:'Prüfen',invalid:'Seite nicht gefunden'};
+ const names={overview:'Start',sources:'Dokumente',intake:'Dokument hinzufügen',review:'Dokumentvergleich vorbereiten',baseline:'Freigabevoraussetzungen',source:'Dokument ansehen',draft:'Prüfen',consumers:'Consumer-Repos',invalid:'Seite nicht gefunden'};
  $('breadcrumb').textContent=names[page]||names.invalid;document.title=($('breadcrumb').textContent)+' · AXIOM';
  const navPage=['source','draft'].includes(page)?'sources':page;
  document.querySelectorAll('[data-page]').forEach(button=>{button.classList.toggle('active',button.dataset.page===navPage);if(button.dataset.page===navPage)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
@@ -116,7 +116,12 @@ async function applyRoute(force=false){
   }
  }else{
   activeDraft=null;activeSource=null;$('detail-content').textContent='';$('review-page').hidden=true;$('content').hidden=false;$('page-message').hidden=true;
-  if({overview,sources,intake,review,baseline}[page])({overview,sources,intake,review,baseline}[page])();
+  if(page==='consumers'){
+   $('content').innerHTML='<section class="panel"><h1>Consumer-Repos</h1><p role="status">Stand wird geladen …</p></section>';
+   try{const data=await api('/api/consumers');if(version===routeVersion)$('content').innerHTML=ConsumerView.render(data);}
+   catch(error){if(version===routeVersion)$('content').innerHTML='<section class="panel"><h1>Consumer-Repos</h1><p>Stand nicht verfügbar: '+e(error.message)+'</p></section>';}
+  }
+  else if({overview,sources,intake,review,baseline}[page])({overview,sources,intake,review,baseline}[page])();
   else $('content').innerHTML='<section class="panel"><h1>Seite nicht gefunden</h1><p>Dieser Link gehört zu keinem verfügbaren Arbeitsstand.</p><a href="#/start">Zur Startseite</a></section>';
  }
  if(version===routeVersion&&!same){const title=document.querySelector('#main-content h1');if(title){title.tabIndex=-1;title.focus();}}

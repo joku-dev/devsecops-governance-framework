@@ -1,0 +1,91 @@
+---
+- name: Inspect existing consumer units
+  ansible.builtin.stat:
+    path: '/etc/systemd/system/axiom-consumer-{{ item }}.service'
+  loop: [poll, work]
+  register: vm_consumer_existing_units
+- name: Stop schedules before stopping their workers
+  ansible.builtin.systemd_service:
+    name: 'axiom-consumer-{{ item.item }}.timer'
+    state: stopped
+  loop: '{{ vm_consumer_existing_units.results }}'
+  when: item.stat.exists
+- name: Wait for private worker shutdown before changing executable source
+  ansible.builtin.systemd_service:
+    name: 'axiom-consumer-{{ item.item }}.service'
+    state: stopped
+  loop: '{{ vm_consumer_existing_units.results }}'
+  when: item.stat.exists
+- name: Detect persisted operations database
+  ansible.builtin.stat:
+    path: '{{ vm_consumer_root }}/queue.sqlite3'
+  register: vm_consumer_database
+- name: Preserve consumer state separately from bounded Workbench archives
+  when: vm_consumer_database.stat.exists
+  block:
+    - name: Select the supported candidate or still-installed backup implementation
+      ansible.builtin.set_fact:
+        vm_consumer_backup_tool: '{{ (vm_candidate if vm_consumer_support.stat.exists else vm_repo) }}/scripts/consumer_intake.py'
+    - name: Verify a supported backup implementation before any downgrade
+      ansible.builtin.stat:
+        path: '{{ vm_consumer_backup_tool }}'
+      register: vm_consumer_backup_implementation
+    - name: Require a supported backup tool before switching executable versions
+      ansible.builtin.assert:
+        that: vm_consumer_backup_implementation.stat.isreg | default(false)
+        fail_msg: No supported consumer backup implementation is available; preserve operations state before changing versions.
+    - name: Create consistent SQLite and raw-cache backup with manifest
+      ansible.builtin.command:
+        argv: [/usr/bin/python3, '{{ vm_consumer_backup_tool }}', backup,
+               --root, '{{ vm_consumer_root }}', --destination,
+               '{{ vm_consumer_root }}/backups/{{ vm_deployment_id }}']
+      become_user: '{{ vm_consumer_user }}'
+    - name: Read verified consumer backup manifest
+      ansible.builtin.slurp:
+        src: '{{ vm_consumer_root }}/backups/{{ vm_deployment_id }}/manifest.json'
+      register: vm_consumer_backup_manifest
+    - name: Check controller capacity for independent raw-artifact backup
+      ansible.builtin.command:
+        argv:
+          - '{{ ansible_playbook_python }}'
+          - -c
+          - 'import shutil,sys; assert shutil.disk_usage(sys.argv[1]).free > int(sys.argv[2])*2+1024**3'
+          - '{{ vm_controller_backups }}'
+          - '{{ (vm_consumer_backup_manifest.content | b64decode | from_json).values() | map(attribute="size") | sum | string }}'
+      delegate_to: localhost
+      become: false
+      changed_when: false
+    - name: Create private controller consumer backup directory
+      ansible.builtin.file:
+        path: '{{ vm_controller_backups }}/{{ vm_deployment_id }}-consumers'
+        state: directory
+        mode: '0700'
+      delegate_to: localhost
+      become: false
+    - name: Transfer consumer database and raw artifacts without expanding Workbench ZIP limits
+      ansible.builtin.fetch:
+        src: '{{ vm_consumer_root }}/backups/{{ vm_deployment_id }}/{{ item }}'
+        dest: '{{ vm_controller_backups }}/{{ vm_deployment_id }}-consumers/{{ item }}'
+        flat: true
+      loop: '{{ (vm_consumer_backup_manifest.content | b64decode | from_json).keys() | list + ["manifest.json"] }}'
+      no_log: true
+    - name: Verify controller copy against the consumer checksum manifest
+      ansible.builtin.command:
+        argv: ['{{ ansible_playbook_python }}', '{{ playbook_dir }}/../../scripts/consumer_intake.py', verify-backup,
+               --destination, '{{ vm_controller_backups }}/{{ vm_deployment_id }}-consumers']
+      delegate_to: localhost
+      become: false
+      changed_when: false
+    - name: Keep independent controller backup files private
+      ansible.builtin.command:
+        argv:
+          - '{{ ansible_playbook_python }}'
+          - -c
+          - |
+            import pathlib,sys
+            root=pathlib.Path(sys.argv[1]); root.chmod(0o700)
+            for p in root.rglob('*'): p.chmod(0o700 if p.is_dir() else 0o600)
+          - '{{ vm_controller_backups }}/{{ vm_deployment_id }}-consumers'
+      delegate_to: localhost
+      become: false
+      changed_when: false

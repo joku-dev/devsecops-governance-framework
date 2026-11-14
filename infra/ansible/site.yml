@@ -67,6 +67,9 @@
           when: vm_action != 'import-drafts'
         - name: Activate the prepared version or import selected drafts
           ansible.builtin.import_tasks: activate.yml
+        - name: Install consumer services for supported versions
+          ansible.builtin.include_tasks: consumers.yml
+          when: vm_action != 'import-drafts'
       always:
         - name: Release the VM deployment lock
           ansible.builtin.command:
