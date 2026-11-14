@@ -27,6 +27,8 @@ def main():
     parser.add_argument('--allow-disposable-host', action='store_true', required=True)
     parser.add_argument('--restore-orbstack-hardening', action='store_true',
                         help='Override global OrbStack service exceptions for these disposable fixture units only')
+    parser.add_argument('--bootstrap-disposable-runtime', action='store_true',
+                        help='Prepare only a fresh synthetic runtime for the independent service smoke job')
     options = parser.parse_args()
     if os.geteuid() != 0 or (os.environ.get('GITHUB_ACTIONS') != 'true' and not Path('/run/axiom-disposable-integration').is_file()):
         raise SystemExit('Requires root on explicitly marked disposable host; never the Proxmox target')
@@ -34,6 +36,19 @@ def main():
         raise SystemExit('Requires Ubuntu 24.04 with real systemd')
     if options.restore_orbstack_hardening and not Path('/run/systemd/system/service.d/zzz-lxc-service.conf').exists():
         raise SystemExit('The explicit OrbStack option requires its known global service exception file')
+    if options.bootstrap_disposable_runtime:
+        if Path('/srv/axiom').exists() or Path('/etc/axiom').exists():
+            raise SystemExit('Runtime bootstrap requires a fresh disposable host')
+        Path('/srv/axiom').mkdir(mode=0o755)
+        run('useradd', '--system', '--create-home', '--home-dir', '/srv/axiom/home',
+            '--shell', '/usr/sbin/nologin', 'axiom')
+        version = '0' * 40
+        runtime = Path('/srv/axiom/venvs') / version
+        runtime.parent.mkdir(mode=0o755)
+        run('chown', 'axiom:axiom', str(runtime.parent))
+        run('runuser', '-u', 'axiom', '--', sys._base_executable, '-m', 'venv', str(runtime))
+        Path('/etc/axiom').mkdir(mode=0o755)
+        Path('/etc/axiom/deployment.json').write_text(json.dumps({'current_revision': version}))
     credentials = [Path('/etc/axiom/consumer-intake.json'), Path('/etc/axiom/consumer-reader.pem')]
     if any(path.exists() for path in credentials):
         raise SystemExit('Refusing existing consumer configuration or credentials')
@@ -125,6 +140,16 @@ def main():
             run('systemctl', 'start', f'axiom-consumer-{operation}.timer')
             run('systemctl', 'is-active', '--quiet', f'axiom-consumer-{operation}.timer')
         print('PASS: real systemd credentials, isolated UIDs, queue persistence, readonly projection and both timers')
+    except Exception:
+        # These units use freshly generated fake keys and paused configuration only.
+        # Capture the actual systemd error before finally removes the fixtures.
+        for operation in ('poll', 'work'):
+            log = run('journalctl', '--no-pager', '-n', '50', '-u', f'axiom-consumer-{operation}.service', check=False)
+            print(log.stdout, flush=True)
+        probe = run('runuser', '-u', 'axiom-intake', '--', str(runtime / 'bin/python'), '-c',
+                    'import ssl,sqlite3;print("runtime imports available")', check=False)
+        print('Runtime probe:', probe.returncode, probe.stdout, probe.stderr, flush=True)
+        raise
     finally:
         for name in reversed(units):
             run('systemctl', 'stop', name, check=False)
