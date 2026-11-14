@@ -115,10 +115,13 @@ zusätzlich die öffentlichen Viewer-Assets; Modelle, Schemas, Vorlagen und Test
 werden als Verzeichnisse unten eingeordnet.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-Der [konsolidierte Abgleich](../status/repository-documentation-reconciliation-2026-11-07.md) deckt die
-14 offenen Dokumentationsentwürfe ab. Frühere Inventare und Implementierungsnotizen
-bleiben im [Quellstand vor diesem Abgleich](https://github.com/joku-dev/devsecops-governance-framework/blob/ae423f34f75451b70b1ebffc71ea3683e4763c52/docs/operations/guides/repository-technical-function-inventory.md)
-nachlesbar. Deren P2-Fließtextableitung beschreibt nicht das heutige Verhalten.
+### PR #275: feat(viewer): show requirement lifecycle through OPA (`c1f6e2bda11b`)
+
+- `apps/governance-viewer/app.js`
+- `apps/governance-viewer/technical.css`
+- `scripts/generate_status_viewer.py`
+- `scripts/lib/governance_requirement_lifecycle_view.py`
+- `scripts/lib/viewer_app.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Python-Skripte und Bibliotheksmodule
