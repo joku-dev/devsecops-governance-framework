@@ -1,0 +1,11 @@
+[Unit]
+Description=AXIOM consumer {{ consumer_operation }} schedule
+
+[Timer]
+OnBootSec={{ '2min' if consumer_operation == 'poll' else '3min' }}
+{{ 'OnUnitActiveSec=15min' if consumer_operation == 'poll' else 'OnUnitInactiveSec=1min' }}
+RandomizedDelaySec=20
+Unit=axiom-consumer-{{ consumer_operation }}.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,68 @@
+---
+- name: Inspect root-provisioned consumer credentials
+  ansible.builtin.stat:
+    path: '/etc/axiom/consumer-{{ item }}.pem'
+  loop: [reader, publisher]
+  register: vm_consumer_credentials
+- name: Inspect optional private operator configuration
+  ansible.builtin.stat:
+    path: /etc/axiom/consumer-intake.json
+  register: vm_consumer_configuration
+- name: Protect existing App keys
+  ansible.builtin.file:
+    path: '/etc/axiom/consumer-{{ item.item }}.pem'
+    owner: root
+    group: root
+    mode: '0600'
+  loop: '{{ vm_consumer_credentials.results }}'
+  when: item.stat.exists
+- name: Protect existing private operator configuration
+  ansible.builtin.file:
+    path: /etc/axiom/consumer-intake.json
+    owner: root
+    group: root
+    mode: '0600'
+  when: vm_consumer_configuration.stat.exists
+- name: Render consumer operation services
+  ansible.builtin.template:
+    src: axiom-consumer.service.j2
+    dest: '/etc/systemd/system/axiom-consumer-{{ consumer_operation }}.service'
+    owner: root
+    group: root
+    mode: '0644'
+  loop: [poll, work]
+  loop_control:
+    loop_var: consumer_operation
+  when: vm_consumer_support.stat.exists
+- name: Render independent lightweight polling and processing schedules
+  ansible.builtin.template:
+    src: axiom-consumer.timer.j2
+    dest: '/etc/systemd/system/axiom-consumer-{{ consumer_operation }}.timer'
+    owner: root
+    group: root
+    mode: '0644'
+  loop: [poll, work]
+  loop_control:
+    loop_var: consumer_operation
+  when: vm_consumer_support.stat.exists
+- name: Enable safe schedules, or stop them on rollback to an unsupported version
+  ansible.builtin.systemd_service:
+    name: 'axiom-consumer-{{ item }}.timer'
+    enabled: '{{ vm_consumer_support.stat.exists }}'
+    state: '{{ "started" if vm_consumer_support.stat.exists else "stopped" }}'
+    daemon_reload: true
+  loop: [poll, work]
+  when: vm_consumer_support.stat.exists
+- name: Inspect obsolete consumer schedules on rollback
+  ansible.builtin.stat:
+    path: '/etc/systemd/system/axiom-consumer-{{ item }}.timer'
+  loop: [poll, work]
+  register: vm_obsolete_consumer_timers
+  when: not vm_consumer_support.stat.exists
+- name: Disable obsolete schedules without automatic fallback
+  ansible.builtin.systemd_service:
+    name: 'axiom-consumer-{{ item.item }}.timer'
+    enabled: false
+    state: stopped
+  loop: '{{ vm_obsolete_consumer_timers.results | default([]) }}'
+  when: not vm_consumer_support.stat.exists and item.stat.exists | default(false)

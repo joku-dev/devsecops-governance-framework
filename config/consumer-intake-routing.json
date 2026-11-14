@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "default_owner": "github-actions",
+  "routes": [{"repository": "joku-dev/ha-CPsWMS", "domain": "devsecops", "owner": "github-actions"}]
+}

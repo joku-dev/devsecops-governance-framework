@@ -1,0 +1,7 @@
+{
+  "mode": "shadow",
+  "reader_app_id": "READER_APP_ID",
+  "reader_installation_id": "READER_INSTALLATION_ID",
+  "publisher_app_id": "PUBLISHER_APP_ID",
+  "publisher_installation_id": "PUBLISHER_INSTALLATION_ID"
+}

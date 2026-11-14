@@ -11,7 +11,7 @@ Group={{ vm_user }}
 WorkingDirectory={{ vm_repo }}
 EnvironmentFile={{ vm_environment }}
 Environment=PYTHONDONTWRITEBYTECODE=1
-ExecStart={{ vm_venv }}/bin/python {{ vm_repo }}/scripts/serve_governance_workbench.py --port {{ vm_port }}
+ExecStart={{ vm_venv }}/bin/python {{ vm_repo }}/scripts/serve_governance_workbench.py --port {{ vm_port }}{% if vm_consumer_support.stat.exists %} --consumer-projection {{ vm_consumer_projection }}{% endif %}
 Restart=on-failure
 RestartSec=5
 UMask=0077

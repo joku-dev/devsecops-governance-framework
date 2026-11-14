@@ -8,3 +8,6 @@ vm_unit: /etc/systemd/system/axiom-workbench.service
 vm_helper: /usr/local/lib/axiom/vm_deployment.py
 vm_state: /srv/axiom/repository/.local/governance-workbench
 vm_backup_directory: /var/backups/axiom
+vm_consumer_root: /var/lib/axiom/consumers
+vm_consumer_projection: /var/lib/axiom/consumer-view
+vm_consumer_user: axiom-intake

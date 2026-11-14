@@ -1,5 +1,14 @@
 # Detaillierter Funktionskatalog des Governance-Repositories
 
+## Ergänzung: VM-Consumer-Intake (GCR-2026-171)
+
+Der optionale [VM-Collector](vm-consumer-intake.md) sammelt DevSecOps-L1-Ergebnisse
+des `ha-CPsWMS`-Piloten in einer privaten dauerhaften Warteschlange. Der Startmodus
+ist Schattenbetrieb. Die Workbench trennt akzeptierten Main-Stand, Kandidaten und
+Übernahme-PRs; eigene Veröffentlichungen benötigen Schattenvergleich und eine
+geprüfte Routenumschaltung. Das ist eine implementierte Betriebsoption und keine
+Behauptung einer bereits aktivierten App-Installation auf der Ziel-VM.
+
 ## Ergänzung: individuelle Anforderungswege (GCR-2026-162)
 
 Der öffentliche Viewer zeigt unter **Governance → Anforderung bis OPA** sechs

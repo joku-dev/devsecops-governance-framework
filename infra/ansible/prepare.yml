@@ -54,6 +54,10 @@
   become_user: '{{ vm_user }}'
   changed_when: false
 - name: Prepare the candidate service unit
+  ansible.builtin.stat:
+    path: '{{ vm_candidate }}/scripts/consumer_intake.py'
+  register: vm_consumer_support
+- name: Prepare the candidate Workbench service unit
   ansible.builtin.template:
     src: axiom-workbench.service.j2
     dest: '{{ vm_base }}/config/axiom-workbench.service'
