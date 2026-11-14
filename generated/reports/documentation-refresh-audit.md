@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #363: feat(operations): add reproducible Ubuntu VM installation (`5293b63a8b92`)
 
 ## Ergebnis
 
@@ -10,12 +10,10 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.github/workflows/vm-installation.yml`
+- `scripts/deploy_vm.py`
+- `scripts/deploy_vm.sh`
+- `scripts/lib/vm_deployment.py`
 
 ## Fehlende lokale Markdown-Ziele
 
