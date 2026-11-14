@@ -1,5 +1,22 @@
 # Technische Funktionsliste des Repositories
 
+## Ergänzung: private VM-Ergebnissammlung (GCR-2026-171)
+
+| Einstieg oder Modul | Aufgabe und Grenze |
+|---|---|
+| `scripts/consumer_intake.py` | Private Operator-CLI; Schattenbetrieb, Wiederaufnahme und separate verifizierte Operations-Backups. |
+| `scripts/lib/consumer_intake_store.py` | SQLite-Queue, Sperren, Cachebudget und konsistente Backup-/Restore-Prüfung. |
+| `scripts/lib/consumer_github.py` | Getrennte App-Token, persistierte bedingte Requests und redigierte Fehlerklassen. |
+| `scripts/lib/consumer_intake.py` | Discovery, Wiederholungsversuche, Abhängigkeitsschutz, bestehender Normalizer und akzeptierte Projektion. |
+| `scripts/lib/consumer_publisher.py` | Eingefrorene Batches und ein serialisierter Review-PR mit echter VM-/Producer-Herkunft. |
+| `scripts/lib/consumer_view.py`, `scripts/workbench/consumer-view.js` | Sitzungsgebundene lesende Projektion ohne Zugriff auf Credentials, Queue oder Rohartefakte. |
+| `infra/ansible/consumers*.yml`, `axiom-consumer.*.j2` | Eigener Dienstbenutzer, systemd-Credentials, getrennte Timer und separate Controller-Sicherung. |
+| `config/consumer-intake-routing.json` | Geprüfter Eigentümer je Consumer/Domäne; Vorgabe bleibt GitHub Actions. |
+
+Der [Betriebsleitfaden](vm-consumer-intake.md) beschreibt Voraussetzungen und
+Umschaltung. Die unten datierten Bestandszählungen werden durch diese Ergänzung
+nicht rückwirkend geändert.
+
 ## Ergänzung: vereinfachte Workbench und Auswirkungsanzeige (GCR-2026-169)
 
 `scripts/lib/workbench_impact.py` ergänzt eine private lesende Projektion exakter

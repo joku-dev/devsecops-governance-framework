@@ -1,7 +1,7 @@
 'use strict';
 const WorkspaceNavigation = (() => {
   const review = typeof module !== 'undefined' ? require('./requirement-review.js') : RequirementReview;
-  const pages = {overview:'start', sources:'documents', intake:'intake', review:'comparison', baseline:'readiness'};
+  const pages = {overview:'start', sources:'documents', intake:'intake', review:'comparison', baseline:'readiness', consumers:'consumers'};
   const draftTabs = ['requirements', 'delta', 'notes', 'history', 'packet'];
   function routeHash(route) {
     let path;

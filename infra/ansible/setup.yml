@@ -25,6 +25,29 @@
     - {path: /etc/axiom, mode: '0755'}
     - {path: '{{ vm_backup_directory }}', mode: '0700'}
     - {path: /usr/local/lib/axiom, mode: '0755'}
+- name: Create the separate consumer operations account
+  ansible.builtin.user:
+    name: '{{ vm_consumer_user }}'
+    system: true
+    shell: /usr/sbin/nologin
+    create_home: false
+- name: Create the consumer state parent
+  ansible.builtin.file:
+    path: /var/lib/axiom
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+- name: Separate private queue and group-readable Workbench projection
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    state: directory
+    owner: '{{ vm_consumer_user }}'
+    group: '{{ item.group }}'
+    mode: '{{ item.mode }}'
+  loop:
+    - {path: '{{ vm_consumer_root }}', group: '{{ vm_consumer_user }}', mode: '0700'}
+    - {path: '{{ vm_consumer_projection }}', group: '{{ vm_user }}', mode: '2750'}
 - name: Create isolated runtime and candidate parents
   ansible.builtin.file:
     path: '{{ vm_base }}/{{ item }}'

@@ -6,6 +6,10 @@ on:
       - 'infra/ansible/**'
       - 'scripts/deploy_vm.*'
       - 'scripts/lib/vm_deployment.py'
+      - 'scripts/lib/consumer*.py'
+      - 'scripts/consumer_intake.py'
+      - 'tests/test_consumer*.py'
+      - 'tests/integration/run_consumer_intake.py'
       - 'scripts/serve_governance_workbench.py'
       - 'tests/test_vm_deployment.py'
       - 'tests/integration/run_vm_deployment.py'
@@ -19,7 +23,7 @@ permissions:
 jobs:
   disposable-ubuntu:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -34,3 +38,5 @@ jobs:
           .venv-deployment/bin/python -m pip install --require-hashes -r requirements-deployment.lock
       - name: Test real systemd deployment on this disposable runner only
         run: .venv-deployment/bin/python tests/integration/run_vm_deployment.py --allow-disposable-host
+      - name: Test consumer credentials, UID separation and schedules on the same disposable host
+        run: sudo --preserve-env=GITHUB_ACTIONS .venv-deployment/bin/python tests/integration/run_consumer_intake.py --allow-disposable-host

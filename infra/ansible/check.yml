@@ -29,6 +29,15 @@
             p=pathlib.Path('/etc/axiom/deployment-public.json')
             d=json.loads(p.read_text()) if p.is_file() else {'installed':False}
             d['service_active']=subprocess.run(['systemctl','is-active','--quiet','axiom-workbench']).returncode==0
+            d['consumer_poll_active']=subprocess.run(['systemctl','is-active','--quiet','axiom-consumer-poll.timer']).returncode==0
+            d['consumer_worker_active']=subprocess.run(['systemctl','is-active','--quiet','axiom-consumer-work.timer']).returncode==0
+            projection=pathlib.Path('/var/lib/axiom/consumer-view/consumers.json')
+            try:
+              if projection.is_file():
+                v=json.loads(projection.read_text())
+                d['consumer_intake']={k:v.get(k) for k in ['mode','last_poll','last_success','sync_error','poll_error']}
+            except PermissionError:
+              d['consumer_intake']={'visibility':'workbench_only'}
             print(json.dumps(d))
       check_mode: false
       changed_when: false

@@ -1,0 +1,37 @@
+[Unit]
+Description=AXIOM consumer {{ consumer_operation }} (private VM operations)
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/etc/axiom/consumer-intake.json
+ConditionPathExists=/etc/axiom/consumer-reader.pem
+
+[Service]
+Type=oneshot
+User={{ vm_consumer_user }}
+Group={{ vm_consumer_user }}
+SupplementaryGroups={{ vm_user }}
+WorkingDirectory={{ vm_repo }}
+LoadCredential=operator-config:/etc/axiom/consumer-intake.json
+{% for credential in vm_consumer_credentials.results %}
+{% if credential.stat.exists and (credential.item == 'reader' or consumer_operation == 'work') %}
+LoadCredential={{ credential.item }}-key:/etc/axiom/consumer-{{ credential.item }}.pem
+{% endif %}
+{% endfor %}
+ExecStart={{ vm_venv }}/bin/python {{ vm_repo }}/scripts/consumer_intake.py {{ consumer_operation }} --config %d/operator-config --root {{ vm_consumer_root }} --projection {{ vm_consumer_projection }}
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=VALIDATION_VENV={{ vm_venv }}
+Environment=PATH={{ vm_venv }}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+UMask=0077
+TimeoutStartSec=45min
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+CapabilityBoundingSet=
+ReadWritePaths={{ vm_consumer_root }} {{ vm_consumer_projection }}
+ReadOnlyPaths={{ vm_repo }}

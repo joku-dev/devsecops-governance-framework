@@ -164,8 +164,13 @@ class OperationalWorkflowTests(unittest.TestCase):
                 workflow = yaml.load(text, Loader=yaml.BaseLoader)
                 self.assertNotIn("git push", text)
                 self.assertNotIn("gh pr merge", text)
-                job = next(iter(workflow["jobs"].values()))
-                self.assertEqual(job["if"], "github.ref == 'refs/heads/main'")
+                job = next(job for job in workflow['jobs'].values()
+                           if any(publisher_command in step.get('run', '') for step in job['steps']))
+                if name == 'intake-governance-result.yml':
+                    self.assertEqual(job['needs'], 'intake-owner')
+                    self.assertEqual(job['if'], "github.ref == 'refs/heads/main' && needs.intake-owner.outputs.owner == 'github-actions'")
+                else:
+                    self.assertEqual(job["if"], "github.ref == 'refs/heads/main'")
                 steps = job["steps"]
                 self.assertEqual(steps[0]["with"]["ref"], "main")
                 publisher = next(step for step in steps if step["name"] == "Open operational review PR")
