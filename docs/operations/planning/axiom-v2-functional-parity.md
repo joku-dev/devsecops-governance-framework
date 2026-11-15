@@ -328,6 +328,96 @@ This is a historical source-level replay with the original measured snapshot,
 separate from synthetic installed acceptance and the failed fresh producer. It
 does not refresh evidence, exercise deployment or grant new operating approval.
 
+## Complete typed image verification and private intake
+
+The `typed` command adds the existing V1 complete ha-CPsWMS image profile. It
+verifies every selected ZIP, the complete Docker archive configuration and
+uncompressed layers, scanner/SBOM byte and image bindings, explicit execution
+records, immutable baseline references, freshness, custody and per-type replay.
+It runs no image, application code or scanner. Native facts and provenance labels
+stay in adapters; shared Trust logic requires explicit model context and custody
+steps. The old `evidence_trust.py` remains V1 source but is physically excluded
+from the active V2 installation and import closure.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance typed verify-local \
+  --provider github-actions --bundle /private/operator/typed-bundle \
+  --sha256 EXACT_CAPTURE_MANIFEST_SHA256 --at 2026-11-15T12:00:00Z
+python scripts/axiom_v2.py --instance /private/operator/v2-instance typed capture \
+  --provider github-actions --repository joku-dev/ha-CPsWMS \
+  --run-id EXACT_SUCCESSFUL_MAIN_PUSH_RUN --credential typed-reader.json
+python scripts/axiom_v2.py --instance /private/operator/v2-instance typed inspect \
+  --id STORED_TYPED_ASSESSMENT_ID
+python scripts/axiom_v2.py --instance /private/operator/v2-instance typed intake \
+  --id STORED_TYPED_ASSESSMENT_ID
+python scripts/axiom_v2.py --instance /private/operator/v2-instance typed index \
+  --limit 100 --offset 0
+```
+
+The explicit reader file uses the same exact private schema as measured capture.
+Native capture keeps V1's successful Main/push/original-workflow ha-CPsWMS scope,
+artifact/run/attempt binding and optional exact-commit paired baseline run. It
+reads whole archives because typed integrity includes configurations and layers;
+the selected-JSON measured route alone cannot prove that claim. Native API
+credentials never accompany storage requests. Archive sizes/digests are checked,
+the producer run is rechecked after acquisition and failures remain visible.
+Native verification uses actual system UTC after acquisition; it accepts no
+operator-supplied historical `--at`. A fixed historical time belongs to local
+replay, whose native metadata flag remains false.
+
+Local import snapshots exact operator bytes before verification. A retained
+capture manifest binds six archives and native wire metadata. `inspect` rehashes
+and recomputes the full reports from retained bytes, without refreshing native
+metadata. Typed assessment records bind the node, runtime/source and raw manifest.
+They remain private/report-only/unverified wrappers, without official acceptance,
+authority, risk acceptance or production approval. Inner V1 Trust records retain
+the original computed vocabulary; their scope remains explicit.
+
+`intake` separately admits a verified record into a private transactional SQLite
+ledger. Native repository IDs, provider and instance define the namespace; display
+paths do not collapse independent identities. Operator and native histories are
+separate, so a supplied bundle cannot occupy a native receipt. Original V1
+within-realm per-type replay rules are retained. A display path reused by a
+different native repository fails replay rather than inheriting the old identity.
+First records remain immutable: identical retries retain their first timestamp,
+Trust and source receipt; changed evidence for one run/attempt is quarantined.
+Failed batches roll back their writes. No accepted repository status file or
+public index is edited.
+
+The paged private index exposes native and replay latest separately. Producer
+time selects latest independently of Trust; local replay always projects effective
+Trust as unverified even when its inner diagnostic result reports a higher V1
+level. A native read can derive the model's supported level only after its actual
+checks and replay pass. This is evidence assessment, not role authorization or
+independent attestation. Public publication and general typed intake profiles
+remain separate open Goal work.
+
+Storage is bounded: each ZIP is at most 1 GiB, image members at most 2 GiB,
+metadata at most 32 MiB, and raw plus extracted material is at most 2 GiB per
+verification by default. `--storage-budget-bytes` can select up to 16 GiB while
+the 8 GiB filesystem reserve remains enforced. Invalid members, links, duplicate
+names/JSON and archive/configuration/layer mismatches fail closed. Retention and
+per-realm replay-history limits remain explicit capacity boundaries; this new
+typed profile is not a production acceptance for 2,000 live repositories.
+
+An independent frozen V1 fixture contains complete synthetic ZIP/tar bytes and
+both original typed snapshots before and after replay, plus the measured container
+report. Focused tests cover full report equality, native acquisition/clock mocks,
+credential stripping, private command flow, native/replay separation, idempotence,
+conflicts, transaction rollback, identity/realm isolation, tampering and storage
+limits. Mock acquisition is not a successful live provider acceptance. The actual
+fresh consumer producer remains blocked by its original OCI-index/configuration
+guard; no permission or missing evidence is invented.
+
+The installed acceptance harness is reproducible with a fresh prefix:
+
+```sh
+python tests/acceptance/prepare_v1_parity_fixtures.py /private/operator/host-fixtures
+"$V2_PREFIX/venv/bin/python" tests/acceptance/axiom_v2_typed_intake.py \
+  "$V2_PREFIX" /private/operator/host-fixtures /private/operator/typed-result.json \
+  --expected-source EXACT_INSTALLED_COMMIT
+```
+
 ## Remaining work in the same Goal
 
 The full matrix stays authoritative for completion. Continue with neutral

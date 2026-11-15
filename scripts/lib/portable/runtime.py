@@ -85,6 +85,8 @@ def source_digest():
     paths.extend(ROOT/'scripts/lib'/name for name in ('measurement_logic.py','measured_application.py'))
     paths.extend([ROOT/'schemas/measured-l1-assessment.schema.json', ROOT/'schemas/measured-container-security.schema.json'])
     paths.append(ROOT/'schemas/axiom-v2-measured-assessment.schema.json')
+    paths.extend(ROOT/name for name in ('scripts/lib/artifact_integrity.py', 'scripts/lib/evidence_verification.py', 'scripts/lib/typed_result_ledger.py', 'scripts/lib/typed_evidence_application.py', 'scripts/lib/providers/typed_capture.py', 'scripts/lib/providers/typed_containers.py', 'scripts/lib/providers/typed_ports.py', 'scripts/lib/result_ledger.py'))
+    paths.extend(ROOT/name for name in ('schemas/axiom-v2-typed-assessment.schema.json','schemas/evidence-trust-record.schema.json','schemas/evidence-collector-contract.schema.json','model/evidence/evidence-trust-model.yaml'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('evidence_freshness.py', 'assurance_projection.py', 'staging_projection.py', 'consolidated_projection.py', 'supplement_application.py'))
     paths.extend(ROOT/name for name in ('schemas/axiom-v2-supplement.schema.json','schemas/control-evidence-assurance.schema.json','schemas/staging-deployment-result.schema.json','schemas/consolidated-l1-assessment.schema.json','schemas/typed-evidence-result.schema.json','model/evidence/control-evidence-assurance-profile.yaml','model/evidence/evidence-freshness-policies.yaml','model/evidence/evidence-types.yaml'))
     paths.extend([ROOT/'schemas/axiom-v2-full-assessment.schema.json',ROOT/'schemas/axiom-v2-functional-parity.schema.json'])

@@ -24,12 +24,12 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 6 OPA | Ein gepinntes OPA je Zielplattform; gemeinsame Policies und Auswertungslogik. |
 | 7 Architekturmodell | Vorhandene Modell-/Baseline-Dateien erhalten; keine neue normative Architekturarbeit. |
 | 8 Architektur-Readiness | `evaluate --domain architecture` führt alle vier bisherigen Gates mit detailliertem Bericht aus; keine neue normative Architekturarbeit. |
-| 9 Nachweise sammeln | Explizite SCM-/CI-Profile, Provider-Adapter, Bundle-Verifikation und frische V2-Daten. |
+| 9 Nachweise sammeln | Explizite SCM-/CI-Profile, Source-Erfassung, vollständige Measured- und Typed-Archivprofile über Adapter; native Zielprofile behalten ihren eigenen Umfang. |
 | 10 Baselines | Bestehende unveränderte Baselines konsumieren; Freigabe neuer Baselines bleibt separater Prozess. |
-| 11 Intake | `evidence` und `collector`; keine automatische Übernahme alter Indizes in aktive Queue. |
+| 11 Intake | `evidence`, `collector` und privates `typed intake`/`index`; Operator-Replay und native Aufnahmen bleiben getrennt. Öffentliche Accepted-Result-Publikation weiter offen. |
 | 12 Geschichte | Neue SQLite-/Receipt-Daten, Backup und inaktiver Restore-Kandidat; V1-Geschichte bleibt Rückfallstand. |
-| 13 Vertrauen | Gemeinsame Herkunfts-, Hash-, Frische- und Kontextprüfungen; keine implizite Abnahme. |
-| 14 Replay | Lokale Bundle-Verifikation mit gemeinsamer Runtime; alte GitHub-Replay-CLIs nicht installiert. |
+| 13 Vertrauen | Explizite neutrale Trust-Prüfung, vollständige Konfigurations-/Layer-Hashes, native Frische und kontrollbezogene Assurance; keine implizite Abnahme. |
+| 14 Replay | Private, pro Evidenztyp und Provider-Instanz abgegrenzte Replay-Prüfung; alte GitHub-Replay- und Attestierungs-CLIs sind noch nicht vollständig überführt. |
 | 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. |
 | 16 PR-Veröffentlichung | Explizite Adapterprofile und getrennte Zugangsdaten; keine implizite GitHub-Anmeldung oder Merge-Autorität. |
 | 17 Status | Workbench und private Consumer-Projektion; historische statische Ansichten bleiben Referenzdaten. |

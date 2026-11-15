@@ -112,10 +112,13 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
-    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement'):
+    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed'):
         raise ValueError('v2_entrypoint_not_supported')
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='typed':
+        from lib.typed_evidence_application import run as typed_run
+        return typed_run(arguments,root,settings)
     if command=='supplement':
         from lib.supplement_application import run as supplement_run
         return supplement_run(arguments,root,settings)

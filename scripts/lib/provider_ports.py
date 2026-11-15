@@ -43,3 +43,5 @@ from lib.providers.discovery import CI_PROVIDERS
 from lib.providers.source_inspection import SOURCE_CI_PROFILES, local_source_signals
 from lib.providers.measured_ports import (MEASURED_PROVIDERS, measured_import, measured_capture_live,
                                           measured_export, measured_validate, measured_supplement_profile)
+
+from lib.providers.typed_ports import TYPED_PROVIDERS, typed_import, typed_verify, typed_capture_live
