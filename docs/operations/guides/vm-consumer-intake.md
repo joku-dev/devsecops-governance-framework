@@ -23,9 +23,12 @@ Anfangs läuft alles im Schattenbetrieb ohne eigene Veröffentlichungen.
 
 ## Installation und private GitHub Apps
 
-Zuerst die abhängigen Workbench-/IaC-Änderungen und diesen Branch prüfen und in
-Main übernehmen. Dann die [Linux-VM-Installation](linux-vm-installation.md) auf
-den vollständigen freigegebenen Commit aktualisieren. Die vorhandene URL, der
+Die Workbench-/IaC-/Collector-Änderungen aus #362–#364 sind in Main enthalten;
+die VM läuft seit dem geprüften Update am 15. November auf `59bc6d1`. Dabei wurde
+der Legacy-Collector erhalten und keine neue App-Konfiguration aktiviert.
+Aktive Timer belegen allein keine Sammlung. Für eine neue Einrichtung die
+[Linux-VM-Installation](linux-vm-installation.md) auf einen vollständigen
+freigegebenen Commit pinnen. Die vorhandene URL, der
 SSH-Tunnel, Port 8766 und der Workbench-Zugangsschlüssel bleiben nutzbar.
 
 Der Maintainer richtet zwei GitHub Apps ein und bestätigt deren Installationsrechte:

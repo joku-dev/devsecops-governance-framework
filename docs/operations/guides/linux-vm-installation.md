@@ -5,9 +5,11 @@
 Das IaC-Profil installiert die vorhandene Engine und die private Workbench auf
 einer bestehenden Ubuntu-24.04-VM (amd64 oder arm64). Ansible verwaltet Pakete,
 einen unprivilegierten Dienstbenutzer, einen festen Git-Checkout, Laufzeiten pro
-Commit, systemd und private Sicherungen. Die Ziel-VM wird erst nach Fertigstellung
-des Prototyps eingerichtet. Dieses Dokument ist keine Behauptung einer bereits
-erfolgten Installation auf Proxmox.
+Commit, systemd und private Sicherungen. Die Proxmox-Ziel-VM wurde am
+15. November 2026 erfolgreich auf `59bc6d1` aktualisiert und mit echter
+Workbench-Anmeldung geprüft. Der [datierte Plattformstatus](../status/current-governance-platform-state.md)
+trennt diesen installierten Stand vom neueren Main `4f6f5bb` und von offenen
+Collector-/Provider-Abnahmen.
 
 Der Controller benötigt Python 3.13, SSH und einen bestätigten Hostschlüssel.
 `scripts/deploy_vm.sh` legt eine ignorierte `.venv-deployment` mit den gehashten
@@ -17,8 +19,11 @@ aber keine andere Python-Minorversion. Für die Ziel-VM wird `/usr/bin/python3`
 verwendet; dort ist kein Ansible-Controller erforderlich.
 
 Es werden weder Proxmox-VMs noch Datenträger angelegt, vergrößert oder formatiert.
-Docker, Kubernetes, SSO, mehrere gleichzeitige Dienstinstanzen, verteilte Worker
-und eine Lastzusage für 1.000–2.000 Repositories gehören zu späteren Schritten.
+Docker, Kubernetes, SSO und verteilte Worker gehören zu späteren Schritten.
+Eine eigene Mac-Workbench und eine eigene VM-Workbench können parallel laufen;
+das ist kein verteilter Dienst oder gemeinsamer Draft-Speicher. Die
+[Messprofile für 1.000/2.000 Repositories](portable-capacity-profile.md) sind
+implementiert; eine Produktionskapazitätszusage bleibt offen.
 Die Workbench selbst startet keine Provider- oder Consumer-Jobs. Der optionale
 [VM-Consumer-Intake](vm-consumer-intake.md) verwendet separate Dienste und startet
 erst mit privat bereitgestellter App-Konfiguration im Schattenbetrieb.
@@ -90,9 +95,11 @@ ssh -N -o ExitOnForwardFailure=yes \
   -L 127.0.0.1:8766:127.0.0.1:8766 joku@192.168.200.252
 ```
 
-Öffne `http://localhost:8766`. Der Hostname unterscheidet die VM-Sitzung von
-einer lokalen Workbench unter `http://127.0.0.1:8765`; Browser-Cookies sind nicht
-nach Port getrennt. Verwende dafür deinen persönlichen SSH-Zugang, der Forwarding
+Öffne `http://localhost:8766`. Die Mac-Workbench kann gleichzeitig unter
+`http://127.0.0.1:8765` laufen. Browser-Cookies sind grundsätzlich nicht nach
+Port getrennt; der aktuelle Workbench-Code verwendet deshalb portgebundene
+Sitzungsnamen. Nach einem Update von älterem Code erneut anmelden. Getrennte
+Hostnamen bleiben für die Orientierung hilfreich. Verwende deinen persönlichen SSH-Zugang, der Forwarding
 bereits erlaubt. Ein mit `restrict` eingerichteter Automatisierungsschlüssel wird
 nicht erweitert. Ist der lokale Port belegt, beende den eigenen alten Tunnel;
 die Automatisierung beendet keine fremden Prozesse und wählt keinen Ersatzport.

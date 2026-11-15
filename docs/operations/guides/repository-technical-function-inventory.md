@@ -1,5 +1,80 @@
 # Technische Funktionsliste des Repositories
 
+## Aktuelles Inventar — 15. November 2026
+
+Quellstand `4f6f5bbc2614760a35fe9d79602bcf5b19bc6e74`: **209 Python-Dateien**,
+**5 Shell-Dateien**, **9 weitere Skript-/Workbench-Dateien**, **37 Workflows**
+und **15 OPA-Module**, zusammen **275 Dateien** in den unten definierten
+Produktionspfaden. Die historischen Tabellen mit 220 Dateien bleiben an
+`ae423f3` gebunden. Die folgende vollständige Ergänzung enthält alle 55 seitdem
+hinzugekommenen Dateien; keine Datei dieser Ausgangsmenge wurde entfernt.
+Die OPA-Dateimenge ist gleich geblieben. Tests, Schemas, IaC und andere
+Verzeichnisse sind separate Implementierungsbereiche, keine fehlenden Einträge.
+
+| Neue Datei seit dem Ausgangskatalog | Aufgabe und Grenze |
+|---|---|
+| `.github/workflows/agent-review-status.yml` | Report-only-Prüfung explizit veröffentlichter Review-Metadaten. |
+| `.github/workflows/devsecops-portable-v1.yml` | Separat gepinnter portabler Pipeline-L1-Wrapper. |
+| `.github/workflows/governance-ci-v2.yml` | Additive CI mit der gepinnten Validierungsumgebung. |
+| `.github/workflows/portable-capacity.yml` | Versionierte Kapazitäts-Fixtures und Audit. |
+| `.github/workflows/runtime-package.yml` | Vorbereitetes Laufzeitpaket und Offline-Prüfung. |
+| `.github/workflows/viewer-ui.yml` | DOM-Regressionen des öffentlichen Viewers. |
+| `.github/workflows/vm-installation.yml` | Isolierter Ubuntu-IaC-/Recovery-Test. |
+| `.github/workflows/workbench-ui.yml` | Private Workbench-DOM-Regressionen. |
+| `scripts/consumer_intake.py` | Private VM operator entrypoint; default shadow mode cannot publish. |
+| `scripts/deploy_vm.py` | One-host Ansible entrypoint. Private configuration and backups stay outside Git. |
+| `scripts/deploy_vm.sh` | Gepinnte Controller-Umgebung und Aufruf der Ansible-CLI. |
+| `scripts/evaluate_agent_reviews.py` | Prepare synthetic review packets or grade supplied answers offline; never call models. |
+| `scripts/generate_portable_candidate_index.py` | Generate the separate portable candidate read model without accepting any result. |
+| `scripts/governance_runtime.py` | Portable AXIOM pipeline-l1 candidate. Existing released CLIs stay unchanged. |
+| `scripts/install_validation_opa.py` | Install only a checksum-pinned OPA, with a verified cache and bounded retries. |
+| `scripts/intake_portable_evidence.py` | Versioned local/native evidence intake. No accepted index or remote publication. |
+| `scripts/lib/agent_codex.py` | Thin Codex CLI projection of neutral role/execution contracts. |
+| `scripts/lib/agent_evaluation.py` | Offline structured review rubric; no provider SDK, model calls or network access. |
+| `scripts/lib/agent_execution.py` | Bounded optional provider execution; preparation is the default and never calls a model. |
+| `scripts/lib/agent_receipts.py` | Explicitly publishable review metadata, never private review text or authority. |
+| `scripts/lib/agent_review.py` | Prepare revision-bound role reviews and check declared completion evidence. |
+| `scripts/lib/agent_review_status.py` | Inspect PR review metadata with trusted code; never execute code from a PR. |
+| `scripts/lib/agent_routing.py` | Production routing from model-neutral role, skill and path contracts. |
+| `scripts/lib/consumer_github.py` | Least-privilege GitHub App transport with persisted conditional requests. |
+| `scripts/lib/consumer_intake.py` | VM consumer pilot: discover, verify, propose, and project accepted Git state. |
+| `scripts/lib/consumer_intake_store.py` | Private VM operations state. This is not the GitHub Actions evidence ledger. |
+| `scripts/lib/consumer_publisher.py` | Serialized VM batches, truthful provenance and recovery after partial API success. |
+| `scripts/lib/consumer_view.py` | Read only the public projection; never follow paths into private collector state. |
+| `scripts/lib/governance_requirement_lifecycle_view.py` | Read-only lifecycle projection from registered governance artifacts. |
+| `scripts/lib/portable/__init__.py` | Versioned, provider-independent governance execution contracts. |
+| `scripts/lib/portable/adapters.py` | CI/SCM adapters. Native facts stop at the portable context boundary. |
+| `scripts/lib/portable/contracts.py` | Portable v1 contracts. No provider environment or network access. |
+| `scripts/lib/portable/runtime.py` | One evaluation and gate implementation for CI and service callers. |
+| `scripts/lib/portable_intake/__init__.py` | Versioned evidence intake successors; legacy accepted paths do not import this package. |
+| `scripts/lib/portable_intake/assurance.py` | Additive provider observations; none assign a role or accept an operation. |
+| `scripts/lib/portable_intake/bundle.py` | One bounded bundle contract for local, CI and VM intake. |
+| `scripts/lib/portable_intake/candidate_index.py` | Bounded read model of declared candidates, never an official latest-result index. |
+| `scripts/lib/portable_intake/controller.py` | Persistent native execution queue on the existing private v2 SQLite store. |
+| `scripts/lib/portable_intake/operations.py` | SCM proposals, CI dispatch and local Git are separate provider boundaries. |
+| `scripts/lib/portable_intake/publisher.py` | Frozen, serialized candidate proposals. No merge, accepted index or CI dispatch. |
+| `scripts/lib/portable_intake/store.py` | SQLite v2 namespace, opaque queue identities and atomic replay receipts. |
+| `scripts/lib/portable_intake/transport.py` | Read-only native acquisition. Provider responses never enter the common evaluator. |
+| `scripts/lib/private_credentials.py` | Private ordinary files and narrowly validated systemd credential ACLs. |
+| `scripts/lib/requirement_journey_view.py` | Allowlisted, read-only pilot projection; no extraction or inferred relationships. |
+| `scripts/lib/runtime_package.py` | Exact tracked source plus optional prepared tools; admission never downloads dependencies. |
+| `scripts/lib/vm_deployment.py` | Private VM deployment utilities. No governance decisions or remote shell input. |
+| `scripts/lib/workbench_impact.py` | Private, read-only requirement impact hints from exact recorded bindings. |
+| `scripts/observe_provider_assurance.py` | Capture candidate provider review/security observations with a GET-only credential. |
+| `scripts/package_governance_runtime.py` | Build/admit exact-source packages or prepare their runtime without dependency downloads. |
+| `scripts/portable_consumer_intake.py` | Bounded portable collector service; private SQLite/raw state and public counts only. |
+| `scripts/record_agent_review.py` | Export an allowlisted review receipt and separate declared usage statistics. |
+| `scripts/report_agent_review_status.py` | Report missing/stale/incomplete PR review metadata without enforcing a gate. |
+| `scripts/run_agent_reviews.py` | Prepare bounded private role tasks; --execute explicitly starts provider sessions. |
+| `scripts/workbench/consumer-view.js` | Private lesende Consumer-Projektion. |
+| `scripts/workbench/workspace-navigation.js` | Workbench-Navigation mit Erhalt des Sitzungszustands. |
+
+Die CodeQL-Action verwendet in Main `33d7b85`; Viewer-/Workbench-UI verwenden
+setup-node `949feb2` (v7.1.0). Die drei veröffentlichten Baseline-Wrapperpins
+wurden dabei nicht geändert; PR #348 ist im datierten Abgleich zurückgestellt.
+Für Schema2, Provider- und Live-Grenzen siehe
+[Engineering-Matrix](../planning/platform-portability-acceptance.md).
+
 ## Ergänzung: private VM-Ergebnissammlung (GCR-2026-171)
 
 | Einstieg oder Modul | Aufgabe und Grenze |

@@ -1,5 +1,17 @@
 # AXIOM Review Workbench
 
+## macOS and VM operation
+
+Start the Mac instance with the command below. The separately managed Ubuntu
+instance runs under systemd and is reached through its SSH tunnel on port 8766;
+see [VM installation and parallel operation](linux-vm-installation.md).
+Each instance has its own access key, sessions and draft directory. Current
+cookies use the actual bound port; sign in again after updating older code.
+There is no automatic draft synchronization. The explicit, backup-first
+`import-drafts` operation in the VM guide transfers selected saved drafts.
+The [dated platform state](../status/current-governance-platform-state.md)
+records the verified deployment revision independently of Main.
+
 The Review Workbench provides a guided, authenticated local web application for
 source intake and document-review preparation. It reads this repository's real
 source register, uses the existing text and requirement extractors, and keeps
