@@ -14,18 +14,11 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## Implementation readback — 7 November 2026
+## PR #362: feat(workbench): guide reviews and show implementation impact (`8bdd476a7542`)
 
-The local [Review Workbench](docs/operations/guides/governance-review-workbench.md)
-guides document intake, explicit requirement review and review-packet handoff.
-Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
-prose is not converted into requirements. Notes prepare human decisions.
-The public Viewer presents reviewed projections read-only.
-The Governance view links registered sources, requirement decisions, effective
-artifact mappings and the OPA inventory under **Anforderung bis OPA**.
-
-The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
-records source commit `ae423f3`, draft coverage and remaining limits.
+- Guide private reviews through **Dokument wählen → Prüfen → Weitergeben**, with resumable work, a DevSecOps focus selector, three separate status cards and contextual secondary tools.
+- Show exact approved requirement revisions and current artifact/rule mappings under **Umsetzung und Auswirkungen**. Missing, ambiguous or changed evidence stays **Auswirkung ungeklärt**; confirmed mappings indicate **Prüfbedarf**.
+- Keep empty extraction, partial handoff, predecessor authority, historical decisions and enforcement authorization distinct from completion, approval or actual execution.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
