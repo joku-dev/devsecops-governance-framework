@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 
 from jsonschema import Draft202012Validator, FormatChecker, ValidationError
 
+from lib.result_bytes import strict_json
 from lib import ci_bundle_results as mappings
 from lib import ci_bundle_storage as storage
 from lib.candidate_workspace import private_directory
@@ -31,22 +32,6 @@ def identity(value):
         raise ValueError('invalid_result_source_id')
     return value
 
-
-def strict_json(raw):
-    def unique(pairs):
-        value = {}
-        for key, item in pairs:
-            if key in value: raise ValueError('duplicate_result_input_key')
-            value[key] = item
-        return value
-    def finite(_):
-        raise ValueError('nonfinite_result_input_number')
-    try:
-        value = json.loads(raw, object_pairs_hook=unique, parse_constant=finite)
-    except (UnicodeError, RecursionError):
-        raise ValueError('invalid_result_input_json') from None
-    if not isinstance(value, dict): raise ValueError('result_input_object_required')
-    return value
 
 
 def operator_bytes(path, limit=MAX_METADATA):

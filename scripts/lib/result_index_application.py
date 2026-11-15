@@ -101,7 +101,14 @@ def verify_row(context, row, domain, settings):
         repository = proof['verification']['repository']
         expected = proof['verification']['snapshots'][row['evidence_type']]
     else:
-        proof = context.load(row['assessment_id'])
+        if row['origin'] == 'native_reader':
+            from lib.native_result_assessments import NativeResultContext
+            key = ('native-result', identity(row['assessment_id']))
+            if key not in context.loaded:
+                context.remember(key, NativeResultContext(context.instance_root, settings).load(row['assessment_id']))
+            proof = context.loaded[key]
+        else:
+            proof = context.load(row['assessment_id'])
         repository = proof['repository']; expected = proof['snapshots'][domain]
     if row['origin'] != proof['input_origin'] or repository != row['repository']:
         raise ValueError('result_projection_source_origin_changed')

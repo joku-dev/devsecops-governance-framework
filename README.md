@@ -39,8 +39,10 @@ Git-Quellkontext und private redigierte Projektionen. Freigabe und öffentliche
 Veröffentlichung bleiben eigene Schritte.
 Der allgemeine `results`-Intake übernimmt lokale CI-Bundles und manuelle
 Angaben in private, reproduzierbare Snapshots. Vollständige Ergebnisindizes
-zeigen gemeldeten und wirksamen Trust getrennt; die native Erfassung und die
-öffentliche Übergabe bleiben weitere Schritte des laufenden Goals.
+zeigen gemeldeten und wirksamen Trust getrennt. Der explizite native Adapter
+liest zusätzlich abgeschlossene CI-Läufe samt Originalarchiven, Lauf-/Jobdaten
+und verfügbarem Schutzstatus. Private Aufnahme und öffentliche Übergabe bleiben
+getrennte Schritte; die vollständige Produktabnahme ist weiter offen.
 
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026

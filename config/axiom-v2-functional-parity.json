@@ -1946,8 +1946,8 @@
         "--token"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/native_result_assessments.py:NativeResultContext",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2058,8 +2058,8 @@
         "--token"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/native_result_assessments.py:NativeResultContext",
+      "state": "in_progress",
       "evidence": []
     },
     {

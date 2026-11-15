@@ -14,14 +14,29 @@ from lib import ci_bundle_storage as storage
 from lib import result_index_application as indices
 from lib.candidate_workspace import private_directory
 from lib.portable.contracts import ROOT, repository_key
-from lib.provider_ports import RESULT_EVENT_PROFILES
+from lib.provider_ports import RESULT_EVENT_PROFILES, NATIVE_RESULT_PROVIDERS
 from lib.result_assessments import ResultContext, identity
+from lib.native_result_assessments import NativeResultContext
 from lib.result_snapshot_store import DOMAINS, ORIGINS, ResultLedger
 
 
 def _run(arguments, instance_root, settings):
     parser = argparse.ArgumentParser(prog='axiom-v2 results', allow_abbrev=False)
     commands = parser.add_subparsers(dest='command', required=True)
+    capture = commands.add_parser('capture-native')
+    capture.add_argument('--provider', choices=NATIVE_RESULT_PROVIDERS, required=True)
+    capture.add_argument('--repository', required=True)
+    capture.add_argument('--run-id', required=True)
+    capture.add_argument('--attempt', type=int, required=True)
+    capture.add_argument('--credential-file', type=Path, required=True)
+    capture.add_argument('--domain', choices=DOMAINS, required=True)
+    capture.add_argument('--artifact-name', required=True)
+    capture.add_argument('--baseline-level', default='L1')
+    capture.add_argument('--baseline-ref', default='')
+    capture.add_argument('--governance-repository', required=True)
+    capture.add_argument('--notes', default='Explicit native CI result capture; report-only.')
+    capture.add_argument('--request-budget', type=int, default=100)
+    capture.add_argument('--storage-budget-bytes', type=int, default=storage.DEFAULT_BUDGET)
     describe = commands.add_parser('describe')
     describe.add_argument('--bundle', type=Path, required=True)
     validate = commands.add_parser('validate-bundle')
@@ -38,7 +53,7 @@ def _run(arguments, instance_root, settings):
     for command in (verify, manual):
         command.add_argument('--metadata', type=Path, required=True)
         command.add_argument('--at', required=True)
-    for name in ('inspect', 'intake', 'inspect-project'):
+    for name in ('inspect', 'intake', 'inspect-native', 'intake-native', 'inspect-project'):
         command = commands.add_parser(name); command.add_argument('--id', required=True)
     records = commands.add_parser('records')
     records.add_argument('--origin', choices=ORIGINS, required=True)
@@ -56,6 +71,29 @@ def _run(arguments, instance_root, settings):
     project.add_argument('--at', required=True)
     args = parser.parse_args(arguments)
     context = ResultContext(instance_root, settings)
+    if args.command in ('capture-native', 'inspect-native', 'intake-native'):
+        context = NativeResultContext(instance_root, settings)
+        if args.command == 'capture-native':
+            options = {key: getattr(args, key) for key in ('artifact_name', 'baseline_level', 'baseline_ref',
+                                                         'governance_repository', 'notes')}
+            assessment_id, value = context.create_native(args.provider, args.repository, args.run_id, args.attempt,
+                args.credential_file, domain=args.domain, options=options, requests=args.request_budget,
+                budget=args.storage_budget_bytes)
+            print(json.dumps({'assessment_id': assessment_id, 'input_id': value['input_id'],
+                'repository_key': repository_key(value['repository']), 'input_origin': 'native_reader',
+                'domains': sorted(value['snapshots']), 'mode': 'report-only',
+                'capture': value['capture'], 'official_acceptance': False, 'provider_invoked': True}, sort_keys=True))
+        else:
+            value = context.load(args.id)
+            if args.command == 'inspect-native':
+                print(json.dumps({'assessment_id': args.id, 'assessment': value,
+                    'raw_sources_reverified': True, 'native_metadata_rechecked_now': False}, sort_keys=True))
+            else:
+                with closing(ResultLedger(private_directory(instance_root / 'state/results/ledger'))) as ledger:
+                    value = ledger.admit(value['repository'], value['snapshots'], origin='native_reader',
+                                         assessment_id=args.id, at=value['assessed_at'])
+                print(json.dumps(value, sort_keys=True))
+        return 0
     if args.command == 'describe':
         value = storage.describe(args.bundle)
         print(json.dumps({key: value[key] for key in value if key != 'files'}, sort_keys=True))

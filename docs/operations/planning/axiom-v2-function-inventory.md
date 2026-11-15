@@ -26,7 +26,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 8 Architektur-Readiness | `evaluate --domain architecture` führt alle vier bisherigen Gates mit detailliertem Bericht aus; keine neue normative Architekturarbeit. |
 | 9 Nachweise sammeln | Explizite SCM-/CI-Profile, Source-Erfassung, vollständige Measured- und Typed-Archivprofile über Adapter; native Zielprofile behalten ihren eigenen Umfang. |
 | 10 Baselines | Bestehende unveränderte Baselines konsumieren; Freigabe neuer Baselines bleibt separater Prozess. |
-| 11 Intake | `evidence`, `collector` und privates `typed intake`/`index`; Operator-Replay und native Aufnahmen bleiben getrennt. Zusätzlich `results` für lokale CI-Bundles, manuelle Snapshots und vollständige private Ergebnisindizes. Öffentliche Accepted-Result-Publikation und native General-Capture weiter offen. |
+| 11 Intake | `evidence`, `collector` und privates `typed intake`/`index`; Operator-Replay und native Aufnahmen bleiben getrennt. Zusätzlich `results` für lokale CI-Bundles, manuelle Snapshots, explizite native Run-/Job-/Archiv-Erfassung und vollständige private Ergebnisindizes. Öffentliche Accepted-Result-Publikation und vollständige native Live-Abnahme bleiben offen. |
 | 12 Geschichte | Neue SQLite-/Receipt-Daten, Backup und inaktiver Restore-Kandidat; V1-Geschichte bleibt Rückfallstand. |
 | 13 Vertrauen | Explizite neutrale Trust-Prüfung, vollständige Konfigurations-/Layer-Hashes, native Frische und kontrollbezogene Assurance; keine implizite Abnahme. |
 | 14 Replay | Private, pro Evidenztyp und Provider-Instanz abgegrenzte Replay-Prüfung; alte GitHub-Replay- und Attestierungs-CLIs sind noch nicht vollständig überführt. |

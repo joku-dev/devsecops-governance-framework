@@ -46,3 +46,5 @@ from lib.providers.measured_ports import (MEASURED_PROVIDERS, measured_import, m
 
 from lib.providers.typed_ports import TYPED_PROVIDERS, typed_import, typed_verify, typed_capture_live
 from lib.providers.result_profiles import RESULT_EVENT_PROFILES, result_index_profile
+from lib.providers.general_result_ports import (NATIVE_RESULT_PROVIDERS, general_result_capture,
+                                                general_result_verify)

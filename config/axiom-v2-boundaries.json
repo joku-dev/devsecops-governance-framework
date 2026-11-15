@@ -16,7 +16,8 @@
     "scripts/lib/portable_intake/store.py",
     "scripts/lib/v2_application.py",
     "scripts/axiom_v2.py",
-    "scripts/lib/measurement_logic.py"
+    "scripts/lib/measurement_logic.py",
+    "scripts/lib/native_result_logic.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

@@ -1,0 +1,3681 @@
+{
+  "cases": [
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/synthetic/native/actions/artifacts/9100/zip",
+        "digest": "sha256:904daee56d94c1eb552de3aff33a329840caf835b41993660a5d34f963cc93d6",
+        "expired": false,
+        "id": 9100,
+        "name": "devsecops-pipeline-evidence",
+        "size_in_bytes": 9238,
+        "workflow_run": {
+          "head_branch": "main",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 8100,
+          "repository_id": 42
+        }
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "branch_protected": true,
+      "branch_protection_lookup": {
+        "status": "protected"
+      },
+      "domain": "devsecops",
+      "expected_snapshot": {
+        "artifact_metadata": {
+          "artifact_names": [
+            "devsecops-pipeline-evidence"
+          ],
+          "artifact_sizes": {
+            "devsecops-pipeline-evidence": 9238
+          }
+        },
+        "baseline_level": "L1",
+        "checks": {
+          "baseline_gate": "failure",
+          "baseline_gate_workflow_job": "failure",
+          "governance_control_evaluation": "success"
+        },
+        "control_evaluation_summary": {
+          "applicable": 16,
+          "fail": 0,
+          "not_applicable": 30,
+          "pass": 16,
+          "total": 46
+        },
+        "downloaded_artifact": {
+          "artifact_size_bytes": 9238,
+          "control_evaluation_report_sha256": "d2335944baeab61559b46546cb12563116666202342309a3528840657cbdfdce",
+          "downloaded": true,
+          "governance_run_input_artifact": null,
+          "governance_run_input_refs": [],
+          "governance_run_input_sha256": "c67ffe895e3b56921c93efab03dda5ba76cac777473a4bb1d96c03cb507ce41c",
+          "pipeline_evidence_sha256": "e334b339c2aaef474ea07813df3e9996f1ccf44495054c27c49c6fbca2caaad6"
+        },
+        "evidence": {
+          "artifact_digest": false,
+          "governance_control_report": true,
+          "governance_run_input": true,
+          "operations_evidence": true,
+          "sbom": true,
+          "static_analysis_summary": true,
+          "traceability_mapping": true,
+          "vulnerability_scan": true
+        },
+        "evidence_context": {
+          "baseline_gate_result": {
+            "blocks_merge": null,
+            "governance_mode": null,
+            "status": null
+          },
+          "governance_run_input_declared": {
+            "external_direct_downloads_detected": false,
+            "security_gates": {
+              "blocks_merge": null,
+              "enforced": true
+            }
+          },
+          "interpretation": {
+            "external_direct_downloads_detected": "Producer-declared observation; not independently inferred by this intake.",
+            "security_gates_enforced": "Gate execution/evaluation; merge blocking is represented separately."
+          },
+          "pipeline_evidence": {
+            "artifact_digest": "81bb7f729925a57e80030269f65bd218c6f2b6515a7f22f1b6ed8d080015a4db",
+            "external_direct_downloads_detected": null,
+            "governance_mode": null,
+            "security_gates": {
+              "blocks_merge": null,
+              "enforced": null
+            }
+          }
+        },
+        "generated_at": "2026-11-15T11:55:00Z",
+        "governance_baseline_ref": "l1-baseline-v1.1.3",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture",
+        "overall_status": "pass",
+        "pipeline": {
+          "event": "push",
+          "pipeline_name": "Synthetic native devsecops",
+          "pipeline_run_id": "8100",
+          "pipeline_url": "https://github.com/synthetic/native/actions/runs/8100",
+          "status": "success"
+        },
+        "repository": {
+          "branch": "main",
+          "branch_protected": true,
+          "branch_protection_lookup": {
+            "status": "protected"
+          },
+          "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "repository_id": "synthetic/native",
+        "result_type": "governance-baseline-run",
+        "schema_version": "1.0.0",
+        "trust": {
+          "assessment_status": "evaluated",
+          "capture": {
+            "captured_at": "2026-11-15T12:00:00Z",
+            "collector": {
+              "id": "central-governance-intake",
+              "version": "0.1.0"
+            },
+            "contract_id": "evidence-collector-contract",
+            "contract_version": "0.1.0",
+            "custody": [
+              {
+                "action": "download",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "artifact_metadata"
+                ],
+                "sequence": 1,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9100/zip"
+              },
+              {
+                "action": "extract_and_hash",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "downloaded_artifact.control_evaluation_report_sha256",
+                  "downloaded_artifact.governance_run_input_sha256",
+                  "downloaded_artifact.pipeline_evidence_sha256",
+                  "trust.capture.subjects.artifact_archive"
+                ],
+                "sequence": 2,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9100/zip"
+              }
+            ],
+            "enforcement": "report_only",
+            "errors": [],
+            "evidence_type": "governance_result",
+            "governance_domain": "devsecops",
+            "observations": {
+              "governance_baseline": {
+                "ref": "refs/tags/l1-baseline-v1.1.3",
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            },
+            "produced_at": "2026-11-15T11:55:00Z",
+            "source": {
+              "artifact_digest": "904daee56d94c1eb552de3aff33a329840caf835b41993660a5d34f963cc93d6",
+              "artifact_name": "devsecops-pipeline-evidence",
+              "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "provider": "github_actions",
+              "repository_id": "synthetic/native",
+              "run_attempt": 1,
+              "run_id": "8100",
+              "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9100/zip",
+              "workflow_name": "Synthetic native devsecops"
+            },
+            "status": "collected",
+            "subjects": [
+              {
+                "algorithm": "sha256",
+                "digest": "d2335944baeab61559b46546cb12563116666202342309a3528840657cbdfdce",
+                "evidence_ref": "downloaded_artifact.control_evaluation_report_sha256",
+                "id": "control_evaluation_report",
+                "size_bytes": 118
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "c67ffe895e3b56921c93efab03dda5ba76cac777473a4bb1d96c03cb507ce41c",
+                "evidence_ref": "downloaded_artifact.governance_run_input_sha256",
+                "id": "governance_run_input",
+                "size_bytes": 3682
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "e334b339c2aaef474ea07813df3e9996f1ccf44495054c27c49c6fbca2caaad6",
+                "evidence_ref": "downloaded_artifact.pipeline_evidence_sha256",
+                "id": "pipeline_evidence",
+                "size_bytes": 879
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "904daee56d94c1eb552de3aff33a329840caf835b41993660a5d34f963cc93d6",
+                "evidence_ref": "trust.capture.subjects.artifact_archive",
+                "id": "artifact_archive",
+                "size_bytes": 9238
+              }
+            ]
+          },
+          "capture_phase": "additive_capture",
+          "checks": [
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "id": "subject_identity_complete",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "downloaded_artifact.control_evaluation_report_sha256",
+                "downloaded_artifact.governance_run_input_sha256",
+                "downloaded_artifact.pipeline_evidence_sha256",
+                "trust.capture.subjects.artifact_archive"
+              ],
+              "id": "content_digest_verified",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.run_id"
+              ],
+              "id": "producer_run_resolved",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.commit_id"
+              ],
+              "id": "commit_matches_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.artifact_name"
+              ],
+              "id": "artifact_belongs_to_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "run.referenced_workflows[].ref",
+                "run.referenced_workflows[].sha"
+              ],
+              "id": "baseline_ref_resolved",
+              "reason": "Selected governance baseline matches an immutable tagged workflow reference and resolved commit.",
+              "result": "pass"
+            },
+            {
+              "age_seconds": 300,
+              "evaluated_at": "2026-11-15T12:00:00Z",
+              "evidence_refs": [
+                "generated_at",
+                "trust.verified_at"
+              ],
+              "finding_effect": "report_only",
+              "id": "freshness_evaluated",
+              "maximum_age_seconds": 86400,
+              "policy_id": "freshness-governance-result-24h",
+              "policy_status": "provisional",
+              "policy_version": "0.1.0",
+              "produced_at": "2026-11-15T11:55:00Z",
+              "reason": "Evidence age 300s is within the provisional maximum 86400s.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "finding_effect": "report_only",
+              "id": "replay_key_unique",
+              "reason": "No prior replay key or incompatible digest reuse was found.",
+              "replay_key": "d2de715bc62674eb4282941175bd12ed6a8a19096d608368f4de08eca667714a",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.custody",
+                "trust.capture.source.artifact_digest",
+                "trust.capture.subjects"
+              ],
+              "id": "custody_recorded",
+              "reason": "Ordered download and extraction steps bind the downloaded archive to the hashed subjects.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_signature_valid",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_issuer_trusted",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_subject_matches",
+              "result": "not_evaluated"
+            }
+          ],
+          "effective_level": "provenance_verified",
+          "model_id": "evidence-trust-model-v1",
+          "verified_at": "2026-11-15T12:00:00Z",
+          "verifier": "central-governance-intake/v1"
+        }
+      },
+      "files": {
+        "application.bin": {
+          "__raw__": "synthetic physical application archive\n"
+        },
+        "application.cdx.json": {
+          "not_real_scan": true,
+          "synthetic": true
+        },
+        "architecture-governance-report.json": {
+          "advisories": [],
+          "detailed_evidence": {},
+          "gates": [
+            {
+              "findings": [],
+              "id": "architecture_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Architecture Readiness"
+            },
+            {
+              "findings": [],
+              "id": "integration_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Integration Readiness"
+            },
+            {
+              "findings": [],
+              "id": "operation_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Operation Readiness"
+            },
+            {
+              "findings": [],
+              "id": "release_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Release Readiness"
+            }
+          ],
+          "summary": {
+            "finding_count": 0,
+            "gate_count": 4,
+            "passed": 4,
+            "with_findings": 0
+          },
+          "target": {}
+        },
+        "architecture-release-input.json": {
+          "architecture": {
+            "compatibility_evidence": {
+              "exists": true
+            },
+            "deployment_evidence": {
+              "exists": true
+            },
+            "exception_evidence": {
+              "exists": false
+            },
+            "exceptions": [],
+            "feedback_evidence": {
+              "exists": true
+            },
+            "marker_assessments": [
+              {
+                "id": "B1",
+                "score": 3
+              },
+              {
+                "id": "B2",
+                "score": 3
+              },
+              {
+                "id": "B3",
+                "score": 3
+              },
+              {
+                "id": "B4",
+                "score": 3
+              },
+              {
+                "id": "B5",
+                "score": 4
+              },
+              {
+                "id": "P0",
+                "score": 3
+              },
+              {
+                "id": "P1",
+                "score": 3
+              },
+              {
+                "id": "P2",
+                "score": 3
+              },
+              {
+                "id": "P3",
+                "score": 3
+              },
+              {
+                "id": "P7",
+                "score": 3
+              },
+              {
+                "id": "S0",
+                "score": 3
+              },
+              {
+                "id": "S1",
+                "score": 3
+              },
+              {
+                "id": "S2",
+                "score": 3
+              },
+              {
+                "id": "E3",
+                "score": 3
+              },
+              {
+                "id": "E5",
+                "score": 3
+              },
+              {
+                "id": "S4",
+                "score": 3
+              },
+              {
+                "id": "S7",
+                "score": 3
+              },
+              {
+                "id": "P4",
+                "score": 3
+              },
+              {
+                "id": "E6",
+                "score": 4
+              },
+              {
+                "id": "E7",
+                "score": 4
+              },
+              {
+                "id": "E8",
+                "score": 4
+              },
+              {
+                "id": "S3",
+                "score": 4
+              },
+              {
+                "id": "S5",
+                "score": 4
+              },
+              {
+                "id": "S6",
+                "score": 4
+              },
+              {
+                "id": "S8",
+                "score": 4
+              },
+              {
+                "id": "P5",
+                "score": 4
+              },
+              {
+                "id": "P6",
+                "score": 4
+              },
+              {
+                "id": "P8",
+                "score": 4
+              },
+              {
+                "id": "P9",
+                "score": 4
+              },
+              {
+                "id": "P10",
+                "score": 4
+              },
+              {
+                "id": "P13",
+                "score": 4
+              }
+            ],
+            "release_compatibility_declaration": {
+              "approved": true,
+              "baseline_version": "solution-baseline-2026.07",
+              "exists": true
+            },
+            "review_evidence": {
+              "exists": false
+            },
+            "runtime_evidence": {
+              "exists": true
+            },
+            "security_evidence": {
+              "exists": true
+            },
+            "solution_baseline": {
+              "exists": true
+            }
+          },
+          "release_candidate": true
+        },
+        "baseline-gate-result.json": {
+          "status": "pass"
+        },
+        "control-evaluation-report.json": {
+          "summary": {
+            "applicable": 16,
+            "fail": 0,
+            "not_applicable": 30,
+            "pass": 16,
+            "total": 46
+          }
+        },
+        "governance-run-input.json": {
+          "artifact": {
+            "artifact_id": "ha-cpswms-source.tar.gz",
+            "artifact_type": "application-build-output",
+            "artifact_version": "d2f0dba3f88d",
+            "digest": {
+              "algorithm": "sha256",
+              "exists": true,
+              "linked_to_artifact": true,
+              "value": "example-digest-value"
+            },
+            "signature": {
+              "exists": false
+            }
+          },
+          "contract_version": "1.0",
+          "dependencies": [
+            {
+              "name": "fastapi",
+              "source_approved": true
+            }
+          ],
+          "deployment": {
+            "required": true
+          },
+          "environment": {
+            "centrally_managed": true,
+            "config_compliant": true,
+            "configuration_baselines_defined": true,
+            "secure_workspace": true
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "evidence_id": "github-actions-28292518364",
+              "generated_at": "2026-06-27T14:49:08Z",
+              "pipeline_run_id": "28292518364",
+              "status": "success"
+            },
+            "sbom": {
+              "exists": true,
+              "linked_to_artifact": true
+            },
+            "vulnerability_scan": {
+              "exists": true,
+              "max_severity": "none",
+              "path": "security/vulnerability-scan.json"
+            }
+          },
+          "infrastructure": {
+            "iac_repository": {
+              "exists": true,
+              "version_controlled": true
+            }
+          },
+          "monitoring": {
+            "forwarded_to_monitoring": true,
+            "integration_enabled": true,
+            "security_events_generated": true
+          },
+          "operations": {
+            "deployed_versions_recorded": true,
+            "security_events_recorded": true
+          },
+          "pipeline": {
+            "commit_id": "d2f0dba3f88de91838213060e4a014fe78026dd1",
+            "event": "push",
+            "external_direct_downloads_detected": false,
+            "pipeline_id": "DevSecOps Baseline",
+            "pipeline_run_id": "28292518364",
+            "security_gates": {
+              "enforced": true
+            },
+            "security_thresholds_exceeded": false,
+            "status": "success"
+          },
+          "platform": {
+            "central_identity_management": true,
+            "mfa_enforced": true,
+            "privileged_access": true
+          },
+          "release": {
+            "approval_status": "approved",
+            "approved_waiver": {
+              "exists": false
+            },
+            "release_id": "joku-dev/ha-CPsWMS@d2f0dba3f88d"
+          },
+          "release_approval": {
+            "approved": true,
+            "approved_artifact_only": true,
+            "approver": "release-manager"
+          },
+          "release_candidate": true,
+          "repository": {
+            "direct_push_allowed": false,
+            "protected_branch": true,
+            "review_required": true
+          },
+          "required_platform_level": "PRA-Level 2",
+          "run_context": {
+            "event": "push",
+            "purpose": "release",
+            "release_context": true,
+            "source": "github-actions"
+          },
+          "signing": {
+            "keys_protected": false
+          },
+          "source_control": {
+            "approved_vcs": true,
+            "identifiable_authors": true,
+            "review_records_present": true
+          },
+          "static_analysis": {
+            "findings_reviewed": true,
+            "performed": true
+          },
+          "traceability": {
+            "reports_linked": true,
+            "requirements_linked": true,
+            "testcases_linked": true
+          },
+          "vulnerabilities": [],
+          "waivers": [
+            {
+              "affected_requirements": [
+                "DSCB-L1-REQ-010",
+                "DSCB-GOV-REQ-005"
+              ],
+              "approval_authority": "DevSecOps Governance Board",
+              "approved_by": "governance-board-chair",
+              "approved_on": "2026-06-20",
+              "compensating_controls": [
+                "Temporary network restriction applied",
+                "Daily monitoring review enabled"
+              ],
+              "expired": false,
+              "expiry": "2026-07-20",
+              "id": "waiver-demo-001",
+              "justification": "The finding is accepted temporarily because the vendor patch is scheduled and deployment is blocked otherwise.",
+              "object_id": "CVE-2099-0001",
+              "risk_classification": "medium",
+              "scope": "release-candidate-exception",
+              "status": "approved"
+            }
+          ]
+        },
+        "pipeline-evidence.json": {
+          "artifact": {
+            "artifact_id": "application.bin",
+            "digest": {
+              "exists": true,
+              "path": "application.bin",
+              "value": "81bb7f729925a57e80030269f65bd218c6f2b6515a7f22f1b6ed8d080015a4db"
+            }
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "generated_at": "2026-11-15T11:55:00Z"
+            },
+            "sbom": {
+              "exists": true,
+              "path": "application.cdx.json"
+            },
+            "vulnerability_scan": {
+              "exists": true,
+              "path": "scan.json"
+            }
+          },
+          "pipeline": {
+            "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "event": "push",
+            "pipeline_id": "Synthetic CI",
+            "pipeline_run_id": "7001",
+            "pipeline_url": "https://ci.example/runs/7001",
+            "status": "success"
+          },
+          "release": {},
+          "repository": {
+            "branch": "main",
+            "protected_branch": true,
+            "repository_id": "synthetic/results"
+          },
+          "waivers": []
+        },
+        "scan.json": {
+          "not_real_scan": true,
+          "synthetic": true
+        }
+      },
+      "id": "devsecops-pass",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 1,
+          "name": "Baseline gate",
+          "run_attempt": 1,
+          "run_id": 8100
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 2,
+          "name": "Governance control evaluation",
+          "run_attempt": 1,
+          "run_id": 8100
+        }
+      ],
+      "parameters": {
+        "artifact_name": "devsecops-pipeline-evidence",
+        "baseline_level": "L1",
+        "baseline_ref": "l1-baseline-v1.1.3",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture"
+      },
+      "run": {
+        "conclusion": "success",
+        "created_at": "2026-11-15T11:50:00Z",
+        "event": "push",
+        "head_branch": "main",
+        "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "html_url": "https://github.com/synthetic/native/actions/runs/8100",
+        "id": 8100,
+        "name": "Synthetic native devsecops",
+        "referenced_workflows": [
+          {
+            "path": "synthetic/governance/.github/workflows/baseline.yml@l1-baseline-v1.1.3",
+            "ref": "refs/tags/l1-baseline-v1.1.3",
+            "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "repository": {
+          "full_name": "synthetic/native",
+          "id": 42
+        },
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-11-15T11:55:00Z"
+      },
+      "zip_base64": "UEsDBBQAAAAAAABgb10oixbyJwAAACcAAAAPAAAAYXBwbGljYXRpb24uYmluc3ludGhldGljIHBoeXNpY2FsIGFwcGxpY2F0aW9uIGFyY2hpdmUKUEsDBBQAAAAAAABgb10JcrlaMQAAADEAAAAUAAAAYXBwbGljYXRpb24uY2R4Lmpzb257CiAgIm5vdF9yZWFsX3NjYW4iOiB0cnVlLAogICJzeW50aGV0aWMiOiB0cnVlCn0KUEsDBBQAAAAAAABgb10Izz1WNgMAADYDAAAjAAAAYXJjaGl0ZWN0dXJlLWdvdmVybmFuY2UtcmVwb3J0Lmpzb257CiAgImFkdmlzb3JpZXMiOiBbXSwKICAiZGV0YWlsZWRfZXZpZGVuY2UiOiB7fSwKICAiZ2F0ZXMiOiBbCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFtdLAogICAgICAiaWQiOiAiYXJjaGl0ZWN0dXJlX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkFyY2hpdGVjdHVyZSBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogImludGVncmF0aW9uX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkludGVncmF0aW9uIFJlYWRpbmVzcyIKICAgIH0sCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFtdLAogICAgICAiaWQiOiAib3BlcmF0aW9uX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIk9wZXJhdGlvbiBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogInJlbGVhc2VfcmVhZGluZXNzIiwKICAgICAgInJlbWVkaWF0aW9ucyI6IFtdLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiUmVsZWFzZSBSZWFkaW5lc3MiCiAgICB9CiAgXSwKICAic3VtbWFyeSI6IHsKICAgICJmaW5kaW5nX2NvdW50IjogMCwKICAgICJnYXRlX2NvdW50IjogNCwKICAgICJwYXNzZWQiOiA0LAogICAgIndpdGhfZmluZGluZ3MiOiAwCiAgfSwKICAidGFyZ2V0Ijoge30KfQpQSwMEFAAAAAAAAGBvXZcCQbiPCQAAjwkAAB8AAABhcmNoaXRlY3R1cmUtcmVsZWFzZS1pbnB1dC5qc29uewogICJhcmNoaXRlY3R1cmUiOiB7CiAgICAiY29tcGF0aWJpbGl0eV9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZGVwbG95bWVudF9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZXhjZXB0aW9uX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAiZXhjZXB0aW9ucyI6IFtdLAogICAgImZlZWRiYWNrX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJtYXJrZXJfYXNzZXNzbWVudHMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkIzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAwIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDciLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTMCIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlMxIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzIiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFMyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU1IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA0IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiRTYiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFNyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU4IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzMiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlM2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQOSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMCIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9CiAgICBdLAogICAgInJlbGVhc2VfY29tcGF0aWJpbGl0eV9kZWNsYXJhdGlvbiI6IHsKICAgICAgImFwcHJvdmVkIjogdHJ1ZSwKICAgICAgImJhc2VsaW5lX3ZlcnNpb24iOiAic29sdXRpb24tYmFzZWxpbmUtMjAyNi4wNyIsCiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInJldmlld19ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IGZhbHNlCiAgICB9LAogICAgInJ1bnRpbWVfZXZpZGVuY2UiOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInNlY3VyaXR5X2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJzb2x1dGlvbl9iYXNlbGluZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0KICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUKfQpQSwMEFAAAAAAAAGBvXV0pNx4XAAAAFwAAABkAAABiYXNlbGluZS1nYXRlLXJlc3VsdC5qc29uewogICJzdGF0dXMiOiAicGFzcyIKfQpQSwMEFAAAAAAAAGBvXQhFpcV2AAAAdgAAAB4AAABjb250cm9sLWV2YWx1YXRpb24tcmVwb3J0Lmpzb257CiAgInN1bW1hcnkiOiB7CiAgICAiYXBwbGljYWJsZSI6IDE2LAogICAgImZhaWwiOiAwLAogICAgIm5vdF9hcHBsaWNhYmxlIjogMzAsCiAgICAicGFzcyI6IDE2LAogICAgInRvdGFsIjogNDYKICB9Cn0KUEsDBBQAAAAAAABgb11J93K8Yg4AAGIOAAAZAAAAZ292ZXJuYW5jZS1ydW4taW5wdXQuanNvbnsKICAiYXJ0aWZhY3QiOiB7CiAgICAiYXJ0aWZhY3RfaWQiOiAiaGEtY3Bzd21zLXNvdXJjZS50YXIuZ3oiLAogICAgImFydGlmYWN0X3R5cGUiOiAiYXBwbGljYXRpb24tYnVpbGQtb3V0cHV0IiwKICAgICJhcnRpZmFjdF92ZXJzaW9uIjogImQyZjBkYmEzZjg4ZCIsCiAgICAiZGlnZXN0IjogewogICAgICAiYWxnb3JpdGhtIjogInNoYTI1NiIsCiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZSwKICAgICAgInZhbHVlIjogImV4YW1wbGUtZGlnZXN0LXZhbHVlIgogICAgfSwKICAgICJzaWduYXR1cmUiOiB7CiAgICAgICJleGlzdHMiOiBmYWxzZQogICAgfQogIH0sCiAgImNvbnRyYWN0X3ZlcnNpb24iOiAiMS4wIiwKICAiZGVwZW5kZW5jaWVzIjogWwogICAgewogICAgICAibmFtZSI6ICJmYXN0YXBpIiwKICAgICAgInNvdXJjZV9hcHByb3ZlZCI6IHRydWUKICAgIH0KICBdLAogICJkZXBsb3ltZW50IjogewogICAgInJlcXVpcmVkIjogdHJ1ZQogIH0sCiAgImVudmlyb25tZW50IjogewogICAgImNlbnRyYWxseV9tYW5hZ2VkIjogdHJ1ZSwKICAgICJjb25maWdfY29tcGxpYW50IjogdHJ1ZSwKICAgICJjb25maWd1cmF0aW9uX2Jhc2VsaW5lc19kZWZpbmVkIjogdHJ1ZSwKICAgICJzZWN1cmVfd29ya3NwYWNlIjogdHJ1ZQogIH0sCiAgImV2aWRlbmNlIjogewogICAgInBpcGVsaW5lX2V4ZWN1dGlvbiI6IHsKICAgICAgImV2aWRlbmNlX2lkIjogImdpdGh1Yi1hY3Rpb25zLTI4MjkyNTE4MzY0IiwKICAgICAgImdlbmVyYXRlZF9hdCI6ICIyMDI2LTA2LTI3VDE0OjQ5OjA4WiIsCiAgICAgICJwaXBlbGluZV9ydW5faWQiOiAiMjgyOTI1MTgzNjQiLAogICAgICAic3RhdHVzIjogInN1Y2Nlc3MiCiAgICB9LAogICAgInNib20iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZQogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibWF4X3NldmVyaXR5IjogIm5vbmUiLAogICAgICAicGF0aCI6ICJzZWN1cml0eS92dWxuZXJhYmlsaXR5LXNjYW4uanNvbiIKICAgIH0KICB9LAogICJpbmZyYXN0cnVjdHVyZSI6IHsKICAgICJpYWNfcmVwb3NpdG9yeSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJ2ZXJzaW9uX2NvbnRyb2xsZWQiOiB0cnVlCiAgICB9CiAgfSwKICAibW9uaXRvcmluZyI6IHsKICAgICJmb3J3YXJkZWRfdG9fbW9uaXRvcmluZyI6IHRydWUsCiAgICAiaW50ZWdyYXRpb25fZW5hYmxlZCI6IHRydWUsCiAgICAic2VjdXJpdHlfZXZlbnRzX2dlbmVyYXRlZCI6IHRydWUKICB9LAogICJvcGVyYXRpb25zIjogewogICAgImRlcGxveWVkX3ZlcnNpb25zX3JlY29yZGVkIjogdHJ1ZSwKICAgICJzZWN1cml0eV9ldmVudHNfcmVjb3JkZWQiOiB0cnVlCiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImQyZjBkYmEzZjg4ZGU5MTgzODIxMzA2MGU0YTAxNGZlNzgwMjZkZDEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgImV4dGVybmFsX2RpcmVjdF9kb3dubG9hZHNfZGV0ZWN0ZWQiOiBmYWxzZSwKICAgICJwaXBlbGluZV9pZCI6ICJEZXZTZWNPcHMgQmFzZWxpbmUiLAogICAgInBpcGVsaW5lX3J1bl9pZCI6ICIyODI5MjUxODM2NCIsCiAgICAic2VjdXJpdHlfZ2F0ZXMiOiB7CiAgICAgICJlbmZvcmNlZCI6IHRydWUKICAgIH0sCiAgICAic2VjdXJpdHlfdGhyZXNob2xkc19leGNlZWRlZCI6IGZhbHNlLAogICAgInN0YXR1cyI6ICJzdWNjZXNzIgogIH0sCiAgInBsYXRmb3JtIjogewogICAgImNlbnRyYWxfaWRlbnRpdHlfbWFuYWdlbWVudCI6IHRydWUsCiAgICAibWZhX2VuZm9yY2VkIjogdHJ1ZSwKICAgICJwcml2aWxlZ2VkX2FjY2VzcyI6IHRydWUKICB9LAogICJyZWxlYXNlIjogewogICAgImFwcHJvdmFsX3N0YXR1cyI6ICJhcHByb3ZlZCIsCiAgICAiYXBwcm92ZWRfd2FpdmVyIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAicmVsZWFzZV9pZCI6ICJqb2t1LWRldi9oYS1DUHNXTVNAZDJmMGRiYTNmODhkIgogIH0sCiAgInJlbGVhc2VfYXBwcm92YWwiOiB7CiAgICAiYXBwcm92ZWQiOiB0cnVlLAogICAgImFwcHJvdmVkX2FydGlmYWN0X29ubHkiOiB0cnVlLAogICAgImFwcHJvdmVyIjogInJlbGVhc2UtbWFuYWdlciIKICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUsCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiZGlyZWN0X3B1c2hfYWxsb3dlZCI6IGZhbHNlLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJldmlld19yZXF1aXJlZCI6IHRydWUKICB9LAogICJyZXF1aXJlZF9wbGF0Zm9ybV9sZXZlbCI6ICJQUkEtTGV2ZWwgMiIsCiAgInJ1bl9jb250ZXh0IjogewogICAgImV2ZW50IjogInB1c2giLAogICAgInB1cnBvc2UiOiAicmVsZWFzZSIsCiAgICAicmVsZWFzZV9jb250ZXh0IjogdHJ1ZSwKICAgICJzb3VyY2UiOiAiZ2l0aHViLWFjdGlvbnMiCiAgfSwKICAic2lnbmluZyI6IHsKICAgICJrZXlzX3Byb3RlY3RlZCI6IGZhbHNlCiAgfSwKICAic291cmNlX2NvbnRyb2wiOiB7CiAgICAiYXBwcm92ZWRfdmNzIjogdHJ1ZSwKICAgICJpZGVudGlmaWFibGVfYXV0aG9ycyI6IHRydWUsCiAgICAicmV2aWV3X3JlY29yZHNfcHJlc2VudCI6IHRydWUKICB9LAogICJzdGF0aWNfYW5hbHlzaXMiOiB7CiAgICAiZmluZGluZ3NfcmV2aWV3ZWQiOiB0cnVlLAogICAgInBlcmZvcm1lZCI6IHRydWUKICB9LAogICJ0cmFjZWFiaWxpdHkiOiB7CiAgICAicmVwb3J0c19saW5rZWQiOiB0cnVlLAogICAgInJlcXVpcmVtZW50c19saW5rZWQiOiB0cnVlLAogICAgInRlc3RjYXNlc19saW5rZWQiOiB0cnVlCiAgfSwKICAidnVsbmVyYWJpbGl0aWVzIjogW10sCiAgIndhaXZlcnMiOiBbCiAgICB7CiAgICAgICJhZmZlY3RlZF9yZXF1aXJlbWVudHMiOiBbCiAgICAgICAgIkRTQ0ItTDEtUkVRLTAxMCIsCiAgICAgICAgIkRTQ0ItR09WLVJFUS0wMDUiCiAgICAgIF0sCiAgICAgICJhcHByb3ZhbF9hdXRob3JpdHkiOiAiRGV2U2VjT3BzIEdvdmVybmFuY2UgQm9hcmQiLAogICAgICAiYXBwcm92ZWRfYnkiOiAiZ292ZXJuYW5jZS1ib2FyZC1jaGFpciIsCiAgICAgICJhcHByb3ZlZF9vbiI6ICIyMDI2LTA2LTIwIiwKICAgICAgImNvbXBlbnNhdGluZ19jb250cm9scyI6IFsKICAgICAgICAiVGVtcG9yYXJ5IG5ldHdvcmsgcmVzdHJpY3Rpb24gYXBwbGllZCIsCiAgICAgICAgIkRhaWx5IG1vbml0b3JpbmcgcmV2aWV3IGVuYWJsZWQiCiAgICAgIF0sCiAgICAgICJleHBpcmVkIjogZmFsc2UsCiAgICAgICJleHBpcnkiOiAiMjAyNi0wNy0yMCIsCiAgICAgICJpZCI6ICJ3YWl2ZXItZGVtby0wMDEiLAogICAgICAianVzdGlmaWNhdGlvbiI6ICJUaGUgZmluZGluZyBpcyBhY2NlcHRlZCB0ZW1wb3JhcmlseSBiZWNhdXNlIHRoZSB2ZW5kb3IgcGF0Y2ggaXMgc2NoZWR1bGVkIGFuZCBkZXBsb3ltZW50IGlzIGJsb2NrZWQgb3RoZXJ3aXNlLiIsCiAgICAgICJvYmplY3RfaWQiOiAiQ1ZFLTIwOTktMDAwMSIsCiAgICAgICJyaXNrX2NsYXNzaWZpY2F0aW9uIjogIm1lZGl1bSIsCiAgICAgICJzY29wZSI6ICJyZWxlYXNlLWNhbmRpZGF0ZS1leGNlcHRpb24iLAogICAgICAic3RhdHVzIjogImFwcHJvdmVkIgogICAgfQogIF0KfQpQSwMEFAAAAAAAAGBvXZRwrWBvAwAAbwMAABYAAABwaXBlbGluZS1ldmlkZW5jZS5qc29uewogICJhcnRpZmFjdCI6IHsKICAgICJhcnRpZmFjdF9pZCI6ICJhcHBsaWNhdGlvbi5iaW4iLAogICAgImRpZ2VzdCI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJwYXRoIjogImFwcGxpY2F0aW9uLmJpbiIsCiAgICAgICJ2YWx1ZSI6ICI4MWJiN2Y3Mjk5MjVhNTdlODAwMzAyNjlmNjViZDIxOGM2ZjJiNjUxNWE3ZjIyZjFiNmVkOGQwODAwMTVhNGRiIgogICAgfQogIH0sCiAgImV2aWRlbmNlIjogewogICAgInBpcGVsaW5lX2V4ZWN1dGlvbiI6IHsKICAgICAgImdlbmVyYXRlZF9hdCI6ICIyMDI2LTExLTE1VDExOjU1OjAwWiIKICAgIH0sCiAgICAic2JvbSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJwYXRoIjogImFwcGxpY2F0aW9uLmNkeC5qc29uIgogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAicGF0aCI6ICJzY2FuLmpzb24iCiAgICB9CiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgInBpcGVsaW5lX2lkIjogIlN5bnRoZXRpYyBDSSIsCiAgICAicGlwZWxpbmVfcnVuX2lkIjogIjcwMDEiLAogICAgInBpcGVsaW5lX3VybCI6ICJodHRwczovL2NpLmV4YW1wbGUvcnVucy83MDAxIiwKICAgICJzdGF0dXMiOiAic3VjY2VzcyIKICB9LAogICJyZWxlYXNlIjoge30sCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiYnJhbmNoIjogIm1haW4iLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJlcG9zaXRvcnlfaWQiOiAic3ludGhldGljL3Jlc3VsdHMiCiAgfSwKICAid2FpdmVycyI6IFtdCn0KUEsDBBQAAAAAAABgb10JcrlaMQAAADEAAAAJAAAAc2Nhbi5qc29uewogICJub3RfcmVhbF9zY2FuIjogdHJ1ZSwKICAic3ludGhldGljIjogdHJ1ZQp9ClBLAQIUAxQAAAAAAABgb10oixbyJwAAACcAAAAPAAAAAAAAAAAAAACAgQAAAABhcHBsaWNhdGlvbi5iaW5QSwECFAMUAAAAAAAAYG9dCXK5WjEAAAAxAAAAFAAAAAAAAAAAAAAAgIFUAAAAYXBwbGljYXRpb24uY2R4Lmpzb25QSwECFAMUAAAAAAAAYG9dCM89VjYDAAA2AwAAIwAAAAAAAAAAAAAAgIG3AAAAYXJjaGl0ZWN0dXJlLWdvdmVybmFuY2UtcmVwb3J0Lmpzb25QSwECFAMUAAAAAAAAYG9dlwJBuI8JAACPCQAAHwAAAAAAAAAAAAAAgIEuBAAAYXJjaGl0ZWN0dXJlLXJlbGVhc2UtaW5wdXQuanNvblBLAQIUAxQAAAAAAABgb11dKTceFwAAABcAAAAZAAAAAAAAAAAAAACAgfoNAABiYXNlbGluZS1nYXRlLXJlc3VsdC5qc29uUEsBAhQDFAAAAAAAAGBvXQhFpcV2AAAAdgAAAB4AAAAAAAAAAAAAAICBSA4AAGNvbnRyb2wtZXZhbHVhdGlvbi1yZXBvcnQuanNvblBLAQIUAxQAAAAAAABgb11J93K8Yg4AAGIOAAAZAAAAAAAAAAAAAACAgfoOAABnb3Zlcm5hbmNlLXJ1bi1pbnB1dC5qc29uUEsBAhQDFAAAAAAAAGBvXZRwrWBvAwAAbwMAABYAAAAAAAAAAAAAAICBkx0AAHBpcGVsaW5lLWV2aWRlbmNlLmpzb25QSwECFAMUAAAAAAAAYG9dCXK5WjEAAAAxAAAACQAAAAAAAAAAAAAAgIE2IQAAc2Nhbi5qc29uUEsFBgAAAAAJAAkAcgIAAI4hAAAAAA=="
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/synthetic/native/actions/artifacts/9101/zip",
+        "digest": "sha256:020928dd4d66f9041a9b86487a82c68caa532e9a8045b2bd23496889395848b2",
+        "expired": false,
+        "id": 9101,
+        "name": "devsecops-pipeline-evidence",
+        "size_in_bytes": 9310,
+        "workflow_run": {
+          "head_branch": "main",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 8101,
+          "repository_id": 42
+        }
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "branch_protected": null,
+      "branch_protection_lookup": {
+        "http_status": 403,
+        "status": "unavailable"
+      },
+      "domain": "devsecops",
+      "expected_snapshot": {
+        "artifact_metadata": {
+          "artifact_names": [
+            "devsecops-pipeline-evidence"
+          ],
+          "artifact_sizes": {
+            "devsecops-pipeline-evidence": 9310
+          }
+        },
+        "baseline_level": "L1",
+        "checks": {
+          "baseline_gate": "failure",
+          "baseline_gate_workflow_job": "failure",
+          "governance_control_evaluation": "success"
+        },
+        "control_evaluation_summary": {
+          "applicable": 16,
+          "fail": 6,
+          "not_applicable": 30,
+          "pass": 10,
+          "total": 46
+        },
+        "downloaded_artifact": {
+          "artifact_size_bytes": 9310,
+          "control_evaluation_report_sha256": "dab9acfeda79b1fc932043393b2b8c87ce4d9fa328033b8315fa0e57457e6424",
+          "downloaded": true,
+          "governance_run_input_artifact": null,
+          "governance_run_input_refs": [],
+          "governance_run_input_sha256": "c67ffe895e3b56921c93efab03dda5ba76cac777473a4bb1d96c03cb507ce41c",
+          "pipeline_evidence_sha256": "ee8d27788befb18b4ca77ca001322278b66471abd9dd11b6bbc65cd37ab51756"
+        },
+        "evidence": {
+          "artifact_digest": false,
+          "governance_control_report": true,
+          "governance_run_input": true,
+          "operations_evidence": true,
+          "sbom": true,
+          "static_analysis_summary": true,
+          "traceability_mapping": true,
+          "vulnerability_scan": true
+        },
+        "evidence_context": {
+          "baseline_gate_result": {
+            "blocks_merge": null,
+            "governance_mode": null,
+            "status": null
+          },
+          "governance_run_input_declared": {
+            "external_direct_downloads_detected": false,
+            "security_gates": {
+              "blocks_merge": null,
+              "enforced": true
+            }
+          },
+          "interpretation": {
+            "external_direct_downloads_detected": "Producer-declared observation; not independently inferred by this intake.",
+            "security_gates_enforced": "Gate execution/evaluation; merge blocking is represented separately."
+          },
+          "pipeline_evidence": {
+            "artifact_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+            "external_direct_downloads_detected": null,
+            "governance_mode": null,
+            "security_gates": {
+              "blocks_merge": null,
+              "enforced": null
+            }
+          }
+        },
+        "generated_at": "2026-11-15T11:55:00Z",
+        "governance_baseline_ref": "l1-baseline-v1.1.3",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture",
+        "overall_status": "fail",
+        "pipeline": {
+          "event": "push",
+          "pipeline_name": "Synthetic native devsecops",
+          "pipeline_run_id": "8101",
+          "pipeline_url": "https://github.com/synthetic/native/actions/runs/8101",
+          "status": "failure"
+        },
+        "repository": {
+          "branch": "main",
+          "branch_protected": null,
+          "branch_protection_lookup": {
+            "http_status": 403,
+            "status": "unavailable"
+          },
+          "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "repository_id": "synthetic/native",
+        "result_type": "governance-baseline-run",
+        "schema_version": "1.0.0",
+        "trust": {
+          "assessment_status": "evaluated",
+          "capture": {
+            "captured_at": "2026-11-15T12:00:00Z",
+            "collector": {
+              "id": "central-governance-intake",
+              "version": "0.1.0"
+            },
+            "contract_id": "evidence-collector-contract",
+            "contract_version": "0.1.0",
+            "custody": [
+              {
+                "action": "download",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "artifact_metadata"
+                ],
+                "sequence": 1,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9101/zip"
+              },
+              {
+                "action": "extract_and_hash",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "downloaded_artifact.control_evaluation_report_sha256",
+                  "downloaded_artifact.governance_run_input_sha256",
+                  "downloaded_artifact.pipeline_evidence_sha256",
+                  "trust.capture.subjects.artifact_archive"
+                ],
+                "sequence": 2,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9101/zip"
+              }
+            ],
+            "enforcement": "report_only",
+            "errors": [],
+            "evidence_type": "governance_result",
+            "governance_domain": "devsecops",
+            "observations": {
+              "governance_baseline": {
+                "ref": "refs/tags/l1-baseline-v1.1.3",
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            },
+            "produced_at": "2026-11-15T11:55:00Z",
+            "source": {
+              "artifact_digest": "020928dd4d66f9041a9b86487a82c68caa532e9a8045b2bd23496889395848b2",
+              "artifact_name": "devsecops-pipeline-evidence",
+              "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "provider": "github_actions",
+              "repository_id": "synthetic/native",
+              "run_attempt": 1,
+              "run_id": "8101",
+              "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9101/zip",
+              "workflow_name": "Synthetic native devsecops"
+            },
+            "status": "collected",
+            "subjects": [
+              {
+                "algorithm": "sha256",
+                "digest": "dab9acfeda79b1fc932043393b2b8c87ce4d9fa328033b8315fa0e57457e6424",
+                "evidence_ref": "downloaded_artifact.control_evaluation_report_sha256",
+                "id": "control_evaluation_report",
+                "size_bytes": 118
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "c67ffe895e3b56921c93efab03dda5ba76cac777473a4bb1d96c03cb507ce41c",
+                "evidence_ref": "downloaded_artifact.governance_run_input_sha256",
+                "id": "governance_run_input",
+                "size_bytes": 3682
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "ee8d27788befb18b4ca77ca001322278b66471abd9dd11b6bbc65cd37ab51756",
+                "evidence_ref": "downloaded_artifact.pipeline_evidence_sha256",
+                "id": "pipeline_evidence",
+                "size_bytes": 879
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "020928dd4d66f9041a9b86487a82c68caa532e9a8045b2bd23496889395848b2",
+                "evidence_ref": "trust.capture.subjects.artifact_archive",
+                "id": "artifact_archive",
+                "size_bytes": 9310
+              }
+            ]
+          },
+          "capture_phase": "additive_capture",
+          "checks": [
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "id": "subject_identity_complete",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "downloaded_artifact.control_evaluation_report_sha256",
+                "downloaded_artifact.governance_run_input_sha256",
+                "downloaded_artifact.pipeline_evidence_sha256",
+                "trust.capture.subjects.artifact_archive"
+              ],
+              "id": "content_digest_verified",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.run_id"
+              ],
+              "id": "producer_run_resolved",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.commit_id"
+              ],
+              "id": "commit_matches_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.artifact_name"
+              ],
+              "id": "artifact_belongs_to_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "run.referenced_workflows[].ref",
+                "run.referenced_workflows[].sha"
+              ],
+              "id": "baseline_ref_resolved",
+              "reason": "Selected governance baseline matches an immutable tagged workflow reference and resolved commit.",
+              "result": "pass"
+            },
+            {
+              "age_seconds": 300,
+              "evaluated_at": "2026-11-15T12:00:00Z",
+              "evidence_refs": [
+                "generated_at",
+                "trust.verified_at"
+              ],
+              "finding_effect": "report_only",
+              "id": "freshness_evaluated",
+              "maximum_age_seconds": 86400,
+              "policy_id": "freshness-governance-result-24h",
+              "policy_status": "provisional",
+              "policy_version": "0.1.0",
+              "produced_at": "2026-11-15T11:55:00Z",
+              "reason": "Evidence age 300s is within the provisional maximum 86400s.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "finding_effect": "report_only",
+              "id": "replay_key_unique",
+              "reason": "No prior replay key or incompatible digest reuse was found.",
+              "replay_key": "d8e0cdb7fde15a396724b2541b861f205bc1592c58e2e4c0507c03fadc12af35",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.custody",
+                "trust.capture.source.artifact_digest",
+                "trust.capture.subjects"
+              ],
+              "id": "custody_recorded",
+              "reason": "Ordered download and extraction steps bind the downloaded archive to the hashed subjects.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_signature_valid",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_issuer_trusted",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_subject_matches",
+              "result": "not_evaluated"
+            }
+          ],
+          "effective_level": "provenance_verified",
+          "model_id": "evidence-trust-model-v1",
+          "verified_at": "2026-11-15T12:00:00Z",
+          "verifier": "central-governance-intake/v1"
+        }
+      },
+      "files": {
+        "application.bin": {
+          "__raw__": "synthetic physical application archive\n"
+        },
+        "application.cdx.json": {
+          "not_real_scan": true,
+          "synthetic": true
+        },
+        "architecture-governance-report.json": {
+          "advisories": [],
+          "detailed_evidence": {},
+          "gates": [
+            {
+              "findings": [],
+              "id": "architecture_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Architecture Readiness"
+            },
+            {
+              "findings": [],
+              "id": "integration_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Integration Readiness"
+            },
+            {
+              "findings": [
+                "Synthetic finding A",
+                "Synthetic finding B"
+              ],
+              "id": "operation_readiness",
+              "remediations": [],
+              "status": "findings",
+              "title": "Operation Readiness"
+            },
+            {
+              "findings": [],
+              "id": "release_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Release Readiness"
+            }
+          ],
+          "summary": {
+            "finding_count": 2,
+            "gate_count": 4,
+            "passed": 3,
+            "with_findings": 1
+          },
+          "target": {}
+        },
+        "architecture-release-input.json": {
+          "architecture": {
+            "compatibility_evidence": {
+              "exists": true
+            },
+            "deployment_evidence": {
+              "exists": true
+            },
+            "exception_evidence": {
+              "exists": false
+            },
+            "exceptions": [],
+            "feedback_evidence": {
+              "exists": true
+            },
+            "marker_assessments": [
+              {
+                "id": "B1",
+                "score": 3
+              },
+              {
+                "id": "B2",
+                "score": 3
+              },
+              {
+                "id": "B3",
+                "score": 3
+              },
+              {
+                "id": "B4",
+                "score": 3
+              },
+              {
+                "id": "B5",
+                "score": 4
+              },
+              {
+                "id": "P0",
+                "score": 3
+              },
+              {
+                "id": "P1",
+                "score": 3
+              },
+              {
+                "id": "P2",
+                "score": 3
+              },
+              {
+                "id": "P3",
+                "score": 3
+              },
+              {
+                "id": "P7",
+                "score": 3
+              },
+              {
+                "id": "S0",
+                "score": 3
+              },
+              {
+                "id": "S1",
+                "score": 3
+              },
+              {
+                "id": "S2",
+                "score": 3
+              },
+              {
+                "id": "E3",
+                "score": 3
+              },
+              {
+                "id": "E5",
+                "score": 3
+              },
+              {
+                "id": "S4",
+                "score": 3
+              },
+              {
+                "id": "S7",
+                "score": 3
+              },
+              {
+                "id": "P4",
+                "score": 3
+              },
+              {
+                "id": "E6",
+                "score": 4
+              },
+              {
+                "id": "E7",
+                "score": 4
+              },
+              {
+                "id": "E8",
+                "score": 4
+              },
+              {
+                "id": "S3",
+                "score": 4
+              },
+              {
+                "id": "S5",
+                "score": 4
+              },
+              {
+                "id": "S6",
+                "score": 4
+              },
+              {
+                "id": "S8",
+                "score": 4
+              },
+              {
+                "id": "P5",
+                "score": 4
+              },
+              {
+                "id": "P6",
+                "score": 4
+              },
+              {
+                "id": "P8",
+                "score": 4
+              },
+              {
+                "id": "P9",
+                "score": 4
+              },
+              {
+                "id": "P10",
+                "score": 4
+              },
+              {
+                "id": "P13",
+                "score": 4
+              }
+            ],
+            "release_compatibility_declaration": {
+              "approved": true,
+              "baseline_version": "solution-baseline-2026.07",
+              "exists": true
+            },
+            "review_evidence": {
+              "exists": false
+            },
+            "runtime_evidence": {
+              "exists": true
+            },
+            "security_evidence": {
+              "exists": true
+            },
+            "solution_baseline": {
+              "exists": true
+            }
+          },
+          "release_candidate": true
+        },
+        "baseline-gate-result.json": {
+          "status": "fail"
+        },
+        "control-evaluation-report.json": {
+          "summary": {
+            "applicable": 16,
+            "fail": 6,
+            "not_applicable": 30,
+            "pass": 10,
+            "total": 46
+          }
+        },
+        "governance-run-input.json": {
+          "artifact": {
+            "artifact_id": "ha-cpswms-source.tar.gz",
+            "artifact_type": "application-build-output",
+            "artifact_version": "d2f0dba3f88d",
+            "digest": {
+              "algorithm": "sha256",
+              "exists": true,
+              "linked_to_artifact": true,
+              "value": "example-digest-value"
+            },
+            "signature": {
+              "exists": false
+            }
+          },
+          "contract_version": "1.0",
+          "dependencies": [
+            {
+              "name": "fastapi",
+              "source_approved": true
+            }
+          ],
+          "deployment": {
+            "required": true
+          },
+          "environment": {
+            "centrally_managed": true,
+            "config_compliant": true,
+            "configuration_baselines_defined": true,
+            "secure_workspace": true
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "evidence_id": "github-actions-28292518364",
+              "generated_at": "2026-06-27T14:49:08Z",
+              "pipeline_run_id": "28292518364",
+              "status": "success"
+            },
+            "sbom": {
+              "exists": true,
+              "linked_to_artifact": true
+            },
+            "vulnerability_scan": {
+              "exists": true,
+              "max_severity": "none",
+              "path": "security/vulnerability-scan.json"
+            }
+          },
+          "infrastructure": {
+            "iac_repository": {
+              "exists": true,
+              "version_controlled": true
+            }
+          },
+          "monitoring": {
+            "forwarded_to_monitoring": true,
+            "integration_enabled": true,
+            "security_events_generated": true
+          },
+          "operations": {
+            "deployed_versions_recorded": true,
+            "security_events_recorded": true
+          },
+          "pipeline": {
+            "commit_id": "d2f0dba3f88de91838213060e4a014fe78026dd1",
+            "event": "push",
+            "external_direct_downloads_detected": false,
+            "pipeline_id": "DevSecOps Baseline",
+            "pipeline_run_id": "28292518364",
+            "security_gates": {
+              "enforced": true
+            },
+            "security_thresholds_exceeded": false,
+            "status": "success"
+          },
+          "platform": {
+            "central_identity_management": true,
+            "mfa_enforced": true,
+            "privileged_access": true
+          },
+          "release": {
+            "approval_status": "approved",
+            "approved_waiver": {
+              "exists": false
+            },
+            "release_id": "joku-dev/ha-CPsWMS@d2f0dba3f88d"
+          },
+          "release_approval": {
+            "approved": true,
+            "approved_artifact_only": true,
+            "approver": "release-manager"
+          },
+          "release_candidate": true,
+          "repository": {
+            "direct_push_allowed": false,
+            "protected_branch": true,
+            "review_required": true
+          },
+          "required_platform_level": "PRA-Level 2",
+          "run_context": {
+            "event": "push",
+            "purpose": "release",
+            "release_context": true,
+            "source": "github-actions"
+          },
+          "signing": {
+            "keys_protected": false
+          },
+          "source_control": {
+            "approved_vcs": true,
+            "identifiable_authors": true,
+            "review_records_present": true
+          },
+          "static_analysis": {
+            "findings_reviewed": true,
+            "performed": true
+          },
+          "traceability": {
+            "reports_linked": true,
+            "requirements_linked": true,
+            "testcases_linked": true
+          },
+          "vulnerabilities": [],
+          "waivers": [
+            {
+              "affected_requirements": [
+                "DSCB-L1-REQ-010",
+                "DSCB-GOV-REQ-005"
+              ],
+              "approval_authority": "DevSecOps Governance Board",
+              "approved_by": "governance-board-chair",
+              "approved_on": "2026-06-20",
+              "compensating_controls": [
+                "Temporary network restriction applied",
+                "Daily monitoring review enabled"
+              ],
+              "expired": false,
+              "expiry": "2026-07-20",
+              "id": "waiver-demo-001",
+              "justification": "The finding is accepted temporarily because the vendor patch is scheduled and deployment is blocked otherwise.",
+              "object_id": "CVE-2099-0001",
+              "risk_classification": "medium",
+              "scope": "release-candidate-exception",
+              "status": "approved"
+            }
+          ]
+        },
+        "pipeline-evidence.json": {
+          "artifact": {
+            "artifact_id": "application.bin",
+            "digest": {
+              "exists": true,
+              "path": "application.bin",
+              "value": "0000000000000000000000000000000000000000000000000000000000000000"
+            }
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "generated_at": "2026-11-15T11:55:00Z"
+            },
+            "sbom": {
+              "exists": true,
+              "path": "application.cdx.json"
+            },
+            "vulnerability_scan": {
+              "exists": true,
+              "path": "scan.json"
+            }
+          },
+          "pipeline": {
+            "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "event": "push",
+            "pipeline_id": "Synthetic CI",
+            "pipeline_run_id": "7001",
+            "pipeline_url": "https://ci.example/runs/7001",
+            "status": "success"
+          },
+          "release": {},
+          "repository": {
+            "branch": "main",
+            "protected_branch": true,
+            "repository_id": "synthetic/results"
+          },
+          "waivers": []
+        },
+        "scan.json": {
+          "not_real_scan": true,
+          "synthetic": true
+        }
+      },
+      "id": "devsecops-findings",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 1,
+          "name": "Baseline gate",
+          "run_attempt": 1,
+          "run_id": 8101
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 2,
+          "name": "Governance control evaluation",
+          "run_attempt": 1,
+          "run_id": 8101
+        }
+      ],
+      "parameters": {
+        "artifact_name": "devsecops-pipeline-evidence",
+        "baseline_level": "L1",
+        "baseline_ref": "l1-baseline-v1.1.3",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture"
+      },
+      "run": {
+        "conclusion": "failure",
+        "created_at": "2026-11-15T11:50:00Z",
+        "event": "push",
+        "head_branch": "main",
+        "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "html_url": "https://github.com/synthetic/native/actions/runs/8101",
+        "id": 8101,
+        "name": "Synthetic native devsecops",
+        "referenced_workflows": [
+          {
+            "path": "synthetic/governance/.github/workflows/baseline.yml@l1-baseline-v1.1.3",
+            "ref": "refs/tags/l1-baseline-v1.1.3",
+            "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "repository": {
+          "full_name": "synthetic/native",
+          "id": 42
+        },
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-11-15T11:55:00Z"
+      },
+      "zip_base64": "UEsDBBQAAAAAAABgb10oixbyJwAAACcAAAAPAAAAYXBwbGljYXRpb24uYmluc3ludGhldGljIHBoeXNpY2FsIGFwcGxpY2F0aW9uIGFyY2hpdmUKUEsDBBQAAAAAAABgb10JcrlaMQAAADEAAAAUAAAAYXBwbGljYXRpb24uY2R4Lmpzb257CiAgIm5vdF9yZWFsX3NjYW4iOiB0cnVlLAogICJzeW50aGV0aWMiOiB0cnVlCn0KUEsDBBQAAAAAAABgb11YO7aIfgMAAH4DAAAjAAAAYXJjaGl0ZWN0dXJlLWdvdmVybmFuY2UtcmVwb3J0Lmpzb257CiAgImFkdmlzb3JpZXMiOiBbXSwKICAiZGV0YWlsZWRfZXZpZGVuY2UiOiB7fSwKICAiZ2F0ZXMiOiBbCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFtdLAogICAgICAiaWQiOiAiYXJjaGl0ZWN0dXJlX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkFyY2hpdGVjdHVyZSBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogImludGVncmF0aW9uX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkludGVncmF0aW9uIFJlYWRpbmVzcyIKICAgIH0sCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFsKICAgICAgICAiU3ludGhldGljIGZpbmRpbmcgQSIsCiAgICAgICAgIlN5bnRoZXRpYyBmaW5kaW5nIEIiCiAgICAgIF0sCiAgICAgICJpZCI6ICJvcGVyYXRpb25fcmVhZGluZXNzIiwKICAgICAgInJlbWVkaWF0aW9ucyI6IFtdLAogICAgICAic3RhdHVzIjogImZpbmRpbmdzIiwKICAgICAgInRpdGxlIjogIk9wZXJhdGlvbiBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogInJlbGVhc2VfcmVhZGluZXNzIiwKICAgICAgInJlbWVkaWF0aW9ucyI6IFtdLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiUmVsZWFzZSBSZWFkaW5lc3MiCiAgICB9CiAgXSwKICAic3VtbWFyeSI6IHsKICAgICJmaW5kaW5nX2NvdW50IjogMiwKICAgICJnYXRlX2NvdW50IjogNCwKICAgICJwYXNzZWQiOiAzLAogICAgIndpdGhfZmluZGluZ3MiOiAxCiAgfSwKICAidGFyZ2V0Ijoge30KfQpQSwMEFAAAAAAAAGBvXZcCQbiPCQAAjwkAAB8AAABhcmNoaXRlY3R1cmUtcmVsZWFzZS1pbnB1dC5qc29uewogICJhcmNoaXRlY3R1cmUiOiB7CiAgICAiY29tcGF0aWJpbGl0eV9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZGVwbG95bWVudF9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZXhjZXB0aW9uX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAiZXhjZXB0aW9ucyI6IFtdLAogICAgImZlZWRiYWNrX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJtYXJrZXJfYXNzZXNzbWVudHMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkIzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAwIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDciLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTMCIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlMxIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzIiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFMyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU1IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA0IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiRTYiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFNyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU4IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzMiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlM2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQOSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMCIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9CiAgICBdLAogICAgInJlbGVhc2VfY29tcGF0aWJpbGl0eV9kZWNsYXJhdGlvbiI6IHsKICAgICAgImFwcHJvdmVkIjogdHJ1ZSwKICAgICAgImJhc2VsaW5lX3ZlcnNpb24iOiAic29sdXRpb24tYmFzZWxpbmUtMjAyNi4wNyIsCiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInJldmlld19ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IGZhbHNlCiAgICB9LAogICAgInJ1bnRpbWVfZXZpZGVuY2UiOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInNlY3VyaXR5X2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJzb2x1dGlvbl9iYXNlbGluZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0KICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUKfQpQSwMEFAAAAAAAAGBvXV8wHuQXAAAAFwAAABkAAABiYXNlbGluZS1nYXRlLXJlc3VsdC5qc29uewogICJzdGF0dXMiOiAiZmFpbCIKfQpQSwMEFAAAAAAAAGBvXfx8GDd2AAAAdgAAAB4AAABjb250cm9sLWV2YWx1YXRpb24tcmVwb3J0Lmpzb257CiAgInN1bW1hcnkiOiB7CiAgICAiYXBwbGljYWJsZSI6IDE2LAogICAgImZhaWwiOiA2LAogICAgIm5vdF9hcHBsaWNhYmxlIjogMzAsCiAgICAicGFzcyI6IDEwLAogICAgInRvdGFsIjogNDYKICB9Cn0KUEsDBBQAAAAAAABgb11J93K8Yg4AAGIOAAAZAAAAZ292ZXJuYW5jZS1ydW4taW5wdXQuanNvbnsKICAiYXJ0aWZhY3QiOiB7CiAgICAiYXJ0aWZhY3RfaWQiOiAiaGEtY3Bzd21zLXNvdXJjZS50YXIuZ3oiLAogICAgImFydGlmYWN0X3R5cGUiOiAiYXBwbGljYXRpb24tYnVpbGQtb3V0cHV0IiwKICAgICJhcnRpZmFjdF92ZXJzaW9uIjogImQyZjBkYmEzZjg4ZCIsCiAgICAiZGlnZXN0IjogewogICAgICAiYWxnb3JpdGhtIjogInNoYTI1NiIsCiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZSwKICAgICAgInZhbHVlIjogImV4YW1wbGUtZGlnZXN0LXZhbHVlIgogICAgfSwKICAgICJzaWduYXR1cmUiOiB7CiAgICAgICJleGlzdHMiOiBmYWxzZQogICAgfQogIH0sCiAgImNvbnRyYWN0X3ZlcnNpb24iOiAiMS4wIiwKICAiZGVwZW5kZW5jaWVzIjogWwogICAgewogICAgICAibmFtZSI6ICJmYXN0YXBpIiwKICAgICAgInNvdXJjZV9hcHByb3ZlZCI6IHRydWUKICAgIH0KICBdLAogICJkZXBsb3ltZW50IjogewogICAgInJlcXVpcmVkIjogdHJ1ZQogIH0sCiAgImVudmlyb25tZW50IjogewogICAgImNlbnRyYWxseV9tYW5hZ2VkIjogdHJ1ZSwKICAgICJjb25maWdfY29tcGxpYW50IjogdHJ1ZSwKICAgICJjb25maWd1cmF0aW9uX2Jhc2VsaW5lc19kZWZpbmVkIjogdHJ1ZSwKICAgICJzZWN1cmVfd29ya3NwYWNlIjogdHJ1ZQogIH0sCiAgImV2aWRlbmNlIjogewogICAgInBpcGVsaW5lX2V4ZWN1dGlvbiI6IHsKICAgICAgImV2aWRlbmNlX2lkIjogImdpdGh1Yi1hY3Rpb25zLTI4MjkyNTE4MzY0IiwKICAgICAgImdlbmVyYXRlZF9hdCI6ICIyMDI2LTA2LTI3VDE0OjQ5OjA4WiIsCiAgICAgICJwaXBlbGluZV9ydW5faWQiOiAiMjgyOTI1MTgzNjQiLAogICAgICAic3RhdHVzIjogInN1Y2Nlc3MiCiAgICB9LAogICAgInNib20iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZQogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibWF4X3NldmVyaXR5IjogIm5vbmUiLAogICAgICAicGF0aCI6ICJzZWN1cml0eS92dWxuZXJhYmlsaXR5LXNjYW4uanNvbiIKICAgIH0KICB9LAogICJpbmZyYXN0cnVjdHVyZSI6IHsKICAgICJpYWNfcmVwb3NpdG9yeSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJ2ZXJzaW9uX2NvbnRyb2xsZWQiOiB0cnVlCiAgICB9CiAgfSwKICAibW9uaXRvcmluZyI6IHsKICAgICJmb3J3YXJkZWRfdG9fbW9uaXRvcmluZyI6IHRydWUsCiAgICAiaW50ZWdyYXRpb25fZW5hYmxlZCI6IHRydWUsCiAgICAic2VjdXJpdHlfZXZlbnRzX2dlbmVyYXRlZCI6IHRydWUKICB9LAogICJvcGVyYXRpb25zIjogewogICAgImRlcGxveWVkX3ZlcnNpb25zX3JlY29yZGVkIjogdHJ1ZSwKICAgICJzZWN1cml0eV9ldmVudHNfcmVjb3JkZWQiOiB0cnVlCiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImQyZjBkYmEzZjg4ZGU5MTgzODIxMzA2MGU0YTAxNGZlNzgwMjZkZDEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgImV4dGVybmFsX2RpcmVjdF9kb3dubG9hZHNfZGV0ZWN0ZWQiOiBmYWxzZSwKICAgICJwaXBlbGluZV9pZCI6ICJEZXZTZWNPcHMgQmFzZWxpbmUiLAogICAgInBpcGVsaW5lX3J1bl9pZCI6ICIyODI5MjUxODM2NCIsCiAgICAic2VjdXJpdHlfZ2F0ZXMiOiB7CiAgICAgICJlbmZvcmNlZCI6IHRydWUKICAgIH0sCiAgICAic2VjdXJpdHlfdGhyZXNob2xkc19leGNlZWRlZCI6IGZhbHNlLAogICAgInN0YXR1cyI6ICJzdWNjZXNzIgogIH0sCiAgInBsYXRmb3JtIjogewogICAgImNlbnRyYWxfaWRlbnRpdHlfbWFuYWdlbWVudCI6IHRydWUsCiAgICAibWZhX2VuZm9yY2VkIjogdHJ1ZSwKICAgICJwcml2aWxlZ2VkX2FjY2VzcyI6IHRydWUKICB9LAogICJyZWxlYXNlIjogewogICAgImFwcHJvdmFsX3N0YXR1cyI6ICJhcHByb3ZlZCIsCiAgICAiYXBwcm92ZWRfd2FpdmVyIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAicmVsZWFzZV9pZCI6ICJqb2t1LWRldi9oYS1DUHNXTVNAZDJmMGRiYTNmODhkIgogIH0sCiAgInJlbGVhc2VfYXBwcm92YWwiOiB7CiAgICAiYXBwcm92ZWQiOiB0cnVlLAogICAgImFwcHJvdmVkX2FydGlmYWN0X29ubHkiOiB0cnVlLAogICAgImFwcHJvdmVyIjogInJlbGVhc2UtbWFuYWdlciIKICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUsCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiZGlyZWN0X3B1c2hfYWxsb3dlZCI6IGZhbHNlLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJldmlld19yZXF1aXJlZCI6IHRydWUKICB9LAogICJyZXF1aXJlZF9wbGF0Zm9ybV9sZXZlbCI6ICJQUkEtTGV2ZWwgMiIsCiAgInJ1bl9jb250ZXh0IjogewogICAgImV2ZW50IjogInB1c2giLAogICAgInB1cnBvc2UiOiAicmVsZWFzZSIsCiAgICAicmVsZWFzZV9jb250ZXh0IjogdHJ1ZSwKICAgICJzb3VyY2UiOiAiZ2l0aHViLWFjdGlvbnMiCiAgfSwKICAic2lnbmluZyI6IHsKICAgICJrZXlzX3Byb3RlY3RlZCI6IGZhbHNlCiAgfSwKICAic291cmNlX2NvbnRyb2wiOiB7CiAgICAiYXBwcm92ZWRfdmNzIjogdHJ1ZSwKICAgICJpZGVudGlmaWFibGVfYXV0aG9ycyI6IHRydWUsCiAgICAicmV2aWV3X3JlY29yZHNfcHJlc2VudCI6IHRydWUKICB9LAogICJzdGF0aWNfYW5hbHlzaXMiOiB7CiAgICAiZmluZGluZ3NfcmV2aWV3ZWQiOiB0cnVlLAogICAgInBlcmZvcm1lZCI6IHRydWUKICB9LAogICJ0cmFjZWFiaWxpdHkiOiB7CiAgICAicmVwb3J0c19saW5rZWQiOiB0cnVlLAogICAgInJlcXVpcmVtZW50c19saW5rZWQiOiB0cnVlLAogICAgInRlc3RjYXNlc19saW5rZWQiOiB0cnVlCiAgfSwKICAidnVsbmVyYWJpbGl0aWVzIjogW10sCiAgIndhaXZlcnMiOiBbCiAgICB7CiAgICAgICJhZmZlY3RlZF9yZXF1aXJlbWVudHMiOiBbCiAgICAgICAgIkRTQ0ItTDEtUkVRLTAxMCIsCiAgICAgICAgIkRTQ0ItR09WLVJFUS0wMDUiCiAgICAgIF0sCiAgICAgICJhcHByb3ZhbF9hdXRob3JpdHkiOiAiRGV2U2VjT3BzIEdvdmVybmFuY2UgQm9hcmQiLAogICAgICAiYXBwcm92ZWRfYnkiOiAiZ292ZXJuYW5jZS1ib2FyZC1jaGFpciIsCiAgICAgICJhcHByb3ZlZF9vbiI6ICIyMDI2LTA2LTIwIiwKICAgICAgImNvbXBlbnNhdGluZ19jb250cm9scyI6IFsKICAgICAgICAiVGVtcG9yYXJ5IG5ldHdvcmsgcmVzdHJpY3Rpb24gYXBwbGllZCIsCiAgICAgICAgIkRhaWx5IG1vbml0b3JpbmcgcmV2aWV3IGVuYWJsZWQiCiAgICAgIF0sCiAgICAgICJleHBpcmVkIjogZmFsc2UsCiAgICAgICJleHBpcnkiOiAiMjAyNi0wNy0yMCIsCiAgICAgICJpZCI6ICJ3YWl2ZXItZGVtby0wMDEiLAogICAgICAianVzdGlmaWNhdGlvbiI6ICJUaGUgZmluZGluZyBpcyBhY2NlcHRlZCB0ZW1wb3JhcmlseSBiZWNhdXNlIHRoZSB2ZW5kb3IgcGF0Y2ggaXMgc2NoZWR1bGVkIGFuZCBkZXBsb3ltZW50IGlzIGJsb2NrZWQgb3RoZXJ3aXNlLiIsCiAgICAgICJvYmplY3RfaWQiOiAiQ1ZFLTIwOTktMDAwMSIsCiAgICAgICJyaXNrX2NsYXNzaWZpY2F0aW9uIjogIm1lZGl1bSIsCiAgICAgICJzY29wZSI6ICJyZWxlYXNlLWNhbmRpZGF0ZS1leGNlcHRpb24iLAogICAgICAic3RhdHVzIjogImFwcHJvdmVkIgogICAgfQogIF0KfQpQSwMEFAAAAAAAAGBvXTOAkqxvAwAAbwMAABYAAABwaXBlbGluZS1ldmlkZW5jZS5qc29uewogICJhcnRpZmFjdCI6IHsKICAgICJhcnRpZmFjdF9pZCI6ICJhcHBsaWNhdGlvbi5iaW4iLAogICAgImRpZ2VzdCI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJwYXRoIjogImFwcGxpY2F0aW9uLmJpbiIsCiAgICAgICJ2YWx1ZSI6ICIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIgogICAgfQogIH0sCiAgImV2aWRlbmNlIjogewogICAgInBpcGVsaW5lX2V4ZWN1dGlvbiI6IHsKICAgICAgImdlbmVyYXRlZF9hdCI6ICIyMDI2LTExLTE1VDExOjU1OjAwWiIKICAgIH0sCiAgICAic2JvbSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJwYXRoIjogImFwcGxpY2F0aW9uLmNkeC5qc29uIgogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAicGF0aCI6ICJzY2FuLmpzb24iCiAgICB9CiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgInBpcGVsaW5lX2lkIjogIlN5bnRoZXRpYyBDSSIsCiAgICAicGlwZWxpbmVfcnVuX2lkIjogIjcwMDEiLAogICAgInBpcGVsaW5lX3VybCI6ICJodHRwczovL2NpLmV4YW1wbGUvcnVucy83MDAxIiwKICAgICJzdGF0dXMiOiAic3VjY2VzcyIKICB9LAogICJyZWxlYXNlIjoge30sCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiYnJhbmNoIjogIm1haW4iLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJlcG9zaXRvcnlfaWQiOiAic3ludGhldGljL3Jlc3VsdHMiCiAgfSwKICAid2FpdmVycyI6IFtdCn0KUEsDBBQAAAAAAABgb10JcrlaMQAAADEAAAAJAAAAc2Nhbi5qc29uewogICJub3RfcmVhbF9zY2FuIjogdHJ1ZSwKICAic3ludGhldGljIjogdHJ1ZQp9ClBLAQIUAxQAAAAAAABgb10oixbyJwAAACcAAAAPAAAAAAAAAAAAAACAgQAAAABhcHBsaWNhdGlvbi5iaW5QSwECFAMUAAAAAAAAYG9dCXK5WjEAAAAxAAAAFAAAAAAAAAAAAAAAgIFUAAAAYXBwbGljYXRpb24uY2R4Lmpzb25QSwECFAMUAAAAAAAAYG9dWDu2iH4DAAB+AwAAIwAAAAAAAAAAAAAAgIG3AAAAYXJjaGl0ZWN0dXJlLWdvdmVybmFuY2UtcmVwb3J0Lmpzb25QSwECFAMUAAAAAAAAYG9dlwJBuI8JAACPCQAAHwAAAAAAAAAAAAAAgIF2BAAAYXJjaGl0ZWN0dXJlLXJlbGVhc2UtaW5wdXQuanNvblBLAQIUAxQAAAAAAABgb11fMB7kFwAAABcAAAAZAAAAAAAAAAAAAACAgUIOAABiYXNlbGluZS1nYXRlLXJlc3VsdC5qc29uUEsBAhQDFAAAAAAAAGBvXfx8GDd2AAAAdgAAAB4AAAAAAAAAAAAAAICBkA4AAGNvbnRyb2wtZXZhbHVhdGlvbi1yZXBvcnQuanNvblBLAQIUAxQAAAAAAABgb11J93K8Yg4AAGIOAAAZAAAAAAAAAAAAAACAgUIPAABnb3Zlcm5hbmNlLXJ1bi1pbnB1dC5qc29uUEsBAhQDFAAAAAAAAGBvXTOAkqxvAwAAbwMAABYAAAAAAAAAAAAAAICB2x0AAHBpcGVsaW5lLWV2aWRlbmNlLmpzb25QSwECFAMUAAAAAAAAYG9dCXK5WjEAAAAxAAAACQAAAAAAAAAAAAAAgIF+IQAAc2Nhbi5qc29uUEsFBgAAAAAJAAkAcgIAANYhAAAAAA=="
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/synthetic/native/actions/artifacts/9102/zip",
+        "digest": "sha256:07047c319c0cdb6901f847e733e5940d8d9a4ad77100c01f07e35c87981762ef",
+        "expired": false,
+        "id": 9102,
+        "name": "architecture-governance-evidence",
+        "size_in_bytes": 8566,
+        "workflow_run": {
+          "head_branch": "main",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 8102,
+          "repository_id": 42
+        }
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "branch_protected": true,
+      "branch_protection_lookup": {
+        "status": "protected"
+      },
+      "domain": "architecture",
+      "expected_snapshot": {
+        "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+        "architecture_summary": {
+          "finding_count": 0,
+          "gate_count": 4,
+          "passed": 4,
+          "with_findings": 0
+        },
+        "artifact_metadata": {
+          "architecture_governance_report_sha256": "8b4fd5bb20fef53c684b7629f1bd1d43e83a4700143eea97f22fd2d736f3ba8a",
+          "architecture_release_input_sha256": "9ea41554cb67fd9342a7f096fcf8d32a27a1412650879268191f48d35942310d",
+          "artifact_archive_sha256": "07047c319c0cdb6901f847e733e5940d8d9a4ad77100c01f07e35c87981762ef",
+          "artifact_name": "architecture-governance-evidence",
+          "artifact_size_bytes": 8566
+        },
+        "checks": {
+          "architecture_runtime_governance": "success"
+        },
+        "evidence": {
+          "architecture_report": true,
+          "compatibility_evidence": true,
+          "deployment_evidence": true,
+          "exception_evidence": false,
+          "exceptions": 0,
+          "feedback_evidence": true,
+          "marker_assessments": 31,
+          "release_compatibility_declaration": true,
+          "release_input": true,
+          "review_evidence": false,
+          "runtime_evidence": true,
+          "security_evidence": true,
+          "solution_baseline": true
+        },
+        "gates": [
+          {
+            "findings": [],
+            "id": "architecture_readiness",
+            "remediations": [],
+            "status": "pass",
+            "title": "Architecture Readiness"
+          },
+          {
+            "findings": [],
+            "id": "integration_readiness",
+            "remediations": [],
+            "status": "pass",
+            "title": "Integration Readiness"
+          },
+          {
+            "findings": [],
+            "id": "operation_readiness",
+            "remediations": [],
+            "status": "pass",
+            "title": "Operation Readiness"
+          },
+          {
+            "findings": [],
+            "id": "release_readiness",
+            "remediations": [],
+            "status": "pass",
+            "title": "Release Readiness"
+          }
+        ],
+        "generated_at": "2026-11-15T11:55:00Z",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture",
+        "overall_status": "pass",
+        "pipeline": {
+          "event": "push",
+          "pipeline_name": "Synthetic native architecture",
+          "pipeline_run_id": "8102",
+          "pipeline_url": "https://github.com/synthetic/native/actions/runs/8102",
+          "status": "success"
+        },
+        "repository": {
+          "branch": "main",
+          "branch_protected": true,
+          "branch_protection_lookup": {
+            "status": "protected"
+          },
+          "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "repository_id": "synthetic/native",
+        "result_type": "architecture-runtime-governance-run",
+        "schema_version": "1.0.0",
+        "target": {},
+        "trust": {
+          "assessment_status": "evaluated",
+          "capture": {
+            "captured_at": "2026-11-15T12:00:00Z",
+            "collector": {
+              "id": "central-governance-intake",
+              "version": "0.1.0"
+            },
+            "contract_id": "evidence-collector-contract",
+            "contract_version": "0.1.0",
+            "custody": [
+              {
+                "action": "download",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "artifact_metadata"
+                ],
+                "sequence": 1,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9102/zip"
+              },
+              {
+                "action": "extract_and_hash",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "artifact_metadata.architecture_governance_report_sha256",
+                  "artifact_metadata.architecture_release_input_sha256",
+                  "artifact_metadata.artifact_archive_sha256"
+                ],
+                "sequence": 2,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9102/zip"
+              }
+            ],
+            "enforcement": "report_only",
+            "errors": [],
+            "evidence_type": "governance_result",
+            "governance_domain": "architecture",
+            "produced_at": "2026-11-15T11:55:00Z",
+            "source": {
+              "artifact_name": "architecture-governance-evidence",
+              "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "provider": "github_actions",
+              "repository_id": "synthetic/native",
+              "run_attempt": 1,
+              "run_id": "8102",
+              "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9102/zip",
+              "workflow_name": "Synthetic native architecture"
+            },
+            "status": "collected",
+            "subjects": [
+              {
+                "algorithm": "sha256",
+                "digest": "8b4fd5bb20fef53c684b7629f1bd1d43e83a4700143eea97f22fd2d736f3ba8a",
+                "evidence_ref": "artifact_metadata.architecture_governance_report_sha256",
+                "id": "architecture_governance_report",
+                "size_bytes": 822
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "9ea41554cb67fd9342a7f096fcf8d32a27a1412650879268191f48d35942310d",
+                "evidence_ref": "artifact_metadata.architecture_release_input_sha256",
+                "id": "architecture_release_input",
+                "size_bytes": 2447
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "07047c319c0cdb6901f847e733e5940d8d9a4ad77100c01f07e35c87981762ef",
+                "evidence_ref": "artifact_metadata.artifact_archive_sha256",
+                "id": "artifact_archive",
+                "size_bytes": 8566
+              }
+            ]
+          },
+          "capture_phase": "additive_capture",
+          "checks": [
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "id": "subject_identity_complete",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "artifact_metadata.architecture_governance_report_sha256",
+                "artifact_metadata.architecture_release_input_sha256",
+                "artifact_metadata.artifact_archive_sha256"
+              ],
+              "id": "content_digest_verified",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.run_id"
+              ],
+              "id": "producer_run_resolved",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.commit_id"
+              ],
+              "id": "commit_matches_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.artifact_name"
+              ],
+              "id": "artifact_belongs_to_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [],
+              "id": "baseline_ref_resolved",
+              "result": "not_evaluated"
+            },
+            {
+              "age_seconds": 300,
+              "evaluated_at": "2026-11-15T12:00:00Z",
+              "evidence_refs": [
+                "generated_at",
+                "trust.verified_at"
+              ],
+              "finding_effect": "report_only",
+              "id": "freshness_evaluated",
+              "maximum_age_seconds": 86400,
+              "policy_id": "freshness-governance-result-24h",
+              "policy_status": "provisional",
+              "policy_version": "0.1.0",
+              "produced_at": "2026-11-15T11:55:00Z",
+              "reason": "Evidence age 300s is within the provisional maximum 86400s.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "finding_effect": "report_only",
+              "id": "replay_key_unique",
+              "reason": "No prior replay key or incompatible digest reuse was found.",
+              "replay_key": "bf94af5a47763a43fa59f07f5cbf5366d66af994f7cc142fb15f75de9b5d03cd",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.custody",
+                "trust.capture.source.artifact_digest",
+                "trust.capture.subjects"
+              ],
+              "id": "custody_recorded",
+              "reason": "Ordered download and extraction steps bind the downloaded archive to the hashed subjects.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_signature_valid",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_issuer_trusted",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_subject_matches",
+              "result": "not_evaluated"
+            }
+          ],
+          "effective_level": "integrity_verified",
+          "model_id": "evidence-trust-model-v1",
+          "verified_at": "2026-11-15T12:00:00Z",
+          "verifier": "central-governance-intake/v1"
+        }
+      },
+      "files": {
+        "architecture-governance-report.json": {
+          "advisories": [],
+          "detailed_evidence": {},
+          "gates": [
+            {
+              "findings": [],
+              "id": "architecture_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Architecture Readiness"
+            },
+            {
+              "findings": [],
+              "id": "integration_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Integration Readiness"
+            },
+            {
+              "findings": [],
+              "id": "operation_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Operation Readiness"
+            },
+            {
+              "findings": [],
+              "id": "release_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Release Readiness"
+            }
+          ],
+          "summary": {
+            "finding_count": 0,
+            "gate_count": 4,
+            "passed": 4,
+            "with_findings": 0
+          },
+          "target": {}
+        },
+        "architecture-release-input.json": {
+          "architecture": {
+            "compatibility_evidence": {
+              "exists": true
+            },
+            "deployment_evidence": {
+              "exists": true
+            },
+            "exception_evidence": {
+              "exists": false
+            },
+            "exceptions": [],
+            "feedback_evidence": {
+              "exists": true
+            },
+            "marker_assessments": [
+              {
+                "id": "B1",
+                "score": 3
+              },
+              {
+                "id": "B2",
+                "score": 3
+              },
+              {
+                "id": "B3",
+                "score": 3
+              },
+              {
+                "id": "B4",
+                "score": 3
+              },
+              {
+                "id": "B5",
+                "score": 4
+              },
+              {
+                "id": "P0",
+                "score": 3
+              },
+              {
+                "id": "P1",
+                "score": 3
+              },
+              {
+                "id": "P2",
+                "score": 3
+              },
+              {
+                "id": "P3",
+                "score": 3
+              },
+              {
+                "id": "P7",
+                "score": 3
+              },
+              {
+                "id": "S0",
+                "score": 3
+              },
+              {
+                "id": "S1",
+                "score": 3
+              },
+              {
+                "id": "S2",
+                "score": 3
+              },
+              {
+                "id": "E3",
+                "score": 3
+              },
+              {
+                "id": "E5",
+                "score": 3
+              },
+              {
+                "id": "S4",
+                "score": 3
+              },
+              {
+                "id": "S7",
+                "score": 3
+              },
+              {
+                "id": "P4",
+                "score": 3
+              },
+              {
+                "id": "E6",
+                "score": 4
+              },
+              {
+                "id": "E7",
+                "score": 4
+              },
+              {
+                "id": "E8",
+                "score": 4
+              },
+              {
+                "id": "S3",
+                "score": 4
+              },
+              {
+                "id": "S5",
+                "score": 4
+              },
+              {
+                "id": "S6",
+                "score": 4
+              },
+              {
+                "id": "S8",
+                "score": 4
+              },
+              {
+                "id": "P5",
+                "score": 4
+              },
+              {
+                "id": "P6",
+                "score": 4
+              },
+              {
+                "id": "P8",
+                "score": 4
+              },
+              {
+                "id": "P9",
+                "score": 4
+              },
+              {
+                "id": "P10",
+                "score": 4
+              },
+              {
+                "id": "P13",
+                "score": 4
+              }
+            ],
+            "release_compatibility_declaration": {
+              "approved": true,
+              "baseline_version": "solution-baseline-2026.07",
+              "exists": true
+            },
+            "review_evidence": {
+              "exists": false
+            },
+            "runtime_evidence": {
+              "exists": true
+            },
+            "security_evidence": {
+              "exists": true
+            },
+            "solution_baseline": {
+              "exists": true
+            }
+          },
+          "release_candidate": true
+        },
+        "baseline-gate-result.json": {
+          "status": "pass"
+        },
+        "control-evaluation-report.json": {
+          "summary": {
+            "applicable": 16,
+            "fail": 0,
+            "not_applicable": 30,
+            "pass": 16,
+            "total": 46
+          }
+        },
+        "governance-run-input.json": {
+          "artifact": {
+            "artifact_id": "ha-cpswms-source.tar.gz",
+            "artifact_type": "application-build-output",
+            "artifact_version": "d2f0dba3f88d",
+            "digest": {
+              "algorithm": "sha256",
+              "exists": true,
+              "linked_to_artifact": true,
+              "value": "example-digest-value"
+            },
+            "signature": {
+              "exists": false
+            }
+          },
+          "contract_version": "1.0",
+          "dependencies": [
+            {
+              "name": "fastapi",
+              "source_approved": true
+            }
+          ],
+          "deployment": {
+            "required": true
+          },
+          "environment": {
+            "centrally_managed": true,
+            "config_compliant": true,
+            "configuration_baselines_defined": true,
+            "secure_workspace": true
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "evidence_id": "github-actions-28292518364",
+              "generated_at": "2026-06-27T14:49:08Z",
+              "pipeline_run_id": "28292518364",
+              "status": "success"
+            },
+            "sbom": {
+              "exists": true,
+              "linked_to_artifact": true
+            },
+            "vulnerability_scan": {
+              "exists": true,
+              "max_severity": "none",
+              "path": "security/vulnerability-scan.json"
+            }
+          },
+          "infrastructure": {
+            "iac_repository": {
+              "exists": true,
+              "version_controlled": true
+            }
+          },
+          "monitoring": {
+            "forwarded_to_monitoring": true,
+            "integration_enabled": true,
+            "security_events_generated": true
+          },
+          "operations": {
+            "deployed_versions_recorded": true,
+            "security_events_recorded": true
+          },
+          "pipeline": {
+            "commit_id": "d2f0dba3f88de91838213060e4a014fe78026dd1",
+            "event": "push",
+            "external_direct_downloads_detected": false,
+            "pipeline_id": "DevSecOps Baseline",
+            "pipeline_run_id": "28292518364",
+            "security_gates": {
+              "enforced": true
+            },
+            "security_thresholds_exceeded": false,
+            "status": "success"
+          },
+          "platform": {
+            "central_identity_management": true,
+            "mfa_enforced": true,
+            "privileged_access": true
+          },
+          "release": {
+            "approval_status": "approved",
+            "approved_waiver": {
+              "exists": false
+            },
+            "release_id": "joku-dev/ha-CPsWMS@d2f0dba3f88d"
+          },
+          "release_approval": {
+            "approved": true,
+            "approved_artifact_only": true,
+            "approver": "release-manager"
+          },
+          "release_candidate": true,
+          "repository": {
+            "direct_push_allowed": false,
+            "protected_branch": true,
+            "review_required": true
+          },
+          "required_platform_level": "PRA-Level 2",
+          "run_context": {
+            "event": "push",
+            "purpose": "release",
+            "release_context": true,
+            "source": "github-actions"
+          },
+          "signing": {
+            "keys_protected": false
+          },
+          "source_control": {
+            "approved_vcs": true,
+            "identifiable_authors": true,
+            "review_records_present": true
+          },
+          "static_analysis": {
+            "findings_reviewed": true,
+            "performed": true
+          },
+          "traceability": {
+            "reports_linked": true,
+            "requirements_linked": true,
+            "testcases_linked": true
+          },
+          "vulnerabilities": [],
+          "waivers": [
+            {
+              "affected_requirements": [
+                "DSCB-L1-REQ-010",
+                "DSCB-GOV-REQ-005"
+              ],
+              "approval_authority": "DevSecOps Governance Board",
+              "approved_by": "governance-board-chair",
+              "approved_on": "2026-06-20",
+              "compensating_controls": [
+                "Temporary network restriction applied",
+                "Daily monitoring review enabled"
+              ],
+              "expired": false,
+              "expiry": "2026-07-20",
+              "id": "waiver-demo-001",
+              "justification": "The finding is accepted temporarily because the vendor patch is scheduled and deployment is blocked otherwise.",
+              "object_id": "CVE-2099-0001",
+              "risk_classification": "medium",
+              "scope": "release-candidate-exception",
+              "status": "approved"
+            }
+          ]
+        },
+        "pipeline-evidence.json": {
+          "artifact": {
+            "digest": {
+              "exists": true
+            }
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "generated_at": "2026-11-15T11:55:00Z"
+            },
+            "sbom": {
+              "exists": true
+            },
+            "vulnerability_scan": {
+              "exists": true
+            }
+          },
+          "pipeline": {
+            "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "event": "push",
+            "pipeline_id": "Synthetic CI",
+            "pipeline_run_id": "7001",
+            "pipeline_url": "https://ci.example/runs/7001",
+            "status": "success"
+          },
+          "release": {},
+          "repository": {
+            "branch": "main",
+            "protected_branch": true,
+            "repository_id": "synthetic/results"
+          },
+          "waivers": []
+        }
+      },
+      "id": "architecture-pass",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 1,
+          "name": "Baseline gate",
+          "run_attempt": 1,
+          "run_id": 8102
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 2,
+          "name": "Governance control evaluation",
+          "run_attempt": 1,
+          "run_id": 8102
+        }
+      ],
+      "parameters": {
+        "artifact_name": "architecture-governance-evidence",
+        "baseline_level": "L1",
+        "baseline_ref": "architecture-baseline-l1-v0.1.0",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture"
+      },
+      "run": {
+        "conclusion": "success",
+        "created_at": "2026-11-15T11:50:00Z",
+        "event": "push",
+        "head_branch": "main",
+        "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "html_url": "https://github.com/synthetic/native/actions/runs/8102",
+        "id": 8102,
+        "name": "Synthetic native architecture",
+        "referenced_workflows": [
+          {
+            "path": "synthetic/governance/.github/workflows/baseline.yml@l1-baseline-v1.1.3",
+            "ref": "refs/tags/l1-baseline-v1.1.3",
+            "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "repository": {
+          "full_name": "synthetic/native",
+          "id": 42
+        },
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-11-15T11:55:00Z"
+      },
+      "zip_base64": "UEsDBBQAAAAAAABgb10Izz1WNgMAADYDAAAjAAAAYXJjaGl0ZWN0dXJlLWdvdmVybmFuY2UtcmVwb3J0Lmpzb257CiAgImFkdmlzb3JpZXMiOiBbXSwKICAiZGV0YWlsZWRfZXZpZGVuY2UiOiB7fSwKICAiZ2F0ZXMiOiBbCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFtdLAogICAgICAiaWQiOiAiYXJjaGl0ZWN0dXJlX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkFyY2hpdGVjdHVyZSBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogImludGVncmF0aW9uX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkludGVncmF0aW9uIFJlYWRpbmVzcyIKICAgIH0sCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFtdLAogICAgICAiaWQiOiAib3BlcmF0aW9uX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIk9wZXJhdGlvbiBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogInJlbGVhc2VfcmVhZGluZXNzIiwKICAgICAgInJlbWVkaWF0aW9ucyI6IFtdLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiUmVsZWFzZSBSZWFkaW5lc3MiCiAgICB9CiAgXSwKICAic3VtbWFyeSI6IHsKICAgICJmaW5kaW5nX2NvdW50IjogMCwKICAgICJnYXRlX2NvdW50IjogNCwKICAgICJwYXNzZWQiOiA0LAogICAgIndpdGhfZmluZGluZ3MiOiAwCiAgfSwKICAidGFyZ2V0Ijoge30KfQpQSwMEFAAAAAAAAGBvXZcCQbiPCQAAjwkAAB8AAABhcmNoaXRlY3R1cmUtcmVsZWFzZS1pbnB1dC5qc29uewogICJhcmNoaXRlY3R1cmUiOiB7CiAgICAiY29tcGF0aWJpbGl0eV9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZGVwbG95bWVudF9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZXhjZXB0aW9uX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAiZXhjZXB0aW9ucyI6IFtdLAogICAgImZlZWRiYWNrX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJtYXJrZXJfYXNzZXNzbWVudHMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkIzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAwIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDciLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTMCIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlMxIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzIiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFMyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU1IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA0IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiRTYiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFNyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU4IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzMiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlM2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQOSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMCIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9CiAgICBdLAogICAgInJlbGVhc2VfY29tcGF0aWJpbGl0eV9kZWNsYXJhdGlvbiI6IHsKICAgICAgImFwcHJvdmVkIjogdHJ1ZSwKICAgICAgImJhc2VsaW5lX3ZlcnNpb24iOiAic29sdXRpb24tYmFzZWxpbmUtMjAyNi4wNyIsCiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInJldmlld19ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IGZhbHNlCiAgICB9LAogICAgInJ1bnRpbWVfZXZpZGVuY2UiOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInNlY3VyaXR5X2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJzb2x1dGlvbl9iYXNlbGluZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0KICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUKfQpQSwMEFAAAAAAAAGBvXV0pNx4XAAAAFwAAABkAAABiYXNlbGluZS1nYXRlLXJlc3VsdC5qc29uewogICJzdGF0dXMiOiAicGFzcyIKfQpQSwMEFAAAAAAAAGBvXQhFpcV2AAAAdgAAAB4AAABjb250cm9sLWV2YWx1YXRpb24tcmVwb3J0Lmpzb257CiAgInN1bW1hcnkiOiB7CiAgICAiYXBwbGljYWJsZSI6IDE2LAogICAgImZhaWwiOiAwLAogICAgIm5vdF9hcHBsaWNhYmxlIjogMzAsCiAgICAicGFzcyI6IDE2LAogICAgInRvdGFsIjogNDYKICB9Cn0KUEsDBBQAAAAAAABgb11J93K8Yg4AAGIOAAAZAAAAZ292ZXJuYW5jZS1ydW4taW5wdXQuanNvbnsKICAiYXJ0aWZhY3QiOiB7CiAgICAiYXJ0aWZhY3RfaWQiOiAiaGEtY3Bzd21zLXNvdXJjZS50YXIuZ3oiLAogICAgImFydGlmYWN0X3R5cGUiOiAiYXBwbGljYXRpb24tYnVpbGQtb3V0cHV0IiwKICAgICJhcnRpZmFjdF92ZXJzaW9uIjogImQyZjBkYmEzZjg4ZCIsCiAgICAiZGlnZXN0IjogewogICAgICAiYWxnb3JpdGhtIjogInNoYTI1NiIsCiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZSwKICAgICAgInZhbHVlIjogImV4YW1wbGUtZGlnZXN0LXZhbHVlIgogICAgfSwKICAgICJzaWduYXR1cmUiOiB7CiAgICAgICJleGlzdHMiOiBmYWxzZQogICAgfQogIH0sCiAgImNvbnRyYWN0X3ZlcnNpb24iOiAiMS4wIiwKICAiZGVwZW5kZW5jaWVzIjogWwogICAgewogICAgICAibmFtZSI6ICJmYXN0YXBpIiwKICAgICAgInNvdXJjZV9hcHByb3ZlZCI6IHRydWUKICAgIH0KICBdLAogICJkZXBsb3ltZW50IjogewogICAgInJlcXVpcmVkIjogdHJ1ZQogIH0sCiAgImVudmlyb25tZW50IjogewogICAgImNlbnRyYWxseV9tYW5hZ2VkIjogdHJ1ZSwKICAgICJjb25maWdfY29tcGxpYW50IjogdHJ1ZSwKICAgICJjb25maWd1cmF0aW9uX2Jhc2VsaW5lc19kZWZpbmVkIjogdHJ1ZSwKICAgICJzZWN1cmVfd29ya3NwYWNlIjogdHJ1ZQogIH0sCiAgImV2aWRlbmNlIjogewogICAgInBpcGVsaW5lX2V4ZWN1dGlvbiI6IHsKICAgICAgImV2aWRlbmNlX2lkIjogImdpdGh1Yi1hY3Rpb25zLTI4MjkyNTE4MzY0IiwKICAgICAgImdlbmVyYXRlZF9hdCI6ICIyMDI2LTA2LTI3VDE0OjQ5OjA4WiIsCiAgICAgICJwaXBlbGluZV9ydW5faWQiOiAiMjgyOTI1MTgzNjQiLAogICAgICAic3RhdHVzIjogInN1Y2Nlc3MiCiAgICB9LAogICAgInNib20iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZQogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibWF4X3NldmVyaXR5IjogIm5vbmUiLAogICAgICAicGF0aCI6ICJzZWN1cml0eS92dWxuZXJhYmlsaXR5LXNjYW4uanNvbiIKICAgIH0KICB9LAogICJpbmZyYXN0cnVjdHVyZSI6IHsKICAgICJpYWNfcmVwb3NpdG9yeSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJ2ZXJzaW9uX2NvbnRyb2xsZWQiOiB0cnVlCiAgICB9CiAgfSwKICAibW9uaXRvcmluZyI6IHsKICAgICJmb3J3YXJkZWRfdG9fbW9uaXRvcmluZyI6IHRydWUsCiAgICAiaW50ZWdyYXRpb25fZW5hYmxlZCI6IHRydWUsCiAgICAic2VjdXJpdHlfZXZlbnRzX2dlbmVyYXRlZCI6IHRydWUKICB9LAogICJvcGVyYXRpb25zIjogewogICAgImRlcGxveWVkX3ZlcnNpb25zX3JlY29yZGVkIjogdHJ1ZSwKICAgICJzZWN1cml0eV9ldmVudHNfcmVjb3JkZWQiOiB0cnVlCiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImQyZjBkYmEzZjg4ZGU5MTgzODIxMzA2MGU0YTAxNGZlNzgwMjZkZDEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgImV4dGVybmFsX2RpcmVjdF9kb3dubG9hZHNfZGV0ZWN0ZWQiOiBmYWxzZSwKICAgICJwaXBlbGluZV9pZCI6ICJEZXZTZWNPcHMgQmFzZWxpbmUiLAogICAgInBpcGVsaW5lX3J1bl9pZCI6ICIyODI5MjUxODM2NCIsCiAgICAic2VjdXJpdHlfZ2F0ZXMiOiB7CiAgICAgICJlbmZvcmNlZCI6IHRydWUKICAgIH0sCiAgICAic2VjdXJpdHlfdGhyZXNob2xkc19leGNlZWRlZCI6IGZhbHNlLAogICAgInN0YXR1cyI6ICJzdWNjZXNzIgogIH0sCiAgInBsYXRmb3JtIjogewogICAgImNlbnRyYWxfaWRlbnRpdHlfbWFuYWdlbWVudCI6IHRydWUsCiAgICAibWZhX2VuZm9yY2VkIjogdHJ1ZSwKICAgICJwcml2aWxlZ2VkX2FjY2VzcyI6IHRydWUKICB9LAogICJyZWxlYXNlIjogewogICAgImFwcHJvdmFsX3N0YXR1cyI6ICJhcHByb3ZlZCIsCiAgICAiYXBwcm92ZWRfd2FpdmVyIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAicmVsZWFzZV9pZCI6ICJqb2t1LWRldi9oYS1DUHNXTVNAZDJmMGRiYTNmODhkIgogIH0sCiAgInJlbGVhc2VfYXBwcm92YWwiOiB7CiAgICAiYXBwcm92ZWQiOiB0cnVlLAogICAgImFwcHJvdmVkX2FydGlmYWN0X29ubHkiOiB0cnVlLAogICAgImFwcHJvdmVyIjogInJlbGVhc2UtbWFuYWdlciIKICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUsCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiZGlyZWN0X3B1c2hfYWxsb3dlZCI6IGZhbHNlLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJldmlld19yZXF1aXJlZCI6IHRydWUKICB9LAogICJyZXF1aXJlZF9wbGF0Zm9ybV9sZXZlbCI6ICJQUkEtTGV2ZWwgMiIsCiAgInJ1bl9jb250ZXh0IjogewogICAgImV2ZW50IjogInB1c2giLAogICAgInB1cnBvc2UiOiAicmVsZWFzZSIsCiAgICAicmVsZWFzZV9jb250ZXh0IjogdHJ1ZSwKICAgICJzb3VyY2UiOiAiZ2l0aHViLWFjdGlvbnMiCiAgfSwKICAic2lnbmluZyI6IHsKICAgICJrZXlzX3Byb3RlY3RlZCI6IGZhbHNlCiAgfSwKICAic291cmNlX2NvbnRyb2wiOiB7CiAgICAiYXBwcm92ZWRfdmNzIjogdHJ1ZSwKICAgICJpZGVudGlmaWFibGVfYXV0aG9ycyI6IHRydWUsCiAgICAicmV2aWV3X3JlY29yZHNfcHJlc2VudCI6IHRydWUKICB9LAogICJzdGF0aWNfYW5hbHlzaXMiOiB7CiAgICAiZmluZGluZ3NfcmV2aWV3ZWQiOiB0cnVlLAogICAgInBlcmZvcm1lZCI6IHRydWUKICB9LAogICJ0cmFjZWFiaWxpdHkiOiB7CiAgICAicmVwb3J0c19saW5rZWQiOiB0cnVlLAogICAgInJlcXVpcmVtZW50c19saW5rZWQiOiB0cnVlLAogICAgInRlc3RjYXNlc19saW5rZWQiOiB0cnVlCiAgfSwKICAidnVsbmVyYWJpbGl0aWVzIjogW10sCiAgIndhaXZlcnMiOiBbCiAgICB7CiAgICAgICJhZmZlY3RlZF9yZXF1aXJlbWVudHMiOiBbCiAgICAgICAgIkRTQ0ItTDEtUkVRLTAxMCIsCiAgICAgICAgIkRTQ0ItR09WLVJFUS0wMDUiCiAgICAgIF0sCiAgICAgICJhcHByb3ZhbF9hdXRob3JpdHkiOiAiRGV2U2VjT3BzIEdvdmVybmFuY2UgQm9hcmQiLAogICAgICAiYXBwcm92ZWRfYnkiOiAiZ292ZXJuYW5jZS1ib2FyZC1jaGFpciIsCiAgICAgICJhcHByb3ZlZF9vbiI6ICIyMDI2LTA2LTIwIiwKICAgICAgImNvbXBlbnNhdGluZ19jb250cm9scyI6IFsKICAgICAgICAiVGVtcG9yYXJ5IG5ldHdvcmsgcmVzdHJpY3Rpb24gYXBwbGllZCIsCiAgICAgICAgIkRhaWx5IG1vbml0b3JpbmcgcmV2aWV3IGVuYWJsZWQiCiAgICAgIF0sCiAgICAgICJleHBpcmVkIjogZmFsc2UsCiAgICAgICJleHBpcnkiOiAiMjAyNi0wNy0yMCIsCiAgICAgICJpZCI6ICJ3YWl2ZXItZGVtby0wMDEiLAogICAgICAianVzdGlmaWNhdGlvbiI6ICJUaGUgZmluZGluZyBpcyBhY2NlcHRlZCB0ZW1wb3JhcmlseSBiZWNhdXNlIHRoZSB2ZW5kb3IgcGF0Y2ggaXMgc2NoZWR1bGVkIGFuZCBkZXBsb3ltZW50IGlzIGJsb2NrZWQgb3RoZXJ3aXNlLiIsCiAgICAgICJvYmplY3RfaWQiOiAiQ1ZFLTIwOTktMDAwMSIsCiAgICAgICJyaXNrX2NsYXNzaWZpY2F0aW9uIjogIm1lZGl1bSIsCiAgICAgICJzY29wZSI6ICJyZWxlYXNlLWNhbmRpZGF0ZS1leGNlcHRpb24iLAogICAgICAic3RhdHVzIjogImFwcHJvdmVkIgogICAgfQogIF0KfQpQSwMEFAAAAAAAAGBvXRVBl0eUAgAAlAIAABYAAABwaXBlbGluZS1ldmlkZW5jZS5qc29uewogICJhcnRpZmFjdCI6IHsKICAgICJkaWdlc3QiOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9CiAgfSwKICAiZXZpZGVuY2UiOiB7CiAgICAicGlwZWxpbmVfZXhlY3V0aW9uIjogewogICAgICAiZ2VuZXJhdGVkX2F0IjogIjIwMjYtMTEtMTVUMTE6NTU6MDBaIgogICAgfSwKICAgICJzYm9tIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9CiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgInBpcGVsaW5lX2lkIjogIlN5bnRoZXRpYyBDSSIsCiAgICAicGlwZWxpbmVfcnVuX2lkIjogIjcwMDEiLAogICAgInBpcGVsaW5lX3VybCI6ICJodHRwczovL2NpLmV4YW1wbGUvcnVucy83MDAxIiwKICAgICJzdGF0dXMiOiAic3VjY2VzcyIKICB9LAogICJyZWxlYXNlIjoge30sCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiYnJhbmNoIjogIm1haW4iLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJlcG9zaXRvcnlfaWQiOiAic3ludGhldGljL3Jlc3VsdHMiCiAgfSwKICAid2FpdmVycyI6IFtdCn0KUEsBAhQDFAAAAAAAAGBvXQjPPVY2AwAANgMAACMAAAAAAAAAAAAAAICBAAAAAGFyY2hpdGVjdHVyZS1nb3Zlcm5hbmNlLXJlcG9ydC5qc29uUEsBAhQDFAAAAAAAAGBvXZcCQbiPCQAAjwkAAB8AAAAAAAAAAAAAAICBdwMAAGFyY2hpdGVjdHVyZS1yZWxlYXNlLWlucHV0Lmpzb25QSwECFAMUAAAAAAAAYG9dXSk3HhcAAAAXAAAAGQAAAAAAAAAAAAAAgIFDDQAAYmFzZWxpbmUtZ2F0ZS1yZXN1bHQuanNvblBLAQIUAxQAAAAAAABgb10IRaXFdgAAAHYAAAAeAAAAAAAAAAAAAACAgZENAABjb250cm9sLWV2YWx1YXRpb24tcmVwb3J0Lmpzb25QSwECFAMUAAAAAAAAYG9dSfdyvGIOAABiDgAAGQAAAAAAAAAAAAAAgIFDDgAAZ292ZXJuYW5jZS1ydW4taW5wdXQuanNvblBLAQIUAxQAAAAAAABgb10VQZdHlAIAAJQCAAAWAAAAAAAAAAAAAACAgdwcAABwaXBlbGluZS1ldmlkZW5jZS5qc29uUEsFBgAAAAAGAAYAvAEAAKQfAAAAAA=="
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/synthetic/native/actions/artifacts/9103/zip",
+        "digest": "sha256:a5fcb06c0d09a00d4f8031c0e249f6d129ae2c29852f37dbe95058946d2f6292",
+        "expired": false,
+        "id": 9103,
+        "name": "architecture-governance-evidence",
+        "size_in_bytes": 8638,
+        "workflow_run": {
+          "head_branch": "main",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 8103,
+          "repository_id": 42
+        }
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "branch_protected": null,
+      "branch_protection_lookup": {
+        "http_status": 403,
+        "status": "unavailable"
+      },
+      "domain": "architecture",
+      "expected_snapshot": {
+        "architecture_baseline_ref": "architecture-baseline-l1-v0.1.0",
+        "architecture_summary": {
+          "finding_count": 2,
+          "gate_count": 4,
+          "passed": 3,
+          "with_findings": 1
+        },
+        "artifact_metadata": {
+          "architecture_governance_report_sha256": "921ec20bbf0095a377f5633082e02fbd047c6f168ac99bfe29b757c6677aeae6",
+          "architecture_release_input_sha256": "9ea41554cb67fd9342a7f096fcf8d32a27a1412650879268191f48d35942310d",
+          "artifact_archive_sha256": "a5fcb06c0d09a00d4f8031c0e249f6d129ae2c29852f37dbe95058946d2f6292",
+          "artifact_name": "architecture-governance-evidence",
+          "artifact_size_bytes": 8638
+        },
+        "checks": {
+          "architecture_runtime_governance": "failure"
+        },
+        "evidence": {
+          "architecture_report": true,
+          "compatibility_evidence": true,
+          "deployment_evidence": true,
+          "exception_evidence": false,
+          "exceptions": 0,
+          "feedback_evidence": true,
+          "marker_assessments": 31,
+          "release_compatibility_declaration": true,
+          "release_input": true,
+          "review_evidence": false,
+          "runtime_evidence": true,
+          "security_evidence": true,
+          "solution_baseline": true
+        },
+        "gates": [
+          {
+            "findings": [],
+            "id": "architecture_readiness",
+            "remediations": [],
+            "status": "pass",
+            "title": "Architecture Readiness"
+          },
+          {
+            "findings": [],
+            "id": "integration_readiness",
+            "remediations": [],
+            "status": "pass",
+            "title": "Integration Readiness"
+          },
+          {
+            "findings": [
+              "Synthetic finding A",
+              "Synthetic finding B"
+            ],
+            "id": "operation_readiness",
+            "remediations": [],
+            "status": "findings",
+            "title": "Operation Readiness"
+          },
+          {
+            "findings": [],
+            "id": "release_readiness",
+            "remediations": [],
+            "status": "pass",
+            "title": "Release Readiness"
+          }
+        ],
+        "generated_at": "2026-11-15T11:55:00Z",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture",
+        "overall_status": "findings",
+        "pipeline": {
+          "event": "push",
+          "pipeline_name": "Synthetic native architecture",
+          "pipeline_run_id": "8103",
+          "pipeline_url": "https://github.com/synthetic/native/actions/runs/8103",
+          "status": "failure"
+        },
+        "repository": {
+          "branch": "main",
+          "branch_protected": null,
+          "branch_protection_lookup": {
+            "http_status": 403,
+            "status": "unavailable"
+          },
+          "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "repository_id": "synthetic/native",
+        "result_type": "architecture-runtime-governance-run",
+        "schema_version": "1.0.0",
+        "target": {},
+        "trust": {
+          "assessment_status": "evaluated",
+          "capture": {
+            "captured_at": "2026-11-15T12:00:00Z",
+            "collector": {
+              "id": "central-governance-intake",
+              "version": "0.1.0"
+            },
+            "contract_id": "evidence-collector-contract",
+            "contract_version": "0.1.0",
+            "custody": [
+              {
+                "action": "download",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "artifact_metadata"
+                ],
+                "sequence": 1,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9103/zip"
+              },
+              {
+                "action": "extract_and_hash",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "artifact_metadata.architecture_governance_report_sha256",
+                  "artifact_metadata.architecture_release_input_sha256",
+                  "artifact_metadata.artifact_archive_sha256"
+                ],
+                "sequence": 2,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9103/zip"
+              }
+            ],
+            "enforcement": "report_only",
+            "errors": [],
+            "evidence_type": "governance_result",
+            "governance_domain": "architecture",
+            "produced_at": "2026-11-15T11:55:00Z",
+            "source": {
+              "artifact_name": "architecture-governance-evidence",
+              "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "provider": "github_actions",
+              "repository_id": "synthetic/native",
+              "run_attempt": 1,
+              "run_id": "8103",
+              "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9103/zip",
+              "workflow_name": "Synthetic native architecture"
+            },
+            "status": "collected",
+            "subjects": [
+              {
+                "algorithm": "sha256",
+                "digest": "921ec20bbf0095a377f5633082e02fbd047c6f168ac99bfe29b757c6677aeae6",
+                "evidence_ref": "artifact_metadata.architecture_governance_report_sha256",
+                "id": "architecture_governance_report",
+                "size_bytes": 894
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "9ea41554cb67fd9342a7f096fcf8d32a27a1412650879268191f48d35942310d",
+                "evidence_ref": "artifact_metadata.architecture_release_input_sha256",
+                "id": "architecture_release_input",
+                "size_bytes": 2447
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "a5fcb06c0d09a00d4f8031c0e249f6d129ae2c29852f37dbe95058946d2f6292",
+                "evidence_ref": "artifact_metadata.artifact_archive_sha256",
+                "id": "artifact_archive",
+                "size_bytes": 8638
+              }
+            ]
+          },
+          "capture_phase": "additive_capture",
+          "checks": [
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "id": "subject_identity_complete",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "artifact_metadata.architecture_governance_report_sha256",
+                "artifact_metadata.architecture_release_input_sha256",
+                "artifact_metadata.artifact_archive_sha256"
+              ],
+              "id": "content_digest_verified",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.run_id"
+              ],
+              "id": "producer_run_resolved",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.commit_id"
+              ],
+              "id": "commit_matches_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.artifact_name"
+              ],
+              "id": "artifact_belongs_to_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [],
+              "id": "baseline_ref_resolved",
+              "result": "not_evaluated"
+            },
+            {
+              "age_seconds": 300,
+              "evaluated_at": "2026-11-15T12:00:00Z",
+              "evidence_refs": [
+                "generated_at",
+                "trust.verified_at"
+              ],
+              "finding_effect": "report_only",
+              "id": "freshness_evaluated",
+              "maximum_age_seconds": 86400,
+              "policy_id": "freshness-governance-result-24h",
+              "policy_status": "provisional",
+              "policy_version": "0.1.0",
+              "produced_at": "2026-11-15T11:55:00Z",
+              "reason": "Evidence age 300s is within the provisional maximum 86400s.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "finding_effect": "report_only",
+              "id": "replay_key_unique",
+              "reason": "No prior replay key or incompatible digest reuse was found.",
+              "replay_key": "9e933c826982ec599ef1b026190c2cb73f81387ad87e55a3e3f46194e0a03526",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.custody",
+                "trust.capture.source.artifact_digest",
+                "trust.capture.subjects"
+              ],
+              "id": "custody_recorded",
+              "reason": "Ordered download and extraction steps bind the downloaded archive to the hashed subjects.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_signature_valid",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_issuer_trusted",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_subject_matches",
+              "result": "not_evaluated"
+            }
+          ],
+          "effective_level": "integrity_verified",
+          "model_id": "evidence-trust-model-v1",
+          "verified_at": "2026-11-15T12:00:00Z",
+          "verifier": "central-governance-intake/v1"
+        }
+      },
+      "files": {
+        "architecture-governance-report.json": {
+          "advisories": [],
+          "detailed_evidence": {},
+          "gates": [
+            {
+              "findings": [],
+              "id": "architecture_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Architecture Readiness"
+            },
+            {
+              "findings": [],
+              "id": "integration_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Integration Readiness"
+            },
+            {
+              "findings": [
+                "Synthetic finding A",
+                "Synthetic finding B"
+              ],
+              "id": "operation_readiness",
+              "remediations": [],
+              "status": "findings",
+              "title": "Operation Readiness"
+            },
+            {
+              "findings": [],
+              "id": "release_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Release Readiness"
+            }
+          ],
+          "summary": {
+            "finding_count": 2,
+            "gate_count": 4,
+            "passed": 3,
+            "with_findings": 1
+          },
+          "target": {}
+        },
+        "architecture-release-input.json": {
+          "architecture": {
+            "compatibility_evidence": {
+              "exists": true
+            },
+            "deployment_evidence": {
+              "exists": true
+            },
+            "exception_evidence": {
+              "exists": false
+            },
+            "exceptions": [],
+            "feedback_evidence": {
+              "exists": true
+            },
+            "marker_assessments": [
+              {
+                "id": "B1",
+                "score": 3
+              },
+              {
+                "id": "B2",
+                "score": 3
+              },
+              {
+                "id": "B3",
+                "score": 3
+              },
+              {
+                "id": "B4",
+                "score": 3
+              },
+              {
+                "id": "B5",
+                "score": 4
+              },
+              {
+                "id": "P0",
+                "score": 3
+              },
+              {
+                "id": "P1",
+                "score": 3
+              },
+              {
+                "id": "P2",
+                "score": 3
+              },
+              {
+                "id": "P3",
+                "score": 3
+              },
+              {
+                "id": "P7",
+                "score": 3
+              },
+              {
+                "id": "S0",
+                "score": 3
+              },
+              {
+                "id": "S1",
+                "score": 3
+              },
+              {
+                "id": "S2",
+                "score": 3
+              },
+              {
+                "id": "E3",
+                "score": 3
+              },
+              {
+                "id": "E5",
+                "score": 3
+              },
+              {
+                "id": "S4",
+                "score": 3
+              },
+              {
+                "id": "S7",
+                "score": 3
+              },
+              {
+                "id": "P4",
+                "score": 3
+              },
+              {
+                "id": "E6",
+                "score": 4
+              },
+              {
+                "id": "E7",
+                "score": 4
+              },
+              {
+                "id": "E8",
+                "score": 4
+              },
+              {
+                "id": "S3",
+                "score": 4
+              },
+              {
+                "id": "S5",
+                "score": 4
+              },
+              {
+                "id": "S6",
+                "score": 4
+              },
+              {
+                "id": "S8",
+                "score": 4
+              },
+              {
+                "id": "P5",
+                "score": 4
+              },
+              {
+                "id": "P6",
+                "score": 4
+              },
+              {
+                "id": "P8",
+                "score": 4
+              },
+              {
+                "id": "P9",
+                "score": 4
+              },
+              {
+                "id": "P10",
+                "score": 4
+              },
+              {
+                "id": "P13",
+                "score": 4
+              }
+            ],
+            "release_compatibility_declaration": {
+              "approved": true,
+              "baseline_version": "solution-baseline-2026.07",
+              "exists": true
+            },
+            "review_evidence": {
+              "exists": false
+            },
+            "runtime_evidence": {
+              "exists": true
+            },
+            "security_evidence": {
+              "exists": true
+            },
+            "solution_baseline": {
+              "exists": true
+            }
+          },
+          "release_candidate": true
+        },
+        "baseline-gate-result.json": {
+          "status": "fail"
+        },
+        "control-evaluation-report.json": {
+          "summary": {
+            "applicable": 16,
+            "fail": 6,
+            "not_applicable": 30,
+            "pass": 10,
+            "total": 46
+          }
+        },
+        "governance-run-input.json": {
+          "artifact": {
+            "artifact_id": "ha-cpswms-source.tar.gz",
+            "artifact_type": "application-build-output",
+            "artifact_version": "d2f0dba3f88d",
+            "digest": {
+              "algorithm": "sha256",
+              "exists": true,
+              "linked_to_artifact": true,
+              "value": "example-digest-value"
+            },
+            "signature": {
+              "exists": false
+            }
+          },
+          "contract_version": "1.0",
+          "dependencies": [
+            {
+              "name": "fastapi",
+              "source_approved": true
+            }
+          ],
+          "deployment": {
+            "required": true
+          },
+          "environment": {
+            "centrally_managed": true,
+            "config_compliant": true,
+            "configuration_baselines_defined": true,
+            "secure_workspace": true
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "evidence_id": "github-actions-28292518364",
+              "generated_at": "2026-06-27T14:49:08Z",
+              "pipeline_run_id": "28292518364",
+              "status": "success"
+            },
+            "sbom": {
+              "exists": true,
+              "linked_to_artifact": true
+            },
+            "vulnerability_scan": {
+              "exists": true,
+              "max_severity": "none",
+              "path": "security/vulnerability-scan.json"
+            }
+          },
+          "infrastructure": {
+            "iac_repository": {
+              "exists": true,
+              "version_controlled": true
+            }
+          },
+          "monitoring": {
+            "forwarded_to_monitoring": true,
+            "integration_enabled": true,
+            "security_events_generated": true
+          },
+          "operations": {
+            "deployed_versions_recorded": true,
+            "security_events_recorded": true
+          },
+          "pipeline": {
+            "commit_id": "d2f0dba3f88de91838213060e4a014fe78026dd1",
+            "event": "push",
+            "external_direct_downloads_detected": false,
+            "pipeline_id": "DevSecOps Baseline",
+            "pipeline_run_id": "28292518364",
+            "security_gates": {
+              "enforced": true
+            },
+            "security_thresholds_exceeded": false,
+            "status": "success"
+          },
+          "platform": {
+            "central_identity_management": true,
+            "mfa_enforced": true,
+            "privileged_access": true
+          },
+          "release": {
+            "approval_status": "approved",
+            "approved_waiver": {
+              "exists": false
+            },
+            "release_id": "joku-dev/ha-CPsWMS@d2f0dba3f88d"
+          },
+          "release_approval": {
+            "approved": true,
+            "approved_artifact_only": true,
+            "approver": "release-manager"
+          },
+          "release_candidate": true,
+          "repository": {
+            "direct_push_allowed": false,
+            "protected_branch": true,
+            "review_required": true
+          },
+          "required_platform_level": "PRA-Level 2",
+          "run_context": {
+            "event": "push",
+            "purpose": "release",
+            "release_context": true,
+            "source": "github-actions"
+          },
+          "signing": {
+            "keys_protected": false
+          },
+          "source_control": {
+            "approved_vcs": true,
+            "identifiable_authors": true,
+            "review_records_present": true
+          },
+          "static_analysis": {
+            "findings_reviewed": true,
+            "performed": true
+          },
+          "traceability": {
+            "reports_linked": true,
+            "requirements_linked": true,
+            "testcases_linked": true
+          },
+          "vulnerabilities": [],
+          "waivers": [
+            {
+              "affected_requirements": [
+                "DSCB-L1-REQ-010",
+                "DSCB-GOV-REQ-005"
+              ],
+              "approval_authority": "DevSecOps Governance Board",
+              "approved_by": "governance-board-chair",
+              "approved_on": "2026-06-20",
+              "compensating_controls": [
+                "Temporary network restriction applied",
+                "Daily monitoring review enabled"
+              ],
+              "expired": false,
+              "expiry": "2026-07-20",
+              "id": "waiver-demo-001",
+              "justification": "The finding is accepted temporarily because the vendor patch is scheduled and deployment is blocked otherwise.",
+              "object_id": "CVE-2099-0001",
+              "risk_classification": "medium",
+              "scope": "release-candidate-exception",
+              "status": "approved"
+            }
+          ]
+        },
+        "pipeline-evidence.json": {
+          "artifact": {
+            "digest": {
+              "exists": true
+            }
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "generated_at": "2026-11-15T11:55:00Z"
+            },
+            "sbom": {
+              "exists": true
+            },
+            "vulnerability_scan": {
+              "exists": true
+            }
+          },
+          "pipeline": {
+            "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "event": "push",
+            "pipeline_id": "Synthetic CI",
+            "pipeline_run_id": "7001",
+            "pipeline_url": "https://ci.example/runs/7001",
+            "status": "success"
+          },
+          "release": {},
+          "repository": {
+            "branch": "main",
+            "protected_branch": true,
+            "repository_id": "synthetic/results"
+          },
+          "waivers": []
+        }
+      },
+      "id": "architecture-findings",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 1,
+          "name": "Baseline gate",
+          "run_attempt": 1,
+          "run_id": 8103
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 2,
+          "name": "Governance control evaluation",
+          "run_attempt": 1,
+          "run_id": 8103
+        }
+      ],
+      "parameters": {
+        "artifact_name": "architecture-governance-evidence",
+        "baseline_level": "L1",
+        "baseline_ref": "architecture-baseline-l1-v0.1.0",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture"
+      },
+      "run": {
+        "conclusion": "failure",
+        "created_at": "2026-11-15T11:50:00Z",
+        "event": "push",
+        "head_branch": "main",
+        "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "html_url": "https://github.com/synthetic/native/actions/runs/8103",
+        "id": 8103,
+        "name": "Synthetic native architecture",
+        "referenced_workflows": [
+          {
+            "path": "synthetic/governance/.github/workflows/baseline.yml@l1-baseline-v1.1.3",
+            "ref": "refs/tags/l1-baseline-v1.1.3",
+            "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "repository": {
+          "full_name": "synthetic/native",
+          "id": 42
+        },
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-11-15T11:55:00Z"
+      },
+      "zip_base64": "UEsDBBQAAAAAAABgb11YO7aIfgMAAH4DAAAjAAAAYXJjaGl0ZWN0dXJlLWdvdmVybmFuY2UtcmVwb3J0Lmpzb257CiAgImFkdmlzb3JpZXMiOiBbXSwKICAiZGV0YWlsZWRfZXZpZGVuY2UiOiB7fSwKICAiZ2F0ZXMiOiBbCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFtdLAogICAgICAiaWQiOiAiYXJjaGl0ZWN0dXJlX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkFyY2hpdGVjdHVyZSBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogImludGVncmF0aW9uX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkludGVncmF0aW9uIFJlYWRpbmVzcyIKICAgIH0sCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFsKICAgICAgICAiU3ludGhldGljIGZpbmRpbmcgQSIsCiAgICAgICAgIlN5bnRoZXRpYyBmaW5kaW5nIEIiCiAgICAgIF0sCiAgICAgICJpZCI6ICJvcGVyYXRpb25fcmVhZGluZXNzIiwKICAgICAgInJlbWVkaWF0aW9ucyI6IFtdLAogICAgICAic3RhdHVzIjogImZpbmRpbmdzIiwKICAgICAgInRpdGxlIjogIk9wZXJhdGlvbiBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogInJlbGVhc2VfcmVhZGluZXNzIiwKICAgICAgInJlbWVkaWF0aW9ucyI6IFtdLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiUmVsZWFzZSBSZWFkaW5lc3MiCiAgICB9CiAgXSwKICAic3VtbWFyeSI6IHsKICAgICJmaW5kaW5nX2NvdW50IjogMiwKICAgICJnYXRlX2NvdW50IjogNCwKICAgICJwYXNzZWQiOiAzLAogICAgIndpdGhfZmluZGluZ3MiOiAxCiAgfSwKICAidGFyZ2V0Ijoge30KfQpQSwMEFAAAAAAAAGBvXZcCQbiPCQAAjwkAAB8AAABhcmNoaXRlY3R1cmUtcmVsZWFzZS1pbnB1dC5qc29uewogICJhcmNoaXRlY3R1cmUiOiB7CiAgICAiY29tcGF0aWJpbGl0eV9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZGVwbG95bWVudF9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZXhjZXB0aW9uX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAiZXhjZXB0aW9ucyI6IFtdLAogICAgImZlZWRiYWNrX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJtYXJrZXJfYXNzZXNzbWVudHMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkIzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAwIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDciLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTMCIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlMxIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzIiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFMyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU1IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA0IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiRTYiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFNyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU4IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzMiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlM2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQOSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMCIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9CiAgICBdLAogICAgInJlbGVhc2VfY29tcGF0aWJpbGl0eV9kZWNsYXJhdGlvbiI6IHsKICAgICAgImFwcHJvdmVkIjogdHJ1ZSwKICAgICAgImJhc2VsaW5lX3ZlcnNpb24iOiAic29sdXRpb24tYmFzZWxpbmUtMjAyNi4wNyIsCiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInJldmlld19ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IGZhbHNlCiAgICB9LAogICAgInJ1bnRpbWVfZXZpZGVuY2UiOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInNlY3VyaXR5X2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJzb2x1dGlvbl9iYXNlbGluZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0KICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUKfQpQSwMEFAAAAAAAAGBvXV8wHuQXAAAAFwAAABkAAABiYXNlbGluZS1nYXRlLXJlc3VsdC5qc29uewogICJzdGF0dXMiOiAiZmFpbCIKfQpQSwMEFAAAAAAAAGBvXfx8GDd2AAAAdgAAAB4AAABjb250cm9sLWV2YWx1YXRpb24tcmVwb3J0Lmpzb257CiAgInN1bW1hcnkiOiB7CiAgICAiYXBwbGljYWJsZSI6IDE2LAogICAgImZhaWwiOiA2LAogICAgIm5vdF9hcHBsaWNhYmxlIjogMzAsCiAgICAicGFzcyI6IDEwLAogICAgInRvdGFsIjogNDYKICB9Cn0KUEsDBBQAAAAAAABgb11J93K8Yg4AAGIOAAAZAAAAZ292ZXJuYW5jZS1ydW4taW5wdXQuanNvbnsKICAiYXJ0aWZhY3QiOiB7CiAgICAiYXJ0aWZhY3RfaWQiOiAiaGEtY3Bzd21zLXNvdXJjZS50YXIuZ3oiLAogICAgImFydGlmYWN0X3R5cGUiOiAiYXBwbGljYXRpb24tYnVpbGQtb3V0cHV0IiwKICAgICJhcnRpZmFjdF92ZXJzaW9uIjogImQyZjBkYmEzZjg4ZCIsCiAgICAiZGlnZXN0IjogewogICAgICAiYWxnb3JpdGhtIjogInNoYTI1NiIsCiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZSwKICAgICAgInZhbHVlIjogImV4YW1wbGUtZGlnZXN0LXZhbHVlIgogICAgfSwKICAgICJzaWduYXR1cmUiOiB7CiAgICAgICJleGlzdHMiOiBmYWxzZQogICAgfQogIH0sCiAgImNvbnRyYWN0X3ZlcnNpb24iOiAiMS4wIiwKICAiZGVwZW5kZW5jaWVzIjogWwogICAgewogICAgICAibmFtZSI6ICJmYXN0YXBpIiwKICAgICAgInNvdXJjZV9hcHByb3ZlZCI6IHRydWUKICAgIH0KICBdLAogICJkZXBsb3ltZW50IjogewogICAgInJlcXVpcmVkIjogdHJ1ZQogIH0sCiAgImVudmlyb25tZW50IjogewogICAgImNlbnRyYWxseV9tYW5hZ2VkIjogdHJ1ZSwKICAgICJjb25maWdfY29tcGxpYW50IjogdHJ1ZSwKICAgICJjb25maWd1cmF0aW9uX2Jhc2VsaW5lc19kZWZpbmVkIjogdHJ1ZSwKICAgICJzZWN1cmVfd29ya3NwYWNlIjogdHJ1ZQogIH0sCiAgImV2aWRlbmNlIjogewogICAgInBpcGVsaW5lX2V4ZWN1dGlvbiI6IHsKICAgICAgImV2aWRlbmNlX2lkIjogImdpdGh1Yi1hY3Rpb25zLTI4MjkyNTE4MzY0IiwKICAgICAgImdlbmVyYXRlZF9hdCI6ICIyMDI2LTA2LTI3VDE0OjQ5OjA4WiIsCiAgICAgICJwaXBlbGluZV9ydW5faWQiOiAiMjgyOTI1MTgzNjQiLAogICAgICAic3RhdHVzIjogInN1Y2Nlc3MiCiAgICB9LAogICAgInNib20iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZQogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibWF4X3NldmVyaXR5IjogIm5vbmUiLAogICAgICAicGF0aCI6ICJzZWN1cml0eS92dWxuZXJhYmlsaXR5LXNjYW4uanNvbiIKICAgIH0KICB9LAogICJpbmZyYXN0cnVjdHVyZSI6IHsKICAgICJpYWNfcmVwb3NpdG9yeSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJ2ZXJzaW9uX2NvbnRyb2xsZWQiOiB0cnVlCiAgICB9CiAgfSwKICAibW9uaXRvcmluZyI6IHsKICAgICJmb3J3YXJkZWRfdG9fbW9uaXRvcmluZyI6IHRydWUsCiAgICAiaW50ZWdyYXRpb25fZW5hYmxlZCI6IHRydWUsCiAgICAic2VjdXJpdHlfZXZlbnRzX2dlbmVyYXRlZCI6IHRydWUKICB9LAogICJvcGVyYXRpb25zIjogewogICAgImRlcGxveWVkX3ZlcnNpb25zX3JlY29yZGVkIjogdHJ1ZSwKICAgICJzZWN1cml0eV9ldmVudHNfcmVjb3JkZWQiOiB0cnVlCiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImQyZjBkYmEzZjg4ZGU5MTgzODIxMzA2MGU0YTAxNGZlNzgwMjZkZDEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgImV4dGVybmFsX2RpcmVjdF9kb3dubG9hZHNfZGV0ZWN0ZWQiOiBmYWxzZSwKICAgICJwaXBlbGluZV9pZCI6ICJEZXZTZWNPcHMgQmFzZWxpbmUiLAogICAgInBpcGVsaW5lX3J1bl9pZCI6ICIyODI5MjUxODM2NCIsCiAgICAic2VjdXJpdHlfZ2F0ZXMiOiB7CiAgICAgICJlbmZvcmNlZCI6IHRydWUKICAgIH0sCiAgICAic2VjdXJpdHlfdGhyZXNob2xkc19leGNlZWRlZCI6IGZhbHNlLAogICAgInN0YXR1cyI6ICJzdWNjZXNzIgogIH0sCiAgInBsYXRmb3JtIjogewogICAgImNlbnRyYWxfaWRlbnRpdHlfbWFuYWdlbWVudCI6IHRydWUsCiAgICAibWZhX2VuZm9yY2VkIjogdHJ1ZSwKICAgICJwcml2aWxlZ2VkX2FjY2VzcyI6IHRydWUKICB9LAogICJyZWxlYXNlIjogewogICAgImFwcHJvdmFsX3N0YXR1cyI6ICJhcHByb3ZlZCIsCiAgICAiYXBwcm92ZWRfd2FpdmVyIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAicmVsZWFzZV9pZCI6ICJqb2t1LWRldi9oYS1DUHNXTVNAZDJmMGRiYTNmODhkIgogIH0sCiAgInJlbGVhc2VfYXBwcm92YWwiOiB7CiAgICAiYXBwcm92ZWQiOiB0cnVlLAogICAgImFwcHJvdmVkX2FydGlmYWN0X29ubHkiOiB0cnVlLAogICAgImFwcHJvdmVyIjogInJlbGVhc2UtbWFuYWdlciIKICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUsCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiZGlyZWN0X3B1c2hfYWxsb3dlZCI6IGZhbHNlLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJldmlld19yZXF1aXJlZCI6IHRydWUKICB9LAogICJyZXF1aXJlZF9wbGF0Zm9ybV9sZXZlbCI6ICJQUkEtTGV2ZWwgMiIsCiAgInJ1bl9jb250ZXh0IjogewogICAgImV2ZW50IjogInB1c2giLAogICAgInB1cnBvc2UiOiAicmVsZWFzZSIsCiAgICAicmVsZWFzZV9jb250ZXh0IjogdHJ1ZSwKICAgICJzb3VyY2UiOiAiZ2l0aHViLWFjdGlvbnMiCiAgfSwKICAic2lnbmluZyI6IHsKICAgICJrZXlzX3Byb3RlY3RlZCI6IGZhbHNlCiAgfSwKICAic291cmNlX2NvbnRyb2wiOiB7CiAgICAiYXBwcm92ZWRfdmNzIjogdHJ1ZSwKICAgICJpZGVudGlmaWFibGVfYXV0aG9ycyI6IHRydWUsCiAgICAicmV2aWV3X3JlY29yZHNfcHJlc2VudCI6IHRydWUKICB9LAogICJzdGF0aWNfYW5hbHlzaXMiOiB7CiAgICAiZmluZGluZ3NfcmV2aWV3ZWQiOiB0cnVlLAogICAgInBlcmZvcm1lZCI6IHRydWUKICB9LAogICJ0cmFjZWFiaWxpdHkiOiB7CiAgICAicmVwb3J0c19saW5rZWQiOiB0cnVlLAogICAgInJlcXVpcmVtZW50c19saW5rZWQiOiB0cnVlLAogICAgInRlc3RjYXNlc19saW5rZWQiOiB0cnVlCiAgfSwKICAidnVsbmVyYWJpbGl0aWVzIjogW10sCiAgIndhaXZlcnMiOiBbCiAgICB7CiAgICAgICJhZmZlY3RlZF9yZXF1aXJlbWVudHMiOiBbCiAgICAgICAgIkRTQ0ItTDEtUkVRLTAxMCIsCiAgICAgICAgIkRTQ0ItR09WLVJFUS0wMDUiCiAgICAgIF0sCiAgICAgICJhcHByb3ZhbF9hdXRob3JpdHkiOiAiRGV2U2VjT3BzIEdvdmVybmFuY2UgQm9hcmQiLAogICAgICAiYXBwcm92ZWRfYnkiOiAiZ292ZXJuYW5jZS1ib2FyZC1jaGFpciIsCiAgICAgICJhcHByb3ZlZF9vbiI6ICIyMDI2LTA2LTIwIiwKICAgICAgImNvbXBlbnNhdGluZ19jb250cm9scyI6IFsKICAgICAgICAiVGVtcG9yYXJ5IG5ldHdvcmsgcmVzdHJpY3Rpb24gYXBwbGllZCIsCiAgICAgICAgIkRhaWx5IG1vbml0b3JpbmcgcmV2aWV3IGVuYWJsZWQiCiAgICAgIF0sCiAgICAgICJleHBpcmVkIjogZmFsc2UsCiAgICAgICJleHBpcnkiOiAiMjAyNi0wNy0yMCIsCiAgICAgICJpZCI6ICJ3YWl2ZXItZGVtby0wMDEiLAogICAgICAianVzdGlmaWNhdGlvbiI6ICJUaGUgZmluZGluZyBpcyBhY2NlcHRlZCB0ZW1wb3JhcmlseSBiZWNhdXNlIHRoZSB2ZW5kb3IgcGF0Y2ggaXMgc2NoZWR1bGVkIGFuZCBkZXBsb3ltZW50IGlzIGJsb2NrZWQgb3RoZXJ3aXNlLiIsCiAgICAgICJvYmplY3RfaWQiOiAiQ1ZFLTIwOTktMDAwMSIsCiAgICAgICJyaXNrX2NsYXNzaWZpY2F0aW9uIjogIm1lZGl1bSIsCiAgICAgICJzY29wZSI6ICJyZWxlYXNlLWNhbmRpZGF0ZS1leGNlcHRpb24iLAogICAgICAic3RhdHVzIjogImFwcHJvdmVkIgogICAgfQogIF0KfQpQSwMEFAAAAAAAAGBvXRVBl0eUAgAAlAIAABYAAABwaXBlbGluZS1ldmlkZW5jZS5qc29uewogICJhcnRpZmFjdCI6IHsKICAgICJkaWdlc3QiOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9CiAgfSwKICAiZXZpZGVuY2UiOiB7CiAgICAicGlwZWxpbmVfZXhlY3V0aW9uIjogewogICAgICAiZ2VuZXJhdGVkX2F0IjogIjIwMjYtMTEtMTVUMTE6NTU6MDBaIgogICAgfSwKICAgICJzYm9tIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9CiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgInBpcGVsaW5lX2lkIjogIlN5bnRoZXRpYyBDSSIsCiAgICAicGlwZWxpbmVfcnVuX2lkIjogIjcwMDEiLAogICAgInBpcGVsaW5lX3VybCI6ICJodHRwczovL2NpLmV4YW1wbGUvcnVucy83MDAxIiwKICAgICJzdGF0dXMiOiAic3VjY2VzcyIKICB9LAogICJyZWxlYXNlIjoge30sCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiYnJhbmNoIjogIm1haW4iLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJlcG9zaXRvcnlfaWQiOiAic3ludGhldGljL3Jlc3VsdHMiCiAgfSwKICAid2FpdmVycyI6IFtdCn0KUEsBAhQDFAAAAAAAAGBvXVg7toh+AwAAfgMAACMAAAAAAAAAAAAAAICBAAAAAGFyY2hpdGVjdHVyZS1nb3Zlcm5hbmNlLXJlcG9ydC5qc29uUEsBAhQDFAAAAAAAAGBvXZcCQbiPCQAAjwkAAB8AAAAAAAAAAAAAAICBvwMAAGFyY2hpdGVjdHVyZS1yZWxlYXNlLWlucHV0Lmpzb25QSwECFAMUAAAAAAAAYG9dXzAe5BcAAAAXAAAAGQAAAAAAAAAAAAAAgIGLDQAAYmFzZWxpbmUtZ2F0ZS1yZXN1bHQuanNvblBLAQIUAxQAAAAAAABgb138fBg3dgAAAHYAAAAeAAAAAAAAAAAAAACAgdkNAABjb250cm9sLWV2YWx1YXRpb24tcmVwb3J0Lmpzb25QSwECFAMUAAAAAAAAYG9dSfdyvGIOAABiDgAAGQAAAAAAAAAAAAAAgIGLDgAAZ292ZXJuYW5jZS1ydW4taW5wdXQuanNvblBLAQIUAxQAAAAAAABgb10VQZdHlAIAAJQCAAAWAAAAAAAAAAAAAACAgSQdAABwaXBlbGluZS1ldmlkZW5jZS5qc29uUEsFBgAAAAAGAAYAvAEAAOwfAAAAAA=="
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/synthetic/native/actions/artifacts/9100/zip",
+        "digest": "sha256:fc36fb0712f79a2adf63a600384897636e9336a20963961b6c6f93f0fdd1f39f",
+        "expired": false,
+        "id": 9100,
+        "name": "devsecops-pipeline-evidence",
+        "size_in_bytes": 5430,
+        "workflow_run": {
+          "head_branch": "main",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 8100,
+          "repository_id": 42
+        }
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "branch_protected": true,
+      "branch_protection_lookup": {
+        "status": "protected"
+      },
+      "companion": {
+        "artifact": {
+          "archive_download_url": "https://api.github.com/repos/synthetic/native/actions/artifacts/9991/zip",
+          "digest": "sha256:105fd8f5136f1638924299a0ba1d5379c6e3a201bb00616e87fc517068a01a13",
+          "expired": false,
+          "id": 9991,
+          "name": "devsecops-governance-run-input",
+          "size_in_bytes": 3830,
+          "workflow_run": {
+            "head_branch": "main",
+            "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "id": 8100,
+            "repository_id": 42
+          }
+        },
+        "zip_base64": "UEsDBBQAAAAAAABgb11J93K8Yg4AAGIOAAAZAAAAZ292ZXJuYW5jZS1ydW4taW5wdXQuanNvbnsKICAiYXJ0aWZhY3QiOiB7CiAgICAiYXJ0aWZhY3RfaWQiOiAiaGEtY3Bzd21zLXNvdXJjZS50YXIuZ3oiLAogICAgImFydGlmYWN0X3R5cGUiOiAiYXBwbGljYXRpb24tYnVpbGQtb3V0cHV0IiwKICAgICJhcnRpZmFjdF92ZXJzaW9uIjogImQyZjBkYmEzZjg4ZCIsCiAgICAiZGlnZXN0IjogewogICAgICAiYWxnb3JpdGhtIjogInNoYTI1NiIsCiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZSwKICAgICAgInZhbHVlIjogImV4YW1wbGUtZGlnZXN0LXZhbHVlIgogICAgfSwKICAgICJzaWduYXR1cmUiOiB7CiAgICAgICJleGlzdHMiOiBmYWxzZQogICAgfQogIH0sCiAgImNvbnRyYWN0X3ZlcnNpb24iOiAiMS4wIiwKICAiZGVwZW5kZW5jaWVzIjogWwogICAgewogICAgICAibmFtZSI6ICJmYXN0YXBpIiwKICAgICAgInNvdXJjZV9hcHByb3ZlZCI6IHRydWUKICAgIH0KICBdLAogICJkZXBsb3ltZW50IjogewogICAgInJlcXVpcmVkIjogdHJ1ZQogIH0sCiAgImVudmlyb25tZW50IjogewogICAgImNlbnRyYWxseV9tYW5hZ2VkIjogdHJ1ZSwKICAgICJjb25maWdfY29tcGxpYW50IjogdHJ1ZSwKICAgICJjb25maWd1cmF0aW9uX2Jhc2VsaW5lc19kZWZpbmVkIjogdHJ1ZSwKICAgICJzZWN1cmVfd29ya3NwYWNlIjogdHJ1ZQogIH0sCiAgImV2aWRlbmNlIjogewogICAgInBpcGVsaW5lX2V4ZWN1dGlvbiI6IHsKICAgICAgImV2aWRlbmNlX2lkIjogImdpdGh1Yi1hY3Rpb25zLTI4MjkyNTE4MzY0IiwKICAgICAgImdlbmVyYXRlZF9hdCI6ICIyMDI2LTA2LTI3VDE0OjQ5OjA4WiIsCiAgICAgICJwaXBlbGluZV9ydW5faWQiOiAiMjgyOTI1MTgzNjQiLAogICAgICAic3RhdHVzIjogInN1Y2Nlc3MiCiAgICB9LAogICAgInNib20iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibGlua2VkX3RvX2FydGlmYWN0IjogdHJ1ZQogICAgfSwKICAgICJ2dWxuZXJhYmlsaXR5X3NjYW4iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAibWF4X3NldmVyaXR5IjogIm5vbmUiLAogICAgICAicGF0aCI6ICJzZWN1cml0eS92dWxuZXJhYmlsaXR5LXNjYW4uanNvbiIKICAgIH0KICB9LAogICJpbmZyYXN0cnVjdHVyZSI6IHsKICAgICJpYWNfcmVwb3NpdG9yeSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUsCiAgICAgICJ2ZXJzaW9uX2NvbnRyb2xsZWQiOiB0cnVlCiAgICB9CiAgfSwKICAibW9uaXRvcmluZyI6IHsKICAgICJmb3J3YXJkZWRfdG9fbW9uaXRvcmluZyI6IHRydWUsCiAgICAiaW50ZWdyYXRpb25fZW5hYmxlZCI6IHRydWUsCiAgICAic2VjdXJpdHlfZXZlbnRzX2dlbmVyYXRlZCI6IHRydWUKICB9LAogICJvcGVyYXRpb25zIjogewogICAgImRlcGxveWVkX3ZlcnNpb25zX3JlY29yZGVkIjogdHJ1ZSwKICAgICJzZWN1cml0eV9ldmVudHNfcmVjb3JkZWQiOiB0cnVlCiAgfSwKICAicGlwZWxpbmUiOiB7CiAgICAiY29tbWl0X2lkIjogImQyZjBkYmEzZjg4ZGU5MTgzODIxMzA2MGU0YTAxNGZlNzgwMjZkZDEiLAogICAgImV2ZW50IjogInB1c2giLAogICAgImV4dGVybmFsX2RpcmVjdF9kb3dubG9hZHNfZGV0ZWN0ZWQiOiBmYWxzZSwKICAgICJwaXBlbGluZV9pZCI6ICJEZXZTZWNPcHMgQmFzZWxpbmUiLAogICAgInBpcGVsaW5lX3J1bl9pZCI6ICIyODI5MjUxODM2NCIsCiAgICAic2VjdXJpdHlfZ2F0ZXMiOiB7CiAgICAgICJlbmZvcmNlZCI6IHRydWUKICAgIH0sCiAgICAic2VjdXJpdHlfdGhyZXNob2xkc19leGNlZWRlZCI6IGZhbHNlLAogICAgInN0YXR1cyI6ICJzdWNjZXNzIgogIH0sCiAgInBsYXRmb3JtIjogewogICAgImNlbnRyYWxfaWRlbnRpdHlfbWFuYWdlbWVudCI6IHRydWUsCiAgICAibWZhX2VuZm9yY2VkIjogdHJ1ZSwKICAgICJwcml2aWxlZ2VkX2FjY2VzcyI6IHRydWUKICB9LAogICJyZWxlYXNlIjogewogICAgImFwcHJvdmFsX3N0YXR1cyI6ICJhcHByb3ZlZCIsCiAgICAiYXBwcm92ZWRfd2FpdmVyIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAicmVsZWFzZV9pZCI6ICJqb2t1LWRldi9oYS1DUHNXTVNAZDJmMGRiYTNmODhkIgogIH0sCiAgInJlbGVhc2VfYXBwcm92YWwiOiB7CiAgICAiYXBwcm92ZWQiOiB0cnVlLAogICAgImFwcHJvdmVkX2FydGlmYWN0X29ubHkiOiB0cnVlLAogICAgImFwcHJvdmVyIjogInJlbGVhc2UtbWFuYWdlciIKICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUsCiAgInJlcG9zaXRvcnkiOiB7CiAgICAiZGlyZWN0X3B1c2hfYWxsb3dlZCI6IGZhbHNlLAogICAgInByb3RlY3RlZF9icmFuY2giOiB0cnVlLAogICAgInJldmlld19yZXF1aXJlZCI6IHRydWUKICB9LAogICJyZXF1aXJlZF9wbGF0Zm9ybV9sZXZlbCI6ICJQUkEtTGV2ZWwgMiIsCiAgInJ1bl9jb250ZXh0IjogewogICAgImV2ZW50IjogInB1c2giLAogICAgInB1cnBvc2UiOiAicmVsZWFzZSIsCiAgICAicmVsZWFzZV9jb250ZXh0IjogdHJ1ZSwKICAgICJzb3VyY2UiOiAiZ2l0aHViLWFjdGlvbnMiCiAgfSwKICAic2lnbmluZyI6IHsKICAgICJrZXlzX3Byb3RlY3RlZCI6IGZhbHNlCiAgfSwKICAic291cmNlX2NvbnRyb2wiOiB7CiAgICAiYXBwcm92ZWRfdmNzIjogdHJ1ZSwKICAgICJpZGVudGlmaWFibGVfYXV0aG9ycyI6IHRydWUsCiAgICAicmV2aWV3X3JlY29yZHNfcHJlc2VudCI6IHRydWUKICB9LAogICJzdGF0aWNfYW5hbHlzaXMiOiB7CiAgICAiZmluZGluZ3NfcmV2aWV3ZWQiOiB0cnVlLAogICAgInBlcmZvcm1lZCI6IHRydWUKICB9LAogICJ0cmFjZWFiaWxpdHkiOiB7CiAgICAicmVwb3J0c19saW5rZWQiOiB0cnVlLAogICAgInJlcXVpcmVtZW50c19saW5rZWQiOiB0cnVlLAogICAgInRlc3RjYXNlc19saW5rZWQiOiB0cnVlCiAgfSwKICAidnVsbmVyYWJpbGl0aWVzIjogW10sCiAgIndhaXZlcnMiOiBbCiAgICB7CiAgICAgICJhZmZlY3RlZF9yZXF1aXJlbWVudHMiOiBbCiAgICAgICAgIkRTQ0ItTDEtUkVRLTAxMCIsCiAgICAgICAgIkRTQ0ItR09WLVJFUS0wMDUiCiAgICAgIF0sCiAgICAgICJhcHByb3ZhbF9hdXRob3JpdHkiOiAiRGV2U2VjT3BzIEdvdmVybmFuY2UgQm9hcmQiLAogICAgICAiYXBwcm92ZWRfYnkiOiAiZ292ZXJuYW5jZS1ib2FyZC1jaGFpciIsCiAgICAgICJhcHByb3ZlZF9vbiI6ICIyMDI2LTA2LTIwIiwKICAgICAgImNvbXBlbnNhdGluZ19jb250cm9scyI6IFsKICAgICAgICAiVGVtcG9yYXJ5IG5ldHdvcmsgcmVzdHJpY3Rpb24gYXBwbGllZCIsCiAgICAgICAgIkRhaWx5IG1vbml0b3JpbmcgcmV2aWV3IGVuYWJsZWQiCiAgICAgIF0sCiAgICAgICJleHBpcmVkIjogZmFsc2UsCiAgICAgICJleHBpcnkiOiAiMjAyNi0wNy0yMCIsCiAgICAgICJpZCI6ICJ3YWl2ZXItZGVtby0wMDEiLAogICAgICAianVzdGlmaWNhdGlvbiI6ICJUaGUgZmluZGluZyBpcyBhY2NlcHRlZCB0ZW1wb3JhcmlseSBiZWNhdXNlIHRoZSB2ZW5kb3IgcGF0Y2ggaXMgc2NoZWR1bGVkIGFuZCBkZXBsb3ltZW50IGlzIGJsb2NrZWQgb3RoZXJ3aXNlLiIsCiAgICAgICJvYmplY3RfaWQiOiAiQ1ZFLTIwOTktMDAwMSIsCiAgICAgICJyaXNrX2NsYXNzaWZpY2F0aW9uIjogIm1lZGl1bSIsCiAgICAgICJzY29wZSI6ICJyZWxlYXNlLWNhbmRpZGF0ZS1leGNlcHRpb24iLAogICAgICAic3RhdHVzIjogImFwcHJvdmVkIgogICAgfQogIF0KfQpQSwECFAMUAAAAAAAAYG9dSfdyvGIOAABiDgAAGQAAAAAAAAAAAAAAgIEAAAAAZ292ZXJuYW5jZS1ydW4taW5wdXQuanNvblBLBQYAAAAAAQABAEcAAACZDgAAAAA="
+      },
+      "domain": "devsecops",
+      "expected_snapshot": {
+        "artifact_metadata": {
+          "artifact_names": [
+            "devsecops-governance-run-input",
+            "devsecops-pipeline-evidence"
+          ],
+          "artifact_sizes": {
+            "devsecops-governance-run-input": 3830,
+            "devsecops-pipeline-evidence": 5430
+          }
+        },
+        "baseline_level": "L1",
+        "checks": {
+          "baseline_gate": "failure",
+          "baseline_gate_workflow_job": "failure",
+          "governance_control_evaluation": "success"
+        },
+        "control_evaluation_summary": {
+          "applicable": 16,
+          "fail": 0,
+          "not_applicable": 30,
+          "pass": 16,
+          "total": 46
+        },
+        "downloaded_artifact": {
+          "artifact_size_bytes": 5430,
+          "control_evaluation_report_sha256": "d2335944baeab61559b46546cb12563116666202342309a3528840657cbdfdce",
+          "downloaded": true,
+          "governance_run_input_artifact": {
+            "archive_sha256": "105fd8f5136f1638924299a0ba1d5379c6e3a201bb00616e87fc517068a01a13",
+            "artifact_id": "9991",
+            "name": "devsecops-governance-run-input"
+          },
+          "governance_run_input_refs": [],
+          "governance_run_input_sha256": "c67ffe895e3b56921c93efab03dda5ba76cac777473a4bb1d96c03cb507ce41c",
+          "pipeline_evidence_sha256": "e334b339c2aaef474ea07813df3e9996f1ccf44495054c27c49c6fbca2caaad6"
+        },
+        "evidence": {
+          "artifact_digest": false,
+          "governance_control_report": true,
+          "governance_run_input": true,
+          "operations_evidence": true,
+          "sbom": true,
+          "static_analysis_summary": true,
+          "traceability_mapping": true,
+          "vulnerability_scan": true
+        },
+        "evidence_context": {
+          "baseline_gate_result": {
+            "blocks_merge": null,
+            "governance_mode": null,
+            "status": null
+          },
+          "governance_run_input_declared": {
+            "external_direct_downloads_detected": false,
+            "security_gates": {
+              "blocks_merge": null,
+              "enforced": true
+            }
+          },
+          "interpretation": {
+            "external_direct_downloads_detected": "Producer-declared observation; not independently inferred by this intake.",
+            "security_gates_enforced": "Gate execution/evaluation; merge blocking is represented separately."
+          },
+          "pipeline_evidence": {
+            "artifact_digest": "81bb7f729925a57e80030269f65bd218c6f2b6515a7f22f1b6ed8d080015a4db",
+            "external_direct_downloads_detected": null,
+            "governance_mode": null,
+            "security_gates": {
+              "blocks_merge": null,
+              "enforced": null
+            }
+          }
+        },
+        "generated_at": "2026-11-15T11:55:00Z",
+        "governance_baseline_ref": "l1-baseline-v1.1.3",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture",
+        "overall_status": "pass",
+        "pipeline": {
+          "event": "push",
+          "pipeline_name": "Synthetic native devsecops",
+          "pipeline_run_id": "8100",
+          "pipeline_url": "https://github.com/synthetic/native/actions/runs/8100",
+          "status": "success"
+        },
+        "repository": {
+          "branch": "main",
+          "branch_protected": true,
+          "branch_protection_lookup": {
+            "status": "protected"
+          },
+          "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "repository_id": "synthetic/native",
+        "result_type": "governance-baseline-run",
+        "schema_version": "1.0.0",
+        "trust": {
+          "assessment_status": "evaluated",
+          "capture": {
+            "captured_at": "2026-11-15T12:00:00Z",
+            "collector": {
+              "id": "central-governance-intake",
+              "version": "0.1.0"
+            },
+            "contract_id": "evidence-collector-contract",
+            "contract_version": "0.1.0",
+            "custody": [
+              {
+                "action": "download",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "artifact_metadata"
+                ],
+                "sequence": 1,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9100/zip"
+              },
+              {
+                "action": "extract_and_hash",
+                "actor": "central-governance-intake",
+                "at": "2026-11-15T12:00:00Z",
+                "output_refs": [
+                  "downloaded_artifact.control_evaluation_report_sha256",
+                  "downloaded_artifact.pipeline_evidence_sha256",
+                  "trust.capture.subjects.artifact_archive"
+                ],
+                "sequence": 2,
+                "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9100/zip"
+              }
+            ],
+            "enforcement": "report_only",
+            "errors": [],
+            "evidence_type": "governance_result",
+            "governance_domain": "devsecops",
+            "observations": {
+              "governance_baseline": {
+                "ref": "refs/tags/l1-baseline-v1.1.3",
+                "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            },
+            "produced_at": "2026-11-15T11:55:00Z",
+            "source": {
+              "artifact_digest": "fc36fb0712f79a2adf63a600384897636e9336a20963961b6c6f93f0fdd1f39f",
+              "artifact_name": "devsecops-pipeline-evidence",
+              "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "provider": "github_actions",
+              "repository_id": "synthetic/native",
+              "run_attempt": 1,
+              "run_id": "8100",
+              "source_uri": "https://api.github.com/repos/synthetic/native/actions/artifacts/9100/zip",
+              "workflow_name": "Synthetic native devsecops"
+            },
+            "status": "collected",
+            "subjects": [
+              {
+                "algorithm": "sha256",
+                "digest": "d2335944baeab61559b46546cb12563116666202342309a3528840657cbdfdce",
+                "evidence_ref": "downloaded_artifact.control_evaluation_report_sha256",
+                "id": "control_evaluation_report",
+                "size_bytes": 118
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "e334b339c2aaef474ea07813df3e9996f1ccf44495054c27c49c6fbca2caaad6",
+                "evidence_ref": "downloaded_artifact.pipeline_evidence_sha256",
+                "id": "pipeline_evidence",
+                "size_bytes": 879
+              },
+              {
+                "algorithm": "sha256",
+                "digest": "fc36fb0712f79a2adf63a600384897636e9336a20963961b6c6f93f0fdd1f39f",
+                "evidence_ref": "trust.capture.subjects.artifact_archive",
+                "id": "artifact_archive",
+                "size_bytes": 5430
+              }
+            ]
+          },
+          "capture_phase": "additive_capture",
+          "checks": [
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "id": "subject_identity_complete",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "downloaded_artifact.control_evaluation_report_sha256",
+                "downloaded_artifact.pipeline_evidence_sha256",
+                "trust.capture.subjects.artifact_archive"
+              ],
+              "id": "content_digest_verified",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.run_id"
+              ],
+              "id": "producer_run_resolved",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.commit_id"
+              ],
+              "id": "commit_matches_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source.artifact_name"
+              ],
+              "id": "artifact_belongs_to_run",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "run.referenced_workflows[].ref",
+                "run.referenced_workflows[].sha"
+              ],
+              "id": "baseline_ref_resolved",
+              "reason": "Selected governance baseline matches an immutable tagged workflow reference and resolved commit.",
+              "result": "pass"
+            },
+            {
+              "age_seconds": 300,
+              "evaluated_at": "2026-11-15T12:00:00Z",
+              "evidence_refs": [
+                "generated_at",
+                "trust.verified_at"
+              ],
+              "finding_effect": "report_only",
+              "id": "freshness_evaluated",
+              "maximum_age_seconds": 86400,
+              "policy_id": "freshness-governance-result-24h",
+              "policy_status": "provisional",
+              "policy_version": "0.1.0",
+              "produced_at": "2026-11-15T11:55:00Z",
+              "reason": "Evidence age 300s is within the provisional maximum 86400s.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.source",
+                "trust.capture.subjects"
+              ],
+              "finding_effect": "report_only",
+              "id": "replay_key_unique",
+              "reason": "No prior replay key or incompatible digest reuse was found.",
+              "replay_key": "63be0a19d18a62a47cf7c8074c499d8fa43ff78ac09ed93efc55edb22c774e96",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [
+                "trust.capture.custody",
+                "trust.capture.source.artifact_digest",
+                "trust.capture.subjects"
+              ],
+              "id": "custody_recorded",
+              "reason": "Ordered download and extraction steps bind the downloaded archive to the hashed subjects.",
+              "result": "pass"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_signature_valid",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_issuer_trusted",
+              "result": "not_evaluated"
+            },
+            {
+              "evidence_refs": [],
+              "id": "attestation_subject_matches",
+              "result": "not_evaluated"
+            }
+          ],
+          "effective_level": "provenance_verified",
+          "model_id": "evidence-trust-model-v1",
+          "verified_at": "2026-11-15T12:00:00Z",
+          "verifier": "central-governance-intake/v1"
+        }
+      },
+      "files": {
+        "application.bin": {
+          "__raw__": "synthetic physical application archive\n"
+        },
+        "application.cdx.json": {
+          "not_real_scan": true,
+          "synthetic": true
+        },
+        "architecture-governance-report.json": {
+          "advisories": [],
+          "detailed_evidence": {},
+          "gates": [
+            {
+              "findings": [],
+              "id": "architecture_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Architecture Readiness"
+            },
+            {
+              "findings": [],
+              "id": "integration_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Integration Readiness"
+            },
+            {
+              "findings": [],
+              "id": "operation_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Operation Readiness"
+            },
+            {
+              "findings": [],
+              "id": "release_readiness",
+              "remediations": [],
+              "status": "pass",
+              "title": "Release Readiness"
+            }
+          ],
+          "summary": {
+            "finding_count": 0,
+            "gate_count": 4,
+            "passed": 4,
+            "with_findings": 0
+          },
+          "target": {}
+        },
+        "architecture-release-input.json": {
+          "architecture": {
+            "compatibility_evidence": {
+              "exists": true
+            },
+            "deployment_evidence": {
+              "exists": true
+            },
+            "exception_evidence": {
+              "exists": false
+            },
+            "exceptions": [],
+            "feedback_evidence": {
+              "exists": true
+            },
+            "marker_assessments": [
+              {
+                "id": "B1",
+                "score": 3
+              },
+              {
+                "id": "B2",
+                "score": 3
+              },
+              {
+                "id": "B3",
+                "score": 3
+              },
+              {
+                "id": "B4",
+                "score": 3
+              },
+              {
+                "id": "B5",
+                "score": 4
+              },
+              {
+                "id": "P0",
+                "score": 3
+              },
+              {
+                "id": "P1",
+                "score": 3
+              },
+              {
+                "id": "P2",
+                "score": 3
+              },
+              {
+                "id": "P3",
+                "score": 3
+              },
+              {
+                "id": "P7",
+                "score": 3
+              },
+              {
+                "id": "S0",
+                "score": 3
+              },
+              {
+                "id": "S1",
+                "score": 3
+              },
+              {
+                "id": "S2",
+                "score": 3
+              },
+              {
+                "id": "E3",
+                "score": 3
+              },
+              {
+                "id": "E5",
+                "score": 3
+              },
+              {
+                "id": "S4",
+                "score": 3
+              },
+              {
+                "id": "S7",
+                "score": 3
+              },
+              {
+                "id": "P4",
+                "score": 3
+              },
+              {
+                "id": "E6",
+                "score": 4
+              },
+              {
+                "id": "E7",
+                "score": 4
+              },
+              {
+                "id": "E8",
+                "score": 4
+              },
+              {
+                "id": "S3",
+                "score": 4
+              },
+              {
+                "id": "S5",
+                "score": 4
+              },
+              {
+                "id": "S6",
+                "score": 4
+              },
+              {
+                "id": "S8",
+                "score": 4
+              },
+              {
+                "id": "P5",
+                "score": 4
+              },
+              {
+                "id": "P6",
+                "score": 4
+              },
+              {
+                "id": "P8",
+                "score": 4
+              },
+              {
+                "id": "P9",
+                "score": 4
+              },
+              {
+                "id": "P10",
+                "score": 4
+              },
+              {
+                "id": "P13",
+                "score": 4
+              }
+            ],
+            "release_compatibility_declaration": {
+              "approved": true,
+              "baseline_version": "solution-baseline-2026.07",
+              "exists": true
+            },
+            "review_evidence": {
+              "exists": false
+            },
+            "runtime_evidence": {
+              "exists": true
+            },
+            "security_evidence": {
+              "exists": true
+            },
+            "solution_baseline": {
+              "exists": true
+            }
+          },
+          "release_candidate": true
+        },
+        "baseline-gate-result.json": {
+          "status": "pass"
+        },
+        "control-evaluation-report.json": {
+          "summary": {
+            "applicable": 16,
+            "fail": 0,
+            "not_applicable": 30,
+            "pass": 16,
+            "total": 46
+          }
+        },
+        "pipeline-evidence.json": {
+          "artifact": {
+            "artifact_id": "application.bin",
+            "digest": {
+              "exists": true,
+              "path": "application.bin",
+              "value": "81bb7f729925a57e80030269f65bd218c6f2b6515a7f22f1b6ed8d080015a4db"
+            }
+          },
+          "evidence": {
+            "pipeline_execution": {
+              "generated_at": "2026-11-15T11:55:00Z"
+            },
+            "sbom": {
+              "exists": true,
+              "path": "application.cdx.json"
+            },
+            "vulnerability_scan": {
+              "exists": true,
+              "path": "scan.json"
+            }
+          },
+          "pipeline": {
+            "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "event": "push",
+            "pipeline_id": "Synthetic CI",
+            "pipeline_run_id": "7001",
+            "pipeline_url": "https://ci.example/runs/7001",
+            "status": "success"
+          },
+          "release": {},
+          "repository": {
+            "branch": "main",
+            "protected_branch": true,
+            "repository_id": "synthetic/results"
+          },
+          "waivers": []
+        },
+        "scan.json": {
+          "not_real_scan": true,
+          "synthetic": true
+        }
+      },
+      "id": "devsecops-companion-input",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 1,
+          "name": "Baseline gate",
+          "run_attempt": 1,
+          "run_id": 8100
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "id": 2,
+          "name": "Governance control evaluation",
+          "run_attempt": 1,
+          "run_id": 8100
+        }
+      ],
+      "parameters": {
+        "artifact_name": "devsecops-pipeline-evidence",
+        "baseline_level": "L1",
+        "baseline_ref": "l1-baseline-v1.1.3",
+        "governance_repository": "joku-dev/devsecops-governance-framework",
+        "notes": "Explicitly synthetic frozen native parity fixture"
+      },
+      "run": {
+        "conclusion": "success",
+        "created_at": "2026-11-15T11:50:00Z",
+        "event": "push",
+        "head_branch": "main",
+        "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "html_url": "https://github.com/synthetic/native/actions/runs/8100",
+        "id": 8100,
+        "name": "Synthetic native devsecops",
+        "referenced_workflows": [
+          {
+            "path": "synthetic/governance/.github/workflows/baseline.yml@l1-baseline-v1.1.3",
+            "ref": "refs/tags/l1-baseline-v1.1.3",
+            "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "repository": {
+          "full_name": "synthetic/native",
+          "id": 42
+        },
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-11-15T11:55:00Z"
+      },
+      "zip_base64": "UEsDBBQAAAAAAABgb10oixbyJwAAACcAAAAPAAAAYXBwbGljYXRpb24uYmluc3ludGhldGljIHBoeXNpY2FsIGFwcGxpY2F0aW9uIGFyY2hpdmUKUEsDBBQAAAAAAABgb10JcrlaMQAAADEAAAAUAAAAYXBwbGljYXRpb24uY2R4Lmpzb257CiAgIm5vdF9yZWFsX3NjYW4iOiB0cnVlLAogICJzeW50aGV0aWMiOiB0cnVlCn0KUEsDBBQAAAAAAABgb10Izz1WNgMAADYDAAAjAAAAYXJjaGl0ZWN0dXJlLWdvdmVybmFuY2UtcmVwb3J0Lmpzb257CiAgImFkdmlzb3JpZXMiOiBbXSwKICAiZGV0YWlsZWRfZXZpZGVuY2UiOiB7fSwKICAiZ2F0ZXMiOiBbCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFtdLAogICAgICAiaWQiOiAiYXJjaGl0ZWN0dXJlX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkFyY2hpdGVjdHVyZSBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogImludGVncmF0aW9uX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIkludGVncmF0aW9uIFJlYWRpbmVzcyIKICAgIH0sCiAgICB7CiAgICAgICJmaW5kaW5ncyI6IFtdLAogICAgICAiaWQiOiAib3BlcmF0aW9uX3JlYWRpbmVzcyIsCiAgICAgICJyZW1lZGlhdGlvbnMiOiBbXSwKICAgICAgInN0YXR1cyI6ICJwYXNzIiwKICAgICAgInRpdGxlIjogIk9wZXJhdGlvbiBSZWFkaW5lc3MiCiAgICB9LAogICAgewogICAgICAiZmluZGluZ3MiOiBbXSwKICAgICAgImlkIjogInJlbGVhc2VfcmVhZGluZXNzIiwKICAgICAgInJlbWVkaWF0aW9ucyI6IFtdLAogICAgICAic3RhdHVzIjogInBhc3MiLAogICAgICAidGl0bGUiOiAiUmVsZWFzZSBSZWFkaW5lc3MiCiAgICB9CiAgXSwKICAic3VtbWFyeSI6IHsKICAgICJmaW5kaW5nX2NvdW50IjogMCwKICAgICJnYXRlX2NvdW50IjogNCwKICAgICJwYXNzZWQiOiA0LAogICAgIndpdGhfZmluZGluZ3MiOiAwCiAgfSwKICAidGFyZ2V0Ijoge30KfQpQSwMEFAAAAAAAAGBvXZcCQbiPCQAAjwkAAB8AAABhcmNoaXRlY3R1cmUtcmVsZWFzZS1pbnB1dC5qc29uewogICJhcmNoaXRlY3R1cmUiOiB7CiAgICAiY29tcGF0aWJpbGl0eV9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZGVwbG95bWVudF9ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0sCiAgICAiZXhjZXB0aW9uX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogZmFsc2UKICAgIH0sCiAgICAiZXhjZXB0aW9ucyI6IFtdLAogICAgImZlZWRiYWNrX2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJtYXJrZXJfYXNzZXNzbWVudHMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkIzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiQjQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJCNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAwIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDEiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQMiIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAzIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDciLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTMCIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlMxIiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzIiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFMyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU1IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzQiLAogICAgICAgICJzY29yZSI6IDMKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNyIsCiAgICAgICAgInNjb3JlIjogMwogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA0IiwKICAgICAgICAic2NvcmUiOiAzCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiRTYiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJFNyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIkU4IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzMiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJTNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlM2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUzgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQNSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlA2IiwKICAgICAgICAic2NvcmUiOiA0CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAiUDgiLAogICAgICAgICJzY29yZSI6IDQKICAgICAgfSwKICAgICAgewogICAgICAgICJpZCI6ICJQOSIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMCIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9LAogICAgICB7CiAgICAgICAgImlkIjogIlAxMyIsCiAgICAgICAgInNjb3JlIjogNAogICAgICB9CiAgICBdLAogICAgInJlbGVhc2VfY29tcGF0aWJpbGl0eV9kZWNsYXJhdGlvbiI6IHsKICAgICAgImFwcHJvdmVkIjogdHJ1ZSwKICAgICAgImJhc2VsaW5lX3ZlcnNpb24iOiAic29sdXRpb24tYmFzZWxpbmUtMjAyNi4wNyIsCiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInJldmlld19ldmlkZW5jZSI6IHsKICAgICAgImV4aXN0cyI6IGZhbHNlCiAgICB9LAogICAgInJ1bnRpbWVfZXZpZGVuY2UiOiB7CiAgICAgICJleGlzdHMiOiB0cnVlCiAgICB9LAogICAgInNlY3VyaXR5X2V2aWRlbmNlIjogewogICAgICAiZXhpc3RzIjogdHJ1ZQogICAgfSwKICAgICJzb2x1dGlvbl9iYXNlbGluZSI6IHsKICAgICAgImV4aXN0cyI6IHRydWUKICAgIH0KICB9LAogICJyZWxlYXNlX2NhbmRpZGF0ZSI6IHRydWUKfQpQSwMEFAAAAAAAAGBvXV0pNx4XAAAAFwAAABkAAABiYXNlbGluZS1nYXRlLXJlc3VsdC5qc29uewogICJzdGF0dXMiOiAicGFzcyIKfQpQSwMEFAAAAAAAAGBvXQhFpcV2AAAAdgAAAB4AAABjb250cm9sLWV2YWx1YXRpb24tcmVwb3J0Lmpzb257CiAgInN1bW1hcnkiOiB7CiAgICAiYXBwbGljYWJsZSI6IDE2LAogICAgImZhaWwiOiAwLAogICAgIm5vdF9hcHBsaWNhYmxlIjogMzAsCiAgICAicGFzcyI6IDE2LAogICAgInRvdGFsIjogNDYKICB9Cn0KUEsDBBQAAAAAAABgb12UcK1gbwMAAG8DAAAWAAAAcGlwZWxpbmUtZXZpZGVuY2UuanNvbnsKICAiYXJ0aWZhY3QiOiB7CiAgICAiYXJ0aWZhY3RfaWQiOiAiYXBwbGljYXRpb24uYmluIiwKICAgICJkaWdlc3QiOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAicGF0aCI6ICJhcHBsaWNhdGlvbi5iaW4iLAogICAgICAidmFsdWUiOiAiODFiYjdmNzI5OTI1YTU3ZTgwMDMwMjY5ZjY1YmQyMThjNmYyYjY1MTVhN2YyMmYxYjZlZDhkMDgwMDE1YTRkYiIKICAgIH0KICB9LAogICJldmlkZW5jZSI6IHsKICAgICJwaXBlbGluZV9leGVjdXRpb24iOiB7CiAgICAgICJnZW5lcmF0ZWRfYXQiOiAiMjAyNi0xMS0xNVQxMTo1NTowMFoiCiAgICB9LAogICAgInNib20iOiB7CiAgICAgICJleGlzdHMiOiB0cnVlLAogICAgICAicGF0aCI6ICJhcHBsaWNhdGlvbi5jZHguanNvbiIKICAgIH0sCiAgICAidnVsbmVyYWJpbGl0eV9zY2FuIjogewogICAgICAiZXhpc3RzIjogdHJ1ZSwKICAgICAgInBhdGgiOiAic2Nhbi5qc29uIgogICAgfQogIH0sCiAgInBpcGVsaW5lIjogewogICAgImNvbW1pdF9pZCI6ICJhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhIiwKICAgICJldmVudCI6ICJwdXNoIiwKICAgICJwaXBlbGluZV9pZCI6ICJTeW50aGV0aWMgQ0kiLAogICAgInBpcGVsaW5lX3J1bl9pZCI6ICI3MDAxIiwKICAgICJwaXBlbGluZV91cmwiOiAiaHR0cHM6Ly9jaS5leGFtcGxlL3J1bnMvNzAwMSIsCiAgICAic3RhdHVzIjogInN1Y2Nlc3MiCiAgfSwKICAicmVsZWFzZSI6IHt9LAogICJyZXBvc2l0b3J5IjogewogICAgImJyYW5jaCI6ICJtYWluIiwKICAgICJwcm90ZWN0ZWRfYnJhbmNoIjogdHJ1ZSwKICAgICJyZXBvc2l0b3J5X2lkIjogInN5bnRoZXRpYy9yZXN1bHRzIgogIH0sCiAgIndhaXZlcnMiOiBbXQp9ClBLAwQUAAAAAAAAYG9dCXK5WjEAAAAxAAAACQAAAHNjYW4uanNvbnsKICAibm90X3JlYWxfc2NhbiI6IHRydWUsCiAgInN5bnRoZXRpYyI6IHRydWUKfQpQSwECFAMUAAAAAAAAYG9dKIsW8icAAAAnAAAADwAAAAAAAAAAAAAAgIEAAAAAYXBwbGljYXRpb24uYmluUEsBAhQDFAAAAAAAAGBvXQlyuVoxAAAAMQAAABQAAAAAAAAAAAAAAICBVAAAAGFwcGxpY2F0aW9uLmNkeC5qc29uUEsBAhQDFAAAAAAAAGBvXQjPPVY2AwAANgMAACMAAAAAAAAAAAAAAICBtwAAAGFyY2hpdGVjdHVyZS1nb3Zlcm5hbmNlLXJlcG9ydC5qc29uUEsBAhQDFAAAAAAAAGBvXZcCQbiPCQAAjwkAAB8AAAAAAAAAAAAAAICBLgQAAGFyY2hpdGVjdHVyZS1yZWxlYXNlLWlucHV0Lmpzb25QSwECFAMUAAAAAAAAYG9dXSk3HhcAAAAXAAAAGQAAAAAAAAAAAAAAgIH6DQAAYmFzZWxpbmUtZ2F0ZS1yZXN1bHQuanNvblBLAQIUAxQAAAAAAABgb10IRaXFdgAAAHYAAAAeAAAAAAAAAAAAAACAgUgOAABjb250cm9sLWV2YWx1YXRpb24tcmVwb3J0Lmpzb25QSwECFAMUAAAAAAAAYG9dlHCtYG8DAABvAwAAFgAAAAAAAAAAAAAAgIH6DgAAcGlwZWxpbmUtZXZpZGVuY2UuanNvblBLAQIUAxQAAAAAAABgb10JcrlaMQAAADEAAAAJAAAAAAAAAAAAAACAgZ0SAABzY2FuLmpzb25QSwUGAAAAAAgACAArAgAA9RIAAAAA"
+    }
+  ],
+  "generation": "Frozen original CLI main executed with synthetic API/download inputs; no network or accepted writer.",
+  "schema_version": 1,
+  "synthetic": true,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197"
+}

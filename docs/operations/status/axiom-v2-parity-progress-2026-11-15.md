@@ -113,10 +113,43 @@ Existing accepted snapshots retain their original Trust and scope.
 
 ## Remaining Goal work
 
-The matrix retains every V1 capability without exceptions. Full measured-L1 and
-accepted intake, complete DCR operations/catalogue preparation, lifecycle/consent/
-action closure, reporting/graph/Viewer/release and agent tools, and long-lived
-service/update/backup/restore parity remain open. Source collection and measured
-replay now have the additional installed proof above; accepted intake and later
-supplements remain separate. This partial receipt does not close the Goal
-or transfer V1 personal operating acceptance to either new node.
+The matrix retains every V1 capability without exceptions. Later checkpoints
+below add private DCR operations/catalogue, supplements, typed intake and general
+result/index evidence. Full native live acceptance and accepted-result publication,
+lifecycle/consent/action closure, reporting/graph/Viewer/release and agent tools,
+and long-lived service/update/backup/restore parity remain open. These partial
+receipts do not close the Goal or transfer V1 personal operating acceptance to
+either new node.
+
+## Installed general result/index checkpoint at `a0d0d9e`
+
+The later candidate `a0d0d9e3c858f46b349e0e4adf336379b4bc8777` (tree
+`d130a632aec305949a0bfefd99da11b22479e3e0`) passed pinned full validation:
+1,348 tests, one platform skip; demo and strict documentation build passed.
+All 24 fingerprint-protected operating-acceptance files remain unchanged.
+
+| Installed binding | SHA-256 |
+| --- | --- |
+| Runtime | `0a3abd1ad703f1c4f285675b2d967963c9de1e0b46ca5f28fb99eba0ed913d7d` |
+| Mac prepared package | `56607567101425470e207e8afe52c347440ccaf562efa83cbe12a17e5613d31e` |
+| Linux prepared package | `d9f26c52bc7cfbd7c88bfb314405eaa20a37dcc4d64a7cc91b15e37b67333cce` |
+| Complete general CI/manual/index cases | `9b40f86b5c4477db9ea2117e0e9f2d611f9fcd1305c83165f4ca2574c89f8503` |
+| Complete committed-source DCR report | `4825110f8751f2aaa9f6df934432d1540b80c0a53ae18d13710d0bcf8494d96e` |
+| Complete real V1/Mac/Linux report comparison | `bbcb07afaae89967ceab631b446d9751fe844703336697921d494ffd506afb70` |
+
+Fresh installations on both hosts matched all eight complete business vectors:
+general CI/manual/index results, typed intake, DCR operating/catalogue/redaction,
+assurance/staging supplements, committed source/measured replay, requirement/DCR/
+full report cases, direct real reports and HTTP authentication/CSRF/logout/restart/
+drift checks. The full committed-source DCR report also matches. General cases
+compare all original V1 snapshot fields and all three complete result indices;
+operator-supplied Trust remains effectively unverified. Fixtures are synthetic
+where labelled; real source replay remains the same pinned Main and physical
+inputs described above.
+
+Different private node identities, keys and state remain separate. Temporary
+listeners stopped; collectors are paused with empty queues and no publisher.
+The original VM service remains `adc4643` on port 8766, HTTP 200. This checkpoint
+adds installed evidence for the implemented private capabilities. Full native
+accepted-result publication, remaining product areas and operating workflows
+still require their own evidence; the Goal is not complete.

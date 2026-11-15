@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 private native CI result assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "runtime_source_digest",
+    "source_revision",
+    "source_worktree_clean",
+    "assessed_at",
+    "input_origin",
+    "input_id",
+    "repository",
+    "snapshots",
+    "mode",
+    "evidence_trust",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "storage_budget_bytes",
+    "provider",
+    "capture"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "v1-compatible-native-result-assessment"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "input_origin": {
+      "const": "native_reader"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "instance",
+        "native_id",
+        "path",
+        "url"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "native_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "snapshots": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 2,
+      "additionalProperties": false,
+      "properties": {
+        "devsecops": {
+          "type": "object"
+        },
+        "architecture": {
+          "type": "object"
+        }
+      }
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "storage_budget_bytes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 34359738368
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "native_metadata_rechecked",
+        "requests",
+        "whole_archives_downloaded",
+        "verified_at"
+      ],
+      "properties": {
+        "native_metadata_rechecked": {
+          "const": true
+        },
+        "requests": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "whole_archives_downloaded": {
+          "const": true
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
