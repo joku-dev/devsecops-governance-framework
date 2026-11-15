@@ -24,6 +24,7 @@
 - name: Prepare the hash-locked runtime and verify OPA
   ansible.builtin.shell: |
     set -euo pipefail
+    umask 022
     python3 -m venv "$VALIDATION_VENV"
     "$VALIDATION_VENV/bin/python" -m pip install --disable-pip-version-check --require-hashes -r requirements-validation.lock -r requirements-source-document-intake.lock
     ./scripts/bootstrap_validation_env.sh
@@ -85,6 +86,14 @@
       - vm_consumer_schema.stdout in (['none', '0', '1'] if vm_consumer_engine == 'legacy' else ['none', '2'])
       - vm_consumer_engine != 'portable-v1' or vm_portable_consumer_support.stat.isreg | default(false)
     fail_msg: Explicit verified state migration or legacy restore is required; no automatic schema downgrade or collector fallback.
+- name: Verify public runtime imports are readable by the portable collector UID
+  ansible.builtin.command:
+    argv: ['{{ vm_venv }}/bin/python', -c, 'from jsonschema import Draft202012Validator; import yaml']
+  become_user: '{{ vm_consumer_user }}'
+  environment:
+    PYTHONDONTWRITEBYTECODE: '1'
+  changed_when: false
+  when: vm_consumer_engine == 'portable-v1'
 - name: Prepare the candidate Workbench service unit
   ansible.builtin.template:
     src: axiom-workbench.service.j2

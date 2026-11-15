@@ -161,7 +161,14 @@ class Queue:
         eligible=(saved['candidate_eligible'] and saved['verifier']==receipt['verifier']
                   and receipt['freshness']=='fresh' and receipt['execution']=='complete'
                   and all(passed for name,passed in receipt['checks'].items() if name!='replay_key_unique'))
+        context=receipt['producer'];native_default=observation.get('native_default_branch')
+        proof={'bundle_digest':receipt['bundle_digest'],'verifier_source_digest':receipt['verifier']['source_digest'],
+               'capture_sha256':file_digest(raw),'default_branch':native_default,
+               'mainline_proven':bool(eligible and isinstance(native_default,str) and native_default
+                   and ci['event']=='push' and context['revision']['mode']=='branch'
+                   and context['revision']['branch']==native_default and context['change_request'] is None)}
         with self.store.transaction():
+            self.db.execute('INSERT OR REPLACE INTO meta VALUES (?,?)',('portable:native_context:'+task['key'],json.dumps(proof,sort_keys=True)))
             self.db.execute('INSERT OR REPLACE INTO meta VALUES (?,?)',('portable:produced:'+task['key'],json.dumps(metadata['result_generated_at'])))
             self.db.execute('UPDATE native_tasks SET state=?,receipt_key=?,raw_path=?,error=NULL WHERE key=?',
                 ('verified' if eligible else 'held',saved['execution_key'],raw_path,task['key']))
@@ -169,7 +176,10 @@ class Queue:
     def summary(self,*,at):
         counts=dict(self.db.execute('SELECT state,count(*) FROM native_tasks GROUP BY state'))
         oldest=self.db.execute("SELECT min(discovered) FROM native_tasks WHERE state IN ('queued','working')").fetchone()[0]
-        return {'schema_version':1,'counts':counts,'queue_age_seconds':max(0,at-oldest) if oldest is not None else 0,
+        tables={row[0] for row in self.db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        legacy_counts=dict(self.db.execute('SELECT state,count(*) FROM jobs GROUP BY state')) if 'jobs' in tables else {}
+        return {'schema_version':1,'counts':counts,'legacy_counts':legacy_counts,
+                'legacy_reconciliation_required':bool(legacy_counts),'queue_age_seconds':max(0,at-oldest) if oldest is not None else 0,
                 'publisher_active':False,'official_acceptance':False}
 
 

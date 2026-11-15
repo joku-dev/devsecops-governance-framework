@@ -65,6 +65,12 @@ def shadow_match(queue,task,document,committed_root,*,at):
     >=24h plus a newly produced matching mainline result after that full window.
     """
     started=queue.get('shadow_started:'+task['profile'])
+    proof=queue.get('native_context:'+task['key'])
+    if (not proof or not proof['mainline_proven'] or proof['bundle_digest']!=document['bundle_digest']
+            or proof['verifier_source_digest']!=document['verifier_source_digest']
+            or proof['default_branch']!=document['revision']['branch'] or not task.get('raw_path')
+            or file_digest(safe_path(queue.store.root,task['raw_path']+'/native-capture.json'))!=proof['capture_sha256']):
+        return False
     path=Path(committed_root)/path_for(document)
     if not path.is_file() or path.is_symlink():return False
     path=safe_path(committed_root,path_for(document))

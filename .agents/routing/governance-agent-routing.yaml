@@ -6,6 +6,8 @@ fallback:
   path_prefixes: [.agents/, .codex/, .github/, scripts/, model/, tests/, apps/]
   agents: [governance-analyst]
 rules:
+  - path_prefix: scripts/generate_portable_candidate_index.py
+    agents: [governance-analyst, devsecops-baseline, policy-as-code, evidence-and-intake, release-manager, demo-readiness]
   - path_prefix: tests/capacity/
     agents: [governance-analyst, devsecops-baseline, policy-as-code, evidence-and-intake, release-manager]
   - path_prefix: scripts/lib/runtime_package.py

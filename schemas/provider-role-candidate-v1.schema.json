@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Candidate issuer/subject role binding (no authority)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "subject",
+    "role_id",
+    "repository_key",
+    "source_revision",
+    "live_authority",
+    "personal_consent",
+    "operating_acceptance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "candidate"
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "issuer",
+        "native_id",
+        "kind",
+        "subject_key"
+      ],
+      "properties": {
+        "provider": {
+          "enum": [
+            "github",
+            "gitlab",
+            "bitbucket-dc"
+          ]
+        },
+        "issuer": {
+          "type": "string",
+          "format": "uri"
+        },
+        "native_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "user",
+            "bot",
+            "group",
+            "application"
+          ]
+        },
+        "subject_key": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "role_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,79}$"
+    },
+    "repository_key": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}([a-f0-9]{24})?$"
+    },
+    "live_authority": {
+      "const": false
+    },
+    "personal_consent": {
+      "const": false
+    },
+    "operating_acceptance": {
+      "const": false
+    }
+  }
+}

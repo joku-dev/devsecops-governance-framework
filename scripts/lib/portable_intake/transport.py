@@ -178,6 +178,7 @@ class Observation:
     completed_at: str | None
     scm_facts_digest: str | None
     native_job_id: str | None = None
+    native_default_branch: str | None = None
 
     def checks(self, context, manifest, policy, at, generated_at):
         identity = native_identity(context)
@@ -225,12 +226,13 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
 
     config_digest = None
     attempt_bound = False
-    started_at = completed_at = native_job_id = None
+    started_at = completed_at = native_job_id = native_default_branch = None
     if provider == 'github-actions':
         if scm['provider'] != 'github' or endpoint(scm['instance']) != endpoint(ci['instance']):
             raise ValueError('unsupported_github_scm_composition')
         route = '/repos/' + '/'.join(encoded(p) for p in scm['path'].split('/'))
         repo = get(route)
+        native_default_branch=repo.get('default_branch')
         run = get(route + '/actions/runs/' + encoded(ci['run_id']) + '/attempts/' + str(ci['attempt']))
         if (str(repo['id']) != scm['native_id'] or repo['full_name'] != scm['path'] or str(run['id']) != ci['run_id']
                 or run['run_attempt'] != ci['attempt'] or run['status'] != 'completed'
@@ -279,6 +281,7 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
             raise ValueError('unsupported_gitlab_scm_composition')
         route = '/projects/' + encoded(scm['native_id'])
         repo = get(route)
+        native_default_branch=repo.get('default_branch')
         run = get(route + '/pipelines/' + encoded(ci['run_id']))
         job = get(route + '/jobs/' + encoded(ci['job_id']))
         if (str(repo['id']) != scm['native_id'] or repo['path_with_namespace'] != scm['path']
@@ -353,5 +356,5 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
     observation = Observation(provider, identity, revision, artifact_id,
                               hashlib.sha256(Path(archive).read_bytes()).hexdigest(), at,
                               config_digest, attempt_bound, canonical_digest(audit),bundle_digest,
-                              started_at,completed_at,facts_digest,native_job_id)
+                              started_at,completed_at,facts_digest,native_job_id,native_default_branch)
     return observation, audit

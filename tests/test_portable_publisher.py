@@ -69,6 +69,31 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual(observe_committed(self.queue,self.committed,at=NOW),1)
         self.assertIsNone(freeze(self.queue,[self.profile],self.routing,NODE,base=SHA,target='main',at=NOW,committed_root=self.committed))
 
+    def test_feature_push_or_unknown_native_default_branch_cannot_fulfil_mainline_shadow(self):
+        from lib.portable_intake.controller import Queue
+        from lib.portable_intake.store import Store
+        for default in ('different-default',None):
+            pool,_,responses,_,_=self.f.native()
+            responses['/repos/'+self.profile['policy']['scm']['path']]['default_branch']=default
+            store=Store(self.root/('native-'+str(default)))
+            try:
+                queue=Queue(store);queue.discover(self.profile,self.f.locator,at=NOW);task=queue.claim(at=NOW)
+                receipt=collect_task(queue,task,self.profile,pool,RawBudget(store.root),opa=OPA,at=NOW)
+                self.assertTrue(receipt['candidate_eligible'])  # legitimate branch-scoped evidence
+                task=dict(queue.db.execute('SELECT * FROM native_tasks').fetchone())
+                document,_=local_candidate(queue,task);atomic_json(self.committed/path_for(document),document)
+                queue.put('shadow_started:'+task['profile'],NOW-90000)
+                self.assertFalse(queue.get('native_context:'+task['key'])['mainline_proven'])
+                self.assertFalse(shadow_match(queue,task,document,self.committed,at=NOW))
+            finally:store.close()
+
+    def test_changed_private_native_capture_cannot_assert_default_branch_proof(self):
+        self.ready();atomic_json(self.committed/path_for(self.document),self.document)
+        path=self.f.store.root/self.task['raw_path']/'native-capture.json'
+        metadata=json.loads(path.read_text());metadata['observation']['native_default_branch']='forged-default'
+        atomic_json(path,metadata)
+        self.assertFalse(shadow_match(self.queue,self.task,self.document,self.committed,at=NOW))
+
     def test_candidate_whitelist_preserves_native_ids_without_private_scan_data(self):
         text=canonical_text(self.document)
         self.assertEqual(self.document['ci']['job_id'],'987')

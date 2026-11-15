@@ -163,7 +163,7 @@ class BundleTests(unittest.TestCase):
              'completed_at':'2026-11-15T12:05:00Z','steps':[{'name':'Upload bundle','conclusion':'success'}]}
         artifact={'id':123,'name':'axiom-portable-pipeline-l1','expired':False,'created_at':'2026-11-15T12:01:00Z',
              'workflow_run':{'id':42,'repository_id':42,'head_sha':SHA},'digest':'sha256:'+hashlib.sha256(blob).hexdigest()}
-        responses={route:{'id':42,'full_name':ctx['scm']['path']},
+        responses={route:{'id':42,'full_name':ctx['scm']['path'],'default_branch':'trunk'},
              route+'/branches/trunk':{'name':'trunk','protected':True},
              route+'/branches/trunk/protection':{'enforce_admins':{'enabled':True},'required_pull_request_reviews':{
                  'required_approving_review_count':1,'bypass_pull_request_allowances':{'users':[],'teams':[],'apps':[]}}},
@@ -171,7 +171,7 @@ class BundleTests(unittest.TestCase):
                  'path':'.github/workflows/portable.yml','head_sha':SHA,'event':'push','head_branch':'trunk'},
              route+'/contents/.github/workflows/portable.yml?ref='+SHA:{'content':base64.b64encode(CONFIG).decode()}}
         if provider=='gitlab-ci':
-            responses={'/projects/42':{'id':42,'path_with_namespace':ctx['scm']['path']},
+            responses={'/projects/42':{'id':42,'path_with_namespace':ctx['scm']['path'],'default_branch':'trunk'},
                 '/projects/42/repository/branches/trunk':{'name':'trunk','protected':True},
                 '/projects/42/protected_branches?per_page=100&page=1':[{'id':1,'name':'trunk','push_access_levels':[{'access_level':0}]}],
                 '/projects/42/approval_rules?per_page=100&page=1':[{'rule_type':'regular','approvals_required':1,'protected_branches':[]}],
