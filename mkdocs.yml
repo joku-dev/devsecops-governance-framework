@@ -187,6 +187,7 @@ nav:
           - Portable Runtime ADR: operations/planning/portable-governance-runtime-adr.md
           - Portable Operations Candidate: operations/adapters/portable-operations.md
           - Portable Collector Service Candidate: operations/guides/portable-consumer-service.md
+          - Prepared Runtime Package Candidate: operations/guides/prepared-runtime-package.md
           - Bitbucket Bamboo Governance Adapter: operations/adapters/bitbucket-bamboo-governance-adapter.md
           - Company Bitbucket Bamboo Mistral Target Path: operations/adapters/company-bitbucket-bamboo-mistral-target-path.md
           - GitHub Reference Path: operations/adapters/github-reference-path.md

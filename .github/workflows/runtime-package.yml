@@ -1,0 +1,35 @@
+name: Prepared runtime offline
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/package_governance_runtime.py'
+      - 'scripts/lib/runtime_package.py'
+      - 'scripts/lib/safe_archive.py'
+      - 'tests/test_runtime_package.py'
+      - 'tests/integration/run_runtime_package.py'
+      - 'requirements-validation.lock'
+      - 'scripts/validation-toolchain.env'
+      - '.github/workflows/runtime-package.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepared-core-offline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Prepare exact core and wheels while online
+        run: |
+          ./scripts/bootstrap_validation_env.sh
+          .venv-validation/bin/python -m pip --isolated download --only-binary=:all: --require-hashes --no-cache-dir -r requirements-validation.lock --dest "$RUNNER_TEMP/axiom-offline-wheels"
+      - name: Install and evaluate the package in a network-isolated disposable namespace
+        run: sudo --preserve-env=GITHUB_ACTIONS .venv-validation/bin/python tests/integration/run_runtime_package.py --allow-isolated-test --wheelhouse "$RUNNER_TEMP/axiom-offline-wheels" --opa "$GITHUB_WORKSPACE/.venv-validation/bin/opa" --output-root "$RUNNER_TEMP/axiom-package-offline-proof"
