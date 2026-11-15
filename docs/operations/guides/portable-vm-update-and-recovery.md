@@ -1,5 +1,16 @@
 # Portable VM update and recovery
 
+## Recorded target update, 15 November 2026
+
+The authorized Proxmox update from `edf1623` to the full Main commit
+`59bc6d12c1944abcdcacfb40cf38bb88044ea29f` completed successfully. Candidate
+validation, authenticated Workbench smoke and independent VM/controller backup
+checks passed. The legacy collector engine was preserved; no new portable
+configuration, schema migration or publisher activation was performed. The
+[dated platform state](../status/current-governance-platform-state.md) distinguishes
+this installed revision from the later Main guide/CI update `4f6f5bb`.
+The commands below remain the procedure for a separately authorized next update.
+
 This is the engineering runbook from [GCR-2026-180](../../governance/change-requests/GCR-2026-180-portability-acceptance-and-recovery.md), building on [VM installation](linux-vm-installation.md), [collector operations](portable-consumer-service.md) and [intake migration](../evidence/portable-evidence-intake.md). Commands below are for an approved operating change; publishing a candidate PR does not authorize executing them on the target.
 
 ## Compatibility and prerequisites

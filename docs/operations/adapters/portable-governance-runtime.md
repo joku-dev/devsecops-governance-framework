@@ -6,7 +6,9 @@ For the integrated candidate and actual live boundaries after this increment, se
 This is the executable M1 candidate for the platform-portability goal, linked to
 [GCR-2026-173](../../governance/change-requests/GCR-2026-173-portable-runtime-m1.md).
 It adds a shared evaluator, provider adapters and versioned contracts. It is not
-a released baseline, operational acceptance or a completed M2 implementation.
+a released baseline or operational acceptance. This page describes the M1 layer;
+the merged M2 verifier/store/collector and actual deployment boundaries are in the
+[integrated matrix](../planning/platform-portability-acceptance.md).
 
 ## Execution and boundaries
 
@@ -140,7 +142,8 @@ passed through `scm_read_token` for that lookup. No permissions are auto-granted
 GitLab/Bamboo reader secrets likewise require the documented read APIs only.
 Bamboo's configured event is an operator declaration, not independent native
 provenance. GitHub currently records its native logical job key (`GITHUB_JOB`), not a
-REST job-execution ID; independent job binding remains M2 work. GitLab retries
+REST job-execution ID; the merged common verifier supplies separate native job
+binding during intake. GitLab retries
 use distinct native job IDs; Bamboo restart/attempt
 provenance remains a separate M2/live capability to validate.
 
@@ -159,11 +162,14 @@ mechanism. Templates need target-system syntax/import checks before deployment;
 YAML parsing alone is not a platform compatibility certificate.
 
 Mac and VM use the same pure evaluator modules. No systemd/Linux-only import
-enters the core. This change does not alter the VM queue, routing, credentials,
-publisher, installed revision or Workbench. M2 still must deliver a shared
-verifier, native artifact/run proofs, legacy identity migration, provider-aware
-persistent state, central publishing and isolated VM migration/recovery/scale
-acceptance. Existing report-only/shadow defaults and the single publisher remain.
+enters the core. Subsequent merged increments supply the shared verifier, native
+artifact/run checks, provider-aware schema2 state, migration/recovery, candidate
+publication and isolated scale tests. The real VM was updated to `59bc6d1` while
+retaining its legacy engine. Portable migration, ownership/publisher activation
+and provider-specific live acceptance remain open. See the
+[engineering matrix](../planning/platform-portability-acceptance.md) and
+[VM runbook](../guides/portable-vm-update-and-recovery.md). Existing
+report-only/shadow defaults and publisher ownership remain unchanged.
 
 Reference contracts checked against the official [GitLab variables](https://docs.gitlab.com/ci/variables/predefined_variables/),
 [protected branches](https://docs.gitlab.com/api/protected_branches/),

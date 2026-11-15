@@ -1,5 +1,13 @@
 # Releases
 
+## Publication recheck — 15 November 2026
+
+The live GitHub Releases API still lists only v0.2.0 and v0.1.0; the matching
+remote v0.3.0 tag collection is empty. The remote `l1-baseline-v1.2.1` tag
+exists. The 7 November table below remains consistent with this recheck.
+Merged portability source and the verified VM installation do not publish a new
+baseline or repository adoption release.
+
 This section contains repository release statements and baseline package documentation.
 
 ## Publication readback — 7 November 2026

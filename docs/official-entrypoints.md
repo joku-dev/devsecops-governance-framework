@@ -1,8 +1,13 @@
 # Official Entrypoints
 
+Aktueller Abgleich: [Implementierung und VM-Betrieb, 15. November 2026](operations/status/repository-documentation-reconciliation-2026-11-15.md).
+Für den praktischen Einstieg: [Workbench](operations/guides/governance-review-workbench.md),
+[Mac und Linux-VM parallel](operations/guides/linux-vm-installation.md),
+[Portabilität und offene Abnahmen](operations/planning/platform-portability-acceptance.md).
+
 [Governance Workspace öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html) · [Bedienung und Datenherkunft](operations/guides/governance-viewer-app.md)
 
-Aktueller Funktionsumfang: [detaillierter Katalog mit 21 Bereichen](operations/guides/repository-function-catalog.md)
+Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](operations/guides/repository-technical-function-inventory.md).
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-state.md)
@@ -40,7 +45,8 @@ It is intended for:
 - Pilot runbook: `docs/onboarding/pilot-runbook.md`
 - Public quickstart: `docs/onboarding/public-repo-quickstart.md`
 - Validated neutral demo consumer: `docs/onboarding/validated-demo-consumer.md`
-- Adoption/operations release: `docs/releases/v0.3.0-public-adoption.md`
+- Published releases and prepared statements: [Release index](releases/index.md)
+- Prepared adoption/operations statement: `docs/releases/v0.3.0-public-adoption.md`
 - Reading compass for new team members: `docs/lesekompass.md`
 - Role-based documentation paths: `docs/paths/index.md`
 - AI navigation index: `docs/ai-index.md`

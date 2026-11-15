@@ -1,5 +1,22 @@
 # Governance Repository Operations Handbook
 
+## Workbench and VM operations, 15 November 2026
+
+The private Workbench can run independently on macOS and the Ubuntu VM. Start
+with [installation, SSH access, keys and parallel operation](linux-vm-installation.md)
+and [exact-commit update/recovery](portable-vm-update-and-recovery.md).
+The [current platform state](../status/current-governance-platform-state.md)
+records the verified VM revision `59bc6d1` separately from Main `4f6f5bb`.
+
+The existing GitHub-only [VM collector](vm-consumer-intake.md) remains on its
+legacy engine. The merged [portable collector](portable-consumer-service.md)
+adds a private schema2 SQLite queue and provider-specific candidate processing;
+its activation is separate. Timer activity alone does not prove collection.
+Accepted governance results still come from reviewed Git snapshots/indexes;
+the private SQLite queue is operational state. Use the
+[engineering acceptance matrix](../planning/platform-portability-acceptance.md)
+for open target versions, shadow, ownership, publisher and capacity decisions.
+
 The separately accepted [GitHub GRS-002 lifecycle pilot](../status/governance-lifecycle-current-state.md)
 is active after PRs #92/#93. Its manual `acceptance`, `observe`, `action` and
 `refresh` operations use the scoped PR publisher. Consumer onboarding and
@@ -13,8 +30,9 @@ for application-team adoption and the [beginner change guide](beginner-step-by-s
 for editing this repository.
 
 The repository is operated through Git, validated workflows, reviewed evidence
-PRs, and generated reports. A database or application server is not required for
-the current pilot.
+PRs and generated reports. The public Viewer is static. The optional private
+Workbench uses a local HTTP service, and the optional VM collector uses SQLite
+for operational state; neither replaces the accepted Git evidence ledger.
 
 The [11 September 2026 maintenance record](../reference-runs/2026-09-11-operational-evidence-refresh.md)
 documents a consumer evidence refresh, administrative security observations and
@@ -42,7 +60,7 @@ clock; regenerating it does not create a new consumer evaluation.
 | Area | Current operating rule |
 |---|---|
 | Central repository `main` | PR required; one approving review; strict required checks; resolved conversations; force pushes and deletion blocked; no standing bypass |
-| Required checks | `validate-and-report`, `Analyze Python`, `Governance Repository Security` from GitHub Actions |
+| Required checks | `validate-and-report`, `Analyze Python`, `Governance Repository Security`, `Consumer Lifecycle Guard`, `Dependency Review` from GitHub Actions |
 | Self-security and daily reports | Findings remain report-only even when report generation succeeds |
 | New consumer pilots | Explicit `governance_mode: report-only` for manual, PR and main push runs; architecture `fail_on_findings: false` |
 | Released DevSecOps wrapper | Its default is `block-on-error`; new consumer templates must explicitly override it with `report-only` |

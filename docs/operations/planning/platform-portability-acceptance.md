@@ -4,7 +4,7 @@ Date: 2026-11-15. Source: portability Goal v1.2 and [GCR-2026-180](../../governa
 
 ## Source, implementation and operation
 
-The shared evaluator, three CI adapters/templates, independent common verifier, provider-bound persistence/migration, SCM/CI operations, persistent collector, VM integration, exact-source prepared distribution and candidate provider assurance/read models are implemented in dependent feature PRs. They assess five mapped pipeline-L1 controls. The other eleven controls remain `not_evaluated`; `full_baseline_assessment` remains false. Existing published baselines and personally accepted GitHub lifecycle paths are retained.
+The shared evaluator, three CI adapters/templates, independent common verifier, provider-bound persistence/migration, SCM/CI operations, persistent collector, VM integration, exact-source prepared distribution and candidate provider assurance/read models are integrated on Main through PR #377 (`4fe9586`). They assess five mapped pipeline-L1 controls. The other eleven controls remain `not_evaluated`; `full_baseline_assessment` remains false. Existing published baselines and personally accepted GitHub lifecycle paths are retained.
 
 | Work package | Implemented source | Remaining external boundary |
 | --- | --- | --- |
@@ -15,10 +15,10 @@ The shared evaluator, three CI adapters/templates, independent common verifier, 
 | WP4 | Functional GitLab CI and Bamboo templates/adapters; separate GitHub/GitLab/Bitbucket DC SCM facts | Installed API/edition and native lint/import/runner acceptance; Bamboo provenance closure remains unresolved |
 | WP5 | Common native/local verification, immutable receipts/replay/freshness, schema2 store, stopped-writer legacy migration, candidate index | A verified candidate is not an accepted domain result |
 | WP6 | Scoped proposal Git workspace, PR/MR reconciliation, explicit CI dispatch, issuer/subject and review/security candidates | Personal/role authority, platform equivalences and human approvals; accepted legacy publishers are not redirected |
-| WP7 | Existing VM entrypoints use shared modules; exact revision/engine compatibility, backup/recovery, offline core package and scale tests | Real Proxmox rollout, OS/scanner preparation, shadow/ownership/publisher activation and capacity approval |
+| WP7 | Existing VM entrypoints use shared modules; exact revision/engine compatibility, backup/recovery, offline core package and scale tests; real Proxmox update to `59bc6d1` verified | Legacy engine preserved; portable migration, OS/scanner preparation, shadow/ownership/publisher activation and capacity approval remain open |
 | WP8 | Full pinned validation, adversarial/parity/DOM/systemd tests, revision-bound coordinator role reviews and this handoff | Independent human review and each separately scoped live acceptance |
 
-Source delivery chain, in review order:
+Merged delivery chain; retained feature heads describe the reviewed increments:
 
 | PR | Scope | Source head |
 | --- | --- | --- |
@@ -32,11 +32,25 @@ Source delivery chain, in review order:
 | [#375](https://github.com/joku-dev/devsecops-governance-framework/pull/375) | Provider candidates, native default-branch proof and enhanced migration/recovery | `63984f3729402a45e40db3759e04541050cf7e72` |
 | [#376](https://github.com/joku-dev/devsecops-governance-framework/pull/376) | Workbench browser sessions across localhost ports | `511d16c492b7c7e9f522bc0b8e8f6c211785f4ac` |
 
-These feature heads are not an installed release or an automatic merge instruction. Resolve current PR refs/checks before integrating in dependency order. A later review/check is bound to its own exact source and does not retroactively certify another head.
+PRs #368–#377 are merged through the final integration PR
+[#377](https://github.com/joku-dev/devsecops-governance-framework/pull/377),
+Main `4fe95869facede91e4c623dd1f190135b2463eb9`. The feature heads above retain
+their historical identity; use a reviewed full Main commit for installation.
+[#387](https://github.com/joku-dev/devsecops-governance-framework/pull/387)
+then corrected host-disk-dependent test fixtures at Main
+`59bc6d12c1944abcdcacfb40cf38bb88044ea29f`; production storage reserves were preserved.
 
-PRs #368 and #369 both target main; their Goal v1.2 blob is identical. PR #370 starts the dependent runtime stack, followed by #371–#376. Resolve the current refs again at merge time; do not substitute these feature pins for a published release tag.
-
-A read-only target observation at `2026-11-15T04:14:12Z` found the public active checkout and Workbench Python pin at `edf16239e9274dbc33f38f204ef80f58c989f969`. Workbench and both consumer timers were active; both oneshot service conditions were false. Timer activity therefore does not demonstrate collection. Private operator/deployment metadata could not be read without sudo authentication; its mode is not inferred. A second read-only observation at `2026-11-15T04:31:15Z` confirmed Ubuntu 24.04 x86_64 and a clean tracked checkout (optional Git writes disabled). No target settings/data/code were changed. The original Mac working checkout remains separate from these isolated feature branches. Live simultaneous deployment of the new portable version on Mac and Proxmox remains open.
+The earlier 04:14/04:31 UTC target observations found `edf1623` installed.
+They were superseded by the authorized Proxmox update, observed on
+15 November at 10:59 MEZ: `59bc6d1` installed, candidate full validation and
+real Workbench login/data/logout passed, service active, anonymous API denied,
+and VM/controller backups verified byte-equal. The Mac Workbench remained
+available and its original checkout was preserved. The VM retained the legacy
+collector engine, with no new configuration or publisher activated; timer
+activity alone does not prove collection. No existing collector database was
+present to back up. These observations prove a source update and concurrent
+Workbench availability, not portable migration or live provider acceptance.
+See the [platform state](../status/current-governance-platform-state.md).
 
 ## Acceptance criteria and scope
 
@@ -65,11 +79,11 @@ A read-only target observation at `2026-11-15T04:14:12Z` found the public active
 | AC19 | Migration tests retain legacy DB/raw/cache/meta/batches/publication IDs; ambiguous/unclassified/interrupted state fails closed; enhanced disposable VM harness activates migrated schema2 | A real source-to-target activation remains separately authorized |
 | AC20 | Persistent collision/replay/physical-job alias tests; lost-reply publisher recovers the same frozen commit without another push/proposal; audited scale identities | A second publisher is never enabled by restoring state |
 | AC21 | Real file/Git dependency-closure drift tests plus service pre-work/frozen-commit holds | No fetched code is run to make a mismatch disappear |
-| AC22 | Disposable Ubuntu Ansible exact-revision install/update/restart, authenticated Workbench checks, retained drafts/keys/collector state and two-location backups | Actual target update is not performed |
+| AC22 | Disposable Ubuntu exact-revision install/update/restart and retained-state tests; real Proxmox update to `59bc6d1`, authenticated smoke and two-location verified Workbench backups passed | No existing collector database on this target; portable migration/activation and later updates remain separate |
 | AC23 | Interrupted migration, failed activation recovery, incompatible schema downgrade halt before stopping service and separate compatible legacy restore | Later v2 evidence remains in the retained root/backup for reconciliation |
 | AC24 | Native default-branch proof; 24-hour/new-run fixture guards; source/node ownership, one batch, all-state PR/MR reconciliation and terminal requests | **Open:** actual shadow duration/run and authorized ownership handoff |
 | AC25 | Real systemd service UIDs/credential mounts, private queue/raw/public projection permissions and reader/publisher phase separation | Real provider credentials/permission grants remain absent |
-| AC26 | Two simultaneous real HTTP Workbench instances reject each other's keys/cookies and retain separate drafts; a shared browser-style cookie jar preserves both logins and logout independence; isolated Ubuntu authenticated service/recovery | No new cross-host deployment or automatic synchronization is claimed |
+| AC26 | Two simultaneous HTTP Workbench fixtures reject each other's keys/cookies and retain separate drafts; browser-style cookie jar preserves logins/logout independence; real Mac HTTP 200 alongside updated VM authenticated smoke | No automatic draft synchronization; live hosts retain independent revisions/state |
 | AC27 | Actual Mac arm64/Linux x86_64 offline package runs produce identical full canonical pass/fail hashes at documented source/tree/tool versions | Real Proxmox prepared-runtime invocation remains open |
 | AC28 | Versioned 1,000/2,000 distinct identity profile, 10% reruns, actual files/OPA, persistent quotas/429/restart, every-execution audit and measured CPU/RSS/disk/API/backlog | Synthetic fixtures and small payloads do not approve production capacity |
 | AC29 | Additive verifier/store/proposal/identity/read-model paths; protected ledger/publishers/dependencies remain exact; coordinator review/fingerprint evidence | Existing personal acceptance is not transferred to a new provider/profile |
@@ -102,7 +116,7 @@ Use the [portable update/recovery runbook](../guides/portable-vm-update-and-reco
 | --- | --- | --- |
 | WP4/WP6, AC06/09/13/17/30 | GitLab/Bamboo/Bitbucket DC target URLs, actual versions/editions/plugins, native producer/job/artifact IDs and least-privilege access | Platform owner supplies the target profile; run native lint/import and an explicitly scoped report-only fixture job, retaining raw native evidence |
 | WP6, AC29/30 | Reviewed issuer/subject mapping, role eligibility, personal action consent and operating acceptance for each new profile | Review candidate bindings and explicit capability equivalences using the existing human governance path |
-| WP7, AC18/24/25/26/30 | Authorized target update, schema/source reconciliation, private configuration and source-reviewed ownership/node routing | Deploy an approved exact commit in paused mode; inspect/migrate/restore state; then observe shadow for at least 24 hours and a new matching native default-branch run |
+| WP7, AC18/24/25/30 | Source update completed on Proxmox with legacy retained; portable schema/source reconciliation, private configuration and reviewed ownership/node routing remain open | Inspect actual state; approve and verify any migration into a fresh root; then observe portable shadow for at least 24 hours and a new matching native default-branch run |
 | AC16 only | Separate scoped blocking authority and real host branch-rule/check enforcement | After authorization, verify negative/missing/stale results prevent merges in that scope; preserve report-only elsewhere |
 | WP7, AC15/27/28 | OS/scanner preparation, real payload/retention/arrival distribution, provider latency/quotas, VM storage/IOPS and agreed SLO thresholds | Prepare a disposable representative target, rerun the versioned load and offline inputs, then obtain explicit capacity approval |
 

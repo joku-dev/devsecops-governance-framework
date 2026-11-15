@@ -1,5 +1,27 @@
 # Detaillierter Funktionskatalog des Governance-Repositories
 
+## Aktueller Stand: Mac, VM und Portabilität — 15. November 2026
+
+Quellstand `4f6f5bbc2614760a35fe9d79602bcf5b19bc6e74`; der unten gebundene
+Ausgangskatalog vom 7. November bleibt als historischer Inventarstand erhalten.
+Der [aktuelle Abgleich](../status/repository-documentation-reconciliation-2026-11-15.md)
+ordnet die neuen Funktionen und Dokumentationsentwürfe zu.
+
+| Funktion | Implementierung und Betriebsgrenze |
+|---|---|
+| Anforderungen verstehen | [Fünf Phasen von Quelle bis OPA](../../governance/architecture/document-intake-to-opa-rulebook.md); menschliche Entscheidungen bleiben getrennt |
+| Workbench bedienen | Drei Schritte, exakte Artefaktbindungen und lesende Änderungsindikation; separate Mac-/VM-Sitzungen |
+| Linux-VM betreiben | [Ansible-Installation](linux-vm-installation.md), feste Commits, systemd, private Backups und geprüfte Rückkehr; Ziel-Update auf `59bc6d1` bestätigt |
+| Portabel auswerten | Gemeinsamer Runtime-Kern und GitHub-/GitLab-/Bamboo-Adapter; fünf Pipeline-L1-Kontrollen, elf nicht ausgewertet |
+| Evidence aufnehmen | Gemeinsamer Verifier, native Transports, unveränderliche Receipts, private Schema2-Queue und separate Kandidatenprojektion |
+| Sammlung veröffentlichen | Eingefrorene Batches und abgeglichene PR/MR-Vorschläge; Legacy-Engine bleibt auf der VM erhalten, kein neuer Publisher aktiviert |
+| Offline und Last prüfen | Vorbereitetes Laufzeitpaket, Wiederherstellung und gemessene 1.000/2.000-Repository-Fixtures; reale Plattform- und Kapazitätsabnahmen offen |
+
+[Engineering-Matrix](../planning/platform-portability-acceptance.md) und
+[technisches Inventar](repository-technical-function-inventory.md) führen die
+Details. Diese Ergänzung erweitert bestehende Aufgabenbereiche; sie erzeugt
+keine Baseline, Quellenfreigabe oder neue Consumer-Abnahme.
+
 ## Ergänzung: VM-Consumer-Intake (GCR-2026-171)
 
 Der optionale [VM-Collector](vm-consumer-intake.md) sammelt DevSecOps-L1-Ergebnisse
