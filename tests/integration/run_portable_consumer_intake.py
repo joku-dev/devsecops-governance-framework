@@ -14,7 +14,13 @@ from jinja2 import Environment,StrictUndefined
 ROOT=Path(__file__).resolve().parents[2]
 
 
-def run(*args,check=True):return subprocess.run(args,check=check,capture_output=True,text=True)
+def run(*args,check=True):
+    result=subprocess.run(args,check=False,capture_output=True,text=True)
+    if check and result.returncode:
+        # This harness is restricted to disposable hosts and freshly generated fake keys.
+        print(result.stdout[-4000:]);print(result.stderr[-4000:],file=sys.stderr)
+        raise subprocess.CalledProcessError(result.returncode,args,result.stdout,result.stderr)
+    return result
 
 
 def main():
@@ -26,11 +32,14 @@ def main():
     if Path('/etc/axiom/portable-consumer-intake.json').exists():raise SystemExit('Refusing existing portable configuration')
     receipt=json.loads(Path('/etc/axiom/deployment.json').read_text())
     runtime=Path('/srv/axiom/venvs')/receipt['current_revision']
-    # The independent legacy smoke runtime contains only stdlib; add exact locked imports.
-    run('runuser','-u','axiom','--',str(runtime/'bin/python'),'-m','pip','install','--require-hashes',
-        '-r',str(ROOT/'requirements-validation.lock'))
     os.umask(0o077)
     temporary=Path(tempfile.mkdtemp(prefix='axiom-portable-linux-',dir='/srv'));temporary.chmod(0o755)
+    # The service UID cannot traverse the runner's private home/checkout. Copy only the
+    # public hash lock into this readable synthetic fixture; never relax runner access.
+    validation_lock=temporary/'requirements-validation.lock'
+    shutil.copyfile(ROOT/'requirements-validation.lock',validation_lock);validation_lock.chmod(0o644)
+    run('runuser','-u','axiom','--',str(runtime/'bin/python'),'-m','pip','--isolated','install',
+        '--no-cache-dir','--require-hashes','-r',str(validation_lock))
     source=temporary/'repository'
     for directory in ('scripts','config','schemas'):
         shutil.copytree(ROOT/directory,source/directory,ignore=shutil.ignore_patterns('__pycache__'))
