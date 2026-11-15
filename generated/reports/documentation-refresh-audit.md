@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #345: feat(viewer): trace six requirement journeys through five phases (`6ce1d66bd139`)
 
 ## Ergebnis
 
@@ -10,12 +10,12 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.github/workflows/publish-docs.yml`
+- `.github/workflows/viewer-ui.yml`
+- `apps/governance-viewer/app.css`
+- `apps/governance-viewer/app.js`
+- `scripts/lib/requirement_journey_view.py`
+- `scripts/lib/viewer_app.py`
 
 ## Fehlende lokale Markdown-Ziele
 

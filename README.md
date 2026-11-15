@@ -14,18 +14,11 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## Implementation readback — 7 November 2026
+## PR #345: feat(viewer): trace six requirement journeys through five phases (`6ce1d66bd139`)
 
-The local [Review Workbench](docs/operations/guides/governance-review-workbench.md)
-guides document intake, explicit requirement review and review-packet handoff.
-Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
-prose is not converted into requirements. Notes prepare human decisions.
-The public Viewer presents reviewed projections read-only.
-The Governance view links registered sources, requirement decisions, effective
-artifact mappings and the OPA inventory under **Anforderung bis OPA**.
-
-The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
-records source commit `ae423f3`, draft coverage and remaining limits.
+- Exact catalog/source/proposal/activation/RTA identities and revisions determine joins. Show missing/ambiguous records and stale source/artifact hashes; never substitute a newer revision. Immutable evidence links bind the build commit; dirty
+- Keep RTA-000010 and RTA-000011 separate although both reference one file. Historical PRA open/rejected/duplicate proposals stay separate from current extraction. The duplicate target is GRQ-000019, with intentionally no own activation or in
+- Publish statement text only for exact active/effective GRQ revisions. No proposal/review/private Workbench texts in the new payload. Publication and runtime phases remain **not linked** without explicit requirement evidence; no overall gree
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
