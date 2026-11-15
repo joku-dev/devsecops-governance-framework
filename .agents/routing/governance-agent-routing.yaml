@@ -6,6 +6,14 @@ fallback:
   path_prefixes: [.agents/, .codex/, .github/, scripts/, model/, tests/, apps/]
   agents: [governance-analyst]
 rules:
+  - path_prefix: config/portable-runtime-compatibility.json
+    agents: [governance-analyst, devsecops-baseline, policy-as-code, evidence-and-intake, release-manager]
+  - path_prefix: scripts/lib/portable/
+    agents: [governance-analyst, devsecops-baseline, policy-as-code, evidence-and-intake, release-manager]
+  - path_prefix: scripts/governance_runtime.py
+    agents: [governance-analyst, devsecops-baseline, policy-as-code, evidence-and-intake, release-manager]
+  - path_prefix: tests/test_portable_runtime.py
+    agents: [governance-analyst, devsecops-baseline, policy-as-code, evidence-and-intake, release-manager]
   - path_prefix: .agents/evaluations/
     agents: [governance-analyst, release-manager]
   - path_prefix: scripts/evaluate_agent_reviews.py

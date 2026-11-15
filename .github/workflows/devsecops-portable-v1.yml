@@ -1,0 +1,104 @@
+name: Portable DevSecOps Pipeline L1 Candidate v1
+on:
+  workflow_call:
+    inputs:
+      runtime_revision:
+        description: Reviewed full 40-character runtime commit; candidate, not a released wrapper.
+        required: true
+        type: string
+      profile_path:
+        description: Reviewed SCM/CI profile path within the pinned governance checkout.
+        required: true
+        type: string
+      artifact_path:
+        required: true
+        type: string
+      sbom_path:
+        required: true
+        type: string
+      scan_path:
+        required: true
+        type: string
+      evidence_artifact_name:
+        description: Artifact from the application job, retaining the configured evidence paths.
+        required: true
+        type: string
+      mode:
+        default: report-only
+        type: string
+    secrets:
+      scm_read_token:
+        description: Optional read-only SCM credential; protection lookup may require administration read.
+        required: false
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  portable:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Validate immutable runtime reference
+        env:
+          REVISION: ${{ inputs.runtime_revision }}
+        run: python3 -c 'import os,re; raise SystemExit(0 if re.fullmatch("[a-f0-9]{40}", os.environ["REVISION"]) else "Full runtime commit required")'
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: application
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: joku-dev/devsecops-governance-framework
+          ref: ${{ inputs.runtime_revision }}
+          path: governance
+          persist-credentials: false
+      - name: Download application evidence into a separate subtree
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: ${{ inputs.evidence_artifact_name }}
+          path: application/evidence-input
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Prepare checksum-pinned runtime tools
+        run: |
+          python3 -m venv .venv-validation
+          .venv-validation/bin/python -m pip install --require-hashes -r governance/requirements-validation.lock
+          .venv-validation/bin/python governance/scripts/install_validation_opa.py --destination .venv-validation/bin/opa
+      - name: Evaluate portable pipeline scope
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          AXIOM_SCM_READ_TOKEN: ${{ secrets.scm_read_token || github.token }}
+          PROFILE_PATH: ${{ inputs.profile_path }}
+          ARTIFACT_PATH: ${{ inputs.artifact_path }}
+          SBOM_PATH: ${{ inputs.sbom_path }}
+          SCAN_PATH: ${{ inputs.scan_path }}
+          AXIOM_MODE: ${{ inputs.mode }}
+        run: |
+          PROFILE="$PWD/governance/$PROFILE_PATH"
+          .venv-validation/bin/python - "$PWD/governance" "$PROFILE" <<'PY'
+          from pathlib import Path
+          import sys
+          root,profile = map(lambda value:Path(value).resolve(),sys.argv[1:])
+          if not profile.is_relative_to(root) or not profile.is_file():
+              raise SystemExit('Profile must belong to the pinned runtime checkout')
+          PY
+          .venv-validation/bin/python governance/scripts/governance_runtime.py run \
+            --ci github-actions --profile "$PROFILE" --checkout application \
+            --artifact "evidence-input/$ARTIFACT_PATH" --sbom "evidence-input/$SBOM_PATH" --scan "evidence-input/$SCAN_PATH" \
+            --output-directory portable-evidence --mode "$AXIOM_MODE" --opa .venv-validation/bin/opa
+      - name: Preserve a diagnostic after an earlier technical failure
+        if: ${{ always() }}
+        run: |
+          mkdir -p portable-evidence
+          if [ ! -f portable-evidence/result.json ] && [ ! -f portable-evidence/diagnostics.json ]; then
+            printf '%s\n' '{"schema_version":"1.0.0","execution":"error","diagnostics":["runtime_did_not_produce_result"]}' > portable-evidence/diagnostics.json
+          fi
+      - name: Preserve result and diagnostics
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: axiom-portable-pipeline-l1
+          path: portable-evidence/
+          if-no-files-found: error

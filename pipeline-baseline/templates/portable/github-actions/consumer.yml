@@ -1,0 +1,40 @@
+# Copy the job into a reviewed workflow after an application/scanner job.
+# Use a reviewed full commit in BOTH locations; there is no released portable tag yet.
+name: Portable AXIOM candidate
+on: workflow_dispatch
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  build_and_scan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run the application's real build and scanners
+        run: ./ci/build-and-scan.sh
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ always() }}
+        with:
+          name: application-pipeline-evidence
+          path: |
+            dist/application-source.tar.gz
+            security/sbom.cyclonedx.json
+            security/vulnerability-scan.json
+          if-no-files-found: error
+  governance:
+    needs: build_and_scan
+    uses: joku-dev/devsecops-governance-framework/.github/workflows/devsecops-portable-v1.yml@REVIEWED_FULL_RUNTIME_COMMIT
+    with:
+      runtime_revision: REVIEWED_FULL_RUNTIME_COMMIT
+      profile_path: docs/examples/portable-runtime/github-profile.example.json
+      artifact_path: dist/application-source.tar.gz
+      sbom_path: security/sbom.cyclonedx.json
+      scan_path: security/vulnerability-scan.json
+      evidence_artifact_name: application-pipeline-evidence
+      mode: report-only
+    secrets:
+      scm_read_token: ${{ secrets.AXIOM_SCM_READ_TOKEN }}

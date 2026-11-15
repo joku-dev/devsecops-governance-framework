@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "scm": {
+    "provider": "gitlab",
+    "instance": "https://gitlab.example",
+    "api_url": "https://gitlab.example/api/v4",
+    "native_id": "REPLACE_WITH_NATIVE_REPOSITORY_ID",
+    "path": "GROUP/SUBGROUP/REPOSITORY",
+    "url": "https://gitlab.example/GROUP/SUBGROUP/REPOSITORY",
+    "token_env": "AXIOM_GITLAB_READ_TOKEN"
+  },
+  "ci": {
+    "instance": "https://gitlab.example",
+    "provider": "gitlab-ci"
+  },
+  "governance": {
+    "baseline_id": "l1-baseline-v1.1.3",
+    "baseline_digest": "8af833f2786e176544e2e73ed7dcb594d2af7c988a56208fb0fef986b9486b7d",
+    "domain": "devsecops",
+    "scope": "pipeline-l1"
+  }
+}
