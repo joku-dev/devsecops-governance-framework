@@ -13,6 +13,14 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
+
+**AXIOM V2 ist die Grundlage der weiteren Produktentwicklung.** Die
+[zentrale arc42-Architektur](docs/governance/architecture/governance-as-code-system-architecture.md)
+beschreibt Produktkern, explizite Adapter, Laufzeit, getrennte Installation und
+die offenen Produktentscheidungen. Der [geprüfte Installationskandidat](docs/operations/planning/axiom-v2-decoupling.md)
+und das [vollständige Funktions-/Einstiegspunktinventar](docs/operations/planning/axiom-v2-function-inventory.md)
+ordnen vorhandene Fähigkeiten und Betriebsgrenzen zu. Der Kandidat ist noch
+keine allgemein veröffentlichte Produktversion oder neue Betriebsabnahme.
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026
 

@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "scm": {
+    "provider": "gitlab",
+    "instance": "https://scm.example",
+    "native_id": "REPLACE_WITH_NATIVE_PROJECT_ID",
+    "path": "group/subgroup/governance",
+    "url": "https://scm.example/group/subgroup/governance"
+  },
+  "api_url": "https://scm.example/api/v4",
+  "remote": "https://scm.example/group/subgroup/governance.git",
+  "target": "main",
+  "git_username": "oauth2",
+  "reader_credential": "/private/operator/reader-api",
+  "publisher_credential": "/private/operator/publisher-api",
+  "git_reader_credential": "/private/operator/reader-git",
+  "git_publisher_credential": "/private/operator/publisher-git"
+}

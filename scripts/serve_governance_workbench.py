@@ -33,6 +33,8 @@ from generate_source_document_process_status import build_report
 from lib.document_consistency_view import project_public
 from lib.explicit_requirements import is_requirement_id
 from lib.workbench_impact import ImpactProjection
+from lib.provider_ports import WorkbenchPublication
+from lib.provider_errors import AccessFailure
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).resolve().parent / 'workbench'
@@ -106,7 +108,7 @@ def serialized_request(method):
 
 
 class Workbench:
-    def __init__(self, root=ROOT, state_dir=None, enable_pr=False, consumer_projection=None):
+    def __init__(self, root=ROOT, state_dir=None, enable_pr=False, consumer_projection=None, publisher=None):
         self.consumer_projection = consumer_projection
         self.root = Path(root).resolve()
         self.state_dir = Path(state_dir or self.root / '.local/governance-workbench').resolve()
@@ -116,6 +118,7 @@ class Workbench:
         self.state_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
         os.chmod(self.state_dir, 0o700)
         self.enable_pr = enable_pr
+        self.publisher = publisher
 
     def register(self):
         return yaml.safe_load((self.root / REGISTER).read_text())
@@ -278,7 +281,7 @@ class Workbench:
         return {'context': context, 'documents': self.register()['documents'], 'drafts': drafts,
                 'process': process, 'dcr': projection,
                 'briefs': read_json(self.root / 'generated/reports/source-document-intake-review-briefs.json').get('review_briefs', []),
-                'pr_enabled': self.enable_pr and shutil.which('gh') is not None,
+                'pr_enabled': self.enable_pr and self.publisher is not None,
                 'limits': ['Single local maintainer session; no enterprise role authentication.',
                            'Reports retain their original generated timestamps and may be partial or stale.',
                            'No semantic provider execution, source promotion or baseline approval.']}
@@ -466,50 +469,21 @@ class Workbench:
         return output.getvalue()
 
     def submit_pr(self, draft_id, payload):
-        if not self.enable_pr or not shutil.which('gh'):
-            raise ValueError('PR adapter is disabled. Start with --enable-pr and an authenticated GitHub CLI, or export the package.')
+        if not self.enable_pr:
+            raise ValueError('Publication adapter is disabled; configure a profile or export the package.')
         if payload.get('confirm_publication') is not True:
             raise ValueError('Explicit source publication confirmation is required')
+        if self.publisher is None:
+            raise ValueError('Explicit SCM publication profile is required')
         data = self.draft(draft_id)
         if data.get('pr'):
             return data['pr']
-        files = self.packet_files(draft_id)
-        if run(['git', 'status', '--porcelain', '--untracked-files=no'], self.root):
-            raise ValueError('PR publication requires a clean tracked checkout. Commit or restore unrelated edits first.')
-        repository = run(['gh', 'repo', 'view', '--json', 'nameWithOwner,defaultBranchRef'], self.root)
-        info = json.loads(repository)
-        base = info['defaultBranchRef']['name']
-        # Reject stale remote base instead of overwriting another maintainer's register edits.
-        remote = run(['git', 'ls-remote', 'origin', f'refs/heads/{base}'], self.root).split()[0]
-        if remote != data['context']['commit']:
-            raise ValueError('Remote default branch differs from this draft. Update checkout and prepare a fresh package.')
-        branch = f'workbench/intake-{draft_id}'
-        worktree = self.state_dir / f'pr-{draft_id}'
-        if worktree.exists():
-            raise ValueError('A prior PR attempt exists. Inspect/recover it manually before retrying; do not publish twice.')
-        run(['git', 'worktree', 'add', '-b', branch, str(worktree), data['context']['commit']], self.root)
-        for name, content in files.items():
-            if name in {'workbench-package.json', 'README.txt'}:
-                continue
-            dest = worktree / name
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            dest.write_bytes(content)
-        run(['git', 'add', '--', 'docs/governance/change-requests'], worktree)
-        if data['kind'] == 'source_candidate':
-            run(['git', 'add', '--', REGISTER, data['source']['source_path']], worktree)
-        run(['git', 'commit', '-m', 'Prepare workbench candidate and review proposals'], worktree)
-        run(['git', 'push', 'origin', branch], worktree, 60)
-        body = worktree / '.workbench-pr-body.txt'
-        body.write_text('Guided candidate intake / review preparation. Human review remains required.\n\n'
-                        'Report-only; no promotion, enforcement, semantic execution or baseline release.\n\n'
-                        'Local complete validation has not been run by the webapp. Run required CI and inspect original sources before merging.\n')
-        url = run(['gh', 'pr', 'create', '--repo', info['nameWithOwner'], '--base', base, '--head', branch, '--draft',
-                   '--title', 'Workbench: candidate intake and review preparation', '--body-file', str(body)], worktree, 60)
-        body.unlink()
-        pr = {'url': url, 'branch': branch, 'commit': run(['git', 'rev-parse', 'HEAD'], worktree)}
-        data['pr'] = pr
-        self.save(self.draft_dir(draft_id), data)
-        return pr
+        result=self.publisher.publish(root=self.root,destination=self.state_dir/('pr-'+draft_id),
+            draft_id=draft_id,context=data['context'],files=self.packet_files(draft_id),
+            kind=data['kind'],at=now(),local_run=run)
+        data['pr']=result
+        self.save(self.draft_dir(draft_id),data)
+        return result
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -646,7 +620,7 @@ class Handler(BaseHTTPRequestHandler):
                 operation = self.server.workbench.note if match[2] == 'notes' else self.server.workbench.submit_pr
                 return self.send(200, operation(match[1], payload))
             self.send(404, {'error': 'Not found'})
-        except (ValueError, OSError, SourceDocumentExtractionError, jsonschema.ValidationError, subprocess.TimeoutExpired) as exc:
+        except (ValueError, OSError, SourceDocumentExtractionError, jsonschema.ValidationError, subprocess.TimeoutExpired, AccessFailure) as exc:
             # Parser and validation errors must not expose source content in browser error messages.
             message = str(exc) if isinstance(exc, ValueError) and not isinstance(exc, jsonschema.ValidationError) else 'Operation failed; inspect local input and repository validation.'
             self.send(409, {'error': message})
@@ -667,17 +641,21 @@ def make_server(workbench, key, port=8765):
     return server
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__,allow_abbrev=False)
     parser.add_argument('--port', type=int, default=8765)
     parser.add_argument('--consumer-projection', type=Path, help='Read-only redacted collector projection directory')
-    parser.add_argument('--enable-pr', action='store_true', help='Enable explicit publication through local GitHub CLI authentication')
-    args = parser.parse_args()
+    parser.add_argument('--enable-pr', action='store_true', help='Enable explicit proposal publication through the configured SCM adapter')
+    parser.add_argument('--publication-profile',type=Path,help='Private explicit SCM publication profile')
+    parser.add_argument('--state-dir',type=Path,help='Private node directory within this checkout Workbench scope')
+    args = parser.parse_args(argv)
     os.umask(0o077)
     key = os.environ.get('AXIOM_WORKBENCH_KEY') or secrets.token_urlsafe(24)
     if len(key) < 24:
         parser.error('AXIOM_WORKBENCH_KEY must contain at least 24 characters')
-    server = make_server(Workbench(enable_pr=args.enable_pr, consumer_projection=args.consumer_projection), key, args.port)
+    publisher=WorkbenchPublication.from_file(args.publication_profile) if args.publication_profile else None
+    if args.enable_pr and publisher is None:parser.error('--enable-pr requires --publication-profile')
+    server = make_server(Workbench(enable_pr=args.enable_pr, consumer_projection=args.consumer_projection,publisher=publisher,state_dir=args.state_dir), key, args.port)
     print(f'AXIOM Workbench: http://127.0.0.1:{server.server_address[1]}', flush=True)
     if 'AXIOM_WORKBENCH_KEY' not in os.environ:
         print(f'Local access key: {key}', flush=True)

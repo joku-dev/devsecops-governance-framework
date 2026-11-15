@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Explicit private Workbench SCM publication profile v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "scm", "api_url", "remote", "target", "git_username", "reader_credential", "publisher_credential", "git_reader_credential", "git_publisher_credential"],
+  "properties": {
+    "schema_version": {"const": 2},
+    "scm": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider", "instance", "native_id", "path", "url"],
+      "properties": {
+        "provider": {"enum": ["github", "gitlab", "bitbucket-dc"]},
+        "instance": {"type": "string", "format": "uri"},
+        "native_id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 3},
+        "url": {"type": "string", "format": "uri"}
+      }
+    },
+    "api_url": {"type": "string", "format": "uri"},
+    "remote": {"type": "string", "format": "uri"},
+    "target": {"type": "string", "minLength": 1},
+    "git_username": {"type": "string", "minLength": 1, "maxLength": 100, "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$"},
+    "reader_credential": {"$ref": "#/$defs/private_path"},
+    "publisher_credential": {"$ref": "#/$defs/private_path"},
+    "git_reader_credential": {"$ref": "#/$defs/private_path"},
+    "git_publisher_credential": {"$ref": "#/$defs/private_path"}
+  },
+  "$defs": {"private_path": {"type": "string", "pattern": "^/", "minLength": 2}}
+}

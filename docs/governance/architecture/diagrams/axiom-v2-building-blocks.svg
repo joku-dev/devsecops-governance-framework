@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1150" role="img" aria-labelledby="title desc">
+<title id="title">AXIOM V2 — building blocks and dependency boundary</title><desc id="desc">Finite application routes use neutral domain modules and static provider ports. Adapters own native access. Governed data and node state are separate. Exact-source distribution excludes retired scripts.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#45627e"/>
+</marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#15324c}.title{font-size:29px;font-weight:700}.subtitle{font-size:19px;fill:#405b72}.label{font-size:21px;font-weight:700}.body{font-size:18px}.note{font-size:18px;fill:#405b72}.edge-label{font-size:17px;paint-order:stroke;stroke:#f6f8fc;stroke-width:6px;stroke-linejoin:round}.edge{fill:none;stroke:#45627e;stroke-width:2.2;marker-end:url(#arrow)}</style>
+<rect width="1500" height="1150" fill="#f6f8fc"/>
+<text x="40" y="45" class="title">AXIOM V2 — building blocks and dependency boundary</text>
+<text x="40" y="78" class="subtitle">Dependency direction is explicit; provider facts cannot become governance authority inside an adapter.</text>
+<polyline points="250,230 250,290" class="edge"/>
+<polyline points="460,375 530,375" class="edge"/>
+<polyline points="970,375 1040,375" class="edge"/>
+<polyline points="750,460 750,535" class="edge"/>
+<text x="770" y="507" class="edge-label">only provider seam</text>
+<polyline points="750,675 750,750" class="edge"/>
+<polyline points="970,825 1040,825" class="edge"/>
+<rect x="40" y="125" width="1420" height="105" rx="12" fill="#e9f2ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="157" class="label">Product entry: axiom_v2.py</text>
+<text x="60" y="189" class="body">init / check / runtime / evidence / collector / workbench — no arbitrary script or legacy-engine fallback</text>
+<rect x="40" y="290" width="420" height="170" rx="12" fill="#e9f2ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="322" class="label">Application and local review</text>
+<text x="60" y="354" class="body">v2_application: node + source binding</text>
+<text x="60" y="379" class="body">Workbench: original bytes and notes</text>
+<text x="60" y="404" class="body">Independent key, port and draft root</text>
+<rect x="530" y="290" width="440" height="170" rx="12" fill="#e9f2ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="550" y="322" class="label">Neutral common core</text>
+<text x="550" y="354" class="body">portable: contracts / evaluation / gate</text>
+<text x="550" y="379" class="body">portable_intake: verification + queue</text>
+<text x="550" y="404" class="body">Frozen batches / retry / reconciliation</text>
+<rect x="1040" y="290" width="420" height="170" rx="12" fill="#fff2d6" stroke="#60788e" stroke-width="1.7"/>
+<text x="1060" y="322" class="label">Governed input / owned state</text>
+<text x="1060" y="354" class="body">Schemas, policies, pinned baseline</text>
+<text x="1060" y="379" class="body">Private SQLite, raw bytes, receipts</text>
+<text x="1060" y="404" class="body">Read-only bounded projection</text>
+<rect x="530" y="535" width="440" height="140" rx="12" fill="#eee9ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="550" y="567" class="label">Explicit composition boundary</text>
+<text x="550" y="599" class="body">lib/provider_ports.py</text>
+<text x="550" y="624" class="body">Reviewed static adapter composition</text>
+<text x="550" y="649" class="body">Normalized facts / neutral failures</text>
+<rect x="40" y="750" width="930" height="155" rx="12" fill="#eee9ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="782" class="label">Native adapter implementation: lib/providers/</text>
+<text x="60" y="814" class="body">context / transports / discovery / operations / Workbench handoff / assurance</text>
+<text x="60" y="839" class="body">SCM and CI identities, native API calls, restricted Git workspace and draft checks</text>
+<text x="60" y="864" class="body">Explicit HTTPS origin and credential references; never approval authority</text>
+<rect x="1040" y="750" width="420" height="155" rx="12" fill="#fff" stroke="#60788e" stroke-width="1.7"/>
+<text x="1060" y="782" class="label">External provider profiles</text>
+<text x="1060" y="814" class="body">GitHub / GitLab / Bitbucket DC</text>
+<text x="1060" y="839" class="body">Actions / GitLab CI / Bamboo</text>
+<text x="1060" y="864" class="body">Live target acceptance per version</text>
+<rect x="40" y="980" width="1420" height="105" rx="12" fill="#e9f2ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="1012" class="label">Exact-source offline distribution and executable boundary</text>
+<text x="60" y="1044" class="body">runtime_package + v2_distribution + v2_source; both V2 config contracts; sparse working tree; own Python / OPA</text>
+<text x="40" y="705" class="note">Core has no native SDK / API / host / CI-env / gh access.</text>
+<text x="40" y="735" class="note">Transitive import and negative tests guard this boundary.</text>
+<text x="40" y="945" class="note">V1 import facades and executable paths are absent from installation; local authoring tools stay in the source checkout.</text>
+</svg>

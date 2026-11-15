@@ -21,7 +21,7 @@ test('accepted evidence, candidate and PR remain distinct and old evidence stays
  dom.window.close();
 });
 test('safe PR links only, missing poll is visible',()=>{
- const html=view.render({configured:true,repository:'owner/repo',mode:'publish',jobs:[],batch:{state:'open',pr:8,url:'https://github.com/owner/repo/pull/8'}});
+ const html=view.render({configured:true,repository:'owner/repo',mode:'publish',jobs:[],batch:{state:'open',pr:8,instance:'https://github.com',url:'https://github.com/owner/repo/pull/8'}});
  const dom=new JSDOM(html);
  assert.match(dom.window.document.body.textContent,/mehr als 30 Minuten/);
  assert.equal(dom.window.document.querySelector('a').rel,'noopener noreferrer');
@@ -42,5 +42,20 @@ test('portable candidates preserve native IDs and separate review from official 
   data.jobs[0].run_url=url;data.batch.url=url;
   const unsafe=new JSDOM(view.render(data));assert.equal(unsafe.window.document.querySelectorAll('a').length,0);unsafe.window.close();
  }
+ dom.window.close();
+});
+
+test('publication links require an explicit matching HTTPS instance',()=>{
+ for(const batch of [
+  {url:'https://github.com/owner/repo/pull/8'},
+  {instance:'https://scm.example',url:'https://github.com/owner/repo/pull/8'},
+  {instance:'https://scm.example',url:'https://scm.example.evil/review/8'}
+ ]){
+  const dom=new JSDOM(view.render({configured:true,mode:'publish',jobs:[],batch:{state:'open',pr:8,...batch}}));
+  assert.equal(dom.window.document.querySelector('a'),null);dom.window.close();
+ }
+ const dom=new JSDOM(view.render({configured:true,mode:'publish',jobs:[],batch:{state:'open',pr:8,
+  instance:'https://scm.example',url:'https://scm.example/group/repo/-/merge_requests/8'}}));
+ assert.equal(dom.window.document.querySelector('a').href,'https://scm.example/group/repo/-/merge_requests/8');
  dom.window.close();
 });

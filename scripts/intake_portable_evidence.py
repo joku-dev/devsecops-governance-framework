@@ -17,12 +17,12 @@ import zipfile
 import uuid
 from jsonschema import ValidationError
 
-from lib.consumer_github import AccessFailure
+from lib.provider_errors import AccessFailure
 from lib.consumer_intake_store import atomic_json, lock, verify_backup
 from lib.portable.runtime import read_json
 from lib.portable_intake.bundle import export_bundle, unpack, verify_bundle, validate_policy, require_storage
 from lib.portable_intake.store import Store, migrate_legacy, backup_v2, restore_legacy
-from lib.portable_intake.transport import Reader, capture, BoundedAudit
+from lib.provider_ports import Reader, capture, BoundedAudit
 from lib.private_credentials import check_private_file
 
 
