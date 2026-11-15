@@ -2,8 +2,12 @@
 Description=AXIOM consumer {{ consumer_operation }} (private VM operations)
 After=network-online.target
 Wants=network-online.target
+{% if vm_consumer_engine | default('legacy') == 'portable-v1' %}
+ConditionPathExists=/etc/axiom/portable-consumer-intake.json
+{% else %}
 ConditionPathExists=/etc/axiom/consumer-intake.json
 ConditionPathExists=/etc/axiom/consumer-reader.pem
+{% endif %}
 
 [Service]
 Type=oneshot
@@ -11,6 +15,15 @@ User={{ vm_consumer_user }}
 Group={{ vm_consumer_user }}
 SupplementaryGroups={{ vm_user }}
 WorkingDirectory={{ vm_repo }}
+{% if vm_consumer_engine | default('legacy') == 'portable-v1' %}
+LoadCredential=operator-config:/etc/axiom/portable-consumer-intake.json
+{% for credential in vm_portable_credentials.files | default([]) %}
+{% if credential.path.split('/')[-1].startswith('reader-') or consumer_operation == 'work' %}
+LoadCredential={{ credential.path.split('/')[-1] }}:{{ credential.path }}
+{% endif %}
+{% endfor %}
+ExecStart={{ vm_venv }}/bin/python {{ vm_repo }}/scripts/portable_consumer_intake.py {{ consumer_operation }} --config %d/operator-config --root {{ vm_consumer_root }} --projection {{ vm_consumer_projection }}
+{% else %}
 LoadCredential=operator-config:/etc/axiom/consumer-intake.json
 {% for credential in vm_consumer_credentials.results %}
 {% if credential.stat.exists and (credential.item == 'reader' or consumer_operation == 'work') %}
@@ -18,6 +31,7 @@ LoadCredential={{ credential.item }}-key:/etc/axiom/consumer-{{ credential.item 
 {% endif %}
 {% endfor %}
 ExecStart={{ vm_venv }}/bin/python {{ vm_repo }}/scripts/consumer_intake.py {{ consumer_operation }} --config %d/operator-config --root {{ vm_consumer_root }} --projection {{ vm_consumer_projection }}
+{% endif %}
 Environment=PYTHONDONTWRITEBYTECODE=1
 Environment=VALIDATION_VENV={{ vm_venv }}
 Environment=PATH={{ vm_venv }}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin

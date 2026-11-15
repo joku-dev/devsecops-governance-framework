@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "classification": "synthetic_measurement_environment",
+  "benchmark_source_commit": "7647cc6df3a1abe5d8df797c191d558771067b7d",
+  "load_profile_id": "portable-intake-synthetic-v1",
+  "exclusive_hardware": false,
+  "actual_vm_measured": false,
+  "production_capacity_approved": false,
+  "concurrent_activity": {
+    "label": "Pinned cookie-fix repository validation in a separate checkout on the same 10-CPU Mac",
+    "started_at": "2026-11-15T04:37:23.985767+00:00",
+    "completed_at": "2026-11-15T04:40:09.738603+00:00",
+    "source_commit": "a8387cdc11099db4288f960a63d97ab46885b74e",
+    "full_test_count": 1152,
+    "full_test_elapsed_seconds": 158.239
+  },
+  "limits": "The 2000-repository repeat overlaps this validation activity; observed wall time includes shared-host contention. Native APIs have zero-latency fixtures and queue age uses explicit virtual time. This is not a dedicated-hardware or production capacity result."
+}

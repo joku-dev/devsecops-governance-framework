@@ -182,6 +182,16 @@ nav:
           - ha-CPsWMS Lessons Learned: operations/status/ha-cpswms-governance-lessons-learned.md
       - Platform Adapters:
           - CI/CD Platform Adapter Strategy: operations/adapters/cicd-platform-adapter-strategy.md
+          - Portable Runtime v1 Candidate: operations/adapters/portable-governance-runtime.md
+          - Portable Evidence Intake v2 Candidate: operations/evidence/portable-evidence-intake.md
+          - Portable Runtime ADR: operations/planning/portable-governance-runtime-adr.md
+          - Portable Operations Candidate: operations/adapters/portable-operations.md
+          - Portable Collector Service Candidate: operations/guides/portable-consumer-service.md
+          - Prepared Runtime Package Candidate: operations/guides/prepared-runtime-package.md
+          - Provider assurance candidates: operations/guides/provider-assurance-candidates.md
+          - Portable update and recovery: operations/guides/portable-vm-update-and-recovery.md
+          - Platform portability acceptance: operations/planning/platform-portability-acceptance.md
+          - Portable capacity profile: operations/guides/portable-capacity-profile.md
           - Bitbucket Bamboo Governance Adapter: operations/adapters/bitbucket-bamboo-governance-adapter.md
           - Company Bitbucket Bamboo Mistral Target Path: operations/adapters/company-bitbucket-bamboo-mistral-target-path.md
           - GitHub Reference Path: operations/adapters/github-reference-path.md

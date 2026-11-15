@@ -47,6 +47,11 @@ class Store:
             raise ValueError('Operations root must not be a symlink')
         self.root.mkdir(parents=True, exist_ok=True, mode=0o700)
         self.db = sqlite3.connect(self.root / 'queue.sqlite3', timeout=30)
+        # Version 2 has a separate execution namespace and needs its own operator.
+        # Never let a legacy worker continue on a migrated candidate.
+        if self.db.execute('PRAGMA user_version').fetchone()[0] not in (0, 1):
+            self.db.close()
+            raise ValueError('Consumer state requires a compatible versioned operator')
         self.db.row_factory = sqlite3.Row
         self.db.executescript('''
           PRAGMA journal_mode=WAL;
@@ -64,6 +69,7 @@ class Store:
             manifest TEXT NOT NULL, commit_sha TEXT, pr INTEGER, url TEXT);
           CREATE UNIQUE INDEX IF NOT EXISTS one_active_batch ON batches((1))
             WHERE state IN ('prepared','open');
+          PRAGMA user_version=1;
         ''')
 
     def close(self):

@@ -549,7 +549,7 @@ class Handler(BaseHTTPRequestHandler):
             cookie.load(self.headers.get('Cookie', ''))
         except Exception:
             return None
-        sid = cookie.get('axiom_session')
+        sid = cookie.get(self.server.session_cookie)
         value = self.server.sessions.get(sid.value) if sid else None
         if value and value['expires'] > time.time():
             return value
@@ -623,7 +623,7 @@ class Handler(BaseHTTPRequestHandler):
             self.server.sessions = {k: v for k, v in self.server.sessions.items() if v['expires'] > time.time()}
             sid = secrets.token_urlsafe(32)
             self.server.sessions[sid] = {'csrf': secrets.token_urlsafe(32), 'expires': time.time() + 8 * 3600}
-            self.new_cookie = f'axiom_session={sid}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800'
+            self.new_cookie = f'{self.server.session_cookie}={sid}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800'
             return self.send(200, {'signed_in': True})
         session = self.session()
         if not session:
@@ -633,7 +633,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if path == '/api/logout':
                 self.server.sessions.clear()
-                self.new_cookie = 'axiom_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0'
+                self.new_cookie = f'{self.server.session_cookie}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0'
                 return self.send(200, {'signed_in': False})
             if path == '/api/drafts':
                 return self.send(201, self.server.workbench.create_draft(payload))
@@ -656,6 +656,8 @@ def make_server(workbench, key, port=8765):
     server = ThreadingHTTPServer(('127.0.0.1', port), Handler)
     server.request_lock = threading.RLock()
     actual_port = server.server_address[1]
+    # Browser cookies ignore ports. Keep localhost Mac/SSH-forwarded VM logins separate.
+    server.session_cookie = f'axiom_session_p{actual_port}'
     server.workbench = workbench
     server.access_key = key
     server.sessions = {}

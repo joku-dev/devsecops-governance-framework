@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "scm": {
+    "provider": "bitbucket-dc",
+    "instance": "https://bitbucket.example",
+    "api_url": "https://bitbucket.example",
+    "native_id": "REPLACE_WITH_NATIVE_REPOSITORY_ID",
+    "path": "PROJECT/REPOSITORY",
+    "url": "https://bitbucket.example/PROJECT/REPOSITORY",
+    "token_env": "AXIOM_BITBUCKET_READ_TOKEN"
+  },
+  "ci": {
+    "instance": "https://bamboo.example",
+    "event": "push",
+    "provider": "bamboo"
+  },
+  "governance": {
+    "baseline_id": "l1-baseline-v1.1.3",
+    "baseline_digest": "8af833f2786e176544e2e73ed7dcb594d2af7c988a56208fb0fef986b9486b7d",
+    "domain": "devsecops",
+    "scope": "pipeline-l1"
+  }
+}

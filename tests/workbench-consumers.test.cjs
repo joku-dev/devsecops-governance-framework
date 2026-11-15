@@ -27,3 +27,20 @@ test('safe PR links only, missing poll is visible',()=>{
  assert.equal(dom.window.document.querySelector('a').rel,'noopener noreferrer');
  dom.window.close();
 });
+test('portable candidates preserve native IDs and separate review from official acceptance',()=>{
+ const data={engine:'portable-v1',configured:true,mode:'shadow',queue_count:2,queue_age_seconds:30,legacy_reconciliation_required:true,
+  jobs:[{repository:'group/subgroup/repo',ci_provider:'gitlab-ci',ci_instance:'https://gitlab.example',
+   run_id:'opaque-pipeline',job_id:'opaque-native-job',attempt:1,state:'reviewed_candidate',
+   governance_status:'fail',evidence_trust:'provenance_verified',produced_at:'2026-11-15T12:00:00Z',
+   run_url:'https://gitlab.example/group/subgroup/repo/-/pipelines/opaque-pipeline'}],
+  batch:{state:'open',change_id:'opaque-MR',instance:'https://gitlab.example',url:'https://gitlab.example/group/subgroup/repo/-/merge_requests/7'}};
+ const dom=new JSDOM(view.render(data,Date.parse('2026-11-15T12:01:00Z'))),text=dom.window.document.body.textContent;
+ assert.match(text,/keine Compliance-Freigabe/);assert.match(text,/Geprüfter Kandidat/);assert.match(text,/opaque-native-job/);
+ assert.match(text,/frühere Collector-Datensätze/);assert.match(text,/vor einer Übergabe abgeglichen/);
+ assert.equal(dom.window.document.querySelectorAll('a').length,2);
+ for(const url of ['javascript:alert(1)','https://evil.example/run','https://token@gitlab.example/run','https://gitlab.example/run?token=secret']){
+  data.jobs[0].run_url=url;data.batch.url=url;
+  const unsafe=new JSDOM(view.render(data));assert.equal(unsafe.window.document.querySelectorAll('a').length,0);unsafe.window.close();
+ }
+ dom.window.close();
+});

@@ -1,0 +1,27 @@
+{
+  "actual_vm_updated": false,
+  "ambient_provider_environment": false,
+  "cases": [
+    {
+      "canonical_result_sha256": "07463468547b2e138c8e5e7fd733084406f44b160b686f2dca8884c5993c51b8",
+      "decision": "pass",
+      "exact_reference_match": true
+    },
+    {
+      "canonical_result_sha256": "3ef366b6bd53e26cccae8cebed791d303abcddd814354e6f913f6abe8825e9d3",
+      "decision": "fail",
+      "exact_reference_match": true
+    }
+  ],
+  "machine": "x86_64",
+  "network_control_probe_denied": true,
+  "network_policy": "Linux unshare network namespace with no external interfaces",
+  "package_files": 2004,
+  "package_sha256": "fd6e900e8e90d7f1db9ad87ae81af4063cef9bdba6bef1334bb975dcd948f2e8",
+  "python": "3.13.18",
+  "scanner_databases_prepared": false,
+  "schema_version": 1,
+  "source_commit": "52d3ecb0deb652dc3d2649a0bc5608c43909a673",
+  "source_tree": "1e27036b8b6c389815c696b603c6c0f327d15169",
+  "system": "Linux"
+}

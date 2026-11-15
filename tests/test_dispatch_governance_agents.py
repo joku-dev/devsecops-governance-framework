@@ -17,6 +17,12 @@ spec.loader.exec_module(dispatch_cli)
 
 
 class DispatchGovernanceAgentsTests(unittest.TestCase):
+    def test_portable_gate_changes_select_behavior_and_evidence_reviews(self):
+        dispatch = dispatch_cli.build_dispatch(["scripts/lib/portable/runtime.py", "config/portable-runtime-compatibility.json"])
+        for role in ("governance-analyst", "devsecops-baseline", "policy-as-code", "evidence-and-intake", "release-manager", "repo-steward"):
+            self.assertIn(role, dispatch["selected_agents"])
+        self.assertNotIn("architecture-runtime-governance", dispatch["selected_agents"])
+
     def test_build_dispatch_selects_policy_and_release_agents(self):
         dispatch = dispatch_cli.build_dispatch(["policies/opa/vulnerability_gate.rego"])
 

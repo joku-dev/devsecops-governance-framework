@@ -11,3 +11,4 @@ vm_backup_directory: /var/backups/axiom
 vm_consumer_root: /var/lib/axiom/consumers
 vm_consumer_projection: /var/lib/axiom/consumer-view
 vm_consumer_user: axiom-intake
+vm_requested_consumer_engine: preserve

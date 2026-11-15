@@ -23,13 +23,20 @@ from lib import vm_deployment as vm
 
 
 def run(args, **kwargs):
-    return subprocess.run(args, check=True, text=True, capture_output=True, **kwargs).stdout.strip()
+    result=subprocess.run(args, check=False, text=True, capture_output=True, **kwargs)
+    if result.returncode:
+        # Only disposable synthetic fixtures reach this harness; keep failure diagnostics bounded.
+        print(result.stdout[-4000:]);print(result.stderr[-4000:],file=sys.stderr)
+        raise subprocess.CalledProcessError(result.returncode,args,result.stdout,result.stderr)
+    return result.stdout.strip()
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--allow-disposable-host', action='store_true', required=True)
     args = parser.parse_args()
+    if os.environ.get('GITHUB_ACTIONS')!='true' and not Path('/run/axiom-disposable-integration').is_file():
+        raise SystemExit('Requires an explicitly marked disposable host, never the Proxmox target')
     if Path('/srv/axiom').exists() or Path('/etc/axiom').exists():
         raise SystemExit('Refusing an existing installation; use a fresh disposable host')
     if 'VERSION_ID="24.04"' not in Path('/etc/os-release').read_text():
@@ -185,7 +192,83 @@ def main():
         listeners = run(['ss', '-ltn'])
         assert '127.0.0.1:8766' in listeners and '0.0.0.0:8766' not in listeners
         assert run(['systemctl','is-enabled','axiom-workbench']) == 'enabled'
+        # Exercise the new portable engine on a retained legacy SQLite/raw/batch fixture.
+        # All producer identities and publication URLs below are explicitly synthetic.
+        run(['sudo','systemctl','stop','axiom-consumer-poll.timer','axiom-consumer-work.timer',
+             'axiom-consumer-poll.service','axiom-consumer-work.service'])
+        python='/srv/axiom/venvs/'+first+'/bin/python'
+        operations='/var/lib/axiom/consumers'
+        seed="""import sys,json,pathlib;sys.path.insert(0,'scripts')
+from lib.consumer_intake_store import Store,atomic_json
+s=Store(sys.argv[1]);s.discover('synthetic/consumer',{'id':42,'run_attempt':1,'status':'completed'})
+s.put('synthetic-watermark',{'run_id':42,'attempt':1})
+s.db.execute('INSERT INTO batches(id,base,state,manifest,pr,url) VALUES (?,?,?,?,?,?)',
+ ('cccccccccccccccccccccccc',sys.argv[2],'open','[]',11,'https://github.com/synthetic/governance/pull/11'));s.db.commit()
+p=pathlib.Path(sys.argv[1])/'raw'/'synthetic-retained.bin';p.parent.mkdir(exist_ok=True);p.write_bytes(b'Original synthetic raw bytes')
+s.close()
+"""
+        run(['sudo','-u','axiom-intake',python,'-c',seed,operations,first],cwd='/srv/axiom/repository')
+        mapping=temporary/'legacy-mapping.json'
+        mapping.write_text(json.dumps({'schema_version':2,'repositories':{'synthetic/consumer':{
+            'scm':{'provider':'github','instance':'https://github.com','native_id':'42','path':'synthetic/consumer',
+                   'url':'https://github.com/synthetic/consumer'},'ci_provider':'github-actions',
+            'ci_instance':'https://github.com','legacy_scope':'workflow-aggregate'}}}))
+        mapping_target='/var/lib/axiom/synthetic-portable-mapping.json'
+        run(['sudo','install','-o','axiom-intake','-g','axiom-intake','-m','0600',str(mapping),mapping_target])
+        migration_parent='/var/lib/axiom/synthetic-migrations'
+        run(['sudo','install','-d','-o','axiom-intake','-g','axiom-intake','-m','0700',migration_parent])
+        candidate=migration_parent+'/portable-candidate'
+        intake='/srv/axiom/repository/scripts/intake_portable_evidence.py'
+        run(['sudo','-u','axiom-intake',python,intake,'migrate-legacy','--root',operations,
+             '--destination',candidate,'--legacy-mapping',mapping_target])
+        run(['sudo','mv',operations,'/var/lib/axiom/consumers-retained-legacy-fixture'])
+        run(['sudo','mv',candidate,operations])
+        portable=temporary/'portable.json'
+        portable.write_text(json.dumps({'schema_version':1,'mode':'paused','registry':'/srv/axiom/repository/config/portable-consumer-profiles.json',
+            'credentials_directory':'systemd','request_budget':30,'node_id':'d'*32}))
+        run(['sudo','install','-o','root','-g','root','-m','0600',str(portable),'/etc/axiom/portable-consumer-intake.json'])
+        apply('update',first,vm_requested_consumer_engine='portable-v1')
+        assert receipt()['consumer_engine']=='portable-v1'
+        run(['sudo','systemctl','start','axiom-consumer-poll.service','axiom-consumer-work.service'])
+        projection=json.loads(run(['sudo','cat','/var/lib/axiom/consumer-view/consumers.json']))
+        assert projection['engine']=='portable-v1' and projection['mode']=='paused' and projection['legacy_reconciliation_required']
+        assert run(['sudo','cat',operations+'/raw/synthetic-retained.bin'])=='Original synthetic raw bytes'
+        check="""import sqlite3,sys,json;c=sqlite3.connect(sys.argv[1]);assert c.execute('PRAGMA user_version').fetchone()[0]==2
+assert c.execute('SELECT count(*) FROM jobs').fetchone()[0]==1
+assert tuple(c.execute('SELECT id,pr,url FROM batches').fetchone())==('cccccccccccccccccccccccc',11,'https://github.com/synthetic/governance/pull/11')
+assert json.loads(c.execute("SELECT value FROM meta WHERE key='synthetic-watermark'").fetchone()[0])=={'run_id':42,'attempt':1}
+c.close()
+"""
+        run(['sudo','-u','axiom-intake',python,'-c',check,operations+'/queue.sqlite3'])
+        run(['sudo','systemctl','restart','axiom-workbench'])
+        for attempt in range(12):
+            result=subprocess.run(['sudo','/usr/bin/python3','/usr/local/lib/axiom/vm_deployment.py','smoke',
+                '--port','8766','--environment','/etc/axiom/workbench.env'],capture_output=True)
+            if result.returncode==0:break
+            time.sleep(1)
+        else:raise AssertionError('Portable activation did not retain authenticated Workbench operation')
+        preserved_pid=pid()
+        apply('rollback',expected=1)  # old engine cannot open schema2, even on same code revision
+        assert receipt()['consumer_engine']=='portable-v1' and pid()==preserved_pid
+        assert run(['sudo','sha256sum',str(state/draft_id/'draft.json')]).split()[0]==before
+        assert run(['sudo','sha256sum','/etc/axiom/workbench.env']).split()[0]==key_hash
+        # Demonstrate the explicit compatible restore instead of forcing a schema downgrade.
+        run(['sudo','systemctl','stop','axiom-consumer-poll.timer','axiom-consumer-work.timer',
+             'axiom-consumer-poll.service','axiom-consumer-work.service'])
+        portable_backup=migration_parent+'/v2-restore-backup'
+        run(['sudo','-u','axiom-intake',python,intake,'backup','--root',operations,'--destination',portable_backup])
+        restored=migration_parent+'/restored-legacy'
+        run(['sudo','-u','axiom-intake',python,intake,'restore-legacy','--root',restored,'--destination',portable_backup])
+        run(['sudo','mv',operations,'/var/lib/axiom/consumers-retained-v2-fixture'])
+        run(['sudo','mv',restored,operations])
+        apply('update',first,vm_requested_consumer_engine='legacy')
+        assert receipt()['consumer_engine']=='legacy'
+        assert run(['sudo','cat',operations+'/raw/synthetic-retained.bin'])=='Original synthetic raw bytes'
+        assert run(['sudo','sha256sum',str(state/draft_id/'draft.json')]).split()[0]==before
+        run(['sudo','rm','/etc/axiom/portable-consumer-intake.json'])  # synthetic fixture only, after legacy restore
+        assert run(['systemctl','is-active','axiom-workbench'])=='active'
         print('PASS: install, idempotence, update, rollback, failed activation recovery, draft preservation, import/collision, blocked backup recovery, backup restore, restart and loopback boundary', flush=True)
+        print('PASS: portable schema2 migration, retained legacy bytes/IDs/batches, explicit engine activation, restart, schema-aware backup, incompatible downgrade halt and compatible legacy restore',flush=True)
     finally:
         httpd.shutdown()
 
