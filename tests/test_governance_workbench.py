@@ -419,6 +419,36 @@ class WorkbenchTests(unittest.TestCase):
                                 text=True, capture_output=True, check=False)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_one_browser_cookie_jar_keeps_two_ports_signed_in_after_logout(self):
+        from http.cookiejar import CookieJar
+        from urllib.request import build_opener,HTTPCookieProcessor,Request
+        from urllib.error import HTTPError
+        other=wb.Workbench(self.root,state_dir=self.app.state_dir/'browser-node')
+        keys=['first-browser-access-key-123456','second-browser-access-key-789012']
+        servers=[wb.make_server(app,key,port=0) for app,key in zip((self.app,other),keys)]
+        threads=[threading.Thread(target=s.serve_forever,daemon=True) for s in servers]
+        for thread in threads:thread.start()
+        jar=CookieJar();browser=build_opener(HTTPCookieProcessor(jar))
+        def request(i,path,payload=None,csrf=None):
+            origin='http://127.0.0.1:'+str(servers[i].server_address[1])
+            headers={'Origin':origin,'Content-Type':'application/json'}
+            if csrf:headers['X-CSRF-Token']=csrf
+            with browser.open(Request(origin+path,data=None if payload is None else json.dumps(payload).encode(),headers=headers),timeout=5) as response:
+                return json.loads(response.read())
+        try:
+            for i in (0,1):self.assertTrue(request(i,'/api/login',{'key':keys[i]})['signed_in'])
+            self.assertEqual(len(list(jar)),2)
+            states=[request(i,'/api/state') for i in (0,1)]
+            self.assertNotEqual(states[0]['csrf'],states[1]['csrf'])
+            request(0,'/api/logout',{},states[0]['csrf'])
+            self.assertEqual(len(list(jar)),1)
+            self.assertEqual(request(1,'/api/state')['csrf'],states[1]['csrf'])
+            with self.assertRaises(HTTPError) as error:request(0,'/api/state')
+            self.assertEqual(error.exception.code,401)
+        finally:
+            for server in servers:server.shutdown();server.server_close()
+            for thread in threads:thread.join(timeout=5)
+
     def test_two_running_instances_keep_sessions_keys_and_drafts_separate(self):
         first=self.upload()
         other=wb.Workbench(self.root,state_dir=self.app.state_dir/'independent-node')
