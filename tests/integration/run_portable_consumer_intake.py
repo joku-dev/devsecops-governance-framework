@@ -38,8 +38,13 @@ def main():
     # public hash lock into this readable synthetic fixture; never relax runner access.
     validation_lock=temporary/'requirements-validation.lock'
     shutil.copyfile(ROOT/'requirements-validation.lock',validation_lock);validation_lock.chmod(0o644)
-    run('runuser','-u','axiom','--',str(runtime/'bin/python'),'-m','pip','--isolated','install',
+    # Public runtime dependencies must remain readable by the separate collector UID;
+    # the parent keeps umask077 for private configuration and fake credentials.
+    run('runuser','-u','axiom','--',str(runtime/'bin/python'),'-c',
+        'import os,sys;os.umask(0o022);os.execv(sys.argv[1],sys.argv[1:])',str(runtime/'bin/python'),'-m','pip','--isolated','install',
         '--no-cache-dir','--require-hashes','-r',str(validation_lock))
+    run('runuser','-u','axiom-intake','--',str(runtime/'bin/python'),'-c',
+        'from jsonschema import Draft202012Validator;import yaml;print("collector dependency imports readable")')
     source=temporary/'repository'
     for directory in ('scripts','config','schemas'):
         shutil.copytree(ROOT/directory,source/directory,ignore=shutil.ignore_patterns('__pycache__'))
