@@ -150,10 +150,14 @@ the candidate process and using the preserved V1 installation; V2 never changes
 its service, state or authority. A production service migration remains a
 separate operating decision after the reviewable candidate.
 
-## Remaining V2 delivery
+## Candidate delivery and external acceptance
 
-Real isolated Mac/Linux package smokes and the final revision-bound review/PR
-remain within the same active Goal. Existing hosts are not switched by this increment.
+The [dated candidate acceptance record](../status/axiom-v2-candidate-readiness-2026-11-15.md)
+records the actual isolated Mac/Linux installs, byte-identical rebuild and
+nine-case business parity, separately from native live-provider acceptance.
+The saved `tests/acceptance/axiom_v2_host_smoke.py` repeats that test against a
+fresh installed prefix. Final revision-bound review/PR delivery remains part of
+the Goal. Existing hosts are not switched by this candidate.
 The earlier accepted personal GitHub lifecycle pilot remains bound to its V1
 source and authority. No new publisher, blocking check or platform authority is
 activated by this document or an implementation PR.

@@ -2,7 +2,7 @@
 goal_id: AXIOM-V2-DECOUPLING-001
 version: "2.0"
 date: "2026-11-15"
-status: in_progress
+status: implemented_candidate
 source_reference: 6b557fefe295b58272d2271326576ca3a3687197
 branch: feat/axiom-v2-decoupling
 change_request: GCR-2026-185
@@ -86,3 +86,13 @@ Abschluss erst nach Implementierung der Kriterien und Lieferung eines konkreten
 PR-/Installationskandidaten. Unabhängig ausführbare Arbeit wird bei fehlenden
 externen Zugängen fortgesetzt; offene Live-Abnahmen und nötige Codeowner-
 Freigaben werden präzise benannt und nicht durch Erfolgsbehauptungen ersetzt.
+
+## Technischer Kandidat
+
+Der [Installationsnachweis vom 15. November 2026](docs/operations/status/axiom-v2-candidate-readiness-2026-11-15.md)
+belegt den getrennten Mac-/Linux-Kandidaten auf Implementierungscommit `756a28e`.
+Das [Funktionsinventar](docs/operations/planning/axiom-v2-function-inventory.md)
+ordnet bestehende Funktionen, aktive Laufzeit und ausgeschlossene V1-Einstiege
+zu. Die Implementierung ist als Kandidat vorbereitet; abschließender
+revisionsgebundener Review und PR-Lieferung folgen. Produktivübernahme,
+menschliche CODEOWNER-Freigabe und unbekannte Live-Zielprofile sind eigene Grenzen.

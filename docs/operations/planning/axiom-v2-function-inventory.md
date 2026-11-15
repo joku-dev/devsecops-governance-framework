@@ -37,7 +37,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 21 Lifecycle | V1-Live-Pilot-Einstiegspunkte in V2 stillgelegt. Keine Übertragung persönlicher Betriebsabnahme oder Aktionsrechte; neue Live-Zulassung bleibt gesondert. |
 | 22 Dokumentationsabgleich | Bestehender GitHub-Workflow bleibt Adapter des Entwicklungsrepositories; kein aktiver V2-Betriebsdienst. |
 
-## Vollständige Python-Einstiegspunktliste
+## Vollständige Einstiegspunktliste
 
 **Laufzeit:** über den endlichen V2-Launcher aufgerufen. **Bibliothek:** wird von
 dieser Laufzeit lokal importiert. **Distribution:** ausschließlich Paket-/Werkzeugvorbereitung.
@@ -177,6 +177,25 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `validate_requirement_lifecycle.py` | Quellwerkzeug |
 | `validate_runtime_governance.py` | Quellwerkzeug |
 | `verify_evidence_attestation.py` | Quellwerkzeug |
+
+Zusätzlich zu den 130 Python-Dateien direkt unter `scripts/` existieren diese
+acht Shell-/Node-/verschachtelten Python-Einstiege. Auch sie sind im V2-Paket
+physisch ausgeschlossen; die Workbench-Browserdateien sind UI-Assets.
+
+| Datei unter `scripts/` | Klasse |
+| --- | --- |
+| `bootstrap_validation_env.sh` | Quellwerkzeug: gepinnte Entwicklungsvalidierung |
+| `bootstrap_source_document_intake_env.sh` | Quellwerkzeug: Parser-Vorbereitung |
+| `validate_all.sh` | Quellwerkzeug: vollständige Entwicklungsvalidierung |
+| `deploy_vm.sh` | V1-Installationspfad; nicht für den getrennten V2-Präfix verwenden |
+| `start_governance_workbench.sh` | V1-Startpfad; V2 verwendet seinen eigenen Launcher |
+| `publishing/build_executive_presentation.mjs` | Quellwerkzeug: Dokumentausgabe |
+| `publishing/build_repository_presentation.mjs` | Quellwerkzeug: Dokumentausgabe |
+| `publishing/build_executive_whitepaper.py` | Quellwerkzeug: Dokumentausgabe |
+
+Native CI-Workflows und Deploymentvorlagen bleiben Provider-/Entwicklungs-
+Metadaten. Der V2-Installer aktiviert keine davon. `tests/acceptance/axiom_v2_host_smoke.py`
+ist ein separat aufgerufener Test des fertigen Kandidaten und kein Produkt-Einstieg.
 
 Die vier bisherigen Importfassaden und ihre Altmodule werden nicht installiert.
 Die Adapterbibliothek und ihre expliziten neutralen Abhängigkeiten werden vollständig
