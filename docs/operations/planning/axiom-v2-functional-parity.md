@@ -618,3 +618,53 @@ input. Complete snapshots and Trust match V2. These are technical regression
 cases; fresh native live acceptance and installed evidence are recorded separately
 when actually observed. No new scanner/application run follows from capturing
 an existing run.
+
+## Committed-data reporting increment
+
+The finite `reports` route returns the original control-coverage JSON/Markdown,
+control traceability CSV, architecture runtime traceability CSV, Policy/Directive
+traceability CSV and governance graph JSON. `--kind all` produces all six files.
+The computations use explicit data roots; V2 imports or dispatches no retained
+source CLI and writes no generated files in its installed source.
+
+```sh
+"$V2_PREFIX/axiom-v2" reports build --kind all --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" reports inspect --id REPORT_ASSESSMENT_ID
+```
+
+The build receipt supplies a private artifact directory and each file's size and
+SHA-256. The source profile `committed-governance-data-v1` snapshots exact Git blobs
+from `model/`, `architecture/`, the retained `governance/` data, `status/` and the
+committed source-lineage report. Ordinary working-file edits are excluded. All
+copied files bind their Git object, size and SHA-256 to the exact product commit
+and tree. Schema/resource/runtime/node/time bindings surround the derived output.
+Git reads use local objects and disable lazy fetching and all transport protocols;
+a missing promised blob fails locally without invoking repository remote helpers.
+CSV column order and CRLF bytes match V1; graph timestamps retain their original
+derivation from input documents. The outer assessment time records the diagnostic
+operation rather than making historical evidence fresh.
+
+Inspect verifies the committed Git inventory, original copied bytes, report
+metadata and all output bytes, then repeats the full computation. Resealed source
+hashes still have to match actual committed Git blobs; resealed report metadata
+still has to match the original computation. Missing or extra files, links,
+traversal, foreign nodes, altered authority flags, unsupported report kinds and
+quota failures are rejected. Repeated builds at the same explicit time are
+idempotent. Source snapshots are cached privately per exact revision.
+
+The bounded profile admits up to 10,000 source files/128 MiB total/16 MiB per file;
+its manifest is limited to 4 MiB. Output is bounded to eight files, 64 MiB per file
+and 128 MiB total. The existing 8 GiB free-space reserve is preserved.
+
+These are read-only projections of committed governed data and historical
+results. Candidate authoring workspaces and live private collection state retain
+their separate contexts. Reports confer no compliance, source approval, risk
+acceptance or personal operating authority. Public report/Viewer publication,
+remaining report families and complete authoring/operating parity remain part of
+the ongoing Goal.
+
+The independently executed frozen V1 writers/computation produced all six expected
+files from 285 exact committed governance input files. Tests compare complete
+output bytes, including CSV endings, and exercise corruption, foreign scope,
+source-membership and quota failures. Installed evidence is recorded separately
+for the exact committed package once its execution has actually been observed.

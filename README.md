@@ -43,6 +43,9 @@ zeigen gemeldeten und wirksamen Trust getrennt. Der explizite native Adapter
 liest zusätzlich abgeschlossene CI-Läufe samt Originalarchiven, Lauf-/Jobdaten
 und verfügbarem Schutzstatus. Private Aufnahme und öffentliche Übergabe bleiben
 getrennte Schritte; die vollständige Produktabnahme ist weiter offen.
+`reports` erzeugt außerdem Kontrollabdeckungs-, Traceability- und Graphberichte
+aus dem festgehaltenen Governance-Datenstand der installierten Version. Die
+privaten Ausgaben lassen sich mit ihren ursprünglichen Git-Eingaben erneut prüfen.
 
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026

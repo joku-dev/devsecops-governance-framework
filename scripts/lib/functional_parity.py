@@ -20,7 +20,7 @@ V1_REFERENCE='6b557fefe295b58272d2271326576ca3a3687197'
 def git_read(root, *args):
     env={**os.environ,'GIT_CONFIG_GLOBAL':'/dev/null','GIT_CONFIG_NOSYSTEM':'1',
          'GIT_CONFIG_COUNT':'0','GIT_TERMINAL_PROMPT':'0','GIT_ASKPASS':'/bin/false',
-         'GIT_NO_REPLACE_OBJECTS':'1'}
+         'GIT_NO_REPLACE_OBJECTS':'1','GIT_NO_LAZY_FETCH':'1','GIT_ALLOW_PROTOCOL':''}
     for key in list(env):
         if key in ('GIT_DIR','GIT_WORK_TREE','GIT_INDEX_FILE','GIT_CONFIG_PARAMETERS','GIT_TEMPLATE_DIR') or key.startswith('GIT_TRACE'):
             env.pop(key)

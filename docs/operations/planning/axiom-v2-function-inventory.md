@@ -18,8 +18,8 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | --- | --- |
 | 1 Quellen verwalten | Workbench: lokale Entwürfe, Extraktion und explizites Adapterprofil für Draft-PR/MR. |
 | 2 Vorgabenänderungen | Workbench und private `requirements`-/`dcr`-Arbeitsbereiche; DCR-Betriebsprüfung, Katalogpaket, technischer Git-Kontext und private redigierte Projektion. Öffentliche Übergabe und vollständige Abnahme offen. |
-| 3 Herkunft | Vorhandene Modelle und Berichte lesend; Generatoren im Entwicklungscheckout. |
-| 4 Kontrollmodell | Versionierte Modelle im Paket; Modellpflege im Entwicklungscheckout. |
+| 3 Herkunft | `reports` erzeugt Kontroll-, Governance- und Architektur-Traceability sowie den Graph aus exakt gebundenen, committed Daten. Weitere Herkunfts- und Änderungsberichte bleiben offen. |
+| 4 Kontrollmodell | Versionierte Modelle im Paket; `reports build --kind control-coverage` beschreibt deren Abdeckung. Modellpflege im Entwicklungscheckout. |
 | 5 Kontrollen auswerten | Pipeline-Gate weiterhin fünf Kontrollen. Separates `evaluate --domain controls` erhält alle 46 V1-Berichtszeilen; Eingabeevidenz/Trust bleiben separat. |
 | 6 OPA | Ein gepinntes OPA je Zielplattform; gemeinsame Policies und Auswertungslogik. |
 | 7 Architekturmodell | Vorhandene Modell-/Baseline-Dateien erhalten; keine neue normative Architekturarbeit. |
@@ -32,7 +32,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 14 Replay | Private, pro Evidenztyp und Provider-Instanz abgegrenzte Replay-Prüfung; alte GitHub-Replay- und Attestierungs-CLIs sind noch nicht vollständig überführt. |
 | 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. |
 | 16 PR-Veröffentlichung | Explizite Adapterprofile und getrennte Zugangsdaten; keine implizite GitHub-Anmeldung oder Merge-Autorität. |
-| 17 Status | Workbench und private Consumer-Projektion; historische statische Ansichten bleiben Referenzdaten. |
+| 17 Status | Workbench und private Consumer-Projektion; `reports` ergänzt einen reproduzierbaren Graph des committed Datenstands. Statische Viewer-Publikation und weitere Projektionen bleiben offen. |
 | 18 Readiness | Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
 | 19 Betrieb/Sicherheit | Eigene Instanz, gepinnte Werkzeuge und Drift-Prüfung. GitHub-Sicherheitsbewertung nur innerhalb des Adapters. |
 | 20 Reviews/Kommunikation | Bestehende lokale Autoren-, Validierungs- und Reviewwerkzeuge im Entwicklungscheckout. |

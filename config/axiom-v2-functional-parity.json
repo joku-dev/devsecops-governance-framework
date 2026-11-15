@@ -817,8 +817,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/control_reporting.py:architecture_traceability",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -885,8 +885,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/control_reporting.py:control_coverage",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1097,8 +1097,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_graph.py:build_graph",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1216,8 +1216,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/control_reporting.py:governance_traceability",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1805,8 +1805,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/control_reporting.py:traceability",
+      "state": "in_progress",
       "evidence": []
     },
     {

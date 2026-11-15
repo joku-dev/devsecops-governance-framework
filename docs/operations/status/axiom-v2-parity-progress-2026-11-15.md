@@ -153,3 +153,58 @@ The original VM service remains `adc4643` on port 8766, HTTP 200. This checkpoin
 adds installed evidence for the implemented private capabilities. Full native
 accepted-result publication, remaining product areas and operating workflows
 still require their own evidence; the Goal is not complete.
+
+## Installed native reader checkpoint at `ef86727`
+
+Candidate `ef867276b11107702b7fb46e2911ec9326ce8258`, tree
+`57f8b6ecd6c7236751e17b80cadd55b08a9cd27d`, passed pinned full validation:
+1,364 tests, one platform skip; demo and strict documentation build passed.
+Its runtime digest is
+`e4684101d77fb79ef7ddd437facc65fcbf7dbf3f592319e1682634a501378ae8`.
+The prepared Mac package SHA-256 is
+`da220aa624de459a2685e8a2836d465ce9f3ede8b5067c457f14e482583dc38d`;
+Linux is `4a279cfae73734e98e2cfcae6952bf0408478509bc9d28c0c87aa31023d6ebdb`.
+
+Both fresh installations matched ten complete result groups: all eight prior
+private capability groups, the five frozen native wire cases and replay of three
+real native capture contexts. Full committed-source DCR reports also match.
+Their private nodes, keys and histories remain separate. Collectors are paused
+with empty queues, publishers inactive and temporary listeners stopped. The
+existing V1 VM remains `adc4643`, port 8766, HTTP 200. All protected operating
+fingerprints remain unchanged.
+
+[Native reader run 43767248960](https://github.com/joku-dev/ha-CPsWMS/actions/runs/43767248960)
+passed on the actual GitHub runner using this exact V2 source. Its isolated test
+branch adds one read-only workflow to unchanged Main `5c3b5cb`. The regular
+consumer CI for that branch also passed. The existing repository read secret
+stays inside Actions; no credential or instance key was exported.
+
+V2 captured and rechecked the baseline and full control artifacts from run
+`36997125273`, attempt 1, and architecture artifacts from run `36997124090`,
+attempt 1. It used 11, nine and seven native requests respectively. Actual
+capture, offline inspect, explicit private intake and private index projection
+succeeded. The October artifacts correctly fail November freshness evaluation.
+Their native capture receipt ZIP has SHA-256
+`cda766054964df4d7cb7c348a91936553aebc72baa06e0c120457b29db577d37`.
+
+The original V1 build/verify functions received the identical recorded native
+UTC and physical ZIP bytes. All complete snapshots match, with no normalized
+fields. This fixes the comparison's verification clock explicitly, including
+fractional seconds; the V1 CLI's default clock formatter is outside that check.
+Installed Mac/VM replays preserve the original observed time and remain
+operator-provided evidence rather than claiming a new native lookup.
+
+The historical baseline gate reports one pass, its separate full control report
+16 pass/30 not applicable, and architecture four passing gates. These differ
+from today's source/declaration input with six gaps because they describe distinct
+inputs. V1 and V2 match within each context. The real native-capture/V1/Mac/Linux
+comparison digest is
+`0114dc83cb618ff25b0e50561e38fa650ebbc95ff0da2a1fcc750f80f0ea25a1`.
+The existing failed fresh measured producer run retains its OCI digest finding;
+this checkpoint creates no new successful scanner run or compliance approval.
+
+The preceding `a0d0d9e` source passed all ten GitHub workflows, including both
+complete disposable-host jobs. The unchanged deployment protocol completed with
+its corrected 90-minute budget. Later PR heads have their own CI results.
+Native public handoff, remaining report/Viewer/lifecycle/release/agent tooling
+and complete service/update/recovery parity remain Goal work.
