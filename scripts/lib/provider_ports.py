@@ -45,3 +45,4 @@ from lib.providers.measured_ports import (MEASURED_PROVIDERS, measured_import, m
                                           measured_export, measured_validate, measured_supplement_profile)
 
 from lib.providers.typed_ports import TYPED_PROVIDERS, typed_import, typed_verify, typed_capture_live
+from lib.providers.result_profiles import RESULT_EVENT_PROFILES, result_index_profile

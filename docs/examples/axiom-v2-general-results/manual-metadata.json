@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "input_kind": "manual",
+  "domain": "devsecops",
+  "repository": {
+    "provider": "declared",
+    "instance": "https://scm.example",
+    "native_id": "example-1",
+    "path": "example/consumer",
+    "url": "https://scm.example/example/consumer"
+  },
+  "governance_repository": "axiom:synthetic-governance-example",
+  "parameters": {
+    "repository_id": "example/consumer",
+    "baseline_level": "L1",
+    "governance_baseline_ref": "l1-baseline-v1.1.3",
+    "pipeline_name": "Synthetic manual declaration",
+    "pipeline_run_id": "example-1",
+    "pipeline_url": "https://ci.example/runs/example-1",
+    "pipeline_event": "workflow_dispatch",
+    "pipeline_status": "unknown",
+    "branch": "main",
+    "branch_protected": false,
+    "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "baseline_gate_status": "success",
+    "ci_status": "success",
+    "governance_control_evaluation_status": "success",
+    "sbom": "true",
+    "vulnerability_scan": "true",
+    "artifact_digest": "true",
+    "governance_control_report": "true",
+    "governance_run_input": "true",
+    "static_analysis_summary": "true",
+    "traceability_mapping": "true",
+    "operations_evidence": "true",
+    "overall_status": "unknown",
+    "notes": "Synthetic metadata template. Operator declarations are unverified.",
+    "generated_at": "2026-11-15T12:00:00Z"
+  }
+}

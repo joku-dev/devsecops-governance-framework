@@ -254,6 +254,7 @@ released consumer wrappers keep their original pins and authority.
 | Full measured evidence | One neutral sixteen-control function; explicit native run/artifact/raw-byte normalization and bounded credential-free ZIP range transport; private unverified wrapper | `scripts/lib/measurement_logic.py`, `measured_application.py`, `providers/measured_*.py` |
 | Measured supplements | Explicit-context per-control assurance, staging bundle/approval consistency and exact run/attempt/commit consolidation; source-bound private replay with no authority transfer | `scripts/lib/supplement_application.py`, `assurance_projection.py`, `evidence_freshness.py`, `staging_projection.py`, `consolidated_projection.py` |
 | Complete typed image verification | Stream-hash archived configurations/layers; original typed Trust and replay rules; explicit native full-archive reader; separate private operator/native ledger histories and paged index | `scripts/lib/evidence_verification.py`, `artifact_integrity.py`, `typed_evidence_application.py`, `typed_result_ledger.py`, `providers/typed_*.py` |
+| General result candidates and indices | Explicit metadata and bounded immutable raw copies; source/node/runtime-bound replay, atomic scoped ledger and complete reported/effective index projections; no public status writes | `scripts/lib/ci_bundle_results.py`, `ci_bundle_storage.py`, `result_assessments.py`, `result_snapshot_store.py`, `results_projection.py`, `result_index_application.py`, `result_application.py`; native event identifiers in `providers/result_profiles.py` |
 | Neutral verification | Bundle integrity, source/config/run binding, freshness/replay, immutable receipts | `scripts/intake_portable_evidence.py`, `scripts/lib/portable_intake/bundle.py`, `schemas/portable-intake-*-v2.schema.json` |
 | Collection / proposal coordination | Bounded poll/work, frozen batches, retries, independent candidate reconciliation | `scripts/portable_consumer_intake.py`, `scripts/lib/portable_intake/controller.py`, `publisher.py`, `candidate_index.py` |
 | Operational persistence | Node-owned SQLite transactions, receipts, raw bytes, backups and inactive restore candidate | `scripts/lib/portable_intake/store.py`, `scripts/lib/consumer_intake_store.py` |
@@ -424,6 +425,33 @@ reviewer identities are not authenticated and no public status is overwritten.
 Full public handoff and installed parity acceptance remain open. This state is separate from the old accepted report-only
 pilot and its fingerprinted files.
 
+
+### General result input and index boundary
+
+The finite `results` command accepts explicit declared metadata and bounded local
+CI bundles or manual summaries. It copies regular input bytes into a private
+content-addressed pool before normalization. A ZIP is retained and re-extracted
+on inspection; directory input uses its exact retained file inventory. Assessment
+IDs bind the node, runtime, source revision, explicit diagnostic time and input
+hashes. Re-sealing an altered outcome does not bypass reconstruction from sources.
+
+A separate SQLite ledger partitions origin, provider/instance and native
+repository ID. Display names and URLs remain descriptive versioned metadata;
+rename does not rewrite old records. Original identity/replay rules preserve the
+first compatible snapshot, quarantine changed target identities and retain
+outcome-independent Trust. Indexed context/subject queries select the same V1
+replay candidates without repeatedly scanning an entire portfolio. Failed
+transactions roll back all their writes.
+
+Index projection reads a stable database snapshot, verifies every original
+assessment, and materializes normalized snapshots beneath a private projection
+root. It retains the complete V1 index shape and an explicit effective view;
+operator evidence remains unverified in the effective view. Classification uses
+explicit branch/event profiles through the adapter boundary. Membership and
+source-file hashes bind a projection generation, so later records cannot rewrite
+its contents. Offline inspection does not refresh native API facts. Neither a
+private snapshot nor an index projection overwrites accepted product status.
+Full native general capture and reviewed public handoff remain open work.
 
 ### End-to-End Flow
 

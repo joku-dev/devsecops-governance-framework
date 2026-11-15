@@ -37,6 +37,10 @@ dieser Kandidaten-Index erteilt keine Governance- oder Betriebsfreigabe.
 DCR ergänzt Betriebsprüfung, vorbereitete Katalogpakete, einen expliziten
 Git-Quellkontext und private redigierte Projektionen. Freigabe und öffentliche
 Veröffentlichung bleiben eigene Schritte.
+Der allgemeine `results`-Intake übernimmt lokale CI-Bundles und manuelle
+Angaben in private, reproduzierbare Snapshots. Vollständige Ergebnisindizes
+zeigen gemeldeten und wirksamen Trust getrennt; die native Erfassung und die
+öffentliche Übergabe bleiben weitere Schritte des laufenden Goals.
 
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026

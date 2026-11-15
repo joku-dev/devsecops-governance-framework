@@ -773,8 +773,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/results_projection.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1577,8 +1577,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/results_projection.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1822,8 +1822,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/results_projection.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1985,8 +1985,8 @@
         "--type"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/ci_bundle_results.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2143,8 +2143,8 @@
         "--vulnerability-scan"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/result_application.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3118,8 +3118,8 @@
         "--type"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/ci_bundle_results.py",
+      "state": "in_progress",
       "evidence": []
     },
     {

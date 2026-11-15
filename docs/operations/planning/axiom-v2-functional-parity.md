@@ -470,3 +470,87 @@ The typed archive quota override now permits 32 GiB, covering the combined
 original per-archive and material limits that can exceed 16 GiB. Default quota
 remains 2 GiB, the 8 GiB free-space reserve remains, and files are streamed.
 A higher override is a limit, not an allocation or production capacity approval.
+
+
+## General declared results and complete private indices
+
+The finite `results` routes restore the original local CI-bundle/manual mapping
+and all three index projections. `describe` computes a bundle digest;
+`validate-bundle` copies and validates it without admitting a result.
+`verify-bundle` and `manual` create private source-bound assessments; `intake` is
+an explicit separate action. Completed report-only execution returns zero even
+when a recorded result contains findings; invalid execution returns 2. No
+publisher is activated and no accepted product `status/` file is overwritten.
+
+Metadata is an explicit JSON object validated by
+`schemas/axiom-v2-result-metadata.schema.json`: `schema_version: 1`,
+`input_kind: bundle|manual`, domain, SCM repository descriptor, logical governance
+repository identifier and the declared V1 parameters. Manual summaries are
+separate explicit input files. Synthetic starting templates are
+[bundle metadata](../../examples/axiom-v2-general-results/bundle-metadata.json) and
+[manual metadata](../../examples/axiom-v2-general-results/manual-metadata.json). Required metadata prevents credential fields or
+implicit provider identities from being interpreted as result data. Original
+snapshot payloads retain their vocabulary; these are declared data and do not
+prove scanner, pipeline, review or deployment execution.
+
+```sh
+"$V2_PREFIX/axiom-v2" results describe --bundle /private/operator/ci-bundle.zip
+"$V2_PREFIX/axiom-v2" results validate-bundle --domain devsecops \
+  --bundle /private/operator/ci-bundle.zip --sha256 EXACT_BUNDLE_SHA256
+"$V2_PREFIX/axiom-v2" results verify-bundle \
+  --bundle /private/operator/ci-bundle.zip --sha256 EXACT_BUNDLE_SHA256 \
+  --metadata /private/operator/result-metadata.json --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" results manual \
+  --metadata /private/operator/manual-metadata.json \
+  --summary /private/operator/control-summary.json --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" results inspect --id ASSESSMENT_SHA256
+"$V2_PREFIX/axiom-v2" results intake --id ASSESSMENT_SHA256
+"$V2_PREFIX/axiom-v2" results records --domain devsecops \
+  --origin operator_bundle --limit 100 --offset 0
+"$V2_PREFIX/axiom-v2" results project --domain devsecops \
+  --origin operator_bundle --scm DECLARED_SCM_PROVIDER --service https://scm.example \
+  --event-profile legacy-v1 --main-branch main --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" results inspect-project --id PROJECTION_SHA256
+```
+
+Directory digests bind exact relative file names and bytes; ZIP digests bind
+original archive bytes. Copies reject links, special files, traversal, ambiguous
+required names and case aliases. Original Windows ZIP separators are normalized
+as in V1. Limits are 4,096 members, 256 MiB/member and 1 GiB material; raw ZIP is
+bounded at 2 GiB. The combined input/material quota defaults to 2 GiB, explicitly
+up to 32 GiB. Derived metadata/assessments are separately bounded. Writes preserve
+an 8 GiB free-space reserve; quota overrides allocate no storage automatically.
+
+The private ledger uses opaque provider/instance/native-ID namespaces, separate
+operator/native histories and complete identity/replay rules. Retry retains the
+first payload, verification time and assessment reference. Changed target
+identity is quarantined; execution failure rolls back the whole transaction.
+Display-name reuse by another native ID is visible rather than merged. Renaming
+retains old descriptors. These technical records grant no governance authority.
+
+Projection contains the original complete `reported_index` and an
+`effective_index`; operator Trust stays unverified in the latter. Findings and
+historical freshness/replay fields remain visible independently. Typed results
+use the existing private typed ledger and its original byte-bound assessments.
+Missing or foreign-node sources and re-sealed outcomes fail reconstruction.
+`legacy-v1` preserves the original raw event classification; `portable-v1` uses
+normalized manual events. Main-branch choice is explicit. A historical projection
+pins membership and file hashes and remains unchanged when later records arrive.
+Offline inspection never claims a new native metadata read.
+
+The independent frozen V1 fixture covers four complete local bundle snapshots,
+two manual snapshots, and fifteen synthetic source records with all three full
+index outputs. Tests cover context selection, Trust/outcome separation, indexed
+replay equivalence, identity conflict, rollback, archive/node tamper and private
+source-backed views. A 2,000-small-repository fixture verifies local ledger
+storage and paging only; it is not live collection or production capacity
+acceptance. The installed harness is `tests/acceptance/axiom_v2_general_results.py`.
+
+Full native general intake preserves additional original API/job/artifact and
+physical-evidence facts; it is not replaced by the simpler local bundle mapper.
+Those native counterparts and public proposal handoff remain required Goal work.
+
+The separate disposable-host CI deployment protocol retained all twelve
+transitions and expected failure checks but exhausted its 60-minute job budget
+after ten expected outcomes. The job budget is now 90 minutes; no validation,
+service isolation, rollback, schema-recovery or backup test is removed.

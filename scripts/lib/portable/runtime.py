@@ -84,6 +84,8 @@ def source_digest():
     paths.extend([ROOT/'scripts/generate_document_consistency_review_model.py',ROOT/'scripts/lib/explicit_requirements.py',ROOT/'scripts/lib/source_document_text.py'])
     paths.extend(sorted((ROOT/'schemas').glob('document-consistency-*.schema.json')))
     paths.extend(sorted((ROOT/'model/governance/document-consistency').glob('*')))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('ci_bundle_results.py','ci_bundle_storage.py','result_assessments.py','result_snapshot_store.py','results_projection.py','result_index_application.py','result_application.py'))
+    paths.extend(ROOT/'schemas'/name for name in ('axiom-v2-result-metadata.schema.json','axiom-v2-result-snapshot.schema.json','axiom-v2-result-assessment.schema.json','axiom-v2-result-projection.schema.json','governance-results-index.schema.json','architecture-results-index.schema.json','typed-evidence-results-index.schema.json'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('controls_collection.py','architecture_collection.py','source_collection.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('measurement_logic.py','measured_application.py'))
     paths.extend([ROOT/'schemas/measured-l1-assessment.schema.json', ROOT/'schemas/measured-container-security.schema.json'])

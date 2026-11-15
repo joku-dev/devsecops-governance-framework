@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 private result index projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "node_id",
+    "runtime_source_digest",
+    "source_revision",
+    "mode",
+    "evidence_trust",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "kind",
+    "generated_at",
+    "domain",
+    "origin",
+    "realm",
+    "event_profile",
+    "main_branch",
+    "membership",
+    "namespace_descriptors",
+    "files",
+    "reported_index",
+    "effective_index",
+    "raw_sources_reverified",
+    "native_metadata_rechecked_now",
+    "published"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "kind": {
+      "const": "private-result-index-projection"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "domain": {
+      "enum": [
+        "devsecops",
+        "architecture",
+        "typed"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "operator_bundle",
+        "native_reader"
+      ]
+    },
+    "realm": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "event_profile": {
+      "enum": [
+        "legacy-v1",
+        "portable-v1"
+      ]
+    },
+    "main_branch": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "membership": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repository_key",
+          "identity",
+          "assessment_id",
+          "payload_digest",
+          "repository_descriptor_digest"
+        ],
+        "properties": {
+          "repository_key": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "identity": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "assessment_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "payload_digest": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "repository_descriptor_digest": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "namespace_descriptors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "provider",
+            "instance",
+            "native_id",
+            "path"
+          ],
+          "properties": {
+            "provider": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "instance": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "native_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          }
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "maxProperties": 10000,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "reported_index": {
+      "type": "object"
+    },
+    "effective_index": {
+      "type": "object"
+    },
+    "raw_sources_reverified": {
+      "const": true
+    },
+    "native_metadata_rechecked_now": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    }
+  }
+}
