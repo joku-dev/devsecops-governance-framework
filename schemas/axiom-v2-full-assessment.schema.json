@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "V2 full V1-compatible diagnostic assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "domain",
+    "source_revision",
+    "source_worktree_clean",
+    "runtime_source_digest",
+    "input_sha256",
+    "opa_sha256",
+    "assessed_at",
+    "execution",
+    "mode",
+    "official_compliance_result",
+    "input_origin",
+    "evidence_trust",
+    "authority_transferred",
+    "report"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "v1-compatible-full-assessment"
+    },
+    "domain": {
+      "enum": [
+        "controls",
+        "architecture"
+      ]
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "input_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "opa_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "execution": {
+      "enum": [
+        "complete",
+        "incomplete"
+      ]
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "official_compliance_result": {
+      "const": false
+    },
+    "input_origin": {
+      "const": "operator_supplied"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "report": {
+      "type": "object",
+      "required": [
+        "summary"
+      ],
+      "properties": {
+        "summary": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "domain": {
+            "const": "controls"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "report": {
+            "required": [
+              "controls",
+              "policy_results",
+              "input_file"
+            ],
+            "properties": {
+              "controls": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "control_id",
+                    "status"
+                  ],
+                  "properties": {
+                    "control_id": {
+                      "type": "string",
+                      "pattern": "^DSCB-(L[123]|GOV)-REQ-[0-9]{3}$"
+                    },
+                    "status": {
+                      "enum": [
+                        "pass",
+                        "fail",
+                        "not_tested",
+                        "not_applicable"
+                      ]
+                    }
+                  }
+                }
+              },
+              "policy_results": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "domain": {
+            "const": "architecture"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "report": {
+            "required": [
+              "gates",
+              "target",
+              "detailed_evidence",
+              "advisories"
+            ],
+            "properties": {
+              "gates": {
+                "type": "array",
+                "minItems": 4,
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "status",
+                    "findings"
+                  ],
+                  "properties": {
+                    "id": {
+                      "enum": [
+                        "architecture_readiness",
+                        "integration_readiness",
+                        "operation_readiness",
+                        "release_readiness"
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "pass",
+                        "findings"
+                      ]
+                    },
+                    "findings": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -21,6 +21,11 @@ die offenen Produktentscheidungen. Der [geprüfte Installationskandidat](docs/op
 und das [vollständige Funktions-/Einstiegspunktinventar](docs/operations/planning/axiom-v2-function-inventory.md)
 ordnen vorhandene Fähigkeiten und Betriebsgrenzen zu. Der Kandidat ist noch
 keine allgemein veröffentlichte Produktversion oder neue Betriebsabnahme.
+Die [vollständige technische Funktionsparität zu V1](docs/operations/planning/axiom-v2-functional-parity.md)
+ist ein eigenes laufendes Goal. Der bereits entkoppelte V2-Kandidat ersetzt noch
+nicht alle V1-Funktionen; ein source- und nachweisgebundenes Inventar führt die
+gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
+
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026
 

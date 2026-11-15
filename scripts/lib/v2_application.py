@@ -94,6 +94,17 @@ def set_option(arguments, name, value):
 
 def run(command, arguments, *, instance_path=None):
     """An explicit allowlist, never a script-name or shell-command dispatcher."""
+    if command=='parity':
+        import argparse
+        from lib.functional_parity import audit
+        parser=argparse.ArgumentParser(prog='axiom-v2 parity',allow_abbrev=False)
+        parser.add_argument('--reference',type=Path)
+        parser.add_argument('--evidence-directory',type=Path)
+        parser.add_argument('--require-complete',action='store_true')
+        args=parser.parse_args(arguments)
+        report=audit(ROOT,reference=args.reference,evidence_root=args.evidence_directory)
+        print(json.dumps(report,indent=2))
+        return 1 if args.require_complete and not report['functional_parity_complete'] else 0
     if command=='runtime':
         import governance_runtime
         return governance_runtime.main(arguments)
@@ -101,10 +112,21 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
-    if command not in ('evidence','collector','workbench'):
+    if command not in ('evidence','collector','workbench','evaluate'):
         raise ValueError('v2_entrypoint_not_supported')
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='evaluate':
+        import argparse
+        from lib.full_evaluation import evaluate, persist
+        parser=argparse.ArgumentParser(prog='axiom-v2 evaluate',allow_abbrev=False)
+        parser.add_argument('--domain',choices=('controls','architecture'),required=True)
+        parser.add_argument('--input',type=Path,required=True)
+        parser.add_argument('--at',required=True)
+        args=parser.parse_args(arguments)
+        assessment=evaluate(args.domain,args.input,opa=settings['opa'],at=args.at,source_revision=revision())
+        print(json.dumps(persist(assessment,root),indent=2))
+        return 0 if assessment['execution']=='complete' else 2
     if command=='collector':
         import portable_consumer_intake
         check_private_file(root/'consumer.json')
