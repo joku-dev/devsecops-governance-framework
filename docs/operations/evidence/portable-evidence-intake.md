@@ -17,6 +17,16 @@ Local imports can reach `integrity_verified`. `provenance_verified` additionally
 
 The original result remains `unverified`; verification is a separate source-bound receipt. Every receipt says `official_acceptance: false`, `blocks_merge: null`. Eligible candidates are not official latest results, full-baseline assessments, releases, waivers or blocking approvals. The five-control `pipeline-l1` scope remains explicit.
 
+The runtime CLI's `evaluation-input.json` contains a `payload`/`subjects` envelope.
+The exporter preserves those exact bytes. The verifier requires its subjects to
+match the result's ordered subject manifest before deriving facts from the real
+files and recomputing the assessment. Retained v2 bundles from programmatic
+exporters with a flat payload remain readable through the same checks. Envelope
+members cannot override artifact, context or subject identity. This correction
+is tracked in [GCR-2026-184](../../governance/change-requests/GCR-2026-184-portable-cli-bundle-input.md).
+It changes the verifier source digest: receipts remain immutable and any shadow
+acceptance must follow the existing new-verifier observation-window rules.
+
 ## Native transports and proof limits
 
 Native identity binds event, full tested/source/target revision and change request to the downloaded context, so the same run/job IDs cannot relabel MR evidence as mainline. GitLab MR proof resolves the native MR, its associated pipeline and source/target identities; merged results require exactly the declared two native commit parents. GitLab tags cannot provide branch proof. GitHub push proof currently requires an explicit list of literal branch filters without tag or wildcard filters in the approved workflow; broader triggers remain integrity-only because branch/tag origin is not independently resolved here. GitHub PR native provenance remains unsupported.

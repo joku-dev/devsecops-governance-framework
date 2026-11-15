@@ -5,9 +5,11 @@ import hashlib
 import json
 from pathlib import Path
 import sqlite3
+import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -19,6 +21,8 @@ from lib.portable_intake.bundle import export_bundle, unpack, verify_bundle
 from lib.portable_intake.store import Store, migrate_legacy
 from lib.portable_intake.transport import Reader, capture
 from test_portable_runtime import context, OPA, SHA
+import governance_runtime
+import intake_portable_evidence
 
 AT='2026-11-15T12:10:00Z'
 CONFIG=b'on:\n  push:\n    branches: [trunk]\njobs:\n  portable:\n    name: approved synthetic pinned pipeline fixture\n'
@@ -78,6 +82,71 @@ class BundleTests(unittest.TestCase):
         self.assertFalse(receipt['candidate_eligible'])
         self.assertFalse(receipt['official_acceptance'])
         self.assertIsNone(receipt['blocks_merge'])
+
+    def envelope(self):
+        payload=json.loads((self.bundle/'evaluation-input.json').read_text())
+        self.rewrite('evaluation-input.json',lambda value:(value.clear(),value.update(
+            payload=payload,subjects=deepcopy(self.result['subjects']))))
+
+    def test_runtime_cli_bundle_and_verifier_preserve_the_same_input_bytes(self):
+        # Only native API acquisition is synthetic. Run the actual CLI, files,
+        # pinned OPA, exporter, ZIP unpacking and common verifier end to end.
+        profile=self.root/'profile.json';atomic_json(profile,{})
+        assessment=self.root/'cli-assessment';bundle=self.root/'cli-bundle'
+        ctx=deepcopy(self.ctx);ctx['synthetic']=True
+        for command in (['init','-q'],['add','.'],['-c','user.name=Fixture',
+                        '-c','user.email=fixture@example.invalid','commit','-qm','Synthetic CLI fixture']):
+            subprocess.run(['git','-C',str(self.checkout),*command],check=True,capture_output=True)
+        revision=subprocess.check_output(['git','-C',str(self.checkout),'rev-parse','HEAD'],text=True).strip()
+        ctx['revision'].update(tested=revision,source=revision)
+        with patch.object(governance_runtime,'collect_context',return_value=ctx):
+            code=governance_runtime.main(['run','--ci','github-actions','--profile',str(profile),
+                '--checkout',str(self.checkout),'--artifact','artifact.bin','--sbom','sbom.json',
+                '--scan','scan.json','--output-directory',str(assessment),'--opa',str(OPA),
+                '--mode','report-only','--at','2026-11-15T12:00:00Z'])
+        self.assertEqual(code,0,(assessment/'diagnostics.json').read_text())
+        self.assertEqual(intake_portable_evidence.main(['bundle','--assessment',str(assessment),
+            '--checkout',str(self.checkout),'--destination',str(bundle)]),0)
+        self.assertEqual((assessment/'evaluation-input.json').read_bytes(),
+                         (bundle/'evaluation-input.json').read_bytes())
+        unpacked=unpack(bundle.with_suffix('.zip'),self.root/'cli-unpacked')
+        receipt=verify_bundle(unpacked,self.policy,opa=OPA,at=AT)
+        self.assertEqual(receipt['execution'],'complete')
+        self.assertEqual(receipt['trust'],'integrity_verified')
+        self.assertFalse(receipt['candidate_eligible'])
+
+    def test_cli_envelope_and_retained_flat_payload_have_identical_receipts_except_digest(self):
+        flat=self.verify();self.envelope();enveloped=self.verify()
+        self.assertNotEqual(flat.pop('bundle_digest'),enveloped.pop('bundle_digest'))
+        self.assertEqual(flat,enveloped)
+
+    def test_resigned_envelope_cannot_replace_subject_bindings(self):
+        self.envelope()
+        for change in (lambda value:value['subjects'].reverse(),
+                       lambda value:value['subjects'][0].update(sha256='0'*64),
+                       lambda value:value.pop('subjects'),
+                       lambda value:value.update(untrusted=True),
+                       lambda value:value.update(payload=[])):
+            original=(self.bundle/'evaluation-input.json').read_bytes()
+            self.rewrite('evaluation-input.json',change)
+            with self.assertRaisesRegex(ValueError,'evaluation_input_subject_binding_mismatch'):
+                self.verify()
+            (self.bundle/'evaluation-input.json').write_bytes(original)
+            self.rewrite('evaluation-input.json',lambda value:None)
+
+    def test_resigned_envelope_payload_is_still_derived_from_actual_files(self):
+        self.envelope()
+        self.rewrite('evaluation-input.json',lambda value:value['payload']['repository'].update(
+            direct_push_allowed=True))
+        with self.assertRaisesRegex(ValueError,'does_not_match_files'):self.verify()
+
+    def test_non_object_input_is_rejected(self):
+        (self.bundle/'evaluation-input.json').write_text('[]')
+        manifest=json.loads((self.bundle/'bundle.json').read_text())
+        row=next(row for row in manifest['files'] if row['role']=='input')
+        row.update(sha256=file_digest(self.bundle/'evaluation-input.json'),size=2)
+        atomic_json(self.bundle/'bundle.json',manifest)
+        with self.assertRaisesRegex(ValueError,'invalid_evaluation_input'):self.verify()
 
     def test_declared_provenance_cannot_be_added_to_manifest(self):
         self.rewrite('bundle.json',lambda m:m.update(native_verified=True))
