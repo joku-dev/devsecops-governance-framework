@@ -1,0 +1,122 @@
+{
+  "benchmark_sha256": "1a8b6cc6987ee34a4706c5b5dc30a7da4dcef244849b43129b3d0dec1c640d5b",
+  "execution_audit": {
+    "distinct_repository_keys": 2000,
+    "expected_executions": 2200,
+    "identity_collisions": 0,
+    "matched_receipts": 2200,
+    "missing_receipts": 0,
+    "negative_decisions_verified": 220,
+    "positive_decisions_verified": 1980,
+    "real_remote_publications": 0
+  },
+  "execution_count": 2200,
+  "executions_per_second": 1.7086423222719616,
+  "final_operations_disk_bytes": 118903049,
+  "hardware": {
+    "cpu_count": 10,
+    "machine": "arm64",
+    "python": "3.13.18",
+    "release": "25.6.0",
+    "system": "Darwin"
+  },
+  "identity_collisions": 0,
+  "load_profile_id": "portable-intake-synthetic-v1",
+  "maximum_queue_depth": 2200,
+  "maximum_simulated_queue_age_seconds": 6900.0,
+  "missing_receipts": 0,
+  "native_api_calls": 20935,
+  "parent_processing_wall_seconds": 1288.7055402500118,
+  "preparation": {
+    "executions": 2200,
+    "fixture_disk_bytes": 51010622,
+    "repositories": 2000,
+    "usage_after": {
+      "child_cpu_seconds": 209.102663,
+      "largest_child_peak_rss_mib": 29.515625,
+      "self_cpu_seconds": 123.919425,
+      "self_peak_rss_mib": 59.515625
+    },
+    "usage_before": {
+      "child_cpu_seconds": 0.0,
+      "largest_child_peak_rss_mib": 0.0,
+      "self_cpu_seconds": 0.103948,
+      "self_peak_rss_mib": 38.609375
+    },
+    "wall_seconds": 323.8328180420067
+  },
+  "processing_wall_seconds": 1287.5719928760082,
+  "production_capacity_approved": false,
+  "profile_sha256": "8a62e6db4582d1ad60e57eeb152132509e6c1e8bc38d557580ff7f50da5c85f3",
+  "real_remote_publications": 0,
+  "repository_count": 2000,
+  "runtime_source_digest": "e0b78cd2d1f9d1b946192c4e09a2ee5558bae32f26b0cef6be98f6443dedbe49",
+  "schema_version": 1,
+  "scope": "producer preparation and native fixture acquisition, file/OPA verification, durable queue/raw storage, process restart; no network latency or PR review time",
+  "source_commit": "b7d13de9dc77f043aa4b8cc6df8d536fd34a4329",
+  "synthetic": true,
+  "verifier_source_digest": "c4b3e5eb9d53a6f98efac1481e5eb1c6db14dfa33827e80bf0b8ea73797d32a9",
+  "worker_phases": [
+    {
+      "api_calls": 10605,
+      "counts": {
+        "held": 1100,
+        "queued": 1099,
+        "working": 1
+      },
+      "cycles": 61,
+      "maximum_queue_depth": 2200,
+      "maximum_simulated_queue_age_seconds": 3600.0,
+      "operations_disk_bytes": 62125014,
+      "phase": 1,
+      "rate_limit_events_total": 61,
+      "receipts": 1100,
+      "recovered_tasks": 0,
+      "recovery_seconds": 0.0005449999880511314,
+      "simulated_clock_elapsed_seconds": 3660.0,
+      "usage_after": {
+        "child_cpu_seconds": 101.757563,
+        "largest_child_peak_rss_mib": 29.765625,
+        "self_cpu_seconds": 566.672726,
+        "self_peak_rss_mib": 73.546875
+      },
+      "usage_before": {
+        "child_cpu_seconds": 0.0,
+        "largest_child_peak_rss_mib": 0.0,
+        "self_cpu_seconds": 0.071434,
+        "self_peak_rss_mib": 50.390625
+      },
+      "wall_seconds": 666.5611115420033
+    },
+    {
+      "api_calls": 10330,
+      "counts": {
+        "held": 2200
+      },
+      "cycles": 56,
+      "maximum_queue_depth": 1100,
+      "maximum_simulated_queue_age_seconds": 6900.0,
+      "operations_disk_bytes": 118903049,
+      "phase": 2,
+      "rate_limit_events_total": 120,
+      "receipts": 2200,
+      "recovered_tasks": 1,
+      "recovery_seconds": 0.0006988749955780804,
+      "simulated_clock_elapsed_seconds": 7020.0,
+      "usage_after": {
+        "child_cpu_seconds": 99.67068900000001,
+        "largest_child_peak_rss_mib": 29.484375,
+        "self_cpu_seconds": 523.065692,
+        "self_peak_rss_mib": 77.046875
+      },
+      "usage_before": {
+        "child_cpu_seconds": 0.0,
+        "largest_child_peak_rss_mib": 0.0,
+        "self_cpu_seconds": 0.066056,
+        "self_peak_rss_mib": 50.3125
+      },
+      "wall_seconds": 621.0108813340048
+    }
+  ],
+  "worker_self_peak_rss_mib": 77.046875
+}

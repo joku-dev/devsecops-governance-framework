@@ -1,0 +1,122 @@
+{
+  "benchmark_sha256": "1a8b6cc6987ee34a4706c5b5dc30a7da4dcef244849b43129b3d0dec1c640d5b",
+  "execution_audit": {
+    "distinct_repository_keys": 1000,
+    "expected_executions": 1100,
+    "identity_collisions": 0,
+    "matched_receipts": 1100,
+    "missing_receipts": 0,
+    "negative_decisions_verified": 110,
+    "positive_decisions_verified": 990,
+    "real_remote_publications": 0
+  },
+  "execution_count": 1100,
+  "executions_per_second": 2.8198936113326325,
+  "final_operations_disk_bytes": 61631270,
+  "hardware": {
+    "cpu_count": 10,
+    "machine": "arm64",
+    "python": "3.13.18",
+    "release": "25.6.0",
+    "system": "Darwin"
+  },
+  "identity_collisions": 0,
+  "load_profile_id": "portable-intake-synthetic-v1",
+  "maximum_queue_depth": 1100,
+  "maximum_simulated_queue_age_seconds": 3120.0,
+  "missing_receipts": 0,
+  "native_api_calls": 10447,
+  "parent_processing_wall_seconds": 390.74553516699234,
+  "preparation": {
+    "executions": 1100,
+    "fixture_disk_bytes": 25505133,
+    "repositories": 1000,
+    "usage_after": {
+      "child_cpu_seconds": 103.031367,
+      "largest_child_peak_rss_mib": 29.375,
+      "self_cpu_seconds": 60.509038000000004,
+      "self_peak_rss_mib": 53.484375
+    },
+    "usage_before": {
+      "child_cpu_seconds": 0.0,
+      "largest_child_peak_rss_mib": 0.0,
+      "self_cpu_seconds": 0.08574599999999999,
+      "self_peak_rss_mib": 38.28125
+    },
+    "wall_seconds": 158.88704320800025
+  },
+  "processing_wall_seconds": 390.0856385429943,
+  "production_capacity_approved": false,
+  "profile_sha256": "8a62e6db4582d1ad60e57eeb152132509e6c1e8bc38d557580ff7f50da5c85f3",
+  "real_remote_publications": 0,
+  "repository_count": 1000,
+  "runtime_source_digest": "e0b78cd2d1f9d1b946192c4e09a2ee5558bae32f26b0cef6be98f6443dedbe49",
+  "schema_version": 1,
+  "scope": "producer preparation and native fixture acquisition, file/OPA verification, durable queue/raw storage, process restart; no network latency or PR review time",
+  "source_commit": "b7d13de9dc77f043aa4b8cc6df8d536fd34a4329",
+  "synthetic": true,
+  "verifier_source_digest": "c4b3e5eb9d53a6f98efac1481e5eb1c6db14dfa33827e80bf0b8ea73797d32a9",
+  "worker_phases": [
+    {
+      "api_calls": 5287,
+      "counts": {
+        "held": 550,
+        "queued": 549,
+        "working": 1
+      },
+      "cycles": 28,
+      "maximum_queue_depth": 1100,
+      "maximum_simulated_queue_age_seconds": 1620.0,
+      "operations_disk_bytes": 33111656,
+      "phase": 1,
+      "rate_limit_events_total": 30,
+      "receipts": 550,
+      "recovered_tasks": 0,
+      "recovery_seconds": 0.0005573749949689955,
+      "simulated_clock_elapsed_seconds": 1680.0,
+      "usage_after": {
+        "child_cpu_seconds": 50.872923,
+        "largest_child_peak_rss_mib": 29.296875,
+        "self_cpu_seconds": 147.87490300000002,
+        "self_peak_rss_mib": 58.40625
+      },
+      "usage_before": {
+        "child_cpu_seconds": 0.0,
+        "largest_child_peak_rss_mib": 0.0,
+        "self_cpu_seconds": 0.066992,
+        "self_peak_rss_mib": 44.359375
+      },
+      "wall_seconds": 197.64284795899584
+    },
+    {
+      "api_calls": 5160,
+      "counts": {
+        "held": 1100
+      },
+      "cycles": 26,
+      "maximum_queue_depth": 550,
+      "maximum_simulated_queue_age_seconds": 3120.0,
+      "operations_disk_bytes": 61631270,
+      "phase": 2,
+      "rate_limit_events_total": 59,
+      "receipts": 1100,
+      "recovered_tasks": 1,
+      "recovery_seconds": 0.0006816249951953068,
+      "simulated_clock_elapsed_seconds": 3240.0,
+      "usage_after": {
+        "child_cpu_seconds": 50.166253999999995,
+        "largest_child_peak_rss_mib": 29.25,
+        "self_cpu_seconds": 143.193812,
+        "self_peak_rss_mib": 58.515625
+      },
+      "usage_before": {
+        "child_cpu_seconds": 0.0,
+        "largest_child_peak_rss_mib": 0.0,
+        "self_cpu_seconds": 0.062334999999999995,
+        "self_peak_rss_mib": 44.390625
+      },
+      "wall_seconds": 192.44279058399843
+    }
+  ],
+  "worker_self_peak_rss_mib": 58.515625
+}
