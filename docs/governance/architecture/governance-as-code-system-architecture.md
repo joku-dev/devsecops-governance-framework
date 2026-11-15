@@ -415,8 +415,13 @@ new human or operating acceptance. DCR schema resources belong to the installed
 product, while source bytes belong to the workspace. Candidate generations have
 no reviewed Git commit; DCR-009 retains that missing freshness evidence. Supplied
 semantic responses are normalized/validated without invoking a model; findings
-remain unconfirmed or quarantined. Full DCR operating/publication and installed
-parity are still open. This state is separate from the old accepted report-only
+remain unconfirmed or quarantined. DCR operating contracts, trigger scope and prepared synthetic catalogue packages
+are explicit finite routes. A separate committed-source context verifies the
+fixed product Git root and document/model/schema bytes, rechecking the same
+revision across review operations; it records technical provenance only.
+Hash-bound supplied decision assertions can prepare a private redacted snapshot;
+reviewer identities are not authenticated and no public status is overwritten.
+Full public handoff and installed parity acceptance remain open. This state is separate from the old accepted report-only
 pilot and its fingerprinted files.
 
 

@@ -31,7 +31,8 @@ def selected_paths(root):
 def active_fingerprints(root):
     prefixes=('scripts/','schemas/','model/','policies/','architecture/','releases/',
               'pipeline-baseline/','config/','infra/','.github/','.agents/',
-              'docs/governance/source-documents/','docs/foundation/')
+              'docs/governance/source-documents/','docs/foundation/',
+              'tests/fixtures/document-consistency-review-')
     return {name:hashlib.sha256(safe_source(Path(root).resolve(),name).read_bytes()).hexdigest()
             for name in selected_paths(root) if name.startswith(prefixes) or name.startswith('requirements')}
 

@@ -124,7 +124,7 @@ def _run(arguments, instance_root, settings):
                 ledger.close()
             print(json.dumps(receipt, sort_keys=True))
         return 0
-    if not 0 < args.storage_budget_bytes <= 16 * 1024**3:
+    if not 0 < args.storage_budget_bytes <= 32 * 1024**3:
         raise ValueError('invalid_typed_storage_budget')
     if args.command == 'verify-local':
         if datetime.fromisoformat(args.at.replace('Z', '+00:00')).tzinfo is None:

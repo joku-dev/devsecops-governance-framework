@@ -68,7 +68,7 @@
     "storage_budget_bytes": {
       "type": "integer",
       "minimum": 1,
-      "maximum": 17179869184
+      "maximum": 34359738368
     },
     "mode": {
       "const": "report-only"
@@ -214,12 +214,12 @@
         "verified_archive_bytes": {
           "type": "integer",
           "minimum": 1,
-          "maximum": 17179869184
+          "maximum": 34359738368
         },
         "verified_material_bytes": {
           "type": "integer",
           "minimum": 1,
-          "maximum": 17179869184
+          "maximum": 34359738368
         }
       }
     }

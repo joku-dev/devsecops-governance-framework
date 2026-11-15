@@ -17,7 +17,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | Bereich | V2-Pfad und Grenze |
 | --- | --- |
 | 1 Quellen verwalten | Workbench: lokale Entwürfe, Extraktion und explizites Adapterprofil für Draft-PR/MR. |
-| 2 Vorgabenänderungen | Workbench sowie private `requirements`-/`dcr`-Kandidatenarbeitsbereiche. Entscheidungen und Publikation bleiben explizit; vollständige installierte Abnahme offen. |
+| 2 Vorgabenänderungen | Workbench und private `requirements`-/`dcr`-Arbeitsbereiche; DCR-Betriebsprüfung, Katalogpaket, technischer Git-Kontext und private redigierte Projektion. Öffentliche Übergabe und vollständige Abnahme offen. |
 | 3 Herkunft | Vorhandene Modelle und Berichte lesend; Generatoren im Entwicklungscheckout. |
 | 4 Kontrollmodell | Versionierte Modelle im Paket; Modellpflege im Entwicklungscheckout. |
 | 5 Kontrollen auswerten | Pipeline-Gate weiterhin fünf Kontrollen. Separates `evaluate --domain controls` erhält alle 46 V1-Berichtszeilen; Eingabeevidenz/Trust bleiben separat. |

@@ -30,10 +30,13 @@ trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch
 unvollständigen frischen Consumer-Lauf. V2 bietet inzwischen auch private,
 quellengebundene Assurance- und Staging-Zusammenführungen; die vollständige
 Produkt- und Betriebsparität bleibt offen.
-Der nächste Intake-Schritt ergänzt die vollständige Prüfung archivierter
+Der Intake-Kandidat ergänzt die vollständige Prüfung archivierter
 Container-Nachweise und einen privaten, unveränderlichen Typed-Evidence-Index.
 Bereitgestellte Bundles und native Aufnahmen behalten getrennte Historien;
 dieser Kandidaten-Index erteilt keine Governance- oder Betriebsfreigabe.
+DCR ergänzt Betriebsprüfung, vorbereitete Katalogpakete, einen expliziten
+Git-Quellkontext und private redigierte Projektionen. Freigabe und öffentliche
+Veröffentlichung bleiben eigene Schritte.
 
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026

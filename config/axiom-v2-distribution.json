@@ -22,10 +22,14 @@
     "scripts/lib/consumer_view.py",
     "scripts/lib/controls_collection.py",
     "scripts/lib/dcr_application.py",
+    "scripts/lib/dcr_catalog.py",
     "scripts/lib/dcr_evaluation.py",
     "scripts/lib/dcr_manifest.py",
+    "scripts/lib/dcr_operations.py",
+    "scripts/lib/dcr_projection.py",
     "scripts/lib/dcr_response.py",
     "scripts/lib/dcr_semantics.py",
+    "scripts/lib/dcr_source_context.py",
     "scripts/lib/dcr_structure.py",
     "scripts/lib/document_consistency_view.py",
     "scripts/lib/evidence_freshness.py",
@@ -101,7 +105,10 @@
     "status",
     "config",
     "infra",
-    "scripts/workbench"
+    "scripts/workbench",
+    "tests/fixtures/document-consistency-review-semantic",
+    "tests/fixtures/document-consistency-review-semantic-v2",
+    "tests/fixtures/document-consistency-review-operations"
   ],
   "data_files": [
     ".gitignore",

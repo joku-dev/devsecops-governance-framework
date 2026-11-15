@@ -149,7 +149,7 @@ def snapshot(run, artifact, trust):
 
 def copy_bundle(root, expected_sha256, destination, *, budget=DEFAULT_BUDGET, reserve=DEFAULT_RESERVE):
     """Snapshot untrusted operator files before any verification or intake."""
-    if not 0 < budget <= 16 * 1024**3 or reserve < DEFAULT_RESERVE:
+    if not 0 < budget <= 32 * 1024**3 or reserve < DEFAULT_RESERVE:
         raise ValueError('invalid_typed_storage_limits')
     value, total = manifest(root, expected_sha256, budget=budget)
     destination = private_root(destination)
@@ -179,7 +179,7 @@ def copy_bundle(root, expected_sha256, destination, *, budget=DEFAULT_BUDGET, re
 
 
 def verify(root, expected_sha256, at, *, budget=DEFAULT_BUDGET, reserve=DEFAULT_RESERVE):
-    if not 0 < budget <= 16 * 1024**3 or reserve < DEFAULT_RESERVE:
+    if not 0 < budget <= 32 * 1024**3 or reserve < DEFAULT_RESERVE:
         raise ValueError('invalid_typed_storage_limits')
     stamp = datetime.fromisoformat(at.replace('Z', '+00:00'))
     if stamp.tzinfo is None:
@@ -262,7 +262,7 @@ def download(reader, repository, artifact, destination, *, reserve):
 
 def capture(repository, run_id, credential_file, destination, *, request_budget=100,
             storage_budget=DEFAULT_BUDGET, reserve=DEFAULT_RESERVE):
-    if not 0 < storage_budget <= 16 * 1024**3 or reserve < DEFAULT_RESERVE:
+    if not 0 < storage_budget <= 32 * 1024**3 or reserve < DEFAULT_RESERVE:
         raise ValueError('invalid_typed_storage_limits')
     if repository != REPOSITORY or not re.fullmatch('[1-9][0-9]*', str(run_id)):
         raise ValueError('unsupported_typed_repository_or_run')

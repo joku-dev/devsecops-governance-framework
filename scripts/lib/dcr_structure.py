@@ -49,7 +49,8 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 def git_head(root: Path) -> str | None:
-    return None
+    from lib.dcr_source_context import git_head as bound_head
+    return bound_head(root)
 
 
 def _rule(rule_id: str, status: str, details: list[str] | None = None) -> dict:

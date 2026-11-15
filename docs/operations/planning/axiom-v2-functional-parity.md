@@ -394,7 +394,7 @@ remain separate open Goal work.
 
 Storage is bounded: each ZIP is at most 1 GiB, image members at most 2 GiB,
 metadata at most 32 MiB, and raw plus extracted material is at most 2 GiB per
-verification by default. `--storage-budget-bytes` can select up to 16 GiB while
+verification by default. `--storage-budget-bytes` can select up to 32 GiB while
 the 8 GiB filesystem reserve remains enforced. Invalid members, links, duplicate
 names/JSON and archive/configuration/layer mismatches fail closed. Retention and
 per-realm replay-history limits remain explicit capacity boundaries; this new
@@ -432,3 +432,41 @@ limits; they do not justify declaring missing technical capabilities complete.
 No existing installation, released baseline or accepted personal pilot is
 replaced by this increment. Source authoring and V1 are preserved while V2
 capabilities are implemented and proven.
+
+
+## DCR operating contracts, catalogue and private projection
+
+Finite `dcr` routes now expose the nine-artifact operating-contract validation,
+trigger-based `scope`, and `prepare-catalog --review-id ID`. The last command
+copies the six exact synthetic provider inputs, verifies their source/register
+hashes and produces the original V1 `prepared_not_run` package. No provider/model
+is configured or invoked. These reference data are explicit, fingerprinted product
+resources; retired source CLIs remain absent from the installed execution set.
+
+`structural --context committed-source` reads the fixed installed product source.
+It requires a clean Git root and compares all document/model/schema bytes with
+committed blobs, including files hidden behind Git index skip flags. The review
+records that technical revision and rechecks it on subsequent operations. The
+default `candidate` context still has no Git commit and retains DCR-009. Neither
+context grants human approval or changes the accepted report-only pilot.
+
+`project --review-id ID --report FILE --manifest FILE --decision FILE
+--comparison-count N` prepares a **private** redacted snapshot. Repeat `--decision`
+for every finding. Original schema, exact manifest/finding hashes, duplicate and
+complete decision coverage, tracked requirement population and source freshness
+checks remain. Supplied reviewer identities are declarations, not authenticated
+human approvals. The snapshot is stored in a candidate generation; no public
+`status/` file or provider proposal is written. Public handoff remains separate.
+
+Independent frozen V1 cases cover the complete operations result, trigger plans,
+all package input hashes, committed-source manifest/structural rules and exact
+redaction. Positive/negative application tests cover technical commit binding,
+stale sources, skipped-index tampering, decision hashes and transactional rollback.
+The installed harness `tests/acceptance/axiom_v2_dcr_operations.py` repeats the
+operating flows and frozen redaction on Mac/Linux. These are synthetic DCR cases;
+the real ha-CPsWMS source/evidence comparisons remain separate.
+
+The typed archive quota override now permits 32 GiB, covering the combined
+original per-archive and material limits that can exceed 16 GiB. Default quota
+remains 2 GiB, the 8 GiB free-space reserve remains, and files are streamed.
+A higher override is a limit, not an allocation or production capacity approval.

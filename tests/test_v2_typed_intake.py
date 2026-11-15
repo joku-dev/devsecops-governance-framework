@@ -60,6 +60,16 @@ class TypedIntakeTests(unittest.TestCase):
         self.assertEqual(result['verified_archive_bytes'], sum(row['bytes'] for row in self.manifest['archives'].values()))
         self.assertGreater(result['verified_material_bytes'], 5 * 10240)
 
+    def test_explicit_budget_covers_combined_legal_v1_archive_limits(self):
+        # The combined upper bounds exceed 16 GiB. This exercises admission with
+        # the complete small fixture; it neither allocates nor reserves 32 GiB.
+        result = verify(self.bundle, self.sha, self.at, budget=32 * 1024**3)
+        self.assertEqual(result['snapshots'], self.fixture['expected_initial_snapshots'])
+        copied = self.base / 'higher-budget-copy'
+        copy_bundle(self.bundle, self.sha, copied, budget=32 * 1024**3)
+        self.assertEqual(verify(copied, self.sha, self.at, budget=32 * 1024**3), result)
+        with self.assertRaises(ValueError): verify(self.bundle, self.sha, self.at, budget=32 * 1024**3 + 1)
+
     def test_complete_v1_replay_reports_preserved_but_operator_effective_trust_unverified(self):
         result = self.verified()
         ledger = self.ledger()
@@ -284,6 +294,14 @@ class TypedApplicationTests(unittest.TestCase):
     def local(self):
         return self.call('verify-local', '--provider', 'github-actions', '--bundle', str(self.bundle),
                          '--sha256', self.sha, '--at', self.fixture['at'])
+
+    def test_explicit_higher_quota_is_schema_bound_and_replayable(self):
+        receipt = self.call('verify-local', '--provider', 'github-actions', '--bundle', str(self.bundle),
+            '--sha256', self.sha, '--at', self.fixture['at'], '--storage-budget-bytes', str(32 * 1024**3))
+        assessment = self.call('inspect', '--id', receipt['assessment_id'])['assessment']
+        self.assertEqual(assessment['storage_budget_bytes'], 32 * 1024**3)
+        self.assertEqual(assessment['verification']['snapshots'], self.fixture['expected_initial_snapshots'])
+        self.assertFalse(assessment['official_acceptance'])
 
     def test_full_local_flow_uses_private_snapshot_and_explicit_intake(self):
         receipt = self.local()

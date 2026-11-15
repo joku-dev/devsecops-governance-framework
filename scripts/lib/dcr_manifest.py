@@ -45,9 +45,8 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 def repository_revision(root: Path) -> str | None:
-    # Candidate data generations are not a Git working tree. The resulting
-    # missing-commit freshness finding is retained, never converted into pass.
-    return None
+    from lib.dcr_source_context import repository_revision as bound_revision
+    return bound_revision(root)
 
 
 def load_register(root: Path) -> tuple[dict, Path]:

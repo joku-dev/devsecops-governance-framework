@@ -2463,8 +2463,8 @@
         "--output-dir"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/dcr_catalog.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2562,8 +2562,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/dcr_projection.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3168,8 +3168,8 @@
         "--root"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/dcr_operations.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
