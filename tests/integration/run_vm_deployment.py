@@ -23,7 +23,12 @@ from lib import vm_deployment as vm
 
 
 def run(args, **kwargs):
-    return subprocess.run(args, check=True, text=True, capture_output=True, **kwargs).stdout.strip()
+    result=subprocess.run(args, check=False, text=True, capture_output=True, **kwargs)
+    if result.returncode:
+        # Only disposable synthetic fixtures reach this harness; keep failure diagnostics bounded.
+        print(result.stdout[-4000:]);print(result.stderr[-4000:],file=sys.stderr)
+        raise subprocess.CalledProcessError(result.returncode,args,result.stdout,result.stderr)
+    return result.stdout.strip()
 
 
 def main():
@@ -210,7 +215,9 @@ s.close()
             'ci_instance':'https://github.com','legacy_scope':'workflow-aggregate'}}}))
         mapping_target='/var/lib/axiom/synthetic-portable-mapping.json'
         run(['sudo','install','-o','axiom-intake','-g','axiom-intake','-m','0600',str(mapping),mapping_target])
-        candidate='/var/lib/axiom/portable-migration-candidate'
+        migration_parent='/var/lib/axiom/synthetic-migrations'
+        run(['sudo','install','-d','-o','axiom-intake','-g','axiom-intake','-m','0700',migration_parent])
+        candidate=migration_parent+'/portable-candidate'
         intake='/srv/axiom/repository/scripts/intake_portable_evidence.py'
         run(['sudo','-u','axiom-intake',python,intake,'migrate-legacy','--root',operations,
              '--destination',candidate,'--legacy-mapping',mapping_target])
@@ -248,9 +255,9 @@ c.close()
         # Demonstrate the explicit compatible restore instead of forcing a schema downgrade.
         run(['sudo','systemctl','stop','axiom-consumer-poll.timer','axiom-consumer-work.timer',
              'axiom-consumer-poll.service','axiom-consumer-work.service'])
-        portable_backup='/var/lib/axiom/synthetic-v2-restore-backup'
+        portable_backup=migration_parent+'/v2-restore-backup'
         run(['sudo','-u','axiom-intake',python,intake,'backup','--root',operations,'--destination',portable_backup])
-        restored='/var/lib/axiom/restored-legacy-fixture'
+        restored=migration_parent+'/restored-legacy'
         run(['sudo','-u','axiom-intake',python,intake,'restore-legacy','--root',restored,'--destination',portable_backup])
         run(['sudo','mv',operations,'/var/lib/axiom/consumers-retained-v2-fixture'])
         run(['sudo','mv',restored,operations])
