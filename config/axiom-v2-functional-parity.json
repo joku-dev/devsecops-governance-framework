@@ -128,7 +128,7 @@
     {
       "id": "FP-13",
       "title": "Vertrauen in Nachweise bewerten",
-      "state": "pending",
+      "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
       "negative_tests": [],
@@ -2215,8 +2215,8 @@
         "--run-id"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/measured_application.py:run",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2237,8 +2237,8 @@
         "--run-id"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/measured_application.py:run",
+      "state": "in_progress",
       "evidence": []
     },
     {

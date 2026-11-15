@@ -197,6 +197,68 @@ publication, rollback before decisions, retained DCR missing-snapshot findings
 and explicit semantic-not-run behavior. It reports partial parity and no provider
 or human acceptance. The fixture transport is private and all bytes are checked.
 
+## Full measured L1 and container wire profile
+
+The product now exposes `measured verify-local` and `measured capture` for the
+existing ha-CPsWMS measured wire profile. The sixteen-control decision function
+is extracted once into neutral `measurement_logic.py`; service lists and native
+provenance/tool labels come from explicit adapters. GitHub run/artifact/ruleset,
+scan, SBOM, dependency-lock, source-content and ephemeral-runtime bindings stay
+inside native adapters. Neither original intake CLI is imported or dispatched.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance measured verify-local \
+  --provider github-actions --kind l1 --bundle /private/operator/measured-bundle \
+  --sha256 EXACT_CAPTURE_MANIFEST_SHA256 --at 2026-11-15T12:00:00Z
+python scripts/axiom_v2.py --instance /private/operator/v2-instance measured capture \
+  --provider github-actions --kind l1 --repository joku-dev/ha-CPsWMS \
+  --run-id EXACT_SUCCESSFUL_MAIN_PUSH_RUN --credential measured-reader.json \
+  --at 2026-11-15T12:00:00Z
+```
+
+`--kind containers` selects the original separate five-image container report.
+The supported native profile retains V1's successful Main/push/original-workflow
+scope, exact run attempt/commit/artifact binding, producer byte hashes, JUnit/SAST
+recomputation, dependency/SBOM/scan identity checks and ephemeral runtime transport
+binding. A failed diagnostic branch is rejected before artifact acquisition. This
+native profile remains explicitly ha-CPsWMS/GitHub-specific; other providers need
+separate reviewed bindings. The common control decision function has no native
+SDK, API, hostname or provider command.
+
+Live acquisition requires an explicit private file under the instance's
+`credentials/` directory. The filename is passed as `--credential`; never pass a
+token on the command line. Its exact JSON fields are `schema_version: 1`,
+`provider: github-actions`, `instance: https://api.github.com`, the selected
+`repository` and `token`. The native adapter requires matching realm/repository
+and safe file permissions. No ambient `gh` login, environment token or inspected
+application credential is used. The existing Actions secret is not a local/VM
+credential and is not copied out of Actions.
+
+The reader charges one shared bounded request budget for native metadata and
+credential-free storage requests. Selected ZIP member reads use strict HTTPS
+storage hosts, exact byte ranges, size/CRC/manifest checks and bounded aggregate
+bytes; full multi-gigabyte image archives need not be downloaded. Authorization
+is sent only to the configured native API and is absent from storage requests.
+Truncated artifact lists, duplicate members/JSON, changed source bytes, wrong
+image/run identities and XML entities cannot become valid measurements.
+
+Captured selected bytes and a hash-bound `capture.json` are stored privately for
+replay. Local verification records `native_metadata_rechecked: false`; a live
+reader call records its actual acquisition separately. Replaying that same bundle
+does not inherit the live-reader claim. The outer typed assessment always remains
+report-only, unverified, without official acceptance, risk/production approval or
+transferred authority. V1 report fields inside it describe only the retained wire
+assessment. They do not promote a private V2 candidate into accepted indexes.
+
+Complete independently executed frozen V1 raw groups and reports match both new
+normalizers: all sixteen control records and the separate container details, not
+only headline counts. Synthetic capture/redirect/range tests also verify private
+credentials, metadata/source binding, no credential forwarding, budgets, tamper
+rejection and replay boundaries. These are technical fixtures, not a fresh
+successful consumer measurement. Per-control assurance, staging reconciliation,
+official accepted-result publication, installed proof and the remaining intake
+flows are still open under the same Goal.
+
 ## Remaining work in the same Goal
 
 The full matrix stays authoritative for completion. Continue with neutral

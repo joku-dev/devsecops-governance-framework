@@ -41,3 +41,5 @@ class ExecutionPort(Protocol):
 
 from lib.providers.discovery import CI_PROVIDERS
 from lib.providers.source_inspection import SOURCE_CI_PROFILES, local_source_signals
+from lib.providers.measured_ports import (MEASURED_PROVIDERS, measured_import, measured_capture_live,
+                                          measured_export, measured_validate)

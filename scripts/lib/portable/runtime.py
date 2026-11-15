@@ -82,6 +82,9 @@ def source_digest():
     paths.extend(sorted((ROOT/'schemas').glob('document-consistency-*.schema.json')))
     paths.extend(sorted((ROOT/'model/governance/document-consistency').glob('*')))
     paths.extend(ROOT/'scripts/lib'/name for name in ('controls_collection.py','architecture_collection.py','source_collection.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('measurement_logic.py','measured_application.py'))
+    paths.extend([ROOT/'schemas/measured-l1-assessment.schema.json', ROOT/'schemas/measured-container-security.schema.json'])
+    paths.append(ROOT/'schemas/axiom-v2-measured-assessment.schema.json')
     paths.extend([ROOT/'schemas/axiom-v2-full-assessment.schema.json',ROOT/'schemas/axiom-v2-functional-parity.schema.json'])
     return canonical_digest({str(path.relative_to(ROOT)):file_digest(path) for path in paths})
 
