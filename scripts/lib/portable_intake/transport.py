@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import base64
+from copy import deepcopy
 from dataclasses import dataclass
 import hashlib
 import json
 from pathlib import Path
 import zipfile
+import yaml
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlsplit
 from urllib.request import Request
@@ -21,6 +23,60 @@ from .bundle import timestamp
 
 def encoded(value):
     return quote(str(value), safe='')
+
+
+def native_identity(context):
+    ci=context['ci']
+    return {'repository':repository_key(context['scm']),'provider':ci['provider'],
+            'instance':endpoint(ci['instance']),'run_id':ci['run_id'],'job_id':ci['job_id'],
+            'attempt':ci['attempt'],'event':ci['event'],'revision':deepcopy(context['revision']),
+            'change_request':deepcopy(context['change_request'])}
+
+
+def github_push_branch_trigger(config,context):
+    if context['ci']['event']!='push':return True
+    try:
+        document=yaml.load(config,Loader=yaml.BaseLoader)
+        triggers=document.get('on',{}) if isinstance(document,dict) else {}
+        push=triggers.get('push') if isinstance(triggers,dict) else None
+        branches=push.get('branches') if isinstance(push,dict) else None
+        return (isinstance(branches,list) and context['revision']['branch'] in branches
+                and all(isinstance(value,str) and not any(c in value for c in '*?[!') for value in branches)
+                and not any(name in push for name in ('tags','tags-ignore','branches-ignore')))
+    except yaml.YAMLError:
+        return False
+
+
+def gitlab_revision_bound(context,run,get,route):
+    revision,change=context['revision'],context['change_request']
+    if revision['tested']!=run['sha']:
+        return False
+    if revision['mode']=='branch':
+        return (change is None and context['ci']['event']!='pull_request' and run['ref']==revision['branch']
+                and revision['source']==run['sha'] and revision['target'] is None)
+    if context['ci']['event']!='pull_request' or not change or change['kind']!='merge_request':
+        return False
+    mr_route=route+'/merge_requests/'+encoded(change['id'])
+    mr=get(mr_route)
+    if (str(mr['iid'])!=change['id'] or str(mr['source_project_id'])!=change['source_repository']
+            or str(mr['target_project_id'])!=change['target_repository']
+            or str(mr['target_project_id'])!=context['scm']['native_id']
+            or mr['source_branch']!=change['source_branch'] or mr['target_branch']!=change['target_branch']
+            or mr['source_branch']!=revision['branch'] or mr['sha']!=revision['source']):
+        return False
+    associated=False
+    for page in range(1,26):
+        pipelines=get(mr_route+f'/pipelines?per_page=100&page={page}')
+        if not isinstance(pipelines,list):raise ValueError('invalid_native_mr_pipelines')
+        if any(str(row['id'])==context['ci']['run_id'] and row['sha']==run['sha'] for row in pipelines):
+            associated=True;break
+        if len(pipelines)<100:break
+    if not associated:return False
+    if revision['mode']=='source-head':return revision['source']==run['sha'] and revision['target'] in (None,'')
+    commit=get(route+'/repository/commits/'+encoded(run['sha']))
+    return (revision['mode']=='merge-result' and commit['id']==run['sha']
+            and len(commit['parent_ids'])==2 and len(set(commit['parent_ids']))==2
+            and set(commit['parent_ids'])=={revision['source'],revision['target']})
 
 
 class Reader:
@@ -96,9 +152,7 @@ class Observation:
     scm_facts_digest: str | None
 
     def checks(self, context, manifest, policy, at, generated_at):
-        identity = {'repository':repository_key(context['scm']), 'provider':context['ci']['provider'],
-                    'instance':endpoint(context['ci']['instance']), 'run_id':context['ci']['run_id'],
-                    'job_id':context['ci']['job_id'], 'attempt':context['ci']['attempt']}
+        identity = native_identity(context)
         config = self.producer_config_digest is not None and self.producer_config_digest == policy.get('producer_config_sha256')
         facts_digest=canonical_digest({name:fact['value'] if fact['status']=='available' else None
                                       for name,fact in context['capabilities'].items()})
@@ -181,13 +235,16 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
         if artifact.get('digest') != 'sha256:' + digest:
             raise ValueError('native_archive_digest_mismatch')
         config = get(route + '/contents/' + '/'.join(encoded(p) for p in transport['workflow_path'].split('/')) + '?ref=' + encoded(run['head_sha']))
-        config_digest = hashlib.sha256(base64.b64decode(config['content'])).hexdigest()
+        config_bytes=base64.b64decode(config['content'])
+        config_digest = hashlib.sha256(config_bytes).hexdigest()
         revision, artifact_id, attempt_bound = run['head_sha'], str(artifact['id']), True
         # A workflow-run head SHA does not independently prove a PR merge checkout.
         # Branch provenance is supported here; merge/head event closure remains explicit.
         event={'push':'push','workflow_dispatch':'manual','schedule':'schedule','pull_request':'pull_request'}.get(run['event'],'unknown')
         attempt_bound = (context['revision']['mode']=='branch' and event==context['ci']['event']
-                         and run['head_branch']==context['revision']['branch'])
+                         and run['head_branch']==context['revision']['branch'] and context['change_request'] is None
+                         and context['revision']['source']==context['revision']['tested']==run['head_sha']
+                         and context['revision']['target'] is None and github_push_branch_trigger(config_bytes,context))
     elif provider == 'gitlab-ci':
         if scm['provider'] != 'gitlab' or endpoint(scm['instance']) != endpoint(ci['instance']):
             raise ValueError('unsupported_gitlab_scm_composition')
@@ -208,9 +265,8 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
         config_digest = hashlib.sha256(base64.b64decode(config['content'])).hexdigest()
         revision, artifact_id, attempt_bound = run['sha'], ci['job_id'], True
         event={'push':'push','merge_request_event':'pull_request','web':'manual','schedule':'schedule'}.get(run['source'],'unknown')
-        attempt_bound = event==ci['event'] and job['pipeline']['sha']==run['sha']
-        if context['revision']['mode']=='branch':
-            attempt_bound=attempt_bound and run['ref']==context['revision']['branch']
+        attempt_bound = event==ci['event'] and job['pipeline']['sha']==run['sha'] and job.get('tag') is False
+        attempt_bound=attempt_bound and gitlab_revision_bound(context,run,get,route)
         started_at,completed_at = job['started_at'],job['finished_at']
     elif provider == 'bamboo':
         result = get('/rest/api/latest/result/' + encoded(ci['run_id']) + '.json?expand=artifacts')
@@ -232,8 +288,7 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
         # Bytes and native build are collected, but this profile cannot earn provenance_verified.
     else:
         raise ValueError('unsupported_native_transport')
-    identity = {'repository':repository_key(scm), 'provider':provider, 'instance':endpoint(ci['instance']),
-                'run_id':ci['run_id'], 'job_id':ci['job_id'], 'attempt':ci['attempt']}
+    identity = native_identity(context)
     # Reacquire SCM facts independently of consumer-supplied context/input.
     # Drift or unknown effective protection prevents native candidate promotion.
     if scm_reader is None and provider in ('github-actions','gitlab-ci'):

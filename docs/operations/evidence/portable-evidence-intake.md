@@ -16,6 +16,8 @@ The original result remains `unverified`; verification is a separate source-boun
 
 ## Native transports and proof limits
 
+Native identity binds event, full tested/source/target revision and change request to the downloaded context, so the same run/job IDs cannot relabel MR evidence as mainline. GitLab MR proof resolves the native MR, its associated pipeline and source/target identities; merged results require exactly the declared two native commit parents. GitLab tags cannot provide branch proof. GitHub push proof currently requires an explicit list of literal branch filters without tag or wildcard filters in the approved workflow; broader triggers remain integrity-only because branch/tag origin is not independently resolved here. GitHub PR native provenance remains unsupported.
+
 Native collection also reacquires effective protection/review facts through the SCM adapter and compares their values with the producer context. Missing facts or changed protection keep the receipt below native candidate eligibility. A genuine native artifact cannot make consumer-declared protection facts authoritative. CI and SCM readers may use separate private credentials through `transport` and `scm_transport`; same-platform profiles can reuse their read-only API client. This comparison describes the observed intake-time facts; it does not invent historical branch-protection data.
 
 | Profile | Implemented acquisition | Local evidence | Open boundary |

@@ -21,7 +21,7 @@ from lib.portable_intake.transport import Reader, capture
 from test_portable_runtime import context, OPA, SHA
 
 AT='2026-11-15T12:10:00Z'
-CONFIG=b'approved synthetic pipeline closure with exact reviewed runtime pin'
+CONFIG=b'on:\n  push:\n    branches: [trunk]\njobs:\n  portable:\n    name: approved synthetic pinned pipeline fixture\n'
 
 
 class BundleTests(unittest.TestCase):
@@ -177,6 +177,7 @@ class BundleTests(unittest.TestCase):
                 '/projects/42/approval_rules?per_page=100&page=1':[{'rule_type':'regular','approvals_required':1,'protected_branches':[]}],
                 '/projects/42/pipelines/42':{'id':42,'project_id':42,'sha':SHA,'status':'failed','source':'push','ref':'trunk'},
                 '/projects/42/jobs/job-42':{'id':'job-42','pipeline':{'id':42,'project_id':42,'sha':SHA},'commit':{'id':SHA},'name':'portable','status':'failed',
+                                         'tag':False,
                                          'started_at':'2026-11-15T11:59:00Z','finished_at':'2026-11-15T12:05:00Z'},
                 '/projects/42/repository/files/.gitlab-ci.yml?ref='+SHA:{'content':base64.b64encode(CONFIG).decode()}}
         if provider=='bamboo':
@@ -202,6 +203,65 @@ class BundleTests(unittest.TestCase):
             self.assertTrue(receipt['candidate_eligible'])
             self.assertEqual(receipt['decision'],'fail')
             self.assertEqual(receipt['producer']['ci']['provider'],provider)
+
+    def mr_native(self,mode):
+        self.ctx=context('gitlab-ci');self.ctx['synthetic']=False
+        self.ctx['ci']['instance']=self.ctx['scm']['instance'];self.ctx['ci']['event']='pull_request'
+        self.ctx['revision'].update(mode=mode,branch='feature',source=SHA if mode=='source-head' else 'b'*40,
+                                    target=None if mode=='source-head' else 'c'*40)
+        self.ctx['change_request']={'kind':'merge_request','id':'5','source_repository':'42','target_repository':'42',
+                                   'source_branch':'feature','target_branch':'trunk'}
+        self.policy['scm']=self.ctx['scm'];self.policy['ci']=self.ctx['ci'];self.policy['transport']['instance']=self.ctx['ci']['instance']
+        self.rebuild();reader,responses,_,_=self.native('gitlab-ci')
+        responses['/projects/42/pipelines/42'].update(source='merge_request_event',ref='refs/merge-requests/5/'+('head' if mode=='source-head' else 'merge'))
+        responses['/projects/42/merge_requests/5']={'iid':5,'source_project_id':42,'target_project_id':42,
+            'source_branch':'feature','target_branch':'trunk','sha':self.ctx['revision']['source']}
+        responses['/projects/42/merge_requests/5/pipelines?per_page=100&page=1']=[{'id':42,'sha':SHA}]
+        responses['/projects/42/repository/commits/'+SHA]={'id':SHA,'parent_ids':['b'*40,'c'*40]}
+        return reader,responses
+
+    def test_gitlab_source_head_and_merge_parent_bindings_use_native_metadata(self):
+        for mode in ('source-head','merge-result'):
+            reader,_=self.mr_native(mode)
+            observation,_=capture(self.ctx,self.policy,reader,self.root/'download.zip',at=AT)
+            self.assertTrue(observation.attempt_bound)
+            self.assertEqual(self.verify(observation=observation)['trust'],'provenance_verified')
+
+    def test_native_mr_observation_cannot_be_relabelled_as_mainline(self):
+        _,native_responses=self.mr_native('merge-result');requested=deepcopy(self.ctx)
+        self.ctx['ci']['event']='push';self.ctx['change_request']=None
+        self.ctx['revision'].update(mode='branch',branch='trunk',source=SHA,target=None)
+        self.rebuild();reader,responses,_,_=self.native('gitlab-ci');responses.update(native_responses)
+        observation,_=capture(requested,self.policy,reader,self.root/'download.zip',at=AT)
+        self.assertTrue(observation.attempt_bound)  # Genuine MR proof, different declared bundle context.
+        receipt=self.verify(observation=observation)
+        self.assertEqual(receipt['trust'],'integrity_verified');self.assertFalse(receipt['candidate_eligible'])
+
+    def test_wrong_mr_pipeline_or_merge_parent_prevents_native_promotion(self):
+        for field in ('pipeline','parents'):
+            reader,responses=self.mr_native('merge-result')
+            if field=='pipeline':responses['/projects/42/merge_requests/5/pipelines?per_page=100&page=1']=[{'id':99,'sha':SHA}]
+            else:responses['/projects/42/repository/commits/'+SHA]['parent_ids']=['b'*40,'d'*40]
+            observation,_=capture(self.ctx,self.policy,reader,self.root/'download.zip',at=AT)
+            self.assertEqual(self.verify(observation=observation)['trust'],'integrity_verified')
+
+    def test_branch_source_revision_cannot_be_fabricated(self):
+        self.ctx['revision']['source']='b'*40;self.rebuild();reader,_,_,_=self.native()
+        observation,_=capture(self.ctx,self.policy,reader,self.root/'download.zip',at=AT)
+        self.assertEqual(self.verify(observation=observation)['trust'],'integrity_verified')
+
+    def test_github_push_with_ambiguous_tag_branch_trigger_cannot_promote(self):
+        reader,responses,_,_=self.native()
+        broad=b'on: [push]\njobs: {}\n'
+        responses['/repos/group/repo/contents/.github/workflows/portable.yml?ref='+SHA]['content']=base64.b64encode(broad).decode()
+        self.policy['producer_config_sha256']=hashlib.sha256(broad).hexdigest()
+        observation,_=capture(self.ctx,self.policy,reader,self.root/'download.zip',at=AT)
+        self.assertEqual(self.verify(observation=observation)['trust'],'integrity_verified')
+
+    def test_gitlab_tag_cannot_supply_branch_provenance(self):
+        reader,responses,_,_=self.native('gitlab-ci');responses['/projects/42/jobs/job-42']['tag']=True
+        observation,_=capture(self.ctx,self.policy,reader,self.root/'download.zip',at=AT)
+        self.assertEqual(self.verify(observation=observation)['trust'],'integrity_verified')
 
     def test_native_commit_config_attempt_and_artifact_mismatches_do_not_promote(self):
         reader,responses,_,artifact=self.native()
