@@ -1,25 +1,23 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #347: build(deps): bump the codeql group across 1 directory with 2 updates (`4f6f5bbc2614`)
 
 ## Ergebnis
 
-- Lokale Markdown-Linkprüfung: 1 fehlende lokale Markdown-Zielpfade.
+- Lokale Markdown-Linkprüfung: 2 fehlende lokale Markdown-Zielpfade.
 - `mkdocs build --strict`: passed.
 - Der PR-Inhalt stammt aus der PR-Zusammenfassung und den geänderten Pfaden; fachliche Bedeutung und Querverweise benötigen menschliche Prüfung.
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `.github/workflows/codeql.yml`
+- `.github/workflows/viewer-ui.yml`
+- `.github/workflows/workbench-ui.yml`
 
 ## Fehlende lokale Markdown-Ziele
 
 - `README.md` → `/picture`
+- `pipeline-baseline/templates/bamboo/README.md` → `../../../../docs/operations/adapters/portable-governance-runtime.md`
 
 ## Redaktionelle Prüfpunkte
 
