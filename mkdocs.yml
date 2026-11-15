@@ -185,6 +185,7 @@ nav:
           - Portable Runtime v1 Candidate: operations/adapters/portable-governance-runtime.md
           - Portable Evidence Intake v2 Candidate: operations/evidence/portable-evidence-intake.md
           - Portable Runtime ADR: operations/planning/portable-governance-runtime-adr.md
+          - Portable Operations Candidate: operations/adapters/portable-operations.md
           - Bitbucket Bamboo Governance Adapter: operations/adapters/bitbucket-bamboo-governance-adapter.md
           - Company Bitbucket Bamboo Mistral Target Path: operations/adapters/company-bitbucket-bamboo-mistral-target-path.md
           - GitHub Reference Path: operations/adapters/github-reference-path.md
