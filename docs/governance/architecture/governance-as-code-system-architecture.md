@@ -8,8 +8,9 @@
 | Status | Current explanatory architecture |
 | Effective date | 2026-07-17 |
 | Last implementation review | 2026-11-07, repository `ae423f3`; older evidence observations retain their dates |
+| Requirement journey explanation | 2026-11-08, `GCR-2026-161`; five-phase reading guide, no implementation change |
 | Owner | Governance Platform Maintainers |
-| Change request | `GCR-2026-035`; documentation refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154` |
+| Change request | `GCR-2026-035`; documentation refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154`, `GCR-2026-161` |
 | Governance effect | None; documentation-only |
 | Released baseline effect | None |
 | Source Document Intake | Not required; no new governance source |
@@ -81,16 +82,28 @@ sockets from blocking the service; actual request handlers serialize session and
 draft operations. This remains a local operational surface, with no hosted
 enterprise identity or automatic governance approval.
 
+The document-to-runtime journey is explained through five phases. The Workbench
+prepares source and requirement reviews; formal decisions use the existing
+versioned procedures. Native Git requirements enter phase 2 with a versioned
+native source. Cases, catalogs, mappings and evidence records support these
+phases rather than adding separate user steps.
+
+![Five phases: approve source, decide requirement, confirm implementation, publish rule set, apply and review results.](diagrams/requirement-journey-five-phases.svg)
+
 ```mermaid
-flowchart LR
-    S[Registered source or candidate] --> W[Private local Workbench]
-    W --> P[Review packet and proposed notes]
-    P --> H[Human source and requirement decisions]
-    H --> C[Lifecycle case and canonical catalog]
-    C --> A[Reviewed requirement-to-artifact mappings]
-    A --> R[Controlled policy and baseline changes]
-    C --> V[Read-only publication and Viewer]
+flowchart TD
+    P1["1. Approve source"] --> P2["2. Decide requirement"]
+    P2 --> P3["3. Confirm implementation"]
+    P3 --> P4["4. Publish rule set"]
+    P4 --> P5["5. Apply and review results"]
 ```
+
+Source approval precedes individual requirement decisions. An active requirement
+needs a separately reviewed implementation and exact artifact mapping. A release
+decision publishes a baseline for consumers; evaluation then uses that selected
+version and concrete evidence. Gate behavior follows its separately authorized
+enforcement mode. A rejected proposal or unresolved conflict does not advance
+automatically, and documentation-only work need not publish a new runtime baseline.
 
 The Requirement Authority Ledger distinguishes external authority, migration
 in progress and complete Git authority. Immutable canonical revisions carry
