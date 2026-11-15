@@ -171,7 +171,20 @@ def verify_bundle(root, policy, *, opa, at, history=None, observation=None):
     members = {row['role']: row for row in files}
     context = validate('context', read_json(root / members['context']['path']))
     result = validate('result', read_json(root / members['result']['path']))
-    payload = read_json(root / members['input']['path'])
+    document = read_json(root / members['input']['path'])
+    # The runtime CLI preserves payload and subject bindings in one envelope.
+    # Earlier programmatic exporters supplied the payload directly. Retain both
+    # byte-preserving forms, validating every envelope binding before derivation.
+    if not isinstance(document, dict):
+        raise ValueError('invalid_evaluation_input')
+    if 'payload' in document or 'subjects' in document:
+        if (set(document) != {'payload', 'subjects'}
+                or not isinstance(document['payload'], dict)
+                or document['subjects'] != result['subjects']):
+            raise ValueError('evaluation_input_subject_binding_mismatch')
+        payload = document['payload']
+    else:
+        payload = document
     if result['context'] != context or canonical_digest(context) != result['context_digest']:
         raise ValueError('result_context_mismatch')
     key = execution_key(context)
