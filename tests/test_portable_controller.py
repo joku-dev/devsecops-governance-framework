@@ -2,6 +2,7 @@
 from copy import deepcopy
 import json
 from pathlib import Path
+import shutil
 import sqlite3
 import sys
 import tempfile
@@ -28,6 +29,12 @@ class ControllerTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name)
+        # Native responses are synthetic; host disk capacity is another fixture.
+        # Keep the real storage checks active with explicit, sufficient capacity.
+        usage=shutil.disk_usage(self.root)
+        capacity=patch('lib.portable_intake.controller.shutil.disk_usage',
+                       return_value=usage._replace(free=64*1024**3))
+        capacity.start();self.addCleanup(capacity.stop)
         self.store=Store(self.root/'private');self.addCleanup(self.store.close)
         self.queue=Queue(self.store)
         self.fixture=fixtures.BundleTests('runTest');self.fixture.setUp();self.addCleanup(self.fixture.doCleanups)
@@ -46,6 +53,31 @@ class ControllerTests(unittest.TestCase):
     def task(self):
         key=self.queue.discover(self.profile,self.locator,at=NOW)
         return self.queue.claim(at=NOW),key
+
+    def test_insufficient_capture_reserve_rejects_before_native_acquisition(self):
+        pool,_,_,_,_=self.native();task,_=self.task()
+        usage=shutil.disk_usage(self.root)
+        with patch('lib.portable_intake.controller.shutil.disk_usage',
+                   return_value=usage._replace(free=11*1024**3-1)), \
+                patch.object(pool,'reader',side_effect=AssertionError('native acquisition before budget')) as acquire:
+            with self.assertRaisesRegex(AccessFailure,'storage_budget_exhausted'):
+                collect_task(self.queue,task,self.profile,pool,RawBudget(self.store.root),opa=OPA,at=NOW)
+        self.assertEqual(pool.calls,0)
+        acquire.assert_not_called()
+        self.assertEqual(self.store.history(),{})
+        self.assertEqual(list((self.store.root/'raw').rglob('*')),[])
+
+    def test_capture_reserve_boundary_and_retained_raw_budget_remain_enforced(self):
+        raw=self.store.root/'raw/retained.bin';raw.parent.mkdir(exist_ok=True)
+        original=b'retained evidence';raw.write_bytes(original)
+        budget=RawBudget(self.store.root);usage=shutil.disk_usage(self.root)
+        # The production default still needs 8 GiB reserve plus six 512 MiB copies.
+        with patch('lib.portable_intake.controller.shutil.disk_usage',
+                   return_value=usage._replace(free=11*1024**3)):
+            budget.require(self.profile['policy'])
+            with self.assertRaisesRegex(AccessFailure,'storage_budget_exhausted'):
+                budget.require({**self.profile['policy'],'storage_budget_bytes':1024**3})
+        self.assertEqual(raw.read_bytes(),original)
 
     def test_default_registry_has_no_live_consumers_or_authority(self):
         self.assertEqual(validate_profiles(json.loads((ROOT/'config/portable-consumer-profiles.json').read_text())),[])
