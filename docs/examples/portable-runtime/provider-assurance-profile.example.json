@@ -1,0 +1,12 @@
+{
+  "scm": {
+    "provider": "gitlab",
+    "instance": "https://gitlab.example",
+    "native_id": "42",
+    "path": "synthetic/subgroup/repo",
+    "url": "https://gitlab.example/synthetic/subgroup/repo"
+  },
+  "api_url": "https://gitlab.example/api/v4",
+  "platform_version": null,
+  "edition": null
+}

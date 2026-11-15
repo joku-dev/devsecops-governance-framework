@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Operator-owned portable intake policy v2 candidate",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "scm", "ci", "baseline_id", "baseline_digest", "runtime_source_digest", "max_age_seconds", "future_skew_seconds", "max_severity"],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "scm": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider", "instance", "native_id", "path", "url"],
+      "properties": {
+        "provider": {"enum": ["github", "gitlab", "bitbucket-dc"]},
+        "instance": {"type": "string", "format": "uri"},
+        "native_id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"}
+      }
+    },
+    "ci": {
+      "type": "object",
+      "required": ["provider", "instance"],
+      "properties": {"provider": {"enum": ["github-actions", "gitlab-ci", "bamboo"]}, "instance": {"type": "string", "format": "uri"}}
+    },
+    "baseline_id": {"type": "string", "minLength": 1},
+    "baseline_digest": {"$ref": "#/$defs/digest"},
+    "runtime_source_digest": {"$ref": "#/$defs/digest"},
+    "producer_config_sha256": {"$ref": "#/$defs/digest"},
+    "max_age_seconds": {"type": "integer", "minimum": 1, "maximum": 2678400},
+    "future_skew_seconds": {"const": 0},
+    "max_severity": {"enum": ["none", "info", "low", "medium", "high", "critical"]},
+    "storage_budget_bytes": {"type": "integer", "minimum": 1073741824},
+    "storage_reserve_bytes": {"type": "integer", "minimum": 8589934592},
+    "scm_transport": {
+      "type": "object", "additionalProperties": false, "required": ["api_url"],
+      "properties": {
+        "api_url": {"type": "string", "format": "uri"},
+        "token_env": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "request_budget": {"type": "integer", "minimum": 1, "maximum": 1000}
+      }
+    },
+    "transport": {
+      "type": "object", "additionalProperties": false,
+      "required": ["instance", "api_url"],
+      "properties": {
+        "instance": {"type": "string", "format": "uri"},
+        "api_url": {"type": "string", "format": "uri"},
+        "token_env": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "request_budget": {"type": "integer", "minimum": 1, "maximum": 1000},
+        "artifact_name": {"type": "string", "minLength": 1},
+        "workflow_path": {"type": "string", "minLength": 1},
+        "configuration_path": {"type": "string", "minLength": 1},
+        "job_name": {"type": "string", "minLength": 1},
+        "logical_job_id": {"type": "string", "minLength": 1},
+        "upload_step_name": {"type": "string", "minLength": 1},
+        "bundle_prefix": {"type": "string", "maxLength": 256}
+      }
+    }
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

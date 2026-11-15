@@ -1,17 +1,22 @@
 # DevSecOps Governance Framework
 
+Aktueller Abgleich: [Implementierung und VM-Betrieb, 15. November 2026](operations/status/repository-documentation-reconciliation-2026-11-15.md).
+Für den praktischen Einstieg: [Workbench](operations/guides/governance-review-workbench.md),
+[Mac und Linux-VM parallel](operations/guides/linux-vm-installation.md),
+[Portabilität und offene Abnahmen](operations/planning/platform-portability-acceptance.md).
+
 [Governance Workspace öffnen](https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html) · [Bedienung und Datenherkunft](operations/guides/governance-viewer-app.md)
 
-Aktueller Funktionsumfang: [detaillierter Katalog mit 21 Bereichen](operations/guides/repository-function-catalog.md)
+Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](operations/guides/repository-technical-function-inventory.md).
 Der [GitHub-Lifecycle-Pilot](operations/status/governance-lifecycle-current-state.md)
 ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
 13. September 2026 aktiv, manuell und report-only.
 
-The [v0.3.0 adoption/operations release](releases/v0.3.0-public-adoption.md)
-packages the current operational assurance, evidence, viewer, security and
-scale-readiness state; its release statement explains publication status,
-known limits and separate baseline pins.
+The [v0.3.0 adoption/operations statement](releases/v0.3.0-public-adoption.md)
+contains prepared assets. The [release index](releases/index.md) records the
+dated publication readback and distinguishes release tags from consumer pins.
+The merged portable runtime is not a newly published baseline.
 
 Current accepted governance results and measured ha-CPsWMS mainline and staging
 evidence from 19 September 2026 are recorded in the

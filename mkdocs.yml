@@ -24,7 +24,8 @@ nav:
       - Source Of Truth: governance/source-of-truth.md
       - Operating Model: governance/operating-model.md
       - Architecture:
-          - Governance-as-Code System Architecture: governance/architecture/governance-as-code-system-architecture.md
+          - System Architecture (arc42): governance/architecture/governance-as-code-system-architecture.md
+          - Requirement Journey in Five Phases: governance/architecture/document-intake-to-opa-rulebook.md
           - ADO And DevSecOps Integrated Model: governance/architecture/ado-devsecops-integrated-governance-model.md
           - Software Industrialisation Problem And Capability Map: governance/architecture/software-industrialisation-problem-capability-map.md
           - Governance Repository Architecture Comparison: governance/architecture/governance-repository-architecture-comparison.md
@@ -46,6 +47,7 @@ nav:
           - GCR-2026-142 Normative Source Approval: governance/change-requests/GCR-2026-142-normative-source-approval.md
           - GCR-2026-159 Requirement Lifecycle Viewer: governance/change-requests/GCR-2026-159-governance-requirement-lifecycle-viewer.md
           - GCR-2026-160 Current Source Approval: governance/change-requests/GCR-2026-160-current-source-approval.md
+          - GCR-2026-161 Five-Phase Requirement Guide: governance/change-requests/GCR-2026-161-five-phase-requirement-guide.md
   - Platform:
       - Control Baseline and Platform Architecture: platform/control-baseline-and-platform-architecture-relationship-explained.md
   - Controls:
@@ -94,6 +96,8 @@ nav:
           - How To Use This Repo: operations/guides/how-to-use-this-repo.md
           - Beginner Guide: operations/guides/beginner-step-by-step-operations-guide.md
           - Local Validation Toolchain: operations/guides/local-validation-toolchain.md
+          - Linux VM Installation: operations/guides/linux-vm-installation.md
+          - VM Consumer Intake: operations/guides/vm-consumer-intake.md
           - Evidence And Governance Hardening: operations/guides/evidence-and-governance-hardening-guide.md
           - How To Add A New Artifact: operations/guides/how-to-add-a-new-artifact.md
           - Updating Baseline Input Documents: operations/guides/how-to-update-baseline-input-documents.md
@@ -171,6 +175,7 @@ nav:
           - Blocking Mode Alignment: operations/status/blocking-mode-alignment.md
           - Governance Intelligence Graph Viewer: operations/status/governance-intelligence-graph-viewer.md
           - Current Governance Platform State: operations/status/current-governance-platform-state.md
+          - Documentation Reconciliation (15 November): operations/status/repository-documentation-reconciliation-2026-11-15.md
           - Documentation Reconciliation (7 November): operations/status/repository-documentation-reconciliation-2026-11-07.md
           - Document Consistency Rollout Readiness: operations/status/document-consistency-rollout-readiness.md
           - Document Consistency Management Summary: operations/status/document-consistency-rollout-management-summary.md
@@ -180,6 +185,16 @@ nav:
           - ha-CPsWMS Lessons Learned: operations/status/ha-cpswms-governance-lessons-learned.md
       - Platform Adapters:
           - CI/CD Platform Adapter Strategy: operations/adapters/cicd-platform-adapter-strategy.md
+          - Portable Runtime v1 Candidate: operations/adapters/portable-governance-runtime.md
+          - Portable Evidence Intake v2 Candidate: operations/evidence/portable-evidence-intake.md
+          - Portable Runtime ADR: operations/planning/portable-governance-runtime-adr.md
+          - Portable Operations Candidate: operations/adapters/portable-operations.md
+          - Portable Collector Service Candidate: operations/guides/portable-consumer-service.md
+          - Prepared Runtime Package Candidate: operations/guides/prepared-runtime-package.md
+          - Provider assurance candidates: operations/guides/provider-assurance-candidates.md
+          - Portable update and recovery: operations/guides/portable-vm-update-and-recovery.md
+          - Platform portability acceptance: operations/planning/platform-portability-acceptance.md
+          - Portable capacity profile: operations/guides/portable-capacity-profile.md
           - Bitbucket Bamboo Governance Adapter: operations/adapters/bitbucket-bamboo-governance-adapter.md
           - Company Bitbucket Bamboo Mistral Target Path: operations/adapters/company-bitbucket-bamboo-mistral-target-path.md
           - GitHub Reference Path: operations/adapters/github-reference-path.md

@@ -1,31 +1,49 @@
+# Prepared internal runner: exact runtime checkout, hashed dependencies and verified OPA.
+# AXIOM_PROFILE is operator-owned, outside the untrusted application checkout.
 stages:
-  - code
   - build
-  - test
-  - package
-  - release
-
-code_checks:
-  stage: code
-  script:
-    - echo "Run branch protection, review evidence, secret scanning, and SAST checks here."
-
-controlled_build:
+  - governance
+variables:
+  AXIOM_RUNTIME: /opt/axiom/runtime
+  AXIOM_PYTHON: /opt/axiom/venv/bin/python
+  AXIOM_OPA: /opt/axiom/venv/bin/opa
+  AXIOM_PROFILE: /etc/axiom/consumer.json
+  AXIOM_MODE: report-only
+application_build_and_scan:
   stage: build
   script:
-    - echo "Run controlled build and produce artifact metadata here."
-
-security_gates:
-  stage: test
+    - ./ci/build-and-scan.sh
+  artifacts:
+    when: always
+    paths:
+      - dist/application-source.tar.gz
+      - security/sbom.cyclonedx.json
+      - security/vulnerability-scan.json
+axiom_portable_pipeline_l1:
+  needs:
+    - job: application_build_and_scan
+      artifacts: true
+  stage: governance
   script:
-    - echo "Run vulnerability scanning and policy threshold checks here."
-
-package_evidence:
-  stage: package
-  script:
-    - echo "Generate SBOM, artifact digest, signature, and repository metadata here."
-
-release_decision:
-  stage: release
-  script:
-    - echo "Evaluate release approval, waiver status, and evidence bundle completeness here."
+    - >-
+      "$AXIOM_PYTHON" "$AXIOM_RUNTIME/scripts/governance_runtime.py" run
+      --ci gitlab-ci --profile "$AXIOM_PROFILE" --checkout "$CI_PROJECT_DIR"
+      --artifact dist/application-source.tar.gz --sbom security/sbom.cyclonedx.json
+      --scan security/vulnerability-scan.json --output-directory portable-evidence
+      --mode "$AXIOM_MODE" --opa "$AXIOM_OPA"
+  after_script:
+    - mkdir -p portable-evidence
+    - >-
+      if [ ! -f portable-evidence/result.json ] && [ ! -f portable-evidence/diagnostics.json ]; then
+      printf '%s\n' '{"schema_version":"1.0.0","execution":"error","diagnostics":["runtime_did_not_produce_result"]}' > portable-evidence/diagnostics.json;
+      fi
+    - >-
+      if [ -f portable-evidence/result.json ]; then
+      "$AXIOM_PYTHON" "$AXIOM_RUNTIME/scripts/intake_portable_evidence.py" bundle
+      --assessment portable-evidence --checkout "$CI_PROJECT_DIR" --destination portable-bundle;
+      fi
+  artifacts:
+    when: always
+    paths:
+      - portable-evidence/
+      - portable-bundle/

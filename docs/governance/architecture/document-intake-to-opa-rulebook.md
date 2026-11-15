@@ -2,52 +2,220 @@
 
 ## Zweck und Geltungsbereich
 
-Dieses Dokument beschreibt den vollständigen Governance-Datenfluss von einem
-eingehenden normativen Dokument bis zu ausführbaren Regeln für Open Policy
-Agent (OPA). Es beschreibt den Sollprozess und den derzeit implementierten
-Stand des Repositories.
+Dieser Leitfaden erklärt, wie aus einer Anforderung in einem Dokument eine
+nachvollziehbare Governance-Prüfung wird. Zuerst führt er ohne Git- oder
+OPA-Vorkenntnisse durch fünf Phasen. Die anschließende Technikreferenz ordnet
+Kennungen, Register und Implementierungsdetails diesen Phasen zu.
+
+Die fünf Phasen sind eine Lesehilfe für das bestehende Verfahren. Ihre
+Darstellung ändert keine Freigaben oder Zuständigkeiten. Eine Quellenfreigabe,
+eine Requirement-Aktivierung, die Bestätigung einer Umsetzung und eine
+Blocking-Freigabe bleiben getrennte Entscheidungen.
+
+## Architekturüberblick
+
+![Fünf Phasen: Quelle freigeben, Anforderung entscheiden, Umsetzung bestätigen, Regelstand veröffentlichen, anwenden und Ergebnisse prüfen.](diagrams/requirement-journey-five-phases.svg)
+
+| Phase | Leitfrage | Ergebnis |
+|---|---|---|
+| **1. Quelle freigeben** | Dürfen wir diesen Dokumentstand als Grundlage verwenden? | Registrierte, versionierte und freigegebene Quelle |
+| **2. Anforderung entscheiden** | Welche explizite Anforderung übernehmen wir? | Dokumentierte Entscheidung und gegebenenfalls aktive GRQ-Revision |
+| **3. Umsetzung bestätigen** | Wie wird die Anforderung fachlich korrekt umgesetzt? | Bestätigte Artefakte einschließlich ihrer RTA-Zuordnungen |
+| **4. Regelstand veröffentlichen** | Welche freigegebene Version sollen Consumer verwenden? | Veröffentlichter, unveränderlicher Baseline-Stand |
+| **5. Anwenden und Ergebnisse prüfen** | Erfüllt ein konkreter Zustand die Regeln? | Prüfergebnis, Nachweise, Darstellung und freigegebene Gate-Wirkung |
+
+Eine **GRQ-Revision** ist der freigegebene Versionsstand einer zentral geführten
+Anforderung. **RTA** bezeichnet den Zuordnungsnachweis zwischen dieser Anforderung
+und ihrer bestätigten Umsetzung. Ein **Consumer** ist ein Repository oder System,
+das den veröffentlichten Regelstand verwendet.
+
+Die Phasen können bei Rückfragen erneut durchlaufen werden. Ein
+Duplikat, eine Ablehnung oder eine offene Klärung führt nicht automatisch zu
+einer neuen Regel. Anforderungen, die direkt im Repository formuliert werden
+(Git-native Anforderungen), beginnen mit einer versionierten Anforderungsquelle
+direkt in Phase 2; ihre Herkunft bleibt nachvollziehbar.
+
+## Leitfaden durch die fünf Phasen
+
+### Phase 1: Quelle freigeben
+
+- **Eingang:** Ein Dokument oder ein kontrollierter Requirements-Auszug mit
+  bekanntem Dokumentstand.
+- **Aufgabe:** Herkunft, Version, Eigentümer und betroffene Themen registrieren;
+  Überschneidungen und mögliche Ersatzdokumente prüfen.
+- **Menschliche Entscheidung:** Die zuständige Rolle entscheidet, ob genau
+  dieser Dokumentstand als verbindliche (normative) Quelle freigegeben wird.
+- **Ergebnis:** Ein freigegebener Registereintrag mit nachvollziehbarem
+  Entscheidungsnachweis. Ohne Freigabe bleibt das Dokument im Intake.
+- **Warum diese Phase existiert:** Jede spätere Anforderung braucht eine
+  eindeutig benannte und zulässige Grundlage. Ein Kandidat darf verglichen und
+  geprüft werden, autorisiert aber keine normativen Runtime-Ableitungen.
+
+### Phase 2: Anforderung entscheiden
+
+- **Eingang:** Eine explizit deklarierte Anforderung aus einer freigegebenen
+  Quelle oder eine versionierte Git-native Anforderung.
+- **Aufgabe:** Die Aussage einzeln prüfen und mit vorhandenen Anforderungen
+  vergleichen. Aus Fließtext werden keine Anforderungen abgeleitet.
+- **Menschliche Entscheidung:** Annahme, Ablehnung oder Zurückstellung sowie
+  die fachliche Behandlung von Duplikaten, Änderungen und Konflikten festhalten.
+- **Ergebnis:** Eine dokumentierte Entscheidung und bei Aktivierung eine
+  kanonische GRQ-Revision. Ein Duplikat kann auf ein vorhandenes GRQ verweisen;
+  eine Ablehnung erzeugt kein neues GRQ. Ein freigegebener, ungelöster Konflikt
+  verhindert die Aktivierung bis zur Auflösung.
+- **Warum diese Phase existiert:** Die Freigabe eines Dokuments entscheidet
+  noch nicht, welche seiner Aussagen als einzelne Anforderungen gelten sollen.
+  Offene Vorschläge behalten ihren eigenen Status.
+
+### Phase 3: Umsetzung bestätigen
+
+- **Eingang:** Eine aktive GRQ-Revision und die für sie erlaubten Ableitungsarten.
+- **Aufgabe:** Eine geeignete Umsetzung auswählen: beispielsweise ein Control,
+  eine Plattformfähigkeit, ein Architekturmarker, ein Review oder eine OPA-Policy.
+  Eine OPA-Policy ist eine maschinenlesbare Prüfregel in der Sprache Rego.
+- **Menschliche Entscheidung:** Fachliche Gleichwertigkeit und zulässige
+  Verwendung der vorhandenen oder neu erstellten Umsetzung bestätigen.
+- **Ergebnis:** Bestätigte Artefakte mit einer RTA-Zuordnung, die GRQ-Revision,
+  konkreten Artefaktinhalt und Entscheidung miteinander verbindet.
+- **Warum diese Phase existiert:** Eine technische Prüfung muss tatsächlich
+  die freigegebene Anforderung abdecken. Mehrere Anforderungen können dieselbe
+  Umsetzung nutzen; eine Anforderung kann mehrere Artefakte benötigen.
+
+### Phase 4: Regelstand veröffentlichen
+
+- **Eingang:** Bestätigte Implementierungen und die zugehörigen Prüfungen,
+  Datenverträge und Nachweise für eine Veröffentlichung.
+- **Aufgabe:** Den vorgesehenen Regelstand vollständig validieren und als
+  reproduzierbares Paket für Consumer vorbereiten.
+- **Menschliche Entscheidung:** Die zuständige Rolle gibt den konkreten
+  Release- beziehungsweise Baseline-Stand zur Veröffentlichung frei.
+- **Ergebnis:** Eine veröffentlichte Version, auf die Consumer gezielt verweisen
+  können. Eine bestehende veröffentlichte Baseline wird nicht überschrieben.
+- **Warum diese Phase existiert:** Alle Beteiligten müssen wissen, welche
+  zusammengehörigen Regelversionen angewendet wurden. Quellenfreigabe und
+  erfolgreicher Testlauf ersetzen keine Release-Entscheidung. Eine rein
+  erläuternde Änderung kann ohne neue Runtime-Baseline abgeschlossen werden.
+
+### Phase 5: Anwenden und Ergebnisse prüfen
+
+- **Eingang:** Der ausgewählte Regelstand und konkrete Fakten aus Repository,
+  Pipeline, Scannern oder Architekturassessments.
+- **Aufgabe:** Die Fakten nach einem definierten Datenformat bereitstellen,
+  Regeln auswerten und Ergebnisse mit Lauf, Commit und Baseline speichern.
+- **Menschliche Entscheidung:** Verantwortliche bearbeiten die Befunde nach
+  dem geltenden Verfahren. Die automatische Workflow-Wirkung folgt dem bereits
+  freigegebenen Durchsetzungsmodus (Enforcement); Blocking benötigt eine eigene Freigabe.
+- **Ergebnis:** Nachvollziehbare Prüfergebnisse und Evidenz im Statusindex und
+  lesenden Viewer. Ein Gate kann den Workflow im freigegebenen Modus blockieren.
+- **Warum diese Phase existiert:** Eine veröffentlichte Regel allein belegt
+  noch nicht, ob ein konkretes System sie erfüllt. Nicht maschinenprüfbare
+  Anforderungen benötigen passende menschliche Reviews oder andere Nachweise.
+
+## Durchgängiges Beispiel: Schutz geschützter Branches
+
+Die folgende Zuordnung ist im Repository belegt. Die Quellanforderung
+`DSCB-L1-REQ-003` verlangt, direkte Änderungen geschützter Branches zu verhindern.
+
+| Phase | Beleg und Bedeutung |
+|---|---|
+| **1. Quelle freigeben** | Der [DSCB-Auszug](../source-documents/DSCB-STD-SRC-001.requirements.md) ist als Dokument `DSCB-STD-REQ-001` registriert und durch [GCR-2026-142](../change-requests/GCR-2026-142-normative-source-approval.md) freigegeben. |
+| **2. Anforderung entscheiden** | Die Deklaration `DSCB-L1-REQ-003` steht an der technischen Fundstelle `DSCB-STD-SRC-001-REQ-012`. Das Proposal `RLC-DSCB-STD-REQ-001-MIGRATION-P0012` wurde durch [GCR-2026-145](../change-requests/GCR-2026-145-dscb-first-wave-requirement-approval.md) entschieden und als `GRQ-000003@rev1` aktiviert. |
+| **3. Umsetzung bestätigen** | Das Control trägt ebenfalls `DSCB-L1-REQ-003`. Der Eintrag `RTA-000001` bestätigt die Übernahme von `policies/opa/branch_protection.rego` für `GRQ-000003@rev1`; [GCR-2026-146](../change-requests/GCR-2026-146-dscb-opa-adoption-decision.md) enthält die fachliche Entscheidung. Der RTA-Modus ist `enforcement: none`. |
+| **4. Regelstand veröffentlichen — Prozessfortsetzung** | Eine Veröffentlichung müsste den konkret freigegebenen Paketstand und dessen Release-Nachweis benennen. Die obige RTA-Zuordnung allein belegt keine neue Veröffentlichung dieser Anforderung in einer bestimmten Baseline. |
+| **5. Anwenden und Ergebnisse prüfen — Prozessfortsetzung** | Bei einer Auswertung prüft die Policy beispielsweise `input.repository.direct_push_allowed` und liefert über `data.devsecops.branch_protection.deny` Befunde. Für einen tatsächlichen Ergebnisnachweis müssten Lauf, Input, Commit und verwendete Baseline vorliegen. Das Beispiel behauptet keinen solchen Lauf. |
+
+Die beobachtete Kette bis zur bestätigten Umsetzung lautet:
+
+```text
+DSCB-L1-REQ-003 im freigegebenen DSCB-Dokument
+  -> RLC-DSCB-STD-REQ-001-MIGRATION-P0012
+  -> GRQ-000003@rev1
+  -> RTA-000001
+  -> policies/opa/branch_protection.rego (enforcement: none)
+```
+
+Der Modus `none` bezeichnet die Wirkung dieser bestätigten Zuordnung. Er
+ändert keine separat bestehenden Consumer-Workflows und belegt weder einen
+neuen Blocking-Modus noch einen freigegebenen Produktionsbetrieb.
+
+## Technikreferenz
+
+Die folgenden Begriffe und Detailkapitel dienen der technischen Nachverfolgung.
+Sie sind keine zusätzlichen Phasen, die Anwender nacheinander abarbeiten müssen.
+Die bisherigen Abschnittsnummern und Direktlinks bleiben erhalten.
+
+### Begriffe und Kennungen nach Phase
+
+| Phase | Nomenklatur | Kennung oder Beispiel | Aufgabe und Existenzgrund |
+|---|---|---|---|
+| 1 | Source Document / Dokument-ID | `DSCB-STD-REQ-001` | Identifiziert die registrierte Dokumentquelle mit Version, Eigentümer und Status. Trotz `REQ` im Namen ist dies die Dokument-ID. |
+| 2 | Source Requirement / deklarierte Anforderung | `DSCB-L1-REQ-003` | Identifiziert die ausdrücklich im Quelltext deklarierte Aussage; die ID allein bestätigt weder Urheberschaft noch fachliche Freigabe. |
+| 2 | Quellfundstelle / technischer Locator | `DSCB-STD-SRC-001-REQ-012` | Verweist auf eine Extraktionszeile. Diese synthetische Kennung ist keine zusätzliche Anforderung und genügt nicht für den Import. |
+| 2 | Requirement Lifecycle Case / Proposal | `RLC-DSCB-STD-REQ-001-MIGRATION` / `…-P0012` | Bewahrt Analyse, menschliche Entscheidung und Aktivierung eines Vorschlags. |
+| 2 | Governance Requirement / GRQ-Revision | `GRQ-000003@rev1` | Führt die aktivierte, versionierte kanonische Anforderung; spätere Änderungen erzeugen neue Revisionen. |
+| 3 | Control | `DSCB-L1-REQ-003` | Beschreibt Kontrollziel, erwartete Nachweise und Verifikation. Die Wiederverwendung der Quell-ID ist keine zweite kanonische Anforderung. |
+| 3 | Platform Capability / Plattformfähigkeit | `branch_protection` | Benennt eine Fähigkeit, die eine Plattform zur Umsetzung bereitstellen soll. |
+| 3 | Architecture Marker / Architekturmarker | `B1` | Identifiziert ein Architekturprüfkriterium; seine konkrete Definition steht im Architekturmodell. |
+| 3 | Requirement-to-Artifact / RTA | `RTA-000001` | Bindet eine exakte GRQ-Revision an ein bestätigtes Artefakt, dessen SHA-256 und die Übernahme- oder Ableitungsentscheidung. |
+| 3 | OPA Policy / Rego-Modul | `branch_protection.rego` | Implementiert den objektiv maschinenprüfbaren Teil einer Anforderung. |
+| 4 | Release / Runtime-Baseline | z. B. `l1-baseline-v1.1.3` | Stellt einen unveränderlichen Regelstand für Consumer bereit. Der Beispielname ist keine zusätzliche GRQ-zu-Release-Zuordnung. |
+| 5 | Evidence / Evidenz | Eingabedaten und Nachweise mit Herkunft und Laufbezug | Belegt, welche Fakten einer Prüfung zugrunde lagen. |
+| 5 | Finding / Befund | Prüfergebnis mit Regel- und Kontextbezug | Hält eine festgestellte Abweichung für Bericht und Bearbeitung fest. |
+| 5 | Enforcement / Gate | `none`, `report_only`, `blocking` | Trennt das fachliche Prüfergebnis von seiner freigegebenen Workflow-Wirkung. |
+| 5 | Statusindex / Viewer | Akzeptierte Resultate und lesende Projektion | Macht Ergebnisse und Herkunft zugänglich; die Anzeige erteilt keine Freigabe. |
+
+`L1`, `L2` und `L3` bezeichnen Baseline- beziehungsweise Reifegradkategorien;
+`GOV` bezeichnet Governance-Anforderungen. Sie sind keine Lebenszyklusphasen.
+
+### Begleitende Nachweise
+
+Der **Requirement Authority Ledger** bestimmt, ob für eine Aussage noch das
+freigegebene Dokument oder bereits die aktivierte Git-Revision maßgeblich ist.
+Der **Governance Change Request (GCR)** dokumentiert eine fachliche Entscheidung,
+ihre Begründung und ihre Referenzen. Beide begleiten die fünf Phasen; ihre
+Dateien sind keine zusätzlichen Benutzeraufgaben. SHA-256-Prüfsummen binden
+Freigaben an genaue Dateiinhalte.
+
+Der aktuelle Quellen- und Betriebsstand steht im
+[aktuellen Plattformstatus](../../operations/status/current-governance-platform-state.md)
+und in der [Quellenabhängigkeitsübersicht](../../operations/guides/source-document-dependency-map.md).
+Die spätere Momentaufnahme vom 9. Oktober ist als Historie zu lesen.
+
+### Zuordnung der Detailkapitel
+
+| Phase | Vertiefung |
+|---|---|
+| 1 | [Dokumenteingang und Registrierung](#1-eingang-und-klassifizierung-eines-dokuments) |
+| 2 | [Proposals](#3-zerlegung-in-requirement-proposals), [Katalogaktivierung](#4-aktivierung-im-kanonischen-requirement-katalog) und [hybrider Lifecycle](../../operations/processes/hybrid-requirement-lifecycle.md) |
+| 3 | [Artefaktzuordnung](#5-vom-requirement-zum-governance-artefakt) und [Controls/OPA](#6-ableitung-von-controls-und-opa-policies) |
+| 4 | Release-Schutz in [Validierung und Gates](#8-validierungs-und-governance-gates) sowie das [Release- und Migrationsmodell](../../releases/release-and-migration-model.md) |
+| 5 | [OPA zur Laufzeit](#7-funktionsweise-von-opa-zur-laufzeit) |
+| Begleitend | [Autorität](#2-autoritat-wahrend-der-mischphase), [Versionierung](#9-versionierung-und-nachvollziehbarkeit), [historische Momentaufnahme](#10-aktueller-implementierungsstand-am-9-oktober-2026) und [operative Befehlsfolge](#11-operativer-ablauf-fur-neue-anderungen) |
+
+### Mermaid-Quelle des Übersichtsdiagramms
+
+Die oben eingebundene SVG-Grafik bleibt auch in der bestehenden MkDocs-Ausgabe
+sichtbar, die Mermaid-Blöcke als Quelltext darstellt. Dieselben fünf Phasen
+lassen sich für Mermaid-fähige Leser so darstellen:
+
+```mermaid
+flowchart TD
+    P1["1. Quelle freigeben"] --> P2["2. Anforderung entscheiden"]
+    P2 --> P3["3. Umsetzung bestätigen"]
+    P3 --> P4["4. Regelstand veröffentlichen"]
+    P4 --> P5["5. Anwenden und Ergebnisse prüfen"]
+```
 
 Das OPA-Regelwerk ist der automatisierbare Teil des Governance-Systems. Im
 Zielzustand besteht die vollständige normative Wahrheit aus den aktiven
 kanonischen Requirements im Git-Repository. Während der Mischphase bleiben
-freigegebene Eingangsdokumente für noch nicht migrierte Anforderungen
-normativ. Anforderungen, die menschliches Urteil benötigen, werden durch
-Reviews, Evidenzanforderungen oder Freigaben umgesetzt und nicht künstlich in
-eine boolesche OPA-Regel übersetzt.
+freigegebene Eingangsdokumente für noch nicht migrierte Anforderungen normativ.
+Anforderungen, die menschliches Urteil benötigen, werden durch Reviews,
+Evidenzanforderungen oder Freigaben umgesetzt.
 
-## Architekturüberblick
+### 1. Eingang und Klassifizierung eines Dokuments
 
-```mermaid
-flowchart LR
-    A[Externes Dokument] --> B[Source Document Intake]
-    N[Git-native Requirement] --> E[Lifecycle Case]
-    B --> C[Source Document Register]
-    C --> D{Quelle freigegeben?}
-    D -- Nein --> X[Kandidat ohne Ableitungsrecht]
-    D -- Ja --> E
-    E --> F[Deterministische Analyse]
-    F --> G[Menschliche Requirement-Entscheidung]
-    G --> H[GRQ Revision im Katalog]
-    H --> I[Requirement-to-Artifact Review]
-    I --> J[Control / Plattform / Architektur]
-    I --> K[Schema / Workflow / OPA Policy]
-    K --> L[OPA Evaluation]
-    L --> M[Finding / Evidenz / Gate Result]
-    M --> O{Enforcement-Modus}
-    O -- report_only --> P[Bericht und Review]
-    O -- blocking --> Q[Workflow schlägt bei Finding fehl]
-    J --> R[Release / Baseline]
-    K --> R
-```
-
-Die Kette ist absichtlich in Entscheidungen getrennt. Die Freigabe einer
-Quelle genehmigt noch keine einzelne Anforderung. Die Aktivierung eines
-Requirements genehmigt noch keine konkrete OPA-Implementierung. Ein
-Blocking-Modus benötigt zusätzlich eine eigene Enforcement-Freigabe.
-
-## 1. Eingang und Klassifizierung eines Dokuments
-
-### 1.1 Ablage
+#### 1.1 Ablage
 
 Ein normatives Eingangsdokument oder ein kontrollierter Requirements-Auszug
 wird unter `docs/governance/source-documents/` abgelegt. Private
@@ -59,7 +227,7 @@ klassifiziert. Dadurch wird verhindert, dass beispielsweise ein Bericht, ein
 Evidenzresultat oder eine erläuternde Dokumentation irrtümlich als normative
 Quelle behandelt wird.
 
-### 1.2 Registrierung
+#### 1.2 Registrierung
 
 Jede Quelle erhält in
 `model/documents/source-document-register.yaml` mindestens:
@@ -76,7 +244,7 @@ Unklare, überlappende oder möglicherweise ersetzende Quellen beginnen als
 Ableitung von Controls, Architekturregeln, OPA-Policies, Schemas, Workflows
 oder Releases.
 
-### 1.3 Intake Review
+#### 1.3 Intake Review
 
 Der Intake erzeugt reproduzierbare Entscheidungsgrundlagen:
 
@@ -92,7 +260,7 @@ Entscheidung wird in einem Governance Change Request unter
 `docs/governance/change-requests/` versioniert. Erst eine freigegebene Quelle
 darf in den Requirement Lifecycle eingehen.
 
-## 2. Autorität während der Mischphase
+### 2. Autorität während der Mischphase
 
 `model/requirements/requirement-authority-ledger.yaml` steuert pro Quelle,
 welche Darstellung normativ ist. Der Speicherort allein ändert keine
@@ -110,7 +278,7 @@ führt `total`, `analyzed`, `decided`, `effective` und `unresolved`. Der Wechsel
 zu `git_authoritative` ist erst erlaubt, wenn die Abdeckung vollständig ist
 und `complete-migration` eine Katalogfreigabe dokumentiert.
 
-## 3. Zerlegung in Requirement Proposals
+### 3. Zerlegung in Requirement Proposals
 
 Für eine freigegebene Dokumentquelle erzeugt `import-source` einen Lifecycle
 Case unter `model/requirements/lifecycle-cases/`. Nur explizit deklarierte Anforderungen,
@@ -141,7 +309,7 @@ Die menschliche Entscheidung enthält Entscheider, Rolle, Begründung,
 Entscheidungsreferenz und die erlaubten Ableitungsarten. Damit werden
 inhaltliche Annahme und technische Verwendung gemeinsam nachvollziehbar.
 
-### Lokale Vorbereitung in der Workbench
+#### Lokale Vorbereitung in der Workbench
 
 Die [Review Workbench](../../operations/guides/governance-review-workbench.md)
 führt durch Aufnahme, Prüfung und Weitergabe. Für registrierte Dokumente kann
@@ -156,7 +324,7 @@ Sie werden separat angezeigt und zählen nicht als heutige Extraktion. Die
 Umstellung auf explizite Deklarationen verwirft keine historischen Entscheidungen
 und erklärt keine offenen Proposals automatisch für genehmigt oder abgelehnt.
 
-## 4. Aktivierung im kanonischen Requirement-Katalog
+### 4. Aktivierung im kanonischen Requirement-Katalog
 
 `activate` schreibt ein freigegebenes Proposal als `GRQ-xxxxxx@revN` nach
 `model/requirements/governance-requirement-catalog.yaml`. Eine aktive Revision
@@ -183,7 +351,7 @@ durchlaufen sie dieselbe Analyse, Entscheidung, Aktivierung und
 Artefaktableitung. Sie benötigen keinen Dokumentmigrations-Ledger, weil sie
 bereits nativ in Git entstehen.
 
-## 5. Vom Requirement zum Governance-Artefakt
+### 5. Vom Requirement zum Governance-Artefakt
 
 Ein aktives GRQ Requirement erzeugt nicht automatisch Code. Zuerst wird
 entschieden, welche Umsetzung fachlich geeignet ist. Mögliche Artefakttypen
@@ -209,7 +377,7 @@ Neuerstellung oder Änderung aus dem aktiven Requirement. Ein Requirement kann
 mehrere Artefakte autorisieren; ein Artefakt kann mehrere Requirements
 umsetzen.
 
-## 6. Ableitung von Controls und OPA-Policies
+### 6. Ableitung von Controls und OPA-Policies
 
 Controls bilden die fachliche Kontrollstruktur, stabile Runtime-IDs,
 Evidenzerwartungen und Maturity-Zuordnung ab. OPA-Policies implementieren nur
@@ -233,7 +401,7 @@ Rego-Datei, stimmt der Hash nicht mehr und die Validierung verlangt eine neue
 Ableitungsentscheidung. Eine bloße Pfadreferenz kann daher keine nachträgliche
 inhaltliche Änderung autorisieren.
 
-## 7. Funktionsweise von OPA zur Laufzeit
+### 7. Funktionsweise von OPA zur Laufzeit
 
 OPA erhält zwei getrennte Eingaben:
 
@@ -277,7 +445,7 @@ OPA selbst erzeugt eine Entscheidung oder Finding-Liste. Der aufrufende
 Workflow entscheidet anhand des freigegebenen Modus, ob dieses Ergebnis nur
 berichtet oder als Blocker behandelt wird.
 
-## 8. Validierungs- und Governance-Gates
+### 8. Validierungs- und Governance-Gates
 
 Die CI schützt die Kette auf mehreren Ebenen:
 
@@ -304,7 +472,7 @@ generiert die Publikationsquellen und Migrationsberichte neu, verlangt einen
 leeren Diff zu eingecheckten Projektionen, validiert die Historie und baut
 HTML-, Word- und PDF-Previews als CI-Artefakt.
 
-## 9. Versionierung und Nachvollziehbarkeit
+### 9. Versionierung und Nachvollziehbarkeit
 
 Eine vollständige Nachweiskette sieht so aus:
 
@@ -318,9 +486,10 @@ Source-Dokument + SHA-256
   -> menschliche Artefakt-/Gleichwertigkeitsentscheidung
   -> Control / Plattformmodell / Architekturregel
   -> OPA-Policy + SHA-256
-  -> Workflow-Ausführung + Commit + Input
+  -> freigegebener Release-/Baseline-Stand
+  -> Workflow-Ausführung + Commit + Input + verwendete Baseline
   -> OPA-Ergebnis + Evidenz
-  -> Release, Statusindex und Viewer
+  -> Statusindex und Viewer
 ```
 
 Jede Stufe ist in Git versioniert. Fachliche Entscheidungen werden über
@@ -330,7 +499,13 @@ den ausgewerteten Commit und die verwendete Baseline. Damit kann später
 beantwortet werden, welche Regelversion aus welcher Anforderung abgeleitet
 wurde und warum sie bei einem bestimmten Lauf zu einem Ergebnis führte.
 
-## 10. Aktueller Implementierungsstand am 9. Oktober 2026
+### 10. Aktueller Implementierungsstand am 9. Oktober 2026
+
+**Historische Momentaufnahme vom 9. Oktober 2026.** Die Zahlen und offenen
+Entscheidungen dieses Abschnitts beschreiben den damaligen Stand. Für spätere
+Freigaben und aktuelle Zustände gelten der
+[aktuelle Plattformstatus](../../operations/status/current-governance-platform-state.md),
+das Quellenregister und die versionierten Entscheidungsnachweise.
 
 - Sechs freigegebene Dokumentquellen befinden sich in
   `migration_in_progress`.
@@ -352,9 +527,9 @@ Wahrheit ist erst erreicht, wenn alle offenen Proposals entschieden, alle
 benötigten Ableitungen bestätigt und die betroffenen Quellen kontrolliert auf
 `git_authoritative` umgestellt wurden.
 
-## 11. Operativer Ablauf für neue Änderungen
+### 11. Operativer Ablauf für neue Änderungen
 
-### Neues externes Dokument
+#### Neues externes Dokument
 
 1. Artefakt klassifizieren und als Kandidat registrieren.
 2. Intake Reports und Delta erzeugen.
@@ -368,7 +543,7 @@ benötigten Ableitungen bestätigt und die betroffenen Quellen kontrolliert auf
 10. Vollständig validieren, per PR reviewen und mergen.
 11. Bei vollständiger Migration die Quelle auf `git_authoritative` setzen.
 
-### Neue Git-native Anforderung
+#### Neue Git-native Anforderung
 
 1. Native Requirement-Quelldatei aus dem Template anlegen.
 2. Lifecycle Case mit `start-native` öffnen.
@@ -378,7 +553,7 @@ benötigten Ableitungen bestätigt und die betroffenen Quellen kontrolliert auf
 6. OPA-Verhalten, Tests und Enforcement-Modus reviewen.
 7. Vollständig validieren und per PR aktivieren.
 
-## Maßgebliche Implementierungsartefakte
+### Maßgebliche Implementierungsartefakte
 
 | Funktion | Pfad |
 |---|---|

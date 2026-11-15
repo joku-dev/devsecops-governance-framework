@@ -1,5 +1,56 @@
 # Current Governance Platform State
 
+## Host alignment and diagnostic replay, 15 November 2026
+
+After the earlier deployment observation below, the maintainer authorized a
+common source revision and diagnostic comparison. Both the Mac checkout and
+active Proxmox VM reached `adc4643bb7a5c962e4efb1525298ad9e652c73d2`.
+The VM update completed at 12:11 MEZ through the existing IaC path, with full
+candidate validation, authenticated smoke and verified VM/controller backups.
+The Mac Workbench retained its key and saved drafts. Both Workbenches returned
+HTTP 200; the VM protected API denied anonymous access with HTTP 401.
+The legacy collector configuration remained selected; no portable publisher
+or new consumer route was activated.
+
+The diagnostic replay used ha-CPsWMS commit `5c3b5cb`, original run `36997125273`,
+attempt 1, from **2 October**. All eleven original producer files and the same
+comparison driver matched by hash on both hosts. Three integration checks and
+16 applicable legacy L1 controls passed on each; 30 controls were not applicable.
+Business results matched after excluding local time/path fields and ordering
+the same CI-file lists. Raw reports retained those differences privately.
+
+The new portable preflight rejected the unchanged old SBOM (`invalid_sbom`):
+`metadata.component` was absent, and the scan also lacked `artifact_sha256`.
+There was no portable evaluation or fresh application build/test/scan. This
+manual diagnostic does not refresh accepted consumer evidence, historical Trust
+or production approval. No private report, credential or local path is published.
+
+The [arc42 system architecture](../../governance/architecture/governance-as-code-system-architecture.md)
+explains the current components and deployment. The previous observations below
+retain their original source/revision/time bindings. A later documentation merge
+does not automatically update installed host source.
+
+## Implementation and deployment update, 15 November 2026
+
+Source observation: Main `4f6f5bbc2614760a35fe9d79602bcf5b19bc6e74` after the
+reviewed merge of #344/#347/#349. The [dated reconciliation](repository-documentation-reconciliation-2026-11-15.md)
+records source delivery, documentation coverage and operational limits.
+
+| Area | Observed state | Boundary |
+|---|---|---|
+| Source delivery | Portability #368–#377 integrated via #377 at `4fe9586`; VM test-fixture correction #387 at `59bc6d1`; five-phase guide and CI updates #344/#347/#349 at `4f6f5bb` | A merged commit is not a published portable release or a deployment |
+| VM installation | Maintainer Proxmox Ubuntu 24.04 VM updated from `edf1623` to `59bc6d12c1944abcdcacfb40cf38bb88044ea29f`; deployment observation 15 November, 10:59 MEZ | Later Main guide/CI changes are not yet installed on that host |
+| VM verification | Full candidate validation, active Workbench, HTTP 200, anonymous protected API HTTP 401, real login/data/logout and byte-equal VM/controller backup checks passed | Dated deployment evidence; no new consumer evaluation or operating acceptance |
+| Parallel Mac/VM | Mac Workbench HTTP 200 while VM Workbench was available; original Mac checkout retained | Keys, sessions, drafts and installed revisions remain independent; no automatic synchronization |
+| Collector | Legacy engine preserved; timers active; no new configuration activated; database backup skipped because no existing database was present | Timer activity is not proof of collection. Portable migration/shadow/ownership/publisher activation remain open |
+| Portable scope | Shared evaluator, native transports/verifier, schema2 state, proposals, service, prepared package and measured capacity profiles implemented | Five mapped pipeline-L1 controls only; eleven `not_evaluated`; provider/version-specific live acceptance remains open |
+| Repository validation | Final combined tree passed pinned local validation: 1,154 tests, one skip; strict MkDocs; all PR checks including Governance CI v2 passed | This does not refresh accepted consumer results or scanner findings |
+
+Use [VM installation and parallel operation](../guides/linux-vm-installation.md),
+[update/recovery](../guides/portable-vm-update-and-recovery.md) and the
+[AC01–AC30 matrix](../planning/platform-portability-acceptance.md). Existing source
+approvals and the dated consumer/lifecycle observations below retain their scopes.
+
 ## Source approval update, 8 November 2026
 
 The maintainer approved the existing Policy, Directive and integrated SDD

@@ -1,5 +1,36 @@
 # Detaillierter Funktionskatalog des Governance-Repositories
 
+## Aktueller Stand: Mac, VM und Portabilität — 15. November 2026
+
+Quellstand `4f6f5bbc2614760a35fe9d79602bcf5b19bc6e74`; der unten gebundene
+Ausgangskatalog vom 7. November bleibt als historischer Inventarstand erhalten.
+Der [aktuelle Abgleich](../status/repository-documentation-reconciliation-2026-11-15.md)
+ordnet die neuen Funktionen und Dokumentationsentwürfe zu.
+
+| Funktion | Implementierung und Betriebsgrenze |
+|---|---|
+| Anforderungen verstehen | [Fünf Phasen von Quelle bis OPA](../../governance/architecture/document-intake-to-opa-rulebook.md); menschliche Entscheidungen bleiben getrennt |
+| Workbench bedienen | Drei Schritte, exakte Artefaktbindungen und lesende Änderungsindikation; separate Mac-/VM-Sitzungen |
+| Linux-VM betreiben | [Ansible-Installation](linux-vm-installation.md), feste Commits, systemd, private Backups und geprüfte Rückkehr; Ziel-Update auf `59bc6d1` bestätigt |
+| Portabel auswerten | Gemeinsamer Runtime-Kern und GitHub-/GitLab-/Bamboo-Adapter; fünf Pipeline-L1-Kontrollen, elf nicht ausgewertet |
+| Evidence aufnehmen | Gemeinsamer Verifier, native Transports, unveränderliche Receipts, private Schema2-Queue und separate Kandidatenprojektion |
+| Sammlung veröffentlichen | Eingefrorene Batches und abgeglichene PR/MR-Vorschläge; Legacy-Engine bleibt auf der VM erhalten, kein neuer Publisher aktiviert |
+| Offline und Last prüfen | Vorbereitetes Laufzeitpaket, Wiederherstellung und gemessene 1.000/2.000-Repository-Fixtures; reale Plattform- und Kapazitätsabnahmen offen |
+
+[Engineering-Matrix](../planning/platform-portability-acceptance.md) und
+[technisches Inventar](repository-technical-function-inventory.md) führen die
+Details. Diese Ergänzung erweitert bestehende Aufgabenbereiche; sie erzeugt
+keine Baseline, Quellenfreigabe oder neue Consumer-Abnahme.
+
+## Ergänzung: VM-Consumer-Intake (GCR-2026-171)
+
+Der optionale [VM-Collector](vm-consumer-intake.md) sammelt DevSecOps-L1-Ergebnisse
+des `ha-CPsWMS`-Piloten in einer privaten dauerhaften Warteschlange. Der Startmodus
+ist Schattenbetrieb. Die Workbench trennt akzeptierten Main-Stand, Kandidaten und
+Übernahme-PRs; eigene Veröffentlichungen benötigen Schattenvergleich und eine
+geprüfte Routenumschaltung. Das ist eine implementierte Betriebsoption und keine
+Behauptung einer bereits aktivierten App-Installation auf der Ziel-VM.
+
 ## Ergänzung: individuelle Anforderungswege (GCR-2026-162)
 
 Der öffentliche Viewer zeigt unter **Governance → Anforderung bis OPA** sechs
@@ -33,6 +64,17 @@ neue fachliche Vorgabe. Genehmigte Quellen, Modelle, Schemas und veröffentlicht
 Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 
 ## Aktueller Intake- und Review-Ablauf
+
+Der vereinfachte Ablauf lautet **Dokument wählen → Prüfen → Weitergeben**.
+Start priorisiert die Wiederaufnahme; Notizen, Vergleich und Historie sind
+sekundäre Werkzeuge. Ein Sitzungsfilter fokussiert Policy, Directive und DSCB;
+Architektur bleibt in der vollständigen Bibliothek erhalten. Je expliziter
+Anforderung zeigt **Umsetzung und Auswirkungen** exakt gebundene aktive
+GRQ-Revisionen und aktuelle bestätigte Artefaktzuordnungen. Fehlende oder
+abweichende Nachweise bleiben „Auswirkung ungeklärt“. Die Indikation ist
+Prüfunterstützung; sie bestätigt weder tatsächliche Regelanwendung noch
+Veröffentlichung, Consumer-Abdeckung oder ein semantisches Änderungsrisiko.
+Siehe [GCR-2026-169](../../governance/change-requests/GCR-2026-169-workbench-guided-impact.md).
 
 Die private lokale [Review Workbench](governance-review-workbench.md) führt durch
 Dateiauswahl, Dokumenteinordnung, Anforderungsprüfung und Weitergabe als ZIP.

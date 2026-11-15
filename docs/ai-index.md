@@ -18,8 +18,10 @@ Use it as the first navigation point after `AGENTS.md`.
 | Need | Read first |
 |---|---|
 | Find detailed repository functions and implementation boundaries | `docs/operations/guides/repository-function-catalog.md` |
+| Operate Mac and VM independently; inspect installed versus merged source | `docs/operations/guides/linux-vm-installation.md`, `docs/operations/status/current-governance-platform-state.md` |
+| Inspect merged portability and remaining live acceptance | `docs/operations/planning/platform-portability-acceptance.md`, `docs/operations/status/repository-documentation-reconciliation-2026-11-15.md` |
 | Understand the repository | `README.md`, `docs/official-entrypoints.md` |
-| Understand the current as-built Governance-as-Code system architecture | `docs/governance/architecture/governance-as-code-system-architecture.md` |
+| Understand the current technical system architecture (arc42: context, components, runtime, deployment, quality and risks) | `docs/governance/architecture/governance-as-code-system-architecture.md` |
 | Trace a source document through canonical requirements to executable OPA policy | `docs/governance/architecture/document-intake-to-opa-rulebook.md` |
 | Understand foundation, direction, and architectural guardrails | `docs/foundation/01_VISION.md`, `docs/foundation/02_CONSTITUTION.md`, `docs/foundation/03_ARCHITECTURE_PRINCIPLES.md`, `docs/foundation/05_CURRENT_DIRECTION.md` |
 | Run the live demo | `docs/demos/demo-end-to-end-governance.md` |
@@ -204,11 +206,11 @@ decision must be recorded by a human reviewer in a governance change request.
 | Evidence | `model/evidence/evidence-types.yaml`, `model/evidence/evidence-trust-model.yaml`, `model/evidence/evidence-freshness-policies.yaml`, `model/evidence/evidence-collector-contract.yaml`, `docs/operations/evidence/governance-evidence-contract.md`, `docs/operations/evidence/evidence-trust-model.md`, `docs/operations/evidence/evidence-collector-contract.md`, `docs/operations/evidence/vulnerability-scan-collector-usage.md` |
 | Pipeline placement | `pipeline-baseline/` |
 | OPA policies | `policies/opa/*` |
-| Current release | `releases/l1/v1.2.0/`, `docs/releases/l1-baseline-v1.2.0.md` |
-| Reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` |
-| Prepared patch candidate | `releases/l1/v1.2.1/`, `docs/releases/l1-baseline-v1.2.1.md` |
-| Candidate reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.2.1.yml` |
-| Previous release | `releases/l1/v1.1.3/`, `docs/releases/l1-baseline-v1.1.3.md` |
+| Published patch baseline | `releases/l1/v1.2.1/`, `docs/releases/l1-baseline-v1.2.1.md` |
+| Reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.2.1.yml` |
+| Previous baseline | `releases/l1/v1.2.0/`, `docs/releases/l1-baseline-v1.2.0.md` |
+| Previous reusable workflow | `.github/workflows/devsecops-baseline-l1-v1.2.0.yml` |
+| Retained consumer baseline | `releases/l1/v1.1.3/`, `docs/releases/l1-baseline-v1.1.3.md` |
 
 Typical validation:
 
@@ -315,8 +317,8 @@ outcomes; the separate DevSecOps replay finding remains open):
 
 | Domain | Current release | Key files |
 |---|---|---|
-| Repository adoption/operations | `v0.3.0-public-adoption`; publication established by signed tag and GitHub Release | `docs/releases/v0.3.0-public-adoption.md` |
-| DevSecOps L1 | `l1-baseline-v1.2.0` | `docs/releases/l1-baseline-v1.2.0.md`, `releases/l1/v1.2.0/` |
+| Repository adoption/operations | Publication readback on 15 November: v0.2.0 published; v0.3.0 prepared/unpublished | `docs/releases/index.md` |
+| DevSecOps L1 | `l1-baseline-v1.2.1`; retained consumer pins remain separate | `docs/releases/l1-baseline-v1.2.1.md`, `releases/l1/v1.2.1/` |
 | Architecture L1 | `architecture-baseline-l1-v0.1.0` | `docs/releases/architecture-baseline-l1-v0.1.0.md`, `releases/architecture/l1/v0.1.0/` |
 
 When creating a new release, update:

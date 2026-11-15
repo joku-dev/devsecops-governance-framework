@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "portable-intake-synthetic-v1",
+  "repository_counts": [1000, 2000],
+  "runs_per_repository": 1,
+  "window_seconds": 86400,
+  "rerun_fraction": 0.1,
+  "artifact_bytes": 4096,
+  "retention": "all test captures retained until operator removes the private test directory",
+  "providers": ["github-actions", "gitlab-ci", "bamboo"],
+  "instances_per_provider": 2,
+  "worker_limit": 25,
+  "cycle_request_budget_per_realm": 300,
+  "hourly_request_ceiling_per_realm": 3000,
+  "injected_rate_limit_every_reads": 137,
+  "injected_retry_after_seconds": 60,
+  "restart_after_fraction": 0.5,
+  "real_remote_publications": 0,
+  "synthetic": true,
+  "measurement_scope": "producer preparation and native fixture acquisition, file/OPA verification, durable queue/raw storage, process restart; no network latency or PR review time",
+  "synthetic_acceptance": {
+    "identity_collisions": 0,
+    "missing_receipts": 0,
+    "automatic_publications": 0,
+    "max_tasks_per_cycle": 25,
+    "recovery_seconds_upper_bound": 60,
+    "processing_wall_seconds_upper_bound": 7200,
+    "worker_peak_rss_mib_upper_bound": 2048
+  },
+  "production_acceptance": "open: maintainer/platform owner must confirm actual load, retention, provider quotas, hardware and latency targets"
+}

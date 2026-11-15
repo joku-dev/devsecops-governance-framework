@@ -1,0 +1,2 @@
+# Controller only; target runtime uses the existing repository locks.
+ansible-core==2.22.0

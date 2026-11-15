@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reviewed portable collector profiles v1 candidate",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "profiles"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "profiles": {"type": "array", "maxItems": 2000, "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "policy", "reader_credential", "scm_reader_credential", "discovery"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"},
+        "policy": {"$ref": "portable-intake-policy-v2.schema.json"},
+        "reader_credential": {"$ref": "#/$defs/reader"},
+        "scm_reader_credential": {"$ref": "#/$defs/reader"},
+        "discovery": {"type": "object", "additionalProperties": false,
+          "required": ["lookback_seconds", "plan_key"], "properties": {
+            "lookback_seconds": {"type": "integer", "minimum": 3600, "maximum": 604800},
+            "plan_key": {"type": ["string", "null"]}
+          }}
+      }
+    }}
+  },
+  "$defs": {"reader": {"type": "string", "pattern": "^reader-[a-zA-Z0-9_-]{1,80}$"}}
+}

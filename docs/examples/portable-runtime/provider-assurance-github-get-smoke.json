@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "classification": "self_reported_technical_get_only_smoke",
+  "observer_source_commit": "7647cc6df3a1abe5d8df797c191d558771067b7d",
+  "observed_at": "2026-11-15T04:29:45.900843+00:00",
+  "scm_provider": "github",
+  "instance": "https://github.com",
+  "platform_version": null,
+  "edition": "GitHub.com",
+  "repository_native_id": "1301369468",
+  "change_id": "375",
+  "requested_revision": "7647cc6df3a1abe5d8df797c191d558771067b7d",
+  "native_main_revision": "edf16239e9274dbc33f38f204ef80f58c989f969",
+  "native_pr_reads_same_revision": true,
+  "review_observation_count": 0,
+  "latest_bound_approval_participants": 0,
+  "security_criteria_not_proven": 16,
+  "security_hold": "installed_source_or_legacy_main_profile_mismatch",
+  "capture_sha256": {
+    "reviews": "4c66fefbfbaa4a702fd02e7c9ae05ec7ec7d495a2b88d7d1eeee5ab403218780",
+    "security": "89da050abf4f1deeb0bf7a781fd1b2b7897dd9f3573e938d91823707242f2f5c"
+  },
+  "provider_mutations": 0,
+  "live_authority": false,
+  "personal_consent": false,
+  "operating_acceptance": false,
+  "limitations": "Anonymous GET-only GitHub.com metadata/review smoke; no privileged security assessment, role assignment, consumer run or operating approval. Raw native responses retained privately."
+}

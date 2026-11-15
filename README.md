@@ -14,25 +14,38 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## Implementation readback — 7 November 2026
+## Implementation readback — 15 November 2026
 
-The local [Review Workbench](docs/operations/guides/governance-review-workbench.md)
-guides document intake, explicit requirement review and review-packet handoff.
-Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
-prose is not converted into requirements. Notes prepare human decisions.
-The public Viewer presents reviewed projections read-only.
-The Governance view links registered sources, requirement decisions, effective
-artifact mappings and the OPA inventory under **Anforderung bis OPA**.
+Implementation source: `adc4643bb7a5c962e4efb1525298ad9e652c73d2`. The
+[documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-15.md)
+separates merged capabilities, the installed VM revision and remaining live acceptance.
 
-The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
-records source commit `ae423f3`, draft coverage and remaining limits.
+- The private [Review Workbench](docs/operations/guides/governance-review-workbench.md)
+  uses **Dokument wählen → Prüfen → Weitergeben** and shows exact requirement-to-rule
+  bindings as review support. Only explicit declarations enter extraction; notes
+  remain proposals. The public Viewer is read-only.
+- macOS and Ubuntu VM operation are available in parallel with separate keys,
+  sessions and drafts. The [Linux VM guide](docs/operations/guides/linux-vm-installation.md)
+  covers Ansible installation, exact-commit updates, SSH access and verified backups.
+  Mac and VM were aligned to `adc4643` on 15 November, with Workbench checks
+  passed. The [dated platform state](docs/operations/status/current-governance-platform-state.md)
+  records that observation and the diagnostic replay separately from accepted
+  consumer evidence. A Git merge does not deploy a host.
+- The [portable runtime and engineering matrix](docs/operations/planning/platform-portability-acceptance.md)
+  are merged through #377. The shared evaluator, provider adapters, evidence verifier,
+  persistent collector, recovery and prepared offline package are implemented.
+  Pipeline-L1 covers five mapped controls; eleven remain `not_evaluated`.
+- The VM retains its existing legacy collector configuration. Portable migration,
+  publisher handoff and live GitLab/Bamboo/Bitbucket acceptance remain separate steps.
+  Target versions and URLs remain open; measured 1,000/2,000-repository fixtures
+  establish engineering evidence, not production capacity approval.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
 ist seit der persönlichen LD-07-Abnahme und den geprüften Merges #92/#93 am
 13. September 2026 aktiv, manuell und report-only.
 
-The latest published repository adoption release observed on 7 November is
+The latest published repository adoption release observed on 15 November is
 [v0.2.0](docs/releases/v0.2.0-public-adoption.md).
 [v0.3.0](docs/releases/v0.3.0-public-adoption.md) contains preparation assets;
 no `v0.3.0-public-adoption` remote tag or published GitHub Release was present.
@@ -56,6 +69,8 @@ It combines governance-as-code, policy-as-code, machine-readable evidence, relea
 
 The repository models a governance stack where a `Policy` defines mandatory intent, a `Directive` defines binding operational execution, and structured baseline artifacts define detailed controls, platform expectations, evidence contracts, and executable checks.
 
+For the technical system description, use the [arc42 architecture](docs/governance/architecture/governance-as-code-system-architecture.md): context, building blocks, runtime, Mac/VM deployment, decisions, quality scenarios and open risks.
+
 ## Start Here
 
 | Need | Entry point |
@@ -67,6 +82,9 @@ The repository models a governance stack where a `Policy` defines mandatory inte
 | Copy ready-to-use templates | `adoption-package/README.md` |
 | Inspect the validated neutral consumer | `docs/onboarding/validated-demo-consumer.md` |
 | Review publication status and baseline versions | [Release index](docs/releases/index.md) |
+| Run the private Workbench on macOS and an Ubuntu VM | [Linux VM and parallel operation](docs/operations/guides/linux-vm-installation.md) |
+| Review portable runtime support and open acceptance | [Engineering matrix](docs/operations/planning/platform-portability-acceptance.md) |
+| Follow the five-phase requirement journey | [Source to OPA guide](docs/governance/architecture/document-intake-to-opa-rulebook.md) |
 | Prepare document intake and requirement review locally | [Review Workbench](docs/operations/guides/governance-review-workbench.md) |
 | Inspect current repository capabilities | `docs/operations/guides/repository-function-catalog.md` |
 | Open the governance viewer | `https://joku-dev.github.io/devsecops-governance-framework/generated/viewer/app/index.html` |
@@ -192,7 +210,7 @@ PASS remains distinct from open scanner findings, replay deviations and
 production approval.
 
 The [current-state overview](docs/operations/status/current-governance-platform-state.md)
-records the 7 November implementation readback, preserves dated earlier observations
+records the 15 November implementation and deployment readback, preserves dated earlier observations
 and links to the authoritative accepted indexes. The indexed ha-CPsWMS results
 remain dated 2 October; repository validation does not refresh consumer evidence. The separate demo-consumer lifecycle case is now closed;
 newly captured ha-CPsWMS container SBOM evidence reaches `provenance_verified`.

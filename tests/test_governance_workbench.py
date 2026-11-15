@@ -141,16 +141,20 @@ class WorkbenchTests(unittest.TestCase):
         self.assertEqual(self.app.inspect(self.app.document('TEST-SRC-001'))['formal_status'], formal)
         saved = json.loads((self.app.draft_dir(draft['draft_id']) / 'draft.json').read_text())
         self.assertNotIn('formal_status', saved); self.assertNotIn('stale_details', saved)
+        self.assertNotIn('implementation', saved)
         with zipfile.ZipFile(io.BytesIO(self.app.packet(draft['draft_id']))) as archive:
             packet = json.loads(archive.read('workbench-package.json'))
             self.assertNotIn('formal_status', packet); self.assertNotIn('stale_details', packet)
+            self.assertNotIn('implementation', packet)
             jsonschema.validate(packet, wb.read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
 
         candidate = self.upload()
         candidate_file = self.app.draft_dir(candidate['draft_id']) / 'draft.json'
         self.assertNotIn('formal_status', json.loads(candidate_file.read_text())['target'])
+        self.assertNotIn('implementation', json.loads(candidate_file.read_text())['target'])
         with zipfile.ZipFile(io.BytesIO(self.app.packet(candidate['draft_id']))) as archive:
             self.assertNotIn('formal_status', json.loads(archive.read('workbench-package.json'))['target'])
+            self.assertNotIn('implementation', json.loads(archive.read('workbench-package.json'))['target'])
 
     def test_new_source_review_preserves_old_notes_without_inheriting_them(self):
         old = self.app.source_review({'source_id':'TEST-SRC-001'})
@@ -415,6 +419,71 @@ class WorkbenchTests(unittest.TestCase):
                                 text=True, capture_output=True, check=False)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_one_browser_cookie_jar_keeps_two_ports_signed_in_after_logout(self):
+        from http.cookiejar import CookieJar
+        from urllib.request import build_opener,HTTPCookieProcessor,Request
+        from urllib.error import HTTPError
+        other=wb.Workbench(self.root,state_dir=self.app.state_dir/'browser-node')
+        keys=['first-browser-access-key-123456','second-browser-access-key-789012']
+        servers=[wb.make_server(app,key,port=0) for app,key in zip((self.app,other),keys)]
+        threads=[threading.Thread(target=s.serve_forever,daemon=True) for s in servers]
+        for thread in threads:thread.start()
+        jar=CookieJar();browser=build_opener(HTTPCookieProcessor(jar))
+        def request(i,path,payload=None,csrf=None):
+            origin='http://127.0.0.1:'+str(servers[i].server_address[1])
+            headers={'Origin':origin,'Content-Type':'application/json'}
+            if csrf:headers['X-CSRF-Token']=csrf
+            with browser.open(Request(origin+path,data=None if payload is None else json.dumps(payload).encode(),headers=headers),timeout=5) as response:
+                return json.loads(response.read())
+        try:
+            for i in (0,1):self.assertTrue(request(i,'/api/login',{'key':keys[i]})['signed_in'])
+            self.assertEqual(len(list(jar)),2)
+            states=[request(i,'/api/state') for i in (0,1)]
+            self.assertNotEqual(states[0]['csrf'],states[1]['csrf'])
+            request(0,'/api/logout',{},states[0]['csrf'])
+            self.assertEqual(len(list(jar)),1)
+            self.assertEqual(request(1,'/api/state')['csrf'],states[1]['csrf'])
+            with self.assertRaises(HTTPError) as error:request(0,'/api/state')
+            self.assertEqual(error.exception.code,401)
+        finally:
+            for server in servers:server.shutdown();server.server_close()
+            for thread in threads:thread.join(timeout=5)
+
+    def test_two_running_instances_keep_sessions_keys_and_drafts_separate(self):
+        first=self.upload()
+        other=wb.Workbench(self.root,state_dir=self.app.state_dir/'independent-node')
+        second=other.create_draft({'filename':'second.md','content_base64':base64.b64encode(b'# Second private draft').decode(),
+            'metadata':{'id':'SECOND-SRC-001','title':'Second','owner':'other-owner','version':'1','governance_domains':['devsecops']}})
+        self.assertEqual([d['draft_id'] for d in self.app.state()['drafts']],[first['draft_id']])
+        self.assertEqual([d['draft_id'] for d in other.state()['drafts']],[second['draft_id']])
+        keys=['first-distinct-access-key-12345','second-distinct-access-key-67890']
+        servers=[wb.make_server(app,key,port=0) for app,key in zip((self.app,other),keys)]
+        threads=[threading.Thread(target=s.serve_forever,daemon=True) for s in servers]
+        for thread in threads:thread.start()
+        def request(index,method,path,payload=None,cookie=None):
+            port=servers[index].server_address[1];connection=http.client.HTTPConnection('127.0.0.1',port,timeout=5)
+            headers={'Host':f'127.0.0.1:{port}'}
+            if payload is not None:headers.update({'Content-Type':'application/json','Origin':f'http://127.0.0.1:{port}'})
+            if cookie:headers['Cookie']=cookie
+            try:
+                connection.request(method,path,None if payload is None else json.dumps(payload),headers)
+                response=connection.getresponse();body=response.read()
+                return response.status,response.getheader('Set-Cookie'),body
+            finally:connection.close()
+        try:
+            cookies=[]
+            for i in (0,1):
+                status,cookie,_=request(i,'POST','/api/login',{'key':keys[i]});self.assertEqual(status,200);cookies.append(cookie)
+            for i in (0,1):
+                self.assertEqual(request(i,'GET','/api/state',cookie=cookies[1-i])[0],401)
+                status,_,body=request(i,'GET','/api/state',cookie=cookies[i]);self.assertEqual(status,200)
+                self.assertEqual([d['draft_id'] for d in json.loads(body)['drafts']],[(first,second)[i]['draft_id']])
+                self.assertEqual(request(i,'POST','/api/login',{'key':keys[1-i]})[0],401)
+            self.assertFalse(self.app.enable_pr);self.assertFalse(other.enable_pr)
+        finally:
+            for server in servers:server.shutdown();server.server_close()
+            for thread in threads:thread.join(timeout=5)
+
     def test_http_login_csrf_host_and_private_data(self):
         server=wb.make_server(self.app,'test-key-long-enough-for-session',port=0)
         thread=threading.Thread(target=server.serve_forever,daemon=True)
@@ -469,6 +538,37 @@ class WorkbenchTests(unittest.TestCase):
             r,b=request('GET',f'/api/drafts/{draft["draft_id"]}/packet',extra={'Cookie':cookie});self.assertEqual(r.status,409)
         finally:
             conn.close();server.shutdown();server.server_close();thread.join(timeout=5)
+
+    def test_consumer_projection_is_authenticated_read_only_and_no_path_selection(self):
+        from lib.consumer_intake_store import atomic_json
+        projection = self.root / 'consumer-view'
+        atomic_json(projection / 'consumers.json', {'schema_version': 1, 'configured': True, 'jobs': []})
+        self.app.consumer_projection = projection
+        server = wb.make_server(self.app, 'test-key-long-enough-for-session', port=0)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        port = server.server_address[1]
+        def request(method, path, payload=None, cookie=None):
+            connection = http.client.HTTPConnection('127.0.0.1', port, timeout=2)
+            try:
+                headers = {'Origin': f'http://127.0.0.1:{port}', 'Content-Type': 'application/json'}
+                if cookie:
+                    headers['Cookie'] = cookie
+                connection.request(method, path, json.dumps(payload) if payload is not None else None, headers)
+                response = connection.getresponse()
+                return response.status, response.getheader('Set-Cookie'), response.read()
+            finally:
+                connection.close()
+        try:
+            self.assertEqual(request('GET', '/api/consumers')[0], 401)
+            _, cookie, _ = request('POST', '/api/login', {'key': 'test-key-long-enough-for-session'})
+            status, _, body = request('GET', '/api/consumers?root=/etc', cookie=cookie)
+            self.assertEqual(status, 200)
+            self.assertTrue(json.loads(body)['configured'])
+            self.assertEqual(request('POST', '/api/consumers', {}, cookie)[0], 403)
+            self.assertNotIn(b'queue.sqlite', body)
+        finally:
+            server.shutdown();server.server_close();thread.join(timeout=5)
 
     def test_idle_browser_connection_and_parallel_notes_do_not_block_or_lose_data(self):
         draft = self.app.source_review({'source_id': 'TEST-SRC-001'})

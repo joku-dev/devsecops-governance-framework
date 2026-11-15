@@ -21,6 +21,16 @@ For the concrete company target path with Bitbucket, Bamboo, and Mistral, see:
 docs/operations/adapters/company-bitbucket-bamboo-mistral-target-path.md
 ```
 
+## Executable portable candidate
+
+The [portable runtime v1](portable-governance-runtime.md) supplies a shared
+`context`/`evaluate`/`gate`/`run` CLI, versioned contracts and GitHub/GitLab/Bamboo
+entrypoints. It is an optional pipeline-L1 candidate, not a released baseline or
+a completed central-intake/VM migration. The starter generators described below
+remain legacy compatibility entrypoints; new candidate adoption uses the runtime
+guide and real evidence. Installed GitLab/Atlassian versions and live acceptance
+remain open.
+
 ## Goal
 
 The governance system should keep one platform-neutral core and expose platform-specific adapters around it.

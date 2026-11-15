@@ -1,0 +1,27 @@
+{
+  "actual_vm_updated": false,
+  "ambient_provider_environment": false,
+  "cases": [
+    {
+      "canonical_result_sha256": "07463468547b2e138c8e5e7fd733084406f44b160b686f2dca8884c5993c51b8",
+      "decision": "pass",
+      "exact_reference_match": true
+    },
+    {
+      "canonical_result_sha256": "3ef366b6bd53e26cccae8cebed791d303abcddd814354e6f913f6abe8825e9d3",
+      "decision": "fail",
+      "exact_reference_match": true
+    }
+  ],
+  "machine": "arm64",
+  "network_control_probe_denied": true,
+  "network_policy": "macOS sandbox-exec deny network*",
+  "package_files": 1995,
+  "package_sha256": "bcc03883523926513753cee19bc5e770553a8359d3d71f9e61c6be27835e3756",
+  "python": "3.13.18",
+  "scanner_databases_prepared": false,
+  "schema_version": 1,
+  "source_commit": "b7d13de9dc77f043aa4b8cc6df8d536fd34a4329",
+  "source_tree": "d116a0d430df8e924be01acd0bee3cd14ad98088",
+  "system": "Darwin"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable evidence bundle v2 candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "execution_key", "repository_key", "files"],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "execution_key": {"$ref": "#/$defs/digest"},
+    "repository_key": {"$ref": "#/$defs/digest"},
+    "files": {
+      "type": "array", "minItems": 6, "maxItems": 6,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["role", "path", "subject_path", "sha256", "size"],
+        "properties": {
+          "role": {"enum": ["context", "result", "input", "artifact", "sbom", "vulnerability_scan"]},
+          "path": {"type": "string", "minLength": 1, "maxLength": 1024},
+          "subject_path": {"type": ["string", "null"], "maxLength": 1024},
+          "sha256": {"$ref": "#/$defs/digest"},
+          "size": {"type": "integer", "minimum": 0, "maximum": 268435456}
+        }
+      }
+    }
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}
