@@ -150,6 +150,53 @@ preparation and installed authoring acceptance remain open matrix work. These
 routes do not yet constitute full document-workflow parity or a production DCR
 rollout. Existing schema/report versions and human decision boundaries remain.
 
+## V2 source collection and installed comparisons
+
+`collect-source` now prepares either full report input directly from a local
+repository at an explicit immutable commit. It snapshots committed blobs into a
+private data-only directory; inspected application code is never executed.
+Uncommitted/untracked changes are ignored, Git replacement refs cannot reinterpret
+the pin, symlink/submodule entries and oversized snapshots fail explicitly.
+Provider adapters observe the selected CI source layout. Shared collectors retain
+the V1 declaration semantics without embedding native CI paths in the core.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance collect-source \
+  --domain controls --repo /private/operator/ha-CPsWMS \
+  --revision 5c3b5cb50d2260bfbde736c9ac80667271406d99 --ci-profile github-actions
+```
+
+The receipt supplies a private `input_path` for `evaluate`, its physical SHA-256
+and canonical input digest. Source declarations, including historical `approved`
+fields, remain unverified; source file presence proves no actual CI execution or
+independent approval. The reviewed default source-layout profiles are GitHub
+Actions (`.github/workflows/ci.yml`), GitLab CI (`.gitlab-ci.yml`) and Bamboo YAML
+Specs (`bamboo-specs/bamboo.yml` or `.yaml`). Live target acceptance remains separate.
+Both collectors' synthetic full inputs match independent frozen V1 outputs;
+collection from real pinned Main `5c3b5cb` matches the existing V1 input objects.
+
+The first two increments at `6dd4581` have also been installed and exercised on
+both hosts. Their pinned identities, separate source replay and fresh consumer
+measurement limitations are recorded in the
+[partial-parity progress receipt](../status/axiom-v2-parity-progress-2026-11-15.md).
+This is evidence for those implemented capabilities, not for the rest of the
+matrix. The later collection increment still needs its own installed proof.
+
+The installed functional test is repeatable from a trusted development checkout:
+
+```sh
+python tests/acceptance/prepare_v1_parity_fixtures.py /private/operator/host-fixtures
+"$V2_PREFIX/venv/bin/python" tests/acceptance/axiom_v2_functional_parity.py \
+  "$V2_PREFIX" /private/operator/host-fixtures /private/operator/host-result.json \
+  --expected-source 6dd4581b2398e9162c395c743ea9a4c1b6140984
+```
+
+Use a fresh prefix/workspace for a full repeat. The script checks four complete
+V1 report goldens, private native-requirement preparation/decision/activation and
+publication, rollback before decisions, retained DCR missing-snapshot findings
+and explicit semantic-not-run behavior. It reports partial parity and no provider
+or human acceptance. The fixture transport is private and all bytes are checked.
+
 ## Remaining work in the same Goal
 
 The full matrix stays authoritative for completion. Continue with neutral

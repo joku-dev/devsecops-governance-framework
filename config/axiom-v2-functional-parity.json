@@ -88,7 +88,7 @@
     {
       "id": "FP-09",
       "title": "Nachweise sammeln und vereinheitlichen",
-      "state": "pending",
+      "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
       "negative_tests": [],
@@ -432,8 +432,8 @@
         "--repo"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/architecture_collection.py:collect",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -454,8 +454,8 @@
         "--repo"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/controls_collection.py:collect",
+      "state": "in_progress",
       "evidence": []
     },
     {

@@ -248,6 +248,7 @@ released consumer wrappers keep their original pins and authority.
 |---|---|---|
 | V2 product entry / instance | Finite commands; fresh node/key/state; exact source/tool/dependency binding | `scripts/axiom_v2.py`, `scripts/lib/v2_application.py` |
 | Neutral evaluation | Context/input contracts, physical evidence preparation, unchanged OPA decisions and gate | `scripts/governance_runtime.py`, `scripts/lib/portable/contracts.py`, `runtime.py`, `scripts/control_evaluation.py` |
+| Source-only collection | Frozen local Git blobs at an exact revision; native CI-layout observations through ports; unverified declaration inputs | `scripts/lib/source_collection.py`, `controls_collection.py`, `architecture_collection.py`, `providers/source_inspection.py` |
 | Full diagnostic assessment | All 46 V1 control report records and four architecture gates; explicit frozen inputs/pinned OPA; private unverified report-only receipts | `scripts/lib/full_evaluation.py`, `architecture_assessment.py`, `tool_integrity.py` |
 | Candidate data authoring | Finite requirement/DCR routes, explicit workspace context, lock/staging/generation transactions; no inherited authority | `scripts/lib/candidate_workspace.py`, `requirement_application.py`, `requirement_workspace.py`, `dcr_application.py`, `dcr_*.py` |
 | Neutral verification | Bundle integrity, source/config/run binding, freshness/replay, immutable receipts | `scripts/intake_portable_evidence.py`, `scripts/lib/portable_intake/bundle.py`, `schemas/portable-intake-*-v2.schema.json` |
