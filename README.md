@@ -14,18 +14,12 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## Implementation readback — 7 November 2026
+## PR #369: feat: gemeinsamer Pipeline-L1-Runtime-Kandidat für GitHub, GitLab und Bamboo (`4fe95869face`)
 
-The local [Review Workbench](docs/operations/guides/governance-review-workbench.md)
-guides document intake, explicit requirement review and review-packet handoff.
-Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
-prose is not converted into requirements. Notes prepare human decisions.
-The public Viewer presents reviewed projections read-only.
-The Governance view links registered sources, requirement decisions, effective
-artifact mappings and the OPA inventory under **Anforderung bis OPA**.
-
-The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
-records source commit `ae423f3`, draft coverage and remaining limits.
+- governance_runtime.py: context, evaluate, gate, run; getrennte Ausführung, Findings, Trust und Enforcement mit Exitcodes 0/1/2.
+- GitHub-, GitLab- und Bamboo-Kontexte/SCM-Adapter; tatsächlicher Checkout, native opake IDs, Instanz-/Domänenbindung und explizite Fähigkeitslücken.
+- Versionierte Profil-/Kontext-/Ergebnisverträge und Baseline-Kompatibilitätsmanifest; Baseline-/Runtime-Digests sind gebunden, nicht durch freie Flags ersetzbar.
+- Native CI-Vorlagen mit realem Anwendungserzeuger-Hook, Pflicht-Evidenz, Rohartefakten und Diagnosearchivierung; GCR-2026-173, ADR, Integrations- und Abnahmematrix.
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
