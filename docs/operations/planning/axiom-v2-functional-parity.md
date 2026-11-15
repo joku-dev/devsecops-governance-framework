@@ -180,7 +180,8 @@ both hosts. Their pinned identities, separate source replay and fresh consumer
 measurement limitations are recorded in the
 [partial-parity progress receipt](../status/axiom-v2-parity-progress-2026-11-15.md).
 This is evidence for those implemented capabilities, not for the rest of the
-matrix. The later collection increment still needs its own installed proof.
+matrix. The later `7f74a85` collection and measured replay increment now has its
+own separately pinned Mac/Linux proof in that same progress receipt.
 
 The installed functional test is repeatable from a trusted development checkout:
 
@@ -255,9 +256,77 @@ normalizers: all sixteen control records and the separate container details, not
 only headline counts. Synthetic capture/redirect/range tests also verify private
 credentials, metadata/source binding, no credential forwarding, budgets, tamper
 rejection and replay boundaries. These are technical fixtures, not a fresh
-successful consumer measurement. Per-control assurance, staging reconciliation,
-official accepted-result publication, installed proof and the remaining intake
-flows are still open under the same Goal.
+successful consumer measurement. Source collection and synthetic measured replay
+have separately pinned installed Mac/Linux evidence at `7f74a85`. Official
+accepted-result publication and the remaining intake flows are still open under
+the same Goal.
+
+## Private assurance and staging supplements
+
+`supplement assurance`, `staging`, `consolidate` and `inspect` expose the existing
+V1 per-control assurance, seven-day staging-bundle validation and exact-subject
+consolidation with explicit product data context. The core has no provider API or
+legacy intake CLI dependency. Native composition retains the original supported
+ha-CPsWMS successful Main/push profile; this is not a new deployment mechanism.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance supplement assurance \
+  --measured STORED_L1_ASSESSMENT_ID --at 2026-11-15T12:00:00Z
+python scripts/axiom_v2.py --instance /private/operator/v2-instance supplement staging \
+  --measured STORED_L1_ASSESSMENT_ID --bundle /private/operator/staging-evidence \
+  --evidence-repository-commit EXACT_COMMIT --at 2026-11-15T12:00:00Z
+python scripts/axiom_v2.py --instance /private/operator/v2-instance supplement consolidate \
+  --measured STORED_L1_ASSESSMENT_ID --staging STORED_STAGING_SUPPLEMENT_ID \
+  --at 2026-11-15T12:00:00Z
+python scripts/axiom_v2.py --instance /private/operator/v2-instance supplement inspect \
+  --id STORED_SUPPLEMENT_ID
+```
+
+Assurance optionally takes `--typed-bundle FILE --sha256 EXACT_FILE_SHA256`. The
+bundle is an explicit JSON object with `schema_version: 1` and `snapshots`, each
+containing a schema-valid `snapshot` and its logical `source_file` label beneath
+`status/typed-evidence-results/`. Exact original bytes are retained. Without it,
+typed snapshots are empty; missing scope remains missing. Duplicate matching
+typed snapshots are rejected. Supplied Trust is **reported input**, not a newly
+verified attestation. All outer receipts remain `evidence_trust: unverified` and
+`reported_trust_only: true`, without official acceptance or deployment authority.
+
+Staging imports bounded regular files, rejects links/nested directories and
+duplicate decision-bearing JSON keys, and checks every checksum, approval target,
+image/risk acknowledgement, exact measured commit/run/attempt, security boundary
+and time window. It retains a private hash-bound raw bundle. Consolidation joins
+only a staging receipt tied to the exact stored measured source, and supplements
+only L1-013/014/016. `inspect` reloads the source IDs and raw bytes and recomputes
+the complete report; a changed report, different node/runtime, wrong dependency
+domain or stale/tampered bundle fails closed. Historic inner Trust and approval
+vocabulary does not become approval on the new node. No accepted index is edited.
+
+The independently executed frozen V1 synthetic fixture compares all three full
+reports. Negative tests cover checksum and resealed-subject changes, stale or
+wrong-target approvals, typed ambiguity, links/size limits, foreign nodes and
+resealed report tampering. The installed counterpart is reproducible from a
+trusted development checkout with a fresh prefix:
+
+```sh
+python tests/acceptance/prepare_v1_parity_fixtures.py /private/operator/host-fixtures
+"$V2_PREFIX/venv/bin/python" tests/acceptance/axiom_v2_measured_supplements.py \
+  "$V2_PREFIX" /private/operator/host-fixtures /private/operator/supplement-result.json \
+  --expected-source EXACT_INSTALLED_COMMIT
+```
+
+This test is explicitly synthetic, invokes no provider and asserts no full Goal
+completion. Private supplement preparation is implemented; official acceptance,
+typed-evidence native verification and publication remain separate open work.
+
+A separate real historical replay uses the committed ha-CPsWMS staging bundle
+for run `35428987714`, attempt 1, as present at Main `5c3b5cb`, evaluated at
+`2026-09-19T09:00:00Z`. Frozen V1 and the new domain modules produce identical
+complete assurance, staging and consolidated reports: 19 recorded staging checks;
+consolidated 11 measured, 4 partial, 1 finding and zero gaps. Its comparable report
+digest is `e9945cb126f8891c80fd307d006c5b6cba634b5952f646490f9f31da50651b8f`.
+This is a historical source-level replay with the original measured snapshot,
+separate from synthetic installed acceptance and the failed fresh producer. It
+does not refresh evidence, exercise deployment or grant new operating approval.
 
 ## Remaining work in the same Goal
 

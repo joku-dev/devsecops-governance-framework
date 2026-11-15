@@ -1,8 +1,8 @@
 # AXIOM V2: partial parity evidence, 15 November 2026
 
 The [full parity Goal](../planning/axiom-v2-functional-parity.md) remains **in
-progress**. This receipt records installed evidence for the first two increments,
-separately from a fresh consumer producer failure. It grants no operating,
+progress**. This receipt records separately pinned installed increments and a
+fresh consumer producer failure. It grants no operating,
 source, requirement, blocking or release authority.
 
 ## Installed candidate
@@ -39,7 +39,33 @@ offline checks. This is technical evidence, not independent human review or full
 matrix completion. PR [#396](https://github.com/joku-dev/devsecops-governance-framework/pull/396)
 remains a draft stacked on the V2 foundation.
 
-## Real source/declaration replay
+## Installed source collection and measured replay at `7f74a85`
+
+Both hosts also installed the later candidate
+`7f74a85176cb681cb3590150f9cc6d2ceae2c24d`, original tree
+`89212cd9bb5e3688a18f6f65450b620bfb8e909f`. Its runtime digest is
+`4e49372e49c9833013583627066b74209695d825c68283c618738814162b142f`.
+The Mac package SHA-256 is
+`501828135f890b81a3b82e2cc9bac415ee9d31665634f84b0d924e19f871056e`;
+the Linux package SHA-256 is
+`5d4e96f39e8b549afe3bedb7d676943db8b57d9863eaddc24b7e2d98dc14871c`.
+
+Source collection read the same real Main commit/tree, all 340 committed files,
+on Mac and VM. Collected control/architecture objects equal frozen V1's objects
+after validating and replacing only the descriptive local repository path.
+The collected inputs then produced the same 10 pass/6 fail/30 not-applicable
+control counts and four passing architecture gates. This is source evidence.
+
+Separately, both installed environments imported the frozen **synthetic** eight
+measured raw groups, verified their manifests and matched the complete V1 L1 and
+container reports. Neither replay contacted a provider or inherited a native
+metadata verification claim. The combined comparable result digest on both hosts
+is `3459bdf8c65fc4f6693c66603ac9f1e0e7f980f1d2e44a3ba5b943320aaaf931`.
+Different node IDs and private keys remain separate. These checks cover source
+collection and measured replay at this exact revision; later supplement source
+changes need their own installed evidence.
+
+## Real source/declaration replay at `6dd4581`
 
 Frozen V1 `6b557fe`, installed Mac V2 and installed Linux V2 evaluated the same
 physical inputs from `ha-CPsWMS` Main
@@ -90,6 +116,7 @@ Existing accepted snapshots retain their original Trust and scope.
 The matrix retains every V1 capability without exceptions. Full measured-L1 and
 accepted intake, complete DCR operations/catalogue preparation, lifecycle/consent/
 action closure, reporting/graph/Viewer/release and agent tools, and long-lived
-service/update/backup/restore parity remain open. Later source collection changes
-require their own installed proof. This partial receipt does not close the Goal
+service/update/backup/restore parity remain open. Source collection and measured
+replay now have the additional installed proof above; accepted intake and later
+supplements remain separate. This partial receipt does not close the Goal
 or transfer V1 personal operating acceptance to either new node.

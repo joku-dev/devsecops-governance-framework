@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 private measured supplement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "domain",
+    "node_id",
+    "provider",
+    "source_revision",
+    "runtime_source_digest",
+    "source_worktree_clean",
+    "assessed_at",
+    "inputs",
+    "report",
+    "mode",
+    "evidence_trust",
+    "reported_trust_only",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "v1-compatible-supplement"
+    },
+    "domain": {
+      "enum": [
+        "assurance",
+        "staging",
+        "consolidated"
+      ]
+    },
+    "node_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{32}$"
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "runtime_source_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "report": {
+      "type": "object"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "reported_trust_only": {
+      "const": true
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "domain": {
+            "const": "assurance"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "measured_id",
+              "typed_bundle",
+              "typed_bundle_raw",
+              "typed_bundle_sha256"
+            ],
+            "properties": {
+              "measured_id": {
+                "$ref": "#/$defs/digest"
+              },
+              "typed_bundle": {
+                "type": "object"
+              },
+              "typed_bundle_raw": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 4194304
+              },
+              "typed_bundle_sha256": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/digest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "domain": {
+            "const": "staging"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "measured_id",
+              "bundle_manifest",
+              "evidence_repository_commit"
+            ],
+            "properties": {
+              "measured_id": {
+                "$ref": "#/$defs/digest"
+              },
+              "bundle_manifest": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "bundle_name",
+                  "files"
+                ],
+                "properties": {
+                  "bundle_name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+                  },
+                  "files": {
+                    "type": "object",
+                    "minProperties": 4,
+                    "maxProperties": 128,
+                    "propertyNames": {
+                      "pattern": "^[A-Za-z0-9._-]+$"
+                    },
+                    "additionalProperties": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "sha256",
+                        "bytes"
+                      ],
+                      "properties": {
+                        "sha256": {
+                          "$ref": "#/$defs/digest"
+                        },
+                        "bytes": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 16777216
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "evidence_repository_commit": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{40}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "domain": {
+            "const": "consolidated"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "measured_id",
+              "staging_id"
+            ],
+            "properties": {
+              "measured_id": {
+                "$ref": "#/$defs/digest"
+              },
+              "staging_id": {
+                "$ref": "#/$defs/digest"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

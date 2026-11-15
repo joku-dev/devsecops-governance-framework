@@ -44,3 +44,14 @@ def measured_validate(provider, kind, result):
             raise ValueError('unsupported_measured_kind')
     except (ValidationError, ET.ParseError):
         raise ValueError('invalid_measured_assessment') from None
+
+
+def measured_supplement_profile(provider, measured):
+    """The existing native profile admits only its exact original mainline scope."""
+    require_provider(provider)
+    measured_validate(provider, 'l1', measured)
+    if (measured['repository_id'] != measured_security.REPOSITORY
+            or measured['run']['event'] != 'push' or measured['run']['branch'] != 'main'):
+        raise ValueError('staging_mainline_measured_subject_required')
+    return {'repository': measured_security.REPOSITORY, 'baseline': measured_l1.BASELINE,
+            'consolidated_profile': 'ha-cpswms-l1-consolidated-v1'}

@@ -25,6 +25,11 @@ Die [vollständige technische Funktionsparität zu V1](docs/operations/planning/
 ist ein eigenes laufendes Goal. Der bereits entkoppelte V2-Kandidat ersetzt noch
 nicht alle V1-Funktionen; ein source- und nachweisgebundenes Inventar führt die
 gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
+Der [datierte Zwischenstand mit Mac-/VM-Nachweisen](docs/operations/status/axiom-v2-parity-progress-2026-11-15.md)
+trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch
+unvollständigen frischen Consumer-Lauf. V2 bietet inzwischen auch private,
+quellengebundene Assurance- und Staging-Zusammenführungen; die vollständige
+Produkt- und Betriebsparität bleibt offen.
 
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026
