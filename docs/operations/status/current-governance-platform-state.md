@@ -1,5 +1,35 @@
 # Current Governance Platform State
 
+## Host alignment and diagnostic replay, 15 November 2026
+
+After the earlier deployment observation below, the maintainer authorized a
+common source revision and diagnostic comparison. Both the Mac checkout and
+active Proxmox VM reached `adc4643bb7a5c962e4efb1525298ad9e652c73d2`.
+The VM update completed at 12:11 MEZ through the existing IaC path, with full
+candidate validation, authenticated smoke and verified VM/controller backups.
+The Mac Workbench retained its key and saved drafts. Both Workbenches returned
+HTTP 200; the VM protected API denied anonymous access with HTTP 401.
+The legacy collector configuration remained selected; no portable publisher
+or new consumer route was activated.
+
+The diagnostic replay used ha-CPsWMS commit `5c3b5cb`, original run `36997125273`,
+attempt 1, from **2 October**. All eleven original producer files and the same
+comparison driver matched by hash on both hosts. Three integration checks and
+16 applicable legacy L1 controls passed on each; 30 controls were not applicable.
+Business results matched after excluding local time/path fields and ordering
+the same CI-file lists. Raw reports retained those differences privately.
+
+The new portable preflight rejected the unchanged old SBOM (`invalid_sbom`):
+`metadata.component` was absent, and the scan also lacked `artifact_sha256`.
+There was no portable evaluation or fresh application build/test/scan. This
+manual diagnostic does not refresh accepted consumer evidence, historical Trust
+or production approval. No private report, credential or local path is published.
+
+The [arc42 system architecture](../../governance/architecture/governance-as-code-system-architecture.md)
+explains the current components and deployment. The previous observations below
+retain their original source/revision/time bindings. A later documentation merge
+does not automatically update installed host source.
+
 ## Implementation and deployment update, 15 November 2026
 
 Source observation: Main `4f6f5bbc2614760a35fe9d79602bcf5b19bc6e74` after the

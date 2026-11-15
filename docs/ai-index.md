@@ -21,7 +21,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Operate Mac and VM independently; inspect installed versus merged source | `docs/operations/guides/linux-vm-installation.md`, `docs/operations/status/current-governance-platform-state.md` |
 | Inspect merged portability and remaining live acceptance | `docs/operations/planning/platform-portability-acceptance.md`, `docs/operations/status/repository-documentation-reconciliation-2026-11-15.md` |
 | Understand the repository | `README.md`, `docs/official-entrypoints.md` |
-| Understand the current as-built Governance-as-Code system architecture | `docs/governance/architecture/governance-as-code-system-architecture.md` |
+| Understand the current technical system architecture (arc42: context, components, runtime, deployment, quality and risks) | `docs/governance/architecture/governance-as-code-system-architecture.md` |
 | Trace a source document through canonical requirements to executable OPA policy | `docs/governance/architecture/document-intake-to-opa-rulebook.md` |
 | Understand foundation, direction, and architectural guardrails | `docs/foundation/01_VISION.md`, `docs/foundation/02_CONSTITUTION.md`, `docs/foundation/03_ARCHITECTURE_PRINCIPLES.md`, `docs/foundation/05_CURRENT_DIRECTION.md` |
 | Run the live demo | `docs/demos/demo-end-to-end-governance.md` |

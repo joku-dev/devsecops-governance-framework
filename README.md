@@ -16,7 +16,7 @@ und [vollständige technische Funktionsliste](docs/operations/guides/repository-
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026
 
-Main source: `4f6f5bbc2614760a35fe9d79602bcf5b19bc6e74`. The
+Implementation source: `adc4643bb7a5c962e4efb1525298ad9e652c73d2`. The
 [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-15.md)
 separates merged capabilities, the installed VM revision and remaining live acceptance.
 
@@ -27,8 +27,10 @@ separates merged capabilities, the installed VM revision and remaining live acce
 - macOS and Ubuntu VM operation are available in parallel with separate keys,
   sessions and drafts. The [Linux VM guide](docs/operations/guides/linux-vm-installation.md)
   covers Ansible installation, exact-commit updates, SSH access and verified backups.
-  The VM update to `59bc6d1` was verified on 15 November; later Main changes add
-  the five-phase guide and CI action updates. A Git merge does not deploy a host.
+  Mac and VM were aligned to `adc4643` on 15 November, with Workbench checks
+  passed. The [dated platform state](docs/operations/status/current-governance-platform-state.md)
+  records that observation and the diagnostic replay separately from accepted
+  consumer evidence. A Git merge does not deploy a host.
 - The [portable runtime and engineering matrix](docs/operations/planning/platform-portability-acceptance.md)
   are merged through #377. The shared evaluator, provider adapters, evidence verifier,
   persistent collector, recovery and prepared offline package are implemented.
@@ -66,6 +68,8 @@ This public repository provides reusable DevSecOps and architecture governance b
 It combines governance-as-code, policy-as-code, machine-readable evidence, released baselines, runtime architecture governance, onboarding guidance, and CI/CD adapter patterns for GitHub Actions, Bamboo/Bitbucket, Jenkins, and GitLab CI.
 
 The repository models a governance stack where a `Policy` defines mandatory intent, a `Directive` defines binding operational execution, and structured baseline artifacts define detailed controls, platform expectations, evidence contracts, and executable checks.
+
+For the technical system description, use the [arc42 architecture](docs/governance/architecture/governance-as-code-system-architecture.md): context, building blocks, runtime, Mac/VM deployment, decisions, quality scenarios and open risks.
 
 ## Start Here
 
