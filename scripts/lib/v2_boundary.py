@@ -52,7 +52,7 @@ def local_dependencies(root, name):
     return found
 
 
-def violations(name, source):
+def violations(name, source, *, pattern_definitions=False):
     """No provider access, environment mapping, SDK or old client in neutral code."""
     tree=ast.parse(source,filename=name)
     findings=[]
@@ -64,6 +64,7 @@ def violations(name, source):
     for node in ast.walk(tree):
         if isinstance(node,ast.Call) and isinstance(node.func,ast.Name) and node.func.id in ('__import__','eval','exec'):
             findings.append({'path':name,'line':node.lineno,'code':'dynamic_execution_in_core'})
+        if pattern_definitions:continue
         if not isinstance(node,ast.Constant) or not isinstance(node.value,str) or id(node) in docstrings:continue
         value=node.value
         if (value in PROVIDER_WORDS or value in ('gh','curl','wget') or value.startswith(('gh ','GITHUB_','GITLAB_','bamboo_','CI_'))
@@ -76,10 +77,10 @@ def violations(name, source):
 def validate_boundaries(root):
     root=Path(root).resolve()
     policy=json.loads((root/'config/axiom-v2-boundaries.json').read_text())
-    if (set(policy)!={'schema_version','core_files','composition','adapters','compatibility_facades','browser_core'}
+    if (set(policy)!={'schema_version','core_files','composition','adapters','compatibility_facades','browser_core','verification'}
             or policy['schema_version']!=2 or not policy['core_files'] or not policy['composition']):
         raise ValueError('invalid_v2_boundary_contract')
-    groups=[policy[k] for k in ('core_files','composition','compatibility_facades','browser_core')]
+    groups=[policy[k] for k in ('core_files','composition','compatibility_facades','browser_core','verification')]
     names=[name for group in groups for name in group]
     if len(names)!=len(set(names)):raise ValueError('overlapping_v2_boundaries')
     for name in names:
@@ -92,7 +93,7 @@ def validate_boundaries(root):
         name=pending.pop()
         if name in visited or name in policy['composition'] or name.startswith(policy['adapters']+'/'):continue
         visited.add(name)
-        findings.extend(violations(name,safe_source(root,name).read_text()))
+        findings.extend(violations(name,safe_source(root,name).read_text(),pattern_definitions=name in policy['verification']))
         pending.extend(local_dependencies(root,name))
     # Import facades may alias only an adapter module. No hidden old implementation.
     for name in policy['compatibility_facades']:

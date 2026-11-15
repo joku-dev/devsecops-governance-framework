@@ -48,7 +48,7 @@ class BoundaryTests(unittest.TestCase):
             (root/'scripts/compose.py').write_text('# fixture composition\n')
             (root/'config/axiom-v2-boundaries.json').write_text(json.dumps({
                 'schema_version':2,'core_files':['scripts/core.py'],'composition':['scripts/compose.py'],
-                'adapters':'scripts/lib/providers','compatibility_facades':[],'browser_core':[]}))
+                'adapters':'scripts/lib/providers','compatibility_facades':[],'browser_core':[],'verification':[]}))
             report=validate_boundaries(root)
             self.assertFalse(report['passed'])
             self.assertIn('scripts/lib/helper.py',report['core_closure'])
@@ -56,3 +56,6 @@ class BoundaryTests(unittest.TestCase):
 
     def test_explanatory_docstrings_do_not_create_a_runtime_dependency(self):
         self.assertEqual(violations('core.py','"""Historical GitHub adapter explanation."""'),[])
+
+    def test_checker_pattern_data_does_not_exempt_actual_network_imports(self):
+        self.assertTrue(violations('checker.py','import requests',pattern_definitions=True))

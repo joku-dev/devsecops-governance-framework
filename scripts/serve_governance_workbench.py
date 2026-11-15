@@ -641,20 +641,21 @@ def make_server(workbench, key, port=8765):
     return server
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__,allow_abbrev=False)
     parser.add_argument('--port', type=int, default=8765)
     parser.add_argument('--consumer-projection', type=Path, help='Read-only redacted collector projection directory')
     parser.add_argument('--enable-pr', action='store_true', help='Enable explicit proposal publication through the configured SCM adapter')
     parser.add_argument('--publication-profile',type=Path,help='Private explicit SCM publication profile')
-    args = parser.parse_args()
+    parser.add_argument('--state-dir',type=Path,help='Private node directory within this checkout Workbench scope')
+    args = parser.parse_args(argv)
     os.umask(0o077)
     key = os.environ.get('AXIOM_WORKBENCH_KEY') or secrets.token_urlsafe(24)
     if len(key) < 24:
         parser.error('AXIOM_WORKBENCH_KEY must contain at least 24 characters')
     publisher=WorkbenchPublication.from_file(args.publication_profile) if args.publication_profile else None
     if args.enable_pr and publisher is None:parser.error('--enable-pr requires --publication-profile')
-    server = make_server(Workbench(enable_pr=args.enable_pr, consumer_projection=args.consumer_projection,publisher=publisher), key, args.port)
+    server = make_server(Workbench(enable_pr=args.enable_pr, consumer_projection=args.consumer_projection,publisher=publisher,state_dir=args.state_dir), key, args.port)
     print(f'AXIOM Workbench: http://127.0.0.1:{server.server_address[1]}', flush=True)
     if 'AXIOM_WORKBENCH_KEY' not in os.environ:
         print(f'Local access key: {key}', flush=True)

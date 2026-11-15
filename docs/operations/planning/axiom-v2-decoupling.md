@@ -69,9 +69,33 @@ Provider metadata contracts use GitHub's
 Bitbucket Data Center's native clone links. Fixture coverage is not live
 compatibility acceptance of an unspecified GitLab/Atlassian edition/version.
 
+## Fresh-instance launcher increment
+
+`scripts/axiom_v2.py` is the explicit product entrypoint for the shared runtime,
+evidence CLI, collector and Workbench. It accepts no arbitrary script name and
+does not expose old migration entrypoints. Existing directories cannot be
+initialized as V2 instances. Each new instance receives a distinct node ID,
+private state/credentials directories and Workbench key; its source revision,
+runtime digest and checksum-approved OPA are bound in a private marker.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/new-v2 init \
+  --opa /absolute/pinned/opa --port 8875
+python scripts/axiom_v2.py --instance /private/operator/new-v2 collector status
+python scripts/axiom_v2.py --instance /private/operator/new-v2 workbench
+```
+
+Initialization requires clean source by default. `--development` explicitly
+marks a source-development instance and keeps its collector paused and Workbench
+publication disabled. The installed distribution and isolated host acceptance
+remain subsequent work. A changed source/tool binding requires explicit update
+handling, not a silent marker rewrite. Multiple/overriding path options cannot
+redirect the shared CLIs to V1 state. A requested evidence restore creates an
+inactive separate candidate directory; it does not activate that state.
+
 ## Remaining V2 delivery
 
-The complete V2 launcher and entrypoint/function inventory, exclusion of V1-only
+The complete entrypoint/function inventory, exclusion of V1-only
 execution paths from installation, reproducible separate package/install profile,
 fresh-state admission and real isolated Mac/Linux smokes are subsequent work
 within the same active Goal. Existing hosts are not switched by this increment.

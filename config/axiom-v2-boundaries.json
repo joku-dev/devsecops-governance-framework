@@ -13,9 +13,13 @@
     "scripts/lib/portable_intake/candidate_index.py",
     "scripts/lib/portable_intake/controller.py",
     "scripts/lib/portable_intake/publisher.py",
-    "scripts/lib/portable_intake/store.py"
+    "scripts/lib/portable_intake/store.py",
+    "scripts/lib/v2_application.py",
+    "scripts/axiom_v2.py"
   ],
-  "composition": ["scripts/lib/provider_ports.py"],
+  "composition": [
+    "scripts/lib/provider_ports.py"
+  ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [
     "scripts/lib/portable/adapters.py",
@@ -27,5 +31,8 @@
     "scripts/workbench/app.js",
     "scripts/workbench/consumer-view.js",
     "scripts/workbench/workspace-navigation.js"
+  ],
+  "verification": [
+    "scripts/lib/v2_boundary.py"
   ]
 }
