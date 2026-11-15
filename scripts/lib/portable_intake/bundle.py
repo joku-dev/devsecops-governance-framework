@@ -30,7 +30,7 @@ def require_storage(root, policy):
 
 
 def verifier_digest():
-    paths=[*sorted((ROOT/'scripts/lib/portable_intake').glob('*.py')),
+    paths=[*(p for p in sorted((ROOT/'scripts/lib/portable_intake').glob('*.py')) if p.name not in ('assurance.py','operations.py','transport.py')),
            *sorted((ROOT/'schemas').glob('portable-intake-*-v2.schema.json')),
            ROOT/'scripts/intake_portable_evidence.py',ROOT/'scripts/lib/consumer_intake_store.py',
            ROOT/'scripts/lib/provider_errors.py',ROOT/'scripts/lib/secure_http.py',

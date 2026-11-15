@@ -11,8 +11,10 @@ import subprocess
 from lib.private_credentials import check_private_file
 from lib.consumer_intake_store import atomic_json
 from lib.portable.contracts import ROOT
-from lib.portable.runtime import source_digest, file_digest, approved_opa_hashes
+from lib.portable.runtime import source_digest, file_digest, approved_opa_hashes, read_json
 from lib.v2_boundary import validate_boundaries
+from lib.v2_source import active_fingerprints, verify_active_scripts
+from lib.portable.contracts import canonical_digest
 
 PRODUCT='axiom-v2'
 VERSION='2.0.0-candidate'
@@ -41,27 +43,31 @@ def initialize(path, *, port=8875, opa, development=False):
     node=secrets.token_hex(16)
     instance={'schema_version':2,'product':PRODUCT,'version':VERSION,'node_id':node,
         'source_root':str(ROOT),'source_revision':revision(),'runtime_source_digest':source_digest(),
+        'application_source_digest':canonical_digest(active_fingerprints(ROOT)),
         'port':port,'opa':str(opa),'opa_sha256':file_digest(opa),'development':development,
         'created_at':datetime.now(timezone.utc).isoformat()}
-    atomic_json(path/'instance.json',instance)
     atomic_json(path/'consumer.json',{'schema_version':1,'mode':'paused',
         'registry':str(ROOT/'config/portable-consumer-profiles.json'),
         'credentials_directory':str(path/'credentials'),'request_budget':300,'node_id':node})
     atomic_json(path/'workbench-key.json',{'key':secrets.token_urlsafe(32)})
+    # The admission marker is last: an interrupted setup cannot be resumed.
+    atomic_json(path/'instance.json',instance)
     return instance
 
 
 def instance(path):
+    if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
     path=Path(path)
     if path.is_symlink() or not path.is_dir() or path.stat().st_mode&0o077:
         raise ValueError('private_v2_instance_required')
     check_private_file(path/'instance.json')
-    value=json.loads((path/'instance.json').read_text())
+    value=read_json(path/'instance.json')
     expected={'schema_version','product','version','node_id','source_root','source_revision',
-              'runtime_source_digest','port','opa','opa_sha256','development','created_at'}
+              'runtime_source_digest','application_source_digest','port','opa','opa_sha256','development','created_at'}
     if (set(value)!=expected or value['schema_version']!=2 or value['product']!=PRODUCT
             or value['source_root']!=str(ROOT) or value['source_revision']!=revision()
-            or value['runtime_source_digest']!=source_digest()):
+            or value['runtime_source_digest']!=source_digest()
+            or value['application_source_digest']!=canonical_digest(active_fingerprints(ROOT))):
         raise ValueError('v2_instance_source_or_generation_mismatch')
     if file_digest(value['opa'])!=value['opa_sha256'] or value['opa_sha256'] not in approved_opa_hashes('1.18.2'):
         raise ValueError('v2_instance_tool_drift')
@@ -92,6 +98,7 @@ def run(command, arguments, *, instance_path=None):
         import governance_runtime
         return governance_runtime.main(arguments)
     if command=='check':
+        if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
     if command not in ('evidence','collector','workbench'):
@@ -101,7 +108,7 @@ def run(command, arguments, *, instance_path=None):
     if command=='collector':
         import portable_consumer_intake
         check_private_file(root/'consumer.json')
-        config=json.loads((root/'consumer.json').read_text())
+        config=read_json(root/'consumer.json')
         if config['node_id']!=settings['node_id']:raise ValueError('v2_instance_node_mismatch')
         if settings['development'] and config.get('mode')!='paused':
             raise ValueError('development_v2_instance_must_remain_paused')
@@ -121,7 +128,7 @@ def run(command, arguments, *, instance_path=None):
     if settings['development'] and '--enable-pr' in arguments:
         raise ValueError('development_v2_instance_cannot_publish')
     check_private_file(root/'workbench-key.json')
-    key=json.loads((root/'workbench-key.json').read_text())['key']
+    key=read_json(root/'workbench-key.json')['key']
     args=set_option(arguments,'--port',settings['port'])
     args=set_option(args,'--state-dir',ROOT/'.local/governance-workbench'/settings['node_id'])
     args=set_option(args,'--consumer-projection',root/'projection')

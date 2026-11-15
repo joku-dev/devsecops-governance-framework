@@ -493,6 +493,15 @@ commands, prerequisites, backup locations and selective draft import.
 
 ### Current Deployment Decision and Kubernetes
 
+The separate [V2 development candidate](../../operations/planning/axiom-v2-decoupling.md)
+introduces a finite application launcher, an explicit composition boundary and
+provider adapters. Its exact-source offline package uses a reviewed sparse file
+set, its own Python environment and fresh private instance data. V1-only
+entrypoints are excluded from that installed working tree. The
+[function inventory](../../operations/planning/axiom-v2-function-inventory.md)
+records retained local authoring tools and the V1 lifecycle authority that does
+not transfer to V2. These changes do not describe a completed production rollout.
+
 The implemented deployment combines local macOS use, direct Linux/systemd
 operation in an existing VM, CI jobs and static publication. The same source
 line and evaluator serve these environments; no permanent VM fork is required.

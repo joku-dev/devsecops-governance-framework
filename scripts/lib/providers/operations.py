@@ -237,7 +237,11 @@ def run_link(context):
 def application_fingerprints(root):
     """New VM dependency closure includes config and IaC; legacy closure is unchanged."""
     from lib.application_source import fingerprints
-    root=Path(root);result=fingerprints(root)
+    root=Path(root)
+    if (root/'config/axiom-v2-distribution.json').is_file():
+        from lib.v2_source import active_fingerprints
+        return active_fingerprints(root)
+    result=fingerprints(root)
     for directory in ('config','infra'):
         for path in sorted((root/directory).rglob('*')):
             if path.is_file():
@@ -256,6 +260,8 @@ def application_fingerprints(root):
 
 
 def require_compatible(installed,candidate):
+    if (Path(installed)/'config/axiom-v2-distribution.json').is_file() and not (Path(candidate)/'config/axiom-v2-distribution.json').is_file():
+        raise AccessFailure('application_update_required')
     if application_fingerprints(installed)!=application_fingerprints(candidate):
         raise AccessFailure('application_update_required')
 

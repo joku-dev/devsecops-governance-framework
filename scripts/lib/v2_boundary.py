@@ -84,6 +84,7 @@ def validate_boundaries(root):
     names=[name for group in groups for name in group]
     if len(names)!=len(set(names)):raise ValueError('overlapping_v2_boundaries')
     for name in names:
+        if name in policy['compatibility_facades'] and not safe_source(root,name).exists():continue
         if not safe_source(root,name).is_file():raise ValueError('missing_v2_boundary_source')
     adapter=safe_source(root,policy['adapters'])
     if not adapter.is_dir():raise ValueError('missing_v2_provider_adapters')
@@ -97,6 +98,7 @@ def validate_boundaries(root):
         pending.extend(local_dependencies(root,name))
     # Import facades may alias only an adapter module. No hidden old implementation.
     for name in policy['compatibility_facades']:
+        if not safe_source(root,name).exists():continue
         tree=ast.parse((root/name).read_text())
         if any(module!='sys' and module!='lib.providers' and not module.startswith('lib.providers.') for module in imports(tree)):
             findings.append({'path':name,'code':'implementation_in_compatibility_facade'})

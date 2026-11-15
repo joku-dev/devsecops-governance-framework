@@ -87,18 +87,73 @@ python scripts/axiom_v2.py --instance /private/operator/new-v2 workbench
 
 Initialization requires clean source by default. `--development` explicitly
 marks a source-development instance and keeps its collector paused and Workbench
-publication disabled. The installed distribution and isolated host acceptance
-remain subsequent work. A changed source/tool binding requires explicit update
+publication disabled. A changed source/tool binding requires explicit update
 handling, not a silent marker rewrite. Multiple/overriding path options cannot
 redirect the shared CLIs to V1 state. A requested evidence restore creates an
 inactive separate candidate directory; it does not activate that state.
 
+## Offline distribution increment
+
+The [complete function and entrypoint inventory](axiom-v2-function-inventory.md)
+maps the 22 catalogue areas and every top-level Python script. The reviewed
+`config/axiom-v2-distribution.json` selects the runtime import closure, provider
+adapters, installation helpers and required data. Source-authoring tools remain
+in the development checkout. Former V1 execution paths and the four import
+facades are physically absent from the installed working tree.
+
+The package builder retains an exact original Git commit/tree, with checksummed
+OPA and hash-locked wheels for one target OS/architecture. Admission verifies
+the independently supplied package hash, every member and the reconstructed Git
+identity offline. After preparing a fresh environment, non-cone sparse checkout
+retains only the reviewed runtime files. Source identity stays unchanged and
+Git status stays clean. Historical baseline packages remain immutable data.
+Full-source and sparse-source drift checks use the same active dependency set;
+historical projections and unrelated documentation do not authorize executable
+changes. Instantiation binds that set, revision, tool and runtime digests.
+
+Build on the trusted development checkout, with an exact reviewed 40-character
+`REVISION`, the target OPA and a wheelhouse containing both lock sets:
+
+```sh
+python scripts/package_governance_runtime.py build --revision "$REVISION" \
+  --destination /private/operator/v2-mac.zip --workbench \
+  --opa /private/operator/opa-darwin-arm64 --wheelhouse /private/operator/wheels-mac \
+  --system Darwin --machine arm64
+# Linux uses --system Linux --machine x86_64 and its own OPA/wheels.
+```
+
+Keep the returned SHA-256 through a trusted independent channel. Transfer the
+package without credentials. From the trusted reviewed installer checkout,
+using the separately verified `PACKAGE_SHA256`:
+
+```sh
+python scripts/install_axiom_v2.py /private/operator/v2-mac.zip \
+  --sha256 "$PACKAGE_SHA256" --prefix /private/operator/new-v2 --port 8875
+/private/operator/new-v2/axiom-v2 check
+/private/operator/new-v2/axiom-v2 collector status
+/private/operator/new-v2/axiom-v2 workbench
+```
+
+On Linux choose a fresh user-owned prefix, for example
+`/home/operator/.local/state/axiom-v2-candidate`, and an unused port. The prefix
+contains `package/source`, its own `venv`, `instance` and private installation
+receipt. It starts no services, imports no old key/drafts, and leaves collection
+paused. The Workbench remains loopback-only; use a separate SSH tunnel for the
+VM. Read its private key only through the operator's terminal; never publish it.
+Do not reuse the V1 IaC service names or paths for this candidate.
+
+An interrupted initialization writes no instance admission marker; a partial
+prefix must be inspected and retained or deliberately removed by its owner
+before retrying at a new path. Updates use a new package/prefix and a fresh
+instance. Backup/restore is explicit and initially inactive. Rollback is stopping
+the candidate process and using the preserved V1 installation; V2 never changes
+its service, state or authority. A production service migration remains a
+separate operating decision after the reviewable candidate.
+
 ## Remaining V2 delivery
 
-The complete entrypoint/function inventory, exclusion of V1-only
-execution paths from installation, reproducible separate package/install profile,
-fresh-state admission and real isolated Mac/Linux smokes are subsequent work
-within the same active Goal. Existing hosts are not switched by this increment.
+Real isolated Mac/Linux package smokes and the final revision-bound review/PR
+remain within the same active Goal. Existing hosts are not switched by this increment.
 The earlier accepted personal GitHub lifecycle pilot remains bound to its V1
 source and authority. No new publisher, blocking check or platform authority is
 activated by this document or an implementation PR.

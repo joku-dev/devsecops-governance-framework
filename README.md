@@ -13,6 +13,10 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
+
+Auf dem V2-Entwicklungsbranch entsteht der [anbieterneutrale Installationskandidat](docs/operations/planning/axiom-v2-decoupling.md)
+mit expliziten Adaptern, eigenem Zustand und einem [vollständigen Funktions-/Einstiegspunktinventar](docs/operations/planning/axiom-v2-function-inventory.md).
+Dies ist noch keine veröffentlichte V2 oder neue Betriebsabnahme.
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026
 
