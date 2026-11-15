@@ -93,6 +93,12 @@ Der [Installationsnachweis vom 15. November 2026](docs/operations/status/axiom-v
 belegt den getrennten Mac-/Linux-Kandidaten auf Implementierungscommit `756a28e`.
 Das [Funktionsinventar](docs/operations/planning/axiom-v2-function-inventory.md)
 ordnet bestehende Funktionen, aktive Laufzeit und ausgeschlossene V1-Einstiege
-zu. Die Implementierung ist als Kandidat vorbereitet; abschließender
-revisionsgebundener Review und PR-Lieferung folgen. Produktivübernahme,
-menschliche CODEOWNER-Freigabe und unbekannte Live-Zielprofile sind eigene Grenzen.
+zu. Die Implementierung wurde mit revisionsgebundenem Review in PR #395 geliefert.
+Produktivübernahme, menschliche CODEOWNER-Freigabe und unbekannte Live-Zielprofile
+sind eigene Grenzen.
+
+V2 ist nach dem anschließenden Maintainer-Auftrag die Grundlage der weiteren
+Produktentwicklung. Die [zentrale arc42-Beschreibung](docs/governance/architecture/governance-as-code-system-architecture.md)
+ordnet den implementierten Produktkern, Entwicklungswerkzeuge, V1-Rückfallstand
+und künftige Produktentscheidungen durchgängig zu. Diese technische Ausrichtung
+ändert keine normative Quelle, freigegebene Baseline oder Betriebsabnahme.

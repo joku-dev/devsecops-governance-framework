@@ -5,13 +5,13 @@
 | Attribute | Value |
 |---|---|
 | Document type | Current-state system architecture, organized with arc42 |
-| Status | Explanatory as-built description; implementation, engineering proof and live activation are distinguished |
+| Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-15, source `adc4643bb7a5c962e4efb1525298ad9e652c73d2` |
-| Operating observation | 2026-11-15: Mac and Proxmox VM aligned to `adc4643`; legacy collector engine retained |
+| Last implementation review | 2026-11-15, V2 source `79ca1f253ae6aa7b33b70c8c79948c9bdf9b3fb8`; documentation follow-up in PR #395 |
+| Operating observation | Separate V2 Mac/Linux candidate tested at `756a28e`; retained VM service at `adc4643`. Candidate test processes are stopped; no V2 production service takeover |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
-| Change request | `GCR-2026-035`; prior refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154`, `GCR-2026-161`; arc42 reconciliation `GCR-2026-183` |
+| Change request | `GCR-2026-035`; prior refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154`, `GCR-2026-161`; arc42 reconciliation `GCR-2026-183`; V2 product foundation `GCR-2026-185` |
 | Governance / released baseline effect | None; documentation-only, no new requirement or runtime decision |
 | Source Document Intake | Not required; no new governance source |
 
@@ -30,10 +30,17 @@ live provider acceptance. A private candidate is not an accepted Git result.
 
 ### Purpose
 
-This document describes how the implemented Governance-as-Code system works as
-one technical system. It connects the foundation, structured governance models,
-released baselines, downstream workflows, evidence intake, Trust evaluation,
-append-only history, portfolio projections, graph, and viewer.
+This is the central technical architecture description for **AXIOM V2 as the
+foundation for product development**. It describes the executable V2 candidate,
+its development environment and the retained V1 operating boundary within one
+system context. Detailed implementation and installation guides support this
+page; they are not competing architecture descriptions.
+
+V2 connects reviewed governance models and baselines to one evaluator, evidence
+verification, bounded collection and an authenticated local Review Workbench.
+Native SCM/CI/transport/publication behavior is isolated behind explicit ports
+and adapters. The broader repository also owns source-authoring tools, accepted
+Git result history and static reporting; those are not all installed V2 commands.
 
 This is an explanatory architecture document. It does not create policy,
 approve a control, change an enforcement mode, or modify a released baseline.
@@ -86,17 +93,40 @@ The implementation follows these repository guardrails:
 8. Platform-specific adapters surround a model- and schema-based governance
    core.
 
+### Product development baseline
+
+The maintainer designated V2 as the product-development foundation on
+15 November 2026. The implemented separation and its reproducible candidate are
+the starting point for subsequent changes. This designation is an engineering
+direction, not general availability, a new governance baseline or production
+operating acceptance.
+
+| Product concern | Implemented starting point | Development boundary |
+|---|---|---|
+| Product interface | Finite `axiom_v2.py` CLI and private Workbench | A public multi-user/API service is a separate design decision |
+| Common behavior | One evaluator/verifier and source-bound schemas/policies | A new provider must not introduce a second policy implementation |
+| Integration | Explicit provider ports, native adapters and reviewed profiles | Missing capabilities remain missing/error/unsupported, never an inferred pass |
+| Distribution | Exact-source offline package, private fresh prefix and own tools | Product release/signing/support and long-lived service lifecycle need explicit decisions |
+| State ownership | Independent node, credentials, key, queue and projection | No shared writable Mac/VM database or inherited publisher authority |
+| Scope | All 22 repository capabilities mapped in the V2 function inventory | Source authoring and V1-only operations must not be presented as installed V2 features |
+
+Product expansion should use these boundaries and the evidence/decision table
+in section 11. Existing approved policies and source registers still own
+normative intent.
+
 ## 2. Architecture Constraints
 
 | Constraint | Source and implementation consequence |
 |---|---|
 | Preserve approved and released identities | [Agent rules](https://github.com/joku-dev/devsecops-governance-framework/blob/adc4643bb7a5c962e4efb1525298ad9e652c73d2/AGENTS.md), release packages/checksums and the 24-file operating-acceptance manifest; use additive successors where required |
 | Human decisions stay explicit | Source/requirement approval, role authority, release, waiver and blocking remain separate governed operations |
-| Source, baseline, runtime and adapter versions differ | Consumer pins select frozen packages; prepared runtime/VM updates bind a reviewed full commit |
+| Separate version axes | Product `2.0.0-candidate`, portable contract/runtime `1.0.0`, baseline `l1-baseline-v1.1.3`, exact source commit and tool hashes have distinct meanings |
 | Existing consumer scope remains | ha-CPsWMS retains its recorded legacy blocking risk; new pilots explicitly select report-only |
 | Portable evaluator has bounded scope | Five mapped pipeline-L1 controls; eleven L1 controls remain `not_evaluated`; no full-baseline claim |
 | Protect private state | Workbench uploads/keys, collector raw data/SQLite and provider credentials remain outside public projections |
-| Separate technical description from normative architecture governance | This reorganization changes no architecture marker, gate, source decision or architecture baseline |
+| Closed V2 execution surface | `config/axiom-v2-distribution.json` selects installed code/data; V1 scripts/facades are absent from the installed working tree |
+| Explicit adapter composition | `lib/provider_ports.py` composes reviewed implementations; no downloaded/discovered runtime plugins or implicit CLI authentication |
+| Separate technical description from normative architecture governance | Product architecture documentation changes no architecture marker, gate, source decision or released baseline |
 
 Foundation direction and the [reference layer model](../../foundation/04_REFERENCE_ARCHITECTURE.md)
 provide strategic guardrails. Existing approved sources and versioned decisions
@@ -113,7 +143,7 @@ In scope:
 - hybrid external/Git requirement authority, canonical revisions and artifact mappings
 - multiple application and service repositories consuming released baselines
 - DevSecOps and architecture runtime evaluation
-- collector, evidence, Trust, replay, ledger, and failed-attempt handling
+- V2 collector, evidence, Trust, replay and failure handling; retained accepted-ledger workflows are explicitly separate
 - result indexes, portfolio reporting, governance graph, and static viewer
 - governance change control, releases, validation, and agent review routing
 
@@ -127,33 +157,35 @@ Out of scope:
 
 ### System Context
 
-![System context: people, central governance source, provider APIs, CI execution and read-only outputs.](diagrams/axiom-system-context.svg)
+![V2 context: people and consumer systems interact with the neutral product through explicit ports and native adapters; reviewed candidate records remain separate from V1 accepted results.](diagrams/axiom-system-context.svg)
 
 ```mermaid
 flowchart LR
-    People["Maintainer / accountable reviewer / operator"] --> Source["Central governance Git source"]
-    Source --> Runtime["Shared runtime and provider adapters"]
-    Consumers["Consumer repositories"] --> CI["GitHub Actions / GitLab CI / Bamboo"]
-    CI --> Evidence["Artifacts and native run metadata"]
-    SCM["GitHub / GitLab / Bitbucket DC APIs"] --> Runtime
-    Evidence --> Runtime
-    Runtime --> Candidate["Private verification / candidate proposal"]
-    Candidate --> Review["Review and protected merge"]
-    Review --> Accepted["Reviewed Git records; separate accepted-result and candidate scopes"]
-    Accepted --> Public["Static Viewer / documentation"]
-    Public --> People
+    People["Operator / accountable reviewer"] --> V2["AXIOM V2: CLI, Workbench, evaluator and verifier"]
+    Source["Reviewed models, contracts and frozen baselines"] --> V2
+    V2 --> Ports["Explicit provider ports / composition"]
+    Ports --> Adapters["SCM, CI, transport and publication adapters"]
+    SCM["GitHub / GitLab / Bitbucket DC"] <--> Adapters
+    CI["Consumer CI: Actions / GitLab CI / Bamboo"] --> Adapters
+    V2 --> State["Private node: queue, raw bytes and receipts"]
+    Adapters --> Proposal["Scoped draft / candidate PR or MR"]
+    Proposal --> Review["Human review and protected merge"]
+    Review --> Candidate["Reviewed candidate records"]
+    Legacy["Separate V1 accepted-result intake"] --> Accepted["Accepted domain indexes / static Viewer"]
+    Candidate -. "does not promote itself" .-> Accepted
 ```
 
-The Git provider and CI provider are independent axes. The first implemented
-profiles are GitHub/Actions, GitLab/GitLab CI and Bitbucket Data Center/Bamboo.
-Native target versions, permissions and live acceptance are recorded separately
-in the [support and acceptance matrix](../../operations/planning/platform-portability-acceptance.md).
-The portable path proposes candidates through supported SCM APIs. Accepted
-GitHub result intake and its reviewed publishers retain their existing contracts.
-Merging a portable candidate proposal records that candidate in Git; it does
-not admit it to the existing accepted DevSecOps/architecture domain indexes.
-The diagram's reviewed-history step preserves this scope distinction; projection
-readers apply their own accepted-result or candidate contract.
+SCM and CI are independent axes. Implemented adapter profiles cover
+GitHub/Actions, GitLab/GitLab CI and Bitbucket Data Center/Bamboo; this is not a
+blanket certification of unspecified editions or target versions. The
+[support matrix](../../operations/planning/platform-portability-acceptance.md)
+retains native target acceptance limits.
+
+V2 proposes independently verified candidates. A merged candidate is a reviewed
+Git record in its own scope; it does not become an accepted DevSecOps/architecture
+domain-index result automatically. Retained accepted-result publishers and
+personal lifecycle workflows belong to V1/source-side operation, not hidden V2
+execution routes. Public views remain read-only projections of their stated scope.
 
 ## 4. Solution Strategy
 
@@ -163,7 +195,7 @@ readers apply their own accepted-result or candidate contract.
 |---|---|---|
 | Governance Intent | Explain authority, direction, roles, lifecycle, and source lineage | `docs/foundation/`, `docs/governance/`, `model/documents/`, `governance/` |
 | Governance Model | Express controls, mappings, evidence types, architecture guardrails, schemas, and policies | `model/`, `architecture/`, `schemas/`, `policies/opa/` |
-| Governance Runtime | Validate the central repo, publish baselines, execute consumer checks, collect results, and evaluate Trust | `.github/workflows/`, `scripts/`, `releases/` |
+| Governance Runtime | Execute shared V2 checks/verification and bounded collection; development tools separately validate/publish reviewed source | V2 launcher, neutral libraries, explicit provider ports/adapters; native CI wrappers remain adapters |
 | Governance Intelligence | Project history into indexes, reports, portfolio status, graph, and viewer | `status/`, `generated/reports/`, `generated/graph/`, `generated/viewer/` |
 
 Dependencies flow down through controlled contracts. Runtime and intelligence
@@ -172,46 +204,91 @@ or released models.
 
 ### Shared evaluation with explicit provider boundaries
 
-The same Python/OPA evaluator serves CI, local evaluation and the portable VM
-service. Native context acquisition, artifact transport, SCM proposal operations
-and CI dispatch surround that core. Discovery or evaluation does not implicitly
-start another provider job. Native repository and execution identities are
-namespaced by provider/instance; display names are not identity substitutes.
+The same Python/OPA evaluator serves CI, local use and collector verification.
+The neutral core consumes normalized context and evidence; only the composition
+module and provider adapters select native implementations. Discovery/evaluation
+never implicitly dispatches another provider job. Repository/execution identities
+are namespaced by provider and instance; display names are not identities.
 
-A checksum-verified frozen baseline is selected independently of the runtime
-source digest. The new portable result assesses five pipeline-L1 controls and
-keeps outcome, execution, evidence Trust and requested/observed enforcement
-separate. Existing released consumer wrappers remain callable at their old pins.
+### V2 product boundaries
 
-The [portable runtime ADR](../../operations/planning/portable-governance-runtime-adr.md)
-and [engineering matrix](../../operations/planning/platform-portability-acceptance.md)
-record the delivered M1/M2 work and the remaining external acceptance boundaries.
+The executable boundary is defined by two reviewed source contracts:
+
+- `config/axiom-v2-boundaries.json` names neutral roots, composition, adapters,
+  browser modules and source-only compatibility facades. The architecture checker
+  follows local imports transitively and rejects native SDK/HTTP/CLI/host/env and
+  legacy-client access in the neutral closure.
+- `config/axiom-v2-distribution.json` selects the installed code/data. Sparse
+  admission removes V1-only executable paths physically, while preserving the
+  original Git commit/tree. The finite launcher never falls back to a script
+  name, old engine or old migration command.
+
+Provider transport/identity failures use neutral error contracts. An adapter
+must return facts or explicit unavailability; it must not decide governance
+approval. Port composition is static reviewed code. Profiles select supported
+provider/instance/credential bindings, not executable plugins.
+
+A new provider extension therefore changes the reviewed adapter/composition and
+profile contracts, supplies native identity/permission/artifact/draft/error
+fixtures, and proves parity through the common evaluator. Real version-specific
+permission and mutation behavior still needs native target acceptance. Public
+API compatibility and a third-party plugin marketplace are not implemented V2
+extension promises.
+
+The frozen baseline is selected independently of the runtime source digest.
+The current portable result assesses five pipeline-L1 controls; execution,
+outcome, Trust and requested/observed enforcement remain separate. Existing
+released consumer wrappers keep their original pins and authority.
 
 ## 5. Building Block View
 
 ### Logical Components
 
-| Component | Responsibility | Key locations |
+| Component / scope | Responsibility | Current implementation |
 |---|---|---|
-| Source and change intake | Classify new artifacts, register candidate sources, record impact and review decisions | `model/documents/`, `docs/governance/change-requests/`, `docs/operations/processes/` |
-| DevSecOps control baseline | Define controls, platform mappings, traceability, evidence requirements, and OPA behavior | `model/controls/`, `model/platform/`, `model/traceability/`, `policies/opa/` |
-| Architecture runtime governance | Define levels, markers, review gates, exceptions, release candidates, and runtime policy | `architecture/`, architecture rules under `policies/opa/`, `schemas/architecture-*.schema.json` |
-| Release manager | Freeze reviewed models, schemas, policies, workflow wrappers, metadata, and checksums | `releases/`, `docs/releases/`, versioned workflows in `.github/workflows/` |
-| Consumer workflow adapter | Load a pinned baseline, collect repository context, evaluate it, and publish artifacts | reusable and versioned workflows under `.github/workflows/` |
-| Evidence collectors | Acquire a named artifact, bind subjects and digests, normalize a contract-specific result | `scripts/intake_*`, `scripts/collect_*`, `model/evidence/evidence-collector-contract.yaml` |
-| Evidence Trust verifier | Evaluate subject integrity, source metadata, custody, freshness, and replay without changing the underlying outcome | `scripts/lib/evidence_trust.py`, `model/evidence/`, Trust schemas |
-| Append-only result ledger | Accept new snapshots, treat identical intake as idempotent, quarantine conflicting identity reuse | `scripts/lib/result_ledger.py`, `status/results/`, `status/architecture-results/`, `status/typed-evidence-results/`, `status/intake-conflicts/` |
-| Collection attempt, intake telemetry, and health | Record failed or partial collection for retry, record every intake execution, and project report-only operational indicators | `scripts/record_collection_attempt.py`, `scripts/record_intake_event.py`, `scripts/generate_intake_health.py`, `status/collection-attempts/`, `status/intake-events/`, `status/intake-health.json` |
-| Status and portfolio projections | Select context-aware latest results, summarize adoption, and validate multi-consumer isolation | result index generators, `scripts/generate_multi_consumer_readiness.py`, `status/*-index.json`, `governance/portfolio-adoption-reporting.yaml` |
-| Governance Intelligence Graph | Join stable identifiers into a deterministic read-only relationship graph | `scripts/generate_governance_graph.py`, `schemas/governance-graph.schema.json`, `generated/graph/` |
-| Viewer and documentation | Present status, Trust, Intake Health, attempts, portfolio information, lineage, and graph navigation | `scripts/generate_status_viewer.py`, `generated/viewer/`, `mkdocs.yml` |
-| Private Review Workbench | Source/requirement preparation, notes, explicit impact hints and review ZIPs | `scripts/serve_governance_workbench.py`, `scripts/workbench/`, `scripts/lib/workbench_impact.py` |
-| Portable evaluator and CI/SCM context adapters | Shared context/evaluate/gate/run contract and exact baseline/runtime binding | `scripts/governance_runtime.py`, `scripts/lib/portable/` |
-| Common portable verifier and native transports | Independently validate physical files, native run/job/configuration identity, replay and provenance | `scripts/lib/portable_intake/bundle.py`, `transport.py`, `schemas/portable-intake-*-v2.schema.json` |
-| Persistent collector and proposal coordinator | Bounded discovery/work, provider-bound SQLite queue, paused/shadow ownership and frozen batches | `scripts/portable_consumer_intake.py`, `scripts/lib/portable_intake/controller.py`, `store.py`, `publisher.py` |
-| Provider operation adapters | SCM PR/MR reconciliation, separately requested CI dispatch and restricted Git scratch workspaces | `scripts/lib/portable_intake/operations.py` |
-| VM deployment and prepared distribution | Exact-source install/update, compatibility, verified backup/recovery and prepared offline evaluation package | `infra/ansible/`, `scripts/deploy_vm.py`, `scripts/lib/vm_deployment.py`, `scripts/package_governance_runtime.py` |
-| Agent review system | Route bounded governance reviews using model-neutral roles and skills; record explicit agent involvement separately | `.agents/`, `.codex/agents/`, `tests/agent_harness/`, `status/evidence-agent-provenance/` |
+| V2 product entry / instance | Finite commands; fresh node/key/state; exact source/tool/dependency binding | `scripts/axiom_v2.py`, `scripts/lib/v2_application.py` |
+| Neutral evaluation | Context/input contracts, physical evidence preparation, unchanged OPA decisions and gate | `scripts/governance_runtime.py`, `scripts/lib/portable/contracts.py`, `runtime.py`, `scripts/control_evaluation.py` |
+| Neutral verification | Bundle integrity, source/config/run binding, freshness/replay, immutable receipts | `scripts/intake_portable_evidence.py`, `scripts/lib/portable_intake/bundle.py`, `schemas/portable-intake-*-v2.schema.json` |
+| Collection / proposal coordination | Bounded poll/work, frozen batches, retries, independent candidate reconciliation | `scripts/portable_consumer_intake.py`, `scripts/lib/portable_intake/controller.py`, `publisher.py`, `candidate_index.py` |
+| Operational persistence | Node-owned SQLite transactions, receipts, raw bytes, backups and inactive restore candidate | `scripts/lib/portable_intake/store.py`, `scripts/lib/consumer_intake_store.py` |
+| Private Workbench | Registered-source/candidate preparation, original bytes, append-only notes, rule-impact hints and scoped handoff | `scripts/serve_governance_workbench.py`, `scripts/workbench/`, `scripts/lib/workbench_impact.py` |
+| Provider composition | Shared read/proposal/execution contracts and explicit adapter selection | `scripts/lib/provider_ports.py` |
+| Native adapters | Context/facts, HTTPS transport, discovery, SCM/Git proposals, draft verification and provider assurance | `scripts/lib/providers/context.py`, `transports.py`, `discovery.py`, `operations.py`, `workbench.py`, `assurance.py`, `github_security.py`, `legacy_interop.py` |
+| Shared integrity helpers | Neutral failure/retry types, private-file and archive checks, Trust and dependency hashes | `scripts/lib/provider_errors.py`, `private_credentials.py`, `safe_archive.py`, `evidence_trust.py`, `v2_source.py` |
+| Product distribution | Externally pinned archive admission, offline environment, sparse execution closure, private fresh prefix | `scripts/install_axiom_v2.py`, `scripts/lib/v2_distribution.py`, `runtime_package.py` |
+| Architecture regression check | Enforce neutral import closure and explicit provider boundary | `scripts/lib/v2_boundary.py`, `scripts/validate_axiom_v2.py`, both V2 config contracts |
+| Shared governed data | Reviewed controls, mappings, evidence schemas, policies and frozen baselines | `model/`, `architecture/`, `schemas/`, `policies/opa/`, `releases/` |
+| Source-authoring / release tools | Source approval, requirement authority, model changes, release creation, graph/report/Viewer generation and agent reviews | Development checkout: `scripts/`, `.agents/`, `.codex/`, `docs/`, native workflow adapters; only the explicit runtime closure is installed as executable V2 code |
+| Retained accepted-result / pilot operation | Existing immutable domain results, approved intake/publishers and personally accepted lifecycle scope | V1/source-side workflows, `scripts/lib/result_ledger.py`, `scripts/lib/governance_lifecycle/`, `status/`; no transferred V2 operating authority |
+| Retained V1 deployment | Existing Ansible/systemd installation, state-preserving update and explicit legacy/portable migration | `infra/ansible/`, `scripts/deploy_vm.py`, `scripts/lib/vm_deployment.py`; separate from the fresh-prefix V2 installer |
+
+![V2 building blocks: finite application routes call one neutral core, explicit composition and native adapters; state and distribution have separate responsibilities.](diagrams/axiom-v2-building-blocks.svg)
+
+```mermaid
+flowchart TB
+    Entry["axiom_v2: init / check / runtime / evidence / collector / workbench"] --> App["Instance binding and application routing"]
+    App --> Core["Evaluation / verification / orchestration / local review"]
+    Core --> Ports["provider_ports: reviewed composition"]
+    Ports --> Native["providers: context / transport / discovery / operations / assurance / Workbench handoff"]
+    Native <--> Remote["Explicit SCM and CI profiles"]
+    Core --> Data["Pinned schemas / policies / baseline"]
+    Core --> Private["Per-node state / receipts / projection"]
+    Install["Offline exact-source installer"] --> Closure["Sparse runtime closure and own Python / OPA"]
+    Closure --> Entry
+    Old["V1 CLI / import facades / local authoring tools"] -. "excluded from installed execution" .-> Closure
+```
+
+The four former portable import locations are V1 **source-test aliases**, not
+runtime modules: `lib/portable/adapters.py` and
+`lib/portable_intake/{assurance,operations,transport}.py`. Actual native behavior
+is under `lib/providers/`; the aliases are not installed. Likewise, retained
+`legacy_interop.py` checks old-state/ownership boundaries through the adapter;
+it does not expose a V2 legacy-engine or migration command.
+
+The [complete function inventory](../../operations/planning/axiom-v2-function-inventory.md)
+maps all 22 catalogue areas and every Python/Shell/Node entrypoint to this scope.
+A capability present in the development repository is not automatically an
+installed or operating V2 feature.
 
 ### Local preparation, requirement authority and public projection
 
@@ -296,17 +373,23 @@ source references when making an audit or governance decision.
 
 ### Two collector engines and their activation boundary
 
-The existing GitHub-only engine uses `scripts/consumer_intake.py`. The portable
-successor uses `scripts/portable_consumer_intake.py` and schema2 provider-bound
-state. They share selected helpers but retain separate operational identities.
-The observed target VM still selects the legacy engine; new portable registries
-are empty by default. Installed portable source does not activate collection.
+This heading retains its existing link anchor. It describes the **retained
+V1 deployment**, whose legacy `consumer_intake.py` and portable successor had
+separate engine/state/activation paths. That installed VM still selects the
+legacy engine in the dated observation. Its migration and schema2-to-legacy
+recovery procedures remain in the [V1 collector guide](../../operations/guides/portable-consumer-service.md).
 
-The portable service starts paused, can collect in shadow and permits publication
-only after the configured source/node ownership, comparison window and new-run
-proof. It freezes bounded batches and reconciles lost/terminal PR/MR replies.
-A copied database or node ID does not transfer publisher ownership. For exact
-limits and commands use the [collector guide](../../operations/guides/portable-consumer-service.md).
+V2 is a fresh product instance, not a third choice in that V1 engine switch.
+Its launcher routes collection only through the common portable implementation.
+It refuses initialization over existing roots and exposes neither old engine
+selection nor legacy state migration. Default registries are empty and collection
+is paused. Development instances additionally cannot collect or publish.
+
+Shadow/publisher ownership checks, bounded frozen batches and lost/terminal
+proposal reconciliation remain in the common coordinator. They are necessary
+technical safeguards, not imported permission to operate an old route. A copied
+database/node identifier does not transfer authority; a new V2 operating profile
+must be reviewed and accepted for its own scope.
 
 ## 6. Runtime View
 
@@ -330,60 +413,64 @@ models, tests, documentation, and release decision.
 
 #### 2. Consumer Evaluation
 
-1. A consumer repository calls a versioned reusable workflow pinned to a
-   release tag or full commit SHA.
-2. The workflow collects repository and pipeline context.
-3. OPA and supporting scripts evaluate the applicable DevSecOps or architecture
-   baseline.
-4. The workflow publishes machine-readable evidence and a human-readable
-   report as CI artifacts.
-5. Report-only mode records findings while allowing the workflow to complete;
-   blocking mode fails according to the explicitly selected contract.
-6. A mainline producer run can notify central intake when the required access
-   is configured. Verification, independent review and merge determine the
-   accepted central state. Notification alone does not accept the result.
+1. A consumer's native CI wrapper selects a reviewed V2 runtime source and
+   baseline pin and supplies an explicit SCM/CI profile to the shared runtime.
+2. Through the provider port, the adapter resolves the actual checkout, native
+   source/target/tested revisions and available protection facts.
+3. Physical artifact/SBOM/scan bindings and normalized inputs enter the one
+   provider-free evaluator and pinned OPA implementation.
+4. Runtime result, input/context, diagnostics and physical files are retained as
+   CI artifacts under the evidence contract. Missing facts remain incomplete.
+5. Completed report-only findings remain findings with a non-blocking gate;
+   execution errors/incompleteness return exit 2. Synthetic proof cannot become
+   a live blocking-success claim.
+6. Collection and proposal creation are separate from that CI run. Evaluation
+   does not dispatch native CI or promote a result to official accepted indexes.
+
+Existing released V1 DevSecOps/architecture wrappers keep their own pinned
+contracts. Reusing their authority or full-L1 scope is not part of a V2 runtime
+version change.
 
 #### 3. Central Intake and Trust Evaluation
 
 ```text
-consumer run
-   -> repository_dispatch or manual intake
-   -> read GitHub run metadata
-   -> download named artifact
-   -> validate and normalize payload
-   -> calculate subject/artifact SHA-256 digests
-   -> evaluate Trust, freshness and replay
-   -> append snapshot or quarantine conflict
-   -> regenerate indexes, graph and viewer
-   -> validate and commit allowlisted changes on an automation branch
-   -> open operational PR and run required checks
-   -> independent review and merge
-   -> publish accepted indexes and static viewer
+explicit reviewed profile + producer locator
+   -> native discovery/download through provider ports and adapters
+   -> bind physical artifact, native run/job/attempt/configuration and revision
+   -> common integrity, OPA recomputation, Trust/freshness/replay verification
+   -> immutable receipt and private queue state, or explicit hold/quarantine
+   -> bounded node-owned projection / frozen candidate batch
+   -> adapter reconciles or proposes a scoped PR/MR when separately enabled
+   -> human review and protected merge record a candidate
+   -> no automatic promotion to accepted domain indexes
 ```
 
-The intake workflows use an event-specific concurrency group containing the
-repository and run identity. This serializes duplicate work for the same run
-without globally blocking unrelated consumers. The publisher checks ancestry
-against remote `main`, restricts changed paths and pushes only an automation
-branch. Concurrent PRs may overlap: reconcile their append-only records and
-regenerate projections from combined history before merge. The publisher does
-not automatically rebase or merge proposals.
+The queue namespaces source and execution identities by provider and instance.
+A stored batch freezes base/source/paths and reconciles prior native replies;
+a lost mutation response does not authorize duplicate publication. Reads,
+proposal writes and optional dispatch have distinct explicit credentials and
+budgets. V2 does not run the old GitHub-only intake/publisher scripts.
+
+The existing `repository_dispatch`/manual GitHub accepted-result flow remains
+V1/source-side operation. It independently verifies artifacts, appends or
+quarantines snapshots and publishes allowlisted Git updates for review. Its
+accepted indexes do not become the V2 queue or change on candidate creation.
 
 #### 4. Failed Collection and Retry
 
-If artifact retrieval or normalization fails, the intake workflow records an
-append-only collection-attempt entry. That record is operational evidence, not
-a successful result. An operator can explicitly start the retry workflow for a
-fully retryable entry. The viewer correlates a later successful snapshot with
-the original attempt and derives its lifecycle; it never rewrites the attempt.
+V2 preserves the failure/hold in private operational state with bounded retries,
+request/storage budgets and replay identity. Missing native proof cannot be
+relabelled as successful intake. A projection summarizes the state and excludes
+raw artifacts/credentials. Retained V1 append-only collection-attempt history
+and its retry workflows keep their separate contract and historical records.
 
 #### 5. Intelligence Projection
 
-Index generators retain history and select the appropriate latest view per
-repository and runtime context. Portfolio reporting uses registered consumers
-and accepted results. The graph joins existing identifiers into navigable
-relationships. The static viewer renders those projections without a write-back
-path.
+V2 exposes a bounded private consumer projection and local review preparation.
+Official result indexes, portfolio, governance graph and static Viewer are
+read models of their stated accepted/candidate sources. Their source-side
+builders retain separate release/review authority. A newer candidate, pull-request
+run or refreshed page does not silently replace accepted mainline history.
 
 #### 6. Portable evaluation and verification
 
@@ -404,14 +491,39 @@ path.
 
 #### 7. Exact-source update and failed activation
 
-The Ansible controller prepares and fully validates a separate candidate while
-the installed Workbench remains available. Before switching, it checks persisted
-state/engine compatibility, stops relevant writers and verifies backup contents
-and VM/controller byte equality. It switches the exact source/runtime, then
-checks anonymous access, real login, data access and logout. Failed activation
-restores the previous compatible executable/service; it does not roll drafts
-back silently. Schema2-to-legacy rollback requires the explicit fresh-root
-restore/reconciliation path. See the [update/recovery runbook](../../operations/guides/portable-vm-update-and-recovery.md).
+For V2 the operator admits an independently hash-pinned source archive into a
+**new private prefix**. Admission verifies every member and reconstructs the
+original Git commit/tree before execution. Offline environment preparation uses
+both hash-locked dependency sets and the target's checksum-approved OPA. Sparse
+selection then removes excluded executables, checks the import boundary and
+retains a clean original source identity. Instance initialization records source,
+runtime/active dependency and tool bindings and writes its admission marker last.
+
+A failed/partial prefix is not an active instance and is not retried over old
+state. Updates use another exact-source package/prefix and fresh instance; V2
+exposes no automatic active-pointer/service takeover. Evidence restore stages a
+separate inactive candidate. Recovery therefore retains the old installation
+and compatible backups until a separately accepted cutover/state procedure.
+
+For **retained V1 only**, the Ansible controller prepares a candidate while the
+installed service remains available, checks engine/state compatibility, verifies
+VM/controller backups, and restores a compatible executable on failed activation.
+Its legacy/schema2 migration and service names are not the V2 installer. The
+[V1 recovery runbook](../../operations/guides/portable-vm-update-and-recovery.md)
+continues to own that path.
+
+#### 8. Workbench review and explicit publication
+
+The browser authenticates against its node's loopback Workbench. Source/candidate
+preparation retains exact original bytes, source hashes and proposal-only notes.
+A local ZIP needs no provider connection. Explicit publication requires a private
+profile, independent reader/publisher credentials and the operator's confirmation.
+Through the composition port, the adapter verifies native repository identity,
+clone URL, clean source/base and candidate-only paths, then creates a native
+draft proposal in a private Git workspace. The native response must confirm draft
+state. Unknown write outcomes stop for reconciliation; neither the Workbench nor
+an adapter merges or approves source/requirements. Browser links require the
+returned explicit matching HTTPS instance, including for self-hosted providers.
 
 ### Runtime Context and Latest-State Semantics
 
@@ -422,6 +534,8 @@ release, or explicitly accepted manual evidence. A newer pull-request run must
 not silently replace the accepted mainline state.
 
 ### Implemented closed-loop pilot
+
+This section describes retained V1 operating authority, not an active V2 product feature.
 
 The [manual GitHub GRS-002 pilot](../../operations/status/governance-lifecycle-current-state.md)
 extends the as-built runtime with immutable evidence receipts, action-bound
@@ -449,71 +563,74 @@ provide the complete implementation entrypoints.
 
 ### Runtime and Deployment View
 
-![Deployment view: independent Mac and Ubuntu VM runtimes, GitHub Actions and static Pages, with private per-host state.](diagrams/axiom-runtime-deployment.svg)
+![V2 deployment: one reviewed source produces platform-specific offline packages and separate fresh Mac/Linux instances; retained V1 services and native CI/publication remain separate.](diagrams/axiom-runtime-deployment.svg)
 
 ```mermaid
-flowchart LR
-    Git["Reviewed Git source / frozen baselines"]
-    subgraph Mac["macOS maintainer host"]
-      MacWB["Private Workbench :8765"] --> MacState["Private drafts, keys and sessions"]
-      MacCLI["Explicit Python/OPA CLI; Ansible controller"]
-    end
-    subgraph VM["Ubuntu VM"]
-      VMWB["Workbench / systemd :8766 via SSH tunnel"] --> VMState["Private drafts; optional SQLite/raw state; verified backups"]
-      Collector["Bounded collector units; legacy selected"] --> VMState
-    end
-    subgraph GH["GitHub Actions / Pages"]
-      Jobs["Short-lived validation, intake and publication jobs"] --> Pages["Static MkDocs / read-only Viewer"]
-    end
-    Git --> MacWB
-    Git --> VMWB
-    Git --> Jobs
-    MacCLI -- "Ansible / SSH" --> VMWB
+flowchart TB
+    Source["Reviewed exact source commit / contracts / frozen baseline"] --> Build["Prepared offline package per OS / architecture"]
+    Build --> Admit["External SHA pin, member hashes and original Git identity"]
+    Admit --> Mac["Fresh Mac prefix: sparse source + own Python/OPA + V2 instance"]
+    Admit --> VM["Fresh Linux prefix: sparse source + own Python/OPA + V2 instance"]
+    Mac --> MS["Node A: private key, drafts, queue, receipts, projection"]
+    VM --> VS["Node B: private key, drafts, queue, receipts, projection"]
+    CI["Native CI wrappers and explicit provider profiles"] --> Build
+    Old["Retained V1 Mac / systemd VM and accepted workflows"] -. "separate fallback; no state or authority import" .-> Admit
+    Reviewed["Reviewed publication sources"] --> Public["Static documentation / Viewer"]
 ```
 
-| Execution location | Running / available software | State and boundary |
+| Execution surface | V2 deployment / state | Activation limit |
 |---|---|---|
-| macOS maintainer host | Private loopback Workbench, explicit Python/OPA CLI, Ansible controller | Independent draft/key/session root; no automatic synchronization with VM |
-| Ubuntu 24.04 VM | Loopback Workbench as systemd service; legacy collector units; portable source available | Private per-host state; collector credentials/configuration and engine activation are separate |
-| Consumer CI | Existing pinned GitHub workflows; new GitHub/GitLab/Bamboo portable templates | Application-owned build/scanner jobs and native artifacts; live profile acceptance remains explicit |
-| Central GitHub Actions | Repository validation, accepted-path intake, operational proposals, projections and publication | Short-lived jobs; reviewed Git history remains the accepted ledger |
-| GitHub Pages | Static documentation and read-only Viewer | No Workbench service, private drafts, SQLite access or write-back API |
+| Mac candidate | Fresh private prefix, own Python/OPA, independent node/key/state; loopback Workbench | Actual candidate tested on port 18875; test process stopped, no permanent V2 service installed |
+| Ubuntu candidate | Same source contract, Linux OPA/wheels, independent prefix/node/key/state | Actual candidate tested on port 18876; test process stopped, no V1 unit/path replacement |
+| Consumer CI | Native wrapper calls shared evaluation with pinned source/baseline and explicit profile | Native edition/version/permissions require their own acceptance |
+| Development repository / CI | Source authoring, validation, releases and projections; native workflow adapters | Source-side tools and CI metadata are not arbitrary installed V2 commands |
+| Retained V1 operation | Existing Mac Workbench and VM systemd/collector installations | VM observation remains `adc4643`, port 8766, legacy engine; no V2 authority inherited |
+| Public documentation / Viewer | Static outputs from separately reviewed publication | No private keys, uploads, raw evidence, SQLite access or write-back API |
 
-The Workbench is a continuously running local application service. Collector
-units are bounded oneshot poll/work executions scheduled by timers; an active
-timer does not prove collection. SQLite is embedded private operational state,
-not an external database service or a replacement for accepted Git results.
-No Kubernetes workload or broker is deployed. Public output remains static.
+### V2 installation layout and ownership
 
-The personal VM access path is an SSH tunnel to loopback port 8766; the Mac
-normally uses loopback port 8765. A remote deployment does not expose the
-Workbench on the LAN or publish its private data. The
-[installation guide](../../operations/guides/linux-vm-installation.md) owns
-commands, prerequisites, backup locations and selective draft import.
+| Location below a fresh prefix | Responsibility |
+|---|---|
+| `package/source/` | Original exact Git identity with reviewed sparse working-tree code/data |
+| `venv/` | Own offline hash-locked Python dependencies and pinned OPA; no dependency on a V1 environment |
+| `instance/instance.json` | Node/product/version, source/revision/runtime/active-dependency/tool binding and configured port |
+| `instance/workbench-key.json`, `instance/credentials/` | Private independent key and explicitly referenced provider credentials |
+| `instance/state/consumers/`, `instance/state/evidence/`, `instance/state/evidence-restore-candidate/` | Private queue, receipts/raw processing data and separately inactive restore slot |
+| `instance/projection/` | Bounded redacted collector view for this instance |
+| `package/source/.local/governance-workbench/<node_id>/` | Node-owned draft/upload/note state required by the local source-review path |
+| `installation.json`, `axiom-v2` | Private install receipt and prefix-relative finite product launcher |
+
+The installer creates no system service and starts collection paused. The private
+Workbench binds loopback; the default V2 port is 8875, with distinct operator-
+selected ports for parallel instances. A VM browser connection uses its own SSH
+tunnel. Two nodes share executable contracts, not credentials, writable state,
+sessions or publisher ownership. They are independent installations, not an HA
+pair or automatic replication arrangement.
 
 ### Current Deployment Decision and Kubernetes
 
-The separate [V2 development candidate](../../operations/planning/axiom-v2-decoupling.md)
-introduces a finite application launcher, an explicit composition boundary and
-provider adapters. Its exact-source offline package uses a reviewed sparse file
-set, its own Python environment and fresh private instance data. V1-only
-entrypoints are excluded from that installed working tree. The
-[function inventory](../../operations/planning/axiom-v2-function-inventory.md)
-records retained local authoring tools and the V1 lifecycle authority that does
-not transfer to V2. These changes do not describe a completed production rollout.
+The product foundation is a direct local/Linux process with a reproducible
+prefix, explicit adapter composition and embedded SQLite. This is the observed
+candidate architecture, not a Docker/Kubernetes deployment or hosted control
+plane. A long-lived service manager, container image, cluster topology, shared
+authentication and external persistence remain explicit product decisions.
 
-The implemented deployment combines local macOS use, direct Linux/systemd
-operation in an existing VM, CI jobs and static publication. The same source
-line and evaluator serve these environments; no permanent VM fork is required.
+Future deployment must preserve exact source/tool/baseline identities, provider
+boundaries, independent credentials/state, replay and human decision semantics.
+Choose workers or external immutable storage only with representative volume,
+quotas, retention and availability measurements. The [capacity profile](../../operations/guides/portable-capacity-profile.md)
+provides engineering fixtures, not production sizing approval.
 
-Kubernetes remains deferred. Measured event volume, latency, isolation and
-availability needs may motivate workers or external immutable evidence storage.
-Any future deployment must preserve versioned contracts, immutable identities,
-history, source ownership and human decision boundaries. The
-[capacity profile](../../operations/guides/portable-capacity-profile.md)
-contains measured fixtures and distinguishes them from production sizing.
+The [V2 installation guide](../../operations/planning/axiom-v2-decoupling.md)
+owns package/admission commands and candidate update/recovery; the
+[dated candidate record](../../operations/status/axiom-v2-candidate-readiness-2026-11-15.md)
+binds the actual Mac/Linux test to `756a28e`. A later documentation commit does
+not claim that newer full Git snapshot was already installed on either host.
 
 ### Dated host observation
+
+This is the retained V1 alignment/replay observation; V2 proof is separately
+linked above and does not replace these historical source/input bindings.
 
 On 15 November 2026 the maintainer requested alignment and a private diagnostic
 comparison. The Mac checkout and the active Proxmox VM both reached `adc4643`;
@@ -595,12 +712,13 @@ concurrency groups, allowlisted PR publication, deterministic generators,
 schema validation and reviewed reconciliation. This is suitable for the current event rate,
 but it is a deliberate scalability boundary.
 
-The private SQLite store has a different consistency role: transactional queue
-and receipt persistence, cache/watermarks, bounded retries and restart recovery.
-Its schema2 namespace separates provider/instance/repository and native execution
-identities. Stopped-writer, backup-first migration retains original legacy bytes
-and publication identities. A restored queue does not authorize a second writer.
-Git remains the official accepted snapshot/projection history.
+The private V2 SQLite store provides transactional queue/receipt persistence,
+cache/watermarks, bounded retries and restart recovery. Its schema2 namespace
+separates provider/instance/repository and native execution identities. Fresh V2
+initialization does not import old state; restore is a separate inactive candidate.
+The retained V1 backup-first legacy/schema2 migration is a different operating
+path. Neither restore nor copied node data authorizes a second publisher.
+Git accepted-result history remains outside that private operational store.
 
 ### Multi-Consumer Model
 
@@ -631,14 +749,17 @@ kept separate from the existing accepted integration registry and indexes.
 | Generated view to governance decision | read-only projection, source links, human accountability |
 | AI agent to evidence | explicit provenance record; no inferred authority and no automatic Trust elevation |
 
-`GH_RESULT_INTAKE_TOKEN` is required when the default token cannot read a
-different repository's run artifacts. The token should have only the repository
+For the retained V1 GitHub workflow, `GH_RESULT_INTAKE_TOKEN` is required when
+the default token cannot read a different repository's run artifacts. The token should have only the repository
 and Actions access needed for that operation. Workflow write permissions in the
 central repository are limited to the jobs that must persist results.
 
-VM Workbench, intake reader and publisher responsibilities use separate service
-identities/credentials. Private SQLite/raw/configuration are not served by the
-Workbench; its consumer view reads only a bounded public projection. Local keys
+V2 uses its own private instance key plus separate explicit API/Git reader and
+publisher credential references. Publication has no implicit `gh` authentication
+fallback; configured native identity/origin/clone/draft checks still apply.
+The installer does not create V1 service identities or inherit their credentials.
+Retained V1 VM Workbench/intake/publisher identities keep their separate scope.
+Private SQLite/raw/configuration are not served by the Workbench; its consumer view reads only a bounded public projection. Local keys
 and port-bound cookies isolate parallel Workbench sessions. Provider observation
 candidates cannot assign live roles or grant personal consent. Exact details
 are in the [collector](../../operations/guides/portable-consumer-service.md) and
@@ -688,6 +809,9 @@ Use this document as the orientation map, then update the authoritative area:
 | Graph, report, or viewer | deterministic projection and unchanged source-of-truth boundaries |
 | Blocking readiness or activation | technical criteria, accountable approval, waiver tests, rollback, consumer migration and release decision |
 | Runtime platform | security, availability, state migration, contract preservation and operating ownership |
+| V2 adapter / composition | native identity/error/draft/permission contracts, profile validation, parity tests and target acceptance |
+| V2 execution/distribution closure | transitive imports, retired paths, active dependency digests, exact admission and fresh-prefix host tests |
+| Product-facing interface | explicit version/compatibility policy and consumer impact; private Workbench endpoints are not a promised public API |
 
 ## 9. Architecture Decisions
 
@@ -702,6 +826,9 @@ retroactively create operating authority or a baseline release.
 | Shared physical/native evidence verification | A producer assertion is insufficient for central proof | [Evidence intake](../../operations/evidence/portable-evidence-intake.md) |
 | Private provider-bound SQLite plus accepted Git history | Durable processing without replacing accepted ledger semantics | [Collector](../../operations/guides/portable-consumer-service.md) |
 | Exact-commit VM install with checked backups/recovery | Preserve private state and fail safely on incompatible source/schema | [VM recovery](../../operations/guides/portable-vm-update-and-recovery.md) |
+| V2 as product-development foundation | Build on explicit neutral runtime/adapters and repeatable isolated installation; do not keep the old engines as hidden compatibility routes | [GCR-2026-185](../change-requests/GCR-2026-185-axiom-v2-decoupling.md), [V2 product boundaries](#v2-product-boundaries) |
+| Static composition and closed execution set | Reviewed contracts prevent native access in core and installation of retired entrypoints | `provider_ports.py`, both V2 config contracts and architecture/distribution tests |
+| Fresh node per V2 installation | State/authority is not implicitly migrated with code; old installation remains a separate fallback | V2 instance/installer modules and [candidate proof](../../operations/status/axiom-v2-candidate-readiness-2026-11-15.md) |
 | arc42 organization of this explanatory page | Make context, structure, behavior, deployment, decisions and risks independently readable | [GCR-2026-183](../change-requests/GCR-2026-183-arc42-system-architecture.md) |
 
 Earlier increment ADRs retain their original source observations. Their linked
@@ -730,10 +857,13 @@ service levels or governance requirements.
 
 | Scenario | Observable response / evidence | Remaining limit |
 |---|---|---|
-| Same revision/input on Mac and Linux | Equal legacy control/OPA decisions in the dated ha-CPsWMS replay; portable complete-result parity also has separately labelled offline fixtures | Historical real input is not a fresh scan; fixture parity is not target-provider acceptance |
+| Same V2 source/input on Mac and Linux | Actual separate installations at `756a28e`: nine synthetic pass/finding/missing-fact cases with the same business/runtime digests | Real OPA is used; synthetic provider facts are not native API or consumer compliance acceptance |
 | Tampered/missing artifact or native binding | Verifier/CLI negative tests reject mismatches; old producer SBOM rejected equally on both hosts | Consumer must produce the new physical evidence contract |
-| Candidate update or activation fails | Prior service remains during preparation; verified backups and compatible recovery protect saved drafts/keys | Production recovery objectives and representative retained evidence volume require separate proof |
+| Candidate admission/update fails | V2 rejects existing prefixes, source/tool/dependency drift, invalid package hashes and retired runtime files; partial init lacks an admission marker. V1 separately tests service rollback | Automated V2 service cutover, active-state migration and production RPO/RTO are not implemented acceptance claims |
 | Unauthorized browser/API request | Login/CSRF/host checks; independent keys/cookies; actual VM anonymous API returns 401 | Multi-user hosting, SSO and reverse proxy operation remain unaccepted |
+| Provider access enters neutral core | Transitive boundary checks reject SDK/HTTP/native CLI/host/env and relative/legacy import escapes | A regression checker complements source review; it is not a malicious-code sandbox |
+| Old executable reappears in installed V2 | Actual Mac/Linux startup tests reject an undeclared script before collector execution; aliases/old migration commands absent | Source development tools remain separately available, never implied runtime routes |
+| Offline distribution is rebuilt | Repeated Mac build at exact source/tools/wheels yields the same package SHA; both host-specific packages are admitted offline | Future supported Python/OS/architecture profiles require their own prepared dependencies and execution proof |
 | Restart, replay, lost provider reply | Persistent tests retain task/receipt identity and reconcile the same frozen proposal | Live provider/version behavior and shadow/ownership handoff remain open |
 | 1,000/2,000 repository identities arrive | Versioned distinct-identity load/audit fixtures measure queue/API/CPU/RSS/storage behavior | Real payload, arrival distribution, quotas, retention and hardware SLOs still need capacity approval |
 
@@ -766,8 +896,8 @@ CODEOWNER approval or a separately scoped operating acceptance.
 | Static public Viewer | Read-only projection freshness follows accepted publication; no live private-state query or write-back |
 | New native profiles lack installed-version live acceptance | GitLab/Bamboo/Bitbucket DC target versions/URLs, import, runs and least-privilege access remain open |
 | Portable candidate scope is five pipeline-L1 controls | Eleven L1 controls are not evaluated by that result; legacy full-L1 reports are a different path |
-| Legacy consumer evidence may not meet new physical binding contract | Observed ha-CPsWMS SBOM/scan gaps prevent portable evaluation; retain original files and produce compliant new evidence |
-| VM source is installed with legacy engine retained | Portable migration, at least 24-hour/new-run shadow proof, ownership and publisher activation remain separate |
+| Historical consumer evidence may not meet the V2 physical binding contract | Earlier replay gaps describe those retained artifacts, not the later producer or V2 host fixtures; require a new exact producer/runtime binding for live V2 intake |
+| Retained VM still uses V1 operation; V2 is a separate candidate | No automatic service replacement, old queue import, personal pilot acceptance or publisher handoff |
 | Operational attestation/role authority is not generally enabled | Candidate observations and demo issuer proof cannot grant real roles or production `attested` Trust |
 | Per-host private drafts/keys and queues | No automatic Mac/VM synchronization; explicit draft import and schema-compatible recovery only |
 | Timers, checks or a governance PASS may be overinterpreted | Timer activity is not collection; successful execution is not freshness, compliance, accepted risk or production approval |
@@ -776,18 +906,29 @@ CODEOWNER approval or a separately scoped operating acceptance.
 
 ### Evolution Priorities
 
-Priorities follow the implemented state rather than treating delivered M2 work
-as a future design:
+V2 is the starting product architecture. The following backlog distinguishes
+implemented mechanisms from decisions/evidence still needed. It is not a
+commitment to a deployment technology, delivery date, service level or additional
+normative control.
 
-1. Define actual target provider versions/URLs and obtain scoped report-only live
-   import/run/permission evidence.
-2. Bring selected consumer producers onto the portable physical evidence contract.
-3. Prepare and separately accept VM portable migration/shadow/ownership/publisher
-   handoff when requested; preserve existing accepted routes until then.
-4. Use real workloads to establish retention, API and capacity objectives; evolve
-   deployment/storage only from those measurements.
-5. Complete any desired production issuer/key, role, alerting or stronger
-   enforcement decisions through their existing accountable processes.
+| Product development area | Implemented foundation | Next decision / demonstrable exit evidence |
+|---|---|---|
+| Product scope and ownership | 22-area function map, explicit runtime versus source-tool/V1 scope | Name product/operating/support owners and select which retained capabilities become supported V2 product features |
+| Release and compatibility | Product identity separate from contract/baseline/source/tool pins; deterministic exact-source package | Define supported Python/OS/architecture versions, release/signing/update policy and compatibility/support period; release an explicitly versioned product candidate |
+| Provider support | Reviewed ports/adapters and native-shaped regression fixtures | Choose actual GitLab/Bamboo/Bitbucket editions/instances; prove least-privilege reads, artifact identity, draft confirmation, error/retry and reconciliation on each target |
+| Consumer onboarding | Physical evidence contracts and common five-control evaluator/verifier | Reproduce one scoped real consumer end-to-end on V2 with a new exact producer/source binding; retain missing-fact/finding and accepted-index boundaries |
+| Operability and update | Fresh private prefix, independent key/node, backups and inactive restore candidate | Select service management and prove accepted source/config/state cutover, recovery, credential rotation, logs/alerts and deployment ownership |
+| Product access model | Local authenticated Workbench with host/CSRF/session isolation | Decide single-operator versus hosted/multi-user product scope; if hosted, design identity/roles/tenancy/API before exposing it |
+| Scale and persistence | Bounded SQLite queue and API/storage budgets; 1,000/2,000-identity engineering fixtures | Agree representative workload, retention, quotas, latency/availability and recovery objectives; then decide workers/external storage or clusters |
+| Lifecycle and governance authority | V1 pilot history retained separately; V2 candidate cannot inherit authority | Define explicit new product capability/role/consent contracts and obtain separate scoped acceptance before live actions, waivers or blocking |
+| Architecture stewardship | Central arc42 views, executable boundary/distribution contracts and revision-bound reviews | Maintain decisions, diagrams, interfaces and quality evidence together on each structural product change |
+
+A product increment should update the affected arc42 views, contract/decision
+record, tests and migration evidence together. Product capabilities must not be
+marked supported because a source-side tool exists, a fixture passes or a Git
+merge completed. The [V2 implementation/installation record](../../operations/planning/axiom-v2-decoupling.md)
+and [function inventory](../../operations/planning/axiom-v2-function-inventory.md)
+provide the supporting delivery details.
 
 ## 12. Glossary
 
@@ -797,6 +938,8 @@ as a future design:
 | Canonical requirement | Immutable GRQ revision with a separately recorded decision |
 | Artifact mapping | Exact requirement-to-implementation binding; not proof of runtime application |
 | Baseline | Frozen controls/schemas/policies package selected by an immutable consumer pin |
+| V2 product foundation | Reviewed candidate architecture on which product increments are built; not a released governance baseline or production acceptance |
+| V2 instance | Fresh private prefix/node with bound source/tools, independent key/state and finite application routes |
 | Runtime | Shared executable implementation, with its own version/source digest |
 | SCM adapter / CI adapter | Independent repository-operation and execution-context boundaries |
 | Evidence / subject | Producer bytes and the concrete artifact identity they describe |
@@ -810,6 +953,7 @@ as a future design:
 
 ### Related Documents
 
+- [V2 implementation and installation](../../operations/planning/axiom-v2-decoupling.md), [function/entrypoint inventory](../../operations/planning/axiom-v2-function-inventory.md) and [dated host proof](../../operations/status/axiom-v2-candidate-readiness-2026-11-15.md).
 - [Reference architecture](../../foundation/04_REFERENCE_ARCHITECTURE.md) and [foundation principles](../../foundation/03_ARCHITECTURE_PRINCIPLES.md).
 - [Five-phase document-to-OPA guide](document-intake-to-opa-rulebook.md) and [organizational operating model](ado-devsecops-integrated-governance-model.md).
 - [Current platform state](../../operations/status/current-governance-platform-state.md) and [15 November reconciliation](../../operations/status/repository-documentation-reconciliation-2026-11-15.md).

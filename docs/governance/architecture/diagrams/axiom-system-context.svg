@@ -1,53 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 785" role="img" aria-labelledby="title desc">
-<title id="title">AXIOM system context</title><desc id="desc">People maintain reviewed Git source. Consumer CI and SCM APIs supply artifacts and native context to shared runtime and adapters. Private verification proposes candidates; review and protected merge record Git history. Accepted domain results and portable candidates retain separate scopes; read-only projections apply their own contracts.</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0L8 4L0 8Z" fill="#385a7c"/></marker></defs>
-<rect width="1380" height="785" fill="#f6f8fc"/>
-<style>text{font-family:Arial,Helvetica,sans-serif;fill:#17344f}.title{font-size:24px;font-weight:700}.subtitle{font-size:15px;fill:#425b70}.label{font-size:17px;font-weight:700}.body{font-size:15px}.edge{fill:none;stroke:#385a7c;stroke-width:2;marker-end:url(#arrow)}.box{fill:white;stroke:#597b9b;stroke-width:1.5;rx:10}.core{fill:#e8f2fd}.private{fill:#fff4db}.public{fill:#e7f5ed}</style>
-<text x="35" y="35" class="title">AXIOM — system context</text>
-<text x="35" y="61" class="subtitle">Source, provider interfaces, execution and accepted publication remain separate.</text>
-<rect x="35" y="100" width="315" height="85" class="box "/>
-<text x="53" y="129" class="label">People</text>
-<text x="53" y="155" class="body">Maintainer, reviewer and operator</text>
-<rect x="35" y="260" width="315" height="90" class="box "/>
-<text x="53" y="289" class="label">Governance Git source</text>
-<text x="53" y="315" class="body">Models, contracts, frozen baselines</text>
-<rect x="500" y="100" width="350" height="85" class="box "/>
-<text x="518" y="129" class="label">SCM provider APIs</text>
-<text x="518" y="155" class="body">GitHub · GitLab · Bitbucket DC</text>
-<rect x="1010" y="100" width="335" height="85" class="box "/>
-<text x="1028" y="129" class="label">Consumer repositories</text>
-<text x="1028" y="155" class="body">Application-owned source and build</text>
-<rect x="1010" y="260" width="335" height="90" class="box "/>
-<text x="1028" y="289" class="label">CI execution</text>
-<text x="1028" y="315" class="body">GitHub Actions · GitLab CI · Bamboo</text>
-<rect x="500" y="260" width="350" height="90" class="box core"/>
-<text x="518" y="289" class="label">Shared runtime + adapters</text>
-<text x="518" y="315" class="body">Normalized context and evaluation</text>
-<rect x="1010" y="430" width="335" height="90" class="box "/>
-<text x="1028" y="459" class="label">Artifacts + native metadata</text>
-<text x="1028" y="485" class="body">Subject bytes, run / job / revision</text>
-<rect x="500" y="430" width="350" height="90" class="box private"/>
-<text x="518" y="459" class="label">Private verification / proposal</text>
-<text x="518" y="485" class="body">Original evidence, receipts, candidates</text>
-<rect x="500" y="600" width="350" height="85" class="box "/>
-<text x="518" y="629" class="label">Review + protected merge</text>
-<text x="518" y="655" class="body">Independent human approval</text>
-<rect x="35" y="600" width="315" height="85" class="box "/>
-<text x="53" y="629" class="label">Reviewed Git records</text>
-<text x="53" y="655" class="body">Domain results; separate candidates</text>
-<rect x="35" y="430" width="315" height="90" class="box public"/>
-<text x="53" y="459" class="label">Public read-only output</text>
-<text x="53" y="485" class="body">Static Viewer and documentation</text>
-<path d="M192 185V260" class="edge"/>
-<path d="M350 305H500" class="edge"/>
-<path d="M675 185V260" class="edge"/>
-<path d="M1177 185V260" class="edge"/>
-<path d="M1177 350V430" class="edge"/>
-<path d="M1010 475H920V305H850" class="edge"/>
-<path d="M675 350V430" class="edge"/>
-<path d="M675 520V600" class="edge"/>
-<path d="M500 642H350" class="edge"/>
-<path d="M192 600V520" class="edge"/>
-<path d="M35 475H15V142H35" class="edge"/>
-<text x="35" y="740" class="subtitle">Portable candidates need separate profile acceptance; existing accepted intake contracts remain in place.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1050" role="img" aria-labelledby="title desc">
+<title id="title">AXIOM V2 — product system context</title><desc id="desc">V2 actors and data reach a neutral product through explicit provider composition. Candidate Git records, private state and retained V1 accepted history remain separate.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#45627e"/>
+</marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#15324c}.title{font-size:29px;font-weight:700}.subtitle{font-size:19px;fill:#405b72}.label{font-size:21px;font-weight:700}.body{font-size:18px}.note{font-size:18px;fill:#405b72}.edge-label{font-size:17px;paint-order:stroke;stroke:#f6f8fc;stroke-width:6px;stroke-linejoin:round}.edge{fill:none;stroke:#45627e;stroke-width:2.2;marker-end:url(#arrow)}</style>
+<rect width="1500" height="1050" fill="#f6f8fc"/>
+<text x="40" y="45" class="title">AXIOM V2 — product system context</text>
+<text x="40" y="78" class="subtitle">Neutral product behavior is separated from native integrations, private operation and accepted publication.</text>
+<polyline points="250,270 250,340" class="edge"/>
+<text x="270" y="308" class="edge-label">reviewed inputs</text>
+<polyline points="460,412 530,412" class="edge"/>
+<text x="474" y="398" class="edge-label">ports</text>
+<polyline points="1040,195 750,195 750,340" class="edge"/>
+<text x="773" y="219" class="edge-label">native reads / facts</text>
+<polyline points="970,412 1040,412" class="edge"/>
+<polyline points="1250,485 1250,565" class="edge"/>
+<text x="1270" y="531" class="edge-label">review + merge</text>
+<polyline points="250,485 250,565" class="edge"/>
+<text x="270" y="531" class="edge-label">local processing</text>
+<polyline points="680,890 820,890" class="edge"/>
+<text x="695" y="874" class="edge-label">V1 intake</text>
+<rect x="40" y="125" width="420" height="145" rx="12" fill="#fff" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="157" class="label">People / reviewed source</text>
+<text x="60" y="189" class="body">Operator, accountable reviewer</text>
+<text x="60" y="214" class="body">Models, contracts, frozen baselines</text>
+<text x="60" y="239" class="body">Product source selected by commit</text>
+<rect x="1040" y="125" width="420" height="145" rx="12" fill="#fff" stroke="#60788e" stroke-width="1.7"/>
+<text x="1060" y="157" class="label">Consumer SCM and CI</text>
+<text x="1060" y="189" class="body">GitHub / GitLab / Bitbucket DC</text>
+<text x="1060" y="214" class="body">Actions / GitLab CI / Bamboo</text>
+<text x="1060" y="239" class="body">Native identities, facts and artifacts</text>
+<rect x="530" y="340" width="440" height="145" rx="12" fill="#eee9ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="550" y="372" class="label">Explicit composition + adapters</text>
+<text x="550" y="404" class="body">SCM / CI / transport / publication</text>
+<text x="550" y="429" class="body">Configured instance and credentials</text>
+<text x="550" y="454" class="body">Native facts or explicit unavailability</text>
+<rect x="40" y="340" width="420" height="145" rx="12" fill="#e9f2ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="372" class="label">AXIOM V2 product</text>
+<text x="60" y="404" class="body">Finite CLI + private Workbench</text>
+<text x="60" y="429" class="body">Common evaluator and verifier</text>
+<text x="60" y="454" class="body">One unchanged policy implementation</text>
+<rect x="40" y="565" width="420" height="145" rx="12" fill="#fff2d6" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="597" class="label">Private node-owned state</text>
+<text x="60" y="629" class="body">Queue, raw bytes, immutable receipts</text>
+<text x="60" y="654" class="body">Independent key, drafts and projection</text>
+<text x="60" y="679" class="body">No shared writable Mac / VM state</text>
+<rect x="1040" y="340" width="420" height="145" rx="12" fill="#fff" stroke="#60788e" stroke-width="1.7"/>
+<text x="1060" y="372" class="label">Scoped proposal / review</text>
+<text x="1060" y="404" class="body">Native draft PR or MR</text>
+<text x="1060" y="429" class="body">Candidate paths and exact source pin</text>
+<text x="1060" y="454" class="body">Human review; no automatic merge</text>
+<rect x="1040" y="565" width="420" height="145" rx="12" fill="#e5f5eb" stroke="#60788e" stroke-width="1.7"/>
+<text x="1060" y="597" class="label">Reviewed candidate records</text>
+<text x="1060" y="629" class="body">Git records in candidate scope</text>
+<text x="1060" y="654" class="body">Not official domain-index acceptance</text>
+<text x="1060" y="679" class="body">Publication remains explicit</text>
+<rect x="40" y="825" width="640" height="130" rx="12" fill="#edf0f4" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="857" class="label">Retained V1 / source-side operation</text>
+<text x="60" y="889" class="body">Existing accepted-result intake and personal pilots</text>
+<text x="60" y="914" class="body">Separate source tools, credentials and operating authority</text>
+<rect x="820" y="825" width="640" height="130" rx="12" fill="#e5f5eb" stroke="#60788e" stroke-width="1.7"/>
+<text x="840" y="857" class="label">Accepted history and public read models</text>
+<text x="840" y="889" class="body">Accepted domain indexes / static Viewer / documentation</text>
+<text x="840" y="914" class="body">No private queue or Workbench write-back</text>
+<text x="40" y="760" class="note">V2 candidate creation does not promote an official result or transfer V1 roles, acceptance, waivers or blocking.</text>
+<text x="40" y="1005" class="note">Product foundation: implemented boundaries and isolated proof. Native target-version and production acceptance remain separate.</text>
 </svg>

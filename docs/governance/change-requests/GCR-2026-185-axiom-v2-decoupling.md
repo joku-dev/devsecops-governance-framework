@@ -32,3 +32,25 @@ with explicit source and dependency pins. Complete a revision-bound role review
 packet before PR delivery. Missing provider editions/credentials remain specific
 live boundaries. Report-only execution is the default; no productive publisher,
 blocking gate, operating acceptance or source/baseline authority is activated.
+
+## Product architecture documentation follow-up
+
+On 15 November 2026 the maintainer designated V2 as the foundation for product
+development and requested a complete architecture reconciliation in PR #395.
+The central arc42 description now owns all twelve views, including actual module
+locations, finite entrypoints, static provider composition, exact-source sparse
+installation, fresh node/state boundaries and retained V1 operation. Context,
+building-block and deployment SVG/Mermaid views describe the same implemented
+structure. Future product work has explicit decision/exit-evidence boundaries;
+it is not presented as delivered capability or production acceptance.
+
+| Artifact classification | Effect |
+|---|---|
+| Explanatory system architecture and technical diagrams under `docs/governance/architecture/` | Documentation; product-development orientation, no normative source derivation |
+| README, V2 implementation guide and technical Goal record | Navigation, architecture ownership and recorded delivery state |
+| Evidence/schema/runtime/policy/baseline/authority impact | None; existing host/packages stay bound to their original implementation commits |
+| Validation | Pinned bootstrap/full suite, strict docs, preserved section anchors/local links, rendered diagram review, protected fingerprint comparison and revision-bound coordinator review |
+
+The technical architecture of the governance product is distinct from deriving
+new Enterprise/Solution/Platform Architecture requirements. Those source/model
+changes are not authorized or implied by this documentation follow-up.

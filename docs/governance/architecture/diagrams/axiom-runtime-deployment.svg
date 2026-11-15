@@ -1,55 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1415 820" role="img" aria-labelledby="title desc">
-<title id="title">AXIOM runtime deployment</title><desc id="desc">Reviewed Git source is used independently on the Mac, Ubuntu VM and GitHub Actions. Workbenches have private per-host drafts and keys. The VM has a systemd Workbench and bounded collector units; the legacy engine remains selected. Accepted Git history publishes static Pages. Ansible updates the exact VM revision with two-location verified backups.</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0L8 4L0 8Z" fill="#385a7c"/></marker></defs>
-<rect width="1415" height="820" fill="#f6f8fc"/>
-<style>text{font-family:Arial,Helvetica,sans-serif;fill:#17344f}.title{font-size:24px;font-weight:700}.subtitle{font-size:15px;fill:#425b70}.label{font-size:17px;font-weight:700}.body{font-size:15px}.edge{fill:none;stroke:#385a7c;stroke-width:2;marker-end:url(#arrow)}.box{fill:white;stroke:#597b9b;stroke-width:1.5;rx:10}.core{fill:#e8f2fd}.private{fill:#fff4db}.public{fill:#e7f5ed}</style>
-<text x="35" y="36" class="title">AXIOM — runtime deployment</text>
-<text x="35" y="65" class="subtitle">Independent hosts share reviewed source and evaluator contracts; private state is not synchronized automatically.</text>
-<rect x="510" y="95" width="395" height="85" class="box "/>
-<text x="528" y="124" class="label">Reviewed Git source</text>
-<text x="528" y="150" class="body">Exact runtime commit + frozen baseline</text>
-<rect x="35" y="235" width="395" height="460" rx="14" fill="#edf2f8" stroke="#9eb2c6"/>
-<text x="53" y="268" class="label">macOS maintainer host</text>
-<rect x="510" y="235" width="395" height="460" rx="14" fill="#edf2f8" stroke="#9eb2c6"/>
-<text x="528" y="268" class="label">Ubuntu VM</text>
-<rect x="985" y="235" width="395" height="460" rx="14" fill="#edf2f8" stroke="#9eb2c6"/>
-<text x="1003" y="268" class="label">Central GitHub Actions / Pages</text>
-<rect x="55" y="295" width="355" height="80" class="box core"/>
-<text x="73" y="324" class="label">Private Workbench</text>
-<text x="73" y="350" class="body">Loopback :8765; per-port session</text>
-<rect x="55" y="400" width="355" height="80" class="box "/>
-<text x="73" y="429" class="label">Explicit CLI / controller</text>
-<text x="73" y="455" class="body">Python + OPA; Ansible / SSH</text>
-<rect x="55" y="520" width="355" height="95" class="box private"/>
-<text x="73" y="549" class="label">Private Mac state</text>
-<text x="73" y="575" class="body">Saved drafts, keys and sessions</text>
-<rect x="530" y="295" width="355" height="80" class="box core"/>
-<text x="548" y="324" class="label">Workbench under systemd</text>
-<text x="548" y="350" class="body">Loopback :8766 via SSH tunnel</text>
-<rect x="530" y="400" width="355" height="95" class="box "/>
-<text x="548" y="429" class="label">Bounded collector units</text>
-<text x="548" y="455" class="body">Legacy selected; portable available</text>
-<text x="548" y="478" class="body">Credentials / activation separate</text>
-<rect x="530" y="535" width="355" height="100" class="box private"/>
-<text x="548" y="564" class="label">Private VM state</text>
-<text x="548" y="590" class="body">Drafts; optional SQLite / raw data</text>
-<text x="548" y="613" class="body">Verified VM + controller backups</text>
-<rect x="1005" y="295" width="355" height="95" class="box "/>
-<text x="1023" y="324" class="label">Short-lived CI jobs</text>
-<text x="1023" y="350" class="body">Validation, accepted intake,</text>
-<text x="1023" y="373" class="body">reviewed proposals and generation</text>
-<rect x="1005" y="475" width="355" height="95" class="box public"/>
-<text x="1023" y="504" class="label">Static public publication</text>
-<text x="1023" y="530" class="body">MkDocs and read-only Viewer</text>
-<text x="1023" y="553" class="body">No private Workbench / queue API</text>
-<path d="M510 138H448V335H410" class="edge"/>
-<path d="M707 180V295" class="edge"/>
-<path d="M905 138H1400V342H1360" class="edge"/>
-<path d="M55 335H45V567H55" class="edge"/>
-<path d="M530 335H520V585H530" class="edge"/>
-<path d="M707 495V535" class="edge"/>
-<path d="M1182 390V475" class="edge"/>
-<path d="M410 440H468V335H530" class="edge"/>
-<text x="35" y="745" class="subtitle">Observed on 15 November 2026: Mac and active VM source adc4643; legacy collector retained.</text>
-<text x="35" y="772" class="subtitle">Prepared portable source, test evidence and actual publisher activation are distinct states.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1190" role="img" aria-labelledby="title desc">
+<title id="title">AXIOM V2 — isolated deployment and retained fallback</title><desc id="desc">One exact reviewed source builds per-platform offline packages. Each fresh Mac or Linux prefix has sparse source, own Python and OPA, private node state and stopped test processes. V1 services remain separate.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#45627e"/>
+</marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#15324c}.title{font-size:29px;font-weight:700}.subtitle{font-size:19px;fill:#405b72}.label{font-size:21px;font-weight:700}.body{font-size:18px}.note{font-size:18px;fill:#405b72}.edge-label{font-size:17px;paint-order:stroke;stroke:#f6f8fc;stroke-width:6px;stroke-linejoin:round}.edge{fill:none;stroke:#45627e;stroke-width:2.2;marker-end:url(#arrow)}</style>
+<rect width="1500" height="1190" fill="#f6f8fc"/>
+<text x="40" y="45" class="title">AXIOM V2 — isolated deployment and retained fallback</text>
+<text x="40" y="78" class="subtitle">Platform-specific packages use the same reviewed implementation; each node owns its operation and credentials.</text>
+<polyline points="690,190 810,190" class="edge"/>
+<polyline points="1030,255 1030,300 365,300 365,350" class="edge"/>
+<polyline points="1240,255 1240,350" class="edge"/>
+<text x="1255" y="308" class="edge-label">fresh admission</text>
+<rect x="40" y="125" width="650" height="130" rx="12" fill="#fff" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="157" class="label">Reviewed source and governed contracts</text>
+<text x="60" y="189" class="body">Exact Git commit / tree; independent baseline pin</text>
+<text x="60" y="214" class="body">Both dependency locks and approved platform OPA</text>
+<text x="60" y="239" class="body">No implicit promotion from Git source to authority</text>
+<rect x="810" y="125" width="650" height="130" rx="12" fill="#e9f2ff" stroke="#60788e" stroke-width="1.7"/>
+<text x="830" y="157" class="label">Prepared package + offline admission</text>
+<text x="830" y="189" class="body">External archive SHA + all member hashes</text>
+<text x="830" y="214" class="body">Original Git identity reconstructed; sparse code closure</text>
+<text x="830" y="239" class="body">Per-target wheels / OPA; no public dependency fallback</text>
+<rect x="40" y="350" width="650" height="320" rx="12" fill="#fff2d6" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="382" class="label">Fresh Mac V2 prefix</text>
+<text x="60" y="414" class="body">package/source/ — clean sparse Git snapshot</text>
+<text x="60" y="439" class="body">venv/ — own Python dependencies and pinned OPA</text>
+<text x="60" y="464" class="body">instance/ — independent node, key and credentials</text>
+<text x="60" y="489" class="body">instance/state/ — queue, raw bytes and receipts</text>
+<text x="60" y="514" class="body">instance/projection/ — bounded private view</text>
+<text x="60" y="539" class="body">Source-local Workbench drafts scoped by node</text>
+<text x="60" y="564" class="body">Loopback Workbench; candidate tested on :18875</text>
+<text x="60" y="589" class="body">Test process stopped; collector paused</text>
+<rect x="810" y="350" width="650" height="320" rx="12" fill="#fff2d6" stroke="#60788e" stroke-width="1.7"/>
+<text x="830" y="382" class="label">Fresh Ubuntu V2 prefix</text>
+<text x="830" y="414" class="body">Same executable source and baseline contracts</text>
+<text x="830" y="439" class="body">Linux-specific prepared wheels and approved OPA</text>
+<text x="830" y="464" class="body">Independent prefix, node, key and credentials</text>
+<text x="830" y="489" class="body">Private SQLite / evidence / projection / drafts</text>
+<text x="830" y="514" class="body">Separate SSH tunnel to the loopback Workbench</text>
+<text x="830" y="539" class="body">Candidate tested on :18876; test process stopped</text>
+<text x="830" y="564" class="body">No replacement of existing systemd service</text>
+<rect x="40" y="800" width="650" height="175" rx="12" fill="#edf0f4" stroke="#60788e" stroke-width="1.7"/>
+<text x="60" y="832" class="label">Retained V1 operating installation</text>
+<text x="60" y="864" class="body">Existing Mac Workbench / Ubuntu systemd service</text>
+<text x="60" y="889" class="body">Observed VM: adc4643, loopback :8766, legacy engine</text>
+<text x="60" y="914" class="body">V1 Ansible update / backup / recovery keeps its scope</text>
+<text x="60" y="939" class="body">No automatic state, key or publisher-authority import</text>
+<rect x="810" y="800" width="650" height="175" rx="12" fill="#e5f5eb" stroke="#60788e" stroke-width="1.7"/>
+<text x="830" y="832" class="label">CI / development and public publication</text>
+<text x="830" y="864" class="body">Native CI wrappers call the shared runtime</text>
+<text x="830" y="889" class="body">Source-side tools build releases and projections</text>
+<text x="830" y="914" class="body">Public documentation / static Viewer remain read-only</text>
+<text x="830" y="939" class="body">No hosted V2 API or Kubernetes workload deployed</text>
+<text x="40" y="725" class="note">The nodes share source contracts, not writable state or sessions. This is not replication or an HA pair.</text>
+<text x="40" y="1035" class="note">V2 update: another exact-source package and fresh prefix. Restore is an inactive candidate; no automatic service cutover.</text>
+<text x="40" y="1070" class="note">Product decisions still open: long-lived service management, supported target versions, hosted identity, SLOs and capacity.</text>
+<text x="40" y="1115" class="note">The documented host proof binds implementation commit 756a28e; later documentation does not claim a host redeployment.</text>
 </svg>

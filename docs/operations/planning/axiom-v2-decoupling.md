@@ -6,6 +6,20 @@ The maintainer authorized the V2 version break and autonomous implementation on
 define its acceptance criteria. This page records implementation progress, not a
 completed V2 release or operating acceptance.
 
+## Architecture ownership and product direction
+
+V2 is the maintainer-designated product-development foundation. The
+[central arc42 description](../../governance/architecture/governance-as-code-system-architecture.md)
+owns context, building blocks, runtime/deployment, decisions, quality evidence
+and product evolution. This page owns implementation details and operator
+commands. The function inventory and dated host record supply scope and proof;
+none replaces the central architecture or establishes production acceptance.
+
+The product backlog in arc42 section 11 distinguishes implemented mechanisms
+from future support/versioning, live providers, service/update/recovery,
+identity/tenancy and capacity decisions. A container or Kubernetes deployment,
+public API, SSO or external database is not implied by the V2 designation.
+
 ## Provider boundary increment
 
 The shared runtime evaluates unchanged policies. Context, native transport,
@@ -39,8 +53,11 @@ actual reviewed repository and provision the credential files privately. The
 profile itself and its credential files must pass the ordinary private-file
 validator; no token value belongs in Git, URLs or command arguments.
 
+For a package-admitted, initialized V2 prefix, use its instance-bound product
+entrypoint (the instance owns the configured port and private key):
+
 ```sh
-python scripts/serve_governance_workbench.py --port 8875 \
+/private/operator/new-v2/axiom-v2 workbench \
   --enable-pr --publication-profile /private/operator/workbench.json
 ```
 
