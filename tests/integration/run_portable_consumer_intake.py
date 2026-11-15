@@ -23,6 +23,44 @@ def run(*args,check=True):
     return result
 
 
+def migration_smoke(source,runtime,temporary):
+    """Run migration/backup/restore as the actual intake UID, under its own private parent."""
+    parent=temporary/'migration';parent.mkdir(mode=0o700)
+    run('chown','axiom-intake:axiom-intake',str(parent))
+    legacy,candidate,backup,restored=[parent/name for name in ('legacy','candidate','backup','restored')]
+    mapping=parent/'mapping.json'
+    mapping.write_text(json.dumps({'schema_version':2,'repositories':{'synthetic/consumer':{
+        'scm':{'provider':'github','instance':'https://github.com','native_id':'42','path':'synthetic/consumer',
+               'url':'https://github.com/synthetic/consumer'},'ci_provider':'github-actions',
+        'ci_instance':'https://github.com','legacy_scope':'workflow-aggregate'}}}))
+    mapping.chmod(0o600);run('chown','axiom-intake:axiom-intake',str(mapping))
+    python=str(runtime/'bin/python');entry=str(source/'scripts/intake_portable_evidence.py')
+    seed="""import sys,pathlib;sys.path.insert(0,sys.argv[1])
+from lib.consumer_intake_store import Store
+s=Store(sys.argv[2]);s.discover('synthetic/consumer',{'id':42,'run_attempt':1,'status':'completed'})
+s.put('retained-watermark',{'run_id':42})
+s.db.execute('INSERT INTO batches(id,base,state,manifest,pr,url) VALUES (?,?,?,?,?,?)',
+ ('cccccccccccccccccccccccc','a'*40,'open','[]',11,'https://github.com/synthetic/governance/pull/11'));s.db.commit();s.close()
+p=pathlib.Path(sys.argv[2])/'raw';p.mkdir();(p/'retained.bin').write_bytes(b'Original synthetic raw bytes')
+"""
+    run('runuser','-u','axiom-intake','--',python,'-c',seed,str(source/'scripts'),str(legacy))
+    def cli(*arguments):return run('runuser','-u','axiom-intake','--',python,entry,*map(str,arguments))
+    cli('migrate-legacy','--root',legacy,'--destination',candidate,'--legacy-mapping',mapping)
+    cli('backup','--root',candidate,'--destination',backup)
+    cli('restore-legacy','--root',restored,'--destination',backup)
+    assert (legacy/'raw/retained.bin').read_bytes()==(candidate/'raw/retained.bin').read_bytes()==(restored/'raw/retained.bin').read_bytes()
+    check="""import sqlite3,sys,json
+for path,version in zip(sys.argv[1:],[1,2,1]):
+ c=sqlite3.connect(path+'/queue.sqlite3');assert c.execute('PRAGMA user_version').fetchone()[0]==version
+ assert c.execute('SELECT count(*) FROM jobs').fetchone()[0]==1
+ assert c.execute('SELECT pr FROM batches').fetchone()[0]==11
+ assert json.loads(c.execute("SELECT value FROM meta WHERE key='retained-watermark'").fetchone()[0])=={'run_id':42}
+ c.close()
+"""
+    run('runuser','-u','axiom-intake','--',python,'-c',check,str(legacy),str(candidate),str(restored))
+    print('PASS: actual intake UID migration, schema2 backup and compatible legacy restore retain raw/jobs/batches/watermark')
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--allow-disposable-host',required=True,action='store_true');parser.parse_args()
@@ -75,6 +113,7 @@ def main():
     template=Environment(undefined=StrictUndefined).from_string((ROOT/'infra/ansible/templates/axiom-consumer.service.j2').read_text())
     units=[]
     try:
+        migration_smoke(source,runtime,temporary)
         for operation in ('poll','work'):
             name='axiom-portable-fixture-'+operation+'.service';path=Path('/etc/systemd/system')/name
             if path.exists():raise ValueError('Refusing existing fixture unit')
