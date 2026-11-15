@@ -1,25 +1,21 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #393: Fix verification of portable runtime CLI evidence bundles (`6b557fefe295`)
 
 ## Ergebnis
 
-- Lokale Markdown-Linkprüfung: 1 fehlende lokale Markdown-Zielpfade.
+- Lokale Markdown-Linkprüfung: 2 fehlende lokale Markdown-Zielpfade.
 - `mkdocs build --strict`: passed.
 - Der PR-Inhalt stammt aus der PR-Zusammenfassung und den geänderten Pfaden; fachliche Bedeutung und Querverweise benötigen menschliche Prüfung.
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `scripts/lib/portable_intake/bundle.py`
 
 ## Fehlende lokale Markdown-Ziele
 
 - `README.md` → `/picture`
+- `pipeline-baseline/templates/bamboo/README.md` → `../../../../docs/operations/adapters/portable-governance-runtime.md`
 
 ## Redaktionelle Prüfpunkte
 
