@@ -14,18 +14,9 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## Implementation readback — 7 November 2026
+## PR #342: Approve current Policy, Directive and SDD source versions (`d7a01a2b6020`)
 
-The local [Review Workbench](docs/operations/guides/governance-review-workbench.md)
-guides document intake, explicit requirement review and review-packet handoff.
-Only labelled declarations such as `DSCB-L1-REQ-001` enter current extraction;
-prose is not converted into requirements. Notes prepare human decisions.
-The public Viewer presents reviewed projections read-only.
-The Governance view links registered sources, requirement decisions, effective
-artifact mappings and the OPA inventory under **Anforderung bis OPA**.
-
-The [documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-07.md)
-records source commit `ae423f3`, draft coverage and remaining limits.
+- Approve current Policy, Directive and SDD source versions
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
