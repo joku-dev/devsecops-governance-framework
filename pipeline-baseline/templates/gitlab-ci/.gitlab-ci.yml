@@ -37,7 +37,13 @@ axiom_portable_pipeline_l1:
       if [ ! -f portable-evidence/result.json ] && [ ! -f portable-evidence/diagnostics.json ]; then
       printf '%s\n' '{"schema_version":"1.0.0","execution":"error","diagnostics":["runtime_did_not_produce_result"]}' > portable-evidence/diagnostics.json;
       fi
+    - >-
+      if [ -f portable-evidence/result.json ]; then
+      "$AXIOM_PYTHON" "$AXIOM_RUNTIME/scripts/intake_portable_evidence.py" bundle
+      --assessment portable-evidence --checkout "$CI_PROJECT_DIR" --destination portable-bundle;
+      fi
   artifacts:
     when: always
     paths:
       - portable-evidence/
+      - portable-bundle/

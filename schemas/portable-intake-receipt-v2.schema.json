@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable evidence verification receipt v2 candidate",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "execution_key", "repository_key", "bundle_digest", "evaluated_at", "decision", "execution", "trust", "freshness", "replay", "checks", "candidate_eligible", "official_acceptance", "blocks_merge", "producer", "collector", "verifier"],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "execution_key": {"$ref": "#/$defs/digest"},
+    "repository_key": {"$ref": "#/$defs/digest"},
+    "bundle_digest": {"$ref": "#/$defs/digest"},
+    "evaluated_at": {"type": "string", "format": "date-time"},
+    "decision": {"enum": ["pass", "fail", "not_evaluated"]},
+    "execution": {"enum": ["complete", "incomplete", "error"]},
+    "trust": {"enum": ["unverified", "integrity_verified", "provenance_verified"]},
+    "freshness": {"enum": ["fresh", "stale_or_future"]},
+    "replay": {"enum": ["new", "duplicate", "conflict"]},
+    "checks": {"type": "object", "additionalProperties": {"type": "boolean"}},
+    "candidate_eligible": {"type": "boolean"},
+    "official_acceptance": {"const": false},
+    "blocks_merge": {"type": "null"},
+    "verifier": {"type": "object", "additionalProperties": false, "required": ["version", "source_digest"],
+      "properties": {"version": {"const": "2.0.0"}, "source_digest": {"$ref": "#/$defs/digest"}}},
+    "producer": {"type": "object"},
+    "collector": {
+      "type": "object", "additionalProperties": false, "required": ["kind"],
+      "properties": {"kind": {"enum": ["local", "github-actions", "gitlab-ci", "bamboo"]}}
+    }
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

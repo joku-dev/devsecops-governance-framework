@@ -44,7 +44,21 @@ Evaluate portable pipeline:
             if [ ! -f portable-evidence/result.json ] && [ ! -f portable-evidence/diagnostics.json ]; then
               printf '%s\n' '{"schema_version":"1.0.0","execution":"error","diagnostics":["runtime_did_not_produce_result"]}' > portable-evidence/diagnostics.json
             fi
+    - script:
+        interpreter: SHELL
+        description: Export complete versioned bundle when a result exists
+        scripts:
+          - |
+            if [ -f portable-evidence/result.json ]; then
+              "${bamboo_axiom_python}" "${bamboo_axiom_runtime}/scripts/intake_portable_evidence.py" bundle \
+                --assessment portable-evidence --checkout . --destination portable-bundle
+            fi
   artifacts:
+    - name: axiom-portable-bundle-v2
+      location: .
+      pattern: portable-bundle.zip
+      shared: true
+      required: false
     - name: axiom-portable-pipeline-l1
       location: portable-evidence
       pattern: "*.json"
