@@ -23,3 +23,16 @@ python tests/capacity/summarize_portable_intake.py --measurement-root /private/t
 Use `--repositories 2000` for the second scale; use `6` for the inexpensive integration smoke. Every output root must be fresh. Do not run simultaneous measurements on shared hardware or change the benchmark while its child workers are running. The optional capacity CI workflow runs only six repositories.
 
 Remaining production limits: target provider versions/editions, API latency/quotas, actual artifact sizes and retention, daily arrival peaks, hardware/IOPS and agreed throughput/latency thresholds. Revalidating a large registry each cycle is a measured CPU cost: doubling this fixture took more than twice the wall time. Publication freezes at most 25 candidates in one active batch, so human PR/MR throughput can dominate daily processing. These small artifacts do not size real scan/SBOM retention or approve the current VM disk. Repeat on disposable representative Linux hardware with an agreed load before a 1,000–2,000-repository capacity approval.
+
+## Hardened collector repeat
+
+The same frozen profile/harness was repeated against collector source `7647cc6df3a1abe5d8df797c191d558771067b7d`, after native default-branch proof and retained legacy projection were added. The [1,000-repository repeat](../../examples/portable-runtime/capacity-1000-hardened-candidate.json) and [2,000-repository repeat](../../examples/portable-runtime/capacity-2000-hardened-candidate.json) retain that exact measured source and evaluator/verifier digests. Later Workbench cookie and disposable-fixture corrections do not change the measured collector algorithms; they are not relabelled as benchmarked revisions.
+
+| Repositories | Executions | Processing wall | Worker / OPA-child CPU | Native calls | Worker peak RSS | Operations bytes |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1,000 | 1,100 | 385.11 s | 287.45 / 99.67 s | 10,447 | 58.39 MiB | 62,456,954 |
+| 2,000 | 2,200 | 1285.85 s | 1088.25 / 201.51 s | 20,935 | 77.14 MiB | 120,501,617 |
+
+Both repeats retain all expected receipts: 110/220 negative decisions and 990/1,980 positive decisions match their own producer result and native identity. No missing receipt, identity collision or publication was found; each run recovers one previously claimed task in a second real worker process. Maximum queue ages remain 3,120/6,900 seconds on the explicit simulated clock; they are not measured network latency.
+
+The [measurement context](../../examples/portable-runtime/capacity-hardened-measurement-context.json) discloses a concurrent 158.239-second full validation on another checkout during part of the 2,000-repository repeat. Hardware was shared; observed wall time includes that activity. Worker and OPA-child CPU are measured separately; parent preparation, aggregate host memory, real provider latency, scanner jobs and human review are outside the table. These repeat measurements do not grant production capacity acceptance.

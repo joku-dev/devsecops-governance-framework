@@ -1,5 +1,8 @@
 # Portable runtime M1 — declared local acceptance
 
+For later M2 implementation/evidence and live boundaries, see the
+[integrated engineering matrix](platform-portability-acceptance.md).
+
 Date: 15 November 2026. This working record belongs to
 [GCR-2026-173](../../governance/change-requests/GCR-2026-173-portable-runtime-m1.md).
 The delivery PR and its revision-bound receipt identify the actual source commit.

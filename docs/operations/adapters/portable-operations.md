@@ -1,5 +1,8 @@
 # Portable operations candidate
 
+For the integrated candidate and actual live boundaries after this increment, see the
+[WP0–WP8 / AC01–AC30 engineering matrix](../planning/platform-portability-acceptance.md).
+
 The [portability runtime](portable-governance-runtime.md) and [evidence intake](../evidence/portable-evidence-intake.md) now have an additive operations boundary in `scripts/lib/portable_intake/operations.py`. See [GCR-2026-175](../../governance/change-requests/GCR-2026-175-portable-operations-boundaries.md). Existing accepted ledger/publisher paths do not import this successor.
 
 ## Separate responsibilities

@@ -39,7 +39,11 @@ cp infra/ansible/config.example.json ~/.config/axiom/vm.json
 chmod 600 ~/.config/axiom/vm.json
 ```
 
-Erlaubte Felder sind `host`, `user`, `ssh_port`, `identity_file` und `backup_root`.
+Erlaubte Felder sind `host`, `user`, `ssh_port`, `identity_file`, `backup_root`,
+`repository_url` und `consumer_engine`. Der optionale `repository_url` muss eine
+HTTPS-Git-Quelle ohne eingebettete Zugangsdaten sein. `consumer_engine` erlaubt
+`preserve` (Standard), `legacy` und `portable-v1`; ein Schemawechsel erfolgt
+ausschließlich über den [geprüften Migrations-/Recovery-Pfad](portable-vm-update-and-recovery.md).
 Ohne `identity_file` verwendet SSH seine bestehende lokale Konfiguration.
 Passwörter und weitere Ansible-Variablen werden in dieser Datei nicht akzeptiert.
 SSH-Hostprüfung bleibt aktiv; ein unbekannter oder geänderter Hostschlüssel muss

@@ -37,3 +37,7 @@ existing GitHub-only intake. Common verification, state migration, publishing,
 VM rollout and large-repository capacity remain M2 work. No live system change
 or release follows from this candidate PR. Operator-provided profiles/endpoints
 must be trusted; missing platform/edition capabilities stay explicit.
+
+## Addendum — integrated candidate
+
+[GCR-2026-180](../../governance/change-requests/GCR-2026-180-portability-acceptance-and-recovery.md) records the subsequent shared verifier, durable provider-bound store, guarded proposal coordinator, VM compatibility/recovery, exact-source package, capacity evidence and additive issuer/subject/read-model contracts. The [integrated matrix](platform-portability-acceptance.md) supersedes the implementation-progress statements above; it does not replace historical source/release/acceptance records. Candidate indexes and private default-branch proof are separate from official latest results. Existing accepted GitHub ledger/publishers remain unchanged, and real operating authority is separately accepted.

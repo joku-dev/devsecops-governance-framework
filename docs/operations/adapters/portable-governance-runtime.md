@@ -1,5 +1,8 @@
 # Portable Governance Runtime v1 — Pipeline-L1 Candidate
 
+For the integrated candidate and actual live boundaries after this increment, see the
+[WP0–WP8 / AC01–AC30 engineering matrix](../planning/platform-portability-acceptance.md).
+
 This is the executable M1 candidate for the platform-portability goal, linked to
 [GCR-2026-173](../../governance/change-requests/GCR-2026-173-portable-runtime-m1.md).
 It adds a shared evaluator, provider adapters and versioned contracts. It is not

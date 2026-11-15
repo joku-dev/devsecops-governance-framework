@@ -1,5 +1,8 @@
 # Portable evidence intake v2 candidate
 
+For the integrated candidate and actual live boundaries after this increment, see the
+[WP0–WP8 / AC01–AC30 engineering matrix](../planning/platform-portability-acceptance.md).
+
 This is the first M2 increment after the [portable runtime](../adapters/portable-governance-runtime.md). It implements shared evidence verification and a private state/migration foundation. It does not complete M2, install a VM version, update accepted indexes or enable publication. See [GCR-2026-174](../../governance/change-requests/GCR-2026-174-portable-evidence-intake.md).
 
 ## Verification contract
