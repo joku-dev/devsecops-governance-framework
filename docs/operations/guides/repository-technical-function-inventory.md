@@ -146,10 +146,12 @@ zusätzlich die öffentlichen Viewer-Assets; Modelle, Schemas, Vorlagen und Test
 werden als Verzeichnisse unten eingeordnet.
 
 <!-- DOCS_REFRESH_INVENTORY:start -->
-Der [konsolidierte Abgleich](../status/repository-documentation-reconciliation-2026-11-07.md) deckt die
-14 offenen Dokumentationsentwürfe ab. Frühere Inventare und Implementierungsnotizen
-bleiben im [Quellstand vor diesem Abgleich](https://github.com/joku-dev/devsecops-governance-framework/blob/ae423f34f75451b70b1ebffc71ea3683e4763c52/docs/operations/guides/repository-technical-function-inventory.md)
-nachlesbar. Deren P2-Fließtextableitung beschreibt nicht das heutige Verhalten.
+### PR #363: feat(operations): add reproducible Ubuntu VM installation (`5293b63a8b92`)
+
+- `.github/workflows/vm-installation.yml`
+- `scripts/deploy_vm.py`
+- `scripts/deploy_vm.sh`
+- `scripts/lib/vm_deployment.py`
 <!-- DOCS_REFRESH_INVENTORY:end -->
 
 ## Python-Skripte und Bibliotheksmodule
