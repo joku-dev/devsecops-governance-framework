@@ -17,7 +17,8 @@ async function workspace(hash=`#/reviews/${id}/requirements`,options={}){
  const original={source,implementation:options.implementation||{},sha256:'b'.repeat(64),requirements:options.empty?[]:[first,second,legacy],lines:[{locator:'line:1',text:'# Original'},{locator:'line:2',text:'[DSCB-L1-REQ-001] Retain <img src=x> evidence.'},{locator:'line:3',text:'[DSCB-L1-REQ-002] Protect logs.'}],warnings:[],formal_status:formal};
  const draft={...clone(original),draft_id:id,kind:'source_review',created_at:'2026-11-07T10:00:00Z',notes:[],pr:null,stale:false,context:{commit:'c'.repeat(40)}};
  if(options.stale){draft.stale=true;draft.stale_details={reasons:[{code:'source_missing',source_id:sourceId,previous:'b'.repeat(64),current:null}]};}
- if(options.published)draft.pr={url:'https://github.com/owner/repo/pull/3'};
+ if(options.published)draft.pr={instance:'https://github.com',url:'https://github.com/owner/repo/pull/3'};
+ if(options.unboundPublication&&draft.pr)delete draft.pr.instance;
  const drafts=new Map([[id,draft]]), calls=[],errors=[];
  let releaseSave,releaseSource,releasePublication;
  const virtualConsole=new VirtualConsole();virtualConsole.on('jsdomError',error=>errors.push(error));
@@ -35,7 +36,7 @@ async function workspace(hash=`#/reviews/${id}/requirements`,options={}){
   }else if(url===`/api/sources/${sourceId}/history`)value={cases:[{case_id:'historical-case',source:{source_id:sourceId},source_matches:true,proposals:[{source_requirement_id:'historical-only',statement:'Retained history',decision:{rationale:'Recorded decision',decided_by:'Owner',disposition:'approve'}}]}]};
   else if(url===`/api/sources/${sourceId}`){if(options.delayedSource)await new Promise(resolve=>{releaseSource=resolve;});value=original;}
   else if(/^\/api\/drafts\/[a-f0-9]{32}\/pr$/.test(url)){
-   if(options.publication)await new Promise(resolve=>{releasePublication=resolve;});drafts.get(url.split('/')[3]).pr={url:'https://github.com/owner/repo/pull/4'};value={ok:true};
+   if(options.publication)await new Promise(resolve=>{releasePublication=resolve;});drafts.get(url.split('/')[3]).pr={instance:'https://github.com',url:'https://github.com/owner/repo/pull/4'};value={ok:true};
   }else if(/^\/api\/drafts\/[a-f0-9]{32}\/notes$/.test(url)){
    if(options.delayedSave)await new Promise(resolve=>{releaseSave=resolve;});
    const item=drafts.get(url.split('/')[3]);item.notes.push({...JSON.parse(request.body),authority:'proposal_only',recorded_at:'2026-11-07T11:00:00Z'});value=item;
@@ -278,5 +279,15 @@ test('documents with no explicit requirements hand off for clarification rather 
   assert.match(ui.$('#draft-next').textContent,/Zur Klärung weitergeben/);
   ui.click('#draft-next');await until(()=>ui.$('#export-packet'));
   assert.doesNotMatch(ui.$('#draft-body').textContent,/Zur Übergabe vorbereitet/);
+ }finally{ui.close();}
+});
+
+test('historic unbound publication stays read-only with no inferred provider link',async()=>{
+ const ui=await workspace(undefined,{published:true,unboundPublication:true});
+ try{
+  assert.ok(ui.$('#item-fields').disabled);ui.click('[data-tab="packet"]');
+  assert.equal(ui.$('#pr-form'),null);
+  assert.equal(ui.$('a[target="_blank"]'),null);
+  assert.ok(ui.$('#export-packet'));
  }finally{ui.close();}
 });

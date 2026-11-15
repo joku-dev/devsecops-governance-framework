@@ -64,8 +64,12 @@ def main():
     run(['git', 'commit', '-am', 'Disposable update fixture'], cwd=fixture)
     second = run(['git', 'rev-parse', 'HEAD'], cwd=fixture)
     server = fixture / 'scripts/serve_governance_workbench.py'
-    server.write_text(server.read_text().replace('def main():\n',
-        'def main():\n    if str(ROOT) == "/srv/axiom/repository":\n        raise SystemExit("Synthetic activation failure")\n', 1))
+    signature = 'def main(argv=None):\n'
+    original = server.read_text()
+    if original.count(signature) != 1:
+        raise AssertionError('Activation-failure fixture must target the exact Workbench main signature')
+    server.write_text(original.replace(signature,
+        signature + '    if str(ROOT) == "/srv/axiom/repository":\n        raise SystemExit("Synthetic activation failure")\n', 1))
     run(['git', 'commit', '-am', 'Disposable activation-failure fixture'], cwd=fixture)
     broken = run(['git', 'rev-parse', 'HEAD'], cwd=fixture)
     origin = temporary / 'origin.git'
