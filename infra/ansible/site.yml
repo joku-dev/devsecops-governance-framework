@@ -47,6 +47,12 @@
           ansible.builtin.assert:
             that: vm_existing_receipt.stat.exists
           when: vm_action != 'install'
+        - name: Resolve the explicitly selected or preserved collector engine
+          ansible.builtin.set_fact:
+            vm_consumer_engine: >-
+              {{ vm_requested_consumer_engine if vm_requested_consumer_engine != 'preserve' else
+                 vm_old.get('previous_consumer_engine', 'legacy') if vm_action == 'rollback' else
+                 vm_old.get('consumer_engine', 'legacy') }}
         - name: Reject install over another deployed version
           ansible.builtin.assert:
             that: not vm_existing_receipt.stat.exists or vm_old.current_revision == vm_revision

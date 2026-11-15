@@ -1,7 +1,7 @@
 'use strict';
 const ConsumerView = (() => {
   const escape = value => String(value ?? '—').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const labels = {waiting:'Lauf läuft noch',queued:'Zur Sammlung vorgemerkt',working:'Wird gesammelt',verified:'Für Review gesammelt',batched:'Übernahme vorbereitet',accepted:'Offiziell übernommen',accepted_pending_sync:'Zusammengeführt · Abgleich ausstehend',held:'Sammlung fehlgeschlagen',not_accepted:'PR geschlossen · nicht übernommen'};
+  const labels = {waiting:'Lauf läuft noch',queued:'Zur Sammlung vorgemerkt',working:'Wird gesammelt',verified:'Für Review gesammelt',shadow_matched:'Schattenvergleich belegt',reviewed_candidate:'Geprüfter Kandidat',batched:'Übernahme vorbereitet',accepted:'Offiziell übernommen',accepted_pending_sync:'Zusammengeführt · Abgleich ausstehend',held:'Sammlung angehalten',not_accepted:'PR/MR geschlossen · nicht übernommen'};
   function date(value) { return value ? escape(value) : 'Noch nicht erfolgt'; }
   function evidence(value, clock) {
     if (!value) return '<p>Noch kein akzeptiertes Ergebnis vorhanden.</p>';
@@ -9,6 +9,7 @@ const ConsumerView = (() => {
     return `<p>Governance-Ergebnis: <strong>${escape(value.governance_status)}</strong> · Evidence Trust: <strong>${escape(value.evidence_trust)}</strong></p><p>Erzeugt: ${date(value.produced_at)}${old?' · <strong>älter als 24 Stunden / Aktualität prüfen</strong>':''}<br>Lauf ${escape(value.run_id)}, Versuch ${escape(value.attempt)}</p>`;
   }
   function render(data, clock=Date.now()) {
+    if(data.engine==='portable-v1')return renderPortable(data,clock);
     let html='<section class="panel"><h1>Consumer-Repos</h1><p>Hier siehst du, was offiziell übernommen wurde und welche Ergebnisse noch auf Prüfung warten.</p>';
     if (!data.configured) return html+'<div class="empty">Die automatische Sammlung ist auf diesem Host noch nicht eingerichtet.</div></section>';
     const blocked = data.sync_error || data.poll_error;
@@ -21,6 +22,19 @@ const ConsumerView = (() => {
     if(data.batch){const b=data.batch,safe=/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/pull\/\d+$/.test(b.url||'');html+=`<h2>${b.state==='open'?'PR offen':'Übernahme vorbereitet'}</h2><p>${safe?`<a href="${escape(b.url)}" target="_blank" rel="noopener noreferrer">PR #${escape(b.pr)} ansehen</a>`:escape(b.id)} · wird erst nach Review und Merge offiziell.</p>`;}
     html+=`<h2>Sammlung und Review</h2><p>${escape(data.queue_count)} Einträge insgesamt; höchstens 100 letzte Einträge sichtbar. Ein frischer Abruf macht alte Evidence nicht aktuell.</p>`;
     html+=(data.jobs||[]).map(row=>`<details class="card"><summary>Lauf ${escape(row.run_id)} / ${escape(row.attempt)} · ${escape(labels[row.state]||row.state)}</summary>${row.governance_status?evidence(row,clock):''}${row.error?`<p>Hinweis: ${escape(row.error)}</p>`:''}</details>`).join('') || '<p>Noch keine Läufe entdeckt.</p>';
+    return html+'</section>';
+  }
+  function safeLink(url,instance) {
+    try {const u=new URL(url),origin=new URL(instance);return u.protocol==='https:'&&origin.protocol==='https:'&&u.origin===origin.origin&&!u.username&&!u.password&&!u.search&&!u.hash;}catch{return false;}
+  }
+  function renderPortable(data,clock) {
+    let html='<section class="panel"><h1>Consumer-Repos</h1><p>Portable Sammlung · DevSecOps Pipeline L1 (5 Controls). Die Ergebnisse sind Kandidaten; die offizielle Baseline umfasst weitere Controls.</p>';
+    html+=`<p>Betrieb: <strong>${data.mode==='publish'?'Review-PRs/MRs angefordert':data.mode==='paused'?'Pausiert':'Schattenbetrieb'}</strong> · Stand ${date(data.generated_at)}</p>`;
+    html+='<p>Offizielle Ergebnisse bleiben in der bestehenden Governance-Ansicht. Ein zusammengeführter Kandidat ist keine Compliance-Freigabe.</p>';
+    if(data.sync_error)html+=`<p role="status" class="notice">Abgleich angehalten: ${data.sync_error==='application_update_required'?'Anwendungsupdate erforderlich':escape(data.sync_error)}</p>`;
+    html+=`<p>${escape(data.queue_count)} Einträge · älteste vorgemerkte Arbeit: ${escape(Math.round(data.queue_age_seconds||0))} Sekunden.</p>`;
+    if(data.batch){const b=data.batch;html+=`<p>Review-Batch: ${safeLink(b.url,b.instance)?`<a href="${escape(b.url)}" target="_blank" rel="noopener noreferrer">PR/MR ${escape(b.change_id)}</a>`:escape(b.id)} · ${escape(labels[b.state]||b.state)}</p>`;}
+    html+=(data.jobs||[]).map(row=>`<details class="card"><summary>${escape(row.repository)} · ${escape(row.ci_provider)} · Lauf ${escape(row.run_id)} / Versuch ${escape(row.attempt)} · ${escape(labels[row.state]||row.state)}</summary><p>Native Job-ID: ${escape(row.job_id)}</p>${row.governance_status?evidence(row,clock):''}${safeLink(row.run_url,row.ci_instance)?`<p><a href="${escape(row.run_url)}" target="_blank" rel="noopener noreferrer">Producer-Lauf öffnen</a></p>`:''}${row.error?`<p>Hinweis: ${escape(row.error)}</p>`:''}</details>`).join('')||'<p>Noch keine Ausführungen entdeckt.</p>';
     return html+'</section>';
   }
   return {render};

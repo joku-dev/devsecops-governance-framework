@@ -6,6 +6,14 @@ fallback:
   path_prefixes: [.agents/, .codex/, .github/, scripts/, model/, tests/, apps/]
   agents: [governance-analyst]
 rules:
+  - path_prefix: scripts/portable_consumer_intake.py
+    agents: [governance-analyst, devsecops-baseline, policy-as-code, evidence-and-intake, release-manager]
+  - path_prefix: config/portable-consumer
+    agents: [governance-analyst, evidence-and-intake, release-manager]
+  - path_prefix: config/portable-operations
+    agents: [governance-analyst, evidence-and-intake, release-manager]
+  - path_prefix: scripts/workbench/consumer-view.js
+    agents: [evidence-and-intake]
   - path_prefix: scripts/lib/portable_intake/
     agents: [governance-analyst, devsecops-baseline, policy-as-code, evidence-and-intake, release-manager]
   - path_prefix: scripts/intake_portable_evidence.py

@@ -13,6 +13,7 @@ import subprocess
 import sys
 import tempfile
 import uuid
+from urllib.parse import urlsplit
 
 from lib.vm_deployment import bundle_drafts, private_directory, REVISION
 
@@ -26,7 +27,7 @@ def configuration(path):
     if path.stat().st_mode & 0o077:
         raise ValueError("Private configuration must have permissions 0600")
     data = json.loads(path.read_text())
-    allowed = {"host", "user", "ssh_port", "identity_file", "backup_root"}
+    allowed = {"host", "user", "ssh_port", "identity_file", "backup_root", "repository_url", "consumer_engine"}
     if not isinstance(data, dict) or set(data) - allowed:
         raise ValueError("Unknown private configuration fields")
     for name in ("host", "user"):
@@ -36,6 +37,14 @@ def configuration(path):
     if type(port) is not int or not 1 <= port <= 65535:
         raise ValueError("Invalid SSH port")
     data["ssh_port"] = port
+    remote=data.get('repository_url',REPOSITORY)
+    parsed=urlsplit(remote)
+    if (parsed.scheme!='https' or not parsed.hostname or parsed.username or parsed.password
+            or parsed.query or parsed.fragment or any(ord(c)<33 for c in remote)):
+        raise ValueError('Repository mirror must be a credential-free HTTPS URL')
+    data['repository_url']=remote
+    if data.get('consumer_engine','preserve') not in ('preserve','legacy','portable-v1'):
+        raise ValueError('Unsupported consumer engine')
     if data.get("identity_file"):
         identity = Path(data["identity_file"]).expanduser().resolve(strict=True)
         if not identity.is_file() or identity.stat().st_mode & 0o077:
@@ -85,7 +94,8 @@ def main(argv=None):
                 host["ansible_ssh_private_key_file"] = config["identity_file"]
             inventory = {"all": {"children": {"axiom": {"hosts": {"axiom_vm": host}}}}}
             variables = {"vm_action": args.action, "vm_revision": args.revision or "",
-                         "vm_deployment_id": deployment_id, "vm_repository_url": REPOSITORY,
+                         "vm_deployment_id": deployment_id, "vm_repository_url": config['repository_url'],
+                         "vm_requested_consumer_engine": config.get('consumer_engine','preserve'),
                          "vm_controller_backups": str(backup_root / "backups"),
                          "vm_controller_helper": str(ROOT / "scripts/lib/vm_deployment.py")}
             if args.action == "import-drafts":

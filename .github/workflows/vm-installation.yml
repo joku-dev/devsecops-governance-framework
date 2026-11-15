@@ -7,6 +7,12 @@ on:
       - 'scripts/deploy_vm.*'
       - 'scripts/lib/vm_deployment.py'
       - 'scripts/lib/consumer*.py'
+      - 'scripts/lib/portable_intake/**'
+      - 'scripts/portable_consumer_intake.py'
+      - 'scripts/intake_portable_evidence.py'
+      - 'config/portable-*.json'
+      - 'tests/test_portable_*.py'
+      - 'tests/integration/run_portable_consumer_intake.py'
       - 'scripts/lib/private_credentials.py'
       - 'scripts/consumer_intake.py'
       - 'tests/test_consumer*.py'
@@ -43,6 +49,8 @@ jobs:
           .venv-deployment/bin/python -m pip install --require-hashes -r requirements-deployment.lock
       - name: Exercise collector services independently on this fresh disposable host
         run: sudo --preserve-env=GITHUB_ACTIONS .venv-deployment/bin/python tests/integration/run_consumer_intake.py --allow-disposable-host --bootstrap-disposable-runtime
+      - name: Exercise portable collector credentials and projection on the disposable host
+        run: sudo --preserve-env=GITHUB_ACTIONS .venv-deployment/bin/python tests/integration/run_portable_consumer_intake.py --allow-disposable-host
   disposable-ubuntu:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
@@ -62,3 +70,5 @@ jobs:
         run: .venv-deployment/bin/python tests/integration/run_vm_deployment.py --allow-disposable-host
       - name: Test consumer credentials, UID separation and schedules on the same disposable host
         run: sudo --preserve-env=GITHUB_ACTIONS .venv-deployment/bin/python tests/integration/run_consumer_intake.py --allow-disposable-host
+      - name: Test portable collector credentials and projection on the same disposable host
+        run: sudo --preserve-env=GITHUB_ACTIONS .venv-deployment/bin/python tests/integration/run_portable_consumer_intake.py --allow-disposable-host

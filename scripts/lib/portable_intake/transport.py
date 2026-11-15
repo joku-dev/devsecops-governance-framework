@@ -33,6 +33,24 @@ def native_identity(context):
             'change_request':deepcopy(context['change_request'])}
 
 
+class BoundedAudit(list):
+    """Bound per-capture native response history, preserving preceding responses on failure."""
+    def __init__(self):super().__init__();self.bytes=0
+    def append(self,value):
+        size=len(json.dumps(value,sort_keys=True).encode())
+        if self.bytes+size>8*1024**2:raise ValueError('native_audit_budget_exhausted')
+        self.bytes+=size;super().append(value)
+
+
+def bamboo_result_key(result):
+    # Completed result resources use `key`; buildResultKey belongs to queue resources.
+    # Retain the prototype alias only when it cannot contradict the native result key.
+    key=result.get('key',result.get('buildResultKey'))
+    if not isinstance(key,str) or not key or result.get('buildResultKey',key)!=key:
+        raise ValueError('invalid_native_bamboo_result_key')
+    return key
+
+
 def github_push_branch_trigger(config,context):
     if context['ci']['event']!='push':return True
     try:
@@ -87,6 +105,7 @@ class Reader:
         if parsed.query or parsed.fragment:
             raise ValueError('invalid_reader_endpoint')
         self.base, self.token, self.budget, self.calls = base.rstrip('/'), token, budget, 0
+        self.cache = None
 
     def url(self, path):
         if not path.startswith('/') or path.startswith('//') or '\\' in path or any(ord(c)<32 for c in path):
@@ -99,13 +118,20 @@ class Reader:
     @property
     def headers(self):
         return {'Accept':'application/json', 'User-Agent':'axiom-evidence-intake/2',
+                **({'X-GitHub-Api-Version':'2022-11-28'} if urlsplit(self.base).hostname=='api.github.com' else {}),
                 **({'Authorization':'Bearer ' + self.token} if self.token else {})}
 
     def get(self, path):
+        previous=self.cache.get(path) if self.cache is not None else None
+        headers={**self.headers,**({'If-None-Match':previous['etag']} if previous else {})}
         try:
-            with build_opener(NoRedirect).open(Request(self.url(path), headers=self.headers), timeout=30) as response:
-                return json.loads(read_limited(response, max_bytes=4*1024**2))
+            with build_opener(NoRedirect).open(Request(self.url(path), headers=headers), timeout=30) as response:
+                body=json.loads(read_limited(response, max_bytes=4*1024**2))
+                if self.cache is not None and response.headers.get('ETag'):
+                    self.cache.put(path,{'etag':response.headers['ETag'],'body':body})
+                return body
         except HTTPError as error:
+            if error.code==304 and previous:return deepcopy(previous['body'])
             rate = error.code == 429 or (error.code == 403 and (error.headers.get('Retry-After') or error.headers.get('X-RateLimit-Remaining')=='0'))
             raise AccessFailure('rate_limited' if rate else 'http_' + str(error.code),
                                 bool(rate or error.code >= 500), retry_delay(error.headers)) from None
@@ -117,7 +143,8 @@ class Reader:
         try:
             download_https(self.url(path), Path(destination), headers=self.headers, max_bytes=512*1024**2)
         except HTTPError as error:
-            raise AccessFailure('artifact_http_' + str(error.code), error.code==429 or error.code>=500,
+            rate = error.code == 429 or (error.code == 403 and (error.headers.get('Retry-After') or error.headers.get('X-RateLimit-Remaining')=='0'))
+            raise AccessFailure('rate_limited' if rate else 'artifact_http_' + str(error.code), bool(rate or error.code>=500),
                                 retry_delay(error.headers)) from None
         except (URLError, TimeoutError, OSError, ValueError):
             raise AccessFailure('artifact_download_failed', True) from None
@@ -150,6 +177,7 @@ class Observation:
     started_at: str | None
     completed_at: str | None
     scm_facts_digest: str | None
+    native_job_id: str | None = None
 
     def checks(self, context, manifest, policy, at, generated_at):
         identity = native_identity(context)
@@ -188,7 +216,7 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
     if endpoint(ci['instance']) != endpoint(transport['instance']):
         raise ValueError('transport_instance_mismatch')
     provider = ci['provider']
-    audit = [] if audit_sink is None else audit_sink
+    audit = BoundedAudit() if audit_sink is None else audit_sink
 
     def get(path):
         data = reader.get(path)
@@ -197,7 +225,7 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
 
     config_digest = None
     attempt_bound = False
-    started_at = completed_at = None
+    started_at = completed_at = native_job_id = None
     if provider == 'github-actions':
         if scm['provider'] != 'github' or endpoint(scm['instance']) != endpoint(ci['instance']):
             raise ValueError('unsupported_github_scm_composition')
@@ -215,6 +243,7 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
         if len(matches) != 1 or matches[0]['status'] != 'completed' or ci['job_id'] != transport['logical_job_id']:
             raise ValueError('native_job_binding_mismatch')
         job = matches[0]
+        native_job_id = str(job['id']) if job.get('id') is not None else None
         started_at,completed_at = job['started_at'],job['completed_at']
         uploads = [step for step in job.get('steps',[]) if step['name']==transport['upload_step_name']]
         if len(uploads)!=1 or uploads[0].get('conclusion')!='success':
@@ -264,13 +293,14 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
         config = get(route + '/repository/files/' + encoded(transport['configuration_path']) + '?ref=' + encoded(run['sha']))
         config_digest = hashlib.sha256(base64.b64decode(config['content'])).hexdigest()
         revision, artifact_id, attempt_bound = run['sha'], ci['job_id'], True
+        native_job_id = str(job['id'])
         event={'push':'push','merge_request_event':'pull_request','web':'manual','schedule':'schedule'}.get(run['source'],'unknown')
         attempt_bound = event==ci['event'] and job['pipeline']['sha']==run['sha'] and job.get('tag') is False
         attempt_bound=attempt_bound and gitlab_revision_bound(context,run,get,route)
         started_at,completed_at = job['started_at'],job['finished_at']
     elif provider == 'bamboo':
         result = get('/rest/api/latest/result/' + encoded(ci['run_id']) + '.json?expand=artifacts')
-        if result['buildResultKey'] != ci['run_id'] or result['lifeCycleState'] != 'Finished':
+        if bamboo_result_key(result) != ci['run_id'] or result['lifeCycleState'] != 'Finished':
             raise ValueError('native_bamboo_result_mismatch')
         artifacts = result.get('artifacts',{}).get('artifact',[])
         found = [a for a in artifacts if a['name']==transport['artifact_name']]
@@ -283,7 +313,7 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
         if not parsed.path.startswith(base.path.rstrip('/') + '/'):
             raise ValueError('native_artifact_outside_instance')
         reader.download(parsed.path[len(base.path.rstrip('/')):], archive)
-        revision, artifact_id = result['vcsRevisionKey'], ci['run_id'] + ':' + transport['artifact_name']
+        revision, artifact_id = result.get('vcsRevisionKey','unknown'), ci['run_id'] + ':' + transport['artifact_name']
         # Bamboo SCM/job/spec closure is deliberately unresolved for unmeasured installations.
         # Bytes and native build are collected, but this profile cannot earn provenance_verified.
     else:
@@ -323,5 +353,5 @@ def capture(context, policy, reader, archive, *, at, audit_sink=None, scm_reader
     observation = Observation(provider, identity, revision, artifact_id,
                               hashlib.sha256(Path(archive).read_bytes()).hexdigest(), at,
                               config_digest, attempt_bound, canonical_digest(audit),bundle_digest,
-                              started_at,completed_at,facts_digest)
+                              started_at,completed_at,facts_digest,native_job_id)
     return observation, audit

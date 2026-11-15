@@ -39,6 +39,7 @@
     vm_activate: >-
       {{ vm_action == 'import-drafts' or
          vm_old.get('current_revision', '') != vm_target_revision or
+         vm_old.get('consumer_engine', 'legacy') != vm_consumer_engine or
          ansible_facts.services.get('axiom-workbench.service', {}).get('state') != 'running' or
          vm_installed_unit.stat.get('checksum', '') != vm_candidate_unit.stat.get('checksum', '') }}
 - name: Activate with a verified two-location backup and failure recovery
@@ -156,6 +157,8 @@
           {{ {'schema_version': 1,
               'current_revision': vm_old.current_revision if vm_action == 'import-drafts' else vm_target_revision,
               'previous_revision': vm_old.get('previous_revision', '') if vm_action == 'import-drafts' else vm_old.get('current_revision', ''),
+              'consumer_engine': vm_old.get('consumer_engine', 'legacy') if vm_action == 'import-drafts' else vm_consumer_engine,
+              'previous_consumer_engine': vm_old.get('consumer_engine', 'legacy'),
               'port': vm_port, 'last_action': vm_action, 'deployment_id': vm_deployment_id,
               'toolchain': vm_old.get('toolchain', {}) if vm_action == 'import-drafts' else (vm_toolchain.stdout | from_json),
               'controller_ansible': ansible_version.full,

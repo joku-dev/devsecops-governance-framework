@@ -77,7 +77,7 @@ class SCM:
         if len(matches)!=1:raise ValueError('branch_resolution_ambiguous')
         return matches[0]['latestCommit']
 
-    def changes(self,source=None,target=None):
+    def changes(self,source=None,target=None,*,prefixes=None):
         """Include closed changes so a consciously declined proposal is never reopened."""
         if source is not None:branch(source)
         if target is not None:branch(target)
@@ -105,7 +105,8 @@ class SCM:
         for row in rows:
             native_source=row['head']['ref'] if self.provider=='github' else row['source_branch'] if self.provider=='gitlab' else row['fromRef']['id'].removeprefix('refs/heads/')
             native_target=row['base']['ref'] if self.provider=='github' else row['target_branch'] if self.provider=='gitlab' else row['toRef']['id'].removeprefix('refs/heads/')
-            if (source is None or native_source==source) and (target is None or native_target==target):
+            if ((source is None or native_source==source) and (target is None or native_target==target)
+                    and (prefixes is None or native_source.startswith(prefixes))):
                 selected.append(row)
         normalized=[self.normalize(row) for row in selected]
         return [row for row in normalized if (source is None or row['source']==source) and (target is None or row['target']==target)]
@@ -231,14 +232,15 @@ def require_compatible(installed,candidate):
 
 class GitWorkspace:
     """Private disposable checkout, bounded explicit status paths and immutable commits."""
-    def __init__(self,root,remote,token='',username=''):
+    def __init__(self,root,remote,token='',username='',*,publisher_token=None):
         require_https(remote)
         parsed=urlsplit(remote)
         if parsed.query or parsed.fragment or any(ord(c)<32 for c in username):raise ValueError('unsafe_git_remote')
         self.root,self.remote,self.token,self.username=Path(root).resolve(),remote,token,username
+        self.publisher_token=publisher_token
         self.prepared=False
 
-    def git(self,*arguments,stamp=None,trim=True):
+    def git(self,*arguments,stamp=None,trim=True,publishing=False):
         env={**os.environ,'GIT_TERMINAL_PROMPT':'0','GIT_CONFIG_COUNT':'4',
              'GIT_ASKPASS':'/bin/false','SSH_ASKPASS':'/bin/false',
              'GIT_CONFIG_GLOBAL':'/dev/null','GIT_CONFIG_NOSYSTEM':'1',
@@ -256,8 +258,9 @@ class GitWorkspace:
             env.update(GIT_AUTHOR_DATE=stamp,GIT_COMMITTER_DATE=stamp,
                 GIT_AUTHOR_NAME='AXIOM evidence proposal',GIT_COMMITTER_NAME='AXIOM evidence proposal',
                 GIT_AUTHOR_EMAIL='axiom-proposal@localhost',GIT_COMMITTER_EMAIL='axiom-proposal@localhost')
-        if self.token:
-            env.update(AXIOM_GIT_TOKEN=self.token,AXIOM_GIT_USERNAME=self.username,GIT_CONFIG_COUNT='5',
+        token=self.publisher_token if publishing and self.publisher_token is not None else self.token
+        if token:
+            env.update(AXIOM_GIT_TOKEN=token,AXIOM_GIT_USERNAME=self.username,GIT_CONFIG_COUNT='5',
                 GIT_CONFIG_KEY_4='credential.helper',GIT_CONFIG_VALUE_4='!f() { printf "username=%s\\npassword=%s\\n" "$AXIOM_GIT_USERNAME" "$AXIOM_GIT_TOKEN"; }; f')
         try:
             process=subprocess.run(['git',*arguments],cwd=self.root,env=env,capture_output=True,timeout=300,check=False)
@@ -302,4 +305,4 @@ class GitWorkspace:
         if not re.fullmatch(r'automation/portable-consumer/[a-f0-9]{24}',source):
             raise ValueError('portable_publication_branch_required')
         if not re.fullmatch('[a-f0-9]{40}',sha):raise ValueError('immutable_proposal_commit_required')
-        self.git('push','origin',sha+':refs/heads/'+source)  # No force or main update.
+        self.git('push','origin',sha+':refs/heads/'+source,publishing=True)  # No force or main update.

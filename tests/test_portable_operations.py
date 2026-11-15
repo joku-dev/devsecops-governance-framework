@@ -71,6 +71,12 @@ class OperationsTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'identity_conflict'):scm.propose(SOURCE,'main',SHA,'Title','Body')
             self.assertEqual(api.writes,[])
 
+    def test_unrelated_deleted_fork_pr_does_not_block_automation_scope_scan(self):
+        scm,api=self.scm('github');row=api.native('closed')
+        row['head']['ref']='unrelated-contribution';row['head']['repo']=None
+        api.rows=[row]
+        self.assertEqual(scm.changes(prefixes=('automation/portable-consumer/',)),[])
+
     def test_cross_repository_pr_or_mr_cannot_satisfy_same_branch(self):
         for provider in ('github','gitlab','bitbucket-dc'):
             scm,api=self.scm(provider);row=api.native()

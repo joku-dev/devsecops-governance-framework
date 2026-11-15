@@ -22,7 +22,7 @@ from lib.consumer_intake_store import atomic_json, lock, verify_backup
 from lib.portable.runtime import read_json
 from lib.portable_intake.bundle import export_bundle, unpack, verify_bundle, validate_policy, require_storage
 from lib.portable_intake.store import Store, migrate_legacy, backup_v2, restore_legacy
-from lib.portable_intake.transport import Reader, capture
+from lib.portable_intake.transport import Reader, capture, BoundedAudit
 from lib.private_credentials import check_private_file
 
 
@@ -35,6 +35,7 @@ def main(argv=None):
     parser.add_argument('--bundle',type=Path)
     parser.add_argument('--policy',type=Path)
     parser.add_argument('--context',type=Path)
+    parser.add_argument('--candidate-directory',type=Path,help='Explicit public candidate export for native collect only')
     parser.add_argument('--root',type=Path)
     parser.add_argument('--legacy-mapping',type=Path)
     parser.add_argument('--opa',type=Path)
@@ -42,6 +43,7 @@ def main(argv=None):
     args=parser.parse_args(argv)
     os.umask(0o077)
     at=args.at or datetime.now(timezone.utc).isoformat()
+    if args.candidate_directory and args.action!='collect':parser.error('--candidate-directory requires native collect')
     if args.action=='bundle':
         if not all((args.assessment,args.checkout,args.destination)):
             parser.error('bundle requires --assessment --checkout --destination')
@@ -104,7 +106,7 @@ def main(argv=None):
                 if policy.get('scm_transport'):
                     scm=policy['scm_transport']
                     scm_reader=Reader(scm['api_url'],os.environ.get(scm.get('token_env',''),''),budget=scm.get('request_budget',100))
-                audit=[]
+                audit=BoundedAudit()
                 try:
                     observation,audit=capture(read_json(args.context),policy,reader,temporary/'artifact.zip',at=at,audit_sink=audit,scm_reader=scm_reader)
                     bundle=unpack(temporary/'artifact.zip',temporary/'bundle')
@@ -154,6 +156,21 @@ def main(argv=None):
             elif not (raw/'receipt.json').is_file():
                 raise ValueError('incomplete_raw_capture')
             saved,inserted=store.record(receipt)
+            if args.candidate_directory:
+                from lib.portable_intake.publisher import candidate,path_for
+                if (not observation.native_job_id or not saved['candidate_eligible'] or saved['verifier']!=receipt['verifier'] or receipt['freshness']!='fresh'
+                        or receipt['execution']!='complete' or any(not passed for name,passed in receipt['checks'].items() if name!='replay_key_unique')):
+                    raise ValueError('native_candidate_export_not_eligible')
+                manifest=read_json(bundle/'bundle.json')
+                result_path=next(row['path'] for row in manifest['files'] if row['role']=='result')
+                generated=read_json(bundle/result_path)['generated_at']
+                locator={'run_id':saved['producer']['ci']['run_id'],'job_id':observation.native_job_id,
+                         'attempt':saved['producer']['ci']['attempt']}
+                document=candidate(saved,locator,generated)
+                destination=args.candidate_directory/path_for(document)
+                if destination.exists():
+                    if destination.is_symlink() or read_json(destination)!=document:raise ValueError('immutable_candidate_export_conflict')
+                else:atomic_json(destination,document)
             # Original result and Trust are immutable; replay is a new processing observation.
             print(json.dumps({'receipt':saved,'recorded':inserted,'processing_replay':receipt['replay']}))
             return 0 if receipt['execution']=='complete' and receipt['freshness']=='fresh' and receipt['replay']!='conflict' else 2

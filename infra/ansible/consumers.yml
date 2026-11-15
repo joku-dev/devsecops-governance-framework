@@ -8,6 +8,35 @@
   ansible.builtin.stat:
     path: /etc/axiom/consumer-intake.json
   register: vm_consumer_configuration
+- name: Inspect portable credential references without reading values
+  ansible.builtin.find:
+    paths: /etc/axiom/portable-credentials
+    patterns: ['reader-*', 'publisher-*']
+    file_type: file
+    follow: false
+    recurse: false
+  register: vm_portable_credentials
+  when: vm_consumer_engine == 'portable-v1'
+- name: Protect provisioned portable credentials
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    owner: root
+    group: root
+    mode: '0600'
+  loop: '{{ vm_portable_credentials.files | default([]) }}'
+  when: vm_consumer_engine == 'portable-v1'
+- name: Inspect the separately provisioned portable configuration
+  ansible.builtin.stat:
+    path: /etc/axiom/portable-consumer-intake.json
+  register: vm_portable_configuration
+  when: vm_consumer_engine == 'portable-v1'
+- name: Protect the portable operator configuration
+  ansible.builtin.file:
+    path: /etc/axiom/portable-consumer-intake.json
+    owner: root
+    group: root
+    mode: '0600'
+  when: vm_consumer_engine == 'portable-v1' and vm_portable_configuration.stat.exists
 - name: Protect existing App keys
   ansible.builtin.file:
     path: '/etc/axiom/consumer-{{ item.item }}.pem'

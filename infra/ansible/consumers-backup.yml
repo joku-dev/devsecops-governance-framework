@@ -20,12 +20,34 @@
   ansible.builtin.stat:
     path: '{{ vm_consumer_root }}/queue.sqlite3'
   register: vm_consumer_database
+- name: Read the stopped database schema for backups and draft-only maintenance
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/python3
+      - -c
+      - |
+        import pathlib,sqlite3,sys
+        p=pathlib.Path(sys.argv[1])
+        if p.is_symlink(): raise ValueError('unsafe_operations_database')
+        c=sqlite3.connect(p.resolve().as_uri()+'?mode=ro',uri=True)
+        try: print(c.execute('PRAGMA user_version').fetchone()[0])
+        finally: c.close()
+      - '{{ vm_consumer_root }}/queue.sqlite3'
+  register: vm_consumer_schema
+  changed_when: false
+  when: vm_consumer_database.stat.exists
 - name: Preserve consumer state separately from bounded Workbench archives
   when: vm_consumer_database.stat.exists
   block:
     - name: Select the supported candidate or still-installed backup implementation
       ansible.builtin.set_fact:
         vm_consumer_backup_tool: '{{ (vm_candidate if vm_consumer_support.stat.exists else vm_repo) }}/scripts/consumer_intake.py'
+        vm_consumer_backup_python: /usr/bin/python3
+    - name: Select the installed portable verifier for existing v2 data
+      ansible.builtin.set_fact:
+        vm_consumer_backup_tool: '{{ vm_repo }}/scripts/intake_portable_evidence.py'
+        vm_consumer_backup_python: '{{ vm_base }}/venvs/{{ vm_old.current_revision }}/bin/python'
+      when: vm_consumer_schema.stdout == '2'
     - name: Verify a supported backup implementation before any downgrade
       ansible.builtin.stat:
         path: '{{ vm_consumer_backup_tool }}'
@@ -36,7 +58,7 @@
         fail_msg: No supported consumer backup implementation is available; preserve operations state before changing versions.
     - name: Create consistent SQLite and raw-cache backup with manifest
       ansible.builtin.command:
-        argv: [/usr/bin/python3, '{{ vm_consumer_backup_tool }}', backup,
+        argv: ['{{ vm_consumer_backup_python }}', '{{ vm_consumer_backup_tool }}', backup,
                --root, '{{ vm_consumer_root }}', --destination,
                '{{ vm_consumer_root }}/backups/{{ vm_deployment_id }}']
       become_user: '{{ vm_consumer_user }}'

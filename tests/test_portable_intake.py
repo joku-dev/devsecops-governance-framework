@@ -159,7 +159,7 @@ class BundleTests(unittest.TestCase):
             if unsafe_archive:z.writestr('../escape','unsafe synthetic archive member')
         blob=archive.read_bytes()
         ctx=self.ctx;route='/repos/'+ctx['scm']['path']
-        job={'name':'portable','status':'completed','started_at':'2026-11-15T11:59:00Z',
+        job={'id':987,'name':'portable','status':'completed','started_at':'2026-11-15T11:59:00Z',
              'completed_at':'2026-11-15T12:05:00Z','steps':[{'name':'Upload bundle','conclusion':'success'}]}
         artifact={'id':123,'name':'axiom-portable-pipeline-l1','expired':False,'created_at':'2026-11-15T12:01:00Z',
              'workflow_run':{'id':42,'repository_id':42,'head_sha':SHA},'digest':'sha256:'+hashlib.sha256(blob).hexdigest()}
@@ -182,7 +182,7 @@ class BundleTests(unittest.TestCase):
                 '/projects/42/repository/files/.gitlab-ci.yml?ref='+SHA:{'content':base64.b64encode(CONFIG).decode()}}
         if provider=='bamboo':
             responses={'/rest/api/latest/result/PROJ-PLAN-42.json?expand=artifacts':{
-                'buildResultKey':'PROJ-PLAN-42','lifeCycleState':'Finished','vcsRevisionKey':SHA,
+                'key':'PROJ-PLAN-42','lifeCycleState':'Finished','vcsRevisionKey':SHA,
                 'artifacts':{'artifact':[{'name':'axiom-portable-pipeline-l1','link':{'href':'https://scm.example/artifact.zip'}}]}}}
         class FakeReader:
             base='https://scm.example'
