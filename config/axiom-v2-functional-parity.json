@@ -8,7 +8,7 @@
     {
       "id": "FP-01",
       "title": "Governance-Quellen verwalten",
-      "state": "pending",
+      "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
       "negative_tests": [],
@@ -18,7 +18,7 @@
     {
       "id": "FP-02",
       "title": "Änderungen an Vorgaben vorbereiten",
-      "state": "pending",
+      "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
       "negative_tests": [],
@@ -198,7 +198,7 @@
     {
       "id": "FP-20",
       "title": "Reviews, Validierung und Kommunikation unterstützen",
-      "state": "pending",
+      "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
       "negative_tests": [],
@@ -252,8 +252,8 @@
         "--truncated"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/dcr_response.py:adapt_provider_response",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -670,8 +670,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/dcr_evaluation.py:evaluate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -948,8 +948,8 @@
         "--source-id"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/dcr_manifest.py:build_manifest",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -973,8 +973,8 @@
         "--output"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/generate_document_consistency_review_model.py:generate_model",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2335,8 +2335,8 @@
         "report",
         "start-native"
       ],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/requirement_application.py:run",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3145,8 +3145,8 @@
         "--output-markdown"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/dcr_structure.py:validate_model",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3199,8 +3199,8 @@
         "--response"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/dcr_semantics.py:validate_semantic_response",
+      "state": "in_progress",
       "evidence": []
     },
     {

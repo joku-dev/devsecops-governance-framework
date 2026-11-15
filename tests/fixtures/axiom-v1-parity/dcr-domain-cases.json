@@ -1,0 +1,611 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "source_sha256": {
+    "schemas/agent-review-receipt.schema.json": "f0925fdbc86fbdf79742939964d8a91f29c49e1c81e27ad49614a2706dc81384",
+    "schemas/app-architecture-evidence.schema.json": "5a5427b41bcb581427c0f307570bc403205f7f4b7cfd011fad16121a81ecaedd",
+    "schemas/app-devsecops-evidence.schema.json": "81e77da94aeb337c3ccd36c7050d1e764105df088398f36484d4185584f99cc8",
+    "schemas/architecture-exception.schema.json": "9f1f41d9396abd7b19fc4174f3ad286595545c045e807d63b10eba4badb3cf52",
+    "schemas/architecture-guardrail.schema.json": "678d9a3d1d37c1a2e4a34596e652a7ab40fce3a58ff979a55f6b4b6e7c09424d",
+    "schemas/architecture-level.schema.json": "ffe132f91725cbb43dcada66dbf778fd7a545be5d6aa832649cd9de77ee47ef8",
+    "schemas/architecture-release-candidate.schema.json": "02154f5147784504f54324b3e9f7d48482c9f3699ac69d311d9bc618fd7f4882",
+    "schemas/architecture-results-index.schema.json": "86350a7ebb10029e4954ad3021ce70228f30f635d61a2408f6b55c2bc8673745",
+    "schemas/authorized-source-baseline.schema.json": "5b6dfb14d651e8e5c786e81c20482365430428e27dcc7371a4a4de4fd11eac1c",
+    "schemas/blocking-mode-alignment-model.schema.json": "b49707e908322932394e51689974892729b9ca99991e14a80dcc9222246e0b7f",
+    "schemas/blocking-mode-alignment.schema.json": "a0facc07a24a26b209fbbe2f77c89312f4d13efa6500d400a10e34d4bc788b45",
+    "schemas/blocking-readiness-model.schema.json": "bf906fc3e0c724c110a7fb73175750916c4b5601646568657d4b8dee9235b745",
+    "schemas/blocking-readiness.schema.json": "541fd5da3319bedda2319f055ded69398e83c15161bc20e508b5c719b096ac4a",
+    "schemas/consolidated-l1-assessment.schema.json": "8fc4912c035fc27ec98d3114851e34f5722744e16c1fd008a627d35a869e2ded",
+    "schemas/control-coverage.schema.json": "bbc1a176a0c93e45d54bcabcf354aff2f3de80dc6a74026f19395294c5423485",
+    "schemas/control-evidence-assurance.schema.json": "81b795e1ed918102a0931fd0f501217814ede52009da6e8157b76392b4c99c97",
+    "schemas/control.schema.json": "9ef4fb9b6b1fb01af2c609b55800aa0e667d8518093c3476d04279f8b3fef0de",
+    "schemas/document-consistency-finding-ledger.schema.json": "5181435cad9244fcce48cf6b2551938d7965d253b8956be8d29a5e308652cad9",
+    "schemas/document-consistency-human-decision.schema.json": "d73998050b3d77741f583f15a63b926562df7f895bb5497e604b5b579a4e496b",
+    "schemas/document-consistency-operating-model.schema.json": "12f8fc534ef69b8659c82a9d40cb6ed6d89e0425a46226c99f84656851da0c5f",
+    "schemas/document-consistency-provider-adapter-config.schema.json": "6b965d39cea0b914121b031c90b6e744076b5700edfa8810feeb64714caeda15",
+    "schemas/document-consistency-provider-projection.schema.json": "83ae80f32e3c91e96fd6bcb14a1321d3c4aded60ad7fa2d6912e26861d0f529f",
+    "schemas/document-consistency-public-projection.schema.json": "ed739c8c879cd984aa1f2156998f45f284569b3c146b738df3cef0ae64052fb7",
+    "schemas/document-consistency-review-manifest.schema.json": "eef05976df2ca7f5b8e71059ff2116c5f6d0f1060a90ccb50126dc1e2b3dab57",
+    "schemas/document-consistency-review-model.schema.json": "69fe1ee24bdb1307ba5efc0fa39b683c4d6ed52974060607e168ae03b917410b",
+    "schemas/document-consistency-review-package.schema.json": "3115037017e53c770a3f4fb9e9fc92738905dd81fe575de80ae2c2a4c7f153e0",
+    "schemas/document-consistency-reviewer-config.schema.json": "26cbea5c4dd7cd56efc7765ff8078f6a1f7ccf42bfe393ed75f2f446918e96e9",
+    "schemas/document-consistency-rollout-decision-v2.schema.json": "4b879b7114e7663801d60e1ad3dde10ba314df31436c287d37700c19bcad6739",
+    "schemas/document-consistency-rollout-decision.schema.json": "3f2c519c6efb4f592971cfdc67851abe9b6e0773f59ca485d4b36acbe4e0c812",
+    "schemas/document-consistency-semantic-catalog-run-package.schema.json": "f34ff557e07ad5b812adea1e4a1a065076f3e97277ce75195b82767f634efb36",
+    "schemas/document-consistency-semantic-evaluation-catalog.schema.json": "47009e5d665d005548ce96ae4b49e4d7da0fc4c36f7878abe4a259282d5e0627",
+    "schemas/document-consistency-semantic-evaluation-report.schema.json": "60d8f81a62dc7d7f0de898a11f4298cfabc72a582646f7c285793a3fd077de08",
+    "schemas/document-consistency-semantic-report.schema.json": "3b97cd1f2993873c1b142c0b66610ab7cb603287861e31c7bd23b61b475b2c94",
+    "schemas/document-consistency-semantic-response.schema.json": "1ec7108049a1520295d59331736c5a96bf47e7cbdcce909dfef526e0ac0e652a",
+    "schemas/document-consistency-trigger-scope.schema.json": "d5e29261f4d8f7877d10d0a8938f7ba8f6f1c7061605b33c0fa088fa0c9272aa",
+    "schemas/document-control-traceability.schema.json": "04c2652cf0369555190822d7eaef82e6e29c6f477479f2ac830cef7e586bab2c",
+    "schemas/evidence-agent-provenance-index.schema.json": "17aba0b659e7b46b4602c9c546228bed6c318cab5ba0588345a0821464685a62",
+    "schemas/evidence-agent-provenance.schema.json": "7a6b5ecc51bbcf6ec62922503555f0b2425c2f954fdcb188b9fe415a25b5d334",
+    "schemas/evidence-attestation-assessment.schema.json": "9e5829f7c133ecfbcd69a4700e425cf8c6bf8a4e1f27a4dbede4338726f4dc46",
+    "schemas/evidence-attestation.schema.json": "6df21fb724034b2c9be121c9463738c48fd557b1a436a8a095c45cba49b43dac",
+    "schemas/evidence-collection-attempt.schema.json": "82a43ebd3621ad36fecda742358b9666156edfeb58a42fdbb8b479585cf0cc46",
+    "schemas/evidence-collector-contract.schema.json": "5a459970f8f5a9bfb4c5c2ebbaaf88cb0d1d8ad43792c81a6e33158af87ad8c1",
+    "schemas/evidence-collector-record.schema.json": "3c6d78c1b7cbbc66a4143184ab1744484af972457834d5504ae25bcae808d719",
+    "schemas/evidence-freshness-policies.schema.json": "7491a5d84c6a36d53b7db277fab4354f79b530a8201268d3a873bfe68cf4c27d",
+    "schemas/evidence-trust-model.schema.json": "f2ebf17b209998eec7161af2372926fdf3cf542e887970d3214979c2d89ebbe3",
+    "schemas/evidence-trust-record.schema.json": "151424a5f283e4b7591397602c02205e0e5ddaeb2c3cc6dd76313be00f04acb9",
+    "schemas/evidence-trust-root-registry.schema.json": "8eb254a77d004d5a90717db97391f6c842326f7f04b752889c36ff0d569efbfa",
+    "schemas/evidence.schema.json": "fcc8f769de0d82c18415385e75511722b325b4bcdb6a5356610fdd38a4b38626",
+    "schemas/governance-compliance-result.schema.json": "2fba6acb9c61f159f8a0075f6b77f0895c23e481c34b4219570ff0cfdefae47d",
+    "schemas/governance-consumer-acceptance.schema.json": "39a89cf20b933be7fc330179ce344e0f3b9e1ef91f593119a2b9acf040db0ad6",
+    "schemas/governance-consumer-action-receipt.schema.json": "1b261101ab06adc0536eb86a126d8cbf2b7a7aa6d038f6ec7f35ef4d21defc11",
+    "schemas/governance-consumer-action-request.schema.json": "52dc3043217b430587866ca6553fc353b3526bf2d26208abc5259317b3ad212d",
+    "schemas/governance-consumer-profile.schema.json": "b0a36c31933e31106969c582b52c27f4c01b381667f02f6f2ed2a085a246ca59",
+    "schemas/governance-consumer-receipt.schema.json": "397ff74c74d385b017e9adae05882646fa2df95fe187c023b4aabd78ee155a2e",
+    "schemas/governance-consumer-roles.schema.json": "a7515d48ffd450cb41f5d3a96aa53dac20a943e17369ee7e2825acf06db55e52",
+    "schemas/governance-document-catalog.schema.json": "f3769dfc221a5d4e6392cecb895f7251b5bc7b8c50d09a831e563efd8367d4f1",
+    "schemas/governance-document-rendering.schema.json": "f02a3ad286f8978afb41bb4b2119ac7357e39de9be2d01556ddf8e6d81205a14",
+    "schemas/governance-graph.schema.json": "e5e886908cb97a3372c3f455b7bf829f9f5e835898cb51d35b30211a43d87a0a",
+    "schemas/governance-lifecycle-action-index.schema.json": "224434b2b9f59631cf97214d806679617a9b559312c7914134d75476cc827be6",
+    "schemas/governance-lifecycle-action-transaction.schema.json": "5bad663f1d6abbe40dab49e52180643d7019be94df93a6a03c188c72f489e527",
+    "schemas/governance-lifecycle-architecture-source.schema.json": "a4018968fa16c1978a48344daf714a4564cf5b0049cb04c03ec9ff6617b39e9a",
+    "schemas/governance-lifecycle-candidate-context.schema.json": "c9378c1a57d53a8d98ce8484f5d920467e9a2ebb8e37c7795749222e9f598975",
+    "schemas/governance-lifecycle-candidates.schema.json": "64f2bab84ce2807b6b677aa1c23613a857f62c8851c91fc5a5172d28bffad441",
+    "schemas/governance-lifecycle-closure-index.schema.json": "e4b1d90835ac224460e4321cd1a66bf0f18495ec4a9f8ba6bffa3d4d5a6d7ba6",
+    "schemas/governance-lifecycle-closure-transaction.schema.json": "3c5a31739e8507eaf1675196b3f968afa013097ac1d4bd0f6b16c818995a3585",
+    "schemas/governance-lifecycle-closure-v0.2.schema.json": "7226a8f7640fa9a1c8e4fe6ed1388b355626dddbb153aaae75a62fd75071b099",
+    "schemas/governance-lifecycle-closure.schema.json": "1d817260954bc311890e99cee3e8503783a1da91cf68112e1765b1804a49eb61",
+    "schemas/governance-lifecycle-common.schema.json": "a2bb62d0c819e32d86b459694439687d21ad41cdbaef8502d180496b192aff5a",
+    "schemas/governance-lifecycle-decision-v0.2.schema.json": "68fe05269af1d706351653b1196abe2a8c2e233d2d19b45d9aca149a8d5177df",
+    "schemas/governance-lifecycle-decision.schema.json": "821ea74acf08ae53b40d96de787258a1c302c234b9187ea0363f53fa7a13af7c",
+    "schemas/governance-lifecycle-devsecops-source.schema.json": "985a5d1fed7b6aaa7a7c9e07a2e95683b3bab43a3d03f4374e7f8516ae8c4c45",
+    "schemas/governance-lifecycle-event-v0.2.schema.json": "3632fc2e858f3fe568c11fe811d36926f0a75fd8a1378e0feeb1d81858001c54",
+    "schemas/governance-lifecycle-event.schema.json": "5485a44efe75e02bb0ea7ca3cf5a50a3130dc7cc5d0dd953c0c39b9e906ef909",
+    "schemas/governance-lifecycle-exception-index.schema.json": "45e66ba93a47d2926f87a34d9642e55a8538b8ea8cf5048dad11d022835f43cb",
+    "schemas/governance-lifecycle-exception-profile.schema.json": "fa566f3924e296acc8cb8b30235fa4cbf31e2730c5cfa883a3a398fdecff8c0b",
+    "schemas/governance-lifecycle-exception-transaction.schema.json": "d39c860bae7fd603b60c0eec84dd06d3d5fc144f14b697025029c4a8b197e36e",
+    "schemas/governance-lifecycle-exception.schema.json": "c51a2b5df5916bd9f9f7e7c36870dfc98f644eb949ea7a9af6cb234466f88968",
+    "schemas/governance-lifecycle-index.schema.json": "1a33eb18d0d2a218ebe64107359431545fbe979a3d3901140d1e3de16a763d59",
+    "schemas/governance-lifecycle-live-profile-preparation.schema.json": "910c7dd119f368d9a99dec489708f266f15e35c26ea2635e5234161f85e888cc",
+    "schemas/governance-lifecycle-observation.schema.json": "4c4818c6e0f4192ffe9f96b6fb640646676f03c504bb476bb6d256c5bb80b438",
+    "schemas/governance-lifecycle-operating-acceptance.schema.json": "657846cfb69777e8583065dc9e5b5ab4b79f186152a2f494977fcff6fd33d959",
+    "schemas/governance-lifecycle-overview.schema.json": "d8266c8a599cbcbb183628e8e564ca197002701cab234fe6b5cc13c5e8106050",
+    "schemas/governance-lifecycle-personal-channel-probe.schema.json": "9606e8bb9fe0505cdc23b537907d184a084ee2abff457344529f14cc94f07dd5",
+    "schemas/governance-lifecycle-pilot-action-receipt.schema.json": "ab3ae655e1cd9456e1603a7d1c9c692a6d22b6a0682f10b582507c6580405efa",
+    "schemas/governance-lifecycle-pilot-action-request.schema.json": "a91acc87204d37f3b6d3ed4dbb18bb9508ef20cbb8897cecc3f02a4a91756e00",
+    "schemas/governance-lifecycle-pilot-operating.schema.json": "84e4ba7a6ecb5846906432db0254669fe3e8a0e0a9a86b9bdc7ce005140b6222",
+    "schemas/governance-lifecycle-pilot-receipt.schema.json": "17e55b61f645a508c13947711c8b908d85e4d372fb931957cbf719d804360347",
+    "schemas/governance-lifecycle-pilot-role-binding.schema.json": "9c6dbba31757f6ba392cdd411a8496dfd51488371e4fc60e65ab6d9f5de456a1",
+    "schemas/governance-lifecycle-profile.schema.json": "68e304e2ba294a56e121974c639d8fa92d2cf981f921d7e06bcbc6ef1e0694e2",
+    "schemas/governance-lifecycle-remediation-v0.2.schema.json": "e20a86faa9da9c340f7e9c784338ecc06e85998f87988d177c498bbba4ebcf51",
+    "schemas/governance-lifecycle-remediation.schema.json": "cd60920f97c0f6cda95cca773cd97840d631d59761ab60e619a4176139ca053c",
+    "schemas/governance-lifecycle-transaction.schema.json": "55fd33fa183f83983616b87db6244a1fb005d3985c2adefb80961088aa0b59bb",
+    "schemas/governance-operations-report.schema.json": "6c78a625a3e136a64f1c4bdda311b85379d1c2f3c3b82bd5dadaa72c23a65ed7",
+    "schemas/governance-repository-security-model.schema.json": "2215b08f5768f6cc66c6433d91970a2f5a90614ed967460fe6067ece0cfdcfde",
+    "schemas/governance-repository-security-report.schema.json": "ad3af768f8fdf2adb2f8053a6c6a5316048d0d0733e1a97a8e6a446673933026",
+    "schemas/governance-requirement-catalog.schema.json": "23299224e838159bf511a4616850360cd64fa883e2e455e643b20dc49ab65741",
+    "schemas/governance-requirement.schema.json": "0e948ec0c1765cf22523b849ce234eda8a7eb26536b8b552568e45ef780593ad",
+    "schemas/governance-results-index.schema.json": "54d16e1d1eb83dcd68cf07239d2688c8258f4331af8c327eac696e9df5b52e4d",
+    "schemas/governance-run-input.schema.json": "7dbddb60e930b1145b951097fede10d9da4c2bd445130a8be09c75e0031d0122",
+    "schemas/governance-workbench-draft.schema.json": "c848655c6db434117b6d7bac7fc90102b6a3c37148dc6ab5246f6e04de73346c",
+    "schemas/harmonized-requirements-coverage.schema.json": "8b7bbf5129da40fd8f6f159c5029ccc4b21f21840241ad9382a8ef94bbd3debc",
+    "schemas/harmonized-requirements-maturity-mapping.schema.json": "746f08a147ec70696a03388dd4e4a810769568e7f97c9ba9f20d36789f22d532",
+    "schemas/harmonized-requirements-maturity-report.schema.json": "8c0ecec2b67fe201947423b49ed06b744c97a80bfb6cc7df55dc6272ca0c5260",
+    "schemas/harmonized-requirements.schema.json": "fc1d9b39e77a81d1587801097d4522d3b8c2ef32a2a3c64d9355cf247b97ea5a",
+    "schemas/intake-candidate-v1.schema.json": "5044a4489645ad9e114430a76376f59fb8a3b8cfe0ad9f55c39e9d7abb51fae9",
+    "schemas/intake-conflict.schema.json": "34817c73c73403037d4026ba01e5c51725db86d99e2e9f19851af8c74cbefe2e",
+    "schemas/intake-health.schema.json": "a3193da244aaa253c4e12533303aa30c35088a5b4e25b1949f42113a113ae03e",
+    "schemas/intake-operation-event.schema.json": "42bbd6616aada0bfc6cacbf1394be2d5f4e64396ffe9da5cc3ee3c99d65cbbf2",
+    "schemas/measured-container-security.schema.json": "093918b73086c345a683e190c982a3e471bd501d2c99fce9bf74019a43e50324",
+    "schemas/measured-l1-assessment.schema.json": "6f729d78c75ca394de25b449a5f2844a2fc4b65e6fd0da37ef3d8fede1fe666b",
+    "schemas/multi-consumer-readiness.schema.json": "b0d53ae8f7dac0961e9c136a0ad023bc1749ca770a92faab2c9bab3e40659649",
+    "schemas/native-requirement-source.schema.json": "280166cf0ca3207a02bbea3d26e175ab91e95527b559552aa95a390a863c49e6",
+    "schemas/pipeline-evidence-input.schema.json": "5e95ab6e235b3626d965346d988a369f79c3487ef23606d7e95b876c58d4b4bb",
+    "schemas/platform-context.schema.json": "22ba4b8be812cb8b152382a29433307762c3c156bec657b51ab9fb5e9a9d1913",
+    "schemas/portable-consumer-registry-v1.schema.json": "4d574fbee5c12122944333fee49a0bb6358c0b0adf810f7359fff1ab2372da0a",
+    "schemas/portable-consumer-service-v1.schema.json": "1a394a08b28d19596ad64bfd478720ec885ba19824327c2f3b31b87c636f7894",
+    "schemas/portable-context-v1.schema.json": "e3a24610b1280fdcc5f62fe74dc5f8cb62e8820f388b2e804babdcfcbed5a4c2",
+    "schemas/portable-intake-bundle-v2.schema.json": "e9a801ddf87eccc72a1a010fae9d65d50b2d8ec5b7ee57a239082de0a47b805d",
+    "schemas/portable-intake-policy-v2.schema.json": "5321b509af33fbe7e8d8fb94987327b0fa70b88d2b5d72d75f78bed175593372",
+    "schemas/portable-intake-receipt-v2.schema.json": "755d90650944d23b8d81a367477b5428ce38cb2abc62e2c478e162dd750d652c",
+    "schemas/portable-profile-v1.schema.json": "99698e0f656ee92e83244b51488abdb096394b1054ec5823454af1119b0b0813",
+    "schemas/portable-result-v1.schema.json": "8549948a1dde53a66c1117a8843459182e2c54ad508c1e8615dcf78ff6ff144d",
+    "schemas/pra-requirement-platform-review.schema.json": "a3e4337b7dd070cb7315adea2cdf9931fe7d03a786ff2c07b6cdeea858d2a31a",
+    "schemas/provider-role-candidate-v1.schema.json": "aeeddf0c25cb6a21335a79318b3a227afdf7b98db4bffb657e4963489134bebc",
+    "schemas/quality-marker.schema.json": "9ebdb4c801bed8028ac3493a1119d549c070ec06b439ce88fc6fbb49748ebae5",
+    "schemas/release-signing-policy.schema.json": "c51027a6b4875a8e77d332255e8ab1d31da7ce1b7d78c15102b47da05e74f0ae",
+    "schemas/release-tag-integrity.schema.json": "c6eaf63990ba2ae29e530fad3e716d36359a880a25de99da7ba7a2bd49cb06dd",
+    "schemas/replay-triage.schema.json": "7719fc6b2afb059c89eac51605c95c8be3e9109dbe2c7824201146a447457aee",
+    "schemas/requirement-artifact-register.schema.json": "05c805b27736e4bec9b292eee629befa31c2d4fda14fa8ee98b6ab3e72c20086",
+    "schemas/requirement-authority-ledger.schema.json": "29f3fa95fd3cae07b654fe3529fa082f8981965e9e8963f00c170244d0259e5e",
+    "schemas/requirement-lifecycle-case.schema.json": "b96a6e72d4da2533c166e2724dda8816558187068211d608cb292b3ee9ef7546",
+    "schemas/requirement-policy-equivalence-review.schema.json": "5e58318a1c43019d3c17e484b0a76329c3d9d12c09a8287765eb980b411968b2",
+    "schemas/review-gate.schema.json": "702be8196233328fd33639d1adebb8984c0e82bd973c04635a8795491bde6771",
+    "schemas/runtime-package-v1.schema.json": "7b046cd74c20dc6833b9c56ad9d20017503d30205de18a5d0577d1df4117b274",
+    "schemas/source-document-process-status.schema.json": "f0395013e12f28fd23020428c2c144d1b77c8ebeee2bf13a3e9830dc3d4abda6",
+    "schemas/source-document-register.schema.json": "b0a0c41dc248caee83506269c8727ef13034bc575b083f33403fa3690075f801",
+    "schemas/staging-deployment-result.schema.json": "8669744ad3200880faace869e4d525b7473e43fd39d830c66f91a7724e7c4506",
+    "schemas/standards-requirement-mapping.schema.json": "e53d62821f5e1fa5caec938808947193faae8aa8f0315249c9d853218f810cf3",
+    "schemas/typed-evidence-result.schema.json": "ef1c805a184fab8efa3ebbc88a3c379fad78d1877873bef90b773379137a3c01",
+    "schemas/typed-evidence-results-index.schema.json": "42765b087880db5d40610d572d7ce6aa63892f83615443953a2fdf896b24b5b0",
+    "schemas/vulnerability-scan-input.schema.json": "b2f5d69d7f092f71761864d4c11d26ae5250924b79f72877e60321a0bf5509e3",
+    "schemas/waiver.schema.json": "01a91616c35782172ae5a837bcccc29b6e8703cd4d8e909f594bdf68847ca2bc",
+    "scripts/adapt_document_consistency_provider_response.py": "fc4b63e54ef5145d0e684fa9dd3c838b9acd090000841f19309e32b20b2eb37c",
+    "scripts/generate_document_consistency_review_model.py": "abd2ebbac17c7c3081332478e9e65c61f60360cb7c837ae0a901b143e86e7861",
+    "scripts/lib/__init__.py": "3b5a8e2d67e7a7fad7d398b141de8f55b0a1801624b3fe65bc3bd0e9c23cec83",
+    "scripts/lib/explicit_requirements.py": "0340b44ecbd306442f42e209d489e255034582af79a62c9e6f4bd3d896f9bb04",
+    "scripts/lib/source_document_text.py": "e9ec50a9da77cb4cc294fd0f48283cc564228206d4bb84658c8c9b2c6f061ebc",
+    "scripts/validate_document_consistency_review.py": "32377feeed1df941934e24d825ce20ecbc077db4df87d98da2cdc8a90b36105f",
+    "scripts/validate_document_consistency_semantic_review.py": "8589c79994491038d1386d6884b33e906482e4e216aeea28616228df832fc6b3",
+    "tests/fixtures/document-consistency-review-semantic/valid-response.json": "aabd6793be87161c1ffdf1918a8bff0ffc2ab7a9b97cd04b4259b9e2fc83e8ef",
+    "tests/fixtures/document-consistency-review-semantic/provider-projection.json": "15833509c120507e71ea3866931fb7ab70ff71698138eecc24cfe9c6e8e6ddba",
+    "tests/fixtures/document-consistency-review-semantic/synthetic-human-decision.json": "ca8cfff85f88a912b84b4ffd4aca893cadd580522d61a5194acef782587fd44b",
+    "tests/fixtures/document-consistency-review-semantic/source-a.md": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c",
+    "tests/fixtures/document-consistency-review-semantic/source-document-register.yaml": "9f8378415b581c04e67caeaa398f76d70cc45fd6edf1785aa7092d5cc5127fa5",
+    "tests/fixtures/document-consistency-review-semantic/manifest.json": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+    "tests/fixtures/document-consistency-review-semantic/source-b.md": "9d7206dee2cc59e18754ee7e64057a38130a9f9938a9368bf6d07c6b38aa43b4",
+    "tests/fixtures/document-consistency-review-semantic/fabricated-quote-response.json": "cc7ecec238d20dda8984390b5d946e98cce51a51ddf4031c2c8d9ff2fa4ba7eb",
+    "tests/fixtures/document-consistency-review-semantic/not-run-response.json": "6fed8c579d12199f3d5c83535e8a4fad826c7bba19d3e3e2b0dfd02289552ff8",
+    "model/governance/document-consistency/provider-adapter-config-v1.json": "d50a36b59998cc0989ed59d356e9624f06ca0eb0a48306ba7c46c2498f982414"
+  },
+  "expected": {
+    "model": {
+      "schema_version": "1.0.0",
+      "reviewed_commit": "0000000000000000000000000000000000000000",
+      "sources": [
+        {
+          "id": "SYN-SRC-A-001",
+          "status": "intake",
+          "version": "synthetic-1",
+          "source_path": "docs/governance/source-documents/SYN-SRC-A-001.md",
+          "sha256": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c",
+          "identifiers": [],
+          "extraction_format": "markdown",
+          "extraction_warnings": []
+        },
+        {
+          "id": "SYN-SRC-B-001",
+          "status": "intake",
+          "version": "synthetic-1",
+          "source_path": "docs/governance/source-documents/SYN-SRC-B-001.md",
+          "sha256": "9d7206dee2cc59e18754ee7e64057a38130a9f9938a9368bf6d07c6b38aa43b4",
+          "identifiers": [],
+          "extraction_format": "markdown",
+          "extraction_warnings": []
+        }
+      ],
+      "roles": [],
+      "local_role_profiles": [],
+      "requirements": [
+        {
+          "id": "SYN-A-REQ-001",
+          "source_id": "SYN-SRC-A-001",
+          "strength": "MUST",
+          "mandatory": true,
+          "section_ref": "SEC-1AF874DC6A37",
+          "owner_role_id": null,
+          "verification_artifact_id": null,
+          "open_gap": "Owner and verification mappings are outside this requirements-only input."
+        },
+        {
+          "id": "SYN-A-REQ-002",
+          "source_id": "SYN-SRC-A-001",
+          "strength": "MUST",
+          "mandatory": true,
+          "section_ref": "SEC-C0771023092E",
+          "owner_role_id": null,
+          "verification_artifact_id": null,
+          "open_gap": "Owner and verification mappings are outside this requirements-only input."
+        },
+        {
+          "id": "SYN-B-REQ-001",
+          "source_id": "SYN-SRC-B-001",
+          "strength": "MUST",
+          "mandatory": true,
+          "section_ref": "SEC-9E02F3662745",
+          "owner_role_id": null,
+          "verification_artifact_id": null,
+          "open_gap": "Owner and verification mappings are outside this requirements-only input."
+        },
+        {
+          "id": "SYN-B-REQ-002",
+          "source_id": "SYN-SRC-B-001",
+          "strength": "SHOULD",
+          "mandatory": false,
+          "section_ref": "SEC-21076919A0DE",
+          "owner_role_id": null,
+          "verification_artifact_id": null,
+          "open_gap": null
+        }
+      ],
+      "gates": [],
+      "artifacts": [],
+      "evidence_links": [],
+      "relationships": [],
+      "derivation_relationships": [],
+      "topic_authorities": []
+    },
+    "structure": {
+      "report_version": "1.0.0",
+      "reviewed_commit": "0000000000000000000000000000000000000000",
+      "scope": {
+        "source_ids": [
+          "SYN-SRC-A-001",
+          "SYN-SRC-B-001"
+        ],
+        "source_count": 2
+      },
+      "overall_status": "partial",
+      "semantic_review": "not_run",
+      "rules": [
+        {
+          "rule_id": "DCR-001",
+          "status": "pass",
+          "details": []
+        },
+        {
+          "rule_id": "DCR-002",
+          "status": "pass",
+          "details": []
+        },
+        {
+          "rule_id": "DCR-003",
+          "status": "not_in_scope",
+          "details": [
+            "model contains no role references"
+          ]
+        },
+        {
+          "rule_id": "DCR-004",
+          "status": "pass",
+          "details": [
+            "3 mandatory requirement(s) have an explicit scope gap for owner/verification mapping."
+          ]
+        },
+        {
+          "rule_id": "DCR-005",
+          "status": "not_in_scope",
+          "details": [
+            "no structured gate records supplied"
+          ]
+        },
+        {
+          "rule_id": "DCR-006",
+          "status": "not_in_scope",
+          "details": [
+            "no structured evidence links supplied"
+          ]
+        },
+        {
+          "rule_id": "DCR-007",
+          "status": "pass",
+          "details": []
+        },
+        {
+          "rule_id": "DCR-008",
+          "status": "not_in_scope",
+          "details": [
+            "no topic-authority map supplied"
+          ]
+        },
+        {
+          "rule_id": "DCR-009",
+          "status": "pass",
+          "details": []
+        },
+        {
+          "rule_id": "DCR-010",
+          "status": "pass",
+          "details": []
+        }
+      ],
+      "limitations": [
+        "Structural checks do not prove semantic consistency, completeness, implementation, or compliance.",
+        "not_in_scope rules remain open for a later structured governance model.",
+        "Known conversion gaps, tracked DOCX revisions, comments, or OCR-required PDF pages block a clean structural result.",
+        "Owner metadata is review routing and does not confirm source authority."
+      ]
+    },
+    "semantics": {
+      "valid-response.json": {
+        "report_version": "1.0.0",
+        "report_type": "document_consistency_semantic_validation_report",
+        "review_id": "synthetic-conflict-validation",
+        "overall_status": "synthetic_only",
+        "scope": {
+          "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+          "source_ids": [
+            "SYN-SRC-A-001",
+            "SYN-SRC-B-001"
+          ]
+        },
+        "execution": {
+          "mode": "synthetic_fixture",
+          "status": "completed",
+          "provider": null,
+          "model": null,
+          "prompt_version": "synthetic-1",
+          "configuration_version": "synthetic-1",
+          "truncated": false
+        },
+        "formal_validation": {
+          "status": "pass",
+          "errors": []
+        },
+        "semantic_review": {
+          "status": "synthetic_only",
+          "finding_count": 1,
+          "validated_count": 1,
+          "quarantined_count": 0,
+          "context_missing_count": 0,
+          "not_assessable_count": 0
+        },
+        "human_decisions": {
+          "status": "not_run",
+          "decisions": []
+        },
+        "implementation_coverage": {
+          "status": "not_assessed",
+          "details": [
+            "The bounded Phase 2 validator does not assess repository or consumer implementation coverage."
+          ]
+        },
+        "findings": [
+          {
+            "finding_id": "DCR-SEM-001",
+            "category": "conflict",
+            "statement": "Synthetic fixture with two intentionally incompatible release statements.",
+            "interpretation": "The fixture marks both statements as applying to the same synthetic release context.",
+            "recommendation": "Route the synthetic case for human classification only.",
+            "semantic_state": "proposed",
+            "confidence": 0.5,
+            "applicability": {
+              "status": "same_context",
+              "rationale": "Both synthetic rows use the release context."
+            },
+            "evidence": [
+              {
+                "evidence_id": "EVID-001",
+                "source_id": "SYN-SRC-A-001",
+                "content_sha256": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c",
+                "locator": {
+                  "type": "requirement_id",
+                  "value": "SYN-A-REQ-001"
+                },
+                "excerpt": "Artifacts SHALL be approved before deployment."
+              },
+              {
+                "evidence_id": "EVID-002",
+                "source_id": "SYN-SRC-B-001",
+                "content_sha256": "9d7206dee2cc59e18754ee7e64057a38130a9f9938a9368bf6d07c6b38aa43b4",
+                "locator": {
+                  "type": "requirement_id",
+                  "value": "SYN-B-REQ-001"
+                },
+                "excerpt": "Emergency deployments MAY proceed before approval."
+              }
+            ],
+            "search_scope": null,
+            "evidence_status": "valid",
+            "disposition": "unconfirmed",
+            "validation_errors": []
+          }
+        ],
+        "limitations": [
+          "A valid excerpt proves source origin only; it does not prove the interpretation.",
+          "All validated semantic findings remain unconfirmed until a documented human decision.",
+          "Synthetic fixtures are validator evidence and are not findings about the registered sources.",
+          "No overall consistency, compliance, or implementation claim is produced.",
+          "This response is a synthetic validator fixture and not a semantic finding about repository governance sources."
+        ]
+      },
+      "fabricated-quote-response.json": {
+        "report_version": "1.0.0",
+        "report_type": "document_consistency_semantic_validation_report",
+        "review_id": "synthetic-fabricated-quote",
+        "overall_status": "synthetic_only",
+        "scope": {
+          "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+          "source_ids": [
+            "SYN-SRC-A-001",
+            "SYN-SRC-B-001"
+          ]
+        },
+        "execution": {
+          "mode": "synthetic_fixture",
+          "status": "completed",
+          "provider": null,
+          "model": null,
+          "prompt_version": "synthetic-1",
+          "configuration_version": "synthetic-1",
+          "truncated": false
+        },
+        "formal_validation": {
+          "status": "fail",
+          "errors": []
+        },
+        "semantic_review": {
+          "status": "synthetic_only",
+          "finding_count": 1,
+          "validated_count": 0,
+          "quarantined_count": 1,
+          "context_missing_count": 0,
+          "not_assessable_count": 0
+        },
+        "human_decisions": {
+          "status": "not_run",
+          "decisions": []
+        },
+        "implementation_coverage": {
+          "status": "not_assessed",
+          "details": [
+            "The bounded Phase 2 validator does not assess repository or consumer implementation coverage."
+          ]
+        },
+        "findings": [
+          {
+            "finding_id": "DCR-SEM-002",
+            "category": "terminology",
+            "statement": "Synthetic response containing a fabricated quotation.",
+            "interpretation": "The quotation does not exist at the supplied locator.",
+            "recommendation": null,
+            "semantic_state": "proposed",
+            "confidence": 0.99,
+            "applicability": {
+              "status": "same_context",
+              "rationale": "Synthetic fixture."
+            },
+            "evidence": [
+              {
+                "evidence_id": "EVID-001",
+                "source_id": "SYN-SRC-A-001",
+                "content_sha256": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c",
+                "locator": {
+                  "type": "requirement_id",
+                  "value": "SYN-A-REQ-001"
+                },
+                "excerpt": "Artifacts SHALL always bypass approval."
+              }
+            ],
+            "search_scope": null,
+            "evidence_status": "invalid",
+            "disposition": "quarantined",
+            "validation_errors": [
+              "EVID-001: excerpt does not exactly match the located requirement"
+            ]
+          }
+        ],
+        "limitations": [
+          "A valid excerpt proves source origin only; it does not prove the interpretation.",
+          "All validated semantic findings remain unconfirmed until a documented human decision.",
+          "Synthetic fixtures are validator evidence and are not findings about the registered sources.",
+          "No overall consistency, compliance, or implementation claim is produced.",
+          "This response is intentionally invalid and must be quarantined."
+        ]
+      },
+      "not-run-response.json": {
+        "report_version": "1.0.0",
+        "report_type": "document_consistency_semantic_validation_report",
+        "review_id": "provider-not-run",
+        "overall_status": "not_run",
+        "scope": {
+          "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+          "source_ids": [
+            "SYN-SRC-A-001",
+            "SYN-SRC-B-001"
+          ]
+        },
+        "execution": {
+          "mode": "provider",
+          "status": "not_run",
+          "provider": null,
+          "model": null,
+          "prompt_version": "phase2-draft-1",
+          "configuration_version": "phase2-draft-1",
+          "truncated": false
+        },
+        "formal_validation": {
+          "status": "pass",
+          "errors": []
+        },
+        "semantic_review": {
+          "status": "not_run",
+          "finding_count": 0,
+          "validated_count": 0,
+          "quarantined_count": 0,
+          "context_missing_count": 0,
+          "not_assessable_count": 0
+        },
+        "human_decisions": {
+          "status": "not_run",
+          "decisions": []
+        },
+        "implementation_coverage": {
+          "status": "not_assessed",
+          "details": [
+            "The bounded Phase 2 validator does not assess repository or consumer implementation coverage."
+          ]
+        },
+        "findings": [],
+        "limitations": [
+          "A valid excerpt proves source origin only; it does not prove the interpretation.",
+          "All validated semantic findings remain unconfirmed until a documented human decision.",
+          "Synthetic fixtures are validator evidence and are not findings about the registered sources.",
+          "No overall consistency, compliance, or implementation claim is produced.",
+          "No provider was invoked and no semantic result is claimed."
+        ]
+      }
+    },
+    "adapted": {
+      "schema_version": "1.0.0",
+      "response_type": "document_consistency_semantic_response",
+      "review_id": "provider-adapter-regression",
+      "source_manifest_sha256": "87f57dc0303b29702a1471a48ce7de85999b4fac117f28e687bcbc257e602b16",
+      "execution": {
+        "mode": "provider",
+        "status": "completed",
+        "provider": "provider-under-test",
+        "model": "model-under-test",
+        "prompt_version": "phase2-provider-neutral-1",
+        "configuration_version": "dcr-adapter-0001",
+        "truncated": false
+      },
+      "findings": [
+        {
+          "finding_id": "DCR-SEM-001",
+          "category": "conflict",
+          "statement": "Synthetic fixture with two intentionally incompatible release statements.",
+          "interpretation": "The fixture marks both statements as applying to the same synthetic release context.",
+          "recommendation": "Route the synthetic case for human classification only.",
+          "semantic_state": "proposed",
+          "confidence": 0.5,
+          "applicability": {
+            "status": "same_context",
+            "rationale": "Both synthetic rows use the release context."
+          },
+          "evidence": [
+            {
+              "evidence_id": "EVID-001",
+              "source_id": "SYN-SRC-A-001",
+              "content_sha256": "b8b7de8fee8b49969a621494c6d697011ace8640896eeda22459f4d59773250c",
+              "locator": {
+                "type": "requirement_id",
+                "value": "SYN-A-REQ-001"
+              },
+              "excerpt": "Artifacts SHALL be approved before deployment."
+            },
+            {
+              "evidence_id": "EVID-002",
+              "source_id": "SYN-SRC-B-001",
+              "content_sha256": "9d7206dee2cc59e18754ee7e64057a38130a9f9938a9368bf6d07c6b38aa43b4",
+              "locator": {
+                "type": "requirement_id",
+                "value": "SYN-B-REQ-001"
+              },
+              "excerpt": "Emergency deployments MAY proceed before approval."
+            }
+          ],
+          "search_scope": null
+        }
+      ],
+      "limitations": [
+        "Provider output is untrusted until repository validation completes."
+      ]
+    }
+  }
+}

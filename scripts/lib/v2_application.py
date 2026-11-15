@@ -112,10 +112,16 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
-    if command not in ('evidence','collector','workbench','evaluate'):
+    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr'):
         raise ValueError('v2_entrypoint_not_supported')
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='dcr':
+        from lib.dcr_application import run as dcr_run
+        return dcr_run(arguments,root,settings)
+    if command=='requirements':
+        from lib.requirement_application import run as requirements_run
+        return requirements_run(arguments,root,settings)
     if command=='evaluate':
         import argparse
         from lib.full_evaluation import evaluate, persist

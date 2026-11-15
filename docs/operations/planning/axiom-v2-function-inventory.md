@@ -1,6 +1,8 @@
 # V2-Funktions- und Einstiegspunktinventar
 
-Stand: V2-Kandidat, 15. November 2026. Der Vertrag in
+Stand: V2-Kandidat, 15. November 2026. Die folgende Altpfadliste bleibt das
+Inventar der Foundation. Neue neutrale Gegenstücke und ihr offener Abnahmestand
+stehen verbindlich in der [Paritätsmatrix](axiom-v2-functional-parity.md). Der Vertrag in
 `config/axiom-v2-distribution.json` bestimmt die installierten Dateien.
 Die Prüfung umfasst jeden Python-Einstiegspunkt direkt unter `scripts/`.
 Ein fehlender Altpfad kann vom V2-Launcher nicht nachgeladen werden.
@@ -15,13 +17,13 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | Bereich | V2-Pfad und Grenze |
 | --- | --- |
 | 1 Quellen verwalten | Workbench: lokale Entwürfe, Extraktion und explizites Adapterprofil für Draft-PR/MR. |
-| 2 Vorgabenänderungen | Workbench: Review vorbereiten; fachliche Entscheidung weiterhin beim Menschen. |
+| 2 Vorgabenänderungen | Workbench sowie private `requirements`-/`dcr`-Kandidatenarbeitsbereiche. Entscheidungen und Publikation bleiben explizit; vollständige installierte Abnahme offen. |
 | 3 Herkunft | Vorhandene Modelle und Berichte lesend; Generatoren im Entwicklungscheckout. |
 | 4 Kontrollmodell | Versionierte Modelle im Paket; Modellpflege im Entwicklungscheckout. |
-| 5 Kontrollen auswerten | Gemeinsamer Runtime-Kern. Pipeline-Gate umfasst fünf Kontrollen; kein neuer Vollnachweis für alle 16. |
+| 5 Kontrollen auswerten | Pipeline-Gate weiterhin fünf Kontrollen. Separates `evaluate --domain controls` erhält alle 46 V1-Berichtszeilen; Eingabeevidenz/Trust bleiben separat. |
 | 6 OPA | Ein gepinntes OPA je Zielplattform; gemeinsame Policies und Auswertungslogik. |
 | 7 Architekturmodell | Vorhandene Modell-/Baseline-Dateien erhalten; keine neue normative Architekturarbeit. |
-| 8 Architektur-Readiness | Vorhandene Berichte lesend; Autoren-/Generatorpfade bleiben im Entwicklungscheckout. |
+| 8 Architektur-Readiness | `evaluate --domain architecture` führt alle vier bisherigen Gates mit detailliertem Bericht aus; keine neue normative Architekturarbeit. |
 | 9 Nachweise sammeln | Explizite SCM-/CI-Profile, Provider-Adapter, Bundle-Verifikation und frische V2-Daten. |
 | 10 Baselines | Bestehende unveränderte Baselines konsumieren; Freigabe neuer Baselines bleibt separater Prozess. |
 | 11 Intake | `evidence` und `collector`; keine automatische Übernahme alter Indizes in aktive Queue. |

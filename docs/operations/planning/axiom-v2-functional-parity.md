@@ -94,6 +94,62 @@ explicit profile and tests.
   Private raw inputs, hashes and receipts remain outside Git. Existing accepted
   results and other producer contexts keep their original findings and Trust.
 
+## Candidate requirement and DCR authoring increment
+
+The same Goal now adds private `requirements` and `dcr` application routes.
+`requirements` exposes source import, native source preparation, decisions,
+whole/partial activation, reanalysis, next-decision/report, migration completion
+and publication preparation. It shares the existing requirement business rules
+and extracts orchestration into an explicit workspace context. The V1 CLI is
+neither imported nor dispatched. A frozen V1 native flow produces exactly the
+same eight data/publication files in V2 at the same synthetic time.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance requirements \
+  --workspace authoring init
+python scripts/axiom_v2.py --instance /private/operator/v2-instance requirements \
+  --workspace authoring report
+python scripts/axiom_v2.py --instance /private/operator/v2-instance requirements \
+  --workspace authoring put-native --file /private/operator/requirement.md --name requirement.md
+python scripts/axiom_v2.py --instance /private/operator/v2-instance requirements \
+  --workspace authoring start-native --case-id RLC-NEW \
+  --source-path docs/governance/requirements/native-sources/requirement.md
+python scripts/axiom_v2.py --instance /private/operator/v2-instance dcr \
+  --workspace authoring structural --review-id review-001 --source-id DSCB-STD-REQ-001
+```
+
+Each workspace seeds committed `docs/` and `model/` data into a fresh private
+node-owned store. A writer takes an exclusive lock, works on a separate staging
+copy and publishes a hash-bound immutable data generation only after success.
+Exceptions leave the previous generation visible. Invalid paths, symlinks,
+tampered generations, different nodes/runtimes and concurrent writers fail
+closed. Historical generations stay available; existing workspaces are never
+reset by `init`. Runtime updates will require explicit workspace migration.
+
+All workspace results declare `authority_scope: candidate_only` and
+`official_acceptance: false`. Historical approval vocabulary inside copied
+payloads is preserved for faithful authoring; it does not confer authority on
+the new node. Explicit decision/activation commands prepare candidate changes.
+They do not approve a real source, transfer personal consent, publish a baseline,
+update accepted result indexes or activate blocking. Registered candidate sources
+remain unavailable for requirement derivation.
+
+`dcr` exposes structural review, normalization of a supplied provider projection,
+validation of a supplied semantic response and comparison with either existing
+synthetic evaluation catalogue. It invokes no provider/model. Valid semantic
+findings remain unconfirmed; fabricated quotes are quarantined. Responses bind
+the review ID and exact stored manifest digest, and existing review evidence is
+not overwritten. Frozen V1 structure, positive/negative semantic cases and
+adapter outputs match the neutral domain modules exactly.
+
+A candidate data generation is not a reviewed Git working tree. Its generated
+manifest therefore records a null `reviewed_commit`; the resulting `DCR-009`
+freshness finding remains visible. Candidate structure/semantic checking is
+implemented, while reviewed Git publication, full DCR operation/catalogue-run
+preparation and installed authoring acceptance remain open matrix work. These
+routes do not yet constitute full document-workflow parity or a production DCR
+rollout. Existing schema/report versions and human decision boundaries remain.
+
 ## Remaining work in the same Goal
 
 The full matrix stays authoritative for completion. Continue with neutral

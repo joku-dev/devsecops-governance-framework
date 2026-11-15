@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "source_sha256": {
+    "scripts/manage_requirement_lifecycle.py": "fd2003f1ad343c0d5e448304df00cdf0056a8e1d5f359cfb84333d00ae938040",
+    "scripts/lib/__init__.py": "3b5a8e2d67e7a7fad7d398b141de8f55b0a1801624b3fe65bc3bd0e9c23cec83",
+    "scripts/lib/requirement_lifecycle.py": "ff0a87bf6f51d992283b6102dc5d90da6eb83b6e1c4b4eaaa7daec1f997a522a",
+    "scripts/lib/explicit_requirements.py": "0340b44ecbd306442f42e209d489e255034582af79a62c9e6f4bd3d896f9bb04",
+    "scripts/lib/source_document_text.py": "e9ec50a9da77cb4cc294fd0f48283cc564228206d4bb84658c8c9b2c6f061ebc"
+  },
+  "at": "2026-11-15T12:00:00Z",
+  "operations": [
+    [
+      "start-native",
+      "--case-id",
+      "RLC-PARITY",
+      "--source-path",
+      "docs/governance/requirements/native-sources/parity.md"
+    ],
+    [
+      "decide",
+      "--case-id",
+      "RLC-PARITY",
+      "--proposal-id",
+      "RLC-PARITY-P0001",
+      "--decided-by",
+      "synthetic-owner",
+      "--decision-role",
+      "owner",
+      "--rationale",
+      "Synthetic technical fixture",
+      "--disposition",
+      "approve",
+      "--classification",
+      "new",
+      "--runtime-enforcement",
+      "none"
+    ],
+    [
+      "activate",
+      "--case-id",
+      "RLC-PARITY",
+      "--effective-from",
+      "2026-11-15",
+      "--commit",
+      "synthetic"
+    ],
+    [
+      "generate-publication"
+    ]
+  ],
+  "expected_files": {
+    "model/requirements/requirement-authority-ledger.yaml": "sources: []\n",
+    "model/requirements/governance-requirement-catalog.yaml": "schema_version: 1.0.0\ncatalog_id: GOVERNANCE-REQUIREMENT-CATALOG\nversion: 0.1.0\nnext_sequence: 2\nrequirements:\n- id: GRQ-000001\n  active_revision: 1\n  revisions:\n  - revision: 1\n    status: effective\n    title: Retain candidate audit history\n    statement: Candidate changes shall retain their audit history.\n    normative_strength: MUST\n    domain: devsecops\n    owner: synthetic-owner\n    approved_at: '2026-11-15T12:00:00Z'\n    effective_from: '2026-11-15'\n    effective_until: null\n    source_refs:\n    - NATIVE-PARITY-001\n    relationships:\n    - type: derived_from\n      target: NATIVE-PARITY-001\n    decision_ref: docs/governance/change-requests/GCR-PARITY.md\n    authorized_derivations: []\n    runtime_enforcement: none\n",
+    "model/requirements/lifecycle-cases/RLC-PARITY.json": "{\n  \"schema_version\": \"1.0.0\",\n  \"case_id\": \"RLC-PARITY\",\n  \"intake_type\": \"native_git\",\n  \"status\": \"activated\",\n  \"created_at\": \"2026-11-15T12:00:00Z\",\n  \"source\": {\n    \"source_id\": \"NATIVE-PARITY-001\",\n    \"source_path\": \"docs/governance/requirements/native-sources/parity.md\",\n    \"source_sha256\": \"7489266cd90dadd5d6bf062e20dd45270ce35fad042716c42f7ce0f3e79012f6\",\n    \"owner\": \"synthetic-owner\",\n    \"decision_ref\": \"docs/governance/change-requests/GCR-PARITY.md\"\n  },\n  \"proposals\": [\n    {\n      \"proposal_id\": \"RLC-PARITY-P0001\",\n      \"source_requirement_id\": \"NATIVE-PARITY-001\",\n      \"title\": \"Retain candidate audit history\",\n      \"statement\": \"Candidate changes shall retain their audit history.\",\n      \"normative_strength\": \"MUST\",\n      \"domain\": \"devsecops\",\n      \"analysis\": {\n        \"suggested_classification\": \"new\",\n        \"confidence\": 1.0,\n        \"candidate_matches\": [],\n        \"method\": \"no_catalog_match\"\n      },\n      \"decision\": {\n        \"disposition\": \"approve\",\n        \"classification\": \"new\",\n        \"target_requirement_id\": null,\n        \"decided_by\": \"synthetic-owner\",\n        \"decision_role\": \"owner\",\n        \"decided_at\": \"2026-11-15T12:00:00Z\",\n        \"decision_ref\": \"docs/governance/change-requests/GCR-PARITY.md\",\n        \"rationale\": \"Synthetic technical fixture\",\n        \"authorized_derivations\": [],\n        \"runtime_enforcement\": \"none\"\n      },\n      \"activation\": {\n        \"requirement_id\": \"GRQ-000001\",\n        \"revision\": 1,\n        \"effective_from\": \"2026-11-15\",\n        \"commit\": \"synthetic\"\n      }\n    }\n  ]\n}\n",
+    "docs/governance/requirements/native-sources/parity.md": "---\nid: NATIVE-PARITY-001\ntitle: Retain candidate audit history\nnormative_strength: MUST\ndomain: devsecops\nowner: synthetic-owner\ndecision_ref: docs/governance/change-requests/GCR-PARITY.md\n---\nCandidate changes shall retain their audit history.\n",
+    "docs/governance/requirements/GRQ-000001/v0001.md": "---\nid: GRQ-000001\nrevision: 1\nstatus: effective\nnormative_strength: MUST\ndomain: devsecops\nowner: synthetic-owner\neffective_from: '2026-11-15'\nsource_refs:\n- NATIVE-PARITY-001\ndecision_ref: docs/governance/change-requests/GCR-PARITY.md\n---\n\n# GRQ-000001: Retain candidate audit history\n\nCandidate changes shall retain their audit history.\n",
+    "docs/publishing/governance-requirement-catalog/publication.yaml": "schema_version: 1\nid: GOVERNANCE-REQUIREMENT-CATALOG\nversion: 0.1.0\ntitle: Governance Requirement Catalog\nlanguage: de-DE\nstatus: approved\npublication_class: normative\nsource_of_truth: canonical_requirement_catalog\noutputs:\n- html\n- docx\n- pdf\nsections:\n- path: chapters/01-authority.md\n  kind: chapter\n- path: requirements/GRQ-000001.md\n  kind: requirement\n",
+    "docs/publishing/governance-requirement-catalog/chapters/01-authority.md": "# Governance Requirement Catalog\n\nThis publication is generated from the active revisions in `model/requirements/governance-requirement-catalog.yaml`. The Requirement Authority Ledger determines the normative representation for every migrating source. Catalog revisions are authoritative only for their recorded active scope.\n",
+    "docs/publishing/governance-requirement-catalog/requirements/GRQ-000001.md": "---\nid: GRQ-000001\ntitle: Retain candidate audit history\nstatus: effective\nnormative_level: required\nowner: synthetic-owner\neffective_from: '2026-11-15'\nsource_ids:\n- NATIVE-PARITY-001\ncontrol_ids: []\nevidence_types:\n- requirement-lifecycle-decision\nsupersedes: null\n---\n\nCandidate changes shall retain their audit history.\n"
+  }
+}

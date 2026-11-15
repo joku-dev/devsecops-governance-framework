@@ -76,6 +76,11 @@ def source_digest():
              ROOT/'scripts/validation-toolchain.env', ROOT/'config/portable-runtime-compatibility.json', ROOT/'requirements-validation.lock', *sorted((ROOT/'schemas').glob('portable-*-v1.schema.json'))]
     paths.extend([ROOT/'scripts/lib/v2_distribution.py', ROOT/'scripts/lib/v2_source.py', ROOT/'scripts/lib/functional_parity.py', ROOT/'config/axiom-v2-distribution.json'])
     paths.extend([ROOT/'scripts/lib/full_evaluation.py',ROOT/'scripts/lib/architecture_assessment.py',ROOT/'scripts/lib/tool_integrity.py'])
+    paths.extend(ROOT/'scripts/lib'/name for name in ('candidate_workspace.py','requirement_application.py','requirement_workspace.py','requirement_lifecycle.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_application.py', 'dcr_manifest.py', 'dcr_structure.py', 'dcr_semantics.py', 'dcr_response.py', 'dcr_evaluation.py'))
+    paths.extend([ROOT/'scripts/generate_document_consistency_review_model.py',ROOT/'scripts/lib/explicit_requirements.py',ROOT/'scripts/lib/source_document_text.py'])
+    paths.extend(sorted((ROOT/'schemas').glob('document-consistency-*.schema.json')))
+    paths.extend(sorted((ROOT/'model/governance/document-consistency').glob('*')))
     paths.extend([ROOT/'schemas/axiom-v2-full-assessment.schema.json',ROOT/'schemas/axiom-v2-functional-parity.schema.json'])
     return canonical_digest({str(path.relative_to(ROOT)):file_digest(path) for path in paths})
 

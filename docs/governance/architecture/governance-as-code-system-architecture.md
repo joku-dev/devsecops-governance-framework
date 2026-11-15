@@ -7,7 +7,7 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-15, V2 source `79ca1f253ae6aa7b33b70c8c79948c9bdf9b3fb8`; documentation follow-up in PR #395 |
+| Last implementation review | 2026-11-15, V2 source `79ca1f253ae6aa7b33b70c8c79948c9bdf9b3fb8`; foundation documentation in PR #395; functional-parity increments in PR #396 (current source scope and open acceptance: `config/axiom-v2-functional-parity.json`) |
 | Operating observation | Separate V2 Mac/Linux candidate tested at `756a28e`; retained VM service at `adc4643`. Candidate test processes are stopped; no V2 production service takeover |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
@@ -108,7 +108,7 @@ operating acceptance.
 | Integration | Explicit provider ports, native adapters and reviewed profiles | Missing capabilities remain missing/error/unsupported, never an inferred pass |
 | Distribution | Exact-source offline package, private fresh prefix and own tools | Product release/signing/support and long-lived service lifecycle need explicit decisions |
 | State ownership | Independent node, credentials, key, queue and projection | No shared writable Mac/VM database or inherited publisher authority |
-| Scope | All 22 repository capabilities mapped in the V2 function inventory | Source authoring and V1-only operations must not be presented as installed V2 features |
+| Scope | Complete frozen V1 parity matrix, first full diagnostic and candidate authoring routes | Remaining capabilities and installed proof remain open; see [functional parity](../../operations/planning/axiom-v2-functional-parity.md) |
 
 Product expansion should use these boundaries and the evidence/decision table
 in section 11. Existing approved policies and source registers still own
@@ -248,6 +248,8 @@ released consumer wrappers keep their original pins and authority.
 |---|---|---|
 | V2 product entry / instance | Finite commands; fresh node/key/state; exact source/tool/dependency binding | `scripts/axiom_v2.py`, `scripts/lib/v2_application.py` |
 | Neutral evaluation | Context/input contracts, physical evidence preparation, unchanged OPA decisions and gate | `scripts/governance_runtime.py`, `scripts/lib/portable/contracts.py`, `runtime.py`, `scripts/control_evaluation.py` |
+| Full diagnostic assessment | All 46 V1 control report records and four architecture gates; explicit frozen inputs/pinned OPA; private unverified report-only receipts | `scripts/lib/full_evaluation.py`, `architecture_assessment.py`, `tool_integrity.py` |
+| Candidate data authoring | Finite requirement/DCR routes, explicit workspace context, lock/staging/generation transactions; no inherited authority | `scripts/lib/candidate_workspace.py`, `requirement_application.py`, `requirement_workspace.py`, `dcr_application.py`, `dcr_*.py` |
 | Neutral verification | Bundle integrity, source/config/run binding, freshness/replay, immutable receipts | `scripts/intake_portable_evidence.py`, `scripts/lib/portable_intake/bundle.py`, `schemas/portable-intake-*-v2.schema.json` |
 | Collection / proposal coordination | Bounded poll/work, frozen batches, retries, independent candidate reconciliation | `scripts/portable_consumer_intake.py`, `scripts/lib/portable_intake/controller.py`, `publisher.py`, `candidate_index.py` |
 | Operational persistence | Node-owned SQLite transactions, receipts, raw bytes, backups and inactive restore candidate | `scripts/lib/portable_intake/store.py`, `scripts/lib/consumer_intake_store.py` |
@@ -266,7 +268,7 @@ released consumer wrappers keep their original pins and authority.
 
 ```mermaid
 flowchart TB
-    Entry["axiom_v2: init / check / runtime / evidence / collector / workbench"] --> App["Instance binding and application routing"]
+    Entry["axiom_v2: finite application commands"] --> App["Instance binding and application routing"]
     App --> Core["Evaluation / verification / orchestration / local review"]
     Core --> Ports["provider_ports: reviewed composition"]
     Ports --> Native["providers: context / transport / discovery / operations / assurance / Workbench handoff"]
@@ -392,6 +394,27 @@ database/node identifier does not transfer authority; a new V2 operating profile
 must be reviewed and accepted for its own scope.
 
 ## 6. Runtime View
+
+### Candidate authoring transaction
+
+`requirements` and `dcr` bind an explicit instance and named private workspace.
+Committed document/model data seed the initial generation. A writer locks the
+workspace, clones the current verified data generation into staging and runs one
+reviewed capability with explicit paths. Success publishes a new content-bound
+generation and atomically updates its pointer; failure leaves the previous
+pointer and historical generations intact. Source CLI dispatch and mutable
+process-global source roots are absent.
+
+The wrapper always identifies candidate-only authority. Historical payload
+approval fields and explicit candidate decision/activation commands confer no
+new human or operating acceptance. DCR schema resources belong to the installed
+product, while source bytes belong to the workspace. Candidate generations have
+no reviewed Git commit; DCR-009 retains that missing freshness evidence. Supplied
+semantic responses are normalized/validated without invoking a model; findings
+remain unconfirmed or quarantined. Full DCR operating/publication and installed
+parity are still open. This state is separate from the old accepted report-only
+pilot and its fingerprinted files.
+
 
 ### End-to-End Flow
 
