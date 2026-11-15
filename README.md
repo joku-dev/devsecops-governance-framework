@@ -14,31 +14,9 @@ controlled feedback. DevSecOps is a core application area of this runtime.
 Aktueller Funktionsumfang: [detaillierter Katalog mit 22 Bereichen](docs/operations/guides/repository-function-catalog.md)
 und [vollständige technische Funktionsliste](docs/operations/guides/repository-technical-function-inventory.md).
 <!-- DOCS_REFRESH_LATEST:start -->
-## Implementation readback — 15 November 2026
+## PR #393: Fix verification of portable runtime CLI evidence bundles (`6b557fefe295`)
 
-Implementation source: `adc4643bb7a5c962e4efb1525298ad9e652c73d2`. The
-[documentation reconciliation](docs/operations/status/repository-documentation-reconciliation-2026-11-15.md)
-separates merged capabilities, the installed VM revision and remaining live acceptance.
-
-- The private [Review Workbench](docs/operations/guides/governance-review-workbench.md)
-  uses **Dokument wählen → Prüfen → Weitergeben** and shows exact requirement-to-rule
-  bindings as review support. Only explicit declarations enter extraction; notes
-  remain proposals. The public Viewer is read-only.
-- macOS and Ubuntu VM operation are available in parallel with separate keys,
-  sessions and drafts. The [Linux VM guide](docs/operations/guides/linux-vm-installation.md)
-  covers Ansible installation, exact-commit updates, SSH access and verified backups.
-  Mac and VM were aligned to `adc4643` on 15 November, with Workbench checks
-  passed. The [dated platform state](docs/operations/status/current-governance-platform-state.md)
-  records that observation and the diagnostic replay separately from accepted
-  consumer evidence. A Git merge does not deploy a host.
-- The [portable runtime and engineering matrix](docs/operations/planning/platform-portability-acceptance.md)
-  are merged through #377. The shared evaluator, provider adapters, evidence verifier,
-  persistent collector, recovery and prepared offline package are implemented.
-  Pipeline-L1 covers five mapped controls; eleven remain `not_evaluated`.
-- The VM retains its existing legacy collector configuration. Portable migration,
-  publisher handoff and live GitLab/Bamboo/Bitbucket acceptance remain separate steps.
-  Target versions and URLs remain open; measured 1,000/2,000-repository fixtures
-  establish engineering evidence, not production capacity approval.
+- Fix verification of portable runtime CLI evidence bundles
 <!-- DOCS_REFRESH_LATEST:end -->
 [Kapazitätsbewertung für 300 bis 1.500 Consumer-Repositories](docs/operations/planning/consumer-scale-capacity-assessment.md).
 Der [GitHub-Lifecycle-Pilot](docs/operations/status/governance-lifecycle-current-state.md)
