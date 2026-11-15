@@ -20,10 +20,7 @@ API = 'https://api.github.com'
 REPOSITORY = re.compile(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+')
 
 
-class AccessFailure(Exception):
-    def __init__(self, code, retryable=False, delay=60):
-        super().__init__(code)
-        self.code, self.retryable, self.delay = code, retryable, delay
+from lib.provider_errors import AccessFailure, retry_delay
 
 
 def collection_error(error):
@@ -128,17 +125,6 @@ class Client:
                 raise AccessFailure('pagination_limit')
 
 
-def retry_delay(headers):
-    value = headers.get('Retry-After')
-    try:
-        if value:
-            try:
-                return max(1, float(value))
-            except ValueError:
-                return max(1, parsedate_to_datetime(value).timestamp() - time.time())
-        return max(60, float(headers.get('X-RateLimit-Reset', 0)) - time.time())
-    except (ValueError, TypeError):
-        return 60
 
 
 def git_environment(token):

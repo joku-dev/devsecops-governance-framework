@@ -28,8 +28,12 @@ const WorkspaceNavigation = (() => {
     } catch (_) { /* A malformed URL is an empty state, never an API path. */ }
     return {page:'invalid'};
   }
-  function safePR(url) {
-    return typeof url === 'string' && /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/pull\/[0-9]+$/.test(url);
+  function safePR(url, instance) {
+    try {
+      const value=new URL(url), origin=new URL(instance);
+      return value.protocol==='https:' && origin.protocol==='https:' && value.origin===origin.origin &&
+        !value.username && !value.password && !value.search && !value.hash && value.pathname!=='/';
+    } catch (_) { return false; }
   }
   function nextTask(draft) {
     if (draft.pr) return {label:'Veröffentlichung ansehen', tab:'packet'};

@@ -162,11 +162,8 @@ def migrate_legacy(root, mapping, destination, *, fault=None):
         raise ValueError('legacy_mapping_required')
     # Configuration must explicitly establish the legacy GitHub origin and aggregate scope.
     profiles = mapping['repositories']
-    for name, identity in profiles.items():
-        if (identity['scm']['provider']!='github' or identity['ci_provider']!='github-actions'
-                or identity.get('legacy_scope')!='workflow-aggregate' or name!=identity['scm']['path']):
-            raise ValueError('unproven_legacy_identity')
-        repository_key(identity['scm']); endpoint(identity['ci_instance'])
+    from lib.provider_ports import validate_legacy_profiles
+    validate_legacy_profiles(profiles)
     if destination.exists():
         raise ValueError('migration_requires_fresh_destination')
     if destination.resolve().is_relative_to(root.resolve()) or root.resolve().is_relative_to(destination.resolve()):

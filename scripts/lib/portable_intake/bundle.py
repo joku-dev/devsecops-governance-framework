@@ -25,7 +25,7 @@ def require_storage(root, policy):
     limit=policy.get('storage_budget_bytes',2*1024**3)
     reserve=policy.get('storage_reserve_bytes',8*1024**3)
     if used+2*MAX_TOTAL>limit or shutil.disk_usage(root).free<reserve+4*MAX_TOTAL:
-        from lib.consumer_github import AccessFailure
+        from lib.provider_errors import AccessFailure
         raise AccessFailure('storage_budget_exhausted')
 
 
@@ -33,7 +33,7 @@ def verifier_digest():
     paths=[*sorted((ROOT/'scripts/lib/portable_intake').glob('*.py')),
            *sorted((ROOT/'schemas').glob('portable-intake-*-v2.schema.json')),
            ROOT/'scripts/intake_portable_evidence.py',ROOT/'scripts/lib/consumer_intake_store.py',
-           ROOT/'scripts/lib/consumer_github.py',ROOT/'scripts/lib/secure_http.py',
+           ROOT/'scripts/lib/provider_errors.py',ROOT/'scripts/lib/secure_http.py',
            ROOT/'scripts/lib/private_credentials.py',ROOT/'scripts/lib/safe_archive.py',
            ROOT/'scripts/lib/evidence_trust.py',ROOT/'model/evidence/evidence-trust-model.yaml',
            ROOT/'model/evidence/evidence-freshness-policies.yaml']

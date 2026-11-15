@@ -6,7 +6,7 @@ from jsonschema import Draft202012Validator,FormatChecker
 from lib.portable.contracts import canonical_digest,endpoint,repository_key,valid_id
 from .bundle import read_json,timestamp
 from .controller import task_key
-from .operations import run_link,branch
+from lib.provider_ports import run_link,branch,validate_candidate_composition
 from .publisher import path_for
 
 ROOT=Path(__file__).resolve().parents[3]
@@ -22,8 +22,7 @@ def validate_candidate(document):
         raise ValueError('candidate_instance_not_canonical')
     if any(not part or part in ('.','..') or any(ord(c)<33 or c in '\\?#' for c in part) for part in scm['path'].split('/')):
         raise ValueError('candidate_repository_path_invalid')
-    if (scm['provider'],ci['provider']) not in {('github','github-actions'),('gitlab','gitlab-ci'),('bitbucket-dc','bamboo')}:
-        raise ValueError('candidate_provider_pair_mismatch')
+    validate_candidate_composition(scm['provider'],ci['provider'])
     locator={k:ci[k] for k in ('run_id','job_id','attempt')}
     if repository_key(scm)!=document['repository_key'] or task_key({'scm':scm,'ci':ci},locator)!=document['native_execution_key']:
         raise ValueError('candidate_identity_digest_mismatch')

@@ -15,13 +15,13 @@ import subprocess
 import sys
 import zipfile
 
-from lib.consumer_github import AccessFailure
+from lib.provider_errors import AccessFailure
 from lib.consumer_intake_store import atomic_json, lock
 from lib.portable.contracts import ROOT
 from lib.portable.runtime import read_json
 from lib.portable_intake.controller import Queue, ReaderPool, poll, validate_profiles, work, instant
 from lib.portable_intake.store import Store
-from lib.portable_intake.operations import GitWorkspace, SCM, Writer, require_compatible, run_link
+from lib.provider_ports import GitWorkspace, SCM, Writer, require_compatible, run_link, validate_api_endpoint
 from lib.portable_intake.publisher import observe_committed, publish, route_owned, active_batch
 from lib.private_credentials import check_private_file
 
@@ -50,7 +50,7 @@ def central_operations(queue,profiles,config,pool,*,at,allow_publish=True):
     import tempfile
     from urllib.parse import urlsplit
     from lib.portable.contracts import endpoint
-    from lib.portable_intake.transport import Reader
+    from lib.provider_ports import Reader
     routing=read_json(ROOT/'config/portable-operations.json')
     if set(routing)!={'schema_version','default_owner','central','routes'} or routing['schema_version']!=1:
         raise ValueError('invalid_portable_operations_configuration')
@@ -65,11 +65,9 @@ def central_operations(queue,profiles,config,pool,*,at,allow_publish=True):
         if not re.fullmatch(r'reader-[a-zA-Z0-9_-]{1,80}',central[name]):raise ValueError('central_reader_reference_required')
     for name in ('publisher_credential','git_publisher_credential'):
         if not re.fullmatch(r'publisher-[a-zA-Z0-9_-]{1,80}',central[name]):raise ValueError('central_publisher_reference_required')
-    origin=endpoint(central['scm']['instance'])
     for name in ('remote','api_url'):
-        parsed=urlsplit(central[name])
-        allowed={origin}|({'https://api.github.com'} if origin=='https://github.com' and name=='api_url' else set())
-        if endpoint('https://'+parsed.netloc) not in allowed:raise ValueError('central_credential_issuer_mismatch')
+        try:validate_api_endpoint(central[name],central['scm']['instance'])
+        except ValueError:raise ValueError('central_credential_issuer_mismatch') from None
     def token(name):
         path=Path(config['credentials_directory'])/central[name];check_private_file(path)
         value=path.read_text().strip()

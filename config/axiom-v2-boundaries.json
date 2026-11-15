@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "core_files": [
+    "scripts/governance_runtime.py",
+    "scripts/intake_portable_evidence.py",
+    "scripts/portable_consumer_intake.py",
+    "scripts/serve_governance_workbench.py",
+    "scripts/lib/application_source.py",
+    "scripts/lib/provider_errors.py",
+    "scripts/lib/portable/contracts.py",
+    "scripts/lib/portable/runtime.py",
+    "scripts/lib/portable_intake/bundle.py",
+    "scripts/lib/portable_intake/candidate_index.py",
+    "scripts/lib/portable_intake/controller.py",
+    "scripts/lib/portable_intake/publisher.py",
+    "scripts/lib/portable_intake/store.py"
+  ],
+  "composition": ["scripts/lib/provider_ports.py"],
+  "adapters": "scripts/lib/providers",
+  "compatibility_facades": [
+    "scripts/lib/portable/adapters.py",
+    "scripts/lib/portable_intake/assurance.py",
+    "scripts/lib/portable_intake/operations.py",
+    "scripts/lib/portable_intake/transport.py"
+  ],
+  "browser_core": [
+    "scripts/workbench/app.js",
+    "scripts/workbench/consumer-view.js",
+    "scripts/workbench/workspace-navigation.js"
+  ]
+}

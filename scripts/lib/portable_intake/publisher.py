@@ -6,13 +6,14 @@ from pathlib import Path
 import re
 import tempfile
 
-from lib.consumer_github import AccessFailure
+from lib.provider_errors import AccessFailure
 from lib.consumer_intake_store import file_digest
 from lib.portable.contracts import canonical_digest, repository_key
 from lib.portable.runtime import read_json
 from .bundle import safe_path, timestamp, verifier_digest
 from .controller import instant, profile_key, task_key
-from .operations import GitWorkspace, require_compatible, run_link
+from lib.provider_ports import (GitWorkspace, require_compatible, run_link,
+                                reject_legacy_activity, legacy_consumer_relinquished)
 
 
 def candidate(receipt,locator,generated_at):
@@ -129,18 +130,6 @@ def update_batch(queue,batch_id,**fields):
         queue.db.execute('UPDATE portable_batches SET '+','.join(k+'=?' for k in fields)+' WHERE id=?',(*fields.values(),batch_id))
 
 
-def reject_legacy_activity(queue,scm,installed):
-    tables={r[0] for r in queue.db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-    if 'batches' in tables and queue.db.execute("SELECT 1 FROM batches WHERE state IN ('prepared','open','accepted_pending_sync') LIMIT 1").fetchone():
-        raise AccessFailure('legacy_publication_requires_reconciliation')
-    for change in scm.changes(prefixes=('automation/devsecops/','automation/vm-consumer/')):
-        if change['state']=='open' and change['source'].startswith(('automation/devsecops/','automation/vm-consumer/')):
-            raise AccessFailure('legacy_intake_pr_open')
-    # Preserve the existing GitHub workflow's in-flight guard on a same-host handoff.
-    if scm.profile['provider']=='github':
-        for status in ('queued','in_progress','waiting','pending','requested'):
-            path=scm.route+'/actions/workflows/intake-governance-result.yml/runs?status='+status
-            if any(scm.reader.pages(path,'workflow_runs')):raise AccessFailure('legacy_intake_running')
 
 
 def freeze(queue,profiles,routing,node_id,*,base,target,at,committed_root):
@@ -174,10 +163,7 @@ def freeze(queue,profiles,routing,node_id,*,base,target,at,committed_root):
         started=queue.get('shadow_started:'+task['profile'])
         if (not match or started is None or at-started<86400 or match['at']<started+86400
                 or match.get('verifier_source_digest')!=verifier_digest()):continue
-        if receipt['producer']['scm']['provider']=='github':
-            # The retained legacy route must also relinquish the same consumer.
-            from lib.consumer_intake import owner
-            if owner(committed_root,receipt['producer']['scm']['path'])!='vm':continue
+        if not legacy_consumer_relinquished(committed_root,receipt['producer']['scm']):continue
         selected.append(task['key']);files[path_for(document)]=canonical_text(document)
     if not selected:return None
     manifest={'schema_version':1,'at':instant(at),'tasks':selected,'files':files,

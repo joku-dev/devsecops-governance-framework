@@ -13,7 +13,7 @@ import tempfile
 import threading
 from concurrent.futures import ThreadPoolExecutor
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 import zipfile
 
 import yaml
@@ -347,50 +347,28 @@ class WorkbenchTests(unittest.TestCase):
         with patch.object(wb.shutil,'which',return_value='/usr/bin/gh'), self.assertRaisesRegex(ValueError,'confirmation'):
             self.app.submit_pr(draft['draft_id'],{})
 
-    def test_pr_adapter_uses_isolated_worktree_and_candidate_only_paths(self):
-        draft=self.upload()
-        self.app.enable_pr=True
-        commands=[]
-        head=draft['context']['commit']
-        def fake_run(args,cwd,timeout=30):
-            commands.append(args)
-            if args[:3]==['git','rev-parse','HEAD']: return head
-            if args[:3]==['git','status','--porcelain']: return ''
-            if args[:3]==['gh','repo','view']: return json.dumps({'nameWithOwner':'owner/repo','defaultBranchRef':{'name':'main'}})
-            if args[:2]==['git','ls-remote']: return head+'\trefs/heads/main'
-            if args[:3]==['git','worktree','add']:
-                Path(args[-2]).mkdir()
-            if args[:3]==['gh','pr','create']: return 'https://github.com/owner/repo/pull/12'
-            return ''
-        with patch.object(wb.shutil,'which',return_value='/usr/bin/gh'),patch.object(wb,'run',side_effect=fake_run):
-            result=self.app.submit_pr(draft['draft_id'],{'confirm_publication':True})
-        self.assertEqual(result['url'],'https://github.com/owner/repo/pull/12')
-        tree=self.app.state_dir/('pr-'+draft['draft_id'])
-        reg=yaml.safe_load((tree/wb.REGISTER).read_text())
-        self.assertEqual(reg['documents'][-1]['status'],'candidate')
-        self.assertFalse((tree/'workbench-package.json').exists())
-        self.assertFalse(any('merge' in command for command in commands))
-        self.assertTrue(any(command[:3]==['gh','pr','create'] and '--draft' in command for command in commands))
+    def test_publication_uses_explicit_adapter_and_preserves_candidate_packet(self):
+        draft=self.upload();before=self.reg.read_bytes();self.app.enable_pr=True
+        publisher=Mock()
+        publisher.publish.return_value={'url':'https://scm.example/group/repo/-/merge_requests/12',
+            'provider':'gitlab','instance':'https://scm.example','commit':draft['context']['commit']}
+        self.app.publisher=publisher
+        result=self.app.submit_pr(draft['draft_id'],{'confirm_publication':True})
+        arguments=publisher.publish.call_args.kwargs
+        self.assertEqual(arguments['root'],self.root)
+        self.assertEqual(arguments['context'],draft['context'])
+        self.assertEqual(arguments['destination'],self.app.state_dir/('pr-'+draft['draft_id']))
+        self.assertEqual(yaml.safe_load(arguments['files'][wb.REGISTER])['documents'][-1]['status'],'candidate')
+        self.assertEqual(self.reg.read_bytes(),before)
         self.assertEqual(self.app.draft(draft['draft_id'])['pr'],result)
+        self.assertEqual(self.app.submit_pr(draft['draft_id'],{'confirm_publication':True}),result)
+        self.assertEqual(publisher.publish.call_count,1)
 
-    def test_pr_rejects_dirty_checkout_and_moved_remote(self):
-        draft=self.upload()
-        self.app.enable_pr=True
-        head=draft['context']['commit']
-        def responses(args,cwd,timeout=30):
-            if args[:3]==['git','rev-parse','HEAD']: return head
-            if args[:3]==['git','status','--porcelain']: return ' M unrelated.py'
-            return ''
-        with patch.object(wb.shutil,'which',return_value='/usr/bin/gh'),patch.object(wb,'run',side_effect=responses),self.assertRaisesRegex(ValueError,'clean tracked'):
-            self.app.submit_pr(draft['draft_id'],{'confirm_publication':True})
-        def moved(args,cwd,timeout=30):
-            if args[:3]==['git','rev-parse','HEAD']: return head
-            if args[:3]==['git','status','--porcelain']: return ''
-            if args[:3]==['gh','repo','view']: return json.dumps({'nameWithOwner':'owner/repo','defaultBranchRef':{'name':'main'}})
-            if args[:2]==['git','ls-remote']: return 'f'*40+'\trefs/heads/main'
-            return ''
-        with patch.object(wb.shutil,'which',return_value='/usr/bin/gh'),patch.object(wb,'run',side_effect=moved),self.assertRaisesRegex(ValueError,'Remote default branch differs'):
-            self.app.submit_pr(draft['draft_id'],{'confirm_publication':True})
+    def test_publication_requires_profile_even_with_executable_cli_available(self):
+        draft=self.upload();self.app.enable_pr=True
+        with patch.object(wb.shutil,'which',return_value='/usr/bin/gh'):
+            with self.assertRaisesRegex(ValueError,'SCM publication profile'):
+                self.app.submit_pr(draft['draft_id'],{'confirm_publication':True})
 
     def test_js_escapes_untrusted_source_text(self):
         if not shutil.which('node'):

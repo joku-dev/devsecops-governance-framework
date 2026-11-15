@@ -19,7 +19,12 @@ assert.match(nextTask({...draft,stale:true,pr:{url:'https://github.com/a/b/pull/
 const old={...draft,draft_id:'b'.repeat(32),created_at:'2026-11-01',stale:true};
 assert.equal(sourceDraft(sourceId,[old,draft]),draft);
 assert.equal(sourceDraft(sourceId,[{...draft,kind:'source_candidate'}]),undefined);
-assert.ok(safePR('https://github.com/a/b/pull/1'));
+assert.ok(safePR('https://github.com/a/b/pull/1','https://github.com'));
 assert.ok(!safePR('javascript:alert(1)'));assert.ok(!safePR('https://github.com.evil.invalid/a/b/pull/1'));
 assert.equal(draft.notes.length,0); // Choosing a next task never creates a note or modifies history.
 console.log('Workspace routes, safe links and state-based next actions passed.');
+
+assert.ok(safePR('https://scm.example/group/repo/-/merge_requests/12','https://scm.example'));
+assert.ok(!safePR('https://scm.example.evil/group/repo/-/merge_requests/12','https://scm.example'));
+assert.ok(!safePR('https://scm.example/review/12'));
+assert.ok(!safePR('https://user:secret@scm.example/review/12','https://scm.example'));

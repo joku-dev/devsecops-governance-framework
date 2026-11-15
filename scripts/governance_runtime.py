@@ -13,7 +13,7 @@ import subprocess
 from jsonschema import ValidationError
 import sys
 
-from lib.portable.adapters import checked_out_revision, collect_context
+from lib.provider_ports import checked_out_revision, collect_context, CI_PROVIDERS
 from lib.portable.contracts import validate
 from lib.portable.runtime import baseline, evaluate, gate, prepare_evidence, read_json, source_digest
 
@@ -33,7 +33,7 @@ def parser():
     commands = result.add_subparsers(dest='command', required=True)
     context = commands.add_parser('context', help='Normalize a real checkout and native CI/SCM facts')
     for command in (context, commands.add_parser('run', help='Collect, evaluate and map the gate mode')):
-        command.add_argument('--ci', required=True, choices=['github-actions','gitlab-ci','bamboo'])
+        command.add_argument('--ci', required=True, choices=CI_PROVIDERS)
         command.add_argument('--profile', required=True)
         command.add_argument('--checkout', default='.')
         if command is context:
