@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 785" role="img" aria-labelledby="title desc">
+<title id="title">AXIOM system context</title><desc id="desc">People maintain reviewed Git source. Consumer CI and SCM APIs supply artifacts and native context to shared runtime and adapters. Private verification proposes candidates; review and protected merge record Git history. Accepted domain results and portable candidates retain separate scopes; read-only projections apply their own contracts.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0L8 4L0 8Z" fill="#385a7c"/></marker></defs>
+<rect width="1380" height="785" fill="#f6f8fc"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#17344f}.title{font-size:24px;font-weight:700}.subtitle{font-size:15px;fill:#425b70}.label{font-size:17px;font-weight:700}.body{font-size:15px}.edge{fill:none;stroke:#385a7c;stroke-width:2;marker-end:url(#arrow)}.box{fill:white;stroke:#597b9b;stroke-width:1.5;rx:10}.core{fill:#e8f2fd}.private{fill:#fff4db}.public{fill:#e7f5ed}</style>
+<text x="35" y="35" class="title">AXIOM — system context</text>
+<text x="35" y="61" class="subtitle">Source, provider interfaces, execution and accepted publication remain separate.</text>
+<rect x="35" y="100" width="315" height="85" class="box "/>
+<text x="53" y="129" class="label">People</text>
+<text x="53" y="155" class="body">Maintainer, reviewer and operator</text>
+<rect x="35" y="260" width="315" height="90" class="box "/>
+<text x="53" y="289" class="label">Governance Git source</text>
+<text x="53" y="315" class="body">Models, contracts, frozen baselines</text>
+<rect x="500" y="100" width="350" height="85" class="box "/>
+<text x="518" y="129" class="label">SCM provider APIs</text>
+<text x="518" y="155" class="body">GitHub · GitLab · Bitbucket DC</text>
+<rect x="1010" y="100" width="335" height="85" class="box "/>
+<text x="1028" y="129" class="label">Consumer repositories</text>
+<text x="1028" y="155" class="body">Application-owned source and build</text>
+<rect x="1010" y="260" width="335" height="90" class="box "/>
+<text x="1028" y="289" class="label">CI execution</text>
+<text x="1028" y="315" class="body">GitHub Actions · GitLab CI · Bamboo</text>
+<rect x="500" y="260" width="350" height="90" class="box core"/>
+<text x="518" y="289" class="label">Shared runtime + adapters</text>
+<text x="518" y="315" class="body">Normalized context and evaluation</text>
+<rect x="1010" y="430" width="335" height="90" class="box "/>
+<text x="1028" y="459" class="label">Artifacts + native metadata</text>
+<text x="1028" y="485" class="body">Subject bytes, run / job / revision</text>
+<rect x="500" y="430" width="350" height="90" class="box private"/>
+<text x="518" y="459" class="label">Private verification / proposal</text>
+<text x="518" y="485" class="body">Original evidence, receipts, candidates</text>
+<rect x="500" y="600" width="350" height="85" class="box "/>
+<text x="518" y="629" class="label">Review + protected merge</text>
+<text x="518" y="655" class="body">Independent human approval</text>
+<rect x="35" y="600" width="315" height="85" class="box "/>
+<text x="53" y="629" class="label">Reviewed Git records</text>
+<text x="53" y="655" class="body">Domain results; separate candidates</text>
+<rect x="35" y="430" width="315" height="90" class="box public"/>
+<text x="53" y="459" class="label">Public read-only output</text>
+<text x="53" y="485" class="body">Static Viewer and documentation</text>
+<path d="M192 185V260" class="edge"/>
+<path d="M350 305H500" class="edge"/>
+<path d="M675 185V260" class="edge"/>
+<path d="M1177 185V260" class="edge"/>
+<path d="M1177 350V430" class="edge"/>
+<path d="M1010 475H920V305H850" class="edge"/>
+<path d="M675 350V430" class="edge"/>
+<path d="M675 520V600" class="edge"/>
+<path d="M500 642H350" class="edge"/>
+<path d="M192 600V520" class="edge"/>
+<path d="M35 475H15V142H35" class="edge"/>
+<text x="35" y="740" class="subtitle">Portable candidates need separate profile acceptance; existing accepted intake contracts remain in place.</text>
+</svg>
