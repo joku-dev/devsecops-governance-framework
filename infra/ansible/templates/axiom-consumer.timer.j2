@@ -1,0 +1,15 @@
+[Unit]
+Description=AXIOM consumer {{ consumer_operation }} schedule
+
+[Timer]
+OnBootSec={{ '2min' if consumer_operation == 'poll' else '3min' }}
+{% if vm_consumer_engine | default('legacy') == 'portable-v1' %}
+OnUnitInactiveSec=1min
+{% else %}
+{{ 'OnUnitActiveSec=15min' if consumer_operation == 'poll' else 'OnUnitInactiveSec=1min' }}
+{% endif %}
+RandomizedDelaySec=20
+Unit=axiom-consumer-{{ consumer_operation }}.service
+
+[Install]
+WantedBy=timers.target

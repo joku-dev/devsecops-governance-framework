@@ -1,0 +1,122 @@
+{
+  "benchmark_sha256": "1a8b6cc6987ee34a4706c5b5dc30a7da4dcef244849b43129b3d0dec1c640d5b",
+  "execution_audit": {
+    "distinct_repository_keys": 1000,
+    "expected_executions": 1100,
+    "identity_collisions": 0,
+    "matched_receipts": 1100,
+    "missing_receipts": 0,
+    "negative_decisions_verified": 110,
+    "positive_decisions_verified": 990,
+    "real_remote_publications": 0
+  },
+  "execution_count": 1100,
+  "executions_per_second": 2.8563538283479852,
+  "final_operations_disk_bytes": 62456954,
+  "hardware": {
+    "cpu_count": 10,
+    "machine": "arm64",
+    "python": "3.13.18",
+    "release": "25.6.0",
+    "system": "Darwin"
+  },
+  "identity_collisions": 0,
+  "load_profile_id": "portable-intake-synthetic-v1",
+  "maximum_queue_depth": 1100,
+  "maximum_simulated_queue_age_seconds": 3120.0,
+  "missing_receipts": 0,
+  "native_api_calls": 10447,
+  "parent_processing_wall_seconds": 385.7507827080117,
+  "preparation": {
+    "executions": 1100,
+    "fixture_disk_bytes": 25528478,
+    "repositories": 1000,
+    "usage_after": {
+      "child_cpu_seconds": 99.03169,
+      "largest_child_peak_rss_mib": 29.34375,
+      "self_cpu_seconds": 57.884795,
+      "self_peak_rss_mib": 53.453125
+    },
+    "usage_before": {
+      "child_cpu_seconds": 0.0,
+      "largest_child_peak_rss_mib": 0.0,
+      "self_cpu_seconds": 0.07471399999999999,
+      "self_peak_rss_mib": 38.3125
+    },
+    "wall_seconds": 153.60996299999533
+  },
+  "processing_wall_seconds": 385.10635100000945,
+  "production_capacity_approved": false,
+  "profile_sha256": "8a62e6db4582d1ad60e57eeb152132509e6c1e8bc38d557580ff7f50da5c85f3",
+  "real_remote_publications": 0,
+  "repository_count": 1000,
+  "runtime_source_digest": "e0b78cd2d1f9d1b946192c4e09a2ee5558bae32f26b0cef6be98f6443dedbe49",
+  "schema_version": 1,
+  "scope": "producer preparation and native fixture acquisition, file/OPA verification, durable queue/raw storage, process restart; no network latency or PR review time",
+  "source_commit": "7647cc6df3a1abe5d8df797c191d558771067b7d",
+  "synthetic": true,
+  "verifier_source_digest": "92b70e245ca2e67f5fc1afcd4cd00970525e386bc4b5677ae40bbc659010443d",
+  "worker_phases": [
+    {
+      "api_calls": 5287,
+      "counts": {
+        "held": 550,
+        "queued": 549,
+        "working": 1
+      },
+      "cycles": 28,
+      "maximum_queue_depth": 1100,
+      "maximum_simulated_queue_age_seconds": 1620.0,
+      "operations_disk_bytes": 33498127,
+      "phase": 1,
+      "rate_limit_events_total": 30,
+      "receipts": 550,
+      "recovered_tasks": 0,
+      "recovery_seconds": 0.000524458009749651,
+      "simulated_clock_elapsed_seconds": 1680.0,
+      "usage_after": {
+        "child_cpu_seconds": 49.779753,
+        "largest_child_peak_rss_mib": 29.3125,
+        "self_cpu_seconds": 145.271117,
+        "self_peak_rss_mib": 58.390625
+      },
+      "usage_before": {
+        "child_cpu_seconds": 0.0,
+        "largest_child_peak_rss_mib": 0.0,
+        "self_cpu_seconds": 0.061457,
+        "self_peak_rss_mib": 44.375
+      },
+      "wall_seconds": 193.8257835000113
+    },
+    {
+      "api_calls": 5160,
+      "counts": {
+        "held": 1100
+      },
+      "cycles": 26,
+      "maximum_queue_depth": 550,
+      "maximum_simulated_queue_age_seconds": 3120.0,
+      "operations_disk_bytes": 62456954,
+      "phase": 2,
+      "rate_limit_events_total": 59,
+      "receipts": 1100,
+      "recovered_tasks": 1,
+      "recovery_seconds": 0.0008032909972826019,
+      "simulated_clock_elapsed_seconds": 3240.0,
+      "usage_after": {
+        "child_cpu_seconds": 49.886132,
+        "largest_child_peak_rss_mib": 29.171875,
+        "self_cpu_seconds": 142.301265,
+        "self_peak_rss_mib": 57.546875
+      },
+      "usage_before": {
+        "child_cpu_seconds": 0.0,
+        "largest_child_peak_rss_mib": 0.0,
+        "self_cpu_seconds": 0.06233999999999999,
+        "self_peak_rss_mib": 44.390625
+      },
+      "wall_seconds": 191.28056749999814
+    }
+  ],
+  "worker_self_peak_rss_mib": 58.390625
+}

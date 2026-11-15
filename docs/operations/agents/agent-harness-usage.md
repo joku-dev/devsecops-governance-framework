@@ -26,6 +26,15 @@ The harness currently covers:
 - candidate source-document protection
 - released baseline protection
 - evidence context protection for non-mainline results
+- receipt allowlisting, private output, retry idempotency and separate usage counts
+- trusted-base PR metadata inspection and target/proposed contract requirements
+- prepare-only execution, mocked provider failures/timeouts and final Steward ordering
+- offline synthetic scoring, revision binding and supplied measurement validation
+
+The execution tests mock provider processes; the evaluation tests use synthetic
+answers and traces. These regressions do not exercise a live CLI/account or
+establish measured model quality. See the [tooling reference](agent-review-tooling-reference.md)
+for the production CLI/artifact map and score interpretation.
 
 The role profile document remains the source of truth:
 
@@ -48,6 +57,11 @@ tests/agent_harness/routing.py
 tests/agent_harness/test_agent_contracts.py
 tests/agent_harness/test_agent_routing.py
 tests/agent_harness/test_agent_scenarios.py
+tests/agent_harness/test_review_execution.py
+tests/agent_harness/test_agent_receipts.py
+tests/agent_harness/test_agent_review_status.py
+tests/agent_harness/test_agent_execution.py
+tests/agent_harness/test_agent_evaluation.py
 tests/agent_harness/scenarios/*.json
 tests/agent_harness/expected/*.expected.json
 .agents/roles/*.yaml
@@ -140,10 +154,18 @@ An evidence-context failure means a branch, pull request, or manual run may be t
 Update routing only when the repository structure or governance ownership model changes:
 
 ```text
-tests/agent_harness/routing.py
+.agents/routing/governance-agent-routing.yaml
 ```
 
 Keep changes small and add or update a scenario for every new routing rule.
+`tests/agent_harness/routing.py` only imports the production implementation.
+
+The router adds every matching prefix's roles. Architecture OPA therefore keeps
+Policy-as-Code and Release Manager while adding Architecture Runtime Governance.
+Viewer Python projections, result intake/index scripts, lifecycle implementations,
+current-main artifacts, demo runbooks and operational status pages have explicit
+domain routing. An unknown functional path still reports the Analyst fallback;
+it does not silently claim that domain classification is complete.
 
 ## Relationship To Existing Validators
 

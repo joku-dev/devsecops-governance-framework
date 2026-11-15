@@ -1,0 +1,17 @@
+schema_version: 1.0.0
+purpose: Optional execution of an already bound review plan without governance authority.
+default_mode: prepare_only
+source_access: read_only
+source_state: clean_committed_full_branch_scope
+final_role: repo-steward
+provider_authorization: explicit_execute_flag
+default_parallel_specialists: 1
+maximum_parallel_specialists: 3
+default_timeout_seconds: 180
+maximum_timeout_seconds: 600
+automatic_retries: 0
+live_provider_calls_in_ci: false
+artifacts: private_new_directory_outside_checkout
+validation_execution: none_record_actual_outcomes_separately
+model_identity: requested_configuration_is_not_observed_runtime_identity
+authority: review_evidence_only_no_human_approval

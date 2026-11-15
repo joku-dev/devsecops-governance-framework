@@ -1,5 +1,79 @@
 # Technische Funktionsliste des Repositories
 
+## Ergänzung: private VM-Ergebnissammlung (GCR-2026-171)
+
+| Einstieg oder Modul | Aufgabe und Grenze |
+|---|---|
+| `scripts/consumer_intake.py` | Private Operator-CLI; Schattenbetrieb, Wiederaufnahme und separate verifizierte Operations-Backups. |
+| `scripts/lib/consumer_intake_store.py` | SQLite-Queue, Sperren, Cachebudget und konsistente Backup-/Restore-Prüfung. |
+| `scripts/lib/consumer_github.py` | Getrennte App-Token, persistierte bedingte Requests und redigierte Fehlerklassen. |
+| `scripts/lib/private_credentials.py` | Private Dateirechte und eng begrenzte Unterstützung root-eigener systemd-ACL-Credentials auf schreibgeschütztem Speicher. |
+| `scripts/lib/consumer_intake.py` | Discovery, Wiederholungsversuche, Abhängigkeitsschutz, bestehender Normalizer und akzeptierte Projektion. |
+| `scripts/lib/consumer_publisher.py` | Eingefrorene Batches und ein serialisierter Review-PR mit echter VM-/Producer-Herkunft. |
+| `scripts/lib/consumer_view.py`, `scripts/workbench/consumer-view.js` | Sitzungsgebundene lesende Projektion ohne Zugriff auf Credentials, Queue oder Rohartefakte. |
+| `infra/ansible/consumers*.yml`, `axiom-consumer.*.j2` | Eigener Dienstbenutzer, systemd-Credentials, getrennte Timer und separate Controller-Sicherung. |
+| `config/consumer-intake-routing.json` | Geprüfter Eigentümer je Consumer/Domäne; Vorgabe bleibt GitHub Actions. |
+
+Der [Betriebsleitfaden](vm-consumer-intake.md) beschreibt Voraussetzungen und
+Umschaltung. Die unten datierten Bestandszählungen werden durch diese Ergänzung
+nicht rückwirkend geändert.
+
+## Ergänzung: vereinfachte Workbench und Auswirkungsanzeige (GCR-2026-169)
+
+`scripts/lib/workbench_impact.py` ergänzt eine private lesende Projektion exakter
+Quellen-, Lifecycle-, Katalog- und Artefaktbindungen. Der Workbench-Server liefert
+sie ausschließlich in Antworten; Draft- und Paketverträge bleiben unverändert.
+Die bestehenden Frontend-Dateien bündeln Navigation und Übergabe in drei Schritte.
+Neue Python- und erweiterte DOM-Regressionen prüfen Bindungslücken, Hashabweichungen,
+Kandidaten, Mehrfachzuordnungen, Speichern/Fortsetzen und den Anzeigeumfang.
+Gegenüber GCR-2026-163–167 kommt eine produktive Python-Datei hinzu; historische
+Inventare und ihre Quellstandsangaben bleiben erhalten.
+[Bedienung und Grenzen](governance-review-workbench.md#implementation-and-impact-hints).
+
+
+## Ergänzung: Agentenreview-Werkzeuge (GCR-2026-163–167)
+
+PRs #351–#355 erweitern das Routing und ergänzen neun Python-Dateien sowie
+einen separaten Workflow. Am gemergten Quellstand `50c684e` zählen die unten
+definierten Produktionspfade **179 Python-Dateien und 33 Workflows**;
+Shell-, sonstige Skript-/Workbench- und OPA-Dateimengen bleiben gegenüber
+GCR-2026-162 unverändert. Datierte Ausgangsinventare werden nicht überschrieben.
+
+| Einstieg oder Modul | Aufgabe und Grenze |
+|---|---|
+| `scripts/lib/agent_routing.py` | Erweitertes, additives Bereichsrouting mit sichtbarem Fallback; Auswahl startet keinen Review. |
+| `scripts/record_agent_review.py`, `scripts/lib/agent_receipts.py` | Expliziter Allowlist-Export privater Ergebnisse und idempotente separate Nutzungszählung; keine Authentifizierung. |
+| `scripts/report_agent_review_status.py`, `scripts/lib/agent_review_status.py` | Konsistenzprüfung angehängter PR-Metadaten gegen Head, Scope und Ziel-/Vorschlagsverträge; keine Freigabe. |
+| `.github/workflows/agent-review-status.yml` | Separater Report-only-Job mit vertrauenswürdigem Zielbranch-Code, lesenden Berechtigungen und Summary/Artifact-Ausgabe. |
+| `scripts/run_agent_reviews.py`, `scripts/lib/agent_execution.py` | Standardmäßig private Vorbereitung; explizit beauftragte Live-Ausführung mit begrenzter Parallelität, Timeout und abschließendem Steward. |
+| `scripts/lib/agent_codex.py` | Dünne Codex-CLI-Projektion mit Read-only-Sandbox und getrennten angeforderten/beobachteten Modellangaben. |
+| `scripts/evaluate_agent_reviews.py`, `scripts/lib/agent_evaluation.py` | Offlinepakete und strukturierte Bewertung synthetischer Antworten; keine automatischen Provideraufrufe. |
+
+Zusätzliche Verträge sind `.agents/execution-contract.yaml`,
+`schemas/agent-review-receipt.schema.json` und die versionierte Rubrik unter
+`.agents/evaluations/`. Die bestehende Review-Prozedur bleibt maßgeblich.
+Neue Harness-Regressionen prüfen Receipts, PR-Status, gemockte Ausführung und
+synthetische Bewertung ohne Live-Modelle.
+[Ablauf](../agents/how-to-run-agent-review.md) und
+[CLI-, Format- und Fehlerreferenz](../agents/agent-review-tooling-reference.md)
+erläutern Betrieb und Aussagegrenzen.
+
+## Ergänzung: Anforderungsweg-Pilot (GCR-2026-162)
+
+`scripts/lib/requirement_journey_view.py` ergänzt eine reine, allowlistbasierte
+Projektion von sechs Fällen. `scripts/lib/viewer_app.py` bindet sie additiv als
+`requirement_journeys` in Datenversion 1 ein. Die bestehenden Viewer-Assets
+rendern Hash-Detailrouten, fünf Phasenkarten und eine vollständige Textdarstellung.
+`tests/test_requirement_journey_view.py` prüft exakte Bindungen und Datenlücken;
+`tests/viewer-requirement-journey.test.cjs` prüft DOM und Navigation mit dem
+bestehenden gepinnten jsdom. `.github/workflows/viewer-ui.yml` führt diese Tests
+als separaten Job aus; gebundene Governance-Workflows bleiben unverändert.
+Gegenüber dem Nachtrag GCR-2026-157 und dem zusätzlichen Lifecycle-Modul aus
+GCR-2026-159 ergeben sich **170 Python-Dateien und 32 Workflows** in den dort
+definierten Produktionspfaden; die datierten Ausgangsinventare bleiben erhalten.
+[Bedienung und Nachweisgrenzen](governance-viewer-app.md#einzelne-anforderungswege-pilot-mit-sechs-fallen).
+
+
 ## Nachtrag: robuster OPA-Transport (GCR-2026-157)
 
 `scripts/install_validation_opa.py`, `scripts/opa-download-sources.json` und die

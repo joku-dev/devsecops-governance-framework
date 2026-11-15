@@ -86,6 +86,8 @@ Use it as the first navigation point after `AGENTS.md`.
 | Use model-neutral agent contracts | `.agents/roles/`, `.agents/routing/governance-agent-routing.yaml`, `.agents/skills/`, `docs/operations/agents/agent-system-usage.md` |
 | Use Codex agent adapters | `.codex/agents/`, `.github/codex/prompts/`, `docs/operations/agents/agent-system-usage.md` |
 | Check deterministic agent routing | `docs/operations/agents/agent-harness-usage.md`, `tests/agent_harness/` |
+| Run revision-bound reviews, export receipts and interpret PR metadata | `docs/operations/agents/how-to-run-agent-review.md`, `docs/operations/agents/agent-review-tooling-reference.md` |
+| Prepare optional read-only execution or grade synthetic review answers offline | `docs/operations/agents/agent-review-tooling-reference.md`, `.agents/execution-contract.yaml`, `.agents/evaluations/` |
 | Inspect Codex model selection and its measured limitations | `docs/operations/agents/agent-system-usage.md`, `docs/operations/reference-runs/2026-09-12-gpt6-agent-evaluation.md` |
 | Inspect agent usage | `docs/operations/agents/agent-usage-snapshot-latest.md`, `generated/agent-usage/agent-usage-summary.json` |
 | Find actual L1 tests, SBOMs, scans, Container Security viewer and intake | `docs/operations/evidence/l1-measured-evidence-ha-cpswms.md` |

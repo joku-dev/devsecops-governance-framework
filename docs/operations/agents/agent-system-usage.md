@@ -22,6 +22,19 @@ are inspectable. The shared protocol is `.agents/review-protocol.yaml`;
 harness imports production behavior. It neither invokes models nor proves review
 quality. A completed result packet remains declared evidence for human review.
 
+PRs #351–#355 extend this workflow with domain routing, allowlisted review
+receipts and separate declared-usage summaries, report-only PR metadata checks,
+optional bounded Codex execution and offline synthetic quality evaluation.
+The [tooling reference](agent-review-tooling-reference.md) covers commands,
+inputs/outputs, exit codes, privacy, revision changes and troubleshooting.
+
+The neutral `.agents/execution-contract.yaml` also controls the optional runner.
+`run_agent_reviews.py` prepares tasks by default; only explicit `--execute`
+starts live read-only sessions. `evaluate_agent_reviews.py` prepares or grades
+synthetic packets entirely offline. These are separate operations: routing and
+evaluation preparation do not launch reviews, and neither receipts nor the
+report-only PR status replace independent human approval.
+
 ## Model-Neutral Layer
 
 ```text
@@ -220,6 +233,13 @@ Parallel subagents are useful when a change touches separate governance domains,
 - `evidence-and-intake` plus `demo-readiness`
 
 Always include `repo-steward` before commit readiness.
+
+Routing is a selection, not delegation authorization. For authorized separate
+read-only reviews, the optional runner defaults to one specialist, permits at
+most three, and executes Steward only after all specialists succeed. Delegated
+implementation requires explicit authorization and disjoint file ownership;
+the runner does not implement changes. One coordinator applying several role
+lenses must record `role_lens`, not separate subagent executions.
 
 ## Extend The System
 

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Private portable collector configuration v1 candidate",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "mode", "registry", "credentials_directory", "request_budget", "node_id"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "mode": {"enum": ["paused", "shadow", "publish"]},
+    "registry": {"type": "string", "pattern": "^/"},
+    "credentials_directory": {"type": "string", "pattern": "^(systemd|/.*)$"},
+    "request_budget": {"type": "integer", "minimum": 10, "maximum": 1000},
+    "node_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"}
+  }
+}

@@ -1,5 +1,23 @@
 # Detaillierter Funktionskatalog des Governance-Repositories
 
+## Ergänzung: VM-Consumer-Intake (GCR-2026-171)
+
+Der optionale [VM-Collector](vm-consumer-intake.md) sammelt DevSecOps-L1-Ergebnisse
+des `ha-CPsWMS`-Piloten in einer privaten dauerhaften Warteschlange. Der Startmodus
+ist Schattenbetrieb. Die Workbench trennt akzeptierten Main-Stand, Kandidaten und
+Übernahme-PRs; eigene Veröffentlichungen benötigen Schattenvergleich und eine
+geprüfte Routenumschaltung. Das ist eine implementierte Betriebsoption und keine
+Behauptung einer bereits aktivierten App-Installation auf der Ziel-VM.
+
+## Ergänzung: individuelle Anforderungswege (GCR-2026-162)
+
+Der öffentliche Viewer zeigt unter **Governance → Anforderung bis OPA** sechs
+fest ausgewählte Fälle in fünf Phasen. Exakte GRQ-Revisionen und historische
+Proposals bleiben getrennt; Quellen- und Artefakthashes sowie fehlende
+Veröffentlichungs-/Laufzeitbindungen sind sichtbar. Die Ansicht liest nur Daten
+und führt keine Entscheidung aus. [Bedienung und Grenzen](governance-viewer-app.md#einzelne-anforderungswege-pilot-mit-sechs-fallen).
+
+
 ## Dokumentzweck und Geltungsbereich
 
 Dieser Katalog beschreibt die fachlichen und betrieblichen Funktionen von
@@ -24,6 +42,17 @@ neue fachliche Vorgabe. Genehmigte Quellen, Modelle, Schemas und veröffentlicht
 Baselines bleiben für ihre jeweiligen Bereiche maßgeblich.
 
 ## Aktueller Intake- und Review-Ablauf
+
+Der vereinfachte Ablauf lautet **Dokument wählen → Prüfen → Weitergeben**.
+Start priorisiert die Wiederaufnahme; Notizen, Vergleich und Historie sind
+sekundäre Werkzeuge. Ein Sitzungsfilter fokussiert Policy, Directive und DSCB;
+Architektur bleibt in der vollständigen Bibliothek erhalten. Je expliziter
+Anforderung zeigt **Umsetzung und Auswirkungen** exakt gebundene aktive
+GRQ-Revisionen und aktuelle bestätigte Artefaktzuordnungen. Fehlende oder
+abweichende Nachweise bleiben „Auswirkung ungeklärt“. Die Indikation ist
+Prüfunterstützung; sie bestätigt weder tatsächliche Regelanwendung noch
+Veröffentlichung, Consumer-Abdeckung oder ein semantisches Änderungsrisiko.
+Siehe [GCR-2026-169](../../governance/change-requests/GCR-2026-169-workbench-guided-impact.md).
 
 Die private lokale [Review Workbench](governance-review-workbench.md) führt durch
 Dateiauswahl, Dokumenteinordnung, Anforderungsprüfung und Weitergabe als ZIP.
@@ -847,6 +876,16 @@ zuletzt zusammen. Das Ergebnis bleibt deklarierte Review-Evidenz; tatsächliche
 Modellausführung, fachliche Qualität und menschliche Freigabe sind separate Fragen.
 Der [Bedienablauf](../agents/how-to-run-agent-review.md) beschreibt die Befehle.
 
+Die Erweiterungen aus PRs #351–#355 ergänzen konkrete Bereichszuordnungen,
+explizit exportierte Review-Metadaten, getrennte Nutzungszähler und einen
+beratenden PR-Status. Ein optionaler Runner bereitet zunächst nur Aufgaben vor;
+erst `--execute` startet begrenzte, lesende Codex-Sitzungen mit abschließendem
+Steward. Eine separate Offlinebewertung prüft strukturierte Antworten auf zehn
+synthetische Fälle, ohne selbst Modelle aufzurufen. Die
+[Bedienreferenz](../agents/agent-review-tooling-reference.md) erklärt Optionen,
+Dateiformate, Statuswerte, Fehlerbehebung und Aussagegrenzen. Metadatenkonsistenz,
+fachliche Reviewqualität und menschliche Freigabe bleiben getrennt.
+
 
 **Zweck:** Die Pflege des Governance-Systems wiederholbar organisieren und seine
 Inhalte nutzbar vermitteln.
@@ -881,6 +920,10 @@ Anforderungsaufbereitung, verständliche Dokumentation und wiederverwendbare
 Integrationsunterlagen.
 
 **Implementierungsstellen:** `scripts/dispatch_governance_agents.py`,
+`scripts/record_agent_review.py`, `scripts/report_agent_review_status.py`,
+`scripts/run_agent_reviews.py`, `scripts/evaluate_agent_reviews.py`,
+`scripts/lib/agent_*.py`, `.agents/execution-contract.yaml`, `.agents/evaluations/`,
+`.github/workflows/agent-review-status.yml`,
 `scripts/generate_agent_usage_snapshot.py`,
 `scripts/record_evidence_agent_provenance.py`,
 `scripts/validate_evidence_agent_provenance.py`,

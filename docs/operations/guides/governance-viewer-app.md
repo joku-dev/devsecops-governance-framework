@@ -320,3 +320,59 @@ Tickets und automatische Live-Aktualisierung gehören nicht zu dieser Version.
 Ein Backend kann später ergänzt werden, wenn ein konkreter Schreib- oder
 Berechtigungsbedarf besteht. Ein eigener Repository-Split ist dafür aktuell
 nicht erforderlich.
+
+## Einzelne Anforderungswege: Pilot mit sechs Fällen
+
+Unter **Governance → Anforderung bis OPA → Einzelne Anforderungswege** öffnet
+jeder Pilotfall eine direkt verlinkbare Detailseite. Die Route lautet
+`#governance/lifecycle/<URL-kodierte-Pilotkennung>`. Browser-Zurück und -Vorwärts
+wechseln zwischen denselben Fällen. Unbekannte Kennungen bieten einen Rückweg
+zur Auswahl. Der Pilot erweitert den öffentlichen Viewer; er benötigt kein Konto.
+
+| Fall | Kennung | Besonderheit |
+|---|---|---|
+| Branch Protection | `GRQ-000003@rev1` | `RTA-000001`, OPA-Zuordnung; Enforcement bleibt `none` |
+| Ohne bestätigte Umsetzung | `GRQ-000001@rev1` | Aktive Revision ohne bestätigte Artefaktzuordnung |
+| Plattformzuordnungen | `GRQ-000048@rev1` | `RTA-000010` und `RTA-000011` bleiben trotz gleicher Datei getrennt |
+| Historisch offen | `RLC-PRA-STD-REQ-001-MIGRATION-P0001` | Keine Entscheidung aufgezeichnet |
+| Historisch abgelehnt | `RLC-PRA-STD-REQ-001-MIGRATION-P0004` | Vorschlagspfad endet ohne neuen GRQ-Pfad |
+| Historisches Duplikat | `RLC-PRA-STD-REQ-001-MIGRATION-P0008` | Ziel `GRQ-000019`; absichtlich keine eigene Aktivierung |
+
+Jede Detailseite zeigt fünf verbundene Phasenkarten:
+**Quelle freigeben → Anforderung entscheiden → Umsetzung bestätigen → Regelstand
+veröffentlichen → Anwenden und Ergebnisse prüfen**. Fachliche Entscheidung und
+Nachweiszustand stehen getrennt in jeder Karte. Auf schmalen Bildschirmen stehen
+die Karten untereinander. Aufklappbare Belegzweige sind mit Tab erreichbar und
+mit Enter/Leertaste bedienbar. „Zur vollständigen Textdarstellung“ öffnet denselben
+Inhalt in linearer Lesereihenfolge, ohne die Fallroute zu verlassen.
+
+Der Text aktiver, wirksamer Katalogrevisionen wird angezeigt. Historische
+Vorschläge veröffentlichen hier nur Kennungen, Status und Beleglinks, keine
+Vorschlags-, Review- oder Workbench-Notiztexte. Sie zählen nicht zur heutigen
+Extraktion und erzeugen keine neuen gültigen Anforderungen. Eine Ablehnung
+bedeutet keine allgemeine Nichtanwendbarkeit der fachlichen Aussage. Der
+Duplikatzielverweis benennt keine historische Zielrevision, weil der gespeicherte
+Datensatz nur die Ziel-ID enthält.
+
+Die reine Projektion `scripts/lib/requirement_journey_view.py` liest Register,
+Lifecycle-Aufzeichnungen, Katalog und Artefaktregister sowie die referenzierten
+Dateien für Hashprüfungen. Gespeicherte IDs und exakte Revisionen bestimmen die
+Verknüpfung. Ähnlicher Text, gleiche Nummern und gleiche Dateinamen reichen nicht.
+Fehlende Daten, Mehrdeutigkeiten und Hashabweichungen bleiben sichtbar; keine
+neuere Revision ersetzt die angeforderte Revision. Beleglinks sind an den beim
+Build ermittelten Repository-Commit gebunden. Lokale Änderungen an Modell-,
+Architektur-, Policy- oder Quelldaten verhindern diese Versionsbehauptung. Ohne
+passenden Commit werden keine
+scheinbar versionierten Beleglinks ausgegeben. Die vorhandene Datenversion 1
+wird additiv um `requirement_journeys` ergänzt.
+
+Veröffentlichung und Laufzeitanwendung bleiben in allen sechs Fällen zunächst
+**nicht verknüpft**. Vorhandene Baselines, Dateien, erfolgreiche CI und allgemeine
+Kontrollresultate ersetzen keine ausdrücklichen anforderungsbezogenen Nachweise.
+Die Empfehlung für den nächsten Prüfschritt führt keine Aktion aus. Eine
+Gesamtampel oder Fortschrittsquote wird nicht berechnet.
+
+Der Pilot verändert keine fachlichen Entscheidungen, Quellenfreigaben,
+Anforderungen, Enforcement-Regeln oder Baselines. Eine Ausweitung auf alle
+Anforderungen braucht eine eigene Entscheidung. Umsetzung und Prüfung:
+[GCR-2026-162](../../governance/change-requests/GCR-2026-162-requirement-journey-pilot.md).

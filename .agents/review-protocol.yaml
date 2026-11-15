@@ -32,3 +32,11 @@ completion:
   - Required validations need an explicit outcome and evidence reference.
   - Open high or critical findings prevent readiness for human review.
   - A provider declaration is not proof of a separate agent or authenticated identity.
+publication:
+  receipt_schema: schemas/agent-review-receipt.schema.json
+  source_state: clean_committed_full_branch_scope
+  private_packet: outside_checkout
+  public_receipt: explicit_allowlist_only
+  excluded_content: [user_goal, executor, summaries, outputs, finding_text, evidence_references, provider_responses]
+  meaning: self_reported_metadata_bound_to_a_commit_not_execution_attestation
+  usage: distinguish_selected_executed_and_completed_roles_with_idempotent_receipt_ids

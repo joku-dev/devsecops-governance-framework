@@ -1,0 +1,27 @@
+name: Portable capacity smoke
+on:
+  pull_request:
+    paths:
+      - 'tests/capacity/**'
+      - 'scripts/lib/portable_intake/**'
+      - '.github/workflows/portable-capacity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  six-repository-restart:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - run: ./scripts/bootstrap_validation_env.sh
+      - name: Exercise distinct repositories and an actual process restart
+        run: |
+          export PATH="$GITHUB_WORKSPACE/.venv-validation/bin:$PATH"
+          python tests/capacity/run_portable_intake.py --repositories 6 --output-root "$RUNNER_TEMP/axiom-capacity-six"
+          python tests/capacity/summarize_portable_intake.py --measurement-root "$RUNNER_TEMP/axiom-capacity-six" --output "$RUNNER_TEMP/axiom-capacity-six-audited.json"

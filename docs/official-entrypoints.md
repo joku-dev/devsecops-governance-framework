@@ -117,6 +117,8 @@ It is intended for:
 - Intake operation telemetry: `docs/operations/evidence/intake-operation-telemetry.md`
 - Bitbucket and Bamboo governance adapter: `docs/operations/adapters/bitbucket-bamboo-governance-adapter.md`
 - Agent system usage: `docs/operations/agents/agent-system-usage.md`
+- Agent review operator workflow: [How To Run An Agent Review](operations/agents/how-to-run-agent-review.md)
+- Agent review commands, formats and troubleshooting: [Tooling Reference](operations/agents/agent-review-tooling-reference.md)
 - Agent usage tracking: `docs/operations/agents/agent-usage-tracking.md`
 - Latest agent usage snapshot: `docs/operations/agents/agent-usage-snapshot-latest.md`
 - MkDocs and GitHub Pages step by step: `docs/operations/guides/mkdocs-and-github-pages-step-by-step.md`

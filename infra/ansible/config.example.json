@@ -1,0 +1,7 @@
+{
+  "host": "192.168.200.252",
+  "user": "joku",
+  "ssh_port": 22,
+  "identity_file": "~/.ssh/axiom-installation",
+  "backup_root": "~/.local/state/axiom-deployment"
+}

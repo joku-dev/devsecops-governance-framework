@@ -41,8 +41,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  intake-result:
+  intake-owner:
     if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      owner: ${{ steps.route.outputs.owner }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Respect reviewed collector ownership
+        id: route
+        env:
+          REPOSITORY_ID: ${{ github.event.client_payload.repository_id || inputs.repository_id }}
+        run: |
+          owner=$(python3 scripts/consumer_intake.py route --repository "$REPOSITORY_ID" --domain devsecops)
+          echo "owner=$owner" >> "$GITHUB_OUTPUT"
+  intake-result:
+    needs: intake-owner
+    if: github.ref == 'refs/heads/main' && needs.intake-owner.outputs.owner == 'github-actions'
     runs-on: ubuntu-latest
 
     steps:

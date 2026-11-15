@@ -213,6 +213,8 @@ class ProductionRoutingTests(unittest.TestCase):
             "apps/governance-viewer/app.js": "evidence-and-intake",
             "scripts/workbench/app.js": "governance-analyst",
             ".codex/agents/repo-steward.toml": "release-manager",
+            ".agents/execution-contract.yaml": "release-manager",
+            "scripts/run_agent_reviews.py": "release-manager",
         }.items():
             dispatch = build_dispatch([path])
             self.assertIn(expected, dispatch["selected_agents"])

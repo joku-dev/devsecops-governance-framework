@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "mode": "paused",
+  "registry": "/srv/axiom/repository/config/portable-consumer-profiles.json",
+  "credentials_directory": "systemd",
+  "request_budget": 300,
+  "node_id": "REPLACE_WITH_UNIQUE_32_LOWERCASE_HEX_DIGITS"
+}

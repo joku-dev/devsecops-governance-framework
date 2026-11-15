@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable consumer profile v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "scm",
+    "ci",
+    "governance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scm": {
+      "type": "object",
+      "required": [
+        "provider",
+        "instance",
+        "api_url",
+        "native_id",
+        "path",
+        "url",
+        "token_env"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "enum": [
+            "github",
+            "gitlab",
+            "bitbucket-dc"
+          ]
+        },
+        "instance": {
+          "type": "string",
+          "format": "uri"
+        },
+        "api_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "native_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "token_env": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+        }
+      }
+    },
+    "ci": {
+      "type": "object",
+      "required": [
+        "provider",
+        "instance"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "enum": [
+            "github-actions",
+            "gitlab-ci",
+            "bamboo"
+          ]
+        },
+        "instance": {
+          "type": "string",
+          "format": "uri"
+        },
+        "event": {
+          "enum": [
+            "push",
+            "manual",
+            "schedule",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_id",
+        "baseline_digest",
+        "domain",
+        "scope"
+      ],
+      "properties": {
+        "baseline_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "baseline_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "domain": {
+          "const": "devsecops"
+        },
+        "scope": {
+          "const": "pipeline-l1"
+        }
+      }
+    }
+  }
+}
