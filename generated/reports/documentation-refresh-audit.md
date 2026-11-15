@@ -1,6 +1,6 @@
 # Dokumentationsabgleich nach Merge
 
-Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
+Auslöser: PR #275: feat(viewer): show requirement lifecycle through OPA (`c1f6e2bda11b`)
 
 ## Ergebnis
 
@@ -10,12 +10,11 @@ Auslöser: PR #272: docs: PRA-Review-Empfehlung dokumentieren (`ee20f518dc03`)
 
 ## Betroffene Implementierungspfade
 
-- `model/requirements/governance-requirement-catalog.yaml`
-- `model/requirements/lifecycle-cases/RLC-PRA-STD-REQ-001-MIGRATION.json`
-- `model/requirements/requirement-authority-ledger.yaml`
-- `model/requirements/requirement-to-artifact-register.yaml`
-- `schemas/pra-requirement-platform-review.schema.json`
-- `scripts/generate_pra_requirement_platform_review.py`
+- `apps/governance-viewer/app.js`
+- `apps/governance-viewer/technical.css`
+- `scripts/generate_status_viewer.py`
+- `scripts/lib/governance_requirement_lifecycle_view.py`
+- `scripts/lib/viewer_app.py`
 
 ## Fehlende lokale Markdown-Ziele
 
