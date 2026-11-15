@@ -280,6 +280,18 @@ class IdentityTests(unittest.TestCase):
         self.assertRegex(execution_key(context('bamboo')),r'^[a-f0-9]{64}$')
         self.assertFalse(context_errors(context('gitlab-ci')))
 
+    def test_full_and_static_opa_builds_are_explicitly_pinned(self):
+        import re
+        from lib.portable.runtime import approved_opa_hashes,read_json
+        original=set(re.findall(r'^OPA_\w+_SHA256=([a-f0-9]{64})$',(ROOT/'scripts/validation-toolchain.env').read_text(),re.M))
+        approved=approved_opa_hashes('1.18.2')
+        self.assertTrue(original <= approved)
+        for build in read_json(ROOT/'config/portable-runtime-compatibility.json')['additional_opa_builds']:
+            self.assertEqual(build['version'],'1.18.2')
+            self.assertIn(build['sha256'],approved)
+        with self.assertRaisesRegex(ValueError,'invalid_opa_build_registry'):
+            approved_opa_hashes('0.0.0')
+
     def test_endpoint_credentials_and_non_https_rejected(self):
         for value in ['http://scm.example','https://user:secret@scm.example','https://scm.example/api','https://scm.example?token=secret']:
             with self.assertRaises(ValueError):endpoint(value)

@@ -59,7 +59,10 @@ The versioned `config/portable-runtime-compatibility.json` registry selects
 compatible baseline packages. Each consumer profile pins baseline ID, checksum
 manifest digest, domain and scope. The context records those bindings plus
 actual runtime/adapter versions and runtime source digest; mismatches are held.
-The initial registered baseline is the checksum-verified `releases/l1/v1.1.3` snapshot. Its source
+The registry also pins the official full Linux OPA 1.18.2 builds used by the
+preserved CI. The existing static/Mac pins remain unchanged; unknown hashes or
+versions are rejected before execution. The installer still selects its verified
+static Linux builds. The initial registered baseline is the checksum-verified `releases/l1/v1.1.3` snapshot. Its source
 revision, package digest, runtime source digest, adapter and OPA versions are
 recorded separately. The released L1 wrapper still pins its historical reusable
 workflow; existing wrappers, released bytes, protected pilot files and CLIs are

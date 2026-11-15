@@ -76,10 +76,19 @@ def source_digest():
     return canonical_digest({str(path.relative_to(ROOT)):file_digest(path) for path in paths})
 
 
+
+def approved_opa_hashes(expected):
+    hashes = set(re.findall(r'^OPA_\w+_SHA256=([a-f0-9]{64})$', (ROOT/'scripts/validation-toolchain.env').read_text(), re.M))
+    for build in read_json(ROOT/'config/portable-runtime-compatibility.json').get('additional_opa_builds',[]):
+        if build['version'] != expected or not re.fullmatch('[a-f0-9]{64}',build['sha256']):
+            raise ValueError('invalid_opa_build_registry')
+        hashes.add(build['sha256'])
+    return hashes
+
+
 def opa_evaluate(payload, directory, opa):
     expected = re.search(r'^OPA_VERSION=(.+)$', (ROOT/'scripts/validation-toolchain.env').read_text(), re.M).group(1)
-    hashes = re.findall(r'^OPA_\w+_SHA256=([a-f0-9]{64})$', (ROOT/'scripts/validation-toolchain.env').read_text(), re.M)
-    if file_digest(opa) not in hashes:
+    if file_digest(opa) not in approved_opa_hashes(expected):
         raise ValueError('opa_checksum_mismatch')
     version = subprocess.run([str(opa), 'version'], capture_output=True, text=True, timeout=15, check=True)
     if not re.search(r'^Version:\s*' + re.escape(expected) + r'\s*$', version.stdout, re.M):

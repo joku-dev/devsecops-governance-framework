@@ -10,5 +10,19 @@
       "domain": "devsecops",
       "scope": "pipeline-l1"
     }
+  ],
+  "additional_opa_builds": [
+    {
+      "version": "1.18.2",
+      "asset": "opa_linux_amd64",
+      "sha256": "16118120a6a662c25c678b02b411d8cb22e32460f5d47d2ff9466ff2ed5104cc",
+      "source": "https://github.com/open-policy-agent/opa/releases/download/v1.18.2/opa_linux_amd64"
+    },
+    {
+      "version": "1.18.2",
+      "asset": "opa_linux_arm64",
+      "sha256": "2e1afe2369f640758ab423a610f191e546d119f8238f7552d77db45c10225e5e",
+      "source": "https://github.com/open-policy-agent/opa/releases/download/v1.18.2/opa_linux_arm64"
+    }
   ]
 }
