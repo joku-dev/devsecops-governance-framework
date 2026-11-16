@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "source_revision",
+    "operation",
+    "assessed_at",
+    "source_worktree_clean",
+    "mode",
+    "evidence_trust",
+    "files",
+    "runtime_source_digest",
+    "program_id",
+    "input_id",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "published",
+    "provider_invoked",
+    "model_execution_verified",
+    "trace_authenticity_verified",
+    "independent_human_approval"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "offline-review-quality"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "operation": {
+      "enum": [
+        "prepare",
+        "grade"
+      ]
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 128
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 401,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 8388608
+          }
+        }
+      }
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "program_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "provider_invoked": {
+      "const": false
+    },
+    "model_execution_verified": {
+      "const": false
+    },
+    "trace_authenticity_verified": {
+      "const": false
+    },
+    "independent_human_approval": {
+      "const": false
+    }
+  }
+}

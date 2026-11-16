@@ -25,6 +25,9 @@ OUTPUTS={'result.json':'generated/agent-usage/agent-usage-summary.json','result.
 MAX_LOG=16*1024**2;MAX_EVENTS=100000;MAX_RECORD=4*1024**2;MAX_OUTPUT=64*1024**2
 FLAGS={'official_acceptance':False,'production_approval':False,'risk_acceptance':False,'authority_transferred':False,'operating_acceptance_inherited':False,'published':False,'agent_execution_verified':False,'human_approval_verified':False}
 
+def finite_jsonl_constant(value):
+    raise ValueError('invalid_agent_usage_jsonl')
+
 
 def events(raw):
     if len(raw)>MAX_LOG:raise ValueError('agent_usage_log_byte_budget')
@@ -33,7 +36,7 @@ def events(raw):
         for line in raw.decode('utf-8').splitlines():
             if not line.strip():continue
             if len(result)>=MAX_EVENTS:raise ValueError('agent_usage_event_budget')
-            value=json.loads(line)
+            value=json.loads(line,parse_constant=finite_jsonl_constant)
             if not isinstance(value,dict):raise ValueError('agent_usage_event_object_required')
             result.append(value)
     except (UnicodeError,json.JSONDecodeError,RecursionError):raise ValueError('invalid_agent_usage_jsonl') from None

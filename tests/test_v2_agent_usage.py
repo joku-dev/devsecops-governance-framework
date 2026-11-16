@@ -130,4 +130,11 @@ class AgentUsageTests(unittest.TestCase):
             for path in root.rglob('*'):
                 if path.is_file():self.assertEqual(path.stat().st_mode&0o077,0)
 
+    def test_nonfinite_jsonl_is_rejected_even_when_the_event_is_outside_the_latest_table(self):
+        for constant in ('NaN','Infinity','-Infinity'):
+            raw=('{"timestamp":'+constant+'}\n{}\n').encode()
+            with self.assertRaisesRegex(ValueError,'invalid_agent_usage_jsonl'):
+                self.context.create(raw,{'kind':'operator','present':True},'log',AT,1)
+        self.assertEqual(list(self.context.assessments.iterdir()),[])
+
 if __name__=='__main__':unittest.main()

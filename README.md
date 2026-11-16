@@ -85,6 +85,10 @@ Schutzkonfiguration oder Freigabe.
 expliziten JSONL-Protokoll oder dem committed Legacy-Protokoll. Originale JSON- und
 Markdown-Dateien bleiben privat und erneut prüfbar. Sie zählen deklarierte Rollen-
 und Skill-Auswahl; tatsächliche Agentenausführung und Freigaben werden nicht abgeleitet.
+`review-quality prepare/grade/inspect` erhält die bisherige Offline-Reviewbewertung.
+Versionierte synthetische Datensätze erzeugen private Aufgabenpakete und Antwortschemas;
+bereitgestellte Antworten werden mit den ursprünglichen Kriterien bewertet.
+Laufzeit-Traces sind ausdrücklich angehängte, nicht authentifizierte Angaben.
 `evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
 `reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
 Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei

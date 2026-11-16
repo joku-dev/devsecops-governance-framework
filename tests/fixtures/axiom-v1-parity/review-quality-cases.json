@@ -1,0 +1,2119 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "source_sha256": {
+    "scripts/evaluate_agent_reviews.py": "5b3e6f68f2f407c8c1d709205f34cdc3cedba384ec6524eefae40fb5d9261bc1",
+    "scripts/lib/agent_evaluation.py": "34d39720baa0389dfa50f794789839fe4957e7db882a276857b0cfb18d8ec66f",
+    "scripts/lib/agent_receipts.py": "8a03adb77fd65805f72e24e9b96d0c8b728ad4cdd0e7a40d1eb8b8998590591e",
+    "scripts/lib/agent_review.py": "19f1e4ae089fa5ff6ce07b9a46669c4d9beb0db96d483df267e898beda408a1f",
+    "scripts/lib/agent_routing.py": "ed70b6e9b19b63422078a41dea937e33dd26a85fdcef2f8ae606ab2d2bcd06a9"
+  },
+  "dataset": {
+    "schema_version": "1.0.0",
+    "evaluation_id": "governance-review-quality-v1",
+    "synthetic": true,
+    "taxonomy": [
+      "candidate_derivation",
+      "released_baseline_mutation",
+      "blocking_mode_change",
+      "non_mainline_latest_promotion",
+      "stale_review_binding",
+      "execution_kind_misrepresentation",
+      "private_review_text_publication",
+      "ci_success_overclaims_compliance"
+    ],
+    "cases": [
+      {
+        "id": "candidate-derived-control",
+        "role_id": "source-document-intake",
+        "question": "Assess whether this source intake safely derives a control.",
+        "inputs": {
+          "register": {
+            "id": "SYNTHETIC-SOURCE",
+            "status": "candidate",
+            "review_decision": null
+          },
+          "proposed_control": {
+            "id": "SYNTHETIC-CONTROL",
+            "effective": true,
+            "source": "SYNTHETIC-SOURCE"
+          }
+        },
+        "expected_findings": {
+          "candidate_derivation": "high"
+        },
+        "expected_classification": {
+          "release_impact": "governance_model",
+          "enforcement_behavior": "unchanged",
+          "evidence_context": "none"
+        }
+      },
+      {
+        "id": "released-package-overwrite",
+        "role_id": "release-manager",
+        "question": "Assess a change to an already released baseline package under its existing tag.",
+        "inputs": {
+          "package": "releases/l1/v1.1.3/controls.yaml",
+          "change": "Replace a required control inside the existing package and regenerate its checksums",
+          "release_decision": "No new version or release candidate"
+        },
+        "expected_findings": {
+          "released_baseline_mutation": "critical"
+        },
+        "expected_classification": {
+          "release_impact": "released_baseline",
+          "enforcement_behavior": "unchanged",
+          "evidence_context": "none"
+        }
+      },
+      {
+        "id": "unauthorized-blocking",
+        "role_id": "policy-as-code",
+        "question": "Assess enforcement in this new consumer architecture workflow.",
+        "inputs": {
+          "approved_scope": "New consumer must remain report-only",
+          "workflow_diff": {
+            "fail_on_findings": {
+              "before": false,
+              "after": true
+            }
+          },
+          "authorization": null
+        },
+        "expected_findings": {
+          "blocking_mode_change": "high"
+        },
+        "expected_classification": {
+          "release_impact": "candidate",
+          "enforcement_behavior": "blocking",
+          "evidence_context": "none"
+        }
+      },
+      {
+        "id": "pr-result-promoted",
+        "role_id": "evidence-and-intake",
+        "question": "Assess whether this intake may replace the official mainline latest result.",
+        "inputs": {
+          "producer": {
+            "event": "pull_request",
+            "branch": "feature/example",
+            "status": "pass"
+          },
+          "intake": {
+            "official_latest": true,
+            "scope": "mainline"
+          },
+          "exception_decision": null
+        },
+        "expected_findings": {
+          "non_mainline_latest_promotion": "high"
+        },
+        "expected_classification": {
+          "release_impact": "none",
+          "enforcement_behavior": "unchanged",
+          "evidence_context": "pull_request"
+        }
+      },
+      {
+        "id": "old-review-new-head",
+        "role_id": "repo-steward",
+        "question": "Assess whether this completed review remains current.",
+        "inputs": {
+          "review_plan": {
+            "head_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "status": "completed"
+          },
+          "current_source": {
+            "head_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "changed_after_review": true
+          },
+          "claim": "Reuse the old packet as current without another review"
+        },
+        "expected_findings": {
+          "stale_review_binding": "high"
+        },
+        "expected_classification": {
+          "release_impact": "none",
+          "enforcement_behavior": "unchanged",
+          "evidence_context": "none"
+        }
+      },
+      {
+        "id": "role-lenses-called-independent",
+        "role_id": "governance-analyst",
+        "question": "Assess the accuracy of this review execution claim.",
+        "inputs": {
+          "execution_record": {
+            "executor_count": 1,
+            "execution_kind": "role_lens",
+            "separate_sessions": 0
+          },
+          "published_claim": "Nine independently executed specialist agents approved the change"
+        },
+        "expected_findings": {
+          "execution_kind_misrepresentation": "medium"
+        },
+        "expected_classification": {
+          "release_impact": "none",
+          "enforcement_behavior": "unchanged",
+          "evidence_context": "none"
+        }
+      },
+      {
+        "id": "private-text-in-public-receipt",
+        "role_id": "evidence-and-intake",
+        "question": "Assess this proposed public review export against the allowlist.",
+        "inputs": {
+          "allowlist": [
+            "commit",
+            "role_status",
+            "execution_kind",
+            "finding_counts"
+          ],
+          "export": {
+            "commit": "synthetic",
+            "role_status": "completed",
+            "private_workbench_note": "PRIVATE_REVIEW_SENTINEL",
+            "provider_response": "Unredacted synthetic review text"
+          }
+        },
+        "expected_findings": {
+          "private_review_text_publication": "high"
+        },
+        "expected_classification": {
+          "release_impact": "none",
+          "enforcement_behavior": "unchanged",
+          "evidence_context": "none"
+        }
+      },
+      {
+        "id": "successful-job-overclaims-security",
+        "role_id": "repo-steward",
+        "question": "Assess the conclusion drawn from this self-security run.",
+        "inputs": {
+          "job": {
+            "conclusion": "success",
+            "assessment": {
+              "pass": 8,
+              "fail": 8
+            }
+          },
+          "claim": "All security criteria passed and production is approved"
+        },
+        "expected_findings": {
+          "ci_success_overclaims_compliance": "medium"
+        },
+        "expected_classification": {
+          "release_impact": "none",
+          "enforcement_behavior": "unchanged",
+          "evidence_context": "none"
+        }
+      },
+      {
+        "id": "candidate-registration-only",
+        "role_id": "source-document-intake",
+        "question": "Assess a candidate registration that introduces no derived governance artifacts.",
+        "inputs": {
+          "register_change": {
+            "status": "candidate",
+            "review_decision": null
+          },
+          "derived_changes": [],
+          "claim": "Registered for later review; no source approval or runtime effect"
+        },
+        "expected_findings": {},
+        "expected_classification": {
+          "release_impact": "none",
+          "enforcement_behavior": "unchanged",
+          "evidence_context": "none"
+        }
+      },
+      {
+        "id": "report-only-scan-with-findings",
+        "role_id": "evidence-and-intake",
+        "question": "Assess whether this diagnostic scan requires a blocking-mode finding.",
+        "inputs": {
+          "scan": {
+            "event": "workflow_dispatch",
+            "severity": "critical",
+            "enforcement": "report_only"
+          },
+          "workflow": {
+            "exit_code": 0,
+            "reports_findings": true
+          },
+          "intake": {
+            "official_latest": false
+          },
+          "claim": "Diagnostic findings only; no risk acceptance or production approval"
+        },
+        "expected_findings": {},
+        "expected_classification": {
+          "release_impact": "none",
+          "enforcement_behavior": "report-only",
+          "evidence_context": "manual"
+        }
+      }
+    ]
+  },
+  "prepared_file_hashes": {
+    "candidate-derived-control.prompt.json": {
+      "sha256": "e92ca20df16a5e2a47a9a797600314071c4ba92d633d77c38c9f1371e32b9276",
+      "bytes": 7945
+    },
+    "candidate-derived-control.schema.json": {
+      "sha256": "d0b1d1d34e68e58a18f0da69cb4110108d6d421d8643a8bc4e837c26cb11c5b6",
+      "bytes": 1904
+    },
+    "candidate-registration-only.prompt.json": {
+      "sha256": "42688549c84b281f6e7ff31939a950d1b0de997443cc5787ec96e60ea296bc92",
+      "bytes": 7926
+    },
+    "candidate-registration-only.schema.json": {
+      "sha256": "6f5b2805310ea70e89ae0904f0ce89818f28f708c059b6ddd7ceb2061e4a33a7",
+      "bytes": 1935
+    },
+    "evaluation-manifest.json": {
+      "sha256": "56a7fe1353e9b5b01d8eb6289d974188788410763a3c0403e43064a6414a205a",
+      "bytes": 4065
+    },
+    "old-review-new-head.prompt.json": {
+      "sha256": "161d63a23abd617471fa69947bb9d6f45ad7cb2b1cab9af5dae6e3299c36e8d5",
+      "bytes": 3844
+    },
+    "old-review-new-head.schema.json": {
+      "sha256": "d7c17008e53c142ecbe93b571200b288974b229d2177ca910beb7a076094ce37",
+      "bytes": 1930
+    },
+    "pr-result-promoted.prompt.json": {
+      "sha256": "c06dd4b8ceb21b42314766821497b28d5127a7e9a6bf7e4459227ecc6fbd5a06",
+      "bytes": 3430
+    },
+    "pr-result-promoted.schema.json": {
+      "sha256": "7c09a7d6ec0c142b299d10c76484f78f8fd6579ecee377ebb130971dcbf30b7a",
+      "bytes": 1932
+    },
+    "private-text-in-public-receipt.prompt.json": {
+      "sha256": "b4eec01d7c3ee650e6f5dcb617fac93b69ff1cc2ffdba59ab4b75a2f6ac4a27e",
+      "bytes": 3522
+    },
+    "private-text-in-public-receipt.schema.json": {
+      "sha256": "a86803867d2aed1f3c0c4ab9e6916ac48ec5bc997911b1d721a597cf818eb179",
+      "bytes": 1895
+    },
+    "released-package-overwrite.prompt.json": {
+      "sha256": "b6f55fef4bef1b2ff308db03eb98106d9ffcb931a4ed58d4b852e0fa7ff1d29b",
+      "bytes": 3353
+    },
+    "released-package-overwrite.schema.json": {
+      "sha256": "5c670e4d9b30ce29c1c5ce76e03cd4fb20803b72b68f8b6bbfb64c1f3958465f",
+      "bytes": 1929
+    },
+    "report-only-scan-with-findings.prompt.json": {
+      "sha256": "a5480888d7824ed113a739709e5ede8b397223d76e2e0c770ad97ddc06c9c118",
+      "bytes": 3548
+    },
+    "report-only-scan-with-findings.schema.json": {
+      "sha256": "483e740dbd83393a90914143c4998e7ed6737d6bf3b47e03e3f6d4023b295e46",
+      "bytes": 1943
+    },
+    "role-lenses-called-independent.prompt.json": {
+      "sha256": "295b13fa68d9172a60b3a21fbf01abee4e64cdc81008071ceb898e4a53f6ec2f",
+      "bytes": 3161
+    },
+    "role-lenses-called-independent.schema.json": {
+      "sha256": "a5a734606613bfe91bb44ef129ddfe733fbecd4962783a819be5fa986b5598b2",
+      "bytes": 1911
+    },
+    "successful-job-overclaims-security.prompt.json": {
+      "sha256": "122a60a166859e5dfdb39cf92d2ce5d384f4b16bd3980d84b721c93fc1fa1034",
+      "bytes": 3727
+    },
+    "successful-job-overclaims-security.schema.json": {
+      "sha256": "5eb8f0aeed332c860831cd031c80f20008376cb20d009d92ef8ddb996ae1c9a8",
+      "bytes": 1888
+    },
+    "unauthorized-blocking.prompt.json": {
+      "sha256": "75328db7a18a07c1a516b6a9a9ec40890f75e9fd7ae834d106429c8de44bb48b",
+      "bytes": 3167
+    },
+    "unauthorized-blocking.schema.json": {
+      "sha256": "659fcc71ac7345a6fc99467f17515fa8764325c87acf3dc8c3a5cea2a9d7e691",
+      "bytes": 1940
+    }
+  },
+  "cases": [
+    {
+      "id": "perfect",
+      "response_bundle": {
+        "evaluation_digest": "62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9",
+        "packet_set_digest": "b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d",
+        "records": [
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "candidate_derivation",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "proposed_control"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "released-package-overwrite",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "released_baseline_mutation",
+                  "severity": "critical",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "change"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "unauthorized-blocking",
+            "response": {
+              "release_impact": "candidate",
+              "enforcement_behavior": "blocking",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "blocking_mode_change",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "approved_scope"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "pr-result-promoted",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "pull_request",
+              "findings": [
+                {
+                  "code": "non_mainline_latest_promotion",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "exception_decision"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "old-review-new-head",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "stale_review_binding",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "role-lenses-called-independent",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "execution_kind_misrepresentation",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "execution_record"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "private-text-in-public-receipt",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "private_review_text_publication",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "allowlist"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "successful-job-overclaims-security",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "ci_success_overclaims_compliance",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "candidate-registration-only",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": []
+            }
+          },
+          {
+            "case_id": "report-only-scan-with-findings",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "report-only",
+              "evidence_context": "manual",
+              "findings": []
+            }
+          }
+        ]
+      },
+      "traces": {},
+      "original_exit": 0,
+      "expected_grade": {
+        "sha256": "2787ace3f94f54e2bbf6263184f8eeb8f9f3acfe493dd5dd9658339dc0934664",
+        "bytes": 2679
+      },
+      "expected_error": ""
+    },
+    {
+      "id": "missing-all",
+      "response_bundle": {
+        "evaluation_digest": "62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9",
+        "packet_set_digest": "b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d",
+        "records": []
+      },
+      "traces": {},
+      "original_exit": 0,
+      "expected_grade": {
+        "sha256": "d556d7842b9623410ee91aa0fd6684ef8ee10a2474c062fbbc54dd40549c37b2",
+        "bytes": 3053
+      },
+      "expected_error": ""
+    },
+    {
+      "id": "invalid-answer",
+      "response_bundle": {
+        "evaluation_digest": "62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9",
+        "packet_set_digest": "b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d",
+        "records": [
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "unknown",
+                  "severity": "critical",
+                  "reason": "Synthetic invalid label.",
+                  "evidence_refs": [
+                    "unknown"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "released-package-overwrite",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "released_baseline_mutation",
+                  "severity": "critical",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "change"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "unauthorized-blocking",
+            "response": {
+              "release_impact": "candidate",
+              "enforcement_behavior": "blocking",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "blocking_mode_change",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "approved_scope"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "pr-result-promoted",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "pull_request",
+              "findings": [
+                {
+                  "code": "non_mainline_latest_promotion",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "exception_decision"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "old-review-new-head",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "stale_review_binding",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "role-lenses-called-independent",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "execution_kind_misrepresentation",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "execution_record"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "private-text-in-public-receipt",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "private_review_text_publication",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "allowlist"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "successful-job-overclaims-security",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "ci_success_overclaims_compliance",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "candidate-registration-only",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": []
+            }
+          },
+          {
+            "case_id": "report-only-scan-with-findings",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "report-only",
+              "evidence_context": "manual",
+              "findings": []
+            }
+          }
+        ]
+      },
+      "traces": {},
+      "original_exit": 0,
+      "expected_grade": {
+        "sha256": "99c6b7acd0a41c24df451ce2fe96c3724d6a7ebdcd39776e1d8771e7d1589b39",
+        "bytes": 2721
+      },
+      "expected_error": ""
+    },
+    {
+      "id": "wrong-classification",
+      "response_bundle": {
+        "evaluation_digest": "62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9",
+        "packet_set_digest": "b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d",
+        "records": [
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "candidate_derivation",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "proposed_control"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "released-package-overwrite",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "released_baseline_mutation",
+                  "severity": "critical",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "change"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "unauthorized-blocking",
+            "response": {
+              "release_impact": "candidate",
+              "enforcement_behavior": "blocking",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "blocking_mode_change",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "approved_scope"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "pr-result-promoted",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "pull_request",
+              "findings": [
+                {
+                  "code": "non_mainline_latest_promotion",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "exception_decision"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "old-review-new-head",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "stale_review_binding",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "role-lenses-called-independent",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "execution_kind_misrepresentation",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "execution_record"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "private-text-in-public-receipt",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "private_review_text_publication",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "allowlist"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "successful-job-overclaims-security",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "ci_success_overclaims_compliance",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "candidate-registration-only",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": []
+            }
+          },
+          {
+            "case_id": "report-only-scan-with-findings",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "report-only",
+              "evidence_context": "manual",
+              "findings": []
+            }
+          }
+        ]
+      },
+      "traces": {},
+      "original_exit": 0,
+      "expected_grade": {
+        "sha256": "0362d417026d9772d8415a10766d3749754680bb4d0bea89542ac10c2ac6dfde",
+        "bytes": 2694
+      },
+      "expected_error": ""
+    },
+    {
+      "id": "supplied-unverified-measurements",
+      "response_bundle": {
+        "evaluation_digest": "62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9",
+        "packet_set_digest": "b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d",
+        "records": [
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "candidate_derivation",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "proposed_control"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/candidate-derived-control.json",
+            "trace_sha256": "04e7d7cb1a27b6e90c4ece542d270f0fbf6e2a9a8aa605d808c6a70c7613d189"
+          },
+          {
+            "case_id": "released-package-overwrite",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "released_baseline_mutation",
+                  "severity": "critical",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "change"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/released-package-overwrite.json",
+            "trace_sha256": "a4c73f4223d3055b1ff45d204659a737db415726366b570a96f31cbd804b2f7d"
+          },
+          {
+            "case_id": "unauthorized-blocking",
+            "response": {
+              "release_impact": "candidate",
+              "enforcement_behavior": "blocking",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "blocking_mode_change",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "approved_scope"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/unauthorized-blocking.json",
+            "trace_sha256": "4ef63b1e9da94b281d97299c9e6004d7d3fef248a4db6ef4b07b4393ec6aae7f"
+          },
+          {
+            "case_id": "pr-result-promoted",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "pull_request",
+              "findings": [
+                {
+                  "code": "non_mainline_latest_promotion",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "exception_decision"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/pr-result-promoted.json",
+            "trace_sha256": "96a5e064c2325f8ceffc3e0c6f10b0e679944259a1084cc7d3046337aa21dbe9"
+          },
+          {
+            "case_id": "old-review-new-head",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "stale_review_binding",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/old-review-new-head.json",
+            "trace_sha256": "043f7211ff8dc84a950f2c9ec763675cc497d788ef5cbbef2d08f4639d90d5c9"
+          },
+          {
+            "case_id": "role-lenses-called-independent",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "execution_kind_misrepresentation",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "execution_record"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/role-lenses-called-independent.json",
+            "trace_sha256": "ed92af720abbc110d84e3bcd6fb7014e334b14f64bda58f4628be72d8854f7a1"
+          },
+          {
+            "case_id": "private-text-in-public-receipt",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "private_review_text_publication",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "allowlist"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/private-text-in-public-receipt.json",
+            "trace_sha256": "03f7899424400749bf477074ba6f8273bc92c426003d60698a3aed82e321e3a8"
+          },
+          {
+            "case_id": "successful-job-overclaims-security",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "ci_success_overclaims_compliance",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/successful-job-overclaims-security.json",
+            "trace_sha256": "30e8c8b3114ffc75a585d94e395101929e8b7312fb02d8abcefb481ce2961529"
+          },
+          {
+            "case_id": "candidate-registration-only",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": []
+            },
+            "trace_file": "traces/candidate-registration-only.json",
+            "trace_sha256": "9212f5d6aac9644359f2bf2a4212f917c6495b67b8224de5504afae72eb2eaeb"
+          },
+          {
+            "case_id": "report-only-scan-with-findings",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "report-only",
+              "evidence_context": "manual",
+              "findings": []
+            },
+            "trace_file": "traces/report-only-scan-with-findings.json",
+            "trace_sha256": "5bf7cf1156f00e28a6524244cc88a0ab4a674ac9588bf1638b20742c939d2e29"
+          }
+        ]
+      },
+      "traces": {
+        "traces/candidate-derived-control.json": "{\n  \"case_id\": \"candidate-derived-control\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-0\",\n  \"elapsed_seconds\": 0.25,\n  \"usage\": {\n    \"input_tokens\": 10,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/released-package-overwrite.json": "{\n  \"case_id\": \"released-package-overwrite\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-1\",\n  \"elapsed_seconds\": 1.25,\n  \"usage\": {\n    \"input_tokens\": 11,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/unauthorized-blocking.json": "{\n  \"case_id\": \"unauthorized-blocking\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-2\",\n  \"elapsed_seconds\": 2.25,\n  \"usage\": {\n    \"input_tokens\": 12,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/pr-result-promoted.json": "{\n  \"case_id\": \"pr-result-promoted\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-3\",\n  \"elapsed_seconds\": 3.25,\n  \"usage\": {\n    \"input_tokens\": 13,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/old-review-new-head.json": "{\n  \"case_id\": \"old-review-new-head\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-4\",\n  \"elapsed_seconds\": 4.25,\n  \"usage\": {\n    \"input_tokens\": 14,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/role-lenses-called-independent.json": "{\n  \"case_id\": \"role-lenses-called-independent\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-5\",\n  \"elapsed_seconds\": 5.25,\n  \"usage\": {\n    \"input_tokens\": 15,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/private-text-in-public-receipt.json": "{\n  \"case_id\": \"private-text-in-public-receipt\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-6\",\n  \"elapsed_seconds\": 6.25,\n  \"usage\": {\n    \"input_tokens\": 16,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/successful-job-overclaims-security.json": "{\n  \"case_id\": \"successful-job-overclaims-security\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-7\",\n  \"elapsed_seconds\": 7.25,\n  \"usage\": {\n    \"input_tokens\": 17,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/candidate-registration-only.json": "{\n  \"case_id\": \"candidate-registration-only\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-8\",\n  \"elapsed_seconds\": 8.25,\n  \"usage\": {\n    \"input_tokens\": 18,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/report-only-scan-with-findings.json": "{\n  \"case_id\": \"report-only-scan-with-findings\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-9\",\n  \"elapsed_seconds\": 9.25,\n  \"usage\": {\n    \"input_tokens\": 19,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n"
+      },
+      "original_exit": 0,
+      "expected_grade": {
+        "sha256": "ac976716cd5ef219326c66e1456104991b410ca4daf338ba6d7f0af73d68476d",
+        "bytes": 7470
+      },
+      "expected_error": ""
+    },
+    {
+      "id": "wrong-evaluation_digest",
+      "response_bundle": {
+        "evaluation_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "packet_set_digest": "b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d",
+        "records": [
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "candidate_derivation",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "proposed_control"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "released-package-overwrite",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "released_baseline_mutation",
+                  "severity": "critical",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "change"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "unauthorized-blocking",
+            "response": {
+              "release_impact": "candidate",
+              "enforcement_behavior": "blocking",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "blocking_mode_change",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "approved_scope"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "pr-result-promoted",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "pull_request",
+              "findings": [
+                {
+                  "code": "non_mainline_latest_promotion",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "exception_decision"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "old-review-new-head",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "stale_review_binding",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "role-lenses-called-independent",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "execution_kind_misrepresentation",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "execution_record"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "private-text-in-public-receipt",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "private_review_text_publication",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "allowlist"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "successful-job-overclaims-security",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "ci_success_overclaims_compliance",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "candidate-registration-only",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": []
+            }
+          },
+          {
+            "case_id": "report-only-scan-with-findings",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "report-only",
+              "evidence_context": "manual",
+              "findings": []
+            }
+          }
+        ]
+      },
+      "traces": {},
+      "original_exit": 2,
+      "expected_grade": null,
+      "expected_error": "error: Responses belong to a different evaluation revision\n"
+    },
+    {
+      "id": "wrong-packet_set_digest",
+      "response_bundle": {
+        "evaluation_digest": "62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9",
+        "packet_set_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "records": [
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "candidate_derivation",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "proposed_control"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "released-package-overwrite",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "released_baseline_mutation",
+                  "severity": "critical",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "change"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "unauthorized-blocking",
+            "response": {
+              "release_impact": "candidate",
+              "enforcement_behavior": "blocking",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "blocking_mode_change",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "approved_scope"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "pr-result-promoted",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "pull_request",
+              "findings": [
+                {
+                  "code": "non_mainline_latest_promotion",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "exception_decision"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "old-review-new-head",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "stale_review_binding",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "role-lenses-called-independent",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "execution_kind_misrepresentation",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "execution_record"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "private-text-in-public-receipt",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "private_review_text_publication",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "allowlist"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "successful-job-overclaims-security",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "ci_success_overclaims_compliance",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "candidate-registration-only",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": []
+            }
+          },
+          {
+            "case_id": "report-only-scan-with-findings",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "report-only",
+              "evidence_context": "manual",
+              "findings": []
+            }
+          }
+        ]
+      },
+      "traces": {},
+      "original_exit": 2,
+      "expected_grade": null,
+      "expected_error": "error: Responses belong to a different prompt/role/skill revision\n"
+    },
+    {
+      "id": "duplicate-case",
+      "response_bundle": {
+        "evaluation_digest": "62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9",
+        "packet_set_digest": "b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d",
+        "records": [
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "candidate_derivation",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "proposed_control"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "released-package-overwrite",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "released_baseline_mutation",
+                  "severity": "critical",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "change"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "unauthorized-blocking",
+            "response": {
+              "release_impact": "candidate",
+              "enforcement_behavior": "blocking",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "blocking_mode_change",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "approved_scope"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "pr-result-promoted",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "pull_request",
+              "findings": [
+                {
+                  "code": "non_mainline_latest_promotion",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "exception_decision"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "old-review-new-head",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "stale_review_binding",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "role-lenses-called-independent",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "execution_kind_misrepresentation",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "execution_record"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "private-text-in-public-receipt",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "private_review_text_publication",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "allowlist"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "successful-job-overclaims-security",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "ci_success_overclaims_compliance",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "case_id": "candidate-registration-only",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": []
+            }
+          },
+          {
+            "case_id": "report-only-scan-with-findings",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "report-only",
+              "evidence_context": "manual",
+              "findings": []
+            }
+          },
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "candidate_derivation",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "proposed_control"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "traces": {},
+      "original_exit": 2,
+      "expected_grade": null,
+      "expected_error": "error: Unknown or duplicate response case\n"
+    },
+    {
+      "id": "reused-runtime-run",
+      "response_bundle": {
+        "evaluation_digest": "62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9",
+        "packet_set_digest": "b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d",
+        "records": [
+          {
+            "case_id": "candidate-derived-control",
+            "response": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "candidate_derivation",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "proposed_control"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/candidate-derived-control.json",
+            "trace_sha256": "04e7d7cb1a27b6e90c4ece542d270f0fbf6e2a9a8aa605d808c6a70c7613d189"
+          },
+          {
+            "case_id": "released-package-overwrite",
+            "response": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "released_baseline_mutation",
+                  "severity": "critical",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "change"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/released-package-overwrite.json",
+            "trace_sha256": "e1a2bbb7d80c2d712fb621b4d29b36b89ff795866e56e2596ec7c8c8e89d9884"
+          },
+          {
+            "case_id": "unauthorized-blocking",
+            "response": {
+              "release_impact": "candidate",
+              "enforcement_behavior": "blocking",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "blocking_mode_change",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "approved_scope"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/unauthorized-blocking.json",
+            "trace_sha256": "4ef63b1e9da94b281d97299c9e6004d7d3fef248a4db6ef4b07b4393ec6aae7f"
+          },
+          {
+            "case_id": "pr-result-promoted",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "pull_request",
+              "findings": [
+                {
+                  "code": "non_mainline_latest_promotion",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "exception_decision"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/pr-result-promoted.json",
+            "trace_sha256": "96a5e064c2325f8ceffc3e0c6f10b0e679944259a1084cc7d3046337aa21dbe9"
+          },
+          {
+            "case_id": "old-review-new-head",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "stale_review_binding",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/old-review-new-head.json",
+            "trace_sha256": "043f7211ff8dc84a950f2c9ec763675cc497d788ef5cbbef2d08f4639d90d5c9"
+          },
+          {
+            "case_id": "role-lenses-called-independent",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "execution_kind_misrepresentation",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "execution_record"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/role-lenses-called-independent.json",
+            "trace_sha256": "ed92af720abbc110d84e3bcd6fb7014e334b14f64bda58f4628be72d8854f7a1"
+          },
+          {
+            "case_id": "private-text-in-public-receipt",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "private_review_text_publication",
+                  "severity": "high",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "allowlist"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/private-text-in-public-receipt.json",
+            "trace_sha256": "03f7899424400749bf477074ba6f8273bc92c426003d60698a3aed82e321e3a8"
+          },
+          {
+            "case_id": "successful-job-overclaims-security",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": [
+                {
+                  "code": "ci_success_overclaims_compliance",
+                  "severity": "medium",
+                  "reason": "Synthetic labelled oracle response; no model execution.",
+                  "evidence_refs": [
+                    "claim"
+                  ]
+                }
+              ]
+            },
+            "trace_file": "traces/successful-job-overclaims-security.json",
+            "trace_sha256": "30e8c8b3114ffc75a585d94e395101929e8b7312fb02d8abcefb481ce2961529"
+          },
+          {
+            "case_id": "candidate-registration-only",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none",
+              "findings": []
+            },
+            "trace_file": "traces/candidate-registration-only.json",
+            "trace_sha256": "9212f5d6aac9644359f2bf2a4212f917c6495b67b8224de5504afae72eb2eaeb"
+          },
+          {
+            "case_id": "report-only-scan-with-findings",
+            "response": {
+              "release_impact": "none",
+              "enforcement_behavior": "report-only",
+              "evidence_context": "manual",
+              "findings": []
+            },
+            "trace_file": "traces/report-only-scan-with-findings.json",
+            "trace_sha256": "5bf7cf1156f00e28a6524244cc88a0ab4a674ac9588bf1638b20742c939d2e29"
+          }
+        ]
+      },
+      "traces": {
+        "traces/candidate-derived-control.json": "{\n  \"case_id\": \"candidate-derived-control\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-0\",\n  \"elapsed_seconds\": 0.25,\n  \"usage\": {\n    \"input_tokens\": 10,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/released-package-overwrite.json": "{\n  \"case_id\": \"released-package-overwrite\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-0\",\n  \"elapsed_seconds\": 1.25,\n  \"usage\": {\n    \"input_tokens\": 11,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/unauthorized-blocking.json": "{\n  \"case_id\": \"unauthorized-blocking\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-2\",\n  \"elapsed_seconds\": 2.25,\n  \"usage\": {\n    \"input_tokens\": 12,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/pr-result-promoted.json": "{\n  \"case_id\": \"pr-result-promoted\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-3\",\n  \"elapsed_seconds\": 3.25,\n  \"usage\": {\n    \"input_tokens\": 13,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/old-review-new-head.json": "{\n  \"case_id\": \"old-review-new-head\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-4\",\n  \"elapsed_seconds\": 4.25,\n  \"usage\": {\n    \"input_tokens\": 14,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/role-lenses-called-independent.json": "{\n  \"case_id\": \"role-lenses-called-independent\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-5\",\n  \"elapsed_seconds\": 5.25,\n  \"usage\": {\n    \"input_tokens\": 15,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/private-text-in-public-receipt.json": "{\n  \"case_id\": \"private-text-in-public-receipt\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-6\",\n  \"elapsed_seconds\": 6.25,\n  \"usage\": {\n    \"input_tokens\": 16,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/successful-job-overclaims-security.json": "{\n  \"case_id\": \"successful-job-overclaims-security\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-7\",\n  \"elapsed_seconds\": 7.25,\n  \"usage\": {\n    \"input_tokens\": 17,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/candidate-registration-only.json": "{\n  \"case_id\": \"candidate-registration-only\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-8\",\n  \"elapsed_seconds\": 8.25,\n  \"usage\": {\n    \"input_tokens\": 18,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n",
+        "traces/report-only-scan-with-findings.json": "{\n  \"case_id\": \"report-only-scan-with-findings\",\n  \"evaluation_digest\": \"62889ebf095ebc77fdfc86169e92b81b61e04c3ed7b37127cc105f75df9729a9\",\n  \"packet_set_digest\": \"b59d6519affb7becff4b5323f02910436cd21d98e6834a414fc22adbae60816d\",\n  \"run_id\": \"synthetic-run-9\",\n  \"elapsed_seconds\": 9.25,\n  \"usage\": {\n    \"input_tokens\": 19,\n    \"cached_input_tokens\": 2,\n    \"output_tokens\": 4\n  },\n  \"requested_model\": \"synthetic-model\",\n  \"observed_model\": \"synthetic-observed-model\"\n}\n"
+      },
+      "original_exit": 2,
+      "expected_grade": null,
+      "expected_error": "error: One runtime run cannot be counted for multiple evaluation cases\n"
+    }
+  ],
+  "raw_private_packets_exported": false,
+  "actual_provider_invoked": false,
+  "operator_dataset": {
+    "dataset": {
+      "schema_version": "1.0.0",
+      "evaluation_id": "review-quality-operator-fixture",
+      "synthetic": true,
+      "taxonomy": [
+        "candidate_derivation",
+        "released_baseline_mutation",
+        "blocking_mode_change",
+        "non_mainline_latest_promotion",
+        "stale_review_binding",
+        "execution_kind_misrepresentation",
+        "private_review_text_publication",
+        "ci_success_overclaims_compliance"
+      ],
+      "cases": [
+        {
+          "id": "candidate-derived-control",
+          "role_id": "source-document-intake",
+          "question": "Assess whether this source intake safely derives a control.",
+          "inputs": {
+            "register": {
+              "id": "SYNTHETIC-SOURCE",
+              "status": "candidate",
+              "review_decision": null
+            },
+            "proposed_control": {
+              "id": "SYNTHETIC-CONTROL",
+              "effective": true,
+              "source": "SYNTHETIC-SOURCE"
+            }
+          },
+          "expected_findings": {
+            "candidate_derivation": "high"
+          },
+          "expected_classification": {
+            "release_impact": "governance_model",
+            "enforcement_behavior": "unchanged",
+            "evidence_context": "none"
+          }
+        },
+        {
+          "id": "released-package-overwrite",
+          "role_id": "release-manager",
+          "question": "Assess a change to an already released baseline package under its existing tag.",
+          "inputs": {
+            "package": "releases/l1/v1.1.3/controls.yaml",
+            "change": "Replace a required control inside the existing package and regenerate its checksums",
+            "release_decision": "No new version or release candidate"
+          },
+          "expected_findings": {
+            "released_baseline_mutation": "critical"
+          },
+          "expected_classification": {
+            "release_impact": "released_baseline",
+            "enforcement_behavior": "unchanged",
+            "evidence_context": "none"
+          }
+        }
+      ]
+    },
+    "prepared_file_hashes": {
+      "candidate-derived-control.prompt.json": {
+        "sha256": "e92ca20df16a5e2a47a9a797600314071c4ba92d633d77c38c9f1371e32b9276",
+        "bytes": 7945
+      },
+      "candidate-derived-control.schema.json": {
+        "sha256": "d0b1d1d34e68e58a18f0da69cb4110108d6d421d8643a8bc4e837c26cb11c5b6",
+        "bytes": 1904
+      },
+      "evaluation-manifest.json": {
+        "sha256": "43c18335feb62e503f51857d0f0d34dfb769909598c08bc9b53c519fad068bd5",
+        "bytes": 1060
+      },
+      "released-package-overwrite.prompt.json": {
+        "sha256": "b6f55fef4bef1b2ff308db03eb98106d9ffcb931a4ed58d4b852e0fa7ff1d29b",
+        "bytes": 3353
+      },
+      "released-package-overwrite.schema.json": {
+        "sha256": "5c670e4d9b30ce29c1c5ce76e03cd4fb20803b72b68f8b6bbfb64c1f3958465f",
+        "bytes": 1929
+      }
+    },
+    "response_bundle": {
+      "evaluation_digest": "e9bc696ee514987cdc23db0e2cde6fcb5b70db2fa462ecfd13bb7c8e698aaa4b",
+      "packet_set_digest": "e7e2d56759af578440690e52f3aec49368f9ae400d25497f6278b4d10c501eea",
+      "records": [
+        {
+          "case_id": "candidate-derived-control",
+          "response": {
+            "release_impact": "governance_model",
+            "enforcement_behavior": "unchanged",
+            "evidence_context": "none",
+            "findings": [
+              {
+                "code": "candidate_derivation",
+                "severity": "high",
+                "reason": "Synthetic operator-dataset oracle.",
+                "evidence_refs": [
+                  "proposed_control"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "released-package-overwrite",
+          "response": {
+            "release_impact": "released_baseline",
+            "enforcement_behavior": "unchanged",
+            "evidence_context": "none",
+            "findings": [
+              {
+                "code": "released_baseline_mutation",
+                "severity": "critical",
+                "reason": "Synthetic operator-dataset oracle.",
+                "evidence_refs": [
+                  "change"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "expected_grade": {
+      "sha256": "7dcf36fdd96e0dde75573ab38e66299644783a6fea583abf3c2c12cf7c00e917",
+      "bytes": 1301
+    }
+  },
+  "invalid_datasets": [
+    {
+      "id": "not-synthetic",
+      "dataset": {
+        "schema_version": "1.0.0",
+        "evaluation_id": "review-quality-operator-fixture",
+        "synthetic": false,
+        "taxonomy": [
+          "candidate_derivation",
+          "released_baseline_mutation",
+          "blocking_mode_change",
+          "non_mainline_latest_promotion",
+          "stale_review_binding",
+          "execution_kind_misrepresentation",
+          "private_review_text_publication",
+          "ci_success_overclaims_compliance"
+        ],
+        "cases": [
+          {
+            "id": "candidate-derived-control",
+            "role_id": "source-document-intake",
+            "question": "Assess whether this source intake safely derives a control.",
+            "inputs": {
+              "register": {
+                "id": "SYNTHETIC-SOURCE",
+                "status": "candidate",
+                "review_decision": null
+              },
+              "proposed_control": {
+                "id": "SYNTHETIC-CONTROL",
+                "effective": true,
+                "source": "SYNTHETIC-SOURCE"
+              }
+            },
+            "expected_findings": {
+              "candidate_derivation": "high"
+            },
+            "expected_classification": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none"
+            }
+          },
+          {
+            "id": "released-package-overwrite",
+            "role_id": "release-manager",
+            "question": "Assess a change to an already released baseline package under its existing tag.",
+            "inputs": {
+              "package": "releases/l1/v1.1.3/controls.yaml",
+              "change": "Replace a required control inside the existing package and regenerate its checksums",
+              "release_decision": "No new version or release candidate"
+            },
+            "expected_findings": {
+              "released_baseline_mutation": "critical"
+            },
+            "expected_classification": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none"
+            }
+          }
+        ]
+      },
+      "original_exit": 2,
+      "expected_error": "error: Evaluation requires a versioned synthetic dataset\n"
+    },
+    {
+      "id": "unknown-role",
+      "dataset": {
+        "schema_version": "1.0.0",
+        "evaluation_id": "review-quality-operator-fixture",
+        "synthetic": true,
+        "taxonomy": [
+          "candidate_derivation",
+          "released_baseline_mutation",
+          "blocking_mode_change",
+          "non_mainline_latest_promotion",
+          "stale_review_binding",
+          "execution_kind_misrepresentation",
+          "private_review_text_publication",
+          "ci_success_overclaims_compliance"
+        ],
+        "cases": [
+          {
+            "id": "candidate-derived-control",
+            "role_id": "unknown-operator-role",
+            "question": "Assess whether this source intake safely derives a control.",
+            "inputs": {
+              "register": {
+                "id": "SYNTHETIC-SOURCE",
+                "status": "candidate",
+                "review_decision": null
+              },
+              "proposed_control": {
+                "id": "SYNTHETIC-CONTROL",
+                "effective": true,
+                "source": "SYNTHETIC-SOURCE"
+              }
+            },
+            "expected_findings": {
+              "candidate_derivation": "high"
+            },
+            "expected_classification": {
+              "release_impact": "governance_model",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none"
+            }
+          },
+          {
+            "id": "released-package-overwrite",
+            "role_id": "release-manager",
+            "question": "Assess a change to an already released baseline package under its existing tag.",
+            "inputs": {
+              "package": "releases/l1/v1.1.3/controls.yaml",
+              "change": "Replace a required control inside the existing package and regenerate its checksums",
+              "release_decision": "No new version or release candidate"
+            },
+            "expected_findings": {
+              "released_baseline_mutation": "critical"
+            },
+            "expected_classification": {
+              "release_impact": "released_baseline",
+              "enforcement_behavior": "unchanged",
+              "evidence_context": "none"
+            }
+          }
+        ]
+      },
+      "original_exit": 2,
+      "expected_error": "error: Invalid or duplicate evaluation case identity/role\n"
+    }
+  ]
+}

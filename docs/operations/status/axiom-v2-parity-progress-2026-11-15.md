@@ -605,3 +605,35 @@ Ubuntu deployment/recovery protocol and both collector service scopes. New-head 
 runs separately; prior success does not claim current-head completion. The maintainer's
 VM remains off/unreachable and this new Linux package has no execution proof on it.
 No target-VM retry or cleanup was attempted. Full Goal work continues.
+
+## Observed agent-selection statistics checkpoint — 16 November
+
+Candidate `407158ea1cf0f42834ad654d8c0f4605e2bd2789`, tree
+`7e707ac86d84bc8a9c1529ddc701b04d730b2124`, passed 1,544 pinned tests
+(385.053 s, one platform skip), demo and strict docs (2.26 s). Twenty statistics
+tests, eight matrix regressions and the identity guard passed. Selection contains
+138 Python files, 766 active fingerprints, 109 neutral core files and twenty-one
+adapters. All 24 protected operating-acceptance fingerprints remain unchanged.
+
+The installed Mac candidate passed all eighteen groups, including the original
+statistics files over seven synthetic log cases and the exact committed legacy log.
+The latter is historical declared selection metadata, separate from current private
+execution history. Both original V1 files match without normalization. Supplied
+operator logs remain private retained inputs; counts do not verify actual agents,
+models, human approval or operating acceptance.
+
+| Binding | SHA-256 |
+| --- | --- |
+| Runtime | `fdead0d2889c9cbc06251e02ac5b53533022042d33d2b8480a98fa6a2b336201` |
+| Prepared Mac package, 2,259 files | `3379bf47ac098b63582e1db29dc645399b64fd2c2bcc1ab9cbab821e6a07de4b` |
+| Prepared Linux package, 2,259 files | `02cd41fba38deb888da3fe2abe267990b3c585260d2954ee3de071154f903dd7` |
+| Whole committed-source DCR | `84b30f5a891ba9a996ed7dff444237160148830f35d3e26badacf5b2d7d4ef3f` |
+| Legacy log original two-file comparison | `fd0a05a52794689f5c2bfe50017c93ea970da7bb690d7fe6767179582ab27226` |
+| All reporting files plus one-day window case | `258608f4250ffab7c57d17af8a06abcd662bc2376adcbdb0388c1712ac37fdc4` |
+
+The source was verified and test listener closed; collector is paused with an empty
+queue and publisher inactive. The candidate is on its separate test branch. The
+preceding `eb6bbd4` PR head has nine successful non-VM workflows; its full Ubuntu
+installation/recovery protocol was still running at this checkpoint. This Linux
+package is prepared, while execution on the maintainer's off/unreachable target VM
+remains pending. No target-VM retry or cleanup was attempted. Full Goal work continues.

@@ -1321,7 +1321,9 @@ The logical private output files are
 `docs/operations/agent-usage-snapshot-latest.md`. JSON preserves the original
 sorted-key, indented writer and Markdown remains complete. Output paths are beneath
 the receipt's private artifact directory; no public generated report, docs page,
-usage history, source register or accepted index is overwritten. Recording is not
+usage history, source register or accepted index is overwritten. The legacy metadata-only
+wording describes the generated summary; the operator log itself is retained privately
+for replay. Recording is not
 activated and no historical selection becomes current execution evidence.
 
 Limits are 16 MiB/log, 100,000 JSONL events, 64 MiB/output, 128 MiB aggregate output,
@@ -1338,3 +1340,74 @@ comparison on the unchanged 15,920-byte committed legacy log matches both origin
 files, digest `fd0a05a52794689f5c2bfe50017c93ea970da7bb690d7fe6767179582ab27226`.
 Neither comparison verifies actual model execution or approval. Installed acceptance
 must be observed separately and the complete functional-parity Goal remains active.
+
+## Offline synthetic review-quality evaluation
+
+`review-quality prepare/grade/inspect` restores both modes of
+`evaluate_agent_reviews.py`: packet/schema/manifest preparation and scoring supplied
+structured answers. The default synthetic dataset and role/skill definitions come
+from the exact installed product Git commit. `--dataset` also accepts an explicit
+operator-supplied, versioned synthetic dataset over known program roles. The role
+and skill bytes remain program inputs, not operator code or inferred approval.
+
+```bash
+"$V2_PREFIX/axiom-v2" review-quality prepare \
+  --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" review-quality grade \
+  --dataset /private/operator/synthetic-dataset.json \
+  --responses /private/operator/responses.json \
+  --trace traces/case-1.json /private/operator/case-1-trace.json \
+  --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" review-quality inspect --assessment ASSESSMENT_SHA256
+```
+
+Preparation produces the original per-case `.prompt.json` and `.schema.json` files
+and `evaluation-manifest.json`. Gold expected labels remain absent from provider
+packets. The manifest retains complete prompt, evaluation, role-contract and skill
+fingerprints. The original digest uses sorted ASCII JSON with default spaces; it
+is deliberately distinct from the runtime's other canonical identity helper.
+
+Grading produces `evaluation-grade.json` with the original validity, missing/invalid
+answer, finding, severity and classification metrics. `complete_coverage` means all
+responses satisfy the structured answer contract; it does not imply correct labels,
+explanation quality, actual model execution or human approval. The original limitation
+and `provider_invoked: false` remain. Successful scoring returns zero even for missing
+or incorrect answers; invalid datasets, revisions or trace metadata return two.
+
+Optional traces must be explicitly attached with `--trace LABEL FILE`. A response's
+`trace_file` value resolves only those retained labels, never an arbitrary host path.
+Trace bytes, digests, case/evaluation/packet identities, bounded run/model identifiers,
+finite elapsed time, nonnegative integer token counts and uniqueness of runtime runs
+retain the original checks. The original assurance remains
+`supplied_runtime_trace_not_authenticated`: submitted model IDs, timings and token
+counts are not authenticated measurements. All outer model/trace authenticity,
+provider invocation, independent approval, operating authority and publication flags
+remain false, with Trust `unverified`.
+
+The private input store retains dataset, response and attached trace bytes and binds
+the exact program-input identity, source revision, node, runtime, operation and outer
+assessment clock. Inner V1 files have no added timestamp. Inspection recomputes whole
+output files after removal of caller files. Extra members, changed hashes, stale or
+foreign bindings and fabricated authority fail. No source role/skill files, public
+review plans, usage history, accepted index, consumer workflow or baseline is changed.
+
+The finite profile supports 200 cases and trace labels; each trace is limited to
+1 MiB, dataset/responses to 4 MiB each, aggregate retained input to 256 MiB, each
+output to 8 MiB, aggregate output to 128 MiB, 401 prepared files and a 4 MiB receipt.
+The existing 8 GiB reserve remains. Per-file and total output limits apply during
+packet construction. Program role/skill inputs are bounded regular 64 KiB Git blobs
+whose working bytes must match the committed version. Malformed/nonfinite JSON output
+is rejected, including overflow of otherwise finite supplied elapsed values.
+
+An independent unchanged V1 CLI/writer oracle covers the default ten-case dataset
+(21 complete file hashes), an explicit two-case operator dataset (five file hashes),
+ten scoring cases including supplied traces and original revision/duplicate/run
+failures, plus invalid synthetic/role datasets. Whole original file hashes match
+without normalization. Raw private packets and actual review inputs stay outside
+Git; technical fixtures contain synthetic inputs and whole-file SHA-256/length
+expectations. No model or provider is invoked by these comparisons.
+
+The associated input hardening rejects nonfinite JSONL constants in `agent-usage`
+before projection, including a bad earlier event outside the latest-event table.
+All fourteen legal original statistics files remain byte-compatible. The complete
+functional-parity Goal and remaining execution/review/operating flows remain open.

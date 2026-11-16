@@ -257,15 +257,18 @@
       "state": "in_progress",
       "v2_capabilities": [
         "provenance private record/import/index/check/inspect preserves original declared association wires; no verified execution or approval",
-        "agent-usage original metadata-only selection statistics from retained operator log or committed legacy Git data; no execution or human approval inferred"
+        "agent-usage original metadata-only selection statistics from retained operator log or committed legacy Git data; no execution or human approval inferred",
+        "review-quality private prepare/grade/inspect preserves original synthetic packets and structured-label scores; explicit retained traces remain unauthenticated"
       ],
       "positive_tests": [
         "tests/test_v2_evidence_agent_provenance.py:actual original record/index/conflict/validator wires and immutable private generations",
-        "tests/test_v2_agent_usage.py:actual frozen V1 seven cases/fourteen complete wires, original clock/count semantics and immutable log replay"
+        "tests/test_v2_agent_usage.py:actual frozen V1 seven cases/fourteen complete wires, original clock/count semantics and immutable log replay",
+        "tests/test_v2_review_quality.py:26 original complete prepared-file hashes, ten grading cases and original custom dataset capability"
       ],
       "negative_tests": [
         "tests/test_v2_evidence_agent_provenance.py:source conflicts, malformed/schema-invalid data, stale reports, traversal, foreign nodes, quotas and no inherited authority",
-        "tests/test_v2_agent_usage.py:invalid JSONL, missing versus empty origin, source/output tampering, foreign node, forged authority and quotas"
+        "tests/test_v2_agent_usage.py:invalid JSONL, missing versus empty origin, source/output tampering, foreign node, forged authority and quotas",
+        "tests/test_v2_review_quality.py:unknown/stale/duplicate inputs, unattached host paths, invalid or reused trace measurements, tampering, foreign bindings and early quotas"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -712,8 +715,8 @@
         "--responses"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/review_quality_application.py:create",
+      "state": "in_progress",
       "evidence": []
     },
     {
