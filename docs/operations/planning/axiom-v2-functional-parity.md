@@ -662,7 +662,7 @@ idempotent. Source snapshots are cached privately per exact revision.
 
 The bounded profile admits up to 10,000 committed members and copied data files,
 128 MiB total/16 MiB per copied file; its manifest is limited to 4 MiB. Output is
-bounded to thirty-two files, 64 MiB per file
+bounded to sixty-four files, 64 MiB per file
 and 128 MiB total. The existing 8 GiB free-space reserve is preserved.
 
 These are read-only projections of committed governed data and historical
@@ -699,7 +699,7 @@ two exact memberships: the frozen V1 tree and the later V2 reporting tree. Their
 lineage dependency invokes the original lineage writer directly in the private
 oracle directory. All four output files match without normalized fields. The
 existing six report files remain byte-identical. The expanded installed harness
-checks twenty-six complete files, immutable replay and tamper rejection; installed
+checks thirty-three complete files, immutable replay and tamper rejection; installed
 acceptance is recorded only after the new committed package actually runs.
 
 This source-profile change requires a fresh candidate instance; existing private
@@ -737,7 +737,7 @@ writers keep their original JSON escaping. Complete byte comparisons use the
 actual frozen V1 functions/renderers in two exact committed input contexts.
 Original dependency writers execute only in the private V1 oracle; V2 uses
 direct pure function calls. The corresponding installed acceptance compares all
-twenty-six files, and records only actually observed host execution. Existing generic
+thirty-three files, and records only actually observed host execution. Existing generic
 Workbench imports remain unchanged until their candidate/workspace context has
 its own migration and interface tests.
 
@@ -886,8 +886,8 @@ link and input-budget errors are rejected rather than silently hidden.
 All histories are selected from bounded committed membership and read through the
 same strict data port. No application checkout code, legacy report CLI or native
 API is executed. The existing pure collection-attempt lifecycle helper is selected
-and fingerprinted explicitly. All 31 committed-data output files fit the existing
-32-file cap; per-file, aggregate, manifest and free-space limits remain unchanged.
+and fingerprinted explicitly. All 33 committed-data output files fit the current
+64-file cap described below; per-file, aggregate, manifest and free-space limits remain unchanged.
 Original V1 writers produced five complete output files in each of two exact
 source/membership contexts; no output bytes were normalized. The oracle relocated
 only its health output destination to preserve the input snapshot.
@@ -897,3 +897,44 @@ resolution, malformed versus duplicate JSON, time/overflow failures and resealed
 window parameters. Candidate decisions, attestation actions, current private
 health, public reporting and the remaining full Goal continue to require their
 own implementation and acceptance. No catalogue area or entrypoint is excluded.
+
+
+## Informational portfolio projection
+
+```sh
+"$V2_PREFIX/axiom-v2" reports build --kind portfolio --at 2026-11-15T12:00:00Z
+```
+
+This kind restores the original registry-based onboarding JSON and Markdown from
+committed consumer integrations, accepted-domain indexes and the optional committed
+previous portfolio projection. It reads one additional inert source file,
+`generated/reports/portfolio-onboarding-status.json`, which is already distributed
+as data. The admitted report data scope now has 366 files in the comparison
+contexts. Output lives under the private artifact directory; the previous source
+file and actual accepted status remain unchanged.
+
+The original timestamp rule is retained: if summary and repository rows are
+unchanged, keep the previous `generated_at`; otherwise use the explicit assessment
+time. Freshness retains its original 30-day threshold and missing/future declaration
+semantics. Registry `active`/`pilot` labels describe the committed source record,
+not activation or acceptance of the installed node. The report is informational
+and approves no waiver, baseline, enforcement mode or consumer integration.
+
+Adding the two portfolio files brings the finite `all` profile to 33 unique files.
+Its count cap is deliberately increased from 32 to **64** in both the application
+and schema; 65 small files are rejected. The **64 MiB per-file**, **128 MiB aggregate**,
+**4 MiB record**, source/manifest bounds and **8 GiB free-space reserve** remain.
+Greater file count does not bypass aggregate-byte checks. This change supports the
+full report scope without removing previous families or accepting an unbounded list.
+Domain/combined reports remain their separate finite profile. Changed source and
+runtime fingerprints require a fresh instance, with no silent history or authority
+migration.
+
+Actual original V1 writers at an explicit frozen UTC consumed their original
+previous projection in two exact input/member contexts. Both complete output files
+match without normalization. The private oracle restored its previous input after
+capturing output and checked every source checksum. Tests cover timestamp retention,
+changed rows/staleness, threshold/missing/future declarations, empty registry,
+private artifact separation and finite/aggregate capacity. Multi-consumer configuration
+readiness, provider-native configuration facts and remaining reporting/operating
+capabilities retain their open scope; no full Goal acceptance is claimed.

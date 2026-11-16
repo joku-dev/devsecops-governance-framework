@@ -26,7 +26,7 @@ from lib.v2_boundary import safe_source
 MAX_RECORD = 4 * 1024**2
 MAX_OUTPUT = 64 * 1024**2
 MAX_TOTAL = 128 * 1024**2
-MAX_FILES = 32
+MAX_FILES = 64
 
 
 def file_descriptors(files):

@@ -213,10 +213,16 @@
     {
       "id": "FP-18",
       "title": "Einf\u00fchrung und Betriebsreife bewerten",
-      "state": "pending",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports portfolio preserves committed registry/index/previous-projection and explicit clock; remaining readiness/live acceptance open"
+      ],
+      "positive_tests": [
+        "tests/test_v2_portfolio_reports.py:original bytes, stable timestamps and changed freshness"
+      ],
+      "negative_tests": [
+        "tests/test_v2_portfolio_reports.py:missing/empty context and finite file/aggregate capacity guards"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
@@ -1554,8 +1560,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_portfolio.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

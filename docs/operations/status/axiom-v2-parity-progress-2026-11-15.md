@@ -374,3 +374,35 @@ No transfer, cleanup or installation was attempted there. All ten GitHub workflo
 for the preceding `113e765` source passed, including its full VM installation
 protocol; later heads have separate CI. Candidate/health/replay reporting added
 after this checkpoint does not inherit its installed-host proof.
+
+
+## Mac candidate/health/replay checkpoint at `b66a0dc`; target VM still pending
+
+Candidate `b66a0dcb256997cd565ffa0fe595ab3d90873ea8`, tree
+`094762d840ad5610d99d213a4686a15cc6aeed3e`, passed 1,431 pinned tests
+(one platform skip), demo and strict documentation build. It declares 123 Python
+files, 745 active fingerprints and a 95-file neutral closure. All 24 protected
+operating fingerprints and normative/model/baseline/accepted-state files are unchanged.
+
+The fresh Mac installation passed all thirteen capability groups. Reporting covers
+31 original committed-data files plus explicit one-day health-window replay,
+original domain/combined wires and all six real ha-CPsWMS domain files. Candidate
+maturity stays non-normative/human-review-required. Historical health and replay
+views do not change Trust or accepted latest pointers. Existing original source
+and native-capture comparisons retain their preceding digests and limitations.
+
+| Installed binding | SHA-256 |
+| --- | --- |
+| Runtime | `e7c92453782677757ae8e75537f6c94c0fef9244876ea77e4891dc75f3e498d5` |
+| Mac prepared package | `d5430290b8aa62334f6e8ebb4f8e8962b2d0d7aaa4dfc239946d543ca0f2a116` |
+| Linux prepared package | `39c5b83fddee254785b93d3ae874ca4c821a47f1dc4653c8bb01c1e62bddecc2` |
+| Complete reporting group, including one-day window | `2eb0923269681e085a2ba3e65adf7821d8ee02ccd89451aa5618d0d886ae797f` |
+| Complete Mac committed-source DCR | `2f9fa5109197ac3fe1e24741fba61996d0db26b008b4d047e19f2ee30bd2d08e` |
+
+Authentication, CSRF/logout, restart and drift rejection passed; the temporary
+listener stopped, collector stayed paused/empty and publisher inactive. Linux
+is packaged, but the maintainer's VM is still off or unreachable and its execution
+of this source remains pending. No transfer, cleanup or new installation was
+attempted. All ten GitHub workflows for preceding `0930e87` passed, including full
+VM installation; later heads have separate checks. Portfolio work following this
+checkpoint does not inherit this installed-host proof. The complete Goal stays active.

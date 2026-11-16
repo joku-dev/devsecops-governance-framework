@@ -40,6 +40,12 @@ def main():
     assert advisory['membership_fixture_sha256'] == bindings[lineage_path.name]
     assert advisory['v1_reference'] == fixture['v1_reference'] and advisory['at'] == lineage['at']
     fixture['expected_outputs'].update(advisory['cases'][-1]['expected_outputs'])
+    portfolio_path = args.fixtures / 'portfolio-reporting-cases.json'
+    assert hashlib.sha256(portfolio_path.read_bytes()).hexdigest() == bindings[portfolio_path.name]
+    portfolio = json.loads(portfolio_path.read_text())
+    assert portfolio['membership_fixture_sha256'] == bindings[lineage_path.name]
+    assert portfolio['v1_reference'] == fixture['v1_reference'] and portfolio['at'] == lineage['at']
+    fixture['expected_outputs'].update(portfolio['cases'][-1]['expected_outputs'])
     def command(*arguments, expected=0):
         value = subprocess.run([str(prefix / 'axiom-v2'), 'reports', *arguments],
                                capture_output=True, text=True, timeout=180)

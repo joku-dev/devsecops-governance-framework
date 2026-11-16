@@ -6,7 +6,7 @@ from lib import control_reporting, report_graph, report_lineage, report_impact
 from lib import report_source_replacement, report_source_intake, report_source_briefs
 from lib import report_requirement_delta, report_source_process
 from lib import report_model_followup
-from lib import report_candidate_maturity, report_intake_health, report_replay_triage
+from lib import report_candidate_maturity, report_intake_health, report_replay_triage, report_portfolio
 from lib.report_data import ReportData
 from lib.portable.contracts import ROOT
 from lib.portable.runtime import read_json
@@ -15,8 +15,9 @@ KINDS = ('graph', 'control-coverage', 'traceability', 'architecture-traceability
          'governance-traceability', 'source-lineage', 'change-impact',
          'source-replacement', 'source-intake', 'source-review-briefs',
          'requirement-delta', 'source-process', 'automation', 'document-controls',
-         'open-gaps', 'pipeline-baseline', 'candidate-maturity', 'intake-health', 'replay-triage')
-ADVISORY_REPORTS = {'candidate-maturity': (report_candidate_maturity, 'generated/reports/harmonized-requirements-maturity'),
+         'open-gaps', 'pipeline-baseline', 'candidate-maturity', 'intake-health', 'replay-triage', 'portfolio')
+ADVISORY_REPORTS = {'portfolio': (report_portfolio, 'generated/reports/portfolio-onboarding-status'),
+    'candidate-maturity': (report_candidate_maturity, 'generated/reports/harmonized-requirements-maturity'),
     'intake-health': (report_intake_health, 'status/intake-health'),
     'replay-triage': (report_replay_triage, 'generated/reports/replay-triage')}
 MODEL_REPORTS = {'automation': report_model_followup.automation,

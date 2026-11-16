@@ -71,6 +71,7 @@
         "candidate-maturity",
         "intake-health",
         "replay-triage",
+        "portfolio",
         "all"
       ]
     },
@@ -98,7 +99,7 @@
     "files": {
       "type": "object",
       "minProperties": 1,
-      "maxProperties": 32,
+      "maxProperties": 64,
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,
