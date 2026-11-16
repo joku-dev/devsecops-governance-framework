@@ -437,3 +437,35 @@ source. No transfer, cleanup or installation was attempted there. All ten GitHub
 workflows for preceding `b66a0dc` passed, including full VM installation; later heads
 have separate checks. Explicit configuration-profile work after this checkpoint
 does not inherit its installed-host proof. The complete Goal remains active.
+
+
+## Observed explicit configuration checkpoint — 16 November
+
+Source `e9476d3a5145fc113c03be7624b63f7854a14bb7`, tree
+`319a7ba272e4beb74921565e812bbe7a970c9ecd`, passed 1,452 pinned tests
+(one platform skip), the demo and strict documentation build. Twelve configuration
+cases compare the original positive and declared synthetic negative wires.
+The selected distribution has 126 Python files, 748 active fingerprints and a
+98-file neutral closure. All 24 protected operating fingerprints remain unchanged.
+
+A fresh installed Mac passed all **14** groups, including the separate explicit
+configuration report, 33 generic report files and custom health window, complete
+DCR, synthetic domains and the separate real ha-CPsWMS source/native/domain comparisons.
+The HTTP listener was stopped, source reverified, collector paused with an empty
+queue and publisher inactive. Current Mac bindings are:
+
+| Item | SHA-256 |
+| --- | --- |
+| Runtime | `fbd79eb8ded81458eead6fd9362e26016103b9b2c5bcd045c87b7562919f554e` |
+| Mac package | `61dfbe894f1460aca3de8b4fa5ba856d52108cd2c5dd6b0f4fdef4b452eb10de` |
+| Prepared Linux package | `ae72cb7bcb5e610f05d125543b6787b56f8b5982c6fc30f2fe4178a347c3c264` |
+| Original configuration outputs | `18ef4524920f5c530dda0a599a61b26430bbe6b701318ef232d5b77890cf43b6` |
+| Generic reports and one-day window | `2c84f65156414ff20b4d8bd5525934d9b550f3a1ee450e99c440ec5214b626da` |
+| Complete committed-source DCR | `af985b4b7752152f2cfb202aa4349f600bc9e93a10eae48436ca3064cdf13a80` |
+
+The explicit profile checks literal committed source signatures, including their
+comment limitation; it is no effective/live configuration attestation. Generic
+`all` does not infer a provider. The maintainer confirmed the target VM is off or
+unreachable; this source has no new target-VM installation or execution proof.
+Subsequent blocking decision-aid implementation requires its own committed package,
+installed proof and CI. This checkpoint does not claim full V1 parity or Goal completion.

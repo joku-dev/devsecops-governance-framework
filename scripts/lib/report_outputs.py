@@ -7,6 +7,7 @@ from lib import report_source_replacement, report_source_intake, report_source_b
 from lib import report_requirement_delta, report_source_process
 from lib import report_model_followup
 from lib import report_candidate_maturity, report_intake_health, report_replay_triage, report_portfolio, report_multi_consumer
+from lib import report_blocking_readiness, report_blocking_alignment
 from lib.provider_ports import CONFIGURATION_PROVIDERS, configuration_source_profile
 from lib.report_data import ReportData
 from lib.portable.contracts import ROOT
@@ -16,8 +17,12 @@ KINDS = ('graph', 'control-coverage', 'traceability', 'architecture-traceability
          'governance-traceability', 'source-lineage', 'change-impact',
          'source-replacement', 'source-intake', 'source-review-briefs',
          'requirement-delta', 'source-process', 'automation', 'document-controls',
-         'open-gaps', 'pipeline-baseline', 'candidate-maturity', 'intake-health', 'replay-triage', 'portfolio')
-ADVISORY_REPORTS = {'portfolio': (report_portfolio, 'generated/reports/portfolio-onboarding-status'),
+         'open-gaps', 'pipeline-baseline', 'candidate-maturity', 'intake-health', 'replay-triage', 'portfolio', 'blocking-readiness', 'blocking-alignment')
+JSON_ONLY_KINDS = ('intake-health', 'blocking-readiness', 'blocking-alignment')
+ADVISORY_REPORTS = {
+    'blocking-readiness': (report_blocking_readiness, 'generated/reports/blocking-readiness'),
+    'blocking-alignment': (report_blocking_alignment, 'generated/reports/blocking-mode-alignment'),
+    'portfolio': (report_portfolio, 'generated/reports/portfolio-onboarding-status'),
     'candidate-maturity': (report_candidate_maturity, 'generated/reports/harmonized-requirements-maturity'),
     'intake-health': (report_intake_health, 'status/intake-health'),
     'replay-triage': (report_replay_triage, 'generated/reports/replay-triage')}
@@ -77,7 +82,7 @@ def build(data, kind, *, membership=None, at=None, window_days=30, source_config
         context = ReportData(data, membership)
         value = module.generate(context, at, window_days) if kind == 'intake-health' else module.generate(context, at)
         files = {name + '.json': (json.dumps(value, indent=2, allow_nan=False) + '\n').encode()}
-        if kind != 'intake-health': files[name + '.md'] = module.render_markdown(value).encode()
+        if kind not in JSON_ONLY_KINDS: files[name + '.md'] = module.render_markdown(value).encode()
         return files
     if kind in MODEL_REPORTS:
         if membership is None: raise ValueError('explicit_report_membership_required')

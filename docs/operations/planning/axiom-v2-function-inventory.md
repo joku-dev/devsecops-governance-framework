@@ -33,7 +33,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. `reports intake-health` ergänzt davon getrennte Kennzahlen des committed Datenstands mit explizitem Zeitpunkt und Zeitfenster. |
 | 16 PR-Veröffentlichung | Explizite Adapterprofile und getrennte Zugangsdaten; keine implizite GitHub-Anmeldung oder Merge-Autorität. |
 | 17 Status | Workbench und private Consumer-Projektion; `reports` ergänzt einen reproduzierbaren Graph des committed Datenstands. Statische Viewer-Publikation und weitere Projektionen bleiben offen. |
-| 18 Readiness | `reports portfolio` erhält die bestehende Einführungsübersicht ohne Freigabe neuer Repos. `reports configuration` ergänzt die ursprüngliche Intake-Readiness mit explizitem Adapterprofil und begrenzten Textsignaturen. Weitere Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
+| 18 Readiness | `reports portfolio` erhält die bestehende Einführungsübersicht ohne Freigabe neuer Repos. `reports configuration` ergänzt die ursprüngliche Intake-Readiness mit explizitem Adapterprofil und begrenzten Textsignaturen. `reports blocking-readiness/blocking-alignment` erhält die lesenden Entscheidungshilfen mit committed Abhängigkeiten; Risikowerte erteilen keine Berechtigung. Weitere Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
 | 19 Betrieb/Sicherheit | Eigene Instanz, gepinnte Werkzeuge und Drift-Prüfung. GitHub-Sicherheitsbewertung nur innerhalb des Adapters. |
 | 20 Reviews/Kommunikation | Bestehende lokale Autoren-, Validierungs- und Reviewwerkzeuge im Entwicklungscheckout. |
 | 21 Lifecycle | V1-Live-Pilot-Einstiegspunkte in V2 stillgelegt. Keine Übertragung persönlicher Betriebsabnahme oder Aktionsrechte; neue Live-Zulassung bleibt gesondert. |
@@ -72,8 +72,8 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `generate_architecture_source_replacement_assessment.py` | Quellwerkzeug |
 | `generate_architecture_traceability_csv.py` | Quellwerkzeug |
 | `generate_automation_report.py` | Quellwerkzeug |
-| `generate_blocking_mode_alignment.py` | Quellwerkzeug |
-| `generate_blocking_readiness.py` | Quellwerkzeug |
+| `generate_blocking_mode_alignment.py` | `reports build --kind blocking-alignment`; committed Readiness, explizite Zeit; keine Modusänderung |
+| `generate_blocking_readiness.py` | `reports build --kind blocking-readiness`; bestehende Kriterien und committed Konfliktpräsenz; keine Freigabe |
 | `generate_control_coverage_report.py` | Quellwerkzeug |
 | `generate_control_evaluation_report.py` | Quellwerkzeug |
 | `generate_devsecops_governance_report.py` | Quellwerkzeug |

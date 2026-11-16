@@ -951,7 +951,7 @@ capabilities retain their open scope; no full Goal acceptance is claimed.
 This separate finite profile restores the original central-intake readiness JSON
 and Markdown. Its provider is required and currently supports the declared legacy
 source-signature compatibility profile only. The generic `reports build --kind all`
-continues to contain 33 provider-independent files and does not select this profile.
+now contains 35 provider-independent files after the blocking decision-aid increment and does not select this profile.
 Unsupported providers, missing declared source members and forged profile metadata
 are invalid execution; no GitLab/Bamboo/Bitbucket equivalence is inferred.
 
@@ -995,3 +995,51 @@ The installed harness `axiom_v2_configuration_reports.py` requires an explicit
 `--provider`, compares both original positive files, rechecks immutable profile,
 tamper rejection and the separation of generic `all`. Current target versions,
 live configuration acceptance and remaining full-Goal capabilities stay open.
+
+
+## Read-only blocking decision aids
+
+```sh
+"$V2_PREFIX/axiom-v2" reports build --kind blocking-readiness --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" reports build --kind blocking-alignment --at 2026-11-15T12:00:00Z
+```
+
+Both routes restore the original single JSON file through pure neutral modules;
+`all` now contains **35** files. The separate explicit configuration profile remains
+outside `all`. The finite 64-file cap and all byte, record, manifest and reserve
+limits remain unchanged. The distribution selects and source-hashes both modules.
+No old report CLI is imported or dispatched.
+
+Readiness reads committed registry, three accepted domain indexes, raw intake health
+and readiness model. Its recursive JSON-name conflict check uses bounded committed
+membership, including matching named directories, rather than ambient filesystem
+contents. The original repository-name substring heuristic is retained; conflict
+contents are not interpreted. Generation time retains the original maximum index
+timestamp. Technical readiness remains separate from the recorded manual approval.
+
+Mode alignment deliberately reads **committed raw**
+`generated/reports/blocking-readiness.json`; it does not consume a freshly generated
+private readiness output, including inside `all`. This one inert source addition
+brings the read set to **370** files and is already covered by the distributed data
+root. Alignment keeps the explicit operator time string, including timezone offset
+and fractions, while rejecting naive time and evaluations before model introduction.
+It distinguishes unapproved, incomplete, expired and orphaned legacy risks. The
+existing ha-CPsWMS legacy blocking risk deadline and actual consumer modes are unchanged.
+
+These historical decision aids return 0 after complete execution even with findings;
+invalid execution returns 2. Inner `manual_approval`, `blocking_activation_valid` and
+risk labels describe source data. The private envelope remains report-only with no
+official, production, risk, publisher, operating or inherited authority. No new
+blocking activation, waiver, acceptance or automated decision is granted.
+
+The actual frozen V1 mains/writers produced both complete JSON files in two exact
+370-file input contexts. The oracle restored the original committed readiness after
+capturing its generated output and before running alignment, then checked every
+input SHA-256. Complete output bytes match without normalization. Focused tests cover
+committed dependencies, explicit clock representation, conflict isolation, missing
+inputs, model time, deadline boundaries, incomplete/missing/orphaned risks, manual
+approval separation, immutable inspection and preserved private input bytes. The
+installed generic reporting harness adds both original files to the complete byte
+comparison and retains the custom health-window case. Remaining reporting, lifecycle,
+public handoff, Viewer and operating flows stay in the full Goal; target-VM execution
+is pending while the maintainer's VM is off or unreachable.

@@ -91,6 +91,8 @@
     "scripts/lib/report_lineage.py",
     "scripts/lib/report_model_followup.py",
     "scripts/lib/report_multi_consumer.py",
+    "scripts/lib/report_blocking_readiness.py",
+    "scripts/lib/report_blocking_alignment.py",
     "scripts/lib/report_outputs.py",
     "scripts/lib/report_portfolio.py",
     "scripts/lib/report_replay_triage.py",

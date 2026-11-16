@@ -69,7 +69,7 @@ class ConfigurationWireTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'source_configuration_profile_not_applicable'):
             report_outputs.build(self.data, 'all', membership=self.manifest['membership'], at=AT, source_configuration_profile=PROFILE)
         files = report_outputs.build(self.data, 'all', membership=self.manifest['membership'], at=AT)
-        self.assertEqual(len(files), 33)
+        self.assertEqual(len(files), 35)
         self.assertFalse(any('multi-consumer-readiness' in name for name in files))
         with self.assertRaisesRegex(ValueError, 'intake_health_window_not_applicable'):
             report_outputs.build(self.data, 'multi-consumer-readiness', membership=self.manifest['membership'], at=AT,

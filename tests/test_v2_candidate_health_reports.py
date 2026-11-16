@@ -55,7 +55,7 @@ class CandidateHealthGoldenTests(unittest.TestCase):
     def test_all_selection_applies_custom_window_only_to_health(self):
         wide = report_outputs.build(self.data, 'all', membership=self.manifest['membership'], at=AT)
         narrow = report_outputs.build(self.data, 'all', membership=self.manifest['membership'], at=AT, window_days=1)
-        self.assertEqual(len(wide), 33)
+        self.assertEqual(len(wide), 35)
         self.assertEqual({name for name in wide if wide[name] != narrow[name]}, {'status/intake-health.json'})
         self.assertEqual(json.loads(narrow['status/intake-health.json'])['window']['days'], 1)
 

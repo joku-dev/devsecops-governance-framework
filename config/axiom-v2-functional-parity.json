@@ -216,15 +216,18 @@
       "state": "in_progress",
       "v2_capabilities": [
         "reports portfolio preserves committed registry/index/previous-projection and explicit clock; remaining readiness/live acceptance open",
-        "reports configuration requires explicit adapter profile for legacy central-intake literal source signatures; no effective/live configuration claim"
+        "reports configuration requires explicit adapter profile for legacy central-intake literal source signatures; no effective/live configuration claim",
+        "reports blocking-readiness/blocking-alignment preserve committed dependencies and explicit clock; inner approval/risk labels confer no authority"
       ],
       "positive_tests": [
         "tests/test_v2_portfolio_reports.py:original bytes, stable timestamps and changed freshness",
-        "tests/test_v2_configuration_reports.py:original positive/negative wires and explicit profile"
+        "tests/test_v2_configuration_reports.py:original positive/negative wires and explicit profile",
+        "tests/test_v2_blocking_reports.py:original two JSON files, committed dependencies and legacy mode reading"
       ],
       "negative_tests": [
         "tests/test_v2_portfolio_reports.py:missing/empty context and finite file/aggregate capacity guards",
-        "tests/test_v2_configuration_reports.py:missing/forged/implicit profile, native facts and immutable-record guards"
+        "tests/test_v2_configuration_reports.py:missing/forged/implicit profile, native facts and immutable-record guards",
+        "tests/test_v2_blocking_reports.py:pre-model time, expired/incomplete/missing/orphan risks and private authority/tamper guards"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -895,8 +898,8 @@
         "--as-of"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_blocking_alignment.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -913,8 +916,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_blocking_readiness.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

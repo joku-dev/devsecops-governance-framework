@@ -37,7 +37,7 @@ class PortfolioGoldenTests(unittest.TestCase):
                 expected = case['expected_outputs']['portfolio']
                 self.assertEqual(report_outputs.build(snapshot / 'data', 'portfolio', membership=membership, at=AT),
                                  {name: raw.encode() for name, raw in expected.items()})
-            self.assertEqual(len(manifest['files']), 369)
+            self.assertEqual(len(manifest['files']), 370)
 
     def test_private_generation_preserves_committed_previous_input_and_grants_no_authority(self):
         with tempfile.TemporaryDirectory() as temporary:

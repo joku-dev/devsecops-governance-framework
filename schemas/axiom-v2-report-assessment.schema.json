@@ -74,7 +74,9 @@
         "replay-triage",
         "portfolio",
         "multi-consumer-readiness",
-        "all"
+        "all",
+        "blocking-readiness",
+        "blocking-alignment"
       ]
     },
     "assessed_at": {

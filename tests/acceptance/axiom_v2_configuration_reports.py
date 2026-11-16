@@ -49,7 +49,7 @@ def main():
     # The generic all-profile must retain its provider-independent selection.
     generic = command('build', '--kind', 'all', '--at', at)
     generic_value = command('inspect', '--id', generic['assessment_id'])['assessment']
-    assert generic_value['source_configuration_profile'] is None and len(generic_value['files']) == 33
+    assert generic_value['source_configuration_profile'] is None and len(generic_value['files']) == 35
     assert not any('multi-consumer-readiness' in name for name in generic_value['files'])
     results['generic-all-separate'] = {'files': sorted(generic_value['files']), 'source_configuration_profile': None}
     raw = json.dumps(results, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()
