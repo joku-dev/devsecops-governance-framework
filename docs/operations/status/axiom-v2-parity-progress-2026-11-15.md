@@ -308,3 +308,35 @@ preceding `a1e943e` dual-host proof remains its own historical checkpoint; its t
 GitHub workflows, including full VM installation, also passed. Later source heads
 have separate checks. Work continues locally and in GitHub while this dependency
 is unavailable; this is not complete functional or operating acceptance.
+
+
+## Mac model-report checkpoint at `113e765`; target VM still pending
+
+Candidate `113e765df5bf23bb45e4e37a2cbad4fdf690586a`, tree
+`b89357fe578c999317619c548e458d953086fcdd`, passed 1,408 pinned tests
+(one platform skip), demo and the strict documentation build. It declares 116
+Python files, 737 active fingerprints and an 88-file neutral closure. All 24
+protected operating fingerprints remain unchanged.
+
+The fresh Mac installation passed all eleven capability groups, including all
+26 original reporting files and the complete committed DCR report. Model reports
+add automation classification, document/control mapping, open model gaps and
+pipeline placement. The automation report's stale layout and missing fields are
+explicitly repaired from existing same-control placement declarations; no model,
+policy or enforcement was changed. Original failed runs remain recorded as such.
+
+| Installed binding | SHA-256 |
+| --- | --- |
+| Runtime | `6c5692a882501bfac856f72fc048a925ea9ba9395a22e4688bd5a4de528f7d71` |
+| Mac prepared package | `55acff56be01504fc9befa6fb93cb3c506614c3186c8588acc68c53411b4ddc6` |
+| Linux prepared package | `70bfe55f0f997208b7a6e8ab08edd05d4ab08a99a22b4cc6c7d78bd48d553512` |
+| Twenty-six reporting outputs | `2f25bc8bd96fa684c66d64b9678c3dcd5783a2b83506a9b7562e8f0c77104149` |
+| Complete Mac committed-source DCR | `f7b09e5896fc8a81ac3a43b809b84b9774738eaf4aef132261a6402554da2c91` |
+
+Real pinned source and native replay outputs retain their previous complete V1
+comparison digests. HTTP authentication, CSRF/logout, restart and drift rejection
+passed; the listener stopped, collector stayed paused/empty and publisher inactive.
+The target VM remains off or unreachable as confirmed by the maintainer. There
+was no new SSH, transfer, cleanup or installation attempt; Linux execution of this
+source on that VM remains pending. Later domain/combined-report implementation
+is a separate increment and does not inherit this installed-host proof.

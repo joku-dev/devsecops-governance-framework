@@ -946,8 +946,8 @@
         "--output-md"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/release_assessment.py:evaluate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1035,8 +1035,8 @@
         "--output-md"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/combined_reporting.py:build",
+      "state": "in_progress",
       "evidence": []
     },
     {

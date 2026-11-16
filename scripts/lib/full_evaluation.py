@@ -2,6 +2,7 @@
 from datetime import datetime
 from collections import Counter
 import hashlib
+import json
 import tempfile
 from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker, ValidationError
@@ -41,6 +42,9 @@ def evaluate(domain,input_path,*,opa,at,source_revision):
         elif domain=='architecture':
             from lib.architecture_assessment import evaluate as assess
             report=assess(snapshot,opa=opa);execution='complete'
+        elif domain=='devsecops-release':
+            from lib.release_assessment import evaluate as assess
+            report=assess(snapshot,opa=opa,payload=payload);execution='complete'
         else:raise ValueError('unsupported_full_assessment_domain')
     assessment={'schema_version':1,'kind':'v1-compatible-full-assessment','domain':domain,
         'source_revision':source_revision,'runtime_source_digest':source_digest(),
@@ -48,7 +52,7 @@ def evaluate(domain,input_path,*,opa,at,source_revision):
         'input_sha256':hashlib.sha256(raw).hexdigest(),'opa_sha256':file_digest(opa),'assessed_at':at,
         'execution':execution,'mode':'report-only','official_compliance_result':False,
         'input_origin':'operator_supplied','evidence_trust':'unverified','authority_transferred':False,
-        'report':report}
+        'report':report,'report_json':json.dumps(report,indent=2)+'\n'}
     validate(assessment)
     return assessment
 
@@ -65,12 +69,20 @@ def validate(assessment):
         if len({r['control_id'] for r in rows})!=len(rows):raise ValueError('duplicate_full_assessment_control')
         expected={'total_controls':len(rows),**{k:counts[k] for k in ('pass','fail','not_tested','not_applicable')},
                   'applicable_controls':len(rows)-counts['not_applicable'],'tested_controls':counts['pass']+counts['fail']}
-    else:
+    elif assessment['domain']=='architecture':
         rows=report['gates']
         if len({r['id'] for r in rows})!=4:raise ValueError('duplicate_full_assessment_gate')
         expected={'gate_count':len(rows),'passed':sum(not r['findings'] for r in rows),
                   'with_findings':sum(bool(r['findings']) for r in rows),'finding_count':sum(len(r['findings']) for r in rows)}
+    else:
+        gate=report['gate']
+        if gate['status'] != ('findings' if gate['findings'] else 'pass'):
+            raise ValueError('full_assessment_gate_status_mismatch')
+        expected={'finding_count':len(gate['findings'])}
     if expected!=report['summary']:raise ValueError('full_assessment_summary_mismatch')
+    from lib.result_bytes import strict_json
+    if strict_json(assessment['report_json'].encode())!=report:
+        raise ValueError('full_assessment_report_wire_mismatch')
 
 
 def persist(assessment,instance_root):
@@ -80,6 +92,8 @@ def persist(assessment,instance_root):
     state.mkdir(mode=0o700,parents=True,exist_ok=True)
     if state.stat().st_mode&0o077:raise ValueError('private_assessment_state_required')
     validate(assessment)
+    if len((json.dumps(assessment,sort_keys=True,indent=2)+'\n').encode())>16*1024**2:
+        raise ValueError('full_assessment_record_budget_exhausted')
     identity=canonical_digest(assessment);path=state/(identity+'.json')
     if path.is_symlink():raise ValueError('unsafe_assessment_state')
     if path.exists():

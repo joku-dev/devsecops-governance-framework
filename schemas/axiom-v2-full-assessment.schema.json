@@ -19,7 +19,8 @@
     "input_origin",
     "evidence_trust",
     "authority_transferred",
-    "report"
+    "report",
+    "report_json"
   ],
   "properties": {
     "schema_version": {
@@ -31,7 +32,8 @@
     "domain": {
       "enum": [
         "controls",
-        "architecture"
+        "architecture",
+        "devsecops-release"
       ]
     },
     "source_revision": {
@@ -88,6 +90,11 @@
           "type": "object"
         }
       }
+    },
+    "report_json": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 16777216
     }
   },
   "allOf": [
@@ -190,6 +197,56 @@
                       "items": {
                         "type": "string"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "domain": {
+            "const": "devsecops-release"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "report": {
+            "required": [
+              "target",
+              "gate"
+            ],
+            "properties": {
+              "target": {
+                "type": "object"
+              },
+              "gate": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "status",
+                  "findings"
+                ],
+                "properties": {
+                  "id": {
+                    "const": "devsecops_release_readiness"
+                  },
+                  "status": {
+                    "enum": [
+                      "pass",
+                      "findings"
+                    ]
+                  },
+                  "findings": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
                     }
                   }
                 }

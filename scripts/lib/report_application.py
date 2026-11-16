@@ -162,6 +162,9 @@ def _run(arguments, instance_root, settings):
 
 
 def run(arguments, instance_root, settings):
+    if arguments and arguments[0] in ('domain', 'combine', 'inspect-domain'):
+        from lib.domain_reporting import run as domain_run
+        return domain_run(arguments, instance_root, settings)
     try:
         return _run(arguments, instance_root, settings)
     except yaml.YAMLError:

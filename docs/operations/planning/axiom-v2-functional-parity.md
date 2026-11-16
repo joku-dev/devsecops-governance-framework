@@ -776,3 +776,66 @@ does not claim that an unadapted failed V1 run produced successful output. Tests
 also cover direct-value priority, absent/ambiguous inputs, unchanged source bytes,
 zero-row CSV repair and complete legacy input compatibility. No old CLI executes
 in the product.
+
+
+## Original domain files and separate release-readiness gate
+
+`evaluate --domain devsecops-release` evaluates the existing
+`data.devsecops.release_readiness.deny` query with the pinned product OPA. It is a
+separate legacy gate and wire format; it does not replace the 46-row `controls`
+report or add new control or enforcement semantics. `collect-source --domain
+controls` already preserves its original V1 source input, including declared
+approval defaults and CI-layout observations supplied through the explicit port.
+Those declarations are not independently verified evidence.
+
+```sh
+"$V2_PREFIX/axiom-v2" evaluate --domain devsecops-release \
+  --input /private/operator/release-input.json --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" reports domain --id RELEASE_ASSESSMENT_ID \
+  --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" reports combine \
+  --architecture-id ARCHITECTURE_ASSESSMENT_ID --devsecops-id RELEASE_ASSESSMENT_ID \
+  --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" reports inspect-domain --id DOMAIN_REPORT_ID
+```
+
+`reports domain` accepts architecture, the 46-row controls report, or the separate
+DevSecOps release gate. It writes their original JSON and Markdown files under
+private `state/domain-reports`. `reports combine` accepts exactly one architecture
+and one release-gate assessment. IDs, runtime, product revision, approved OPA,
+complete execution and exact explicit assessment time are checked before
+rendering. Repository path, displayed commit and release ID must all be explicit
+and equal. Architecture may retain its additional service-count field. These are
+**matching declared labels**, not independent proof of the consumer revision.
+Missing gates or empty objects cannot fall through to the original empty-input
+PASS. Other malformed or mismatched inputs fail with exit 2.
+
+The full diagnostic assessment now retains `report_json` alongside its parsed
+object. Private atomic envelope storage sorts object keys; retaining the original
+wire string preserves nested input key order and exact V1 JSON bytes through
+persistence. Parsed report, wire string, gate status and complete finding counts
+are checked for consistency. Full assessment records are bounded to 16 MiB.
+The changed runtime/schema require a fresh instance; no previous records are
+silently migrated. An inspection rechecks the immutable input records and
+rebuilds all output bytes. It explicitly does **not** claim to reverify original
+operator input files or perform a fresh native metadata lookup.
+
+JSON/Markdown reference labels retain original defaults and can be set with
+`--architecture-md-ref` and `--devsecops-md-ref`; these strings are never opened,
+fetched or executed. The legacy combined Markdown interpretation remains byte
+compatible. Its historical evidence-acceptance wording does not grant authority:
+the outer record remains operator supplied, unverified, report-only, private and
+without official, production, risk or operating acceptance.
+
+Evaluation defaults to exit 0 after complete execution, including findings. An
+explicit local `--fail-on-findings` returns 1 when findings exist; incomplete or
+invalid execution returns 2. This restores an operator exit-code option without
+enabling any consuming workflow or changing approved blocking scope. Existing
+controls and architecture evaluations can use the same explicit option.
+
+The frozen original V1 CLI produced twelve complete domain/combined file wires
+for two synthetic input pairs, including its original opt-in finding exit codes.
+The installed acceptance harness is `tests/acceptance/axiom_v2_domain_reports.py`.
+Arbitrary legacy report-pair import, public publication and remaining report and
+operating flows retain open acceptance in the full matrix. No entrypoint or flow
+is excluded from the Goal.

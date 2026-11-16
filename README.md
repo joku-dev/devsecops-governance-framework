@@ -53,6 +53,11 @@ Prozessstatus behalten Kandidaten, fehlende Herkunftsnachweise und offene
 menschliche Entscheidungen sichtbar. Modellberichte ergänzen Automation,
 Dokument-Kontroll-Zuordnung, offene Modelllücken und Pipeline-Platzierungen.
 Automationsklassifikation zeigt deklarierte Modellwerte; sie aktiviert keine Gates.
+`evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
+`reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
+Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei
+gleichem Produktstand, Zeitpunkt und explizit gleichem Ziel. Die Ausgaben bleiben
+unverifizierte Operator-Diagnosen ohne Freigabe oder öffentliche Veröffentlichung.
 
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026

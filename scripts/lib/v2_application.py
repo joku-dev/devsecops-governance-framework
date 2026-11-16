@@ -144,13 +144,16 @@ def run(command, arguments, *, instance_path=None):
         import argparse
         from lib.full_evaluation import evaluate, persist
         parser=argparse.ArgumentParser(prog='axiom-v2 evaluate',allow_abbrev=False)
-        parser.add_argument('--domain',choices=('controls','architecture'),required=True)
+        parser.add_argument('--domain',choices=('controls','architecture','devsecops-release'),required=True)
         parser.add_argument('--input',type=Path,required=True)
         parser.add_argument('--at',required=True)
+        parser.add_argument('--fail-on-findings',action='store_true')
         args=parser.parse_args(arguments)
         assessment=evaluate(args.domain,args.input,opa=settings['opa'],at=args.at,source_revision=revision())
         print(json.dumps(persist(assessment,root),indent=2))
-        return 0 if assessment['execution']=='complete' else 2
+        if assessment['execution']!='complete':return 2
+        summary=assessment['report']['summary']
+        return 1 if args.fail_on_findings and summary.get('finding_count',summary.get('fail',0)) else 0
     if command=='collector':
         import portable_consumer_intake
         check_private_file(root/'consumer.json')
