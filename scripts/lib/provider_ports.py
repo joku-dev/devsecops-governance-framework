@@ -40,7 +40,7 @@ class ExecutionPort(Protocol):
     def capture(self, context, policy, reader: ReadPort, archive, *, at): ...
 
 from lib.providers.discovery import CI_PROVIDERS
-from lib.providers.source_inspection import SOURCE_CI_PROFILES, local_source_signals
+from lib.providers.source_inspection import SOURCE_CI_PROFILES, local_source_signals, committed_intake_signatures, CONFIGURATION_PROVIDERS, CONFIGURATION_SOURCE_FILES, configuration_source_profile
 from lib.providers.measured_ports import (MEASURED_PROVIDERS, measured_import, measured_capture_live,
                                           measured_export, measured_validate, measured_supplement_profile)
 

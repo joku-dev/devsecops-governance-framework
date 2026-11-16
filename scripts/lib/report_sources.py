@@ -12,6 +12,7 @@ from lib.ci_bundle_storage import names_are_portable, reserve
 from lib.consumer_intake_store import atomic_json
 from lib.functional_parity import git_read
 from lib.result_bytes import safe_bytes, strict_json
+from lib.provider_ports import CONFIGURATION_SOURCE_FILES
 from lib.v2_boundary import safe_source
 
 SCOPES = ('model', 'architecture', 'governance', 'status',
@@ -19,6 +20,7 @@ SCOPES = ('model', 'architecture', 'governance', 'status',
           'generated/reports/source-document-intake-status.json',
           'generated/reports/source-document-requirement-delta.json',
           'generated/reports/portfolio-onboarding-status.json',
+          *CONFIGURATION_SOURCE_FILES,
           'docs/governance/source-documents', 'docs/governance/requirements',
           'pipeline-baseline/control-placement.yaml', 'schemas/waiver.schema.json',
           'releases/architecture/l1/v0.1.0/release-metadata.json',

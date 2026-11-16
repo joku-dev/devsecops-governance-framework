@@ -80,13 +80,15 @@ class ReportContext:
         if len((json.dumps(value, sort_keys=True, indent=2) + '\n').encode()) > MAX_RECORD:
             raise ValueError('derived_report_record_budget_exhausted')
 
-    def create(self, kind, at, window_days=30):
+    def create(self, kind, at, window_days=30, source_configuration_profile=None):
         explicit_time(at)
         data, manifest = self.source_data()
-        files = report_outputs.build(data, kind, membership=manifest['membership'], at=at, window_days=window_days)
+        files = report_outputs.build(data, kind, membership=manifest['membership'], at=at, window_days=window_days,
+                                     source_configuration_profile=source_configuration_profile)
         descriptors = file_descriptors(files)
         value = {'schema_version': 1, 'kind': 'committed-product-data-reports', **self.binding,
             'source_worktree_clean': self.clean, 'report_kind': kind, 'assessed_at': at, 'window_days': window_days,
+            'source_configuration_profile': deepcopy(source_configuration_profile),
             'input_id': canonical_digest(manifest), 'input_tree': manifest['tree'], 'files': descriptors,
             'source_scope': report_sources.SOURCE_SCOPE, 'working_tree_used': False,
             'mode': 'report-only', 'official_acceptance': False, 'production_approval': False,
@@ -124,7 +126,8 @@ class ReportContext:
         if canonical_digest(manifest) != value['input_id'] or manifest['tree'] != value['input_tree']:
             raise ValueError('derived_report_input_binding_changed')
         files = report_outputs.build(data, value['report_kind'], membership=manifest['membership'], at=value['assessed_at'],
-                                     window_days=value['window_days'])
+                                     window_days=value['window_days'],
+                                     source_configuration_profile=value['source_configuration_profile'])
         if file_descriptors(files) != value['files']: raise ValueError('derived_report_differs_from_sources')
         root = self.artifacts / assessment_id
         actual = set()
@@ -139,6 +142,14 @@ class ReportContext:
         self.assert_current()
         return value
 
+    def configuration_ready(self, assessment_id):
+        value = self.inspect(assessment_id)
+        if value['report_kind'] != 'multi-consumer-readiness': raise ValueError('configuration_report_required')
+        payload = strict_json(safe_bytes(self.artifacts / assessment_id /
+            'generated/reports/multi-consumer-readiness.json', limit=MAX_OUTPUT))
+        if type(payload.get('ready')) is not bool: raise ValueError('invalid_configuration_readiness')
+        return payload['ready']
+
 
 def _run(arguments, instance_root, settings):
     parser = argparse.ArgumentParser(prog='axiom-v2 reports', allow_abbrev=False)
@@ -147,14 +158,27 @@ def _run(arguments, instance_root, settings):
     build.add_argument('--kind', choices=(*report_outputs.KINDS, 'all'), required=True)
     build.add_argument('--at', required=True)
     build.add_argument('--window-days', type=int, default=30)
+    configuration = commands.add_parser('configuration')
+    configuration.add_argument('--kind', choices=report_outputs.CONFIGURATION_KINDS, required=True)
+    configuration.add_argument('--provider', choices=report_outputs.CONFIGURATION_PROVIDERS, required=True)
+    configuration.add_argument('--at', required=True)
+    configuration.add_argument('--fail-on-findings', action='store_true')
     inspect = commands.add_parser('inspect'); inspect.add_argument('--id', required=True)
     args = parser.parse_args(arguments); context = ReportContext(instance_root, settings)
-    if args.command == 'build':
-        assessment_id, value = context.create(args.kind, args.at, args.window_days)
+    if args.command in ('build', 'configuration'):
+        if args.command == 'configuration':
+            assessment_id, value = context.create(args.kind, args.at,
+                source_configuration_profile=report_outputs.configuration_profile(args.provider))
+            ready = context.configuration_ready(assessment_id)
+        else:
+            assessment_id, value = context.create(args.kind, args.at, args.window_days)
         print(json.dumps({'assessment_id': assessment_id, 'report_kind': value['report_kind'],
             'artifact_directory': str(context.artifacts / assessment_id), 'files': value['files'],
             'source_revision': value['source_revision'], 'source_scope': value['source_scope'],
-            'official_acceptance': False, 'published': False}, sort_keys=True))
+            'official_acceptance': False, 'published': False,
+            **({'configuration_ready': ready, 'source_signature_only': True,
+                'finding_exit_requested': args.fail_on_findings} if args.command == 'configuration' else {})}, sort_keys=True))
+        if args.command == 'configuration' and args.fail_on_findings and not ready: return 1
     else:
         value = context.inspect(args.id)
         print(json.dumps({'assessment_id': args.id, 'assessment': value,

@@ -938,3 +938,60 @@ changed rows/staleness, threshold/missing/future declarations, empty registry,
 private artifact separation and finite/aggregate capacity. Multi-consumer configuration
 readiness, provider-native configuration facts and remaining reporting/operating
 capabilities retain their open scope; no full Goal acceptance is claimed.
+
+
+## Explicit central-intake configuration profile
+
+```sh
+"$V2_PREFIX/axiom-v2" reports configuration --kind multi-consumer-readiness \
+  --provider github-actions --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" reports inspect --id CONFIGURATION_ASSESSMENT_ID
+```
+
+This separate finite profile restores the original central-intake readiness JSON
+and Markdown. Its provider is required and currently supports the declared legacy
+source-signature compatibility profile only. The generic `reports build --kind all`
+continues to contain 33 provider-independent files and does not select this profile.
+Unsupported providers, missing declared source members and forged profile metadata
+are invalid execution; no GitLab/Bamboo/Bitbucket equivalence is inferred.
+
+Native filenames, expression strings, supported choices and profile factory live
+in the source-inspection adapter behind `provider_ports`. A bounded read callback
+supplies only verified committed inert file bytes. The neutral report combines
+normalized repository/run/cancellation signature observations with the original
+registry, indexes and event logic. The adapter reads exactly three declared native
+YAML files; no inspected code, native API or credential is invoked. The admitted
+inert read set grows from 366 to 369 files, already covered by distributed data roots.
+
+These are **literal source signatures**, not effective or live CI configuration
+attestation. The original heuristic can match expressions appearing in comments;
+that behavior is retained and tested explicitly. A legacy `ready: true` therefore
+remains a compatibility interpretation inside an unverified private report, not
+consumer acceptance, deployment authority or proof of large-scale live concurrency.
+
+The report deliberately reads the **committed raw portfolio and health projections**,
+not the fresh private outputs of other report kinds or a chosen health window.
+Original recorded dependencies and complete event source labels are preserved.
+The required `source_configuration_profile` object is part of immutable identity,
+records `source_signature_only: true`, and is revalidated and applied on inspection.
+Generic kinds require a null profile. A changed kind/profile cannot turn a resealed
+generic artifact into a configuration claim. Runtime and schema changes require a
+fresh instance; previous histories and authority are not migrated.
+
+Default complete execution returns 0 with readiness visible in the receipt. The
+explicit local `--fail-on-findings` option returns 1 for readiness findings and is
+reported as `finding_exit_requested`; invalid execution returns 2. This retains
+the original finding-exit capability without enabling any consuming workflow or
+changing approved blocking scope. Inspection rechecks sources and complete output
+bytes and explicitly reports no fresh native metadata recheck. All acceptance,
+production, risk, publisher and inherited-authority flags remain false.
+
+Actual original V1 mains/writers produced two complete positive files in both exact
+369-file source contexts. Declared synthetic cancellation-signature mutations also
+produced the original negative wires and exit 1. No output bytes were normalized.
+The ported neutral draft matched all positive and negative files; local process-exit
+tests separately use a synthetic pure-generator output and claim no native attestation.
+The installed harness `axiom_v2_configuration_reports.py` requires an explicit
+`--provider`, compares both original positive files, rechecks immutable profile,
+tamper rejection and the separation of generic `all`. Current target versions,
+live configuration acceptance and remaining full-Goal capabilities stay open.

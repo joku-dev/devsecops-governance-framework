@@ -59,6 +59,9 @@ explizit wählbar; die Berichte ändern keine Freigaben oder Trust-Einstufungen.
 `reports build --kind portfolio` ergänzt die ursprüngliche Einführungsübersicht
 aus committed Register und Ergebnisindizes. Unveränderte Werte behalten ihren
 bisherigen Zeitstempel; die Sicht erteilt keine neue Betriebsfreigabe.
+`reports configuration` ergänzt mit ausdrücklich gewähltem Providerprofil die
+bisherige Intake-Konfigurationsprüfung. Sie prüft committed Textsignaturen und
+belegt keine wirksame oder laufende CI-Konfiguration.
 `evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
 `reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
 Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei

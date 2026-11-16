@@ -6,7 +6,8 @@ from lib import control_reporting, report_graph, report_lineage, report_impact
 from lib import report_source_replacement, report_source_intake, report_source_briefs
 from lib import report_requirement_delta, report_source_process
 from lib import report_model_followup
-from lib import report_candidate_maturity, report_intake_health, report_replay_triage, report_portfolio
+from lib import report_candidate_maturity, report_intake_health, report_replay_triage, report_portfolio, report_multi_consumer
+from lib.provider_ports import CONFIGURATION_PROVIDERS, configuration_source_profile
 from lib.report_data import ReportData
 from lib.portable.contracts import ROOT
 from lib.portable.runtime import read_json
@@ -36,13 +37,33 @@ SOURCE_REPORTS = {
 CSV_PATHS = {'traceability': 'generated/xlsx/traceability_matrix.csv',
     'architecture-traceability': 'generated/csv/architecture_runtime_traceability.csv',
     'governance-traceability': 'generated/xlsx/governance_traceability_matrix.csv'}
+CONFIGURATION_KINDS = ('multi-consumer-readiness',)
 
 
-def build(data, kind, *, membership=None, at=None, window_days=30):
+def configuration_profile(provider):
+    return configuration_source_profile(provider)
+
+
+def build(data, kind, *, membership=None, at=None, window_days=30, source_configuration_profile=None):
     if type(window_days) is not int or window_days < 1:
         raise ValueError('invalid_intake_health_window')
     if kind not in ('intake-health', 'all') and window_days != 30:
         raise ValueError('intake_health_window_not_applicable')
+    if kind in CONFIGURATION_KINDS:
+        profile = source_configuration_profile
+        if profile is None: raise ValueError('explicit_source_configuration_profile_required')
+        if (not isinstance(profile, dict) or profile != configuration_profile(profile.get('provider'))
+                or profile.get('source_signature_only') is not True):
+            raise ValueError('invalid_source_configuration_profile')
+        if membership is None or at is None: raise ValueError('explicit_report_membership_and_time_required')
+        from lib.provider_ports import committed_intake_signatures
+        context = ReportData(data, membership)
+        observations = committed_intake_signatures(profile['provider'], lambda name: context.raw(context.root / name))
+        value = report_multi_consumer.generate(context, at, observations)
+        name = 'generated/reports/multi-consumer-readiness'
+        return {name + '.json': (json.dumps(value, indent=2, allow_nan=False) + '\n').encode(),
+                name + '.md': report_multi_consumer.render_markdown(value).encode()}
+    if source_configuration_profile is not None: raise ValueError('source_configuration_profile_not_applicable')
     if kind == 'all':
         files = {}
         for selected in KINDS:

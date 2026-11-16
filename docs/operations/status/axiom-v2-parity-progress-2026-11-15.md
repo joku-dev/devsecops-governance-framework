@@ -406,3 +406,34 @@ of this source remains pending. No transfer, cleanup or new installation was
 attempted. All ten GitHub workflows for preceding `0930e87` passed, including full
 VM installation; later heads have separate checks. Portfolio work following this
 checkpoint does not inherit this installed-host proof. The complete Goal stays active.
+
+
+## Mac portfolio checkpoint at `3eface7`; target VM still pending
+
+Candidate `3eface7ef9d28f0f0de012fdbc4878f8bc3e57b9`, tree
+`3df82e9db8124be21fd6635a51e0d9acae3c7937`, passed 1,440 pinned tests
+(one platform skip), demo and strict documentation build. It declares 124 Python
+files, 746 active fingerprints and a 96-file neutral closure. Protected operating,
+normative/model, policy, baseline and accepted-state fingerprints remain unchanged.
+
+The fresh Mac installation passed all thirteen capability groups, including all
+33 original committed-data report files, the explicit health window, domain wires
+and unchanged real ha-CPsWMS source/native/domain comparisons. Portfolio reads its
+original previous committed projection and retains timestamps for unchanged rows;
+its registry labels and private outputs confer no operating acceptance.
+
+| Installed binding | SHA-256 |
+| --- | --- |
+| Runtime | `eacdd620951d102911ff7d633ea19e92d4ca05017816328e38c74686356c358a` |
+| Mac prepared package | `642317645959aa2c00c3323747d20fb355af26535f9a945e833e976558e99a24` |
+| Linux prepared package | `2eef9d8a7997d1535ac248013ca83095417a220dcd8fd61da068fb73c151b33d` |
+| Complete reporting group, including one-day window | `2c84f65156414ff20b4d8bd5525934d9b550f3a1ee450e99c440ec5214b626da` |
+| Complete Mac committed-source DCR | `00b26006e1e68d5026de978bdf3913bfb88de4a505cb908bdadf686e522cb44a` |
+
+HTTP authentication/CSRF/logout, restart and source-drift rejection passed; the
+listener stopped, collector stayed paused/empty and publisher inactive. Linux is
+packaged, but the off/unreachable target VM still has no execution proof for this
+source. No transfer, cleanup or installation was attempted there. All ten GitHub
+workflows for preceding `b66a0dc` passed, including full VM installation; later heads
+have separate checks. Explicit configuration-profile work after this checkpoint
+does not inherit its installed-host proof. The complete Goal remains active.

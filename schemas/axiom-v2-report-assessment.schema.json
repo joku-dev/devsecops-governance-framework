@@ -25,7 +25,8 @@
     "operating_acceptance_inherited",
     "provider_invoked",
     "published",
-    "window_days"
+    "window_days",
+    "source_configuration_profile"
   ],
   "properties": {
     "schema_version": {
@@ -72,6 +73,7 @@
         "intake-health",
         "replay-triage",
         "portfolio",
+        "multi-consumer-readiness",
         "all"
       ]
     },
@@ -144,6 +146,55 @@
     "window_days": {
       "type": "integer",
       "minimum": 1
+    },
+    "source_configuration_profile": {
+      "type": [
+        "object",
+        "null"
+      ]
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "report_kind": {
+            "const": "multi-consumer-readiness"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source_configuration_profile": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "provider",
+              "source_signature_only"
+            ],
+            "properties": {
+              "kind": {
+                "const": "legacy-central-intake-signatures-v1"
+              },
+              "provider": {
+                "const": "github-actions"
+              },
+              "source_signature_only": {
+                "type": "boolean",
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "source_configuration_profile": {
+            "const": null
+          }
+        }
+      }
+    }
+  ]
 }

@@ -33,7 +33,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. `reports intake-health` ergänzt davon getrennte Kennzahlen des committed Datenstands mit explizitem Zeitpunkt und Zeitfenster. |
 | 16 PR-Veröffentlichung | Explizite Adapterprofile und getrennte Zugangsdaten; keine implizite GitHub-Anmeldung oder Merge-Autorität. |
 | 17 Status | Workbench und private Consumer-Projektion; `reports` ergänzt einen reproduzierbaren Graph des committed Datenstands. Statische Viewer-Publikation und weitere Projektionen bleiben offen. |
-| 18 Readiness | `reports portfolio` erhält die bestehende Einführungsübersicht ohne Freigabe neuer Repos. Weitere Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
+| 18 Readiness | `reports portfolio` erhält die bestehende Einführungsübersicht ohne Freigabe neuer Repos. `reports configuration` ergänzt die ursprüngliche Intake-Readiness mit explizitem Adapterprofil und begrenzten Textsignaturen. Weitere Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
 | 19 Betrieb/Sicherheit | Eigene Instanz, gepinnte Werkzeuge und Drift-Prüfung. GitHub-Sicherheitsbewertung nur innerhalb des Adapters. |
 | 20 Reviews/Kommunikation | Bestehende lokale Autoren-, Validierungs- und Reviewwerkzeuge im Entwicklungscheckout. |
 | 21 Lifecycle | V1-Live-Pilot-Einstiegspunkte in V2 stillgelegt. Keine Übertragung persönlicher Betriebsabnahme oder Aktionsrechte; neue Live-Zulassung bleibt gesondert. |
