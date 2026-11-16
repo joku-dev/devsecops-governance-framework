@@ -839,3 +839,61 @@ The installed acceptance harness is `tests/acceptance/axiom_v2_domain_reports.py
 Arbitrary legacy report-pair import, public publication and remaining report and
 operating flows retain open acceptance in the full matrix. No entrypoint or flow
 is excluded from the Goal.
+
+
+## Candidate maturity and historical intake/replay views
+
+Three additional finite report kinds use the exact committed data profile:
+
+```sh
+"$V2_PREFIX/axiom-v2" reports build --kind candidate-maturity --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" reports build --kind intake-health --at 2026-11-15T12:00:00Z --window-days 7
+"$V2_PREFIX/axiom-v2" reports build --kind replay-triage --at 2026-11-15T12:00:00Z
+```
+
+`candidate-maturity` preserves the existing harmonized model and explicit candidate
+maturity assignments. It creates the original JSON/Markdown decision support,
+still candidate, non-normative, without enforcement and requiring human review.
+It derives no new requirement or control and changes no normative source or model.
+
+`intake-health` restores the original event metrics, latest-result ages and
+collection-attempt lifecycle. The explicit window defaults to 30 days; any positive
+integer is accepted if the selected timestamp supports the subtraction. Time
+underflow or overflow is an invalid execution, not an empty success. The window
+is inclusive and excludes future events. Attempts and resolving snapshots retain
+their original complete-history scope independently of the event window. Empty
+events remain `no_data`, with original zero rates and null duration percentiles;
+latest-result ages retain the original nonnegative clamp. These are historical
+committed records, not current queue or liveness observations of the installed V2
+node. The current private queue retains its separate collector/status profile.
+
+`--window-days` is meaningful for `intake-health` and `all`. A nondefault window
+with another kind is rejected. The window is stored in the immutable report
+assessment, affects its identity and is used again during inspection. The `all`
+selection applies it only to health; all other output bytes remain unchanged.
+The required schema field and changed runtime require a fresh candidate instance.
+The logical `status/intake-health.json` output lives beneath the private artifact
+directory returned by the command; the accepted repository status file is untouched.
+
+`replay-triage` restores the original historical replay classification, related
+artifact comparisons and recorded-versus-recalculated distinctions. References
+to `official_latest` describe the committed input index. This view neither selects
+new accepted latest results nor changes Trust, snapshots or enforcement. Empty
+history retains its explicit zero count and original epoch timestamp. The original
+malformed JSON/unreadable-history skip is preserved; strict duplicate/nonfinite,
+link and input-budget errors are rejected rather than silently hidden.
+
+All histories are selected from bounded committed membership and read through the
+same strict data port. No application checkout code, legacy report CLI or native
+API is executed. The existing pure collection-attempt lifecycle helper is selected
+and fingerprinted explicitly. All 31 committed-data output files fit the existing
+32-file cap; per-file, aggregate, manifest and free-space limits remain unchanged.
+Original V1 writers produced five complete output files in each of two exact
+source/membership contexts; no output bytes were normalized. The oracle relocated
+only its health output destination to preserve the input snapshot.
+
+The tests also cover empty history, inclusive/future-event windows, attempt
+resolution, malformed versus duplicate JSON, time/overflow failures and resealed
+window parameters. Candidate decisions, attestation actions, current private
+health, public reporting and the remaining full Goal continue to require their
+own implementation and acceptance. No catalogue area or entrypoint is excluded.

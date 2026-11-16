@@ -53,6 +53,9 @@ Prozessstatus behalten Kandidaten, fehlende Herkunftsnachweise und offene
 menschliche Entscheidungen sichtbar. Modellberichte ergänzen Automation,
 Dokument-Kontroll-Zuordnung, offene Modelllücken und Pipeline-Platzierungen.
 Automationsklassifikation zeigt deklarierte Modellwerte; sie aktiviert keine Gates.
+Kandidaten-Reifegrad, historische Intake-Gesundheit und Replay-Einordnung ergänzen
+die lesende Sicht. Das Zeitfenster für `intake-health` ist mit `--window-days`
+explizit wählbar; die Berichte ändern keine Freigaben oder Trust-Einstufungen.
 `evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
 `reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
 Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei

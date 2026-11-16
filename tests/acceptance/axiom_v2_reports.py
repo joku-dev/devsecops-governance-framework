@@ -34,6 +34,12 @@ def main():
     assert models['membership_fixture_sha256'] == bindings[lineage_path.name]
     assert models['v1_reference'] == fixture['v1_reference']
     fixture['expected_outputs'].update(models['cases'][-1]['expected_outputs'])
+    advisory_path = args.fixtures / 'candidate-health-replay-cases.json'
+    assert hashlib.sha256(advisory_path.read_bytes()).hexdigest() == bindings[advisory_path.name]
+    advisory = json.loads(advisory_path.read_text())
+    assert advisory['membership_fixture_sha256'] == bindings[lineage_path.name]
+    assert advisory['v1_reference'] == fixture['v1_reference'] and advisory['at'] == lineage['at']
+    fixture['expected_outputs'].update(advisory['cases'][-1]['expected_outputs'])
     def command(*arguments, expected=0):
         value = subprocess.run([str(prefix / 'axiom-v2'), 'reports', *arguments],
                                capture_output=True, text=True, timeout=180)
@@ -65,6 +71,13 @@ def main():
             assert command('inspect', '--id', receipt['assessment_id'], expected=2)['diagnostics'] == ['derived_report_output_changed']
             path.write_bytes(original)
             assert command('inspect', '--id', receipt['assessment_id'])['original_sources_and_complete_outputs_reverified']
+    narrow = command('build', '--kind', 'intake-health', '--at', at, '--window-days', '1')
+    inspected = command('inspect', '--id', narrow['assessment_id'])['assessment']
+    assert inspected['window_days'] == 1
+    health_path = Path(narrow['artifact_directory']) / 'status/intake-health.json'
+    health = json.loads(health_path.read_bytes()); assert health['window']['days'] == 1
+    assert command('build', '--kind', 'graph', '--at', at, '--window-days', '1', expected=2)['diagnostics'] == ['intake_health_window_not_applicable']
+    results['intake-health-one-day'] = {'window_days': 1, 'files': {'status/intake-health.json': health_path.read_text()}, 'official_acceptance': False}
     raw = json.dumps(results, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()
     value = {'schema_version': 1, 'source_revision': settings['source_revision'], 'node_id': settings['node_id'],
         'runtime_source_digest': settings['runtime_source_digest'], 'source_scope': 'committed-governance-data-v2',

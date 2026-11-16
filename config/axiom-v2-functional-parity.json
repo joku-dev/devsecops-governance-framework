@@ -56,7 +56,8 @@
       "title": "DevSecOps-Kontrollen modellieren",
       "state": "in_progress",
       "v2_capabilities": [
-        "reports automation/document-controls/open-gaps/pipeline-baseline from committed models; explicit declared placement view, no model editing"
+        "reports automation/document-controls/open-gaps/pipeline-baseline from committed models; explicit declared placement view, no model editing",
+        "reports candidate-maturity preserves existing non-normative candidate mapping and human review boundary"
       ],
       "positive_tests": [
         "tests/test_v2_model_reports.py:original file bytes and explicit existing placement fields"
@@ -160,20 +161,32 @@
     {
       "id": "FP-14",
       "title": "Replay und Attestierungen untersuchen",
-      "state": "pending",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports replay-triage preserves historical Trust and latest selection; remaining attestation actions open"
+      ],
+      "positive_tests": [
+        "tests/test_v2_candidate_health_reports.py:original V1 output bytes, attempt lifecycle and window semantics"
+      ],
+      "negative_tests": [
+        "tests/test_v2_candidate_health_reports.py:empty/malformed/duplicate/time/window/resealed-parameter guards"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
     {
       "id": "FP-15",
       "title": "Sammlungsfehler behandeln",
-      "state": "pending",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports intake-health projects committed attempts/events/indexes with explicit time and window; current private queue health separate"
+      ],
+      "positive_tests": [
+        "tests/test_v2_candidate_health_reports.py:original V1 output bytes, attempt lifecycle and window semantics"
+      ],
+      "negative_tests": [
+        "tests/test_v2_candidate_health_reports.py:empty/malformed/duplicate/time/window/resealed-parameter guards"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
@@ -1255,8 +1268,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_candidate_maturity.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1304,8 +1317,8 @@
         "--window-days"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_intake_health.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1584,8 +1597,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_replay_triage.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

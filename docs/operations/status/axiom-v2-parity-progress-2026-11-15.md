@@ -340,3 +340,37 @@ The target VM remains off or unreachable as confirmed by the maintainer. There
 was no new SSH, transfer, cleanup or installation attempt; Linux execution of this
 source on that VM remains pending. Later domain/combined-report implementation
 is a separate increment and does not inherit this installed-host proof.
+
+
+## Mac domain-report checkpoint at `0930e87`; target VM still pending
+
+Candidate `0930e875249e3b414ea494b1de49038a2de7098d`, tree
+`10362fa965c5802fb84d8a9ce6179f65731c2555`, passed 1,421 pinned tests
+(one platform skip), demo and strict documentation build. It declares 119 Python
+files, 741 active fingerprints and a 91-file neutral closure. Protected operating
+fingerprints, policies, sources, models, baselines and accepted status are unchanged.
+
+The fresh Mac installation passed all thirteen capability groups. This includes
+26 committed-data reporting files, twelve synthetic original domain/combined file
+wires and six original real ha-CPsWMS domain files using identical physical inputs
+with no normalized fields. The separate legacy release gate has zero findings
+and the combined architecture/release report is PASS on those declarations;
+the distinct 46-row report still contains six gaps. No compliance or production
+approval follows from either diagnostic scope.
+
+| Installed binding | SHA-256 |
+| --- | --- |
+| Runtime | `d49c4269186e73c0d995459532682a93f364cdb62dc920c28a8f06014d7f211b` |
+| Mac prepared package | `11da9210c8250331d7ee76a28465955a3cedec7d69025a8be763fb9917165beb` |
+| Linux prepared package | `c9fed5f8cda0fa11612505baeeda8876d6f9c3940329381a0fb3e49c08f0de19` |
+| Synthetic original domain/combined files | `9eae78fd8cf1de825403106d04d3c06be5129105048a056582e8117b790b1c45` |
+| Real original domain/combined files | `96dfc017fad4be24a8e59ae891ba71585c436d157362a92cdf0fe088fbd8501e` |
+| Complete Mac committed-source DCR | `6994e54680cc6f17de04d9c0cbd3180aa2aa1ebd68feb26481d16886e5aea3f1` |
+
+The listener stopped after HTTP authentication/CSRF/logout/restart and drift
+checks; the collector remained paused/empty and publisher inactive. Linux is
+packaged, but execution on the maintainer's off/unreachable VM is still pending.
+No transfer, cleanup or installation was attempted there. All ten GitHub workflows
+for the preceding `113e765` source passed, including its full VM installation
+protocol; later heads have separate CI. Candidate/health/replay reporting added
+after this checkpoint does not inherit its installed-host proof.

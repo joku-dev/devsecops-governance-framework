@@ -19,7 +19,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 1 Quellen verwalten | Workbench: lokale Entwürfe, Extraktion und explizites Adapterprofil für Draft-PR/MR. |
 | 2 Vorgabenänderungen | Workbench und private `requirements`-/`dcr`-Arbeitsbereiche; DCR-Betriebsprüfung, Katalogpaket, technischer Git-Kontext und private redigierte Projektion. Öffentliche Übergabe und vollständige Abnahme offen. |
 | 3 Herkunft | `reports` erzeugt Kontroll-, Governance- und Architektur-Traceability sowie den Graph aus exakt gebundenen, committed Daten. Quellenherkunft und Änderungsfolgen verwenden vollständige committed Dateimitgliedschaft; Intake ergänzt Ersatzkandidaten, Entscheidungsbriefs, explizite Deltas und Prozessstatus; weitere Berichte und Publikation bleiben offen. |
-| 4 Kontrollmodell | Versionierte Modelle im Paket; `reports build --kind control-coverage` beschreibt deren Abdeckung. Automation, Dokument-Kontroll-Matrix, Modelllücken und Pipeline-Bericht ergänzen die lesende Sicht. Modellpflege bleibt im Entwicklungscheckout. |
+| 4 Kontrollmodell | Versionierte Modelle im Paket; `reports build --kind control-coverage` beschreibt deren Abdeckung. Automation, Dokument-Kontroll-Matrix, Modelllücken und Pipeline-Bericht ergänzen die lesende Sicht. Kandidaten-Reifegrad erhält die bestehenden nicht-normativen Zuordnungen; Modellpflege bleibt im Entwicklungscheckout. |
 | 5 Kontrollen auswerten | Pipeline-Gate weiterhin fünf Kontrollen. Separates `evaluate --domain controls` erhält alle 46 V1-Berichtszeilen; Eingabeevidenz/Trust bleiben separat. `devsecops-release` ergänzt das getrennte alte Release-Gate; `reports domain/combine` stellt originale Berichtsdateien bereit. |
 | 6 OPA | Ein gepinntes OPA je Zielplattform; gemeinsame Policies und Auswertungslogik. |
 | 7 Architekturmodell | Vorhandene Modell-/Baseline-Dateien erhalten; keine neue normative Architekturarbeit. |
@@ -29,8 +29,8 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 11 Intake | `evidence`, `collector` und privates `typed intake`/`index`; Operator-Replay und native Aufnahmen bleiben getrennt. Zusätzlich `results` für lokale CI-Bundles, manuelle Snapshots, explizite native Run-/Job-/Archiv-Erfassung und vollständige private Ergebnisindizes. Öffentliche Accepted-Result-Publikation und vollständige native Live-Abnahme bleiben offen. |
 | 12 Geschichte | Neue SQLite-/Receipt-Daten, Backup und inaktiver Restore-Kandidat; V1-Geschichte bleibt Rückfallstand. |
 | 13 Vertrauen | Explizite neutrale Trust-Prüfung, vollständige Konfigurations-/Layer-Hashes, native Frische und kontrollbezogene Assurance; keine implizite Abnahme. |
-| 14 Replay | Private, pro Evidenztyp und Provider-Instanz abgegrenzte Replay-Prüfung; alte GitHub-Replay- und Attestierungs-CLIs sind noch nicht vollständig überführt. |
-| 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. |
+| 14 Replay | Private, pro Evidenztyp und Provider-Instanz abgegrenzte Replay-Prüfung; `reports replay-triage` ergänzt die bestehende historische Einordnung ohne Trust-Änderung. Attestierungsaktionen und weitere Alt-CLIs bleiben offen. |
+| 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. `reports intake-health` ergänzt davon getrennte Kennzahlen des committed Datenstands mit explizitem Zeitpunkt und Zeitfenster. |
 | 16 PR-Veröffentlichung | Explizite Adapterprofile und getrennte Zugangsdaten; keine implizite GitHub-Anmeldung oder Merge-Autorität. |
 | 17 Status | Workbench und private Consumer-Projektion; `reports` ergänzt einen reproduzierbaren Graph des committed Datenstands. Statische Viewer-Publikation und weitere Projektionen bleiben offen. |
 | 18 Readiness | Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |

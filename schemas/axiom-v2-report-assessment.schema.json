@@ -24,7 +24,8 @@
     "authority_transferred",
     "operating_acceptance_inherited",
     "provider_invoked",
-    "published"
+    "published",
+    "window_days"
   ],
   "properties": {
     "schema_version": {
@@ -67,6 +68,9 @@
         "document-controls",
         "open-gaps",
         "pipeline-baseline",
+        "candidate-maturity",
+        "intake-health",
+        "replay-triage",
         "all"
       ]
     },
@@ -135,6 +139,10 @@
     },
     "published": {
       "const": false
+    },
+    "window_days": {
+      "type": "integer",
+      "minimum": 1
     }
   }
 }

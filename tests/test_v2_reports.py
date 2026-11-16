@@ -144,8 +144,11 @@ class ReportComputationTests(unittest.TestCase):
         models = json.loads((ROOT / 'tests/fixtures/axiom-v1-parity/model-followup-reporting-cases.json').read_text())
         for files in models['cases'][-1]['expected_outputs'].values():
             expected.update({name: raw.encode() for name, raw in files.items()})
+        advisory = json.loads((ROOT / 'tests/fixtures/axiom-v1-parity/candidate-health-replay-cases.json').read_text())
+        for files in advisory['cases'][-1]['expected_outputs'].values():
+            expected.update({name: raw.encode() for name, raw in files.items()})
         self.assertEqual(report_outputs.build(self.data, 'all', membership=self.manifest['membership'], at=extended['at']), expected)
-        self.assertEqual(len(expected), 26)
+        self.assertEqual(len(expected), 31)
         csv = expected['generated/xlsx/traceability_matrix.csv']
         self.assertIn(b'\r\n', csv)
         self.assertNotIn(b'\r\r\n', csv)
