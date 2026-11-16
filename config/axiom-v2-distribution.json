@@ -131,7 +131,9 @@
     "scripts/serve_governance_workbench.py",
     "scripts/lib/source_snapshot_proof.py",
     "scripts/lib/onboarding_readiness.py",
-    "scripts/lib/source_inspection_application.py"
+    "scripts/lib/source_inspection_application.py",
+    "scripts/lib/evidence_agent_provenance.py",
+    "scripts/lib/provenance_application.py"
   ],
   "data_roots": [
     "schemas",

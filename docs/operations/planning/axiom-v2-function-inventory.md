@@ -81,7 +81,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `generate_document_consistency_review_model.py` | Bibliothek |
 | `generate_document_control_matrix.py` | Quellwerkzeug |
 | `generate_end_to_end_governance_report.py` | Quellwerkzeug |
-| `generate_evidence_agent_provenance_index.py` | Quellwerkzeug |
+| `generate_evidence_agent_provenance_index.py` | `provenance --workspace W index`; ursprünglicher privater Index mit explizitem Scope |
 | `generate_governance_change_impact_report.py` | Quellwerkzeug |
 | `generate_governance_compliance_result.py` | Quellwerkzeug |
 | `generate_governance_graph.py` | Quellwerkzeug |
@@ -153,7 +153,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `reconcile_documentation_after_merge.py` | V1 stillgelegt |
 | `record_agent_review.py` | Quellwerkzeug |
 | `record_collection_attempt.py` | Quellwerkzeug |
-| `record_evidence_agent_provenance.py` | Quellwerkzeug |
+| `record_evidence_agent_provenance.py` | `provenance --workspace W record`; deklarierte private Zuordnung und unveränderliche Konflikte |
 | `record_intake_event.py` | Quellwerkzeug |
 | `render_governance_documents.py` | Quellwerkzeug |
 | `report_agent_review_status.py` | Quellwerkzeug |
@@ -172,7 +172,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `validate_document_consistency_review.py` | Quellwerkzeug |
 | `validate_document_consistency_review_operations.py` | Quellwerkzeug |
 | `validate_document_consistency_semantic_review.py` | Quellwerkzeug |
-| `validate_evidence_agent_provenance.py` | Quellwerkzeug |
+| `validate_evidence_agent_provenance.py` | `provenance --workspace W check`; Schema und deklarierte Digest-Übereinstimmung, keine Ausführungsbestätigung |
 | `validate_governance_lifecycle_contracts.py` | Quellwerkzeug |
 | `validate_governance_lifecycle_ledger.py` | Quellwerkzeug |
 | `validate_governance_repo.py` | Quellwerkzeug |

@@ -33,7 +33,7 @@ def main():
         write('expected/' + case['report'], (ROOT / 'tests/fixtures/axiom-v1-parity' / case['report']).read_bytes(), case['report_sha256'])
     write('manifest.json', manifest_path.read_bytes())
     write('not-run-response.json', (ROOT / 'tests/fixtures/document-consistency-review-semantic/not-run-response.json').read_bytes())
-    for name in ('measured-native-cases.json', 'supplement-cases.json', 'typed-container-cases.json', 'dcr-operations-cases.json', 'general-result-cases.json', 'native-result-cases.json', 'reporting-cases.json', 'lineage-impact-cases.json', 'source-intake-reporting-cases.json', 'model-followup-reporting-cases.json', 'domain-reporting-cases.json', 'candidate-health-replay-cases.json', 'portfolio-reporting-cases.json', 'configuration-readiness-cases.json', 'blocking-reporting-cases.json'):
+    for name in ('measured-native-cases.json', 'supplement-cases.json', 'typed-container-cases.json', 'dcr-operations-cases.json', 'general-result-cases.json', 'native-result-cases.json', 'reporting-cases.json', 'lineage-impact-cases.json', 'source-intake-reporting-cases.json', 'model-followup-reporting-cases.json', 'domain-reporting-cases.json', 'candidate-health-replay-cases.json', 'portfolio-reporting-cases.json', 'configuration-readiness-cases.json', 'blocking-reporting-cases.json', 'evidence-agent-provenance-cases.json'):
         write(name, (ROOT / 'tests/fixtures/axiom-v1-parity' / name).read_bytes())
     for path in sorted((ROOT / 'tests/fixtures/axiom-v1-parity/source-inspection').iterdir()):
         write('source-inspection/' + path.name, path.read_bytes())

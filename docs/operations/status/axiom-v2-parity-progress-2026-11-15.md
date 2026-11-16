@@ -499,3 +499,43 @@ installation, cleanup or execution there is claimed. GitHub runner checks for
 this head are separate from target-VM acceptance. Subsequent consumer-source
 inspection work requires its own validation, committed package and installed
 proof. Full technical V1 parity and the autonomous Goal remain open.
+
+
+## Observed consumer-source inspection checkpoint — 16 November
+
+Source `8c753ee089f01412252feccabd4933f8a97f940f`, tree
+`5051ea0a04e1b66cc207090da357a4a17bd9c681`, passed the final 1,482 pinned tests
+(one platform skip), demo and strict documentation build. The first full run found
+two intended historical compatibility locations; the exact three-reference
+inventories were reviewed and the full suite rerun after the fix. Manifest-size
+and Unicode/path review findings were also fixed before the final run.
+The distribution has 131 Python files, 754 active fingerprints and a 103-file
+neutral closure; all 24 protected operating fingerprints remain unchanged.
+
+A fresh installed Mac passed all **15** groups. The new source-inspection group
+compares complete original integration/onboarding JSON/Markdown bytes for three
+synthetic cases and the pinned real ha-CPsWMS source. Its host projection replaces
+only four previously validated operator basename/path fields after physical wire
+equality. No finding, criterion or status is normalized. The 35-file generic
+report profile, configuration, DCR, real source/native/domain cases and final
+HTTP/restart checks also passed. The listener stopped; source was reverified,
+collector paused with an empty queue and publisher inactive.
+
+| Item | SHA-256 |
+| --- | --- |
+| Runtime | `92027554b26d58d5852d0368ec39206cb39d9790acb897847c555a70dc64fc84` |
+| Mac package | `4832feb74b7fd19309dad69b27c6af45a7286163a9e8eec0b5e8f2b13ffe678e` |
+| Prepared Linux package | `e59184139729f5103d85d27afa712b478f92b6c58e650d7778efa4b659b1fd1c` |
+| Consumer-source host projection | `e5cc4b2f68884330fb3c48d4d1e7717c5c747829d02a1cf8598a7ab4d312884b` |
+| Generic reports and one-day window | `258608f4250ffab7c57d17af8a06abcd662bc2376adcbdb0388c1712ac37fdc4` |
+| Complete committed-source DCR | `2e840a907311e87ecc24dd372d3b7670c53e86b5105430d0a2529892ba77f955` |
+
+All ten GitHub checks for parent `a1e1c6e` passed, including the complete
+[disposable Ubuntu deployment/recovery protocol](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/43925555222),
+[Governance CI](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/43925555083)
+and [Governance CI v2](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/43925555076).
+All twelve deployment/recovery transitions remained enabled. New-head checks are
+separate; parent success is not current-head proof. The target VM remains off or
+unreachable as confirmed by the maintainer; this source has no new execution
+proof on that VM. Subsequent declared-association work requires its own validation,
+committed package and installed proof. Full V1 parity and the Goal remain open.

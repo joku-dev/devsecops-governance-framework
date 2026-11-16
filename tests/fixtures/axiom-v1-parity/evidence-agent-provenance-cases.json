@@ -1,0 +1,399 @@
+{
+  "schema_version": 1,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "at": "2026-11-15T12:00:00Z",
+  "reference_kind": "Actual frozen V1 mains/writers, explicit clocks and relative record-label context; complete record/index/conflict/stdout/stderr equality, no normalization",
+  "source": {
+    "subjects": [
+      {
+        "id": "report",
+        "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    ]
+  },
+  "empty_index_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"generated_at\": \"2026-11-15T12:00:00Z\",\n  \"summary\": {\n    \"record_count\": 0,\n    \"agent_counts\": {},\n    \"involvement_counts\": {}\n  },\n  \"records\": []\n}\n",
+  "cases": [
+    {
+      "id": "first",
+      "metadata": {
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "synthetic-model"
+        },
+        "involvement": "selected",
+        "dispatch": {
+          "id": "dispatch-1",
+          "source": "synthetic/manual"
+        },
+        "notes": "Synthetic association; no execution or approval is verified."
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "record_path": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json",
+      "record_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"record_type\": \"evidence-agent-provenance\",\n  \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n  \"enforcement\": \"report_only\",\n  \"recorded_at\": \"2026-11-15T12:00:00Z\",\n  \"evidence\": {\n    \"repository_id\": \"synthetic/repo\",\n    \"evidence_type\": \"vulnerability_scan\",\n    \"subject_id\": \"report\",\n    \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"source_file\": \"status/result.json\"\n  },\n  \"agent\": {\n    \"id\": \"evidence-and-intake\",\n    \"role_version\": \"1.0.0\",\n    \"skill\": \"evidence-and-intake\",\n    \"provider\": \"codex\",\n    \"model\": \"synthetic-model\"\n  },\n  \"involvement\": \"selected\",\n  \"dispatch\": {\n    \"id\": \"dispatch-1\",\n    \"run_type\": \"manual\",\n    \"source\": \"synthetic/manual\"\n  },\n  \"notes\": \"Synthetic association; no execution or approval is verified.\"\n}\n",
+      "incoming_record": {
+        "schema_version": "1.0.0",
+        "record_type": "evidence-agent-provenance",
+        "provenance_id": "17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6",
+        "enforcement": "report_only",
+        "recorded_at": "2026-11-15T12:00:00Z",
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "role_version": "1.0.0",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "synthetic-model"
+        },
+        "involvement": "selected",
+        "dispatch": {
+          "id": "dispatch-1",
+          "run_type": "manual",
+          "source": "synthetic/manual"
+        },
+        "notes": "Synthetic association; no execution or approval is verified."
+      },
+      "index_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"generated_at\": \"2026-11-15T12:00:00Z\",\n  \"summary\": {\n    \"record_count\": 1,\n    \"agent_counts\": {\n      \"evidence-and-intake\": 1\n    },\n    \"involvement_counts\": {\n      \"selected\": 1\n    }\n  },\n  \"records\": [\n    {\n      \"schema_version\": \"1.0.0\",\n      \"record_type\": \"evidence-agent-provenance\",\n      \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n      \"enforcement\": \"report_only\",\n      \"recorded_at\": \"2026-11-15T12:00:00Z\",\n      \"evidence\": {\n        \"repository_id\": \"synthetic/repo\",\n        \"evidence_type\": \"vulnerability_scan\",\n        \"subject_id\": \"report\",\n        \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n        \"source_file\": \"status/result.json\"\n      },\n      \"agent\": {\n        \"id\": \"evidence-and-intake\",\n        \"role_version\": \"1.0.0\",\n        \"skill\": \"evidence-and-intake\",\n        \"provider\": \"codex\",\n        \"model\": \"synthetic-model\"\n      },\n      \"involvement\": \"selected\",\n      \"dispatch\": {\n        \"id\": \"dispatch-1\",\n        \"run_type\": \"manual\",\n        \"source\": \"synthetic/manual\"\n      },\n      \"notes\": \"Synthetic association; no execution or approval is verified.\"\n    }\n  ]\n}\n",
+      "conflict_wires": {},
+      "expected_original_exit": 0,
+      "original_stdout": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json\n",
+      "original_stdout_path_exists": true
+    },
+    {
+      "id": "idempotent",
+      "metadata": {
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "synthetic-model"
+        },
+        "involvement": "selected",
+        "dispatch": {
+          "id": "dispatch-1",
+          "source": "synthetic/manual"
+        },
+        "notes": "Synthetic association; no execution or approval is verified."
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "record_path": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json",
+      "record_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"record_type\": \"evidence-agent-provenance\",\n  \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n  \"enforcement\": \"report_only\",\n  \"recorded_at\": \"2026-11-15T12:00:00Z\",\n  \"evidence\": {\n    \"repository_id\": \"synthetic/repo\",\n    \"evidence_type\": \"vulnerability_scan\",\n    \"subject_id\": \"report\",\n    \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"source_file\": \"status/result.json\"\n  },\n  \"agent\": {\n    \"id\": \"evidence-and-intake\",\n    \"role_version\": \"1.0.0\",\n    \"skill\": \"evidence-and-intake\",\n    \"provider\": \"codex\",\n    \"model\": \"synthetic-model\"\n  },\n  \"involvement\": \"selected\",\n  \"dispatch\": {\n    \"id\": \"dispatch-1\",\n    \"run_type\": \"manual\",\n    \"source\": \"synthetic/manual\"\n  },\n  \"notes\": \"Synthetic association; no execution or approval is verified.\"\n}\n",
+      "incoming_record": {
+        "schema_version": "1.0.0",
+        "record_type": "evidence-agent-provenance",
+        "provenance_id": "17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6",
+        "enforcement": "report_only",
+        "recorded_at": "2026-11-15T12:00:00Z",
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "role_version": "1.0.0",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "synthetic-model"
+        },
+        "involvement": "selected",
+        "dispatch": {
+          "id": "dispatch-1",
+          "run_type": "manual",
+          "source": "synthetic/manual"
+        },
+        "notes": "Synthetic association; no execution or approval is verified."
+      },
+      "index_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"generated_at\": \"2026-11-15T12:00:00Z\",\n  \"summary\": {\n    \"record_count\": 1,\n    \"agent_counts\": {\n      \"evidence-and-intake\": 1\n    },\n    \"involvement_counts\": {\n      \"selected\": 1\n    }\n  },\n  \"records\": [\n    {\n      \"schema_version\": \"1.0.0\",\n      \"record_type\": \"evidence-agent-provenance\",\n      \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n      \"enforcement\": \"report_only\",\n      \"recorded_at\": \"2026-11-15T12:00:00Z\",\n      \"evidence\": {\n        \"repository_id\": \"synthetic/repo\",\n        \"evidence_type\": \"vulnerability_scan\",\n        \"subject_id\": \"report\",\n        \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n        \"source_file\": \"status/result.json\"\n      },\n      \"agent\": {\n        \"id\": \"evidence-and-intake\",\n        \"role_version\": \"1.0.0\",\n        \"skill\": \"evidence-and-intake\",\n        \"provider\": \"codex\",\n        \"model\": \"synthetic-model\"\n      },\n      \"involvement\": \"selected\",\n      \"dispatch\": {\n        \"id\": \"dispatch-1\",\n        \"run_type\": \"manual\",\n        \"source\": \"synthetic/manual\"\n      },\n      \"notes\": \"Synthetic association; no execution or approval is verified.\"\n    }\n  ]\n}\n",
+      "conflict_wires": {},
+      "expected_original_exit": 0,
+      "original_stdout": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json\n",
+      "original_stdout_path_exists": true
+    },
+    {
+      "id": "changed-notes",
+      "metadata": {
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "synthetic-model"
+        },
+        "involvement": "selected",
+        "dispatch": {
+          "id": "dispatch-1",
+          "source": "synthetic/manual"
+        },
+        "notes": "Changed declared note"
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "record_path": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json",
+      "record_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"record_type\": \"evidence-agent-provenance\",\n  \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n  \"enforcement\": \"report_only\",\n  \"recorded_at\": \"2026-11-15T12:00:00Z\",\n  \"evidence\": {\n    \"repository_id\": \"synthetic/repo\",\n    \"evidence_type\": \"vulnerability_scan\",\n    \"subject_id\": \"report\",\n    \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"source_file\": \"status/result.json\"\n  },\n  \"agent\": {\n    \"id\": \"evidence-and-intake\",\n    \"role_version\": \"1.0.0\",\n    \"skill\": \"evidence-and-intake\",\n    \"provider\": \"codex\",\n    \"model\": \"synthetic-model\"\n  },\n  \"involvement\": \"selected\",\n  \"dispatch\": {\n    \"id\": \"dispatch-1\",\n    \"run_type\": \"manual\",\n    \"source\": \"synthetic/manual\"\n  },\n  \"notes\": \"Synthetic association; no execution or approval is verified.\"\n}\n",
+      "incoming_record": {
+        "schema_version": "1.0.0",
+        "record_type": "evidence-agent-provenance",
+        "provenance_id": "17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6",
+        "enforcement": "report_only",
+        "recorded_at": "2026-11-15T12:00:00Z",
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "role_version": "1.0.0",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "synthetic-model"
+        },
+        "involvement": "selected",
+        "dispatch": {
+          "id": "dispatch-1",
+          "run_type": "manual",
+          "source": "synthetic/manual"
+        },
+        "notes": "Changed declared note"
+      },
+      "index_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"generated_at\": \"2026-11-15T12:00:00Z\",\n  \"summary\": {\n    \"record_count\": 1,\n    \"agent_counts\": {\n      \"evidence-and-intake\": 1\n    },\n    \"involvement_counts\": {\n      \"selected\": 1\n    }\n  },\n  \"records\": [\n    {\n      \"schema_version\": \"1.0.0\",\n      \"record_type\": \"evidence-agent-provenance\",\n      \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n      \"enforcement\": \"report_only\",\n      \"recorded_at\": \"2026-11-15T12:00:00Z\",\n      \"evidence\": {\n        \"repository_id\": \"synthetic/repo\",\n        \"evidence_type\": \"vulnerability_scan\",\n        \"subject_id\": \"report\",\n        \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n        \"source_file\": \"status/result.json\"\n      },\n      \"agent\": {\n        \"id\": \"evidence-and-intake\",\n        \"role_version\": \"1.0.0\",\n        \"skill\": \"evidence-and-intake\",\n        \"provider\": \"codex\",\n        \"model\": \"synthetic-model\"\n      },\n      \"involvement\": \"selected\",\n      \"dispatch\": {\n        \"id\": \"dispatch-1\",\n        \"run_type\": \"manual\",\n        \"source\": \"synthetic/manual\"\n      },\n      \"notes\": \"Synthetic association; no execution or approval is verified.\"\n    }\n  ]\n}\n",
+      "conflict_wires": {
+        "status/intake-conflicts/evidence-agent-provenance/2026-11-15T12-00-00Z-17068b8f214a-conflict-47a1e9ffabbf.json": "{\n  \"schema_version\": \"1.0.0\",\n  \"conflict_type\": \"append_only_snapshot_conflict\",\n  \"enforcement\": \"report_only\",\n  \"detected_at\": \"2026-11-15T12:00:00Z\",\n  \"target_path\": \"status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json\",\n  \"existing_payload_sha256\": \"dc3926accf5a434757dc10f69ae6ee1bd84498edf304c9d06eea054de6d0863c\",\n  \"incoming_payload_sha256\": \"47a1e9ffabbfe65e7e44dc2795b863a35c9d198a197e18afc3267e938af8bf08\",\n  \"existing_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  },\n  \"incoming_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  }\n}\n"
+      },
+      "expected_original_exit": 0,
+      "original_stdout": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json\n",
+      "original_stdout_path_exists": true
+    },
+    {
+      "id": "changed-time",
+      "metadata": {
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "synthetic-model"
+        },
+        "involvement": "selected",
+        "dispatch": {
+          "id": "dispatch-1",
+          "source": "synthetic/manual"
+        },
+        "notes": "Synthetic association; no execution or approval is verified."
+      },
+      "at": "2026-11-15T12:01:00Z",
+      "record_path": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json",
+      "record_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"record_type\": \"evidence-agent-provenance\",\n  \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n  \"enforcement\": \"report_only\",\n  \"recorded_at\": \"2026-11-15T12:00:00Z\",\n  \"evidence\": {\n    \"repository_id\": \"synthetic/repo\",\n    \"evidence_type\": \"vulnerability_scan\",\n    \"subject_id\": \"report\",\n    \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"source_file\": \"status/result.json\"\n  },\n  \"agent\": {\n    \"id\": \"evidence-and-intake\",\n    \"role_version\": \"1.0.0\",\n    \"skill\": \"evidence-and-intake\",\n    \"provider\": \"codex\",\n    \"model\": \"synthetic-model\"\n  },\n  \"involvement\": \"selected\",\n  \"dispatch\": {\n    \"id\": \"dispatch-1\",\n    \"run_type\": \"manual\",\n    \"source\": \"synthetic/manual\"\n  },\n  \"notes\": \"Synthetic association; no execution or approval is verified.\"\n}\n",
+      "incoming_record": {
+        "schema_version": "1.0.0",
+        "record_type": "evidence-agent-provenance",
+        "provenance_id": "17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6",
+        "enforcement": "report_only",
+        "recorded_at": "2026-11-15T12:01:00Z",
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "role_version": "1.0.0",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "synthetic-model"
+        },
+        "involvement": "selected",
+        "dispatch": {
+          "id": "dispatch-1",
+          "run_type": "manual",
+          "source": "synthetic/manual"
+        },
+        "notes": "Synthetic association; no execution or approval is verified."
+      },
+      "index_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"generated_at\": \"2026-11-15T12:00:00Z\",\n  \"summary\": {\n    \"record_count\": 1,\n    \"agent_counts\": {\n      \"evidence-and-intake\": 1\n    },\n    \"involvement_counts\": {\n      \"selected\": 1\n    }\n  },\n  \"records\": [\n    {\n      \"schema_version\": \"1.0.0\",\n      \"record_type\": \"evidence-agent-provenance\",\n      \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n      \"enforcement\": \"report_only\",\n      \"recorded_at\": \"2026-11-15T12:00:00Z\",\n      \"evidence\": {\n        \"repository_id\": \"synthetic/repo\",\n        \"evidence_type\": \"vulnerability_scan\",\n        \"subject_id\": \"report\",\n        \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n        \"source_file\": \"status/result.json\"\n      },\n      \"agent\": {\n        \"id\": \"evidence-and-intake\",\n        \"role_version\": \"1.0.0\",\n        \"skill\": \"evidence-and-intake\",\n        \"provider\": \"codex\",\n        \"model\": \"synthetic-model\"\n      },\n      \"involvement\": \"selected\",\n      \"dispatch\": {\n        \"id\": \"dispatch-1\",\n        \"run_type\": \"manual\",\n        \"source\": \"synthetic/manual\"\n      },\n      \"notes\": \"Synthetic association; no execution or approval is verified.\"\n    }\n  ]\n}\n",
+      "conflict_wires": {
+        "status/intake-conflicts/evidence-agent-provenance/2026-11-15T12-00-00Z-17068b8f214a-conflict-47a1e9ffabbf.json": "{\n  \"schema_version\": \"1.0.0\",\n  \"conflict_type\": \"append_only_snapshot_conflict\",\n  \"enforcement\": \"report_only\",\n  \"detected_at\": \"2026-11-15T12:00:00Z\",\n  \"target_path\": \"status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json\",\n  \"existing_payload_sha256\": \"dc3926accf5a434757dc10f69ae6ee1bd84498edf304c9d06eea054de6d0863c\",\n  \"incoming_payload_sha256\": \"47a1e9ffabbfe65e7e44dc2795b863a35c9d198a197e18afc3267e938af8bf08\",\n  \"existing_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  },\n  \"incoming_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  }\n}\n",
+        "status/intake-conflicts/evidence-agent-provenance/2026-11-15T12-01-00Z-17068b8f214a-conflict-d181b7f1b972.json": "{\n  \"schema_version\": \"1.0.0\",\n  \"conflict_type\": \"append_only_snapshot_conflict\",\n  \"enforcement\": \"report_only\",\n  \"detected_at\": \"2026-11-15T12:01:00Z\",\n  \"target_path\": \"status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json\",\n  \"existing_payload_sha256\": \"dc3926accf5a434757dc10f69ae6ee1bd84498edf304c9d06eea054de6d0863c\",\n  \"incoming_payload_sha256\": \"d181b7f1b9721902a22e6bea3e0c92a390e9d03f19c3d4de931302385d96a8c0\",\n  \"existing_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  },\n  \"incoming_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  }\n}\n"
+      },
+      "expected_original_exit": 0,
+      "original_stdout": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-01-00Z-17068b8f214a.json\n",
+      "original_stdout_path_exists": false
+    },
+    {
+      "id": "approved-declaration",
+      "metadata": {
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "Mödel"
+        },
+        "involvement": "approved",
+        "dispatch": {
+          "id": "dispatch-2",
+          "source": "synthetic/manual"
+        },
+        "notes": "Synthetic association; no execution or approval is verified."
+      },
+      "at": "2026-11-15T12:00:00Z",
+      "record_path": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-6952174e265a.json",
+      "record_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"record_type\": \"evidence-agent-provenance\",\n  \"provenance_id\": \"6952174e265a93a1b9d9d7cbe04a754862286b09630cc034508b8ce478af6c16\",\n  \"enforcement\": \"report_only\",\n  \"recorded_at\": \"2026-11-15T12:00:00Z\",\n  \"evidence\": {\n    \"repository_id\": \"synthetic/repo\",\n    \"evidence_type\": \"vulnerability_scan\",\n    \"subject_id\": \"report\",\n    \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"source_file\": \"status/result.json\"\n  },\n  \"agent\": {\n    \"id\": \"evidence-and-intake\",\n    \"role_version\": \"1.0.0\",\n    \"skill\": \"evidence-and-intake\",\n    \"provider\": \"codex\",\n    \"model\": \"M\\u00f6del\"\n  },\n  \"involvement\": \"approved\",\n  \"dispatch\": {\n    \"id\": \"dispatch-2\",\n    \"run_type\": \"manual\",\n    \"source\": \"synthetic/manual\"\n  },\n  \"notes\": \"Synthetic association; no execution or approval is verified.\"\n}\n",
+      "incoming_record": {
+        "schema_version": "1.0.0",
+        "record_type": "evidence-agent-provenance",
+        "provenance_id": "6952174e265a93a1b9d9d7cbe04a754862286b09630cc034508b8ce478af6c16",
+        "enforcement": "report_only",
+        "recorded_at": "2026-11-15T12:00:00Z",
+        "evidence": {
+          "repository_id": "synthetic/repo",
+          "evidence_type": "vulnerability_scan",
+          "subject_id": "report",
+          "subject_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_file": "status/result.json"
+        },
+        "agent": {
+          "id": "evidence-and-intake",
+          "role_version": "1.0.0",
+          "skill": "evidence-and-intake",
+          "provider": "codex",
+          "model": "Mödel"
+        },
+        "involvement": "approved",
+        "dispatch": {
+          "id": "dispatch-2",
+          "run_type": "manual",
+          "source": "synthetic/manual"
+        },
+        "notes": "Synthetic association; no execution or approval is verified."
+      },
+      "index_wire": "{\n  \"schema_version\": \"1.0.0\",\n  \"generated_at\": \"2026-11-15T12:00:00Z\",\n  \"summary\": {\n    \"record_count\": 2,\n    \"agent_counts\": {\n      \"evidence-and-intake\": 2\n    },\n    \"involvement_counts\": {\n      \"approved\": 1,\n      \"selected\": 1\n    }\n  },\n  \"records\": [\n    {\n      \"schema_version\": \"1.0.0\",\n      \"record_type\": \"evidence-agent-provenance\",\n      \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\",\n      \"enforcement\": \"report_only\",\n      \"recorded_at\": \"2026-11-15T12:00:00Z\",\n      \"evidence\": {\n        \"repository_id\": \"synthetic/repo\",\n        \"evidence_type\": \"vulnerability_scan\",\n        \"subject_id\": \"report\",\n        \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n        \"source_file\": \"status/result.json\"\n      },\n      \"agent\": {\n        \"id\": \"evidence-and-intake\",\n        \"role_version\": \"1.0.0\",\n        \"skill\": \"evidence-and-intake\",\n        \"provider\": \"codex\",\n        \"model\": \"synthetic-model\"\n      },\n      \"involvement\": \"selected\",\n      \"dispatch\": {\n        \"id\": \"dispatch-1\",\n        \"run_type\": \"manual\",\n        \"source\": \"synthetic/manual\"\n      },\n      \"notes\": \"Synthetic association; no execution or approval is verified.\"\n    },\n    {\n      \"schema_version\": \"1.0.0\",\n      \"record_type\": \"evidence-agent-provenance\",\n      \"provenance_id\": \"6952174e265a93a1b9d9d7cbe04a754862286b09630cc034508b8ce478af6c16\",\n      \"enforcement\": \"report_only\",\n      \"recorded_at\": \"2026-11-15T12:00:00Z\",\n      \"evidence\": {\n        \"repository_id\": \"synthetic/repo\",\n        \"evidence_type\": \"vulnerability_scan\",\n        \"subject_id\": \"report\",\n        \"subject_digest\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n        \"source_file\": \"status/result.json\"\n      },\n      \"agent\": {\n        \"id\": \"evidence-and-intake\",\n        \"role_version\": \"1.0.0\",\n        \"skill\": \"evidence-and-intake\",\n        \"provider\": \"codex\",\n        \"model\": \"M\\u00f6del\"\n      },\n      \"involvement\": \"approved\",\n      \"dispatch\": {\n        \"id\": \"dispatch-2\",\n        \"run_type\": \"manual\",\n        \"source\": \"synthetic/manual\"\n      },\n      \"notes\": \"Synthetic association; no execution or approval is verified.\"\n    }\n  ]\n}\n",
+      "conflict_wires": {
+        "status/intake-conflicts/evidence-agent-provenance/2026-11-15T12-00-00Z-17068b8f214a-conflict-47a1e9ffabbf.json": "{\n  \"schema_version\": \"1.0.0\",\n  \"conflict_type\": \"append_only_snapshot_conflict\",\n  \"enforcement\": \"report_only\",\n  \"detected_at\": \"2026-11-15T12:00:00Z\",\n  \"target_path\": \"status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json\",\n  \"existing_payload_sha256\": \"dc3926accf5a434757dc10f69ae6ee1bd84498edf304c9d06eea054de6d0863c\",\n  \"incoming_payload_sha256\": \"47a1e9ffabbfe65e7e44dc2795b863a35c9d198a197e18afc3267e938af8bf08\",\n  \"existing_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  },\n  \"incoming_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  }\n}\n",
+        "status/intake-conflicts/evidence-agent-provenance/2026-11-15T12-01-00Z-17068b8f214a-conflict-d181b7f1b972.json": "{\n  \"schema_version\": \"1.0.0\",\n  \"conflict_type\": \"append_only_snapshot_conflict\",\n  \"enforcement\": \"report_only\",\n  \"detected_at\": \"2026-11-15T12:01:00Z\",\n  \"target_path\": \"status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json\",\n  \"existing_payload_sha256\": \"dc3926accf5a434757dc10f69ae6ee1bd84498edf304c9d06eea054de6d0863c\",\n  \"incoming_payload_sha256\": \"d181b7f1b9721902a22e6bea3e0c92a390e9d03f19c3d4de931302385d96a8c0\",\n  \"existing_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  },\n  \"incoming_evidence_identity\": {\n    \"provenance_id\": \"17068b8f214ad6c052f73d79ae2c0b90ed1f1a556dcca3dd226d8236d7543bb6\"\n  }\n}\n"
+      },
+      "expected_original_exit": 0,
+      "original_stdout": "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-6952174e265a.json\n",
+      "original_stdout_path_exists": true
+    }
+  ],
+  "validation_cases": [
+    {
+      "id": "valid",
+      "source_override": {
+        "subjects": [
+          {
+            "id": "report",
+            "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      },
+      "expected_stdout": "Evidence agent provenance validation passed\n",
+      "expected_stderr": "",
+      "expected_original_exit": 0
+    },
+    {
+      "id": "missing-subject",
+      "source_override": {
+        "subjects": []
+      },
+      "expected_stdout": "",
+      "expected_stderr": "Evidence agent provenance validation failed\nstatus/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json: subject is not present in source file: report\nstatus/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-6952174e265a.json: subject is not present in source file: report\n",
+      "expected_original_exit": 1
+    },
+    {
+      "id": "digest-mismatch",
+      "source_override": {
+        "subjects": [
+          {
+            "id": "report",
+            "digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ]
+      },
+      "expected_stdout": "",
+      "expected_stderr": "Evidence agent provenance validation failed\nstatus/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json: subject digest does not match source file\nstatus/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-6952174e265a.json: subject digest does not match source file\n",
+      "expected_original_exit": 1
+    },
+    {
+      "id": "missing-source",
+      "source_override": null,
+      "expected_stdout": "",
+      "expected_stderr": "Evidence agent provenance validation failed\nstatus/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json: evidence source file does not exist: status/result.json\nstatus/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-6952174e265a.json: evidence source file does not exist: status/result.json\n",
+      "expected_original_exit": 1
+    },
+    {
+      "id": "invalid-record-json",
+      "source_override": {
+        "subjects": [
+          {
+            "id": "report",
+            "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      },
+      "record_overrides": {
+        "status/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json": "{invalid JSON"
+      },
+      "expected_stdout": "",
+      "expected_stderr": "Evidence agent provenance validation failed\nstatus/evidence-agent-provenance/synthetic__repo/2026-11-15T12-00-00Z-17068b8f214a.json: cannot read JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n",
+      "expected_original_exit": 1
+    }
+  ],
+  "source_sha256": {
+    "scripts/record_evidence_agent_provenance.py": "991af6a9847572c45a7bc232f53f0ba0f1c84e6a02f33a0ebbb43048af09d13c",
+    "scripts/generate_evidence_agent_provenance_index.py": "54d5f684d5080038b2bc9cce336d762b53c9ec22abecdd918e62d44b32d00bd8",
+    "scripts/validate_evidence_agent_provenance.py": "d13651b2e524f47e76f5d54e7274c580802beeda93b9f2969b1ec30b0b5c126a",
+    "schemas/evidence-agent-provenance.schema.json": "7a6b5ecc51bbcf6ec62922503555f0b2425c2f954fdcb188b9fe415a25b5d334",
+    "scripts/lib/result_ledger.py": "b16ec64a034326e92fb44dea365903f3bf8b7309c00dd6d6d1d01dbe4c099f1c",
+    "scripts/lib/identifiers.py": "29a5d78000040870fb70452952e603dc770f7428173c8c45ba99705c1a31a554"
+  },
+  "official_acceptance": false,
+  "agent_execution_verified": false,
+  "human_approval_verified": false
+}

@@ -1123,3 +1123,94 @@ oracle; the new source-inspection harness brings the next complete host profile 
 15 groups. Source/runtimes and schemas require fresh candidate instances; earlier
 histories and authority are not silently migrated. Full Goal and target-VM
 acceptance remain open.
+
+
+## Private declared agent/evidence associations
+
+```sh
+"$V2_PREFIX/axiom-v2" provenance --workspace review-data init
+"$V2_PREFIX/axiom-v2" provenance --workspace review-data record \
+  --metadata /path/to/association-metadata.json --source /path/to/snapshot.json \
+  --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" provenance --workspace review-data index --scope all \
+  --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" provenance --workspace review-data check --scope all \
+  --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" provenance --workspace review-data inspect
+```
+
+This restores the existing record, deterministic index and validation capabilities.
+It records **declared associations**. `selected`, `executed`, `reviewed` and
+`approved` are source vocabulary, not proof of actual agency, model activity,
+human approval or subject authenticity. Every new workspace, result and receipt
+remains private, candidate-only and unverified, with those verification and
+operating/production/risk/publisher/authority flags explicitly false. No model,
+provider, native API or inspected program is invoked.
+
+Metadata JSON supplies `evidence`, `agent`, `involvement`, `dispatch` and optional
+`notes`, mapping all original options. The builder fills the original role/run-type
+defaults and canonical provenance identity; callers cannot supply a provenance ID
+or enforcement setting. The metadata schema and explicit clock validate new
+operator declarations. Historical checks retain the original schema semantics.
+The unchanged original evidence-agent schema is copied as a rule snapshot and
+explicitly hashed as trusted runtime input; the generic report read set stays at
+**370** files. No normative schema or approved baseline is edited.
+
+The source snapshot is explicit operator JSON, bounded to 16 MiB and retained
+under a content-bound private path. `evidence.source_file` is a relative logical
+label, resolved only through known retained bytes. It never authorizes reading an
+arbitrary host path. A label cannot be rebound to different bytes. The original
+validator compares declared subject digest strings across its three capture
+shapes; it does not verify the artifact bytes, repository identity or agents.
+Existing captured Trust terms remain source data and grant no new Trust.
+
+Workspaces reuse the existing immutable generation, locking, private-permission,
+file-budget and free-space controls in a separate provenance namespace. Initialization
+copies committed historical association records and known same-commit JSON sources;
+unknown references remain visible to validation. The current frozen source contains
+no committed association records. `committed`, `private` and `all` are explicit
+report scopes. Original record JSON, sorting, counters, UTC-second index clock and
+append-only conflict wires are preserved. Repeating identical metadata and clock
+reuses the generation. Conflicting metadata or time retains the original record
+and creates a separate conflict receipt; incoming declarations remain inspectable.
+
+The original recorder can print an attempted new path that does not exist after a
+timestamp conflict. The new structured receipt distinguishes `attempted_path`
+from the actual retained `record_path`, while preserving the complete original
+record/index/conflict bytes. No historical evidence is replaced.
+
+`import-record --name relative/path.json --record file.json --at TIME` retains
+operator-supplied legacy declarations as private data; optional `--source` binds
+known source JSON. Schema-invalid and malformed JSON files remain visible for
+checking. They are not accepted evidence. Existing imports cannot be overwritten.
+Indexing malformed JSON fails; checking emits the original failure output and
+keeps the data. Source-label collisions and invalid paths roll back the complete
+transaction without creating a new generation.
+
+The index is the original logical `status/evidence-agent-provenance-index.json`
+inside the private generation. Check retains original stdout/stderr and exit
+semantics. Default complete application execution is report-only 0; explicit
+local `--fail-on-findings` yields 1 for validation findings or record conflicts.
+Invalid execution is 2. No consuming workflow or operating mode changes.
+Inspection verifies generation integrity, node/runtime/product/rule bindings,
+source bytes and complete original outputs. Appending a record leaves a prior
+index visible as `stale`; its selected input set remains reproducible. Earlier
+generations can be inspected with `--generation`, without silently adopting
+another node or runtime.
+
+The original frozen V1 mains/writers produced five full record/index/conflict
+stages and five validator stdout/stderr/exit cases, including malformed JSON.
+Complete bytes match without normalization. Tests cover scopes, idempotence,
+conflicts, rollback, stale reports, foreign nodes, source changes, invalid input,
+private permissions and declared approval boundaries. A separate private test
+associates a synthetic selection declaration with the recorded real ha-CPsWMS
+control-report subject. It does not represent actual execution or approval and
+does not claim a fresh native collection. This is a pre-installation application
+comparison; its installed proof is recorded separately for the exact candidate.
+
+The fixture preparer supplies 30 bounded technical files. The new installed
+association harness is the twelfth harness and adds the sixteenth host group.
+Fresh product/rule/runtime bindings require fresh candidate instances; there is
+no silent history or authority migration. Remaining agent execution/review tools,
+lifecycle, public handoff, Viewer, release and operational flows remain in the
+full Goal. Target-VM acceptance remains pending while that VM is unavailable.

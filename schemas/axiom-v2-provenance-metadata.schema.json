@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Declared evidence-agent association metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence",
+    "agent",
+    "involvement",
+    "dispatch"
+  ],
+  "properties": {
+    "evidence": {
+      "type": "object",
+      "required": [
+        "repository_id",
+        "evidence_type",
+        "subject_id",
+        "subject_digest",
+        "source_file"
+      ],
+      "properties": {
+        "repository_id": {
+          "type": "string",
+          "pattern": "^[^/]+/[^/]+$"
+        },
+        "evidence_type": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "subject_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subject_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_file": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "agent": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "role_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "skill": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "involvement": {
+      "enum": [
+        "selected",
+        "executed",
+        "reviewed",
+        "approved"
+      ]
+    },
+    "dispatch": {
+      "type": "object",
+      "required": [
+        "id",
+        "source"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_type": {
+          "enum": [
+            "dispatch",
+            "provider_review",
+            "manual"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

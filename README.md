@@ -71,6 +71,10 @@ erteilt keine Einführungs- oder Betriebsfreigabe.
 die bisherigen lesenden Entscheidungshilfen. Sie verwenden committed Eingaben
 und eine explizite Bewertungszeit; angezeigte Freigabe- und Risikowerte erteilen
 der privaten Installation keine neue Berechtigung und ändern keinen Consumer-Modus.
+`provenance` ergänzt private Zuordnungen zwischen Agenten und Evidenz. Die ursprünglichen
+Datensatz-, Konflikt-, Index- und Prüfausgaben bleiben erhalten. Angaben wie „reviewed“
+oder „approved“ sind dort deklarierte Beteiligung; sie belegen keine ausgeführte
+Agentenprüfung, menschliche Freigabe oder Echtheit der Evidenz.
 `evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
 `reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
 Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei
