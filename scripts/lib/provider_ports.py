@@ -48,3 +48,5 @@ from lib.providers.typed_ports import TYPED_PROVIDERS, typed_import, typed_verif
 from lib.providers.result_profiles import RESULT_EVENT_PROFILES, result_index_profile
 from lib.providers.general_result_ports import (NATIVE_RESULT_PROVIDERS, general_result_capture,
                                                 general_result_verify)
+
+from lib.providers.source_inspection import (INSPECTION_PROFILES, source_inspection_profile, source_inspection_facts)

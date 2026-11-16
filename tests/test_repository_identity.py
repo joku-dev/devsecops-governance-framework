@@ -36,6 +36,10 @@ EXACT_ALLOWANCES = {
     "docs/releases/release-and-migration-model.md": 1,
     "generated/governance-compliance-result.json": 12,
     "scripts/check_repo_governance_integration.py": 3,
+    # The explicit legacy source-signature adapter retains exactly the original
+    # three compatibility signals; the test oracle pins the unchanged V1 file.
+    "scripts/lib/providers/source_inspection.py": 3,
+    "tests/fixtures/axiom-v1-parity/source-inspection/check_repo_governance_integration.py.txt": 3,
 }
 
 

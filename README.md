@@ -62,6 +62,11 @@ bisherigen Zeitstempel; die Sicht erteilt keine neue Betriebsfreigabe.
 `reports configuration` ergänzt mit ausdrücklich gewähltem Providerprofil die
 bisherige Intake-Konfigurationsprüfung. Sie prüft committed Textsignaturen und
 belegt keine wirksame oder laufende CI-Konfiguration.
+`source-inspection create` prüft außerdem die bisherigen Consumer-Integrations- und
+Onboarding-Signaturen mit ausdrücklich gewähltem Profil an einem exakten Git-Commit.
+Die privaten Quelldaten behalten einen erneut prüfbaren Git-Nachweis. Arbeitskopie,
+Programme im Consumer und native APIs werden dabei nicht ausgeführt; die Auswertung
+erteilt keine Einführungs- oder Betriebsfreigabe.
 `reports build --kind blocking-readiness` und `--kind blocking-alignment` ergänzen
 die bisherigen lesenden Entscheidungshilfen. Sie verwenden committed Eingaben
 und eine explizite Bewertungszeit; angezeigte Freigabe- und Risikowerte erteilen

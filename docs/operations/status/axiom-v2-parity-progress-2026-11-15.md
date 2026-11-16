@@ -469,3 +469,33 @@ comment limitation; it is no effective/live configuration attestation. Generic
 unreachable; this source has no new target-VM installation or execution proof.
 Subsequent blocking decision-aid implementation requires its own committed package,
 installed proof and CI. This checkpoint does not claim full V1 parity or Goal completion.
+
+
+## Observed blocking decision-aid checkpoint — 16 November
+
+Source `a1e1c6ed12e396ce098303b1691f94d132f8839b`, tree
+`273d6c5344549f6e0044c484b5792c5ec6188431`, passed 1,463 pinned tests
+(one platform skip), demo and strict documentation build. Eleven focused blocking
+cases preserve original complete JSON, committed dependencies and risk boundaries.
+The distribution has 128 Python files, 750 active fingerprints and a 100-file
+neutral closure; all 24 protected operating fingerprints remain unchanged.
+
+A fresh installed Mac passed all **14** groups, including **35** generic files,
+custom health window, the separate two configuration files, DCR and the separate
+real ha-CPsWMS source/native/domain comparisons. Final authentication/restart tests
+passed; the listener stopped, source was reverified, collector paused with an
+empty queue and publisher inactive.
+
+| Item | SHA-256 |
+| --- | --- |
+| Runtime | `b00212217baf2f1e0559afe5534de02cd2e53a97320b29d35caf5401644738dc` |
+| Mac package | `81cec74f6c7e2617c8987def0bd028f2a2637c215007bd9e9381b56cf776e6dc` |
+| Prepared Linux package | `a123839b9b4232a560f8c0948d0bb38928d8db95117767c92b45d61267aec5bb` |
+| Generic reports and one-day window | `258608f4250ffab7c57d17af8a06abcd662bc2376adcbdb0388c1712ac37fdc4` |
+| Complete committed-source DCR | `0c7a02ee92d87653f0a0bbc12cf522f90a5a50dc404c3a1e32fe194681528112` |
+
+The target VM remains off or unreachable as confirmed by the maintainer; no new
+installation, cleanup or execution there is claimed. GitHub runner checks for
+this head are separate from target-VM acceptance. Subsequent consumer-source
+inspection work requires its own validation, committed package and installed
+proof. Full technical V1 parity and the autonomous Goal remain open.

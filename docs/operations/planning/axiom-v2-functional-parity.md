@@ -1043,3 +1043,83 @@ installed generic reporting harness adds both original files to the complete byt
 comparison and retains the custom health-window case. Remaining reporting, lifecycle,
 public handoff, Viewer and operating flows stay in the full Goal; target-VM execution
 is pending while the maintainer's VM is off or unreachable.
+
+
+## Consumer integration and onboarding from frozen Git source
+
+```sh
+"$V2_PREFIX/axiom-v2" source-inspection create --kind all \
+  --repo /path/to/consumer --revision EXACT_40_HEX_COMMIT \
+  --repository-id owner/repository --profile legacy-ci-signatures-v1 \
+  --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" source-inspection inspect --id ASSESSMENT_ID
+```
+
+`integration`, `onboarding` and `all` expose the two existing source-inspection
+capabilities through a finite private route. The combined profile returns three
+original JSON/Markdown files. It is separate from committed product-data `reports`
+and does not change that 35-file profile or select its configuration adapter.
+The explicit legacy profile preserves the old union of source signatures. Native
+filenames, template/reference patterns and literal hits live in the adapter.
+These source strings, including comments, are compatibility observations; they do
+not attest effective CI, branch protection, live provider support or approval.
+Unknown profiles fail before reading the consumer. No GitLab/Bamboo/Bitbucket live
+target equivalence is inferred from this legacy source view.
+
+The application copies the exact declared Git commit. Uncommitted source, the
+current branch and executable files in the inspected repository do not drive the
+assessment. No inspected program or old CLI is imported or dispatched by the
+product. The original onboarding checks consume normalized CI observations and an
+explicit integration result, rather than invoking a scanner subprocess.
+
+The retained private snapshot includes original modes, per-file SHA-256 and Git
+blob identities, the exact commit object and its tree identity. Inspection rehashes
+commit, recursive Git trees and every blob, checks complete file and directory
+membership, and recomputes every complete output. This works after the original
+caller checkout is removed. Files remain inert data. The proof binds retained
+bytes to the supplied commit; SCM repository identity and signature authenticity
+remain unverified. `declared_repository_id`, the operator path and product display
+label are explicit context, not operating authority. The former ambient V1
+`ROOT.name` is supplied explicitly as the `axiom-v2` descriptive product label in
+both the original reference oracle and the new report.
+
+Commit objects are limited to 64 KiB and logical paths to 4,096 UTF-8 bytes; sources retain the existing 10,000-file,
+16 MiB/file, 128 MiB total and 4 MiB manifest limits and 8 GiB reserve. Symlinks,
+gitlinks, nonportable names/case or canonical-Unicode collisions, Git metadata
+case aliases, unexpected directories, resealed modes,
+changed trees/commits/blobs and altered outputs are rejected. Three finite outputs
+use the existing bounded report storage, records remain limited to 4 MiB. Atomic
+private input/artifact/record writes and locks prevent a partial run from silently
+becoming an assessment. Incomplete artifacts require explicit recovery.
+
+Assessment identity binds node, runtime, product revision, exact consumer commit/tree,
+input manifest, explicit profile, operator context and clock. The original report
+clock displays UTC seconds; the full explicit assessment time remains bound.
+Default complete execution returns 0 with findings visible. The explicit local
+`--fail-on-findings` option retains the original exits: integration failure is 1;
+onboarding `ready` and `ready_with_gaps` are 0 and `not_ready` is 1. Invalid execution
+is 2. These local exits activate no consuming workflow. All official, production,
+risk, publisher, inherited and operating authority flags remain false; effective
+Trust and repository identity remain unverified.
+
+Independent test fixtures pin the exact two original V1 source files by SHA-256.
+They are test-only text data, excluded from the installed product. The independent
+oracle executes those trusted original tools outside the product on identical
+physical source bytes, explicit UTC and descriptive context. Synthetic positive,
+missing-CI and non-UTF-8 cases cover the original differing exit semantics. A
+separate private comparison of ha-CPsWMS commit
+`5c3b5cb50d2260bfbde736c9ac80667271406d99` matches all three original physical
+JSON/Markdown file bytes without normalized fields. It is a pre-installation
+application comparison, not a fresh native run or approval.
+
+The installed source-inspection harness repeats original physical V1/V2 wire equality
+before creating its host comparison projection. Only already validated operator
+basenames/paths in integration JSON, onboarding JSON and the Markdown path line
+are replaced in that projection. No finding, criterion, count or status is
+normalized. Raw matched files remain private; cross-host evidence exports hash
+metadata. Source removal, output tampering and original finding exits are exercised.
+The test fixture preparer copies 29 bounded files, including the independent
+oracle; the new source-inspection harness brings the next complete host profile to
+15 groups. Source/runtimes and schemas require fresh candidate instances; earlier
+histories and authority are not silently migrated. Full Goal and target-VM
+acceptance remain open.

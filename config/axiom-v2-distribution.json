@@ -128,7 +128,10 @@
     "scripts/lib/v2_source.py",
     "scripts/lib/workbench_impact.py",
     "scripts/portable_consumer_intake.py",
-    "scripts/serve_governance_workbench.py"
+    "scripts/serve_governance_workbench.py",
+    "scripts/lib/source_snapshot_proof.py",
+    "scripts/lib/onboarding_readiness.py",
+    "scripts/lib/source_inspection_application.py"
   ],
   "data_roots": [
     "schemas",

@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 private consumer source-signature inspection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "node_id",
+    "runtime_source_digest",
+    "source_revision",
+    "source_worktree_clean",
+    "assessed_at",
+    "input_id",
+    "working_tree_used",
+    "mode",
+    "files",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "provider_invoked",
+    "published",
+    "kind",
+    "product_label",
+    "inspection_kind",
+    "consumer_commit",
+    "consumer_tree",
+    "source_repository_path",
+    "declared_repository_id",
+    "source_scope",
+    "source_inspection_profile",
+    "evidence_trust",
+    "repository_identity_verified"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "working_tree_used": {
+      "const": false
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 3,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 67108864
+          }
+        }
+      }
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "provider_invoked": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "kind": {
+      "const": "consumer-source-signatures"
+    },
+    "product_label": {
+      "const": "axiom-v2"
+    },
+    "inspection_kind": {
+      "enum": [
+        "integration",
+        "onboarding",
+        "all"
+      ]
+    },
+    "consumer_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "consumer_tree": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "source_repository_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^/"
+    },
+    "declared_repository_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "source_scope": {
+      "const": "retained-consumer-git-snapshot-v1"
+    },
+    "source_inspection_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "profile",
+        "source_signature_only"
+      ],
+      "properties": {
+        "kind": {
+          "const": "legacy-ci-source-signatures-v1"
+        },
+        "profile": {
+          "const": "legacy-ci-signatures-v1"
+        },
+        "source_signature_only": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "repository_identity_verified": {
+      "const": false
+    }
+  }
+}

@@ -54,8 +54,8 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `axiom_v2.py` | Laufzeit |
 | `check_lifecycle_personal_channel.py` | Quellwerkzeug |
 | `check_public_artifact_hygiene.py` | Quellwerkzeug |
-| `check_repo_governance_integration.py` | Quellwerkzeug |
-| `check_repository_onboarding_readiness.py` | Quellwerkzeug |
+| `check_repo_governance_integration.py` | `source-inspection create --kind integration`; explizite historische Quellsignaturen, exakter Consumer-Commit |
+| `check_repository_onboarding_readiness.py` | `source-inspection create --kind onboarding`; private Git-Snapshots, ursprüngliche Kriterien, keine Freigabe |
 | `collect_architecture_release_input.py` | V1 stillgelegt |
 | `collect_devsecops_release_input.py` | V1 stillgelegt |
 | `collect_vulnerability_scan_evidence.py` | V1 stillgelegt |

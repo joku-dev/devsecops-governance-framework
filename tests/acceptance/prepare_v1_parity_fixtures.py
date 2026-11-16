@@ -35,6 +35,9 @@ def main():
     write('not-run-response.json', (ROOT / 'tests/fixtures/document-consistency-review-semantic/not-run-response.json').read_bytes())
     for name in ('measured-native-cases.json', 'supplement-cases.json', 'typed-container-cases.json', 'dcr-operations-cases.json', 'general-result-cases.json', 'native-result-cases.json', 'reporting-cases.json', 'lineage-impact-cases.json', 'source-intake-reporting-cases.json', 'model-followup-reporting-cases.json', 'domain-reporting-cases.json', 'candidate-health-replay-cases.json', 'portfolio-reporting-cases.json', 'configuration-readiness-cases.json', 'blocking-reporting-cases.json'):
         write(name, (ROOT / 'tests/fixtures/axiom-v1-parity' / name).read_bytes())
+    for path in sorted((ROOT / 'tests/fixtures/axiom-v1-parity/source-inspection').iterdir()):
+        write('source-inspection/' + path.name, path.read_bytes())
+    write('source-inspection/oracle.py', (ROOT / 'tests/acceptance/v1_source_inspection_oracle.py').read_bytes())
     (destination / 'bindings.json').write_text(json.dumps(bindings, indent=2) + '\n')
     (destination / 'bindings.json').chmod(0o600)
     print(json.dumps({'synthetic': True, 'files': len(bindings), 'v1_reference': manifest['v1_reference']}))
