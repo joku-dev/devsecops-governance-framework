@@ -1281,3 +1281,60 @@ fixed; all three original/application files match, digest
 `0dc4ea2337f33efa9ea4599884a23f1ff0ab38a0622346256c5a0f1779b84815`.
 This is an application comparison, not a new native lookup, pipeline run or scan.
 Installed acceptance remains source-bound and must be observed separately.
+
+## Declared agent-selection statistics
+
+`agent-usage create/inspect` restores `generate_agent_usage_snapshot.py` through
+pure counter/render functions and an isolated private log/artifact store. It invokes
+no agent, model, provider or old CLI. The original JSON and Markdown retain counter
+ordering, latest-event file order, first/last lexical timestamps and metadata fields.
+Selections and dispatch records describe **declared selection**, not demonstrated
+execution or human approval. All outer agency, approval, authority and publication
+flags remain false; Trust remains `unverified`.
+
+```bash
+"$V2_PREFIX/axiom-v2" agent-usage create \
+  --usage-log /private/operator/selection-events.jsonl \
+  --source-log-label declared-selection-events.jsonl --latest-count 10 \
+  --at 2026-11-15T13:30:00.123456+01:00
+"$V2_PREFIX/axiom-v2" agent-usage inspect --assessment ASSESSMENT_SHA256
+```
+
+`--usage-log` accepts an explicit operator log; its bytes are retained privately and
+inspection does not reopen the caller file. The optional source label is report
+context only, never a path read during replay. If no log is supplied, the command
+reads the exact installed Git commit's `generated/agent-usage/agent-usage.jsonl`.
+That is the **committed legacy metadata scope**, separate from the fresh instance's
+private execution history. The receipt identifies committed revision/blob or
+operator origin. A missing operator file retains V1's empty-log behavior; missing
+and existing empty inputs have distinct presence/origin bindings even when their
+original report bytes coincide. Symlinks are rejected.
+
+The original CLI clamps negative `--latest-count` to zero, then uses `events[-0:]`:
+**zero and negative counts retain all events**, rather than an empty latest table.
+V2 preserves that compatibility behavior and binds requested and effective counts
+separately. The explicit `--at` retains its full offset/fraction representation,
+like V1's explicit `--generated-at`; it is validated but not rounded or reformatted.
+
+The logical private output files are
+`generated/agent-usage/agent-usage-summary.json` and
+`docs/operations/agent-usage-snapshot-latest.md`. JSON preserves the original
+sorted-key, indented writer and Markdown remains complete. Output paths are beneath
+the receipt's private artifact directory; no public generated report, docs page,
+usage history, source register or accepted index is overwritten. Recording is not
+activated and no historical selection becomes current execution evidence.
+
+Limits are 16 MiB/log, 100,000 JSONL events, 64 MiB/output, 128 MiB aggregate output,
+4 MiB/record and the existing 8 GiB reserve. Input manifest identity, exact source
+bytes/length, output membership, schema, node/runtime/product revision, label, clock,
+count and complete recomputed files are checked. Invalid JSONL/metadata, changed or
+extra files, foreign bindings, fabricated authority and quota failures reject the
+operation. Successful snapshots return zero; invalid operations return two.
+
+An independent frozen V1 CLI/writer oracle covers seven cases and fourteen whole
+files: default, zero, negative, large window, empty input, an offset/fraction clock
+and Unicode metadata. All bytes match without normalization. A separate private
+comparison on the unchanged 15,920-byte committed legacy log matches both original
+files, digest `fd0a05a52794689f5c2bfe50017c93ea970da7bb690d7fe6767179582ab27226`.
+Neither comparison verifies actual model execution or approval. Installed acceptance
+must be observed separately and the complete functional-parity Goal remains active.

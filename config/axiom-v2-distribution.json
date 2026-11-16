@@ -136,7 +136,9 @@
     "scripts/lib/provenance_application.py",
     "scripts/lib/pipeline_application.py",
     "scripts/lib/pipeline_evidence.py",
-    "scripts/lib/providers/pipeline_environment.py"
+    "scripts/lib/providers/pipeline_environment.py",
+    "scripts/lib/agent_usage.py",
+    "scripts/lib/agent_usage_application.py"
   ],
   "data_roots": [
     "schemas",

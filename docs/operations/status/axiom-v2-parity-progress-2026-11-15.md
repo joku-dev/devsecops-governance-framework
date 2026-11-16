@@ -570,3 +570,38 @@ queue empty and publisher inactive. The target VM remains off/unreachable, confi
 by the maintainer; this candidate has no new execution proof on that VM. Prepared
 Linux bytes and previous GitHub/user-host evidence remain separate scopes. Full Goal
 work continues without scope exceptions or transferred operating authority.
+
+## Observed declared-pipeline checkpoint — 16 November
+
+Candidate `eb6bbd4fc7082fd301fcc97ce1a75b0e628a5fb9`, tree
+`a919448a0da1b2ab51a7f67abb90e773655c85d1`, passed 1,524 pinned tests
+(386.461 s, one platform skip), demo and strict docs (2.21 s). Twenty pipeline
+tests passed; eight matrix regression tests passed after correcting two identifier
+formats without weakening the schema. Selection contains 136 Python files,
+763 active fingerprints, 107 neutral core files and twenty-one adapters.
+All 24 protected operating-acceptance fingerprints remain unchanged.
+
+The fresh Mac installation passed all seventeen groups, including complete original
+context/evidence/gate wires and all earlier authoring, DCR, reporting, source, native,
+domain and HTTP groups. An additional installed comparison used the real artifact,
+SBOM and scan already retained from native capture `43767248960`, an explicitly
+reconstructed declared context and a fixed clock. All three complete original V1
+files match without normalization. This is no new pipeline/scan run, fresh native
+metadata check, protection validation or approval.
+
+| Binding | SHA-256 |
+| --- | --- |
+| Runtime | `75333d7d4073889acdbbb57e045ad5a8b384885ae26a5aad9e9a09df4182716f` |
+| Prepared Mac package, 2,253 files | `dfd0be80145daee44a1cf4db564fef73fbeb7590e79826716ad9b2939f8482c6` |
+| Prepared Linux package, 2,253 files | `a43aa34586dcc7ff124fb6b1d238b5cd4ee17eda68501d5a49191e80ec8257a4` |
+| Whole committed-source DCR | `4337e06efcb2ae7f010ac2cc083b1fca5fa71200108309d65ccc9363ff718cab` |
+| Original pipeline wires on recorded real inputs | `0dc4ea2337f33efa9ea4599884a23f1ff0ab38a0622346256c5a0f1779b84815` |
+| All reporting files plus one-day window case | `258608f4250ffab7c57d17af8a06abcd662bc2376adcbdb0388c1712ac37fdc4` |
+
+The source was verified, test listener closed, collector paused with empty queue and
+publisher inactive. Both coherent increments are in PR #396. All ten workflows for
+the preceding published `8c753ee` head passed, including the complete disposable
+Ubuntu deployment/recovery protocol and both collector service scopes. New-head CI
+runs separately; prior success does not claim current-head completion. The maintainer's
+VM remains off/unreachable and this new Linux package has no execution proof on it.
+No target-VM retry or cleanup was attempted. Full Goal work continues.

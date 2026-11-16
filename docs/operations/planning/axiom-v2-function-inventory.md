@@ -35,7 +35,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 17 Status | Workbench und private Consumer-Projektion; `reports` ergänzt einen reproduzierbaren Graph des committed Datenstands. Statische Viewer-Publikation und weitere Projektionen bleiben offen. |
 | 18 Readiness | `reports portfolio` erhält die bestehende Einführungsübersicht ohne Freigabe neuer Repos. `reports configuration` ergänzt die ursprüngliche Intake-Readiness mit explizitem Adapterprofil und begrenzten Textsignaturen. `reports blocking-readiness/blocking-alignment` erhält die lesenden Entscheidungshilfen mit committed Abhängigkeiten; Risikowerte erteilen keine Berechtigung. Weitere Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
 | 19 Betrieb/Sicherheit | Eigene Instanz, gepinnte Werkzeuge und Drift-Prüfung. GitHub-Sicherheitsbewertung nur innerhalb des Adapters. |
-| 20 Reviews/Kommunikation | Bestehende lokale Autoren-, Validierungs- und Reviewwerkzeuge im Entwicklungscheckout. |
+| 20 Reviews/Kommunikation | Private `provenance`-Zuordnungen und `agent-usage`-Statistik erhalten deklarierte Beteiligung und Rollen-/Skill-Auswahl. Sie belegen weder ausgeführte Prüfungen noch menschliche Freigaben. Weitere Autoren-, Validierungs- und Reviewwerkzeuge bleiben im Entwicklungscheckout. |
 | 21 Lifecycle | V1-Live-Pilot-Einstiegspunkte in V2 stillgelegt. Keine Übertragung persönlicher Betriebsabnahme oder Aktionsrechte; neue Live-Zulassung bleibt gesondert. |
 | 22 Dokumentationsabgleich | Bestehender GitHub-Workflow bleibt Adapter des Entwicklungsrepositories; kein aktiver V2-Betriebsdienst. |
 
@@ -66,7 +66,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `evaluate_agent_reviews.py` | Quellwerkzeug |
 | `evaluate_document_consistency_semantic_report.py` | Quellwerkzeug |
 | `export_repository_sbom.py` | V1 stillgelegt |
-| `generate_agent_usage_snapshot.py` | Quellwerkzeug |
+| `generate_agent_usage_snapshot.py` | Laufzeit über `agent-usage create/inspect`; vollständige ursprüngliche Metadatenstatistik aus explizitem JSONL-Protokoll oder committed Legacy-Daten. Keine tatsächliche Agentenausführung oder Freigabe. |
 | `generate_architecture_governance_report.py` | Quellwerkzeug |
 | `generate_architecture_results_index.py` | Quellwerkzeug |
 | `generate_architecture_source_replacement_assessment.py` | Quellwerkzeug |

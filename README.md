@@ -81,6 +81,10 @@ Umgebungsfelder bleiben im Adapter; Artefakt-, SBOM-, Scan- und Signaturdateien
 werden begrenzt privat aufbewahrt und erneut geprüft. Angaben wie „success“,
 „enforced“ und vorhandene Waiver belegen keine tatsächliche Pipeline-Ausführung,
 Schutzkonfiguration oder Freigabe.
+`agent-usage create/inspect` ergänzt die ursprüngliche Nutzungsstatistik aus einem
+expliziten JSONL-Protokoll oder dem committed Legacy-Protokoll. Originale JSON- und
+Markdown-Dateien bleiben privat und erneut prüfbar. Sie zählen deklarierte Rollen-
+und Skill-Auswahl; tatsächliche Agentenausführung und Freigaben werden nicht abgeleitet.
 `evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
 `reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
 Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei

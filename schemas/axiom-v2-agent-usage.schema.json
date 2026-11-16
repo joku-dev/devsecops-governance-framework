@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "runtime_source_digest",
+    "source_revision",
+    "input_id",
+    "source_log_label",
+    "assessed_at",
+    "latest_count_requested",
+    "latest_count_effective",
+    "source_worktree_clean",
+    "mode",
+    "evidence_trust",
+    "files",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "published",
+    "agent_execution_verified",
+    "human_approval_verified"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "declared-agent-selection-snapshot"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_log_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 128
+    },
+    "latest_count_requested": {
+      "type": "integer"
+    },
+    "latest_count_effective": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 2,
+      "maxProperties": 2,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 67108864
+          }
+        }
+      }
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "agent_execution_verified": {
+      "const": false
+    },
+    "human_approval_verified": {
+      "const": false
+    }
+  }
+}
