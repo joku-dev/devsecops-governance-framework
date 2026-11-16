@@ -22,6 +22,12 @@ def main():
     lineage = json.loads(lineage_path.read_text())
     assert lineage['v1_reference'] == fixture['v1_reference'] and lineage['at'] == '2026-11-15T12:00:00Z'
     fixture['expected_outputs'].update(lineage['cases'][-1]['expected_outputs'])
+    intake_path = args.fixtures / 'source-intake-reporting-cases.json'
+    assert hashlib.sha256(intake_path.read_bytes()).hexdigest() == bindings[intake_path.name]
+    intake = json.loads(intake_path.read_text())
+    assert intake['membership_fixture_sha256'] == bindings[lineage_path.name]
+    assert intake['v1_reference'] == fixture['v1_reference'] and intake['at'] == lineage['at']
+    fixture['expected_outputs'].update(intake['cases'][-1]['expected_outputs'])
     def command(*arguments, expected=0):
         value = subprocess.run([str(prefix / 'axiom-v2'), 'reports', *arguments],
                                capture_output=True, text=True, timeout=180)

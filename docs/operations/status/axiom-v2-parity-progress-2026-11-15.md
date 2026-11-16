@@ -239,3 +239,41 @@ collectors are paused with empty queues and publishers inactive. The existing
 V1 VM remains `adc4643`, port 8766, HTTP 200. Private raw receipts remain outside
 Git. Source lineage, change impact and the rest of the product still need their
 own later installed acceptance; this checkpoint does not close the full Goal.
+
+
+## Installed source-lineage checkpoint at `a1e943e`
+
+Candidate `a1e943e4b2920a4b3991ebfca18df2abec4f0ca4`, tree
+`a6eb6b21e9db5491407690dfe3bb6a9d3d5ae8d5`, passed pinned full validation:
+1,387 tests, one platform skip; demo and strict documentation build passed.
+It declares 110 Python files, 731 active fingerprints and an 82-file neutral
+closure. The 24 protected operating-acceptance fingerprints remain unchanged.
+
+| Installed binding | SHA-256 |
+| --- | --- |
+| Runtime | `a1e7d88b4ca0c24bb5fd1a94a65cdfbbcf65f2d5ae5d96d4f1da316857c04f31` |
+| Mac prepared package | `6db3e03cb84448ebd87eae5efd8eff882bd21bc51a39a0445d17fa9b9625d88e` |
+| Linux prepared package | `511d9969a44f659fce75870bcec7225194093eea388aeff59e4eb9b043f78a58` |
+| Ten complete reporting outputs | `80b0d6507e7231086108032cdfdb9a2a5753b47dcdbc3b905b88e17603e6a09b` |
+| Complete committed-source DCR report | `eed5cb9ee7abc0a12f793295a62461ce7ae18b44823ade2f1f02c6e78be338e9` |
+
+Both fresh installations passed all eleven result groups and full DCR checks.
+Every complete results object was independently canonicalized and hashed on
+each host, and all fresh SHA-256 values matched. This comparison adds no field
+normalization; individual harnesses retain their separately documented descriptive
+path/node-context handling. Reporting files independently match complete V1
+golden bytes. Raw private result payloads stay on their respective host.
+
+Real consumer reports and native-capture replays use the same pinned physical
+inputs and original clocks described above; their complete report digests remain
+unchanged. Native capture still originates at `ef86727`/run `43767248960`. No new
+scanner result or native lookup follows from the installed replay. Nodes, keys
+and state remain separate; collectors are paused with empty queues, publishers
+inactive and temporary listeners stopped. Existing V1 remains `adc4643`, port
+8766, HTTP 200. The preceding `b0be590` source passed all ten GitHub workflows,
+including the complete VM installation protocol. Later heads have separate CI.
+
+This checkpoint covers the ten reporting files implemented at `a1e943e`. The
+later source-intake families, other report/Viewer/public handoff capabilities,
+lifecycle/release/agent tools and full operating parity retain their own open
+acceptance. The complete Goal remains active.

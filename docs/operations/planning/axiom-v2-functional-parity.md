@@ -624,7 +624,8 @@ an existing run.
 The finite `reports` route returns the original control-coverage JSON/Markdown,
 control traceability CSV, architecture runtime traceability CSV, Policy/Directive
 traceability CSV and governance graph JSON. Source lineage and change impact each
-add their original JSON/Markdown pair. `--kind all` produces all ten files.
+add their original JSON/Markdown pair. Five source-intake report families add
+ten more files; `--kind all` produces all twenty files.
 The computations use explicit data roots; V2 imports or dispatches no retained
 source CLI and writes no generated files in its installed source.
 
@@ -637,7 +638,9 @@ The build receipt supplies a private artifact directory and each file's size and
 SHA-256. The source profile `committed-governance-data-v2` records complete committed Git
 file membership and snapshots only exact required data blobs: `model/`,
 `architecture/`, retained `governance/` data, `status/`, the historical lineage
-report and the frozen architecture release metadata/model YAML. Membership
+report, the frozen architecture release metadata/model YAML, registered source
+extracts and requirement source documents. The process-status profile also reads
+its original committed intake-status and requirement-delta JSON inputs. Membership
 retains mode, object and size without copying retired executable source. Ordinary
 working-file edits are excluded. All
 copied files bind their Git object, size and SHA-256 to the exact product commit
@@ -658,7 +661,7 @@ idempotent. Source snapshots are cached privately per exact revision.
 
 The bounded profile admits up to 10,000 committed members and copied data files,
 128 MiB total/16 MiB per copied file; its manifest is limited to 4 MiB. Output is
-bounded to sixteen files, 64 MiB per file
+bounded to thirty-two files, 64 MiB per file
 and 128 MiB total. The existing 8 GiB free-space reserve is preserved.
 
 These are read-only projections of committed governed data and historical
@@ -695,9 +698,44 @@ two exact memberships: the frozen V1 tree and the later V2 reporting tree. Their
 lineage dependency invokes the original lineage writer directly in the private
 oracle directory. All four output files match without normalized fields. The
 existing six report files remain byte-identical. The expanded installed harness
-checks ten complete files, immutable replay and tamper rejection; installed
+checks twenty complete files, immutable replay and tamper rejection; installed
 acceptance is recorded only after the new committed package actually runs.
 
 This source-profile change requires a fresh candidate instance; existing private
 report snapshots are not silently migrated or reinterpreted. General update and
 workspace migration remain separate full-Goal work.
+
+
+### Existing source-intake report families
+
+The same finite report application now exposes `source-replacement`,
+`source-intake`, `source-review-briefs`, `requirement-delta` and `source-process`.
+Each produces its original JSON/Markdown pair. Their pure functions retain the
+existing replacement/advisory classification, source status, review options,
+explicit requirement identifiers, provenance and lifecycle/baseline blockers.
+They make no source, architecture, requirement or release decisions.
+
+The first four families recompute their original dependencies directly from
+committed data, without executing a source generator or trusting stale generated
+outputs. Process status preserves its distinct original input contract: it joins
+the committed intake-status/delta reports, source register, lifecycle cases,
+authority ledger, DCR projection and requirement/artifact links. It does not
+silently substitute newly generated or candidate-workspace records. A later
+composed current-state/private-workspace view requires its own explicit scope.
+
+Registered source/requirement document bytes are copied with the existing Git
+object/SHA-256 and resource bindings. Format extraction follows the original
+Markdown/DOCX/PDF parser, with original warnings/error semantics, after member,
+link and raw-file size checks. Candidate intake records whose text is withheld
+remain unscanned; unlabelled prose and reference mentions create no requirements.
+Identifier presence remains separate from author-provided identifier provenance
+and source approval. Historical lifecycle proposals remain historical counts.
+
+The process report retains the original UTF-8 JSON writer; the other report
+writers keep their original JSON escaping. Complete byte comparisons use the
+actual frozen V1 functions/renderers in two exact committed input contexts.
+Original dependency writers execute only in the private V1 oracle; V2 uses
+direct pure function calls. The corresponding installed acceptance compares all
+twenty files, and records only actually observed host execution. Existing generic
+Workbench imports remain unchanged until their candidate/workspace context has
+its own migration and interface tests.

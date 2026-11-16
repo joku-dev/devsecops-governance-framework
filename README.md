@@ -44,10 +44,13 @@ liest zusätzlich abgeschlossene CI-Läufe samt Originalarchiven, Lauf-/Jobdaten
 und verfügbarem Schutzstatus. Private Aufnahme und öffentliche Übergabe bleiben
 getrennte Schritte; die vollständige Produktabnahme ist weiter offen.
 `reports` erzeugt außerdem Kontrollabdeckungs-, Traceability-, Graph-,
-Quellenherkunfts- und Änderungsfolgenberichte aus dem festgehaltenen
+Quellenherkunfts-, Änderungsfolgen- und Intake-Berichte aus dem festgehaltenen
 Governance-Datenstand der installierten Version. Ihre Existenzprüfungen verwenden
 den vollständigen Git-Baum; alte Skripte müssen dafür nicht installiert sein. Die
 privaten Ausgaben lassen sich mit ihren ursprünglichen Git-Eingaben erneut prüfen.
+Intake-Status, Entscheidungsvorlagen, explizite Anforderungsdeltas und der
+Prozessstatus behalten Kandidaten, fehlende Herkunftsnachweise und offene
+menschliche Entscheidungen sichtbar.
 
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026

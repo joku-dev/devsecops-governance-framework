@@ -16,6 +16,9 @@ from lib.v2_boundary import safe_source
 
 SCOPES = ('model', 'architecture', 'governance', 'status',
           'generated/reports/source-lineage-report.json',
+          'generated/reports/source-document-intake-status.json',
+          'generated/reports/source-document-requirement-delta.json',
+          'docs/governance/source-documents', 'docs/governance/requirements',
           'releases/architecture/l1/v0.1.0/release-metadata.json',
           'releases/architecture/l1/v0.1.0/source/architecture')
 SOURCE_SCOPE = 'committed-governance-data-v2'

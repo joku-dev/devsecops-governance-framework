@@ -9,9 +9,15 @@
       "id": "FP-01",
       "title": "Governance-Quellen verwalten",
       "state": "in_progress",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "v2_capabilities": [
+        "reports source-intake/replacement/review briefs/explicit deltas/process status, committed report-only context"
+      ],
+      "positive_tests": [
+        "tests/test_v2_source_reports.py:exact V1 file bytes and candidate/provenance boundaries"
+      ],
+      "negative_tests": [
+        "tests/test_v2_source_reports.py:withheld/prose/missing/link/oversize/stale dependency failures"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
@@ -31,13 +37,16 @@
       "state": "in_progress",
       "v2_capabilities": [
         "reports graph/control coverage/three traceability routes",
-        "reports source-lineage/change-impact using exact committed Git membership and explicit clock"
+        "reports source-lineage/change-impact using exact committed Git membership and explicit clock",
+        "reports source-intake/replacement/review briefs/explicit deltas/process status, committed report-only context"
       ],
       "positive_tests": [
-        "tests/test_v2_reports.py:complete original output bytes and immutable replay"
+        "tests/test_v2_reports.py:complete original output bytes and immutable replay",
+        "tests/test_v2_source_reports.py:exact V1 file bytes and candidate/provenance boundaries"
       ],
       "negative_tests": [
-        "tests/test_v2_reports.py:source/member/output resealing, traversal, foreign node, quotas and no retired code execution"
+        "tests/test_v2_reports.py:source/member/output resealing, traversal, foreign node, quotas and no retired code execution",
+        "tests/test_v2_source_reports.py:withheld/prose/missing/link/oversize/stale dependency failures"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -809,8 +818,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_source_replacement.py:build_report",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1610,8 +1619,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_source_briefs.py:build_report",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1640,8 +1649,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_source_intake.py:build_report",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1661,8 +1670,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_source_process.py:build_report",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1704,8 +1713,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_requirement_delta.py:build_report",
+      "state": "in_progress",
       "evidence": []
     },
     {

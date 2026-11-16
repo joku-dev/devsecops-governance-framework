@@ -37,6 +37,9 @@ class ReportData:
     def is_file(self, path):
         return self.relative(path) in self.files
 
+    def is_dir(self, path):
+        return self.relative(path) in self.directories
+
     def iterdir(self, path):
         name = self.relative(path)
         if name not in self.directories:
@@ -63,3 +66,10 @@ class ReportData:
 
     def json(self, path):
         return strict_json(self.raw(path))
+
+    def extract(self, path):
+        from lib.source_document_text import SourceDocumentExtractionError, extract_source_document
+        if not self.is_file(path):
+            raise SourceDocumentExtractionError('source document does not exist or is not a file')
+        self.raw(path)
+        return extract_source_document(safe_source(self.root, self.relative(path)))

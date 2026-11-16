@@ -58,6 +58,11 @@
         "governance-traceability",
         "source-lineage",
         "change-impact",
+        "source-replacement",
+        "source-intake",
+        "source-review-briefs",
+        "requirement-delta",
+        "source-process",
         "all"
       ]
     },
@@ -85,7 +90,7 @@
     "files": {
       "type": "object",
       "minProperties": 1,
-      "maxProperties": 16,
+      "maxProperties": 32,
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,
