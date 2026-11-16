@@ -623,7 +623,8 @@ an existing run.
 
 The finite `reports` route returns the original control-coverage JSON/Markdown,
 control traceability CSV, architecture runtime traceability CSV, Policy/Directive
-traceability CSV and governance graph JSON. `--kind all` produces all six files.
+traceability CSV and governance graph JSON. Source lineage and change impact each
+add their original JSON/Markdown pair. `--kind all` produces all ten files.
 The computations use explicit data roots; V2 imports or dispatches no retained
 source CLI and writes no generated files in its installed source.
 
@@ -633,9 +634,12 @@ source CLI and writes no generated files in its installed source.
 ```
 
 The build receipt supplies a private artifact directory and each file's size and
-SHA-256. The source profile `committed-governance-data-v1` snapshots exact Git blobs
-from `model/`, `architecture/`, the retained `governance/` data, `status/` and the
-committed source-lineage report. Ordinary working-file edits are excluded. All
+SHA-256. The source profile `committed-governance-data-v2` records complete committed Git
+file membership and snapshots only exact required data blobs: `model/`,
+`architecture/`, retained `governance/` data, `status/`, the historical lineage
+report and the frozen architecture release metadata/model YAML. Membership
+retains mode, object and size without copying retired executable source. Ordinary
+working-file edits are excluded. All
 copied files bind their Git object, size and SHA-256 to the exact product commit
 and tree. Schema/resource/runtime/node/time bindings surround the derived output.
 Git reads use local objects and disable lazy fetching and all transport protocols;
@@ -652,8 +656,9 @@ traversal, foreign nodes, altered authority flags, unsupported report kinds and
 quota failures are rejected. Repeated builds at the same explicit time are
 idempotent. Source snapshots are cached privately per exact revision.
 
-The bounded profile admits up to 10,000 source files/128 MiB total/16 MiB per file;
-its manifest is limited to 4 MiB. Output is bounded to eight files, 64 MiB per file
+The bounded profile admits up to 10,000 committed members and copied data files,
+128 MiB total/16 MiB per copied file; its manifest is limited to 4 MiB. Output is
+bounded to sixteen files, 64 MiB per file
 and 128 MiB total. The existing 8 GiB free-space reserve is preserved.
 
 These are read-only projections of committed governed data and historical
@@ -668,3 +673,31 @@ files from 285 exact committed governance input files. Tests compare complete
 output bytes, including CSV endings, and exercise corruption, foreign scope,
 source-membership and quota failures. Installed evidence is recorded separately
 for the exact committed package once its execution has actually been observed.
+
+
+### Source lineage and change impact
+
+`--kind source-lineage` and `--kind change-impact` preserve the original register,
+source status, artifact roles, review lanes, release considerations, suggested
+validations and Markdown rendering. Their clock is explicit UTC, truncated to
+seconds as in V1. Change impact calls the pure lineage computation directly; it
+does not dispatch a source CLI or trust an old generated lineage payload.
+
+File presence and policy enumeration use the full committed tree, including
+paths absent from the installed sparse working tree. The private input copy
+contains only admitted data. Historical derivation labels remain historical:
+a retired path is reported absent even when a new application route supplies
+its functional counterpart. This report does not approve or rewrite lineage.
+Candidate source status remains intact and no controls are derived or activated.
+
+Original frozen V1 functions and renderers were executed at the same UTC against
+two exact memberships: the frozen V1 tree and the later V2 reporting tree. Their
+lineage dependency invokes the original lineage writer directly in the private
+oracle directory. All four output files match without normalized fields. The
+existing six report files remain byte-identical. The expanded installed harness
+checks ten complete files, immutable replay and tamper rejection; installed
+acceptance is recorded only after the new committed package actually runs.
+
+This source-profile change requires a fresh candidate instance; existing private
+report snapshots are not silently migrated or reinterpreted. General update and
+workspace migration remain separate full-Goal work.

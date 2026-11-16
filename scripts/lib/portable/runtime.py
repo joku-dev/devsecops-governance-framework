@@ -84,7 +84,7 @@ def source_digest():
     paths.extend([ROOT/'scripts/generate_document_consistency_review_model.py',ROOT/'scripts/lib/explicit_requirements.py',ROOT/'scripts/lib/source_document_text.py'])
     paths.extend(sorted((ROOT/'schemas').glob('document-consistency-*.schema.json')))
     paths.extend(sorted((ROOT/'model/governance/document-consistency').glob('*')))
-    paths.extend(ROOT/'scripts/lib'/name for name in ('report_graph.py','control_reporting.py','report_sources.py','report_outputs.py','report_application.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('report_graph.py','control_reporting.py','report_sources.py','report_outputs.py','report_application.py','report_data.py','report_lineage.py','report_impact.py'))
     paths.extend(ROOT/'schemas'/name for name in ('axiom-v2-report-assessment.schema.json','governance-graph.schema.json'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('native_result_logic.py','native_result_assessments.py','result_bytes.py'))
     paths.append(ROOT/'schemas/axiom-v2-native-result-assessment.schema.json')

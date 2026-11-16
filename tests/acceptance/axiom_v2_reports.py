@@ -17,6 +17,11 @@ def main():
     bindings = json.loads((args.fixtures / 'bindings.json').read_text())
     assert hashlib.sha256(path.read_bytes()).hexdigest() == bindings[path.name]
     fixture = json.loads(path.read_text()); assert fixture['v1_reference'] == '6b557fefe295b58272d2271326576ca3a3687197'
+    lineage_path = args.fixtures / 'lineage-impact-cases.json'
+    assert hashlib.sha256(lineage_path.read_bytes()).hexdigest() == bindings[lineage_path.name]
+    lineage = json.loads(lineage_path.read_text())
+    assert lineage['v1_reference'] == fixture['v1_reference'] and lineage['at'] == '2026-11-15T12:00:00Z'
+    fixture['expected_outputs'].update(lineage['cases'][-1]['expected_outputs'])
     def command(*arguments, expected=0):
         value = subprocess.run([str(prefix / 'axiom-v2'), 'reports', *arguments],
                                capture_output=True, text=True, timeout=180)
@@ -34,6 +39,7 @@ def main():
         value = inspected['assessment']
         assert value['source_revision'] == args.expected_source and value['source_worktree_clean']
         assert value['node_id'] == settings['node_id'] and not value['working_tree_used']
+        assert value['source_scope'] == 'committed-governance-data-v2'
         assert not value['operating_acceptance_inherited'] and not value['authority_transferred']
         directory = Path(receipt['artifact_directory']); actual = {}
         for name, text in files.items():
@@ -49,7 +55,7 @@ def main():
             assert command('inspect', '--id', receipt['assessment_id'])['original_sources_and_complete_outputs_reverified']
     raw = json.dumps(results, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()
     value = {'schema_version': 1, 'source_revision': settings['source_revision'], 'node_id': settings['node_id'],
-        'runtime_source_digest': settings['runtime_source_digest'], 'source_scope': 'committed-governance-data-v1',
+        'runtime_source_digest': settings['runtime_source_digest'], 'source_scope': 'committed-governance-data-v2',
         'provider_invoked': False, 'official_acceptance': False, 'full_functional_parity': False,
         'results': results, 'business_digest': hashlib.sha256(raw).hexdigest()}
     args.output.write_text(json.dumps(value, sort_keys=True, indent=2) + '\n'); args.output.chmod(0o600)

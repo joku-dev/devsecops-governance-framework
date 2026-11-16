@@ -17,7 +17,7 @@
     },
     {
       "id": "FP-02",
-      "title": "Änderungen an Vorgaben vorbereiten",
+      "title": "\u00c4nderungen an Vorgaben vorbereiten",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -27,11 +27,18 @@
     },
     {
       "id": "FP-03",
-      "title": "Herkunft und Zusammenhänge nachweisen",
-      "state": "pending",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "title": "Herkunft und Zusammenh\u00e4nge nachweisen",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports graph/control coverage/three traceability routes",
+        "reports source-lineage/change-impact using exact committed Git membership and explicit clock"
+      ],
+      "positive_tests": [
+        "tests/test_v2_reports.py:complete original output bytes and immutable replay"
+      ],
+      "negative_tests": [
+        "tests/test_v2_reports.py:source/member/output resealing, traversal, foreign node, quotas and no retired code execution"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
@@ -57,7 +64,7 @@
     },
     {
       "id": "FP-06",
-      "title": "OPA-Prüfregeln ausführen",
+      "title": "OPA-Pr\u00fcfregeln ausf\u00fchren",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -97,7 +104,7 @@
     },
     {
       "id": "FP-10",
-      "title": "Baselines veröffentlichen und konsumieren",
+      "title": "Baselines ver\u00f6ffentlichen und konsumieren",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -117,7 +124,7 @@
     },
     {
       "id": "FP-12",
-      "title": "Ergebnisgeschichte schützen",
+      "title": "Ergebnisgeschichte sch\u00fctzen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -157,7 +164,7 @@
     },
     {
       "id": "FP-16",
-      "title": "Operative Änderungen über PRs veröffentlichen",
+      "title": "Operative \u00c4nderungen \u00fcber PRs ver\u00f6ffentlichen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -177,7 +184,7 @@
     },
     {
       "id": "FP-18",
-      "title": "Einführung und Betriebsreife bewerten",
+      "title": "Einf\u00fchrung und Betriebsreife bewerten",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -187,7 +194,7 @@
     },
     {
       "id": "FP-19",
-      "title": "Betrieb und eigene Sicherheit überwachen",
+      "title": "Betrieb und eigene Sicherheit \u00fcberwachen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -197,7 +204,7 @@
     },
     {
       "id": "FP-20",
-      "title": "Reviews, Validierung und Kommunikation unterstützen",
+      "title": "Reviews, Validierung und Kommunikation unterst\u00fctzen",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -207,7 +214,7 @@
     },
     {
       "id": "FP-21",
-      "title": "Findings, Entscheidungen und Maßnahmen im Lifecycle verfolgen",
+      "title": "Findings, Entscheidungen und Ma\u00dfnahmen im Lifecycle verfolgen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -1051,8 +1058,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_impact.py:build_report",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1719,8 +1726,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_lineage.py:build_report",
+      "state": "in_progress",
       "evidence": []
     },
     {

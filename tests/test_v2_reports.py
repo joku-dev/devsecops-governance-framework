@@ -19,6 +19,7 @@ from lib import report_application, report_outputs, report_sources, report_graph
 from lib.consumer_intake_store import atomic_json
 from lib.functional_parity import git_read
 from lib.portable.contracts import canonical_digest
+from lib.report_data import ReportData, report_time
 
 
 class CommittedReportSourceTests(unittest.TestCase):
@@ -51,6 +52,27 @@ class CommittedReportSourceTests(unittest.TestCase):
         atomic_json(self.copy / 'manifest.json', manifest)
         with self.assertRaisesRegex(ValueError, 'git_binding_changed'):
             report_sources.verify(self.repo, self.revision, self.copy)
+
+    def test_resealed_membership_cannot_invent_an_absent_historical_artifact(self):
+        manifest = report_sources.capture(self.repo, self.revision, self.copy)
+        manifest['membership']['scripts/retired.py'] = {'mode': '100644', 'git_blob': 'a' * 40, 'bytes': 0}
+        atomic_json(self.copy / 'manifest.json', manifest)
+        with self.assertRaisesRegex(ValueError, 'manifest_changed'):
+            report_sources.verify(self.repo, self.revision, self.copy)
+
+    def test_membership_retains_executable_identity_without_materializing_or_running_code(self):
+        code = self.repo / 'scripts/retired.py'; code.parent.mkdir(); code.write_text('raise RuntimeError("never execute")\n')
+        self.git('add', '.')
+        self.git('-c', 'user.name=Synthetic test', '-c', 'user.email=test@example.invalid',
+                 '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'inert identity')
+        revision = self.git('rev-parse', 'HEAD').strip()
+        manifest = report_sources.capture(self.repo, revision, self.copy)
+        data = ReportData(self.copy / 'data', manifest['membership'])
+        path = data.root / 'scripts/retired.py'
+        self.assertTrue(data.is_file(path)); self.assertTrue(data.exists(path.parent))
+        self.assertFalse(path.exists())
+        self.assertNotIn('scripts/retired.py', manifest['files'])
+        with self.assertRaises(FileNotFoundError): data.raw(path)
 
     def test_unlisted_source_and_symlink_data_are_rejected(self):
         report_sources.capture(self.repo, self.revision, self.copy)
@@ -101,7 +123,7 @@ class ReportComputationTests(unittest.TestCase):
         cls.temporary = tempfile.TemporaryDirectory(); cls.addClassCleanup(cls.temporary.cleanup)
         cls.snapshot = Path(cls.temporary.name).resolve() / 'snapshot'
         revision = git_read(ROOT, 'rev-parse', 'HEAD').decode().strip()
-        report_sources.capture(ROOT, revision, cls.snapshot)
+        cls.manifest = report_sources.capture(ROOT, revision, cls.snapshot)
         cls.data = cls.snapshot / 'data'
         assert all(hashlib.sha256((cls.data / name).read_bytes()).hexdigest() == sha
                    for name, sha in cls.fixture['source_files'].items())
@@ -112,8 +134,12 @@ class ReportComputationTests(unittest.TestCase):
             with self.subTest(kind=kind):
                 self.assertEqual(report_outputs.build(self.data, kind), {name: raw.encode() for name, raw in files.items()})
             expected.update({name: raw.encode() for name, raw in files.items()})
-        self.assertEqual(report_outputs.build(self.data, 'all'), expected)
         self.assertEqual(len(expected), 6)
+        extended = json.loads((ROOT / 'tests/fixtures/axiom-v1-parity/lineage-impact-cases.json').read_text())
+        for files in extended['cases'][-1]['expected_outputs'].values():
+            expected.update({name: raw.encode() for name, raw in files.items()})
+        self.assertEqual(report_outputs.build(self.data, 'all', membership=self.manifest['membership'], at=extended['at']), expected)
+        self.assertEqual(len(expected), 10)
         csv = expected['generated/xlsx/traceability_matrix.csv']
         self.assertIn(b'\r\n', csv)
         self.assertNotIn(b'\r\r\n', csv)
@@ -128,6 +154,40 @@ class ReportComputationTests(unittest.TestCase):
     def test_unknown_kind_cannot_dispatch_an_arbitrary_script(self):
         with self.assertRaisesRegex(ValueError, 'unsupported_report_kind'):
             report_outputs.build(self.data, 'scripts/generate_status_viewer.py')
+
+    def test_both_original_lineage_and_impact_functions_match_all_output_bytes(self):
+        fixture = json.loads((ROOT / 'tests/fixtures/axiom-v1-parity/lineage-impact-cases.json').read_text())
+        self.assertEqual(fixture['v1_reference'], '6b557fefe295b58272d2271326576ca3a3687197')
+        for case in fixture['cases']:
+            for name, sha in case['source_files'].items():
+                self.assertEqual(hashlib.sha256((self.data / name).read_bytes()).hexdigest(), sha)
+            for kind, files in case['expected_outputs'].items():
+                with self.subTest(revision=case['data_revision'], kind=kind):
+                    self.assertEqual(report_outputs.build(self.data, kind, membership=case['membership'], at=fixture['at']),
+                                     {name: raw.encode() for name, raw in files.items()})
+
+    def test_lineage_requires_explicit_membership_and_a_timezone(self):
+        with self.assertRaisesRegex(ValueError, 'explicit_report_membership_and_time_required'):
+            report_outputs.build(self.data, 'source-lineage')
+        with self.assertRaisesRegex(ValueError, 'explicit_result_timezone_required'):
+            report_outputs.build(self.data, 'change-impact', membership=self.manifest['membership'], at='2026-11-15T12:00:00')
+        self.assertEqual(report_time('2026-11-15T13:00:00.123+01:00'), '2026-11-15T12:00:00Z')
+
+    def test_membership_does_not_allow_escape_links_or_uncommitted_source_reads(self):
+        data = ReportData(self.data, self.manifest['membership'])
+        with self.assertRaises(ValueError): data.exists(data.root / '../outside')
+        with self.assertRaisesRegex(ValueError, 'uncommitted_report_input'): data.raw(data.root / 'untracked.json')
+        with self.assertRaisesRegex(ValueError, 'unsupported_report_glob'): data.glob(data.root / 'model', '**/*')
+        bad = {'bad': {'mode': '120000'}}
+        with self.assertRaisesRegex(ValueError, 'unsafe_report_member'): ReportData(self.data, bad)
+
+    def test_change_impact_recomputes_lineage_without_trusting_the_retained_report(self):
+        fixture = json.loads((ROOT / 'tests/fixtures/axiom-v1-parity/lineage-impact-cases.json').read_text())
+        with tempfile.TemporaryDirectory() as temporary:
+            target = Path(temporary).resolve() / 'copy'; shutil.copytree(self.data, target)
+            (target / 'generated/reports/source-lineage-report.json').write_text('{"lineage": []}')
+            actual = report_outputs.build(target, 'change-impact', membership=self.manifest['membership'], at=fixture['at'])
+            self.assertEqual(actual, {name: raw.encode() for name, raw in fixture['cases'][-1]['expected_outputs']['change-impact'].items()})
 
 
 class ReportAssessmentTests(unittest.TestCase):
@@ -145,7 +205,7 @@ class ReportAssessmentTests(unittest.TestCase):
         for field in ['official_acceptance', 'authority_transferred', 'published', 'provider_invoked',
                       'working_tree_used', 'production_approval', 'operating_acceptance_inherited']:
             self.assertFalse(value[field])
-        self.assertEqual(value['source_scope'], 'committed-governance-data-v1')
+        self.assertEqual(value['source_scope'], 'committed-governance-data-v2')
         fixture = json.loads((ROOT / 'tests/fixtures/axiom-v1-parity/reporting-cases.json').read_text())
         for files in fixture['expected_outputs'].values():
             for name, raw in files.items(): self.assertEqual((context.artifacts / assessment_id / name).read_bytes(), raw.encode())

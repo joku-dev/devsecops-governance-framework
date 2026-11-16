@@ -56,6 +56,8 @@
         "traceability",
         "architecture-traceability",
         "governance-traceability",
+        "source-lineage",
+        "change-impact",
         "all"
       ]
     },
@@ -72,7 +74,7 @@
       "pattern": "^[0-9a-f]{40}$"
     },
     "source_scope": {
-      "const": "committed-governance-data-v1"
+      "const": "committed-governance-data-v2"
     },
     "working_tree_used": {
       "const": false
@@ -83,7 +85,7 @@
     "files": {
       "type": "object",
       "minProperties": 1,
-      "maxProperties": 8,
+      "maxProperties": 16,
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,

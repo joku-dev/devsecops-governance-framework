@@ -15,7 +15,10 @@ from lib.result_bytes import safe_bytes, strict_json
 from lib.v2_boundary import safe_source
 
 SCOPES = ('model', 'architecture', 'governance', 'status',
-          'generated/reports/source-lineage-report.json')
+          'generated/reports/source-lineage-report.json',
+          'releases/architecture/l1/v0.1.0/release-metadata.json',
+          'releases/architecture/l1/v0.1.0/source/architecture')
+SOURCE_SCOPE = 'committed-governance-data-v2'
 MAX_FILES = 10000
 MAX_FILE = 16 * 1024**2
 MAX_TOTAL = 128 * 1024**2
@@ -28,22 +31,28 @@ def inventory(source, revision):
             or Path(git_read(source, 'rev-parse', '--show-toplevel').decode().strip()).resolve() != source
             or git_read(source, 'rev-parse', '--verify', revision + '^{commit}').decode().strip() != revision):
         raise ValueError('explicit_report_product_revision_required')
-    rows = git_read(source, 'ls-tree', '-r', '-l', '-z', revision, '--', *SCOPES)
-    files = {}; size = 0
+    rows = git_read(source, 'ls-tree', '-r', '-l', '-z', revision)
+    if len(rows) > MAX_MANIFEST: raise ValueError('report_source_manifest_budget_exhausted')
+    files = {}; membership = {}; size = 0
     for row in filter(None, rows.split(b'\0')):
         meta, raw_name = row.split(b'\t', 1)
         mode, kind, blob, length = meta.decode().split(); name = raw_name.decode()
         safe_source(source, name)
         if kind != 'blob' or mode not in ('100644', '100755') or '.git' in Path(name).parts:
             raise ValueError('unsafe_committed_report_source')
-        length = int(length); size += length
+        length = int(length)
+        if len(membership) >= MAX_FILES: raise ValueError('report_source_budget_exhausted')
+        membership[name] = {'mode': mode, 'git_blob': blob, 'bytes': length}
+        if not any(name == scope or name.startswith(scope + '/') for scope in SCOPES): continue
+        size += length
         if length > MAX_FILE or size > MAX_TOTAL or len(files) >= MAX_FILES:
             raise ValueError('report_source_budget_exhausted')
         files[name] = {'mode': mode, 'git_blob': blob, 'bytes': length}
     if not files: raise ValueError('report_source_data_missing')
-    names_are_portable(files)
-    return {'schema_version': 1, 'scope': 'committed-governance-data-v1', 'commit': revision,
-            'tree': git_read(source, 'rev-parse', revision + '^{tree}').decode().strip(), 'files': files}
+    names_are_portable(membership)
+    return {'schema_version': 2, 'scope': SOURCE_SCOPE, 'commit': revision,
+            'tree': git_read(source, 'rev-parse', revision + '^{tree}').decode().strip(),
+            'membership': membership, 'files': files}
 
 
 def capture(source, revision, destination):

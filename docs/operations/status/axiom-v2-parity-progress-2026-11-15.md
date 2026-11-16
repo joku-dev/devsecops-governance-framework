@@ -208,3 +208,34 @@ complete disposable-host jobs. The unchanged deployment protocol completed with
 its corrected 90-minute budget. Later PR heads have their own CI results.
 Native public handoff, remaining report/Viewer/lifecycle/release/agent tooling
 and complete service/update/recovery parity remain Goal work.
+
+
+## Installed reporting checkpoint at `b0be590`
+
+Candidate `b0be590df5268aac6899efc5de80b5782bd7cf3e`, tree
+`73e36f9fd650bb037722f8021f174ba9b609902c`, passed pinned full validation:
+1,381 tests, one platform skip; demo and strict documentation build passed.
+The distribution contains 107 declared Python files and 728 active fingerprints;
+the neutral import closure has 79 files. All 24 protected operating fingerprints
+remain unchanged.
+
+| Installed binding | SHA-256 |
+| --- | --- |
+| Runtime | `57ce9ee295793f171856ec3cd023ec4e5ffa62252e97068f8eb59d76ecf7d56c` |
+| Mac prepared package | `aef407e685d7baa17147633254de3560d93844a6dc82e3e9e630cb8aab37b2e8` |
+| Linux prepared package | `db555041552c8a87fe16905f3a6e421d143556d9761c92eb9da2229836817dd1` |
+| Complete six reporting files | `100cb813233fe3f924750b0f71574fccc4b5ebe9b0cae8f17857887f387a1dd5` |
+| Full committed DCR report | `eabf26211fededb7b1eb5299f084ec4fa0660c18087c42225697e1c1935b31f0` |
+
+Both fresh installations matched eleven complete result groups: all ten prior
+capability groups plus graph, coverage and three traceability outputs. Full
+committed-source DCR reports also match. Real source-report and native-capture
+replay digests remain identical to their preceding checkpoints. The original
+native capture producer remains `ef86727`; these installed replays do not claim
+a fresh native metadata lookup or application scan.
+
+Nodes, keys and state remain separate. Temporary ports 18923/18924 are closed;
+collectors are paused with empty queues and publishers inactive. The existing
+V1 VM remains `adc4643`, port 8766, HTTP 200. Private raw receipts remain outside
+Git. Source lineage, change impact and the rest of the product still need their
+own later installed acceptance; this checkpoint does not close the full Goal.

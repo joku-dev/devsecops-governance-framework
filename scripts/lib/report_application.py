@@ -26,10 +26,11 @@ from lib.v2_boundary import safe_source
 MAX_RECORD = 4 * 1024**2
 MAX_OUTPUT = 64 * 1024**2
 MAX_TOTAL = 128 * 1024**2
+MAX_FILES = 16
 
 
 def file_descriptors(files):
-    if (not files or len(files) > 8 or any(len(raw) > MAX_OUTPUT for raw in files.values())
+    if (not files or len(files) > MAX_FILES or any(len(raw) > MAX_OUTPUT for raw in files.values())
             or sum(map(len, files.values())) > MAX_TOTAL):
         raise ValueError('derived_report_output_budget_exhausted')
     return {name: {'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw)}
@@ -82,12 +83,12 @@ class ReportContext:
     def create(self, kind, at):
         explicit_time(at)
         data, manifest = self.source_data()
-        files = report_outputs.build(data, kind)
+        files = report_outputs.build(data, kind, membership=manifest['membership'], at=at)
         descriptors = file_descriptors(files)
         value = {'schema_version': 1, 'kind': 'committed-product-data-reports', **self.binding,
             'source_worktree_clean': self.clean, 'report_kind': kind, 'assessed_at': at,
             'input_id': canonical_digest(manifest), 'input_tree': manifest['tree'], 'files': descriptors,
-            'source_scope': 'committed-governance-data-v1', 'working_tree_used': False,
+            'source_scope': report_sources.SOURCE_SCOPE, 'working_tree_used': False,
             'mode': 'report-only', 'official_acceptance': False, 'production_approval': False,
             'risk_acceptance': False, 'authority_transferred': False, 'operating_acceptance_inherited': False,
             'provider_invoked': False, 'published': False}
@@ -122,14 +123,14 @@ class ReportContext:
         data, manifest = self.source_data()
         if canonical_digest(manifest) != value['input_id'] or manifest['tree'] != value['input_tree']:
             raise ValueError('derived_report_input_binding_changed')
-        files = report_outputs.build(data, value['report_kind'])
+        files = report_outputs.build(data, value['report_kind'], membership=manifest['membership'], at=value['assessed_at'])
         if file_descriptors(files) != value['files']: raise ValueError('derived_report_differs_from_sources')
         root = self.artifacts / assessment_id
         actual = set()
         for path in root.rglob('*'):
             if path.is_symlink(): raise ValueError('unsafe_report_artifact')
             if not path.is_dir(): actual.add(path.relative_to(root).as_posix())
-            if len(actual) > 8: raise ValueError('derived_report_output_budget_exhausted')
+            if len(actual) > MAX_FILES: raise ValueError('derived_report_output_budget_exhausted')
         if actual != set(files): raise ValueError('derived_report_artifact_membership_changed')
         for name, raw in files.items():
             if safe_bytes(safe_source(root, name), limit=MAX_OUTPUT) != raw:
