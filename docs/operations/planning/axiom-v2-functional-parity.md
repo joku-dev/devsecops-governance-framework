@@ -1214,3 +1214,70 @@ Fresh product/rule/runtime bindings require fresh candidate instances; there is
 no silent history or authority migration. Remaining agent execution/review tools,
 lifecycle, public handoff, Viewer, release and operational flows remain in the
 full Goal. Target-VM acceptance remains pending while that VM is unavailable.
+
+## Declared platform context and pipeline evidence
+
+`pipeline-evidence create/inspect` restores the original `generate_platform_context.py`
+and `generate_pipeline_evidence.py` capabilities. Select `--kind context`, `pipeline`
+or `all`, an explicit `--profile`, an `--environment` JSON file and an explicit `--at`.
+The finite legacy profiles retain GitHub Actions, Bamboo, Bitbucket Pipelines and
+Jenkins environment semantics. They are compatibility views, separate from modern
+GitLab/Bitbucket Data Center native-reader profiles and their open live acceptance.
+All forty allowed environment field names, native defaults, URLs and source labels
+belong to the adapter. Unknown fields, including token fields, are rejected; no
+ambient environment is collected. The neutral core consumes normalized observations.
+
+```bash
+"$V2_PREFIX/axiom-v2" pipeline-evidence create --kind all \
+  --profile github-actions --environment /private/operator/environment.json \
+  --metadata /private/operator/parameters.json \
+  --artifact /private/operator/application.tar.gz \
+  --sbom /private/operator/sbom.json --scan /private/operator/scan.json \
+  --at 2026-11-15T12:00:00.123456+00:00
+"$V2_PREFIX/axiom-v2" pipeline-evidence inspect --assessment ASSESSMENT_SHA256
+```
+
+The optional metadata JSON maps the original artifact/SBOM/scan/signature path labels,
+artifact type, mode, severity threshold, release-candidate and protection declaration
+arguments. The labels preserve original report context; they are not paths that
+inspection can read from the host. Supplied files are explicit separate CLI inputs.
+`--context-override` retains the original non-null/nonempty merge for pipeline output;
+context-only output retains the original platform context without that override.
+
+The logical private outputs are `generated/evidence/platform-context.json`,
+`pipeline-evidence.json` and `baseline-gate-result.json`. Complete original JSON
+ordering/escaping/newlines, boolean rules, severity comparison, missing/malformed scan
+fallback, gate errors and UTC ISO timestamp representation are preserved. Unknown
+severity ranks retain the original value 99. Valid non-object scan JSON is an invalid
+operation, as in the old tool. Missing files yield original visible finding data.
+Default completed execution returns zero even with a failing declared gate, like V1;
+`--fail-on-findings` requests only a local exit one and activates no workflow.
+
+The input store keeps bounded private artifact/SBOM/scan/signature bytes, exact SHA-256
+and lengths, declared context, parameters and adapter observations. Artifact bytes may
+reach 2 GiB, SBOM 256 MiB and scan/signature 16 MiB each, with a 2 GiB aggregate and
+the existing 8 GiB free-space reserve. Copying is streamed and checked against the
+initial hash. Manifests, records and each output are limited to 4 MiB. Inspection
+checks exact membership, hashes, node/runtime/product revision, full assessment
+identity and all recomputed output bytes after removal of the caller files. It does
+not execute an artifact, inspect application programs, invoke a scanner or native API,
+or execute the old CLI. Inputs and output generations remain immutable and private.
+
+The original inner `success`, enforced-gate, protection, waiver and approval values
+remain **declarations**. Presence of a signature is not signature verification; SBOM
+file presence is not proof of artifact linkage. Outer execution/protection/signature/
+waiver approval, operating authority and publication flags remain false and Trust
+remains `unverified`. No consumer enforcement, risk, waiver, baseline or accepted index
+changes. The modern evidence collector and verified policy evaluation remain separate.
+
+An independent oracle executes the unchanged frozen V1 mains and writers with a fixed
+fractional UTC clock. Sixteen cases cover all four original environment profiles,
+positive/default/missing data, malformed scan fallback, threshold/direct-push findings,
+explicit protection values and context override/release semantics. All 48 complete
+JSON files match without normalization. A separate private comparison uses the real
+artifact, SBOM and scan bytes already retained from native capture `43767248960`.
+Its context is explicitly reconstructed from recorded declarations and its clock is
+fixed; all three original/application files match, digest
+`0dc4ea2337f33efa9ea4599884a23f1ff0ab38a0622346256c5a0f1779b84815`.
+This is an application comparison, not a new native lookup, pipeline run or scan.
+Installed acceptance remains source-bound and must be observed separately.

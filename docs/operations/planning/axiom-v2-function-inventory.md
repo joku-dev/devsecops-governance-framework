@@ -24,7 +24,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 6 OPA | Ein gepinntes OPA je Zielplattform; gemeinsame Policies und Auswertungslogik. |
 | 7 Architekturmodell | Vorhandene Modell-/Baseline-Dateien erhalten; keine neue normative Architekturarbeit. |
 | 8 Architektur-Readiness | `evaluate --domain architecture` führt alle vier bisherigen Gates mit detailliertem Bericht aus; keine neue normative Architekturarbeit. |
-| 9 Nachweise sammeln | Explizite SCM-/CI-Profile, Source-Erfassung, vollständige Measured- und Typed-Archivprofile über Adapter; native Zielprofile behalten ihren eigenen Umfang. |
+| 9 Nachweise sammeln | `pipeline-evidence` erhält die deklarierte Plattform-/Pipeline-Sicht mit privaten Artefaktbytes und explizitem Adapterprofil.  Explizite SCM-/CI-Profile, Source-Erfassung, vollständige Measured- und Typed-Archivprofile über Adapter; native Zielprofile behalten ihren eigenen Umfang. |
 | 10 Baselines | Bestehende unveränderte Baselines konsumieren; Freigabe neuer Baselines bleibt separater Prozess. |
 | 11 Intake | `evidence`, `collector` und privates `typed intake`/`index`; Operator-Replay und native Aufnahmen bleiben getrennt. Zusätzlich `results` für lokale CI-Bundles, manuelle Snapshots, explizite native Run-/Job-/Archiv-Erfassung und vollständige private Ergebnisindizes. Öffentliche Accepted-Result-Publikation und vollständige native Live-Abnahme bleiben offen. |
 | 12 Geschichte | Neue SQLite-/Receipt-Daten, Backup und inaktiver Restore-Kandidat; V1-Geschichte bleibt Rückfallstand. |
@@ -102,8 +102,8 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `generate_personal_channel_evidence.py` | Quellwerkzeug |
 | `generate_personal_channel_probe.py` | Quellwerkzeug |
 | `generate_pipeline_baseline_report.py` | Quellwerkzeug |
-| `generate_pipeline_evidence.py` | Quellwerkzeug |
-| `generate_platform_context.py` | Quellwerkzeug |
+| `generate_pipeline_evidence.py` | Laufzeit über `pipeline-evidence create/inspect`; ursprüngliche vollständige JSON-Dateien, expliziter deklarierter Adapterkontext und private Eingabebytes. Keine tatsächliche Ausführung oder Freigabe. |
+| `generate_platform_context.py` | Laufzeit über `pipeline-evidence create/inspect`; ursprüngliche vollständige JSON-Dateien, expliziter deklarierter Adapterkontext und private Eingabebytes. Keine tatsächliche Ausführung oder Freigabe. |
 | `generate_portable_candidate_index.py` | Quellwerkzeug |
 | `generate_portfolio_onboarding_status.py` | Quellwerkzeug |
 | `generate_pra_requirement_platform_review.py` | Quellwerkzeug |

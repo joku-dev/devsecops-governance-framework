@@ -75,6 +75,12 @@ der privaten Installation keine neue Berechtigung und ändern keinen Consumer-Mo
 Datensatz-, Konflikt-, Index- und Prüfausgaben bleiben erhalten. Angaben wie „reviewed“
 oder „approved“ sind dort deklarierte Beteiligung; sie belegen keine ausgeführte
 Agentenprüfung, menschliche Freigabe oder Echtheit der Evidenz.
+`pipeline-evidence create/inspect` erhält den bisherigen Plattformkontext und die
+deklarierten Pipeline-Nachweise über ein explizites Adapterprofil. Native
+Umgebungsfelder bleiben im Adapter; Artefakt-, SBOM-, Scan- und Signaturdateien
+werden begrenzt privat aufbewahrt und erneut geprüft. Angaben wie „success“,
+„enforced“ und vorhandene Waiver belegen keine tatsächliche Pipeline-Ausführung,
+Schutzkonfiguration oder Freigabe.
 `evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
 `reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
 Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei

@@ -539,3 +539,34 @@ separate; parent success is not current-head proof. The target VM remains off or
 unreachable as confirmed by the maintainer; this source has no new execution
 proof on that VM. Subsequent declared-association work requires its own validation,
 committed package and installed proof. Full V1 parity and the Goal remain open.
+
+## Observed declared-association checkpoint — 16 November
+
+Candidate `26e5e1cf4baace98fc6ee0e51ba063f6638dee80`, tree
+`3ae0364eb8dc0e5177a8a92cbd1bb2bce6508232`, passed 1,504 pinned tests
+(398.635 s, one platform skip), demo and strict docs (2.15 s). Twenty-two new
+association tests passed. The package selects 133 Python files, 758 active
+fingerprints, 105 neutral core files and twenty adapters. All 24 protected
+operating-acceptance fingerprints remain unchanged.
+
+The fresh Mac installation passed sixteen capability groups, including the new
+private original record/index/check/conflict wires and the existing complete DCR,
+reporting, source, native replay, real domain and HTTP checks. Association comparison
+also uses recorded real ha-CPsWMS controls evidence with an explicitly synthetic
+selected-agent declaration. Original V1 record/index/check bytes match without
+normalization; this verifies neither actual agency nor approval or subject authenticity.
+
+| Binding | SHA-256 |
+| --- | --- |
+| Runtime | `e2b8f3a13ea26f18a856abeb18edc94a8068d716263361e6e6a55b765cefeef3` |
+| Prepared Mac package, 2,245 files | `cd7f5f05b31d88410d144df4cafc0abf64d5616fdef5a253457e71e8d3f84897` |
+| Prepared Linux package, 2,245 files | `aff20a905dd1a37503873ae6662ce8d6e23b9662d5f72035bc70f26e246600b7` |
+| Whole committed-source DCR | `8fff5b4fed99d085aa5c3b1766ed9e6af471b72ed81b02f0b3531b9506911216` |
+| Association original wires on recorded real input | `8d2e77f16b868580c7f9bf4815de0ccbd1d3ab480d2605c38d1b1b5d4cb03ea0` |
+| All reporting files plus one-day window case | `258608f4250ffab7c57d17af8a06abcd662bc2376adcbdb0388c1712ac37fdc4` |
+
+The source was verified and the test listener closed. Collector status is paused,
+queue empty and publisher inactive. The target VM remains off/unreachable, confirmed
+by the maintainer; this candidate has no new execution proof on that VM. Prepared
+Linux bytes and previous GitHub/user-host evidence remain separate scopes. Full Goal
+work continues without scope exceptions or transferred operating authority.

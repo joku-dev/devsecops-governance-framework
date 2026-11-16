@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "runtime_source_digest",
+    "input_id",
+    "schema_version",
+    "kind",
+    "node_id",
+    "source_revision",
+    "projection_kind",
+    "profile",
+    "assessed_at",
+    "source_worktree_clean",
+    "mode",
+    "evidence_trust",
+    "files",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "published",
+    "pipeline_execution_verified",
+    "branch_protection_verified",
+    "waiver_approval_verified",
+    "signature_verified",
+    "native_metadata_rechecked"
+  ],
+  "properties": {
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "declared-pipeline-evidence"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "projection_kind": {
+      "enum": [
+        "context",
+        "pipeline",
+        "all"
+      ]
+    },
+    "profile": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 128
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 3,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4194304
+          }
+        }
+      }
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "pipeline_execution_verified": {
+      "const": false
+    },
+    "branch_protection_verified": {
+      "const": false
+    },
+    "waiver_approval_verified": {
+      "const": false
+    },
+    "signature_verified": {
+      "const": false
+    },
+    "native_metadata_rechecked": {
+      "const": false
+    }
+  }
+}

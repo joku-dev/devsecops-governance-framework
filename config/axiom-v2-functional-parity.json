@@ -112,9 +112,15 @@
       "id": "FP-09",
       "title": "Nachweise sammeln und vereinheitlichen",
       "state": "in_progress",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "v2_capabilities": [
+        "pipeline-evidence context/pipeline/all preserves original declared environment views and exact evidence/gate wires from retained bounded bytes; no execution or approval claim"
+      ],
+      "positive_tests": [
+        "tests/test_v2_pipeline_evidence.py:16 frozen V1 cases/48 whole JSON wires, all four original native environment profiles and offline replay"
+      ],
+      "negative_tests": [
+        "tests/test_v2_pipeline_evidence.py:unknown environment fields, byte/output changes, foreign nodes, quotas, forged authority and explicit local finding exit"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
@@ -1518,8 +1524,8 @@
         "--vulnerability-scan-path"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/pipeline_application.py:create",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1541,8 +1547,8 @@
         "--platform"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/providers/pipeline_environment.py:context_for",
+      "state": "in_progress",
       "evidence": []
     },
     {
