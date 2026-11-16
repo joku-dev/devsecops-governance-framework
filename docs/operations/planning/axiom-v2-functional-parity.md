@@ -625,7 +625,8 @@ The finite `reports` route returns the original control-coverage JSON/Markdown,
 control traceability CSV, architecture runtime traceability CSV, Policy/Directive
 traceability CSV and governance graph JSON. Source lineage and change impact each
 add their original JSON/Markdown pair. Five source-intake report families add
-ten more files; `--kind all` produces all twenty files.
+ten more files; four model report families add six files. `--kind all` produces
+all twenty-six files.
 The computations use explicit data roots; V2 imports or dispatches no retained
 source CLI and writes no generated files in its installed source.
 
@@ -698,7 +699,7 @@ two exact memberships: the frozen V1 tree and the later V2 reporting tree. Their
 lineage dependency invokes the original lineage writer directly in the private
 oracle directory. All four output files match without normalized fields. The
 existing six report files remain byte-identical. The expanded installed harness
-checks twenty complete files, immutable replay and tamper rejection; installed
+checks twenty-six complete files, immutable replay and tamper rejection; installed
 acceptance is recorded only after the new committed package actually runs.
 
 This source-profile change requires a fresh candidate instance; existing private
@@ -736,6 +737,42 @@ writers keep their original JSON escaping. Complete byte comparisons use the
 actual frozen V1 functions/renderers in two exact committed input contexts.
 Original dependency writers execute only in the private V1 oracle; V2 uses
 direct pure function calls. The corresponding installed acceptance compares all
-twenty files, and records only actually observed host execution. Existing generic
+twenty-six files, and records only actually observed host execution. Existing generic
 Workbench imports remain unchanged until their candidate/workspace context has
 its own migration and interface tests.
+
+
+### Model follow-up reports and explicit data-layout repair
+
+`automation`, `document-controls`, `open-gaps` and `pipeline-baseline` return six
+original Markdown/CSV files. The admitted data adds only the existing pipeline
+control-placement YAML and waiver schema JSON. CSV column order and CRLF bytes
+remain unchanged; explicit original headers also allow legitimate zero-row gap
+or mapping reports, which previously failed while reading `rows[0]`. An empty
+automation population remains an execution failure, not a coverage result.
+
+The old automation writer is broken against the frozen repository's data layout:
+its `controls/` path is absent, and moving the current model files there alone
+still lacks classification fields on 41 controls. The current pipeline baseline
+already declares a unique placement for each of the same 46 control IDs. The V2
+read-only view uses `model/controls/`, retains provided control classifications,
+and copies only absent `automation.type`, `maturity` and `check_type` fields from
+that same control's explicit `gate_type`, `maturity` and `check_type` placement.
+If that lookup is needed, its existing verification text can fill the absent
+optional verification text. Complete legacy inputs do not acquire an unnecessary
+placement dependency. Missing, ambiguous or differently levelled placements fail
+instead of inferring a classification. Models, source status and OPA are unchanged.
+
+These values describe declared automation and pipeline placement, not newly
+implemented controls, measured coverage or enabled blocking. The portable gate
+still evaluates five controls; the separate full assessment retains all 46 V1
+records. Rendering a declared blocking-gate classification activates no gate.
+
+The independent V1 oracle records both original failures separately. It runs the
+original writer on its declared legacy layout using exact approved model bytes
+and an openly recorded, per-control field projection from the existing placement
+records. All six valid output files match original bytes in two contexts; this
+does not claim that an unadapted failed V1 run produced successful output. Tests
+also cover direct-value priority, absent/ambiguous inputs, unchanged source bytes,
+zero-row CSV repair and complete legacy input compatibility. No old CLI executes
+in the product.

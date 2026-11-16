@@ -50,7 +50,9 @@ den vollständigen Git-Baum; alte Skripte müssen dafür nicht installiert sein.
 privaten Ausgaben lassen sich mit ihren ursprünglichen Git-Eingaben erneut prüfen.
 Intake-Status, Entscheidungsvorlagen, explizite Anforderungsdeltas und der
 Prozessstatus behalten Kandidaten, fehlende Herkunftsnachweise und offene
-menschliche Entscheidungen sichtbar.
+menschliche Entscheidungen sichtbar. Modellberichte ergänzen Automation,
+Dokument-Kontroll-Zuordnung, offene Modelllücken und Pipeline-Platzierungen.
+Automationsklassifikation zeigt deklarierte Modellwerte; sie aktiviert keine Gates.
 
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026

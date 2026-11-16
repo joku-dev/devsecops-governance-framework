@@ -5,6 +5,7 @@ from jsonschema import Draft202012Validator, FormatChecker, ValidationError
 from lib import control_reporting, report_graph, report_lineage, report_impact
 from lib import report_source_replacement, report_source_intake, report_source_briefs
 from lib import report_requirement_delta, report_source_process
+from lib import report_model_followup
 from lib.report_data import ReportData
 from lib.portable.contracts import ROOT
 from lib.portable.runtime import read_json
@@ -12,7 +13,12 @@ from lib.portable.runtime import read_json
 KINDS = ('graph', 'control-coverage', 'traceability', 'architecture-traceability',
          'governance-traceability', 'source-lineage', 'change-impact',
          'source-replacement', 'source-intake', 'source-review-briefs',
-         'requirement-delta', 'source-process')
+         'requirement-delta', 'source-process', 'automation', 'document-controls',
+         'open-gaps', 'pipeline-baseline')
+MODEL_REPORTS = {'automation': report_model_followup.automation,
+    'document-controls': report_model_followup.document_controls,
+    'open-gaps': report_model_followup.open_gaps,
+    'pipeline-baseline': report_model_followup.pipeline_baseline}
 SOURCE_REPORTS = {
     'source-lineage': (report_lineage, 'source-lineage-report'),
     'change-impact': (report_impact, 'governance-change-impact'),
@@ -33,6 +39,9 @@ def build(data, kind, *, membership=None, at=None):
         for selected in KINDS: files.update(build(data, selected, membership=membership, at=at))
         return files
     if kind not in KINDS: raise ValueError('unsupported_report_kind')
+    if kind in MODEL_REPORTS:
+        if membership is None: raise ValueError('explicit_report_membership_required')
+        return MODEL_REPORTS[kind](ReportData(data, membership))
     if kind in SOURCE_REPORTS:
         if membership is None or at is None: raise ValueError('explicit_report_membership_and_time_required')
         context = ReportData(data, membership)

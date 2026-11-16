@@ -277,3 +277,34 @@ This checkpoint covers the ten reporting files implemented at `a1e943e`. The
 later source-intake families, other report/Viewer/public handoff capabilities,
 lifecycle/release/agent tools and full operating parity retain their own open
 acceptance. The complete Goal remains active.
+
+
+## Mac source-intake checkpoint at `309d5c0`; target VM pending
+
+Candidate `309d5c0335a7e9fb16af6c98d2b6893ee2b798b4`, tree
+`d108a4b4cc3214997858462189d4656ba2a414dc`, passed pinned full validation:
+1,397 tests, one platform skip; demo and strict documentation build passed.
+It declares 115 Python files, 736 active fingerprints and an 87-file neutral
+closure. All 24 protected operating fingerprints remain unchanged.
+
+| Current binding | SHA-256 |
+| --- | --- |
+| Runtime | `050bd76c2a292e09d0662936829b620b5cee23800f7d63104e18d381daaa1319` |
+| Mac prepared package | `1c29803ef9b63af980c0487ad0cb9150ff7ec2b2646ab16226503ead4fb327fd` |
+| Linux prepared package | `7566326cf5d74aa6f53127679527cedf3165ea46f33b8a3a2355d60db056cc7f` |
+| Twenty complete reporting outputs | `618e911112e27e928fe662e1b2a5f68d1675ddba174e4b02ddf6ab3c362e8f74` |
+| Complete Mac committed-source DCR report | `c66581f84bfd3054b51ef9b556507810c17ce1d9a34033251668f556bf08bf1f` |
+
+The fresh Mac installation passed all eleven capability groups, including every
+one of the twenty original report files. Real pinned consumer source and native
+replay outputs retain their preceding V1 comparison digests. HTTP authentication,
+CSRF/logout/restart and source-drift rejection passed; the temporary listener
+stopped, collector remained paused/empty and publisher inactive.
+
+The maintainer confirmed that the target VM is off or unreachable. This source's
+Linux package is prepared, but execution on that VM is pending. No duplicate ZIP
+cleanup or new installation was performed after SSH became unavailable. The
+preceding `a1e943e` dual-host proof remains its own historical checkpoint; its ten
+GitHub workflows, including full VM installation, also passed. Later source heads
+have separate checks. Work continues locally and in GitHub while this dependency
+is unavailable; this is not complete functional or operating acceptance.

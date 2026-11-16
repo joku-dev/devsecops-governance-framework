@@ -28,6 +28,12 @@ def main():
     assert intake['membership_fixture_sha256'] == bindings[lineage_path.name]
     assert intake['v1_reference'] == fixture['v1_reference'] and intake['at'] == lineage['at']
     fixture['expected_outputs'].update(intake['cases'][-1]['expected_outputs'])
+    model_path = args.fixtures / 'model-followup-reporting-cases.json'
+    assert hashlib.sha256(model_path.read_bytes()).hexdigest() == bindings[model_path.name]
+    models = json.loads(model_path.read_text())
+    assert models['membership_fixture_sha256'] == bindings[lineage_path.name]
+    assert models['v1_reference'] == fixture['v1_reference']
+    fixture['expected_outputs'].update(models['cases'][-1]['expected_outputs'])
     def command(*arguments, expected=0):
         value = subprocess.run([str(prefix / 'axiom-v2'), 'reports', *arguments],
                                capture_output=True, text=True, timeout=180)

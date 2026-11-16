@@ -82,6 +82,7 @@
     "scripts/lib/report_graph.py",
     "scripts/lib/report_impact.py",
     "scripts/lib/report_lineage.py",
+    "scripts/lib/report_model_followup.py",
     "scripts/lib/report_outputs.py",
     "scripts/lib/report_requirement_delta.py",
     "scripts/lib/report_source_briefs.py",

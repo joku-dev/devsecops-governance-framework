@@ -54,10 +54,16 @@
     {
       "id": "FP-04",
       "title": "DevSecOps-Kontrollen modellieren",
-      "state": "pending",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports automation/document-controls/open-gaps/pipeline-baseline from committed models; explicit declared placement view, no model editing"
+      ],
+      "positive_tests": [
+        "tests/test_v2_model_reports.py:original file bytes and explicit existing placement fields"
+      ],
+      "negative_tests": [
+        "tests/test_v2_model_reports.py:missing/ambiguous/level/duplicate/empty model failures"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
@@ -848,8 +854,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_model_followup.py:automation",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1004,8 +1010,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_model_followup.py:document_controls",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1365,8 +1371,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_model_followup.py:open_gaps",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1439,8 +1445,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/report_model_followup.py:pipeline_baseline",
+      "state": "in_progress",
       "evidence": []
     },
     {

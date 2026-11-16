@@ -63,6 +63,10 @@
         "source-review-briefs",
         "requirement-delta",
         "source-process",
+        "automation",
+        "document-controls",
+        "open-gaps",
+        "pipeline-baseline",
         "all"
       ]
     },
