@@ -56,6 +56,13 @@ from lib.providers.pipeline_environment import (PROFILES as DECLARED_PIPELINE_PR
 from lib.providers.review_metadata import REVIEW_EVENT_PROFILES, review_event, committed_review_event
 
 from lib.providers.review_planning import PROFILES as REVIEW_PLAN_PROFILES, review_plan_profile, review_commit_profile
+from lib.providers.review_planning import DISPATCH_PROFILES as REVIEW_DISPATCH_PROFILES, review_dispatch_profile
+from lib.providers.review_dispatch import (capture as capture_dispatch_source,
+    observe as observe_dispatch_source, validate as validate_dispatch_source)
+from lib.providers.review_dispatch_files import (PROFILES as DISPATCH_FILE_PROFILES,
+    profile as dispatch_file_profile, legacy_label as dispatch_file_label,
+    capture as capture_dispatch_files, validate as validate_dispatch_files,
+    write_rows as apply_dispatch_files, verify_outputs as verify_dispatch_file_outputs)
 
 from lib.providers.local_source_observation import (PROFILES as LOCAL_SOURCE_PROFILES,
     profile as local_source_profile, capture as capture_local_source,

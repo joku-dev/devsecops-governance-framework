@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 private dispatcher context and retained operation",
+  "$defs": {
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "product",
+        "node_id",
+        "runtime_source_digest",
+        "source_revision",
+        "profile",
+        "source_worktree_clean",
+        "mode",
+        "evidence_trust",
+        "official_acceptance",
+        "production_approval",
+        "risk_acceptance",
+        "authority_transferred",
+        "operating_acceptance_inherited",
+        "published",
+        "provider_invoked",
+        "agent_execution_verified",
+        "human_approval_verified",
+        "current_revision_checked",
+        "private_review_outputs_verified"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "kind": {
+          "const": "private-review-dispatch-workspace"
+        },
+        "product": {
+          "const": "axiom-v2"
+        },
+        "node_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "runtime_source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "profile": {
+          "const": "legacy-role-dispatch-v1"
+        },
+        "source_worktree_clean": {
+          "type": "boolean"
+        },
+        "mode": {
+          "const": "report-only"
+        },
+        "evidence_trust": {
+          "const": "unverified"
+        },
+        "official_acceptance": {
+          "const": false
+        },
+        "production_approval": {
+          "const": false
+        },
+        "risk_acceptance": {
+          "const": false
+        },
+        "authority_transferred": {
+          "const": false
+        },
+        "operating_acceptance_inherited": {
+          "const": false
+        },
+        "published": {
+          "const": false
+        },
+        "provider_invoked": {
+          "const": false
+        },
+        "agent_execution_verified": {
+          "const": false
+        },
+        "human_approval_verified": {
+          "const": false
+        },
+        "current_revision_checked": {
+          "const": false
+        },
+        "private_review_outputs_verified": {
+          "const": false
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "request",
+        "usage_state",
+        "parent_generation",
+        "source",
+        "stdout",
+        "effects",
+        "clock_provenance"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "kind": {
+          "const": "private-review-dispatch-operation"
+        },
+        "request": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "at",
+            "count",
+            "usage_log",
+            "json",
+            "log_usage",
+            "run_type",
+            "provider",
+            "platform",
+            "source",
+            "provider_review"
+          ],
+          "properties": {
+            "action": {
+              "enum": [
+                "dispatch",
+                "record-window",
+                "record-continuous",
+                "recording-status",
+                "usage-summary"
+              ]
+            },
+            "at": {
+              "type": "string",
+              "format": "date-time",
+              "maxLength": 128
+            },
+            "count": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "usage_log": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "json": {
+              "type": "boolean"
+            },
+            "log_usage": {
+              "type": "boolean"
+            },
+            "run_type": {
+              "enum": [
+                "dispatch",
+                "provider_review"
+              ]
+            },
+            "provider": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "platform": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "source": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "provider_review": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "usage_state": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "parent_generation": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "repository_path",
+                "base_ref",
+                "explicit_paths"
+              ],
+              "properties": {
+                "repository_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096,
+                  "pattern": "^/"
+                },
+                "base_ref": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 4096
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "explicit_paths": {
+                  "type": "array",
+                  "maxItems": 10000,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  }
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stdout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8388608
+            }
+          }
+        },
+        "effects": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state_changed",
+            "log_changed",
+            "event_appended",
+            "selected_usage_log",
+            "provider_invoked"
+          ],
+          "properties": {
+            "state_changed": {
+              "type": "boolean"
+            },
+            "log_changed": {
+              "type": "boolean"
+            },
+            "event_appended": {
+              "type": "boolean"
+            },
+            "selected_usage_log": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "provider_invoked": {
+              "const": false
+            }
+          }
+        },
+        "clock_provenance": {
+          "enum": [
+            "runtime_clock",
+            "explicit_operator_time"
+          ]
+        }
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/context"
+    },
+    {
+      "$ref": "#/$defs/operation"
+    }
+  ]
+}

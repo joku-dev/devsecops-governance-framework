@@ -40,9 +40,9 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `e09b519` · 1,701 Tests (davon 1 übersprungen) · Mac 6 / VM 6 Prüfgruppen · 7 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `71d42bc` · 1,722 Tests (davon 1 übersprungen) · Mac 7 / VM 7 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Ursprünglichen Arbeitsverzeichnis-Modus wiederherstellen.
+**Nächster Baustein:** Ursprüngliche Dispatcher-Aufzeichnung vervollständigen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -148,6 +148,13 @@ Git-Commits. Vergleichsbasis, Änderungsumfang sowie Rollen und Validierungen be
 Branch-Verträge werden gelesen und zusammengeführt. Ein abweichender Arbeitsbaum
 ändert diese committed Sicht nicht. Vollständige Originalberichte bleiben privat
 erneut ableitbar; das Nachlesen bestätigt keinen aktuellen PR auf einer Plattform.
+`review-dispatch` ergänzt die gewöhnliche Rollenauswahl und die ursprünglichen
+Aufzeichnungsmodi: begrenztes Fenster, Daueraufzeichnung, Status und Statistik.
+Standardmäßig liegen Zustandsdateien in einem privaten Workspace. Der explizite
+Dateiadapter kann bestehende Zustands- und Logdateien eines separaten Checkouts
+verwenden; Vorschau, gespeicherter Auftrag und Wiederaufnahme machen Teilfehler
+nachvollziehbar. Provider-Reviews werden als Angaben protokolliert; der Befehl
+startet keinen KI-Provider und erteilt keine Freigabe.
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.

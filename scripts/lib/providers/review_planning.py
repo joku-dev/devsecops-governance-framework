@@ -2,6 +2,7 @@
 from copy import deepcopy
 
 PROFILES = ('legacy-role-review-v1',)
+DISPATCH_PROFILES = ('legacy-role-dispatch-v1',)
 POLICY = {
     'common_contracts': ['.agents/review-protocol.yaml', '.agents/routing/governance-agent-routing.yaml',
         'AGENTS.md', 'docs/governance/governance-roles-and-agent-profiles.md',
@@ -31,3 +32,13 @@ def review_commit_profile(profile):
         'patterns': [r'\.agents/roles/[a-z0-9-]+\.yaml', r'\.agents/skills/[a-z0-9-]+/SKILL\.md',
                      r'\.agents/routing/governance-agent-routing\.yaml'],
         'max_files': 200, 'max_file_bytes': 65536}
+
+
+def review_dispatch_profile(profile):
+    """Original ordinary dispatch needs roles/routing, not an execution protocol."""
+    if profile not in DISPATCH_PROFILES: raise ValueError('unsupported_review_dispatch_profile')
+    value = deepcopy(POLICY)
+    value.update(common_contracts=['.agents/routing/governance-agent-routing.yaml'],
+                 optional_contracts=[], require_protocol=False,
+                 role_directory='.agents/roles', skill_template='.agents/skills/{skill}/SKILL.md')
+    return value
