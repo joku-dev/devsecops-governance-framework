@@ -1,5 +1,7 @@
 """Finite original review-plan layout and release-classification compatibility."""
 from copy import deepcopy
+from pathlib import Path
+import re
 
 PROFILES = ('legacy-role-review-v1',)
 DISPATCH_PROFILES = ('legacy-role-dispatch-v1',)
@@ -24,6 +26,19 @@ POLICY = {
 def review_plan_profile(profile):
     if profile not in PROFILES: raise ValueError('unsupported_review_plan_profile')
     return deepcopy(POLICY)
+
+
+def resolve_review_base(repository, reference, profile):
+    """Resolve an explicit local committish to an exact object; never run a shell."""
+    review_plan_profile(profile)
+    if (not isinstance(reference, str) or not reference or len(reference.encode()) > 4096
+            or any(ord(c) < 32 or ord(c) == 127 for c in reference)):
+        raise ValueError('invalid_review_base_reference')
+    from lib.review_git import git, OBJECT_ID
+    value = git(Path(repository).expanduser().resolve(), 'rev-parse', '--verify',
+                '--end-of-options', reference + '^{commit}').decode().strip()
+    if not re.fullmatch(OBJECT_ID, value): raise ValueError('review_base_commit_required')
+    return value
 
 
 def review_commit_profile(profile):

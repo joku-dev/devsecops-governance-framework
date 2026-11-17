@@ -164,7 +164,11 @@ class ReviewPlanningContext:
 
 def run(arguments, instance_root, settings):
     parser = argparse.ArgumentParser(prog='axiom-v2 review-plan', allow_abbrev=False); commands = parser.add_subparsers(dest='command', required=True)
-    prepare = commands.add_parser('prepare'); prepare.add_argument('--repo', type=Path, required=True); prepare.add_argument('--base-commit'); prepare.add_argument('--goal-file', type=Path, required=True); prepare.add_argument('--path', action='append', default=[]); prepare.add_argument('--profile', choices=REVIEW_PLAN_PROFILES, required=True); prepare.add_argument('--at', required=True)
+    prepare = commands.add_parser('prepare'); prepare.add_argument('--repo', type=Path, required=True)
+    base_selection = prepare.add_mutually_exclusive_group()
+    base_selection.add_argument('--base-commit')
+    base_selection.add_argument('--base-ref', help='Resolve this local Git reference to a frozen exact base commit.')
+    prepare.add_argument('--goal-file', type=Path, required=True); prepare.add_argument('--path', action='append', default=[]); prepare.add_argument('--profile', choices=REVIEW_PLAN_PROFILES, required=True); prepare.add_argument('--at', required=True)
     check = commands.add_parser('check'); check.add_argument('--repo', type=Path, required=True); check.add_argument('--plan', required=True); check.add_argument('--results', type=Path, required=True); check.add_argument('--at', required=True)
     inspect = commands.add_parser('inspect'); inspect.add_argument('--assessment', required=True)
     args = parser.parse_args(arguments); app = ReviewPlanningContext(instance_root, settings)
@@ -179,8 +183,14 @@ def run(arguments, instance_root, settings):
         if previous['operation'] != 'prepare': raise ValueError('review_check_requires_prepared_plan')
         _, old, _, goal, _ = app.input_data(previous['input_id']); profile = previous['profile']; base = old['target_commit']; paths = old['changed_paths'] if old['selection_mode'] == 'explicit_paths' else []
         results = operator_bytes(args.results, limit=MAX_RESULTS)
-    policy = review_plan_profile(profile); facts, raw = review_git.capture(args.repo, base, paths, policy)
+    from lib.provider_ports import resolve_review_base
+    policy = review_plan_profile(profile)
+    reference = args.base_ref if args.command == 'prepare' else None
+    if reference is not None: base = resolve_review_base(args.repo, reference, profile)
+    facts, raw = review_git.capture(args.repo, base, paths, policy)
     def recheck():
+        if reference is not None and resolve_review_base(args.repo, reference, profile) != base:
+            raise ValueError('review_base_reference_changed_during_operation')
         if review_git.observe(args.repo, base, paths, policy) != (facts, raw): raise ValueError('review_target_changed_during_operation')
     value = app.create(args.command, profile, facts, raw, goal, args.at, results=results, parent=parent, verify_target=recheck)
     print(json.dumps(value, sort_keys=True)); return 1 if args.command == 'check' and not value['declared_ready'] else 0

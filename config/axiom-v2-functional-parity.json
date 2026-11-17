@@ -270,7 +270,7 @@
         "agent-usage original metadata-only selection statistics from retained operator log or committed legacy Git data; no execution or human approval inferred",
         "review-quality private prepare/grade/inspect preserves original synthetic packets and structured-label scores; explicit retained traces remain unauthenticated",
         "review-metadata receipt/parse-body/usage-summary/status preserves original metadata wires; status uses explicit operator-declared target/proposed scope, not current Git verification; native PR identity and execution still open",
-        "review-plan prepare/check/inspect derives actual local HEAD/base/merge-base/index/worktree and role/skill/routing facts, rechecks target freshness and preserves original whole plan/template/check wires; native PR identity and live execution remain open",
+        "review-plan prepare/check/inspect derives actual local SHA1/SHA256 HEAD/base/merge-base/index/worktree and role/skill/routing facts; explicit named-base adapter resolves and rechecks admission, then freezes exact base as original V1; strict mixed-format/protocol/authority/freshness checks and complete original plan/template/check wires; native PR identity and live execution remain open",
         "review-receipts export/summary/inspect performs actual external receipt creation and optional locked idempotent usage append after fresh local clean/full-branch/base checks; preserves first receipt/time/bytes and original summary wires; private before/after replay claims no current external checks or approval",
         "review-pr status/inspect reads actual exact local Git target/head/merge-base and both committed role/skill/routing snapshots; original target/proposed union and whole status wires, SHA1/SHA256, dirty checkout independence and private offline rederivation; no remote PR identity, live freshness, execution or approval",
         "review-dispatch ordinary minimal role selection, original window/continuous/status/summary and complete stdout/state/log; private generations or explicit caller-file adapter with durable frozen intent, partial resume, completed-output verification and explicit non-success abandonment; no provider starts or authority transfer"
@@ -283,7 +283,8 @@
         "tests/test_v2_review_planning.py:actual original local-Git plan/dispatch/template/check wires including staged/unstaged/untracked/deleted/renamed paths; retained private replay",
         "tests/test_v2_review_receipts.py and tests/acceptance/axiom_v2_review_receipts.py:original receipt APIs/main with explicit fixed clock; actual file/log/summary whole wires, retries, incomplete declarations, real lock and offline replay",
         "tests/test_v2_review_committed.py and tests/acceptance/axiom_v2_review_pr.py:actual original committed scope/contract/status JSON and Markdown, target-only role union, empty diff, dirty/unrelated HEAD, missing execution protocol, rename Unicode and SHA256 Git",
-        "tests/test_v2_review_dispatch*.py and tests/acceptance/axiom_v2_review_dispatch.py:unchanged original orchestration/output/effects plus independent original real Git selection, non-Git explicit paths, large counters, durable recovery and caller-deletion replay"
+        "tests/test_v2_review_dispatch*.py and tests/acceptance/axiom_v2_review_dispatch.py:unchanged original orchestration/output/effects plus independent original real Git selection, non-Git explicit paths, large counters, durable recovery and caller-deletion replay",
+        "tests/test_v2_review_plan_object_format.py and tests/acceptance/axiom_v2_review_planning.py:both native Git formats, named/exact base selection, complete original plan/template/dispatch/check files, frozen-base alias movement, SHA256 original receipt main/export/log and caller-deletion replay"
       ],
       "negative_tests": [
         "tests/test_v2_evidence_agent_provenance.py:source conflicts, malformed/schema-invalid data, stale reports, traversal, foreign nodes, quotas and no inherited authority",
@@ -293,7 +294,8 @@
         "tests/test_v2_review_planning.py:fresh source/index/mode/head/all-contract drift, role/validation readiness, symlinks, aliases/duplicates/authority, process/output/time/byte budgets and caller Git overrides",
         "tests/test_v2_review_receipts.py:dirty/stale/scope/origin/schema/privacy/path/lock/conflict/concurrency/budget/tamper/foreign-node/authority cases; safe separator for valid unterminated JSONL",
         "tests/test_v2_review_committed.py:invalid/noncommit references, symlink/oversize contracts, malformed/resealed/mixed-object-format facts, raw membership/NUL/source/output tamper, forged authority/node, private CLI errors and early quotas",
-        "tests/test_v2_review_dispatch*.py:stale sources, tampered/foreign bindings, path/symlink/hardlink/protected scopes, quotas, shared locks, partial writes, pending fences, completed rollback rejection and abandonment without native certification"
+        "tests/test_v2_review_dispatch*.py:stale sources, tampered/foreign bindings, path/symlink/hardlink/protected scopes, quotas, shared locks, partial writes, pending fences, completed rollback rejection and abandonment without native certification",
+        "tests/test_v2_review_plan_object_format.py:conflicting selectors before state creation, bounded/noncommit references, moving reference during admission, mixed commit/index formats and forged execution-protocol authority; installed original/V2 stale source and index checks"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
