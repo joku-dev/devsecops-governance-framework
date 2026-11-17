@@ -1644,3 +1644,67 @@ positive/negative cases compare complete wires, not headline status counts.
 Actual private review plans/results and unredacted reviewer text are not fixtures.
 Fresh installed-source evidence is required before claiming installed acceptance
 of this increment; earlier Mac/VM checkpoints are not silently recertified.
+
+
+## Local Git-bound review planning increment
+
+`review-plan prepare/check/inspect` restores local revision-bound planning and
+self-reported result checking. It reads the explicitly selected target checkout,
+never imports its Python, and never executes review agents or listed validation
+commands. The compatibility profile retains original complete plan, dispatch,
+results-template and check-report wires. Existing role/skill/routing/protocol
+files supply the contract; they are not silently copied into consumer repos.
+
+```bash
+"$V2_PREFIX/axiom-v2" review-plan prepare --repo /path/to/governance-checkout --base-commit FORTY_HEX_SHA --goal-file /private/review/goal.txt --profile legacy-role-review-v1 --at 2026-11-17T14:00:00Z
+"$V2_PREFIX/axiom-v2" review-plan check --repo /path/to/governance-checkout --plan PREPARED_ASSESSMENT_ID --results /private/review/results.json --at 2026-11-17T14:00:00Z
+"$V2_PREFIX/axiom-v2" review-plan inspect --assessment ASSESSMENT_ID
+```
+
+The preparation response identifies the private directory containing
+`review-plan.json`, `review-dispatch.json`, `review-dispatch.md` and
+`review-results-template.json`. Fill the separate results file after actual
+reviews and validations. Synthetic declarations in tests do not execute either.
+Checks return 0 for declared readiness, 1 for declared incompleteness and 2 for
+invalid/stale input. This preserves the operator tool contract and does not
+change consumer policy enforcement. Explicit `--path` selection and omission of
+`--base-commit` preserve the original limited-scope and working-tree modes.
+
+Capture unions committed branch changes, staged edits, unstaged edits and
+untracked paths; renames retain both paths, staged edits undone in the worktree
+remain visible, and NUL-delimited Git output preserves spaces/Unicode/newlines.
+Exact HEAD, optional full base and merge-base, index entries, source hashes and
+original permission modes are bound. All loaded role/skill contracts and optional
+compatibility files are retained, including contracts of unselected roles.
+A check recaptures the actual target and compares scope/source/index/role facts;
+preparation and checking also detect changes around capture/persistence.
+
+The finite adapter contains original native layout and release-prefix details.
+Git reads disable hooks/fsmonitor/external diff/textconv, caller Git overrides,
+replacement objects, lazy fetching, prompts and network protocols. File reads
+use directory-relative no-follow descriptors; symlink/special-file inputs and
+Git metadata paths reject. Target programs are never run. Bounds are 10,000
+changed paths, 200 roles, 2,000 routing rules, 16 MiB/file, 128 MiB retained source,
+8 MiB facts/manifest/output files, 64 KiB goals, 4 MiB results and the existing
+8 GiB reserve. Each Git command has a 30-second/output bound. Duplicate/alias
+YAML and protocols granting authority reject. These explicit safety bounds can
+reject unsafe inputs that the old unbounded tools accepted; valid original
+contracts and whole outputs are compared without normalization.
+
+`inspect` recomputes complete private outputs after target/caller files disappear;
+its `target_current_state_rechecked` is false. `prepare`/`check` return true only
+after observing the supplied local target again during the command. This does
+not authenticate remote repository identity, private reviewer text, execution
+identities or human approval. Assessment time is explicitly operator-supplied;
+all acceptance/publishing/agency flags and `current_revision_checked` (native PR
+verification) remain false. Private instance state must be outside the target.
+
+The original V1 functions execute against identical real local Git fixtures;
+complete JSON/Markdown files and pending/ready/high-finding reports are compared.
+The unchanged ha-CPsWMS reference lacks governance review-role contracts: preserve
+V1's missing-contract rejection rather than injecting roles and claiming native
+consumer review acceptance. Installed production-instance/source guards remain
+required. Earlier host/CI evidence is not silently recertified for new source.
+Full receipt export/idempotent append, native PR scope derivation, additional
+recording modes and actual review execution remain open. The dispatcher is
+mapped `in_progress` only; no original entrypoint is newly marked verified.

@@ -8,7 +8,7 @@
       "scripts/record_agent_review.py",
       "scripts/report_agent_review_status.py"
     ],
-    "next_step": "Git-gebundene Review-Planung und die aktuelle Ableitung von Umfang und Rollen ergänzen; der Metadatenbaustein verwendet bisher ausdrücklich Operator-Angaben."
+    "next_step": "Den vollständigen Git-gebundenen Receipt-Export mit idempotentem Nutzungsprotokoll ergänzen; native PR-Umfangsableitung und tatsächliche Review-Ausführung bleiben gesondert offen."
   },
   "last_validation": {
     "observed_at": "2026-11-17T11:35:02Z",

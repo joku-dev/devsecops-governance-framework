@@ -74,3 +74,19 @@ no source-document intake or control derivation applies. Validation includes
 complete original function-wire comparisons, invalid/tampered/foreign-node
 cases, required full validation and strict docs. No authority, native Git/PR
 verification, personal acceptance, model execution or publishing is granted.
+
+
+## Local Git review planning restoration
+
+The additive `review-plan` application reads an explicit local target checkout;
+HEAD, pinned optional base/merge-base, staged/unstaged/untracked scope, regular
+source bytes/modes, index entries and all loaded roles/skills/routing/protocol
+contracts are retained privately. A fresh check rejects changes; offline inspect
+recomputes stored outputs and makes no live-target claim. Native legacy contract
+paths and release prefixes are an explicit compatibility adapter. Target code,
+validation commands, hooks, models and providers are never executed by capture.
+The original results schema is retained as a separate bounded-data contract.
+Frozen original functions and public target-contract bytes are test-oracle data,
+not normative sources. No baseline, source register, enforcement mode, operating
+acceptance or approval authority changes. Full receipt export, native PR-derived
+scope and actual review execution remain open.

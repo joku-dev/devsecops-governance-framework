@@ -145,7 +145,11 @@
     "scripts/lib/vulnerability_application.py",
     "scripts/lib/review_metadata.py",
     "scripts/lib/review_metadata_application.py",
-    "scripts/lib/providers/review_metadata.py"
+    "scripts/lib/providers/review_metadata.py",
+    "scripts/lib/review_planning.py",
+    "scripts/lib/review_git.py",
+    "scripts/lib/review_planning_application.py",
+    "scripts/lib/providers/review_planning.py"
   ],
   "data_roots": [
     "schemas",

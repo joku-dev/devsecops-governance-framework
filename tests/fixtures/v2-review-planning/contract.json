@@ -1,0 +1,13 @@
+{
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "oracle_mode": "unchanged_original_local_git_plan_check_functions",
+  "dispatch_sha256": "e4290ae0a582f095514aee883a935ebe3b451e4d112dbf75384ac4246738ba49",
+  "metadata_source_sha256": {
+    "agent_receipts.py.txt": "8a03adb77fd65805f72e24e9b96d0c8b728ad4cdd0e7a40d1eb8b8998590591e",
+    "agent_review.py.txt": "19f1e4ae089fa5ff6ce07b9a46669c4d9beb0db96d483df267e898beda408a1f",
+    "agent_review_status.py.txt": "ad3d750bd111d3f8336b8380e69e2b31f49145c4ca976bf5cd4dcb13a71a1009",
+    "agent_routing.py.txt": "ed70b6e9b19b63422078a41dea937e33dd26a85fdcef2f8ae606ab2d2bcd06a9",
+    "receipt-schema.json": "f0925fdbc86fbdf79742939964d8a91f29c49e1c81e27ad49614a2706dc81384"
+  },
+  "target_files_sha256": "3a1e3ddf87575a2ef7fbad88ae14c440c847d066a78378670d3ca62ab87997db"
+}

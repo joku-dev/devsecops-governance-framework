@@ -41,6 +41,9 @@ def main():
     for path in sorted((ROOT / 'tests/fixtures/v2-review-metadata').iterdir()):
         write('review-metadata/' + path.name, path.read_bytes())
     write('review-metadata/oracle.py', (ROOT / 'tests/acceptance/v1_review_metadata_oracle.py').read_bytes())
+    for path in sorted((ROOT / 'tests/fixtures/v2-review-planning').iterdir()):
+        write('review-planning/' + path.name, path.read_bytes())
+    write('review-planning/oracle.py', (ROOT / 'tests/acceptance/v1_review_planning_oracle.py').read_bytes())
     (destination / 'bindings.json').write_text(json.dumps(bindings, indent=2) + '\n')
     (destination / 'bindings.json').chmod(0o600)
     print(json.dumps({'synthetic': True, 'files': len(bindings), 'v1_reference': manifest['v1_reference']}))
