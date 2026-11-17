@@ -266,81 +266,75 @@
       {
         "name": "Agent Review Status",
         "result": "passed",
-        "run_id": "44142897204",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44142897204"
+        "run_id": "44151059094",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44151059094"
       },
       {
         "name": "Governance CI",
         "result": "passed",
-        "run_id": "44136561210",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561210"
+        "run_id": "44146753512",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753512"
       },
       {
         "name": "Governance CI v2",
         "result": "passed",
-        "run_id": "44136561481",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561481"
+        "run_id": "44146753575",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753575"
       },
       {
         "name": "CodeQL",
         "result": "passed",
-        "run_id": "44136561250",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561250"
+        "run_id": "44146753888",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753888"
       },
       {
         "name": "Dependency Review",
         "result": "passed",
-        "run_id": "44136561399",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561399"
-      },
-      {
-        "name": "Prepared runtime offline",
-        "result": "passed",
-        "run_id": "44136561404",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561404"
+        "run_id": "44146753943",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753943"
       },
       {
         "name": "Governance Repository Self-Security",
         "result": "passed",
-        "run_id": "44136561269",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561269"
+        "run_id": "44146753616",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753616"
       },
       {
         "name": "Consumer Lifecycle Guard",
         "result": "passed",
-        "run_id": "44136561388",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561388"
+        "run_id": "44146753501",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753501"
       }
     ],
-    "compared_result_groups": 24,
-    "comparison_note": "Mac: 25 von 25 Gruppen bestanden; Linux: 24 von 25, Legacy-Quellprüfung fehlgeschlagen. Die 24 erfolgreichen vollständigen Ergebnisobjekte stimmen strikt überein, ohne neue Normalisierung, einschließlich kanonischem Profil und vollständiger V1-Kontroll-/Architekturberichte aus identischen aufbewahrten ha-CPsWMS-Eingaben. Zwei CI-Dateilisten-Felder weichen im nativen physischen V1-Vergleich auf dem neuen ext4-Testvolume ab. Dieser Fehler wird nicht als bestandene Gruppe oder volle Host-Parität gewertet. Die Korrektur ist durch diesen älteren Kandidatennachweis nicht abgenommen.",
-    "equal_complete_result_groups": 24,
+    "compared_result_groups": 6,
+    "comparison_note": "Sechs gezielte installierte Prüfgruppen auf Mac und Linux bestanden und vollständig verglichen: Replay-Integrität nach Dateieintrags-Neuanlage, kanonische Quellprüfung, PR-Review, Funktionsprüfung, DCR und HTTP. Vollständige ursprüngliche Kontroll-/Architekturberichte aus identischen aufbewahrten ha-CPsWMS-Eingaben stimmen überein. Replay-Nachweis ist keine native V1-Dateisystemgleichheit; die frühere 454594a-Messung (Mac 25/25, Linux 24/25) bleibt als fehlgeschlagener nativer Vergleich erhalten. Sieben ausgelöste CI-Familien bestanden; Offline-Runtime wurde nicht ausgelöst. Dieser Nachweis zertifiziert weder den neuen Arbeitsverzeichnis-Modus noch alle 37 CI-Definitionen oder das volle Goal.",
+    "equal_complete_result_groups": 6,
     "evidence_kind": "declared_technical_validation_observation",
     "full_dcr_equal": true,
-    "full_dcr_sha256": "db7ea4fbf53aba952360d25e7f093546029695c6b4c89f776570bc8b2388638c",
+    "full_dcr_sha256": "716b84e3e362c69fc9f0187c165f99fd5d34417f403baff1a9350027b343d4cb",
     "full_functional_parity": false,
     "independent_human_approval": false,
     "installed_groups": {
-      "linux": 24,
-      "mac": 25
+      "linux": 6,
+      "mac": 6
     },
-    "observed_at": "2026-11-17T18:03:31.754276Z",
-    "runtime_source_digest": "884aa56e5af7fa52bfb4a40fc0b495ed7cbb9eb8d2c2d95c6ef6600a9d1958b1",
-    "source_revision": "454594ae722706a96237e66a5791302ebdd1853a",
-    "unit_test_seconds": 536.353,
-    "unit_tests": 1699,
+    "observed_at": "2026-11-17T19:05:02Z",
+    "runtime_source_digest": "2d71e7a51b1fce1337e00eed4efe99cbdc874538bb22384f46b3780627b2335b",
+    "source_revision": "e09b519da98ede343027ae4dda1ab1ebcddb9644",
+    "unit_test_seconds": 543.394,
+    "unit_tests": 1701,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "52666ac833a79be77fc9817e9fc2c9a973de8f5759daf4ef1b422518ed416183",
+  "matrix_sha256": "58300bd5623d022477f0a67355fa564a9c059ac3ab51e2f5955061778fc379c5",
   "next_work": {
     "entrypoints": [
       "scripts/check_repo_governance_integration.py",
       "scripts/check_repository_onboarding_readiness.py"
     ],
-    "next_step": "Die zuerst beobachtete CI-Reihenfolge des aufbewahrten Git-Snapshots als begrenzte Eingabe binden und nach Dateisystem-Neuanlage reproduzieren. Native V1-Dateisystemreihenfolge weiter offen ausweisen; danach Dispatcher-Aufzeichnung und alle übrigen Bereiche fortsetzen.",
-    "title": "Legacy-CI-Reihenfolge und Replay absichern"
+    "next_step": "Explizite lokale Beobachtung ohne erfundenen Git-Nachweis vervollständigen und vollständige unveränderte V1-Dateien auf Mac und VM am gleichen physischen Verzeichnis vergleichen; danach Dispatcher-Aufzeichnung und alle übrigen Goal-Bereiche fortsetzen.",
+    "title": "Ursprünglichen Arbeitsverzeichnis-Modus wiederherstellen"
   },
-  "observation_sha256": "da61f2d5be1ebd8ce5caf38a4d84c49e4166f1ba4e15d49d91b7b5ace5b56cc9",
+  "observation_sha256": "00035fcd4eeb93e0a8ea05368a4add1543b4d567ba653e487618c406a09ba561",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

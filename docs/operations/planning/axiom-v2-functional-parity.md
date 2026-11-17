@@ -1905,3 +1905,82 @@ investigated. Stable retained replay must not be presented as complete native
 physical-wire equivalence. Fresh pinned validation and source-bound installed
 evidence are required for the correction; the `454594a` checkpoint does not
 certify it. The full 22/135/37/16 Goal and unfinished matrix remain unchanged.
+
+
+## Published retained-order checkpoint
+
+The correction in [draft PR #402](https://github.com/joku-dev/devsecops-governance-framework/pull/402),
+source `e09b519da98ede343027ae4dda1ab1ebcddb9644`, passed 1,701 pinned tests
+(one existing platform skip), demo and strict documentation build. Seven triggered
+CI families passed; the edited review reporter recorded `declared_complete`.
+The offline runtime workflow did not trigger for this scope. Fresh installed
+Mac/Linux candidates passed six focused groups: retained-order replay, canonical
+source inspection, committed PR review, functional evaluation, DCR and HTTP smoke.
+Complete private replay bytes survived directory-entry recreation. Whole retained
+V1 controls/architecture results and the full committed DCR agreed between hosts.
+This six-group replay checkpoint does not turn the earlier Linux native V1 failure
+into a passing 25-group run. It does not certify the following new observation mode.
+
+## Explicit native working-directory observation
+
+The original two V1 tools read the actual local directory, including dirty and
+untracked data, and work without Git. `create --revision` continues to use only
+committed Git input. The separate explicit route restores the original input mode:
+
+```sh
+"$V2_PREFIX/axiom-v2" source-inspection observe --kind all \
+  --target-repo /path/to/local/directory --repository-id owner/application \
+  --profile legacy-worktree-signatures-v1 --at 2026-11-15T12:00:00Z
+"$V2_PREFIX/axiom-v2" source-inspection inspect-observation --id ASSESSMENT_ID
+```
+
+`integration` needs no repository ID; `onboarding` and `all` require the explicit
+ID used by the original report. The optional `--at` binds operator time; omission
+uses and labels the actual runtime clock. Original report display remains UTC seconds.
+The default CLI prints the private assessment receipt and returns 0 with findings
+visible. For original full report stdout or exports, select a single kind and
+`--format legacy`. `--target-repo` aliases `--repo`; integration accepts the original
+`--output-file`, onboarding the original `--output-json` and `--output-md`.
+Absent JSON output options preserve original full JSON stdout. Exports preserve
+whole bytes and `Wrote /absolute/path` messages; onboarding creates missing output
+parents, integration requires its output parent to exist. `--fail-on-findings`
+explicitly requests the original local 0/1 finding exit. Invalid execution is 2.
+This does not change any consumer workflow's blocking mode.
+
+The finite adapter uses directory file descriptors, no-follow regular-file reads
+and native iteration order. It inventories paths and types, reading only original
+CI text and the first eight sorted security documents needed by V1; source/test
+program bodies are never executed. Selected symlinks, unsafe ancestors and
+changing inputs are rejected. Limits are 100,000 nodes, 64 path components,
+4,096 UTF-8 bytes/path, 8 MiB path names, 16 MiB/text file, 64 MiB total text and
+16 MiB persisted facts, plus the 8 GiB free-space reserve. Onboarding metadata
+recursion is bounded across the directory; integration reads only supported CI
+locations. Metadata may include Git file names; Git internals are not text inputs.
+
+A separate closed version-1 private schema binds node, product runtime/source,
+explicit local profile, ordered facts and content-addressed blobs, original label,
+time and complete report digests. Files/directories are private (0600/0700).
+A second bounded observation must equal the first before admission. This detects
+intervening differences; it is not an atomic filesystem snapshot or proof that
+files never changed between reads. Private state must be outside the target.
+Explicit exports cannot overwrite product source or private instance state;
+selected symlinks are not followed. An export into the target is an operator-requested
+report write after observation, not a claim that the target remains unchanged.
+
+`inspect-observation` revalidates retained membership, order, bytes, profile and
+complete outputs without reading the live target. It works after target deletion,
+and makes no live freshness claim. Origin is `local_filesystem_observation`,
+`working_tree_used` is true and `content_commit_verified` false. No consumer commit
+or tree is invented. Identity and evidence Trust stay unverified; all publishing,
+provider-execution, inherited authority and approval flags stay false.
+
+Reader and application tests compare complete unchanged original V1 wires against
+the exact same physical directory: non-Git, positive/missing/binary/empty inputs,
+dirty/untracked/CRLF, native order and nested/hidden paths. They cover original
+stdout/export/finding exits, deletion replay, private members, changed inputs,
+budgets, foreign bindings and tamper rejection. The installed acceptance harness
+performs this native comparison independently on each host, before any projection.
+Native directory order can inherently differ between hosts; report hashes and
+per-field digests expose those differences instead of rewriting raw reports or
+claiming raw cross-host equality. Fresh installed proof for this increment is
+required separately. The full 22/135/37/16 Goal and formal matrix remain open.

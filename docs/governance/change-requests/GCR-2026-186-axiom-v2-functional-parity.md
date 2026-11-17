@@ -170,3 +170,27 @@ passing normalization. These are technical product/schema/test/docs artifacts
 under this existing Goal, not new normative sources. Required follow-up evidence
 includes iterator reversal, closed/tampered sequence rejection, canonical and
 legacy behavior, pinned full validation, strict docs and fresh installed proof.
+
+
+## Explicit original local input mode
+
+The original integration/onboarding tools also consume physical working-directory
+inputs without Git. Restore this capability through explicit `source-inspection
+observe/inspect-observation` and `legacy-worktree-signatures-v1`, separate from
+committed profiles. A bounded data-only local adapter captures native order and
+relevant text; a pure onboarding surface evaluator preserves original criteria.
+The closed private schema binds ordered observations/content-addressed blobs and
+complete reports without inventing consumer commits, verified identity or Trust.
+Original full stdout/export options and explicit local finding exits remain
+available. Replay uses only retained data; a two-read admission check is not an
+atomic filesystem snapshot or live freshness proof. No inspected code executes.
+
+These are additive technical product/schema/test/documentation artifacts under
+the existing Goal. They change no normative source, OPA, released package,
+protected acceptance, official index or consumer enforcement. Require whole
+unchanged V1 native wires on identical per-host directories, non-Git and dirty
+cases, full CLI choices, bounded private replay/tamper tests, pinned validation,
+strict docs, accountable review and fresh Mac/Linux installation evidence.
+Native per-host equality and cross-host native order differences must be reported
+separately. The previous replay-fix checkpoint is evidence for its own source,
+not acceptance of this feature. Formal matrix states remain in progress.
