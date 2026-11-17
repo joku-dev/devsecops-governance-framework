@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "runtime_source_digest",
+    "source_revision",
+    "input_id",
+    "assessed_at",
+    "source_worktree_clean",
+    "mode",
+    "evidence_trust",
+    "files",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "published",
+    "agent_execution_verified",
+    "human_approval_verified",
+    "operation",
+    "event_profile",
+    "provider_invoked",
+    "current_revision_checked",
+    "private_review_outputs_verified",
+    "profile",
+    "target_observation",
+    "assessment_time_source",
+    "declared_status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "committed-git-review-status"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 128
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 2,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 8388608
+          }
+        }
+      }
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "agent_execution_verified": {
+      "const": false
+    },
+    "human_approval_verified": {
+      "const": false
+    },
+    "operation": {
+      "const": "status"
+    },
+    "event_profile": {
+      "enum": [
+        "legacy-pr-review-event-v1"
+      ]
+    },
+    "provider_invoked": {
+      "const": false
+    },
+    "current_revision_checked": {
+      "const": false
+    },
+    "private_review_outputs_verified": {
+      "const": false
+    },
+    "profile": {
+      "enum": [
+        "legacy-role-review-v1"
+      ]
+    },
+    "target_observation": {
+      "const": "local-committed-git-at-command-execution"
+    },
+    "assessment_time_source": {
+      "const": "operator"
+    },
+    "declared_status": {
+      "enum": [
+        "missing",
+        "invalid",
+        "stale",
+        "incomplete",
+        "declared_complete"
+      ]
+    }
+  }
+}

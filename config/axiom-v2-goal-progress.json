@@ -2,83 +2,81 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Review-Werkzeuge für Planung, Prüfung und Nachweise",
+    "title": "Git-gebundene PR-Statusprüfung",
     "entrypoints": [
-      "scripts/dispatch_governance_agents.py",
-      "scripts/record_agent_review.py",
       "scripts/report_agent_review_status.py"
     ],
-    "next_step": "Native PR-Umfangsableitung einschließlich Vertragsänderungen ergänzen; weitere Dispatch-/Aufzeichnungsmodi und tatsächliche Review-Ausführung bleiben offen. Der neue Receipt-Export benötigt seine eigene installierte Abnahme; vollständige Parität aller Bereiche bleibt das Goal."
+    "next_step": "Den PR-Review-Umfang aus tatsächlichen lokalen Git-Commits und der Vereinigung der Ziel-/Vorschlagsverträge ableiten. Weitere Dispatcher-Modi, tatsächliche Ausführung und die vollständige Parität aller Bereiche bleiben offen."
   },
   "last_validation": {
-    "observed_at": "2026-11-17T15:47:57Z",
-    "source_revision": "b4508f6c0b832c22b1bb144d2a66b5e2c656aa69",
-    "runtime_source_digest": "7c643b4b78a8bf886e25290f8417a78b36ccec3c7a9b6558107d26e2e25ee011",
-    "unit_tests": 1647,
-    "unit_test_seconds": 399.399,
+    "observed_at": "2026-11-17T16:20:04.151457Z",
+    "source_revision": "9ab66a780a78bc7a50319217d66a424861e2145a",
+    "runtime_source_digest": "28042bc6daa666d787c923032fba1692171813ed8c797b7f768add65614ef5f1",
+    "unit_tests": 1680,
+    "unit_test_seconds": 418.306,
     "unit_tests_skipped": 1,
     "installed_groups": {
-      "mac": 5,
-      "linux": 5
+      "mac": 6,
+      "linux": 6
     },
-    "equal_complete_result_groups": 5,
-    "compared_result_groups": 5,
+    "equal_complete_result_groups": 6,
+    "compared_result_groups": 6,
     "canonical_profile_complete_results_equal": false,
     "full_dcr_equal": true,
-    "full_dcr_sha256": "27426ea2d4e71b6e009de88cd38bcd6a156b500615eaf017b066f23af3f34a65",
+    "full_dcr_sha256": "b729e503de008b4e6055b62323bce4890cd4ddbc16c801d72b42f1c661e4e1d2",
     "ci_workflows": [
       {
         "name": "Agent Review Status",
-        "run_id": "44112128058",
+        "run_id": "44123854104",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44112128058"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44123854104"
       },
       {
         "name": "Governance CI",
-        "run_id": "44109873628",
+        "run_id": "44121961378",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873628"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961378"
       },
       {
         "name": "Governance CI v2",
-        "run_id": "44109873400",
+        "run_id": "44121961062",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873400"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961062"
       },
       {
         "name": "CodeQL",
-        "run_id": "44109873986",
+        "run_id": "44121961320",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873986"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961320"
       },
       {
         "name": "Dependency Review",
-        "run_id": "44109873122",
+        "run_id": "44121961135",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873122"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961135"
       },
       {
         "name": "Prepared runtime offline",
-        "run_id": "44109873029",
+        "run_id": "44121961504",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873029"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961504"
       },
       {
         "name": "Governance Repository Self-Security",
-        "run_id": "44109873246",
+        "run_id": "44121961436",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873246"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961436"
       },
       {
         "name": "Consumer Lifecycle Guard",
-        "run_id": "44109873336",
+        "run_id": "44121961512",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873336"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961512"
       }
     ],
     "evidence_kind": "declared_technical_validation_observation",
     "independent_human_approval": false,
     "full_functional_parity": false,
-    "comparison_note": "Fünf gezielte installierte Prüfgruppen (DCR, Funktionsprüfung, Review-Metadaten, lokale Reviewplanung und HTTP-Betrieb) stimmen vollständig überein; keine neue Normalisierung. Frühere breite Prüfstände bleiben an ihre eigenen Quellcommits gebunden; dies bestätigt nicht alle 37 V1-CI-Definitionen oder die Gesamtparität. Das kanonische Quellprüfungsprofil war nicht Teil dieser fünf Gruppen und wurde hier nicht erneut bestätigt."
+    "comparison_note": "Sechs gezielte installierte Prüfgruppen stimmen vollständig überein, ohne neue Normalisierung. Beide Hosts reproduzieren zusätzlich die vollständigen V1-Kontrollen- und Architekturberichte aus identischen aufbewahrten ha-CPsWMS-Eingaben; nur die bereits validierte beschreibende Eingabepfad-Projektion bleibt. Das kanonische Quellprüfungsprofil und die früheren breiten 22 Gruppen wurden hier nicht erneut abgenommen; keine Gesamtparität."
   }
 }

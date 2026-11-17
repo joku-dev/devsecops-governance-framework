@@ -1786,3 +1786,88 @@ paused/empty, publishers inactive, ports 18959/18960 closed afterward. Eight
 source-bound CI families passed. This historical checkpoint does not recertify
 the new receipt increment, all earlier broad groups, all V1 CI definitions or
 the full Goal. Main and earlier delivery PR heads remain unchanged.
+
+
+## Committed PR-scope observation increment
+
+`review-pr status/inspect` restores the original PR reporter's actual local Git
+scope and target/proposed contract union. The event is an explicit retained input;
+its full target/head commit IDs must exist locally. The reader computes the
+merge base and changed paths from Git and loads the bounded regular roles,
+skills and routing blobs at both event commits. No inspected code is executed.
+This differs from `review-metadata status`, which keeps its explicit declared
+subject API. Neither operation authenticates a live platform PR or reviewer.
+
+```bash
+"$V2_PREFIX/axiom-v2" review-pr status --repo /path/to/governance-checkout --event /private/review/event.json --profile legacy-role-review-v1 --event-profile legacy-pr-review-event-v1 --at 2026-11-17T16:30:00Z
+"$V2_PREFIX/axiom-v2" review-pr inspect --assessment ASSESSMENT_ID
+```
+
+The private assessment directory contains complete original `review-status.json`
+and `review-status.md` wires. Original statuses remain `missing`, `invalid`,
+`stale`, `incomplete` and `declared_complete`; valid reports return 0 regardless
+of metadata findings. Invalid event references, malformed contracts or storage
+failure return 2. This developer metadata operation introduces no consumer gate.
+Readiness, declared execution and a valid receipt do not confer human approval.
+
+Required roles and validation commands are the union of the actual target and
+proposed contracts, with Steward last. A proposed contract cannot silently remove
+a target-side requirement. SHA-1 and SHA-256 repositories are supported; renames
+retain both paths and Unicode. An unrelated current HEAD, staged/unstaged edits
+and untracked files do not change this committed comparison. The original
+metadata observer needs roles/skills/routing, without an execution protocol.
+The separate planning/execution path retains its strict read-only protocol and
+authority guard; observing metadata does not authorize executing it.
+
+The finite adapters contain original layout patterns and event-field mapping.
+Git reads use the hardened local reader: caller Git overrides, hooks, fsmonitor,
+external diff, textconv, replacements, lazy fetching, prompts and protocols are
+disabled. Per commit, at most 200 selected regular files of 64 KiB are read;
+tree output is bounded to 10,000 entries and 8 MiB. Changed paths retain the
+10,000-path/8 MiB bound. Blob object hashes are checked using the repository's
+object format. Scope and tree listings are retained local observations; offline
+replay does not turn them into a remote identity or provenance attestation.
+
+The complete event is bounded to 8 MiB, preserving the original `invalid` status
+for non-string or over-1-MiB descriptions within that event bound. Receipt blocks
+retain the original 64-KiB limit. Facts/manifests/outputs are each bounded to
+8 MiB, all retained input to 64 MiB, with the unchanged 8-GiB reserve. Private
+content-addressed blobs, exact membership and raw hashes support complete report
+rederivation after target/caller deletion. Source, node, runtime and explicit
+operator time remain bound. Schema errors and malformed inputs emit redacted
+CLI diagnostics; raw private descriptions and receipts are not printed.
+
+`local_committed_scope_rechecked` is true only after an actual final local
+observation of the pinned event commits during `status`; it is false for offline
+`inspect`. The native PR verification flag `current_revision_checked`, private
+review authentication, publishing, execution and all acceptance flags remain
+false. Private state stays outside the inspected checkout. The unchanged real
+ha-CPsWMS reference still lacks the required governance-role contracts: preserve
+original rejection without injecting contracts or inventing consumer acceptance.
+
+Tests execute fingerprinted original committed-scope, snapshot-contract, status
+and rendering functions against the same actual Git objects. The installed
+harness exercises all five status wires, target-only role selection, missing
+execution protocol, dirty/unrelated HEAD, empty diff, rename/Unicode, both Git
+object formats, invalid input and private replay. The fixture preparer supplies
+49 technical files; the repository has 20 installed acceptance harnesses.
+Development preflight remains distinct from production-instance/source-bound
+installed acceptance. Matrix entrypoints remain 0 verified / 68 in progress /
+67 pending until their full formal evidence audit; other dispatcher modes,
+actual review execution and the remaining full Goal stay open.
+
+The preceding published receipt-export candidate
+`9ab66a780a78bc7a50319217d66a424861e2145a` in
+[PR #400](https://github.com/joku-dev/devsecops-governance-framework/pull/400)
+passed 1,680 pinned tests (one existing platform skip), demo and strict docs.
+Six focused installed groups matched strictly on Mac/Linux, without new
+normalization. Both reproduced complete V1 controls and architecture reports
+from identical retained ha-CPsWMS inputs and assessment time. Full new DCR SHA
+`b729e503de008b4e6055b62323bce4890cd4ddbc16c801d72b42f1c661e4e1d2`;
+whole real-report comparison SHA
+`bbcb07afaae89967ceab631b446d9751fe844703336697921d494ffd506afb70`.
+All eight CI families passed; the latest review reporter explicitly recorded
+`declared_complete`. Distinct nodes/keys/private state, paused empty collectors,
+inactive publishers, closed ports and at least 8 GiB free were verified. This
+historical checkpoint does not recertify the new committed-scope increment,
+all earlier broad groups, all 37 V1 CI definitions or full Goal completion.

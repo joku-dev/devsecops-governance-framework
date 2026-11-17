@@ -40,9 +40,9 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `b4508f6` · 1,647 Tests (davon 1 übersprungen) · Mac 5 / VM 5 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `9ab66a7` · 1,680 Tests (davon 1 übersprungen) · Mac 6 / VM 6 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Review-Werkzeuge für Planung, Prüfung und Nachweise.
+**Nächster Baustein:** Git-gebundene PR-Statusprüfung.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -120,7 +120,7 @@ ursprünglichen Receipt-Blöcke und Nutzungszahlen sowie Statusberichte aus
 expliziten Angaben zum Ziel- und vorgeschlagenen Review-Umfang. Private Eingaben
 und vollständige Ausgaben werden erneut geprüft. Aktuelle Git-Ableitung,
 private Reviewtexte, tatsächliche Agentenausführung und menschliche Freigabe
-werden damit nicht bestätigt; native PR-Ableitung bleibt offen.
+werden damit nicht bestätigt; native PR-Identität und Live-Frische bleiben unbestätigt.
 `review-plan prepare/check/inspect` ergänzt lokale Git-gebundene Reviewpläne:
 HEAD, Vergleichsbasis, Index, Arbeitskopie sowie Rollen-, Skill- und Routingdaten
 werden gelesen und vor einer Prüfung erneut verglichen. Gespeicherte Ergebnisse
@@ -131,8 +131,13 @@ eines solchen Plans in eine ausdrücklich gewählte Datei außerhalb der Checkou
 Ein sauberer vollständiger Branch mit Vergleichsbasis wird vor und nach dem Export
 erneut geprüft. Das optionale Nutzungsprotokoll erhält je Receipt genau einen Eintrag;
 Wiederholungen bewahren die erste Datei und deren Zeitstempel. Private Reviewtexte
-bleiben im privaten Knoten. Tatsächliche Review-Ausführung und native PR-Prüfung
+bleiben im privaten Knoten. Tatsächliche Review-Ausführung und native Live-Bestätigung
 bleiben offen; ein Receipt erteilt keine Freigabe.
+`review-pr status/inspect` ergänzt die PR-Metadatenprüfung aus tatsächlichen lokalen
+Git-Commits. Vergleichsbasis, Änderungsumfang sowie Rollen und Validierungen beider
+Branch-Verträge werden gelesen und zusammengeführt. Ein abweichender Arbeitsbaum
+ändert diese committed Sicht nicht. Vollständige Originalberichte bleiben privat
+erneut ableitbar; das Nachlesen bestätigt keinen aktuellen PR auf einer Plattform.
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.

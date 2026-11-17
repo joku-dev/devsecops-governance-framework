@@ -53,6 +53,6 @@ from lib.providers.source_inspection import (INSPECTION_PROFILES, source_inspect
 
 from lib.providers.pipeline_environment import (PROFILES as DECLARED_PIPELINE_PROFILES,
                                                declared_environment as declared_pipeline_environment)
-from lib.providers.review_metadata import REVIEW_EVENT_PROFILES, review_event
+from lib.providers.review_metadata import REVIEW_EVENT_PROFILES, review_event, committed_review_event
 
-from lib.providers.review_planning import PROFILES as REVIEW_PLAN_PROFILES, review_plan_profile
+from lib.providers.review_planning import PROFILES as REVIEW_PLAN_PROFILES, review_plan_profile, review_commit_profile
