@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 67,
-      "pending": 68,
+      "in_progress": 68,
+      "pending": 67,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -343,17 +343,17 @@
     "unit_tests": 1588,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "8700244f824f22f359b2e01fe4611e1c0f0ab5d11ae1a85fd635d6f35846216d",
+  "matrix_sha256": "4395a6f833c51225e6be09588cdff84ca37ac725f7245a2d6972eace6ea7a16f",
   "next_work": {
     "entrypoints": [
       "scripts/dispatch_governance_agents.py",
       "scripts/record_agent_review.py",
       "scripts/report_agent_review_status.py"
     ],
-    "next_step": "Git-gebundene Review-Planung und die aktuelle Ableitung von Umfang und Rollen ergänzen; der Metadatenbaustein verwendet bisher ausdrücklich Operator-Angaben.",
+    "next_step": "Den vollständigen Git-gebundenen Receipt-Export mit idempotentem Nutzungsprotokoll ergänzen; native PR-Umfangsableitung und tatsächliche Review-Ausführung bleiben gesondert offen.",
     "title": "Review-Werkzeuge für Planung, Prüfung und Nachweise"
   },
-  "observation_sha256": "12bb465c96de59b66d9bfdd81759737aa18dded4b8915922852a09c73f031aae",
+  "observation_sha256": "0cde4361880d75979daa8e148c403114a3548fd10c4deb9ecda35d604e5454ff",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

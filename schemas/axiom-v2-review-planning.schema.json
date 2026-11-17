@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agent_execution_verified",
+    "assessed_at",
+    "assessment_time_source",
+    "authority_transferred",
+    "current_revision_checked",
+    "declared_ready",
+    "evidence_trust",
+    "files",
+    "human_approval_verified",
+    "input_id",
+    "kind",
+    "mode",
+    "node_id",
+    "official_acceptance",
+    "operating_acceptance_inherited",
+    "operation",
+    "plan_assessment_id",
+    "private_review_outputs_verified",
+    "production_approval",
+    "profile",
+    "provider_invoked",
+    "published",
+    "risk_acceptance",
+    "runtime_source_digest",
+    "schema_version",
+    "source_revision",
+    "source_worktree_clean",
+    "target_observation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "local-git-review-planning"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 128
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 4,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 8388608
+          }
+        }
+      }
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "agent_execution_verified": {
+      "const": false
+    },
+    "human_approval_verified": {
+      "const": false
+    },
+    "operation": {
+      "enum": [
+        "prepare",
+        "check"
+      ]
+    },
+    "provider_invoked": {
+      "const": false
+    },
+    "current_revision_checked": {
+      "const": false
+    },
+    "private_review_outputs_verified": {
+      "const": false
+    },
+    "profile": {
+      "const": "legacy-role-review-v1"
+    },
+    "plan_assessment_id": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      ]
+    },
+    "declared_ready": {
+      "type": "boolean"
+    },
+    "target_observation": {
+      "const": "local-git-at-command-execution"
+    },
+    "assessment_time_source": {
+      "const": "operator"
+    }
+  }
+}

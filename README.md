@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **67 in Arbeit** und **68 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **68 in Arbeit** und **67 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 67 | 68 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 68 | 67 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -121,6 +121,12 @@ expliziten Angaben zum Ziel- und vorgeschlagenen Review-Umfang. Private Eingaben
 und vollständige Ausgaben werden erneut geprüft. Aktuelle Git-Ableitung,
 private Reviewtexte, tatsächliche Agentenausführung und menschliche Freigabe
 werden damit nicht bestätigt; Planung und vollständiger Export bleiben offen.
+`review-plan prepare/check/inspect` ergänzt lokale Git-gebundene Reviewpläne:
+HEAD, Vergleichsbasis, Index, Arbeitskopie sowie Rollen-, Skill- und Routingdaten
+werden gelesen und vor einer Prüfung erneut verglichen. Gespeicherte Ergebnisse
+lassen sich ohne den ursprünglichen Checkout nachlesen; dieses Nachlesen prüft
+keinen aktuellen Git-Stand. Ergebnisse und Freigaben bleiben Selbstauskünfte.
+Vollständiger Receipt-Export und tatsächliche Review-Ausführung bleiben offen.
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.

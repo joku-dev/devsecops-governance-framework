@@ -35,7 +35,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 17 Status | Workbench und private Consumer-Projektion; `reports` ergänzt einen reproduzierbaren Graph des committed Datenstands. Statische Viewer-Publikation und weitere Projektionen bleiben offen. |
 | 18 Readiness | `reports portfolio` erhält die bestehende Einführungsübersicht ohne Freigabe neuer Repos. `reports configuration` ergänzt die ursprüngliche Intake-Readiness mit explizitem Adapterprofil und begrenzten Textsignaturen. `reports blocking-readiness/blocking-alignment` erhält die lesenden Entscheidungshilfen mit committed Abhängigkeiten; Risikowerte erteilen keine Berechtigung. Weitere Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
 | 19 Betrieb/Sicherheit | Eigene Instanz, gepinnte Werkzeuge und Drift-Prüfung. GitHub-Sicherheitsbewertung nur innerhalb des Adapters. |
-| 20 Reviews/Kommunikation | `review-metadata` ergänzt Receipt-Blöcke, Parsing, neue Nutzungsstatistik und Statuslogik über explizite Umfangsangaben; aktuelle Git-Ableitung und vollständiger Plan-/Receipt-Export bleiben offen. Private `provenance`-Zuordnungen, `agent-usage`-Statistik und `review-quality` für synthetische Pakete und Offline-Bewertung. Auswahl, Klassifikationswerte und bereitgestellte Traces belegen weder tatsächliche Agentenausführung noch menschliche Freigaben. Weitere Reviewwerkzeuge bleiben offen. |
+| 20 Reviews/Kommunikation | `review-plan` liest lokale Git- und Vertragsdaten für private Pläne und erneute Umfangsprüfungen; gespeicherte Ausgaben können offline erneut abgeleitet werden. Vollständiger Export und tatsächliche Ausführung bleiben offen. `review-metadata` ergänzt Receipt-Blöcke, Parsing, neue Nutzungsstatistik und Statuslogik über explizite Umfangsangaben; Native PR-Ableitung und vollständiger Receipt-Export bleiben offen. Private `provenance`-Zuordnungen, `agent-usage`-Statistik und `review-quality` für synthetische Pakete und Offline-Bewertung. Auswahl, Klassifikationswerte und bereitgestellte Traces belegen weder tatsächliche Agentenausführung noch menschliche Freigaben. Weitere Reviewwerkzeuge bleiben offen. |
 | 21 Lifecycle | V1-Live-Pilot-Einstiegspunkte in V2 stillgelegt. Keine Übertragung persönlicher Betriebsabnahme oder Aktionsrechte; neue Live-Zulassung bleibt gesondert. |
 | 22 Dokumentationsabgleich | Bestehender GitHub-Workflow bleibt Adapter des Entwicklungsrepositories; kein aktiver V2-Betriebsdienst. |
 
@@ -67,6 +67,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `evaluate_document_consistency_semantic_report.py` | Quellwerkzeug |
 | `export_repository_sbom.py` | V1 stillgelegt |
 | `generate_agent_usage_snapshot.py` | Laufzeit über `agent-usage create/inspect`; vollständige ursprüngliche Metadatenstatistik aus explizitem JSONL-Protokoll oder committed Legacy-Daten. Keine tatsächliche Agentenausführung oder Freigabe. |
+| `dispatch_governance_agents.py` | Teilweise: `review-plan prepare/check/inspect` erhält lokale Git-gebundene Planung, deklarative Vollständigkeitsprüfung und Offline-Nachlesen. Weitere Dispatch-/Aufzeichnungsmodi bleiben offen. |
 | `record_agent_review.py` | Teilweise: `review-metadata usage-summary` erhält die ursprünglichen deklarativen Zähler. Git-gebundener Export, Idempotenz und Append-Protokoll bleiben offen. |
 | `report_agent_review_status.py` | Teilweise: `review-metadata receipt/parse-body/status` erhält Metadatenwires; Status nutzt explizite Operator-Angaben statt aktueller Git-Ableitung. |
 | `generate_architecture_governance_report.py` | `evaluate --domain architecture` und `reports domain`; vier ursprüngliche Gates und vollständige private JSON-/Markdown-Dateien. |
@@ -153,6 +154,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `publish_self_security_refresh.py` | V1 stillgelegt |
 | `publish_typed_evidence_assurance_update.py` | V1 stillgelegt |
 | `reconcile_documentation_after_merge.py` | V1 stillgelegt |
+| `dispatch_governance_agents.py` | Teilweise: `review-plan prepare/check/inspect` erhält lokale Git-gebundene Planung, deklarative Vollständigkeitsprüfung und Offline-Nachlesen. Weitere Dispatch-/Aufzeichnungsmodi bleiben offen. |
 | `record_agent_review.py` | Quellwerkzeug |
 | `record_collection_attempt.py` | Quellwerkzeug |
 | `record_evidence_agent_provenance.py` | `provenance --workspace W record`; deklarierte private Zuordnung und unveränderliche Konflikte |
