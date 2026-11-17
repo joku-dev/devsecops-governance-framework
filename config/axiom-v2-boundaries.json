@@ -15,7 +15,11 @@
     "scripts/lib/portable_intake/publisher.py",
     "scripts/lib/portable_intake/store.py",
     "scripts/lib/v2_application.py",
-    "scripts/axiom_v2.py"
+    "scripts/axiom_v2.py",
+    "scripts/lib/measurement_logic.py",
+    "scripts/lib/native_result_logic.py",
+    "scripts/lib/vulnerability_evidence.py",
+    "scripts/lib/vulnerability_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

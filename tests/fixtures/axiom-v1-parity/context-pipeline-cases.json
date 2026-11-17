@@ -1,0 +1,774 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "source_sha256": {
+    "scripts/generate_platform_context.py": "ed0d8eff3a2a9f5e9494ad9315aa5b4e83c7da109f92a4c35ae85629ef69fb0f",
+    "scripts/generate_pipeline_evidence.py": "e3547f00a9358a6470ff12471ee8e95a1520515b1cc0a6b9c0714acf8a11d975"
+  },
+  "cases": [
+    {
+      "id": "github-actions-normal",
+      "platform": "github-actions",
+      "environment": {
+        "GITHUB_REPOSITORY": "example/consumer",
+        "GITHUB_BASE_REF": "main",
+        "GITHUB_REF_NAME": "feature",
+        "GITHUB_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "GITHUB_RUN_ID": "42",
+        "GITHUB_WORKFLOW": "CI",
+        "GITHUB_SERVER_URL": "https://scm.example",
+        "GITHUB_EVENT_NAME": "pull_request"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "github-actions",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "eyJtYXhfc2V2ZXJpdHkiOiJub25lIn0K",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg=="
+      },
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"github-actions\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"42\",\n  \"pipeline_url\": \"https://scm.example/example/consumer/actions/runs/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"pull_request\",\n    \"purpose\": \"pull_request_validation\",\n    \"release_context\": false,\n    \"source\": \"github-actions\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"42\",\n    \"pipeline_url\": \"https://scm.example/example/consumer/actions/runs/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"pull_request\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"example/consumer\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"github-actions-42\",\n      \"pipeline_run_id\": \"42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/consumer@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"pass\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": []\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "github-actions-missing",
+      "platform": "github-actions",
+      "environment": {},
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "github-actions",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json"
+      ],
+      "input_files": {},
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"github-actions\",\n  \"repository_id\": \"unknown\",\n  \"branch\": \"unknown\",\n  \"commit_id\": \"unknown\",\n  \"pipeline_id\": \"GitHub Actions\",\n  \"pipeline_run_id\": \"unknown\",\n  \"pipeline_url\": \"\",\n  \"event\": \"unknown\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"unknown\",\n    \"purpose\": \"branch_validation\",\n    \"release_context\": false,\n    \"source\": \"github-actions\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"GitHub Actions\",\n    \"pipeline_run_id\": \"unknown\",\n    \"pipeline_url\": \"\",\n    \"commit_id\": \"unknown\",\n    \"event\": \"unknown\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"unknown\",\n    \"branch\": \"unknown\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"unknown\",\n    \"digest\": {\n      \"exists\": false,\n      \"linked_to_artifact\": false,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"\"\n    },\n    \"signature\": {\n      \"exists\": false,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": false,\n      \"linked_to_artifact\": false,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": false,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"github-actions-unknown\",\n      \"pipeline_run_id\": \"unknown\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"unknown@unknown\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"fail\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": [\n    \"artifact not found: artifact.bin\",\n    \"SBOM not found: sbom.json\",\n    \"vulnerability scan not found: scan.json\"\n  ]\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "github-actions-threshold",
+      "platform": "github-actions",
+      "environment": {
+        "GITHUB_REPOSITORY": "example/consumer",
+        "GITHUB_BASE_REF": "main",
+        "GITHUB_REF_NAME": "feature",
+        "GITHUB_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "GITHUB_RUN_ID": "42",
+        "GITHUB_WORKFLOW": "CI",
+        "GITHUB_SERVER_URL": "https://scm.example",
+        "GITHUB_EVENT_NAME": "pull_request",
+        "VULNERABILITY_MAX_SEVERITY": "critical",
+        "EXTERNAL_DIRECT_DOWNLOADS_DETECTED": "yes",
+        "APPROVED_WAIVER_EXISTS": "on"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "github-actions",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json",
+        "--direct-push-allowed",
+        "yes",
+        "--review-required",
+        "false",
+        "--protected-branch",
+        "true",
+        "--governance-mode",
+        "waiver-required",
+        "--max-allowed-severity",
+        "high"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "bWFsZm9ybWVkIHN5bnRoZXRpYyBzY2Fu",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg=="
+      },
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"github-actions\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"42\",\n  \"pipeline_url\": \"https://scm.example/example/consumer/actions/runs/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"pull_request\",\n    \"purpose\": \"pull_request_validation\",\n    \"release_context\": false,\n    \"source\": \"github-actions\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"42\",\n    \"pipeline_url\": \"https://scm.example/example/consumer/actions/runs/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"pull_request\",\n    \"governance_mode\": \"waiver-required\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": true\n    },\n    \"security_thresholds_exceeded\": true,\n    \"external_direct_downloads_detected\": true\n  },\n  \"repository\": {\n    \"repository_id\": \"example/consumer\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    },\n    \"protected_branch\": true,\n    \"direct_push_allowed\": true,\n    \"review_required\": false\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"critical\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"github-actions-42\",\n      \"pipeline_run_id\": \"42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/consumer@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": true\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"fail\",\n  \"governance_mode\": \"waiver-required\",\n  \"blocks_merge\": true,\n  \"errors\": [\n    \"vulnerability severity threshold exceeded: max_seen=critical, allowed=high\",\n    \"direct pushes are allowed on the target branch\"\n  ]\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "github-actions-override",
+      "platform": "github-actions",
+      "environment": {
+        "GITHUB_REPOSITORY": "example/consumer",
+        "GITHUB_BASE_REF": "main",
+        "GITHUB_REF_NAME": "feature",
+        "GITHUB_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "GITHUB_RUN_ID": "42",
+        "GITHUB_WORKFLOW": "CI",
+        "GITHUB_SERVER_URL": "https://scm.example",
+        "GITHUB_EVENT_NAME": "pull_request"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "github-actions",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json",
+        "--platform-context-file",
+        "context.json",
+        "--release-candidate"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "eyJtYXhfc2V2ZXJpdHkiOiJub25lIn0K",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg==",
+        "context.json": "eyJldmVudCI6ICJwdXNoIiwgImJyYW5jaCI6ICJtYWluIiwgInJlcG9zaXRvcnlfaWQiOiAiZXhhbXBsZS9vdmVycmlkZSIsICJwaXBlbGluZV9pZCI6IG51bGwsICJ1bnVzZWQiOiB7ImRlY2xhcmVkIjogIm9ubHkifX0K"
+      },
+      "context_override": {
+        "event": "push",
+        "branch": "main",
+        "repository_id": "example/override",
+        "pipeline_id": null,
+        "unused": {
+          "declared": "only"
+        }
+      },
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"github-actions\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"42\",\n  \"pipeline_url\": \"https://scm.example/example/consumer/actions/runs/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": true,\n  \"run_context\": {\n    \"event\": \"push\",\n    \"purpose\": \"release\",\n    \"release_context\": true,\n    \"source\": \"github-actions\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"42\",\n    \"pipeline_url\": \"https://scm.example/example/consumer/actions/runs/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"push\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"example/override\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"github-actions-42\",\n      \"pipeline_run_id\": \"42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/override@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"pass\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": []\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "bamboo-normal",
+      "platform": "bamboo",
+      "environment": {
+        "bamboo_planRepository_repositoryUrl": "https://scm.example/project/repo.git",
+        "bamboo_repository_id": "ignored",
+        "bamboo_buildResultKey": "PROJ-PLAN-42",
+        "bamboo_buildNumber": "ignored",
+        "bamboo_planRepository_branchName": "main",
+        "bamboo_planRepository_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bamboo_planName": "CI",
+        "bamboo_resultsUrl": "https://ci.example/42",
+        "bamboo_buildTriggerReason": "manual_build"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "bamboo",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "eyJtYXhfc2V2ZXJpdHkiOiJub25lIn0K",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg=="
+      },
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"bamboo\",\n  \"repository_id\": \"https://scm.example/project/repo.git\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"PROJ-PLAN-42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"manual_build\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"manual_build\",\n    \"purpose\": \"diagnostic\",\n    \"release_context\": false,\n    \"source\": \"bamboo\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"PROJ-PLAN-42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"manual_build\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"https://scm.example/project/repo.git\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"bamboo-PROJ-PLAN-42\",\n      \"pipeline_run_id\": \"PROJ-PLAN-42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"https://scm.example/project/repo.git@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"pass\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": []\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "bamboo-missing",
+      "platform": "bamboo",
+      "environment": {},
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "bamboo",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json"
+      ],
+      "input_files": {},
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"bamboo\",\n  \"repository_id\": \"unknown\",\n  \"branch\": \"unknown\",\n  \"commit_id\": \"unknown\",\n  \"pipeline_id\": \"Bamboo\",\n  \"pipeline_run_id\": \"unknown\",\n  \"pipeline_url\": \"\",\n  \"event\": \"bamboo\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"bamboo\",\n    \"purpose\": \"branch_validation\",\n    \"release_context\": false,\n    \"source\": \"bamboo\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"Bamboo\",\n    \"pipeline_run_id\": \"unknown\",\n    \"pipeline_url\": \"\",\n    \"commit_id\": \"unknown\",\n    \"event\": \"bamboo\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"unknown\",\n    \"branch\": \"unknown\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"unknown\",\n    \"digest\": {\n      \"exists\": false,\n      \"linked_to_artifact\": false,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"\"\n    },\n    \"signature\": {\n      \"exists\": false,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": false,\n      \"linked_to_artifact\": false,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": false,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"bamboo-unknown\",\n      \"pipeline_run_id\": \"unknown\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"unknown@unknown\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"fail\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": [\n    \"artifact not found: artifact.bin\",\n    \"SBOM not found: sbom.json\",\n    \"vulnerability scan not found: scan.json\"\n  ]\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "bamboo-threshold",
+      "platform": "bamboo",
+      "environment": {
+        "bamboo_planRepository_repositoryUrl": "https://scm.example/project/repo.git",
+        "bamboo_repository_id": "ignored",
+        "bamboo_buildResultKey": "PROJ-PLAN-42",
+        "bamboo_buildNumber": "ignored",
+        "bamboo_planRepository_branchName": "main",
+        "bamboo_planRepository_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bamboo_planName": "CI",
+        "bamboo_resultsUrl": "https://ci.example/42",
+        "bamboo_buildTriggerReason": "manual_build",
+        "VULNERABILITY_MAX_SEVERITY": "critical",
+        "EXTERNAL_DIRECT_DOWNLOADS_DETECTED": "yes",
+        "APPROVED_WAIVER_EXISTS": "on"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "bamboo",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json",
+        "--direct-push-allowed",
+        "yes",
+        "--review-required",
+        "false",
+        "--protected-branch",
+        "true",
+        "--governance-mode",
+        "waiver-required",
+        "--max-allowed-severity",
+        "high"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "bWFsZm9ybWVkIHN5bnRoZXRpYyBzY2Fu",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg=="
+      },
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"bamboo\",\n  \"repository_id\": \"https://scm.example/project/repo.git\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"PROJ-PLAN-42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"manual_build\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"manual_build\",\n    \"purpose\": \"diagnostic\",\n    \"release_context\": false,\n    \"source\": \"bamboo\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"PROJ-PLAN-42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"manual_build\",\n    \"governance_mode\": \"waiver-required\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": true\n    },\n    \"security_thresholds_exceeded\": true,\n    \"external_direct_downloads_detected\": true\n  },\n  \"repository\": {\n    \"repository_id\": \"https://scm.example/project/repo.git\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    },\n    \"protected_branch\": true,\n    \"direct_push_allowed\": true,\n    \"review_required\": false\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"critical\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"bamboo-PROJ-PLAN-42\",\n      \"pipeline_run_id\": \"PROJ-PLAN-42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"https://scm.example/project/repo.git@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": true\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"fail\",\n  \"governance_mode\": \"waiver-required\",\n  \"blocks_merge\": true,\n  \"errors\": [\n    \"vulnerability severity threshold exceeded: max_seen=critical, allowed=high\",\n    \"direct pushes are allowed on the target branch\"\n  ]\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "bamboo-override",
+      "platform": "bamboo",
+      "environment": {
+        "bamboo_planRepository_repositoryUrl": "https://scm.example/project/repo.git",
+        "bamboo_repository_id": "ignored",
+        "bamboo_buildResultKey": "PROJ-PLAN-42",
+        "bamboo_buildNumber": "ignored",
+        "bamboo_planRepository_branchName": "main",
+        "bamboo_planRepository_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bamboo_planName": "CI",
+        "bamboo_resultsUrl": "https://ci.example/42",
+        "bamboo_buildTriggerReason": "manual_build"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "bamboo",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json",
+        "--platform-context-file",
+        "context.json",
+        "--release-candidate"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "eyJtYXhfc2V2ZXJpdHkiOiJub25lIn0K",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg==",
+        "context.json": "eyJldmVudCI6ICJwdXNoIiwgImJyYW5jaCI6ICJtYWluIiwgInJlcG9zaXRvcnlfaWQiOiAiZXhhbXBsZS9vdmVycmlkZSIsICJwaXBlbGluZV9pZCI6IG51bGwsICJ1bnVzZWQiOiB7ImRlY2xhcmVkIjogIm9ubHkifX0K"
+      },
+      "context_override": {
+        "event": "push",
+        "branch": "main",
+        "repository_id": "example/override",
+        "pipeline_id": null,
+        "unused": {
+          "declared": "only"
+        }
+      },
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"bamboo\",\n  \"repository_id\": \"https://scm.example/project/repo.git\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"PROJ-PLAN-42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"manual_build\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": true,\n  \"run_context\": {\n    \"event\": \"push\",\n    \"purpose\": \"release\",\n    \"release_context\": true,\n    \"source\": \"bamboo\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"PROJ-PLAN-42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"push\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"example/override\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"bamboo-PROJ-PLAN-42\",\n      \"pipeline_run_id\": \"PROJ-PLAN-42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/override@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"pass\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": []\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "bitbucket-pipelines-normal",
+      "platform": "bitbucket-pipelines",
+      "environment": {
+        "BITBUCKET_REPO_FULL_NAME": "example/consumer",
+        "BITBUCKET_REPO_SLUG": "ignored",
+        "BITBUCKET_WORKSPACE": "ignored",
+        "BITBUCKET_PR_ID": "7",
+        "BITBUCKET_PR_DESTINATION_BRANCH": "main",
+        "BITBUCKET_BRANCH": "feature",
+        "BITBUCKET_COMMIT": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "BITBUCKET_PIPELINE_UUID": "CI",
+        "BITBUCKET_BUILD_NUMBER": "42",
+        "BITBUCKET_PIPELINE_URL": "https://ci.example/42"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "bitbucket-pipelines",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "eyJtYXhfc2V2ZXJpdHkiOiJub25lIn0K",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg=="
+      },
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"bitbucket-pipelines\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"feature\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_id\": \"7\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"pull_request\",\n    \"purpose\": \"pull_request_validation\",\n    \"release_context\": false,\n    \"source\": \"bitbucket-pipelines\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"pull_request\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"example/consumer\",\n    \"branch\": \"feature\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"bitbucket-pipelines-42\",\n      \"pipeline_run_id\": \"42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/consumer@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"pass\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": []\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "bitbucket-pipelines-missing",
+      "platform": "bitbucket-pipelines",
+      "environment": {},
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "bitbucket-pipelines",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json"
+      ],
+      "input_files": {},
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"bitbucket-pipelines\",\n  \"repository_id\": \"unknown\",\n  \"branch\": \"unknown\",\n  \"commit_id\": \"unknown\",\n  \"pipeline_id\": \"Bitbucket Pipelines\",\n  \"pipeline_run_id\": \"unknown\",\n  \"pipeline_url\": \"\",\n  \"event\": \"branch_build\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"branch_build\",\n    \"purpose\": \"branch_validation\",\n    \"release_context\": false,\n    \"source\": \"bitbucket-pipelines\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"Bitbucket Pipelines\",\n    \"pipeline_run_id\": \"unknown\",\n    \"pipeline_url\": \"\",\n    \"commit_id\": \"unknown\",\n    \"event\": \"branch_build\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"unknown\",\n    \"branch\": \"unknown\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"unknown\",\n    \"digest\": {\n      \"exists\": false,\n      \"linked_to_artifact\": false,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"\"\n    },\n    \"signature\": {\n      \"exists\": false,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": false,\n      \"linked_to_artifact\": false,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": false,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"bitbucket-pipelines-unknown\",\n      \"pipeline_run_id\": \"unknown\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"unknown@unknown\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"fail\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": [\n    \"artifact not found: artifact.bin\",\n    \"SBOM not found: sbom.json\",\n    \"vulnerability scan not found: scan.json\"\n  ]\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "bitbucket-pipelines-threshold",
+      "platform": "bitbucket-pipelines",
+      "environment": {
+        "BITBUCKET_REPO_FULL_NAME": "example/consumer",
+        "BITBUCKET_REPO_SLUG": "ignored",
+        "BITBUCKET_WORKSPACE": "ignored",
+        "BITBUCKET_PR_ID": "7",
+        "BITBUCKET_PR_DESTINATION_BRANCH": "main",
+        "BITBUCKET_BRANCH": "feature",
+        "BITBUCKET_COMMIT": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "BITBUCKET_PIPELINE_UUID": "CI",
+        "BITBUCKET_BUILD_NUMBER": "42",
+        "BITBUCKET_PIPELINE_URL": "https://ci.example/42",
+        "VULNERABILITY_MAX_SEVERITY": "critical",
+        "EXTERNAL_DIRECT_DOWNLOADS_DETECTED": "yes",
+        "APPROVED_WAIVER_EXISTS": "on"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "bitbucket-pipelines",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json",
+        "--direct-push-allowed",
+        "yes",
+        "--review-required",
+        "false",
+        "--protected-branch",
+        "true",
+        "--governance-mode",
+        "waiver-required",
+        "--max-allowed-severity",
+        "high"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "bWFsZm9ybWVkIHN5bnRoZXRpYyBzY2Fu",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg=="
+      },
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"bitbucket-pipelines\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"feature\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_id\": \"7\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"pull_request\",\n    \"purpose\": \"pull_request_validation\",\n    \"release_context\": false,\n    \"source\": \"bitbucket-pipelines\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"pull_request\",\n    \"governance_mode\": \"waiver-required\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": true\n    },\n    \"security_thresholds_exceeded\": true,\n    \"external_direct_downloads_detected\": true\n  },\n  \"repository\": {\n    \"repository_id\": \"example/consumer\",\n    \"branch\": \"feature\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    },\n    \"protected_branch\": true,\n    \"direct_push_allowed\": true,\n    \"review_required\": false\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"critical\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"bitbucket-pipelines-42\",\n      \"pipeline_run_id\": \"42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/consumer@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": true\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"fail\",\n  \"governance_mode\": \"waiver-required\",\n  \"blocks_merge\": true,\n  \"errors\": [\n    \"vulnerability severity threshold exceeded: max_seen=critical, allowed=high\",\n    \"direct pushes are allowed on the target branch\"\n  ]\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "bitbucket-pipelines-override",
+      "platform": "bitbucket-pipelines",
+      "environment": {
+        "BITBUCKET_REPO_FULL_NAME": "example/consumer",
+        "BITBUCKET_REPO_SLUG": "ignored",
+        "BITBUCKET_WORKSPACE": "ignored",
+        "BITBUCKET_PR_ID": "7",
+        "BITBUCKET_PR_DESTINATION_BRANCH": "main",
+        "BITBUCKET_BRANCH": "feature",
+        "BITBUCKET_COMMIT": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "BITBUCKET_PIPELINE_UUID": "CI",
+        "BITBUCKET_BUILD_NUMBER": "42",
+        "BITBUCKET_PIPELINE_URL": "https://ci.example/42"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "bitbucket-pipelines",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json",
+        "--platform-context-file",
+        "context.json",
+        "--release-candidate"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "eyJtYXhfc2V2ZXJpdHkiOiJub25lIn0K",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg==",
+        "context.json": "eyJldmVudCI6ICJwdXNoIiwgImJyYW5jaCI6ICJtYWluIiwgInJlcG9zaXRvcnlfaWQiOiAiZXhhbXBsZS9vdmVycmlkZSIsICJwaXBlbGluZV9pZCI6IG51bGwsICJ1bnVzZWQiOiB7ImRlY2xhcmVkIjogIm9ubHkifX0K"
+      },
+      "context_override": {
+        "event": "push",
+        "branch": "main",
+        "repository_id": "example/override",
+        "pipeline_id": null,
+        "unused": {
+          "declared": "only"
+        }
+      },
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"bitbucket-pipelines\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"feature\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_id\": \"7\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": true,\n  \"run_context\": {\n    \"event\": \"push\",\n    \"purpose\": \"release\",\n    \"release_context\": true,\n    \"source\": \"bitbucket-pipelines\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"push\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"example/override\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"bitbucket-pipelines-42\",\n      \"pipeline_run_id\": \"42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/override@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"pass\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": []\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "jenkins-normal",
+      "platform": "jenkins",
+      "environment": {
+        "GOVERNANCE_REPOSITORY_ID": "example/consumer",
+        "GIT_URL": "ignored",
+        "BUILD_TAG": "CI-42",
+        "BUILD_NUMBER": "ignored",
+        "CHANGE_ID": "7",
+        "CHANGE_TARGET": "main",
+        "BRANCH_NAME": "feature",
+        "GIT_COMMIT": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "JOB_NAME": "CI",
+        "BUILD_URL": "https://ci.example/42"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "jenkins",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "eyJtYXhfc2V2ZXJpdHkiOiJub25lIn0K",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg=="
+      },
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"jenkins\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"CI-42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_id\": \"7\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"pull_request\",\n    \"purpose\": \"pull_request_validation\",\n    \"release_context\": false,\n    \"source\": \"jenkins\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"CI-42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"pull_request\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"example/consumer\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"jenkins-CI-42\",\n      \"pipeline_run_id\": \"CI-42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/consumer@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"pass\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": []\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "jenkins-missing",
+      "platform": "jenkins",
+      "environment": {},
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "jenkins",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json"
+      ],
+      "input_files": {},
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"jenkins\",\n  \"repository_id\": \"unknown\",\n  \"branch\": \"unknown\",\n  \"commit_id\": \"unknown\",\n  \"pipeline_id\": \"Jenkins\",\n  \"pipeline_run_id\": \"unknown\",\n  \"pipeline_url\": \"\",\n  \"event\": \"branch_build\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"branch_build\",\n    \"purpose\": \"branch_validation\",\n    \"release_context\": false,\n    \"source\": \"jenkins\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"Jenkins\",\n    \"pipeline_run_id\": \"unknown\",\n    \"pipeline_url\": \"\",\n    \"commit_id\": \"unknown\",\n    \"event\": \"branch_build\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"unknown\",\n    \"branch\": \"unknown\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"unknown\",\n    \"digest\": {\n      \"exists\": false,\n      \"linked_to_artifact\": false,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"\"\n    },\n    \"signature\": {\n      \"exists\": false,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": false,\n      \"linked_to_artifact\": false,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": false,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"jenkins-unknown\",\n      \"pipeline_run_id\": \"unknown\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"unknown@unknown\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"fail\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": [\n    \"artifact not found: artifact.bin\",\n    \"SBOM not found: sbom.json\",\n    \"vulnerability scan not found: scan.json\"\n  ]\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "jenkins-threshold",
+      "platform": "jenkins",
+      "environment": {
+        "GOVERNANCE_REPOSITORY_ID": "example/consumer",
+        "GIT_URL": "ignored",
+        "BUILD_TAG": "CI-42",
+        "BUILD_NUMBER": "ignored",
+        "CHANGE_ID": "7",
+        "CHANGE_TARGET": "main",
+        "BRANCH_NAME": "feature",
+        "GIT_COMMIT": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "JOB_NAME": "CI",
+        "BUILD_URL": "https://ci.example/42",
+        "VULNERABILITY_MAX_SEVERITY": "critical",
+        "EXTERNAL_DIRECT_DOWNLOADS_DETECTED": "yes",
+        "APPROVED_WAIVER_EXISTS": "on"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "jenkins",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json",
+        "--direct-push-allowed",
+        "yes",
+        "--review-required",
+        "false",
+        "--protected-branch",
+        "true",
+        "--governance-mode",
+        "waiver-required",
+        "--max-allowed-severity",
+        "high"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "bWFsZm9ybWVkIHN5bnRoZXRpYyBzY2Fu",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg=="
+      },
+      "context_override": null,
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"jenkins\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"CI-42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_id\": \"7\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": false,\n  \"run_context\": {\n    \"event\": \"pull_request\",\n    \"purpose\": \"pull_request_validation\",\n    \"release_context\": false,\n    \"source\": \"jenkins\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"CI-42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"pull_request\",\n    \"governance_mode\": \"waiver-required\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": true\n    },\n    \"security_thresholds_exceeded\": true,\n    \"external_direct_downloads_detected\": true\n  },\n  \"repository\": {\n    \"repository_id\": \"example/consumer\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    },\n    \"protected_branch\": true,\n    \"direct_push_allowed\": true,\n    \"review_required\": false\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"critical\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"jenkins-CI-42\",\n      \"pipeline_run_id\": \"CI-42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/consumer@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": true\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"fail\",\n  \"governance_mode\": \"waiver-required\",\n  \"blocks_merge\": true,\n  \"errors\": [\n    \"vulnerability severity threshold exceeded: max_seen=critical, allowed=high\",\n    \"direct pushes are allowed on the target branch\"\n  ]\n}\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "jenkins-override",
+      "platform": "jenkins",
+      "environment": {
+        "GOVERNANCE_REPOSITORY_ID": "example/consumer",
+        "GIT_URL": "ignored",
+        "BUILD_TAG": "CI-42",
+        "BUILD_NUMBER": "ignored",
+        "CHANGE_ID": "7",
+        "CHANGE_TARGET": "main",
+        "BRANCH_NAME": "feature",
+        "GIT_COMMIT": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "JOB_NAME": "CI",
+        "BUILD_URL": "https://ci.example/42"
+      },
+      "at": "2026-11-15T12:00:00.123456+00:00",
+      "arguments": [
+        "--platform",
+        "jenkins",
+        "--artifact-path",
+        "artifact.bin",
+        "--sbom-path",
+        "sbom.json",
+        "--vulnerability-scan-path",
+        "scan.json",
+        "--signature-path",
+        "signature.bin",
+        "--output",
+        "evidence.json",
+        "--gate-output",
+        "gate.json",
+        "--platform-context-file",
+        "context.json",
+        "--release-candidate"
+      ],
+      "input_files": {
+        "artifact.bin": "c3ludGhldGljIHBpcGVsaW5lIGFydGlmYWN0Cg==",
+        "sbom.json": "eyJib21Gb3JtYXQiOiJDeWNsb25lRFgifQo=",
+        "scan.json": "eyJtYXhfc2V2ZXJpdHkiOiJub25lIn0K",
+        "signature.bin": "c3ludGhldGljIHNpZ25hdHVyZSwgbm90IHZlcmlmaWVkCg==",
+        "context.json": "eyJldmVudCI6ICJwdXNoIiwgImJyYW5jaCI6ICJtYWluIiwgInJlcG9zaXRvcnlfaWQiOiAiZXhhbXBsZS9vdmVycmlkZSIsICJwaXBlbGluZV9pZCI6IG51bGwsICJ1bnVzZWQiOiB7ImRlY2xhcmVkIjogIm9ubHkifX0K"
+      },
+      "context_override": {
+        "event": "push",
+        "branch": "main",
+        "repository_id": "example/override",
+        "pipeline_id": null,
+        "unused": {
+          "declared": "only"
+        }
+      },
+      "expected_wires": {
+        "context-output.json": "{\n  \"source\": \"jenkins\",\n  \"repository_id\": \"example/consumer\",\n  \"branch\": \"main\",\n  \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"pipeline_id\": \"CI\",\n  \"pipeline_run_id\": \"CI-42\",\n  \"pipeline_url\": \"https://ci.example/42\",\n  \"event\": \"pull_request\",\n  \"pull_request_id\": \"7\",\n  \"pull_request_target\": \"main\"\n}\n",
+        "evidence.json": "{\n  \"contract_version\": \"1.0\",\n  \"release_candidate\": true,\n  \"run_context\": {\n    \"event\": \"push\",\n    \"purpose\": \"release\",\n    \"release_context\": true,\n    \"source\": \"jenkins\"\n  },\n  \"pipeline\": {\n    \"pipeline_id\": \"CI\",\n    \"pipeline_run_id\": \"CI-42\",\n    \"pipeline_url\": \"https://ci.example/42\",\n    \"commit_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"event\": \"push\",\n    \"governance_mode\": \"report-only\",\n    \"status\": \"success\",\n    \"security_gates\": {\n      \"enforced\": true,\n      \"blocks_merge\": false\n    },\n    \"security_thresholds_exceeded\": false,\n    \"external_direct_downloads_detected\": false\n  },\n  \"repository\": {\n    \"repository_id\": \"example/override\",\n    \"branch\": \"main\",\n    \"branch_protection_lookup\": {\n      \"status\": \"not_checked_by_platform_adapter\"\n    }\n  },\n  \"artifact\": {\n    \"artifact_id\": \"artifact.bin\",\n    \"artifact_type\": \"application-build-output\",\n    \"artifact_version\": \"aaaaaaaaaaaa\",\n    \"digest\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"algorithm\": \"sha256\",\n      \"path\": \"artifact.bin\",\n      \"value\": \"cdc368d2e1232a12b91c41098537fff5016a2ffc91604fa85930147bf7eb5f91\"\n    },\n    \"signature\": {\n      \"exists\": true,\n      \"path\": \"signature.bin\"\n    }\n  },\n  \"evidence\": {\n    \"sbom\": {\n      \"exists\": true,\n      \"linked_to_artifact\": true,\n      \"path\": \"sbom.json\"\n    },\n    \"vulnerability_scan\": {\n      \"exists\": true,\n      \"path\": \"scan.json\",\n      \"max_severity\": \"none\"\n    },\n    \"pipeline_execution\": {\n      \"evidence_id\": \"jenkins-CI-42\",\n      \"pipeline_run_id\": \"CI-42\",\n      \"status\": \"success\",\n      \"generated_at\": \"2026-11-15T12:00:00.123456+00:00\"\n    }\n  },\n  \"release\": {\n    \"release_id\": \"example/override@aaaaaaaaaaaa\",\n    \"approval_status\": \"not_required\",\n    \"approved_waiver\": {\n      \"exists\": false\n    }\n  },\n  \"waivers\": []\n}\n",
+        "gate.json": "{\n  \"status\": \"pass\",\n  \"governance_mode\": \"report-only\",\n  \"blocks_merge\": false,\n  \"errors\": []\n}\n"
+      },
+      "original_exit": 0
+    }
+  ]
+}

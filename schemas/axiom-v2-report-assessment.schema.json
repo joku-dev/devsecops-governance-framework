@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 private committed-data report assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "runtime_source_digest",
+    "source_revision",
+    "source_worktree_clean",
+    "report_kind",
+    "assessed_at",
+    "input_id",
+    "input_tree",
+    "source_scope",
+    "working_tree_used",
+    "mode",
+    "files",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "provider_invoked",
+    "published",
+    "window_days",
+    "source_configuration_profile"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "committed-product-data-reports"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "report_kind": {
+      "enum": [
+        "graph",
+        "control-coverage",
+        "traceability",
+        "architecture-traceability",
+        "governance-traceability",
+        "source-lineage",
+        "change-impact",
+        "source-replacement",
+        "source-intake",
+        "source-review-briefs",
+        "requirement-delta",
+        "source-process",
+        "automation",
+        "document-controls",
+        "open-gaps",
+        "pipeline-baseline",
+        "candidate-maturity",
+        "intake-health",
+        "replay-triage",
+        "portfolio",
+        "multi-consumer-readiness",
+        "all",
+        "blocking-readiness",
+        "blocking-alignment"
+      ]
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_tree": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "source_scope": {
+      "const": "committed-governance-data-v2"
+    },
+    "working_tree_used": {
+      "const": false
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 64,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 67108864
+          }
+        }
+      }
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "provider_invoked": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "window_days": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_configuration_profile": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "report_kind": {
+            "const": "multi-consumer-readiness"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source_configuration_profile": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "provider",
+              "source_signature_only"
+            ],
+            "properties": {
+              "kind": {
+                "const": "legacy-central-intake-signatures-v1"
+              },
+              "provider": {
+                "const": "github-actions"
+              },
+              "source_signature_only": {
+                "type": "boolean",
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "source_configuration_profile": {
+            "const": null
+          }
+        }
+      }
+    }
+  ]
+}

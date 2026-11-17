@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 private V1-compatible measured assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "domain", "provider", "source_revision", "runtime_source_digest", "source_worktree_clean", "assessed_at", "input_origin", "input_manifest_sha256", "mode", "evidence_trust", "official_acceptance", "production_approval", "risk_acceptance", "authority_transferred", "capture", "report"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "kind": {"const": "v1-compatible-measured-assessment"},
+    "domain": {"enum": ["l1", "containers"]},
+    "provider": {"type": "string", "minLength": 1, "maxLength": 64},
+    "source_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "runtime_source_digest": {"$ref": "#/$defs/digest"},
+    "source_worktree_clean": {"type": "boolean"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "input_origin": {"enum": ["operator_bundle", "native_reader"]},
+    "input_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "mode": {"const": "report-only"},
+    "evidence_trust": {"const": "unverified"},
+    "official_acceptance": {"const": false},
+    "production_approval": {"const": false},
+    "risk_acceptance": {"const": false},
+    "authority_transferred": {"const": false},
+    "capture": {"type": "object"},
+    "report": {"type": "object"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"input_origin": {"const": "operator_bundle"}}},
+      "then": {"properties": {"capture": {"type": "object", "additionalProperties": false, "required": ["native_metadata_rechecked", "independent_attestation"], "properties": {"native_metadata_rechecked": {"const": false}, "independent_attestation": {"const": false}}}}},
+      "else": {"properties": {"capture": {"type": "object", "additionalProperties": false, "required": ["native_metadata_rechecked", "independent_attestation", "requests", "selected_transport_bytes", "whole_archive_downloaded", "acquired_at"], "properties": {"native_metadata_rechecked": {"const": true}, "independent_attestation": {"const": false}, "requests": {"type": "integer", "minimum": 1, "maximum": 2000}, "selected_transport_bytes": {"type": "integer", "minimum": 0, "maximum": 134217728}, "whole_archive_downloaded": {"const": false}, "acquired_at": {"type": "string", "format": "date-time"}}}}}
+    }
+  ],
+  "$defs": {"digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

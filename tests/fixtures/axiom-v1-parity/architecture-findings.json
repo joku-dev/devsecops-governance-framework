@@ -1,0 +1,174 @@
+{
+  "target": {
+    "path": "example/architecture-findings-app",
+    "commit": "architecture-findings-fixture",
+    "release_id": "architecture-findings-reference-run",
+    "detected_services": 2
+  },
+  "gates": [
+    {
+      "id": "architecture_readiness",
+      "title": "Architecture Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "integration_readiness",
+      "title": "Integration Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-INTEGRATION-READY: Integration readiness requires deployment evidence.",
+        "RG-INTEGRATION-READY: Integration-readiness marker S5 requires score 3 or a valid exception; current score is 2."
+      ],
+      "remediations": [
+        {
+          "id": "REM-SOLUTION-SECURITY",
+          "match": "marker S5",
+          "title": "Verify solution security evidence",
+          "action": "Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.",
+          "evidence": [
+            "solution_threat_model",
+            "trust_zone_model",
+            "security_test_evidence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "operation_readiness",
+      "title": "Operation Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-OPERATION-READY: Operation readiness requires feedback evidence.",
+        "RG-OPERATION-READY: Operation readiness requires runtime evidence.",
+        "RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 3.",
+        "RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception."
+      ],
+      "remediations": [
+        {
+          "id": "REM-FEEDBACK-LOOP",
+          "match": "marker B5",
+          "title": "Strengthen architecture feedback loop",
+          "action": "Link operational findings, demo findings or benchmark trends to owned improvement actions, technical debt items or architecture runway.",
+          "evidence": [
+            "operational_finding",
+            "improvement_backlog_item",
+            "technical_debt_item"
+          ]
+        },
+        {
+          "id": "REM-OBSERVABILITY",
+          "match": "marker P11",
+          "title": "Verify observability evidence",
+          "action": "Add runtime metrics, health indicators, monitoring dashboard evidence or operational diagnostics that prove observability works.",
+          "evidence": [
+            "monitoring_dashboard",
+            "runtime_metric",
+            "health_indicator"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "release_readiness",
+      "title": "Release Readiness",
+      "status": "findings",
+      "findings": [
+        "RG-RELEASE-READY: Release candidate requires deployment evidence.",
+        "RG-RELEASE-READY: Release candidate requires security evidence.",
+        "RG-RELEASE-READY: Release compatibility declaration must be approved.",
+        "RG-RELEASE-READY: Release-critical architecture marker E6 requires score 4 or a valid exception; current score is 2.",
+        "RG-RELEASE-READY: Release-critical architecture marker P8 requires score 4 or a valid exception; current score is 2.",
+        "RG-RELEASE-READY: Release-critical architecture marker S5 requires score 4 or a valid exception; current score is 2."
+      ],
+      "remediations": [
+        {
+          "id": "REM-REL-DECL",
+          "match": "release compatibility declaration",
+          "title": "Create release compatibility declaration",
+          "action": "Create and approve a release compatibility declaration that identifies the supported solution baseline, interface versions, data versions, deployment assumptions, security assumptions, known limitations and approval roles.",
+          "evidence": [
+            "release_compatibility_declaration",
+            "product_compatibility_matrix",
+            "approval_record"
+          ]
+        },
+        {
+          "id": "REM-SECURITY-VERIFY",
+          "match": "marker E6",
+          "title": "Verify enterprise security guardrail evidence",
+          "action": "Add verified security evidence such as threat model review, vulnerability scan result, crypto/security review or security architecture review.",
+          "evidence": [
+            "security_architecture_review",
+            "vulnerability_scan_result",
+            "security_test_evidence"
+          ]
+        },
+        {
+          "id": "REM-PRODUCT-SECURITY",
+          "match": "marker P8",
+          "title": "Verify product security implementation",
+          "action": "Add product-level security verification evidence for authentication, authorization, crypto usage, logging and vulnerability handling.",
+          "evidence": [
+            "product_security_concept",
+            "vulnerability_scan_result",
+            "security_test_evidence"
+          ]
+        },
+        {
+          "id": "REM-SOLUTION-SECURITY",
+          "match": "marker S5",
+          "title": "Verify solution security evidence",
+          "action": "Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.",
+          "evidence": [
+            "solution_threat_model",
+            "trust_zone_model",
+            "security_test_evidence"
+          ]
+        }
+      ]
+    }
+  ],
+  "detailed_evidence": {
+    "report_only": true,
+    "declared_types": [],
+    "by_type": {},
+    "by_coarse_type": {}
+  },
+  "advisories": [
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "interface_contract",
+      "coarse_type": "release_compatibility_declaration",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `interface_contract` is not declared.",
+      "reason": "Integration readiness depends on explicit interface ownership, versioning, and compatibility."
+    },
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "deployment_manifest",
+      "coarse_type": "deployment_evidence",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `deployment_manifest` is not declared.",
+      "reason": "Deployment readiness is stronger when runtime configuration is linked as evidence."
+    },
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "model_based_architecture",
+      "coarse_type": "solution_baseline",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `model_based_architecture` is not declared.",
+      "reason": "Model-based evidence is useful for complex or release-critical systems without mandating a vendor tool."
+    }
+  ],
+  "summary": {
+    "gate_count": 4,
+    "passed": 1,
+    "with_findings": 3,
+    "finding_count": 12
+  }
+}

@@ -5,7 +5,6 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-import subprocess
 
 import yaml
 
@@ -43,12 +42,11 @@ def _sha256(path: Path) -> str:
 def _registered_requirement_sources(root: Path) -> list[dict]:
     """Return tracked, registered requirements extracts that define the review population."""
     register = yaml.safe_load((root / "model/documents/source-document-register.yaml").read_text(encoding="utf-8"))
-    tracked = subprocess.run(
-        ["git", "-C", str(root), "ls-files", "docs/governance/source-documents/*.requirements.md"],
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.splitlines()
+    from lib.dcr_source_context import git_head
+    from lib.functional_parity import git_read
+    if git_head(root) is None:
+        raise ValueError("tracked source population requires its own Git root")
+    tracked = git_read(root, "ls-files", "docs/governance/source-documents/*.requirements.md").decode().splitlines()
     tracked_paths = set(tracked)
     return [
         item
@@ -124,8 +122,9 @@ def _refresh_public_snapshot(root: Path, snapshot: dict) -> dict:
 
 
 def project_public(root: Path, report: dict | None = None, manifest: dict | None = None,
-                   manifest_bytes: bytes | None = None) -> dict:
+                   manifest_bytes: bytes | None = None, *, schema_root: Path | None = None) -> dict:
     """Return an explicit allowlist projection without excerpts or semantic prose."""
+    schema_root = root if schema_root is None else schema_root
     snapshot_path = root / PUBLIC_SNAPSHOT
     if report is None and manifest is None and snapshot_path.is_file():
         return _refresh_public_snapshot(root, _json(snapshot_path))
@@ -133,8 +132,8 @@ def project_public(root: Path, report: dict | None = None, manifest: dict | None
     manifest_path = root / MANIFEST
     report = report if report is not None else _json(report_path)
     manifest = manifest if manifest is not None else _json(manifest_path)
-    _validate(report, root / REPORT_SCHEMA)
-    _validate(manifest, root / MANIFEST_SCHEMA)
+    _validate(report, schema_root / REPORT_SCHEMA)
+    _validate(manifest, schema_root / MANIFEST_SCHEMA)
 
     source_by_id = {item["id"]: item for item in manifest.get("source_documents", [])}
     source_ids = report["scope"]["source_ids"]
@@ -149,7 +148,7 @@ def project_public(root: Path, report: dict | None = None, manifest: dict | None
     scoped_manifest = dict(manifest)
     scoped_manifest["source_documents"] = [source_by_id[source_id] for source_id in source_ids]
     scoped_manifest["source_count"] = len(source_ids)
-    structural_model = generate_model(root, scoped_manifest)
+    structural_model = generate_model(root, scoped_manifest, schema_root=schema_root)
     section_refs = {
         (item["source_id"], item["section_ref"])
         for item in structural_model["requirements"]
@@ -227,14 +226,18 @@ def project_public(root: Path, report: dict | None = None, manifest: dict | None
             "message": "Public metadata projection only. No source excerpts, semantic prose, recommendations or human decisions are published.",
         },
     }
-    _validate(projection, root / PROJECTION_SCHEMA)
+    _validate(projection, schema_root / PROJECTION_SCHEMA)
     return projection
 
 
 def build_redacted_snapshot(root: Path, report: dict, manifest: dict, manifest_bytes: bytes,
-                            comparison_count: int) -> dict:
+                            comparison_count: int, *, schema_root: Path | None = None) -> dict:
     """Build the one-time allowlisted snapshot from validated private review inputs."""
-    projection = project_public(root, report=report, manifest=manifest, manifest_bytes=manifest_bytes)
+    schema_root = root if schema_root is None else schema_root
+    if type(comparison_count) is not int or comparison_count < 0:
+        raise ValueError("invalid targeted comparison count")
+    projection = project_public(root, report=report, manifest=manifest, manifest_bytes=manifest_bytes,
+                                schema_root=schema_root)
     if projection["freshness"]["status"] != "current":
         raise ValueError("review manifest or source files are stale; refusing publication snapshot")
     projection["scope"]["source_ids"] = []
@@ -251,5 +254,5 @@ def build_redacted_snapshot(root: Path, report: dict, manifest: dict, manifest_b
         "implementation or normative approval. Human decision details are withheld."
     )
     projection["freshness"]["source_register_matches"] = True
-    _validate(projection, root / PROJECTION_SCHEMA)
+    _validate(projection, schema_root / PROJECTION_SCHEMA)
     return projection

@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 explicit declared result metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "input_kind",
+    "domain",
+    "repository",
+    "governance_repository",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "input_kind": {
+      "enum": [
+        "bundle",
+        "manual"
+      ]
+    },
+    "domain": {
+      "enum": [
+        "devsecops",
+        "architecture"
+      ]
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "instance",
+        "native_id",
+        "path",
+        "url"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "native_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "governance_repository": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "parameters": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "input_kind": {
+            "const": "bundle"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "repository_id",
+              "pipeline_run_id",
+              "pipeline_name",
+              "pipeline_url",
+              "pipeline_event",
+              "pipeline_status",
+              "branch",
+              "baseline_level",
+              "governance_baseline_ref",
+              "architecture_baseline_ref",
+              "generated_at",
+              "notes",
+              "branch_protected"
+            ],
+            "properties": {
+              "repository_id": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_run_id": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_name": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_url": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_event": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_status": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "branch": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "baseline_level": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "governance_baseline_ref": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "architecture_baseline_ref": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "generated_at": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "notes": {
+                "type": "string",
+                "maxLength": 65536
+              },
+              "branch_protected": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "domain": {
+            "const": "devsecops"
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "repository_id",
+              "baseline_level",
+              "governance_baseline_ref",
+              "pipeline_name",
+              "pipeline_run_id",
+              "pipeline_url",
+              "pipeline_event",
+              "pipeline_status",
+              "branch",
+              "commit_id",
+              "baseline_gate_status",
+              "ci_status",
+              "governance_control_evaluation_status",
+              "overall_status",
+              "notes",
+              "generated_at",
+              "branch_protected",
+              "sbom",
+              "vulnerability_scan",
+              "artifact_digest",
+              "governance_control_report",
+              "governance_run_input",
+              "static_analysis_summary",
+              "traceability_mapping",
+              "operations_evidence"
+            ],
+            "properties": {
+              "repository_id": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "baseline_level": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "governance_baseline_ref": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_name": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_run_id": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_url": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_event": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "pipeline_status": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "branch": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "commit_id": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "baseline_gate_status": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "ci_status": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "governance_control_evaluation_status": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "overall_status": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "notes": {
+                "type": "string",
+                "maxLength": 65536
+              },
+              "generated_at": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "branch_protected": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              },
+              "sbom": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              },
+              "vulnerability_scan": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              },
+              "artifact_digest": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              },
+              "governance_control_report": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              },
+              "governance_run_input": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              },
+              "static_analysis_summary": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              },
+              "traceability_mapping": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              },
+              "operations_evidence": {
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "maxLength": 32
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

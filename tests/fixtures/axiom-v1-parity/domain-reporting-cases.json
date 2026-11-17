@@ -1,0 +1,612 @@
+{
+  "schema_version": 1,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "synthetic": true,
+  "cases": [
+    {
+      "id": "green",
+      "inputs": {
+        "devsecops-release": {
+          "release_candidate": true,
+          "run_context": {
+            "event": "push",
+            "purpose": "release",
+            "release_context": true,
+            "source": "demo"
+          },
+          "required_platform_level": "PRA-Level 2",
+          "repository": {
+            "protected_branch": true,
+            "direct_push_allowed": false,
+            "review_required": true
+          },
+          "platform": {
+            "privileged_access": true,
+            "mfa_enforced": true,
+            "central_identity_management": true
+          },
+          "traceability": {
+            "requirements_linked": true,
+            "testcases_linked": true,
+            "reports_linked": true
+          },
+          "source_control": {
+            "approved_vcs": true,
+            "identifiable_authors": true,
+            "review_records_present": true
+          },
+          "static_analysis": {
+            "performed": true,
+            "findings_reviewed": true
+          },
+          "environment": {
+            "centrally_managed": true,
+            "secure_workspace": true,
+            "config_compliant": true,
+            "configuration_baselines_defined": true
+          },
+          "evidence": {
+            "sbom": {
+              "exists": true,
+              "linked_to_artifact": true
+            },
+            "vulnerability_scan": {
+              "exists": true
+            }
+          },
+          "artifact": {
+            "digest": {
+              "exists": true,
+              "linked_to_artifact": true
+            },
+            "signature": {
+              "exists": true
+            }
+          },
+          "signing": {
+            "keys_protected": true
+          },
+          "pipeline": {
+            "event": "push",
+            "external_direct_downloads_detected": false,
+            "security_gates": {
+              "enforced": true
+            },
+            "security_thresholds_exceeded": false
+          },
+          "release": {
+            "approved_waiver": {
+              "exists": false
+            }
+          },
+          "release_approval": {
+            "approved": true,
+            "approver": "release-manager",
+            "approved_artifact_only": true
+          },
+          "dependencies": [
+            {
+              "name": "example-library",
+              "source_approved": true
+            }
+          ],
+          "infrastructure": {
+            "iac_repository": {
+              "exists": true,
+              "version_controlled": true
+            }
+          },
+          "operations": {
+            "deployed_versions_recorded": true,
+            "security_events_recorded": true
+          },
+          "monitoring": {
+            "security_events_generated": true,
+            "integration_enabled": true,
+            "forwarded_to_monitoring": true
+          },
+          "deployment": {
+            "required": true
+          },
+          "vulnerabilities": [],
+          "waivers": [],
+          "target_repository": {
+            "path": "synthetic/domain-pair",
+            "commit": "1234567890ab",
+            "release_id": "synthetic-release"
+          }
+        },
+        "architecture": {
+          "release_candidate": true,
+          "architecture": {
+            "marker_assessments": [
+              {
+                "id": "B1",
+                "score": 3
+              },
+              {
+                "id": "B2",
+                "score": 3
+              },
+              {
+                "id": "B3",
+                "score": 3
+              },
+              {
+                "id": "B4",
+                "score": 3
+              },
+              {
+                "id": "B5",
+                "score": 4
+              },
+              {
+                "id": "P0",
+                "score": 3
+              },
+              {
+                "id": "P1",
+                "score": 3
+              },
+              {
+                "id": "P2",
+                "score": 3
+              },
+              {
+                "id": "P3",
+                "score": 3
+              },
+              {
+                "id": "P7",
+                "score": 3
+              },
+              {
+                "id": "S0",
+                "score": 3
+              },
+              {
+                "id": "S1",
+                "score": 3
+              },
+              {
+                "id": "S2",
+                "score": 3
+              },
+              {
+                "id": "E3",
+                "score": 3
+              },
+              {
+                "id": "E5",
+                "score": 3
+              },
+              {
+                "id": "S4",
+                "score": 3
+              },
+              {
+                "id": "S7",
+                "score": 3
+              },
+              {
+                "id": "P4",
+                "score": 3
+              },
+              {
+                "id": "E6",
+                "score": 4
+              },
+              {
+                "id": "E7",
+                "score": 4
+              },
+              {
+                "id": "E8",
+                "score": 4
+              },
+              {
+                "id": "S3",
+                "score": 4
+              },
+              {
+                "id": "S5",
+                "score": 4
+              },
+              {
+                "id": "S6",
+                "score": 4
+              },
+              {
+                "id": "S8",
+                "score": 4
+              },
+              {
+                "id": "P5",
+                "score": 4
+              },
+              {
+                "id": "P6",
+                "score": 4
+              },
+              {
+                "id": "P8",
+                "score": 4
+              },
+              {
+                "id": "P9",
+                "score": 4
+              },
+              {
+                "id": "P10",
+                "score": 4
+              },
+              {
+                "id": "P13",
+                "score": 4
+              }
+            ],
+            "release_compatibility_declaration": {
+              "exists": true,
+              "baseline_version": "solution-baseline-2026.07",
+              "approved": true
+            },
+            "solution_baseline": {
+              "exists": true
+            },
+            "compatibility_evidence": {
+              "exists": true
+            },
+            "security_evidence": {
+              "exists": true
+            },
+            "deployment_evidence": {
+              "exists": true
+            },
+            "runtime_evidence": {
+              "exists": true
+            },
+            "review_evidence": {
+              "exists": false
+            },
+            "exception_evidence": {
+              "exists": false
+            },
+            "feedback_evidence": {
+              "exists": true
+            },
+            "exceptions": []
+          },
+          "target_repository": {
+            "path": "synthetic/domain-pair",
+            "commit": "1234567890ab",
+            "release_id": "synthetic-release",
+            "detected_services": 2
+          }
+        }
+      },
+      "outputs": {
+        "devsecops-release": {
+          "devsecops-release.json": "{\n  \"target\": {\n    \"path\": \"synthetic/domain-pair\",\n    \"commit\": \"1234567890ab\",\n    \"release_id\": \"synthetic-release\"\n  },\n  \"gate\": {\n    \"id\": \"devsecops_release_readiness\",\n    \"status\": \"pass\",\n    \"findings\": []\n  },\n  \"summary\": {\n    \"finding_count\": 0\n  }\n}\n",
+          "devsecops-release.md": "# DevSecOps Governance Report\n\n## Target\n\n- Repository: `synthetic/domain-pair`\n- Commit: `1234567890ab`\n- Release ID: `synthetic-release`\n\n## Gate Summary\n\n| Gate | Status | Findings |\n|---|---:|---:|\n| DevSecOps Release Readiness | PASS | 0 |\n\n## Findings\n\nNo findings.\n"
+        },
+        "architecture": {
+          "architecture.json": "{\n  \"target\": {\n    \"path\": \"synthetic/domain-pair\",\n    \"commit\": \"1234567890ab\",\n    \"release_id\": \"synthetic-release\",\n    \"detected_services\": 2\n  },\n  \"gates\": [\n    {\n      \"id\": \"architecture_readiness\",\n      \"title\": \"Architecture Readiness\",\n      \"status\": \"pass\",\n      \"findings\": [],\n      \"remediations\": []\n    },\n    {\n      \"id\": \"integration_readiness\",\n      \"title\": \"Integration Readiness\",\n      \"status\": \"pass\",\n      \"findings\": [],\n      \"remediations\": []\n    },\n    {\n      \"id\": \"operation_readiness\",\n      \"title\": \"Operation Readiness\",\n      \"status\": \"findings\",\n      \"findings\": [\n        \"RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception.\"\n      ],\n      \"remediations\": [\n        {\n          \"id\": \"REM-OBSERVABILITY\",\n          \"match\": \"marker P11\",\n          \"title\": \"Verify observability evidence\",\n          \"action\": \"Add runtime metrics, health indicators, monitoring dashboard evidence or operational diagnostics that prove observability works.\",\n          \"evidence\": [\n            \"monitoring_dashboard\",\n            \"runtime_metric\",\n            \"health_indicator\"\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"release_readiness\",\n      \"title\": \"Release Readiness\",\n      \"status\": \"pass\",\n      \"findings\": [],\n      \"remediations\": []\n    }\n  ],\n  \"detailed_evidence\": {\n    \"report_only\": true,\n    \"declared_types\": [],\n    \"by_type\": {},\n    \"by_coarse_type\": {}\n  },\n  \"advisories\": [\n    {\n      \"severity\": \"info\",\n      \"mode\": \"report_only\",\n      \"evidence_type\": \"threat_model\",\n      \"coarse_type\": \"security_evidence\",\n      \"trigger\": \"coarse_evidence_or_marker_signal\",\n      \"message\": \"Recommended detailed evidence `threat_model` is not declared.\",\n      \"reason\": \"Security assumptions and mitigations are easier to review when a threat model is explicit.\"\n    },\n    {\n      \"severity\": \"info\",\n      \"mode\": \"report_only\",\n      \"evidence_type\": \"interface_contract\",\n      \"coarse_type\": \"release_compatibility_declaration\",\n      \"trigger\": \"coarse_evidence_or_marker_signal\",\n      \"message\": \"Recommended detailed evidence `interface_contract` is not declared.\",\n      \"reason\": \"Integration readiness depends on explicit interface ownership, versioning, and compatibility.\"\n    },\n    {\n      \"severity\": \"info\",\n      \"mode\": \"report_only\",\n      \"evidence_type\": \"deployment_manifest\",\n      \"coarse_type\": \"deployment_evidence\",\n      \"trigger\": \"coarse_evidence_or_marker_signal\",\n      \"message\": \"Recommended detailed evidence `deployment_manifest` is not declared.\",\n      \"reason\": \"Deployment readiness is stronger when runtime configuration is linked as evidence.\"\n    },\n    {\n      \"severity\": \"info\",\n      \"mode\": \"report_only\",\n      \"evidence_type\": \"model_based_architecture\",\n      \"coarse_type\": \"solution_baseline\",\n      \"trigger\": \"coarse_evidence_or_marker_signal\",\n      \"message\": \"Recommended detailed evidence `model_based_architecture` is not declared.\",\n      \"reason\": \"Model-based evidence is useful for complex or release-critical systems without mandating a vendor tool.\"\n    }\n  ],\n  \"summary\": {\n    \"gate_count\": 4,\n    \"passed\": 3,\n    \"with_findings\": 1,\n    \"finding_count\": 1\n  }\n}\n",
+          "architecture.md": "# Architecture Runtime Governance Report\n\n## Target\n\n- Repository: `synthetic/domain-pair`\n- Commit: `1234567890ab`\n- Release ID: `synthetic-release`\n- Detected services: `2`\n\n## Gate Summary\n\n| Gate | Status | Findings |\n|---|---:|---:|\n| Architecture Readiness | PASS | 0 |\n| Integration Readiness | PASS | 0 |\n| Operation Readiness | FINDINGS | 1 |\n| Release Readiness | PASS | 0 |\n\n## Detailed Evidence\n\nNo detailed evidence declared.\n\n## Report-Only Advisories\n\n| Severity | Evidence type | Coarse area | Message |\n|---|---|---|---|\n| `info` | `threat_model` | `security_evidence` | Recommended detailed evidence `threat_model` is not declared. |\n| `info` | `interface_contract` | `release_compatibility_declaration` | Recommended detailed evidence `interface_contract` is not declared. |\n| `info` | `deployment_manifest` | `deployment_evidence` | Recommended detailed evidence `deployment_manifest` is not declared. |\n| `info` | `model_based_architecture` | `solution_baseline` | Recommended detailed evidence `model_based_architecture` is not declared. |\n\n\n## Findings\n\n### Architecture Readiness\n\nNo findings.\n\n### Integration Readiness\n\nNo findings.\n\n### Operation Readiness\n\n- RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception.\n\nRecommended actions:\n- **Verify observability evidence**: Add runtime metrics, health indicators, monitoring dashboard evidence or operational diagnostics that prove observability works.\n  Evidence: `monitoring_dashboard`, `runtime_metric`, `health_indicator`\n\n### Release Readiness\n\nNo findings.\n"
+        },
+        "combined": {
+          "combined.json": "{\n  \"target\": {\n    \"path\": \"synthetic/domain-pair\",\n    \"commit\": \"1234567890ab\",\n    \"release_id\": \"synthetic-release\",\n    \"detected_services\": 2\n  },\n  \"overall_status\": \"findings\",\n  \"domains\": {\n    \"architecture\": {\n      \"status\": \"findings\",\n      \"finding_count\": 1,\n      \"findings\": [\n        \"Operation Readiness: RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception.\"\n      ]\n    },\n    \"devsecops\": {\n      \"status\": \"pass\",\n      \"finding_count\": 0,\n      \"findings\": []\n    }\n  },\n  \"summary\": {\n    \"finding_count\": 1\n  }\n}\n",
+          "combined.md": "# End-to-End Governance Report\n\n## Target\n\n- Repository: `synthetic/domain-pair`\n- Commit: `1234567890ab`\n- Release ID: `synthetic-release`\n\n## Overall Result\n\n| Domain | Status | Findings | Detail report |\n|---|---:|---:|---|\n| Architecture Runtime Governance | FINDINGS | 1 | `ha-cpswms-architecture-governance-report.md` |\n| DevSecOps Governance | PASS | 0 | `ha-cpswms-devsecops-governance-report.md` |\n| **Overall** | **FINDINGS** | **1** | |\n\n## Interpretation\n\nThe target repository still has governance findings. The findings are actionable gaps, not generic quality comments.\n\nA finding should be closed by adding or improving evidence, approving a controlled exception, or changing the implementation so that the policy condition is satisfied.\n\n## Architecture Findings\n\n- Operation Readiness: RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception.\n\n## DevSecOps Findings\n\nNo DevSecOps findings.\n\n## Evidence Model\n\nThe report uses two evidence layers:\n\n- `.governance/architecture/*.json` for architecture baseline, compatibility, security, resilience, operation and feedback evidence.\n- `.governance/devsecops/release-evidence.json` for DevSecOps release evidence such as SBOM, vulnerability scan, artifact integrity, dependency source approval and pipeline security gate evidence.\n\nThe governance repository turns those files into policy inputs, evaluates OPA policies and produces human-readable reports.\n"
+        }
+      },
+      "exits": {
+        "default": 0,
+        "fail_on_findings": 0
+      }
+    },
+    {
+      "id": "red",
+      "inputs": {
+        "devsecops-release": {
+          "release_candidate": true,
+          "run_context": {
+            "event": "push",
+            "purpose": "release",
+            "release_context": true,
+            "source": "demo"
+          },
+          "required_platform_level": "PRA-Level 2",
+          "repository": {
+            "protected_branch": true,
+            "direct_push_allowed": true,
+            "review_required": false
+          },
+          "platform": {
+            "privileged_access": true,
+            "mfa_enforced": false,
+            "central_identity_management": false
+          },
+          "traceability": {
+            "requirements_linked": false,
+            "testcases_linked": false,
+            "reports_linked": false
+          },
+          "source_control": {
+            "approved_vcs": false,
+            "identifiable_authors": false,
+            "review_records_present": false
+          },
+          "static_analysis": {
+            "performed": false,
+            "findings_reviewed": false
+          },
+          "environment": {
+            "centrally_managed": false,
+            "secure_workspace": false,
+            "config_compliant": false,
+            "configuration_baselines_defined": false
+          },
+          "evidence": {
+            "sbom": {
+              "exists": false,
+              "linked_to_artifact": false
+            },
+            "vulnerability_scan": {
+              "exists": false
+            }
+          },
+          "artifact": {
+            "digest": {
+              "exists": false,
+              "linked_to_artifact": false
+            },
+            "signature": {
+              "exists": false
+            }
+          },
+          "signing": {
+            "keys_protected": false
+          },
+          "pipeline": {
+            "event": "push",
+            "external_direct_downloads_detected": true,
+            "security_gates": {
+              "enforced": false
+            },
+            "security_thresholds_exceeded": true
+          },
+          "release": {
+            "approved_waiver": {
+              "exists": false
+            }
+          },
+          "release_approval": {
+            "approved": false,
+            "approver": "",
+            "approved_artifact_only": false
+          },
+          "dependencies": [
+            {
+              "name": "example-library",
+              "source_approved": false
+            }
+          ],
+          "infrastructure": {
+            "iac_repository": {
+              "exists": false,
+              "version_controlled": false
+            }
+          },
+          "operations": {
+            "deployed_versions_recorded": false,
+            "security_events_recorded": false
+          },
+          "monitoring": {
+            "security_events_generated": false,
+            "integration_enabled": false,
+            "forwarded_to_monitoring": false
+          },
+          "deployment": {
+            "required": true
+          },
+          "vulnerabilities": [
+            {
+              "id": "CVE-DEMO-0001",
+              "severity": "critical"
+            }
+          ],
+          "waivers": [],
+          "target_repository": {
+            "path": "synthetic/domain-pair",
+            "commit": "1234567890ab",
+            "release_id": "synthetic-release"
+          }
+        },
+        "architecture": {
+          "release_candidate": true,
+          "target_repository": {
+            "path": "synthetic/domain-pair",
+            "commit": "1234567890ab",
+            "release_id": "synthetic-release",
+            "detected_services": 2
+          },
+          "architecture": {
+            "marker_assessments": [
+              {
+                "id": "B1",
+                "score": 3
+              },
+              {
+                "id": "B2",
+                "score": 3
+              },
+              {
+                "id": "B3",
+                "score": 3
+              },
+              {
+                "id": "B4",
+                "score": 3
+              },
+              {
+                "id": "B5",
+                "score": 3
+              },
+              {
+                "id": "P0",
+                "score": 3
+              },
+              {
+                "id": "P1",
+                "score": 3
+              },
+              {
+                "id": "P2",
+                "score": 3
+              },
+              {
+                "id": "P3",
+                "score": 3
+              },
+              {
+                "id": "P7",
+                "score": 3
+              },
+              {
+                "id": "S0",
+                "score": 3
+              },
+              {
+                "id": "S1",
+                "score": 3
+              },
+              {
+                "id": "S2",
+                "score": 3
+              },
+              {
+                "id": "E3",
+                "score": 3
+              },
+              {
+                "id": "E5",
+                "score": 3
+              },
+              {
+                "id": "S4",
+                "score": 3
+              },
+              {
+                "id": "S7",
+                "score": 3
+              },
+              {
+                "id": "P4",
+                "score": 3
+              },
+              {
+                "id": "E6",
+                "score": 2
+              },
+              {
+                "id": "E7",
+                "score": 4
+              },
+              {
+                "id": "E8",
+                "score": 4
+              },
+              {
+                "id": "S3",
+                "score": 4
+              },
+              {
+                "id": "S5",
+                "score": 2
+              },
+              {
+                "id": "S6",
+                "score": 4
+              },
+              {
+                "id": "S8",
+                "score": 4
+              },
+              {
+                "id": "P5",
+                "score": 4
+              },
+              {
+                "id": "P6",
+                "score": 4
+              },
+              {
+                "id": "P8",
+                "score": 2
+              },
+              {
+                "id": "P9",
+                "score": 4
+              },
+              {
+                "id": "P10",
+                "score": 4
+              },
+              {
+                "id": "P13",
+                "score": 4
+              }
+            ],
+            "release_compatibility_declaration": {
+              "exists": true,
+              "baseline_version": "solution-baseline-2026.07",
+              "approved": false
+            },
+            "solution_baseline": {
+              "exists": true
+            },
+            "compatibility_evidence": {
+              "exists": true
+            },
+            "security_evidence": {
+              "exists": false
+            },
+            "deployment_evidence": {
+              "exists": false
+            },
+            "runtime_evidence": {
+              "exists": false
+            },
+            "review_evidence": {
+              "exists": false
+            },
+            "exception_evidence": {
+              "exists": false
+            },
+            "feedback_evidence": {
+              "exists": false
+            },
+            "exceptions": []
+          }
+        }
+      },
+      "outputs": {
+        "devsecops-release": {
+          "devsecops-release.json": "{\n  \"target\": {\n    \"path\": \"synthetic/domain-pair\",\n    \"commit\": \"1234567890ab\",\n    \"release_id\": \"synthetic-release\"\n  },\n  \"gate\": {\n    \"id\": \"devsecops_release_readiness\",\n    \"status\": \"findings\",\n    \"findings\": [\n      \"DSCB-L1-REQ-003: Direct modification of protected branches is prohibited.\",\n      \"DSCB-L1-REQ-003: Protected branch integration requires review.\",\n      \"DSCB-L1-REQ-006: Release candidates require an SBOM.\",\n      \"DSCB-L1-REQ-009: Release candidates require vulnerability scan evidence.\",\n      \"DSCB-L1-REQ-010: Critical vulnerability CVE-DEMO-0001 requires an approved waiver.\",\n      \"DSCB-L1-REQ-011: Releasable artifacts require checksum, digest, or signature evidence.\",\n      \"DSCB-L2-REQ-006: Dependency example-library is not retrieved from an approved source.\",\n      \"DSCB-L2-REQ-006: Direct downloads from external sources are not permitted.\",\n      \"DSCB-L2-REQ-009: Deployment infrastructure must be defined through Infrastructure as Code.\",\n      \"DSCB-L2-REQ-011: DevSecOps pipelines must enforce security gates.\",\n      \"DSCB-L2-REQ-012: Releases must not proceed when defined security thresholds are exceeded unless an approved waiver exists.\"\n    ]\n  },\n  \"summary\": {\n    \"finding_count\": 11\n  }\n}\n",
+          "devsecops-release.md": "# DevSecOps Governance Report\n\n## Target\n\n- Repository: `synthetic/domain-pair`\n- Commit: `1234567890ab`\n- Release ID: `synthetic-release`\n\n## Gate Summary\n\n| Gate | Status | Findings |\n|---|---:|---:|\n| DevSecOps Release Readiness | FINDINGS | 11 |\n\n## Findings\n\n- DSCB-L1-REQ-003: Direct modification of protected branches is prohibited.\n- DSCB-L1-REQ-003: Protected branch integration requires review.\n- DSCB-L1-REQ-006: Release candidates require an SBOM.\n- DSCB-L1-REQ-009: Release candidates require vulnerability scan evidence.\n- DSCB-L1-REQ-010: Critical vulnerability CVE-DEMO-0001 requires an approved waiver.\n- DSCB-L1-REQ-011: Releasable artifacts require checksum, digest, or signature evidence.\n- DSCB-L2-REQ-006: Dependency example-library is not retrieved from an approved source.\n- DSCB-L2-REQ-006: Direct downloads from external sources are not permitted.\n- DSCB-L2-REQ-009: Deployment infrastructure must be defined through Infrastructure as Code.\n- DSCB-L2-REQ-011: DevSecOps pipelines must enforce security gates.\n- DSCB-L2-REQ-012: Releases must not proceed when defined security thresholds are exceeded unless an approved waiver exists.\n"
+        },
+        "architecture": {
+          "architecture.json": "{\n  \"target\": {\n    \"path\": \"synthetic/domain-pair\",\n    \"commit\": \"1234567890ab\",\n    \"release_id\": \"synthetic-release\",\n    \"detected_services\": 2\n  },\n  \"gates\": [\n    {\n      \"id\": \"architecture_readiness\",\n      \"title\": \"Architecture Readiness\",\n      \"status\": \"pass\",\n      \"findings\": [],\n      \"remediations\": []\n    },\n    {\n      \"id\": \"integration_readiness\",\n      \"title\": \"Integration Readiness\",\n      \"status\": \"findings\",\n      \"findings\": [\n        \"RG-INTEGRATION-READY: Integration readiness requires deployment evidence.\",\n        \"RG-INTEGRATION-READY: Integration-readiness marker S5 requires score 3 or a valid exception; current score is 2.\"\n      ],\n      \"remediations\": [\n        {\n          \"id\": \"REM-SOLUTION-SECURITY\",\n          \"match\": \"marker S5\",\n          \"title\": \"Verify solution security evidence\",\n          \"action\": \"Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.\",\n          \"evidence\": [\n            \"solution_threat_model\",\n            \"trust_zone_model\",\n            \"security_test_evidence\"\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"operation_readiness\",\n      \"title\": \"Operation Readiness\",\n      \"status\": \"findings\",\n      \"findings\": [\n        \"RG-OPERATION-READY: Operation readiness requires feedback evidence.\",\n        \"RG-OPERATION-READY: Operation readiness requires runtime evidence.\",\n        \"RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 3.\",\n        \"RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception.\"\n      ],\n      \"remediations\": [\n        {\n          \"id\": \"REM-FEEDBACK-LOOP\",\n          \"match\": \"marker B5\",\n          \"title\": \"Strengthen architecture feedback loop\",\n          \"action\": \"Link operational findings, demo findings or benchmark trends to owned improvement actions, technical debt items or architecture runway.\",\n          \"evidence\": [\n            \"operational_finding\",\n            \"improvement_backlog_item\",\n            \"technical_debt_item\"\n          ]\n        },\n        {\n          \"id\": \"REM-OBSERVABILITY\",\n          \"match\": \"marker P11\",\n          \"title\": \"Verify observability evidence\",\n          \"action\": \"Add runtime metrics, health indicators, monitoring dashboard evidence or operational diagnostics that prove observability works.\",\n          \"evidence\": [\n            \"monitoring_dashboard\",\n            \"runtime_metric\",\n            \"health_indicator\"\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"release_readiness\",\n      \"title\": \"Release Readiness\",\n      \"status\": \"findings\",\n      \"findings\": [\n        \"RG-RELEASE-READY: Release candidate requires deployment evidence.\",\n        \"RG-RELEASE-READY: Release candidate requires security evidence.\",\n        \"RG-RELEASE-READY: Release compatibility declaration must be approved.\",\n        \"RG-RELEASE-READY: Release-critical architecture marker E6 requires score 4 or a valid exception; current score is 2.\",\n        \"RG-RELEASE-READY: Release-critical architecture marker P8 requires score 4 or a valid exception; current score is 2.\",\n        \"RG-RELEASE-READY: Release-critical architecture marker S5 requires score 4 or a valid exception; current score is 2.\"\n      ],\n      \"remediations\": [\n        {\n          \"id\": \"REM-REL-DECL\",\n          \"match\": \"release compatibility declaration\",\n          \"title\": \"Create release compatibility declaration\",\n          \"action\": \"Create and approve a release compatibility declaration that identifies the supported solution baseline, interface versions, data versions, deployment assumptions, security assumptions, known limitations and approval roles.\",\n          \"evidence\": [\n            \"release_compatibility_declaration\",\n            \"product_compatibility_matrix\",\n            \"approval_record\"\n          ]\n        },\n        {\n          \"id\": \"REM-SECURITY-VERIFY\",\n          \"match\": \"marker E6\",\n          \"title\": \"Verify enterprise security guardrail evidence\",\n          \"action\": \"Add verified security evidence such as threat model review, vulnerability scan result, crypto/security review or security architecture review.\",\n          \"evidence\": [\n            \"security_architecture_review\",\n            \"vulnerability_scan_result\",\n            \"security_test_evidence\"\n          ]\n        },\n        {\n          \"id\": \"REM-PRODUCT-SECURITY\",\n          \"match\": \"marker P8\",\n          \"title\": \"Verify product security implementation\",\n          \"action\": \"Add product-level security verification evidence for authentication, authorization, crypto usage, logging and vulnerability handling.\",\n          \"evidence\": [\n            \"product_security_concept\",\n            \"vulnerability_scan_result\",\n            \"security_test_evidence\"\n          ]\n        },\n        {\n          \"id\": \"REM-SOLUTION-SECURITY\",\n          \"match\": \"marker S5\",\n          \"title\": \"Verify solution security evidence\",\n          \"action\": \"Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.\",\n          \"evidence\": [\n            \"solution_threat_model\",\n            \"trust_zone_model\",\n            \"security_test_evidence\"\n          ]\n        }\n      ]\n    }\n  ],\n  \"detailed_evidence\": {\n    \"report_only\": true,\n    \"declared_types\": [],\n    \"by_type\": {},\n    \"by_coarse_type\": {}\n  },\n  \"advisories\": [\n    {\n      \"severity\": \"info\",\n      \"mode\": \"report_only\",\n      \"evidence_type\": \"interface_contract\",\n      \"coarse_type\": \"release_compatibility_declaration\",\n      \"trigger\": \"coarse_evidence_or_marker_signal\",\n      \"message\": \"Recommended detailed evidence `interface_contract` is not declared.\",\n      \"reason\": \"Integration readiness depends on explicit interface ownership, versioning, and compatibility.\"\n    },\n    {\n      \"severity\": \"info\",\n      \"mode\": \"report_only\",\n      \"evidence_type\": \"deployment_manifest\",\n      \"coarse_type\": \"deployment_evidence\",\n      \"trigger\": \"coarse_evidence_or_marker_signal\",\n      \"message\": \"Recommended detailed evidence `deployment_manifest` is not declared.\",\n      \"reason\": \"Deployment readiness is stronger when runtime configuration is linked as evidence.\"\n    },\n    {\n      \"severity\": \"info\",\n      \"mode\": \"report_only\",\n      \"evidence_type\": \"model_based_architecture\",\n      \"coarse_type\": \"solution_baseline\",\n      \"trigger\": \"coarse_evidence_or_marker_signal\",\n      \"message\": \"Recommended detailed evidence `model_based_architecture` is not declared.\",\n      \"reason\": \"Model-based evidence is useful for complex or release-critical systems without mandating a vendor tool.\"\n    }\n  ],\n  \"summary\": {\n    \"gate_count\": 4,\n    \"passed\": 1,\n    \"with_findings\": 3,\n    \"finding_count\": 12\n  }\n}\n",
+          "architecture.md": "# Architecture Runtime Governance Report\n\n## Target\n\n- Repository: `synthetic/domain-pair`\n- Commit: `1234567890ab`\n- Release ID: `synthetic-release`\n- Detected services: `2`\n\n## Gate Summary\n\n| Gate | Status | Findings |\n|---|---:|---:|\n| Architecture Readiness | PASS | 0 |\n| Integration Readiness | FINDINGS | 2 |\n| Operation Readiness | FINDINGS | 4 |\n| Release Readiness | FINDINGS | 6 |\n\n## Detailed Evidence\n\nNo detailed evidence declared.\n\n## Report-Only Advisories\n\n| Severity | Evidence type | Coarse area | Message |\n|---|---|---|---|\n| `info` | `interface_contract` | `release_compatibility_declaration` | Recommended detailed evidence `interface_contract` is not declared. |\n| `info` | `deployment_manifest` | `deployment_evidence` | Recommended detailed evidence `deployment_manifest` is not declared. |\n| `info` | `model_based_architecture` | `solution_baseline` | Recommended detailed evidence `model_based_architecture` is not declared. |\n\n\n## Findings\n\n### Architecture Readiness\n\nNo findings.\n\n### Integration Readiness\n\n- RG-INTEGRATION-READY: Integration readiness requires deployment evidence.\n- RG-INTEGRATION-READY: Integration-readiness marker S5 requires score 3 or a valid exception; current score is 2.\n\nRecommended actions:\n- **Verify solution security evidence**: Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.\n  Evidence: `solution_threat_model`, `trust_zone_model`, `security_test_evidence`\n\n### Operation Readiness\n\n- RG-OPERATION-READY: Operation readiness requires feedback evidence.\n- RG-OPERATION-READY: Operation readiness requires runtime evidence.\n- RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 3.\n- RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception.\n\nRecommended actions:\n- **Strengthen architecture feedback loop**: Link operational findings, demo findings or benchmark trends to owned improvement actions, technical debt items or architecture runway.\n  Evidence: `operational_finding`, `improvement_backlog_item`, `technical_debt_item`\n- **Verify observability evidence**: Add runtime metrics, health indicators, monitoring dashboard evidence or operational diagnostics that prove observability works.\n  Evidence: `monitoring_dashboard`, `runtime_metric`, `health_indicator`\n\n### Release Readiness\n\n- RG-RELEASE-READY: Release candidate requires deployment evidence.\n- RG-RELEASE-READY: Release candidate requires security evidence.\n- RG-RELEASE-READY: Release compatibility declaration must be approved.\n- RG-RELEASE-READY: Release-critical architecture marker E6 requires score 4 or a valid exception; current score is 2.\n- RG-RELEASE-READY: Release-critical architecture marker P8 requires score 4 or a valid exception; current score is 2.\n- RG-RELEASE-READY: Release-critical architecture marker S5 requires score 4 or a valid exception; current score is 2.\n\nRecommended actions:\n- **Create release compatibility declaration**: Create and approve a release compatibility declaration that identifies the supported solution baseline, interface versions, data versions, deployment assumptions, security assumptions, known limitations and approval roles.\n  Evidence: `release_compatibility_declaration`, `product_compatibility_matrix`, `approval_record`\n- **Verify enterprise security guardrail evidence**: Add verified security evidence such as threat model review, vulnerability scan result, crypto/security review or security architecture review.\n  Evidence: `security_architecture_review`, `vulnerability_scan_result`, `security_test_evidence`\n- **Verify product security implementation**: Add product-level security verification evidence for authentication, authorization, crypto usage, logging and vulnerability handling.\n  Evidence: `product_security_concept`, `vulnerability_scan_result`, `security_test_evidence`\n- **Verify solution security evidence**: Define and verify solution trust zones, identity assumptions, crypto assumptions, logging/audit expectations and product security declarations.\n  Evidence: `solution_threat_model`, `trust_zone_model`, `security_test_evidence`\n"
+        },
+        "combined": {
+          "combined.json": "{\n  \"target\": {\n    \"path\": \"synthetic/domain-pair\",\n    \"commit\": \"1234567890ab\",\n    \"release_id\": \"synthetic-release\",\n    \"detected_services\": 2\n  },\n  \"overall_status\": \"findings\",\n  \"domains\": {\n    \"architecture\": {\n      \"status\": \"findings\",\n      \"finding_count\": 12,\n      \"findings\": [\n        \"Integration Readiness: RG-INTEGRATION-READY: Integration readiness requires deployment evidence.\",\n        \"Integration Readiness: RG-INTEGRATION-READY: Integration-readiness marker S5 requires score 3 or a valid exception; current score is 2.\",\n        \"Operation Readiness: RG-OPERATION-READY: Operation readiness requires feedback evidence.\",\n        \"Operation Readiness: RG-OPERATION-READY: Operation readiness requires runtime evidence.\",\n        \"Operation Readiness: RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 3.\",\n        \"Operation Readiness: RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception.\",\n        \"Release Readiness: RG-RELEASE-READY: Release candidate requires deployment evidence.\",\n        \"Release Readiness: RG-RELEASE-READY: Release candidate requires security evidence.\",\n        \"Release Readiness: RG-RELEASE-READY: Release compatibility declaration must be approved.\",\n        \"Release Readiness: RG-RELEASE-READY: Release-critical architecture marker E6 requires score 4 or a valid exception; current score is 2.\",\n        \"Release Readiness: RG-RELEASE-READY: Release-critical architecture marker P8 requires score 4 or a valid exception; current score is 2.\",\n        \"Release Readiness: RG-RELEASE-READY: Release-critical architecture marker S5 requires score 4 or a valid exception; current score is 2.\"\n      ]\n    },\n    \"devsecops\": {\n      \"status\": \"findings\",\n      \"finding_count\": 11,\n      \"findings\": [\n        \"DSCB-L1-REQ-003: Direct modification of protected branches is prohibited.\",\n        \"DSCB-L1-REQ-003: Protected branch integration requires review.\",\n        \"DSCB-L1-REQ-006: Release candidates require an SBOM.\",\n        \"DSCB-L1-REQ-009: Release candidates require vulnerability scan evidence.\",\n        \"DSCB-L1-REQ-010: Critical vulnerability CVE-DEMO-0001 requires an approved waiver.\",\n        \"DSCB-L1-REQ-011: Releasable artifacts require checksum, digest, or signature evidence.\",\n        \"DSCB-L2-REQ-006: Dependency example-library is not retrieved from an approved source.\",\n        \"DSCB-L2-REQ-006: Direct downloads from external sources are not permitted.\",\n        \"DSCB-L2-REQ-009: Deployment infrastructure must be defined through Infrastructure as Code.\",\n        \"DSCB-L2-REQ-011: DevSecOps pipelines must enforce security gates.\",\n        \"DSCB-L2-REQ-012: Releases must not proceed when defined security thresholds are exceeded unless an approved waiver exists.\"\n      ]\n    }\n  },\n  \"summary\": {\n    \"finding_count\": 23\n  }\n}\n",
+          "combined.md": "# End-to-End Governance Report\n\n## Target\n\n- Repository: `synthetic/domain-pair`\n- Commit: `1234567890ab`\n- Release ID: `synthetic-release`\n\n## Overall Result\n\n| Domain | Status | Findings | Detail report |\n|---|---:|---:|---|\n| Architecture Runtime Governance | FINDINGS | 12 | `ha-cpswms-architecture-governance-report.md` |\n| DevSecOps Governance | FINDINGS | 11 | `ha-cpswms-devsecops-governance-report.md` |\n| **Overall** | **FINDINGS** | **23** | |\n\n## Interpretation\n\nThe target repository still has governance findings. The findings are actionable gaps, not generic quality comments.\n\nA finding should be closed by adding or improving evidence, approving a controlled exception, or changing the implementation so that the policy condition is satisfied.\n\n## Architecture Findings\n\n- Integration Readiness: RG-INTEGRATION-READY: Integration readiness requires deployment evidence.\n- Integration Readiness: RG-INTEGRATION-READY: Integration-readiness marker S5 requires score 3 or a valid exception; current score is 2.\n- Operation Readiness: RG-OPERATION-READY: Operation readiness requires feedback evidence.\n- Operation Readiness: RG-OPERATION-READY: Operation readiness requires runtime evidence.\n- Operation Readiness: RG-OPERATION-READY: Operation-readiness marker B5 requires score 4 or a valid exception; current score is 3.\n- Operation Readiness: RG-OPERATION-READY: Operation-readiness marker P11 is missing and has no valid exception.\n- Release Readiness: RG-RELEASE-READY: Release candidate requires deployment evidence.\n- Release Readiness: RG-RELEASE-READY: Release candidate requires security evidence.\n- Release Readiness: RG-RELEASE-READY: Release compatibility declaration must be approved.\n- Release Readiness: RG-RELEASE-READY: Release-critical architecture marker E6 requires score 4 or a valid exception; current score is 2.\n- Release Readiness: RG-RELEASE-READY: Release-critical architecture marker P8 requires score 4 or a valid exception; current score is 2.\n- Release Readiness: RG-RELEASE-READY: Release-critical architecture marker S5 requires score 4 or a valid exception; current score is 2.\n\n## DevSecOps Findings\n\n- DSCB-L1-REQ-003: Direct modification of protected branches is prohibited.\n- DSCB-L1-REQ-003: Protected branch integration requires review.\n- DSCB-L1-REQ-006: Release candidates require an SBOM.\n- DSCB-L1-REQ-009: Release candidates require vulnerability scan evidence.\n- DSCB-L1-REQ-010: Critical vulnerability CVE-DEMO-0001 requires an approved waiver.\n- DSCB-L1-REQ-011: Releasable artifacts require checksum, digest, or signature evidence.\n- DSCB-L2-REQ-006: Dependency example-library is not retrieved from an approved source.\n- DSCB-L2-REQ-006: Direct downloads from external sources are not permitted.\n- DSCB-L2-REQ-009: Deployment infrastructure must be defined through Infrastructure as Code.\n- DSCB-L2-REQ-011: DevSecOps pipelines must enforce security gates.\n- DSCB-L2-REQ-012: Releases must not proceed when defined security thresholds are exceeded unless an approved waiver exists.\n\n## Evidence Model\n\nThe report uses two evidence layers:\n\n- `.governance/architecture/*.json` for architecture baseline, compatibility, security, resilience, operation and feedback evidence.\n- `.governance/devsecops/release-evidence.json` for DevSecOps release evidence such as SBOM, vulnerability scan, artifact integrity, dependency source approval and pipeline security gate evidence.\n\nThe governance repository turns those files into policy inputs, evaluates OPA policies and produces human-readable reports.\n"
+        }
+      },
+      "exits": {
+        "default": 0,
+        "fail_on_findings": 1
+      }
+    }
+  ]
+}

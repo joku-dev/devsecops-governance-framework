@@ -8,7 +8,8 @@ import shutil
 from lib.portable.contracts import ROOT, canonical_digest, execution_key, repository_key, validate
 from jsonschema import Draft202012Validator, FormatChecker, ValidationError
 from lib.portable.runtime import baseline, evaluate, file_digest, gate, prepare_evidence, read_json, source_digest
-from lib.evidence_trust import derive_effective_level, load_freshness_policy
+from lib.evidence_verification import derive_effective_level
+from lib.evidence_freshness import load_freshness_policy
 from lib.consumer_intake_store import atomic_json
 from lib.safe_archive import safe_extract_zip
 
@@ -35,7 +36,7 @@ def verifier_digest():
            ROOT/'scripts/intake_portable_evidence.py',ROOT/'scripts/lib/consumer_intake_store.py',
            ROOT/'scripts/lib/provider_errors.py',ROOT/'scripts/lib/secure_http.py',
            ROOT/'scripts/lib/private_credentials.py',ROOT/'scripts/lib/safe_archive.py',
-           ROOT/'scripts/lib/evidence_trust.py',ROOT/'model/evidence/evidence-trust-model.yaml',
+           ROOT/'scripts/lib/evidence_verification.py',ROOT/'scripts/lib/evidence_freshness.py',ROOT/'model/evidence/evidence-trust-model.yaml',
            ROOT/'model/evidence/evidence-freshness-policies.yaml']
     return canonical_digest({'evaluation_runtime':source_digest(),
                              'files':{str(p.relative_to(ROOT)):file_digest(p) for p in paths}})
@@ -238,7 +239,7 @@ def verify_bundle(root, policy, *, opa, at, history=None, observation=None):
     # Synthetic evidence and incomplete native closure never acquire producer assurance.
     if context['synthetic']:
         checks['producer_run_resolved'] = False
-    trust = derive_effective_level([{'id': k, 'result': 'pass' if v else 'fail'} for k,v in checks.items()])
+    trust = derive_effective_level([{'id': k, 'result': 'pass' if v else 'fail'} for k,v in checks.items()], root=ROOT)
     receipt = {'schema_version': VERSION, 'execution_key': key, 'repository_key': manifest['repository_key'],
             'bundle_digest': digest, 'evaluated_at': evaluated_at.isoformat(),
             'decision': result['decision'], 'execution': result['execution'], 'trust': trust,

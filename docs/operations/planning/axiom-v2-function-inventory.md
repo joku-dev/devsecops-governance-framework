@@ -1,6 +1,8 @@
 # V2-Funktions- und Einstiegspunktinventar
 
-Stand: V2-Kandidat, 15. November 2026. Der Vertrag in
+Stand: V2-Kandidat, 15. November 2026. Die folgende Altpfadliste bleibt das
+Inventar der Foundation. Neue neutrale Gegenstücke und ihr offener Abnahmestand
+stehen verbindlich in der [Paritätsmatrix](axiom-v2-functional-parity.md). Der Vertrag in
 `config/axiom-v2-distribution.json` bestimmt die installierten Dateien.
 Die Prüfung umfasst jeden Python-Einstiegspunkt direkt unter `scripts/`.
 Ein fehlender Altpfad kann vom V2-Launcher nicht nachgeladen werden.
@@ -15,25 +17,25 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | Bereich | V2-Pfad und Grenze |
 | --- | --- |
 | 1 Quellen verwalten | Workbench: lokale Entwürfe, Extraktion und explizites Adapterprofil für Draft-PR/MR. |
-| 2 Vorgabenänderungen | Workbench: Review vorbereiten; fachliche Entscheidung weiterhin beim Menschen. |
-| 3 Herkunft | Vorhandene Modelle und Berichte lesend; Generatoren im Entwicklungscheckout. |
-| 4 Kontrollmodell | Versionierte Modelle im Paket; Modellpflege im Entwicklungscheckout. |
-| 5 Kontrollen auswerten | Gemeinsamer Runtime-Kern. Pipeline-Gate umfasst fünf Kontrollen; kein neuer Vollnachweis für alle 16. |
+| 2 Vorgabenänderungen | Workbench und private `requirements`-/`dcr`-Arbeitsbereiche; DCR-Betriebsprüfung, Katalogpaket, technischer Git-Kontext und private redigierte Projektion. Öffentliche Übergabe und vollständige Abnahme offen. |
+| 3 Herkunft | `reports` erzeugt Kontroll-, Governance- und Architektur-Traceability sowie den Graph aus exakt gebundenen, committed Daten. Quellenherkunft und Änderungsfolgen verwenden vollständige committed Dateimitgliedschaft; Intake ergänzt Ersatzkandidaten, Entscheidungsbriefs, explizite Deltas und Prozessstatus; weitere Berichte und Publikation bleiben offen. |
+| 4 Kontrollmodell | Versionierte Modelle im Paket; `reports build --kind control-coverage` beschreibt deren Abdeckung. Automation, Dokument-Kontroll-Matrix, Modelllücken und Pipeline-Bericht ergänzen die lesende Sicht. Kandidaten-Reifegrad erhält die bestehenden nicht-normativen Zuordnungen; Modellpflege bleibt im Entwicklungscheckout. |
+| 5 Kontrollen auswerten | Pipeline-Gate weiterhin fünf Kontrollen. Separates `evaluate --domain controls` erhält alle 46 V1-Berichtszeilen; Eingabeevidenz/Trust bleiben separat. `devsecops-release` ergänzt das getrennte alte Release-Gate; `reports domain/combine` stellt originale Berichtsdateien bereit. |
 | 6 OPA | Ein gepinntes OPA je Zielplattform; gemeinsame Policies und Auswertungslogik. |
 | 7 Architekturmodell | Vorhandene Modell-/Baseline-Dateien erhalten; keine neue normative Architekturarbeit. |
-| 8 Architektur-Readiness | Vorhandene Berichte lesend; Autoren-/Generatorpfade bleiben im Entwicklungscheckout. |
-| 9 Nachweise sammeln | Explizite SCM-/CI-Profile, Provider-Adapter, Bundle-Verifikation und frische V2-Daten. |
+| 8 Architektur-Readiness | `evaluate --domain architecture` führt alle vier bisherigen Gates mit detailliertem Bericht aus; keine neue normative Architekturarbeit. |
+| 9 Nachweise sammeln | `vulnerability-evidence` ergänzt die ursprüngliche lokale Scan-Normalisierung und Trust-Ausgabe ohne Scanner-Ausführung. `pipeline-evidence` erhält die deklarierte Plattform-/Pipeline-Sicht mit privaten Artefaktbytes und explizitem Adapterprofil.  Explizite SCM-/CI-Profile, Source-Erfassung, vollständige Measured- und Typed-Archivprofile über Adapter; native Zielprofile behalten ihren eigenen Umfang. |
 | 10 Baselines | Bestehende unveränderte Baselines konsumieren; Freigabe neuer Baselines bleibt separater Prozess. |
-| 11 Intake | `evidence` und `collector`; keine automatische Übernahme alter Indizes in aktive Queue. |
+| 11 Intake | `evidence`, `collector` und privates `typed intake`/`index`; Operator-Replay und native Aufnahmen bleiben getrennt. Zusätzlich `results` für lokale CI-Bundles, manuelle Snapshots, explizite native Run-/Job-/Archiv-Erfassung und vollständige private Ergebnisindizes. Öffentliche Accepted-Result-Publikation und vollständige native Live-Abnahme bleiben offen. |
 | 12 Geschichte | Neue SQLite-/Receipt-Daten, Backup und inaktiver Restore-Kandidat; V1-Geschichte bleibt Rückfallstand. |
-| 13 Vertrauen | Gemeinsame Herkunfts-, Hash-, Frische- und Kontextprüfungen; keine implizite Abnahme. |
-| 14 Replay | Lokale Bundle-Verifikation mit gemeinsamer Runtime; alte GitHub-Replay-CLIs nicht installiert. |
-| 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. |
+| 13 Vertrauen | Explizite neutrale Trust-Prüfung, vollständige Konfigurations-/Layer-Hashes, native Frische und kontrollbezogene Assurance; keine implizite Abnahme. |
+| 14 Replay | Private, pro Evidenztyp und Provider-Instanz abgegrenzte Replay-Prüfung; `reports replay-triage` ergänzt die bestehende historische Einordnung ohne Trust-Änderung. Attestierungsaktionen und weitere Alt-CLIs bleiben offen. |
+| 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. `reports intake-health` ergänzt davon getrennte Kennzahlen des committed Datenstands mit explizitem Zeitpunkt und Zeitfenster. |
 | 16 PR-Veröffentlichung | Explizite Adapterprofile und getrennte Zugangsdaten; keine implizite GitHub-Anmeldung oder Merge-Autorität. |
-| 17 Status | Workbench und private Consumer-Projektion; historische statische Ansichten bleiben Referenzdaten. |
-| 18 Readiness | Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
+| 17 Status | Workbench und private Consumer-Projektion; `reports` ergänzt einen reproduzierbaren Graph des committed Datenstands. Statische Viewer-Publikation und weitere Projektionen bleiben offen. |
+| 18 Readiness | `reports portfolio` erhält die bestehende Einführungsübersicht ohne Freigabe neuer Repos. `reports configuration` ergänzt die ursprüngliche Intake-Readiness mit explizitem Adapterprofil und begrenzten Textsignaturen. `reports blocking-readiness/blocking-alignment` erhält die lesenden Entscheidungshilfen mit committed Abhängigkeiten; Risikowerte erteilen keine Berechtigung. Weitere Profile und Vertragsprüfungen; Live-Abnahmen für unbekannte GitLab/Bamboo/Bitbucket-Versionen offen. |
 | 19 Betrieb/Sicherheit | Eigene Instanz, gepinnte Werkzeuge und Drift-Prüfung. GitHub-Sicherheitsbewertung nur innerhalb des Adapters. |
-| 20 Reviews/Kommunikation | Bestehende lokale Autoren-, Validierungs- und Reviewwerkzeuge im Entwicklungscheckout. |
+| 20 Reviews/Kommunikation | Private `provenance`-Zuordnungen, `agent-usage`-Statistik und `review-quality` für synthetische Pakete und Offline-Bewertung. Auswahl, Klassifikationswerte und bereitgestellte Traces belegen weder tatsächliche Agentenausführung noch menschliche Freigaben. Weitere Reviewwerkzeuge bleiben offen. |
 | 21 Lifecycle | V1-Live-Pilot-Einstiegspunkte in V2 stillgelegt. Keine Übertragung persönlicher Betriebsabnahme oder Aktionsrechte; neue Live-Zulassung bleibt gesondert. |
 | 22 Dokumentationsabgleich | Bestehender GitHub-Workflow bleibt Adapter des Entwicklungsrepositories; kein aktiver V2-Betriebsdienst. |
 
@@ -52,34 +54,34 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `axiom_v2.py` | Laufzeit |
 | `check_lifecycle_personal_channel.py` | Quellwerkzeug |
 | `check_public_artifact_hygiene.py` | Quellwerkzeug |
-| `check_repo_governance_integration.py` | Quellwerkzeug |
-| `check_repository_onboarding_readiness.py` | Quellwerkzeug |
+| `check_repo_governance_integration.py` | `source-inspection create --kind integration`; exakter Consumer-Commit; explizites Legacy-Profil oder deterministische CI-Pfadfolge mit `canonical-ci-signatures-v2`, unveränderte Kriterien |
+| `check_repository_onboarding_readiness.py` | `source-inspection create --kind onboarding`; private Git-Snapshots, ursprüngliche Kriterien, keine Freigabe |
 | `collect_architecture_release_input.py` | V1 stillgelegt |
 | `collect_devsecops_release_input.py` | V1 stillgelegt |
-| `collect_vulnerability_scan_evidence.py` | V1 stillgelegt |
+| `collect_vulnerability_scan_evidence.py` | `vulnerability-evidence create/inspect`; ursprüngliche lokale JSON-Ausgabe aus privaten Scan-/Artefaktbytes und deklarierter Herkunft. Kein Scannerstart oder nativer Identitätsnachweis. |
 | `consumer_intake.py` | V1 stillgelegt |
 | `control_evaluation.py` | Bibliothek |
 | `deploy_vm.py` | Quellwerkzeug |
 | `dispatch_governance_agents.py` | Quellwerkzeug |
-| `evaluate_agent_reviews.py` | Quellwerkzeug |
+| `evaluate_agent_reviews.py` | Laufzeit über `review-quality prepare/grade/inspect`; ursprüngliche synthetische Pakete und Offline-Bewertung aus expliziten Antworten und angehängten Traces. Keine authentifizierte Agentenleistung oder Freigabe. |
 | `evaluate_document_consistency_semantic_report.py` | Quellwerkzeug |
 | `export_repository_sbom.py` | V1 stillgelegt |
-| `generate_agent_usage_snapshot.py` | Quellwerkzeug |
-| `generate_architecture_governance_report.py` | Quellwerkzeug |
+| `generate_agent_usage_snapshot.py` | Laufzeit über `agent-usage create/inspect`; vollständige ursprüngliche Metadatenstatistik aus explizitem JSONL-Protokoll oder committed Legacy-Daten. Keine tatsächliche Agentenausführung oder Freigabe. |
+| `generate_architecture_governance_report.py` | `evaluate --domain architecture` und `reports domain`; vier ursprüngliche Gates und vollständige private JSON-/Markdown-Dateien. |
 | `generate_architecture_results_index.py` | Quellwerkzeug |
 | `generate_architecture_source_replacement_assessment.py` | Quellwerkzeug |
 | `generate_architecture_traceability_csv.py` | Quellwerkzeug |
 | `generate_automation_report.py` | Quellwerkzeug |
-| `generate_blocking_mode_alignment.py` | Quellwerkzeug |
-| `generate_blocking_readiness.py` | Quellwerkzeug |
+| `generate_blocking_mode_alignment.py` | `reports build --kind blocking-alignment`; committed Readiness, explizite Zeit; keine Modusänderung |
+| `generate_blocking_readiness.py` | `reports build --kind blocking-readiness`; bestehende Kriterien und committed Konfliktpräsenz; keine Freigabe |
 | `generate_control_coverage_report.py` | Quellwerkzeug |
-| `generate_control_evaluation_report.py` | Quellwerkzeug |
+| `generate_control_evaluation_report.py` | `evaluate --domain controls` und `reports domain`; alle ursprünglichen JSON-/Markdown-Zeilen, private feste Ausgabedateien und expliziter Finding-Exit. |
 | `generate_devsecops_governance_report.py` | Quellwerkzeug |
 | `generate_document_consistency_review_manifest.py` | Quellwerkzeug |
 | `generate_document_consistency_review_model.py` | Bibliothek |
 | `generate_document_control_matrix.py` | Quellwerkzeug |
 | `generate_end_to_end_governance_report.py` | Quellwerkzeug |
-| `generate_evidence_agent_provenance_index.py` | Quellwerkzeug |
+| `generate_evidence_agent_provenance_index.py` | `provenance --workspace W index`; ursprünglicher privater Index mit explizitem Scope |
 | `generate_governance_change_impact_report.py` | Quellwerkzeug |
 | `generate_governance_compliance_result.py` | Quellwerkzeug |
 | `generate_governance_graph.py` | Quellwerkzeug |
@@ -100,8 +102,8 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `generate_personal_channel_evidence.py` | Quellwerkzeug |
 | `generate_personal_channel_probe.py` | Quellwerkzeug |
 | `generate_pipeline_baseline_report.py` | Quellwerkzeug |
-| `generate_pipeline_evidence.py` | Quellwerkzeug |
-| `generate_platform_context.py` | Quellwerkzeug |
+| `generate_pipeline_evidence.py` | Laufzeit über `pipeline-evidence create/inspect`; ursprüngliche vollständige JSON-Dateien, expliziter deklarierter Adapterkontext und private Eingabebytes. Keine tatsächliche Ausführung oder Freigabe. |
+| `generate_platform_context.py` | Laufzeit über `pipeline-evidence create/inspect`; ursprüngliche vollständige JSON-Dateien, expliziter deklarierter Adapterkontext und private Eingabebytes. Keine tatsächliche Ausführung oder Freigabe. |
 | `generate_portable_candidate_index.py` | Quellwerkzeug |
 | `generate_portfolio_onboarding_status.py` | Quellwerkzeug |
 | `generate_pra_requirement_platform_review.py` | Quellwerkzeug |
@@ -151,7 +153,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `reconcile_documentation_after_merge.py` | V1 stillgelegt |
 | `record_agent_review.py` | Quellwerkzeug |
 | `record_collection_attempt.py` | Quellwerkzeug |
-| `record_evidence_agent_provenance.py` | Quellwerkzeug |
+| `record_evidence_agent_provenance.py` | `provenance --workspace W record`; deklarierte private Zuordnung und unveränderliche Konflikte |
 | `record_intake_event.py` | Quellwerkzeug |
 | `render_governance_documents.py` | Quellwerkzeug |
 | `report_agent_review_status.py` | Quellwerkzeug |
@@ -170,7 +172,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `validate_document_consistency_review.py` | Quellwerkzeug |
 | `validate_document_consistency_review_operations.py` | Quellwerkzeug |
 | `validate_document_consistency_semantic_review.py` | Quellwerkzeug |
-| `validate_evidence_agent_provenance.py` | Quellwerkzeug |
+| `validate_evidence_agent_provenance.py` | `provenance --workspace W check`; Schema und deklarierte Digest-Übereinstimmung, keine Ausführungsbestätigung |
 | `validate_governance_lifecycle_contracts.py` | Quellwerkzeug |
 | `validate_governance_lifecycle_ledger.py` | Quellwerkzeug |
 | `validate_governance_repo.py` | Quellwerkzeug |

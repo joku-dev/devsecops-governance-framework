@@ -1,0 +1,3863 @@
+{
+  "schema_version": 1,
+  "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "v2_start": "b6e3b64951456b5878a98810d50ba17cbe89dfe0",
+  "scope_exceptions": [],
+  "areas": [
+    {
+      "id": "FP-01",
+      "title": "Governance-Quellen verwalten",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports source-intake/replacement/review briefs/explicit deltas/process status, committed report-only context"
+      ],
+      "positive_tests": [
+        "tests/test_v2_source_reports.py:exact V1 file bytes and candidate/provenance boundaries"
+      ],
+      "negative_tests": [
+        "tests/test_v2_source_reports.py:withheld/prose/missing/link/oversize/stale dependency failures"
+      ],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-02",
+      "title": "\u00c4nderungen an Vorgaben vorbereiten",
+      "state": "in_progress",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-03",
+      "title": "Herkunft und Zusammenh\u00e4nge nachweisen",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports graph/control coverage/three traceability routes",
+        "reports source-lineage/change-impact using exact committed Git membership and explicit clock",
+        "reports source-intake/replacement/review briefs/explicit deltas/process status, committed report-only context"
+      ],
+      "positive_tests": [
+        "tests/test_v2_reports.py:complete original output bytes and immutable replay",
+        "tests/test_v2_source_reports.py:exact V1 file bytes and candidate/provenance boundaries"
+      ],
+      "negative_tests": [
+        "tests/test_v2_reports.py:source/member/output resealing, traversal, foreign node, quotas and no retired code execution",
+        "tests/test_v2_source_reports.py:withheld/prose/missing/link/oversize/stale dependency failures"
+      ],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-04",
+      "title": "DevSecOps-Kontrollen modellieren",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports automation/document-controls/open-gaps/pipeline-baseline from committed models; explicit declared placement view, no model editing",
+        "reports candidate-maturity preserves existing non-normative candidate mapping and human review boundary"
+      ],
+      "positive_tests": [
+        "tests/test_v2_model_reports.py:original file bytes and explicit existing placement fields"
+      ],
+      "negative_tests": [
+        "tests/test_v2_model_reports.py:missing/ambiguous/level/duplicate/empty model failures"
+      ],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-05",
+      "title": "DevSecOps-Kontrollen auswerten",
+      "state": "in_progress",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-06",
+      "title": "OPA-Pr\u00fcfregeln ausf\u00fchren",
+      "state": "in_progress",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-07",
+      "title": "Architektur-Governance modellieren",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-08",
+      "title": "Architektur-Bereitschaft bewerten",
+      "state": "in_progress",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-09",
+      "title": "Nachweise sammeln und vereinheitlichen",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "pipeline-evidence context/pipeline/all preserves original declared environment views and exact evidence/gate wires from retained bounded bytes; no execution or approval claim",
+        "vulnerability-evidence create/inspect: exact original local scan normalization and trust wires from retained scan/subject/declared metadata; no scanner or native identity verification"
+      ],
+      "positive_tests": [
+        "tests/test_v2_pipeline_evidence.py:16 frozen V1 cases/48 whole JSON wires, all four original native environment profiles and offline replay",
+        "tests/test_v2_local_vulnerability.py:11 whole original V1 JSON wires from 21 actual frozen CLI cases"
+      ],
+      "negative_tests": [
+        "tests/test_v2_pipeline_evidence.py:unknown environment fields, byte/output changes, foreign nodes, quotas, forged authority and explicit local finding exit",
+        "tests/test_v2_local_vulnerability.py:10 original invalid cases, byte/output/member changes, links, quotas, finite metadata and fabricated authority"
+      ],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-10",
+      "title": "Baselines ver\u00f6ffentlichen und konsumieren",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-11",
+      "title": "Ergebnisse zentral aufnehmen",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-12",
+      "title": "Ergebnisgeschichte sch\u00fctzen",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-13",
+      "title": "Vertrauen in Nachweise bewerten",
+      "state": "in_progress",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-14",
+      "title": "Replay und Attestierungen untersuchen",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports replay-triage preserves historical Trust and latest selection; remaining attestation actions open"
+      ],
+      "positive_tests": [
+        "tests/test_v2_candidate_health_reports.py:original V1 output bytes, attempt lifecycle and window semantics"
+      ],
+      "negative_tests": [
+        "tests/test_v2_candidate_health_reports.py:empty/malformed/duplicate/time/window/resealed-parameter guards"
+      ],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-15",
+      "title": "Sammlungsfehler behandeln",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports intake-health projects committed attempts/events/indexes with explicit time and window; current private queue health separate"
+      ],
+      "positive_tests": [
+        "tests/test_v2_candidate_health_reports.py:original V1 output bytes, attempt lifecycle and window semantics"
+      ],
+      "negative_tests": [
+        "tests/test_v2_candidate_health_reports.py:empty/malformed/duplicate/time/window/resealed-parameter guards"
+      ],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-16",
+      "title": "Operative \u00c4nderungen \u00fcber PRs ver\u00f6ffentlichen",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-17",
+      "title": "Status anzeigen und untersuchen",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-18",
+      "title": "Einf\u00fchrung und Betriebsreife bewerten",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "reports portfolio preserves committed registry/index/previous-projection and explicit clock; remaining readiness/live acceptance open",
+        "reports configuration requires explicit adapter profile for legacy central-intake literal source signatures; no effective/live configuration claim",
+        "reports blocking-readiness/blocking-alignment preserve committed dependencies and explicit clock; inner approval/risk labels confer no authority",
+        "source-inspection integration/onboarding from retained exact consumer Git snapshots and explicit legacy signature profile; no live configuration/identity/approval claim",
+        "canonical-ci-signatures-v2 orders existing CI inputs before the original checks; legacy profile preserves original filesystem order"
+      ],
+      "positive_tests": [
+        "tests/test_v2_portfolio_reports.py:original bytes, stable timestamps and changed freshness",
+        "tests/test_v2_configuration_reports.py:original positive/negative wires and explicit profile",
+        "tests/test_v2_blocking_reports.py:original two JSON files, committed dependencies and legacy mode reading",
+        "tests/test_v2_source_inspection.py:actual frozen V1 CLI bytes, exact Git proofs, explicit clock and offline replay",
+        "tests/test_v2_source_inspection.py:whole original logic on explicit ordered inputs and replay after directory-entry recreation"
+      ],
+      "negative_tests": [
+        "tests/test_v2_portfolio_reports.py:missing/empty context and finite file/aggregate capacity guards",
+        "tests/test_v2_configuration_reports.py:missing/forged/implicit profile, native facts and immutable-record guards",
+        "tests/test_v2_blocking_reports.py:pre-model time, expired/incomplete/missing/orphan risks and private authority/tamper guards",
+        "tests/test_v2_source_inspection.py:dirty/poison source, changed/resealed proofs, profiles, foreign node, quotas and output/authority mutations",
+        "tests/test_v2_source_inspection.py:resealed legacy/canonical kind mismatch or incompatible output conversion rejected"
+      ],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-19",
+      "title": "Betrieb und eigene Sicherheit \u00fcberwachen",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-20",
+      "title": "Reviews, Validierung und Kommunikation unterst\u00fctzen",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "provenance private record/import/index/check/inspect preserves original declared association wires; no verified execution or approval",
+        "agent-usage original metadata-only selection statistics from retained operator log or committed legacy Git data; no execution or human approval inferred",
+        "review-quality private prepare/grade/inspect preserves original synthetic packets and structured-label scores; explicit retained traces remain unauthenticated"
+      ],
+      "positive_tests": [
+        "tests/test_v2_evidence_agent_provenance.py:actual original record/index/conflict/validator wires and immutable private generations",
+        "tests/test_v2_agent_usage.py:actual frozen V1 seven cases/fourteen complete wires, original clock/count semantics and immutable log replay",
+        "tests/test_v2_review_quality.py:26 original complete prepared-file hashes, ten grading cases and original custom dataset capability"
+      ],
+      "negative_tests": [
+        "tests/test_v2_evidence_agent_provenance.py:source conflicts, malformed/schema-invalid data, stale reports, traversal, foreign nodes, quotas and no inherited authority",
+        "tests/test_v2_agent_usage.py:invalid JSONL, missing versus empty origin, source/output tampering, foreign node, forged authority and quotas",
+        "tests/test_v2_review_quality.py:unknown/stale/duplicate inputs, unattached host paths, invalid or reused trace measurements, tampering, foreign bindings and early quotas"
+      ],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-21",
+      "title": "Findings, Entscheidungen und Ma\u00dfnahmen im Lifecycle verfolgen",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    },
+    {
+      "id": "FP-22",
+      "title": "Dokumentation nach Implementierungs-Merges abgleichen",
+      "state": "pending",
+      "v2_capabilities": [],
+      "positive_tests": [],
+      "negative_tests": [],
+      "installed_evidence": [],
+      "comparison_evidence": []
+    }
+  ],
+  "entrypoints": [
+    {
+      "v1_path": "scripts/adapt_document_consistency_provider_response.py",
+      "v1_git_blob": "408e2de6c43618718e4c304193fabafd1d20ec75",
+      "v1_sha256": "fc4b63e54ef5145d0e684fa9dd3c838b9acd090000841f19309e32b20b2eb37c",
+      "mode": "100755",
+      "declared_symbols": [
+        "ProviderAdapterError",
+        "adapt_provider_response",
+        "main",
+        "parse_args",
+        "read_json",
+        "validate"
+      ],
+      "cli_options": [
+        "--config",
+        "--input",
+        "--model",
+        "--output",
+        "--prompt-version",
+        "--provider",
+        "--review-id",
+        "--source-manifest-sha256",
+        "--truncated"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/dcr_response.py:adapt_provider_response",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/assess_governance_repository_security.py",
+      "v1_git_blob": "7a4c7ed67114485632e84b70ff0c6f886ff91c71",
+      "v1_sha256": "c825703be300f4f4f9e5407645b210d56348987dd5dc437375ecc047f48a7c60",
+      "mode": "100644",
+      "declared_symbols": [
+        "active_rulesets",
+        "assess",
+        "collect_live",
+        "criterion_detail",
+        "evidence_refs",
+        "gh_api",
+        "main",
+        "observed_values",
+        "remediation_steps",
+        "render_markdown",
+        "ruleset_rule",
+        "run",
+        "scan_codeowners",
+        "scan_workflows",
+        "tag_verification",
+        "utc_now",
+        "workflow_files"
+      ],
+      "cli_options": [
+        "--fail-on-findings",
+        "--model",
+        "--observation",
+        "--observed-at",
+        "--output-json",
+        "--output-md",
+        "--repository"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/bootstrap_source_document_intake_env.sh",
+      "v1_git_blob": "68232accdfcdb6571adb5645d1b03c3cf4ee7d64",
+      "v1_sha256": "90557ea916dc6e6fb6166bc0fbbd0f3fcb81c8df0476dbdfafad2af9de4fb5d8",
+      "mode": "100755",
+      "declared_symbols": [],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/bootstrap_validation_env.sh",
+      "v1_git_blob": "297fce8bd097fc05cd5cb9e11e69502dd4e08f3f",
+      "v1_sha256": "c80a7f961c31d2578b6200973465371dae85a859fef433ae5ed69062e42cdef4",
+      "mode": "100755",
+      "declared_symbols": [],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/check_lifecycle_personal_channel.py",
+      "v1_git_blob": "9639f5cc07ae1f766e9a30b026605531e65a55cd",
+      "v1_sha256": "2e87fc4eb6b1062d9d5954eebe9897135ea2bf2370e2611aaeb632c55f473e19",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--output",
+        "--previous-capture",
+        "--replay"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/check_public_artifact_hygiene.py",
+      "v1_git_blob": "56f836fa810c44094cf187e4550e999bfb0cbe43",
+      "v1_sha256": "1b1e08f31533374d3fe4ba9b3ad9ca7ae478dfe7e2843eb009074e5525ebe53a",
+      "mode": "100644",
+      "declared_symbols": [
+        "file_texts",
+        "main"
+      ],
+      "cli_options": [
+        "--forbidden-term",
+        "paths"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/check_repo_governance_integration.py",
+      "v1_git_blob": "c5e4f6cdef8620b37ce325dbd1ece0cd33db1a1d",
+      "v1_sha256": "e9ee576e413613fb1611cd0819c0acf7d9e8af448e3c2e9fb257752c32d2d34d",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_check",
+        "iter_ci_files",
+        "load_texts",
+        "main"
+      ],
+      "cli_options": [
+        "--output-file",
+        "--target-repo"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/source_inspection_application.py:render_files",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/check_repository_onboarding_readiness.py",
+      "v1_git_blob": "1c3feb856c3c220ccff0e7c39e6104b0224c4506",
+      "v1_sha256": "de4a798f7c7c3a1c212fd48a0cae2bf0bfbcdeb06794ac15297b7879be4e8828",
+      "mode": "100644",
+      "declared_symbols": [
+        "assess_repository",
+        "collect_files",
+        "main",
+        "make_check",
+        "read_text",
+        "relative_paths",
+        "render_markdown",
+        "run_integration_scanner"
+      ],
+      "cli_options": [
+        "--output-json",
+        "--output-md",
+        "--repository-id",
+        "--target-repo"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/source_inspection_application.py:render_files",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/collect_architecture_release_input.py",
+      "v1_git_blob": "67fc6ab9d20bec983a7096e8a6f4813128ccf5eb",
+      "v1_sha256": "75855e8d40f507d898692f829cc0c4f42074566476fbb6247b47f8105c03922e",
+      "mode": "100755",
+      "declared_symbols": [
+        "any_exists",
+        "collect",
+        "compact",
+        "evidence_any_approved",
+        "evidence_any_present",
+        "evidence_approved",
+        "evidence_present",
+        "evidence_ref",
+        "evidence_refs",
+        "evidence_refs_for_types",
+        "evidence_types_for_coarse",
+        "exists",
+        "git_commit",
+        "load_app_evidence",
+        "main",
+        "read_text",
+        "score",
+        "summarize_detailed_evidence"
+      ],
+      "cli_options": [
+        "--baseline",
+        "--output",
+        "--release-id",
+        "--repo"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/architecture_collection.py:collect",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/collect_devsecops_release_input.py",
+      "v1_git_blob": "ae30397beaf57efc88f30fea1694d7231e8c9c4c",
+      "v1_sha256": "d964f372daf163cecf11ce02edc6ef73938d62135cc364aaa0ce3682e31e5be7",
+      "mode": "100644",
+      "declared_symbols": [
+        "any_exists",
+        "collect",
+        "git_commit",
+        "load_evidence",
+        "main"
+      ],
+      "cli_options": [
+        "--output",
+        "--release-id",
+        "--repo"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/controls_collection.py:collect",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/collect_vulnerability_scan_evidence.py",
+      "v1_git_blob": "8e69ed8a8296f4d38e727040e960a9a1c4a0630a",
+      "v1_sha256": "b5f28eae88fe1614af21fddc3b9f21e069834afddcb697397a6726ef51cea3c0",
+      "mode": "100644",
+      "declared_symbols": [
+        "collect",
+        "load_json",
+        "main",
+        "scan_observations",
+        "scanner_identity",
+        "utc_now",
+        "write_json"
+      ],
+      "cli_options": [
+        "--artifact-name",
+        "--captured-at",
+        "--commit-id",
+        "--evaluated-subject-path",
+        "--output",
+        "--produced-at",
+        "--repository-id",
+        "--run-attempt",
+        "--run-id",
+        "--scan-path",
+        "--source-provider",
+        "--source-uri",
+        "--workflow-name"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/vulnerability_application.py:run",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/consumer_intake.py",
+      "v1_git_blob": "8014321180f69386a160bb99f454831fc6f333f0",
+      "v1_sha256": "88327fdc6c525b9f6188b26c06b8bc8a5486b16e8025a29e8176ddc6a55928bf",
+      "mode": "100644",
+      "declared_symbols": [
+        "client",
+        "configuration",
+        "main"
+      ],
+      "cli_options": [
+        "--attempt",
+        "--batch-id",
+        "--config",
+        "--destination",
+        "--domain",
+        "--projection",
+        "--repository",
+        "--root",
+        "--run-id",
+        "action"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/control_evaluation.py",
+      "v1_git_blob": "61c2284744ba79e2b48ffeaf234294ce144c9d93",
+      "v1_sha256": "aca5e421098dfee4ad9039d683d97f9f99f9d653327e0ba14453e4a1770fa082",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_decision",
+        "evaluate_policies",
+        "evaluate_single_control",
+        "generate_control_evaluation_report",
+        "is_release_context",
+        "load_controls",
+        "load_json",
+        "load_yaml",
+        "manual_or_hybrid_decision",
+        "nested_get",
+        "platform_level_rank",
+        "render_control_evaluation_markdown",
+        "run"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/control_evaluation.py:generate_control_evaluation_report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/deploy_vm.py",
+      "v1_git_blob": "4f39d90b455ff2c56f8433b6bd82e6de247b7e74",
+      "v1_sha256": "77eddcc1faeaf26b28781af2149011b68a0eaedeb7e20d4475971100d3983cb9",
+      "mode": "100644",
+      "declared_symbols": [
+        "configuration",
+        "main"
+      ],
+      "cli_options": [
+        "--ask-become-pass",
+        "--config",
+        "--draft-id",
+        "--revision",
+        "--source",
+        "action"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/deploy_vm.sh",
+      "v1_git_blob": "d07db8a2d43c8f88b61462cc498747aa58f596cd",
+      "v1_sha256": "e6f70aa7b3a83e8f71292c2016048f22056114634676549cd1e902e70ee35e25",
+      "mode": "100755",
+      "declared_symbols": [],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/dispatch_governance_agents.py",
+      "v1_git_blob": "2e22df7723b4f26c3c809a563f8ac58ffabd78a0",
+      "v1_sha256": "e4290ae0a582f095514aee883a935ebe3b451e4d112dbf75384ac4246738ba49",
+      "mode": "100644",
+      "declared_symbols": [
+        "activate_continuous_recording",
+        "activate_recording",
+        "append_usage_event",
+        "build_dispatch",
+        "build_usage_event",
+        "changed_files_from_git",
+        "consume_recording_event",
+        "load_recording_state",
+        "load_usage_events",
+        "main",
+        "now_utc",
+        "parse_args",
+        "recording_usage_log",
+        "render_recording_status",
+        "render_text",
+        "render_usage_summary",
+        "repo_relative",
+        "save_recording_state",
+        "summarize_usage"
+      ],
+      "cli_options": [
+        "--base-ref",
+        "--check-review",
+        "--goal",
+        "--json",
+        "--log-usage",
+        "--plan-output",
+        "--platform",
+        "--provider",
+        "--provider-review",
+        "--record-continuous",
+        "--record-next",
+        "--recording-status",
+        "--results-template",
+        "--review-results",
+        "--run-type",
+        "--source",
+        "--usage-log",
+        "--usage-state",
+        "--usage-summary",
+        "paths"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/evaluate_agent_reviews.py",
+      "v1_git_blob": "5e34d60bf09ddfd48287700fee04b7264b92f3cc",
+      "v1_sha256": "5b3e6f68f2f407c8c1d709205f34cdc3cedba384ec6524eefae40fb5d9261bc1",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--dataset",
+        "--output",
+        "--prepare",
+        "--responses"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/review_quality_application.py:create",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/evaluate_document_consistency_semantic_report.py",
+      "v1_git_blob": "a0bc10ed59c98dbdd2d5855b32f809882fccfc5b",
+      "v1_sha256": "3b1298151626f27a33823307783bf25f563951db90b5d4cb5d944c126017ea0b",
+      "mode": "100755",
+      "declared_symbols": [
+        "SemanticEvaluationError",
+        "evaluate",
+        "evidence_keys",
+        "main",
+        "read_json",
+        "require_schema"
+      ],
+      "cli_options": [
+        "--catalog",
+        "--output",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/dcr_evaluation.py:evaluate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/export_repository_sbom.py",
+      "v1_git_blob": "9a8832adbaa642d0d112725a516f7adde2d252a2",
+      "v1_sha256": "acbb6441bd8fd74e1974ad40d755466e1882d6a5fb3c5dcef0880046d24adf3b",
+      "mode": "100644",
+      "declared_symbols": [
+        "NoRedirect",
+        "SafeDownloadRedirect",
+        "api_json",
+        "api_redirect",
+        "current_default_branch_sha",
+        "download_sbom",
+        "generate",
+        "main",
+        "read_limited",
+        "request_headers",
+        "validate_download_url",
+        "validate_spdx"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_agent_usage_snapshot.py",
+      "v1_git_blob": "319c26306862c108e36445ba25cf54261579fa05",
+      "v1_sha256": "06e7b47c82e9c24cfc478de2fc9fa708506f64be8f12511d59323f261971dd3f",
+      "mode": "100755",
+      "declared_symbols": [
+        "build_snapshot",
+        "change_area",
+        "count_rows",
+        "latest_event_summary",
+        "main",
+        "now_utc",
+        "parse_args",
+        "render_markdown",
+        "repo_relative",
+        "sorted_counts",
+        "table_lines",
+        "write_json",
+        "write_text"
+      ],
+      "cli_options": [
+        "--generated-at",
+        "--latest-count",
+        "--output-json",
+        "--output-md",
+        "--usage-log"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/agent_usage_application.py:create",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_architecture_governance_report.py",
+      "v1_git_blob": "2d5d015a09d3f3b07dd826142f2e0111d1b68358",
+      "v1_sha256": "adfc6ca7eabd24f41f9c34779f6cb9ef91444749e2f59ea8482ed6aabfeaf7f4",
+      "mode": "100644",
+      "declared_symbols": [
+        "coarse_evidence_exists",
+        "detailed_evidence_advisories",
+        "load_architecture",
+        "load_detailed_evidence",
+        "load_remediations",
+        "load_target_summary",
+        "main",
+        "marker_score",
+        "match_remediations",
+        "recommendation_applies",
+        "render_advisories_markdown",
+        "render_detailed_evidence_markdown",
+        "render_markdown",
+        "run_opa"
+      ],
+      "cli_options": [
+        "--input",
+        "--output-json",
+        "--output-md"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/architecture_assessment.py:evaluate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_architecture_results_index.py",
+      "v1_git_blob": "7f839af67723bb7358ea55248bf3a745106f8636",
+      "v1_sha256": "573091039aa75af931dc3637900a2fcae8c58e3750adf31d7f7bc4913d5abc98",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_json",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/results_projection.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_architecture_source_replacement_assessment.py",
+      "v1_git_blob": "d3e78985390bc67e0d1eb06e01f3f204c04239d4",
+      "v1_sha256": "17a96b320cf61f17ee627ad80a3c90b6c91a1f529f13f2eaa8f411a84cd7a342",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_report",
+        "classify",
+        "compare",
+        "document_profile",
+        "extract_doc_id",
+        "extract_headings_and_tables",
+        "extract_title",
+        "load_yaml",
+        "main",
+        "normalize",
+        "overlap_ratio",
+        "participates_in_replacement_assessment",
+        "read_text",
+        "rel",
+        "render_markdown",
+        "words"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_source_replacement.py:build_report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_architecture_traceability_csv.py",
+      "v1_git_blob": "524e96df7c8f3348e33fefaf903f6d94f88a7679",
+      "v1_sha256": "08217ded551fe3481c81eff7d5c371d57e6d7a0fd318252237820335fcb3f3eb",
+      "mode": "100755",
+      "declared_symbols": [
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/control_reporting.py:architecture_traceability",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_automation_report.py",
+      "v1_git_blob": "e6389a4acfecaf2a72459ae7d47ff8fe9a54ad4f",
+      "v1_sha256": "45ffc443906b5a3a785c38f0b36b7dc50de53a827ef7a2510815b4935058c298",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_model_followup.py:automation",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_blocking_mode_alignment.py",
+      "v1_git_blob": "64f5bb283c2ca55fbbf3a758dd846983072affeb",
+      "v1_sha256": "ed8114f98110182d2198cc85b3c6ec8a496d091e84209ce8717e600c6090c974",
+      "mode": "100755",
+      "declared_symbols": [
+        "assess",
+        "failed_gap_ids",
+        "main",
+        "parse_timestamp"
+      ],
+      "cli_options": [
+        "--as-of"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_blocking_alignment.py:generate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_blocking_readiness.py",
+      "v1_git_blob": "e3787c9f9a769ad850d5b1a28f06dac7ed1d2ea4",
+      "v1_sha256": "557e690d5024a8a531a82b66ac4760dfe3420db27f30f9e3d2178c59ccc05aac",
+      "mode": "100755",
+      "declared_symbols": [
+        "assess",
+        "criterion",
+        "load_json",
+        "main",
+        "repo_map"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_blocking_readiness.py:generate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_control_coverage_report.py",
+      "v1_git_blob": "98cfafddc4931aceeb5474cf19cce3da8f8d6fc3",
+      "v1_sha256": "b1b3bee1a081c22e6651f709615274e4f840658ebc9639a5e5f28b55e5bfea65",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_controls",
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/control_reporting.py:control_coverage",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_control_evaluation_report.py",
+      "v1_git_blob": "e0299164b5528576dcb7274cbf1171a124466c03",
+      "v1_sha256": "739d55941e55942fb7c239320af41794cd7a5f54171cad4bf1ac0f12fd51e64a",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--input-file",
+        "--markdown-file",
+        "--output-file"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/domain_reporting.py:domain_files",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_devsecops_governance_report.py",
+      "v1_git_blob": "805d9817d67c228901cc1bf749017188d068c24e",
+      "v1_sha256": "3feb9529d83e203c08b6d149b632b7c4e4ca01944f3fd8a54ab5976c96368e3d",
+      "mode": "100644",
+      "declared_symbols": [
+        "main",
+        "render_markdown",
+        "run_opa"
+      ],
+      "cli_options": [
+        "--fail-on-findings",
+        "--input",
+        "--output-json",
+        "--output-md"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/release_assessment.py:evaluate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_document_consistency_review_manifest.py",
+      "v1_git_blob": "79c965ec9347bfbd2345e2a872e3628405a7081c",
+      "v1_sha256": "3ef23d71b2e3f4bf9f451a6f6d46f0805344c0b7dbd262b799f4d6719c17d715",
+      "mode": "100644",
+      "declared_symbols": [
+        "ManifestError",
+        "build_manifest",
+        "load_register",
+        "main",
+        "parse_args",
+        "repository_revision",
+        "sha256_file",
+        "write_manifest"
+      ],
+      "cli_options": [
+        "--output",
+        "--source-id"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/dcr_manifest.py:build_manifest",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_document_consistency_review_model.py",
+      "v1_git_blob": "f03c0a284f259d94a233c76e2ffd7a57de12085b",
+      "v1_sha256": "abd2ebbac17c7c3081332478e9e65c61f60360cb7c837ae0a901b143e86e7861",
+      "mode": "100644",
+      "declared_symbols": [
+        "InventoryError",
+        "extract_identifiers",
+        "extract_requirement_rows",
+        "generate_model",
+        "load_json",
+        "main",
+        "parse_args",
+        "sha256_file",
+        "validate_schema"
+      ],
+      "cli_options": [
+        "--manifest",
+        "--output"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/generate_document_consistency_review_model.py:generate_model",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_document_control_matrix.py",
+      "v1_git_blob": "2dc972dbbf50f4001620bf267d44a4a0bed9251f",
+      "v1_sha256": "193286659b1a1ff7eb5b7d5e3e842b33da5eaa0c311552045cddbd575becc6ca",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_model_followup.py:document_controls",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_end_to_end_governance_report.py",
+      "v1_git_blob": "c2a1b0324702fe832e18797b93c2c1e1c84c1da6",
+      "v1_sha256": "75fe2b4712a17455892fa70e17fc47648c1861aeb1d49d216a70eaacab5bf26f",
+      "mode": "100644",
+      "declared_symbols": [
+        "architecture_summary",
+        "devsecops_summary",
+        "load_json",
+        "main",
+        "render_markdown"
+      ],
+      "cli_options": [
+        "--architecture-json",
+        "--architecture-md-ref",
+        "--devsecops-json",
+        "--devsecops-md-ref",
+        "--output-json",
+        "--output-md"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/combined_reporting.py:build",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_evidence_agent_provenance_index.py",
+      "v1_git_blob": "3cb7fa25906e780610b231538dea4b8cd42c4cf2",
+      "v1_sha256": "54d5f684d5080038b2bc9cce336d762b53c9ec22abecdd918e62d44b32d00bd8",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/provenance_application.py:ProvenanceWorkspace.report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_change_impact_report.py",
+      "v1_git_blob": "f98faf6a39367d227911aac78018a345a6a67838",
+      "v1_sha256": "1dfc539a9f8df8ba1552da2ed5643eaef92a3977fcb4d8775aa5af35972e0707",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_report",
+        "ensure_lineage_report",
+        "load_json",
+        "load_yaml",
+        "main",
+        "rel",
+        "release_consideration",
+        "render_markdown",
+        "review_lanes",
+        "source_state",
+        "suggested_validation"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_impact.py:build_report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_compliance_result.py",
+      "v1_git_blob": "fa9bdf8c83a29357ec7771c13712e77c1320ea0d",
+      "v1_sha256": "0ad7904e4eba93bac6f742f0094fa2b8b2e7145c37f0c05feabb41abadbfbfef",
+      "mode": "100644",
+      "declared_symbols": [
+        "command_status",
+        "display_path",
+        "evaluate_policy",
+        "main",
+        "run"
+      ],
+      "cli_options": [
+        "--input-file",
+        "--output-file",
+        "--skip-unit-tests",
+        "--target-repo"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_graph.py",
+      "v1_git_blob": "b4805fb105f03c917f67353ee5cd223b26408d6f",
+      "v1_sha256": "769953990aa7946fa0409fccb313472e5e93e6f4f6fc1625f9684a6f7df17cb4",
+      "mode": "100644",
+      "declared_symbols": [
+        "GraphBuilder",
+        "add_lineage",
+        "add_result_index",
+        "add_typed_evidence",
+        "build_graph",
+        "graph_timestamp",
+        "load_json",
+        "load_snapshot",
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_graph.py:build_graph",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_lifecycle_exceptions.py",
+      "v1_git_blob": "127b58aa0d31bae9a02337da912e72ab54fb6a8e",
+      "v1_sha256": "2821f676ebb2482cca2feab0c5109b51d5b0298c16d3c7906783a736753204df",
+      "mode": "100644",
+      "declared_symbols": [
+        "generate",
+        "main",
+        "render_report"
+      ],
+      "cli_options": [
+        "--as-of",
+        "--ledger",
+        "--output",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_lifecycle_index.py",
+      "v1_git_blob": "3c994350dc84e610499cd04697a5812a4fb6ab0a",
+      "v1_sha256": "59b3571afeac364764ee23d40399f388b940b2cc3f0d0a8c87751a366f0f22af",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--as-of",
+        "--ledger",
+        "--output"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_lifecycle_overview.py",
+      "v1_git_blob": "3fe5b09a6aa411d094ae404b36b790eb780cdfe0",
+      "v1_sha256": "0fd464a7a05a74ec6de8393d4323651b58d2ced8d03742f09b3dae046d569c38",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_overview",
+        "generate",
+        "main",
+        "render_report",
+        "summarize",
+        "tally",
+        "validate_overview"
+      ],
+      "cli_options": [
+        "--as-of",
+        "--output",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_lifecycle_pilot.py",
+      "v1_git_blob": "db79047d96e795b359ad567a6b76176eb984bb8b",
+      "v1_sha256": "db8f9541db65aafc3544b8182bebfdc5b295ed8134c03b0d43be02d13cae6079",
+      "mode": "100644",
+      "declared_symbols": [
+        "generate",
+        "main",
+        "render_report"
+      ],
+      "cli_options": [
+        "--as-of",
+        "--ledger",
+        "--output",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_lifecycle_viewer.py",
+      "v1_git_blob": "ce3a3f7896bd059c25208bd5853bcd6237e722e5",
+      "v1_sha256": "98763089ef2c2328670695da339573346af746d92697a08ffa26cc4b8c886d65",
+      "mode": "100644",
+      "declared_symbols": [
+        "generate",
+        "main",
+        "render_viewer",
+        "safe_json",
+        "validate_viewer"
+      ],
+      "cli_options": [
+        "--output"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_governance_traceability_csv.py",
+      "v1_git_blob": "8943357bd7de0c44f7ad12586e996690e352d70d",
+      "v1_sha256": "fa747a86bd8ee1b434e4fd6b130bcaedc59b86c122f12282662797eb0bd09c15",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/control_reporting.py:governance_traceability",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_harmonized_requirements_maturity_report.py",
+      "v1_git_blob": "4cfed46628ebeb42f85c50289a744d410411d993",
+      "v1_sha256": "4d85fedd1efa4a0415cf9f1d81187a66c37ed8ed4692c389b8fb5c9a4a174e11",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_report",
+        "load_yaml",
+        "main",
+        "render_markdown"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_candidate_maturity.py:generate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_implemented_requirement_migration.py",
+      "v1_git_blob": "bd6a66762e3c05f70d20a6afdf625633140c8122",
+      "v1_sha256": "e80f6d2a371da8fad3c726bfeb4290cb88d2001708db97c42800a0d2d9eca81d",
+      "mode": "100644",
+      "declared_symbols": [
+        "artifact",
+        "build",
+        "candidate_rows",
+        "file_hash",
+        "inventory",
+        "load_yaml",
+        "main",
+        "normalized",
+        "render_markdown"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_intake_health.py",
+      "v1_git_blob": "af48c689b33036c732b63ff98cadc901d84f8150",
+      "v1_sha256": "a070919aaf9327ab69ec9931843922af287b5cccdbfe8c01f27ac000c510e602",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_dimensions",
+        "build_latest_results",
+        "build_payload",
+        "dimension_value",
+        "event_metrics",
+        "load_json",
+        "load_json_files",
+        "main",
+        "nearest_rank",
+        "parse_timestamp",
+        "utc_timestamp"
+      ],
+      "cli_options": [
+        "--as-of",
+        "--window-days"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_intake_health.py:generate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_lifecycle_pilot_actions.py",
+      "v1_git_blob": "74e44eba8f3f8f5f1504b524c5642b7fea3bb32f",
+      "v1_sha256": "952c47e1d4049ba1844e3f3e839622a5c80e75dd0686505bf01296b207c8a25a",
+      "mode": "100644",
+      "declared_symbols": [
+        "render",
+        "validate"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_lifecycle_pilot_validation.py",
+      "v1_git_blob": "8b5e860a619154efff88e2e6cce4ec615fd1f1d3",
+      "v1_sha256": "d2e8efff2f8326b42bb49414bf3a399b08fd13cbf0b27ed56b1acbd148db2fb0",
+      "mode": "100644",
+      "declared_symbols": [
+        "main",
+        "render",
+        "validate"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_multi_consumer_readiness.py",
+      "v1_git_blob": "4e79485bd965325889708cec627af5211e53e866",
+      "v1_sha256": "cf3a113d3fc3acfa3552ebf67c07a8ddf26fd57d5b4518d530c22680566f50e6",
+      "mode": "100644",
+      "declared_symbols": [
+        "add_check",
+        "build_report",
+        "expected_results_path",
+        "index_repositories",
+        "load_json",
+        "main",
+        "render_markdown"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_multi_consumer.py:generate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_open_gap_report.py",
+      "v1_git_blob": "f5155feadd039a701bc5377aebf0617e50bdf97e",
+      "v1_sha256": "2b5cc8ae3ace96de187c9b9805d09d56018bbdb1bd3ff9ff5cea424a89cd1d5c",
+      "mode": "100644",
+      "declared_symbols": [
+        "collect_controls",
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_model_followup.py:open_gaps",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_operations_report.py",
+      "v1_git_blob": "7573663d6237d6fba1e7907ddbb7ade43ee1d058",
+      "v1_sha256": "a390f8bc7cac07201efef4623ab50331e6d8793c0a418bca425b9a40ed493448",
+      "mode": "100644",
+      "declared_symbols": [
+        "age_hours",
+        "build_report",
+        "collect",
+        "command_json",
+        "main",
+        "render_markdown",
+        "timestamp"
+      ],
+      "cli_options": [
+        "--as-of",
+        "--config",
+        "--observation",
+        "--output-dir"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_personal_channel_evidence.py",
+      "v1_git_blob": "5538625afe37e6d840ad50993e60ed6a80606633",
+      "v1_sha256": "eb85d86ed1202b3647c26d69f0a221c404466116700e6f2acef4c3de42394f56",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_captures",
+        "prior_comments",
+        "provider_projection",
+        "render",
+        "validate",
+        "verify_new_captures"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_personal_channel_probe.py",
+      "v1_git_blob": "2baeb05c23cd7b99e6c421ad2928fcfd93d14cd3",
+      "v1_sha256": "39723a275fe68e256f34b1934b364d34b2ff57b03aa4534a2cbd5acab078b25e",
+      "mode": "100644",
+      "declared_symbols": [
+        "render",
+        "validate"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_pipeline_baseline_report.py",
+      "v1_git_blob": "f7cfa9d69fdcca58d676934ef4b93c100aaaf24c",
+      "v1_sha256": "a6d2c765de9ef52c546774cf6826113bd5ca0f3a0484b9eaf6497a35c8067d4c",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_model_followup.py:pipeline_baseline",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_pipeline_evidence.py",
+      "v1_git_blob": "ea3c55dbc4a6ba91019dc9f2385626a8cb4d4764",
+      "v1_sha256": "e3547f00a9358a6470ff12471ee8e95a1520515b1cc0a6b9c0714acf8a11d975",
+      "mode": "100644",
+      "declared_symbols": [
+        "as_bool",
+        "load_json",
+        "load_scan_max_severity",
+        "main",
+        "merge_context",
+        "platform_context",
+        "run_purpose",
+        "sha256",
+        "write_json"
+      ],
+      "cli_options": [
+        "--artifact-path",
+        "--artifact-type",
+        "--branch-protection-status",
+        "--direct-push-allowed",
+        "--gate-output",
+        "--governance-mode",
+        "--max-allowed-severity",
+        "--output",
+        "--platform",
+        "--platform-context-file",
+        "--protected-branch",
+        "--release-candidate",
+        "--review-required",
+        "--sbom-path",
+        "--signature-path",
+        "--vulnerability-scan-path"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/pipeline_application.py:create",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_platform_context.py",
+      "v1_git_blob": "ec3cec69bbbb75130f499e2c59ddd063ab67b8d0",
+      "v1_sha256": "ed0d8eff3a2a9f5e9494ad9315aa5b4e83c7da109f92a4c35ae85629ef69fb0f",
+      "mode": "100644",
+      "declared_symbols": [
+        "bamboo_context",
+        "bitbucket_pipelines_context",
+        "context_for",
+        "github_actions_context",
+        "jenkins_context",
+        "main",
+        "write_json"
+      ],
+      "cli_options": [
+        "--output",
+        "--platform"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/providers/pipeline_environment.py:context_for",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_portable_candidate_index.py",
+      "v1_git_blob": "e10422c6605d9652ecd355d2b8e57c2d7feead7e",
+      "v1_sha256": "3abacb961af9b15ca8870d2d76af37061309ace107fc102db38db6e2e686ddf8",
+      "mode": "100644",
+      "declared_symbols": [],
+      "cli_options": [
+        "--output",
+        "--root"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_portfolio_onboarding_status.py",
+      "v1_git_blob": "aa896982e8a69e18d17d1400836b5dfea0645770",
+      "v1_sha256": "992927fe7dad18b0c916034d17dd37fb2b3888d102afb26c0e502f9536f5100a",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_payload",
+        "by_repository",
+        "freshness",
+        "load",
+        "main",
+        "parse_timestamp"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_portfolio.py:generate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_pra_requirement_platform_review.py",
+      "v1_git_blob": "8f4dc850119ecf35482fc69404cf0d2a019d4909",
+      "v1_sha256": "5160bb924bd38c8411a91f32b5d50299ae489f74776da4989ae1ac024b800a79",
+      "mode": "100644",
+      "declared_symbols": [
+        "build",
+        "classify_form",
+        "load_yaml",
+        "main",
+        "render"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_replay_triage_report.py",
+      "v1_git_blob": "384de00c992f0696cf8105afd7fe24050f9fffdf",
+      "v1_sha256": "967e30ccf3a95928d36e5ecdc684dd03d289ca517ea333bf79cb6479d4f37ac9",
+      "mode": "100755",
+      "declared_symbols": [
+        "build_report",
+        "choose_classification",
+        "distinct_typed_replay_context",
+        "evidence_type",
+        "guidance",
+        "latest_source_files",
+        "load_rows",
+        "main",
+        "relationship",
+        "render_markdown",
+        "replay_check",
+        "replay_history_for_triage"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_replay_triage.py:generate",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_repository_results_index.py",
+      "v1_git_blob": "ddcf1de8de99f1d2f8081ac53b2bc65dcbfb0156",
+      "v1_sha256": "aa01a77b51cf2fa9aadc5c7fe7fd7be5602591aeee91166ddbba1b029384164e",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_json",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/results_projection.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_source_document_intake_review_briefs.py",
+      "v1_git_blob": "bbbed51c3eb12a11f28a25be7cb7e5b13a388089",
+      "v1_sha256": "d444f389c52925c303c70408c698d7aa851414db0b9f2453a3498cfebd7c854d",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_brief",
+        "build_report",
+        "decision_options",
+        "decision_template",
+        "ensure_inputs",
+        "ensure_output_placeholders",
+        "load_json",
+        "main",
+        "rel",
+        "render_markdown",
+        "required_inputs",
+        "review_focus",
+        "run_generator"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_source_briefs.py:build_report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_source_document_intake_status.py",
+      "v1_git_blob": "2da5306158455f5a9ce3814c40db265bc365b502",
+      "v1_sha256": "4167d4709906c19ac4e93da6bdcd1441dedff2aea3912da853a278a9912270a7",
+      "mode": "100644",
+      "declared_symbols": [
+        "attention_level",
+        "build_report",
+        "ensure_inputs",
+        "ensure_output_placeholders",
+        "is_replacement_candidate",
+        "load_json",
+        "load_yaml",
+        "main",
+        "next_action",
+        "operational_artifacts",
+        "rel",
+        "render_counter_table",
+        "render_markdown",
+        "replacement_items_by_candidate",
+        "review_state",
+        "run_generator",
+        "similarity_assessment"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_source_intake.py:build_report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_source_document_process_status.py",
+      "v1_git_blob": "121f2af6b21cb03fd5bf558584ccbdcda0a22f98",
+      "v1_sha256": "517e4ea479a13770250aaa9b81fab5502b3e36b7433d96a757a619059ea08c4c",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_report",
+        "canonical_sha256",
+        "load_json",
+        "load_yaml",
+        "main",
+        "render_markdown",
+        "requirement_lifecycle_summary",
+        "sha256"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_source_process.py:build_report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_source_document_requirement_delta.py",
+      "v1_git_blob": "f1711027bbbdc49d403f84c0cd86f6f317b0ec0f",
+      "v1_sha256": "53e43c0ee639deafcb92cdd53fb55c457362c33e723e7570a0ecacbb98884b0a",
+      "mode": "100644",
+      "declared_symbols": [
+        "best_match",
+        "build_pair_delta",
+        "build_report",
+        "build_requirement_intake_inventory",
+        "clean_markdown",
+        "compare_requirements",
+        "delta_status",
+        "ensure_inputs",
+        "extract_requirements",
+        "format_identification_counts",
+        "likely_replacement_pairs",
+        "load_json",
+        "load_yaml",
+        "main",
+        "merge_impacts",
+        "normalize_statement",
+        "potential_impacts",
+        "rel",
+        "render_delta_table",
+        "render_markdown",
+        "requirement_identifier_index",
+        "requirement_intake_class",
+        "requirement_ref",
+        "requirement_strength",
+        "requirement_text",
+        "review_priority",
+        "run_generator",
+        "similarity",
+        "stable_id",
+        "tokens_from_normalized"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_requirement_delta.py:build_report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_source_lineage_report.py",
+      "v1_git_blob": "58d80a1ad3518de2239e71b0f44d5de9952a5f39",
+      "v1_sha256": "c6bc1f13c2792e593fd518265eba3c902cb3a2a9b4a3a221194b66f010548ad0",
+      "mode": "100644",
+      "declared_symbols": [
+        "add_lineage",
+        "architecture_lineage",
+        "build_report",
+        "devsecops_lineage",
+        "load_yaml",
+        "main",
+        "registered_source_records",
+        "rel",
+        "render_markdown"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/report_lineage.py:build_report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_status_viewer.py",
+      "v1_git_blob": "9adffe98803bb4d8b31286f998040749b357a422",
+      "v1_sha256": "c489112005d0390fa14b696582d4fe523a94a675d7b6b1206ea980ab0d0135f0",
+      "mode": "100644",
+      "declared_symbols": [
+        "badge",
+        "build_agent_usage_cards",
+        "build_agent_usage_section",
+        "build_architecture_gate_rows",
+        "build_collection_attempts_section",
+        "build_control_coverage_cards",
+        "build_control_report_cards",
+        "build_evidence_agent_provenance_section",
+        "build_evidence_trust_section",
+        "build_governance_graph_section",
+        "build_governance_trust_panel",
+        "build_intake_conflicts_section",
+        "build_intake_health_section",
+        "build_latest_architecture_cards",
+        "build_latest_repository_cards",
+        "build_operational_cards",
+        "build_replay_triage_section",
+        "build_repository_history_rows",
+        "build_repository_status_board",
+        "build_requirement_delta_pair_rows",
+        "build_requirement_delta_review_rows",
+        "build_requirement_migration_section",
+        "build_runtime_domain_rows",
+        "build_runtime_governance_cards",
+        "build_source_document_intake_section",
+        "build_source_intake_cards",
+        "build_source_intake_document_rows",
+        "build_source_intake_open_rows",
+        "build_source_intake_replacement_rows",
+        "build_summary_cards",
+        "compact_statement",
+        "count_table_rows",
+        "enforcement_summary",
+        "first_non_empty",
+        "format_age",
+        "format_bool_flag",
+        "format_control_summary",
+        "format_milliseconds",
+        "governance_graph_script",
+        "governance_mode_tone",
+        "html_table",
+        "html_table_with_row_attrs",
+        "load_csv",
+        "load_json",
+        "load_yaml",
+        "main",
+        "requirement_intake_class_badge",
+        "requirement_ref",
+        "run_link",
+        "short_sha",
+        "source_review_tone",
+        "source_status_tone",
+        "status_tone",
+        "summarize_control_delta",
+        "summarize_history_change",
+        "trust_badge",
+        "trust_detail",
+        "trust_tone"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_traceability_csv.py",
+      "v1_git_blob": "e33a9cf9a4f0ef632353b828918819e10174ae26",
+      "v1_sha256": "f2c18204a886146f4c42d1cb2693a0c778ad6f6344bb430274fbdee6a6450279",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_yaml",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/control_reporting.py:traceability",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/generate_typed_evidence_results_index.py",
+      "v1_git_blob": "49f94833da972abd4924aa0756e8d461d2fe20aa",
+      "v1_sha256": "e26ab8ea5e17581bfb2a74b8f606eacaa338c75e9c6d74c1ddc480baaa7d2bfb",
+      "mode": "100644",
+      "declared_symbols": [
+        "check_result",
+        "load_json",
+        "main",
+        "project_result"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/results_projection.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/governance_runtime.py",
+      "v1_git_blob": "cedc31e9c5b8e3ee53d5f02a27ae408649c3a4af",
+      "v1_sha256": "9da4df7537f7625c77a6dfcee93174574ba3e23a02a16b955a2706f79375bb55",
+      "mode": "100644",
+      "declared_symbols": [
+        "main",
+        "parser",
+        "write"
+      ],
+      "cli_options": [
+        "--artifact",
+        "--at",
+        "--checkout",
+        "--ci",
+        "--context",
+        "--governance-input",
+        "--input",
+        "--max-severity",
+        "--mode",
+        "--opa",
+        "--output",
+        "--output-directory",
+        "--profile",
+        "--result",
+        "--sbom",
+        "--scan"
+      ],
+      "declared_actions": [
+        "context",
+        "evaluate",
+        "gate",
+        "run"
+      ],
+      "v2_implementation": "scripts/governance_runtime.py:main",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/import_harmonized_requirements_workbook.py",
+      "v1_git_blob": "4e22435aafe381c1a7d9b1f88ddf0993de37ae1e",
+      "v1_sha256": "524c5cb67753b59e10890dc021d1f1625850ce5d7dd460323ffa0e2cdbc59a0f",
+      "mode": "100644",
+      "declared_symbols": [
+        "classify",
+        "load_rows",
+        "main",
+        "render_markdown",
+        "safe_workbook_xml",
+        "source_strength"
+      ],
+      "cli_options": [
+        "--input-xlsx",
+        "--mapping-output",
+        "--report-json",
+        "--report-md",
+        "--requirements-model"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/install_validation_opa.py",
+      "v1_git_blob": "c283b63b3639d78b4e8f1f2119a099b88d52865d",
+      "v1_sha256": "4f397058e8df3d412700a290713e06a20829bb6d48a8f47207a4ed93a5852c3a",
+      "mode": "100644",
+      "declared_symbols": [
+        "DownloadError",
+        "Tool",
+        "download",
+        "install",
+        "install_copy",
+        "locations",
+        "main",
+        "matches",
+        "select_tool"
+      ],
+      "cli_options": [
+        "--attempts",
+        "--cache",
+        "--describe",
+        "--destination",
+        "--mirror",
+        "--offline",
+        "--timeout"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/install_validation_opa.py:main",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_architecture_github_actions_run.py",
+      "v1_git_blob": "3bcb3ffdffb8ce86bdff291c0eb674976f4f07aa",
+      "v1_sha256": "025454ae942a5cfe6f9d5c46668008cf1ee864ceb365c75f69f22c041a20f67b",
+      "mode": "100644",
+      "declared_symbols": [
+        "api_repo_path",
+        "architecture_evidence_flags",
+        "branch_protection",
+        "conclusion_to_status",
+        "download_artifact_with_gh",
+        "find_json",
+        "github_download",
+        "github_get_json",
+        "main",
+        "write_snapshot"
+      ],
+      "cli_options": [
+        "--api-url",
+        "--architecture-baseline-ref",
+        "--artifact-name",
+        "--notes",
+        "--repository-id",
+        "--run-id",
+        "--token"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/native_result_assessments.py:NativeResultContext",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_ci_artifact_bundle.py",
+      "v1_git_blob": "8a536cdbc8a428a043515f485ae6343455031ff4",
+      "v1_sha256": "3b596af31683cdbf53cae878e3bb02ada911b32564d76cbb568091863f573435",
+      "mode": "100644",
+      "declared_symbols": [
+        "architecture_evidence_flags",
+        "bool_from_path",
+        "devsecops_evidence_flags",
+        "extract_bundle",
+        "find_file",
+        "generated_at",
+        "intake_architecture",
+        "intake_devsecops",
+        "load_json",
+        "main"
+      ],
+      "cli_options": [
+        "--architecture-baseline-ref",
+        "--baseline-level",
+        "--branch",
+        "--branch-protected",
+        "--bundle",
+        "--generated-at",
+        "--governance-baseline-ref",
+        "--notes",
+        "--pipeline-event",
+        "--pipeline-name",
+        "--pipeline-run-id",
+        "--pipeline-status",
+        "--pipeline-url",
+        "--repository-id",
+        "--type"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/ci_bundle_results.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_evidence_trust_github_actions_run.py",
+      "v1_git_blob": "b319b48ec2610a93edb02cb6f8288305389a8221",
+      "v1_sha256": "6566c6cfe3c9625fb6e244c3b432637a96b4d0c2173413bf185f3472f8fa49fe",
+      "mode": "100644",
+      "declared_symbols": [
+        "centrally_verify_trust",
+        "find_trust_record",
+        "find_unique_file",
+        "main",
+        "resolve_subject_paths",
+        "write_snapshot"
+      ],
+      "cli_options": [
+        "--api-url",
+        "--artifact-name",
+        "--repository-id",
+        "--run-id",
+        "--token"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_github_actions_run.py",
+      "v1_git_blob": "02e816cd1c12e28645d93f9a6178c4591af6a787",
+      "v1_sha256": "2680b830cddec2ac20802620b00f72b0cd7cec1fb326c4cddaa2d5fa568088a3",
+      "mode": "100644",
+      "declared_symbols": [
+        "api_repo_path",
+        "artifact_size_bytes",
+        "bool_from_path",
+        "branch_protection",
+        "check_expected_run",
+        "conclusion_to_status",
+        "download_artifact_archive_with_gh",
+        "evidence_context",
+        "evidence_flags_from_artifacts",
+        "find_governance_input",
+        "find_job_status",
+        "find_pipeline_evidence",
+        "find_report",
+        "gate_result_status",
+        "github_download",
+        "github_get_json",
+        "github_pages",
+        "infer_baseline_ref",
+        "main",
+        "normalize_governance_report",
+        "resolve_baseline",
+        "resolve_declared_evidence_file",
+        "write_snapshot"
+      ],
+      "cli_options": [
+        "--api-url",
+        "--archive-directory",
+        "--artifact-name",
+        "--baseline-level",
+        "--expected-run-attempt",
+        "--governance-baseline-ref",
+        "--notes",
+        "--repository-id",
+        "--run-id",
+        "--snapshot-directory",
+        "--token"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/native_result_assessments.py:NativeResultContext",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_governance_lifecycle_action.py",
+      "v1_git_blob": "6467737bbee89918ff63a088afd8872a74332f38",
+      "v1_sha256": "a30aaa66db15d88299b504bfe84db5bcd486db9d4396f6814907d368a92ef809",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--expected-revision",
+        "--ledger",
+        "--record",
+        "--resources",
+        "--synthetic"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_governance_lifecycle_observation.py",
+      "v1_git_blob": "85537d6fe11254127482f154800fc23b2f39d203",
+      "v1_sha256": "da88093568cdf645025860afb400668b9251646522c0956c6bccd5b4bcd7d1e7",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--context",
+        "--expected-revision",
+        "--ledger",
+        "--policy-version",
+        "--recorded-at",
+        "--report",
+        "--synthetic",
+        "--trust"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_governance_result.py",
+      "v1_git_blob": "02eb4f5fdb18f7556dde8faf4d98bde1b078e385",
+      "v1_sha256": "0f64dcd1f077f9e475aa9ba7103afe7458d3db990cefe9d9332cf68abf190a30",
+      "mode": "100644",
+      "declared_symbols": [
+        "main",
+        "parse_bool"
+      ],
+      "cli_options": [
+        "--artifact-digest",
+        "--baseline-gate-status",
+        "--baseline-level",
+        "--branch",
+        "--branch-protected",
+        "--ci-status",
+        "--commit-id",
+        "--control-evaluation-summary-file",
+        "--generated-at",
+        "--governance-baseline-ref",
+        "--governance-control-evaluation-status",
+        "--governance-control-report",
+        "--governance-run-input",
+        "--notes",
+        "--operations-evidence",
+        "--overall-status",
+        "--pipeline-event",
+        "--pipeline-name",
+        "--pipeline-run-id",
+        "--pipeline-status",
+        "--pipeline-url",
+        "--repository-id",
+        "--sbom",
+        "--static-analysis-summary",
+        "--traceability-mapping",
+        "--vulnerability-scan"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/result_application.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_ha_container_trust.py",
+      "v1_git_blob": "73952e62424a0f9bfe770cedf7c5a66cfd6c2b40",
+      "v1_sha256": "5e08bd3ddbca45c955fd64385dc8492c420598977cb514e8ea0c2b1efb16d20d",
+      "mode": "100644",
+      "declared_symbols": [
+        "bind_artifact",
+        "capture",
+        "download",
+        "extract_selected",
+        "find_paired_baseline_run",
+        "main",
+        "prior_for_evidence_type"
+      ],
+      "cli_options": [
+        "--run-id"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/typed_evidence_application.py:run",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_lifecycle_pilot_action.py",
+      "v1_git_blob": "63f36b5e4e977a793fddd5240197c2220e315ce2",
+      "v1_sha256": "3a4b249542661aa5f56a9bd85f12664cfb48072b94b3fa5d5c22ec5145038827",
+      "mode": "100644",
+      "declared_symbols": [],
+      "cli_options": [
+        "--expected-sequence",
+        "--request"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_lifecycle_pilot_run.py",
+      "v1_git_blob": "b80a2ce0f72293c43b23423155b74374e23860e8",
+      "v1_sha256": "a879d5534f9db8b8f0ae4eac2aa36cf41b743db875b4c7bfa04f6dacd5424b7c",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--expected-sequence",
+        "--run-id"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_measured_l1.py",
+      "v1_git_blob": "7f2ca5fca9a5315f5439ffec4c5da203928ea262",
+      "v1_sha256": "9ff4240bc800ba55584c7b67344967eb3d64e2af7695652323f77a33704cefb4",
+      "mode": "100644",
+      "declared_symbols": [
+        "capture",
+        "main"
+      ],
+      "cli_options": [
+        "--repository",
+        "--run-id"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/measured_application.py:run",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_measured_security.py",
+      "v1_git_blob": "9a775dadf003f42eea4a99e49b4b15912001bab3",
+      "v1_sha256": "66b025b83f4c2833341cd1b5fe0d663a85a6c628e3587ec2a9e87d302dcbd98e",
+      "mode": "100644",
+      "declared_symbols": [
+        "NoRedirect",
+        "RemoteZip",
+        "capture",
+        "gh_json",
+        "main",
+        "selected_files"
+      ],
+      "cli_options": [
+        "--repository",
+        "--run-id"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/measured_application.py:run",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_portable_evidence.py",
+      "v1_git_blob": "ec5176fc9f16952d6a03dabfee9e0767c7aff4e6",
+      "v1_sha256": "6ca97e1b2745ebad1eed0d34156a6104a314e3907294506134861ccd7cfe8232",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--assessment",
+        "--at",
+        "--bundle",
+        "--candidate-directory",
+        "--checkout",
+        "--context",
+        "--destination",
+        "--legacy-mapping",
+        "--opa",
+        "--policy",
+        "--root",
+        "action"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/intake_staging_deployment_evidence.py",
+      "v1_git_blob": "3b28bb3b1fe157db7ae8382b65dd85892af9d3f5",
+      "v1_sha256": "4e2de59a74cf569c632a7662932a7aa6788231fc87bf7d91c9b0c0e9684ffd09",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--bundle",
+        "--evidence-repository-commit",
+        "--verified-at"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/supplement_application.py:run",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/manage_requirement_lifecycle.py",
+      "v1_git_blob": "f8c94cc20743d60916ee2305202d923f3d9cb0e5",
+      "v1_sha256": "fd2003f1ad343c0d5e448304df00cdf0056a8e1d5f359cfb84333d00ae938040",
+      "mode": "100644",
+      "declared_symbols": [
+        "activate",
+        "case_path",
+        "complete_migration",
+        "decide",
+        "generate_publication",
+        "import_source",
+        "load_case",
+        "main",
+        "next_decision",
+        "parser",
+        "publication_requirement_markdown",
+        "reanalyze_all",
+        "refresh_ledger",
+        "report",
+        "source_entry",
+        "start_native",
+        "sync_publication"
+      ],
+      "cli_options": [
+        "--authorized-derivation",
+        "--case-id",
+        "--classification",
+        "--commit",
+        "--decision-ref",
+        "--disposition",
+        "--effective-from",
+        "--proposal-id",
+        "--runtime-enforcement",
+        "--source-id",
+        "--source-path",
+        "--target"
+      ],
+      "declared_actions": [
+        "activate",
+        "complete-migration",
+        "decide",
+        "generate-publication",
+        "import-source",
+        "next-decision",
+        "reanalyze-all",
+        "report",
+        "start-native"
+      ],
+      "v2_implementation": "scripts/lib/requirement_application.py:run",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/observe_provider_assurance.py",
+      "v1_git_blob": "e5d43dc63eb499bc6f765907a6c27af5d2fa7c1b",
+      "v1_sha256": "d78a436e6c2d99b38d4fe7c02a8e8f84100bbce62daeaa5b5269ca6c316ac8a0",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--change-id",
+        "--credential-file",
+        "--output-root",
+        "--profile",
+        "--revision",
+        "action"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/package_governance_runtime.py",
+      "v1_git_blob": "ef60f7bc0f35562608b0c3f9b3369f82d1285812",
+      "v1_sha256": "4e39260bc18db9060f2c467bcc9848f2d2d29ad9922ca0f6a76876830602d477",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--destination",
+        "--machine",
+        "--opa",
+        "--package",
+        "--python",
+        "--revision",
+        "--root",
+        "--sha256",
+        "--system",
+        "--wheelhouse",
+        "--workbench",
+        "action"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/runtime_package.py:build",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/portable_consumer_intake.py",
+      "v1_git_blob": "68f4c759423a3f8a36cef87d89e45d2fa6b76a77",
+      "v1_sha256": "2d477b442f20cb612fc3e913e1da12a752802606d9ecda12abd84f7e5448cc94",
+      "mode": "100644",
+      "declared_symbols": [
+        "central_operations",
+        "configuration",
+        "main",
+        "projection"
+      ],
+      "cli_options": [
+        "--config",
+        "--opa",
+        "--projection",
+        "--root",
+        "action"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/preflight_lifecycle_live_evidence.py",
+      "v1_git_blob": "13494676f605444c23f11ade7874ca2cd9880916",
+      "v1_sha256": "157cb12ecef17a014f09b17842287c19e2d20f386f1c766b02c7136011bf9a10",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--output-dir",
+        "--run-id",
+        "--verify-bundle"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/prepare_collection_attempt_retry.py",
+      "v1_git_blob": "9265620ee10c31da1fd66cc70ddbca56d53e5f7d",
+      "v1_sha256": "9be95f98817e694260fa92ac27fd6860639fb78e67d66de66e33a5fb3e9281a4",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_retry_plan",
+        "load_attempt",
+        "main"
+      ],
+      "cli_options": [
+        "--attempt-path",
+        "--github-output"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/prepare_document_consistency_semantic_catalog_run.py",
+      "v1_git_blob": "4f71a0857124245e3b46db0061ae562d5c608a05",
+      "v1_sha256": "e5bb005854f07b1c54b40bf1ef14a06a8b6645edfb1acfde8b92388adfab3771",
+      "mode": "100755",
+      "declared_symbols": [
+        "CatalogRunPreparationError",
+        "digest",
+        "main",
+        "prepare",
+        "read_json"
+      ],
+      "cli_options": [
+        "--output-dir"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/dcr_catalog.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/prepare_lifecycle_architecture_candidates.py",
+      "v1_git_blob": "0c19eadb8a1065a6f2a776a35ff63921fd266613",
+      "v1_sha256": "42af521f9a8c6ade098a10768607561d80b84b1a98003dc3440f96ff45cc4ca1",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--context",
+        "--evaluated-at",
+        "--output",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/prepare_lifecycle_devsecops_candidates.py",
+      "v1_git_blob": "c6d9e229da0c7328ff34dd59132b7f66dd6d12c2",
+      "v1_sha256": "6fcdea72e2aaccdd614cf045b05ae215398125590ebb987d63b8312ebdb469f8",
+      "mode": "100644",
+      "declared_symbols": [
+        "main",
+        "write_candidates"
+      ],
+      "cli_options": [
+        "--context",
+        "--evaluated-at",
+        "--output",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/prepare_lifecycle_pilot_action.py",
+      "v1_git_blob": "fd58251e4dd6f454b24a5177ca854dd5e8d2a9fb",
+      "v1_sha256": "93a73a77ea930ca05bf70eb9a0993a69cb16e014ec814187436fad915db0d383",
+      "mode": "100644",
+      "declared_symbols": [
+        "prepare"
+      ],
+      "cli_options": [
+        "--body",
+        "--discussion-number",
+        "--output"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/publish_consumer_lifecycle.py",
+      "v1_git_blob": "a4b424b4d84a61be0d1f11fd09b198761ac363b9",
+      "v1_sha256": "10eb0e76f6640b32378700f87294c3db9289eea19ec3d60a6e2458ee4806283a",
+      "mode": "100644",
+      "declared_symbols": [
+        "allowed",
+        "git",
+        "github_api",
+        "main",
+        "publish",
+        "selected_paths"
+      ],
+      "cli_options": [
+        "--scope"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/publish_document_consistency_projection.py",
+      "v1_git_blob": "258d7d6848f2a625b8590113a4c1ab3eb252a1b5",
+      "v1_sha256": "810f4086755290b8aab2876ba43b6e32ba0bae5dcc4b5b14720311243366965f",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_json",
+        "main",
+        "validate_decisions"
+      ],
+      "cli_options": [
+        "--comparison-count",
+        "--decision",
+        "--manifest",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/dcr_projection.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/publish_operational_update.py",
+      "v1_git_blob": "e193546d57034f2cc5c881e7317e5e836517bb0b",
+      "v1_sha256": "6b30a3f6c1a55ef88451f8372b129e05a23a5f6337cd7998143a11e3cb550228",
+      "mode": "100644",
+      "declared_symbols": [
+        "allowed",
+        "git",
+        "github_api",
+        "main",
+        "publish",
+        "selected_paths"
+      ],
+      "cli_options": [
+        "--scope"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/publish_self_security_refresh.py",
+      "v1_git_blob": "dab3261b276b07bcd06605936583c05ae6c2568f",
+      "v1_sha256": "a1dacc35228600a8fac5808bd01e5a6c6b4db792d7ef4ebc7c03ecedb6153093",
+      "mode": "100644",
+      "declared_symbols": [
+        "blocking_api_errors",
+        "changed_paths",
+        "git",
+        "github_api",
+        "main",
+        "materially_equal",
+        "normalized_report",
+        "open_refresh_pr",
+        "publish",
+        "report_at",
+        "validate_viewer_projection",
+        "write_outputs"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/publish_typed_evidence_assurance_update.py",
+      "v1_git_blob": "25aee8d97d2d042f0e4c2ef5eef473030e22f8b1",
+      "v1_sha256": "33c381c6a8511b4771e7a086b675e904b651528142a61b48c9ad0f95b1df3591",
+      "mode": "100644",
+      "declared_symbols": [
+        "configure",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/publishing/build_executive_presentation.mjs",
+      "v1_git_blob": "877abd163adbe493fa03938e13318d214d1da6eb",
+      "v1_sha256": "81abd99e4efadab13e381a28cbcf5cbef71a062dd3ac1fec4aa568c4b68564fb",
+      "mode": "100644",
+      "declared_symbols": [],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/publishing/build_executive_whitepaper.py",
+      "v1_git_blob": "4e52c8c1742f92359fa2ca549bc0a10943383b7c",
+      "v1_sha256": "8b7bffd393a81656875addb833cadf4563e04e5f8f6a7d4532fa2fbb65058815",
+      "mode": "100644",
+      "declared_symbols": [
+        "link",
+        "main",
+        "table"
+      ],
+      "cli_options": [
+        "--content",
+        "--output"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/publishing/build_repository_presentation.mjs",
+      "v1_git_blob": "b8b6c7bb1744b4eeabe2cb93786c6a0ed080dfe7",
+      "v1_sha256": "d9c58ddbf1310f268bb0ae8a2d1fb9b6601eca7f0679962326671ec3dc59b53e",
+      "mode": "100644",
+      "declared_symbols": [],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/reconcile_documentation_after_merge.py",
+      "v1_git_blob": "12fcc8f5039dadf211346407b8878f021b193112",
+      "v1_sha256": "35f3160271f000a2078d2f337ce0e2c2c61b11405b886e1d01a154bf059391d4",
+      "mode": "100644",
+      "declared_symbols": [
+        "changed_paths",
+        "clean_summary",
+        "functional",
+        "link_audit",
+        "main",
+        "render",
+        "replace_block"
+      ],
+      "cli_options": [
+        "--base",
+        "--body",
+        "--body-file",
+        "--docs-build-status",
+        "--github-output",
+        "--merge",
+        "--pr",
+        "--title"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/record_agent_review.py",
+      "v1_git_blob": "c9af5a44e6df4894e3ef7723f1b7356315f95e99",
+      "v1_sha256": "d8ddce718d32a82307f4e189e00d119e3e0d25f84b5f5ac51e33ae488d992e7a",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--output",
+        "--plan",
+        "--results",
+        "--summary",
+        "--usage-log"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/record_collection_attempt.py",
+      "v1_git_blob": "013a1b27c64808b07a4b0a02f4edfa3968a6bda8",
+      "v1_sha256": "c27b9a474543805c0731f9f0509d901aef776c3dc8e092de8c0ea066b187ce1b",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_attempt",
+        "load_run_metadata",
+        "main"
+      ],
+      "cli_options": [
+        "--api-url",
+        "--artifact-name",
+        "--collector-id",
+        "--collector-version",
+        "--error-code",
+        "--evidence-type",
+        "--message",
+        "--repository-id",
+        "--retryable",
+        "--run-id",
+        "--status",
+        "--token"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/record_evidence_agent_provenance.py",
+      "v1_git_blob": "a6f4d0d9c5e0d28b56d41b6d5ab83ccec61834c0",
+      "v1_sha256": "991af6a9847572c45a7bc232f53f0ba0f1c84e6a02f33a0ebbb43048af09d13c",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_record",
+        "main",
+        "write_record"
+      ],
+      "cli_options": [
+        "--agent-id",
+        "--dispatch-id",
+        "--dispatch-source",
+        "--dispatch-timestamp",
+        "--evidence-type",
+        "--involvement",
+        "--model",
+        "--notes",
+        "--provider",
+        "--recorded-at",
+        "--repository-id",
+        "--role-version",
+        "--run-type",
+        "--skill",
+        "--source-file",
+        "--subject-digest",
+        "--subject-id"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/provenance_application.py:ProvenanceWorkspace.record",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/record_intake_event.py",
+      "v1_git_blob": "0157eded3879ae4caeb05f03e8e66dbb8b564e59",
+      "v1_sha256": "4ce8655acd7dfd48b98d16d7a627ab5caf30a9077658fbf178bad358c5b599f8",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_event",
+        "main",
+        "parse_timestamp",
+        "utc_timestamp"
+      ],
+      "cli_options": [
+        "--artifact-name",
+        "--collector-id",
+        "--collector-version",
+        "--completed-at",
+        "--error-code",
+        "--evidence-type",
+        "--intake-repository-id",
+        "--intake-run-attempt",
+        "--intake-run-id",
+        "--intake-type",
+        "--intake-workflow-name",
+        "--message",
+        "--repository-id",
+        "--run-id",
+        "--started-at",
+        "--status",
+        "--trigger-event"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/render_governance_documents.py",
+      "v1_git_blob": "1f462e8abdf305ba9ae3afcb02099147cc758126",
+      "v1_sha256": "e98b4768f231788de391537237e1c43b35958731ce320bec461677c8b97f3df7",
+      "mode": "100644",
+      "declared_symbols": [
+        "build_front_matter",
+        "build_html",
+        "build_rendered_markdown",
+        "load_yaml",
+        "main",
+        "markdown_to_html",
+        "maybe_render_docx",
+        "profiled_purpose",
+        "render_document"
+      ],
+      "cli_options": [
+        "--document-id"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/report_agent_review_status.py",
+      "v1_git_blob": "b6a15eac851ac06f657e407016ef568478a89a93",
+      "v1_sha256": "dcf31328d986c8a43f07d272fe50da4d2645bf3551d91ebce1ea4313a3451cf7",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--event-file",
+        "--output-json",
+        "--output-md",
+        "--receipt"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/run_agent_reviews.py",
+      "v1_git_blob": "4dd8981365383ee39ea288780c2b6620823ee4a1",
+      "v1_sha256": "6916de2ba7a0f14efefb1908c92985edc642885af2966d4ceeffdc2b0b32112b",
+      "mode": "100644",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--execute",
+        "--output-dir",
+        "--parallel-specialists",
+        "--plan",
+        "--timeout-seconds",
+        "--validation-results"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/run_consumer_lifecycle.py",
+      "v1_git_blob": "ab53a570b5df6a7396a0e59c50fe835d08d080d1",
+      "v1_sha256": "67a990ce094eaec90af4458c6b5d299e93b71a2057d519f64f658efd99636eb4",
+      "mode": "100644",
+      "declared_symbols": [
+        "prepare_acceptance",
+        "run"
+      ],
+      "cli_options": [
+        "--base-ref",
+        "--discussion-number",
+        "--operation",
+        "--output",
+        "--request-path",
+        "--source-run-id",
+        "--verify-provider"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/run_demo.py",
+      "v1_git_blob": "75d8df50172a8761a1c17e9061cd161072631c68",
+      "v1_sha256": "99856099a37f590d33b5eb4eead783889f3bad13f6a72fb3c0291b22389f43c8",
+      "mode": "100644",
+      "declared_symbols": [
+        "ensure_success",
+        "evaluate_policy",
+        "main",
+        "render_scenario",
+        "run",
+        "write_markdown"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/run_governance_lifecycle_action_demo.py",
+      "v1_git_blob": "32cd206434e14f49d573692be81c8f48464b8ed3",
+      "v1_sha256": "822b485e3674aad6bcdb5df68a4b4cbb098d96e6fccbc06afd3f5946d77c1482",
+      "mode": "100644",
+      "declared_symbols": [
+        "append_demo_actions",
+        "main",
+        "run_action_demo"
+      ],
+      "cli_options": [
+        "--ledger",
+        "--output"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/run_governance_lifecycle_closure_demo.py",
+      "v1_git_blob": "4c48bdbbb2a1f4a8c1d34e8a79242c6f23798f32",
+      "v1_sha256": "65b64153b4377e0720e06445b363dc4b5f96714d09e4616712a5c81ad68faf1a",
+      "mode": "100644",
+      "declared_symbols": [
+        "main",
+        "run_closure_demo"
+      ],
+      "cli_options": [
+        "--ledger",
+        "--output",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/run_governance_lifecycle_exception_demo.py",
+      "v1_git_blob": "9184efff1dc03577572670ed163106e741d94473",
+      "v1_sha256": "62794cffef878de6fa982250b7bc85d06e712fce670fa10b6ec93fb1800a9643",
+      "mode": "100644",
+      "declared_symbols": [
+        "main",
+        "run_exception_demo"
+      ],
+      "cli_options": [
+        "--ledger",
+        "--output",
+        "--report"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/run_governance_lifecycle_synthetic_demo.py",
+      "v1_git_blob": "7a273b3a38559c66013823f01b538ec8b0c1a1b7",
+      "v1_sha256": "18ff6213c8c4c05074105d2f8a93ac378e19f45cd9ce8665fea16ec3a3c2e037",
+      "mode": "100644",
+      "declared_symbols": [
+        "main",
+        "run_demo"
+      ],
+      "cli_options": [
+        "--ledger",
+        "--output"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/run_lifecycle_pilot_update.py",
+      "v1_git_blob": "d5622f191991e395e73f99867e6f3117d7c5cf77",
+      "v1_sha256": "17737cafe995a82a2dda35c0defe8eb80f006f3babe77c36ae0eda25d10e869b",
+      "mode": "100644",
+      "declared_symbols": [
+        "run"
+      ],
+      "cli_options": [
+        "--operation",
+        "--request-path",
+        "--source-run-id"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/serve_governance_workbench.py",
+      "v1_git_blob": "d99036fc5d2bb9fc4a1d2e74587d18d1846afa72",
+      "v1_sha256": "988927753f9a268c5d36aab0ccabd45577d3db11ace45ae0565283c81f55809d",
+      "mode": "100644",
+      "declared_symbols": [
+        "Handler",
+        "Workbench",
+        "atomic_json",
+        "current_requirements",
+        "digest",
+        "main",
+        "make_server",
+        "now",
+        "preparation_summary",
+        "read_json",
+        "run",
+        "serialized_request"
+      ],
+      "cli_options": [
+        "--consumer-projection",
+        "--enable-pr",
+        "--port"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/simulate_consumer_scale.py",
+      "v1_git_blob": "0eced9d6659ca60002b3841d544e36d1330f5f72",
+      "v1_sha256": "956d29e79a5ca3134142a67e11b955707c1f42279066b5482f9e78d7962ccab4",
+      "mode": "100644",
+      "declared_symbols": [
+        "estimate_viewer_rows",
+        "generate_indexes",
+        "load_current_viewer_projection",
+        "load_json",
+        "main",
+        "measured_call",
+        "parse_args",
+        "run_simulation",
+        "serialize_viewer_rows",
+        "set_synthetic_identity",
+        "source_payload",
+        "synthetic_repository_id"
+      ],
+      "cli_options": [
+        "--detailed-materialize-limit",
+        "--output",
+        "--repositories"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/start_governance_workbench.sh",
+      "v1_git_blob": "5ed2cbb44171e4d69f10bfc3f21332844dec3828",
+      "v1_sha256": "bd01e5708c009324f761079c9048a126c3c216df36c41ebd94bf59acd59ffb3c",
+      "mode": "100755",
+      "declared_symbols": [],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_all.sh",
+      "v1_git_blob": "87d14d62a5922d7dd5aa592007cefb45cb848457",
+      "v1_sha256": "0afc7a62effc614493e9b3dc434f93ac33d0d28495b808dbc7c67b13a98717a7",
+      "mode": "100755",
+      "declared_symbols": [],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_ci_artifact_bundle.py",
+      "v1_git_blob": "82ada2c8f24e2176a1587771e615609d93df986c",
+      "v1_sha256": "f99222f71f70f3ab412a2cbd1ed217fcb133812f3c368ab923d33a4445b9e81e",
+      "mode": "100644",
+      "declared_symbols": [
+        "extract_bundle",
+        "find_file",
+        "load_json",
+        "main",
+        "require_json",
+        "validate_architecture",
+        "validate_devsecops",
+        "validate_schema"
+      ],
+      "cli_options": [
+        "--bundle",
+        "--type"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/ci_bundle_results.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_document_consistency_review.py",
+      "v1_git_blob": "9cdf48a3894d77ee64358694d52c18f1048f57f3",
+      "v1_sha256": "32377feeed1df941934e24d825ce20ecbc077db4df87d98da2cdc8a90b36105f",
+      "mode": "100644",
+      "declared_symbols": [
+        "_rule",
+        "git_head",
+        "main",
+        "markdown_report",
+        "parse_args",
+        "read_json",
+        "require_schema",
+        "sha256_file",
+        "validate_model"
+      ],
+      "cli_options": [
+        "--manifest",
+        "--model",
+        "--output-json",
+        "--output-markdown"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/dcr_structure.py:validate_model",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_document_consistency_review_operations.py",
+      "v1_git_blob": "dd449c0567ba3ad98890acc09f800d6fa699dd32",
+      "v1_sha256": "6e486f81e2ab1767e1f52bf3178ecace5cc2f12878b426f94ece599cdcef4d8a",
+      "mode": "100644",
+      "declared_symbols": [
+        "OperationsValidationError",
+        "classify_transition",
+        "digest",
+        "main",
+        "plan_scope",
+        "read_json",
+        "validate",
+        "validate_schema"
+      ],
+      "cli_options": [
+        "--root"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/dcr_operations.py",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_document_consistency_semantic_review.py",
+      "v1_git_blob": "52b349eb6a0ebe16273b2a0cf086ad27a9fd9b9f",
+      "v1_sha256": "8589c79994491038d1386d6884b33e906482e4e216aeea28616228df832fc6b3",
+      "mode": "100755",
+      "declared_symbols": [
+        "SemanticReviewError",
+        "_finding_completeness_errors",
+        "execution_errors",
+        "main",
+        "markdown_report",
+        "parse_args",
+        "read_json",
+        "require_schema",
+        "requirement_rows",
+        "safe_source_path",
+        "sha256_bytes",
+        "sha256_file",
+        "validate_semantic_response"
+      ],
+      "cli_options": [
+        "--manifest",
+        "--output-json",
+        "--output-markdown",
+        "--response"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/dcr_semantics.py:validate_semantic_response",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_evidence_agent_provenance.py",
+      "v1_git_blob": "c33036752c360d2d766fb9059ff3698b5ca047bc",
+      "v1_sha256": "d13651b2e524f47e76f5d54e7274c580802beeda93b9f2969b1ec30b0b5c126a",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_subject_digest",
+        "main",
+        "validate_record",
+        "validate_records"
+      ],
+      "cli_options": [
+        "--root"
+      ],
+      "declared_actions": [],
+      "v2_implementation": "scripts/lib/provenance_application.py:ProvenanceWorkspace.report",
+      "state": "in_progress",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_governance_lifecycle_contracts.py",
+      "v1_git_blob": "10a955953c045ef030ae13cf39b7c7704822f8c7",
+      "v1_sha256": "4758daa3df3a4c4ffb21ffe6725a9eab960a38c8bdb532d4aa30f91aedbbacdb",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_examples",
+        "main"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_governance_lifecycle_ledger.py",
+      "v1_git_blob": "bbadc9fb18a2432edf8c1ca2749f378818b4c1f5",
+      "v1_sha256": "478534ca31eff21f76c42e2f53458073dc5e2f5a69803745e8266c45c1487e6e",
+      "mode": "100644",
+      "declared_symbols": [
+        "check_accepted_prefix",
+        "git",
+        "main",
+        "validate_current",
+        "validate_exceptions",
+        "validate_pilot"
+      ],
+      "cli_options": [
+        "--base-ref",
+        "--verify-new-provider"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_governance_repo.py",
+      "v1_git_blob": "b121093eb8060717b0049890aa51f698e891c247",
+      "v1_sha256": "0cc28beae8174773982d9effa8ce655b28264253aa69ff5ce8bba65b6144f0e1",
+      "mode": "100644",
+      "declared_symbols": [
+        "load_json",
+        "load_yaml",
+        "main",
+        "run_opa_check",
+        "validate_app_architecture_evidence_templates",
+        "validate_architecture_source_replacement_assessment",
+        "validate_authorized_source_baselines",
+        "validate_blocking_mode_alignment",
+        "validate_blocking_readiness",
+        "validate_evidence_attestation_pilot",
+        "validate_governance_change_impact_report",
+        "validate_governance_graph",
+        "validate_governance_repository_security",
+        "validate_harmonized_requirements_candidate",
+        "validate_intake_conflicts",
+        "validate_intake_events",
+        "validate_intake_health",
+        "validate_multi_consumer_readiness",
+        "validate_replay_triage",
+        "validate_schema",
+        "validate_source_document_intake_review_briefs",
+        "validate_source_document_intake_status",
+        "validate_source_document_path",
+        "validate_source_document_process_status",
+        "validate_source_document_register",
+        "validate_source_document_requirement_delta",
+        "validate_source_lineage_report",
+        "validate_typed_evidence_results",
+        "validate_waiver_authority"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_requirement_lifecycle.py",
+      "v1_git_blob": "5d55723c0e6239b0cf8c155db36002b96c32d998",
+      "v1_sha256": "0ec1602133b3a0c481963d8c862c35e99ffd426cc5953d166bea072adaadaa6f",
+      "mode": "100644",
+      "declared_symbols": [
+        "changed_paths",
+        "git_path_exists",
+        "git_value",
+        "main",
+        "read",
+        "validate_artifact_register",
+        "validate_immutable_history",
+        "validate_instance",
+        "validate_policy_reviews",
+        "validate_pra_reviews",
+        "validate_schema"
+      ],
+      "cli_options": [
+        "--base-ref"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/validate_runtime_governance.py",
+      "v1_git_blob": "171a6b57d1ce585bf535f0a3d2f5011d4e67a509",
+      "v1_sha256": "520d9254afa38bf2de92f06a45b5cb973a2f7362f4683bd5cbff133dc74600d9",
+      "mode": "100755",
+      "declared_symbols": [
+        "load_data",
+        "main",
+        "validate_architecture_levels",
+        "validate_generated_demo_report",
+        "validate_generated_end_to_end_demo_report",
+        "validate_generated_traceability",
+        "validate_marker_catalogue",
+        "validate_opa_policy",
+        "validate_schema"
+      ],
+      "cli_options": [],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": "scripts/verify_evidence_attestation.py",
+      "v1_git_blob": "bca6aae521e90f02ff28ca4f1586d8d4f0718679",
+      "v1_sha256": "0689363d4941d034a8fcd701e39511138bb7cc62df5cebac1963687fe503011b",
+      "mode": "100755",
+      "declared_symbols": [
+        "main"
+      ],
+      "cli_options": [
+        "--evaluated-at",
+        "--output",
+        "--trust-roots",
+        "attestation"
+      ],
+      "declared_actions": [],
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "operating_workflows": [
+    {
+      "id": "install",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "repeat-install",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "start-stop-restart",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "paused-shadow-collect",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "publication-reconcile",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "update",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "failed-activation-recover",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "backup-verify",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "restore-inactive",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "compatible-state-cutover",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "credential-isolation-rotation",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "rollback",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "source-authoring-review",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "release-candidate-publish",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "accepted-result-intake",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "lifecycle-consent-action-close-reopen",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "ci_workflows": [
+    {
+      "v1_path": ".github/workflows/agent-review-status.yml",
+      "v1_git_blob": "0afa2db497cbba4ddcadc6337dbd7aee2341fc07",
+      "v1_sha256": "0fc3b3ea006c3976f6145e5da32732f76307c3ae622c69ac60c8220f78ac5fec",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/architecture-baseline-l1-v0.1.0.yml",
+      "v1_git_blob": "3ee0394284e8bb5bb1d7e1f5dde48954314c3fe2",
+      "v1_sha256": "18bdca44bb1ed667619d5691267b2a05df1a763969cdcbb187ab64136b963705",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/codeql.yml",
+      "v1_git_blob": "4edf89b4273583bcdeff04aabe0e164e260b104b",
+      "v1_sha256": "521adf941f7fda4bbdd6918c6761ae746feb5027aa738157fd59aef01de1c67f",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/consumer-lifecycle-guard.yml",
+      "v1_git_blob": "d16b3ce277934409918c48333e33e3e4475d65b5",
+      "v1_sha256": "77404c32d68c325758df64591723eb048e487a4d8465c7c8132dc644d6f97168",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/consumer-lifecycle-update.yml",
+      "v1_git_blob": "a88bacbb0b4fc112599af3ee21575e5fb199cd22",
+      "v1_sha256": "7534216e909c7fd7d7a0fd7d67f237db58ac50c32ddfe5d535d4c23e694f9250",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/dependency-review.yml",
+      "v1_git_blob": "99f11f057174948fdb18d4047742d89e12f2d65f",
+      "v1_sha256": "017160bbe7ebaa1f4a9213ba907e44ec9a25b9bf9f6ef149b3729dce11c982c1",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-baseline-l1-v1.0.0.yml",
+      "v1_git_blob": "114f08ebc5852a055a748e8e21113d42c95b06be",
+      "v1_sha256": "4b0b85306fce01c950ac9c6a4fa2435153ce92204cccbbd2c901e3362783d87f",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-baseline-l1-v1.1.0.yml",
+      "v1_git_blob": "114b95493173b8625a27431cfb2d7102155ccbeb",
+      "v1_sha256": "4d1bb5e6af7958e1808b7f3d6efd363800619c3c98e3228b0d4df83cbae6d284",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-baseline-l1-v1.1.1.yml",
+      "v1_git_blob": "2c80f27d487ae8c1d41aa709cc9ca557b1a3cc76",
+      "v1_sha256": "cdd0f70a091f15a44aba76dfadbdfafe2afc7985e3fee767b119c8b3156f1a8d",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-baseline-l1-v1.1.2.yml",
+      "v1_git_blob": "00fccb72fa97de7165a446a524f0c1446db69e2a",
+      "v1_sha256": "6a5578aa65714a49dddd6873f0d83ec5fceedcc979ce8714bb1f7728d1e7afa1",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-baseline-l1-v1.1.3.yml",
+      "v1_git_blob": "c23dc45a7d45000f24ae52d91960a47a7ce67cce",
+      "v1_sha256": "ffd0a5fcb380803405cabeea8588282193905c9a0ff974cc9cb8736e6c2dc28c",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-baseline-l1-v1.2.0.yml",
+      "v1_git_blob": "b40708e10e864f8968de68e775d6ffffcb673e72",
+      "v1_sha256": "38c7347150633332b7b0be75cb92dea355c1b3a16c7d94c1a90f9cb1ff6c0179",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-baseline-l1-v1.2.1.yml",
+      "v1_git_blob": "e62a5a5cd380f83efdfbdf2743b4299b1853ad6e",
+      "v1_sha256": "8efc06813f220d5798a426b7d79ca43a093df65a5e92e65c2fa9bc0d0b8ae711",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-baseline-reusable.yml",
+      "v1_git_blob": "f026c243412c3bd8c08e256e3e6a476353c1b7b5",
+      "v1_sha256": "2fbb9b86f5fffb2d9f1e62419aae2c1076e63b554d67f1a9a3f5e5f463572f13",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/devsecops-portable-v1.yml",
+      "v1_git_blob": "2f9d761ba629b840d2614aba26aa84ff2a5ecde3",
+      "v1_sha256": "68983f0da71458a22dbff1826895c8804451582d1b936e427e881789356d8d39",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/doc-as-code-preview.yml",
+      "v1_git_blob": "6c11e57fe626f150a9b377c4f4ff15551e4e3b96",
+      "v1_sha256": "4d18339ea6d0d1a0c251cda1a7f5a7b7b5bb17c17d269ae0ed2a191b7a191d50",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/documentation-refresh.yml",
+      "v1_git_blob": "0eae1fd10767578490555756fb8ce6e9fee12f17",
+      "v1_sha256": "3e4ed2ffa574dd6748b30b435ebeebb99c687ff71f5dfb2a832e05d0c1df684b",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/governance-ci-v2.yml",
+      "v1_git_blob": "7fd3a9aa05870a61d9ca2acd77f2c3895b28ed5a",
+      "v1_sha256": "67ac0a1fbcd40786a0e3f895302c9beff201728ed1a82e6228ffd15b83963eab",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/governance-ci.yml",
+      "v1_git_blob": "199f5e62553e9daccb9ef5912d612f2eba321d38",
+      "v1_sha256": "af6e2aa0d5969b678a1fc4c9eae16a9da18f80a3599801de241d5f9fa4ea9fa5",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/governance-operations.yml",
+      "v1_git_blob": "36811041fd0795f50aab813895a9dfa989ccb97e",
+      "v1_sha256": "ff46c35a959fa9848b40a829f8e5fb47cb1e936a40a017eb4995a4fa5ad7ad8d",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/governance-repository-security.yml",
+      "v1_git_blob": "50f9726f43883c9f7a83e15d749bd33bc2e4cec7",
+      "v1_sha256": "c633e9e19b2c5842a7b61cc18e5ba058d7d6a6de0af00b93972f4e5febf31221",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/intake-architecture-result.yml",
+      "v1_git_blob": "dbe19c8a375847a355b80a28130023c815c2e1db",
+      "v1_sha256": "14711f9ef7166a7386c05790e1f15a6166ec7a11c455351a889854f6a777a77e",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/intake-evidence-trust.yml",
+      "v1_git_blob": "9bebad182cd3dbdbaeb6f2986c55c4d196eb3d5d",
+      "v1_sha256": "4a494889dd3884893f97f63b90c92a12806306b8de4e31a14fc2138a3c8cfa46",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/intake-governance-result.yml",
+      "v1_git_blob": "0814235143ee19f751637087598939a05e76cea0",
+      "v1_sha256": "eb48635da740b9485f316d22fc2d0225e4fa518c4a606b9694c361c3ded53744",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/lifecycle-pilot-update.yml",
+      "v1_git_blob": "2b36e964d0689e2487aafd1ff8ddb5be9a167f1e",
+      "v1_sha256": "e70b6ae49fb32ad745205dab4cece5b31e0c762d3c6ce2a413718420d5ff5388",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/portable-capacity.yml",
+      "v1_git_blob": "33bf7bc74704c57c3f92b269325d169dbb726999",
+      "v1_sha256": "85e36ff9267ff2de51eca0c9f8c1d43ad4f8ad65fea9a0729b7d7e33388edbf1",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/portfolio-status.yml",
+      "v1_git_blob": "373ac9b6fd5a77c35547b1738caca692fa68b668",
+      "v1_sha256": "6883f79c9bd02e787cc4389fc9f12b854268e48d18f640a1bb26eaa318772074",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/publish-docs.yml",
+      "v1_git_blob": "36189eadde6584b798c2ab69d1966088e239f2bd",
+      "v1_sha256": "75e479884b9eb71d9ea4226d9890a99c0c8ebf1530facb5a9f5d1e873ad93a05",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/refresh-governance-repository-security.yml",
+      "v1_git_blob": "1ade0a33eb2afc6b76c652fdfed6f893310efee1",
+      "v1_sha256": "0bdf2520d82646541db8d3bb0e37ba80e0bfc1bc5f4ce82e30a1ead2a5fa32df",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/repository-sbom.yml",
+      "v1_git_blob": "b1f209009412816193809c3cee5d1a77f8e6a376",
+      "v1_sha256": "f2743af367b4e12d47e4ad978cc2e50d6ea71ae227f66c88cd87a158a1595518",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/requirement-lifecycle.yml",
+      "v1_git_blob": "3227daaf227876fb0bb856bfb47e86247feef4d3",
+      "v1_sha256": "1397a67707b1289df9c117305d3aafc24a9e35d4bfa6e145276ebb3ebabc7ced",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/retry-collection-attempt.yml",
+      "v1_git_blob": "c8502e039a4906e22d4a54f310e9da0f94800325",
+      "v1_sha256": "c7874ff172751fa4e68e3d4da3095035b238081ab7abb822659aa87621598f47",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/runtime-package.yml",
+      "v1_git_blob": "851e2376e59f962d821377c3d942271448eb06d9",
+      "v1_sha256": "9fe38ebd05899db28561dbd4334d0a64d5a5debb62b61a6a40ce5abbffc4c6fd",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/source-document-intake.yml",
+      "v1_git_blob": "3f78bbd2e4596f25a552544e778dd252f6b1e975",
+      "v1_sha256": "b8f6498b3fc8706b005786eba7454171352fcadbdf2faa2de6d8f450bc8adcdc",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/viewer-ui.yml",
+      "v1_git_blob": "0c6ebdf5c5d7e6ea55259f29f34ecf33515702a6",
+      "v1_sha256": "3bb28048be13d15e47c0c63a5bfc3c5a32190fde0262abeb8f4c3637a9b9cf31",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/vm-installation.yml",
+      "v1_git_blob": "3feb1c57c9eb7af0cfadc6acffdb25e57942d968",
+      "v1_sha256": "15dc6c233839f388a549ecd342bfe9f27ffc615e92f1dd889786c07468747ec5",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "v1_path": ".github/workflows/workbench-ui.yml",
+      "v1_git_blob": "8c486206f9cd545124dd4fa04ae369b6ddc81226",
+      "v1_sha256": "0881eeb64f4690cf7c4ba912faed31d9f83b21a58ff433540bf3f33d1dc6fef6",
+      "mode": "100644",
+      "v2_implementation": null,
+      "state": "pending",
+      "evidence": []
+    }
+  ]
+}

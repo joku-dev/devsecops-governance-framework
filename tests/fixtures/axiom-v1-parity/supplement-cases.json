@@ -1,0 +1,2577 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "lineage": {
+    "control_evidence_assurance.py": "d46ef37aa7cda76f9bdd6cab52fe8914b976df561a0c52ba2f2563217196d193",
+    "staging_deployment.py": "284d0524ee15c5d6d48de6ab18f5758975e69b9e0f181f8946f31d8a3780d374",
+    "consolidated_l1.py": "07921b9b2315098a1d3931688d2f1781fc54b76f1169ea820eeb5632fc20309d",
+    "evidence_trust.py": "d65b909c15e56bb18669a32fb17dce1f1d4f14bcebe0b8340799794862a326fd"
+  },
+  "input": {
+    "measured": {
+      "schema_version": "1.0.0",
+      "result_type": "measured-l1-assessment",
+      "profile": "ha-cpswms-l1-measured-v2",
+      "repository_id": "joku-dev/ha-CPsWMS",
+      "reference_baseline": "l1-baseline-v1.1.3",
+      "run": {
+        "id": "42",
+        "attempt": 1,
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "branch": "main",
+        "event": "push",
+        "created_at": "2026-09-16T10:00:00Z",
+        "updated_at": "2026-09-16T10:01:00Z"
+      },
+      "enforcement": "report-only",
+      "official_compliance_result": false,
+      "production_approval": false,
+      "risk_acceptance": false,
+      "verification": {
+        "selected_raw_files_verified": true,
+        "archive_digest_verified": false,
+        "independent_attestation": false
+      },
+      "sources": {
+        "report/l1-coverage.json": {
+          "sha256": "a6a5c434d7d4a36c1a860d9d3fb31da2a4dcdc9dc0725e403a73cb02b8c62714",
+          "bytes": 2248,
+          "artifact_id": "1",
+          "verification": "github_artifact_context"
+        },
+        "repository/quality/traceability.json": {
+          "sha256": "0d152f31c684353b37a07b678b6bab1de86015d61271371ce65b76c71445bf4a",
+          "bytes": 91,
+          "artifact_id": "repository",
+          "verification": "git_commit_content"
+        },
+        "source/manifest.json": {
+          "sha256": "caada8ca7ef7e1541477d968acce70c56206582918194eb13dc09b28b84df1c5",
+          "bytes": 3403,
+          "artifact_id": "2",
+          "verification": "github_artifact_context"
+        },
+        "source/junit.xml": {
+          "sha256": "77e8a56f6fbed0498891f518191f535e2ec795f15d5768fcc089dc0a156cd500",
+          "bytes": 97,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/tests.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/bandit.json": {
+          "sha256": "d27b83b4262df4383d8c9ff1900af265766a1413eb276b64d56feee641ad6358",
+          "bytes": 31,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/bandit.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/ruff.json": {
+          "sha256": "e10808d43975dc400731053386849f864f297e6c4f7519c380f3dbaf7067a840",
+          "bytes": 4,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/ruff.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/installed-tools.log": {
+          "sha256": "e243411a4d475f1607c2b1b5f87ebf78e8adad92920079fbb0243094f5c573b5",
+          "bytes": 9,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-locks.json": {
+          "sha256": "1e0dbf3c04959c2fa736c56b490540c804241e682f98c72b70c2d4f278916bea",
+          "bytes": 2390,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-sbom-application.cyclonedx.json": {
+          "sha256": "d1b52c0c20af7cf005a5942668884de89f05ef30d7e60db45cf59821520b79fb",
+          "bytes": 58,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-sbom-application.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-sbom-ci.cyclonedx.json": {
+          "sha256": "823cd7f5101f956d8856aeef4ca0bd774395d9f02e7c5d1f6e8272dfb9d46661",
+          "bytes": 62,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-sbom-ci.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-audit.json": {
+          "sha256": "179f2d23cf3dee70374d15eb4837c7e9765515c8b6ce1b23595807ff2c8220d3",
+          "bytes": 177,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-audit.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/ha-sync.in": {
+          "sha256": "c66c7dc0ec78f3e963f5687760ba05ec0913309e381ebfe7c6f416551d2f6faf",
+          "bytes": 11,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/ha-sync.lock": {
+          "sha256": "c1608cb79f0c19882ac0dbc8a57fc43037469500d50fa0f6804da368bd03e840",
+          "bytes": 101,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/query-api.in": {
+          "sha256": "91d658152f9c0cfd630e6060f7fa34c2211d7ebdbfb3feea663377c1c57e669d",
+          "bytes": 14,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/query-api.lock": {
+          "sha256": "50548b90585d531f624760f028d1157fbad0c1ecb6d841a3ba7d79ad0d93c974",
+          "bytes": 104,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/semantic-enrichment.in": {
+          "sha256": "2d113e32bdbc2530f6027db70505e7a7e351e8ba42d873de8df7e6ca185c7764",
+          "bytes": 17,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/semantic-enrichment.lock": {
+          "sha256": "73e024c4fd629126210d725bc1313d508ad8e37ecd710020675cbd0d6bddcb4f",
+          "bytes": 107,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/world-model-chat.in": {
+          "sha256": "83484547342863d4e8e48025375e035071ac5ab53f4e3b4040cc55a6c8b79de3",
+          "bytes": 13,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/world-model-chat.lock": {
+          "sha256": "3c0a2027a140081095e0f5cd2f1ad8cf560c2b39bbe004e362767c16308a7147",
+          "bytes": 103,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/application.in": {
+          "sha256": "4a98d0e9097101545432eced8f87838511902eda766938a3b35d613f9a488c65",
+          "bytes": 55,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/application.lock": {
+          "sha256": "b8dffd1a3fa97f23aaa47dd1d1d407fecc21cb644d42fc882eb2c0edb473f545",
+          "bytes": 415,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/ci.in": {
+          "sha256": "7a8564026fadd89b14269e34803694be57726493b7e194ca6d018d76fd0f700c",
+          "bytes": 65,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "source/dependency-files/ci.lock": {
+          "sha256": "a14e43ff4c40b4746a50316c72be9f5f2938f3f9c4344f75bc5022c283d3685d",
+          "bytes": 515,
+          "artifact_id": "2",
+          "verification": "manifest_sha256"
+        },
+        "platform/manifest.json": {
+          "sha256": "f9a686f453cd845a561bc63598aad09a4f772866d88569c5470903143e4742c8",
+          "bytes": 1044,
+          "artifact_id": "3",
+          "verification": "github_artifact_context"
+        },
+        "platform/commit.json": {
+          "sha256": "8a89d027059efe05593191004510f741ccdf159ad621ab63f0d1964081483c12",
+          "bytes": 102,
+          "artifact_id": "3",
+          "verification": "manifest_sha256"
+        },
+        "platform/pulls.json": {
+          "sha256": "3b9428fe1ed8dae30011600089e60073940fe48953a24218937368f455fb2f8a",
+          "bytes": 20,
+          "artifact_id": "3",
+          "verification": "manifest_sha256"
+        },
+        "platform/protection.json": {
+          "sha256": "3b9428fe1ed8dae30011600089e60073940fe48953a24218937368f455fb2f8a",
+          "bytes": 20,
+          "artifact_id": "3",
+          "verification": "manifest_sha256"
+        },
+        "platform/rules.json": {
+          "sha256": "3b9428fe1ed8dae30011600089e60073940fe48953a24218937368f455fb2f8a",
+          "bytes": 20,
+          "artifact_id": "3",
+          "verification": "manifest_sha256"
+        },
+        "platform/environments.json": {
+          "sha256": "3b9428fe1ed8dae30011600089e60073940fe48953a24218937368f455fb2f8a",
+          "bytes": 20,
+          "artifact_id": "3",
+          "verification": "manifest_sha256"
+        },
+        "platform/run.json": {
+          "sha256": "07849618af08842050abeedc0b8a276c8d3e8b69fb49ef8e939be7490b174f06",
+          "bytes": 96,
+          "artifact_id": "3",
+          "verification": "manifest_sha256"
+        },
+        "platform/rulesets.json": {
+          "sha256": "3b9428fe1ed8dae30011600089e60073940fe48953a24218937368f455fb2f8a",
+          "bytes": 20,
+          "artifact_id": "3",
+          "verification": "manifest_sha256"
+        },
+        "platform/ruleset-details.json": {
+          "sha256": "3b9428fe1ed8dae30011600089e60073940fe48953a24218937368f455fb2f8a",
+          "bytes": 20,
+          "artifact_id": "3",
+          "verification": "manifest_sha256"
+        },
+        "runtime/manifest.json": {
+          "sha256": "303cbfefd84ed99cd2ab3060f95c9b9c30fada0d0b62105b4d164e141b4c23e0",
+          "bytes": 721,
+          "artifact_id": "4",
+          "verification": "github_artifact_context"
+        },
+        "runtime/junit.xml": {
+          "sha256": "77e8a56f6fbed0498891f518191f535e2ec795f15d5768fcc089dc0a156cd500",
+          "bytes": 97,
+          "artifact_id": "4",
+          "verification": "manifest_sha256"
+        },
+        "runtime/runtime-tests.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "4",
+          "verification": "manifest_sha256"
+        },
+        "runtime/deployment.json": {
+          "sha256": "db4b48e9368d2c175d22148b7cdd4d956cd5eb3d1a66bc3aa81332c18f09bbce",
+          "bytes": 612,
+          "artifact_id": "4",
+          "verification": "manifest_sha256"
+        },
+        "runtime/query-api.log": {
+          "sha256": "e243411a4d475f1607c2b1b5f87ebf78e8adad92920079fbb0243094f5c573b5",
+          "bytes": 9,
+          "artifact_id": "4",
+          "verification": "manifest_sha256"
+        },
+        "runtime/neo4j.log": {
+          "sha256": "e243411a4d475f1607c2b1b5f87ebf78e8adad92920079fbb0243094f5c573b5",
+          "bytes": 9,
+          "artifact_id": "4",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/manifest.json": {
+          "sha256": "f882a8c8de86aafc2253b1d60f5df7ce449c5c02c1196822551c85e865b1851c",
+          "bytes": 1216,
+          "artifact_id": "5",
+          "verification": "github_artifact_context"
+        },
+        "image-ha-sync/subject.json": {
+          "sha256": "d0eedafebed604e19df8ab541ce63fb32d454b7b4f262f846eb243c36a4b8d40",
+          "bytes": 383,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/image-metadata.json": {
+          "sha256": "75d525ec7409961c642f003fa5270f5f609ccff58d4aeeb3ef9882b358973c9a",
+          "bytes": 81,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/sbom.cyclonedx.json": {
+          "sha256": "fca2a096110a54a8ec6659b0b7e3eb4da4b6164b86a63eb1c334a60ac906099b",
+          "bytes": 236,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/vulnerabilities.json": {
+          "sha256": "80dfd365400cd912079c5ac3691f100e95472297d039a09467c9b9d011ac552d",
+          "bytes": 238,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/build.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/sbom.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/vulnerabilities.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/archive.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-ha-sync/trivy-version.log": {
+          "sha256": "e243411a4d475f1607c2b1b5f87ebf78e8adad92920079fbb0243094f5c573b5",
+          "bytes": 9,
+          "artifact_id": "5",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/manifest.json": {
+          "sha256": "3b6e8617285d676afae0949a895c4b6c6d211d48d9c3db96cdc616584603264d",
+          "bytes": 1216,
+          "artifact_id": "6",
+          "verification": "github_artifact_context"
+        },
+        "image-query-api/subject.json": {
+          "sha256": "c806f6b672a59935b37f7d728fa9441445142c700c515869dce19deeb48cecd4",
+          "bytes": 387,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/image-metadata.json": {
+          "sha256": "c5fbea23e6d064c9e9010067194cbdc7254efd283cbf6185f54c969e859e4893",
+          "bytes": 81,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/sbom.cyclonedx.json": {
+          "sha256": "5d18e231621746ca90870493c26766d59a77a7c293804d3c58515debd027702c",
+          "bytes": 236,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/vulnerabilities.json": {
+          "sha256": "6791df7ebd072c62e83df9c2b8bace328f326c9024ba06fbe0586ccaec56f5cc",
+          "bytes": 238,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/build.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/sbom.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/vulnerabilities.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/archive.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-query-api/trivy-version.log": {
+          "sha256": "e243411a4d475f1607c2b1b5f87ebf78e8adad92920079fbb0243094f5c573b5",
+          "bytes": 9,
+          "artifact_id": "6",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/manifest.json": {
+          "sha256": "f03e7f564a19ca27c04909d803c5b66e2ea604178c3656e97cb7c562a3247d41",
+          "bytes": 1216,
+          "artifact_id": "7",
+          "verification": "github_artifact_context"
+        },
+        "image-semantic-enrichment/subject.json": {
+          "sha256": "accec086a18b26c83738e3851eb5723bee997c192115d51075a051ee9da0a047",
+          "bytes": 407,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/image-metadata.json": {
+          "sha256": "648b8c6fc5262a795303301f4ecbe703bcaf7eb65a4ed2151d6ccc6253f113bb",
+          "bytes": 81,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/sbom.cyclonedx.json": {
+          "sha256": "ec4508ee801fdb0125b160f5bcd9aa99c412ddf733b4dadd15676a31fabbe958",
+          "bytes": 236,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/vulnerabilities.json": {
+          "sha256": "8ef6bdd166f0286b281abd50ace0a26655a8a6a754dc8c9ba90f23fdf839c6d9",
+          "bytes": 238,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/build.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/sbom.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/vulnerabilities.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/archive.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-semantic-enrichment/trivy-version.log": {
+          "sha256": "e243411a4d475f1607c2b1b5f87ebf78e8adad92920079fbb0243094f5c573b5",
+          "bytes": 9,
+          "artifact_id": "7",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/manifest.json": {
+          "sha256": "0b5444b72ea8f2cda6acf948db8964faf646befb603f32e57c4f790759c3741f",
+          "bytes": 1216,
+          "artifact_id": "8",
+          "verification": "github_artifact_context"
+        },
+        "image-world-model-chat/subject.json": {
+          "sha256": "179cccd7696a7b4dabf47208c58abe42b8812b401a4296c731d347a591df75e0",
+          "bytes": 401,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/image-metadata.json": {
+          "sha256": "b844b65e0e09e816b6a34e4446b78f118726f06301a8ec2ddad6095eb3fbc041",
+          "bytes": 81,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/sbom.cyclonedx.json": {
+          "sha256": "da3ef5356a2683567a1ca924528dcbdc8e5beec9a25b14c490b38d615bde0432",
+          "bytes": 236,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/vulnerabilities.json": {
+          "sha256": "b1c1786c60caf2e6d625d544c72ba3fd2edd6038657ad63a15959dcc0223a202",
+          "bytes": 238,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/build.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/sbom.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/vulnerabilities.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/archive.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-world-model-chat/trivy-version.log": {
+          "sha256": "e243411a4d475f1607c2b1b5f87ebf78e8adad92920079fbb0243094f5c573b5",
+          "bytes": 9,
+          "artifact_id": "8",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/manifest.json": {
+          "sha256": "e46a25e3eff00be5e7019b1c2b613d925a6137d8d1b40b8c1ba9bfb121b0a998",
+          "bytes": 1216,
+          "artifact_id": "9",
+          "verification": "github_artifact_context"
+        },
+        "image-neo4j/subject.json": {
+          "sha256": "8edf6f2c3f59f09513421883bfc92439cf2254ad978d7372941b1c4ff9b29315",
+          "bytes": 379,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/image-metadata.json": {
+          "sha256": "2f8561084f73ab5bc2ae8c1ce4323cfd2202b3449b8a4462cb830a8de216287f",
+          "bytes": 81,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/sbom.cyclonedx.json": {
+          "sha256": "90851478e36684be3afb51ca55f6e8c4f218d90a56ea99d8de8f44937886654e",
+          "bytes": 236,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/vulnerabilities.json": {
+          "sha256": "a3c1aa8b031c12ed1f05db589c6e13877b411bc2682572fa8fa53dac7d9f09b1",
+          "bytes": 238,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/build.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/sbom.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/vulnerabilities.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/archive.execution.json": {
+          "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+          "bytes": 16,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        },
+        "image-neo4j/trivy-version.log": {
+          "sha256": "e243411a4d475f1607c2b1b5f87ebf78e8adad92920079fbb0243094f5c573b5",
+          "bytes": 9,
+          "artifact_id": "9",
+          "verification": "manifest_sha256"
+        }
+      },
+      "observations": {
+        "tests": {
+          "source": {
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0,
+            "execution_ok": true
+          },
+          "runtime": {
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0,
+            "execution_ok": true
+          }
+        },
+        "traceability": {
+          "requirements": 1,
+          "matched": 1,
+          "links": [
+            {
+              "id": "REQ-1",
+              "cases": 2,
+              "passed": true
+            }
+          ]
+        },
+        "static_analysis": {
+          "bandit": 1,
+          "ruff": 1,
+          "execution_ok": true
+        },
+        "component_count": 5,
+        "dependency_inventory": {
+          "python": "3.12",
+          "resolver": "uv 0.8.22",
+          "profiles": {
+            "ha-sync": {
+              "package_count": 1,
+              "input_sha256": "c66c7dc0ec78f3e963f5687760ba05ec0913309e381ebfe7c6f416551d2f6faf",
+              "lock_sha256": "c1608cb79f0c19882ac0dbc8a57fc43037469500d50fa0f6804da368bd03e840"
+            },
+            "query-api": {
+              "package_count": 1,
+              "input_sha256": "91d658152f9c0cfd630e6060f7fa34c2211d7ebdbfb3feea663377c1c57e669d",
+              "lock_sha256": "50548b90585d531f624760f028d1157fbad0c1ecb6d841a3ba7d79ad0d93c974"
+            },
+            "semantic-enrichment": {
+              "package_count": 1,
+              "input_sha256": "2d113e32bdbc2530f6027db70505e7a7e351e8ba42d873de8df7e6ca185c7764",
+              "lock_sha256": "73e024c4fd629126210d725bc1313d508ad8e37ecd710020675cbd0d6bddcb4f"
+            },
+            "world-model-chat": {
+              "package_count": 1,
+              "input_sha256": "83484547342863d4e8e48025375e035071ac5ab53f4e3b4040cc55a6c8b79de3",
+              "lock_sha256": "3c0a2027a140081095e0f5cd2f1ad8cf560c2b39bbe004e362767c16308a7147"
+            },
+            "application": {
+              "package_count": 4,
+              "input_sha256": "4a98d0e9097101545432eced8f87838511902eda766938a3b35d613f9a488c65",
+              "lock_sha256": "b8dffd1a3fa97f23aaa47dd1d1d407fecc21cb644d42fc882eb2c0edb473f545"
+            },
+            "ci": {
+              "package_count": 5,
+              "input_sha256": "7a8564026fadd89b14269e34803694be57726493b7e194ca6d018d76fd0f700c",
+              "lock_sha256": "a14e43ff4c40b4746a50316c72be9f5f2938f3f9c4344f75bc5022c283d3685d"
+            }
+          },
+          "application_sbom_components": 4,
+          "ci_sbom_components": 5,
+          "vulnerability_count": 0,
+          "execution_ok": true
+        },
+        "vulnerability_counts": {
+          "CRITICAL": 0,
+          "HIGH": 5,
+          "MEDIUM": 0,
+          "LOW": 0,
+          "UNKNOWN": 0,
+          "INFO": 0
+        },
+        "platform": {
+          "author_identified": true,
+          "protection_http": 403,
+          "rules_http": 403,
+          "rulesets_http": 403,
+          "main_ruleset": null,
+          "environments_http": 403
+        },
+        "images": {
+          "ha-sync": {
+            "image_id": "sha256:8cbf4783f37b37341a5fda3b652045226cef08c4c9f56aeaf3dd5e90f540d4f3",
+            "archive_sha256_declared": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          },
+          "query-api": {
+            "image_id": "sha256:de43406ec4c4e4d728d0d4847e717713f4e8bb02a241990ae3290588270bfcce",
+            "archive_sha256_declared": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          },
+          "semantic-enrichment": {
+            "image_id": "sha256:497cfa63b2a340bd5efec8c6c326b9018528dc047b694b977e8026bd95bed96a",
+            "archive_sha256_declared": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          },
+          "world-model-chat": {
+            "image_id": "sha256:a928a0bbb66bd3cbaadfd102552ba8522b24df1614b9c0a18ffb906de85f7b73",
+            "archive_sha256_declared": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          },
+          "neo4j": {
+            "image_id": "sha256:13fd9e770be366985fd7e0ca5026434c7c3e4e84e111f09039889277534b4114",
+            "archive_sha256_declared": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "controls": [
+        {
+          "control_id": "DSCB-L1-REQ-001",
+          "title": "Anforderungen, Tests und Berichte",
+          "assessment": "partial",
+          "tools": [
+            "pytest",
+            "JUnit"
+          ],
+          "observation": "2 Tests bestanden; 1 technische Anforderungszuordnungen gepr\u00fcft.",
+          "remaining": "Freigegebene Systemanforderungen und vollst\u00e4ndige Abdeckung aller Komponenten nachweisen.",
+          "evidence_refs": [
+            "source/junit.xml",
+            "runtime/junit.xml",
+            "repository/quality/traceability.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-002",
+          "title": "\u00c4nderungen und Autoren",
+          "assessment": "partial",
+          "tools": [
+            "GitHub API"
+          ],
+          "observation": "Commit und identifizierbarer Autor best\u00e4tigt.",
+          "remaining": "Organisatorische VCS-Freigabe und ben\u00f6tigte Review-Nachweise separat belegen; kein unabh\u00e4ngiges Review abgeleitet.",
+          "evidence_refs": [
+            "platform/commit.json",
+            "platform/pulls.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-003",
+          "title": "Gesch\u00fctzte Branches",
+          "assessment": "gap",
+          "tools": [
+            "GitHub API"
+          ],
+          "observation": "Branch-Schutz HTTP 403; kein vollst\u00e4ndiger Main-Ruleset ohne Bypass best\u00e4tigt.",
+          "remaining": "Vollst\u00e4ndigen Main-Ruleset ohne Bypass f\u00fcr Direkt\u00e4nderungen, L\u00f6schung und Force-Push einrichten.",
+          "evidence_refs": [
+            "platform/protection.json",
+            "platform/rules.json",
+            "platform/rulesets.json",
+            "platform/ruleset-details.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-004",
+          "title": "Sichere Entwicklung",
+          "assessment": "findings",
+          "tools": [
+            "Bandit",
+            "Ruff"
+          ],
+          "observation": "1 Bandit- und 1 Ruff-Befunde; erfolgreiche Werkzeugausf\u00fchrung: True.",
+          "remaining": "Security-relevante Befunde fachlich bewerten und Entscheidungen dokumentieren.",
+          "evidence_refs": [
+            "source/bandit.json",
+            "source/ruff.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-005",
+          "title": "Abh\u00e4ngigkeiten erfassen",
+          "assessment": "measured",
+          "tools": [
+            "Trivy",
+            "CycloneDX",
+            "pip-audit"
+          ],
+          "observation": "5 Image-Komponentenmeldungen sowie 4 Anwendungs- und 5 CI-/Tool-Pakete gepr\u00fcft.",
+          "remaining": "Inventar ist an diesen Commit und Python 3.12 gebunden; \u00c4nderungen erfordern neue Locks und Nachweise.",
+          "evidence_refs": [
+            "image-ha-sync/sbom.cyclonedx.json",
+            "image-query-api/sbom.cyclonedx.json",
+            "image-semantic-enrichment/sbom.cyclonedx.json",
+            "image-world-model-chat/sbom.cyclonedx.json",
+            "image-neo4j/sbom.cyclonedx.json",
+            "source/dependency-locks.json",
+            "source/dependency-sbom-application.cyclonedx.json",
+            "source/dependency-sbom-ci.cyclonedx.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-006",
+          "title": "SBOM je Artefakt",
+          "assessment": "measured",
+          "tools": [
+            "Trivy",
+            "CycloneDX"
+          ],
+          "observation": "F\u00fcnf nichtleere SBOMs mit den gescannten Image-IDs abgeglichen.",
+          "remaining": "Nachweis gilt f\u00fcr diese CI-Builds; keine Release- oder Deployment-Freigabe.",
+          "evidence_refs": [
+            "image-ha-sync/sbom.cyclonedx.json",
+            "image-query-api/sbom.cyclonedx.json",
+            "image-semantic-enrichment/sbom.cyclonedx.json",
+            "image-world-model-chat/sbom.cyclonedx.json",
+            "image-neo4j/sbom.cyclonedx.json",
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-007",
+          "title": "Kontrollierte Builds",
+          "assessment": "measured",
+          "tools": [
+            "Docker",
+            "GitHub Actions"
+          ],
+          "observation": "Erfolgreiche Builds verwenden Digest-festgelegte Basisimages und Python-3.12-Locks mit exakten Versionen und SHA-256-Hashes.",
+          "remaining": "Nachweis gilt f\u00fcr diese automatisierten Builds; byte-identische Container-Reproduktion und unabh\u00e4ngige Provenienz bleiben weiterf\u00fchrend.",
+          "evidence_refs": [
+            "image-ha-sync/build.execution.json",
+            "image-query-api/build.execution.json",
+            "image-semantic-enrichment/build.execution.json",
+            "image-world-model-chat/build.execution.json",
+            "image-neo4j/build.execution.json",
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json",
+            "source/dependency-locks.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-008",
+          "title": "Build-Ergebnisse identifizieren",
+          "assessment": "measured",
+          "tools": [
+            "Docker",
+            "SHA-256"
+          ],
+          "observation": "F\u00fcnf Image-IDs mit Commit, Scanner- und Docker-Metadaten abgeglichen.",
+          "remaining": "Archive-Digests sind Producer-Angaben; vollst\u00e4ndige Image-Archive zentral nicht erneut gehasht.",
+          "evidence_refs": [
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-009",
+          "title": "Schwachstellen scannen",
+          "assessment": "measured",
+          "tools": [
+            "Trivy"
+          ],
+          "observation": "Trivy-JSON und erfolgreiche Scan-Ausf\u00fchrung f\u00fcr alle f\u00fcnf Image-IDs gepr\u00fcft.",
+          "remaining": "Scan-Abschluss bewertet weder Ausnutzbarkeit noch Risikoakzeptanz.",
+          "evidence_refs": [
+            "image-ha-sync/vulnerabilities.json",
+            "image-query-api/vulnerabilities.json",
+            "image-semantic-enrichment/vulnerabilities.json",
+            "image-world-model-chat/vulnerabilities.json",
+            "image-neo4j/vulnerabilities.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-010",
+          "title": "Schwachstellen bewerten",
+          "assessment": "findings",
+          "tools": [
+            "Trivy",
+            "pip-audit"
+          ],
+          "observation": "5 Image-/Paketmeldungen und 0 Anwendungsabh\u00e4ngigkeitsmeldungen; davon 0 kritisch und 5 hoch.",
+          "remaining": "Befunde auf betroffene Nutzung pr\u00fcfen, beheben oder autorisierte Entscheidungen einholen; keine automatische Risikofreigabe.",
+          "evidence_refs": [
+            "image-ha-sync/vulnerabilities.json",
+            "image-query-api/vulnerabilities.json",
+            "image-semantic-enrichment/vulnerabilities.json",
+            "image-world-model-chat/vulnerabilities.json",
+            "image-neo4j/vulnerabilities.json",
+            "source/dependency-audit.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-011",
+          "title": "Artefakte vor Manipulation sch\u00fctzen",
+          "assessment": "partial",
+          "tools": [
+            "SHA-256",
+            "GitHub Artifacts"
+          ],
+          "observation": "Ausgew\u00e4hlte Rohdateien gegen laufgebundene Producer-Manifeste gepr\u00fcft.",
+          "remaining": "Zugriffsschutz, Aufbewahrung und unabh\u00e4ngige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivpr\u00fcfung.",
+          "evidence_refs": [
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-012",
+          "title": "Artefaktidentit\u00e4t",
+          "assessment": "measured",
+          "tools": [
+            "Docker",
+            "SHA-256"
+          ],
+          "observation": "Image-IDs und Quell-Commit sind durchg\u00e4ngig zugeordnet.",
+          "remaining": "Identit\u00e4t ist keine Aussage \u00fcber Freigabe oder Vertrauensw\u00fcrdigkeit des Producers.",
+          "evidence_refs": [
+            "image-ha-sync/subject.json",
+            "image-query-api/subject.json",
+            "image-semantic-enrichment/subject.json",
+            "image-world-model-chat/subject.json",
+            "image-neo4j/subject.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-013",
+          "title": "Deployment autorisieren",
+          "assessment": "gap",
+          "tools": [
+            "GitHub API"
+          ],
+          "observation": "Umgebungsabfrage HTTP 403; keine autorisierte Deployment-Freigabe im Messvertrag.",
+          "remaining": "Zielumgebung und autorisierte Freigabe f\u00fcr das konkrete Artefakt nachweisen. Merge und gr\u00fcner Lauf reichen nicht.",
+          "evidence_refs": [
+            "platform/environments.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-014",
+          "title": "Nur freigegebene Artefakte deployen",
+          "assessment": "gap",
+          "tools": [
+            "Docker",
+            "pytest"
+          ],
+          "observation": "Query-API und Neo4j wurden mit den gescannten Image-IDs in kurzlebiger CI getestet.",
+          "remaining": "Deployment in eine genehmigte Zielumgebung und dortige Auswahl freigegebener Artefakte nachweisen.",
+          "evidence_refs": [
+            "runtime/deployment.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-015",
+          "title": "Maschinenlesbare Nachweise",
+          "assessment": "measured",
+          "tools": [
+            "JSON",
+            "JUnit",
+            "SHA-256"
+          ],
+          "observation": "Ausgew\u00e4hlte Nachweisdateien an Repository, Commit, Lauf und Versuch gebunden und zentral gepr\u00fcft.",
+          "remaining": "Keine unabh\u00e4ngige Attestation; nicht heruntergeladene Archivbytes bleiben ungepr\u00fcft.",
+          "evidence_refs": [
+            "image-ha-sync/manifest.json",
+            "image-neo4j/manifest.json",
+            "image-query-api/manifest.json",
+            "image-semantic-enrichment/manifest.json",
+            "image-world-model-chat/manifest.json",
+            "platform/manifest.json",
+            "runtime/manifest.json",
+            "source/manifest.json"
+          ]
+        },
+        {
+          "control_id": "DSCB-L1-REQ-016",
+          "title": "Betrieb nachvollziehen",
+          "assessment": "partial",
+          "tools": [
+            "pytest",
+            "HTTP",
+            "Neo4j",
+            "Docker"
+          ],
+          "observation": "1 Runtime-Tests bestanden; Image-IDs und CI-Logs erfasst.",
+          "remaining": "VM, Betriebsregister und dauerhafte Security-Ereignisaufbewahrung erg\u00e4nzen; CI ist kein Betriebsnachweis.",
+          "evidence_refs": [
+            "runtime/deployment.json",
+            "runtime/junit.xml",
+            "runtime/query-api.log",
+            "runtime/neo4j.log"
+          ]
+        }
+      ],
+      "summary": {
+        "measured": 7,
+        "partial": 4,
+        "findings": 2,
+        "gap": 3
+      },
+      "evidence_binding": "1767ef86cea2116040788218b3e3b56180844cbd3bc1f5d093190435a6ef0076"
+    },
+    "bundle_name": "synthetic-staging",
+    "files": {
+      "checks.txt": "SYNTHETIC staging runtime test\n",
+      "query-api.log": "SYNTHETIC log\n",
+      "neo4j.log": "SYNTHETIC log\n",
+      "deployment-approval.json": "{\"approval_basis\": \"SYNTHETIC test only\", \"approved_at\": \"2026-09-16T10:01:30Z\", \"approved_by\": \"synthetic-reviewer\", \"components\": {\"neo4j\": {\"runtime_image_id\": \"sha256:ab44473353effd2c816e1d63c74f07ea2dcc14a9836943d7591722f11a1b5fc2\"}, \"query-api\": {\"runtime_image_id\": \"sha256:cff36cac2666e70eb5c651f8f047f0dda36831c6f4265bb5fea0de5f123e9d9d\"}}, \"decision\": \"approved_for_staging\", \"risk_context\": {\"critical_findings\": 1, \"enforcement\": \"report_only\", \"high_findings\": 328, \"risk_acceptance\": false, \"scope\": \"staging_only\"}, \"schema_version\": \"1.0\", \"subject\": {\"commit\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"evidence_run_attempt\": 1, \"evidence_run_id\": \"42\", \"repository\": \"joku-dev/ha-CPsWMS\"}, \"target\": {\"address\": \"192.0.2.10\", \"environment\": \"staging\", \"hostname\": \"synthetic-staging\"}}\n",
+      "deployment-receipt.json": "{\"approval\": {\"critical_findings_acknowledged\": 1, \"decision\": \"approved_for_staging\", \"high_findings_acknowledged\": 328, \"record\": \"deployment-approval.json\", \"risk_acceptance\": false}, \"artifacts\": {\"checks.txt\": {\"bytes\": 31, \"sha256\": \"7db8b10b32df00186c5984a34c52bd8a210e58054a2bddbed01d242b45c877d4\"}, \"deployment-approval.json\": {\"bytes\": 807, \"sha256\": \"feb634e74dff937b5f39330506767aaea1d3f897e41e3c07d3dddf9f4d7f1982\"}, \"neo4j.log\": {\"bytes\": 14, \"sha256\": \"422a86f3e44c77602e4c4d7d45fbd457c7a8c86424d30f62eb1d1c4431dc51e5\"}, \"query-api.log\": {\"bytes\": 14, \"sha256\": \"422a86f3e44c77602e4c4d7d45fbd457c7a8c86424d30f62eb1d1c4431dc51e5\"}}, \"components\": {\"neo4j\": {\"health\": \"healthy\", \"runtime_image_id\": \"sha256:ab44473353effd2c816e1d63c74f07ea2dcc14a9836943d7591722f11a1b5fc2\"}, \"query-api\": {\"health\": \"healthy\", \"runtime_image_id\": \"sha256:cff36cac2666e70eb5c651f8f047f0dda36831c6f4265bb5fea0de5f123e9d9d\"}}, \"context\": {\"commit\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"environment\": \"staging\", \"repository\": \"joku-dev/ha-CPsWMS\", \"source_attempt\": 1, \"source_run_id\": \"42\"}, \"deployment\": {\"api_binding\": \"127.0.0.1:18080\", \"compose_sha256\": \"a22b8db2b75c62a2e2329c20cd66db7ba7b9891eb9a820e7ab4b606968203ccb\", \"finished_at\": \"2026-09-16T10:04:00Z\", \"neo4j_host_port\": null, \"project\": \"ha-cpswms-staging\", \"started_at\": \"2026-09-16T10:02:00Z\"}, \"enforcement\": \"report_only\", \"evidence_type\": \"staging_deployment\", \"limitations\": [\"SYNTHETIC test only; no actual deployment or approval.\"], \"observations\": [], \"schema_version\": \"1.0.0\", \"security_boundaries\": {\"api_loopback_only\": true, \"backend_network_internal\": true, \"capabilities_dropped\": true, \"neo4j_not_published\": true, \"no_new_privileges\": true, \"query_api_non_root\": true, \"query_api_read_only_rootfs\": true}, \"status\": \"pass\", \"target\": {\"address\": \"192.0.2.10\", \"docker_version\": \"29.8.1\", \"hostname\": \"synthetic-staging\", \"os\": \"Linux-7.0.0-31-generic-x86_64-with-glibc2.39\"}, \"tests\": {\"database_outage_http_status\": 500, \"database_recovery_http_status\": 200, \"fail\": 0, \"pass\": 19}}\n",
+      "SHA256SUMS": "7db8b10b32df00186c5984a34c52bd8a210e58054a2bddbed01d242b45c877d4  checks.txt\nfeb634e74dff937b5f39330506767aaea1d3f897e41e3c07d3dddf9f4d7f1982  deployment-approval.json\n042dde4fc431695b2fdc6c9073cea79cdb6de1427abe6fec1dad86c88fe84bf2  deployment-receipt.json\n422a86f3e44c77602e4c4d7d45fbd457c7a8c86424d30f62eb1d1c4431dc51e5  neo4j.log\n422a86f3e44c77602e4c4d7d45fbd457c7a8c86424d30f62eb1d1c4431dc51e5  query-api.log\n"
+    },
+    "evidence_repository_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "at": "2026-09-16T11:00:00Z"
+  },
+  "expected_staging": {
+    "schema_version": "1.0.0",
+    "result_type": "staging-deployment-result",
+    "repository_id": "joku-dev/ha-CPsWMS",
+    "reference_baseline": "l1-baseline-v1.1.3",
+    "deployed_subject": {
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_run_id": "42",
+      "source_attempt": 1
+    },
+    "evidence_repository": {
+      "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "path": "deployment/staging/evidence/synthetic-staging/"
+    },
+    "environment": {
+      "name": "staging",
+      "hostname": "synthetic-staging",
+      "address": "192.0.2.10"
+    },
+    "deployment": {
+      "started_at": "2026-09-16T10:02:00Z",
+      "finished_at": "2026-09-16T10:04:00Z",
+      "project": "ha-cpswms-staging",
+      "status": "pass",
+      "enforcement": "report-only",
+      "production_approval": false,
+      "risk_acceptance": false,
+      "compose_sha256": "a22b8db2b75c62a2e2329c20cd66db7ba7b9891eb9a820e7ab4b606968203ccb",
+      "api_binding": "127.0.0.1:18080"
+    },
+    "approval": {
+      "decision": "approved_for_staging",
+      "approved_at": "2026-09-16T10:01:30Z",
+      "scope": "staging_only",
+      "critical_findings_acknowledged": 1,
+      "high_findings_acknowledged": 328
+    },
+    "components": {
+      "neo4j": {
+        "health": "healthy",
+        "runtime_image_id": "sha256:ab44473353effd2c816e1d63c74f07ea2dcc14a9836943d7591722f11a1b5fc2"
+      },
+      "query-api": {
+        "health": "healthy",
+        "runtime_image_id": "sha256:cff36cac2666e70eb5c651f8f047f0dda36831c6f4265bb5fea0de5f123e9d9d"
+      }
+    },
+    "tests": {
+      "database_outage_http_status": 500,
+      "database_recovery_http_status": 200,
+      "fail": 0,
+      "pass": 19
+    },
+    "security_boundaries": {
+      "api_loopback_only": true,
+      "backend_network_internal": true,
+      "capabilities_dropped": true,
+      "neo4j_not_published": true,
+      "no_new_privileges": true,
+      "query_api_non_root": true,
+      "query_api_read_only_rootfs": true
+    },
+    "observations": [],
+    "controls": [
+      {
+        "control_id": "DSCB-L1-REQ-013",
+        "assessment": "measured",
+        "observation": "A maintainer explicitly approved the exact commit, source run, target and acknowledged staging risk before deployment.",
+        "remaining": "Staging-only decision; no production approval or general vulnerability risk acceptance.",
+        "evidence_refs": [
+          "deployment-approval.json",
+          "deployment-receipt.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-014",
+        "assessment": "measured",
+        "observation": "The target ran only the two approved local image IDs with pull_policy never; both identities and health were rechecked after start.",
+        "remaining": "Runtime IDs are locally observed transport identities; no independent signed deployment attestation.",
+        "evidence_refs": [
+          "deployment-receipt.json",
+          "checks.txt"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-016",
+        "assessment": "partial",
+        "observation": "Deployed versions, container logs, outage detection, recovery, restart and security boundaries are retained for the staging run.",
+        "remaining": "Define durable operational/security-event retention, backup-restore, monitoring and incident ownership before production use.",
+        "evidence_refs": [
+          "deployment-receipt.json",
+          "query-api.log",
+          "neo4j.log",
+          "checks.txt"
+        ]
+      }
+    ],
+    "trust": {
+      "effective_level": "integrity_verified",
+      "assessment_status": "evaluated",
+      "content_integrity": "pass",
+      "freshness": "pass",
+      "replay": "pass",
+      "verified_at": "2026-09-16T11:00:00Z",
+      "check_summary": {
+        "pass": 8,
+        "fail": 0,
+        "not_evaluated": 4
+      }
+    },
+    "verified_sources": {
+      "SHA256SUMS": {
+        "sha256": "329260d8e4b0927c8eac71dd92dc5b04aa16f89851d7f2985c49bb559a9f8b44",
+        "bytes": 414
+      },
+      "checks.txt": {
+        "sha256": "7db8b10b32df00186c5984a34c52bd8a210e58054a2bddbed01d242b45c877d4",
+        "bytes": 31
+      },
+      "deployment-approval.json": {
+        "sha256": "feb634e74dff937b5f39330506767aaea1d3f897e41e3c07d3dddf9f4d7f1982",
+        "bytes": 807
+      },
+      "deployment-receipt.json": {
+        "sha256": "042dde4fc431695b2fdc6c9073cea79cdb6de1427abe6fec1dad86c88fe84bf2",
+        "bytes": 2069
+      },
+      "neo4j.log": {
+        "sha256": "422a86f3e44c77602e4c4d7d45fbd457c7a8c86424d30f62eb1d1c4431dc51e5",
+        "bytes": 14
+      },
+      "query-api.log": {
+        "sha256": "422a86f3e44c77602e4c4d7d45fbd457c7a8c86424d30f62eb1d1c4431dc51e5",
+        "bytes": 14
+      }
+    },
+    "verified_at": "2026-09-16T11:00:00Z",
+    "source_file": "status/staging-deployment-results/joku-dev__ha-CPsWMS/2026-09-16T10-04-00Z-run-42.json",
+    "evidence_binding": "3f432079b7ad150461622769e52ddc6f76fb370a61dbcf2be64a5285c5acb8da"
+  },
+  "expected_consolidated": {
+    "schema_version": "1.0.0",
+    "result_type": "consolidated-l1-assessment",
+    "profile": "ha-cpswms-l1-consolidated-v1",
+    "repository_id": "joku-dev/ha-CPsWMS",
+    "reference_baseline": "l1-baseline-v1.1.3",
+    "run": {
+      "id": "42",
+      "attempt": 1,
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "branch": "main",
+      "event": "push",
+      "created_at": "2026-09-16T10:00:00Z",
+      "updated_at": "2026-09-16T10:01:00Z"
+    },
+    "verified_at": "2026-09-16T11:00:00Z",
+    "enforcement": "report-only",
+    "official_compliance_result": false,
+    "production_approval": false,
+    "risk_acceptance": false,
+    "source_assessments": {
+      "measured": {
+        "source_file": "status/measured-l1-results/joku-dev__ha-CPsWMS/run-42-attempt-1.json",
+        "profile": "ha-cpswms-l1-measured-v2",
+        "evidence_binding": "1767ef86cea2116040788218b3e3b56180844cbd3bc1f5d093190435a6ef0076"
+      },
+      "staging": {
+        "source_file": "status/staging-deployment-results/joku-dev__ha-CPsWMS/2026-09-16T10-04-00Z-run-42.json",
+        "evidence_binding": "3f432079b7ad150461622769e52ddc6f76fb370a61dbcf2be64a5285c5acb8da",
+        "effective_level": "integrity_verified",
+        "freshness": "pass",
+        "replay": "pass"
+      }
+    },
+    "controls": [
+      {
+        "control_id": "DSCB-L1-REQ-001",
+        "title": "Anforderungen, Tests und Berichte",
+        "assessment": "partial",
+        "tools": [
+          "pytest",
+          "JUnit"
+        ],
+        "observation": "2 Tests bestanden; 1 technische Anforderungszuordnungen gepr\u00fcft.",
+        "remaining": "Freigegebene Systemanforderungen und vollst\u00e4ndige Abdeckung aller Komponenten nachweisen.",
+        "evidence_refs": [
+          "measured:source/junit.xml",
+          "measured:runtime/junit.xml",
+          "measured:repository/quality/traceability.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-002",
+        "title": "\u00c4nderungen und Autoren",
+        "assessment": "partial",
+        "tools": [
+          "GitHub API"
+        ],
+        "observation": "Commit und identifizierbarer Autor best\u00e4tigt.",
+        "remaining": "Organisatorische VCS-Freigabe und ben\u00f6tigte Review-Nachweise separat belegen; kein unabh\u00e4ngiges Review abgeleitet.",
+        "evidence_refs": [
+          "measured:platform/commit.json",
+          "measured:platform/pulls.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-003",
+        "title": "Gesch\u00fctzte Branches",
+        "assessment": "gap",
+        "tools": [
+          "GitHub API"
+        ],
+        "observation": "Branch-Schutz HTTP 403; kein vollst\u00e4ndiger Main-Ruleset ohne Bypass best\u00e4tigt.",
+        "remaining": "Vollst\u00e4ndigen Main-Ruleset ohne Bypass f\u00fcr Direkt\u00e4nderungen, L\u00f6schung und Force-Push einrichten.",
+        "evidence_refs": [
+          "measured:platform/protection.json",
+          "measured:platform/rules.json",
+          "measured:platform/rulesets.json",
+          "measured:platform/ruleset-details.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-004",
+        "title": "Sichere Entwicklung",
+        "assessment": "findings",
+        "tools": [
+          "Bandit",
+          "Ruff"
+        ],
+        "observation": "1 Bandit- und 1 Ruff-Befunde; erfolgreiche Werkzeugausf\u00fchrung: True.",
+        "remaining": "Security-relevante Befunde fachlich bewerten und Entscheidungen dokumentieren.",
+        "evidence_refs": [
+          "measured:source/bandit.json",
+          "measured:source/ruff.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-005",
+        "title": "Abh\u00e4ngigkeiten erfassen",
+        "assessment": "measured",
+        "tools": [
+          "Trivy",
+          "CycloneDX",
+          "pip-audit"
+        ],
+        "observation": "5 Image-Komponentenmeldungen sowie 4 Anwendungs- und 5 CI-/Tool-Pakete gepr\u00fcft.",
+        "remaining": "Inventar ist an diesen Commit und Python 3.12 gebunden; \u00c4nderungen erfordern neue Locks und Nachweise.",
+        "evidence_refs": [
+          "measured:image-ha-sync/sbom.cyclonedx.json",
+          "measured:image-query-api/sbom.cyclonedx.json",
+          "measured:image-semantic-enrichment/sbom.cyclonedx.json",
+          "measured:image-world-model-chat/sbom.cyclonedx.json",
+          "measured:image-neo4j/sbom.cyclonedx.json",
+          "measured:source/dependency-locks.json",
+          "measured:source/dependency-sbom-application.cyclonedx.json",
+          "measured:source/dependency-sbom-ci.cyclonedx.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-006",
+        "title": "SBOM je Artefakt",
+        "assessment": "measured",
+        "tools": [
+          "Trivy",
+          "CycloneDX"
+        ],
+        "observation": "F\u00fcnf nichtleere SBOMs mit den gescannten Image-IDs abgeglichen.",
+        "remaining": "Nachweis gilt f\u00fcr diese CI-Builds; keine Release- oder Deployment-Freigabe.",
+        "evidence_refs": [
+          "measured:image-ha-sync/sbom.cyclonedx.json",
+          "measured:image-query-api/sbom.cyclonedx.json",
+          "measured:image-semantic-enrichment/sbom.cyclonedx.json",
+          "measured:image-world-model-chat/sbom.cyclonedx.json",
+          "measured:image-neo4j/sbom.cyclonedx.json",
+          "measured:image-ha-sync/subject.json",
+          "measured:image-query-api/subject.json",
+          "measured:image-semantic-enrichment/subject.json",
+          "measured:image-world-model-chat/subject.json",
+          "measured:image-neo4j/subject.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-007",
+        "title": "Kontrollierte Builds",
+        "assessment": "measured",
+        "tools": [
+          "Docker",
+          "GitHub Actions"
+        ],
+        "observation": "Erfolgreiche Builds verwenden Digest-festgelegte Basisimages und Python-3.12-Locks mit exakten Versionen und SHA-256-Hashes.",
+        "remaining": "Nachweis gilt f\u00fcr diese automatisierten Builds; byte-identische Container-Reproduktion und unabh\u00e4ngige Provenienz bleiben weiterf\u00fchrend.",
+        "evidence_refs": [
+          "measured:image-ha-sync/build.execution.json",
+          "measured:image-query-api/build.execution.json",
+          "measured:image-semantic-enrichment/build.execution.json",
+          "measured:image-world-model-chat/build.execution.json",
+          "measured:image-neo4j/build.execution.json",
+          "measured:image-ha-sync/subject.json",
+          "measured:image-query-api/subject.json",
+          "measured:image-semantic-enrichment/subject.json",
+          "measured:image-world-model-chat/subject.json",
+          "measured:image-neo4j/subject.json",
+          "measured:source/dependency-locks.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-008",
+        "title": "Build-Ergebnisse identifizieren",
+        "assessment": "measured",
+        "tools": [
+          "Docker",
+          "SHA-256"
+        ],
+        "observation": "F\u00fcnf Image-IDs mit Commit, Scanner- und Docker-Metadaten abgeglichen.",
+        "remaining": "Archive-Digests sind Producer-Angaben; vollst\u00e4ndige Image-Archive zentral nicht erneut gehasht.",
+        "evidence_refs": [
+          "measured:image-ha-sync/subject.json",
+          "measured:image-query-api/subject.json",
+          "measured:image-semantic-enrichment/subject.json",
+          "measured:image-world-model-chat/subject.json",
+          "measured:image-neo4j/subject.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-009",
+        "title": "Schwachstellen scannen",
+        "assessment": "measured",
+        "tools": [
+          "Trivy"
+        ],
+        "observation": "Trivy-JSON und erfolgreiche Scan-Ausf\u00fchrung f\u00fcr alle f\u00fcnf Image-IDs gepr\u00fcft.",
+        "remaining": "Scan-Abschluss bewertet weder Ausnutzbarkeit noch Risikoakzeptanz.",
+        "evidence_refs": [
+          "measured:image-ha-sync/vulnerabilities.json",
+          "measured:image-query-api/vulnerabilities.json",
+          "measured:image-semantic-enrichment/vulnerabilities.json",
+          "measured:image-world-model-chat/vulnerabilities.json",
+          "measured:image-neo4j/vulnerabilities.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-010",
+        "title": "Schwachstellen bewerten",
+        "assessment": "findings",
+        "tools": [
+          "Trivy",
+          "pip-audit"
+        ],
+        "observation": "5 Image-/Paketmeldungen und 0 Anwendungsabh\u00e4ngigkeitsmeldungen; davon 0 kritisch und 5 hoch.",
+        "remaining": "Befunde auf betroffene Nutzung pr\u00fcfen, beheben oder autorisierte Entscheidungen einholen; keine automatische Risikofreigabe.",
+        "evidence_refs": [
+          "measured:image-ha-sync/vulnerabilities.json",
+          "measured:image-query-api/vulnerabilities.json",
+          "measured:image-semantic-enrichment/vulnerabilities.json",
+          "measured:image-world-model-chat/vulnerabilities.json",
+          "measured:image-neo4j/vulnerabilities.json",
+          "measured:source/dependency-audit.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-011",
+        "title": "Artefakte vor Manipulation sch\u00fctzen",
+        "assessment": "partial",
+        "tools": [
+          "SHA-256",
+          "GitHub Artifacts"
+        ],
+        "observation": "Ausgew\u00e4hlte Rohdateien gegen laufgebundene Producer-Manifeste gepr\u00fcft.",
+        "remaining": "Zugriffsschutz, Aufbewahrung und unabh\u00e4ngige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivpr\u00fcfung.",
+        "evidence_refs": [
+          "measured:image-ha-sync/subject.json",
+          "measured:image-query-api/subject.json",
+          "measured:image-semantic-enrichment/subject.json",
+          "measured:image-world-model-chat/subject.json",
+          "measured:image-neo4j/subject.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-012",
+        "title": "Artefaktidentit\u00e4t",
+        "assessment": "measured",
+        "tools": [
+          "Docker",
+          "SHA-256"
+        ],
+        "observation": "Image-IDs und Quell-Commit sind durchg\u00e4ngig zugeordnet.",
+        "remaining": "Identit\u00e4t ist keine Aussage \u00fcber Freigabe oder Vertrauensw\u00fcrdigkeit des Producers.",
+        "evidence_refs": [
+          "measured:image-ha-sync/subject.json",
+          "measured:image-query-api/subject.json",
+          "measured:image-semantic-enrichment/subject.json",
+          "measured:image-world-model-chat/subject.json",
+          "measured:image-neo4j/subject.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-013",
+        "title": "Deployment autorisieren",
+        "assessment": "measured",
+        "tools": [
+          "GitHub API",
+          "Staging deployment evidence"
+        ],
+        "observation": "A maintainer explicitly approved the exact commit, source run, target and acknowledged staging risk before deployment.",
+        "remaining": "Staging-only decision; no production approval or general vulnerability risk acceptance.",
+        "evidence_refs": [
+          "measured:platform/environments.json",
+          "staging:deployment-approval.json",
+          "staging:deployment-receipt.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-014",
+        "title": "Nur freigegebene Artefakte deployen",
+        "assessment": "measured",
+        "tools": [
+          "Docker",
+          "Staging deployment evidence",
+          "pytest"
+        ],
+        "observation": "The target ran only the two approved local image IDs with pull_policy never; both identities and health were rechecked after start.",
+        "remaining": "Runtime IDs are locally observed transport identities; no independent signed deployment attestation.",
+        "evidence_refs": [
+          "measured:runtime/deployment.json",
+          "staging:deployment-receipt.json",
+          "staging:checks.txt"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-015",
+        "title": "Maschinenlesbare Nachweise",
+        "assessment": "measured",
+        "tools": [
+          "JSON",
+          "JUnit",
+          "SHA-256"
+        ],
+        "observation": "Ausgew\u00e4hlte Nachweisdateien an Repository, Commit, Lauf und Versuch gebunden und zentral gepr\u00fcft.",
+        "remaining": "Keine unabh\u00e4ngige Attestation; nicht heruntergeladene Archivbytes bleiben ungepr\u00fcft.",
+        "evidence_refs": [
+          "measured:image-ha-sync/manifest.json",
+          "measured:image-neo4j/manifest.json",
+          "measured:image-query-api/manifest.json",
+          "measured:image-semantic-enrichment/manifest.json",
+          "measured:image-world-model-chat/manifest.json",
+          "measured:platform/manifest.json",
+          "measured:runtime/manifest.json",
+          "measured:source/manifest.json"
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-016",
+        "title": "Betrieb nachvollziehen",
+        "assessment": "partial",
+        "tools": [
+          "Docker",
+          "HTTP",
+          "Neo4j",
+          "Staging deployment evidence",
+          "pytest"
+        ],
+        "observation": "Deployed versions, container logs, outage detection, recovery, restart and security boundaries are retained for the staging run.",
+        "remaining": "Define durable operational/security-event retention, backup-restore, monitoring and incident ownership before production use.",
+        "evidence_refs": [
+          "measured:runtime/deployment.json",
+          "measured:runtime/junit.xml",
+          "measured:runtime/query-api.log",
+          "measured:runtime/neo4j.log",
+          "staging:deployment-receipt.json",
+          "staging:query-api.log",
+          "staging:neo4j.log",
+          "staging:checks.txt"
+        ]
+      }
+    ],
+    "summary": {
+      "measured": 9,
+      "partial": 4,
+      "findings": 2,
+      "gap": 1
+    },
+    "evidence_binding": "0ede302b92bf6309e19db6408435bcc8877843b9980c8a9fcd5829647972e1ab"
+  },
+  "expected_assurance": {
+    "schema_version": "1.0.0",
+    "result_type": "control-evidence-assurance",
+    "profile": "control-evidence-assurance-v1",
+    "repository_id": "joku-dev/ha-CPsWMS",
+    "reference_baseline": "l1-baseline-v1.1.3",
+    "run": {
+      "id": "42",
+      "attempt": 1,
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "branch": "main",
+      "event": "push",
+      "created_at": "2026-09-16T10:00:00Z",
+      "updated_at": "2026-09-16T10:01:00Z"
+    },
+    "verified_at": "2026-09-16T11:00:00Z",
+    "enforcement": "report-only",
+    "official_compliance_result": false,
+    "production_approval": false,
+    "risk_acceptance": false,
+    "source_assessment": {
+      "result_type": "measured-l1-assessment",
+      "profile": "ha-cpswms-l1-measured-v2",
+      "evidence_binding": "1767ef86cea2116040788218b3e3b56180844cbd3bc1f5d093190435a6ef0076",
+      "source_file": "status/measured-l1-results/joku-dev__ha-CPsWMS/run-42-attempt-1.json"
+    },
+    "controls": [
+      {
+        "control_id": "DSCB-L1-REQ-001",
+        "assessment": "partial",
+        "coverage": "partial",
+        "effective_level": "unverified",
+        "content_integrity": "not_evaluated",
+        "provenance": "not_evaluated",
+        "freshness": {
+          "result": "not_evaluated",
+          "policy_id": "freshness-control-evidence-commit-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": null,
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Freigegebene Systemanforderungen und vollst\u00e4ndige Abdeckung aller Komponenten nachweisen."
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "mainline",
+        "subject_binding": "commit",
+        "evidence": [
+          {
+            "evidence_type": "requirements_traceability_records",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "source/junit.xml",
+              "runtime/junit.xml",
+              "repository/quality/traceability.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-control-evidence-commit-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          },
+          {
+            "evidence_type": "unmet_control_evidence",
+            "status": "missing",
+            "required": true,
+            "evidence_refs": [],
+            "effective_level": "unverified",
+            "content_integrity": "not_evaluated",
+            "provenance": "not_evaluated",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-control-evidence-commit-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Freigegebene Systemanforderungen und vollst\u00e4ndige Abdeckung aller Komponenten nachweisen."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": [
+          "Freigegebene Systemanforderungen und vollst\u00e4ndige Abdeckung aller Komponenten nachweisen."
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-002",
+        "assessment": "partial",
+        "coverage": "partial",
+        "effective_level": "unverified",
+        "content_integrity": "not_evaluated",
+        "provenance": "not_evaluated",
+        "freshness": {
+          "result": "not_evaluated",
+          "policy_id": "freshness-control-evidence-commit-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": null,
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Organisatorische VCS-Freigabe und ben\u00f6tigte Review-Nachweise separat belegen; kein unabh\u00e4ngiges Review abgeleitet."
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "mainline",
+        "subject_binding": "commit",
+        "evidence": [
+          {
+            "evidence_type": "commit_history",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "platform/commit.json",
+              "platform/pulls.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-control-evidence-commit-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          },
+          {
+            "evidence_type": "unmet_control_evidence",
+            "status": "missing",
+            "required": true,
+            "evidence_refs": [],
+            "effective_level": "unverified",
+            "content_integrity": "not_evaluated",
+            "provenance": "not_evaluated",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-control-evidence-commit-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Organisatorische VCS-Freigabe und ben\u00f6tigte Review-Nachweise separat belegen; kein unabh\u00e4ngiges Review abgeleitet."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": [
+          "Organisatorische VCS-Freigabe und ben\u00f6tigte Review-Nachweise separat belegen; kein unabh\u00e4ngiges Review abgeleitet."
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-003",
+        "assessment": "gap",
+        "coverage": "missing",
+        "effective_level": "unverified",
+        "content_integrity": "not_evaluated",
+        "provenance": "not_evaluated",
+        "freshness": {
+          "result": "not_evaluated",
+          "policy_id": "freshness-repository-configuration-24h",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": null,
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Vollst\u00e4ndigen Main-Ruleset ohne Bypass f\u00fcr Direkt\u00e4nderungen, L\u00f6schung und Force-Push einrichten."
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "mainline",
+        "subject_binding": "repository_state",
+        "evidence": [
+          {
+            "evidence_type": "branch_protection_configuration",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "platform/protection.json",
+              "platform/rules.json",
+              "platform/rulesets.json",
+              "platform/ruleset-details.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-repository-configuration-24h",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence age 3540s is within the provisional maximum 86400s.",
+              "age_seconds": 3540,
+              "maximum_age_seconds": 86400
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          },
+          {
+            "evidence_type": "unmet_control_evidence",
+            "status": "missing",
+            "required": true,
+            "evidence_refs": [],
+            "effective_level": "unverified",
+            "content_integrity": "not_evaluated",
+            "provenance": "not_evaluated",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-repository-configuration-24h",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Vollst\u00e4ndigen Main-Ruleset ohne Bypass f\u00fcr Direkt\u00e4nderungen, L\u00f6schung und Force-Push einrichten."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": [
+          "Vollst\u00e4ndigen Main-Ruleset ohne Bypass f\u00fcr Direkt\u00e4nderungen, L\u00f6schung und Force-Push einrichten."
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-004",
+        "assessment": "findings",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-control-evidence-commit-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence is bound to the centrally verified immutable subject.",
+          "maximum_age_seconds": null
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "mainline",
+        "subject_binding": "commit",
+        "evidence": [
+          {
+            "evidence_type": "static_code_analysis_reports",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "source/bandit.json",
+              "source/ruff.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-control-evidence-commit-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-005",
+        "assessment": "measured",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-sbom-subject-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence is bound to the centrally verified immutable subject.",
+          "maximum_age_seconds": null
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "artifact",
+        "evidence": [
+          {
+            "evidence_type": "sbom",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/sbom.cyclonedx.json",
+              "image-query-api/sbom.cyclonedx.json",
+              "image-semantic-enrichment/sbom.cyclonedx.json",
+              "image-world-model-chat/sbom.cyclonedx.json",
+              "image-neo4j/sbom.cyclonedx.json",
+              "source/dependency-locks.json",
+              "source/dependency-sbom-application.cyclonedx.json",
+              "source/dependency-sbom-ci.cyclonedx.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-sbom-subject-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-006",
+        "assessment": "measured",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-sbom-subject-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence is bound to the centrally verified immutable subject.",
+          "maximum_age_seconds": null
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "artifact",
+        "evidence": [
+          {
+            "evidence_type": "sbom",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/sbom.cyclonedx.json",
+              "image-query-api/sbom.cyclonedx.json",
+              "image-semantic-enrichment/sbom.cyclonedx.json",
+              "image-world-model-chat/sbom.cyclonedx.json",
+              "image-neo4j/sbom.cyclonedx.json",
+              "image-ha-sync/subject.json",
+              "image-query-api/subject.json",
+              "image-semantic-enrichment/subject.json",
+              "image-world-model-chat/subject.json",
+              "image-neo4j/subject.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-sbom-subject-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-007",
+        "assessment": "measured",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-control-evidence-commit-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence is bound to the centrally verified immutable subject.",
+          "maximum_age_seconds": null
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "commit",
+        "evidence": [
+          {
+            "evidence_type": "build_pipeline_logs",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/build.execution.json",
+              "image-query-api/build.execution.json",
+              "image-semantic-enrichment/build.execution.json",
+              "image-world-model-chat/build.execution.json",
+              "image-neo4j/build.execution.json",
+              "image-ha-sync/subject.json",
+              "image-query-api/subject.json",
+              "image-semantic-enrichment/subject.json",
+              "image-world-model-chat/subject.json",
+              "image-neo4j/subject.json",
+              "source/dependency-locks.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-control-evidence-commit-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-008",
+        "assessment": "measured",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-artifact-subject-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence is bound to the centrally verified immutable subject.",
+          "maximum_age_seconds": null
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "artifact",
+        "evidence": [
+          {
+            "evidence_type": "artifact_version_identifiers",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/subject.json",
+              "image-query-api/subject.json",
+              "image-semantic-enrichment/subject.json",
+              "image-world-model-chat/subject.json",
+              "image-neo4j/subject.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-artifact-subject-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-009",
+        "assessment": "measured",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-vulnerability-scan-24h",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence age 3540s is within the provisional maximum 86400s.",
+          "age_seconds": 3540,
+          "maximum_age_seconds": 86400
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "artifact",
+        "evidence": [
+          {
+            "evidence_type": "vulnerability_scan_reports",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/vulnerabilities.json",
+              "image-query-api/vulnerabilities.json",
+              "image-semantic-enrichment/vulnerabilities.json",
+              "image-world-model-chat/vulnerabilities.json",
+              "image-neo4j/vulnerabilities.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-vulnerability-scan-24h",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence age 3540s is within the provisional maximum 86400s.",
+              "age_seconds": 3540,
+              "maximum_age_seconds": 86400
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-010",
+        "assessment": "findings",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-vulnerability-scan-24h",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence age 3540s is within the provisional maximum 86400s.",
+          "age_seconds": 3540,
+          "maximum_age_seconds": 86400
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "artifact",
+        "evidence": [
+          {
+            "evidence_type": "vulnerability_scan_reports",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/vulnerabilities.json",
+              "image-query-api/vulnerabilities.json",
+              "image-semantic-enrichment/vulnerabilities.json",
+              "image-world-model-chat/vulnerabilities.json",
+              "image-neo4j/vulnerabilities.json",
+              "source/dependency-audit.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-vulnerability-scan-24h",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence age 3540s is within the provisional maximum 86400s.",
+              "age_seconds": 3540,
+              "maximum_age_seconds": 86400
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-011",
+        "assessment": "partial",
+        "coverage": "partial",
+        "effective_level": "unverified",
+        "content_integrity": "not_evaluated",
+        "provenance": "not_evaluated",
+        "freshness": {
+          "result": "not_evaluated",
+          "policy_id": "freshness-artifact-subject-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": null,
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Zugriffsschutz, Aufbewahrung und unabh\u00e4ngige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivpr\u00fcfung."
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "artifact",
+        "evidence": [
+          {
+            "evidence_type": "artifact_checksum_or_digest_records",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/subject.json",
+              "image-query-api/subject.json",
+              "image-semantic-enrichment/subject.json",
+              "image-world-model-chat/subject.json",
+              "image-neo4j/subject.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-artifact-subject-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          },
+          {
+            "evidence_type": "unmet_control_evidence",
+            "status": "missing",
+            "required": true,
+            "evidence_refs": [],
+            "effective_level": "unverified",
+            "content_integrity": "not_evaluated",
+            "provenance": "not_evaluated",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-artifact-subject-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Zugriffsschutz, Aufbewahrung und unabh\u00e4ngige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivpr\u00fcfung."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": [
+          "Zugriffsschutz, Aufbewahrung und unabh\u00e4ngige Provenienz fehlen in dieser Bewertung; keine Signatur- oder Komplettarchivpr\u00fcfung."
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-012",
+        "assessment": "measured",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-artifact-subject-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence is bound to the centrally verified immutable subject.",
+          "maximum_age_seconds": null
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "artifact",
+        "evidence": [
+          {
+            "evidence_type": "artifact_checksum_or_digest_records",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/subject.json",
+              "image-query-api/subject.json",
+              "image-semantic-enrichment/subject.json",
+              "image-world-model-chat/subject.json",
+              "image-neo4j/subject.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-artifact-subject-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-013",
+        "assessment": "gap",
+        "coverage": "missing",
+        "effective_level": "unverified",
+        "content_integrity": "not_evaluated",
+        "provenance": "not_evaluated",
+        "freshness": {
+          "result": "not_evaluated",
+          "policy_id": "freshness-release-approval-candidate-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": null,
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Zielumgebung und autorisierte Freigabe f\u00fcr das konkrete Artefakt nachweisen. Merge und gr\u00fcner Lauf reichen nicht."
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "release_candidate",
+        "evidence": [
+          {
+            "evidence_type": "release_approval_records",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "platform/environments.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-release-approval-candidate-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "No exact release candidate and approval evidence is available for this control."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          },
+          {
+            "evidence_type": "unmet_control_evidence",
+            "status": "missing",
+            "required": true,
+            "evidence_refs": [],
+            "effective_level": "unverified",
+            "content_integrity": "not_evaluated",
+            "provenance": "not_evaluated",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-release-approval-candidate-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Zielumgebung und autorisierte Freigabe f\u00fcr das konkrete Artefakt nachweisen. Merge und gr\u00fcner Lauf reichen nicht."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": [
+          "Zielumgebung und autorisierte Freigabe f\u00fcr das konkrete Artefakt nachweisen. Merge und gr\u00fcner Lauf reichen nicht."
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-014",
+        "assessment": "gap",
+        "coverage": "missing",
+        "effective_level": "unverified",
+        "content_integrity": "not_evaluated",
+        "provenance": "not_evaluated",
+        "freshness": {
+          "result": "not_evaluated",
+          "policy_id": "freshness-release-approval-candidate-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": null,
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Deployment in eine genehmigte Zielumgebung und dortige Auswahl freigegebener Artefakte nachweisen."
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "release",
+        "subject_binding": "release_candidate",
+        "evidence": [
+          {
+            "evidence_type": "deployment_logs",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "runtime/deployment.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-release-approval-candidate-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "No exact release candidate and approval evidence is available for this control."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          },
+          {
+            "evidence_type": "unmet_control_evidence",
+            "status": "missing",
+            "required": true,
+            "evidence_refs": [],
+            "effective_level": "unverified",
+            "content_integrity": "not_evaluated",
+            "provenance": "not_evaluated",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-release-approval-candidate-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Deployment in eine genehmigte Zielumgebung und dortige Auswahl freigegebener Artefakte nachweisen."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": [
+          "Deployment in eine genehmigte Zielumgebung und dortige Auswahl freigegebener Artefakte nachweisen."
+        ]
+      },
+      {
+        "control_id": "DSCB-L1-REQ-015",
+        "assessment": "measured",
+        "coverage": "complete",
+        "effective_level": "integrity_verified",
+        "content_integrity": "pass",
+        "provenance": "pass",
+        "freshness": {
+          "result": "pass",
+          "policy_id": "freshness-control-evidence-commit-bound",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": "2026-09-16T10:01:00Z",
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "Evidence is bound to the centrally verified immutable subject.",
+          "maximum_age_seconds": null
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "mainline",
+        "subject_binding": "pipeline_run",
+        "evidence": [
+          {
+            "evidence_type": "pipeline_execution_logs",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "image-ha-sync/manifest.json",
+              "image-neo4j/manifest.json",
+              "image-query-api/manifest.json",
+              "image-semantic-enrichment/manifest.json",
+              "image-world-model-chat/manifest.json",
+              "platform/manifest.json",
+              "runtime/manifest.json",
+              "source/manifest.json"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "pass",
+              "policy_id": "freshness-control-evidence-commit-bound",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence is bound to the centrally verified immutable subject.",
+              "maximum_age_seconds": null
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": []
+      },
+      {
+        "control_id": "DSCB-L1-REQ-016",
+        "assessment": "partial",
+        "coverage": "partial",
+        "effective_level": "unverified",
+        "content_integrity": "not_evaluated",
+        "provenance": "not_evaluated",
+        "freshness": {
+          "result": "not_evaluated",
+          "policy_id": "freshness-runtime-evidence-30m",
+          "policy_version": "0.1.0",
+          "policy_status": "provisional",
+          "produced_at": null,
+          "evaluated_at": "2026-09-16T11:00:00Z",
+          "reason": "VM, Betriebsregister und dauerhafte Security-Ereignisaufbewahrung erg\u00e4nzen; CI ist kein Betriebsnachweis."
+        },
+        "replay": "not_evaluated",
+        "custody": "not_evaluated",
+        "attestation": "not_evaluated",
+        "decision_context": "runtime",
+        "subject_binding": "runtime_environment",
+        "evidence": [
+          {
+            "evidence_type": "system_logs",
+            "status": "present",
+            "required": true,
+            "evidence_refs": [
+              "runtime/deployment.json",
+              "runtime/junit.xml",
+              "runtime/query-api.log",
+              "runtime/neo4j.log"
+            ],
+            "effective_level": "integrity_verified",
+            "content_integrity": "pass",
+            "provenance": "pass",
+            "freshness": {
+              "result": "fail",
+              "policy_id": "freshness-runtime-evidence-30m",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": "2026-09-16T10:01:00Z",
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "Evidence age 3540s exceeds the provisional maximum 1800s.",
+              "age_seconds": 3540,
+              "maximum_age_seconds": 1800
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          },
+          {
+            "evidence_type": "unmet_control_evidence",
+            "status": "missing",
+            "required": true,
+            "evidence_refs": [],
+            "effective_level": "unverified",
+            "content_integrity": "not_evaluated",
+            "provenance": "not_evaluated",
+            "freshness": {
+              "result": "not_evaluated",
+              "policy_id": "freshness-runtime-evidence-30m",
+              "policy_version": "0.1.0",
+              "policy_status": "provisional",
+              "produced_at": null,
+              "evaluated_at": "2026-09-16T11:00:00Z",
+              "reason": "VM, Betriebsregister und dauerhafte Security-Ereignisaufbewahrung erg\u00e4nzen; CI ist kein Betriebsnachweis."
+            },
+            "replay": "not_evaluated",
+            "custody": "not_evaluated",
+            "attestation": "not_evaluated"
+          }
+        ],
+        "missing_scope": [
+          "VM, Betriebsregister und dauerhafte Security-Ereignisaufbewahrung erg\u00e4nzen; CI ist kein Betriebsnachweis."
+        ]
+      }
+    ],
+    "summary": {
+      "total_controls": 16,
+      "coverage": {
+        "complete": 9,
+        "partial": 4,
+        "missing": 3
+      },
+      "trust_levels": {
+        "unverified": 7,
+        "integrity_verified": 9,
+        "provenance_verified": 0,
+        "attested": 0
+      },
+      "freshness": {
+        "pass": 9,
+        "fail": 0,
+        "not_evaluated": 7
+      }
+    },
+    "assurance_binding": "3373e165a43c800c1e7178b6dc4c33ed4be038e3206fb7e407eadc000e7bc578"
+  }
+}

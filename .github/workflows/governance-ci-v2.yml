@@ -43,6 +43,9 @@ jobs:
       - name: Validate repository model
         run: python3 scripts/validate_governance_repo.py
 
+      - name: Check current V2 Goal progress
+        run: python3 scripts/maintenance/generate_v2_goal_progress.py --check
+
       - name: Validate accepted lifecycle history
         if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         env:

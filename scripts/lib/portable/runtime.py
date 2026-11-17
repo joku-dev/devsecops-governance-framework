@@ -74,7 +74,32 @@ def source_digest():
              *sorted((ROOT/'scripts/lib/providers').glob('*.py')), ROOT/'scripts/lib/provider_errors.py', ROOT/'scripts/lib/provider_ports.py', ROOT/'scripts/lib/application_source.py', ROOT/'scripts/lib/v2_boundary.py', ROOT/'scripts/lib/v2_application.py', ROOT/'scripts/axiom_v2.py', ROOT/'config/axiom-v2-boundaries.json', ROOT/'schemas/workbench-publication-v2.schema.json', ROOT/'scripts/control_evaluation.py',
              ROOT/'scripts/governance_runtime.py', ROOT/'scripts/install_validation_opa.py',
              ROOT/'scripts/validation-toolchain.env', ROOT/'config/portable-runtime-compatibility.json', ROOT/'requirements-validation.lock', *sorted((ROOT/'schemas').glob('portable-*-v1.schema.json'))]
-    paths.extend([ROOT/'scripts/lib/v2_distribution.py', ROOT/'scripts/lib/v2_source.py', ROOT/'config/axiom-v2-distribution.json'])
+    paths.extend([ROOT/'scripts/lib/v2_distribution.py', ROOT/'scripts/lib/v2_source.py', ROOT/'scripts/lib/functional_parity.py', ROOT/'config/axiom-v2-distribution.json'])
+    paths.extend([ROOT/'scripts/lib/full_evaluation.py',ROOT/'scripts/lib/architecture_assessment.py',ROOT/'scripts/lib/tool_integrity.py'])
+    paths.extend(ROOT/'scripts/lib'/name for name in ('candidate_workspace.py','requirement_application.py','requirement_workspace.py','requirement_lifecycle.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_application.py', 'dcr_manifest.py', 'dcr_structure.py', 'dcr_semantics.py', 'dcr_response.py', 'dcr_evaluation.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_source_context.py','dcr_operations.py','dcr_catalog.py','dcr_projection.py','document_consistency_view.py'))
+    for name in ('document-consistency-review-semantic', 'document-consistency-review-semantic-v2', 'document-consistency-review-operations'):
+        paths.extend(p for p in sorted((ROOT/'tests/fixtures'/name).rglob('*')) if p.is_file() and p.suffix not in ('.py', '.pyc'))
+    paths.extend([ROOT/'scripts/generate_document_consistency_review_model.py',ROOT/'scripts/lib/explicit_requirements.py',ROOT/'scripts/lib/source_document_text.py'])
+    paths.extend(sorted((ROOT/'schemas').glob('document-consistency-*.schema.json')))
+    paths.extend(sorted((ROOT/'model/governance/document-consistency').glob('*')))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('report_graph.py','control_reporting.py','report_sources.py','report_outputs.py','report_application.py','report_data.py','report_lineage.py','report_impact.py','report_source_replacement.py','report_source_intake.py','report_source_briefs.py','report_requirement_delta.py','report_source_process.py','report_model_followup.py','release_assessment.py','combined_reporting.py','domain_reporting.py','report_candidate_maturity.py','report_intake_health.py','report_replay_triage.py','collection_attempts.py','report_portfolio.py','report_multi_consumer.py','identifiers.py','report_blocking_readiness.py','report_blocking_alignment.py','source_snapshot_proof.py','onboarding_readiness.py','source_inspection_application.py','evidence_agent_provenance.py','provenance_application.py','pipeline_evidence.py','pipeline_application.py','agent_usage.py','agent_usage_application.py','review_quality.py','review_quality_application.py','vulnerability_evidence.py','vulnerability_application.py'))
+    paths.extend(ROOT/'schemas'/name for name in ('axiom-v2-report-assessment.schema.json','axiom-v2-source-inspection.schema.json','axiom-v2-provenance-metadata.schema.json','axiom-v2-provenance-context.schema.json','axiom-v2-pipeline-parameters.schema.json','axiom-v2-pipeline-assessment.schema.json','axiom-v2-agent-usage.schema.json','axiom-v2-review-quality.schema.json','evidence-agent-provenance.schema.json','axiom-v2-domain-report.schema.json','axiom-v2-full-assessment.schema.json','governance-graph.schema.json'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('native_result_logic.py','native_result_assessments.py','result_bytes.py'))
+    paths.append(ROOT/'schemas/axiom-v2-native-result-assessment.schema.json')
+    paths.extend(ROOT/'scripts/lib'/name for name in ('ci_bundle_results.py','ci_bundle_storage.py','result_assessments.py','result_snapshot_store.py','results_projection.py','result_index_application.py','result_application.py'))
+    paths.extend(ROOT/'schemas'/name for name in ('axiom-v2-result-metadata.schema.json','axiom-v2-result-snapshot.schema.json','axiom-v2-result-assessment.schema.json','axiom-v2-result-projection.schema.json','governance-results-index.schema.json','architecture-results-index.schema.json','typed-evidence-results-index.schema.json'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('controls_collection.py','architecture_collection.py','source_collection.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('measurement_logic.py','measured_application.py'))
+    paths.extend([ROOT/'schemas/measured-l1-assessment.schema.json', ROOT/'schemas/measured-container-security.schema.json'])
+    paths.append(ROOT/'schemas/axiom-v2-measured-assessment.schema.json')
+    paths.extend(ROOT/name for name in ('scripts/lib/artifact_integrity.py', 'scripts/lib/evidence_verification.py', 'scripts/lib/typed_result_ledger.py', 'scripts/lib/typed_evidence_application.py', 'scripts/lib/providers/typed_capture.py', 'scripts/lib/providers/typed_containers.py', 'scripts/lib/providers/typed_ports.py', 'scripts/lib/result_ledger.py'))
+    paths.extend(ROOT/name for name in ('schemas/axiom-v2-vulnerability-metadata.schema.json','schemas/axiom-v2-vulnerability-assessment.schema.json'))
+    paths.extend(ROOT/name for name in ('schemas/axiom-v2-typed-assessment.schema.json','schemas/evidence-trust-record.schema.json','schemas/evidence-collector-contract.schema.json','model/evidence/evidence-trust-model.yaml'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('evidence_freshness.py', 'assurance_projection.py', 'staging_projection.py', 'consolidated_projection.py', 'supplement_application.py'))
+    paths.extend(ROOT/name for name in ('schemas/axiom-v2-supplement.schema.json','schemas/control-evidence-assurance.schema.json','schemas/staging-deployment-result.schema.json','schemas/consolidated-l1-assessment.schema.json','schemas/typed-evidence-result.schema.json','model/evidence/control-evidence-assurance-profile.yaml','model/evidence/evidence-freshness-policies.yaml','model/evidence/evidence-types.yaml'))
+    paths.extend([ROOT/'schemas/axiom-v2-full-assessment.schema.json',ROOT/'schemas/axiom-v2-functional-parity.schema.json'])
     return canonical_digest({str(path.relative_to(ROOT)):file_digest(path) for path in paths})
 
 

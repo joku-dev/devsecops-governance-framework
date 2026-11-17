@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Private original domain and combined report files",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "runtime_source_digest",
+    "source_revision",
+    "source_worktree_clean",
+    "assessed_at",
+    "mode",
+    "files",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "provider_invoked",
+    "published",
+    "operation",
+    "inputs",
+    "references",
+    "input_origin",
+    "evidence_trust"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "operator-assessment-domain-reports"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "files": {
+      "type": "object",
+      "minProperties": 0,
+      "maxProperties": 32,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 67108864
+          }
+        }
+      }
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "provider_invoked": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "operation": {
+      "enum": [
+        "domain",
+        "combined"
+      ]
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "references": {
+      "type": "object"
+    },
+    "input_origin": {
+      "const": "instance_operator_assessments"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "domain"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "assessment"
+            ],
+            "properties": {
+              "assessment": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          },
+          "references": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [],
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "combined"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "architecture",
+              "devsecops"
+            ],
+            "properties": {
+              "architecture": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "devsecops": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          },
+          "references": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "architecture",
+              "devsecops"
+            ],
+            "properties": {
+              "architecture": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "devsecops": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

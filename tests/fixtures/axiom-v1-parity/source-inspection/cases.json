@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "reference_kind": "Exact original V1 CLIs used only by independent test oracle outside installed product; explicit frozen UTC and descriptive product/target context; no output normalization",
+  "reference_files": {
+    "check_repo_governance_integration.py.txt": {
+      "v1_path": "scripts/check_repo_governance_integration.py",
+      "sha256": "e9ee576e413613fb1611cd0819c0acf7d9e8af448e3c2e9fb257752c32d2d34d"
+    },
+    "check_repository_onboarding_readiness.py.txt": {
+      "v1_path": "scripts/check_repository_onboarding_readiness.py",
+      "sha256": "de4a798f7c7c3a1c212fd48a0cae2bf0bfbcdeb06794ac15297b7879be4e8828"
+    }
+  },
+  "product_label": "axiom-v2",
+  "at": "2026-11-15T12:00:00Z",
+  "source_signature_only": true,
+  "official_acceptance": false,
+  "logical_outputs": {
+    "integration": "generated/reports/repository-integration.json",
+    "onboarding_json": "generated/reports/repository-onboarding-readiness.json",
+    "onboarding_markdown": "generated/reports/repository-onboarding-readiness.md"
+  },
+  "cases": [
+    {
+      "id": "positive",
+      "files": {
+        "README.md": "Synthetic source fixture",
+        "pyproject.toml": "[project]\nname=\"synthetic\"",
+        "src/example.py": "raise AssertionError(\"must not execute\")",
+        "tests/test_example.py": "raise AssertionError(\"must not execute\")",
+        ".github/workflows/ci.yml": "# devsecops-governance-framework\n# opa check\n# unittest discover -s tests\n# pytest ruff mypy regenerate_governance_evidence.py --check check_pr_execution_evidence.py",
+        "docs/governance/example.md": "fixture",
+        ".agent-executions/example.json": "{}",
+        "examples/governance_reports/example.json": "{}",
+        "docs/security/example.md": "secrets",
+        "scripts/check_factory_ci_supply_chain.py": "raise AssertionError(\"must not execute\")",
+        "evidence/sbom.json": "{}"
+      },
+      "expected_integration_status": "pass",
+      "expected_onboarding_status": "ready",
+      "expected_exits": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "missing-ci",
+      "files": {
+        "README.md": "Synthetic source fixture",
+        "pyproject.toml": "[project]\nname=\"synthetic\"",
+        "src/example.py": "raise AssertionError(\"must not execute\")",
+        "tests/test_example.py": "raise AssertionError(\"must not execute\")"
+      },
+      "expected_integration_status": "fail",
+      "expected_onboarding_status": "not_ready",
+      "expected_exits": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "non-utf8",
+      "files": {
+        "README.md": "Synthetic source fixture",
+        "pyproject.toml": "[project]\nname=\"synthetic\"",
+        "src/example.py": "raise AssertionError(\"must not execute\")",
+        "tests/test_example.py": "raise AssertionError(\"must not execute\")",
+        ".github/workflows/ci.yml": {
+          "base64": "//4="
+        }
+      },
+      "expected_integration_status": "fail",
+      "expected_onboarding_status": "ready_with_gaps",
+      "expected_exits": [
+        1,
+        0
+      ]
+    }
+  ]
+}

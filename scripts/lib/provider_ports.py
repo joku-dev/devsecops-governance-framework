@@ -40,3 +40,16 @@ class ExecutionPort(Protocol):
     def capture(self, context, policy, reader: ReadPort, archive, *, at): ...
 
 from lib.providers.discovery import CI_PROVIDERS
+from lib.providers.source_inspection import SOURCE_CI_PROFILES, local_source_signals, committed_intake_signatures, CONFIGURATION_PROVIDERS, CONFIGURATION_SOURCE_FILES, configuration_source_profile
+from lib.providers.measured_ports import (MEASURED_PROVIDERS, measured_import, measured_capture_live,
+                                          measured_export, measured_validate, measured_supplement_profile)
+
+from lib.providers.typed_ports import TYPED_PROVIDERS, typed_import, typed_verify, typed_capture_live
+from lib.providers.result_profiles import RESULT_EVENT_PROFILES, result_index_profile
+from lib.providers.general_result_ports import (NATIVE_RESULT_PROVIDERS, general_result_capture,
+                                                general_result_verify)
+
+from lib.providers.source_inspection import (INSPECTION_PROFILES, source_inspection_profile, source_inspection_facts)
+
+from lib.providers.pipeline_environment import (PROFILES as DECLARED_PIPELINE_PROFILES,
+                                               declared_environment as declared_pipeline_environment)

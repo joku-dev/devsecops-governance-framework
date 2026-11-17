@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "opa_sha256": "b3f19f0ecf1ffcea9c36d29e43dfe3b718cd59fa12859fe86975b536889590e4",
+  "cases": [
+    {
+      "id": "controls-green",
+      "domain": "controls",
+      "input": "demo/inputs/release-candidate-green.json",
+      "input_sha256": "4fc681ae40091aeda1f7cefbcfc627520217053ca76ce83dcc3f9cb287cb2299",
+      "report": "controls-green.json",
+      "report_sha256": "e27c6a364e6eff4e5bc4ee9522e59af9e4d2edf16f4d2ec880be1b0fe820c535",
+      "v1_exit": 0,
+      "synthetic": true
+    },
+    {
+      "id": "controls-red",
+      "domain": "controls",
+      "input": "demo/inputs/release-candidate-red.json",
+      "input_sha256": "25a0f4e392cabe463bf9b12418704d101806c21fd08840cb7290c314f444753a",
+      "report": "controls-red.json",
+      "report_sha256": "34b0f09f855086a56cc66eb5a9571e5792bb8faeb9f10171c7790935cf6e9626",
+      "v1_exit": 1,
+      "synthetic": true
+    },
+    {
+      "id": "architecture-pass",
+      "domain": "architecture",
+      "input": "policies/example-input.architecture-release-candidate.json",
+      "input_sha256": "e30f87e6b3b5019527257a82e310015f8b1c428a5a88566f97db10dec2edf4af",
+      "report": "architecture-pass.json",
+      "report_sha256": "b58a3cc2914a224cfa2a8cea526bc974665fe47c63586828793d8d83533a7a93",
+      "v1_exit": 0,
+      "synthetic": true
+    },
+    {
+      "id": "architecture-findings",
+      "domain": "architecture",
+      "input": "policies/example-input.architecture-release-candidate-findings.json",
+      "input_sha256": "86063752a6156778135447b21f8d8015b398853111df4949c036078cc655d5fc",
+      "report": "architecture-findings.json",
+      "report_sha256": "f19a39ef84ad8fe4d96f8e61774095d8377aa426f6ab057e7cf497304bc91c57",
+      "v1_exit": 0,
+      "synthetic": true
+    }
+  ],
+  "evidence_kind": "frozen_v1_synthetic_golden_reports",
+  "consumer_live_acceptance": false
+}

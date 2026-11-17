@@ -7,7 +7,7 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-15, V2 source `79ca1f253ae6aa7b33b70c8c79948c9bdf9b3fb8`; documentation follow-up in PR #395 |
+| Last implementation review | 2026-11-16; V2 foundation in PR #395 and functional-parity increments in PR #396. Exact source and validation bindings are recorded in the PR review receipt; scope and open acceptance: `config/axiom-v2-functional-parity.json` |
 | Operating observation | Separate V2 Mac/Linux candidate tested at `756a28e`; retained VM service at `adc4643`. Candidate test processes are stopped; no V2 production service takeover |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
@@ -108,7 +108,7 @@ operating acceptance.
 | Integration | Explicit provider ports, native adapters and reviewed profiles | Missing capabilities remain missing/error/unsupported, never an inferred pass |
 | Distribution | Exact-source offline package, private fresh prefix and own tools | Product release/signing/support and long-lived service lifecycle need explicit decisions |
 | State ownership | Independent node, credentials, key, queue and projection | No shared writable Mac/VM database or inherited publisher authority |
-| Scope | All 22 repository capabilities mapped in the V2 function inventory | Source authoring and V1-only operations must not be presented as installed V2 features |
+| Scope | Complete frozen V1 parity matrix, first full diagnostic and candidate authoring routes | Remaining capabilities and installed proof remain open; see [functional parity](../../operations/planning/axiom-v2-functional-parity.md) |
 
 Product expansion should use these boundaries and the evidence/decision table
 in section 11. Existing approved policies and source registers still own
@@ -248,6 +248,28 @@ released consumer wrappers keep their original pins and authority.
 |---|---|---|
 | V2 product entry / instance | Finite commands; fresh node/key/state; exact source/tool/dependency binding | `scripts/axiom_v2.py`, `scripts/lib/v2_application.py` |
 | Neutral evaluation | Context/input contracts, physical evidence preparation, unchanged OPA decisions and gate | `scripts/governance_runtime.py`, `scripts/lib/portable/contracts.py`, `runtime.py`, `scripts/control_evaluation.py` |
+| Source-only collection | Frozen local Git blobs at an exact revision; native CI-layout observations through ports; unverified declaration inputs | `scripts/lib/source_collection.py`, `controls_collection.py`, `architecture_collection.py`, `providers/source_inspection.py` |
+| Full diagnostic assessment | All 46 V1 control report records and four architecture gates; explicit frozen inputs/pinned OPA; private unverified report-only receipts | `scripts/lib/full_evaluation.py`, `architecture_assessment.py`, `tool_integrity.py` |
+| Candidate data authoring | Finite requirement/DCR routes, explicit workspace context, lock/staging/generation transactions; no inherited authority | `scripts/lib/candidate_workspace.py`, `requirement_application.py`, `requirement_workspace.py`, `dcr_application.py`, `dcr_*.py` |
+| Full measured evidence | One neutral sixteen-control function; explicit native run/artifact/raw-byte normalization and bounded credential-free ZIP range transport; private unverified wrapper | `scripts/lib/measurement_logic.py`, `measured_application.py`, `providers/measured_*.py` |
+| Measured supplements | Explicit-context per-control assurance, staging bundle/approval consistency and exact run/attempt/commit consolidation; source-bound private replay with no authority transfer | `scripts/lib/supplement_application.py`, `assurance_projection.py`, `evidence_freshness.py`, `staging_projection.py`, `consolidated_projection.py` |
+| Complete typed image verification | Stream-hash archived configurations/layers; original typed Trust and replay rules; explicit native full-archive reader; separate private operator/native ledger histories and paged index | `scripts/lib/evidence_verification.py`, `artifact_integrity.py`, `typed_evidence_application.py`, `typed_result_ledger.py`, `providers/typed_*.py` |
+| General result candidates and indices | Explicit metadata and bounded immutable raw copies; source/node/runtime-bound replay, atomic scoped ledger and complete reported/effective index projections; no public status writes | `scripts/lib/ci_bundle_results.py`, `ci_bundle_storage.py`, `result_assessments.py`, `result_snapshot_store.py`, `results_projection.py`, `result_index_application.py`, `result_application.py`; native event identifiers in `providers/result_profiles.py` |
+| Native general result reader | Explicit repository/credential/run/attempt; bounded original ZIPs, attempt-specific jobs, artifact/run rechecks and nullable branch-protection facts; complete V1 wire mappings and private source-bound replay/intake | Neutral `scripts/lib/native_result_logic.py`, `native_result_assessments.py`; native transport and normalization in `providers/general_results.py`, composed by `providers/general_result_ports.py` |
+| Committed-data reporting | Exact Git data snapshots and complete committed membership; control coverage, three traceability CSVs, graph, source lineage and change impact; explicit clock, private immutable outputs and full recomputation | `scripts/lib/report_sources.py`, `report_data.py`, `control_reporting.py`, `report_graph.py`, `report_lineage.py`, `report_impact.py`, `report_outputs.py`, `report_application.py` |
+| Source-intake reporting | Existing advisory replacement assessment, intake status, human briefs, explicit identifier deltas and process/lifecycle status; direct pure dependencies, preserved candidate/provenance blockers and no source decisions. Process status retains its original committed-input report profile | `scripts/lib/report_source_replacement.py`, `report_source_intake.py`, `report_source_briefs.py`, `report_requirement_delta.py`, `report_source_process.py` |
+| Model reporting | Automation, document/control authority, open model gaps and pipeline placement reports; explicit same-control placement values fill absent classification fields in the read-only view, without changing models or enforcement | `scripts/lib/report_model_followup.py` |
+| Domain and combined reporting | Separate original release-readiness gate; original JSON/Markdown files from immutable operator assessment IDs; same product, tool, clock and declared target labels required for combinations; private unverified diagnostic envelope | `scripts/lib/release_assessment.py`, `domain_reporting.py`, `combined_reporting.py` |
+| Candidate and historical health reporting | Existing non-normative maturity mapping, explicit-window historical intake metrics and replay interpretation; exact committed membership, original lifecycle and Trust boundaries; no accepted status write | `scripts/lib/report_candidate_maturity.py`, `report_intake_health.py`, `report_replay_triage.py`, `collection_attempts.py` |
+| Portfolio reporting | Original registry/index projection with explicit assessment time and committed previous projection; stable timestamps for unchanged rows; informational adoption labels without transferred acceptance | `scripts/lib/report_portfolio.py` |
+| Blocking decision aids | Original read-only criteria and time-bounded mode/risk interpretation; bounded committed conflict membership; alignment consumes committed raw readiness, not a fresh private report; inner approval/activation fields grant no node authority | `scripts/lib/report_blocking_readiness.py`, `report_blocking_alignment.py`, `report_outputs.py` |
+| Declared agent/evidence associations | Original record/index/check semantics in isolated private immutable workspace generations; bounded retained source JSON and logical labels; append-only conflict handling; stale index visibility; no verified agency, human approval or subject authenticity | `scripts/lib/evidence_agent_provenance.py`, `provenance_application.py`, `candidate_workspace.py` |
+| Declared agent-selection statistics | Original JSON/Markdown counters over a retained bounded operator JSONL log or exact committed legacy Git blob; explicit source label, full clock and requested/effective latest count; immutable recomputation without actual agent/model invocation or approval inference | `scripts/lib/agent_usage.py`, `agent_usage_application.py` |
+| Offline review quality | Original synthetic packet/schema/manifest preparation and structured-label grading; exact committed role/skill program data, explicit operator datasets/responses and bounded attached trace bytes; complete private replay, with supplied trace metrics and no inferred model execution or approval | `scripts/lib/review_quality.py`, `review_quality_application.py` |
+| Local vulnerability collection | Original scan normalization and local trust report from retained bounded scan/subject/declared metadata bytes and explicit time; private replay, no scanner execution or native source authentication | `scripts/lib/vulnerability_evidence.py`, `vulnerability_application.py` |
+| Declared pipeline evidence | Explicit legacy environment-view adapter, original context/evidence/gate wires, bounded retained artifact/SBOM/scan/signature bytes and complete offline recomputation; success/gate/waiver labels remain declarations, without execution, protection, signature or approval verification | Neutral `scripts/lib/pipeline_evidence.py`, `pipeline_application.py`; native fields in `providers/pipeline_environment.py` through `provider_ports.py` |
+| Consumer source inspection | Original integration and onboarding source-signature criteria; explicit legacy profile preserves filesystem iteration, while `canonical-ci-signatures-v2` orders CI paths before evaluation for portable wire order and replay; retained exact Git commit/tree/blob/mode proof and SHA-256 manifest; source identity remains unverified and no inspected code runs | `scripts/lib/source_inspection_application.py`, `source_snapshot_proof.py`, `onboarding_readiness.py`, `providers/source_inspection.py` |
+| Explicit configuration reporting | Original central-intake readiness from committed raw dependencies and normalized literal-signature observations; provider/profile choice explicit; native filenames, expressions and profile factory belong to adapter; no effective/live configuration attestation | `scripts/lib/report_multi_consumer.py`, `report_application.py`, `provider_ports.py`, `providers/source_inspection.py` |
 | Neutral verification | Bundle integrity, source/config/run binding, freshness/replay, immutable receipts | `scripts/intake_portable_evidence.py`, `scripts/lib/portable_intake/bundle.py`, `schemas/portable-intake-*-v2.schema.json` |
 | Collection / proposal coordination | Bounded poll/work, frozen batches, retries, independent candidate reconciliation | `scripts/portable_consumer_intake.py`, `scripts/lib/portable_intake/controller.py`, `publisher.py`, `candidate_index.py` |
 | Operational persistence | Node-owned SQLite transactions, receipts, raw bytes, backups and inactive restore candidate | `scripts/lib/portable_intake/store.py`, `scripts/lib/consumer_intake_store.py` |
@@ -266,7 +288,7 @@ released consumer wrappers keep their original pins and authority.
 
 ```mermaid
 flowchart TB
-    Entry["axiom_v2: init / check / runtime / evidence / collector / workbench"] --> App["Instance binding and application routing"]
+    Entry["axiom_v2: finite application commands"] --> App["Instance binding and application routing"]
     App --> Core["Evaluation / verification / orchestration / local review"]
     Core --> Ports["provider_ports: reviewed composition"]
     Ports --> Native["providers: context / transport / discovery / operations / assurance / Workbench handoff"]
@@ -392,6 +414,59 @@ database/node identifier does not transfer authority; a new V2 operating profile
 must be reviewed and accepted for its own scope.
 
 ## 6. Runtime View
+
+### Candidate authoring transaction
+
+`requirements` and `dcr` bind an explicit instance and named private workspace.
+Committed document/model data seed the initial generation. A writer locks the
+workspace, clones the current verified data generation into staging and runs one
+reviewed capability with explicit paths. Success publishes a new content-bound
+generation and atomically updates its pointer; failure leaves the previous
+pointer and historical generations intact. Source CLI dispatch and mutable
+process-global source roots are absent.
+
+The wrapper always identifies candidate-only authority. Historical payload
+approval fields and explicit candidate decision/activation commands confer no
+new human or operating acceptance. DCR schema resources belong to the installed
+product, while source bytes belong to the workspace. Candidate generations have
+no reviewed Git commit; DCR-009 retains that missing freshness evidence. Supplied
+semantic responses are normalized/validated without invoking a model; findings
+remain unconfirmed or quarantined. DCR operating contracts, trigger scope and prepared synthetic catalogue packages
+are explicit finite routes. A separate committed-source context verifies the
+fixed product Git root and document/model/schema bytes, rechecking the same
+revision across review operations; it records technical provenance only.
+Hash-bound supplied decision assertions can prepare a private redacted snapshot;
+reviewer identities are not authenticated and no public status is overwritten.
+Full public handoff and installed parity acceptance remain open. This state is separate from the old accepted report-only
+pilot and its fingerprinted files.
+
+
+### General result input and index boundary
+
+The finite `results` command accepts explicit declared metadata and bounded local
+CI bundles or manual summaries. It copies regular input bytes into a private
+content-addressed pool before normalization. A ZIP is retained and re-extracted
+on inspection; directory input uses its exact retained file inventory. Assessment
+IDs bind the node, runtime, source revision, explicit diagnostic time and input
+hashes. Re-sealing an altered outcome does not bypass reconstruction from sources.
+
+A separate SQLite ledger partitions origin, provider/instance and native
+repository ID. Display names and URLs remain descriptive versioned metadata;
+rename does not rewrite old records. Original identity/replay rules preserve the
+first compatible snapshot, quarantine changed target identities and retain
+outcome-independent Trust. Indexed context/subject queries select the same V1
+replay candidates without repeatedly scanning an entire portfolio. Failed
+transactions roll back all their writes.
+
+Index projection reads a stable database snapshot, verifies every original
+assessment, and materializes normalized snapshots beneath a private projection
+root. It retains the complete V1 index shape and an explicit effective view;
+operator evidence remains unverified in the effective view. Classification uses
+explicit branch/event profiles through the adapter boundary. Membership and
+source-file hashes bind a projection generation, so later records cannot rewrite
+its contents. Offline inspection does not refresh native API facts. Neither a
+private snapshot nor an index projection overwrites accepted product status.
+Full native general capture and reviewed public handoff remain open work.
 
 ### End-to-End Flow
 

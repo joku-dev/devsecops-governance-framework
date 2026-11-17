@@ -1,0 +1,355 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen V1 scope and V2 technical functional parity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "goal_id",
+    "v1_reference",
+    "v2_start",
+    "scope_exceptions",
+    "areas",
+    "entrypoints",
+    "operating_workflows",
+    "ci_workflows"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "goal_id": {
+      "const": "AXIOM-V2-FUNCTIONAL-PARITY-001"
+    },
+    "v1_reference": {
+      "const": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "v2_start": {
+      "const": "b6e3b64951456b5878a98810d50ba17cbe89dfe0"
+    },
+    "scope_exceptions": {
+      "const": []
+    },
+    "areas": {
+      "type": "array",
+      "minItems": 22,
+      "maxItems": 22,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "state",
+          "v2_capabilities",
+          "positive_tests",
+          "negative_tests",
+          "installed_evidence",
+          "comparison_evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^FP-(0[1-9]|1[0-9]|2[0-2])$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "verified"
+            ]
+          },
+          "v2_capabilities": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "positive_tests": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "negative_tests": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "installed_evidence": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "comparison_evidence": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "entrypoints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "v1_path",
+          "v1_git_blob",
+          "v1_sha256",
+          "mode",
+          "v2_implementation",
+          "state",
+          "evidence",
+          "declared_symbols",
+          "cli_options",
+          "declared_actions"
+        ],
+        "properties": {
+          "v1_path": {
+            "type": "string",
+            "pattern": "^(scripts/|\\.github/workflows/)[^\\\\]+$"
+          },
+          "v1_git_blob": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "v1_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "mode": {
+            "enum": [
+              "100644",
+              "100755"
+            ]
+          },
+          "v2_implementation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-zA-Z0-9_./:-]+$"
+          },
+          "state": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "verified"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "kind",
+                "sha256"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,100}$"
+                },
+                "kind": {
+                  "enum": [
+                    "positive",
+                    "negative",
+                    "installed",
+                    "comparison",
+                    "operating"
+                  ]
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          },
+          "declared_symbols": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "cli_options": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "declared_actions": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ci_workflows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "v1_path",
+          "v1_git_blob",
+          "v1_sha256",
+          "mode",
+          "v2_implementation",
+          "state",
+          "evidence"
+        ],
+        "properties": {
+          "v1_path": {
+            "type": "string",
+            "pattern": "^(scripts/|\\.github/workflows/)[^\\\\]+$"
+          },
+          "v1_git_blob": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "v1_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "mode": {
+            "enum": [
+              "100644",
+              "100755"
+            ]
+          },
+          "v2_implementation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-zA-Z0-9_./:-]+$"
+          },
+          "state": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "verified"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "kind",
+                "sha256"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,100}$"
+                },
+                "kind": {
+                  "enum": [
+                    "positive",
+                    "negative",
+                    "installed",
+                    "comparison",
+                    "operating"
+                  ]
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "operating_workflows": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "state",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z-]+$"
+          },
+          "state": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "verified"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "kind",
+                "sha256"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,100}$"
+                },
+                "kind": {
+                  "enum": [
+                    "positive",
+                    "negative",
+                    "installed",
+                    "comparison",
+                    "operating"
+                  ]
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

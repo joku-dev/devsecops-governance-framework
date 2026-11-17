@@ -21,6 +21,110 @@ die offenen Produktentscheidungen. Der [geprüfte Installationskandidat](docs/op
 und das [vollständige Funktions-/Einstiegspunktinventar](docs/operations/planning/axiom-v2-function-inventory.md)
 ordnen vorhandene Fähigkeiten und Betriebsgrenzen zu. Der Kandidat ist noch
 keine allgemein veröffentlichte Produktversion oder neue Betriebsabnahme.
+Die [vollständige technische Funktionsparität zu V1](docs/operations/planning/axiom-v2-functional-parity.md)
+ist ein eigenes laufendes Goal. Der bereits entkoppelte V2-Kandidat ersetzt noch
+nicht alle V1-Funktionen; ein source- und nachweisgebundenes Inventar führt die
+gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
+
+<!-- V2_GOAL_PROGRESS:start -->
+### V2-Goal: aktueller Fortschritt
+
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **65 in Arbeit** und **70 noch offen**.
+
+| Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
+| --- | ---: | ---: | ---: | ---: |
+| Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
+| V1-Einstiegspunkte (135) | 0 | 65 | 70 | 135 |
+| V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
+| Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
+
+¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
+
+**Letzter geprüfter Kandidat:** `4d25e81` · 1,588 Tests (davon 1 übersprungen) · Mac 21 / VM 21 Prüfgruppen · 10 grüne CI-Workflow-Familien.
+
+**Nächster Baustein:** Review-Werkzeuge für Planung, Prüfung und Nachweise.
+
+Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
+
+[Fortschritt, Nachweise und Restarbeiten](docs/operations/status/axiom-v2-goal-progress.md) · automatisch aus der Matrix erzeugt; veraltete Anzeigen werden in CI erkannt.
+<!-- V2_GOAL_PROGRESS:end -->
+
+Der [datierte Zwischenstand mit Mac-/VM-Nachweisen](docs/operations/status/axiom-v2-parity-progress-2026-11-15.md)
+trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch
+unvollständigen frischen Consumer-Lauf. V2 bietet inzwischen auch private,
+quellengebundene Assurance- und Staging-Zusammenführungen; die vollständige
+Produkt- und Betriebsparität bleibt offen.
+Der Intake-Kandidat ergänzt die vollständige Prüfung archivierter
+Container-Nachweise und einen privaten, unveränderlichen Typed-Evidence-Index.
+Bereitgestellte Bundles und native Aufnahmen behalten getrennte Historien;
+dieser Kandidaten-Index erteilt keine Governance- oder Betriebsfreigabe.
+DCR ergänzt Betriebsprüfung, vorbereitete Katalogpakete, einen expliziten
+Git-Quellkontext und private redigierte Projektionen. Freigabe und öffentliche
+Veröffentlichung bleiben eigene Schritte.
+Der allgemeine `results`-Intake übernimmt lokale CI-Bundles und manuelle
+Angaben in private, reproduzierbare Snapshots. Vollständige Ergebnisindizes
+zeigen gemeldeten und wirksamen Trust getrennt. Der explizite native Adapter
+liest zusätzlich abgeschlossene CI-Läufe samt Originalarchiven, Lauf-/Jobdaten
+und verfügbarem Schutzstatus. Private Aufnahme und öffentliche Übergabe bleiben
+getrennte Schritte; die vollständige Produktabnahme ist weiter offen.
+`reports` erzeugt außerdem Kontrollabdeckungs-, Traceability-, Graph-,
+Quellenherkunfts-, Änderungsfolgen- und Intake-Berichte aus dem festgehaltenen
+Governance-Datenstand der installierten Version. Ihre Existenzprüfungen verwenden
+den vollständigen Git-Baum; alte Skripte müssen dafür nicht installiert sein. Die
+privaten Ausgaben lassen sich mit ihren ursprünglichen Git-Eingaben erneut prüfen.
+Intake-Status, Entscheidungsvorlagen, explizite Anforderungsdeltas und der
+Prozessstatus behalten Kandidaten, fehlende Herkunftsnachweise und offene
+menschliche Entscheidungen sichtbar. Modellberichte ergänzen Automation,
+Dokument-Kontroll-Zuordnung, offene Modelllücken und Pipeline-Platzierungen.
+Automationsklassifikation zeigt deklarierte Modellwerte; sie aktiviert keine Gates.
+Kandidaten-Reifegrad, historische Intake-Gesundheit und Replay-Einordnung ergänzen
+die lesende Sicht. Das Zeitfenster für `intake-health` ist mit `--window-days`
+explizit wählbar; die Berichte ändern keine Freigaben oder Trust-Einstufungen.
+`reports build --kind portfolio` ergänzt die ursprüngliche Einführungsübersicht
+aus committed Register und Ergebnisindizes. Unveränderte Werte behalten ihren
+bisherigen Zeitstempel; die Sicht erteilt keine neue Betriebsfreigabe.
+`reports configuration` ergänzt mit ausdrücklich gewähltem Providerprofil die
+bisherige Intake-Konfigurationsprüfung. Sie prüft committed Textsignaturen und
+belegt keine wirksame oder laufende CI-Konfiguration.
+`source-inspection create` prüft außerdem die bisherigen Consumer-Integrations- und
+Onboarding-Signaturen mit ausdrücklich gewähltem Profil an einem exakten Git-Commit.
+`canonical-ci-signatures-v2` sortiert die gefundenen CI-Dateien vor der Auswertung
+plattformunabhängig; `legacy-ci-signatures-v1` behält die ursprüngliche Dateireihenfolge.
+Die privaten Quelldaten behalten einen erneut prüfbaren Git-Nachweis. Arbeitskopie,
+Programme im Consumer und native APIs werden dabei nicht ausgeführt; die Auswertung
+erteilt keine Einführungs- oder Betriebsfreigabe.
+`reports build --kind blocking-readiness` und `--kind blocking-alignment` ergänzen
+die bisherigen lesenden Entscheidungshilfen. Sie verwenden committed Eingaben
+und eine explizite Bewertungszeit; angezeigte Freigabe- und Risikowerte erteilen
+der privaten Installation keine neue Berechtigung und ändern keinen Consumer-Modus.
+`provenance` ergänzt private Zuordnungen zwischen Agenten und Evidenz. Die ursprünglichen
+Datensatz-, Konflikt-, Index- und Prüfausgaben bleiben erhalten. Angaben wie „reviewed“
+oder „approved“ sind dort deklarierte Beteiligung; sie belegen keine ausgeführte
+Agentenprüfung, menschliche Freigabe oder Echtheit der Evidenz.
+`pipeline-evidence create/inspect` erhält den bisherigen Plattformkontext und die
+deklarierten Pipeline-Nachweise über ein explizites Adapterprofil. Native
+Umgebungsfelder bleiben im Adapter; Artefakt-, SBOM-, Scan- und Signaturdateien
+werden begrenzt privat aufbewahrt und erneut geprüft. Angaben wie „success“,
+„enforced“ und vorhandene Waiver belegen keine tatsächliche Pipeline-Ausführung,
+Schutzkonfiguration oder Freigabe.
+`agent-usage create/inspect` ergänzt die ursprüngliche Nutzungsstatistik aus einem
+expliziten JSONL-Protokoll oder dem committed Legacy-Protokoll. Originale JSON- und
+Markdown-Dateien bleiben privat und erneut prüfbar. Sie zählen deklarierte Rollen-
+und Skill-Auswahl; tatsächliche Agentenausführung und Freigaben werden nicht abgeleitet.
+`review-quality prepare/grade/inspect` erhält die bisherige Offline-Reviewbewertung.
+Versionierte synthetische Datensätze erzeugen private Aufgabenpakete und Antwortschemas;
+bereitgestellte Antworten werden mit den ursprünglichen Kriterien bewertet.
+Laufzeit-Traces sind ausdrücklich angehängte, nicht authentifizierte Angaben.
+`vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
+Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
+und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.
+Die Funktion startet keinen Scanner und bestätigt keine native Pipeline-Identität.
+`evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
+`reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
+Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei
+gleichem Produktstand, Zeitpunkt und explizit gleichem Ziel. Die Ausgaben bleiben
+unverifizierte Operator-Diagnosen ohne Freigabe oder öffentliche Veröffentlichung.
+
 <!-- DOCS_REFRESH_LATEST:start -->
 ## Implementation readback — 15 November 2026
 

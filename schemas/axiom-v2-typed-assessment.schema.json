@@ -1,0 +1,311 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 private complete typed verification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "provider",
+    "source_revision",
+    "runtime_source_digest",
+    "source_worktree_clean",
+    "assessed_at",
+    "input_origin",
+    "input_manifest_sha256",
+    "storage_budget_bytes",
+    "mode",
+    "evidence_trust",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "capture",
+    "verification"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "v1-compatible-typed-verification"
+    },
+    "node_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{32}$"
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "input_origin": {
+      "enum": [
+        "operator_bundle",
+        "native_reader"
+      ]
+    },
+    "input_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "storage_budget_bytes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 34359738368
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "capture": {
+      "type": "object"
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "execution",
+        "snapshots",
+        "measured_containers",
+        "verified_archive_bytes",
+        "verified_material_bytes"
+      ],
+      "properties": {
+        "repository": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "provider",
+            "instance",
+            "native_id",
+            "path"
+          ],
+          "properties": {
+            "provider": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "instance": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "native_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "execution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "provider",
+            "instance",
+            "run_id",
+            "attempt",
+            "event",
+            "branch",
+            "commit",
+            "workflow",
+            "produced_at"
+          ],
+          "properties": {
+            "provider": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "instance": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "event": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "branch": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "commit": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "workflow": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "attempt": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "produced_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "snapshots": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "sbom": {
+              "type": "object"
+            },
+            "vulnerability_scan": {
+              "type": "object"
+            }
+          }
+        },
+        "measured_containers": {
+          "type": "object"
+        },
+        "verified_archive_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 34359738368
+        },
+        "verified_material_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 34359738368
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "input_origin": {
+            "const": "operator_bundle"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "capture": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "native_metadata_rechecked",
+              "independent_attestation"
+            ],
+            "properties": {
+              "native_metadata_rechecked": {
+                "const": false
+              },
+              "independent_attestation": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "input_origin": {
+            "const": "native_reader"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "capture": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "native_metadata_rechecked",
+              "independent_attestation",
+              "requests",
+              "whole_archives_downloaded",
+              "baseline_lookup",
+              "verified_at"
+            ],
+            "properties": {
+              "native_metadata_rechecked": {
+                "const": true
+              },
+              "independent_attestation": {
+                "const": false
+              },
+              "requests": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2000
+              },
+              "whole_archives_downloaded": {
+                "const": true
+              },
+              "baseline_lookup": {
+                "enum": [
+                  "same_run_reference",
+                  "no_unique_paired_run",
+                  "paired_run_observed",
+                  "paired_lookup_unavailable"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

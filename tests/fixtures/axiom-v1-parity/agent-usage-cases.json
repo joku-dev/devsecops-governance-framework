@@ -1,0 +1,1286 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "source_sha256": {
+    "scripts/generate_agent_usage_snapshot.py": "06e7b47c82e9c24cfc478de2fc9fa708506f64be8f12511d59323f261971dd3f",
+    "scripts/dispatch_governance_agents.py": "e4290ae0a582f095514aee883a935ebe3b451e4d112dbf75384ac4246738ba49"
+  },
+  "cases": [
+    {
+      "id": "default",
+      "events": [
+        {
+          "timestamp": "2026-11-15T12:00:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:01:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:02:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:03:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": [
+            "synthetic-declaration-only"
+          ]
+        },
+        {
+          "timestamp": "2026-11-15T12:04:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:05:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:06:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:07:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:08:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:09:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:10:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:11:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        }
+      ],
+      "usage_log_wire": "{\"timestamp\": \"2026-11-15T12:00:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:01:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:02:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:03:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": [\"synthetic-declaration-only\"]}\n{\"timestamp\": \"2026-11-15T12:04:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:05:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:06:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:07:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:08:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:09:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:10:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:11:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n",
+      "source_log_label": "generated/agent-usage/agent-usage.jsonl",
+      "latest_count": 10,
+      "generated_at": "2026-11-15T12:30:00Z",
+      "expected_wires": {
+        "result.json": "{\n  \"agent_counts\": {\n    \"evidence-and-intake\": 6,\n    \"repo-steward\": 12\n  },\n  \"change_area_counts\": {\n    \".agents/roles\": 4,\n    \"docs/operations\": 8,\n    \"scripts\": 8\n  },\n  \"event_count\": 12,\n  \"first_event_at\": \"2026-11-15T12:00:00Z\",\n  \"generated_at\": \"2026-11-15T12:30:00Z\",\n  \"last_event_at\": \"2026-11-15T12:11:00Z\",\n  \"latest_events\": [\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:02:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:03:00Z\",\n      \"warnings\": [\n        \"synthetic-declaration-only\"\n      ]\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:04:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:05:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:06:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:07:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:08:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:09:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:10:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:11:00Z\",\n      \"warnings\": []\n    }\n  ],\n  \"metadata_only\": true,\n  \"platform_counts\": {\n    \"declared-test-platform\": 12\n  },\n  \"provider_counts\": {\n    \"declared-test-provider\": 12\n  },\n  \"run_type_counts\": {\n    \"dispatch\": 6,\n    \"provider_review\": 6\n  },\n  \"schema_version\": \"1.0.0\",\n  \"skill_counts\": {\n    \"repo-steward\": 12\n  },\n  \"source_log\": \"generated/agent-usage/agent-usage.jsonl\",\n  \"warning_counts\": {\n    \"synthetic-declaration-only\": 1\n  }\n}\n",
+        "result.md": "# Agent Usage Snapshot Latest\n\nGenerated at: `2026-11-15T12:30:00Z`\n\n## Summary\n\n- Source log: `generated/agent-usage/agent-usage.jsonl`\n- Events: `12`\n- First event: `2026-11-15T12:00:00Z`\n- Last event: `2026-11-15T12:11:00Z`\n- Data handling: metadata-only; no prompts, secrets, file contents, or model responses are stored.\n\n## Agent Usage\n\n| Agent | Count |\n| --- | --- |\n| repo-steward | 12 |\n| evidence-and-intake | 6 |\n\n## Skill Usage\n\n| Skill | Count |\n| --- | --- |\n| repo-steward | 12 |\n\n## Provider Usage\n\n| Provider | Count |\n| --- | --- |\n| declared-test-provider | 12 |\n\n## Platform Usage\n\n| Platform | Count |\n| --- | --- |\n| declared-test-platform | 12 |\n\n## Run Type Usage\n\n| Run type | Count |\n| --- | --- |\n| dispatch | 6 |\n| provider_review | 6 |\n\n## Frequent Change Areas\n\n| Change area | Count |\n| --- | --- |\n| docs/operations | 8 |\n| scripts | 8 |\n| .agents/roles | 4 |\n\n## Warnings\n\n| Warning | Count |\n| --- | --- |\n| synthetic-declaration-only | 1 |\n\n## Latest Runs\n\n| Timestamp | Type | Provider | Platform | Agents | Impact | Paths | Areas |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| 2026-11-15T12:02:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:03:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:04:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:05:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:06:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 1 | .agents/roles |\n| 2026-11-15T12:07:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:08:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:09:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:10:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:11:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "zero-keeps-all",
+      "events": [
+        {
+          "timestamp": "2026-11-15T12:00:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:01:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:02:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:03:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": [
+            "synthetic-declaration-only"
+          ]
+        },
+        {
+          "timestamp": "2026-11-15T12:04:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:05:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:06:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:07:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:08:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:09:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:10:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:11:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        }
+      ],
+      "usage_log_wire": "{\"timestamp\": \"2026-11-15T12:00:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:01:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:02:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:03:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": [\"synthetic-declaration-only\"]}\n{\"timestamp\": \"2026-11-15T12:04:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:05:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:06:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:07:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:08:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:09:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:10:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:11:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n",
+      "source_log_label": "generated/agent-usage/agent-usage.jsonl",
+      "latest_count": 0,
+      "generated_at": "2026-11-15T12:30:00Z",
+      "expected_wires": {
+        "result.json": "{\n  \"agent_counts\": {\n    \"evidence-and-intake\": 6,\n    \"repo-steward\": 12\n  },\n  \"change_area_counts\": {\n    \".agents/roles\": 4,\n    \"docs/operations\": 8,\n    \"scripts\": 8\n  },\n  \"event_count\": 12,\n  \"first_event_at\": \"2026-11-15T12:00:00Z\",\n  \"generated_at\": \"2026-11-15T12:30:00Z\",\n  \"last_event_at\": \"2026-11-15T12:11:00Z\",\n  \"latest_events\": [\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:00:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:01:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:02:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:03:00Z\",\n      \"warnings\": [\n        \"synthetic-declaration-only\"\n      ]\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:04:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:05:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:06:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:07:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:08:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:09:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:10:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:11:00Z\",\n      \"warnings\": []\n    }\n  ],\n  \"metadata_only\": true,\n  \"platform_counts\": {\n    \"declared-test-platform\": 12\n  },\n  \"provider_counts\": {\n    \"declared-test-provider\": 12\n  },\n  \"run_type_counts\": {\n    \"dispatch\": 6,\n    \"provider_review\": 6\n  },\n  \"schema_version\": \"1.0.0\",\n  \"skill_counts\": {\n    \"repo-steward\": 12\n  },\n  \"source_log\": \"generated/agent-usage/agent-usage.jsonl\",\n  \"warning_counts\": {\n    \"synthetic-declaration-only\": 1\n  }\n}\n",
+        "result.md": "# Agent Usage Snapshot Latest\n\nGenerated at: `2026-11-15T12:30:00Z`\n\n## Summary\n\n- Source log: `generated/agent-usage/agent-usage.jsonl`\n- Events: `12`\n- First event: `2026-11-15T12:00:00Z`\n- Last event: `2026-11-15T12:11:00Z`\n- Data handling: metadata-only; no prompts, secrets, file contents, or model responses are stored.\n\n## Agent Usage\n\n| Agent | Count |\n| --- | --- |\n| repo-steward | 12 |\n| evidence-and-intake | 6 |\n\n## Skill Usage\n\n| Skill | Count |\n| --- | --- |\n| repo-steward | 12 |\n\n## Provider Usage\n\n| Provider | Count |\n| --- | --- |\n| declared-test-provider | 12 |\n\n## Platform Usage\n\n| Platform | Count |\n| --- | --- |\n| declared-test-platform | 12 |\n\n## Run Type Usage\n\n| Run type | Count |\n| --- | --- |\n| dispatch | 6 |\n| provider_review | 6 |\n\n## Frequent Change Areas\n\n| Change area | Count |\n| --- | --- |\n| docs/operations | 8 |\n| scripts | 8 |\n| .agents/roles | 4 |\n\n## Warnings\n\n| Warning | Count |\n| --- | --- |\n| synthetic-declaration-only | 1 |\n\n## Latest Runs\n\n| Timestamp | Type | Provider | Platform | Agents | Impact | Paths | Areas |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| 2026-11-15T12:00:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 1 | .agents/roles |\n| 2026-11-15T12:01:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:02:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:03:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:04:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:05:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:06:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 1 | .agents/roles |\n| 2026-11-15T12:07:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:08:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:09:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:10:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:11:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "negative-clamps-zero-keeps-all",
+      "events": [
+        {
+          "timestamp": "2026-11-15T12:00:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:01:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:02:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:03:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": [
+            "synthetic-declaration-only"
+          ]
+        },
+        {
+          "timestamp": "2026-11-15T12:04:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:05:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:06:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:07:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:08:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:09:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:10:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:11:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        }
+      ],
+      "usage_log_wire": "{\"timestamp\": \"2026-11-15T12:00:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:01:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:02:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:03:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": [\"synthetic-declaration-only\"]}\n{\"timestamp\": \"2026-11-15T12:04:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:05:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:06:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:07:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:08:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:09:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:10:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:11:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n",
+      "source_log_label": "generated/agent-usage/agent-usage.jsonl",
+      "latest_count": -3,
+      "generated_at": "2026-11-15T12:30:00Z",
+      "expected_wires": {
+        "result.json": "{\n  \"agent_counts\": {\n    \"evidence-and-intake\": 6,\n    \"repo-steward\": 12\n  },\n  \"change_area_counts\": {\n    \".agents/roles\": 4,\n    \"docs/operations\": 8,\n    \"scripts\": 8\n  },\n  \"event_count\": 12,\n  \"first_event_at\": \"2026-11-15T12:00:00Z\",\n  \"generated_at\": \"2026-11-15T12:30:00Z\",\n  \"last_event_at\": \"2026-11-15T12:11:00Z\",\n  \"latest_events\": [\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:00:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:01:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:02:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:03:00Z\",\n      \"warnings\": [\n        \"synthetic-declaration-only\"\n      ]\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:04:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:05:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:06:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:07:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:08:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:09:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:10:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:11:00Z\",\n      \"warnings\": []\n    }\n  ],\n  \"metadata_only\": true,\n  \"platform_counts\": {\n    \"declared-test-platform\": 12\n  },\n  \"provider_counts\": {\n    \"declared-test-provider\": 12\n  },\n  \"run_type_counts\": {\n    \"dispatch\": 6,\n    \"provider_review\": 6\n  },\n  \"schema_version\": \"1.0.0\",\n  \"skill_counts\": {\n    \"repo-steward\": 12\n  },\n  \"source_log\": \"generated/agent-usage/agent-usage.jsonl\",\n  \"warning_counts\": {\n    \"synthetic-declaration-only\": 1\n  }\n}\n",
+        "result.md": "# Agent Usage Snapshot Latest\n\nGenerated at: `2026-11-15T12:30:00Z`\n\n## Summary\n\n- Source log: `generated/agent-usage/agent-usage.jsonl`\n- Events: `12`\n- First event: `2026-11-15T12:00:00Z`\n- Last event: `2026-11-15T12:11:00Z`\n- Data handling: metadata-only; no prompts, secrets, file contents, or model responses are stored.\n\n## Agent Usage\n\n| Agent | Count |\n| --- | --- |\n| repo-steward | 12 |\n| evidence-and-intake | 6 |\n\n## Skill Usage\n\n| Skill | Count |\n| --- | --- |\n| repo-steward | 12 |\n\n## Provider Usage\n\n| Provider | Count |\n| --- | --- |\n| declared-test-provider | 12 |\n\n## Platform Usage\n\n| Platform | Count |\n| --- | --- |\n| declared-test-platform | 12 |\n\n## Run Type Usage\n\n| Run type | Count |\n| --- | --- |\n| dispatch | 6 |\n| provider_review | 6 |\n\n## Frequent Change Areas\n\n| Change area | Count |\n| --- | --- |\n| docs/operations | 8 |\n| scripts | 8 |\n| .agents/roles | 4 |\n\n## Warnings\n\n| Warning | Count |\n| --- | --- |\n| synthetic-declaration-only | 1 |\n\n## Latest Runs\n\n| Timestamp | Type | Provider | Platform | Agents | Impact | Paths | Areas |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| 2026-11-15T12:00:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 1 | .agents/roles |\n| 2026-11-15T12:01:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:02:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:03:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:04:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:05:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:06:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 1 | .agents/roles |\n| 2026-11-15T12:07:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:08:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:09:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:10:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:11:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "large-window",
+      "events": [
+        {
+          "timestamp": "2026-11-15T12:00:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:01:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:02:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:03:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": [
+            "synthetic-declaration-only"
+          ]
+        },
+        {
+          "timestamp": "2026-11-15T12:04:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:05:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:06:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:07:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:08:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:09:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:10:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:11:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        }
+      ],
+      "usage_log_wire": "{\"timestamp\": \"2026-11-15T12:00:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:01:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:02:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:03:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": [\"synthetic-declaration-only\"]}\n{\"timestamp\": \"2026-11-15T12:04:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:05:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:06:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:07:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:08:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:09:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:10:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:11:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n",
+      "source_log_label": "generated/agent-usage/agent-usage.jsonl",
+      "latest_count": 99,
+      "generated_at": "2026-11-15T12:30:00Z",
+      "expected_wires": {
+        "result.json": "{\n  \"agent_counts\": {\n    \"evidence-and-intake\": 6,\n    \"repo-steward\": 12\n  },\n  \"change_area_counts\": {\n    \".agents/roles\": 4,\n    \"docs/operations\": 8,\n    \"scripts\": 8\n  },\n  \"event_count\": 12,\n  \"first_event_at\": \"2026-11-15T12:00:00Z\",\n  \"generated_at\": \"2026-11-15T12:30:00Z\",\n  \"last_event_at\": \"2026-11-15T12:11:00Z\",\n  \"latest_events\": [\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:00:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:01:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:02:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:03:00Z\",\n      \"warnings\": [\n        \"synthetic-declaration-only\"\n      ]\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:04:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:05:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:06:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:07:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:08:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:09:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:10:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:11:00Z\",\n      \"warnings\": []\n    }\n  ],\n  \"metadata_only\": true,\n  \"platform_counts\": {\n    \"declared-test-platform\": 12\n  },\n  \"provider_counts\": {\n    \"declared-test-provider\": 12\n  },\n  \"run_type_counts\": {\n    \"dispatch\": 6,\n    \"provider_review\": 6\n  },\n  \"schema_version\": \"1.0.0\",\n  \"skill_counts\": {\n    \"repo-steward\": 12\n  },\n  \"source_log\": \"generated/agent-usage/agent-usage.jsonl\",\n  \"warning_counts\": {\n    \"synthetic-declaration-only\": 1\n  }\n}\n",
+        "result.md": "# Agent Usage Snapshot Latest\n\nGenerated at: `2026-11-15T12:30:00Z`\n\n## Summary\n\n- Source log: `generated/agent-usage/agent-usage.jsonl`\n- Events: `12`\n- First event: `2026-11-15T12:00:00Z`\n- Last event: `2026-11-15T12:11:00Z`\n- Data handling: metadata-only; no prompts, secrets, file contents, or model responses are stored.\n\n## Agent Usage\n\n| Agent | Count |\n| --- | --- |\n| repo-steward | 12 |\n| evidence-and-intake | 6 |\n\n## Skill Usage\n\n| Skill | Count |\n| --- | --- |\n| repo-steward | 12 |\n\n## Provider Usage\n\n| Provider | Count |\n| --- | --- |\n| declared-test-provider | 12 |\n\n## Platform Usage\n\n| Platform | Count |\n| --- | --- |\n| declared-test-platform | 12 |\n\n## Run Type Usage\n\n| Run type | Count |\n| --- | --- |\n| dispatch | 6 |\n| provider_review | 6 |\n\n## Frequent Change Areas\n\n| Change area | Count |\n| --- | --- |\n| docs/operations | 8 |\n| scripts | 8 |\n| .agents/roles | 4 |\n\n## Warnings\n\n| Warning | Count |\n| --- | --- |\n| synthetic-declaration-only | 1 |\n\n## Latest Runs\n\n| Timestamp | Type | Provider | Platform | Agents | Impact | Paths | Areas |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| 2026-11-15T12:00:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 1 | .agents/roles |\n| 2026-11-15T12:01:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:02:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:03:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:04:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:05:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:06:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 1 | .agents/roles |\n| 2026-11-15T12:07:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:08:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:09:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:10:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:11:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "empty",
+      "events": [],
+      "usage_log_wire": "\n",
+      "source_log_label": "generated/agent-usage/agent-usage.jsonl",
+      "latest_count": 10,
+      "generated_at": "2026-11-15T12:30:00Z",
+      "expected_wires": {
+        "result.json": "{\n  \"agent_counts\": {},\n  \"change_area_counts\": {},\n  \"event_count\": 0,\n  \"first_event_at\": \"\",\n  \"generated_at\": \"2026-11-15T12:30:00Z\",\n  \"last_event_at\": \"\",\n  \"latest_events\": [],\n  \"metadata_only\": true,\n  \"platform_counts\": {},\n  \"provider_counts\": {},\n  \"run_type_counts\": {},\n  \"schema_version\": \"1.0.0\",\n  \"skill_counts\": {},\n  \"source_log\": \"generated/agent-usage/agent-usage.jsonl\",\n  \"warning_counts\": {}\n}\n",
+        "result.md": "# Agent Usage Snapshot Latest\n\nGenerated at: `2026-11-15T12:30:00Z`\n\n## Summary\n\n- Source log: `generated/agent-usage/agent-usage.jsonl`\n- Events: `0`\n- First event: `n/a`\n- Last event: `n/a`\n- Data handling: metadata-only; no prompts, secrets, file contents, or model responses are stored.\n\n## Agent Usage\n\n| Agent | Count |\n| --- | --- |\n| none | none |\n\n## Skill Usage\n\n| Skill | Count |\n| --- | --- |\n| none | none |\n\n## Provider Usage\n\n| Provider | Count |\n| --- | --- |\n| none | none |\n\n## Platform Usage\n\n| Platform | Count |\n| --- | --- |\n| none | none |\n\n## Run Type Usage\n\n| Run type | Count |\n| --- | --- |\n| none | none |\n\n## Frequent Change Areas\n\n| Change area | Count |\n| --- | --- |\n| none | none |\n\n## Warnings\n\n| Warning | Count |\n| --- | --- |\n| none | none |\n\n## Latest Runs\n\n| Timestamp | Type | Provider | Platform | Agents | Impact | Paths | Areas |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| none | none | none | none | none | none | none | none |\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "offset-fraction-clock",
+      "events": [
+        {
+          "timestamp": "2026-11-15T12:00:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:01:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:02:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:03:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": [
+            "synthetic-declaration-only"
+          ]
+        },
+        {
+          "timestamp": "2026-11-15T12:04:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:05:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:06:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:07:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:08:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:09:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:10:00Z",
+          "run_type": "provider_review",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        },
+        {
+          "timestamp": "2026-11-15T12:11:00Z",
+          "run_type": "dispatch",
+          "provider": "declared-test-provider",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "repo-steward",
+            "evidence-and-intake"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            "docs/operations/example.md",
+            "scripts/example.py"
+          ],
+          "warnings": []
+        }
+      ],
+      "usage_log_wire": "{\"timestamp\": \"2026-11-15T12:00:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:01:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:02:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:03:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": [\"synthetic-declaration-only\"]}\n{\"timestamp\": \"2026-11-15T12:04:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:05:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:06:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:07:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:08:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:09:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:10:00Z\", \"run_type\": \"provider_review\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n{\"timestamp\": \"2026-11-15T12:11:00Z\", \"run_type\": \"dispatch\", \"provider\": \"declared-test-provider\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"repo-steward\", \"evidence-and-intake\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\"docs/operations/example.md\", \"scripts/example.py\"], \"warnings\": []}\n",
+      "source_log_label": "generated/agent-usage/agent-usage.jsonl",
+      "latest_count": 10,
+      "generated_at": "2026-11-15T13:30:00.123456+01:00",
+      "expected_wires": {
+        "result.json": "{\n  \"agent_counts\": {\n    \"evidence-and-intake\": 6,\n    \"repo-steward\": 12\n  },\n  \"change_area_counts\": {\n    \".agents/roles\": 4,\n    \"docs/operations\": 8,\n    \"scripts\": 8\n  },\n  \"event_count\": 12,\n  \"first_event_at\": \"2026-11-15T12:00:00Z\",\n  \"generated_at\": \"2026-11-15T13:30:00.123456+01:00\",\n  \"last_event_at\": \"2026-11-15T12:11:00Z\",\n  \"latest_events\": [\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:02:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:03:00Z\",\n      \"warnings\": [\n        \"synthetic-declaration-only\"\n      ]\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:04:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:05:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:06:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:07:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:08:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:09:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"repo-steward\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:10:00Z\",\n      \"warnings\": []\n    },\n    {\n      \"changed_areas\": [\n        \"docs/operations\",\n        \"scripts\"\n      ],\n      \"changed_path_count\": 2,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"declared-test-provider\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"dispatch\",\n      \"selected_agents\": [\n        \"repo-steward\",\n        \"evidence-and-intake\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:11:00Z\",\n      \"warnings\": []\n    }\n  ],\n  \"metadata_only\": true,\n  \"platform_counts\": {\n    \"declared-test-platform\": 12\n  },\n  \"provider_counts\": {\n    \"declared-test-provider\": 12\n  },\n  \"run_type_counts\": {\n    \"dispatch\": 6,\n    \"provider_review\": 6\n  },\n  \"schema_version\": \"1.0.0\",\n  \"skill_counts\": {\n    \"repo-steward\": 12\n  },\n  \"source_log\": \"generated/agent-usage/agent-usage.jsonl\",\n  \"warning_counts\": {\n    \"synthetic-declaration-only\": 1\n  }\n}\n",
+        "result.md": "# Agent Usage Snapshot Latest\n\nGenerated at: `2026-11-15T13:30:00.123456+01:00`\n\n## Summary\n\n- Source log: `generated/agent-usage/agent-usage.jsonl`\n- Events: `12`\n- First event: `2026-11-15T12:00:00Z`\n- Last event: `2026-11-15T12:11:00Z`\n- Data handling: metadata-only; no prompts, secrets, file contents, or model responses are stored.\n\n## Agent Usage\n\n| Agent | Count |\n| --- | --- |\n| repo-steward | 12 |\n| evidence-and-intake | 6 |\n\n## Skill Usage\n\n| Skill | Count |\n| --- | --- |\n| repo-steward | 12 |\n\n## Provider Usage\n\n| Provider | Count |\n| --- | --- |\n| declared-test-provider | 12 |\n\n## Platform Usage\n\n| Platform | Count |\n| --- | --- |\n| declared-test-platform | 12 |\n\n## Run Type Usage\n\n| Run type | Count |\n| --- | --- |\n| dispatch | 6 |\n| provider_review | 6 |\n\n## Frequent Change Areas\n\n| Change area | Count |\n| --- | --- |\n| docs/operations | 8 |\n| scripts | 8 |\n| .agents/roles | 4 |\n\n## Warnings\n\n| Warning | Count |\n| --- | --- |\n| synthetic-declaration-only | 1 |\n\n## Latest Runs\n\n| Timestamp | Type | Provider | Platform | Agents | Impact | Paths | Areas |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| 2026-11-15T12:02:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:03:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:04:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:05:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:06:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 1 | .agents/roles |\n| 2026-11-15T12:07:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:08:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:09:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 1 | .agents/roles |\n| 2026-11-15T12:10:00Z | provider_review | declared-test-provider | declared-test-platform | repo-steward | none | 2 | docs/operations, scripts |\n| 2026-11-15T12:11:00Z | dispatch | declared-test-provider | declared-test-platform | repo-steward, evidence-and-intake | none | 2 | docs/operations, scripts |\n"
+      },
+      "original_exit": 0
+    },
+    {
+      "id": "unicode-metadata",
+      "events": [
+        {
+          "timestamp": "2026-11-15T12:00:00Z",
+          "run_type": "provider_review",
+          "provider": "Pr\u00fcfung",
+          "platform": "declared-test-platform",
+          "source": "synthetic-fixture",
+          "release_impact": "none",
+          "selected_agents": [
+            "r\u00e9viseur"
+          ],
+          "skills": [
+            "repo-steward"
+          ],
+          "changed_paths": [
+            ".agents/roles/example.yaml"
+          ],
+          "warnings": []
+        }
+      ],
+      "usage_log_wire": "{\"timestamp\": \"2026-11-15T12:00:00Z\", \"run_type\": \"provider_review\", \"provider\": \"Pr\\u00fcfung\", \"platform\": \"declared-test-platform\", \"source\": \"synthetic-fixture\", \"release_impact\": \"none\", \"selected_agents\": [\"r\\u00e9viseur\"], \"skills\": [\"repo-steward\"], \"changed_paths\": [\".agents/roles/example.yaml\"], \"warnings\": []}\n",
+      "source_log_label": "generated/agent-usage/agent-usage.jsonl",
+      "latest_count": 10,
+      "generated_at": "2026-11-15T12:30:00Z",
+      "expected_wires": {
+        "result.json": "{\n  \"agent_counts\": {\n    \"r\\u00e9viseur\": 1\n  },\n  \"change_area_counts\": {\n    \".agents/roles\": 1\n  },\n  \"event_count\": 1,\n  \"first_event_at\": \"2026-11-15T12:00:00Z\",\n  \"generated_at\": \"2026-11-15T12:30:00Z\",\n  \"last_event_at\": \"2026-11-15T12:00:00Z\",\n  \"latest_events\": [\n    {\n      \"changed_areas\": [\n        \".agents/roles\"\n      ],\n      \"changed_path_count\": 1,\n      \"platform\": \"declared-test-platform\",\n      \"provider\": \"Pr\\u00fcfung\",\n      \"release_impact\": \"none\",\n      \"run_type\": \"provider_review\",\n      \"selected_agents\": [\n        \"r\\u00e9viseur\"\n      ],\n      \"source\": \"synthetic-fixture\",\n      \"timestamp\": \"2026-11-15T12:00:00Z\",\n      \"warnings\": []\n    }\n  ],\n  \"metadata_only\": true,\n  \"platform_counts\": {\n    \"declared-test-platform\": 1\n  },\n  \"provider_counts\": {\n    \"Pr\\u00fcfung\": 1\n  },\n  \"run_type_counts\": {\n    \"provider_review\": 1\n  },\n  \"schema_version\": \"1.0.0\",\n  \"skill_counts\": {\n    \"repo-steward\": 1\n  },\n  \"source_log\": \"generated/agent-usage/agent-usage.jsonl\",\n  \"warning_counts\": {}\n}\n",
+        "result.md": "# Agent Usage Snapshot Latest\n\nGenerated at: `2026-11-15T12:30:00Z`\n\n## Summary\n\n- Source log: `generated/agent-usage/agent-usage.jsonl`\n- Events: `1`\n- First event: `2026-11-15T12:00:00Z`\n- Last event: `2026-11-15T12:00:00Z`\n- Data handling: metadata-only; no prompts, secrets, file contents, or model responses are stored.\n\n## Agent Usage\n\n| Agent | Count |\n| --- | --- |\n| r\u00e9viseur | 1 |\n\n## Skill Usage\n\n| Skill | Count |\n| --- | --- |\n| repo-steward | 1 |\n\n## Provider Usage\n\n| Provider | Count |\n| --- | --- |\n| Pr\u00fcfung | 1 |\n\n## Platform Usage\n\n| Platform | Count |\n| --- | --- |\n| declared-test-platform | 1 |\n\n## Run Type Usage\n\n| Run type | Count |\n| --- | --- |\n| provider_review | 1 |\n\n## Frequent Change Areas\n\n| Change area | Count |\n| --- | --- |\n| .agents/roles | 1 |\n\n## Warnings\n\n| Warning | Count |\n| --- | --- |\n| none | none |\n\n## Latest Runs\n\n| Timestamp | Type | Provider | Platform | Agents | Impact | Paths | Areas |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| 2026-11-15T12:00:00Z | provider_review | Pr\u00fcfung | declared-test-platform | r\u00e9viseur | none | 1 | .agents/roles |\n"
+      },
+      "original_exit": 0
+    }
+  ]
+}

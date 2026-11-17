@@ -109,8 +109,9 @@ def extract_requirement_rows(
     return requirements, references
 
 
-def generate_model(root: Path, manifest: dict) -> dict:
-    validate_schema(manifest, root / "schemas/document-consistency-review-manifest.schema.json", "manifest")
+def generate_model(root: Path, manifest: dict, *, schema_root: Path | None = None) -> dict:
+    schema_root = root if schema_root is None else schema_root
+    validate_schema(manifest, schema_root / "schemas/document-consistency-review-manifest.schema.json", "manifest")
     sources = []
     requirements = []
     relationships = []
@@ -171,7 +172,7 @@ def generate_model(root: Path, manifest: dict) -> dict:
         "derivation_relationships": [],
         "topic_authorities": [],
     }
-    validate_schema(model, root / "schemas/document-consistency-review-model.schema.json", "model")
+    validate_schema(model, schema_root / "schemas/document-consistency-review-model.schema.json", "model")
     return model
 
 

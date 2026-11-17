@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 general result snapshot",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "repository_id",
+    "governance_repository",
+    "result_type",
+    "generated_at",
+    "pipeline",
+    "repository",
+    "checks",
+    "evidence",
+    "overall_status",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "repository_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "governance_repository": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "result_type": {
+      "enum": [
+        "governance-baseline-run",
+        "architecture-runtime-governance-run"
+      ]
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "pipeline": {
+      "type": "object",
+      "required": [
+        "pipeline_name",
+        "pipeline_run_id",
+        "pipeline_url",
+        "event",
+        "status"
+      ],
+      "properties": {
+        "pipeline_name": {
+          "type": "string",
+          "maxLength": 2048
+        },
+        "pipeline_run_id": {
+          "type": "string",
+          "maxLength": 2048
+        },
+        "pipeline_url": {
+          "type": "string",
+          "maxLength": 2048
+        },
+        "event": {
+          "type": "string",
+          "maxLength": 2048
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 2048
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "required": [
+        "branch",
+        "branch_protected",
+        "commit_id"
+      ],
+      "properties": {
+        "branch": {
+          "type": "string",
+          "maxLength": 512
+        },
+        "branch_protected": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "commit_id": {
+          "type": "string",
+          "maxLength": 128
+        }
+      }
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "object"
+    },
+    "overall_status": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 65536
+    },
+    "trust": {
+      "type": "object"
+    },
+    "control_evaluation_summary": {
+      "type": "object"
+    },
+    "architecture_summary": {
+      "type": "object"
+    },
+    "gates": {
+      "type": "array"
+    },
+    "target": {
+      "type": "object"
+    }
+  }
+}
