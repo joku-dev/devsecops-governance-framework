@@ -23,3 +23,11 @@ POLICY = {
 def review_plan_profile(profile):
     if profile not in PROFILES: raise ValueError('unsupported_review_plan_profile')
     return deepcopy(POLICY)
+
+
+def review_commit_profile(profile):
+    if profile not in PROFILES: raise ValueError('unsupported_review_plan_profile')
+    return {'roots': ['.agents/roles', '.agents/skills', '.agents/routing'],
+        'patterns': [r'\.agents/roles/[a-z0-9-]+\.yaml', r'\.agents/skills/[a-z0-9-]+/SKILL\.md',
+                     r'\.agents/routing/governance-agent-routing\.yaml'],
+        'max_files': 200, 'max_file_bytes': 65536}

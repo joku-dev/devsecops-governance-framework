@@ -52,10 +52,11 @@ def canonical_paths(paths):
     return paths
 
 
-def contracts(raw):
+def contracts(raw, *, require_protocol=True):
     roles = {}
+    role_pattern = r'\.agents/roles/[a-z0-9]+(?:-[a-z0-9]+)*\.yaml' if require_protocol else r'\.agents/roles/[a-z0-9-]+\.yaml'
     for name in sorted(raw):
-        if not re.fullmatch(r'\.agents/roles/[a-z0-9]+(?:-[a-z0-9]+)*\.yaml', name): continue
+        if not re.fullmatch(role_pattern, name): continue
         role = yaml_object(raw[name])
         if role.get('id') != PurePosixPath(name).stem: raise ValueError('invalid_review_role_identity')
         if any(not isinstance(role.get(k), str) or not role[k].strip() for k in ('id', 'name', 'description', 'source_of_truth', 'skill')):
@@ -66,7 +67,7 @@ def contracts(raw):
             raise ValueError('invalid_review_role_lists')
         roles[role['id']] = role
     if not 1 <= len(roles) <= 200 or 'repo-steward' not in roles: raise ValueError('review_steward_contract_required')
-    routing = yaml_object(raw[ROUTING]); protocol = yaml_object(raw[PROTOCOL])
+    routing = yaml_object(raw[ROUTING]); protocol = yaml_object(raw[PROTOCOL]) if require_protocol else None
     always = routing.get('always_select')
     if not strings(always) or 'repo-steward' not in always or set(always) - roles.keys(): raise ValueError('invalid_review_always_select')
     rules = routing.get('rules')
@@ -83,13 +84,14 @@ def contracts(raw):
         if not isinstance(fallback, dict) or not strings(fallback.get('path_prefixes')) or not strings(fallback.get('agents')) or set(fallback['agents']) - roles.keys():
             raise ValueError('invalid_review_fallback')
         if any(normalize_path(p) != p or not p.endswith('/') for p in fallback['path_prefixes']): raise ValueError('invalid_review_fallback_prefix')
-    execution = protocol.get('execution', {})
-    if not isinstance(execution, dict) or execution.get('final_role') != 'repo-steward' or execution.get('default_access') != 'read_only' or execution.get('default_mode') != 'role_lens':
-        raise ValueError('read_only_final_steward_protocol_required')
-    authority = protocol.get('authority')
-    if authority != {'result_is': 'self_reported_review_evidence', 'independent_human_approval': False,
-                     'source_or_requirement_approval': False, 'release_or_blocking_authorization': False}:
-        raise ValueError('review_protocol_cannot_grant_authority')
+    if require_protocol:
+        execution = protocol.get('execution', {})
+        if not isinstance(execution, dict) or execution.get('final_role') != 'repo-steward' or execution.get('default_access') != 'read_only' or execution.get('default_mode') != 'role_lens':
+            raise ValueError('read_only_final_steward_protocol_required')
+        authority = protocol.get('authority')
+        if authority != {'result_is': 'self_reported_review_evidence', 'independent_human_approval': False,
+                         'source_or_requirement_approval': False, 'release_or_blocking_authorization': False}:
+            raise ValueError('review_protocol_cannot_grant_authority')
     return roles, routing, protocol
 
 

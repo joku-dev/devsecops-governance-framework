@@ -122,3 +122,29 @@ explicit fixed test clock. Required evidence includes real external files/locks,
 whole original wires, positive/negative replay, pinned full validation, strict
 docs, role review and fresh installed Mac/Linux candidates. Formal matrix states
 remain in progress until the complete entrypoint evidence audit is satisfied.
+
+## Committed PR-scope restoration
+
+`review-pr status/inspect` replaces declared scope with actual bounded local Git
+observations for the supplied event commits: exact target/head, merge base,
+rename-expanded changed paths and regular role/skill/routing files at both
+commits. Required roles and validations use the original target/proposed union.
+Dirty working files or an unrelated current checkout HEAD do not alter committed
+scope. SHA-1 and SHA-256 Git repositories are supported. No target code runs.
+
+The committed metadata observer retains V1's contract requirements; unlike an
+execution plan, it does not require an execution protocol. The existing planning
+path still requires its strict read-only protocol and authority restrictions.
+This separation grants no execution or governance authority. Native event and
+contract layout remain finite explicit adapters. Observed scope is not a remote
+PR identity/freshness check; every approval/publishing/authentication flag stays
+false. Full original JSON/Markdown reports and private raw observations are
+retained and rederived offline without a live-target claim.
+
+These are additive technical product/schema/test artifacts under this Goal, not
+normative sources or changes to controls, policies, released baselines, accepted
+history or consumer enforcement. Required evidence covers complete original
+native-function comparisons, target-only contract requirements, dirty checkout,
+empty scope, rename/Unicode, both Git object formats, bounded invalid inputs,
+privacy, tamper and offline replay, plus pinned full validation, strict docs and
+fresh installed-source proof. Formal matrix entries remain in progress.

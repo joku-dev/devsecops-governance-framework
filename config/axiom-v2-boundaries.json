@@ -27,7 +27,9 @@
     "scripts/lib/review_planning_application.py",
     "scripts/lib/review_receipts.py",
     "scripts/lib/review_receipt_files.py",
-    "scripts/lib/review_receipts_application.py"
+    "scripts/lib/review_receipts_application.py",
+    "scripts/lib/review_committed.py",
+    "scripts/lib/review_pr_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"
