@@ -168,6 +168,7 @@ nav:
           - Repository Code Security Assessment: operations/security/repository-code-security-assessment-2026-09-18.md
           - Repository SBOM And Vulnerability Management: operations/security/repository-sbom-and-vulnerability-management.md
       - Status:
+          - V2 Goal Progress: operations/status/axiom-v2-goal-progress.md
           - Daily Governance Operations: operations/status/daily-governance-operations.md
           - Portfolio Adoption Reporting: operations/status/portfolio-adoption-reporting.md
           - Multi-Consumer Readiness: operations/status/multi-consumer-readiness.md

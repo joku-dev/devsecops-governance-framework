@@ -37,6 +37,22 @@ validated commits/PRs and isolated Mac/Linux installation candidates. Unknown
 external target editions/access or new human approval requirements remain
 specific acceptance limits, not reasons to stop independent implementation.
 
+## Current progress projection
+
+The maintainer requested a continuously maintainable Goal readout on 17 November.
+The generator projects the existing matrix into README, a status documentation
+page and a JSON report. A separate dated technical observation records the last
+tested candidate; passing tests never promote matrix entries or complete the Goal.
+CI detects stale generated projections after matrix/observation changes.
+
+| Artifact classification | Impact |
+|---|---|
+| Progress generator and CI freshness check | Developer documentation tooling; no consumer enforcement change |
+| Configuration observation | Declared, source-bound technical validation metadata; no official result intake or independent approval |
+| README/status page/JSON projection | Generated implementation progress, not a normative source or completion receipt |
+| Protected acceptance and released baselines | Unchanged; no operating authority or source approval transferred |
+| Validation | Projection/count/freshness/negative regression tests, pinned full validation/demo, strict documentation build and private revision-bound role review |
+
 | Artifact classification | Impact |
 |---|---|
 | Technical Goal, parity matrix and implementation evidence | Product work and test scope, no normative source derivation |

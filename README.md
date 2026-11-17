@@ -25,6 +25,30 @@ Die [vollständige technische Funktionsparität zu V1](docs/operations/planning/
 ist ein eigenes laufendes Goal. Der bereits entkoppelte V2-Kandidat ersetzt noch
 nicht alle V1-Funktionen; ein source- und nachweisgebundenes Inventar führt die
 gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
+
+<!-- V2_GOAL_PROGRESS:start -->
+### V2-Goal: aktueller Fortschritt
+
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **65 in Arbeit** und **70 noch offen**.
+
+| Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
+| --- | ---: | ---: | ---: | ---: |
+| Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
+| V1-Einstiegspunkte (135) | 0 | 65 | 70 | 135 |
+| V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
+| Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
+
+¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
+
+**Letzter geprüfter Kandidat:** `4d25e81` · 1,588 Tests (davon 1 übersprungen) · Mac 21 / VM 21 Prüfgruppen · 10 grüne CI-Workflow-Familien.
+
+**Nächster Baustein:** Review-Werkzeuge für Planung, Prüfung und Nachweise.
+
+Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
+
+[Fortschritt, Nachweise und Restarbeiten](docs/operations/status/axiom-v2-goal-progress.md) · automatisch aus der Matrix erzeugt; veraltete Anzeigen werden in CI erkannt.
+<!-- V2_GOAL_PROGRESS:end -->
+
 Der [datierte Zwischenstand mit Mac-/VM-Nachweisen](docs/operations/status/axiom-v2-parity-progress-2026-11-15.md)
 trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch
 unvollständigen frischen Consumer-Lauf. V2 bietet inzwischen auch private,
