@@ -40,9 +40,9 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `b2f6dd3` · 1,796 Tests (davon 1 übersprungen) · Mac 8 / VM 8 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `677e3a6` · 1,804 Tests (davon 1 übersprungen) · Mac 9 / VM 9 Prüfgruppen · 7 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Ursprüngliche Reviewplan-Basen und Git-Formate vervollständigen.
+**Nächster Baustein:** Externe ursprüngliche Review-Dateien direkt prüfen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -140,6 +140,11 @@ sind unterstützt. Der Plan speichert die aufgelöste Basis und folgt späteren
 Änderungen des Branch-Namens nicht. Gespeicherte Ergebnisse
 lassen sich ohne den ursprünglichen Checkout nachlesen; dieses Nachlesen prüft
 keinen aktuellen Git-Stand. Ergebnisse und Freigaben bleiben Selbstauskünfte.
+`review-plan check-file` prüft außerdem externe V1-Plan- und Ergebnisdateien
+direkt gegen den aktuellen lokalen Git-Stand und die tatsächlichen Review-Verträge.
+Eine vorherige V2-Plan-ID ist dafür nicht erforderlich. Eingabebytes und der
+vollständige ursprüngliche Prüfbericht bleiben privat erneut ableitbar;
+externen Dateien wird keine V2-Planherkunft oder Freigabe zugeschrieben.
 `review-receipts export/summary/inspect` exportiert die freigegebenen Metadatenfelder
 eines solchen Plans in eine ausdrücklich gewählte Datei außerhalb der Checkouts.
 Ein sauberer vollständiger Branch mit Vergleichsbasis wird vor und nach dem Export

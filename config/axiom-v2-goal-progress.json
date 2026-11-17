@@ -2,82 +2,75 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Urspr\u00fcngliche Reviewplan-Basen und Git-Formate vervollst\u00e4ndigen",
+    "title": "Externe urspr\u00fcngliche Review-Dateien direkt pr\u00fcfen",
     "entrypoints": [
-      "scripts/dispatch_governance_agents.py",
-      "scripts/record_agent_review.py"
+      "scripts/dispatch_governance_agents.py"
     ],
-    "next_step": "Benannte und exakte Basen sowie SHA-1/SHA-256-Pl\u00e4ne und Receipt-Dateiwirkungen vollst\u00e4ndig gegen V1 validieren und frisch auf Mac/VM nachweisen; danach optionale Review-Ausf\u00fchrung und alle weiteren Goal-Bereiche fortsetzen."
+    "next_step": "Direkten V1-Plan-/Ergebnisdateieingang ohne vorherige V2-Plan-ID erg\u00e4nzen; vollst\u00e4ndige Originalberichte, Exitcodes, frische Git-/Vertragsbindung und private Wiederholungspr\u00fcfung validieren und auf Mac/VM nachweisen. Danach optionale Review-Ausf\u00fchrung und weitere Goal-Bereiche fortsetzen."
   },
   "last_validation": {
-    "observed_at": "2026-11-17T21:51:33Z",
-    "source_revision": "b2f6dd3ae58c7b2c67f75b184657c927a2471503",
-    "runtime_source_digest": "5fd7b852f6e6de7c82bd9359ebbc539caecc05ae770736596cbd4d8ab44e5ca1",
-    "unit_tests": 1796,
-    "unit_test_seconds": 537.125,
+    "observed_at": "2026-11-17T22:23:44Z",
+    "source_revision": "677e3a618976fa20249af9c126bfc21c417e40e2",
+    "runtime_source_digest": "fcfb783a297c0248552b38b91ec8ae3a345e70b0609c722741ed3f6d33aad93b",
+    "unit_tests": 1804,
+    "unit_test_seconds": 630.957,
     "unit_tests_skipped": 1,
     "installed_groups": {
-      "mac": 8,
-      "linux": 8
+      "mac": 9,
+      "linux": 9
     },
-    "equal_complete_result_groups": 6,
-    "compared_result_groups": 6,
+    "equal_complete_result_groups": 7,
+    "compared_result_groups": 7,
     "canonical_profile_complete_results_equal": true,
     "full_dcr_equal": true,
-    "full_dcr_sha256": "d4028c8322bf47cafb763bb0816e5c27220a28e7bd4162340934b820188a34f7",
+    "full_dcr_sha256": "6cd9af04ba8d0c521b88806ab6d40f4c6e437f696ec03b838d7d6ac1bfd404dd",
     "ci_workflows": [
       {
         "name": "Agent Review Status",
-        "run_id": "44182375845",
+        "run_id": "44188245366",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44182375845"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44188245366"
       },
       {
         "name": "Consumer Lifecycle Guard",
-        "run_id": "44179786380",
+        "run_id": "44187032955",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44179786380"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032955"
       },
       {
         "name": "Governance Repository Self-Security",
-        "run_id": "44179786350",
+        "run_id": "44187032986",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44179786350"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032986"
       },
       {
         "name": "Dependency Review",
-        "run_id": "44179786222",
+        "run_id": "44187032795",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44179786222"
-      },
-      {
-        "name": "Prepared runtime offline",
-        "run_id": "44179786273",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44179786273"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032795"
       },
       {
         "name": "CodeQL",
-        "run_id": "44179786217",
+        "run_id": "44187032183",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44179786217"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032183"
       },
       {
         "name": "Governance CI",
-        "run_id": "44179786214",
+        "run_id": "44187033614",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44179786214"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187033614"
       },
       {
         "name": "Governance CI v2",
-        "run_id": "44179786230",
+        "run_id": "44187032393",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44179786230"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032393"
       }
     ],
     "evidence_kind": "declared_technical_validation_observation",
     "independent_human_approval": false,
     "full_functional_parity": false,
-    "comparison_note": "Acht gezielte installierte Pr\u00fcfgruppen je Host bestanden; sechs vollst\u00e4ndige Ergebnisgruppen stimmen zwischen Mac und Linux \u00fcberein. Die Dispatcher-Gruppe enth\u00e4lt 29 F\u00e4lle: 25 vollst\u00e4ndige Original-Ausgabe-/Auswahlvergleiche, einen Original-Grenzfall und drei Anwendungssicherheitspr\u00fcfungen. Von allen 29 Fallobjekten sind 27 auch zwischen Hosts gleich; zwei enthalten abweichende explizite absolute Logpfade. Native Quellberichte stimmen je Host in sechs F\u00e4llen vollst\u00e4ndig mit V1 \u00fcberein; Kontextpfade und CI-Anzeigereihenfolge unterscheiden sich weiterhin zwischen Hosts. Rohberichte wurden nicht normalisiert. Vollst\u00e4ndige urspr\u00fcngliche ha-CPsWMS-Kontroll-/Architekturberichte und der vollst\u00e4ndige DCR stimmen \u00fcberein. Alle acht ausgel\u00f6sten CI-Familien bestanden; der finale Review-Job meldet declared_complete. Die OPA-Testpfad-Korrektur ist enthalten; fr\u00fchere fehlgeschlagene Messungen bleiben erhalten. Dieser Nachweis zertifiziert weder die neue Ausf\u00fchrungsplan-Erg\u00e4nzung noch alle 37 CI-Definitionen oder das volle Goal."
+    "comparison_note": "Neun gezielte installierte Pr\u00fcfgruppen je Host bestanden; sieben vollst\u00e4ndige Ergebnisgruppen zwischen Mac und Linux gleich. Reviewplan-Gruppe: 23 F\u00e4lle, davon 13 vollst\u00e4ndige Original-Ausgabe-/Berichtvergleiche, sechs \u00c4nderungs-/Eingabeschutzf\u00e4lle, drei Wiederholungspr\u00fcfungen und ein Original-Grenzfall fehlender Rollen. Dispatcher: 25 vollst\u00e4ndige Originalvergleiche, ein negativer Originalfall und drei Anwendungssicherheitsf\u00e4lle; 27 von 29 Fallobjekten host\u00fcbergreifend gleich, zwei explizite Logpfade verschieden. Native Quellberichte je Host vollst\u00e4ndig originalgleich in sechs F\u00e4llen; Kontextpfade und erste CI-Anzeigedetails host\u00fcbergreifend verschieden. Keine Rohberichtnormalisierung. Vollst\u00e4ndige urspr\u00fcngliche ha-CPsWMS-Kontroll-/Architekturberichte und DCR stimmen \u00fcberein. Alle sieben ausgel\u00f6sten CI-Familien bestanden; tats\u00e4chlicher Review-Job meldet declared_complete. Offline-CI wurde f\u00fcr diese Pfade nicht ausgel\u00f6st; frische tats\u00e4chliche Offline-Installationen sind gesonderter Nachweis. Dieser abgeschlossene 677e3a6-Nachweis zertifiziert weder den neuen externen Dateieingang noch alle 37 CI-Definitionen oder das volle Goal."
   }
 }

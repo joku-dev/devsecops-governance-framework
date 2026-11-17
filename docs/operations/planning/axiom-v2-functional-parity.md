@@ -2120,3 +2120,44 @@ report normalization. Unit regressions also reject mixed commit/index formats,
 reference movement during admission, conflicting selectors and forged protocol
 authority. Fresh pinned validation and installed Mac/Linux evidence for this
 increment are required. Matrix states and the full 22/135/37/16 Goal remain open.
+
+## Checking external original review files
+
+V1's `--check-review PLAN --review-results RESULTS` accepts an external packet.
+The private V2 `check --plan ASSESSMENT_ID` retains its existing node-owned flow;
+the explicit direct-file equivalent is:
+
+```sh
+axiom-v2 review-plan check-file --repo /path/to/caller --plan-file /private/review/plan.json --results /private/review/results.json --profile legacy-role-review-v1 --at 2026-11-17T22:20:00Z
+```
+
+The command reads bounded strict JSON (8 MiB plan, 4 MiB results), derives the
+complete expected plan from actual current local Git and review contracts and
+compares the full plan and digest. Named bases are already frozen as exact
+commits in the original packet. Working-tree, baseless and explicit-path scope
+remain supported with native SHA-1/SHA-256. Explicit scope does not acquire an
+unrelated full-branch/clean-tree export restriction. Source/index/mode/HEAD,
+changed-path membership, contract and authority differences reject admission;
+the target is read again before publishing a private assessment.
+
+The complete `review-check.json` retains original report bytes and readiness
+semantics: exit 0 for declared complete, 1 for incomplete/open high findings,
+2 for invalid or stale input. All review and validation claims remain declared.
+No model/provider starts and no consent, approval or operating authority follows.
+
+External inputs and assessments use version 2 with
+`plan_origin: external_operator_file` and `plan_assessment_id: null`. This records
+their origin without inventing prior V2 plan ownership. Original version-1
+prepare/check bytes and behavior remain supported by their pinned source.
+Exact caller plan/results bytes and actual observed source facts are retained
+privately. `inspect --assessment ID` rederives the complete report after caller
+and target deletion and explicitly performs no current Git/file check. Tampered
+retained bytes and inconsistent version/origin/parent combinations are rejected.
+
+Unit and installed acceptance harnesses compare unchanged fingerprinted original
+CLI file-check code, complete reports and original exits. They also compare
+stale source/index/mode/contract and scope changes, rehashed role/authority
+tampering and retained replay. The unchanged real ha-CPsWMS reference retains
+its original missing-role boundary; synthetic contracts are not injected into it.
+Fresh pinned validation and source-bound installed Mac/Linux proof remain
+required for this increment. Formal matrix states and full Goal scope stay open.
