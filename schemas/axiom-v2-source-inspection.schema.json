@@ -31,11 +31,12 @@
     "source_scope",
     "source_inspection_profile",
     "evidence_trust",
-    "repository_identity_verified"
+    "repository_identity_verified",
+    "ci_iteration_paths"
   ],
   "properties": {
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "node_id": {
       "type": "string",
@@ -199,6 +200,16 @@
     },
     "repository_identity_verified": {
       "const": false
+    },
+    "ci_iteration_paths": {
+      "type": "array",
+      "maxItems": 10000,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096
+      }
     }
   }
 }

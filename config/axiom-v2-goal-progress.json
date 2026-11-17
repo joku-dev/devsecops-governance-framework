@@ -2,81 +2,82 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Git-gebundene PR-Statusprüfung",
+    "title": "Legacy-CI-Reihenfolge und Replay absichern",
     "entrypoints": [
-      "scripts/report_agent_review_status.py"
+      "scripts/check_repo_governance_integration.py",
+      "scripts/check_repository_onboarding_readiness.py"
     ],
-    "next_step": "Den PR-Review-Umfang aus tatsächlichen lokalen Git-Commits und der Vereinigung der Ziel-/Vorschlagsverträge ableiten. Weitere Dispatcher-Modi, tatsächliche Ausführung und die vollständige Parität aller Bereiche bleiben offen."
+    "next_step": "Die zuerst beobachtete CI-Reihenfolge des aufbewahrten Git-Snapshots als begrenzte Eingabe binden und nach Dateisystem-Neuanlage reproduzieren. Native V1-Dateisystemreihenfolge weiter offen ausweisen; danach Dispatcher-Aufzeichnung und alle \u00fcbrigen Bereiche fortsetzen."
   },
   "last_validation": {
-    "observed_at": "2026-11-17T16:20:04.151457Z",
-    "source_revision": "9ab66a780a78bc7a50319217d66a424861e2145a",
-    "runtime_source_digest": "28042bc6daa666d787c923032fba1692171813ed8c797b7f768add65614ef5f1",
-    "unit_tests": 1680,
-    "unit_test_seconds": 418.306,
+    "observed_at": "2026-11-17T18:03:31.754276Z",
+    "source_revision": "454594ae722706a96237e66a5791302ebdd1853a",
+    "runtime_source_digest": "884aa56e5af7fa52bfb4a40fc0b495ed7cbb9eb8d2c2d95c6ef6600a9d1958b1",
+    "unit_tests": 1699,
+    "unit_test_seconds": 536.353,
     "unit_tests_skipped": 1,
     "installed_groups": {
-      "mac": 6,
-      "linux": 6
+      "mac": 25,
+      "linux": 24
     },
-    "equal_complete_result_groups": 6,
-    "compared_result_groups": 6,
-    "canonical_profile_complete_results_equal": false,
+    "equal_complete_result_groups": 24,
+    "compared_result_groups": 24,
+    "canonical_profile_complete_results_equal": true,
     "full_dcr_equal": true,
-    "full_dcr_sha256": "b729e503de008b4e6055b62323bce4890cd4ddbc16c801d72b42f1c661e4e1d2",
+    "full_dcr_sha256": "db7ea4fbf53aba952360d25e7f093546029695c6b4c89f776570bc8b2388638c",
     "ci_workflows": [
       {
         "name": "Agent Review Status",
-        "run_id": "44123854104",
+        "run_id": "44142897204",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44123854104"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44142897204"
       },
       {
         "name": "Governance CI",
-        "run_id": "44121961378",
+        "run_id": "44136561210",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961378"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561210"
       },
       {
         "name": "Governance CI v2",
-        "run_id": "44121961062",
+        "run_id": "44136561481",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961062"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561481"
       },
       {
         "name": "CodeQL",
-        "run_id": "44121961320",
+        "run_id": "44136561250",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961320"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561250"
       },
       {
         "name": "Dependency Review",
-        "run_id": "44121961135",
+        "run_id": "44136561399",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961135"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561399"
       },
       {
         "name": "Prepared runtime offline",
-        "run_id": "44121961504",
+        "run_id": "44136561404",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961504"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561404"
       },
       {
         "name": "Governance Repository Self-Security",
-        "run_id": "44121961436",
+        "run_id": "44136561269",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961436"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561269"
       },
       {
         "name": "Consumer Lifecycle Guard",
-        "run_id": "44121961512",
+        "run_id": "44136561388",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44121961512"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561388"
       }
     ],
     "evidence_kind": "declared_technical_validation_observation",
     "independent_human_approval": false,
     "full_functional_parity": false,
-    "comparison_note": "Sechs gezielte installierte Prüfgruppen stimmen vollständig überein, ohne neue Normalisierung. Beide Hosts reproduzieren zusätzlich die vollständigen V1-Kontrollen- und Architekturberichte aus identischen aufbewahrten ha-CPsWMS-Eingaben; nur die bereits validierte beschreibende Eingabepfad-Projektion bleibt. Das kanonische Quellprüfungsprofil und die früheren breiten 22 Gruppen wurden hier nicht erneut abgenommen; keine Gesamtparität."
+    "comparison_note": "Mac: 25 von 25 Gruppen bestanden; Linux: 24 von 25, Legacy-Quellpr\u00fcfung fehlgeschlagen. Die 24 erfolgreichen vollst\u00e4ndigen Ergebnisobjekte stimmen strikt \u00fcberein, ohne neue Normalisierung, einschlie\u00dflich kanonischem Profil und vollst\u00e4ndiger V1-Kontroll-/Architekturberichte aus identischen aufbewahrten ha-CPsWMS-Eingaben. Zwei CI-Dateilisten-Felder weichen im nativen physischen V1-Vergleich auf dem neuen ext4-Testvolume ab. Dieser Fehler wird nicht als bestandene Gruppe oder volle Host-Parit\u00e4t gewertet. Die Korrektur ist durch diesen \u00e4lteren Kandidatennachweis nicht abgenommen."
   }
 }

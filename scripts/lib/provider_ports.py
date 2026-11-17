@@ -49,7 +49,7 @@ from lib.providers.result_profiles import RESULT_EVENT_PROFILES, result_index_pr
 from lib.providers.general_result_ports import (NATIVE_RESULT_PROVIDERS, general_result_capture,
                                                 general_result_verify)
 
-from lib.providers.source_inspection import (INSPECTION_PROFILES, source_inspection_profile, source_inspection_facts)
+from lib.providers.source_inspection import (INSPECTION_PROFILES, source_inspection_profile, source_inspection_facts, source_inspection_ci_paths)
 
 from lib.providers.pipeline_environment import (PROFILES as DECLARED_PIPELINE_PROFILES,
                                                declared_environment as declared_pipeline_environment)

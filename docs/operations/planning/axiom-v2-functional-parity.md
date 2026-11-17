@@ -1871,3 +1871,37 @@ All eight CI families passed; the latest review reporter explicitly recorded
 inactive publishers, closed ports and at least 8 GiB free were verified. This
 historical checkpoint does not recertify the new committed-scope increment,
 all earlier broad groups, all 37 V1 CI definitions or full Goal completion.
+
+
+## Retained legacy CI sequence follow-up
+
+The fresh `454594a` checkpoint passed all 25 Mac groups and 24 of 25 Linux
+groups. The legacy physical V1 comparison on the new ext4 test volume failed
+for ha-CPsWMS at `/checks/0/details` and `/checks/1/details`: the CI listing order
+differs. The other 24 complete result objects match strictly, including the
+canonical profile, full committed DCR and whole retained V1 control/architecture
+reports. No raw output was rewritten or normalized. This is an observed failed
+comparison, not a complete 25-group acceptance. PR #401 retains the limitation.
+
+A separate regression reproduced a replay defect: changing only the directory
+iterator invalidated an existing legacy report although the exact commit/tree/
+blob proof and all file bytes remained valid. The technical follow-up writes
+**version 2 private source-inspection assessments**, including the finite
+`ci_iteration_paths` first observed in the retained Git snapshot. Rendering and
+replay use that bound sequence. The adapter requires unique paths with exactly
+the original supported CI-file membership; the canonical profile additionally
+requires its UTF-8 path ordering. The record stays bounded to 4 MiB and the path
+sequence to 10,000 entries. Older version-1 private records retain their original
+pinned runtime; they are not silently relabeled or migrated. Public V1 report
+shapes, criteria, findings and report-only exits are unchanged.
+
+The recorded order is a snapshot-layout observation, not Git object metadata or
+proof of the caller checkout's physical directory order. Source content continues
+to come exclusively from verified committed blobs. No target working-tree content
+or inspected program is used. A Git commit alone cannot reproduce an unrelated
+filesystem's native enumeration. The failed original physical-wire comparison
+therefore remains visible while its explicit input/comparison contract is
+investigated. Stable retained replay must not be presented as complete native
+physical-wire equivalence. Fresh pinned validation and source-bound installed
+evidence are required for the correction; the `454594a` checkpoint does not
+certify it. The full 22/135/37/16 Goal and unfinished matrix remain unchanged.
