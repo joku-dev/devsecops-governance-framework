@@ -895,6 +895,31 @@ Use this document as the orientation map, then update the authoritative area:
 | V2 execution/distribution closure | transitive imports, retired paths, active dependency digests, exact admission and fresh-prefix host tests |
 | Product-facing interface | explicit version/compatibility policy and consumer impact; private Workbench endpoints are not a promised public API |
 
+### Bounded Original Review Contract Parsing
+
+The shared neutral `review_planning` parser preserves original SafeLoader
+scalar, sequence and mapping references. Valid additional safe metadata, such
+as dates, binary values, sets and non-finite extension values, stays inert;
+the parser does not coerce an entire role document into JSON. Only separately
+validated role/routing/skill/protocol fields influence plans and declarations.
+Exact original YAML bytes and fingerprints remain the retained evidence.
+
+Before constructing Python values, the loader bounds composition depth, nodes
+and aliases, then walks the expanded node graph with active-path cycle
+detection and node/byte accounting. Per document the source limit is 1 MiB,
+composition and expanded traversal each allow at most 100,000 nodes, alias
+events at most 4,096, depth at most 64 and expanded graph accounting at most
+8 MiB. Recursive references and excessive expansion fail before construction.
+These are explicit finite resource limits; they do not claim that V1 rejected
+every otherwise parseable graph. Duplicate/non-string mapping keys, unsafe
+Python tags and original-unsupported merge keys remain rejected. Authority,
+required-field and source/index freshness checks remain separate and mandatory.
+
+Planning, external checks, ordinary dispatch, receipt export and committed PR
+scope share this parser. No provider code is involved. Existing private record
+formats remain unchanged; earlier records retain their pinned runtime and are
+not automatically reinterpreted or relabelled by a newer installation.
+
 ## 9. Architecture Decisions
 
 This index points to recorded decisions and implemented choices; it does not

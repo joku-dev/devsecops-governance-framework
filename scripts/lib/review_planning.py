@@ -10,12 +10,52 @@ from lib.review_metadata import digest, normalize_path
 PROTOCOL = '.agents/review-protocol.yaml'
 ROUTING = '.agents/routing/governance-agent-routing.yaml'
 MAX_PATHS = 10000
+MAX_CONTRACT_BYTES = 1024**2
+MAX_CONTRACT_NODES = 100000
+MAX_CONTRACT_ALIASES = 4096
+MAX_CONTRACT_DEPTH = 64
+MAX_CONTRACT_EXPANDED_BYTES = 8 * 1024**2
+
+
+def bounded_contract_graph(root):
+    """Bound repeated alias expansion before SafeLoader constructs Python values."""
+    stack = [(root, 1, False)]; active = set(); nodes = size = 0
+    while stack:
+        node, depth, leaving = stack.pop()
+        if leaving:
+            active.remove(id(node)); continue
+        nodes += 1
+        if nodes > MAX_CONTRACT_NODES: raise ValueError('review_contract_expanded_node_budget')
+        if depth > MAX_CONTRACT_DEPTH: raise ValueError('review_contract_depth_budget')
+        if id(node) in active: raise ValueError('review_contract_recursive_alias_not_supported')
+        if isinstance(node, yaml.ScalarNode):
+            size += len(node.value.encode('utf-8')) + 16
+        else:
+            children = node.value if isinstance(node, yaml.SequenceNode) else [child for pair in node.value for child in pair]
+            size += 16; active.add(id(node)); stack.append((node, depth, True))
+            stack.extend((child, depth + 1, False) for child in reversed(children))
+        if size > MAX_CONTRACT_EXPANDED_BYTES: raise ValueError('review_contract_expanded_byte_budget')
 
 
 class ContractLoader(yaml.SafeLoader):
+    def __init__(self, stream):
+        super().__init__(stream)
+        self.contract_nodes = self.contract_aliases = self.contract_depth = 0
+
     def compose_node(self, parent, index):
-        if self.check_event(yaml.AliasEvent): raise ValueError('review_contract_alias_not_supported')
-        return super().compose_node(parent, index)
+        self.contract_nodes += 1; self.contract_depth += 1
+        try:
+            if self.contract_nodes > MAX_CONTRACT_NODES: raise ValueError('review_contract_node_budget')
+            if self.contract_depth > MAX_CONTRACT_DEPTH: raise ValueError('review_contract_depth_budget')
+            if self.check_event(yaml.AliasEvent):
+                self.contract_aliases += 1
+                if self.contract_aliases > MAX_CONTRACT_ALIASES: raise ValueError('review_contract_alias_budget')
+            return super().compose_node(parent, index)
+        finally: self.contract_depth -= 1
+
+    def construct_document(self, node):
+        bounded_contract_graph(node)
+        return super().construct_document(node)
 
 
 def unique_mapping(loader, node, deep=False):
@@ -31,11 +71,10 @@ ContractLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, u
 
 
 def yaml_object(raw):
-    if not isinstance(raw, bytes) or len(raw) > 1024**2: raise ValueError('review_contract_byte_budget')
+    if not isinstance(raw, bytes) or len(raw) > MAX_CONTRACT_BYTES: raise ValueError('review_contract_byte_budget')
     try:
         value = yaml.load(raw.decode('utf-8'), Loader=ContractLoader)
         if not isinstance(value, dict): raise ValueError('review_contract_object_required')
-        json.dumps(value, allow_nan=False)
         return value
     except (yaml.YAMLError, UnicodeError, RecursionError, OverflowError, TypeError):
         raise ValueError('invalid_review_contract') from None

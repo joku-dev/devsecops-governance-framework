@@ -40,9 +40,9 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `677e3a6` · 1,804 Tests (davon 1 übersprungen) · Mac 9 / VM 9 Prüfgruppen · 7 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `6f7d7ad` · 1,813 Tests (davon 1 übersprungen) · Mac 10 / VM 10 Prüfgruppen · 7 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Externe ursprüngliche Review-Dateien direkt prüfen.
+**Nächster Baustein:** Ursprüngliche YAML-Reviewverträge mit begrenzter Auflösung erhalten.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -145,6 +145,11 @@ direkt gegen den aktuellen lokalen Git-Stand und die tatsächlichen Review-Vertr
 Eine vorherige V2-Plan-ID ist dafür nicht erforderlich. Eingabebytes und der
 vollständige ursprüngliche Prüfbericht bleiben privat erneut ableitbar;
 externen Dateien wird keine V2-Planherkunft oder Freigabe zugeschrieben.
+Review-Verträge unterstützen jetzt auch die ursprünglichen YAML-Verweise auf
+Skalare, Listen und Mappings sowie gültige zusätzliche SafeLoader-Metadaten.
+Die Auflösung ist nach Größe, Tiefe und Anzahl begrenzt; Pflichtfelder und
+Berechtigungsangaben werden weiterhin geprüft. Dieselbe Vertragsprüfung gilt
+für Planung, gewöhnliche Rollenauswahl, Receipts und committed PR-Status.
 `review-receipts export/summary/inspect` exportiert die freigegebenen Metadatenfelder
 eines solchen Plans in eine ausdrücklich gewählte Datei außerhalb der Checkouts.
 Ein sauberer vollständiger Branch mit Vergleichsbasis wird vor und nach dem Export

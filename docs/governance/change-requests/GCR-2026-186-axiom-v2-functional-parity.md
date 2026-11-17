@@ -264,3 +264,27 @@ pinned validation, docs and clean installed evidence. The real consumer's
 missing review contracts remain an original rejection boundary. No provider,
 authority, approved source, OPA, released baseline, protected acceptance,
 official index or consumer-mode changes; the full Goal remains open.
+
+## Original YAML review contract compatibility
+
+Independent whole-original plan/check probes confirmed that V1 accepts valid
+scalar YAML references and inert SafeLoader extension metadata which V2 rejected.
+This is the medium pre-existing compatibility finding retained in PR406. Restore
+scalar/list/mapping references and original safe metadata through the shared
+neutral parser rather than declaring those source formats out of scope.
+
+Bound source bytes, composition nodes/alias events/depth and expanded node/byte
+accounting before value construction. Reject cycles, excessive expansion,
+duplicate/non-string keys, unsafe tags and original-unsupported merge semantics.
+Keep role/routing/skill/protocol, authority and current source/index guards.
+Unused safe extension values neither authorize actions nor enter JSON outputs;
+exact YAML bytes remain retained. Do not migrate or relabel old runtime-bound
+records, change private record shapes or derive a normative policy/baseline.
+
+Require full original planning/check, ordinary-dispatch, actual receipt/log and
+committed PR JSON/Markdown output comparisons for both Git formats, retained
+replay and original negative boundaries. Resource/authority safeguards are
+classified separately from original rejection claims. Pinned validation, docs,
+accountable review and fresh installed Mac/Linux proof are required before this
+finding is considered resolved for a published candidate. The full Goal, all
+135 entrypoints, 37 CI definitions and 16 operating flows remain open.
