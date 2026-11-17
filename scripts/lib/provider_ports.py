@@ -55,7 +55,7 @@ from lib.providers.pipeline_environment import (PROFILES as DECLARED_PIPELINE_PR
                                                declared_environment as declared_pipeline_environment)
 from lib.providers.review_metadata import REVIEW_EVENT_PROFILES, review_event, committed_review_event
 
-from lib.providers.review_planning import PROFILES as REVIEW_PLAN_PROFILES, review_plan_profile, review_commit_profile
+from lib.providers.review_planning import PROFILES as REVIEW_PLAN_PROFILES, review_plan_profile, review_commit_profile, resolve_review_base
 from lib.providers.review_planning import DISPATCH_PROFILES as REVIEW_DISPATCH_PROFILES, review_dispatch_profile
 from lib.providers.review_dispatch import (capture as capture_dispatch_source,
     observe as observe_dispatch_source, validate as validate_dispatch_source)

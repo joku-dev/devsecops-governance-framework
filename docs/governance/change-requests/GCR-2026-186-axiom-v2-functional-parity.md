@@ -219,3 +219,25 @@ unchanged original wires and effects, independent original Git selection,
 positive/negative CLI coverage, partial recovery and conflict tests, private
 replay, pinned validation, strict docs, accountable review and fresh Mac/Linux
 installation evidence. Matrix states stay in progress pending the full audit.
+
+## Original review-plan Git formats and named bases
+
+The independent V1 comparison exposed execution-plan gaps separate from ordinary
+dispatch: named bases and native SHA-256 Git repositories worked in the original
+planner, while the V2 observer accepted only exact SHA-1 commits. Restore both
+formats for HEAD, target, merge-base and index objects, rejecting mixed formats.
+An explicit local adapter resolves `--base-ref` under the existing finite
+profile; `--base-commit` remains an exclusive exact-object alternative. Verify
+the named resolution again before admitting the plan. As in V1, later checks use
+the retained exact base and do not follow subsequent alias movement.
+
+These technical product/test/documentation changes retain the original private
+fact shape, full plan/template/dispatch/check wires, strict role/skill/execution
+protocol and authority boundaries. The original receipt schema already supports
+both Git formats; preserve that schema and verify actual SHA-256 receipt/log
+effects against the unchanged original APIs and main. Existing source-bound
+records keep their pinned runtime; no record migration or approval is inferred.
+Require original positive and negative comparisons, caller-deletion replay,
+reference drift and mixed-format rejection, pinned validation, strict docs,
+accountable review and fresh installed Mac/Linux proof. No normative source,
+OPA, baselines, protected acceptance, official indexes or consumer modes change.

@@ -40,9 +40,9 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `71d42bc` · 1,722 Tests (davon 1 übersprungen) · Mac 7 / VM 7 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `b2f6dd3` · 1,796 Tests (davon 1 übersprungen) · Mac 8 / VM 8 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Ursprüngliche Dispatcher-Aufzeichnung vervollständigen.
+**Nächster Baustein:** Ursprüngliche Reviewplan-Basen und Git-Formate vervollständigen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -133,7 +133,11 @@ private Reviewtexte, tatsächliche Agentenausführung und menschliche Freigabe
 werden damit nicht bestätigt; native PR-Identität und Live-Frische bleiben unbestätigt.
 `review-plan prepare/check/inspect` ergänzt lokale Git-gebundene Reviewpläne:
 HEAD, Vergleichsbasis, Index, Arbeitskopie sowie Rollen-, Skill- und Routingdaten
-werden gelesen und vor einer Prüfung erneut verglichen. Gespeicherte Ergebnisse
+werden gelesen und vor einer Prüfung erneut verglichen. `--base-ref` löst eine
+benannte lokale Basis bei der Vorbereitung auf einen exakten Commit auf;
+alternativ wählt `--base-commit` den Commit direkt. SHA-1- und SHA-256-Repositories
+sind unterstützt. Der Plan speichert die aufgelöste Basis und folgt späteren
+Änderungen des Branch-Namens nicht. Gespeicherte Ergebnisse
 lassen sich ohne den ursprünglichen Checkout nachlesen; dieses Nachlesen prüft
 keinen aktuellen Git-Stand. Ergebnisse und Freigaben bleiben Selbstauskünfte.
 `review-receipts export/summary/inspect` exportiert die freigegebenen Metadatenfelder

@@ -13,6 +13,7 @@ from lib.review_planning import canonical_paths, contracts, PROTOCOL, ROUTING
 MAX_FILE = 16 * 1024**2
 MAX_TOTAL = 128 * 1024**2
 MAX_FACTS = 8 * 1024**2
+OBJECT_ID = r'(?:[a-f0-9]{40}|[a-f0-9]{64})'
 
 
 def git(root, *arguments, limit=MAX_FACTS, timeout=30):
@@ -90,10 +91,11 @@ def observe(repository, base_commit, paths, profile):
     root = Path(repository).resolve()
     if Path(git(root, 'rev-parse', '--show-toplevel').decode().strip()).resolve() != root: raise ValueError('review_repository_root_required')
     head = git(root, 'rev-parse', '--verify', 'HEAD^{commit}').decode().strip()
-    if not re.fullmatch('[a-f0-9]{40}', head): raise ValueError('review_exact_commit_required')
+    if not re.fullmatch(OBJECT_ID, head): raise ValueError('review_exact_commit_required')
+    object_pattern = '[a-f0-9]{' + str(len(head)) + '}'
     merge = None
     if base_commit is not None:
-        if not isinstance(base_commit, str) or not re.fullmatch('[a-f0-9]{40}', base_commit): raise ValueError('review_exact_base_commit_required')
+        if not isinstance(base_commit, str) or not re.fullmatch(object_pattern, base_commit): raise ValueError('review_exact_base_commit_required')
         if git(root, 'rev-parse', '--verify', '--end-of-options', base_commit+'^{commit}').decode().strip() != base_commit: raise ValueError('review_exact_base_commit_required')
         merge = git(root, 'merge-base', base_commit, head).decode().strip()
     changed = set()
@@ -133,7 +135,7 @@ def observe(repository, base_commit, paths, profile):
     index = {name: [] for name in selected}
     for entry in filter(None, git(root, 'ls-files', '--stage', '-z').split(b'\0')):
         metadata, name = entry.split(b'\t', 1); text = name.decode('utf-8'); parts = metadata.decode().split()
-        if len(parts) != 3 or parts[0] not in ('100644', '100755', '120000', '160000') or not re.fullmatch('[a-f0-9]{40}', parts[1]) or parts[2] not in ('0', '1', '2', '3'): raise ValueError('invalid_review_index_entry')
+        if len(parts) != 3 or parts[0] not in ('100644', '100755', '120000', '160000') or not re.fullmatch(object_pattern, parts[1]) or parts[2] not in ('0', '1', '2', '3'): raise ValueError('invalid_review_index_entry')
         if text in index: index[text].append(entry.decode('utf-8'))
     facts = {'schema_version': 1, 'head_commit': head, 'target_commit': base_commit, 'merge_base_commit': merge,
         'selection_mode': 'explicit_paths' if paths else 'working_tree', 'changed_paths': selected,
@@ -145,9 +147,12 @@ def observe(repository, base_commit, paths, profile):
 def validate(facts, raw_files, profile):
     if set(facts) != {'schema_version', 'head_commit', 'target_commit', 'merge_base_commit', 'selection_mode', 'changed_paths', 'observed_changed_paths', 'role_paths', 'files', 'index_entries'} or type(facts['schema_version']) is not int or facts['schema_version'] != 1:
         raise ValueError('invalid_review_git_facts')
+    head = facts['head_commit']
+    if not isinstance(head, str) or not re.fullmatch(OBJECT_ID, head): raise ValueError('invalid_review_git_commit')
+    object_pattern = '[a-f0-9]{' + str(len(head)) + '}'
     for key in ('head_commit', 'target_commit', 'merge_base_commit'):
         if facts[key] is None and key != 'head_commit': continue
-        if not isinstance(facts[key], str) or not re.fullmatch('[a-f0-9]{40}', facts[key]): raise ValueError('invalid_review_git_commit')
+        if not isinstance(facts[key], str) or not re.fullmatch(object_pattern, facts[key]): raise ValueError('invalid_review_git_commit')
     if (facts['target_commit'] is None) != (facts['merge_base_commit'] is None): raise ValueError('invalid_review_git_base')
     for key in ('changed_paths', 'observed_changed_paths', 'role_paths'): canonical_paths(facts[key])
     if facts['selection_mode'] not in ('explicit_paths', 'working_tree') or (facts['selection_mode'] == 'working_tree' and facts['changed_paths'] != facts['observed_changed_paths']): raise ValueError('invalid_review_git_selection')
@@ -174,7 +179,7 @@ def validate(facts, raw_files, profile):
         for entry in entries:
             if not isinstance(entry, str) or '\0' in entry: raise ValueError('invalid_review_index_entry')
             meta, separator, path = entry.partition('\t'); parts = meta.split()
-            if not separator or path != name or len(parts) != 3 or parts[0] not in ('100644', '100755', '120000', '160000') or not re.fullmatch('[a-f0-9]{40}', parts[1]) or parts[2] not in ('0', '1', '2', '3') or parts[2] in stages: raise ValueError('invalid_review_index_entry')
+            if not separator or path != name or len(parts) != 3 or parts[0] not in ('100644', '100755', '120000', '160000') or not re.fullmatch(object_pattern, parts[1]) or parts[2] not in ('0', '1', '2', '3') or parts[2] in stages: raise ValueError('invalid_review_index_entry')
             stages.add(parts[2])
 
 

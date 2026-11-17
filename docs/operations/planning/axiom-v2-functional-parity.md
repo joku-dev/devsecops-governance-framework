@@ -2076,3 +2076,47 @@ not current-file attestation. Selection/provider labels, logs, recovery and all
 receipts remain unverified declarations without execution or approval authority.
 Fresh pinned validation and installed whole-original-wire comparisons are
 required; the previous `71d42bc` checkpoint does not certify this increment.
+
+## Execution-plan bases and native Git object formats
+
+The ordinary dispatcher and execution-plan preparation are separate operations.
+The original planner also accepts named bases and SHA-256 Git repositories.
+`review-plan prepare` now restores these cases through the existing explicit
+`legacy-role-review-v1` profile:
+
+```sh
+axiom-v2 review-plan prepare --repo /path/to/caller --base-ref main --goal-file /private/path/goal.txt --profile legacy-role-review-v1 --at 2026-11-17T14:00:00Z
+axiom-v2 review-plan prepare --repo /path/to/caller --base-commit EXACT_COMMIT --goal-file /private/path/goal.txt --profile legacy-role-review-v1 --at 2026-11-17T14:00:00Z
+```
+
+The selectors are mutually exclusive. `--base-commit` requires an exact commit
+in the caller repository's native object format. `--base-ref` resolves a locally
+available committish to an exact commit through the finite local adapter, then
+checks that resolution again before admitting the plan. Input is bounded to
+4,096 bytes; control characters, non-commit objects and mixed native object
+formats are rejected. Remote-tracking names refer to the locally available Git
+state, without live SCM identity or freshness attestation.
+
+As in V1, the retained plan freezes the resolved merge-base. A later `check`
+uses that exact base even if the original branch alias moves. It still rechecks
+HEAD, source bytes, file modes, index and contracts against the retained plan.
+`inspect` rederives complete stored outputs after caller deletion and performs
+no live Git check. The selected role/skill/execution protocol and all authority
+checks remain required. No provider starts and no consent or approval transfers.
+
+Both 40-hex SHA-1 and 64-hex SHA-256 HEADs are admitted; target, merge-base and
+every index object must match HEAD's object format. The original private fact
+shape and original complete plan/template/dispatch/check wires remain unchanged.
+The original receipt schema already permits both formats. Actual SHA-256
+receipt export now uses the same fresh clean/full-branch checks and preserves
+original receipt, usage-log and export-result bytes. Older private records stay
+with their source-bound runtime; the change does not rewrite historical inputs.
+
+The installed harness compares 13 complete original output/report cases, six
+stale-source or input-guard cases, three retained replay cases and the original
+missing-role boundary on unchanged ha-CPsWMS. It uses actual local Git objects,
+unchanged fingerprinted V1 functions/main and full output files, without raw
+report normalization. Unit regressions also reject mixed commit/index formats,
+reference movement during admission, conflicting selectors and forged protocol
+authority. Fresh pinned validation and installed Mac/Linux evidence for this
+increment are required. Matrix states and the full 22/135/37/16 Goal remain open.
