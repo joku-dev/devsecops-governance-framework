@@ -88,5 +88,37 @@ validation commands, hooks, models and providers are never executed by capture.
 The original results schema is retained as a separate bounded-data contract.
 Frozen original functions and public target-contract bytes are test-oracle data,
 not normative sources. No baseline, source register, enforcement mode, operating
-acceptance or approval authority changes. Full receipt export, native PR-derived
-scope and actual review execution remain open.
+acceptance or approval authority changes. Native PR-derived scope and actual
+review execution remain open; the following increment adds receipt export.
+
+## Explicit receipt export restoration
+
+The additive `review-receipts` product command restores actual file export,
+optional idempotent locked usage append and original summary counters. Export
+requires an actual clean full local Git branch and pinned base, reconstructs the
+complete plan from current source/contracts, and rechecks around the effects.
+Both an external private plan file and a retained node plan are supported.
+The unchanged public receipt schema excludes private goals, review outputs,
+findings text, identities and evidence references. Private before/after snapshots
+support complete offline rederivation of receipt selection and usage append.
+Incomplete/failed declarations can produce a valid receipt with readiness false;
+no actual execution, remote PR identity, human approval or authority is inferred.
+
+New receipt files use exclusive creation and mode 0600; missing parent directories
+use 0700. Same-review retries preserve the first file bytes and timestamp;
+conflicts, symlinks, unsafe destinations, malformed/legacy logs and foreign locks
+reject. A log failure can leave the valid receipt file, as in V1; retry preserves
+it and adds at most one event. This is not a transaction across Git and files.
+For a valid JSONL file without its final newline, V2 appends the missing separator
+before a new event, fixing V1's concatenated-JSON defect without changing its
+existing prefix. Invalid review-result schemas now produce a redacted diagnostic
+in both plan checking and export, preventing private schema payload disclosure.
+
+The three neutral modules and closed private assessment schema are additive
+product/test artifacts; no normative source, baseline, accepted implementation,
+official result index or enforcement change applies. Original receipt functions
+and the original main body are fingerprint-bound test-oracle data, with an
+explicit fixed test clock. Required evidence includes real external files/locks,
+whole original wires, positive/negative replay, pinned full validation, strict
+docs, role review and fresh installed Mac/Linux candidates. Formal matrix states
+remain in progress until the complete entrypoint evidence audit is satisfied.

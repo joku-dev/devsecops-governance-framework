@@ -265,22 +265,25 @@
         "provenance private record/import/index/check/inspect preserves original declared association wires; no verified execution or approval",
         "agent-usage original metadata-only selection statistics from retained operator log or committed legacy Git data; no execution or human approval inferred",
         "review-quality private prepare/grade/inspect preserves original synthetic packets and structured-label scores; explicit retained traces remain unauthenticated",
-        "review-metadata receipt/parse-body/usage-summary/status preserves original metadata wires; status uses explicit operator-declared target/proposed scope, not current Git verification; plan/export/execution still open",
-        "review-plan prepare/check/inspect derives actual local HEAD/base/merge-base/index/worktree and role/skill/routing facts, rechecks target freshness and preserves original whole plan/template/check wires; full receipt export and live execution remain open"
+        "review-metadata receipt/parse-body/usage-summary/status preserves original metadata wires; status uses explicit operator-declared target/proposed scope, not current Git verification; native PR scope and execution still open",
+        "review-plan prepare/check/inspect derives actual local HEAD/base/merge-base/index/worktree and role/skill/routing facts, rechecks target freshness and preserves original whole plan/template/check wires; native PR scope and live execution remain open",
+        "review-receipts export/summary/inspect performs actual external receipt creation and optional locked idempotent usage append after fresh local clean/full-branch/base checks; preserves first receipt/time/bytes and original summary wires; private before/after replay claims no current external checks or approval"
       ],
       "positive_tests": [
         "tests/test_v2_evidence_agent_provenance.py:actual original record/index/conflict/validator wires and immutable private generations",
         "tests/test_v2_agent_usage.py:actual frozen V1 seven cases/fourteen complete wires, original clock/count semantics and immutable log replay",
         "tests/test_v2_review_quality.py:26 original complete prepared-file hashes, ten grading cases and original custom dataset capability",
         "tests/test_v2_review_metadata.py:complete original V1 metadata function wires, explicit declared-scope status, private immutable replay",
-        "tests/test_v2_review_planning.py:actual original local-Git plan/dispatch/template/check wires including staged/unstaged/untracked/deleted/renamed paths; retained private replay"
+        "tests/test_v2_review_planning.py:actual original local-Git plan/dispatch/template/check wires including staged/unstaged/untracked/deleted/renamed paths; retained private replay",
+        "tests/test_v2_review_receipts.py and tests/acceptance/axiom_v2_review_receipts.py:original receipt APIs/main with explicit fixed clock; actual file/log/summary whole wires, retries, incomplete declarations, real lock and offline replay"
       ],
       "negative_tests": [
         "tests/test_v2_evidence_agent_provenance.py:source conflicts, malformed/schema-invalid data, stale reports, traversal, foreign nodes, quotas and no inherited authority",
         "tests/test_v2_agent_usage.py:invalid JSONL, missing versus empty origin, source/output tampering, foreign node, forged authority and quotas",
         "tests/test_v2_review_quality.py:unknown/stale/duplicate inputs, unattached host paths, invalid or reused trace measurements, tampering, foreign bindings and early quotas",
         "tests/test_v2_review_metadata.py:authority/schema/digest contradictions, missing/duplicate/oversize inputs, stale declarations, foreign nodes and resealed output mutations",
-        "tests/test_v2_review_planning.py:fresh source/index/mode/head/all-contract drift, role/validation readiness, symlinks, aliases/duplicates/authority, process/output/time/byte budgets and caller Git overrides"
+        "tests/test_v2_review_planning.py:fresh source/index/mode/head/all-contract drift, role/validation readiness, symlinks, aliases/duplicates/authority, process/output/time/byte budgets and caller Git overrides",
+        "tests/test_v2_review_receipts.py:dirty/stale/scope/origin/schema/privacy/path/lock/conflict/concurrency/budget/tamper/foreign-node/authority cases; safe separator for valid unterminated JSONL"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -2795,7 +2798,7 @@
         "--usage-log"
       ],
       "declared_actions": [],
-      "v2_implementation": "scripts/lib/review_metadata.py:summarize_review_usage",
+      "v2_implementation": "scripts/lib/review_receipts_application.py:export/summary/inspect",
       "state": "in_progress",
       "evidence": []
     },

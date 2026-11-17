@@ -4,7 +4,7 @@ import json
 from pathlib import PurePosixPath
 import re
 import yaml
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, ValidationError
 from lib.review_metadata import digest, normalize_path
 
 PROTOCOL = '.agents/review-protocol.yaml'
@@ -161,7 +161,8 @@ def results_template(value):
 
 
 def check_results(value, results, schema):
-    Draft202012Validator(schema).validate(results)
+    try: Draft202012Validator(schema).validate(results)
+    except ValidationError: raise ValueError('invalid_review_result_schema') from None
     if digest({k: v for k, v in value.items() if k != 'plan_digest'}) != value.get('plan_digest') or results['plan_digest'] != value['plan_digest']:
         raise ValueError('review_plan_result_digest_mismatch')
     ids = [task['role_id'] for task in value['reviews']]

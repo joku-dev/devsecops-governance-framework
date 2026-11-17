@@ -40,7 +40,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `4d25e81` · 1,588 Tests (davon 1 übersprungen) · Mac 21 / VM 21 Prüfgruppen · 10 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `b4508f6` · 1,647 Tests (davon 1 übersprungen) · Mac 5 / VM 5 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
 **Nächster Baustein:** Review-Werkzeuge für Planung, Prüfung und Nachweise.
 
@@ -120,13 +120,19 @@ ursprünglichen Receipt-Blöcke und Nutzungszahlen sowie Statusberichte aus
 expliziten Angaben zum Ziel- und vorgeschlagenen Review-Umfang. Private Eingaben
 und vollständige Ausgaben werden erneut geprüft. Aktuelle Git-Ableitung,
 private Reviewtexte, tatsächliche Agentenausführung und menschliche Freigabe
-werden damit nicht bestätigt; Planung und vollständiger Export bleiben offen.
+werden damit nicht bestätigt; native PR-Ableitung bleibt offen.
 `review-plan prepare/check/inspect` ergänzt lokale Git-gebundene Reviewpläne:
 HEAD, Vergleichsbasis, Index, Arbeitskopie sowie Rollen-, Skill- und Routingdaten
 werden gelesen und vor einer Prüfung erneut verglichen. Gespeicherte Ergebnisse
 lassen sich ohne den ursprünglichen Checkout nachlesen; dieses Nachlesen prüft
 keinen aktuellen Git-Stand. Ergebnisse und Freigaben bleiben Selbstauskünfte.
-Vollständiger Receipt-Export und tatsächliche Review-Ausführung bleiben offen.
+`review-receipts export/summary/inspect` exportiert die freigegebenen Metadatenfelder
+eines solchen Plans in eine ausdrücklich gewählte Datei außerhalb der Checkouts.
+Ein sauberer vollständiger Branch mit Vergleichsbasis wird vor und nach dem Export
+erneut geprüft. Das optionale Nutzungsprotokoll erhält je Receipt genau einen Eintrag;
+Wiederholungen bewahren die erste Datei und deren Zeitstempel. Private Reviewtexte
+bleiben im privaten Knoten. Tatsächliche Review-Ausführung und native PR-Prüfung
+bleiben offen; ein Receipt erteilt keine Freigabe.
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.
