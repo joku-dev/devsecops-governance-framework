@@ -266,74 +266,76 @@
       {
         "name": "Agent Review Status",
         "result": "passed",
-        "run_id": "44188245366",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44188245366"
+        "run_id": "44193968438",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44193968438"
       },
       {
         "name": "Consumer Lifecycle Guard",
         "result": "passed",
-        "run_id": "44187032955",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032955"
+        "run_id": "44191677897",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677897"
       },
       {
         "name": "Governance Repository Self-Security",
         "result": "passed",
-        "run_id": "44187032986",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032986"
+        "run_id": "44191677903",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677903"
       },
       {
         "name": "Dependency Review",
         "result": "passed",
-        "run_id": "44187032795",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032795"
+        "run_id": "44191677942",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677942"
       },
       {
         "name": "CodeQL",
         "result": "passed",
-        "run_id": "44187032183",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032183"
+        "run_id": "44191678378",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191678378"
       },
       {
         "name": "Governance CI",
         "result": "passed",
-        "run_id": "44187033614",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187033614"
+        "run_id": "44191677868",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677868"
       },
       {
         "name": "Governance CI v2",
         "result": "passed",
-        "run_id": "44187032393",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032393"
+        "run_id": "44191677934",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677934"
       }
     ],
-    "compared_result_groups": 7,
-    "comparison_note": "Neun gezielte installierte Prüfgruppen je Host bestanden; sieben vollständige Ergebnisgruppen zwischen Mac und Linux gleich. Reviewplan-Gruppe: 23 Fälle, davon 13 vollständige Original-Ausgabe-/Berichtvergleiche, sechs Änderungs-/Eingabeschutzfälle, drei Wiederholungsprüfungen und ein Original-Grenzfall fehlender Rollen. Dispatcher: 25 vollständige Originalvergleiche, ein negativer Originalfall und drei Anwendungssicherheitsfälle; 27 von 29 Fallobjekten hostübergreifend gleich, zwei explizite Logpfade verschieden. Native Quellberichte je Host vollständig originalgleich in sechs Fällen; Kontextpfade und erste CI-Anzeigedetails hostübergreifend verschieden. Keine Rohberichtnormalisierung. Vollständige ursprüngliche ha-CPsWMS-Kontroll-/Architekturberichte und DCR stimmen überein. Alle sieben ausgelösten CI-Familien bestanden; tatsächlicher Review-Job meldet declared_complete. Offline-CI wurde für diese Pfade nicht ausgelöst; frische tatsächliche Offline-Installationen sind gesonderter Nachweis. Dieser abgeschlossene 677e3a6-Nachweis zertifiziert weder den neuen externen Dateieingang noch alle 37 CI-Definitionen oder das volle Goal.",
-    "equal_complete_result_groups": 7,
+    "compared_result_groups": 8,
+    "comparison_note": "Zehn gezielte installierte Prüfgruppen je Host bestanden; acht vollständige Ergebnisgruppen hostübergreifend gleich. Externer Review-Dateieingang:35Fälle mit18 vollständigen Original-CLI-Bericht-/Exitcodevergleichen,14 negativen Originalfällen,2 Wiederholungen und1 fehlenden Rollen-Grenzfall. Reviewplanung23Fälle; Dispatcher29Fälle (25 ganze Originalvergleiche,1 negativer Originalfall,3 Anwendungsschutzfälle),27 Fallobjekte gleich,2 absolute Loglabels verschieden. Native Quellberichte je Host in6Fällen vollständig V1-gleich; nur Kontextpfade und erste CI-Anzeigedetails hostübergreifend verschieden. Keine Rohnormalisierung. Ganze ursprüngliche ha-CPsWMS-Kontroll-/Architekturberichte und DCR gleich. Alle7 ausgelösten CI-Familien bestanden, finaler tatsächlicher Review-Job declared_complete. Offline-CI nicht ausgelöst; tatsächliche Offline-Installationen sind gesonderter Nachweis. Dieser6f7d7ad-Stand behält1 offenen mittleren V2-Kompatibilitätsbefund: ursprüngliche gültige YAML-Verweise wurden abgewiesen. Der Nachweis zertifiziert weder den neuen Parser noch alle37CI-Definitionen oder das volle Goal.",
+    "equal_complete_result_groups": 8,
     "evidence_kind": "declared_technical_validation_observation",
     "full_dcr_equal": true,
-    "full_dcr_sha256": "6cd9af04ba8d0c521b88806ab6d40f4c6e437f696ec03b838d7d6ac1bfd404dd",
+    "full_dcr_sha256": "ade8bf3668a7d1292c4b485cefe5faef8c52928d9b71c01822a27aa53fc10f51",
     "full_functional_parity": false,
     "independent_human_approval": false,
     "installed_groups": {
-      "linux": 9,
-      "mac": 9
+      "linux": 10,
+      "mac": 10
     },
-    "observed_at": "2026-11-17T22:23:44Z",
-    "runtime_source_digest": "fcfb783a297c0248552b38b91ec8ae3a345e70b0609c722741ed3f6d33aad93b",
-    "source_revision": "677e3a618976fa20249af9c126bfc21c417e40e2",
-    "unit_test_seconds": 630.957,
-    "unit_tests": 1804,
+    "observed_at": "2026-11-17T23:03:18Z",
+    "runtime_source_digest": "71e1bdc1bde8adb234102a1658c2d48863148d4fac56911887411bfc874e2745",
+    "source_revision": "6f7d7ad444a8e9ca1b03f1965829dc3cfda53467",
+    "unit_test_seconds": 551.823,
+    "unit_tests": 1813,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "4dd892f09077aa7a8d001533597e770161641df7ccac115802e1a19458945980",
+  "matrix_sha256": "75381f14689433ca682287a6d1f5323c117e42b89cb4a7ffdd24cef23fa397d6",
   "next_work": {
     "entrypoints": [
-      "scripts/dispatch_governance_agents.py"
+      "scripts/dispatch_governance_agents.py",
+      "scripts/record_agent_review.py",
+      "scripts/report_agent_review_status.py"
     ],
-    "next_step": "Direkten V1-Plan-/Ergebnisdateieingang ohne vorherige V2-Plan-ID ergänzen; vollständige Originalberichte, Exitcodes, frische Git-/Vertragsbindung und private Wiederholungsprüfung validieren und auf Mac/VM nachweisen. Danach optionale Review-Ausführung und weitere Goal-Bereiche fortsetzen.",
-    "title": "Externe ursprüngliche Review-Dateien direkt prüfen"
+    "next_step": "Normale YAML-Verweise und sichere Zusatzmetadaten gegen unveränderte V1-Ausgaben prüfen, Ressourcen- und Berechtigungsgrenzen behalten und frisch auf Mac/VM nachweisen. Danach optionale Review-Ausführung und alle übrigen Goal-Bereiche fortsetzen.",
+    "title": "Ursprüngliche YAML-Reviewverträge mit begrenzter Auflösung erhalten"
   },
-  "observation_sha256": "fd5260ea412528ea26a2d4fe78c94dc3fdb8e9fdaee262bdda054b4e79581a36",
+  "observation_sha256": "eaab12aa51558628611392873afdd97e1eae0b1c1551ad900e06f85fef628338",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

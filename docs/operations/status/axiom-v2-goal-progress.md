@@ -12,9 +12,9 @@
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `677e3a6` · 1,804 Tests (davon 1 übersprungen) · Mac 9 / VM 9 Prüfgruppen · 7 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `6f7d7ad` · 1,813 Tests (davon 1 übersprungen) · Mac 10 / VM 10 Prüfgruppen · 7 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Externe ursprüngliche Review-Dateien direkt prüfen.
+**Nächster Baustein:** Ursprüngliche YAML-Reviewverträge mit begrenzter Auflösung erhalten.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -31,31 +31,33 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Direkten V1-Plan-/Ergebnisdateieingang ohne vorherige V2-Plan-ID ergänzen; vollständige Originalberichte, Exitcodes, frische Git-/Vertragsbindung und private Wiederholungsprüfung validieren und auf Mac/VM nachweisen. Danach optionale Review-Ausführung und weitere Goal-Bereiche fortsetzen.
+Normale YAML-Verweise und sichere Zusatzmetadaten gegen unveränderte V1-Ausgaben prüfen, Ressourcen- und Berechtigungsgrenzen behalten und frisch auf Mac/VM nachweisen. Danach optionale Review-Ausführung und alle übrigen Goal-Bereiche fortsetzen.
 
 - `scripts/dispatch_governance_agents.py`
+- `scripts/record_agent_review.py`
+- `scripts/report_agent_review_status.py`
 
 ## Letzter vollständiger technischer Prüfstand
 
-Beobachtet: `2026-11-17T22:23:44Z`. Geprüfter Quellcommit: `677e3a618976fa20249af9c126bfc21c417e40e2`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
+Beobachtet: `2026-11-17T23:03:18Z`. Geprüfter Quellcommit: `6f7d7ad444a8e9ca1b03f1965829dc3cfda53467`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
 
-- Unit-Tests: 1804 in 630.957 Sekunden; 1 plattformabhängig übersprungen.
-- Installierte Prüfgruppen: Mac 9, Linux-VM 9.
-- Vollständige Ergebnisgruppen: 7 von 7 stimmen zwischen den Rechnern überein.
-- Neun gezielte installierte Prüfgruppen je Host bestanden; sieben vollständige Ergebnisgruppen zwischen Mac und Linux gleich. Reviewplan-Gruppe: 23 Fälle, davon 13 vollständige Original-Ausgabe-/Berichtvergleiche, sechs Änderungs-/Eingabeschutzfälle, drei Wiederholungsprüfungen und ein Original-Grenzfall fehlender Rollen. Dispatcher: 25 vollständige Originalvergleiche, ein negativer Originalfall und drei Anwendungssicherheitsfälle; 27 von 29 Fallobjekten hostübergreifend gleich, zwei explizite Logpfade verschieden. Native Quellberichte je Host vollständig originalgleich in sechs Fällen; Kontextpfade und erste CI-Anzeigedetails hostübergreifend verschieden. Keine Rohberichtnormalisierung. Vollständige ursprüngliche ha-CPsWMS-Kontroll-/Architekturberichte und DCR stimmen überein. Alle sieben ausgelösten CI-Familien bestanden; tatsächlicher Review-Job meldet declared_complete. Offline-CI wurde für diese Pfade nicht ausgelöst; frische tatsächliche Offline-Installationen sind gesonderter Nachweis. Dieser abgeschlossene 677e3a6-Nachweis zertifiziert weder den neuen externen Dateieingang noch alle 37 CI-Definitionen oder das volle Goal.
+- Unit-Tests: 1813 in 551.823 Sekunden; 1 plattformabhängig übersprungen.
+- Installierte Prüfgruppen: Mac 10, Linux-VM 10.
+- Vollständige Ergebnisgruppen: 8 von 8 stimmen zwischen den Rechnern überein.
+- Zehn gezielte installierte Prüfgruppen je Host bestanden; acht vollständige Ergebnisgruppen hostübergreifend gleich. Externer Review-Dateieingang:35Fälle mit18 vollständigen Original-CLI-Bericht-/Exitcodevergleichen,14 negativen Originalfällen,2 Wiederholungen und1 fehlenden Rollen-Grenzfall. Reviewplanung23Fälle; Dispatcher29Fälle (25 ganze Originalvergleiche,1 negativer Originalfall,3 Anwendungsschutzfälle),27 Fallobjekte gleich,2 absolute Loglabels verschieden. Native Quellberichte je Host in6Fällen vollständig V1-gleich; nur Kontextpfade und erste CI-Anzeigedetails hostübergreifend verschieden. Keine Rohnormalisierung. Ganze ursprüngliche ha-CPsWMS-Kontroll-/Architekturberichte und DCR gleich. Alle7 ausgelösten CI-Familien bestanden, finaler tatsächlicher Review-Job declared_complete. Offline-CI nicht ausgelöst; tatsächliche Offline-Installationen sind gesonderter Nachweis. Dieser6f7d7ad-Stand behält1 offenen mittleren V2-Kompatibilitätsbefund: ursprüngliche gültige YAML-Verweise wurden abgewiesen. Der Nachweis zertifiziert weder den neuen Parser noch alle37CI-Definitionen oder das volle Goal.
 - Kanonisches Profil vollständig gleich: **ja**.
-- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `6cd9af04ba8d0c521b88806ab6d40f4c6e437f696ec03b838d7d6ac1bfd404dd`.
+- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `ade8bf3668a7d1292c4b485cefe5faef8c52928d9b71c01822a27aa53fc10f51`.
 - Technische Beobachtungen sind deklarierte Nachweise und erteilen keine unabhängige menschliche Freigabe.
 
 | CI-Workflow-Familie | Beobachteter Lauf | Ergebnis |
 | --- | --- | --- |
-| Agent Review Status | [44188245366](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44188245366) | bestanden |
-| Consumer Lifecycle Guard | [44187032955](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032955) | bestanden |
-| Governance Repository Self-Security | [44187032986](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032986) | bestanden |
-| Dependency Review | [44187032795](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032795) | bestanden |
-| CodeQL | [44187032183](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032183) | bestanden |
-| Governance CI | [44187033614](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187033614) | bestanden |
-| Governance CI v2 | [44187032393](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44187032393) | bestanden |
+| Agent Review Status | [44193968438](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44193968438) | bestanden |
+| Consumer Lifecycle Guard | [44191677897](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677897) | bestanden |
+| Governance Repository Self-Security | [44191677903](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677903) | bestanden |
+| Dependency Review | [44191677942](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677942) | bestanden |
+| CodeQL | [44191678378](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191678378) | bestanden |
+| Governance CI | [44191677868](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677868) | bestanden |
+| Governance CI v2 | [44191677934](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44191677934) | bestanden |
 
 ## Stand aller Funktionsbereiche
 
@@ -98,6 +100,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `4dd892f09077aa7a8d001533597e770161641df7ccac115802e1a19458945980`. Beobachtungs-SHA-256: `fd5260ea412528ea26a2d4fe78c94dc3fdb8e9fdaee262bdda054b4e79581a36`.
+Matrix-SHA-256: `75381f14689433ca682287a6d1f5323c117e42b89cb4a7ffdd24cef23fa397d6`. Beobachtungs-SHA-256: `eaab12aa51558628611392873afdd97e1eae0b1c1551ad900e06f85fef628338`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).

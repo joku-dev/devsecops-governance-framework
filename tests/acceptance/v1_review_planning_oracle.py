@@ -122,3 +122,18 @@ def declared_results(plan):
             'reviewed_paths':task['scope'], 'reviewed_roles':[t['role_id'] for t in plan['reviews'][:-1]] if task['role_id']=='repo-steward' else [], 'findings':[]})
     value['validations'] = [{'command':command, 'status':'passed', 'evidence':'Synthetic declaration; not executed'} for command in plan['required_validations']]
     return value
+
+
+def contract_variant(root, kind):
+    """Synthetic source only; never change the real consumer's contracts."""
+    path=Path(root)/'.agents/roles/repo-steward.yaml';text=path.read_text()
+    if kind=='scalar':
+        lines=text.splitlines();text='\n'.join('name: &label Synthetic role' if line.startswith('name: ') else 'description: *label' if line.startswith('description: ') else line for line in lines)+'\n'
+    elif kind=='sequence':text=text.replace('validations:\n','validations: &commands\n')+'extension: *commands\n'
+    elif kind=='mapping':text+='extension: &metadata {label: synthetic, modes: [read_only]}\nextension_copy: *metadata\n'
+    elif kind=='safe-values':text+='extension:\n  date: 2026-11-17\n  binary: !!binary c3ludGhldGlj\n  labels: !!set {synthetic: null}\n  nonfinite: .nan\n'
+    else:raise AssertionError(kind)
+    path.write_text(text)
+    protocol=Path(root)/'.agents/review-protocol.yaml';text=protocol.read_text()
+    text=text.replace('independent_human_approval: false','independent_human_approval: &no_authority false').replace('source_or_requirement_approval: false','source_or_requirement_approval: *no_authority').replace('release_or_blocking_authorization: false','release_or_blocking_authorization: *no_authority')
+    protocol.write_text(text)

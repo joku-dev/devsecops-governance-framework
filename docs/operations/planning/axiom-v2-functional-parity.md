@@ -2161,3 +2161,49 @@ tampering and retained replay. The unchanged real ha-CPsWMS reference retains
 its original missing-role boundary; synthetic contracts are not injected into it.
 Fresh pinned validation and source-bound installed Mac/Linux proof remain
 required for this increment. Formal matrix states and full Goal scope stay open.
+
+## Original YAML review contracts with finite resource limits
+
+The shared neutral parser restores valid SafeLoader references to scalars,
+sequences and mappings. Original inert extension values (including date,
+binary, set and non-finite metadata) are accepted without converting an entire
+role document to JSON. Known role/routing/skill/execution-protocol fields still
+require their original validated forms and authority remains explicitly false.
+Unused metadata grants no action rights. Raw YAML bytes and fingerprints,
+rather than a normalized YAML serialization, are retained for replay.
+
+The parser checks the composed node graph before constructing values:
+
+| Per-document limit | Value |
+|---|---|
+| Source bytes | 1 MiB |
+| Composition nodes | 100,000 |
+| Alias events | 4,096 |
+| Composition and expanded depth | 64 |
+| Expanded traversal nodes | 100,000 |
+| Expanded graph byte accounting | 8 MiB |
+
+Active-path cycle detection and repeated-expansion accounting prevent recursive
+or oversized alias graphs from reaching value construction. Duplicate or
+non-string mapping keys, unsafe Python tags and the original custom loader's
+unsupported merge keys are rejected. Resource limits are an explicit bounded
+profile, not a claim that V1 rejected every graph outside them. Required-field,
+authority, source/index/mode and current-target checks remain mandatory.
+
+The same parser is used by local plan preparation/checks, direct external-file
+checks, ordinary dispatch, receipt export and committed PR scope. Private input
+and assessment formats stay unchanged. Historical records keep their original
+source-bound runtime; installing a newer parser does not migrate them or attest
+a live target. No model/provider starts and no operating approval follows.
+
+The installed acceptance harness has 25 cases: eight whole original output
+bundles across both native Git formats and four YAML variants, eight retained
+replays, three original rejection cases, five separately identified application
+resource/authority safeguards and the unchanged real consumer's missing-role
+boundary. Bundles include complete original plans/templates/dispatch/checks,
+actual receipt/log/export effects and committed PR JSON/Markdown. Unit tests
+also prove cycle/expansion rejection before value construction and unchanged
+original merge-key rejection. Fresh source-bound pinned validation and clean
+installed Mac/Linux proof are required for the new candidate; the completed
+6f7d7ad checkpoint remains separate and carries the earlier open compatibility
+finding. Matrix statuses and the complete Goal scope remain unchanged.
