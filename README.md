@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **65 in Arbeit** und **70 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **67 in Arbeit** und **68 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 65 | 70 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 67 | 68 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -115,6 +115,12 @@ und Skill-Auswahl; tatsächliche Agentenausführung und Freigaben werden nicht a
 Versionierte synthetische Datensätze erzeugen private Aufgabenpakete und Antwortschemas;
 bereitgestellte Antworten werden mit den ursprünglichen Kriterien bewertet.
 Laufzeit-Traces sind ausdrücklich angehängte, nicht authentifizierte Angaben.
+`review-metadata receipt/parse-body/usage-summary/status/inspect` ergänzt die
+ursprünglichen Receipt-Blöcke und Nutzungszahlen sowie Statusberichte aus
+expliziten Angaben zum Ziel- und vorgeschlagenen Review-Umfang. Private Eingaben
+und vollständige Ausgaben werden erneut geprüft. Aktuelle Git-Ableitung,
+private Reviewtexte, tatsächliche Agentenausführung und menschliche Freigabe
+werden damit nicht bestätigt; Planung und vollständiger Export bleiben offen.
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.

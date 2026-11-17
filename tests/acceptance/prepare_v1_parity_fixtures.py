@@ -38,6 +38,9 @@ def main():
     for path in sorted((ROOT / 'tests/fixtures/axiom-v1-parity/source-inspection').iterdir()):
         write('source-inspection/' + path.name, path.read_bytes())
     write('source-inspection/oracle.py', (ROOT / 'tests/acceptance/v1_source_inspection_oracle.py').read_bytes())
+    for path in sorted((ROOT / 'tests/fixtures/v2-review-metadata').iterdir()):
+        write('review-metadata/' + path.name, path.read_bytes())
+    write('review-metadata/oracle.py', (ROOT / 'tests/acceptance/v1_review_metadata_oracle.py').read_bytes())
     (destination / 'bindings.json').write_text(json.dumps(bindings, indent=2) + '\n')
     (destination / 'bindings.json').chmod(0o600)
     print(json.dumps({'synthetic': True, 'files': len(bindings), 'v1_reference': manifest['v1_reference']}))

@@ -19,7 +19,9 @@
     "scripts/lib/measurement_logic.py",
     "scripts/lib/native_result_logic.py",
     "scripts/lib/vulnerability_evidence.py",
-    "scripts/lib/vulnerability_application.py"
+    "scripts/lib/vulnerability_application.py",
+    "scripts/lib/review_metadata.py",
+    "scripts/lib/review_metadata_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

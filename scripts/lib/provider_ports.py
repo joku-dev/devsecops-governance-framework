@@ -53,3 +53,4 @@ from lib.providers.source_inspection import (INSPECTION_PROFILES, source_inspect
 
 from lib.providers.pipeline_environment import (PROFILES as DECLARED_PIPELINE_PROFILES,
                                                declared_environment as declared_pipeline_environment)
+from lib.providers.review_metadata import REVIEW_EVENT_PROFILES, review_event

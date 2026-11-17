@@ -60,3 +60,17 @@ CI detects stale generated projections after matrix/observation changes.
 | Capability, result and installation contracts | Explicit additive/versioned contracts, no silent baseline mutation |
 | Release classification | V2 product candidate; baseline release only through its separate explicit process |
 | Required validation | Pinned bootstrap/full validation, policy/schema checks, representative positive/negative and installed-host parity tests, strict docs and revision-bound reviews |
+
+
+## Review metadata restoration classification
+
+The additive `review-metadata` application restores bounded private original
+receipt/usage/status metadata semantics. A finite compatibility adapter reads the
+legacy event envelope; target/proposed scope remains an explicit operator
+declaration until the separate Git-bound reader is restored. New closed subject
+and assessment schemas do not change the existing public receipt schema.
+Frozen V1 module text is test-oracle material, not a new governance source;
+no source-document intake or control derivation applies. Validation includes
+complete original function-wire comparisons, invalid/tampered/foreign-node
+cases, required full validation and strict docs. No authority, native Git/PR
+verification, personal acceptance, model execution or publishing is granted.
