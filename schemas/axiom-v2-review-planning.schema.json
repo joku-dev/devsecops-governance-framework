@@ -34,7 +34,10 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 1
+      "enum": [
+        1,
+        2
+      ]
     },
     "kind": {
       "const": "local-git-review-planning"
@@ -121,7 +124,8 @@
     "operation": {
       "enum": [
         "prepare",
-        "check"
+        "check",
+        "check-file"
       ]
     },
     "provider_invoked": {
@@ -155,6 +159,48 @@
     },
     "assessment_time_source": {
       "const": "operator"
+    },
+    "plan_origin": {
+      "const": "external_operator_file"
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "operation": {
+            "enum": [
+              "prepare",
+              "check"
+            ]
+          }
+        },
+        "not": {
+          "required": [
+            "plan_origin"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "plan_origin"
+        ],
+        "properties": {
+          "operation": {
+            "const": "check-file"
+          },
+          "plan_assessment_id": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
 }

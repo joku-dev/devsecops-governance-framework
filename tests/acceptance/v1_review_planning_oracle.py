@@ -1,5 +1,6 @@
 """Fingerprint-bound original review functions on real local Git; no target Python imports."""
 import ast
+import argparse
 import base64
 import hashlib
 import json
@@ -19,6 +20,7 @@ class OriginalReview:
         contract = json.loads((directory/'contract.json').read_text())
         assert contract['v1_reference'] == '6b557fefe295b58272d2271326576ca3a3687197'
         assert hashlib.sha256((directory/'dispatch.py.txt').read_bytes()).hexdigest() == contract['dispatch_sha256']
+        self.dispatch_directory = directory.resolve(); self.dispatch_sha256 = contract['dispatch_sha256']
         for name, sha in contract['metadata_source_sha256'].items(): assert hashlib.sha256((metadata/name).read_bytes()).hexdigest() == sha
         self.package = '_original_review_' + uuid.uuid4().hex
         package = types.ModuleType(self.package); package.__path__ = []; sys.modules[self.package] = package
@@ -63,6 +65,21 @@ class OriginalReview:
         dispatch = self.dispatch.build_dispatch(selected)
         plan = self.review.prepare_plan(self.repository, dispatch, goal, base_ref=base, explicit_paths=bool(paths))
         return plan, dispatch, self.review.results_template(plan), self.dispatch.render_text(dispatch)
+
+    def check_files(self, directory, plan_file, results_file):
+        """Run the unchanged fingerprint-verified original CLI file-check branch."""
+        assert Path(directory).resolve() == self.dispatch_directory
+        raw = (Path(directory)/'dispatch.py.txt').read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == self.dispatch_sha256
+        tree = ast.parse(raw)
+        nodes = [node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name in ('parse_args', 'main')]
+        assert len(nodes) == 2
+        scope = {'argparse': argparse, 'Path': Path, 'sys': sys, 'json': json, 'jsonschema': jsonschema,
+            'ROOT': self.repository, 'DEFAULT_USAGE_LOG': self.repository/'generated/agent-usage/agent-usage.jsonl',
+            'DEFAULT_USAGE_STATE': self.repository/'generated/agent-usage/recording-state.json',
+            'check_results': self.review.check_results}
+        exec(compile(ast.Module(body=nodes, type_ignores=[]), str(Path(directory)/'dispatch.py.txt'), 'exec'), scope)
+        return scope['main'](['--check-review', str(plan_file), '--review-results', str(results_file)])
 
 
 def git(root, *arguments):

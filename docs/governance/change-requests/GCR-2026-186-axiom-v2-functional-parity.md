@@ -241,3 +241,26 @@ Require original positive and negative comparisons, caller-deletion replay,
 reference drift and mixed-format rejection, pinned validation, strict docs,
 accountable review and fresh installed Mac/Linux proof. No normative source,
 OPA, baselines, protected acceptance, official indexes or consumer modes change.
+
+## External original review plan checks
+
+An actual unchanged original CLI probe accepts an external plan/results pair,
+while V2 previously required an existing node-owned prepared assessment ID.
+Restore the direct operating flow with explicit `review-plan check-file`, a
+finite profile, bounded strict operator JSON and actual current Git/contract
+capture. Reconstruct and compare the entire original plan, including digest,
+scope, source/index/modes, role/skill/protocol and authority; recheck before
+admitting the complete original readiness report. Preserve original exit codes
+for ready, incomplete and invalid packets. Ordinary checks must not acquire the
+separate receipt export's clean/full-branch restriction.
+
+Retain exact external bytes under a version-2 input/assessment with explicit
+external origin and no node-plan parent. Existing version-1 prepare/check
+records remain unchanged, with no automatic migration or ownership relabel.
+Offline replay rederives private reports without current target/file claims.
+Require whole original CLI reports/exits across SHA1/SHA256 and based/baseless/
+explicit scope, stale/tampered packet rejection, caller deletion replay, full
+pinned validation, docs and clean installed evidence. The real consumer's
+missing review contracts remain an original rejection boundary. No provider,
+authority, approved source, OPA, released baseline, protected acceptance,
+official index or consumer-mode changes; the full Goal remains open.
