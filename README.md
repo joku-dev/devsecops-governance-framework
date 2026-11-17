@@ -89,6 +89,10 @@ und Skill-Auswahl; tatsächliche Agentenausführung und Freigaben werden nicht a
 Versionierte synthetische Datensätze erzeugen private Aufgabenpakete und Antwortschemas;
 bereitgestellte Antworten werden mit den ursprünglichen Kriterien bewertet.
 Laufzeit-Traces sind ausdrücklich angehängte, nicht authentifizierte Angaben.
+`vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
+Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
+und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.
+Die Funktion startet keinen Scanner und bestätigt keine native Pipeline-Identität.
 `evaluate --domain devsecops-release` ergänzt das bisherige Release-Gate.
 `reports domain` schreibt originale JSON-/Markdown-Berichte aus privaten
 Auswertungs-IDs; `reports combine` verbindet Architektur und Release-Gate bei

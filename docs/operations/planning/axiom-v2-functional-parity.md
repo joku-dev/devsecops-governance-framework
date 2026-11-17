@@ -1411,3 +1411,93 @@ The associated input hardening rejects nonfinite JSONL constants in `agent-usage
 before projection, including a bad earlier event outside the latest-event table.
 All fourteen legal original statistics files remain byte-compatible. The complete
 functional-parity Goal and remaining execution/review/operating flows remain open.
+
+
+## Installed review-quality checkpoint
+
+Candidate `c03ea200626af40a58dc760d0ad2d4200a960137` (tree
+`c92d45ca12241554a020f18a29d51c270467baac`) passed 1,567 local tests,
+the demo and the strict documentation build. Its fresh Mac installation passed
+19 acceptance groups, including original synthetic review packet/score hashes,
+the three retained real-input comparisons and HTTP authentication/restart checks.
+The complete committed-source DCR report digest is
+`ce95c9bc0de0f3a70c7aa64e751f5e2a46e71a899acb3dfffee8340342a8597e`.
+Mac package SHA-256 is
+`1cb345ce7b9d7330cb8c7b47f3230ac2979ac9a0bb662e072f419a58d6ce4219`;
+Linux package SHA-256 is
+`ccaf81c43143dbd8218647c881342818a12a3d7b3ddf6b26feeb23a902c000f4`.
+The user VM is unavailable. This is Mac execution evidence and a prepared Linux
+package, not a new user-VM acceptance. Collector remains paused with an empty
+queue; publisher is inactive, source identity is verified and port 18949 is closed.
+
+## Local vulnerability scan collection
+
+`vulnerability-evidence create/inspect` restores the original
+`collect_vulnerability_scan_evidence.py` operation over existing scan and artifact
+bytes. It does not launch a scanner, a workflow or a native provider request.
+
+```bash
+"$V2_PREFIX/axiom-v2" vulnerability-evidence create \
+  --scan /private/operator/vulnerability-scan.json \
+  --subject /private/operator/application.bin \
+  --metadata /private/operator/declared-scan-source.json \
+  --at 2026-11-15T12:30:00.123456+00:00
+"$V2_PREFIX/axiom-v2" vulnerability-evidence inspect --assessment ASSESSMENT_SHA256
+```
+
+Metadata replaces the original identity flags: `repository_id`, `commit_id`,
+`run_id`, `run_attempt` and `source_uri` are required; `workflow_name`,
+`artifact_name`, `source_provider` and `produced_at` retain the original defaults
+and override semantics. The finite profile `legacy-local-vulnerability-scan-v1`
+retains the original two-part repository identity shape; it is a compatibility
+wire contract, not a provider selector. No ambient environment is read. The
+explicit outer clock supplies the original `captured_at` unchanged, including
+offset and fractional precision. Production time must be explicit in metadata or
+present in the scan. Missing/naive times remain invalid.
+
+`--subject-name` optionally supplies the original descriptive artifact basename.
+It is a bounded label and never resolves a host path. Input and output paths are
+private instance-owned paths instead of arbitrary public report destinations.
+The original `vulnerability-scan-trust.json` bytes preserve scanner identity,
+finding IDs, severity order/consistency, co-collected subject hashes, freshness
+and original Trust check values. Existing scans are assessed, not freshly run.
+In particular, the old matching source-identity checks can say `pass` for matching
+declarations. The new outer record therefore keeps Trust `unverified`, source
+identity/scanner execution/native metadata/signature verification false and grants
+no acceptance, publication, approval or operating authority. The original inner
+Trust label is visible as a historical local calculation, not native attestation.
+Expired or inconsistent but structurally valid input still returns zero in
+report-only mode, matching the original collector. Invalid input returns two
+through the V2 interface and creates no accepted assessment.
+
+All three input files, including the original metadata bytes, are retained.
+The immutable input identity binds complete byte hashes, length, label and
+profile. The assessment additionally binds node, source/runtime, clock and whole
+output bytes. Inspection re-derives and checks the complete output after caller
+files disappear. Unknown metadata/flags, ambiguous or nonfinite JSON, changed
+bytes/membership, links, foreign nodes, fabricated authority and resealed output
+claims fail. Scan/metadata limits are 16 MiB/64 KiB, the streamed artifact and
+aggregate input limit are 2 GiB, each output/record is limited to 4 MiB, and the
+existing 8 GiB free-space reserve remains.
+
+An unchanged frozen V1 CLI oracle supplies 21 synthetic cases: eleven complete
+JSON output files and ten original invalid cases. The successful wire bytes
+match without normalization. No scanner or model/provider is invoked. Installed
+acceptance of this new increment is recorded separately after a source-bound
+candidate exists; the complete Goal remains in progress.
+
+A separate mapping audit records the already installed control evaluator,
+control/architecture report routes, four-action runtime CLI, pinned OPA installer
+and source-package build/admit/environment library as counterparts. Existing
+original byte comparisons and operating tests support the mapping. They remain
+`in_progress`: mapping is not a complete revision-bound installed parity receipt.
+The compliance-result wrapper, evidence migration actions, complete Workbench
+flows and remaining lifecycle/review/publication operations remain outstanding.
+
+
+The retained real ha-CPsWMS scan from capture `43767248960` has no `produced_at`.
+The unchanged V1 local collector rejects that input without an explicit production
+time. The comparison deliberately keeps the time absent instead of inferring a
+new scan or fabricating freshness. This is separate from the already captured
+native bundle's original Trust scope. New installed replay must preserve the
+same rejection; it is not a new scan finding or a successful local collection.

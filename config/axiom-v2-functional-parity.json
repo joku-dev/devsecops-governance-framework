@@ -113,13 +113,16 @@
       "title": "Nachweise sammeln und vereinheitlichen",
       "state": "in_progress",
       "v2_capabilities": [
-        "pipeline-evidence context/pipeline/all preserves original declared environment views and exact evidence/gate wires from retained bounded bytes; no execution or approval claim"
+        "pipeline-evidence context/pipeline/all preserves original declared environment views and exact evidence/gate wires from retained bounded bytes; no execution or approval claim",
+        "vulnerability-evidence create/inspect: exact original local scan normalization and trust wires from retained scan/subject/declared metadata; no scanner or native identity verification"
       ],
       "positive_tests": [
-        "tests/test_v2_pipeline_evidence.py:16 frozen V1 cases/48 whole JSON wires, all four original native environment profiles and offline replay"
+        "tests/test_v2_pipeline_evidence.py:16 frozen V1 cases/48 whole JSON wires, all four original native environment profiles and offline replay",
+        "tests/test_v2_local_vulnerability.py:11 whole original V1 JSON wires from 21 actual frozen CLI cases"
       ],
       "negative_tests": [
-        "tests/test_v2_pipeline_evidence.py:unknown environment fields, byte/output changes, foreign nodes, quotas, forged authority and explicit local finding exit"
+        "tests/test_v2_pipeline_evidence.py:unknown environment fields, byte/output changes, foreign nodes, quotas, forged authority and explicit local finding exit",
+        "tests/test_v2_local_vulnerability.py:10 original invalid cases, byte/output/member changes, links, quotas, finite metadata and fabricated authority"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -556,8 +559,8 @@
         "--workflow-name"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/vulnerability_application.py:run",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -609,8 +612,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/control_evaluation.py:generate_control_evaluation_report",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -826,8 +829,8 @@
         "--output-md"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/architecture_assessment.py:evaluate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -971,8 +974,8 @@
         "--output-file"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/domain_reporting.py:domain_files",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1928,8 +1931,8 @@
         "gate",
         "run"
       ],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/governance_runtime.py:main",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1983,8 +1986,8 @@
         "--timeout"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/install_validation_opa.py:main",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2451,8 +2454,8 @@
         "action"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/runtime_package.py:build",
+      "state": "in_progress",
       "evidence": []
     },
     {

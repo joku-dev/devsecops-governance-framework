@@ -24,7 +24,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 6 OPA | Ein gepinntes OPA je Zielplattform; gemeinsame Policies und Auswertungslogik. |
 | 7 Architekturmodell | Vorhandene Modell-/Baseline-Dateien erhalten; keine neue normative Architekturarbeit. |
 | 8 Architektur-Readiness | `evaluate --domain architecture` führt alle vier bisherigen Gates mit detailliertem Bericht aus; keine neue normative Architekturarbeit. |
-| 9 Nachweise sammeln | `pipeline-evidence` erhält die deklarierte Plattform-/Pipeline-Sicht mit privaten Artefaktbytes und explizitem Adapterprofil.  Explizite SCM-/CI-Profile, Source-Erfassung, vollständige Measured- und Typed-Archivprofile über Adapter; native Zielprofile behalten ihren eigenen Umfang. |
+| 9 Nachweise sammeln | `vulnerability-evidence` ergänzt die ursprüngliche lokale Scan-Normalisierung und Trust-Ausgabe ohne Scanner-Ausführung. `pipeline-evidence` erhält die deklarierte Plattform-/Pipeline-Sicht mit privaten Artefaktbytes und explizitem Adapterprofil.  Explizite SCM-/CI-Profile, Source-Erfassung, vollständige Measured- und Typed-Archivprofile über Adapter; native Zielprofile behalten ihren eigenen Umfang. |
 | 10 Baselines | Bestehende unveränderte Baselines konsumieren; Freigabe neuer Baselines bleibt separater Prozess. |
 | 11 Intake | `evidence`, `collector` und privates `typed intake`/`index`; Operator-Replay und native Aufnahmen bleiben getrennt. Zusätzlich `results` für lokale CI-Bundles, manuelle Snapshots, explizite native Run-/Job-/Archiv-Erfassung und vollständige private Ergebnisindizes. Öffentliche Accepted-Result-Publikation und vollständige native Live-Abnahme bleiben offen. |
 | 12 Geschichte | Neue SQLite-/Receipt-Daten, Backup und inaktiver Restore-Kandidat; V1-Geschichte bleibt Rückfallstand. |
@@ -58,7 +58,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `check_repository_onboarding_readiness.py` | `source-inspection create --kind onboarding`; private Git-Snapshots, ursprüngliche Kriterien, keine Freigabe |
 | `collect_architecture_release_input.py` | V1 stillgelegt |
 | `collect_devsecops_release_input.py` | V1 stillgelegt |
-| `collect_vulnerability_scan_evidence.py` | V1 stillgelegt |
+| `collect_vulnerability_scan_evidence.py` | `vulnerability-evidence create/inspect`; ursprüngliche lokale JSON-Ausgabe aus privaten Scan-/Artefaktbytes und deklarierter Herkunft. Kein Scannerstart oder nativer Identitätsnachweis. |
 | `consumer_intake.py` | V1 stillgelegt |
 | `control_evaluation.py` | Bibliothek |
 | `deploy_vm.py` | Quellwerkzeug |
@@ -67,7 +67,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `evaluate_document_consistency_semantic_report.py` | Quellwerkzeug |
 | `export_repository_sbom.py` | V1 stillgelegt |
 | `generate_agent_usage_snapshot.py` | Laufzeit über `agent-usage create/inspect`; vollständige ursprüngliche Metadatenstatistik aus explizitem JSONL-Protokoll oder committed Legacy-Daten. Keine tatsächliche Agentenausführung oder Freigabe. |
-| `generate_architecture_governance_report.py` | Quellwerkzeug |
+| `generate_architecture_governance_report.py` | `evaluate --domain architecture` und `reports domain`; vier ursprüngliche Gates und vollständige private JSON-/Markdown-Dateien. |
 | `generate_architecture_results_index.py` | Quellwerkzeug |
 | `generate_architecture_source_replacement_assessment.py` | Quellwerkzeug |
 | `generate_architecture_traceability_csv.py` | Quellwerkzeug |
@@ -75,7 +75,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `generate_blocking_mode_alignment.py` | `reports build --kind blocking-alignment`; committed Readiness, explizite Zeit; keine Modusänderung |
 | `generate_blocking_readiness.py` | `reports build --kind blocking-readiness`; bestehende Kriterien und committed Konfliktpräsenz; keine Freigabe |
 | `generate_control_coverage_report.py` | Quellwerkzeug |
-| `generate_control_evaluation_report.py` | Quellwerkzeug |
+| `generate_control_evaluation_report.py` | `evaluate --domain controls` und `reports domain`; alle ursprünglichen JSON-/Markdown-Zeilen, private feste Ausgabedateien und expliziter Finding-Exit. |
 | `generate_devsecops_governance_report.py` | Quellwerkzeug |
 | `generate_document_consistency_review_manifest.py` | Quellwerkzeug |
 | `generate_document_consistency_review_model.py` | Bibliothek |

@@ -140,7 +140,9 @@
     "scripts/lib/agent_usage.py",
     "scripts/lib/agent_usage_application.py",
     "scripts/lib/review_quality.py",
-    "scripts/lib/review_quality_application.py"
+    "scripts/lib/review_quality_application.py",
+    "scripts/lib/vulnerability_evidence.py",
+    "scripts/lib/vulnerability_application.py"
   ],
   "data_roots": [
     "schemas",
