@@ -40,9 +40,9 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `9ab66a7` · 1,680 Tests (davon 1 übersprungen) · Mac 6 / VM 6 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `454594a` · 1,699 Tests (davon 1 übersprungen) · Mac 25 / VM 24 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Git-gebundene PR-Statusprüfung.
+**Nächster Baustein:** Legacy-CI-Reihenfolge und Replay absichern.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 

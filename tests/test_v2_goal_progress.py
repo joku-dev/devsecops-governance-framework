@@ -107,7 +107,7 @@ class GoalProgress(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'unfinished matrix'):
             self.project()
         self.observation, _ = progress.read_json(ROOT / progress.OBSERVATION)
-        self.observation['last_validation']['equal_complete_result_groups'] = 22
+        self.observation['last_validation']['equal_complete_result_groups'] = self.observation['last_validation']['compared_result_groups'] + 1
         with self.assertRaisesRegex(ValueError, 'contradictory validation'):
             self.project()
 

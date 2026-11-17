@@ -15,7 +15,7 @@ from lib.consumer_intake_store import atomic_json
 from lib.functional_parity import git_read
 from lib.portable.contracts import ROOT, canonical_digest
 from lib.portable.runtime import read_json, source_digest
-from lib.provider_ports import INSPECTION_PROFILES, source_inspection_profile, source_inspection_facts
+from lib.provider_ports import INSPECTION_PROFILES, source_inspection_profile, source_inspection_facts, source_inspection_ci_paths
 from lib.report_application import file_descriptors, MAX_OUTPUT, MAX_FILES
 from lib.report_data import report_time
 from lib.result_assessments import identity
@@ -37,11 +37,11 @@ def checked_profile(profile):
     return profile
 
 
-def render_files(data, kind, *, profile, product_label, origin, repository_id, at):
+def render_files(data, kind, *, profile, product_label, origin, repository_id, at, ci_paths=None):
     if kind not in KINDS: raise ValueError('unsupported_source_inspection_kind')
     checked_profile(profile)
     facts = source_inspection_facts(profile['profile'], data, product_label=product_label,
-                                    target_label=origin, at=report_time(at))
+                                    target_label=origin, at=report_time(at), ci_paths=ci_paths)
     files = {}
     if kind in ('integration', 'all'):
         files[INTEGRATION] = (json.dumps(facts['integration'], indent=2, allow_nan=False) + '\n').encode()
@@ -118,11 +118,12 @@ class SourceInspectionContext:
             raise ValueError('invalid_source_repository_id')
         origin = str(Path(repository).resolve())
         input_id, data, manifest = self.capture_input(repository, revision)
+        ci_paths = source_inspection_ci_paths(profile['profile'], data)
         files = render_files(data, kind, profile=profile, product_label=self.binding['product_label'],
-                             origin=origin, repository_id=repository_id, at=at)
-        value = {'schema_version': 1, 'kind': 'consumer-source-signatures', **self.binding,
+                             origin=origin, repository_id=repository_id, at=at, ci_paths=ci_paths)
+        value = {'schema_version': 2, 'kind': 'consumer-source-signatures', **self.binding,
             'source_worktree_clean': self.clean, 'inspection_kind': kind, 'assessed_at': at,
-            'source_inspection_profile': deepcopy(profile), 'input_id': input_id,
+            'source_inspection_profile': deepcopy(profile), 'ci_iteration_paths': ci_paths, 'input_id': input_id,
             'consumer_commit': manifest['commit'], 'consumer_tree': manifest['tree'],
             'source_repository_path': origin, 'declared_repository_id': repository_id,
             'files': file_descriptors(files), 'source_scope': 'retained-consumer-git-snapshot-v1',
@@ -158,7 +159,7 @@ class SourceInspectionContext:
             raise ValueError('source_inspection_commit_binding_changed')
         files = render_files(data, value['inspection_kind'], profile=value['source_inspection_profile'],
             product_label=value['product_label'], origin=value['source_repository_path'],
-            repository_id=value['declared_repository_id'], at=value['assessed_at'])
+            repository_id=value['declared_repository_id'], at=value['assessed_at'], ci_paths=value['ci_iteration_paths'])
         if file_descriptors(files) != value['files']: raise ValueError('source_inspection_reports_differ')
         root = self.artifacts / assessment_id
         if root.is_symlink() or not root.is_dir(): raise ValueError('unsafe_source_inspection_artifact')

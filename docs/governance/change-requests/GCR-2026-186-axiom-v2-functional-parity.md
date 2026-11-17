@@ -148,3 +148,25 @@ native-function comparisons, target-only contract requirements, dirty checkout,
 empty scope, rename/Unicode, both Git object formats, bounded invalid inputs,
 privacy, tamper and offline replay, plus pinned full validation, strict docs and
 fresh installed-source proof. Formal matrix entries remain in progress.
+
+
+## Retained CI iteration follow-up
+
+The broad installed `454594a` run exposed one failed legacy physical-file
+comparison on the new Linux ext4 volume (Mac 25/25, Linux 24/25). The other
+24 whole results objects, canonical profile and complete original retained
+control/architecture reports match. This observation neither narrows the Goal
+nor grants acceptance. A separate failing regression confirms that unbound
+directory iteration can invalidate legacy replay without changing Git-bound data.
+
+The technical correction binds the first finite retained-snapshot CI sequence
+in version-2 private assessments, validates exact adapter-selected membership
+and preserves that sequence for output derivation after directory reconstruction.
+It changes neither public report wires nor criteria, findings, consumer modes,
+OPA, models, released baselines, protected acceptance fingerprints or authority.
+No target working-tree content is introduced. Native V1 physical-order
+equivalence remains explicitly separate and open; it is not replaced with a
+passing normalization. These are technical product/schema/test/docs artifacts
+under this existing Goal, not new normative sources. Required follow-up evidence
+includes iterator reversal, closed/tampered sequence rejection, canonical and
+legacy behavior, pinned full validation, strict docs and fresh installed proof.

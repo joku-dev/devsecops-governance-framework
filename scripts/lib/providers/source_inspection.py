@@ -80,8 +80,8 @@ def build_check(check_id: str, description: str, passed: bool, details: str):
         "details": details,
     }
 
-def integration_report(target_repo, *, product_label, target_label, at, canonical_order=False):
-    ci_files = list(iter_ci_files(target_repo))
+def integration_report(target_repo, *, product_label, target_label, at, canonical_order=False, ci_files=None):
+    ci_files = list(iter_ci_files(target_repo)) if ci_files is None else list(ci_files)
     if canonical_order:
         ci_files.sort(key=lambda path: path.relative_to(target_repo).as_posix().encode('utf-8'))
     ci_texts = load_texts(ci_files)
@@ -116,9 +116,24 @@ def source_inspection_profile(profile):
     return {'kind': kind, 'profile': profile, 'source_signature_only': True}
 
 
-def source_inspection_facts(profile, root, *, product_label, target_label, at):
+def source_inspection_ci_paths(profile, root, observed=None):
+    """Bind finite CI iteration as input metadata; source content remains Git-only."""
+    source_inspection_profile(profile); root = Path(root)
+    current = [path.relative_to(root).as_posix() for path in iter_ci_files(root)]
+    if profile == 'canonical-ci-signatures-v2': current.sort(key=lambda name: name.encode('utf-8'))
+    if observed is None: return current
+    if (not isinstance(observed, list) or len(observed) > 10000 or any(not isinstance(name, str) for name in observed)
+            or len(set(observed)) != len(observed) or set(observed) != set(current)):
+        raise ValueError('source_inspection_ci_iteration_members_changed')
+    if profile == 'canonical-ci-signatures-v2' and observed != current:
+        raise ValueError('source_inspection_canonical_ci_order_required')
+    return list(observed)
+
+
+def source_inspection_facts(profile, root, *, product_label, target_label, at, ci_paths=None):
     source_inspection_profile(profile)
     root = Path(root)
+    selected_ci = source_inspection_ci_paths(profile, root, ci_paths)
     # This is the original union of source-layout signatures, not live provider
     # support or effective pipeline configuration. The old two tools used
     # deliberately different file patterns; preserve both finite selections.
@@ -129,6 +144,7 @@ def source_inspection_facts(profile, root, *, product_label, target_label, at):
         try: texts.append(path.read_text(encoding='utf-8'))
         except UnicodeDecodeError: texts.append('')
     return {'integration': integration_report(root, product_label=product_label, target_label=target_label, at=at,
-                canonical_order=profile == 'canonical-ci-signatures-v2'),
+                canonical_order=profile == 'canonical-ci-signatures-v2',
+                ci_files=[root/name for name in selected_ci]),
             'onboarding_ci_files': [path.relative_to(root).as_posix() for path in paths],
             'onboarding_ci_text': '\n'.join(texts)}
