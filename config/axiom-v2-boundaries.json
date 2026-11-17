@@ -24,7 +24,10 @@
     "scripts/lib/review_metadata_application.py",
     "scripts/lib/review_planning.py",
     "scripts/lib/review_git.py",
-    "scripts/lib/review_planning_application.py"
+    "scripts/lib/review_planning_application.py",
+    "scripts/lib/review_receipts.py",
+    "scripts/lib/review_receipt_files.py",
+    "scripts/lib/review_receipts_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

@@ -8,89 +8,77 @@
       "scripts/record_agent_review.py",
       "scripts/report_agent_review_status.py"
     ],
-    "next_step": "Den vollständigen Git-gebundenen Receipt-Export mit idempotentem Nutzungsprotokoll ergänzen; native PR-Umfangsableitung und tatsächliche Review-Ausführung bleiben gesondert offen."
+    "next_step": "Native PR-Umfangsableitung einschließlich Vertragsänderungen ergänzen; weitere Dispatch-/Aufzeichnungsmodi und tatsächliche Review-Ausführung bleiben offen. Der neue Receipt-Export benötigt seine eigene installierte Abnahme; vollständige Parität aller Bereiche bleibt das Goal."
   },
   "last_validation": {
-    "observed_at": "2026-11-17T11:35:02Z",
-    "source_revision": "4d25e816073388e7ce9873a12950219fa5f92ff9",
-    "runtime_source_digest": "e81b3210132434fcd262febf79217d92c2705380d79df6b9c72ae7acd0f02f49",
-    "unit_tests": 1588,
-    "unit_test_seconds": 392.581,
+    "observed_at": "2026-11-17T15:47:57Z",
+    "source_revision": "b4508f6c0b832c22b1bb144d2a66b5e2c656aa69",
+    "runtime_source_digest": "7c643b4b78a8bf886e25290f8417a78b36ccec3c7a9b6558107d26e2e25ee011",
+    "unit_tests": 1647,
+    "unit_test_seconds": 399.399,
     "unit_tests_skipped": 1,
     "installed_groups": {
-      "mac": 21,
-      "linux": 21
+      "mac": 5,
+      "linux": 5
     },
-    "equal_complete_result_groups": 20,
-    "compared_result_groups": 21,
-    "canonical_profile_complete_results_equal": true,
+    "equal_complete_result_groups": 5,
+    "compared_result_groups": 5,
+    "canonical_profile_complete_results_equal": false,
     "full_dcr_equal": true,
-    "full_dcr_sha256": "cb8e1862e5277c823d8fec1453eec8612913c9dd6c86e7a4ca247215ecb81dc7",
+    "full_dcr_sha256": "27426ea2d4e71b6e009de88cd38bcd6a156b500615eaf017b066f23af3f34a65",
     "ci_workflows": [
       {
         "name": "Agent Review Status",
-        "run_id": "44039157955",
+        "run_id": "44112128058",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44039157955"
-      },
-      {
-        "name": "CodeQL",
-        "run_id": "44037096354",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096354"
-      },
-      {
-        "name": "Consumer Lifecycle Guard",
-        "run_id": "44037096285",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096285"
-      },
-      {
-        "name": "Dependency Review",
-        "run_id": "44037096421",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096421"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44112128058"
       },
       {
         "name": "Governance CI",
-        "run_id": "44037096371",
+        "run_id": "44109873628",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096371"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873628"
       },
       {
         "name": "Governance CI v2",
-        "run_id": "44037096297",
+        "run_id": "44109873400",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096297"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873400"
       },
       {
-        "name": "Governance Repository Self-Security",
-        "run_id": "44037096374",
+        "name": "CodeQL",
+        "run_id": "44109873986",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096374"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873986"
       },
       {
-        "name": "Portable capacity smoke",
-        "run_id": "44037096290",
+        "name": "Dependency Review",
+        "run_id": "44109873122",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096290"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873122"
       },
       {
         "name": "Prepared runtime offline",
-        "run_id": "44037096533",
+        "run_id": "44109873029",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096533"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873029"
       },
       {
-        "name": "VM installation",
-        "run_id": "44037096334",
+        "name": "Governance Repository Self-Security",
+        "run_id": "44109873246",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096334"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873246"
+      },
+      {
+        "name": "Consumer Lifecycle Guard",
+        "run_id": "44109873336",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873336"
       }
     ],
     "evidence_kind": "declared_technical_validation_observation",
     "independent_human_approval": false,
     "full_functional_parity": false,
-    "comparison_note": "Das neue kanonische Quellprüfungsprofil stimmt vollständig überein. Im bisherigen Profil unterscheidet sich die bekannte Dateireihenfolge in zwei Detailfeldern; kein zusätzlicher Befund."
+    "comparison_note": "Fünf gezielte installierte Prüfgruppen (DCR, Funktionsprüfung, Review-Metadaten, lokale Reviewplanung und HTTP-Betrieb) stimmen vollständig überein; keine neue Normalisierung. Frühere breite Prüfstände bleiben an ihre eigenen Quellcommits gebunden; dies bestätigt nicht alle 37 V1-CI-Definitionen oder die Gesamtparität. Das kanonische Quellprüfungsprofil war nicht Teil dieser fünf Gruppen und wurde hier nicht erneut bestätigt."
   }
 }

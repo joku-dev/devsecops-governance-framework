@@ -261,99 +261,87 @@
   },
   "independent_human_approval": false,
   "last_validation": {
-    "canonical_profile_complete_results_equal": true,
+    "canonical_profile_complete_results_equal": false,
     "ci_workflows": [
       {
         "name": "Agent Review Status",
         "result": "passed",
-        "run_id": "44039157955",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44039157955"
-      },
-      {
-        "name": "CodeQL",
-        "result": "passed",
-        "run_id": "44037096354",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096354"
-      },
-      {
-        "name": "Consumer Lifecycle Guard",
-        "result": "passed",
-        "run_id": "44037096285",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096285"
-      },
-      {
-        "name": "Dependency Review",
-        "result": "passed",
-        "run_id": "44037096421",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096421"
+        "run_id": "44112128058",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44112128058"
       },
       {
         "name": "Governance CI",
         "result": "passed",
-        "run_id": "44037096371",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096371"
+        "run_id": "44109873628",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873628"
       },
       {
         "name": "Governance CI v2",
         "result": "passed",
-        "run_id": "44037096297",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096297"
+        "run_id": "44109873400",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873400"
       },
       {
-        "name": "Governance Repository Self-Security",
+        "name": "CodeQL",
         "result": "passed",
-        "run_id": "44037096374",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096374"
+        "run_id": "44109873986",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873986"
       },
       {
-        "name": "Portable capacity smoke",
+        "name": "Dependency Review",
         "result": "passed",
-        "run_id": "44037096290",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096290"
+        "run_id": "44109873122",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873122"
       },
       {
         "name": "Prepared runtime offline",
         "result": "passed",
-        "run_id": "44037096533",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096533"
+        "run_id": "44109873029",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873029"
       },
       {
-        "name": "VM installation",
+        "name": "Governance Repository Self-Security",
         "result": "passed",
-        "run_id": "44037096334",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44037096334"
+        "run_id": "44109873246",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873246"
+      },
+      {
+        "name": "Consumer Lifecycle Guard",
+        "result": "passed",
+        "run_id": "44109873336",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44109873336"
       }
     ],
-    "compared_result_groups": 21,
-    "comparison_note": "Das neue kanonische Quellprüfungsprofil stimmt vollständig überein. Im bisherigen Profil unterscheidet sich die bekannte Dateireihenfolge in zwei Detailfeldern; kein zusätzlicher Befund.",
-    "equal_complete_result_groups": 20,
+    "compared_result_groups": 5,
+    "comparison_note": "Fünf gezielte installierte Prüfgruppen (DCR, Funktionsprüfung, Review-Metadaten, lokale Reviewplanung und HTTP-Betrieb) stimmen vollständig überein; keine neue Normalisierung. Frühere breite Prüfstände bleiben an ihre eigenen Quellcommits gebunden; dies bestätigt nicht alle 37 V1-CI-Definitionen oder die Gesamtparität. Das kanonische Quellprüfungsprofil war nicht Teil dieser fünf Gruppen und wurde hier nicht erneut bestätigt.",
+    "equal_complete_result_groups": 5,
     "evidence_kind": "declared_technical_validation_observation",
     "full_dcr_equal": true,
-    "full_dcr_sha256": "cb8e1862e5277c823d8fec1453eec8612913c9dd6c86e7a4ca247215ecb81dc7",
+    "full_dcr_sha256": "27426ea2d4e71b6e009de88cd38bcd6a156b500615eaf017b066f23af3f34a65",
     "full_functional_parity": false,
     "independent_human_approval": false,
     "installed_groups": {
-      "linux": 21,
-      "mac": 21
+      "linux": 5,
+      "mac": 5
     },
-    "observed_at": "2026-11-17T11:35:02Z",
-    "runtime_source_digest": "e81b3210132434fcd262febf79217d92c2705380d79df6b9c72ae7acd0f02f49",
-    "source_revision": "4d25e816073388e7ce9873a12950219fa5f92ff9",
-    "unit_test_seconds": 392.581,
-    "unit_tests": 1588,
+    "observed_at": "2026-11-17T15:47:57Z",
+    "runtime_source_digest": "7c643b4b78a8bf886e25290f8417a78b36ccec3c7a9b6558107d26e2e25ee011",
+    "source_revision": "b4508f6c0b832c22b1bb144d2a66b5e2c656aa69",
+    "unit_test_seconds": 399.399,
+    "unit_tests": 1647,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "4395a6f833c51225e6be09588cdff84ca37ac725f7245a2d6972eace6ea7a16f",
+  "matrix_sha256": "2ea7982fec36b5e1915a492dcf8416dfce6119b9d85e894f823b894e4b669a88",
   "next_work": {
     "entrypoints": [
       "scripts/dispatch_governance_agents.py",
       "scripts/record_agent_review.py",
       "scripts/report_agent_review_status.py"
     ],
-    "next_step": "Den vollständigen Git-gebundenen Receipt-Export mit idempotentem Nutzungsprotokoll ergänzen; native PR-Umfangsableitung und tatsächliche Review-Ausführung bleiben gesondert offen.",
+    "next_step": "Native PR-Umfangsableitung einschließlich Vertragsänderungen ergänzen; weitere Dispatch-/Aufzeichnungsmodi und tatsächliche Review-Ausführung bleiben offen. Der neue Receipt-Export benötigt seine eigene installierte Abnahme; vollständige Parität aller Bereiche bleibt das Goal.",
     "title": "Review-Werkzeuge für Planung, Prüfung und Nachweise"
   },
-  "observation_sha256": "0cde4361880d75979daa8e148c403114a3548fd10c4deb9ecda35d604e5454ff",
+  "observation_sha256": "cc4fe21ea638e54a15518b4177451f14b244f87db162e0819fb38b42cb95f6b1",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

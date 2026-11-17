@@ -73,6 +73,10 @@ class GoalProgress(unittest.TestCase):
                 self.matrix[name] = saved
 
     def test_test_checkpoint_neither_finishes_matrix_nor_recognizes_all_results_as_equal(self):
+        # Explicit partial-comparison fixture, independent of the current live checkpoint.
+        self.observation['last_validation'].update(
+            installed_groups={'mac': 21, 'linux': 21},
+            equal_complete_result_groups=20, compared_result_groups=21)
         report = self.project()
         self.assertEqual(report['last_validation']['equal_complete_result_groups'], 20)
         self.assertEqual(report['last_validation']['compared_result_groups'], 21)

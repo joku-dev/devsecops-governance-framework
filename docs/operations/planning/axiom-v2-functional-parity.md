@@ -1705,6 +1705,84 @@ The unchanged ha-CPsWMS reference lacks governance review-role contracts: preser
 V1's missing-contract rejection rather than injecting roles and claiming native
 consumer review acceptance. Installed production-instance/source guards remain
 required. Earlier host/CI evidence is not silently recertified for new source.
-Full receipt export/idempotent append, native PR scope derivation, additional
-recording modes and actual review execution remain open. The dispatcher is
+Native PR scope derivation, additional recording modes and actual review
+execution remain open. The next increment adds full receipt export/usage append. The dispatcher is
 mapped `in_progress` only; no original entrypoint is newly marked verified.
+
+
+## Explicit receipt export and usage increment
+
+`review-receipts export/summary/inspect` restores actual external metadata writes,
+not an operator declaration that a file was written. It uses the existing local
+Git capture and finite legacy role-contract profile. An external private plan
+file or a node-owned prepared plan can be selected; export rederives the complete
+plan from current target source/contracts and requires a clean full branch with
+a pinned comparison base. It checks the actual target again before and after
+file effects. Original incomplete or failed declarations remain exportable with
+readiness false; export returns 0 for a valid receipt, 2 for invalid input/effects.
+
+```bash
+"$V2_PREFIX/axiom-v2" review-receipts export --repo /path/to/governance-checkout --plan PREPARED_ASSESSMENT_ID --results /private/review/results.json --output /private/review/receipt.json --usage-log /private/review/usage.jsonl --profile legacy-role-review-v1 --at 2026-11-17T14:00:00Z
+# Alternatively replace --plan with --plan-file /private/review/plan.json.
+"$V2_PREFIX/axiom-v2" review-receipts summary --usage-log /private/review/usage.jsonl --at 2026-11-17T14:00:00Z
+"$V2_PREFIX/axiom-v2" review-receipts inspect --assessment ASSESSMENT_ID
+```
+
+Output and optional usage paths must be outside both target and product
+checkouts. New files use 0600/exclusive creation; every missing ancestor uses
+0700 and existing modes are preserved. The original public receipt schema and
+complete original JSON wires remain unchanged: private goals, findings text,
+reviewer identities, outputs and evidence references are excluded. The original
+four-key CLI result is retained as `review-export-result.json`; the product CLI
+adds its source/node/runtime-bound private assessment envelope. The summary
+retains the original complete stdout as `review-usage-summary.json`.
+
+Same-review retries preserve the first receipt bytes, formatting and timestamp.
+The optional JSONL log locks with exclusive creation, validates every event and
+appends one original metadata snapshot per distinct receipt ID. Different-review
+files and same-ID conflicting projections reject; legacy logs are never migrated.
+A missing summary log is retained as absent and yields the original empty report.
+Existing locks are never bypassed or cleared automatically. Receipt creation and
+usage append are separate effects: if append fails, the valid first receipt can
+remain, and retry preserves it. This is not a Git/filesystem transaction.
+
+A documented V1 defect is corrected: appending a new event to otherwise valid
+JSONL without a final newline adds the missing separator first, preserving the
+entire original byte prefix. A duplicate remains a byte-for-byte no-op. Invalid
+result-schema diagnostics in both plan checking and export are now redacted;
+private schema payloads never appear in CLI errors.
+
+Limits are 8 MiB plan, 4 MiB results, 2 MiB receipt, 16 MiB/10,000 usage events,
+bounded retained before/after files and the existing 8 GiB reserve. Unsafe files,
+symlinks, foreign nodes, changed source/index/contracts, malformed records,
+tampered artifacts and resealed authority flags reject. Stored inputs retain
+private current Git facts, caller bytes, actual clean-status observation, path
+labels, before-presence and before/after output/log bytes. Offline inspect
+rederives whole artifacts after target/caller/external files disappear; it sets
+both current-target and external-file recheck flags false. No native PR identity,
+private-review authenticity, model execution, human approval or operating
+authority is inferred. The unchanged ha-CPsWMS reference still lacks the role
+contracts required by V1 and V2; no roles are injected for an artificial success.
+
+The new installed acceptance harness `tests/acceptance/axiom_v2_review_receipts.py`
+compares actual file/JSONL/summary/result wires against fingerprinted original V1
+receipt functions and the exact original main body using an explicit fixed test
+clock. Synthetic declarations are labelled, and original native Git is real.
+Retries, readiness-false receipts, real lock/partial failure, corrected newline,
+dirty/limited scope, private schema errors, tamper and offline replay are exercised.
+Fixture preparation now supplies 48 technical files; the repository has 19
+installed acceptance harnesses. Fresh production-instance/source binding is
+required. A development preflight is not installed-host acceptance. Formal
+matrix counts remain 0 verified, 68 in progress and 67 pending entrypoints.
+
+The preceding published candidate `b4508f6c0b832c22b1bb144d2a66b5e2c656aa69`
+passed 1,647 pinned tests (one existing platform skip), the demo and strict docs.
+Its five focused Mac/Linux groups were strictly equal without new normalization;
+complete DCR digest `27426ea2d4e71b6e009de88cd38bcd6a156b500615eaf017b066f23af3f34a65`.
+Runtime digest `7c643b4b78a8bf886e25290f8417a78b36ccec3c7a9b6558107d26e2e25ee011`,
+application digest `193884aae9cd85099c59980298c3a189acd99914ebe7e5747daebbd401f1b67a`.
+Independent nodes, keys and private state were verified; collectors remained
+paused/empty, publishers inactive, ports 18959/18960 closed afterward. Eight
+source-bound CI families passed. This historical checkpoint does not recertify
+the new receipt increment, all earlier broad groups, all V1 CI definitions or
+the full Goal. Main and earlier delivery PR heads remain unchanged.
