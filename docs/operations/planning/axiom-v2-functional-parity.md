@@ -1501,3 +1501,15 @@ time. The comparison deliberately keeps the time absent instead of inferring a
 new scan or fabricating freshness. This is separate from the already captured
 native bundle's original Trust scope. New installed replay must preserve the
 same rejection; it is not a new scan finding or a successful local collection.
+
+## Complete Linux installation protocol time budget
+
+GitHub run `43951162930` reached the expected outcome for eleven of the twelve
+deployment/recovery transitions before the 90-minute job limit cancelled the
+remaining work. Transition eleven finished after approximately 83 minutes;
+validated install/update transitions took about ten minutes each. This run is
+incomplete, not passing. The disposable-host job now has a 120-minute budget for
+the same twelve transitions and subsequent credential, UID, schedule and portable
+projection checks. No transition, validation, negative case or post-install check
+is removed, cached away or treated as successful after cancellation. A new full
+run must finish before claiming complete Linux deployment acceptance.

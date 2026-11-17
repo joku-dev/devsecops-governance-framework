@@ -54,8 +54,10 @@ jobs:
   disposable-ubuntu:
     runs-on: ubuntu-24.04
     # Retain all twelve deployment/recovery transitions and complete source checks.
-    # Code validation takes about eight minutes; the full protocol exceeds 60.
-    timeout-minutes: 90
+    # Run 43951162930 reached transition 11 after 83 minutes; each validated
+    # install/update now takes about ten minutes. Leave room for transition 12
+    # and the subsequent credential, UID, schedule and projection checks.
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
