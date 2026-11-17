@@ -14,6 +14,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('prefix',type=Path);parser.add_argument('fixtures',type=Path);parser.add_argument('output',type=Path)
     parser.add_argument('--expected-source',required=True);parser.add_argument('--real-repo',type=Path)
+    parser.add_argument('--profile',choices=('legacy-ci-signatures-v1','canonical-ci-signatures-v2'),default='legacy-ci-signatures-v1')
     args=parser.parse_args();prefix=args.prefix.resolve();fixtures=args.fixtures.resolve();output=args.output.resolve()
     settings=json.loads((prefix/'instance/instance.json').read_text())
     assert settings['source_revision']==args.expected_source and not settings['development']
@@ -41,13 +42,14 @@ def main():
             assert oracle.git(repository,'rev-parse','HEAD')==revision and not oracle.git(repository,'status','--porcelain')
             rows.append(('ha-CPsWMS',repository,revision,'joku-dev/ha-CPsWMS',None))
         for name,repository,revision,repository_id,case in rows:
-            original,exits=oracle.original_files(reference,base/('original-'+name),repository,repository_id,contract['at'])
+            original,exits=oracle.original_files(reference,base/('original-'+name),repository,repository_id,contract['at'],
+                canonical_order=args.profile=='canonical-ci-signatures-v2')
             if case:assert list(exits)==case['expected_exits']
             raw_results[name]={path:raw.decode() for path,raw in original.items()}
             before=oracle.git(repository,'status','--porcelain');assessment=None
             for kind,selected in [('integration',{paths['integration']}),('onboarding',{paths['onboarding_json'],paths['onboarding_markdown']}),('all',set(original))]:
                 arguments=['create','--kind',kind,'--repo',repository,'--revision',revision,'--repository-id',repository_id,
-                           '--profile','legacy-ci-signatures-v1','--at',contract['at']]
+                           '--profile',args.profile,'--at',contract['at']]
                 receipt=command(*arguments);inspected=command('inspect','--id',receipt['assessment_id']);assessment=inspected['assessment']
                 assert inspected['retained_git_source_and_complete_outputs_reverified'] and not inspected['native_metadata_rechecked']
                 assert assessment['node_id']==settings['node_id'] and assessment['source_revision']==args.expected_source
@@ -76,8 +78,8 @@ def main():
             projection={paths['integration']:json.dumps(integration,indent=2)+'\n',
                 paths['onboarding_json']:json.dumps(onboarding,indent=2)+'\n',
                 paths['onboarding_markdown']:markdown.replace(line,'- Target path: `<validated-operator-repository-path>`')}
-            results[name]={'complete_original_physical_wires_equal':True,'original_exits':list(exits),'files':projection,
-                           'official_acceptance':False}
+            equality_key='complete_original_logic_with_explicit_order_equal' if args.profile=='canonical-ci-signatures-v2' else 'complete_original_physical_wires_equal'
+            results[name]={equality_key:True,'original_exits':list(exits),'files':projection,'official_acceptance':False}
             if case:
                 # The final all-kind retained input survives source disappearance.
                 import shutil
@@ -90,12 +92,16 @@ def main():
     business=hashlib.sha256(json.dumps(results,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
     value={'schema_version':1,'source_revision':settings['source_revision'],'node_id':settings['node_id'],
         'runtime_source_digest':settings['runtime_source_digest'],'source_signature_only':True,'provider_invoked':False,
+        'comparison_profile':args.profile,
+        'oracle_mode':'original_v1_logic_with_explicit_sorted_ci_input_iterator' if args.profile=='canonical-ci-signatures-v2' else 'unchanged_v1_physical_filesystem_iteration',
         'official_acceptance':False,'full_functional_parity':False,'normalized_fields':[
             'integration.target_repo','onboarding.target_repo','onboarding.target_path','onboarding_markdown.target_path'],
         'normalization_contract':'Only bound operator basename/path validated after complete physical V1/V2 byte equality; no finding/control/status normalization',
-        'source_bindings':source_bindings,'raw_original_equal_files':raw_results,'results':results,'business_digest':business}
+        'source_bindings':source_bindings,
+        ('raw_ordered_reference_equal_files' if args.profile=='canonical-ci-signatures-v2' else 'raw_original_equal_files'):raw_results,
+        'results':results,'business_digest':business}
     output.write_text(json.dumps(value,indent=2,sort_keys=True)+'\n');output.chmod(0o600)
-    print(json.dumps({k:v for k,v in value.items() if k not in ('results','raw_original_equal_files','source_bindings')},sort_keys=True))
+    print(json.dumps({k:v for k,v in value.items() if k not in ('results','raw_original_equal_files','raw_ordered_reference_equal_files','source_bindings')},sort_keys=True))
 
 
 if __name__=='__main__':main()

@@ -18,6 +18,7 @@ from lib import source_snapshot_proof as proof, source_inspection_application as
 from lib.provider_ports import source_inspection_profile
 from lib.portable.contracts import canonical_digest
 from lib.consumer_intake_store import atomic_json
+from lib.providers import source_inspection as source_adapter
 from v1_source_inspection_oracle import load_fixture, make_repository, original_files, git
 
 FIXTURES = ROOT / 'tests/fixtures/axiom-v1-parity/source-inspection'
@@ -144,6 +145,85 @@ class SourceInspectionTests(unittest.TestCase):
         with redirect_stdout(io.StringIO()) as output: self.assertEqual(app.run([*args,'--fail-on-findings'],self.node,settings),1)
         self.assertEqual(json.loads(output.getvalue())['assessment_id'],receipt['assessment_id'])
         self.assertFalse(json.loads(output.getvalue())['official_acceptance'])
+
+    def multi_ci_repository(self):
+        case = deepcopy(self.fixture['cases'][0])
+        for name in ('z-extra.yml', '10-extra.yml', '20-extra.yml'):
+            case['files']['.github/workflows/' + name] = deepcopy(case['files']['.github/workflows/ci.yml'])
+        repository = self.root / 'multiple-ci'
+        return repository, make_repository(repository, case)
+
+    def test_canonical_profile_matches_complete_original_logic_with_explicit_ordered_inputs(self):
+        profile = source_inspection_profile('canonical-ci-signatures-v2')
+        cases = [(self.repository, self.revision)]
+        cases.append(self.multi_ci_repository())
+        for index, (repository, revision) in enumerate(cases):
+            expected, exits = original_files(FIXTURES, self.root / ('canonical-oracle-' + str(index)),
+                repository, 'synthetic/consumer', AT, canonical_order=True)
+            identifier, value = self.create(repository=repository, revision=revision, profile=profile)
+            self.assertEqual(self.context.inspect(identifier), value)
+            for name, raw in expected.items():
+                self.assertEqual((self.context.artifacts / identifier / name).read_bytes(), raw)
+            self.assertEqual(self.context.legacy_exit(identifier), max(exits))
+            self.assertFalse(value['provider_invoked']); self.assertFalse(value['official_acceptance'])
+
+    def test_reversed_filesystem_iteration_changes_legacy_details_but_not_canonical_wire(self):
+        repository, _ = self.multi_ci_repository()
+        iterator = source_adapter.iter_ci_files
+        outputs = {}
+        for reverse in (False, True):
+            def ordered(root):
+                return iter(sorted(iterator(root), key=lambda p: p.relative_to(root).as_posix().encode('utf-8'), reverse=reverse))
+            with patch.object(source_adapter, 'iter_ci_files', side_effect=ordered):
+                for profile in ('legacy-ci-signatures-v1', 'canonical-ci-signatures-v2'):
+                    value = source_adapter.source_inspection_facts(profile, repository,
+                        product_label='axiom-v2', target_label=str(repository), at=AT)['integration']
+                    outputs[(reverse, profile)] = json.dumps(value, indent=2) + '\n'
+        self.assertNotEqual(outputs[(False, 'legacy-ci-signatures-v1')], outputs[(True, 'legacy-ci-signatures-v1')])
+        self.assertEqual(outputs[(False, 'canonical-ci-signatures-v2')], outputs[(True, 'canonical-ci-signatures-v2')])
+        for raw in outputs.values():
+            self.assertEqual(json.loads(raw)['status'], 'pass')
+            self.assertTrue(all(c['status'] == 'pass' for c in json.loads(raw)['checks']))
+
+    def test_canonical_replay_survives_recreated_directory_entries_with_unchanged_git_bytes(self):
+        repository, revision = self.multi_ci_repository()
+        identifier, value = self.create(repository=repository, revision=revision,
+            profile=source_inspection_profile('canonical-ci-signatures-v2'))
+        data, manifest = self.context.input_data(value['input_id'])
+        entries = [(p, p.read_bytes()) for p in sorted((data / '.github/workflows').glob('*.yml'))]
+        self.assertGreater(len(entries), 1)
+        for path, _ in entries: path.unlink()
+        for path, raw in reversed(entries): path.write_bytes(raw); path.chmod(0o600)
+        self.assertEqual(proof.verify(data, manifest), manifest)
+        shutil.rmtree(repository)
+        self.assertEqual(self.context.inspect(identifier), value)
+
+    def test_resealed_profile_kind_mismatch_and_legacy_to_canonical_conversion_are_rejected(self):
+        repository, revision = self.multi_ci_repository()
+        iterator = source_adapter.iter_ci_files
+        def reversed_paths(root):
+            return iter(sorted(iterator(root), key=lambda p: p.relative_to(root).as_posix().encode('utf-8'), reverse=True))
+        with patch.object(source_adapter, 'iter_ci_files', side_effect=reversed_paths):
+            identifier, value = self.create(repository=repository, revision=revision)
+        for descriptor in ({**PROFILE, 'profile': 'canonical-ci-signatures-v2'},
+                           source_inspection_profile('canonical-ci-signatures-v2')):
+            changed = deepcopy(value); changed['source_inspection_profile'] = descriptor
+            forged = canonical_digest(changed); atomic_json(self.context.assessments / (forged + '.json'), changed)
+            # A valid profile label alone cannot reinterpret the old immutable artifact.
+            shutil.copytree(self.context.artifacts / identifier, self.context.artifacts / forged)
+            with self.assertRaises(ValueError): self.context.inspect(forged)
+
+    def test_canonical_cli_keeps_report_only_and_explicit_finding_exit(self):
+        repository = self.root / 'canonical-missing'; revision = make_repository(repository, self.fixture['cases'][1])
+        arguments = ['create','--kind','all','--repo',str(repository),'--revision',revision,
+            '--repository-id','synthetic/missing','--profile','canonical-ci-signatures-v2','--at',AT]
+        settings = {'node_id':'synthetic-source-node','product':'axiom-v2'}
+        with redirect_stdout(io.StringIO()) as output: self.assertEqual(app.run(arguments,self.node,settings),0)
+        value = json.loads(output.getvalue()); self.assertEqual(value['original_finding_exit'],1)
+        with redirect_stdout(io.StringIO()) as output: self.assertEqual(app.run([*arguments,'--fail-on-findings'],self.node,settings),1)
+        self.assertEqual(json.loads(output.getvalue())['assessment_id'],value['assessment_id'])
+        self.assertFalse(value['official_acceptance'])
+        self.assertFalse(self.context.inspect(value['assessment_id'])['repository_identity_verified'])
 
 
 class SourceProofTests(unittest.TestCase):

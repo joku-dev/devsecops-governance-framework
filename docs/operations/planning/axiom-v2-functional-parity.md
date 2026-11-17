@@ -1513,3 +1513,79 @@ the same twelve transitions and subsequent credential, UID, schedule and portabl
 projection checks. No transition, validation, negative case or post-install check
 is removed, cached away or treated as successful after cancellation. A new full
 run must finish before claiming complete Linux deployment acceptance.
+
+
+## Installed Mac/VM checkpoint and legacy enumeration diagnosis
+
+Candidate `43954715321899fac236565343dbb4c334368af6` (tree
+`1b2ba293ef4180ffc460a71eb93adbbde4f3b24e`) passed the pinned bootstrap,
+1,583 tests, demo and strict documentation build. Both fresh installations
+passed twenty installed acceptance groups with the same source/runtime/application
+hashes and distinct node identities, keys and state. The complete committed-source
+DCR report matches on both hosts:
+`6f7a715d9f30109b1cbe1af91418c21ddc60a2f46e892450d1c7346863586f39`.
+Both collectors remained paused with empty queues; publishers were inactive and
+ports 18951/18952 were closed after the HTTP authentication/restart checks.
+
+Nineteen complete result objects matched across hosts under the existing
+comparison contracts. The legacy source-inspection result differs in exactly two
+integration-detail strings: `/checks/0/details` and `/checks/1/details`. Unchanged
+V1 discovers CI files through unsorted filesystem glob iteration. The six CI-file
+names and four reference hits have identical component-hash multisets on Mac and
+Linux, with different display order. All other integration fields and the complete
+onboarding JSON/Markdown files match. Each host separately matched its own complete
+unchanged V1 physical output bytes. Strict equality of all twenty complete result
+objects is therefore false; no report was rewritten and no new normalization was
+introduced. The diagnosis is a display-order limitation of the legacy profile,
+not a new finding or a changed criterion.
+
+The VM computes original domain/association/pipeline/usage oracles locally from
+frozen V1 Python sources and already retained inputs. Their complete file/wire
+hashes match the original Mac references. Private raw report/native-capture data
+is not transferred. Its older consumer fixture was a Git object store without a
+materialized checkout; a new local clean checkout of the same commit/tree and all
+340 files supplied the physical V1/V2 source comparison. The old fixture remains
+unchanged. No consumer code or new scanner is executed and no production timestamp
+is fabricated for the retained scan that lacks one.
+
+The full GitHub Linux deployment protocol for that candidate is recorded separately
+from these user-host tests. Its 120-minute run must actually complete; passing the
+installed subset does not assert completion of the full functional-parity Goal.
+
+## Deterministic source-signature profile
+
+`canonical-ci-signatures-v2` uses the same original file-selection patterns,
+reference/command markers, findings, report-only behavior and output shapes as
+`legacy-ci-signatures-v1`. It sorts the selected CI paths by their relative POSIX
+UTF-8 bytes **before** text collection and criterion evaluation. It does not sort
+or normalize an already generated report. The original compatibility profile
+retains its original filesystem iteration order.
+
+```bash
+"$V2_PREFIX/axiom-v2" source-inspection create --kind all \
+  --repo /private/operator/consumer-checkout \
+  --revision FULL_CONSUMER_COMMIT \
+  --repository-id owner/repository \
+  --profile canonical-ci-signatures-v2 \
+  --at 2026-11-15T12:00:00Z
+```
+
+The closed profile descriptor distinguishes
+`canonical-ci-source-signatures-v2` from the original legacy kind. Both remain
+source-signature observations with unverified repository identity and no native
+API, inspected-code execution, publishing, acceptance or authority. Profiles are
+explicit; the application does not infer one from the host or ambient environment.
+Records bind the selected descriptor and recompute complete output bytes. A
+mismatched kind/profile or relabeled legacy artifact with different derivation
+fails validation. Report-only and explicit local finding exits are unchanged.
+
+The existing unchanged-V1 physical-file tests remain. The canonical reference
+runs the same frozen V1 logic with an explicitly sorted CI input iterator; its
+source bytes are unchanged, but this is deliberately labeled an ordered-input
+reference rather than native V1 filesystem iteration. Complete JSON/Markdown files
+are compared without additional normalization. Regression cases reverse the input
+iterator and recreate retained directory entries in the opposite order without
+changing any Git-bound bytes; canonical output and replay remain identical.
+Legacy and canonical installed acceptance are separate scopes. A new candidate
+and fresh host evidence are required before claiming installed canonical-profile
+acceptance; the older checkpoint is not silently recertified.

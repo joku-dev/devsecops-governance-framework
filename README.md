@@ -64,6 +64,8 @@ bisherige Intake-Konfigurationsprüfung. Sie prüft committed Textsignaturen und
 belegt keine wirksame oder laufende CI-Konfiguration.
 `source-inspection create` prüft außerdem die bisherigen Consumer-Integrations- und
 Onboarding-Signaturen mit ausdrücklich gewähltem Profil an einem exakten Git-Commit.
+`canonical-ci-signatures-v2` sortiert die gefundenen CI-Dateien vor der Auswertung
+plattformunabhängig; `legacy-ci-signatures-v1` behält die ursprüngliche Dateireihenfolge.
 Die privaten Quelldaten behalten einen erneut prüfbaren Git-Nachweis. Arbeitskopie,
 Programme im Consumer und native APIs werden dabei nicht ausgeführt; die Auswertung
 erteilt keine Einführungs- oder Betriebsfreigabe.

@@ -47,7 +47,7 @@ def make_repository(root, case):
     return git(root, 'rev-parse', 'HEAD')
 
 
-def original_files(fixtures, oracle, target, repository_id, at):
+def original_files(fixtures, oracle, target, repository_id, at, *, canonical_order=False):
     fixtures = Path(fixtures); contract = load_fixture(fixtures)
     oracle = Path(oracle).resolve(); code = oracle / contract['product_label']; scripts = code / 'scripts'
     scripts.mkdir(mode=0o700, parents=True)
@@ -61,6 +61,13 @@ def original_files(fixtures, oracle, target, repository_id, at):
         return module
     integration = load('check_repo_governance_integration.py')
     onboarding = load('check_repository_onboarding_readiness.py')
+    if canonical_order:
+        # The original V1 sources and main remain unchanged. This separate
+        # reference supplies an explicitly ordered input iterator for the new
+        # profile; it is not a claim about V1's native filesystem enumeration.
+        original_iterator = integration.iter_ci_files
+        integration.iter_ci_files = lambda root: iter(sorted(original_iterator(root),
+            key=lambda path: path.relative_to(root).as_posix().encode('utf-8')))
     output = oracle / 'output'; output.mkdir(mode=0o700)
     first, second, markdown = output / 'integration.json', output / 'onboarding.json', output / 'onboarding.md'
     with patch.object(sys, 'argv', ['original-integration', '--target-repo', str(target), '--output-file', str(first)]), redirect_stdout(io.StringIO()):

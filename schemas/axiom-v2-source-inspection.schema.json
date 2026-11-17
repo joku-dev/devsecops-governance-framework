@@ -149,25 +149,50 @@
       "const": "retained-consumer-git-snapshot-v1"
     },
     "source_inspection_profile": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "kind",
-        "profile",
-        "source_signature_only"
-      ],
-      "properties": {
-        "kind": {
-          "const": "legacy-ci-source-signatures-v1"
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "profile",
+            "source_signature_only"
+          ],
+          "properties": {
+            "kind": {
+              "const": "legacy-ci-source-signatures-v1"
+            },
+            "profile": {
+              "const": "legacy-ci-signatures-v1"
+            },
+            "source_signature_only": {
+              "type": "boolean",
+              "const": true
+            }
+          }
         },
-        "profile": {
-          "const": "legacy-ci-signatures-v1"
-        },
-        "source_signature_only": {
-          "type": "boolean",
-          "const": true
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "profile",
+            "source_signature_only"
+          ],
+          "properties": {
+            "kind": {
+              "const": "canonical-ci-source-signatures-v2"
+            },
+            "profile": {
+              "const": "canonical-ci-signatures-v2"
+            },
+            "source_signature_only": {
+              "type": "boolean",
+              "const": true
+            }
+          }
         }
-      }
+      ]
     },
     "evidence_trust": {
       "const": "unverified"
