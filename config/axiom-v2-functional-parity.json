@@ -228,21 +228,25 @@
         "reports configuration requires explicit adapter profile for legacy central-intake literal source signatures; no effective/live configuration claim",
         "reports blocking-readiness/blocking-alignment preserve committed dependencies and explicit clock; inner approval/risk labels confer no authority",
         "source-inspection integration/onboarding from retained exact consumer Git snapshots and explicit legacy signature profile; no live configuration/identity/approval claim",
-        "canonical-ci-signatures-v2 orders existing CI inputs before the original checks; legacy profile preserves original filesystem order"
+        "canonical-ci-signatures-v2 orders existing CI inputs before the original checks; legacy profile preserves original filesystem order",
+        "source-inspection observe/inspect-observation preserves original non-Git/dirty/untracked native worktree mode, full CLI output choices and explicit finding exits; separate unverified local origin"
       ],
       "positive_tests": [
         "tests/test_v2_portfolio_reports.py:original bytes, stable timestamps and changed freshness",
         "tests/test_v2_configuration_reports.py:original positive/negative wires and explicit profile",
         "tests/test_v2_blocking_reports.py:original two JSON files, committed dependencies and legacy mode reading",
         "tests/test_v2_source_inspection.py:actual frozen V1 CLI bytes, exact Git proofs, explicit clock and offline replay",
-        "tests/test_v2_source_inspection.py:whole original logic on explicit ordered inputs and replay after directory-entry recreation"
+        "tests/test_v2_source_inspection.py:whole original logic on explicit ordered inputs and replay after directory-entry recreation",
+        "tests/test_v2_local_source_observation.py:whole unchanged V1 native wires from original physical directory",
+        "tests/test_v2_local_source_application.py:whole reports/stdout/exports, original finding exits and retained replay after caller deletion"
       ],
       "negative_tests": [
         "tests/test_v2_portfolio_reports.py:missing/empty context and finite file/aggregate capacity guards",
         "tests/test_v2_configuration_reports.py:missing/forged/implicit profile, native facts and immutable-record guards",
         "tests/test_v2_blocking_reports.py:pre-model time, expired/incomplete/missing/orphan risks and private authority/tamper guards",
         "tests/test_v2_source_inspection.py:dirty/poison source, changed/resealed proofs, profiles, foreign node, quotas and output/authority mutations",
-        "tests/test_v2_source_inspection.py:resealed legacy/canonical kind mismatch or incompatible output conversion rejected"
+        "tests/test_v2_source_inspection.py:resealed legacy/canonical kind mismatch or incompatible output conversion rejected",
+        "tests/test_v2_local_source_application.py:changed source, budgets, symlinks, foreign runtime/node, profile/origin mixing and private blob/order/output tamper rejected"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -456,7 +460,7 @@
         "--target-repo"
       ],
       "declared_actions": [],
-      "v2_implementation": "scripts/lib/source_inspection_application.py:render_files",
+      "v2_implementation": "scripts/lib/source_inspection_application.py:run",
       "state": "in_progress",
       "evidence": []
     },
@@ -482,7 +486,7 @@
         "--target-repo"
       ],
       "declared_actions": [],
-      "v2_implementation": "scripts/lib/source_inspection_application.py:render_files",
+      "v2_implementation": "scripts/lib/source_inspection_application.py:run",
       "state": "in_progress",
       "evidence": []
     },

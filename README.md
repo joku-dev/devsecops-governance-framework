@@ -40,9 +40,9 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `454594a` · 1,699 Tests (davon 1 übersprungen) · Mac 25 / VM 24 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `e09b519` · 1,701 Tests (davon 1 übersprungen) · Mac 6 / VM 6 Prüfgruppen · 7 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Legacy-CI-Reihenfolge und Replay absichern.
+**Nächster Baustein:** Ursprünglichen Arbeitsverzeichnis-Modus wiederherstellen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -93,6 +93,16 @@ plattformunabhängig; `legacy-ci-signatures-v1` behält die ursprüngliche Datei
 Die privaten Quelldaten behalten einen erneut prüfbaren Git-Nachweis. Arbeitskopie,
 Programme im Consumer und native APIs werden dabei nicht ausgeführt; die Auswertung
 erteilt keine Einführungs- oder Betriebsfreigabe.
+`source-inspection observe` ergänzt den ursprünglichen Arbeitsverzeichnis-Modus.
+Das explizite Profil `legacy-worktree-signatures-v1` berücksichtigt auch geänderte
+und unversionierte Dateien sowie Verzeichnisse ohne Git. Es bewahrt die beobachtete
+Dateireihenfolge und begrenzte relevante Textdaten privat; `inspect-observation`
+prüft daraus alle Berichte erneut, auch nach Entfernen des ursprünglichen Verzeichnisses.
+Diese Eingaben haben keinen Commit-Nachweis und bleiben als lokale Beobachtung
+mit ungeprüfter Identität gekennzeichnet. `--format legacy` erhält die ursprünglichen
+JSON-/Markdown-Ausgaben und Exportoptionen; `--fail-on-findings` wählt deren lokale
+Fehlercodes. Beispiele und Grenzen stehen im
+[V2-Paritätsplan](docs/operations/planning/axiom-v2-functional-parity.md#explicit-native-working-directory-observation).
 `reports build --kind blocking-readiness` und `--kind blocking-alignment` ergänzen
 die bisherigen lesenden Entscheidungshilfen. Sie verwenden committed Eingaben
 und eine explizite Bewertungszeit; angezeigte Freigabe- und Risikowerte erteilen

@@ -191,7 +191,24 @@ def run(arguments, instance_root, settings):
     create.add_argument('--profile', choices=INSPECTION_PROFILES, required=True); create.add_argument('--at', required=True)
     create.add_argument('--fail-on-findings', action='store_true')
     inspect = commands.add_parser('inspect', allow_abbrev=False); inspect.add_argument('--id', required=True)
-    args = parser.parse_args(arguments); context = SourceInspectionContext(instance_root, settings)
+    from lib.provider_ports import LOCAL_SOURCE_PROFILES
+    observe = commands.add_parser('observe', allow_abbrev=False)
+    observe.add_argument('--kind', choices=KINDS, required=True)
+    observe.add_argument('--repo', '--target-repo', dest='repo', type=Path, required=True)
+    observe.add_argument('--repository-id')
+    observe.add_argument('--profile', choices=LOCAL_SOURCE_PROFILES, required=True)
+    observe.add_argument('--at')
+    observe.add_argument('--format', choices=('receipt', 'legacy'), default='receipt')
+    observe.add_argument('--output-file', type=Path)
+    observe.add_argument('--output-json', type=Path)
+    observe.add_argument('--output-md', type=Path)
+    observe.add_argument('--fail-on-findings', action='store_true')
+    replay = commands.add_parser('inspect-observation', allow_abbrev=False); replay.add_argument('--id', required=True)
+    args = parser.parse_args(arguments)
+    if args.command in ('observe', 'inspect-observation'):
+        from lib.local_source_application import run as run_local
+        return run_local(args, instance_root, settings)
+    context = SourceInspectionContext(instance_root, settings)
     if args.command == 'inspect':
         value = context.inspect(args.id)
         print(json.dumps({'assessment_id': args.id, 'assessment': value,

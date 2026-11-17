@@ -49,10 +49,16 @@ from lib.providers.result_profiles import RESULT_EVENT_PROFILES, result_index_pr
 from lib.providers.general_result_ports import (NATIVE_RESULT_PROVIDERS, general_result_capture,
                                                 general_result_verify)
 
-from lib.providers.source_inspection import (INSPECTION_PROFILES, source_inspection_profile, source_inspection_facts, source_inspection_ci_paths)
+from lib.providers.source_inspection import (INSPECTION_PROFILES, source_inspection_profile, source_inspection_facts, source_inspection_ci_paths, onboarding_source_surface)
 
 from lib.providers.pipeline_environment import (PROFILES as DECLARED_PIPELINE_PROFILES,
                                                declared_environment as declared_pipeline_environment)
 from lib.providers.review_metadata import REVIEW_EVENT_PROFILES, review_event, committed_review_event
 
 from lib.providers.review_planning import PROFILES as REVIEW_PLAN_PROFILES, review_plan_profile, review_commit_profile
+
+from lib.providers.local_source_observation import (PROFILES as LOCAL_SOURCE_PROFILES,
+    profile as local_source_profile, capture as capture_local_source,
+    validate as validate_local_source, facts as local_source_facts,
+    MAX_FILE as LOCAL_SOURCE_MAX_FILE, MAX_TEXT as LOCAL_SOURCE_MAX_TEXT,
+    MAX_FACTS as LOCAL_SOURCE_MAX_FACTS)

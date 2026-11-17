@@ -12,9 +12,9 @@
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `454594a` · 1,699 Tests (davon 1 übersprungen) · Mac 25 / VM 24 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `e09b519` · 1,701 Tests (davon 1 übersprungen) · Mac 6 / VM 6 Prüfgruppen · 7 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Legacy-CI-Reihenfolge und Replay absichern.
+**Nächster Baustein:** Ursprünglichen Arbeitsverzeichnis-Modus wiederherstellen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -31,33 +31,32 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Die zuerst beobachtete CI-Reihenfolge des aufbewahrten Git-Snapshots als begrenzte Eingabe binden und nach Dateisystem-Neuanlage reproduzieren. Native V1-Dateisystemreihenfolge weiter offen ausweisen; danach Dispatcher-Aufzeichnung und alle übrigen Bereiche fortsetzen.
+Explizite lokale Beobachtung ohne erfundenen Git-Nachweis vervollständigen und vollständige unveränderte V1-Dateien auf Mac und VM am gleichen physischen Verzeichnis vergleichen; danach Dispatcher-Aufzeichnung und alle übrigen Goal-Bereiche fortsetzen.
 
 - `scripts/check_repo_governance_integration.py`
 - `scripts/check_repository_onboarding_readiness.py`
 
 ## Letzter vollständiger technischer Prüfstand
 
-Beobachtet: `2026-11-17T18:03:31.754276Z`. Geprüfter Quellcommit: `454594ae722706a96237e66a5791302ebdd1853a`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
+Beobachtet: `2026-11-17T19:05:02Z`. Geprüfter Quellcommit: `e09b519da98ede343027ae4dda1ab1ebcddb9644`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
 
-- Unit-Tests: 1699 in 536.353 Sekunden; 1 plattformabhängig übersprungen.
-- Installierte Prüfgruppen: Mac 25, Linux-VM 24.
-- Vollständige Ergebnisgruppen: 24 von 24 stimmen zwischen den Rechnern überein.
-- Mac: 25 von 25 Gruppen bestanden; Linux: 24 von 25, Legacy-Quellprüfung fehlgeschlagen. Die 24 erfolgreichen vollständigen Ergebnisobjekte stimmen strikt überein, ohne neue Normalisierung, einschließlich kanonischem Profil und vollständiger V1-Kontroll-/Architekturberichte aus identischen aufbewahrten ha-CPsWMS-Eingaben. Zwei CI-Dateilisten-Felder weichen im nativen physischen V1-Vergleich auf dem neuen ext4-Testvolume ab. Dieser Fehler wird nicht als bestandene Gruppe oder volle Host-Parität gewertet. Die Korrektur ist durch diesen älteren Kandidatennachweis nicht abgenommen.
+- Unit-Tests: 1701 in 543.394 Sekunden; 1 plattformabhängig übersprungen.
+- Installierte Prüfgruppen: Mac 6, Linux-VM 6.
+- Vollständige Ergebnisgruppen: 6 von 6 stimmen zwischen den Rechnern überein.
+- Sechs gezielte installierte Prüfgruppen auf Mac und Linux bestanden und vollständig verglichen: Replay-Integrität nach Dateieintrags-Neuanlage, kanonische Quellprüfung, PR-Review, Funktionsprüfung, DCR und HTTP. Vollständige ursprüngliche Kontroll-/Architekturberichte aus identischen aufbewahrten ha-CPsWMS-Eingaben stimmen überein. Replay-Nachweis ist keine native V1-Dateisystemgleichheit; die frühere 454594a-Messung (Mac 25/25, Linux 24/25) bleibt als fehlgeschlagener nativer Vergleich erhalten. Sieben ausgelöste CI-Familien bestanden; Offline-Runtime wurde nicht ausgelöst. Dieser Nachweis zertifiziert weder den neuen Arbeitsverzeichnis-Modus noch alle 37 CI-Definitionen oder das volle Goal.
 - Kanonisches Profil vollständig gleich: **ja**.
-- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `db7ea4fbf53aba952360d25e7f093546029695c6b4c89f776570bc8b2388638c`.
+- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `716b84e3e362c69fc9f0187c165f99fd5d34417f403baff1a9350027b343d4cb`.
 - Technische Beobachtungen sind deklarierte Nachweise und erteilen keine unabhängige menschliche Freigabe.
 
 | CI-Workflow-Familie | Beobachteter Lauf | Ergebnis |
 | --- | --- | --- |
-| Agent Review Status | [44142897204](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44142897204) | bestanden |
-| Governance CI | [44136561210](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561210) | bestanden |
-| Governance CI v2 | [44136561481](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561481) | bestanden |
-| CodeQL | [44136561250](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561250) | bestanden |
-| Dependency Review | [44136561399](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561399) | bestanden |
-| Prepared runtime offline | [44136561404](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561404) | bestanden |
-| Governance Repository Self-Security | [44136561269](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561269) | bestanden |
-| Consumer Lifecycle Guard | [44136561388](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44136561388) | bestanden |
+| Agent Review Status | [44151059094](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44151059094) | bestanden |
+| Governance CI | [44146753512](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753512) | bestanden |
+| Governance CI v2 | [44146753575](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753575) | bestanden |
+| CodeQL | [44146753888](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753888) | bestanden |
+| Dependency Review | [44146753943](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753943) | bestanden |
+| Governance Repository Self-Security | [44146753616](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753616) | bestanden |
+| Consumer Lifecycle Guard | [44146753501](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753501) | bestanden |
 
 ## Stand aller Funktionsbereiche
 
@@ -100,6 +99,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `52666ac833a79be77fc9817e9fc2c9a973de8f5759daf4ef1b422518ed416183`. Beobachtungs-SHA-256: `da61f2d5be1ebd8ce5caf38a4d84c49e4166f1ba4e15d49d91b7b5ace5b56cc9`.
+Matrix-SHA-256: `58300bd5623d022477f0a67355fa564a9c059ac3ab51e2f5955061778fc379c5`. Beobachtungs-SHA-256: `00035fcd4eeb93e0a8ea05368a4add1543b4d567ba653e487618c406a09ba561`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).
