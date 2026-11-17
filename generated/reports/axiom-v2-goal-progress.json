@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 65,
-      "pending": 70,
+      "in_progress": 67,
+      "pending": 68,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -343,17 +343,17 @@
     "unit_tests": 1588,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "1a0ba0113bd05ef100bdbf2c10bab843b55d407ec3d8f7d7e7627ac249dc68dd",
+  "matrix_sha256": "8700244f824f22f359b2e01fe4611e1c0f0ab5d11ae1a85fd635d6f35846216d",
   "next_work": {
     "entrypoints": [
       "scripts/dispatch_governance_agents.py",
       "scripts/record_agent_review.py",
       "scripts/report_agent_review_status.py"
     ],
-    "next_step": "Die ursprünglichen Commit-, Index-, Arbeitskopie- und Rollenbindungen in explizite V2-Befehle übertragen.",
+    "next_step": "Git-gebundene Review-Planung und die aktuelle Ableitung von Umfang und Rollen ergänzen; der Metadatenbaustein verwendet bisher ausdrücklich Operator-Angaben.",
     "title": "Review-Werkzeuge für Planung, Prüfung und Nachweise"
   },
-  "observation_sha256": "438de3a05e57bd22dfa5260c7be9ccdfc72b2df1a6e29abcb0c891c1a190bba6",
+  "observation_sha256": "12bb465c96de59b66d9bfdd81759737aa18dded4b8915922852a09c73f031aae",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

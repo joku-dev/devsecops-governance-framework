@@ -1595,3 +1595,52 @@ changing any Git-bound bytes; canonical output and replay remain identical.
 Legacy and canonical installed acceptance are separate scopes. A new candidate
 and fresh host evidence are required before claiming installed canonical-profile
 acceptance; the older checkpoint is not silently recertified.
+
+
+## Declared review metadata increment
+
+`review-metadata` restores the original receipt validation, receipt-block parsing,
+new-format review usage counters and status/report rendering. These are metadata
+operations. The old functions' ASCII/default-spaced JSON digest and complete
+JSON/Markdown output wires are preserved. Receipt readiness and role execution
+kinds remain unauthenticated declarations. No agent, model, validation command,
+provider API or publication is invoked.
+
+```bash
+"$V2_PREFIX/axiom-v2" review-metadata receipt --receipt /private/operator/receipt.json --at 2026-11-17T12:30:00Z
+"$V2_PREFIX/axiom-v2" review-metadata usage-summary --usage-log /private/operator/review-usage.jsonl --at 2026-11-17T12:30:00Z
+"$V2_PREFIX/axiom-v2" review-metadata status --event /private/operator/event.json --subject /private/operator/subject.json --event-profile legacy-pr-review-event-v1 --at 2026-11-17T12:30:00Z
+"$V2_PREFIX/axiom-v2" review-metadata inspect --assessment ASSESSMENT_ID
+```
+
+The event envelope uses a finite, explicitly selected adapter. `subject.json`
+requires the declared head, target and merge-base commits, sorted canonical
+changed paths, and separate target/proposed role and validation selections. The
+status logic takes their union as in V1, but does **not** derive these facts from
+current Git. `current_revision_checked`, `private_review_outputs_verified`,
+`agent_execution_verified`, `human_approval_verified` and all acceptance,
+authority/publishing flags remain false. Inner `declared_complete` describes only
+consistency with these supplied declarations; it is not a native PR check or
+human approval. The Git-bound scope/contract reader, full planning/checking,
+receipt export/idempotent append and provider execution remain separate work.
+Neither of the two newly mapped original entrypoints is marked verified.
+
+All operations retain bounded private bytes and recompute complete outputs after
+caller files disappear. SHA/length/membership, operation/profile, node, source,
+runtime and explicit assessment time are bound. Inputs are at most 2 MiB each,
+except a 16 MiB/10,000-record JSONL log; body/block bounds retain the original
+1 MiB/64 KiB limits. Outputs are at most 8 MiB each and require the existing
+8 GiB storage reserve. Missing usage logs retain the original empty-summary
+behavior with `present: false`; malformed/duplicate logs reject. Duplicate JSON
+keys/nonfinite values reject rather than silently overriding declarations.
+Status findings remain report-only with exit zero; invalid execution inputs
+return 2 and create no accepted assessment.
+
+The oracle fingerprints four original V1 module texts and the unchanged receipt
+schema against frozen Git. It executes the original metadata function bodies;
+status references run original status logic with explicitly supplied scope inputs.
+This is deliberately not called unchanged native V1 Git inspection. Synthetic
+positive/negative cases compare complete wires, not headline status counts.
+Actual private review plans/results and unredacted reviewer text are not fixtures.
+Fresh installed-source evidence is required before claiming installed acceptance
+of this increment; earlier Mac/VM checkpoints are not silently recertified.
