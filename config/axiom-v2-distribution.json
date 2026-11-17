@@ -156,7 +156,12 @@
     "scripts/lib/review_committed.py",
     "scripts/lib/review_pr_application.py",
     "scripts/lib/local_source_application.py",
-    "scripts/lib/providers/local_source_observation.py"
+    "scripts/lib/providers/local_source_observation.py",
+    "scripts/lib/review_dispatch.py",
+    "scripts/lib/review_dispatch_application.py",
+    "scripts/lib/providers/review_dispatch.py",
+    "scripts/lib/providers/review_dispatch_files.py",
+    "scripts/lib/review_dispatch_external.py"
   ],
   "data_roots": [
     "schemas",

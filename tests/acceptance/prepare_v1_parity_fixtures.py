@@ -45,6 +45,7 @@ def main():
         write('review-planning/' + path.name, path.read_bytes())
     write('review-planning/oracle.py', (ROOT / 'tests/acceptance/v1_review_planning_oracle.py').read_bytes())
     write('review-planning/pr-oracle.py', (ROOT / 'tests/acceptance/v1_review_pr_oracle.py').read_bytes())
+    write('review-planning/dispatch-oracle.py', (ROOT / 'tests/acceptance/v1_review_dispatch_oracle.py').read_bytes())
     for path in sorted((ROOT / 'tests/fixtures/v2-review-receipts').iterdir()):
         write('review-receipts/' + path.name, path.read_bytes())
     write('review-receipts/oracle.py', (ROOT / 'tests/acceptance/v1_review_receipts_oracle.py').read_bytes())

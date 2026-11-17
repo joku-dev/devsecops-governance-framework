@@ -1984,3 +1984,95 @@ Native directory order can inherently differ between hosts; report hashes and
 per-field digests expose those differences instead of rewriting raw reports or
 claiming raw cross-host equality. Fresh installed proof for this increment is
 required separately. The full 22/135/37/16 Goal and formal matrix remain open.
+
+## Ordinary dispatcher and recording application
+
+`review-dispatch` restores the original ordinary dispatch, recording window,
+continuous recording, status and usage-summary operations. It complements the
+separate revision-bound `review-plan` execution contract. Ordinary dispatch reads
+only role, skill and routing data; an execution protocol is not required. Explicit
+paths work in a non-Git checkout and ignore the unused base reference. Without
+explicit paths, bounded Git observations select staged, unstaged, untracked and
+optional branch changes, including both rename paths and SHA-1/SHA-256 objects.
+No inspected program or selected skill runs.
+
+The default storage mode is an isolated private workspace:
+
+```sh
+axiom-v2 review-dispatch init --workspace demo --profile legacy-role-dispatch-v1
+axiom-v2 review-dispatch run --workspace demo --record-next 2 --json
+axiom-v2 review-dispatch run --workspace demo --repo /path/to/caller docs/example.md --json
+axiom-v2 review-dispatch run --workspace demo --recording-status
+axiom-v2 review-dispatch run --workspace demo --usage-summary --json
+```
+
+Original options `--log-usage`, `--usage-log`, `--usage-state`, `--run-type`,
+`--provider-review`, `--provider`, `--platform`, `--source` and `--base-ref` remain
+available. Operation priority remains window activation, continuous activation,
+status, summary, then dispatch. An active recording's stored log wins over the
+requested log. `--provider-review codex` declares a provider-review event; it does
+not invoke Codex or another model. Default output retains original JSON/text;
+`--format receipt` exposes the retained generation and effects. `inspect
+--workspace W --generation G` rederives complete private outputs without reading
+the caller. `--at` fixes an operator-declared clock; omitted time uses the actual
+runtime clock and records that provenance.
+
+Private business paths are workspace-relative. Immutable generations retain
+complete state/log/stdout and source observations, and publish their pointer only
+after validation. Ordinary repeated calls remain separate runs. Logs are bounded
+to 16 MiB/10,000 ingested events, state to 64 KiB, stdout to 8 MiB and each private
+generation to 128 MiB/10,000 files, with an 8-GiB free-space reserve. A future
+recording-window count is any positive JSON integer; the ingested-event budget
+does not cap that future count. Ordinary role observations admit at most 200
+roles, 1 MiB per contract and 128 MiB total, with an 8-MiB facts envelope.
+One explicit repair differs from the original append bytes: a valid final JSONL
+entry without a terminating newline receives a separator before the next event.
+The original prefix is preserved; this prevents concatenated invalid JSON. The
+whole-original-wire claims apply to the separately tested original valid wires,
+not to pretending this repair is byte-identical to the old malformed append.
+
+### Existing caller state and log files
+
+The explicit `legacy-local-dispatch-files-v1` adapter restores actual file effects
+in a **separate mutable caller checkout**, outside the pinned product and node
+state. Relative filenames retain original lexical labels; absolute filenames are
+explicit operator-selected targets. The following commands show concrete paths
+before applying a frozen intent:
+
+```sh
+axiom-v2 review-dispatch run --external-files --file-profile legacy-local-dispatch-files-v1 --repo /path/to/caller --record-next 2 --prepare-only
+axiom-v2 review-dispatch external-inspect --id ID
+axiom-v2 review-dispatch external-apply --id ID --format legacy
+axiom-v2 review-dispatch external-pending
+```
+
+Without `--prepare-only`, the explicit external run prepares and applies in one
+call. No private workspace is implicitly reused. A stored active log inside the
+caller wins as before. If it points outside that checkout, a fresh invocation
+must explicitly bind the same actual target with `--usage-log`. This is a visible
+file-scope migration guard; an ignored unrelated argument does not authorize an
+external stored path. Symlinks, `.git`, protected product/node paths and hardlink
+aliases are rejected. Existing target permissions are preserved; new files are
+private. A bounded immutable plan retains before/after bytes and its authority
+limits, with a 256-MiB aggregate budget.
+
+All target locks and before-byte checks precede a durability barrier for the
+complete frozen plan, blobs and directory links, then a durable pending marker
+and execution journal. A failed barrier stops before any native effect and can
+be retried. Writes replace **log first, state second** and fsync each file
+and parent directory. Each replacement is atomic; the two files do not form an
+atomic transaction. A failure returns the exact recovery ID. A new process can
+resume `external-apply --id ID`, skipping already desired bytes and completing
+only remaining before-matching targets. Other pending intents are fenced. Resume
+uses the frozen source observation rather than claiming a new Git assessment.
+Once completed, retry only verifies outputs and never overwrites later operator
+edits. Live locks coordinate V2 writers on one host; shared native files still
+need one operating owner, without a distributed ownership lease.
+
+If an intent must be left unfinished, `external-abandon --id ID --reason TEXT`
+records an explicit terminal non-success and releases its pending fence. It
+neither reverts files nor certifies native outputs. Inspect is retained readback,
+not current-file attestation. Selection/provider labels, logs, recovery and all
+receipts remain unverified declarations without execution or approval authority.
+Fresh pinned validation and installed whole-original-wire comparisons are
+required; the previous `71d42bc` checkpoint does not certify this increment.

@@ -266,75 +266,80 @@
       {
         "name": "Agent Review Status",
         "result": "passed",
-        "run_id": "44151059094",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44151059094"
-      },
-      {
-        "name": "Governance CI",
-        "result": "passed",
-        "run_id": "44146753512",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753512"
-      },
-      {
-        "name": "Governance CI v2",
-        "result": "passed",
-        "run_id": "44146753575",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753575"
+        "run_id": "44159748136",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44159748136"
       },
       {
         "name": "CodeQL",
         "result": "passed",
-        "run_id": "44146753888",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753888"
+        "run_id": "44157660280",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44157660280"
       },
       {
         "name": "Dependency Review",
         "result": "passed",
-        "run_id": "44146753943",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753943"
+        "run_id": "44157659821",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44157659821"
       },
       {
         "name": "Governance Repository Self-Security",
         "result": "passed",
-        "run_id": "44146753616",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753616"
+        "run_id": "44157659735",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44157659735"
+      },
+      {
+        "name": "Prepared runtime offline",
+        "result": "passed",
+        "run_id": "44157659901",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44157659901"
       },
       {
         "name": "Consumer Lifecycle Guard",
         "result": "passed",
-        "run_id": "44146753501",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44146753501"
+        "run_id": "44157659836",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44157659836"
+      },
+      {
+        "name": "Governance CI",
+        "result": "passed",
+        "run_id": "44157659972",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44157659972"
+      },
+      {
+        "name": "Governance CI v2",
+        "result": "passed",
+        "run_id": "44157660106",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44157660106"
       }
     ],
     "compared_result_groups": 6,
-    "comparison_note": "Sechs gezielte installierte Prüfgruppen auf Mac und Linux bestanden und vollständig verglichen: Replay-Integrität nach Dateieintrags-Neuanlage, kanonische Quellprüfung, PR-Review, Funktionsprüfung, DCR und HTTP. Vollständige ursprüngliche Kontroll-/Architekturberichte aus identischen aufbewahrten ha-CPsWMS-Eingaben stimmen überein. Replay-Nachweis ist keine native V1-Dateisystemgleichheit; die frühere 454594a-Messung (Mac 25/25, Linux 24/25) bleibt als fehlgeschlagener nativer Vergleich erhalten. Sieben ausgelöste CI-Familien bestanden; Offline-Runtime wurde nicht ausgelöst. Dieser Nachweis zertifiziert weder den neuen Arbeitsverzeichnis-Modus noch alle 37 CI-Definitionen oder das volle Goal.",
+    "comparison_note": "Sieben gezielte installierte Prüfgruppen je Host bestanden. Sechs vollständige Ergebnisgruppen stimmen zwischen Mac und Linux überein. Im neuen nativen Modus stimmen je Host alle drei vollständigen unveränderten V1-Dateien für sechs Fälle einschließlich ha-CPsWMS ohne Normalisierung überein. Native Pfad- und CI-Reihenfolgedifferenzen zwischen Hosts bleiben sichtbar; rohe native Hostgleichheit wird nicht behauptet. Vollständige ursprüngliche Kontroll-/Architekturberichte aus identischen aufbewahrten Eingaben sowie der vollständige DCR stimmen überein. Alle acht ausgelösten CI-Familien bestanden; Review-Status meldet declared_complete. Frühere fehlgeschlagene Messungen behalten ihren Status. Dieser Nachweis zertifiziert weder den neuen Dispatcher noch alle 37 CI-Definitionen oder das volle Goal.",
     "equal_complete_result_groups": 6,
     "evidence_kind": "declared_technical_validation_observation",
     "full_dcr_equal": true,
-    "full_dcr_sha256": "716b84e3e362c69fc9f0187c165f99fd5d34417f403baff1a9350027b343d4cb",
+    "full_dcr_sha256": "9cc3aad00eb47a17dc976ea9243807a0d7cf68f33ae73c93d0b3ce6c23d039be",
     "full_functional_parity": false,
     "independent_human_approval": false,
     "installed_groups": {
-      "linux": 6,
-      "mac": 6
+      "linux": 7,
+      "mac": 7
     },
-    "observed_at": "2026-11-17T19:05:02Z",
-    "runtime_source_digest": "2d71e7a51b1fce1337e00eed4efe99cbdc874538bb22384f46b3780627b2335b",
-    "source_revision": "e09b519da98ede343027ae4dda1ab1ebcddb9644",
-    "unit_test_seconds": 543.394,
-    "unit_tests": 1701,
+    "observed_at": "2026-11-17T20:39:47Z",
+    "runtime_source_digest": "338e6a7f8d6ce0caeaf26d4b0bedd6483d8e4a7254238aadb60b6cef8cd7a77c",
+    "source_revision": "71d42bcbd8265a7c972fb2474868171cef96c1fd",
+    "unit_test_seconds": 572.722,
+    "unit_tests": 1722,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "58300bd5623d022477f0a67355fa564a9c059ac3ab51e2f5955061778fc379c5",
+  "matrix_sha256": "c52fc154729fdea241cc8b28de31938f1b9e578c572a2c5324a9de6709eb44bf",
   "next_work": {
     "entrypoints": [
-      "scripts/check_repo_governance_integration.py",
-      "scripts/check_repository_onboarding_readiness.py"
+      "scripts/dispatch_governance_agents.py"
     ],
-    "next_step": "Explizite lokale Beobachtung ohne erfundenen Git-Nachweis vervollständigen und vollständige unveränderte V1-Dateien auf Mac und VM am gleichen physischen Verzeichnis vergleichen; danach Dispatcher-Aufzeichnung und alle übrigen Goal-Bereiche fortsetzen.",
-    "title": "Ursprünglichen Arbeitsverzeichnis-Modus wiederherstellen"
+    "next_step": "Gewöhnliche Rollenauswahl, private und explizite native Zustands-/Logdateien samt Wiederaufnahme vollständig validieren und frisch auf Mac und VM nachweisen; danach alle übrigen offenen Goal-Bereiche fortsetzen.",
+    "title": "Ursprüngliche Dispatcher-Aufzeichnung vervollständigen"
   },
-  "observation_sha256": "00035fcd4eeb93e0a8ea05368a4add1543b4d567ba653e487618c406a09ba561",
+  "observation_sha256": "82a7d7d5380e2fcbb40c2c13c5ef8de959071beef1c36b6a6e970e02b706a2de",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

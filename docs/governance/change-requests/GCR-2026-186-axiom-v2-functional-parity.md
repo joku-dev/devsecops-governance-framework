@@ -194,3 +194,28 @@ strict docs, accountable review and fresh Mac/Linux installation evidence.
 Native per-host equality and cross-host native order differences must be reported
 separately. The previous replay-fix checkpoint is evidence for its own source,
 not acceptance of this feature. Formal matrix states remain in progress.
+
+## Original dispatcher recording and explicit file effects
+
+Restore ordinary role dispatch, recording windows/continuous state, original
+JSON/text/status/summary wires and actual state/log effects through neutral
+`review_dispatch` logic, private application generations and explicit local Git
+and native-file adapters. Minimal ordinary contracts stay separate from the
+execution-review protocol. Provider-review labels record declarations and never
+launch a provider. Native writes require a separate mutable caller checkout;
+an active stored log outside it requires explicit binding of that actual target.
+
+Closed technical schemas bind immutable before/after intent, source data,
+node/runtime and clock provenance. Durable pending metadata precedes log-first,
+state-second individually atomic writes. Recovery uses frozen intent and rejects
+conflicting bytes; a completed operation only verifies outputs. Explicit
+abandonment records non-success without rollback or file certification. Local
+locks do not establish distributed ownership or transfer operating authority.
+
+Classify these as technical product/schema/test/documentation artifacts under
+this existing Goal. No normative source, controls, OPA, released baseline,
+protected acceptance, official indexes or consumer modes change. Require complete
+unchanged original wires and effects, independent original Git selection,
+positive/negative CLI coverage, partial recovery and conflict tests, private
+replay, pinned validation, strict docs, accountable review and fresh Mac/Linux
+installation evidence. Matrix states stay in progress pending the full audit.
