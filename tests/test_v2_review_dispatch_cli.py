@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import io
 import json
 from pathlib import Path
+import shutil
 import sys
 import tempfile
 import unittest
@@ -26,7 +27,9 @@ class DispatcherCLITests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup); self.base = Path(self.temp.name).resolve()
         self.node = self.base / 'node'
-        self.call('init', '--development', '--opa', '/private/tmp/axiom-validation/bin/opa', '--port', '18979')
+        opa = shutil.which('opa')
+        self.assertIsNotNone(opa, 'The repository-pinned OPA must be available on PATH')
+        self.call('init', '--development', '--opa', opa, '--port', '18979')
         self.call('review-dispatch', 'init', '--workspace', 'cli', '--profile', app.PROFILE)
         self.target = self.base / 'target'; self.target.mkdir()
         for name, row in planning_oracle.target_files(FIXTURE).items():
