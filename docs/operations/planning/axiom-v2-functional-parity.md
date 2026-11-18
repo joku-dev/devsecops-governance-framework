@@ -89,10 +89,40 @@ matrix and receipt metadata are excluded from that runtime digest to avoid a
 circular assertion; reader and schema changes remain included. A changed runtime
 needs fresh matching evidence, never relabelled earlier receipts.
 
-Adding this delivery mechanism does not promote any current row. New source
-requires its own full and installed checks before a subject decision. A missing
-original Git reference still prevents full completion, and `--require-complete`
-continues to fail while any original subject remains unfinished.
+Adding this delivery mechanism alone promotes no row. New source requires its
+own full and installed checks before a subject decision. A missing original Git
+reference still prevents full completion, and `--require-complete` continues to
+fail while any original subject remains unfinished.
+
+### First three declared subject decisions
+
+The separate subject audit now binds positive, negative and installed receipts
+for `record_collection_attempt.py`, `record_intake_event.py` and
+`prepare_collection_attempt_retry.py`. Their complete original helper, CLI,
+default, identity, error and file-effect responsibilities were compared against
+the counterpart, including the clock/API/output-parent discrepancies discovered
+and corrected during that audit. Explicit filesystem/resource/diagnostic guard
+differences remain documented below. This is a technical declaration for three
+entrypoints; the other 132, all 37 CI definitions, 16 operating flows and all
+catalogue areas still require completion.
+
+The receipts identify the actually executed source
+`8e0688b1de4e7334f2fff43750e74a9b32825e3d`, its tree and unchanged runtime,
+original and implementation hashes, and hashes/bytes of the original fixture
+contract, private coverage audit, full local/CI logs and both installed proofs.
+That source passed 1,931 local and exact-tree GitHub tests and 15 installed groups
+per host, including 39 intake cases each. The new metadata/cleanup group has 28
+cases. Counts supplement the whole-source audit rather than define its quality.
+All nine public files contain only the closed metadata fields and false authority
+flags; private source material, test reports and review bodies are not published.
+
+The subsequent matrix/receipt/documentation commit changes no runtime code,
+schema, dependency, adapter or baseline. The audit checks that the current runtime
+still equals the observed runtime. Its metadata explicitly retains the earlier
+executed source revision; it does not claim that a later metadata-only tree was
+already installed there. Fresh package checks must separately verify delivery
+of the actual public metadata. There is no independent execution authentication,
+human approval, operating acceptance, automatic retry or production authority.
 
 ## Intake records and retry preparation
 

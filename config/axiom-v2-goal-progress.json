@@ -2,83 +2,84 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Intake-Funktionen anhand einzelner Parit\u00e4tsnachweise pr\u00fcfen",
+    "title": "Vollst\u00e4ndige urspr\u00fcngliche Validierungsabl\u00e4ufe in V2 pr\u00fcfen",
     "entrypoints": [
-      "scripts/record_collection_attempt.py",
-      "scripts/record_intake_event.py",
-      "scripts/prepare_collection_attempt_retry.py"
+      "scripts/bootstrap_validation_env.sh",
+      "scripts/validate_all.sh",
+      "scripts/validate_governance_repo.py",
+      "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Geschlossene Nachweis-Metadaten reproduzierbar bereitstellen, urspr\u00fcngliche Zeitpunkte erhalten und mit frischen Mac/VM-Pr\u00fcfungen sowie vollst\u00e4ndigem Funktionsaudit verbinden; erst danach Einzelzust\u00e4nde festhalten und alle \u00fcbrigen Goal-Bereiche fortsetzen."
+    "next_step": "Die gesamte urspr\u00fcngliche Validierungsorchestrierung mit historischen Schema-, Lifecycle-, Traceability- und OPA-Pr\u00fcfungen auditieren und als expliziten portablen Ablauf nachweisen; der heutige V2-Boundary-Check ersetzt diese Funktionen nicht. Alle \u00fcbrigen Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabl\u00e4ufe bleiben im Goal."
   },
   "last_validation": {
-    "observed_at": "2026-11-18T06:49:00Z",
-    "source_revision": "a8bb8a4fc352898b2eaf51a66f224a794e0e2d7d",
-    "runtime_source_digest": "1ede21fc43e51a62497723ea78fdde0a81f48465918294a6b1086b2a0fd82225",
-    "unit_tests": 1900,
-    "unit_test_seconds": 913.742,
+    "observed_at": "2026-11-18T08:39:40.154170Z",
+    "source_revision": "8e0688b1de4e7334f2fff43750e74a9b32825e3d",
+    "runtime_source_digest": "2fe8b7319b7628fd6cb632c5fbafdc63dd40d1bb76e07c85b564af92c0e1c5ca",
+    "unit_tests": 1931,
+    "unit_test_seconds": 545.996,
     "unit_tests_skipped": 2,
     "installed_groups": {
-      "mac": 14,
-      "linux": 14
+      "mac": 15,
+      "linux": 15
     },
     "equal_complete_result_groups": 9,
     "compared_result_groups": 9,
     "canonical_profile_complete_results_equal": true,
     "full_dcr_equal": true,
-    "full_dcr_sha256": "122e861317e93c4c2c810203f4241537fd88a0fb98c9ec33a7872d07273461f4",
+    "full_dcr_sha256": "3a37c1c3348aef3c57f41a5e7dcc60a1396c38f9525dd5b710c0ca32d17bbac6",
     "ci_workflows": [
       {
         "name": "Agent Review Status",
-        "run_id": "44254100491",
+        "run_id": "44268594493",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44254100491"
-      },
-      {
-        "name": "Dependency Review",
-        "run_id": "44251432717",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432717"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44268594493"
       },
       {
         "name": "Governance Repository Self-Security",
-        "run_id": "44251432715",
+        "run_id": "44265636609",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432715"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636609"
       },
       {
-        "name": "Consumer Lifecycle Guard",
-        "run_id": "44251432661",
+        "name": "Dependency Review",
+        "run_id": "44265636470",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432661"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636470"
       },
       {
         "name": "Prepared runtime offline",
-        "run_id": "44251432686",
+        "run_id": "44265636834",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432686"
-      },
-      {
-        "name": "CodeQL",
-        "run_id": "44251432739",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432739"
-      },
-      {
-        "name": "Governance CI",
-        "run_id": "44251432674",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432674"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636834"
       },
       {
         "name": "Governance CI v2",
-        "run_id": "44251432698",
+        "run_id": "44265636621",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432698"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636621"
+      },
+      {
+        "name": "Governance CI",
+        "run_id": "44265636883",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636883"
+      },
+      {
+        "name": "CodeQL",
+        "run_id": "44265636399",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636399"
+      },
+      {
+        "name": "Consumer Lifecycle Guard",
+        "run_id": "44265636318",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636318"
       }
     ],
     "evidence_kind": "declared_technical_validation_observation",
     "independent_human_approval": false,
     "full_functional_parity": false,
-    "comparison_note": "Vierzehn installierte Pr\u00fcfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Intake: 34 F\u00e4lle je Host mit 33 Original-/Datei-/HTTPS-/Schutztests und tats\u00e4chlich installiertem Attempt/Event/Retry-CLI samt Offline-Pr\u00fcfung. Originaldateien und native Ausgaben pro Host ganz gleich; echte Pfade, Uhren, TLS-Schl\u00fcssel, Prozessausgaben und UUIDs werden host\u00fcbergreifend nicht gleichgesetzt. Runner23, Attestierung24, YAML25, externe Dateien35 und Planung23 bestehen weiter mit ihren dokumentierten Vergleichsgrenzen. Feste ha-CPsWMS-Berichte ganz gleich; ganzer DCR gleich, gegen\u00fcber f231 nur reviewed_commit ver\u00e4ndert. Alle acht tats\u00e4chlichen CI-Familien gr\u00fcn; abschlie\u00dfender tats\u00e4chlicher Review-Job meldet eigenst\u00e4ndig declared_complete. Exakte finale Dateien auf GitHub: 1900 Tests in 913.742 Sekunden, zwei ausgelassen; lokal 1900 Tests in 768.113 Sekunden, einer ausgelassen. Ein fr\u00fcher intermittierender Runner-Testbefund bleibt offen. Keine Zertifizierung der neuen Nachweis-/Uhr\u00e4nderungen, aller 37 CI-Definitionen oder des ganzen Goals."
+    "comparison_note": "F\u00fcnfzehn frische installierte Pr\u00fcfgruppen je Host bestanden; neun ganze bestehende Gesch\u00e4ftsergebnisgruppen gleich. Intake: 39 F\u00e4lle je Host mit 38 Original-/Datei-/HTTPS-/Uhr-/Schutztests und tats\u00e4chlichem installiertem Attempt/Event/Retry-CLI samt Offline-Pr\u00fcfung; neue Metadaten-/Cleanup-/CLI-Gruppe 28, Runner 23 und Attestierung 24 bestanden. Ganze Originalausgaben werden pro Host verglichen; native Pfade, Uhren, TLS-Schl\u00fcssel, UUIDs und Prozessausgaben werden zwischen Hosts nicht gleichgesetzt. Native Kontext-/CI-Anzeigedetails und zwei Custom-Log-Bezeichnungen bleiben explizite Unterschiede. Feste ha-CPsWMS-Berichte und ganzer DCR gleich; gegen a8 nur reviewed_commit ver\u00e4ndert. Alle acht CI-Familien gr\u00fcn; abschlie\u00dfender tats\u00e4chlicher Review-Job declared_complete. GitHub: 1931 Tests in 545.996 Sekunden, zwei ausgelassen; lokal 1931 in 813.540 Sekunden, einer ausgelassen. Getesteter Merge-Dateibaum wurde exakt mit dem Kandidaten verglichen. Mac-Signalfehler separat reproduziert/korrigiert;400 eigene Testgruppen mit 228 behandelten Verweigerungen, null sp\u00e4ten Kindprozess-Schreibzugriffen. Ein historischer, nicht eindeutig zugeordneter Runner-/Pipe-Warnbefund bleibt offen. Dies ist der ausgef\u00fchrte Runtime-Stand 8e0688b; nachfolgende reine Nachweis-Metadaten werden nicht als dort bereits getesteter Dateibaum ausgegeben. Keine Zertifizierung aller 37 CI-Definitionen, 16 Betriebsabl\u00e4ufe oder des ganzen Goals."
   }
 }

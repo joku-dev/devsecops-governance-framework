@@ -2,6 +2,26 @@
 
 ## Subject evidence delivery and audit
 
+### Initial individual technical declarations
+
+Classify nine closed positive/negative/installed receipt metadata files and three
+explicit matrix state transitions as technical evidence declarations. The source
+audit covers the entire original collection-attempt, intake-event and retry-plan
+entrypoints, including defaults, helper/CLI/error/file effects and documented
+bounded safety differences. Concrete clock/API/output-parent discrepancies were
+first reproduced and corrected; fresh source-bound full and Mac/Linux checks
+then passed. Aggregate family counts alone do not justify these transitions.
+
+Keep the observed source `8e0688b1de4e7334f2fff43750e74a9b32825e3d` and tree in
+the metadata, with original/implementation/runtime hashes and hash-only private
+log/proof/coverage references. No runtime code, schema, dependency, adapter,
+normative source, baseline or protected acceptance changes in this follow-up.
+The earlier executed source is not relabelled as the later metadata-only tree;
+require an unchanged runtime and separate checks of the newly delivered pack.
+Public metadata remains declared, unauthenticated technical evidence. All areas,
+other 132 entrypoints, 37 CI definitions, 16 operating flows, independent human
+approval and operating/production authority remain outside these three decisions.
+
 Classify the closed technical parity-receipt schema and bounded metadata reader
 as an executable verification/evidence-contract change. A default public metadata
 pack belongs under `config/axiom-v2-parity-evidence/`; an explicit operator receipt

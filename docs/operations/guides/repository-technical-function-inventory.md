@@ -500,3 +500,10 @@ git ls-files 'scripts/*.py' 'scripts/*.sh' 'scripts/*.mjs' 'scripts/*.js' 'scrip
 
 Zählungen und Links gelten für den angegebenen Commit. Neue Dateien erfordern
 einen erneuten Dateimengenabgleich und eine Prüfung ihrer Aufgaben am Code.
+
+The first three individual technical parity declarations cover collection-attempt
+recording, intake-event recording and retry-plan preparation. Nine closed
+positive/negative/installed metadata receipts bind the complete source audit and
+actual source `8e0688b` tests/host proofs to an unchanged runtime. They do not promote
+the other 132 entrypoints, 37 CI definitions, 16 operating flows or operating authority.
+See [individual subject decisions](../planning/axiom-v2-functional-parity.md#first-three-declared-subject-decisions).
