@@ -40,7 +40,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `8dc38fa` · 1,954 Tests (davon 2 übersprungen) · Mac 16 / VM 16 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `05c8f94` · 1,980 Tests (davon 2 übersprungen) · Mac 17 / VM 17 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
 **Nächster Baustein:** Vollständige ursprüngliche Validierungsabläufe in V2 prüfen.
 

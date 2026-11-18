@@ -12,7 +12,7 @@
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `8dc38fa` · 1,954 Tests (davon 2 übersprungen) · Mac 16 / VM 16 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `05c8f94` · 1,980 Tests (davon 2 übersprungen) · Mac 17 / VM 17 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
 **Nächster Baustein:** Vollständige ursprüngliche Validierungsabläufe in V2 prüfen.
 
@@ -31,7 +31,7 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Das ursprüngliche Working-Tree-Profil ist im Entwicklungsbranch ergänzt: ausdrücklich gewählter Checkout am Produkt-Commit, aktuelle Daten samt neuen/gelöschten Dateien, geändertes Rego mit begrenztem Offline-OPA und privates Replay nach Löschung des Callers. Die 23 bisherigen und 26 neuen Tests sowie der vollständige Originalvergleich am Produkt-Checkout sind grün; vollständige gepinnte Validierung, aktuelle Nachweise und frische Mac/Linux-Prüfung stehen für diesen geänderten Runtime-Stand noch aus. Die drei auf F8 nachgewiesenen Intake-Einstiegspunkte stehen deshalb hier wieder in Arbeit; alle 18 historischen Nachweise bleiben erhalten. Ganze Repository-Validierung mit Release-/Signaturprüfung, Bootstrap und gesamte Test-Orchestrierung bleiben offen. Das Goal umfasst unverändert 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabläufe.
+Das Working-Tree-Runtime-Profil ist am Stand 05c8f94/312d auf Mac und Linux mit je 17 Prüfgruppen und in der CI mit 1.980 Tests nachgewiesen. Der folgende Release-Baustein ergänzt im Entwicklungsbranch alle zehn ursprünglichen Signaturentscheidungen, begrenzte Git-/SSH-Ausführung, einzelne dauerhafte Startbelege und Replay nach Caller-Löschung; der fokussierte Umfang umfasst 143 Fälle. Als Nächstes folgen vollständige gepinnte Validierung, Review und frische sourcegebundene Mac/Linux-Pakete dieses geänderten Runtime-Stands sowie der ganze Repository-Validator mit allen Generatoren und Unterprüfern. Bootstrap und gesamte Test-Orchestrierung bleiben offen. Die drei früher auf F8 nachgewiesenen Intake-Subjekte bleiben hier in Arbeit; alle 18 historischen Nachweise sind erhalten. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabläufe bleiben im Goal.
 
 - `scripts/bootstrap_validation_env.sh`
 - `scripts/validate_all.sh`
@@ -40,26 +40,26 @@ Das ursprüngliche Working-Tree-Profil ist im Entwicklungsbranch ergänzt: ausdr
 
 ## Letzter vollständiger technischer Prüfstand
 
-Beobachtet: `2026-11-18T12:19:41.234524Z`. Geprüfter Quellcommit: `8dc38fab267a72422b606ddd7520d25fb1311640`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
+Beobachtet: `2026-11-18T14:23:55Z`. Geprüfter Quellcommit: `05c8f94339d77b3b6efae48af6ea7956e0a192bf`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
 
-- Unit-Tests: 1954 in 945.8 Sekunden; 2 plattformabhängig übersprungen.
-- Installierte Prüfgruppen: Mac 16, Linux-VM 16.
+- Unit-Tests: 1980 in 674.539 Sekunden; 2 plattformabhängig übersprungen.
+- Installierte Prüfgruppen: Mac 17, Linux-VM 17.
 - Vollständige Ergebnisgruppen: 9 von 9 stimmen zwischen den Rechnern überein.
-- Ausgeführter Runtime-Stand 8dc38fa/F8: 16 frische installierte Prüfgruppen je Host bestanden; neun ganze Geschäftsergebnisgruppen, feste ha-CPsWMS-Berichte und ganzer committed DCR gleich. Runtime-Gruppe: 24 Fälle, ganze Originalausgaben und 222 retained Dateien pro Host verglichen. Intake: 39 Fälle je Host mit Original-/Datei-/HTTPS-/Uhr-/Fehler-/Schutztests und installiertem Attempt/Event/Retry-CLI; neue neun F8-Metadatennachweise gründen auf erneut geprüftem vollständigem Quell-/Semantikaudit. Native Pfade, Uhren, Schlüssel, UUIDs und Diagnostik werden zwischen Hosts nicht gleichgesetzt; zwei Custom-Log-Bezeichnungen bleiben Unterschiede. Alle acht CI-Familien grün; tatsächlicher abschließender Review-Job declared_complete. GitHub: 1954 Tests in 945.800 Sekunden, zwei ausgelassen; lokal 1954 in 752.227 Sekunden, einer ausgelassen. GitHub-Merge-Dateibaum exakt gleich. Drei technische Subjektentscheidungen sind keine unabhängige Authentifizierung oder Abnahme. Die neun alten 2fe8-Nachweise bleiben erhalten. Historischer unklassifizierter Runner-/Pipe-Warnbefund weiter offen. Nachfolgende reine Metadaten werden nicht als schon auf 8dc ausgeführter Dateibaum bezeichnet. Ursprüngliches Runtime-Working-Tree-Profil, vollständiger Repository-Validator/Bootstrap/Test-Orchestrierung offen; keine Zertifizierung aller 37 CI-Definitionen, 16 Betriebsabläufe oder des Goals.
+- Ausgeführter Stand 05c8f94/312d: je 17 frische installierte Mac/Linux-Prüfgruppen bestanden, einschließlich 29 Working-Tree- und 24 committed Runtime-Fällen je Host. Ganze Originalausgaben und je 222 Dateien in pristine/dirty-Profilen stimmen überein; neun ganze Geschäftsergebnisgruppen, feste ha-CPsWMS-Berichte und ganzer committed DCR sind gleich. Alle 2.460 Paketeinträge wurden geprüft: 2.450 Git-Quelldateieinträge, 1.796 ausgewählte physische Dateien, 654 beabsichtigte Sparse-Auslassungen, 846 aktive Fingerprints und zehn Commit-/Tool-/Wheel-Dateien. Native Pfade, Uhren, Schlüssel und Diagnostik bleiben tatsächliche Host-Kontexte. Alle acht CI-Familien grün; tatsächlicher finaler Review-Job declared_complete. GitHub: 1.980 Tests in 674.539 Sekunden, zwei ausgelassen; lokal 1.980 in 813.484 Sekunden, einer ausgelassen. Tatsächlich getesteter Merge-Dateibaum exakt gleich. Die drei F8-Subjekte bleiben nach Runtime-Änderung in Arbeit; alle 18 alten Nachweise historisch erhalten. Der folgende Release-Entwicklungsstand wird nicht als bereits auf 05c ausgeführter Dateibaum bezeichnet. Ganzer Repository-Validator, Bootstrap, Test-Orchestrierung und alle 22/135/37/16 bleiben offen; keine unabhängige Authentifizierung, menschliche Abnahme oder Betriebsautorität. Historischer unklassifizierter Runner-/Pipe-Warnbefund weiter offen.
 - Kanonisches Profil vollständig gleich: **ja**.
-- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `4e6555d40404bd6c4dd5e8df8ed19714c038e865497d70bd55d60f688383634c`.
+- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `b93af31bdf37e84dcb94d38143c01a9693c0e22bf4470dacead95e346daf7902`.
 - Technische Beobachtungen sind deklarierte Nachweise und erteilen keine unabhängige menschliche Freigabe.
 
 | CI-Workflow-Familie | Beobachteter Lauf | Ergebnis |
 | --- | --- | --- |
-| Agent Review Status | [44301537574](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44301537574) | bestanden |
-| CodeQL | [44295444087](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444087) | bestanden |
-| Governance CI v2 | [44295444182](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444182) | bestanden |
-| Prepared runtime offline | [44295444215](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444215) | bestanden |
-| Governance Repository Self-Security | [44295444079](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444079) | bestanden |
-| Dependency Review | [44295444098](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444098) | bestanden |
-| Consumer Lifecycle Guard | [44295444242](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444242) | bestanden |
-| Governance CI | [44295444193](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444193) | bestanden |
+| Agent Review Status | [44323631888](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44323631888) | bestanden |
+| CodeQL | [44319126639](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126639) | bestanden |
+| Consumer Lifecycle Guard | [44319126434](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126434) | bestanden |
+| Dependency Review | [44319126775](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126775) | bestanden |
+| Governance CI | [44319125631](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125631) | bestanden |
+| Governance CI v2 | [44319126116](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126116) | bestanden |
+| Governance Repository Self-Security | [44319125717](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125717) | bestanden |
+| Prepared runtime offline | [44319125538](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125538) | bestanden |
 
 ## Stand aller Funktionsbereiche
 
@@ -102,6 +102,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `c8a09f6a6c318051bfcc908bdbefa2939f5ebab7f525e5db1df855726315f481`. Beobachtungs-SHA-256: `2c322421c8d5cc4f3f9aedd933fce7e91d46cfbbbd6830f30596d963175deeb9`.
+Matrix-SHA-256: `c8a09f6a6c318051bfcc908bdbefa2939f5ebab7f525e5db1df855726315f481`. Beobachtungs-SHA-256: `612bce0807341f16d9d588f481020a8c86fc3184aa5c65b03101f7113528f5c5`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).

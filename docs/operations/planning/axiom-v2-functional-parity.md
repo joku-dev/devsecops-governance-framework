@@ -2654,3 +2654,71 @@ validator, bootstrap, full-suite orchestration and installed acceptance remain
 unfinished. Changing runtime code makes the previous three Intake subject
 verifications stale on this development branch; their original receipts remain
 historical and are not relabelled as fresh proof.
+
+
+## Private original release-integrity verification
+
+The original runtime current-file checkpoint `05c8f94`/`312d` passed the full
+pinned local/CI suite and 17 fresh installed groups on each host. Its original
+and new current-file profiles, complete real consumer reports and full committed
+DCR were compared at that exact source. The following release-verification
+increment changes the runtime fingerprint and needs its own evidence.
+
+```bash
+axiom-v2 validation releases --source-worktree /private/operator/product-data \
+  --at 2026-11-18T14:45:00Z
+axiom-v2 validation releases --source-worktree /private/operator/product-data \
+  --at 2026-11-18T14:45:00Z --output report
+axiom-v2 validation release-inspect --assessment <operation-id>
+axiom-v2 validation release-status
+```
+
+Choose an explicit ordinary product checkout at the exact installed commit.
+Current release policy/manifest/signature/artifact/checksum bytes and actual Git
+references are acquired with held bounded file reads; supplied programs remain
+data. Capture every original `*baseline*`/`v*-public-adoption` reference, including
+nested, lightweight and chained tags and invalid commit-peel targets. SHA-1 and
+SHA-256 objects retain their native identity plus a separate SHA-256 digest;
+only reachable tag/target objects are retained, with no implicit ancestor/tree
+history import into the product's Git repository.
+
+All ten original release-helper functions preserve their decision logic under
+mechanical environment substitutions. A private native port builds an isolated
+reference capsule and runs finite Git/SSH operations with bounded streams,
+deadlines, owned process cleanup and observed executable hashes. Its SSH-native
+profile supplies Git and ssh-keygen explicitly and clears inherited configuration
+and environment. Compatibility with additional signing-provider/keyring profiles
+remains open. Released packages, signing policies, live refs and Trust are inputs,
+not updated authority.
+
+Input files and intent are durable before capsule construction or signature
+verification. Every actual process start has its own private receipt; native
+results are retained before source re-acquisition and final admission. An input
+or reference change leaves the operation pending, with existing evidence intact.
+Replay binds node/runtime/revision, exact input graph, all raw object bytes,
+tool/argument/start observations, whole report and authority fields. It can
+recompute the declared result after the caller disappears without repeating
+signature verification. Local consistency is not authenticated prior execution.
+The product still checks its own source/instance identity.
+
+The original report-only composition remains: missing/unverified tags produce
+report fields rather than a new blocking gate. A completed report returns 0;
+uncaught original exceptions become an explicitly incomplete exit-2 record,
+without an invented traceback. Pending/incomplete operations never auto-resume.
+Non-finite original report values are retained as incomplete transport failures;
+they cannot become admitted JSON records that strict replay cannot read.
+Private retained-data/native diagnostic paths remain their actual context;
+cross-context raw error-byte identity is not claimed. Ordinary-file, canonical
+path, metadata-path and resource guards are explicit operating differences.
+
+The focused cases compare whole original objects/wires in the retained data
+context, actual native signatures, both Git formats, negative package/manifest/
+tag cases, closed-record tampering, input races, journal failure, removed caller,
+real timeout/output limits and all eight runtime module fingerprints. A real
+development CLI run over the six public original tags compared its entire report
+with frozen V1 and replayed identically after the temporary checkout was removed.
+This development observation is separate from a published/installed candidate.
+The complete 29-function repository validator, its 13 report effects, four
+subvalidators and five measured-helper families, bootstrap and full-suite
+orchestration remain in scope and unfinished. All 18 historical receipts and
+the unchanged 22/135/37/16 Goal scope remain retained.

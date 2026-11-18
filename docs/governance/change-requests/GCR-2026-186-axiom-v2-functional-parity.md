@@ -577,3 +577,34 @@ Mac/Linux execution. Runtime fingerprints include the new native adapter and
 capabilities bytes; preserve all 18 old receipts and return their three subjects
 to in-progress until new source-bound evidence is executed. Full repository,
 bootstrap/test orchestration and all22/135/37/16 remain in the Goal.
+
+
+## Original release-integrity decisions and private native replay
+
+Classify the neutral ten-function release decision implementation, finite local
+Git/SSH ports, retained-input graph, private revision-bound application, frozen
+V1 test reference, tests and documentation as executable product behavior under
+this GCR. The frozen fixture is technical reference data, not a new authoritative
+governance source; full Source Document Intake is unnecessary. This is a product
+candidate feature increment, with no baseline release or signing-policy change.
+
+Preserve all original matching tag patterns and native object formats, complete
+signature/manifest/artifact/checksum decisions and report-only composition.
+Create only an isolated private reference capsule from bounded captured objects;
+no source/product refs or historical package bytes are rewritten. Preserve
+explicit signer/namespace semantics, actual tool observations and native failures.
+Record pre-native intent and individual starts, retain results before rechecking
+source, and admit no changed input. Closed replay reconstructs the complete
+declared report without renewed signature verification after caller deletion.
+Pending/incomplete operations require review and never automatically repeat.
+
+Keep the SSH-native execution profile, additional signing-profile work, safe
+filesystem/resource guards, actual private diagnostic paths and incomplete exit
+2 explicit. Declared replay consistency supplies no authenticated execution,
+independent human approval, effective Trust, accepted index, consumer mode or
+operating authority. This component does not close the full repository validator,
+bootstrap/test orchestration or any original scope category. Preserve every
+historical receipt and all 22 areas/135 entrypoints/37 CI/16 operating workflows.
+Require actual whole-original positive/negative tests, native failures, journal
+and source-race guards, runtime fingerprint mutation tests, full pinned validation,
+strict docs, accountable review and fresh exact-source installed Mac/Linux proof.
