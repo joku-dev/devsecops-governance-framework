@@ -1203,3 +1203,16 @@ datierten Dokumentationsabgleich und verweist auf die maßgeblichen Quellen.
 ## Hybrid requirement authority and migration
 
 `scripts/manage_requirement_lifecycle.py` guides approved source documents and Git-native proposals through deterministic comparison, explicit human decision, immutable catalog activation, and authority transition. The Authority Ledger prevents an incomplete migration from silently replacing the external normative source. `scripts/validate_requirement_lifecycle.py` enforces schemas, coverage, source fingerprints, append-only history, catalog integrity, and the separation of blocking enforcement. Active catalog revisions feed the shared Doc-as-Code renderer for reviewable HTML, Word and PDF outputs.
+
+## V2 whole repository validation candidate
+
+`axiom-v2 validation repository` preserves the original complete product
+repository checks and generated effects over an explicitly captured committed
+or working input graph. `repository-inspect` replays native observations,
+clocks, generator order and all output bytes; `repository-status` distinguishes
+pending/incomplete and declared replay-consistent records. The private candidate
+does not update inspected source, accepted indexes or historical authority.
+Registration, focused tests and the complete local pinned suite are green
+(2,367 tests, one deployment skip). Final review and fresh installed Mac/Linux
+delivery remain separate pending gates. See the
+[candidate guide](axiom-v2-repository-validation.md).

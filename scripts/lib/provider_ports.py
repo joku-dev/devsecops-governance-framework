@@ -92,3 +92,22 @@ from lib.providers.validation_tools import ValidationOPA
 from lib.providers.validation_worktree import ValidationWorktree
 from lib.providers.release_references import ReleaseReferences,ReleaseSource
 from lib.providers.release_verification import ReleaseVerificationEnvironment
+from lib.providers.repository_acquisition_replay import audit_acquisition as audit_repository_acquisition
+from lib.providers.repository_profiles import (REPOSITORY_ENGINE_PROFILES, repository_engine_profile, repository_git_tool)
+
+
+def execute_repository_operation(*args, **options):
+    # The native composition uses neutral engine modules. Delay its imports
+    # until the explicit application call, after provider ports are available.
+    from lib.providers.repository_runner import execute_repository_operation as execute
+    return execute(*args, **options)
+
+
+def load_repository_operation(*args, **options):
+    from lib.providers.repository_operations import load_operation
+    return load_operation(*args, **options)
+
+
+def repository_operation_header(root):
+    from lib.providers.repository_journal import read_journal
+    return read_journal(root)[0]['payload']['binding']

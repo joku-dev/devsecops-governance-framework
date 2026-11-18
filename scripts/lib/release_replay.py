@@ -15,8 +15,8 @@ MAX_TOTAL=32*1024**2
 
 
 class ReplayReleaseEnvironment(ReleaseRequests):
-    def __init__(self,root,files,references,metadata,observations):
-        super().__init__(root,files);facts.validate(references)
+    def __init__(self,root,files,references,metadata,observations,*,label_only=False):
+        super().__init__(root,files,label_only=label_only);facts.validate(references)
         if (not isinstance(metadata,dict) or set(metadata)!={'schema_version','capsule_root','tools'}
                 or type(metadata['schema_version']) is not int or metadata['schema_version']!=1
                 or not isinstance(metadata['capsule_root'],str) or not Path(metadata['capsule_root']).is_absolute()

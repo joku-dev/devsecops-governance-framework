@@ -15,8 +15,9 @@ from lib.providers.release_verification import ReleaseVerificationEnvironment
 class NativeFailureTests(unittest.TestCase):
     def run_fixture(self,body,*,timeout):
         with tempfile.TemporaryDirectory() as temporary:
-            root=Path(temporary).resolve();area=root/'private';area.mkdir(mode=0o700)
-            tool=root/'fixture-git';tool.write_text('#!/bin/sh\n'+body+'\n');tool.chmod(0o700)
+            base=Path(temporary).resolve();root=base/'source';root.mkdir(mode=0o700)
+            area=base/'private';area.mkdir(mode=0o700)
+            tool=base/'fixture-git';tool.write_text('#!/bin/sh\n'+body+'\n');tool.chmod(0o700)
             facts={'schema_version':1,'source_head':'1'*40,'source_tree':'2'*40,'object_format':'sha1','refs':{},'objects':{}}
             events=[];started=time.monotonic()
             with self.assertRaises((TimeoutError,ValueError)) as error:

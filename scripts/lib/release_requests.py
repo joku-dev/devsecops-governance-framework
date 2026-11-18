@@ -1,7 +1,7 @@
 """Finite release-verifier requests and deterministic inert temporary text files."""
 import base64
 import io
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import shlex
 
 from lib.release_reference_facts import release_name
@@ -31,9 +31,19 @@ class TemporaryText(io.StringIO):
 
 
 class ReleaseRequests:
-    def __init__(self,root,files):
-        self.root=Path(root).resolve();ValidationFiles(files);self.files=dict(files)
+    def __init__(self,root,files,*,label_only=False):
+        if type(label_only) is not bool:raise ValueError('release_path_profile_required')
+        self.label_only=label_only
+        self.root=self.path(root);ValidationFiles(files);self.files=dict(files)
         self.temporary={};self.temporary_count=0
+
+    def path(self,value):
+        if not self.label_only:return Path(value).resolve()
+        text=str(value);path=PurePosixPath(text)
+        if (not path.is_absolute() or str(path)!=text or '..' in path.parts
+                or len(text)>8192 or any(ord(c)<32 for c in text)):
+            raise ValueError('canonical_release_replay_label_required')
+        return path
 
     def temporary_file(self,mode,*,encoding):
         if mode!='w' or encoding!='utf-8':raise ValueError('unsupported_release_temporary_file')
@@ -59,7 +69,7 @@ class ReleaseRequests:
                 or capture_output is not True or check is not False or type(text) is not bool
                 or input is not None and (not isinstance(input,bytes) or len(input)>1024**2)):
             raise ValueError('invalid_release_native_request')
-        actual_cwd=None if cwd is None else str(Path(cwd).resolve())
+        actual_cwd=None if cwd is None else str(self.path(cwd))
         if actual_cwd not in (None,str(self.root)):raise ValueError('release_native_cwd_not_retained')
         operation=None
         if len(command)==4 and command[:3]==['git','tag','--list'] and command[3] in ('*baseline*','v*-public-adoption'):

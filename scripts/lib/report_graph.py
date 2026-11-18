@@ -120,14 +120,14 @@ def add_lineage(builder: GraphBuilder, register: dict, lineage: dict) -> None:
             )
 
 
-def load_snapshot(root: Path, result: dict) -> dict:
+def load_snapshot(root: Path, result: dict, *, json_loader=load_json) -> dict:
     source_file = result.get("source_file")
     if not source_file:
         return {}
-    return load_json(root, source_file)
+    return json_loader(root, source_file)
 
 
-def add_result_index(builder: GraphBuilder, root: Path, index: dict, domain: str, baseline_field: str) -> None:
+def add_result_index(builder: GraphBuilder, root: Path, index: dict, domain: str, baseline_field: str, *, json_loader=load_json) -> None:
     for repository in index.get("repositories", []):
         repository_id = repository.get("repository_id", "unknown")
         repo_node = builder.add_node(
@@ -139,7 +139,7 @@ def add_result_index(builder: GraphBuilder, root: Path, index: dict, domain: str
         result = repository.get("latest_result", {})
         if not result:
             continue
-        snapshot = load_snapshot(root, result)
+        snapshot = load_snapshot(root, result, json_loader=json_loader)
         pipeline = snapshot.get("pipeline", {})
         repository_context = snapshot.get("repository", {})
         run_id = str(result.get("pipeline_run_id", "unknown"))
@@ -262,17 +262,17 @@ def add_typed_evidence(builder: GraphBuilder, index: dict) -> None:
                 builder.add_edge("RECORDED_IN", evidence_node, snapshot_node)
 
 
-def build_graph(root: Path) -> dict:
-    register = load_yaml(root, SOURCE_INPUTS[0])
-    lineage = load_json(root, SOURCE_INPUTS[1])
-    repository_index = load_json(root, SOURCE_INPUTS[2])
-    architecture_index = load_json(root, SOURCE_INPUTS[3])
-    typed_index = load_json(root, SOURCE_INPUTS[4])
+def build_graph(root: Path, *, json_loader=load_json, yaml_loader=load_yaml) -> dict:
+    register = yaml_loader(root, SOURCE_INPUTS[0])
+    lineage = json_loader(root, SOURCE_INPUTS[1])
+    repository_index = json_loader(root, SOURCE_INPUTS[2])
+    architecture_index = json_loader(root, SOURCE_INPUTS[3])
+    typed_index = json_loader(root, SOURCE_INPUTS[4])
 
     builder = GraphBuilder()
     add_lineage(builder, register, lineage)
-    add_result_index(builder, root, repository_index, "devsecops", "governance_baseline_ref")
-    add_result_index(builder, root, architecture_index, "architecture", "architecture_baseline_ref")
+    add_result_index(builder, root, repository_index, "devsecops", "governance_baseline_ref", json_loader=json_loader)
+    add_result_index(builder, root, architecture_index, "architecture", "architecture_baseline_ref", json_loader=json_loader)
     add_typed_evidence(builder, typed_index)
 
     nodes = sorted(builder.nodes.values(), key=lambda item: item["id"])

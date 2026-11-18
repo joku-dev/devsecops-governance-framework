@@ -70,10 +70,13 @@ def baseline(root=ROOT, baseline_id=None):
 
 
 def source_digest():
+    # Whole repository execution and its closed historical data readers.
     paths = [*(p for p in sorted((ROOT/'scripts/lib/portable').glob('*.py')) if p.name!='adapters.py'),
              *sorted((ROOT/'scripts/lib/providers').glob('*.py')), ROOT/'scripts/lib/provider_errors.py', ROOT/'scripts/lib/provider_ports.py', ROOT/'scripts/lib/application_source.py', ROOT/'scripts/lib/v2_boundary.py', ROOT/'scripts/lib/v2_application.py', ROOT/'scripts/axiom_v2.py', ROOT/'config/axiom-v2-boundaries.json', ROOT/'schemas/workbench-publication-v2.schema.json', ROOT/'scripts/control_evaluation.py',
              ROOT/'scripts/governance_runtime.py', ROOT/'scripts/install_validation_opa.py',
              ROOT/'scripts/validation-toolchain.env', ROOT/'config/portable-runtime-compatibility.json', ROOT/'requirements-validation.lock', *sorted((ROOT/'schemas').glob('portable-*-v1.schema.json'))]
+    paths.extend(sorted((ROOT/'scripts/lib').glob('repository_*.py')))
+    paths.extend(sorted((ROOT/'scripts/lib/repository_lifecycle').glob('*.py')))
     paths.extend([ROOT/'scripts/lib/v2_distribution.py', ROOT/'scripts/lib/v2_source.py', ROOT/'scripts/lib/functional_parity.py', ROOT/'config/axiom-v2-distribution.json'])
     paths.extend([ROOT/'scripts/lib/full_evaluation.py',ROOT/'scripts/lib/architecture_assessment.py',ROOT/'scripts/lib/tool_integrity.py'])
     paths.extend(ROOT/'scripts/lib'/name for name in ('candidate_workspace.py','requirement_application.py','requirement_workspace.py','requirement_lifecycle.py'))

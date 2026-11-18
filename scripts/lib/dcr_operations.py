@@ -47,8 +47,8 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def validate_schema(value: dict, schema: dict, label: str) -> None:
-    errors = sorted(Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(value), key=lambda item: list(item.path))
+def validate_schema(value: dict, schema: dict, label: str, *, validator_class=Draft202012Validator) -> None:
+    errors = sorted(validator_class(schema, format_checker=FormatChecker()).iter_errors(value), key=lambda item: list(item.path))
     if errors:
         location = ".".join(str(part) for part in errors[0].path) or "<root>"
         raise OperationsValidationError(f"{label} schema error at {location}: {errors[0].message}")
@@ -95,17 +95,17 @@ def plan_scope(matrix: dict, change_types: list[str], *, impact_known: bool = Tr
     }
 
 
-def validate(root: Path = ROOT) -> dict:
+def validate(root: Path = ROOT, *, validator_class=Draft202012Validator) -> dict:
     loaded = {}
     for label, (path, schema_path) in FILES.items():
         value = read_json(root / path)
-        validate_schema(value, read_json(root / schema_path), label)
+        validate_schema(value, read_json(root / schema_path), label, validator_class=validator_class)
         loaded[label] = value
 
     for label, manifest_path in CATALOG_MANIFESTS.items():
         catalog = loaded[label]
         manifest = read_json(root / manifest_path)
-        validate_schema(manifest, read_json(root / "schemas/document-consistency-review-manifest.schema.json"), f"{label} manifest")
+        validate_schema(manifest, read_json(root / "schemas/document-consistency-review-manifest.schema.json"), f"{label} manifest", validator_class=validator_class)
         if digest(root / manifest_path) != catalog["source_manifest_sha256"]:
             raise OperationsValidationError(f"{label} source manifest digest mismatch")
         if catalog["source_ids"] != [item["id"] for item in manifest["source_documents"]]:

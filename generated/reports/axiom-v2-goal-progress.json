@@ -5,8 +5,8 @@
   "goal_status": "open",
   "groups": {
     "areas": {
-      "in_progress": 13,
-      "pending": 9,
+      "in_progress": 14,
+      "pending": 8,
       "remaining": 22,
       "remaining_subjects": [
         "FP-01",
@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 74,
-      "pending": 61,
+      "in_progress": 77,
+      "pending": 58,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -266,72 +266,72 @@
       {
         "name": "Agent Review Status",
         "result": "passed",
-        "run_id": "44323631888",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44323631888"
+        "run_id": "44348166826",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44348166826"
       },
       {
         "name": "CodeQL",
         "result": "passed",
-        "run_id": "44319126639",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126639"
+        "run_id": "44342673021",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673021"
       },
       {
         "name": "Consumer Lifecycle Guard",
         "result": "passed",
-        "run_id": "44319126434",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126434"
+        "run_id": "44342673027",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673027"
       },
       {
         "name": "Dependency Review",
         "result": "passed",
-        "run_id": "44319126775",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126775"
+        "run_id": "44342672978",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672978"
       },
       {
         "name": "Governance CI",
         "result": "passed",
-        "run_id": "44319125631",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125631"
+        "run_id": "44342672851",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672851"
       },
       {
         "name": "Governance CI v2",
         "result": "passed",
-        "run_id": "44319126116",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126116"
+        "run_id": "44342673254",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673254"
       },
       {
         "name": "Governance Repository Self-Security",
         "result": "passed",
-        "run_id": "44319125717",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125717"
+        "run_id": "44342672840",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672840"
       },
       {
         "name": "Prepared runtime offline",
         "result": "passed",
-        "run_id": "44319125538",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125538"
+        "run_id": "44342672955",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672955"
       }
     ],
-    "compared_result_groups": 9,
-    "comparison_note": "Ausgeführter Stand 05c8f94/312d: je 17 frische installierte Mac/Linux-Prüfgruppen bestanden, einschließlich 29 Working-Tree- und 24 committed Runtime-Fällen je Host. Ganze Originalausgaben und je 222 Dateien in pristine/dirty-Profilen stimmen überein; neun ganze Geschäftsergebnisgruppen, feste ha-CPsWMS-Berichte und ganzer committed DCR sind gleich. Alle 2.460 Paketeinträge wurden geprüft: 2.450 Git-Quelldateieinträge, 1.796 ausgewählte physische Dateien, 654 beabsichtigte Sparse-Auslassungen, 846 aktive Fingerprints und zehn Commit-/Tool-/Wheel-Dateien. Native Pfade, Uhren, Schlüssel und Diagnostik bleiben tatsächliche Host-Kontexte. Alle acht CI-Familien grün; tatsächlicher finaler Review-Job declared_complete. GitHub: 1.980 Tests in 674.539 Sekunden, zwei ausgelassen; lokal 1.980 in 813.484 Sekunden, einer ausgelassen. Tatsächlich getesteter Merge-Dateibaum exakt gleich. Die drei F8-Subjekte bleiben nach Runtime-Änderung in Arbeit; alle 18 alten Nachweise historisch erhalten. Der folgende Release-Entwicklungsstand wird nicht als bereits auf 05c ausgeführter Dateibaum bezeichnet. Ganzer Repository-Validator, Bootstrap, Test-Orchestrierung und alle 22/135/37/16 bleiben offen; keine unabhängige Authentifizierung, menschliche Abnahme oder Betriebsautorität. Historischer unklassifizierter Runner-/Pipe-Warnbefund weiter offen.",
-    "equal_complete_result_groups": 9,
+    "compared_result_groups": 10,
+    "comparison_note": "Ausgeführter Stand bfcdd9e/5b294f33: je 18 frische installierte Mac/Linux-Prüfgruppen bestanden, darunter 147 Release-Fälle, 29 Working-Tree- und 24 committed Runtime-Fälle. Ganze ursprüngliche positive/negative Release-Berichte und JSON-Ausgaben sowie CLI-Replay nach Caller-Löschung stimmen je Host mit V1 überein. Die Release-Ergebnisse und neun bisherige ganze Geschäftsergebnisgruppen, feste ha-CPsWMS-Berichte, ganzer committed DCR und je 222 ursprüngliche Dateien sind zwischen den Hosts im dokumentierten Vergleichsumfang gleich. Alle 2.474 Paketeinträge geprüft: 2.464 Git-Quelldateien, 1.804 physische Dateien, 660 beabsichtigte Sparse-Auslassungen, 854 aktive Fingerprints und zehn Tool-/Wheel-/Commit-Dateien. Native Pfade, Uhren, Schlüssel und Rohdiagnostik bleiben Host-Kontext. Beide CI-Testläufe mit je 2.123 Tests bestanden: gepinnt 790,090 Sekunden, Python 3.11 1.093,243 Sekunden, jeweils zwei ausgelassen; lokal 930,488 Sekunden, einer ausgelassen. Alle acht CI-Familien grün, finaler GitHub-Review-Lauf 44348166826 declared_complete, tatsächlicher Merge-Dateibaum exakt gleich. Die drei F8-Subjekte bleiben in Arbeit; alle 18 historischen Nachweise bleiben erhalten. Ganze Repository-Validierung, zusätzliche Signaturprofile, Bootstrap, Test-Orchestrierung und alle 22/135/37/16 bleiben offen. Keine unabhängige Abnahme oder Betriebsautorität; historischer Runner-/Pipe-Befund weiter offen.",
+    "equal_complete_result_groups": 10,
     "evidence_kind": "declared_technical_validation_observation",
     "full_dcr_equal": true,
-    "full_dcr_sha256": "b93af31bdf37e84dcb94d38143c01a9693c0e22bf4470dacead95e346daf7902",
+    "full_dcr_sha256": "9c52d86b85e09bb916301d1e340db26f99111859610819643f5149b950873275",
     "full_functional_parity": false,
     "independent_human_approval": false,
     "installed_groups": {
-      "linux": 17,
-      "mac": 17
+      "linux": 18,
+      "mac": 18
     },
-    "observed_at": "2026-11-18T14:23:55Z",
-    "runtime_source_digest": "312d2eae1b77c6ec379a22e9e57b4eb04045a85524fb80cd2fcd1d557c4a26ae",
-    "source_revision": "05c8f94339d77b3b6efae48af6ea7956e0a192bf",
-    "unit_test_seconds": 674.539,
-    "unit_tests": 1980,
+    "observed_at": "2026-11-18T16:32:57Z",
+    "runtime_source_digest": "5b294f3333099388544bd53d1bae0c6615a7e0f5ddd2da0fcaaac03e526f4eb2",
+    "source_revision": "bfcdd9e2e51bbd13db079b93484dc7dcecb0c20c",
+    "unit_test_seconds": 790.09,
+    "unit_tests": 2123,
     "unit_tests_skipped": 2
   },
-  "matrix_sha256": "c8a09f6a6c318051bfcc908bdbefa2939f5ebab7f525e5db1df855726315f481",
+  "matrix_sha256": "30a1157ed8bc9409dc5d01adb38d838e38228ab174af09e3d4aa298746410eef",
   "next_work": {
     "entrypoints": [
       "scripts/bootstrap_validation_env.sh",
@@ -339,10 +339,10 @@
       "scripts/validate_governance_repo.py",
       "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Das Working-Tree-Runtime-Profil ist am Stand 05c8f94/312d auf Mac und Linux mit je 17 Prüfgruppen und in der CI mit 1.980 Tests nachgewiesen. Der folgende Release-Baustein ergänzt im Entwicklungsbranch alle zehn ursprünglichen Signaturentscheidungen, begrenzte Git-/SSH-Ausführung, einzelne dauerhafte Startbelege und Replay nach Caller-Löschung; der fokussierte Umfang umfasst 143 Fälle. Als Nächstes folgen vollständige gepinnte Validierung, Review und frische sourcegebundene Mac/Linux-Pakete dieses geänderten Runtime-Stands sowie der ganze Repository-Validator mit allen Generatoren und Unterprüfern. Bootstrap und gesamte Test-Orchestrierung bleiben offen. Die drei früher auf F8 nachgewiesenen Intake-Subjekte bleiben hier in Arbeit; alle 18 historischen Nachweise sind erhalten. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabläufe bleiben im Goal.",
-    "title": "Vollständige ursprüngliche Validierungsabläufe in V2 prüfen"
+    "next_step": "Letzter veröffentlichter Nachweis: bfcdd9e/5b294f33, je 18 installierte Mac/Linux-Prüfgruppen und acht grüne CI-Familien. Der neue Repository-Kandidat implementiert vollständige Engine, committed/working Source-Erfassung, private unveränderliche Inhalte, native Einzeljournale und CLI mit strengem Offline-Replay. Lokal sind 2.367 Tests in 1.188,502 Sekunden grün, eine bekannte Deployment-Auslassung; alle 149 vorgesehenen Dateien blieben während des Gesamtlaufs bytegleich. Nach den korrigierten Release-Integrationsfehlern sind zusätzlich 150 betroffene Regressionen grün. Der externe Host-Testtreiber besteht auf einer getrennten Kopie 244 Tests und ganze positive/negative Originalvergleiche über jeweils 2.588 Dateinamen und Rohinhalte. Dies sind Vorprüfungen ohne installierte Abnahme. Jetzt folgen sourcegebundener Abschlussreview, Commit/Draft-PR und neue exakte Mac/Linux-Pakete mit allen Prüfgruppen sowie dem festen ha-CPsWMS-Vergleich. Ursprüngliche Child-Tracebacks, weitere Signaturprofile, Lifecycle-Base-Ref/New-Provider und vollständige Bootstrap-/Test-/Worker-Orchestrierung bleiben offen. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen, 16 Betriebsabläufe und 18 historischen Nachweise bleiben erhalten. Keine neue Freigabe oder Betriebsautorität.",
+    "title": "Repository-Kandidaten reviewen und als Mac/Linux-Paket nachweisen"
   },
-  "observation_sha256": "612bce0807341f16d9d588f481020a8c86fc3184aa5c65b03101f7113528f5c5",
+  "observation_sha256": "5ce77e9d467585fc5ab887692ed70086fb465df108a57a5e07e9dc5b328ed323",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

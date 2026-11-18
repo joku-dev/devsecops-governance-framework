@@ -530,3 +530,18 @@ live under `providers/` and cross the explicit composition boundary. The private
 report-only component preserves released package/signing-policy bytes and source
 refs. Full repository validation/bootstrap/test orchestration and additional
 signing-provider profiles remain open; this is no new subject/Goal approval.
+
+The whole repository development candidate adds `validation repository`,
+`repository-inspect` and `repository-status`. Its registered neutral modules
+retain all 29 whole-validator functions, complete generator/subvalidator
+composition, snapshot families, closed schemas and historical lifecycle checks.
+Finite adapters capture committed blobs or held working files at the product
+revision, preserve individual native intent/start/completion records, and retain
+private immutable content with a durable ordered journal. Inspection replays
+the complete acquisition and engine trace without the separate caller source
+or native capsule, comparing every output byte. Pending/incomplete states and
+unpreserved original child traceback behavior remain explicit. This candidate
+has passed the complete local pinned suite (2,367 tests, one deployment skip)
+and still needs final review and fresh exact-source installed proof;
+the whole Goal and all historical subject receipts retain their current scope.
+See [repository validation and replay](axiom-v2-repository-validation.md).

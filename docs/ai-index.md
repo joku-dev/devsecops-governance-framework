@@ -26,6 +26,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Understand foundation, direction, and architectural guardrails | `docs/foundation/01_VISION.md`, `docs/foundation/02_CONSTITUTION.md`, `docs/foundation/03_ARCHITECTURE_PRINCIPLES.md`, `docs/foundation/05_CURRENT_DIRECTION.md` |
 | Run the live demo | `docs/demos/demo-end-to-end-governance.md` |
 | Understand current ha-CPsWMS status | `docs/operations/status/ha-cpswms-governance-validation-status.md`, `docs/demos/ha-cpswms-architecture-governance-results.md` |
+| Inspect the V2 whole repository validation candidate | `docs/operations/guides/axiom-v2-repository-validation.md`, `scripts/lib/repository_application.py`, `scripts/lib/repository_inspection.py` (registered development candidate; fresh installed proof pending) |
 | Understand source-document lineage | `generated/reports/source-lineage-report.md` |
 | See which registered sources currently feed models and which remain under review | `docs/operations/guides/source-document-dependency-map.md` |
 | Classify a new artifact before adding it | `docs/operations/processes/new-artifact-intake-process.md` |

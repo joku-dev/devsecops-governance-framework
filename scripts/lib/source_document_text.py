@@ -8,6 +8,7 @@ are never silently treated as empty, reviewed content.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import io
 from pathlib import Path
 import re
 import zipfile
@@ -161,6 +162,24 @@ def extract_source_document(path: Path) -> ExtractedSourceDocument:
     if suffix == ".pdf":
         return _extract_pdf(path)
     raise SourceDocumentExtractionError(f"unsupported source document format: {suffix or '<none>'}")
+
+
+def extract_source_document_bytes(name: str, raw: bytes) -> ExtractedSourceDocument:
+    """Apply the same parsers to retained bytes without reopening a caller path."""
+    if type(name) is not str or type(raw) is not bytes:
+        raise TypeError('source_document_name_and_bytes_required')
+
+    class RetainedDocument(io.BytesIO):
+        suffix = Path(name).suffix
+
+        def is_file(self):
+            return True
+
+        def read_text(self, encoding='utf-8'):
+            return raw.decode(encoding)
+
+    with RetainedDocument(raw) as stream:
+        return extract_source_document(stream)
 
 
 def line_for_markdown_parser(source_line: SourceLine) -> str:

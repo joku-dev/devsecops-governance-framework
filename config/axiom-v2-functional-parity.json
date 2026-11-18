@@ -23,7 +23,7 @@
     },
     {
       "id": "FP-02",
-      "title": "\u00c4nderungen an Vorgaben vorbereiten",
+      "title": "Änderungen an Vorgaben vorbereiten",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -33,7 +33,7 @@
     },
     {
       "id": "FP-03",
-      "title": "Herkunft und Zusammenh\u00e4nge nachweisen",
+      "title": "Herkunft und Zusammenhänge nachweisen",
       "state": "in_progress",
       "v2_capabilities": [
         "reports graph/control coverage/three traceability routes",
@@ -80,7 +80,7 @@
     },
     {
       "id": "FP-06",
-      "title": "OPA-Pr\u00fcfregeln ausf\u00fchren",
+      "title": "OPA-Prüfregeln ausführen",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -129,7 +129,7 @@
     },
     {
       "id": "FP-10",
-      "title": "Baselines ver\u00f6ffentlichen und konsumieren",
+      "title": "Baselines veröffentlichen und konsumieren",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -149,7 +149,7 @@
     },
     {
       "id": "FP-12",
-      "title": "Ergebnisgeschichte sch\u00fctzen",
+      "title": "Ergebnisgeschichte schützen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -207,7 +207,7 @@
     },
     {
       "id": "FP-16",
-      "title": "Operative \u00c4nderungen \u00fcber PRs ver\u00f6ffentlichen",
+      "title": "Operative Änderungen über PRs veröffentlichen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -227,7 +227,7 @@
     },
     {
       "id": "FP-18",
-      "title": "Einf\u00fchrung und Betriebsreife bewerten",
+      "title": "Einführung und Betriebsreife bewerten",
       "state": "in_progress",
       "v2_capabilities": [
         "reports portfolio preserves committed registry/index/previous-projection and explicit clock; remaining readiness/live acceptance open",
@@ -259,7 +259,7 @@
     },
     {
       "id": "FP-19",
-      "title": "Betrieb und eigene Sicherheit \u00fcberwachen",
+      "title": "Betrieb und eigene Sicherheit überwachen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -269,7 +269,7 @@
     },
     {
       "id": "FP-20",
-      "title": "Reviews, Validierung und Kommunikation unterst\u00fctzen",
+      "title": "Reviews, Validierung und Kommunikation unterstützen",
       "state": "in_progress",
       "v2_capabilities": [
         "provenance private record/import/index/check/inspect preserves original declared association wires; no verified execution or approval",
@@ -281,7 +281,8 @@
         "review-pr status/inspect reads actual exact local Git target/head/merge-base and both committed role/skill/routing snapshots; original target/proposed union and whole status wires, SHA1/SHA256, dirty checkout independence and private offline rederivation; no remote PR identity, live freshness, execution or approval",
         "review-dispatch ordinary minimal role selection, original window/continuous/status/summary and complete stdout/state/log; private generations or explicit caller-file adapter with durable frozen intent, partial resume, completed-output verification and explicit non-success abandonment; no provider starts or authority transfer",
         "review-plan check-file accepts bounded external original plan/results files without node-plan ownership; rederives whole current Git/contract-bound plan and original readiness report; version2 retained external origin/no parent, version1 prepare/check preserved; private replay claims no current target or provider/approval",
-        "shared review contract parser restores original SafeLoader scalar/list/mapping aliases and inert safe extension types; bounded composition and expanded graph before construction, unique keys and original required-field/authority guards; record formats/source-bound historical runtimes unchanged"
+        "shared review contract parser restores original SafeLoader scalar/list/mapping aliases and inert safe extension types; bounded composition and expanded graph before construction, unique keys and original required-field/authority guards; record formats/source-bound historical runtimes unchanged",
+        "Whole repository CLI candidate with original generator/subvalidator composition, committed/held working capture, durable per-native/effect journal and strict deleted-caller ordered replay; exact-source installed delivery and original child traceback semantics remain open."
       ],
       "positive_tests": [
         "tests/test_v2_evidence_agent_provenance.py:actual original record/index/conflict/validator wires and immutable private generations",
@@ -294,7 +295,9 @@
         "tests/test_v2_review_dispatch*.py and tests/acceptance/axiom_v2_review_dispatch.py:unchanged original orchestration/output/effects plus independent original real Git selection, non-Git explicit paths, large counters, durable recovery and caller-deletion replay",
         "tests/test_v2_review_plan_object_format.py and tests/acceptance/axiom_v2_review_planning.py:both native Git formats, named/exact base selection, complete original plan/template/dispatch/check files, frozen-base alias movement, SHA256 original receipt main/export/log and caller-deletion replay",
         "tests/test_v2_external_review_check.py and tests/acceptance/axiom_v2_external_review_check.py:unchanged original CLI external file checks, complete report/exit equality across both native formats and based/baseless/explicit scope, retained exact operator bytes and caller-deletion replay",
-        "tests/test_v2_review_contract_yaml.py and tests/acceptance/axiom_v2_review_contract_yaml.py:whole unchanged original plans/checks/dispatch/receipt-log/committed-PR JSON and Markdown across SHA1/SHA256 and four YAML variants; exact raw input retention and caller-deletion replay"
+        "tests/test_v2_review_contract_yaml.py and tests/acceptance/axiom_v2_review_contract_yaml.py:whole unchanged original plans/checks/dispatch/receipt-log/committed-PR JSON and Markdown across SHA1/SHA256 and four YAML variants; exact raw input retention and caller-deletion replay",
+        "tests/test_v2_repository_inspection.py",
+        "tests/test_v2_repository_application.py"
       ],
       "negative_tests": [
         "tests/test_v2_evidence_agent_provenance.py:source conflicts, malformed/schema-invalid data, stale reports, traversal, foreign nodes, quotas and no inherited authority",
@@ -307,18 +310,28 @@
         "tests/test_v2_review_dispatch*.py:stale sources, tampered/foreign bindings, path/symlink/hardlink/protected scopes, quotas, shared locks, partial writes, pending fences, completed rollback rejection and abandonment without native certification",
         "tests/test_v2_review_plan_object_format.py:conflicting selectors before state creation, bounded/noncommit references, moving reference during admission, mixed commit/index formats and forged execution-protocol authority; installed original/V2 stale source and index checks",
         "tests/test_v2_external_review_check.py:stale HEAD/source/index/mode/contracts/scope, rehashed roles/authority/validations/extra fields, malformed/oversize/duplicate JSON, admission drift, input tamper and version/origin/parent relabel rejection",
-        "tests/test_v2_review_contract_yaml.py:cycles and node/byte expansion fail before value construction; alias/composition/depth/source budgets, duplicate alias keys, unsafe tags, original-unsupported merge keys, protocol authority and retained-byte tamper rejection; installed guard classifications distinguish original negatives from application resource/authority limits"
+        "tests/test_v2_review_contract_yaml.py:cycles and node/byte expansion fail before value construction; alias/composition/depth/source budgets, duplicate alias keys, unsafe tags, original-unsupported merge keys, protocol authority and retained-byte tamper rejection; installed guard classifications distinguish original negatives from application resource/authority limits",
+        "tests/test_v2_repository_inspection.py",
+        "tests/test_v2_repository_application.py"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
     {
       "id": "FP-21",
-      "title": "Findings, Entscheidungen und Ma\u00dfnahmen im Lifecycle verfolgen",
-      "state": "pending",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "title": "Findings, Entscheidungen und Maßnahmen im Lifecycle verfolgen",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "Neutral lifecycle contract, synthetic/history and zero-argument default ledger validation over closed captured bytes; offline legacy capture replay only. Native base-ref/new-provider flows, live actions and operating authority remain open."
+      ],
+      "positive_tests": [
+        "tests/test_v2_repository_lifecycle_kernel.py",
+        "tests/test_v2_repository_lifecycle_history.py"
+      ],
+      "negative_tests": [
+        "tests/test_v2_repository_lifecycle_kernel.py",
+        "tests/test_v2_repository_lifecycle_history.py"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
@@ -3388,8 +3401,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/repository_lifecycle/context.py:RepositoryLifecycle.validate_examples",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3410,8 +3423,8 @@
         "--verify-new-provider"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/repository_lifecycle/context.py:RepositoryLifecycle.validate_default_ledger",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3452,8 +3465,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/repository_application.py:RepositoryContext.create",
+      "state": "in_progress",
       "evidence": []
     },
     {
