@@ -20,7 +20,7 @@ from lib.functional_parity import git_read
 from lib.portable.contracts import ROOT,canonical_digest
 from lib.portable.runtime import read_json,source_digest
 from lib.provider_ports import (INTAKE_RECORD_PROFILES,intake_record_profile,intake_record_event_defaults,
-    intake_record_token,intake_record_endpoint,acquire_intake_record_metadata,intake_record_metadata,
+    intake_record_token,intake_record_endpoint,intake_record_api_selection,acquire_intake_record_metadata,intake_record_metadata,
     intake_attempt_source,intake_event_sources,intake_record_initial_observation)
 from lib.result_assessments import identity
 from lib.result_bytes import safe_bytes,strict_json
@@ -78,7 +78,7 @@ def checked_request(value):
     if value['kind']!='attempt' and value['token_origin']!='none':raise ValueError('unexpected_intake_record_credential_origin')
     if value['kind']=='attempt':
         if type(value['retryable']) is not bool or value['status'] not in ('partial','failed'):raise ValueError('invalid_collection_attempt_status')
-        if intake_record_endpoint(value['api_url'])!=value['api_url']:raise ValueError('invalid_intake_record_endpoint')
+        if value['api_url'] is not None and intake_record_endpoint(value['api_url'])!=value['api_url']:raise ValueError('invalid_intake_record_endpoint')
     elif value['kind']=='event':
         if value['status'] not in ('success','partial','failed') or value['intake_type'] not in ('devsecops_governance','architecture_governance','typed_evidence') or type(value['intake_run_attempt']) is not int:
             raise ValueError('invalid_intake_event_request')
@@ -90,8 +90,9 @@ def checked_request(value):
     return value
 
 
-def derive(request,before,lookup,response):
+def derive(request,before,lookup,response,native_time):
     profile=intake_record_profile(request['profile']);kind=request['kind'];stderr=b'';native_output=b''
+    clock=logic.checked_native_time(request,native_time,required=True)
     if kind=='retry':
         value=json.loads(before[request['attempt_path']].decode('utf-8'))
         payload=logic.retry_plan(value,profile['routes'],read_json(ROOT/'schemas/evidence-collection-attempt.schema.json'))
@@ -100,11 +101,11 @@ def derive(request,before,lookup,response):
     else:
         if kind=='attempt':
             run,errors,stderr=intake_record_metadata(lookup,response,request['repository_id'],request['run_id'])
-            payload=logic.attempt(request,intake_attempt_source(run,request['artifact_name']),errors,request['at'])
+            payload=logic.attempt(request,intake_attempt_source(run,request['artifact_name']),errors,clock['value'])
             schema='evidence-collection-attempt.schema.json'
         else:
             source,intake=intake_event_sources(request)
-            completed=request['completed_at'] or logic.utc_timestamp(logic.parse_timestamp(request['at']))
+            completed=request['completed_at'] or logic.utc_timestamp(logic.parse_timestamp(clock['value']))
             payload=logic.event(request,source,intake,completed);schema='intake-operation-event.schema.json'
         requested,_=logic.record_paths(kind,payload,request['run_id']);effects.relative(requested)
         projection=logic.ledger_projection(kind,before,requested,payload,request['root'])
@@ -224,10 +225,11 @@ class IntakeRecordContext:
         response=outputs.get('metadata-response.bin')
         if record['lookup']['body_retained']!=(response is not None):raise ValueError('intake_record_response_members_changed')
         if record['native_result_available']!=('native-payload.json' in outputs):raise ValueError('intake_record_native_result_members_changed')
+        logic.checked_native_time(request,record['native_time'],required=record['native_result_available'])
         if request['kind']!='attempt' and record['lookup']!=intake_record_initial_observation():raise ValueError('unexpected_intake_record_provider_access')
         if record['exit_code']==0:
             before={k.removeprefix('ledger/'):raw for k,raw in files.items() if k.startswith('ledger/')}
-            payload,projection,requested,stdout,stderr,append,valid=derive(request,before,record['lookup'],response)
+            payload,projection,requested,stdout,stderr,append,valid=derive(request,before,record['lookup'],response,record['native_time'])
             if inputs['conflict_filter']!=([projection['conflict_path']] if projection['conflict_path'] else []):raise ValueError('intake_record_conflict_selection_changed')
             if outputs.get('native-payload.json')!=logic.wire(payload) or outputs.get('native-stdout.bin')!=stdout or outputs.get('native-stderr.bin')!=stderr:raise ValueError('intake_record_native_output_changed')
             after={k.removeprefix('ledger-after/'):raw for k,raw in outputs.items() if k.startswith('ledger-after/')}
@@ -263,6 +265,9 @@ class IntakeRecordContext:
 
     def _execute(self,request,token,ledger):
         selected_scopes=scopes(request);kind=request['kind'];output=None;output_before=output_metadata=None;conflict_filter=[]
+        native_time=logic.native_record_time(request)
+        if kind=='event' and not request['completed_at'] and request['time_source']=='system_clock':
+            native_time=logic.native_record_time(request,datetime.now(timezone.utc).isoformat().replace('+00:00','Z'))
         filters={} if kind=='retry' else {selected_scopes[1]:[]}
         if kind=='retry':
             raw,row=ledger.one(request['attempt_path'])
@@ -289,7 +294,9 @@ class IntakeRecordContext:
                 def lookup_start():self.current();progress('metadata_requested')
                 lookup,response=acquire_intake_record_metadata(request['api_url'],request['repository_id'],request['run_id'],token,lookup_start)
                 if response is not None:outputs['metadata-response.bin']=response
-            payload,projection,requested,stdout,stderr,append,valid=derive(request,before,lookup,response)
+                if request['time_source']=='system_clock':
+                    native_time=logic.native_record_time(request,datetime.now(timezone.utc).isoformat().replace('+00:00','Z'))
+            payload,projection,requested,stdout,stderr,append,valid=derive(request,before,lookup,response,native_time)
             if projection['conflict_path'] is not None:
                 conflict_filter=[projection['conflict_path']];filters={selected_scopes[1]:[Path(conflict_filter[0]).name]}
                 final_before,final_meta,final_dirs=ledger.snapshot(selected_scopes,filters)
@@ -301,7 +308,7 @@ class IntakeRecordContext:
                     'conflict_filter':conflict_filter,'parent_input_id':intent['initial_input_id']},final_files)
                 intent['input_id']=input_id;durable_json(self.intents/(operation+'.json'),intent)
                 before,metadata,directories=final_before,final_meta,final_dirs
-                payload,projection,requested,stdout,stderr,append,valid=derive(request,before,lookup,response)
+                payload,projection,requested,stdout,stderr,append,valid=derive(request,before,lookup,response,native_time)
             native=logic.wire(payload)
             if any(len(raw)>logic.MAX_FILE for raw in (native,stdout,stderr,append)):raise ValueError('intake_record_native_output_budget')
             if any(len(raw)>logic.MAX_FILE for raw in projection['writes'].values()):raise ValueError('intake_record_native_output_budget')
@@ -328,6 +335,7 @@ class IntakeRecordContext:
         artifact_id=self.save(self.artifacts,{'schema_version':1,**self.binding},outputs)
         record={'schema_version':1,**self.binding,'operation_id':operation,'input_id':input_id,'artifact_id':artifact_id,
             'kind':kind,'profile':request['profile'],'assessed_at':request['at'],'source_worktree_clean':self.clean,
+            'native_time':native_time,
             'lookup':lookup,'native_result_available':'native-payload.json' in outputs,'effects_attempted':effects_attempted,
             'selected':None if projection is None else projection['selected'],'requested':requested,
             'ledger_effect':None if projection is None else projection['effect'],'native_schema_valid':valid,
@@ -371,7 +379,8 @@ def run(arguments,instance,settings):
     request.update(root=str(root),at=at or datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),time_source='operator' if at is not None else 'system_clock',token_origin='none')
     if kind=='attempt':
         token,origin=intake_record_token(request.pop('token'));request['token_origin']=origin
-        request['api_url']=intake_record_endpoint(request['api_url'] or intake_record_profile(request['profile'])['api_url']);request['output']=None
+        raw_api=request['api_url'] if request['api_url'] is not None else intake_record_profile(request['profile'])['api_url']
+        request['api_url']=intake_record_api_selection(raw_api);request['output']=None
     elif kind=='event':
         for name,value in intake_record_event_defaults().items():
             if request[name] is None:request[name]=value
@@ -388,6 +397,6 @@ def run(arguments,instance,settings):
     value,payload,stdout,stderr=app.execute(request,token=token)
     import sys
     if format=='receipt':print(json.dumps(value,sort_keys=True))
-    elif value['exit_code']==0:sys.stdout.write(stdout.decode('utf-8'));sys.stderr.write(stderr.decode('utf-8'))
+    elif value['exit_code']==0:sys.stderr.write(stderr.decode('utf-8'));sys.stdout.write(stdout.decode('utf-8'))
     else:print('error: Intake recording stopped; inspect private operation '+value['operation_id'],file=sys.stderr)
     return value['exit_code']

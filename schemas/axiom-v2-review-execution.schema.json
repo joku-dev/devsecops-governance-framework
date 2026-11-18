@@ -161,6 +161,18 @@
                 "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
               }
             ]
+          },
+          "cleanup_signal_permission_denied": {
+            "type": "boolean"
+          },
+          "cleanup_absence_check": {
+            "enum": [
+              "not_needed",
+              "kernel_absent",
+              "process_table_absent",
+              "process_table_zombies",
+              "unproven"
+            ]
           }
         }
       }

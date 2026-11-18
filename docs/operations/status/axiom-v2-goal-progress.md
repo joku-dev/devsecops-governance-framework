@@ -12,9 +12,9 @@
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `f231cdd` · 1,867 Tests (davon 2 übersprungen) · Mac 13 / VM 13 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `a8bb8a4` · 1,900 Tests (davon 2 übersprungen) · Mac 14 / VM 14 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Intake-Protokolle und kontrollierte Wiederholungspläne in V2 erhalten.
+**Nächster Baustein:** Intake-Funktionen anhand einzelner Paritätsnachweise prüfen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -31,7 +31,7 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Ganze ursprüngliche CLI-/Dateiwirkungen, echte begrenzte HTTPS-Aufrufe, unabhängige Repo-Buckets und private Wiederholungsprüfung validieren und frisch auf Mac/VM nachweisen; anschließend alle verbleibenden Einzelnachweise und Betriebsabläufe fortsetzen.
+Geschlossene Nachweis-Metadaten reproduzierbar bereitstellen, ursprüngliche Zeitpunkte erhalten und mit frischen Mac/VM-Prüfungen sowie vollständigem Funktionsaudit verbinden; erst danach Einzelzustände festhalten und alle übrigen Goal-Bereiche fortsetzen.
 
 - `scripts/record_collection_attempt.py`
 - `scripts/record_intake_event.py`
@@ -39,26 +39,26 @@ Ganze ursprüngliche CLI-/Dateiwirkungen, echte begrenzte HTTPS-Aufrufe, unabhä
 
 ## Letzter vollständiger technischer Prüfstand
 
-Beobachtet: `2026-11-18T02:27:20.215984Z`. Geprüfter Quellcommit: `f231cdd157fef4ad6daf712eeb911a9ca0e3538d`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
+Beobachtet: `2026-11-18T06:49:00Z`. Geprüfter Quellcommit: `a8bb8a4fc352898b2eaf51a66f224a794e0e2d7d`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
 
-- Unit-Tests: 1867 in 525.86 Sekunden; 2 plattformabhängig übersprungen.
-- Installierte Prüfgruppen: Mac 13, Linux-VM 13.
+- Unit-Tests: 1900 in 913.742 Sekunden; 2 plattformabhängig übersprungen.
+- Installierte Prüfgruppen: Mac 14, Linux-VM 14.
 - Vollständige Ergebnisgruppen: 9 von 9 stimmen zwischen den Rechnern überein.
-- Dreizehn installierte Prüfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Attestierung: 24 Fälle je Host mit 23 Original-/Krypto-/Datei-/Schutztests und installiertem CLI; optionaler Runner: 23 Fälle mit 22 Tests und installiertem CLI. Ganze ursprüngliche native Ausgaben je Host gleich; echte UUIDs, Zeitstempel und Pfade werden hostübergreifend nicht gleichgesetzt. Native Quellberichte, Dispatcher, YAML, externe Dateien und Planung bleiben mit dokumentierten Vergleichsgrenzen geprüft. Feste ha-CPsWMS-Berichte ganz gleich; ganzer DCR gleich, gegenüber 827 nur reviewed_commit verändert. Alle acht tatsächlichen CI-Familien grün, letzter Review-Status declared_complete. Exakte finale Dateien auf GitHub: 1867 Tests in 525.860 Sekunden, zwei ausgelassen; lokale vollständige Vorgängerprüfung mit gleichem Runtime-Code und späterer Test-Umask-Korrektur separat dokumentiert. VM-Testfixtures berücksichtigen umask 0002 ohne schwächere Produktgrenzen. Ein früher intermittierender Runner-Testbefund bleibt offen; die defensive Pipe-Korrektur belegt nicht dessen Ursache. Keine Zertifizierung der neuen Intake-Änderungen, aller 37 CI-Definitionen oder des ganzen Goals.
+- Vierzehn installierte Prüfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Intake: 34 Fälle je Host mit 33 Original-/Datei-/HTTPS-/Schutztests und tatsächlich installiertem Attempt/Event/Retry-CLI samt Offline-Prüfung. Originaldateien und native Ausgaben pro Host ganz gleich; echte Pfade, Uhren, TLS-Schlüssel, Prozessausgaben und UUIDs werden hostübergreifend nicht gleichgesetzt. Runner23, Attestierung24, YAML25, externe Dateien35 und Planung23 bestehen weiter mit ihren dokumentierten Vergleichsgrenzen. Feste ha-CPsWMS-Berichte ganz gleich; ganzer DCR gleich, gegenüber f231 nur reviewed_commit verändert. Alle acht tatsächlichen CI-Familien grün; abschließender tatsächlicher Review-Job meldet eigenständig declared_complete. Exakte finale Dateien auf GitHub: 1900 Tests in 913.742 Sekunden, zwei ausgelassen; lokal 1900 Tests in 768.113 Sekunden, einer ausgelassen. Ein früher intermittierender Runner-Testbefund bleibt offen. Keine Zertifizierung der neuen Nachweis-/Uhränderungen, aller 37 CI-Definitionen oder des ganzen Goals.
 - Kanonisches Profil vollständig gleich: **ja**.
-- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `5e6c2f9120a788882e9396484ce6c677e1983043d07f7abb2d1ffd01921d805a`.
+- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `122e861317e93c4c2c810203f4241537fd88a0fb98c9ec33a7872d07273461f4`.
 - Technische Beobachtungen sind deklarierte Nachweise und erteilen keine unabhängige menschliche Freigabe.
 
 | CI-Workflow-Familie | Beobachteter Lauf | Ergebnis |
 | --- | --- | --- |
-| Agent Review Status | [44223509414](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44223509414) | bestanden |
-| Dependency Review | [44220622992](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622992) | bestanden |
-| Governance Repository Self-Security | [44220622902](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622902) | bestanden |
-| Consumer Lifecycle Guard | [44220622897](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622897) | bestanden |
-| Prepared runtime offline | [44220622890](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622890) | bestanden |
-| CodeQL | [44220623679](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623679) | bestanden |
-| Governance CI | [44220623041](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623041) | bestanden |
-| Governance CI v2 | [44220623081](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623081) | bestanden |
+| Agent Review Status | [44254100491](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44254100491) | bestanden |
+| Dependency Review | [44251432717](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432717) | bestanden |
+| Governance Repository Self-Security | [44251432715](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432715) | bestanden |
+| Consumer Lifecycle Guard | [44251432661](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432661) | bestanden |
+| Prepared runtime offline | [44251432686](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432686) | bestanden |
+| CodeQL | [44251432739](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432739) | bestanden |
+| Governance CI | [44251432674](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432674) | bestanden |
+| Governance CI v2 | [44251432698](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432698) | bestanden |
 
 ## Stand aller Funktionsbereiche
 
@@ -101,6 +101,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `4a8f0cba02d96f01c2ecc419f20dc2ba3f30d0420f723ac2af777662baef76a6`. Beobachtungs-SHA-256: `13927aefc97e6884c9b69cf07bc37adb5237a5e8a790750fc1956003c1d3b616`.
+Matrix-SHA-256: `4a8f0cba02d96f01c2ecc419f20dc2ba3f30d0420f723ac2af777662baef76a6`. Beobachtungs-SHA-256: `e938aa7a044278f4610350cf62eed8e78fdde07061761301351f9c164e74943f`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).

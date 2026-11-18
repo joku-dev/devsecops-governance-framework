@@ -98,9 +98,9 @@ def run(command, arguments, *, instance_path=None):
         import argparse
         from lib.functional_parity import audit
         parser=argparse.ArgumentParser(prog='axiom-v2 parity',allow_abbrev=False)
-        parser.add_argument('--reference',type=Path)
-        parser.add_argument('--evidence-directory',type=Path)
-        parser.add_argument('--require-complete',action='store_true')
+        parser.add_argument('--reference',type=Path,help='Local Git source containing the immutable V1 reference.')
+        parser.add_argument('--evidence-directory',type=Path,help='Use operator receipt metadata instead of the packaged evidence directory.')
+        parser.add_argument('--require-complete',action='store_true',help='Fail unless every original subject and the frozen source scope are verified.')
         args=parser.parse_args(arguments)
         report=audit(ROOT,reference=args.reference,evidence_root=args.evidence_directory)
         print(json.dumps(report,indent=2))

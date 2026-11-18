@@ -31,6 +31,31 @@ def utc_timestamp(value):
 def wire(value):return (json.dumps(value,indent=2)+'\n').encode('utf-8')
 
 
+def native_record_time(request,sampled=None):
+    """Original native clock phase, separate from the outer assessment start."""
+    if request['kind']=='retry' or (request['kind']=='event' and request['completed_at']):return None
+    if request['time_source']=='operator':return {'value':request['at'],'source':'operator','phase':'operator_time'}
+    if sampled is None:return None
+    parse_timestamp(sampled)
+    return {'value':sampled,'source':'system_clock',
+        'phase':'after_metadata_resolution' if request['kind']=='attempt' else 'before_ledger_scan'}
+
+
+def checked_native_time(request,value,*,required=False):
+    needed=request['kind']=='attempt' or (request['kind']=='event' and not request['completed_at'])
+    if not needed:
+        if value is not None:raise ValueError('unexpected_intake_native_time')
+        return None
+    if value is None:
+        if required:raise ValueError('intake_native_time_required')
+        return None
+    if not isinstance(value,dict) or set(value)!={'value','source','phase'} or not isinstance(value['value'],str) or len(value['value'])>128:
+        raise ValueError('invalid_intake_native_time')
+    parse_timestamp(value['value'])
+    if native_record_time(request,value['value'])!=value:raise ValueError('invalid_intake_native_time')
+    return value
+
+
 def attempt(request,source,additional_errors,at):
     collector={'id':request['collector_id'],'version':request['collector_version']}
     identity={'repository_id':request['repository_id'],'evidence_type':request['evidence_type'],

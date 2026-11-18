@@ -8,13 +8,22 @@ import json
 import os
 from pathlib import Path
 import re
+import stat
 import subprocess
 
 from jsonschema import Draft202012Validator, ValidationError
+from lib.attestation_files import parent as held_parent
+from lib.portable.contracts import ROOT
 from lib.portable.runtime import read_json, source_digest
+from lib.result_bytes import strict_json
 from lib.v2_boundary import safe_source
 
 V1_REFERENCE='6b557fefe295b58272d2271326576ca3a3687197'
+PACKAGED_EVIDENCE='config/axiom-v2-parity-evidence'
+MAX_RECEIPT=2*1024**2
+MAX_MATRIX=4*1024**2
+PUBLIC_FIELDS={'evidence_kind','v1_reference','evidence_sources','authority_transferred',
+               'independent_human_approval','official_acceptance','production_approval'}
 
 
 def git_read(root, *args):
@@ -73,18 +82,58 @@ def require_frozen_scope(matrix, reference):
             if any(row[k]!=v for k,v in expected[row[identity]].items()):raise ValueError('functional_parity_reference_changed')
 
 
-def evidence_checked(ref,subject,root):
+def metadata_bytes(root,name,limit):
+    """Hold a canonical directory and bounded ordinary metadata file."""
+    if not name or Path(name).name!=name or name in ('.','..') or '\\' in name or any(ord(c)<32 for c in name):
+        raise ValueError('unsafe_functional_parity_metadata_name')
+    requested=Path(root)
+    if requested.is_symlink():raise ValueError('unsafe_functional_parity_evidence')
+    root=requested.resolve()
+    try:parent=held_parent(root/name)
+    except OSError:raise ValueError('functional_parity_evidence_missing_or_unsafe') from None
+    if parent is None:raise ValueError('functional_parity_evidence_missing')
+    try:
+        directory=os.fstat(parent)
+        fd=os.open(name,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK,dir_fd=parent)
+        try:
+            before=os.fstat(fd)
+            if not stat.S_ISREG(before.st_mode) or before.st_nlink!=1 or before.st_size>limit:
+                raise ValueError('functional_parity_evidence_regular_bounded_file_required')
+            raw=bytearray()
+            while chunk:=os.read(fd,min(65536,limit+1-len(raw))):
+                raw.extend(chunk)
+                if len(raw)>limit:raise ValueError('functional_parity_evidence_byte_budget')
+            after=os.fstat(fd);entry=os.stat(name,dir_fd=parent,follow_symlinks=False)
+            fields=('st_dev','st_ino','st_size','st_mtime_ns','st_ctime_ns','st_mode','st_nlink')
+            if any(getattr(before,k)!=getattr(row,k) for row in (after,entry) for k in fields):
+                raise ValueError('functional_parity_evidence_changed_during_read')
+            current=os.stat(root,follow_symlinks=False)
+            if not stat.S_ISDIR(current.st_mode) or (current.st_dev,current.st_ino)!=(directory.st_dev,directory.st_ino):
+                raise ValueError('functional_parity_evidence_directory_changed')
+            return bytes(raw)
+        finally:os.close(fd)
+    except OSError:raise ValueError('functional_parity_evidence_missing_or_unsafe') from None
+    finally:os.close(parent)
+
+
+def receipt_bytes(root,name):return metadata_bytes(root,name,MAX_RECEIPT)
+
+
+def evidence_checked(ref,subject,root,*,runtime=None,public=False,original=None,implementation=None):
     if root is None:raise ValueError('functional_parity_evidence_required')
-    root=Path(root)
-    if root.is_symlink():raise ValueError('unsafe_functional_parity_evidence')
-    path=root/(ref['id']+'.json')
-    if path.is_symlink() or not path.is_file() or path.stat().st_size>2*1024**2:raise ValueError('functional_parity_evidence_missing')
-    data=path.read_bytes()
+    if not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,100}',ref['id']):raise ValueError('unsafe_functional_parity_evidence_id')
+    data=receipt_bytes(root,ref['id']+'.json')
     if hashlib.sha256(data).hexdigest()!=ref['sha256']:raise ValueError('functional_parity_evidence_digest_changed')
-    receipt=read_json(path)
+    receipt=strict_json(data)
+    try:Draft202012Validator(read_json(ROOT/'schemas/axiom-v2-parity-receipt.schema.json')).validate(receipt)
+    except ValidationError:raise ValueError('invalid_functional_parity_evidence_metadata') from None
     if (receipt.get('schema_version')!=1 or receipt.get('subject')!=subject or receipt.get('kind')!=ref['kind']
-            or receipt.get('passed') is not True or receipt.get('runtime_source_digest')!=source_digest()):
+            or receipt.get('passed') is not True or receipt.get('runtime_source_digest')!=(runtime or source_digest())):
         raise ValueError('functional_parity_evidence_binding_failed')
+    expected={key:value for key,value in (('original_source_sha256',original),('implementation_source_sha256',implementation)) if value is not None}
+    if public and not (PUBLIC_FIELDS|set(expected))<=set(receipt):raise ValueError('functional_parity_public_metadata_required')
+    if any(key in receipt and receipt[key]!=value for key,value in expected.items()):raise ValueError('functional_parity_evidence_source_changed')
+    return receipt
 
 
 def implementation_checked(root,identity):
@@ -100,15 +149,19 @@ def implementation_checked(root,identity):
     else:
         from lib.v2_source import selected_paths
         if path not in selected_paths(root):raise ValueError('functional_parity_implementation_not_installed')
+    return hashlib.sha256(target.read_bytes()).hexdigest()
 
 
 def audit(root, *, reference=None, evidence_root=None):
     root=Path(root).resolve()
-    matrix=read_json(root/'config/axiom-v2-functional-parity.json')
+    raw=metadata_bytes(root/'config','axiom-v2-functional-parity.json',MAX_MATRIX)
+    matrix=strict_json(raw)
     try:Draft202012Validator(read_json(root/'schemas/axiom-v2-functional-parity.schema.json')).validate(matrix)
     except ValidationError:raise ValueError('invalid_functional_parity_matrix') from None
     if {a['id'] for a in matrix['areas']}!={f'FP-{n:02}' for n in range(1,23)}:
         raise ValueError('functional_parity_area_scope_changed')
+    runtime=source_digest();receipt_count=0
+    selected_evidence=root/PACKAGED_EVIDENCE if evidence_root is None else evidence_root
     source_verified=False
     if reference is not None:
         require_frozen_scope(matrix,reference);source_verified=True
@@ -127,15 +180,23 @@ def audit(root, *, reference=None, evidence_root=None):
             else:
                 if name!='operating_workflows' and not row['v2_implementation']:
                     raise ValueError('functional_parity_implementation_missing')
-                if name!='operating_workflows':implementation_checked(root,row['v2_implementation'])
+                implementation=implementation_checked(root,row['v2_implementation']) if name!='operating_workflows' else None
                 kinds={r['kind'] for r in row['evidence']}
                 if not {'positive','negative','installed'}<=kinds:
                     raise ValueError('functional_parity_execution_evidence_incomplete')
-                for ref in row['evidence']:evidence_checked(ref,row.get('id',row.get('v1_path')),evidence_root)
+                for ref in row['evidence']:
+                    evidence_checked(ref,row.get('id',row.get('v1_path')),selected_evidence,runtime=runtime,
+                        public=evidence_root is None,original=row.get('v1_sha256'),implementation=implementation)
+                    receipt_count+=1
+    if source_digest()!=runtime:raise ValueError('functional_parity_program_changed')
     counts={key:dict(Counter(r['state'] for r in rows)) for key,rows in groups.items()}
     complete=source_verified and all(row['state']=='verified' for rows in groups.values() for row in rows)
     return {'schema_version':1,'goal_id':matrix['goal_id'],'v1_reference':matrix['v1_reference'],
+        'matrix_sha256':hashlib.sha256(raw).hexdigest(),
         'source_scope_verified':source_verified,'scope_counts':{k:len(v) for k,v in groups.items()},
         'states':counts,'functional_parity_complete':complete,'authority_transferred':False,
+        'runtime_source_digest':runtime,'evidence_receipts_checked':receipt_count,
+        'evidence_directory_source':'packaged' if evidence_root is None else 'operator',
+        'evidence_assertions_independently_authenticated':False,
         'evidence_kind':'declared_technical_parity_evidence',
         'remaining':[r.get('id',r.get('v1_path')) for rows in groups.values() for r in rows if r['state']!='verified']}

@@ -1,11 +1,12 @@
 """Explicit bounded local crypto observation; no network, keys generated or trust activation."""
+from lib.providers import process_groups
+
 from contextlib import ExitStack
 import hashlib
 import os
 from pathlib import Path
 import selectors
 import shutil
-import signal
 import stat
 import subprocess
 import tempfile
@@ -29,6 +30,7 @@ def initial_observation():
 
 
 def outcome(observation):
+    if not process_groups.consistent(observation):raise ValueError('attestation_cleanup_observation_changed')
     if not observation['attempted']:raise ValueError('attestation_crypto_observation_required')
     if observation['error_type']=='FileNotFoundError' and not observation['process_started'] and observation['failure_stage'] in ('resolve_tool','start_process'):
         return False,'OpenSSL is unavailable; signature verification was not performed.'
@@ -55,10 +57,7 @@ def executable(path):
     finally:os.close(fd)
 
 
-def stop(process):
-    try:os.killpg(process.pid,signal.SIGKILL)
-    except ProcessLookupError:pass
-    process.wait()
+def stop(process):process_groups.stop(process)
 
 
 def verify(key,statement,signature,workarea,name,on_start):
@@ -110,6 +109,7 @@ def verify(key,statement,signature,workarea,name,on_start):
                     if stream is not None and not stream.closed:cleanup.callback(stream.close)
                 stop(process)
                 if observation['returncode'] is None:observation['returncode']=process.returncode
+    observation.update(process_groups.observations(process))
     try:observation['signature_valid'],observation['reason']=outcome(observation)
     except ValueError:pass
     return observation,bytes(stdout),bytes(stderr)

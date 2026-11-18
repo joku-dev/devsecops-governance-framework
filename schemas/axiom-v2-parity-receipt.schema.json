@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Declared technical functional-parity receipt metadata; no authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "subject",
+    "kind",
+    "passed",
+    "runtime_source_digest"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[A-Za-z0-9_./-]+$"
+    },
+    "kind": {
+      "enum": [
+        "positive",
+        "negative",
+        "installed",
+        "comparison",
+        "operating"
+      ]
+    },
+    "passed": {
+      "const": true
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "evidence_kind": {
+      "const": "declared_technical_parity_evidence"
+    },
+    "v1_reference": {
+      "const": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "original_source_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "implementation_source_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "observed_source_revision": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "observed_source_tree": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "independent_human_approval": {
+      "const": false
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "evidence_sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "local_suite_log": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1099511627776
+            }
+          }
+        },
+        "ci_job_log": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1099511627776
+            }
+          }
+        },
+        "installed_mac": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1099511627776
+            }
+          }
+        },
+        "installed_linux": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1099511627776
+            }
+          }
+        },
+        "original_contract": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1099511627776
+            }
+          }
+        },
+        "coverage_audit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1099511627776
+            }
+          }
+        }
+      }
+    },
+    "case_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "positive": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        "negative": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        "installed_mac": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        "installed_linux": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        }
+      }
+    }
+  }
+}
