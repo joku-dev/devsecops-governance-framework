@@ -29,20 +29,20 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **69 in Arbeit** und **66 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **70 in Arbeit** und **65 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 69 | 66 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 70 | 65 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `e03bdfb` · 1,822 Tests (davon 1 übersprungen) · Mac 11 / VM 11 Prüfgruppen · 7 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `8270251` · 1,843 Tests (davon 1 übersprungen) · Mac 12 / VM 12 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Vollständigen optionalen Review-Runner in V2 übernehmen.
+**Nächster Baustein:** Ursprüngliche lokale Attestierungsprüfung in V2 erhalten.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -178,6 +178,14 @@ angeforderte Ausführung und tatsächlichen Prozessstart; unterbrochene Läufe w
 nicht automatisch wiederholt. Gespeicherte Ausgaben lassen sich ohne Zielcheckout
 erneut prüfen. Modellangaben und Antworten bleiben unbestätigt; menschliche
 Freigaben werden nicht erteilt. [Bedienung und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#optional-review-execution).
+`attestation verify/inspect/status` erhält die ursprüngliche lokale Pilotprüfung:
+Registerzuordnung, Signatur, Artefakt und Kontext. Ein kompatibles lokales OpenSSL
+führt die kryptografische Prüfung aus; das gewählte neue oder vorhandene externe
+Ausgabefile erhält den ursprünglichen Bericht. Vorherige Bytes, tatsächliche
+Prozessbeobachtung und Schreibversuch bleiben privat nachvollziehbar. Die
+Standard-Kontextwerte stammen wie in V1 aus der Attestierung; explizite erwartete
+Werte sind möglich. Pilotregister und historische Trust-Bezeichnungen werden
+nicht als aktive V2-Autorität übernommen. [Bedienung und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#local-attestation-pilot).
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.

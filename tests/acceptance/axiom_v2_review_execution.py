@@ -40,7 +40,7 @@ def main():
         names=unittest.defaultTestLoader.getTestCaseNames(module.ReviewExecution)
         log=io.StringIO();result=unittest.TextTestRunner(stream=log,verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(module.ReviewExecution))
         if not result.wasSuccessful():raise AssertionError(log.getvalue())
-        assert result.testsRun==len(names)==21 and not result.skipped
+        assert result.testsRun==len(names)==22 and not result.skipped
         # Exercise the actual installed router/wrapper with an operator-selected
         # directory, and then inspect after deleting all caller/target outputs.
         repo=base/'wrapper-target';revision=module.oracle.planning.repository_from_files(repo,module.ReviewExecution.files)

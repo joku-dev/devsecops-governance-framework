@@ -225,10 +225,32 @@ class ReviewExecution(unittest.TestCase):
         self.assertEqual(value['state'],'in_progress');self.assertFalse(value['automatic_resume']);self.assertIsNone(value['assessment_id'])
 
     def test_child_processes_are_terminated_before_artifact_capture(self):
-        value,native=self.create(True,'child');self.assertEqual(value['exit_code'],1)
+        value,native=self.create(True,'child');self.assertEqual(value['exit_code'],1,
+            {key:value[key] for key in ('error_type','capture_error','stage','observations')})
         time.sleep(2.1)
         self.assertFalse((self.output/'repo-steward/late-child.txt').exists())
         self.assertTrue(value['native_artifact_capture_complete']);self.assertTrue(self.app.inspect(value['assessment_id'])['native_control_outputs_rederived'])
+
+    def test_cleanup_failure_closes_pipes_and_preserves_partial_actual_start(self):
+        from lib.providers import review_execution as adapter
+        original_popen=adapter.subprocess.Popen;original_stop=adapter._stop;started=[]
+        def capture(*args,**kwargs):
+            process=original_popen(*args,**kwargs)
+            if args[0][0]=='codex':
+                started.append(process)
+                for stream in (process.stdin,process.stdout,process.stderr):
+                    self.addCleanup(stream.close)
+            return process
+        def failed_cleanup(process):
+            original_stop(process)
+            raise OSError('controlled cleanup observation failure after actual termination')
+        with patch.object(adapter.subprocess,'Popen',side_effect=capture),patch.object(adapter,'_stop',side_effect=failed_cleanup):
+            value,native=self.create(True)
+        self.assertEqual(value['exit_code'],2);self.assertEqual(value['error_type'],'OSError')
+        self.assertTrue(value['provider_invoked']);self.assertEqual(value['started_roles'],['repo-steward'])
+        self.assertFalse(value['native_control_outputs_rederived']);self.assertFalse(value['automatic_resume'])
+        self.assertEqual(len(started),1);self.assertIsNotNone(started[0].poll())
+        self.assertTrue(all(stream.closed for stream in (started[0].stdin,started[0].stdout,started[0].stderr)))
 
     def test_contract_budgets_existing_output_and_symlink_destination_do_not_start_provider(self):
         for kwargs in ({'parallel':0},{'parallel':4},{'timeout':0},{'timeout':601}):

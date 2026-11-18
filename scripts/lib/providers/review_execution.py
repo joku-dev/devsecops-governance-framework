@@ -1,4 +1,5 @@
 """Explicit local review files and native read-only CLI process projection."""
+from contextlib import ExitStack
 import json
 import os
 from pathlib import Path
@@ -210,10 +211,14 @@ def execute(argv, prompt, output, role, timeout, name, on_start):
             code=process.returncode
     except Exception as exc:error=type(exc).__name__
     finally:
-        if process is not None:
-            _stop(process)
-            if code is None:code=process.returncode
-            for stream in (process.stdin,process.stdout,process.stderr):
-                if stream is not None and not stream.closed:stream.close()
-        os.close(parent)
+        try:
+            if process is not None:
+                # A failed stop observation must remain a partial failure, but
+                # cannot bypass pipe cleanup or leak the held parent descriptor.
+                with ExitStack() as cleanup:
+                    for stream in (process.stdin,process.stdout,process.stderr):
+                        if stream is not None and not stream.closed:cleanup.callback(stream.close)
+                    _stop(process)
+                    if code is None:code=process.returncode
+        finally:os.close(parent)
     return {'process_started':started,'exit_code':code,'timed_out':timed_out,'error_type':error}

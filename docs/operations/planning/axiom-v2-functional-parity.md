@@ -45,6 +45,86 @@ The second command currently returns nonzero: full functional parity is not
 complete. Normal audit output names the outstanding subjects instead of silently
 reducing the product to the already portable subset.
 
+## Local attestation pilot
+
+`attestation verify/inspect/status` restores the separate original public-key
+attestation pilot. It is a diagnostic report-only flow, independent of typed
+evidence's native producer/provenance verification. The original ordered checks
+are registered pilot root/repository, signature, subject and context. A compatible
+local crypto tool performs the actual signature check through an explicit port;
+the neutral decision function receives its observation.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance attestation verify \
+  /private/operator/attestation.json --output /private/operator/assessment.json \
+  --trust-roots /private/operator/pilot-registry.yaml \
+  --evaluated-at 2026-11-18T00:00:00Z --profile legacy-attestation-pilot-v1
+```
+
+All original options remain: positional attestation, `--output`, `--trust-roots`
+and `--evaluated-at`. The default registry is the product's existing pilot data;
+omitting evaluation time uses the system UTC clock as V1 did. `--expected-context`
+and `--expected-subject` expose the helper's explicit expected values, while
+`--effective-level` preserves a supplied legacy level label. Default expected
+context/subject are taken from the statement itself, exactly as in the original
+CLI; those comparisons are not independent producer authentication. The original
+CLI summary, complete report and exit **0 even for findings or a missing tool**
+are preserved. `--format receipt` returns the private diagnostic assessment.
+
+The caller-selected output must be outside product/instance and Git metadata.
+New files are private; an existing owned, single-link regular file is overwritten
+in place with its mode preserved, as in V1. Its exact previous bytes and stat
+observation are retained before crypto/write. Durable private intent precedes
+effects; a changed destination fails without reverting another writer's edit.
+Same-node writers serialize. Independent nodes need one operating owner per
+external destination; optimistic checks are not a distributed lease or a fully
+atomic file compare-and-swap. A partial/interrupted write remains visible and is
+never automatically retried. Caller input/output aliasing is supported through
+retained input bytes; output symlinks, hardlinks, nonregular or writable-by-other
+files are rejected. Input aliases resolve to bounded regular readable files.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance attestation inspect \
+  --assessment <assessment-id>
+python scripts/axiom_v2.py --instance /private/operator/v2-instance attestation status \
+  --operation <operation-id>
+```
+
+Private input manifests preserve exact JSON/YAML and old/new output bytes. Safe
+YAML aliases, merges, duplicate-key last-value behavior and inert safe metadata
+retain the pilot's ordinary SafeLoader meaning; this is separate from stricter
+review-contract parsing. Composition/expansion/cycle/depth budgets run before
+construction. JSON retains original duplicate/nonfinite value semantics within
+bounded input graphs. Native output bytes and stdout are rederived on inspection,
+using retained process observations and no current caller files or crypto calls.
+`cryptographic_signature_reverified: false` makes that replay boundary explicit.
+
+The native profile uses fixed OpenSSL verification arguments, no shell/network
+API, private staging and actual binary path/hash, process/return-code and bounded
+stdout/stderr observations. A compatible OpenSSL supporting the original
+Ed25519 `pkeyutl -verify -pubin -rawin` command must be supplied through the host
+tool environment. This optional external tool is not installed by the command.
+The Mac's bundled LibreSSL may not support those arguments; original generic
+native failure messages do not distinguish unsupported tools from bad signatures.
+Fresh host acceptance records the actual compatible tool version and SHA-256.
+Missing executable behavior remains the original explicit not-performed result;
+timeouts/tool changes/stream overruns stop with diagnostic exit2 instead of a
+fabricated signature verdict. Current limits are input/output1MiB, key64KiB,
+decoded signature16KiB, process streams64KiB each and execution15seconds.
+Both local process adapters close all pipe handles even when process cleanup
+itself raises an exception; the review adapter also releases its held directory
+descriptor. A cleanup error remains a partial failure with observed actual start,
+without a completed review/signature verdict or automatic retry. Fault-injection
+tests verify this boundary independently of normal process termination.
+
+The original pilot does not enforce registry dates or its `algorithm` metadata;
+this legacy profile preserves that behavior and states those limits explicitly.
+Its `effective_level` is a preserved declaration; the surrounding V2 diagnostic
+remains `evidence_trust: unverified`, `registry_authority_activated: false`, with
+no accepted-root, operating, production or human approval. Neither the old demo
+registry nor its public example is activated as a new node's Trust authority.
+Formal subject and product parity acceptance remain separate.
+
 ## Optional review execution
 
 `review-run` restores the original optional `run_agent_reviews.py` flow through

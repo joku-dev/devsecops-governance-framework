@@ -164,7 +164,11 @@
     "scripts/lib/review_dispatch_external.py",
     "scripts/lib/review_execution.py",
     "scripts/lib/review_execution_application.py",
-    "scripts/lib/providers/review_execution.py"
+    "scripts/lib/providers/review_execution.py",
+    "scripts/lib/attestation_assessment.py",
+    "scripts/lib/attestation_application.py",
+    "scripts/lib/attestation_files.py",
+    "scripts/lib/providers/attestation_verification.py"
   ],
   "data_roots": [
     "schemas",
