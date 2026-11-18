@@ -45,6 +45,91 @@ The second command currently returns nonzero: full functional parity is not
 complete. Normal audit output names the outstanding subjects instead of silently
 reducing the product to the already portable subset.
 
+## Intake records and retry preparation
+
+`intake-records attempt/event/retry/inspect/status` restores the original
+collection-failure recorder, intake-operation event recorder and controlled
+retry-plan preparation. `--repo` explicitly selects an external existing ledger
+root; `--profile legacy-intake-records-v1` selects the native compatibility
+adapter. The installed product and its private node state cannot be destinations.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance intake-records attempt \
+  --repo /private/operator/intake-checkout --profile legacy-intake-records-v1 \
+  --repository-id owner/repository --run-id 42 --evidence-type governance_result \
+  --collector-id central-governance-intake --artifact-name governance-control-evaluation \
+  --error-code intake_failed --message 'Operator-declared failure' --retryable
+
+python scripts/axiom_v2.py --instance /private/operator/v2-instance intake-records retry \
+  --repo /private/operator/intake-checkout --profile legacy-intake-records-v1 \
+  --attempt-path status/collection-attempts/owner__repository/retained-attempt.json \
+  --native-output /private/operator/retry-output.txt
+```
+
+The attempt command preserves every original option, including `--api-url`,
+`--token`, collector version, partial/failed status and retryability. Actual HTTPS
+metadata acquisition uses the original endpoint path, headers, timeout and 16 MiB
+response bound. Native token defaults remain in the adapter: explicit token,
+then `GH_RESULT_INTAKE_TOKEN`, `GH_TOKEN`, `GITHUB_TOKEN`. Use protected environment
+credentials where possible; command-line values may be visible in process lists.
+The endpoint is operator-selected, HTTPS only and without URL credentials.
+Authorization is stripped on a cross-origin redirect; HTTPS downgrade is rejected.
+Credentials are never intentionally retained. The private response may contain
+provider metadata and must be treated as private evidence.
+
+Metadata failure retains the original warning, fallback identity and additional
+retryable error. Successful metadata remains a provider declaration: the original
+unchecked returned run ID and other native fields are preserved, including a
+possible schema-invalid record. `native_schema_valid` is diagnostic for attempt
+and event recording; the original writers do not reject these records. Retry
+preparation does validate the native schema before selecting a route.
+
+The event command keeps all original source/collector/intake/type/status/error/
+time options. Native CI environment defaults are adapter-owned. Required timezones,
+UTC second-resolution output and duration computed from full-precision input are
+preserved. `--at` makes evaluation time explicit; otherwise the system UTC clock
+is recorded. Success/partial/failure are operator/environment declarations and
+do not authenticate whether a real intake happened.
+
+Records preserve the first matching identity in sorted file order. Repeating the
+same record is a no-op; changed content under that identity retains an append-only
+conflict. An existing conflict leaf is kept as opaque first evidence. Filename
+collisions append repeated `-retry` suffixes. As in V1, stdout is the originally
+requested relative filename even if an earlier matching file is selected; the
+receipt distinguishes `requested`, `selected` and `ledger_effect`.
+
+Retry preparation accepts only the original three governance/architecture/
+vulnerability routes, retryable errors and safe repository/run/artifact values.
+It prints the whole original JSON plan, or appends ordered native `key=value`
+lines when `--native-output` (also `--github-output`) is given. Existing bytes,
+mode and repeated invocations are preserved, including no inserted newline or
+deduplication. The command performs no workflow dispatch or accepted index update.
+
+Before native access, an immutable private input and pending intent retain the
+selected repo bucket. Conflict selection adds at most one explicitly named leaf
+in a successor input linked to that original input. Other repos' conflict files
+are never enumerated. Repo buckets and shared output paths have separate local
+locks; common immutable blobs are stored once. The current bound is 4,096 relevant
+files / 128 MiB per bucket snapshot and 16 MiB per file, response or native output.
+These bounds are explicit operating limits, not a measured large-estate capacity.
+
+Held directory/file descriptors, exclusive creation and change observations protect
+history; owned regular single-link native output may be appended. Ledger symlinks,
+hardlinks, nonregular files, Git metadata and unsafe writable output are rejected.
+New files/directories are private. This narrows unsafe V1 filesystem cases and
+makes failures diagnostic exit 2 instead of exposing raw tracebacks. Local locks
+and optimistic checks require one operating owner across independent nodes; they
+are not a distributed lease or an atomic multi-file transaction. A concurrent or
+partial write remains visible and is never silently undone or repeated.
+
+`--format receipt` exposes the private assessment instead of native stdout.
+`inspect --assessment ID` rederives complete successful native bytes from retained
+inputs, response and before/after files without requerying the provider or caller
+ledger. `status --operation ID` reports pending/incomplete effects and never resumes
+a write. Client invocation is observed, while authenticated native outcome,
+independent delivery, official index changes and authority remain false. Retained
+hashes provide local reconstruction, not independent authentication or approval.
+
 ## Local attestation pilot
 
 `attestation verify/inspect/status` restores the separate original public-key

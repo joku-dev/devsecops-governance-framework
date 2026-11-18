@@ -2,81 +2,83 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Urspr\u00fcngliche lokale Attestierungspr\u00fcfung in V2 erhalten",
+    "title": "Intake-Protokolle und kontrollierte Wiederholungspl\u00e4ne in V2 erhalten",
     "entrypoints": [
-      "scripts/verify_evidence_attestation.py"
+      "scripts/record_collection_attempt.py",
+      "scripts/record_intake_event.py",
+      "scripts/prepare_collection_attempt_retry.py"
     ],
-    "next_step": "Ganze Originalausgaben und echte lokale Signaturen, externe Dateiersetzung, Fehler und private Wiederholungspr\u00fcfung frisch auf Mac/VM nachweisen; anschlie\u00dfend alle \u00fcbrigen Goal-Bereiche und vollst\u00e4ndige Einzelnachweise fortsetzen."
+    "next_step": "Ganze urspr\u00fcngliche CLI-/Dateiwirkungen, echte begrenzte HTTPS-Aufrufe, unabh\u00e4ngige Repo-Buckets und private Wiederholungspr\u00fcfung validieren und frisch auf Mac/VM nachweisen; anschlie\u00dfend alle verbleibenden Einzelnachweise und Betriebsabl\u00e4ufe fortsetzen."
   },
   "last_validation": {
-    "observed_at": "2026-11-18T00:40:25.180952Z",
-    "source_revision": "827025131346e832753db24440743876288ad376",
-    "runtime_source_digest": "c39ca0eecf1390c2cb4af26bc6d173ba3308ddc4d6297623265d650f94a92e31",
-    "unit_tests": 1843,
-    "unit_test_seconds": 712.899,
-    "unit_tests_skipped": 1,
+    "observed_at": "2026-11-18T02:27:20.215984Z",
+    "source_revision": "f231cdd157fef4ad6daf712eeb911a9ca0e3538d",
+    "runtime_source_digest": "7686ffa01ee7a0a6ff760a9f4482a4a979bf7e5f166ffacc1de3423ef695d455",
+    "unit_tests": 1867,
+    "unit_test_seconds": 525.86,
+    "unit_tests_skipped": 2,
     "installed_groups": {
-      "mac": 12,
-      "linux": 12
+      "mac": 13,
+      "linux": 13
     },
     "equal_complete_result_groups": 9,
     "compared_result_groups": 9,
     "canonical_profile_complete_results_equal": true,
     "full_dcr_equal": true,
-    "full_dcr_sha256": "8b4c18fbbc6d618186f7cd9b27d1af39092cf3b664fc253fc8e01f51067e2c07",
+    "full_dcr_sha256": "5e6c2f9120a788882e9396484ce6c677e1983043d07f7abb2d1ffd01921d805a",
     "ci_workflows": [
       {
         "name": "Agent Review Status",
-        "run_id": "44209419852",
+        "run_id": "44223509414",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44209419852"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44223509414"
       },
       {
         "name": "Dependency Review",
-        "run_id": "44206250655",
+        "run_id": "44220622992",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250655"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622992"
       },
       {
         "name": "Governance Repository Self-Security",
-        "run_id": "44206250554",
+        "run_id": "44220622902",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250554"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622902"
       },
       {
         "name": "Consumer Lifecycle Guard",
-        "run_id": "44206250581",
+        "run_id": "44220622897",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250581"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622897"
       },
       {
         "name": "Prepared runtime offline",
-        "run_id": "44206250733",
+        "run_id": "44220622890",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250733"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622890"
       },
       {
         "name": "CodeQL",
-        "run_id": "44206250697",
+        "run_id": "44220623679",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250697"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623679"
       },
       {
         "name": "Governance CI",
-        "run_id": "44206250710",
+        "run_id": "44220623041",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250710"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623041"
       },
       {
         "name": "Governance CI v2",
-        "run_id": "44206250724",
+        "run_id": "44220623081",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250724"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623081"
       }
     ],
     "evidence_kind": "declared_technical_validation_observation",
     "independent_human_approval": false,
     "full_functional_parity": false,
-    "comparison_note": "Zw\u00f6lf installierte Pr\u00fcfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Neuer optionaler Review-Runner:22F\u00e4lle je Host einschlie\u00dflich21 gezielter Original-/Prozess-/Schutztests und tats\u00e4chlichem installiertem CLI samt Offline-Pr\u00fcfung. Ganze urspr\u00fcngliche Runnerdateien pro Host gleich; echte UUIDs, Zeitstempel und Pfade werden host\u00fcbergreifend nicht als identisch behauptet. Fallausg\u00e4nge gleich. YAML25,externeDateien35,Planung23F\u00e4lle bestanden; native Quellberichte in6F\u00e4llen je Host ganz V1-gleich. Dispatcher29F\u00e4lle:27 ganze Fallobjekte gleich,2 Loglabels verschieden. Keine Rohnormalisierung. Urspr\u00fcngliche feste ha-CPsWMS-Berichte gleich; ganzer DCR gleich, gegen\u00fcber e03 nur reviewed_commit ver\u00e4ndert. Alle8 tats\u00e4chlich ausgel\u00f6sten CI-Familien einschlie\u00dflich Offline-Paketpr\u00fcfung gr\u00fcn; finale tats\u00e4chliche Review-Statuspr\u00fcfung declared_complete. Genaue finale Dateien zus\u00e4tzlich auf GitHub mit1843Tests gepr\u00fcft. Erster VM-Lauf traf die intakte Speicherreserve auf der Systemplatte; auf dem freigegebenen Testvolume mit TMPDIR vollst\u00e4ndig bestanden, ohne Grenzabsenkung. Keine Zertifizierung sp\u00e4terer Attestierungs\u00e4nderungen, aller37CI-Definitionen oder des ganzen Goals."
+    "comparison_note": "Dreizehn installierte Pr\u00fcfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Attestierung: 24 F\u00e4lle je Host mit 23 Original-/Krypto-/Datei-/Schutztests und installiertem CLI; optionaler Runner: 23 F\u00e4lle mit 22 Tests und installiertem CLI. Ganze urspr\u00fcngliche native Ausgaben je Host gleich; echte UUIDs, Zeitstempel und Pfade werden host\u00fcbergreifend nicht gleichgesetzt. Native Quellberichte, Dispatcher, YAML, externe Dateien und Planung bleiben mit dokumentierten Vergleichsgrenzen gepr\u00fcft. Feste ha-CPsWMS-Berichte ganz gleich; ganzer DCR gleich, gegen\u00fcber 827 nur reviewed_commit ver\u00e4ndert. Alle acht tats\u00e4chlichen CI-Familien gr\u00fcn, letzter Review-Status declared_complete. Exakte finale Dateien auf GitHub: 1867 Tests in 525.860 Sekunden, zwei ausgelassen; lokale vollst\u00e4ndige Vorg\u00e4ngerpr\u00fcfung mit gleichem Runtime-Code und sp\u00e4terer Test-Umask-Korrektur separat dokumentiert. VM-Testfixtures ber\u00fccksichtigen umask 0002 ohne schw\u00e4chere Produktgrenzen. Ein fr\u00fcher intermittierender Runner-Testbefund bleibt offen; die defensive Pipe-Korrektur belegt nicht dessen Ursache. Keine Zertifizierung der neuen Intake-\u00c4nderungen, aller 37 CI-Definitionen oder des ganzen Goals."
   }
 }

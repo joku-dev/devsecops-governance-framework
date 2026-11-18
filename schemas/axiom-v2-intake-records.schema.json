@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AXIOM V2 native intake recording assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "node_id",
+    "source_revision",
+    "runtime_source_digest",
+    "operation_id",
+    "input_id",
+    "artifact_id",
+    "kind",
+    "profile",
+    "assessed_at",
+    "source_worktree_clean",
+    "lookup",
+    "native_result_available",
+    "effects_attempted",
+    "selected",
+    "requested",
+    "ledger_effect",
+    "native_schema_valid",
+    "exit_code",
+    "error_type",
+    "capture_error",
+    "mode",
+    "evidence_trust",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "published",
+    "provider_invoked",
+    "agent_execution_verified",
+    "human_approval_verified",
+    "current_revision_checked",
+    "private_review_outputs_verified",
+    "native_outcome_authenticated",
+    "workflow_dispatched",
+    "official_index_updated",
+    "request_delivery_independently_verified"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "operation_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "artifact_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "kind": {
+      "enum": [
+        "attempt",
+        "event",
+        "retry"
+      ]
+    },
+    "profile": {
+      "const": "legacy-intake-records-v1"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 128
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "lookup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "client_invoked",
+        "response_received",
+        "http_status",
+        "error_type",
+        "body_retained"
+      ],
+      "properties": {
+        "client_invoked": {
+          "type": "boolean"
+        },
+        "response_received": {
+          "type": "boolean"
+        },
+        "http_status": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 599
+            }
+          ]
+        },
+        "error_type": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+            }
+          ]
+        },
+        "body_retained": {
+          "type": "boolean"
+        }
+      }
+    },
+    "native_result_available": {
+      "type": "boolean"
+    },
+    "effects_attempted": {
+      "type": "boolean"
+    },
+    "selected": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requested": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ledger_effect": {
+      "enum": [
+        "created",
+        "existing",
+        "conflict",
+        "none",
+        null
+      ]
+    },
+    "native_schema_valid": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "exit_code": {
+      "enum": [
+        0,
+        2
+      ]
+    },
+    "error_type": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+        }
+      ]
+    },
+    "capture_error": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+        }
+      ]
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "provider_invoked": {
+      "type": "boolean"
+    },
+    "agent_execution_verified": {
+      "const": false
+    },
+    "human_approval_verified": {
+      "const": false
+    },
+    "current_revision_checked": {
+      "const": false
+    },
+    "private_review_outputs_verified": {
+      "const": false
+    },
+    "native_outcome_authenticated": {
+      "const": false
+    },
+    "workflow_dispatched": {
+      "const": false
+    },
+    "official_index_updated": {
+      "const": false
+    },
+    "request_delivery_independently_verified": {
+      "const": false
+    }
+  }
+}

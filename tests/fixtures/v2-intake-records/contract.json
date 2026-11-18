@@ -1,0 +1,59 @@
+{
+  "sources": {
+    "schemas/evidence-collection-attempt.schema.json": {
+      "bytes": 2172,
+      "file": "schemas__evidence-collection-attempt.schema.json.txt",
+      "git_blob": "e9817ba1d51db4ce31c718481d192b2bd19abd31",
+      "sha256": "82a43ebd3621ad36fecda742358b9666156edfeb58a42fdbb8b479585cf0cc46"
+    },
+    "schemas/intake-operation-event.schema.json": {
+      "bytes": 3179,
+      "file": "schemas__intake-operation-event.schema.json.txt",
+      "git_blob": "4992e02d7ef4828aef94bec8f13eda2142cc83b8",
+      "sha256": "42bbd6616aada0bfc6cacbf1394be2d5f4e64396ffe9da5cc3ee3c99d65cbbf2"
+    },
+    "scripts/intake_github_actions_run.py": {
+      "bytes": 30211,
+      "file": "scripts__intake_github_actions_run.py.txt",
+      "git_blob": "02e816cd1c12e28645d93f9a6178c4591af6a787",
+      "sha256": "2680b830cddec2ac20802620b00f72b0cd7cec1fb326c4cddaa2d5fa568088a3"
+    },
+    "scripts/lib/identifiers.py": {
+      "bytes": 454,
+      "file": "scripts__lib__identifiers.py.txt",
+      "git_blob": "4d5c6f5fd25d41157e64796649ee8f342e8f886e",
+      "sha256": "29a5d78000040870fb70452952e603dc770f7428173c8c45ba99705c1a31a554"
+    },
+    "scripts/lib/result_ledger.py": {
+      "bytes": 14258,
+      "file": "scripts__lib__result_ledger.py.txt",
+      "git_blob": "c2a9952f327d5fae171438c03914fc1160217e4e",
+      "sha256": "b16ec64a034326e92fb44dea365903f3bf8b7309c00dd6d6d1d01dbe4c099f1c"
+    },
+    "scripts/lib/secure_http.py": {
+      "bytes": 3099,
+      "file": "scripts__lib__secure_http.py.txt",
+      "git_blob": "935a2ed145e3aeb2e0ae823d2f4a0118f3196c4a",
+      "sha256": "095e8249602007fe269a5a824f0836900f9b00526555d8176a12a84b6214ff49"
+    },
+    "scripts/prepare_collection_attempt_retry.py": {
+      "bytes": 3491,
+      "file": "scripts__prepare_collection_attempt_retry.py.txt",
+      "git_blob": "9265620ee10c31da1fd66cc70ddbca56d53e5f7d",
+      "sha256": "9be95f98817e694260fa92ac27fd6860639fb78e67d66de66e33a5fb3e9281a4"
+    },
+    "scripts/record_collection_attempt.py": {
+      "bytes": 5034,
+      "file": "scripts__record_collection_attempt.py.txt",
+      "git_blob": "013a1b27c64808b07a4b0a02f4edfa3968a6bda8",
+      "sha256": "c27b9a474543805c0731f9f0509d901aef776c3dc8e092de8c0ea066b187ce1b"
+    },
+    "scripts/record_intake_event.py": {
+      "bytes": 6779,
+      "file": "scripts__record_intake_event.py.txt",
+      "git_blob": "0157eded3879ae4caeb05f03e8e66dbb8b564e59",
+      "sha256": "4ce8655acd7dfd48b98d16d7a627ab5caf30a9077658fbf178bad358c5b599f8"
+    }
+  },
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197"
+}
