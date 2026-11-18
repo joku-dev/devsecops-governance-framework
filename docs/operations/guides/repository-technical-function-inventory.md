@@ -518,3 +518,15 @@ after caller deletion. Changed Rego uses a finite offline OPA profile; schema
 reference retrieval is offline. The default committed profile remains separate.
 This changed runtime requires fresh validation/installed evidence; the three F8
 states return to in-progress here, with all 18 historical receipts preserved.
+
+
+The next release-verification increment adds `validation releases`,
+`release-inspect` and `release-status`. All ten original helper decisions are
+retained in `release_verification.py`; `release_reference_facts.py`,
+`release_inputs.py`, `release_requests.py`, `release_replay.py` and
+`release_validation_application.py` bind the complete inert graph, durable
+starts and declared replay. Finite local Git/SSH acquisition/verification ports
+live under `providers/` and cross the explicit composition boundary. The private
+report-only component preserves released package/signing-policy bytes and source
+refs. Full repository validation/bootstrap/test orchestration and additional
+signing-provider profiles remain open; this is no new subject/Goal approval.

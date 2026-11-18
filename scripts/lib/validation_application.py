@@ -219,6 +219,9 @@ class ValidationContext:
 
 
 def run(arguments, instance_root, settings):
+    if arguments and arguments[0] in ('releases','release-inspect','release-status'):
+        from lib.release_validation_application import run as release_run
+        return release_run(arguments,instance_root,settings)
     parser = argparse.ArgumentParser(prog='axiom-v2 validation', allow_abbrev=False)
     sub = parser.add_subparsers(dest='operation', required=True)
     runtime = sub.add_parser('runtime', allow_abbrev=False)
@@ -229,6 +232,9 @@ def run(arguments, instance_root, settings):
     inspect = sub.add_parser('inspect', allow_abbrev=False)
     inspect.add_argument('--assessment', required=True)
     sub.add_parser('status', allow_abbrev=False)
+    for name in ('releases','release-inspect','release-status'):
+        sub.add_parser(name,allow_abbrev=False,add_help=False,
+            help='Explicit private release-signature verification and retained replay.')
     args = parser.parse_args(arguments)
     context = ValidationContext(instance_root, settings)
     if args.operation == 'status':

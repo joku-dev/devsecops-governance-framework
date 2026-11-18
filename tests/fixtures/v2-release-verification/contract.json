@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "source_path": "scripts/lib/release_integrity.py",
+  "source_sha256": "518e60080d5e596c831d0d00b835ff0d2286c33af5c5ee0dbf8fdf9dd9b0ae98",
+  "function_names": [
+    "_allowed_signers",
+    "_manifest_records",
+    "_run",
+    "_safe_file",
+    "_sha256",
+    "_tag_identity",
+    "_tag_names",
+    "_validate_checksum_file",
+    "_verify_manifest",
+    "verify_release_integrity"
+  ],
+  "scope": "complete_original_release_decisions_not_repository_or_native_port_completion"
+}

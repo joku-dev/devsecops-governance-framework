@@ -44,7 +44,13 @@
     "scripts/lib/validation_queries.py",
     "scripts/lib/validation_replay.py",
     "scripts/lib/validation_sources.py",
-    "scripts/lib/validation_application.py"
+    "scripts/lib/validation_application.py",
+    "scripts/lib/release_verification.py",
+    "scripts/lib/release_reference_facts.py",
+    "scripts/lib/release_requests.py",
+    "scripts/lib/release_replay.py",
+    "scripts/lib/release_inputs.py",
+    "scripts/lib/release_validation_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

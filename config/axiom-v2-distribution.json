@@ -182,7 +182,15 @@
     "scripts/lib/validation_queries.py",
     "scripts/lib/validation_replay.py",
     "scripts/lib/validation_sources.py",
-    "scripts/lib/providers/validation_worktree.py"
+    "scripts/lib/providers/validation_worktree.py",
+    "scripts/lib/release_verification.py",
+    "scripts/lib/release_reference_facts.py",
+    "scripts/lib/release_requests.py",
+    "scripts/lib/release_replay.py",
+    "scripts/lib/providers/release_references.py",
+    "scripts/lib/providers/release_verification.py",
+    "scripts/lib/release_inputs.py",
+    "scripts/lib/release_validation_application.py"
   ],
   "data_roots": [
     "schemas",

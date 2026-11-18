@@ -113,6 +113,9 @@ def source_digest():
         'validation_operations.py','validation_queries.py','validation_replay.py','validation_sources.py',
         'validation_application.py'))
     paths.append(ROOT/'config/axiom-v2-validation-capabilities.json')
+    paths.extend(ROOT/'scripts/lib'/name for name in ('release_verification.py',
+        'release_reference_facts.py','release_requests.py','release_replay.py',
+        'release_inputs.py','release_validation_application.py'))
     return canonical_digest({str(path.relative_to(ROOT)):file_digest(path) for path in paths})
 
 
