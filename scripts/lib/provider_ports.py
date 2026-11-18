@@ -69,3 +69,8 @@ from lib.providers.local_source_observation import (PROFILES as LOCAL_SOURCE_PRO
     validate as validate_local_source, facts as local_source_facts,
     MAX_FILE as LOCAL_SOURCE_MAX_FILE, MAX_TEXT as LOCAL_SOURCE_MAX_TEXT,
     MAX_FACTS as LOCAL_SOURCE_MAX_FACTS)
+
+from lib.providers.review_execution import (PROFILES as REVIEW_EXECUTION_PROFILES,
+    profile as review_execution_profile, adapter as review_execution_adapter,
+    command as review_execution_command, observations as review_execution_observations,
+    OutputDirectory as ReviewExecutionOutput, execute as execute_review_process)

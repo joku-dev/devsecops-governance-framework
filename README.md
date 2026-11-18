@@ -29,20 +29,20 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **68 in Arbeit** und **67 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **69 in Arbeit** und **66 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 68 | 67 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 69 | 66 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `6f7d7ad` · 1,813 Tests (davon 1 übersprungen) · Mac 10 / VM 10 Prüfgruppen · 7 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `e03bdfb` · 1,822 Tests (davon 1 übersprungen) · Mac 11 / VM 11 Prüfgruppen · 7 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Ursprüngliche YAML-Reviewverträge mit begrenzter Auflösung erhalten.
+**Nächster Baustein:** Vollständigen optionalen Review-Runner in V2 übernehmen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -169,6 +169,15 @@ Dateiadapter kann bestehende Zustands- und Logdateien eines separaten Checkouts
 verwenden; Vorschau, gespeicherter Auftrag und Wiederaufnahme machen Teilfehler
 nachvollziehbar. Provider-Reviews werden als Angaben protokolliert; der Befehl
 startet keinen KI-Provider und erteilt keine Freigabe.
+`review-run run/inspect/status` erhält den optionalen ursprünglichen Review-Runner.
+Standardmäßig bereitet er vollständige private Aufgaben in einem neuen, ausdrücklich
+gewählten Verzeichnis vor. Erst `--execute` startet Prozesse über den gewählten
+Provider-Adapter; in CI ist das gesperrt. Fachreviews laufen begrenzt parallel,
+der Steward folgt nach erfolgreichen Fachreviews. Private Protokolle unterscheiden
+angeforderte Ausführung und tatsächlichen Prozessstart; unterbrochene Läufe werden
+nicht automatisch wiederholt. Gespeicherte Ausgaben lassen sich ohne Zielcheckout
+erneut prüfen. Modellangaben und Antworten bleiben unbestätigt; menschliche
+Freigaben werden nicht erteilt. [Bedienung und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#optional-review-execution).
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.

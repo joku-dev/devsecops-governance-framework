@@ -120,7 +120,7 @@ GCR-2026-162 unverändert. Datierte Ausgangsinventare werden nicht überschriebe
 | `scripts/record_agent_review.py`, `scripts/lib/agent_receipts.py` | Expliziter Allowlist-Export privater Ergebnisse und idempotente separate Nutzungszählung; keine Authentifizierung. |
 | `scripts/report_agent_review_status.py`, `scripts/lib/agent_review_status.py` | Konsistenzprüfung angehängter PR-Metadaten gegen Head, Scope und Ziel-/Vorschlagsverträge; keine Freigabe. |
 | `.github/workflows/agent-review-status.yml` | Separater Report-only-Job mit vertrauenswürdigem Zielbranch-Code, lesenden Berechtigungen und Summary/Artifact-Ausgabe. |
-| `scripts/run_agent_reviews.py`, `scripts/lib/agent_execution.py` | Standardmäßig private Vorbereitung; explizit beauftragte Live-Ausführung mit begrenzter Parallelität, Timeout und abschließendem Steward. |
+| `scripts/run_agent_reviews.py`, `scripts/lib/agent_execution.py` | V1: private Vorbereitung und optionale Live-Ausführung. V2: `review-run run/inspect/status`, neutrale Planung/Ergebnislogik und expliziter Prozessadapter; privates neues Ausgabeverzeichnis, begrenzte Parallelität/Timeout, Steward zuletzt, keine automatische Wiederholung oder Freigabe. Vollständiger Paritätsnachweis bleibt offen. |
 | `scripts/lib/agent_codex.py` | Dünne Codex-CLI-Projektion mit Read-only-Sandbox und getrennten angeforderten/beobachteten Modellangaben. |
 | `scripts/evaluate_agent_reviews.py`, `scripts/lib/agent_evaluation.py` | Offlinepakete und strukturierte Bewertung synthetischer Antworten; keine automatischen Provideraufrufe. |
 

@@ -45,6 +45,75 @@ The second command currently returns nonzero: full functional parity is not
 complete. Normal audit output names the outstanding subjects instead of silently
 reducing the product to the already portable subset.
 
+## Optional review execution
+
+`review-run` restores the original optional `run_agent_reviews.py` flow through
+neutral orchestration and an explicit native CLI adapter. A clean committed
+target with its own role/skill/routing/protocol, execution contract and provider
+adapters is required. The external plan must cover the whole branch against an
+exact base; an earlier V2 plan assessment is optional. Both Git object formats
+are supported. The unchanged real consumer currently lacks those review
+contracts; this remains an original rejection boundary, without injected roles.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance review-run run \
+  --repo /private/operator/review-target --plan-file /private/operator/plan.json \
+  --output-dir /private/operator/new-private-run \
+  --profile legacy-codex-role-review-v1 --at 2026-11-18T00:00:00Z
+```
+
+The default prepares the original per-role schema/prompt/command files and root
+results/execution files without starting a provider. `--plan` is retained as an
+alias for `--plan-file`. Only an explicit `--execute` starts the selected native
+provider, which may consume account credits; CI execution is forbidden. The
+provider adapter owns model configuration, exact read-only/no-approval/ephemeral
+arguments and native events. There is no shell or arbitrary executable argument.
+`--parallel-specialists` defaults to 1 (contract maximum 3) and
+`--timeout-seconds` to 180 (maximum 600 per role). The Steward runs after all
+specialists complete, including the zero-specialist case; failed specialists
+skip synthesis. No validators, retries or additional agents are launched by the
+runner itself. A provider response declaring `completed` remains a declaration.
+
+`--validation-results` supplies already recorded validation rows; the runner
+neither executes checks nor invents successful outcomes. Default stdout retains
+the four native summary fields and exits 0 for preparation/declared readiness,
+1 for completed but incomplete execution and 2 for input/source/outer failures.
+`--format receipt` exposes the private assessment and operation IDs instead.
+
+The new output directory must be outside target, product checkout and private
+instance. Native artifacts stay there; separate node-owned input snapshots,
+durable intent, process-start observations, progress and retained raw artifacts
+live under `state/review-execution/`. No external artifact is overwritten.
+Exceptions preserve actual partial files, including original typed-YAML prompt
+serialization failures. Inspection distinguishes complete reconstruction from
+partial capture. A stopped/pending operation never authorizes an automatic retry.
+
+```sh
+python scripts/axiom_v2.py --instance /private/operator/v2-instance review-run inspect \
+  --assessment <assessment-id>
+python scripts/axiom_v2.py --instance /private/operator/v2-instance review-run status \
+  --operation <operation-id>
+```
+
+Offline inspection verifies retained bytes and rederives complete native control
+outputs without caller files, a current target or provider access. Opaque raw
+streams remain private. It does not confirm native/model identity, factual
+review quality, current Git state, human approval or production authority.
+Original `provider_attempted` means execution was requested; the separate
+`provider_invoked`/process-start facts record actual local starts, including
+post-spawn failures that V1 could incorrectly label as unstarted.
+
+The explicit resource/privacy profile additionally bounds responses to 1 MiB,
+each output/error stream to 10 MiB, native files to 16 MiB and retained output to
+512 MiB/3,000 files. Model/reasoning arguments are limited to 64 KiB each.
+Native subprocesses use umask 077 and owned process groups are terminated on
+completion or timeout before capture. Symlinks, hardlinks, nonregular/public
+outputs and changed directories are rejected without reading unrelated bytes.
+These protections are recorded V2 differences, not fabricated original behavior.
+The source tests use a controlled local synthetic executable; no paid/live
+provider or actual role review is implied. Full subject/installed parity remains
+in progress until the corresponding evidence is complete.
+
 ## First executable increment
 
 The product now has an explicit, instance-bound `evaluate` command for the full

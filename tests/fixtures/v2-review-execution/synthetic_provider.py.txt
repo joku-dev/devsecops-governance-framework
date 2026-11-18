@@ -1,0 +1,35 @@
+"""Controlled local fixture, not an AI provider or an actual role review."""
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+args=sys.argv[1:]
+assert args[:8]==['--no-daemon','-a','never','exec','--ignore-user-config','--ephemeral','--sandbox','read-only']
+assert args[-1]=='-' and '--json' in args
+prompt=json.load(sys.stdin);task=prompt['task'];role=task['role_id']
+output=Path(args[args.index('--output-last-message')+1]);schema=Path(args[args.index('--output-schema')+1])
+assert schema.is_file() and prompt['instruction'].startswith('Perform only this read-only role review.')
+mode=os.environ.get('AXIOM_REVIEW_TEST_MODE','success')
+if mode=='timeout':time.sleep(30)
+if mode=='child':
+    subprocess.Popen([sys.executable,'-c',"import time;time.sleep(2);open(__import__('sys').argv[1],'w').write('unexpected descendant write')",str(output.parent/'late-child.txt')])
+if mode=='source-mutate':Path(args[args.index('--cd')+1],'docs/review-example.md').write_text('synthetic concurrent source mutation\n')
+if mode=='exit':sys.exit(7)
+if mode=='oversize-response':output.write_bytes(b'x'*(1024**2+1));sys.exit(0)
+if mode=='oversize-stream':sys.stdout.write('x'*(10*1024**2+65536));sys.stdout.flush();time.sleep(10)
+if mode=='symlink-response':output.symlink_to(os.environ['AXIOM_REVIEW_TEST_SECRET']);sys.exit(0)
+if mode=='hardlink-response':os.link(os.environ['AXIOM_REVIEW_TEST_SECRET'],output);sys.exit(0)
+response={'role_id':role,'status':'failed' if mode=='declared-failed' else 'completed',
+    'summary':'Synthetic controlled process response; not an actual review',
+    'outputs':{k:'Synthetic controlled process output' for k in task['required_output']},
+    'reviewed_paths':task['scope'] if mode!='incomplete' else [],
+    'reviewed_roles':[r['role_id'] for r in prompt['specialist_results']],'findings':[]}
+output.write_text('{invalid' if mode=='invalid' else json.dumps(response,indent=2,sort_keys=True)+'\n')
+print(json.dumps({'type':'thread.started','model':'synthetic-unverified-model'}))
+print('ignored malformed event')
+print(json.dumps({'type':'turn.completed','usage':{'input_tokens':11,'cached_input_tokens':2,'output_tokens':3}}))
+if mode=='wrong-event':print('[]')
+print('Synthetic private stderr',file=sys.stderr)

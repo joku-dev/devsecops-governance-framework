@@ -161,7 +161,10 @@
     "scripts/lib/review_dispatch_application.py",
     "scripts/lib/providers/review_dispatch.py",
     "scripts/lib/providers/review_dispatch_files.py",
-    "scripts/lib/review_dispatch_external.py"
+    "scripts/lib/review_dispatch_external.py",
+    "scripts/lib/review_execution.py",
+    "scripts/lib/review_execution_application.py",
+    "scripts/lib/providers/review_execution.py"
   ],
   "data_roots": [
     "schemas",

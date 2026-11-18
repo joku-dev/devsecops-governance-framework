@@ -2978,8 +2978,8 @@
         "--validation-results"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/review_execution_application.py:ReviewExecutionContext",
+      "state": "in_progress",
       "evidence": []
     },
     {
