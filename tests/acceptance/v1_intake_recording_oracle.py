@@ -48,7 +48,7 @@ class Original:
             nodes=[n for n in nodes if not isinstance(n,ast.Assign) or not any(isinstance(t,ast.Name) and t.id in ('ROOT','ATTEMPT_ROOT','EVENT_ROOT','CONFLICT_ROOT','SCHEMA_PATH') for t in n.targets)]
             exec(compile(ast.Module(body=nodes,type_ignores=[]),'unchanged_original_'+file,'exec'),scope);self.modules[kind]=scope
 
-    def run(self,kind,args,*,at,run=None,error=None,environment=None,native_transport=False):
+    def run(self,kind,args,*,at,run=None,error=None,environment=None,native_transport=False,clock=None):
         instant=datetime.fromisoformat(at.replace('Z','+00:00'))
         class Clock(datetime):
             @classmethod
@@ -57,7 +57,7 @@ class Original:
         def get(url,token):
             if error is not None:raise error
             return deepcopy(run)
-        changes={'datetime':Clock}
+        changes={'datetime':clock or Clock}
         if kind=='attempt' and not native_transport:changes['github_get_json']=get
         with patch.dict(scope,changes),patch.object(sys,'argv',['original-'+kind,*map(str,args)]),patch.dict(os.environ,environment or {},clear=True),redirect_stdout(out),redirect_stderr(err):
             code=scope['main']()

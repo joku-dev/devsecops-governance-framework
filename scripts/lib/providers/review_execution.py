@@ -5,11 +5,12 @@ import os
 from pathlib import Path
 import selectors
 import shutil
-import signal
 import stat
 import subprocess
 import time
 import tomllib
+
+from lib.providers import process_groups
 
 PROFILES = ('legacy-codex-role-review-v1',)
 MAX_STREAM = 10 * 1024**2
@@ -150,17 +151,7 @@ class OutputDirectory:
     def close(self):os.close(self.fd)
 
 
-def _stop(process):
-    try:os.killpg(process.pid,signal.SIGTERM)
-    except ProcessLookupError:pass
-    try:process.wait(timeout=2)
-    except subprocess.TimeoutExpired:
-        try:os.killpg(process.pid,signal.SIGKILL)
-        except ProcessLookupError:pass
-        process.wait()
-    # A terminated CLI may otherwise leave descendants writing after admission.
-    try:os.killpg(process.pid,signal.SIGKILL)
-    except ProcessLookupError:pass
+def _stop(process):process_groups.stop(process,graceful=True)
 
 
 def execute(argv, prompt, output, role, timeout, name, on_start):
@@ -221,4 +212,5 @@ def execute(argv, prompt, output, role, timeout, name, on_start):
                     _stop(process)
                     if code is None:code=process.returncode
         finally:os.close(parent)
-    return {'process_started':started,'exit_code':code,'timed_out':timed_out,'error_type':error}
+    return {'process_started':started,'exit_code':code,'timed_out':timed_out,'error_type':error,
+        **process_groups.observations(process)}

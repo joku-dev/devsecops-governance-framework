@@ -171,7 +171,8 @@ def output_observation(path):
 
 def append_output(path,raw,before,metadata):
     if len(raw)+len(before or b'')>MAX_FILE:raise ValueError('native_output_byte_budget')
-    parent=attestation_files.parent(path,create=True)
+    parent=attestation_files.parent(path)
+    if parent is None:raise FileNotFoundError('native_output_parent_missing')
     try:
         held=os.fstat(parent);current=os.stat(path.parent,follow_symlinks=False)
         if (held.st_dev,held.st_ino)!=(current.st_dev,current.st_ino):raise ValueError('native_output_parent_changed')

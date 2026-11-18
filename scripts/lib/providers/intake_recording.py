@@ -41,6 +41,12 @@ def endpoint(value):
     return value.rstrip('/')
 
 
+def selected_endpoint(value):
+    """Invalid bases still yield the native failure record, without retaining URL credentials."""
+    try:return endpoint(value)
+    except (ValueError,TypeError):return None
+
+
 def initial_observation():
     return {'client_invoked':False,'response_received':False,'http_status':None,'error_type':None,'body_retained':False}
 
@@ -48,6 +54,7 @@ def initial_observation():
 def acquire(api_url,repository,run_id,token,on_attempt):
     observation=initial_observation();raw=None
     try:
+        if api_url is None:raise ValueError('invalid_intake_record_api_endpoint')
         base=endpoint(api_url);owner,repo=repository.split('/',1)
         url=base+f'/repos/{quote(owner)}/{quote(repo)}/actions/runs/{run_id}'
         request=Request(url,headers={'Accept':'application/vnd.github+json','User-Agent':'devsecops-governance-result-intake',

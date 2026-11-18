@@ -172,7 +172,8 @@
     "scripts/lib/intake_recording.py",
     "scripts/lib/intake_record_files.py",
     "scripts/lib/intake_recording_application.py",
-    "scripts/lib/providers/intake_recording.py"
+    "scripts/lib/providers/intake_recording.py",
+    "scripts/lib/providers/process_groups.py"
   ],
   "data_roots": [
     "schemas",

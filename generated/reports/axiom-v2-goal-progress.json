@@ -266,69 +266,69 @@
       {
         "name": "Agent Review Status",
         "result": "passed",
-        "run_id": "44223509414",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44223509414"
+        "run_id": "44254100491",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44254100491"
       },
       {
         "name": "Dependency Review",
         "result": "passed",
-        "run_id": "44220622992",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622992"
+        "run_id": "44251432717",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432717"
       },
       {
         "name": "Governance Repository Self-Security",
         "result": "passed",
-        "run_id": "44220622902",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622902"
+        "run_id": "44251432715",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432715"
       },
       {
         "name": "Consumer Lifecycle Guard",
         "result": "passed",
-        "run_id": "44220622897",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622897"
+        "run_id": "44251432661",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432661"
       },
       {
         "name": "Prepared runtime offline",
         "result": "passed",
-        "run_id": "44220622890",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622890"
+        "run_id": "44251432686",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432686"
       },
       {
         "name": "CodeQL",
         "result": "passed",
-        "run_id": "44220623679",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623679"
+        "run_id": "44251432739",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432739"
       },
       {
         "name": "Governance CI",
         "result": "passed",
-        "run_id": "44220623041",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623041"
+        "run_id": "44251432674",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432674"
       },
       {
         "name": "Governance CI v2",
         "result": "passed",
-        "run_id": "44220623081",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623081"
+        "run_id": "44251432698",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44251432698"
       }
     ],
     "compared_result_groups": 9,
-    "comparison_note": "Dreizehn installierte Prüfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Attestierung: 24 Fälle je Host mit 23 Original-/Krypto-/Datei-/Schutztests und installiertem CLI; optionaler Runner: 23 Fälle mit 22 Tests und installiertem CLI. Ganze ursprüngliche native Ausgaben je Host gleich; echte UUIDs, Zeitstempel und Pfade werden hostübergreifend nicht gleichgesetzt. Native Quellberichte, Dispatcher, YAML, externe Dateien und Planung bleiben mit dokumentierten Vergleichsgrenzen geprüft. Feste ha-CPsWMS-Berichte ganz gleich; ganzer DCR gleich, gegenüber 827 nur reviewed_commit verändert. Alle acht tatsächlichen CI-Familien grün, letzter Review-Status declared_complete. Exakte finale Dateien auf GitHub: 1867 Tests in 525.860 Sekunden, zwei ausgelassen; lokale vollständige Vorgängerprüfung mit gleichem Runtime-Code und späterer Test-Umask-Korrektur separat dokumentiert. VM-Testfixtures berücksichtigen umask 0002 ohne schwächere Produktgrenzen. Ein früher intermittierender Runner-Testbefund bleibt offen; die defensive Pipe-Korrektur belegt nicht dessen Ursache. Keine Zertifizierung der neuen Intake-Änderungen, aller 37 CI-Definitionen oder des ganzen Goals.",
+    "comparison_note": "Vierzehn installierte Prüfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Intake: 34 Fälle je Host mit 33 Original-/Datei-/HTTPS-/Schutztests und tatsächlich installiertem Attempt/Event/Retry-CLI samt Offline-Prüfung. Originaldateien und native Ausgaben pro Host ganz gleich; echte Pfade, Uhren, TLS-Schlüssel, Prozessausgaben und UUIDs werden hostübergreifend nicht gleichgesetzt. Runner23, Attestierung24, YAML25, externe Dateien35 und Planung23 bestehen weiter mit ihren dokumentierten Vergleichsgrenzen. Feste ha-CPsWMS-Berichte ganz gleich; ganzer DCR gleich, gegenüber f231 nur reviewed_commit verändert. Alle acht tatsächlichen CI-Familien grün; abschließender tatsächlicher Review-Job meldet eigenständig declared_complete. Exakte finale Dateien auf GitHub: 1900 Tests in 913.742 Sekunden, zwei ausgelassen; lokal 1900 Tests in 768.113 Sekunden, einer ausgelassen. Ein früher intermittierender Runner-Testbefund bleibt offen. Keine Zertifizierung der neuen Nachweis-/Uhränderungen, aller 37 CI-Definitionen oder des ganzen Goals.",
     "equal_complete_result_groups": 9,
     "evidence_kind": "declared_technical_validation_observation",
     "full_dcr_equal": true,
-    "full_dcr_sha256": "5e6c2f9120a788882e9396484ce6c677e1983043d07f7abb2d1ffd01921d805a",
+    "full_dcr_sha256": "122e861317e93c4c2c810203f4241537fd88a0fb98c9ec33a7872d07273461f4",
     "full_functional_parity": false,
     "independent_human_approval": false,
     "installed_groups": {
-      "linux": 13,
-      "mac": 13
+      "linux": 14,
+      "mac": 14
     },
-    "observed_at": "2026-11-18T02:27:20.215984Z",
-    "runtime_source_digest": "7686ffa01ee7a0a6ff760a9f4482a4a979bf7e5f166ffacc1de3423ef695d455",
-    "source_revision": "f231cdd157fef4ad6daf712eeb911a9ca0e3538d",
-    "unit_test_seconds": 525.86,
-    "unit_tests": 1867,
+    "observed_at": "2026-11-18T06:49:00Z",
+    "runtime_source_digest": "1ede21fc43e51a62497723ea78fdde0a81f48465918294a6b1086b2a0fd82225",
+    "source_revision": "a8bb8a4fc352898b2eaf51a66f224a794e0e2d7d",
+    "unit_test_seconds": 913.742,
+    "unit_tests": 1900,
     "unit_tests_skipped": 2
   },
   "matrix_sha256": "4a8f0cba02d96f01c2ecc419f20dc2ba3f30d0420f723ac2af777662baef76a6",
@@ -338,10 +338,10 @@
       "scripts/record_intake_event.py",
       "scripts/prepare_collection_attempt_retry.py"
     ],
-    "next_step": "Ganze ursprüngliche CLI-/Dateiwirkungen, echte begrenzte HTTPS-Aufrufe, unabhängige Repo-Buckets und private Wiederholungsprüfung validieren und frisch auf Mac/VM nachweisen; anschließend alle verbleibenden Einzelnachweise und Betriebsabläufe fortsetzen.",
-    "title": "Intake-Protokolle und kontrollierte Wiederholungspläne in V2 erhalten"
+    "next_step": "Geschlossene Nachweis-Metadaten reproduzierbar bereitstellen, ursprüngliche Zeitpunkte erhalten und mit frischen Mac/VM-Prüfungen sowie vollständigem Funktionsaudit verbinden; erst danach Einzelzustände festhalten und alle übrigen Goal-Bereiche fortsetzen.",
+    "title": "Intake-Funktionen anhand einzelner Paritätsnachweise prüfen"
   },
-  "observation_sha256": "13927aefc97e6884c9b69cf07bc37adb5237a5e8a790750fc1956003c1d3b616",
+  "observation_sha256": "e938aa7a044278f4610350cf62eed8e78fdde07061761301351f9c164e74943f",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

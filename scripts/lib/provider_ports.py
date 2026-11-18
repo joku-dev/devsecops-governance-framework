@@ -82,6 +82,9 @@ from lib.providers.attestation_verification import (PROFILES as ATTESTATION_PROF
 from lib.providers.intake_recording import (PROFILES as INTAKE_RECORD_PROFILES,
     profile as intake_record_profile,event_defaults as intake_record_event_defaults,
     token_value as intake_record_token,endpoint as intake_record_endpoint,
+    selected_endpoint as intake_record_api_selection,
     acquire as acquire_intake_record_metadata,metadata_projection as intake_record_metadata,
     attempt_source as intake_attempt_source,event_sources as intake_event_sources,
     initial_observation as intake_record_initial_observation)
+
+from lib.providers.process_groups import consistent as native_cleanup_observation_valid

@@ -1,5 +1,64 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+## Subject evidence delivery and audit
+
+Classify the closed technical parity-receipt schema and bounded metadata reader
+as an executable verification/evidence-contract change. A default public metadata
+pack belongs under `config/axiom-v2-parity-evidence/`; an explicit operator receipt
+directory remains supported. These files are declared technical observations,
+not normative governance sources, accepted downstream outcomes or review bodies.
+Full Source Document Intake is not applicable. Original scope, baselines, source
+registers, protected acceptance and consumer modes remain unchanged.
+
+Do not promote a matrix row from aggregate test counts. Audit its complete
+original helper/CLI/default/effect semantics and documented safety differences,
+then bind actual positive, negative and installed evidence to that subject and
+the current runtime. Keep raw inputs, native artifacts, private review plans and
+results outside the public pack. The closed metadata contract permits hashes
+and finite technical outcome fields, with no private bodies or authority claims.
+Missing, stale, changed or unsafe receipts must still fail closed. An explicit
+operator directory never falls back to the packaged copy on failure.
+
+The subject audit also found a concrete normal-clock discrepancy: the original
+collection CLI samples its timestamp after metadata resolution, while V2 had used
+its earlier assessment-start sample. A new advancing-clock regression first
+failed against that behavior. Preserve the original native sample phase, including
+event completion before ledger scanning; retain it separately from assessment
+start and rederive it offline. Explicit operator evaluation/completion times keep
+their original meaning. This private assessment field is runtime-bound and does
+not migrate or reinterpret earlier records from a different runtime.
+
+The parity matrix and receipt metadata stay outside the runtime source digest
+to avoid self-reference. Reader/schema changes remain bound into that digest
+and require fresh source-bound tests. Receipt hashes and declarations do not
+authenticate their author, execution quality, independent approval or production
+authority. No formal row promotion is part of merely adding this delivery path.
+
+The same full-original audit reproduced two additional effect differences:
+invalid or explicitly empty API bases must still record the native fallback
+attempt, and retry-output append must fail if its parent does not exist. Preserve
+those semantics without retaining/querying rejected URL credentials or creating
+output directories implicitly. Add whole original CLI/error/file regressions.
+
+## Owned native process cleanup correction
+
+Classify the shared review/attestation process-group adapter and optional paired
+cleanup observations as an executable runtime/evidence-contract correction.
+A full local validation reproduced the inherited review-child `PermissionError`.
+An isolated actual synthetic-provider probe then observed macOS `SIGKILL` and
+signal-zero `EPERM` with an already absent owned group. Preserve that failure
+and reproduction evidence separately from the corrected candidate's results.
+
+Handle a denied signal only on macOS and only after bounded strict native `ps`
+observation confirms absence or exclusively defunct group members and includes
+the live observer. Linux, live/unknown groups and failed observations remain
+errors. Bound waits, cache confirmed absence to avoid signalling reused IDs,
+retain paired sanitized observations and check their consistency during offline
+reconstruction. No raw process list is persisted. Require positive/negative
+contracts, actual owned-child stress, full pinned validation and fresh installed
+Mac/Linux evidence; do not infer closure of unrelated historical runner failures.
+No independent review, human approval or operating authority follows.
+
 ## Collection attempt, intake event and retry-plan restoration
 
 Classify the new neutral intake decision, held-file and application modules,

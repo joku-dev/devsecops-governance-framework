@@ -448,3 +448,76 @@ class IntakeRecords(unittest.TestCase):
         with patch.object(effects,'MAX_TOTAL',4),patch.object(adapter,'open_https',side_effect=AssertionError('over-budget bucket queried provider')):
             with self.assertRaisesRegex(ValueError,'total_budget'):self.app.execute(self.request())
         self.assertFalse(list(self.app.intents.iterdir()))
+
+    def test_default_attempt_clock_is_sampled_after_native_metadata_resolution(self):
+        from datetime import datetime,timezone
+        from lib import intake_recording_application as application
+        initial=datetime.fromisoformat(AT.replace('Z','+00:00'));later=initial.replace(second=8,microsecond=750000);time=[initial]
+        class Clock(datetime):
+            @classmethod
+            def now(cls,zone=None):return time[0].astimezone(zone) if zone is not None else time[0].replace(tzinfo=None)
+        def transport(*args,**kwargs):time[0]=later;return Response(json.dumps(RUN).encode())
+        request=self.request();args=self.cli_args(request);out=io.StringIO();err=io.StringIO()
+        with patch.object(application,'datetime',Clock),patch.object(adapter,'open_https',side_effect=transport),redirect_stdout(out),redirect_stderr(err):
+            code=run(['attempt','--repo',str(self.target),'--profile',PROFILE,*args],self.instance,self.settings)
+        candidate=oracle.snapshot(self.target);shutil.rmtree(self.target);self.target.mkdir();self.old.schema_files();time[0]=initial
+        with patch.object(self.old.http,'open_https',side_effect=transport):old=self.old.run('attempt',args,at=AT,native_transport=True,clock=Clock)
+        self.assertEqual((code,out.getvalue().encode(),err.getvalue().encode()),old)
+        self.assertEqual(oracle.snapshot(self.target),candidate)
+        record=next(self.app.records.glob('*.json'));value=self.app.inspect(record.stem)
+        self.assertEqual(value['assessed_at'],AT);self.assertEqual(value['native_time']['phase'],'after_metadata_resolution')
+        self.assertEqual(value['native_time']['value'],'2026-11-18T03:00:08.750000Z')
+
+    def test_default_event_completion_clock_is_sampled_before_ledger_scan(self):
+        from datetime import datetime,timezone
+        from lib import intake_recording_application as application
+        initial=datetime.fromisoformat(AT.replace('Z','+00:00'));later=initial.replace(second=8);time=[initial]
+        class Clock(datetime):
+            @classmethod
+            def now(cls,zone=None):return time[0].astimezone(zone) if zone is not None else time[0].replace(tzinfo=None)
+        native=effects.LedgerRoot.snapshot
+        def scan(*args,**kwargs):time[0]=later;return native(*args,**kwargs)
+        request=self.request('event',status='success',error_code=None,message=None);args=self.cli_args(request);out=io.StringIO();err=io.StringIO()
+        with patch.object(application,'datetime',Clock),patch.object(effects.LedgerRoot,'snapshot',side_effect=scan,autospec=True),redirect_stdout(out),redirect_stderr(err):
+            code=run(['event','--repo',str(self.target),'--profile',PROFILE,*args],self.instance,self.settings)
+        candidate=oracle.snapshot(self.target);shutil.rmtree(self.target);self.target.mkdir();self.old.schema_files();old=self.old.run('event',args,at=AT)
+        self.assertEqual((code,out.getvalue().encode(),err.getvalue().encode()),old);self.assertEqual(oracle.snapshot(self.target),candidate)
+        record=next(self.app.records.glob('*.json'));value=self.app.inspect(record.stem)
+        self.assertEqual(value['native_time']['phase'],'before_ledger_scan');self.assertEqual(value['native_time']['value'],AT)
+
+    def test_rehashed_native_clock_phase_cannot_change_operator_time_meaning(self):
+        value,_=self.compare(self.request());path=self.app.records/(value['assessment_id']+'.json');record=json.loads(path.read_text())
+        record['native_time']['phase']='after_metadata_resolution';changed=canonical_digest(record)
+        (self.app.records/(changed+'.json')).write_text(json.dumps(record))
+        operation=self.app.intents/(record['operation_id']+'.json');intent=json.loads(operation.read_text());intent['assessment_id']=changed;operation.write_text(json.dumps(intent))
+        with self.assertRaisesRegex(ValueError,'invalid_intake_native_time'):self.app.inspect(changed)
+
+    def test_invalid_api_base_keeps_original_fallback_without_network_or_retained_credentials(self):
+        secret='synthetic-unretained-api-secret'
+        for base in ('http://example.invalid',f'https://operator:{secret}@example.invalid',''):
+            with self.subTest(base_kind='empty' if not base else base.split(':',1)[0]):
+                request=self.request();args=self.cli_args(request);args[args.index('--api-url')+1]=base
+                before=oracle.snapshot(self.target);out=io.StringIO();err=io.StringIO()
+                with patch.object(adapter,'open_https',side_effect=AssertionError('Rejected base must not query a default API')) as network,patch.dict(os.environ,{},clear=True),redirect_stdout(out),redirect_stderr(err):
+                    code=run(['attempt','--repo',str(self.target),'--profile',PROFILE,'--at',AT,*args],self.instance,self.settings)
+                self.assertEqual(code,0);network.assert_not_called();candidate=oracle.snapshot(self.target)
+                shutil.rmtree(self.target);self.target.mkdir(mode=0o700);self.old.schema_files()
+                for name,raw in before.items():path=self.target/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(raw)
+                with patch.object(self.old.http,'build_opener',side_effect=AssertionError('Original invalid base unexpectedly reached network')) as native_network:
+                    original=self.old.run('attempt',args,at=AT,native_transport=True)
+                native_network.assert_not_called();self.assertEqual(original,(code,out.getvalue().encode(),err.getvalue().encode()))
+                self.assertEqual(oracle.snapshot(self.target),candidate);self.assertEqual(err.getvalue(),adapter.WARNING)
+        for path in self.app.inputs.glob('*/manifest.json'):self.assertNotIn(secret,path.read_text())
+        for path in self.app.blobs.iterdir():self.assertNotIn(secret.encode(),path.read_bytes())
+        for path in self.app.records.glob('*.json'):
+            record=self.app.inspect(path.stem);self.assertFalse(record['lookup']['client_invoked'])
+            self.assertEqual(record['lookup']['error_type'],'ValueError')
+
+    def test_retry_missing_output_parent_preserves_original_no_directory_effect(self):
+        value,_=self.compare(self.request());destination=self.base/'missing-output-parent'/'native.txt'
+        request=self.request('retry',attempt_path=value['selected'],output=str(destination));before=oracle.snapshot(self.target)
+        with self.assertRaises(FileNotFoundError):self.old.run('retry',self.cli_args(request),at=AT)
+        checked,_,*_=self.app.execute(request)
+        self.assertEqual(checked['exit_code'],2);self.assertEqual(checked['error_type'],'FileNotFoundError')
+        self.assertFalse(destination.parent.exists());self.assertEqual(oracle.snapshot(self.target),before)
+        self.assertFalse(checked['retained_complete_outputs_rederived']);self.assertFalse(checked['workflow_dispatched'])

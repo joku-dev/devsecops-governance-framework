@@ -6,6 +6,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
@@ -20,6 +21,12 @@ class ParityAudit(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name);(self.root/'config').mkdir();(self.root/'schemas').mkdir()
         self.matrix=json.loads((ROOT/'config/axiom-v2-functional-parity.json').read_text())
+        # These tests exercise an unfinished synthetic matrix, independently of
+        # future current-product subject promotions and private evidence files.
+        for group in ('areas','entrypoints','ci_workflows','operating_workflows'):
+            for row in self.matrix[group]:
+                row['state']='pending'
+                if 'evidence' in row:row['evidence']=[]
         shutil.copyfile(ROOT/'schemas/axiom-v2-functional-parity.schema.json',
                         self.root/'schemas/axiom-v2-functional-parity.schema.json')
         self.save()
@@ -35,7 +42,8 @@ class ParityAudit(unittest.TestCase):
         self.assertTrue(report['remaining'])
 
     def test_complete_gate_returns_nonzero_while_any_function_is_pending(self):
-        with redirect_stdout(io.StringIO()):self.assertEqual(run('parity',['--require-complete']),1)
+        with patch('lib.v2_application.ROOT',self.root),redirect_stdout(io.StringIO()):
+            self.assertEqual(run('parity',['--require-complete']),1)
 
     def test_omitting_a_v1_entrypoint_is_detected_against_original_git(self):
         changed=deepcopy(self.matrix);changed['entrypoints'].pop()

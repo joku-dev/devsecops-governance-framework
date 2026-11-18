@@ -26,7 +26,7 @@ from lib.portable.contracts import ROOT, canonical_digest
 from lib.portable.runtime import read_json
 from lib.provider_ports import (REVIEW_EXECUTION_PROFILES, review_execution_profile,
     review_execution_adapter, review_execution_command, review_execution_observations,
-    ReviewExecutionOutput, execute_review_process, review_plan_profile)
+    ReviewExecutionOutput, execute_review_process, review_plan_profile, native_cleanup_observation_valid)
 from lib.result_assessments import identity, operator_bytes
 from lib.result_bytes import safe_bytes, strict_json
 from lib.result_snapshot_store import explicit_time
@@ -169,6 +169,7 @@ class ReviewExecutionContext:
             role=task['role_id'];schema,prompt,adapter_digest=materials[role]
             if role not in value['observations']:continue
             observation=value['observations'][role];prior=specialists if role=='repo-steward' else []
+            if not native_cleanup_observation_valid(observation):raise ValueError('review_execution_cleanup_observation_changed')
             config=review_execution_adapter(raw[review_execution_profile(input['profile'])['adapter_template'].format(role=role)],input['profile'])
             if observation['requested_model']!=config['requested_model'] or (not observation['process_started'] and observation['process_error_type'] is None):
                 raise ValueError('review_execution_process_observation_changed')

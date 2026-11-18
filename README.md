@@ -40,9 +40,9 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `f231cdd` · 1,867 Tests (davon 2 übersprungen) · Mac 13 / VM 13 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `a8bb8a4` · 1,900 Tests (davon 2 übersprungen) · Mac 14 / VM 14 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Intake-Protokolle und kontrollierte Wiederholungspläne in V2 erhalten.
+**Nächster Baustein:** Intake-Funktionen anhand einzelner Paritätsnachweise prüfen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -184,15 +184,28 @@ führt die kryptografische Prüfung aus; das gewählte neue oder vorhandene exte
 Ausgabefile erhält den ursprünglichen Bericht. Vorherige Bytes, tatsächliche
 Prozessbeobachtung und Schreibversuch bleiben privat nachvollziehbar. Die
 Standard-Kontextwerte stammen wie in V1 aus der Attestierung; explizite erwartete
-Werte sind möglich. Pilotregister und historische Trust-Bezeichnungen werden
+Werte sind möglich. Runner und Attestierung teilen eine begrenzte
+Prozessgruppen-Bereinigung. Ein verweigertes macOS-Signal wird nur bei bestätigter
+Abwesenheit oder ausschließlich beendeten Gruppenmitgliedern behandelt;
+lebende oder unklare Gruppen bleiben ein Fehler.
+[Prozessbeobachtung](docs/operations/planning/axiom-v2-functional-parity.md#owned-native-process-cleanup).
+Pilotregister und historische Trust-Bezeichnungen werden
 nicht als aktive V2-Autorität übernommen. [Bedienung und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#local-attestation-pilot).
+`parity` prüft Nachweis-Metadaten aus dem mitgelieferten Paket oder einem expliziten
+`--evidence-directory`. Hashes, Originalquelle, Implementierung und aktueller
+Runtime-Stand werden gebunden; private Texte und Autoritätsbehauptungen sind
+kein zulässiger Nachweis. Die Matrix wird dadurch nicht automatisch hochgestuft.
+[Nachweise und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#subject-receipts-and-evidence-delivery).
 `intake-records attempt/event/retry/inspect/status` erhält Fehlerprotokolle,
 deklarierte Intake-Ereignisse und die ursprünglichen drei Wiederholungspläne.
 Native Metadaten, CI-Umgebung und Routen liegen im expliziten Adapter; erste
 Datensätze und Konflikte bleiben erhalten. Private Eingaben, Schreibversuche und
 Vorher-/Nachher-Dateien sind offline prüfbar. Unabhängige Repo-Buckets können
 parallel arbeiten; ein Retry-Plan startet keinen Workflow und aktualisiert keinen
-offiziellen Ergebnisindex. [Bedienung und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#intake-records-and-retry-preparation).
+offiziellen Ergebnisindex. Der native Zeitstempel folgt der ursprünglichen
+Ablaufphase und wird getrennt vom Assessment-Start erhalten. Ungültige API-Basen
+erzeugen den ursprünglichen Fallback-Datensatz; ein Retry-Ausgabeordner muss
+bereits existieren. [Bedienung und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#intake-records-and-retry-preparation).
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.

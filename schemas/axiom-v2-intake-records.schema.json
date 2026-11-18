@@ -41,7 +41,8 @@
     "native_outcome_authenticated",
     "workflow_dispatched",
     "official_index_updated",
-    "request_delivery_independently_verified"
+    "request_delivery_independently_verified",
+    "native_time"
   ],
   "properties": {
     "schema_version": {
@@ -247,6 +248,42 @@
     },
     "request_delivery_independently_verified": {
       "const": false
+    },
+    "native_time": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "phase"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "format": "date-time",
+              "maxLength": 128
+            },
+            "source": {
+              "enum": [
+                "operator",
+                "system_clock"
+              ]
+            },
+            "phase": {
+              "enum": [
+                "operator_time",
+                "after_metadata_resolution",
+                "before_ledger_scan"
+              ]
+            }
+          }
+        }
+      ]
     }
   }
 }

@@ -45,6 +45,55 @@ The second command currently returns nonzero: full functional parity is not
 complete. Normal audit output names the outstanding subjects instead of silently
 reducing the product to the already portable subset.
 
+## Subject receipts and evidence delivery
+
+A matrix state is a technical declaration. A row may become `verified` only after
+its whole original helper/CLI/default/effect scope and explicit differences have
+been audited, with actual positive, negative and installed evidence. Aggregate
+suite counts or an installed symbol alone do not prove that scope. All areas,
+CI definitions and operating flows remain part of the full Goal.
+
+The parity checker reads public receipt metadata from
+`config/axiom-v2-parity-evidence/` by default. That directory is included by the
+existing configuration distribution root. Each matrix reference selects one
+bounded JSON file by ID and pins its complete SHA-256. Reading receipts performs no directory enumeration, native command, provider
+call or private input publication; an explicit original-source audit separately
+uses local read-only Git commands.
+`--evidence-directory` explicitly replaces that source; a missing or invalid
+operator receipt never falls back to a packaged copy. With no verified rows,
+no receipt directory is required.
+
+The closed `axiom-v2-parity-receipt.schema.json` retains the five minimal V1
+technical-declaration fields for an explicit operator directory: schema version,
+subject, kind, passed and current runtime digest. Packaged metadata additionally
+requires the declared evidence kind, frozen V1 reference, hash-only evidence
+sources and false authority/independent-human/official/production flags. Where
+the matrix supplies original source and installed implementation identities,
+the public receipt must also bind their actual hashes. Optional observed source
+revision/tree and finite case counts are metadata, not execution authentication.
+
+Only hashes and byte counts of named technical evidence classes are allowed;
+private review bodies, raw inputs, arbitrary file paths and authority claims are
+rejected. The underlying files and review plans/results remain private. The
+coordinator must actually inspect source, tests, logs, comparisons and operating
+boundaries before producing these declarations. The checker verifies structural,
+subject, source/runtime and byte bindings; it cannot authenticate an author,
+prove semantic test quality or grant human/operating approval from a hash.
+
+Receipt and matrix reads are bounded held regular single-link files, with change
+observations and strict duplicate/nonfinite JSON rejection. Missing, stale,
+changed, symlinked or invalid evidence stops the audit. The report pins the exact
+matrix bytes with `matrix_sha256` and reports the evidence source and number of
+receipts checked. Runtime source is checked before and after the audit. Both
+matrix and receipt metadata are excluded from that runtime digest to avoid a
+circular assertion; reader and schema changes remain included. A changed runtime
+needs fresh matching evidence, never relabelled earlier receipts.
+
+Adding this delivery mechanism does not promote any current row. New source
+requires its own full and installed checks before a subject decision. A missing
+original Git reference still prevents full completion, and `--require-complete`
+continues to fail while any original subject remains unfinished.
+
 ## Intake records and retry preparation
 
 `intake-records attempt/event/retry/inspect/status` restores the original
@@ -88,7 +137,14 @@ The event command keeps all original source/collector/intake/type/status/error/
 time options. Native CI environment defaults are adapter-owned. Required timezones,
 UTC second-resolution output and duration computed from full-precision input are
 preserved. `--at` makes evaluation time explicit; otherwise the system UTC clock
-is recorded. Success/partial/failure are operator/environment declarations and
+is recorded. The outer `assessed_at` is the assessment start. A separate retained
+`native_time` preserves the original phase: normal attempts sample after metadata
+resolution; default event completion samples before ledger scanning. Its value,
+source and phase are checked during offline reconstruction without reading the
+clock again. An explicit `--at` uses its declared value; an explicit
+`--completed-at` supplies the event completion directly without a native clock
+sample. This corrects the earlier attempt timestamp sampled before metadata I/O.
+Success/partial/failure are operator/environment declarations and
 do not authenticate whether a real intake happened.
 
 Records preserve the first matching identity in sorted file order. Repeating the
@@ -98,12 +154,19 @@ collisions append repeated `-retry` suffixes. As in V1, stdout is the originally
 requested relative filename even if an earlier matching file is selected; the
 receipt distinguishes `requested`, `selected` and `ledger_effect`.
 
+Rejected API bases, including an explicitly empty value, produce the original
+warning and fallback attempt rather than aborting before recording. Unsafe URL
+credentials are neither queried nor retained; only a rejected-selection marker
+is stored. An omitted base alone selects the original default endpoint.
+
 Retry preparation accepts only the original three governance/architecture/
 vulnerability routes, retryable errors and safe repository/run/artifact values.
 It prints the whole original JSON plan, or appends ordered native `key=value`
 lines when `--native-output` (also `--github-output`) is given. Existing bytes,
 mode and repeated invocations are preserved, including no inserted newline or
-deduplication. The command performs no workflow dispatch or accepted index update.
+deduplication. The output parent must already exist; a missing parent fails
+without creating it or printing a successful plan. The command performs no
+workflow dispatch or accepted index update.
 
 Before native access, an immutable private input and pending intent retain the
 selected repo bucket. Conflict selection adds at most one explicitly named leaf
@@ -114,8 +177,10 @@ files / 128 MiB per bucket snapshot and 16 MiB per file, response or native outp
 These bounds are explicit operating limits, not a measured large-estate capacity.
 
 Held directory/file descriptors, exclusive creation and change observations protect
-history; owned regular single-link native output may be appended. Ledger symlinks,
-hardlinks, nonregular files, Git metadata and unsafe writable output are rejected.
+history; owned regular single-link native output may be appended. Symlinked ledger
+scan entries, hardlinks, nonregular files, Git metadata and unsafe writable output
+are rejected. An explicitly selected retry-input alias may resolve to a held
+ordinary file within the selected attempt root, preserving original resolution.
 New files/directories are private. This narrows unsafe V1 filesystem cases and
 makes failures diagnostic exit 2 instead of exposing raw tracebacks. Local locks
 and optimistic checks require one operating owner across independent nodes; they
@@ -129,6 +194,31 @@ ledger. `status --operation ID` reports pending/incomplete effects and never res
 a write. Client invocation is observed, while authenticated native outcome,
 independent delivery, official index changes and authority remain false. Retained
 hashes provide local reconstruction, not independent authentication or approval.
+
+## Owned native process cleanup
+
+Review execution and local attestation share an explicit POSIX process-group
+adapter. Every signal targets the group started by that invocation, and waits
+are bounded. Confirmed group absence is cached so later cleanup does not signal
+a potentially reused group ID. Native process observations retain the cleanup
+permission-denial flag and its absence-check result; offline reconstruction
+rejects inconsistent pairs and an unproven cleanup cannot become complete.
+
+A reproduced macOS race returns `EPERM` for a group already absent from the
+process table, including for signal zero. On macOS only, the adapter may handle
+that denial after a bounded, strict `/bin/ps -A -o pgid=,state=` observation finds
+the group absent or containing only defunct members. The observation must also
+contain the live observer's own group. Live members, malformed/incomplete tool
+output, tool failure and unknown visibility remain errors. Linux permission
+denials remain errors without this process-table exception. Read-only `ps`
+output is transient and is not retained in private assessments or public metadata.
+
+The regression evidence includes the original full-suite failure, isolated
+actual denied-signal reproduction, synthetic positive/negative cleanup contracts
+and a 400-invocation owned-child stress check with no late writes. This narrows
+the demonstrated cleanup race; it does not retroactively classify every earlier
+runner failure. Fresh full-suite and installed checks are still required for
+each candidate, and cleanup observations grant no execution or approval authority.
 
 ## Local attestation pilot
 
