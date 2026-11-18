@@ -29,18 +29,18 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **74 in Arbeit** und **61 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **3 vollständig nachgewiesen**, **71 in Arbeit** und **61 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 74 | 61 | 135 |
+| V1-Einstiegspunkte (135) | 3 | 71 | 61 | 132 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `8e0688b` · 1,931 Tests (davon 2 übersprungen) · Mac 15 / VM 15 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `8dc38fa` · 1,954 Tests (davon 2 übersprungen) · Mac 16 / VM 16 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
 **Nächster Baustein:** Vollständige ursprüngliche Validierungsabläufe in V2 prüfen.
 

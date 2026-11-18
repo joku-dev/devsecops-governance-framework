@@ -504,6 +504,9 @@ einen erneuten Dateimengenabgleich und eine Prüfung ihrer Aufgaben am Code.
 The first three individual technical parity declarations cover collection-attempt
 recording, intake-event recording and retry-plan preparation. Nine closed
 positive/negative/installed metadata receipts bind the complete source audit and
-actual source `8e0688b` tests/host proofs to an unchanged runtime. They do not promote
+actual source `8dc38fa` tests/host proofs to runtime F8. The earlier nine 2fe8
+receipts remain historical and byte-identical; fresh F8 declarations follow the
+new complete audit, 1,954 local/CI tests and 16 installed groups per host, including
+39 Intake cases each. They do not promote
 the other 132 entrypoints, 37 CI definitions, 16 operating flows or operating authority.
 See [individual subject decisions](../planning/axiom-v2-functional-parity.md#first-three-declared-subject-decisions).

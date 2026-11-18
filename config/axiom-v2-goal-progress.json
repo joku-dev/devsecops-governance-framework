@@ -9,77 +9,77 @@
       "scripts/validate_governance_repo.py",
       "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Die Runtime-Validierung ist als erster Baustein mit allen neun urspr\u00fcnglichen Funktionen und drei Generatorwirkungen in Umsetzung. Vollst\u00e4ndige Originalvergleiche, private Wiederholungspr\u00fcfung und frische Mac/Linux-Installation abschlie\u00dfen; die gesamte Repository-/Bootstrap-/Test-Orchestrierung bleibt offen. Die drei fr\u00fcher auf Runtime 2fe8b731 nachgewiesenen Intake-Einstiegspunkte ben\u00f6tigen wegen des ge\u00e4nderten Runtime-Digests eine neue Pr\u00fcfung und stehen im Entwicklungsbranch ausdr\u00fccklich wieder in Arbeit. Ihre neun alten Nachweise und der ver\u00f6ffentlichte Stand 359900f bleiben unver\u00e4ndert erhalten. Alle 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabl\u00e4ufe bleiben im Goal."
+    "next_step": "Das committed Runtime-Profil hat alle neun urspr\u00fcnglichen Funktionen, drei Generatorwirkungen, vollst\u00e4ndige Originalausgaben, private Wiederholung und frische Mac/Linux-Tests bestanden. Offen bleiben die urspr\u00fcnglichen Working-Tree-Eingaben, die vollst\u00e4ndige Repository-Validierung mit Release-/Signaturpr\u00fcfung sowie Bootstrap und gesamte Test-Orchestrierung. Drei Intake-Einstiegspunkte sind mit neuen F8-Nachweisen erneut technisch nachgewiesen; ihre neun alten 2fe8-Nachweise bleiben historisch erhalten. Alle 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabl\u00e4ufe bleiben im Goal."
   },
   "last_validation": {
-    "observed_at": "2026-11-18T08:39:40.154170Z",
-    "source_revision": "8e0688b1de4e7334f2fff43750e74a9b32825e3d",
-    "runtime_source_digest": "2fe8b7319b7628fd6cb632c5fbafdc63dd40d1bb76e07c85b564af92c0e1c5ca",
-    "unit_tests": 1931,
-    "unit_test_seconds": 545.996,
+    "observed_at": "2026-11-18T12:19:41.234524Z",
+    "source_revision": "8dc38fab267a72422b606ddd7520d25fb1311640",
+    "runtime_source_digest": "f8f6b3ec173051bf63b83a2e6a1f3c2fff963c472f98e189d017f33c2c84c787",
+    "unit_tests": 1954,
+    "unit_test_seconds": 945.8,
     "unit_tests_skipped": 2,
     "installed_groups": {
-      "mac": 15,
-      "linux": 15
+      "mac": 16,
+      "linux": 16
     },
     "equal_complete_result_groups": 9,
     "compared_result_groups": 9,
     "canonical_profile_complete_results_equal": true,
     "full_dcr_equal": true,
-    "full_dcr_sha256": "3a37c1c3348aef3c57f41a5e7dcc60a1396c38f9525dd5b710c0ca32d17bbac6",
+    "full_dcr_sha256": "4e6555d40404bd6c4dd5e8df8ed19714c038e865497d70bd55d60f688383634c",
     "ci_workflows": [
       {
         "name": "Agent Review Status",
-        "run_id": "44268594493",
+        "run_id": "44301537574",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44268594493"
-      },
-      {
-        "name": "Governance Repository Self-Security",
-        "run_id": "44265636609",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636609"
-      },
-      {
-        "name": "Dependency Review",
-        "run_id": "44265636470",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636470"
-      },
-      {
-        "name": "Prepared runtime offline",
-        "run_id": "44265636834",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636834"
-      },
-      {
-        "name": "Governance CI v2",
-        "run_id": "44265636621",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636621"
-      },
-      {
-        "name": "Governance CI",
-        "run_id": "44265636883",
-        "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636883"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44301537574"
       },
       {
         "name": "CodeQL",
-        "run_id": "44265636399",
+        "run_id": "44295444087",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636399"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444087"
+      },
+      {
+        "name": "Governance CI v2",
+        "run_id": "44295444182",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444182"
+      },
+      {
+        "name": "Prepared runtime offline",
+        "run_id": "44295444215",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444215"
+      },
+      {
+        "name": "Governance Repository Self-Security",
+        "run_id": "44295444079",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444079"
+      },
+      {
+        "name": "Dependency Review",
+        "run_id": "44295444098",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444098"
       },
       {
         "name": "Consumer Lifecycle Guard",
-        "run_id": "44265636318",
+        "run_id": "44295444242",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44265636318"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444242"
+      },
+      {
+        "name": "Governance CI",
+        "run_id": "44295444193",
+        "result": "passed",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44295444193"
       }
     ],
     "evidence_kind": "declared_technical_validation_observation",
     "independent_human_approval": false,
     "full_functional_parity": false,
-    "comparison_note": "F\u00fcnfzehn frische installierte Pr\u00fcfgruppen je Host bestanden; neun ganze bestehende Gesch\u00e4ftsergebnisgruppen gleich. Intake: 39 F\u00e4lle je Host mit 38 Original-/Datei-/HTTPS-/Uhr-/Schutztests und tats\u00e4chlichem installiertem Attempt/Event/Retry-CLI samt Offline-Pr\u00fcfung; neue Metadaten-/Cleanup-/CLI-Gruppe 28, Runner 23 und Attestierung 24 bestanden. Ganze Originalausgaben werden pro Host verglichen; native Pfade, Uhren, TLS-Schl\u00fcssel, UUIDs und Prozessausgaben werden zwischen Hosts nicht gleichgesetzt. Native Kontext-/CI-Anzeigedetails und zwei Custom-Log-Bezeichnungen bleiben explizite Unterschiede. Feste ha-CPsWMS-Berichte und ganzer DCR gleich; gegen a8 nur reviewed_commit ver\u00e4ndert. Alle acht CI-Familien gr\u00fcn; abschlie\u00dfender tats\u00e4chlicher Review-Job declared_complete. GitHub: 1931 Tests in 545.996 Sekunden, zwei ausgelassen; lokal 1931 in 813.540 Sekunden, einer ausgelassen. Getesteter Merge-Dateibaum wurde exakt mit dem Kandidaten verglichen. Mac-Signalfehler separat reproduziert/korrigiert;400 eigene Testgruppen mit 228 behandelten Verweigerungen, null sp\u00e4ten Kindprozess-Schreibzugriffen. Ein historischer, nicht eindeutig zugeordneter Runner-/Pipe-Warnbefund bleibt offen. Dies ist der ausgef\u00fchrte Runtime-Stand 8e0688b; nachfolgende reine Nachweis-Metadaten werden nicht als dort bereits getesteter Dateibaum ausgegeben. Keine Zertifizierung aller 37 CI-Definitionen, 16 Betriebsabl\u00e4ufe oder des ganzen Goals."
+    "comparison_note": "Ausgef\u00fchrter Runtime-Stand 8dc38fa/F8: 16 frische installierte Pr\u00fcfgruppen je Host bestanden; neun ganze Gesch\u00e4ftsergebnisgruppen, feste ha-CPsWMS-Berichte und ganzer committed DCR gleich. Runtime-Gruppe: 24 F\u00e4lle, ganze Originalausgaben und 222 retained Dateien pro Host verglichen. Intake: 39 F\u00e4lle je Host mit Original-/Datei-/HTTPS-/Uhr-/Fehler-/Schutztests und installiertem Attempt/Event/Retry-CLI; neue neun F8-Metadatennachweise gr\u00fcnden auf erneut gepr\u00fcftem vollst\u00e4ndigem Quell-/Semantikaudit. Native Pfade, Uhren, Schl\u00fcssel, UUIDs und Diagnostik werden zwischen Hosts nicht gleichgesetzt; zwei Custom-Log-Bezeichnungen bleiben Unterschiede. Alle acht CI-Familien gr\u00fcn; tats\u00e4chlicher abschlie\u00dfender Review-Job declared_complete. GitHub: 1954 Tests in 945.800 Sekunden, zwei ausgelassen; lokal 1954 in 752.227 Sekunden, einer ausgelassen. GitHub-Merge-Dateibaum exakt gleich. Drei technische Subjektentscheidungen sind keine unabh\u00e4ngige Authentifizierung oder Abnahme. Die neun alten 2fe8-Nachweise bleiben erhalten. Historischer unklassifizierter Runner-/Pipe-Warnbefund weiter offen. Nachfolgende reine Metadaten werden nicht als schon auf 8dc ausgef\u00fchrter Dateibaum bezeichnet. Urspr\u00fcngliches Runtime-Working-Tree-Profil, vollst\u00e4ndiger Repository-Validator/Bootstrap/Test-Orchestrierung offen; keine Zertifizierung aller 37 CI-Definitionen, 16 Betriebsabl\u00e4ufe oder des Goals."
   }
 }
