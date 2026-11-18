@@ -28,7 +28,7 @@ class RuntimeValidation:
         try:
             data = self.load_data(self.root / data_path, kind)
             schema = json.loads((self.root / schema_path).read_text(encoding='utf-8'))
-            jsonschema.validate(data, schema)
+            self.environment.validate(data, schema)
         except Exception as exc:
             errors.append(f'{data_path} failed schema validation against {schema_path}: {exc}')
 

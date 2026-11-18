@@ -96,7 +96,7 @@ fail while any original subject remains unfinished.
 
 ### First three declared subject decisions
 
-The separate subject audit now binds positive, negative and installed receipts
+At the published F8 checkpoint `ab0c7cb`, the separate subject audit binds positive, negative and installed receipts
 for `record_collection_attempt.py`, `record_intake_event.py` and
 `prepare_collection_attempt_retry.py`. Their complete original helper, CLI,
 default, identity, error and file-effect responsibilities were compared against
@@ -119,13 +119,16 @@ flags; private source material, test reports and review bodies are not published
 The nine earlier 2fe8 receipts retain their original bytes and source `8e0688b`.
 The runtime-validation increment moved the three subjects back to in-progress;
 fresh complete-source/semantic audit and actual F8 tests on both installed hosts
-now support three new positive/negative/installed declarations. The current
-matrix has three verified, 71 in-progress and 61 pending entrypoints. All 22
+support three new positive/negative/installed declarations at that checkpoint.
+Its matrix has three verified, 71 in-progress and 61 pending entrypoints. All 22
 areas, 37 original CI definitions and 16 operating flows remain unfinished.
-The committed runtime profile passed; original working-tree runtime input and
-full repository/bootstrap/test orchestration still require implementation.
+The following Working-Tree increment changes the runtime fingerprint: on this
+development branch the three declarations return to in-progress until fresh
+source-bound proof is executed. All 18 historical receipt files are preserved.
+The committed profile remains available. Full repository/bootstrap/test
+orchestration remains unfinished.
 
-The subsequent matrix/receipt/documentation commit changes no runtime code,
+The F8 matrix/receipt/documentation commit changes no runtime code,
 schema, dependency, adapter or baseline. The audit checks that the current runtime
 still equals the observed runtime. Its metadata explicitly retains the earlier
 executed source revision; it does not claim that a later metadata-only tree was
@@ -2577,6 +2580,8 @@ The development candidate adds an explicit installed entrypoint:
 
 ```sh
 axiom-v2 validation runtime --at 2026-11-18T10:00:00Z
+axiom-v2 validation runtime --source-worktree /private/operator/product-data \
+  --at 2026-11-18T10:00:00Z
 axiom-v2 validation inspect --assessment OPERATION_ID
 axiom-v2 validation status
 ```
@@ -2587,14 +2592,54 @@ stdout/stderr bytes, generator effects and actual native observations. Select
 remain available through `validation status`. Runtime validation returns the
 original 0/1 outcome for completed execution; guarded/incomplete execution is 2.
 
-This entrypoint reads the installed product commit's inert architecture, schema,
-policy and demo data, plus existence-only source membership. Working-tree edits
-are explicitly excluded. The original nine validation functions and three
+The default profile reads the installed product commit's inert architecture,
+schema, policy and demo data, plus existence-only source membership. The explicit
+`--source-worktree` profile instead reads current data from a separate ordinary
+Git worktree whose HEAD is exactly the installed product commit. Prepare that
+worktree separately; the installed source directory cannot be its destination.
+Staged bytes do not replace different actual working bytes. Added/deleted
+architecture, schema, policy and demo files and original policy-rule existence
+checks are retained. The original nine validation functions and three
 generator effects run in the neutral implementation; the approved OPA binary
 is the only external evaluator. Outputs stay under the fresh instance's private
-`state/validation` directory. Neither caller scripts nor frozen V1 test programs
+`state/validation` directory. Neither supplied Python/shell nor frozen V1 test programs
 are executed by the installed application. The unchanged V1 source runs only
 in the isolated original-comparison tests.
+
+Current Rego uses the same four finite policy paths/queries with a separately
+fingerprinted pinned-OPA capabilities file: network access and runtime/environment
+introspection and the file-resolving `json.match_schema`/`json.verify_schema`
+builtins are disabled, and ambient credentials are excluded from the tool's
+environment. The original committed profile keeps its current-product policy
+identity check. Working-Tree JSON Schema evaluation uses an offline reference
+registry; an evaluated external reference becomes a visible validation failure.
+An unused schema reference stays inert. These are explicit input/tool guards,
+not invented original rejections or policy approvals. See the primary
+[OPA capabilities documentation](https://www.openpolicyagent.org/docs/operations#capabilities).
+The pinned OPA was tested with a harmless temporary file: `allow_net: []` alone
+still permits those JSON-Schema builtins to resolve `file:` references. Their
+whole-builtin restriction is therefore explicit in this development profile;
+it is not a claim of compatibility for arbitrary Rego using those operations.
+The full Goal and its remaining compatibility work are retained.
+
+The working profile first runs bounded native `opa parse --format=json`.
+Its retained AST is checked before evaluation: compiler schema annotations can
+also resolve local files, so nonlocal schema references/file identities are
+rejected, including targets reached through local JSON pointers. Pure local
+definitions and literal reference-looking data stay inert. Parse and eval are
+separate ordered native observations; `native_action: parse-policy` marks parse
+records, whose other request fields bind the intended evaluation. A guard can
+return a visible failure after parsing without inventing an evaluation result.
+Offline replay checks both phases and rederives the same metadata guard; changed
+AST bytes or reordered observations cannot turn a guarded run into success.
+
+Held directory/file descriptors, byte/member/depth limits, ordinary-file checks
+and repeated acquisition detect changed input before a completed record is
+admitted. Working-Tree replay uses its retained bytes and existence facts after
+the source worktree changes or disappears; it neither reacquires caller data nor
+re-evaluates Rego. Missing selected policies/inputs retain native OPA failure
+semantics. Native diagnostics expose their actual private execution paths;
+cross-context raw error-byte identity is not claimed.
 
 The inspection command replays declared retained OPA responses and recomputes
 all generated bytes without invoking OPA again. This proves local consistency,

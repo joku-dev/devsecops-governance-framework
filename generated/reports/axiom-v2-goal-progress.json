@@ -86,9 +86,9 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 71,
+      "in_progress": 74,
       "pending": 61,
-      "remaining": 132,
+      "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
         "scripts/assess_governance_repository_security.py",
@@ -182,6 +182,7 @@
         "scripts/package_governance_runtime.py",
         "scripts/portable_consumer_intake.py",
         "scripts/preflight_lifecycle_live_evidence.py",
+        "scripts/prepare_collection_attempt_retry.py",
         "scripts/prepare_document_consistency_semantic_catalog_run.py",
         "scripts/prepare_lifecycle_architecture_candidates.py",
         "scripts/prepare_lifecycle_devsecops_candidates.py",
@@ -196,7 +197,9 @@
         "scripts/publishing/build_repository_presentation.mjs",
         "scripts/reconcile_documentation_after_merge.py",
         "scripts/record_agent_review.py",
+        "scripts/record_collection_attempt.py",
         "scripts/record_evidence_agent_provenance.py",
+        "scripts/record_intake_event.py",
         "scripts/render_governance_documents.py",
         "scripts/report_agent_review_status.py",
         "scripts/run_agent_reviews.py",
@@ -225,8 +228,8 @@
       ],
       "title": "V1-Einstiegspunkte",
       "total": 135,
-      "verified": 3,
-      "verified_percent": 2.2
+      "verified": 0,
+      "verified_percent": 0.0
     },
     "operating_workflows": {
       "in_progress": 0,
@@ -328,7 +331,7 @@
     "unit_tests": 1954,
     "unit_tests_skipped": 2
   },
-  "matrix_sha256": "c940874a5ef51df692d218abac58ca518dda715f3e6dcbd8f82617585921d8f6",
+  "matrix_sha256": "c8a09f6a6c318051bfcc908bdbefa2939f5ebab7f525e5db1df855726315f481",
   "next_work": {
     "entrypoints": [
       "scripts/bootstrap_validation_env.sh",
@@ -336,10 +339,10 @@
       "scripts/validate_governance_repo.py",
       "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Das committed Runtime-Profil hat alle neun ursprünglichen Funktionen, drei Generatorwirkungen, vollständige Originalausgaben, private Wiederholung und frische Mac/Linux-Tests bestanden. Offen bleiben die ursprünglichen Working-Tree-Eingaben, die vollständige Repository-Validierung mit Release-/Signaturprüfung sowie Bootstrap und gesamte Test-Orchestrierung. Drei Intake-Einstiegspunkte sind mit neuen F8-Nachweisen erneut technisch nachgewiesen; ihre neun alten 2fe8-Nachweise bleiben historisch erhalten. Alle 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabläufe bleiben im Goal.",
+    "next_step": "Das ursprüngliche Working-Tree-Profil ist im Entwicklungsbranch ergänzt: ausdrücklich gewählter Checkout am Produkt-Commit, aktuelle Daten samt neuen/gelöschten Dateien, geändertes Rego mit begrenztem Offline-OPA und privates Replay nach Löschung des Callers. Die 23 bisherigen und 26 neuen Tests sowie der vollständige Originalvergleich am Produkt-Checkout sind grün; vollständige gepinnte Validierung, aktuelle Nachweise und frische Mac/Linux-Prüfung stehen für diesen geänderten Runtime-Stand noch aus. Die drei auf F8 nachgewiesenen Intake-Einstiegspunkte stehen deshalb hier wieder in Arbeit; alle 18 historischen Nachweise bleiben erhalten. Ganze Repository-Validierung mit Release-/Signaturprüfung, Bootstrap und gesamte Test-Orchestrierung bleiben offen. Das Goal umfasst unverändert 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabläufe.",
     "title": "Vollständige ursprüngliche Validierungsabläufe in V2 prüfen"
   },
-  "observation_sha256": "3edca3bc2df95fa67307cfc0814008e584be49f9f28ce1e9f14f9c33972c18b3",
+  "observation_sha256": "2c322421c8d5cc4f3f9aedd933fce7e91d46cfbbbd6830f30596d963175deeb9",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

@@ -9,7 +9,8 @@ from copy import deepcopy
 from lib.provider_ports import native_cleanup_observation_valid
 from lib.portable.contracts import canonical_digest
 from lib.portable.runtime import approved_opa_hashes
-from lib.validation_queries import MAX_STREAM, request
+from lib.validation_queries import MAX_STREAM, request, parsed_policy_guard
+from lib.validation_files import WORKING_PROFILE
 
 MAX_NATIVE = 32 * 1024**2
 
@@ -31,7 +32,7 @@ def encoded(observations):
 
 class ReplayOPA:
     def __init__(self, observations, *, available, tool_sha256):
-        if type(available) is not bool or not isinstance(observations, list) or len(observations) > 8:
+        if type(available) is not bool or not isinstance(observations, list) or len(observations) > 16:
             raise ValueError('invalid_validation_native_observations')
         if ((not available and (observations or tool_sha256 is not None))
                 or available and (not isinstance(tool_sha256, str) or len(tool_sha256) != 64
@@ -46,8 +47,16 @@ class ReplayOPA:
         self.total = 0
 
     def run(self, command, files):
-        from types import SimpleNamespace
         selected = request(command, files)
+        if files.native_profile == WORKING_PROFILE:
+            parsed = self.consume({**selected, 'native_action': 'parse-policy'})
+            guard = parsed_policy_guard(parsed)
+            if guard is not None:
+                return guard
+        return self.consume(selected)
+
+    def consume(self, selected):
+        from types import SimpleNamespace
         if not self.available or self.position >= len(self.observations):
             raise ValueError('validation_native_observation_missing')
         row = self.observations[self.position]

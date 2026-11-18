@@ -9,7 +9,7 @@
       "scripts/validate_governance_repo.py",
       "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Das committed Runtime-Profil hat alle neun urspr\u00fcnglichen Funktionen, drei Generatorwirkungen, vollst\u00e4ndige Originalausgaben, private Wiederholung und frische Mac/Linux-Tests bestanden. Offen bleiben die urspr\u00fcnglichen Working-Tree-Eingaben, die vollst\u00e4ndige Repository-Validierung mit Release-/Signaturpr\u00fcfung sowie Bootstrap und gesamte Test-Orchestrierung. Drei Intake-Einstiegspunkte sind mit neuen F8-Nachweisen erneut technisch nachgewiesen; ihre neun alten 2fe8-Nachweise bleiben historisch erhalten. Alle 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabl\u00e4ufe bleiben im Goal."
+    "next_step": "Das urspr\u00fcngliche Working-Tree-Profil ist im Entwicklungsbranch erg\u00e4nzt: ausdr\u00fccklich gew\u00e4hlter Checkout am Produkt-Commit, aktuelle Daten samt neuen/gel\u00f6schten Dateien, ge\u00e4ndertes Rego mit begrenztem Offline-OPA und privates Replay nach L\u00f6schung des Callers. Die 23 bisherigen und 26 neuen Tests sowie der vollst\u00e4ndige Originalvergleich am Produkt-Checkout sind gr\u00fcn; vollst\u00e4ndige gepinnte Validierung, aktuelle Nachweise und frische Mac/Linux-Pr\u00fcfung stehen f\u00fcr diesen ge\u00e4nderten Runtime-Stand noch aus. Die drei auf F8 nachgewiesenen Intake-Einstiegspunkte stehen deshalb hier wieder in Arbeit; alle 18 historischen Nachweise bleiben erhalten. Ganze Repository-Validierung mit Release-/Signaturpr\u00fcfung, Bootstrap und gesamte Test-Orchestrierung bleiben offen. Das Goal umfasst unver\u00e4ndert 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabl\u00e4ufe."
   },
   "last_validation": {
     "observed_at": "2026-11-18T12:19:41.234524Z",

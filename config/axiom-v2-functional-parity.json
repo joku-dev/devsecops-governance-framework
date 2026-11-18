@@ -2551,7 +2551,7 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "verified",
+      "state": "in_progress",
       "evidence": [
         {
           "id": "intake-retry-f8-positive",
@@ -2868,7 +2868,7 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "verified",
+      "state": "in_progress",
       "evidence": [
         {
           "id": "intake-attempt-f8-positive",
@@ -2953,7 +2953,7 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "verified",
+      "state": "in_progress",
       "evidence": [
         {
           "id": "intake-event-f8-positive",

@@ -8,10 +8,13 @@ import json
 from types import SimpleNamespace
 
 import yaml
+import jsonschema
+from referencing import Registry
+from referencing.exceptions import NoSuchResource
 
 from lib import architecture_assessment as architecture
 from lib import combined_reporting, control_reporting
-from lib.validation_files import relative
+from lib.validation_files import WORKING_PROFILE, relative
 
 
 class RuntimeValidationEnvironment:
@@ -24,6 +27,13 @@ class RuntimeValidationEnvironment:
         self.stderr = io.StringIO()
         self.commands = []
         self.fault = fault
+
+    def validate(self, data, schema):
+        if self.files.native_profile != WORKING_PROFILE:
+            return jsonschema.validate(data, schema)
+        def reject_external(uri):
+            raise NoSuchResource(ref=uri)
+        return jsonschema.validate(data, schema, registry=Registry(retrieve=reject_external))
 
     def print(self, *values, **options):
         options.setdefault('file', self.stdout)

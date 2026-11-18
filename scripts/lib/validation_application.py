@@ -15,12 +15,12 @@ from lib.consumer_intake_store import atomic_json
 from lib.functional_parity import git_read
 from lib.portable.contracts import ROOT, canonical_digest
 from lib.portable.runtime import source_digest
-from lib.provider_ports import ValidationOPA
+from lib.provider_ports import ValidationOPA, ValidationWorktree
 from lib.result_assessments import identity
 from lib.result_bytes import safe_bytes, strict_json
 from lib.result_snapshot_store import explicit_time
 from lib.runtime_validation import RuntimeValidation
-from lib.validation_files import MAX_FILE, MAX_FILES, MAX_TOTAL, ValidationFiles
+from lib.validation_files import MAX_FILE, MAX_FILES, MAX_TOTAL, WORKING_PROFILE, ValidationFiles
 from lib.validation_operations import RuntimeValidationEnvironment
 from lib.validation_replay import ReplayOPA, encoded
 from lib.v2_boundary import safe_source
@@ -106,14 +106,24 @@ class ValidationContext:
                 or self.binding['source_revision'] != git_read(self.product, 'rev-parse', 'HEAD').decode().strip()):
             raise ValueError('validation_product_changed_during_operation')
 
-    def create(self, at):
+    def create(self, at, *, source_worktree=None):
         explicit_time(at)
-        data, manifest = validation_sources.capture(self.product, self.binding['source_revision'])
-        value = {'schema_version': 1, 'kind': 'committed-product-runtime-validation', **self.binding,
+        working = source_worktree is not None
+        source = self.product if not working else Path(source_worktree).resolve()
+        if working and source == self.product:
+            raise ValueError('separate_validation_source_worktree_required')
+        acquisition = None if not working else ValidationWorktree(source_worktree, self.binding['source_revision'])
+        def capture():
+            return (validation_sources.capture(self.product, self.binding['source_revision'])
+                    if acquisition is None else acquisition.capture())
+        data, manifest = capture()
+        kind = ('working-tree-product-runtime-validation' if working else 'committed-product-runtime-validation')
+        value = {'schema_version': 1, 'kind': kind, **self.binding,
             'assessed_at': at, 'input_id': validation_sources.digest(manifest),
             'source_tree': manifest['tree'], 'source_scope': manifest['scope'],
-            'source_worktree_clean': not bool(git_read(self.product, 'status', '--porcelain', '--untracked-files=all').strip()),
-            'working_tree_used': False, 'original_display_root': str(self.product), **AUTHORITY}
+            'source_worktree_clean': (acquisition.clean() if working else
+                not bool(git_read(source, 'status', '--porcelain', '--untracked-files=all').strip())),
+            'working_tree_used': working, 'original_display_root': str(source), **AUTHORITY}
         reserve(self.root, 2 * MAX_TOTAL + MAX_RECORD + MANIFEST_LIMIT)
         self.assert_current()
         operation = secrets.token_hex(32)
@@ -126,7 +136,8 @@ class ValidationContext:
         atomic_json(target / 'input-manifest.json', manifest)
         atomic_json(target / 'pending.json', value)
         port = ValidationOPA(self.settings['opa'], product_root=self.product)
-        files = ValidationFiles(data, manifest['membership'], label=str(self.product))
+        files = ValidationFiles(data, manifest['membership'], label=str(source),
+            native_profile=WORKING_PROFILE if working else 'product')
         outcome, environment = execute(files, port)
         value.update(outcome, opa_available=port.available, opa_sha256=port.tool_sha256,
             native_observations=encoded(port.observations), output_files=descriptors(files.files))
@@ -134,7 +145,7 @@ class ValidationContext:
             raise ValueError('validation_record_byte_budget')
         write_files(target / 'outputs', files.files)
         self.assert_current()
-        if validation_sources.capture(self.product, self.binding['source_revision'])[1] != manifest:
+        if capture()[1] != manifest:
             raise ValueError('validation_product_inputs_changed')
         atomic_json(target / 'assessment.json', value)
         return operation, deepcopy(value)
@@ -156,23 +167,36 @@ class ValidationContext:
                 or canonical_digest({k: value.get(k) for k in pending}) != canonical_digest(pending)
                 or value.get('operation_id') != operation or type(value.get('schema_version')) is not int
                 or value.get('schema_version') != 1 or type(value.get('exit_code')) is not int
-                or value.get('kind') != 'committed-product-runtime-validation'
+                or value.get('kind') not in ('committed-product-runtime-validation', 'working-tree-product-runtime-validation')
                 or canonical_digest({k: value.get(k) for k in {**self.binding, **AUTHORITY}})
                    != canonical_digest({**self.binding, **AUTHORITY})):
             raise ValueError('validation_record_binding_or_authority_changed')
         explicit_time(value['assessed_at'])
-        data, manifest = validation_sources.capture(self.product, self.binding['source_revision'])
         retained = strict_json(safe_bytes(target / 'input-manifest.json', limit=MANIFEST_LIMIT))
+        working = value['kind'] == 'working-tree-product-runtime-validation'
+        if working:
+            if set(retained) != {'schema_version', 'scope', 'commit', 'tree', 'source_root', 'membership', 'files'}:
+                raise ValueError('invalid_validation_worktree_manifest')
+            data = retained_files(target / 'inputs', retained['files'])
+            validation_sources.check_working_manifest(retained, data,
+                revision=self.binding['source_revision'],
+                tree=git_read(self.product, 'rev-parse', 'HEAD^{tree}').decode().strip())
+            manifest = retained
+            display_root = retained['source_root']
+        else:
+            data, manifest = validation_sources.capture(self.product, self.binding['source_revision'])
+            display_root = str(self.product)
         if (canonical_digest(manifest) != canonical_digest(retained) or validation_sources.digest(manifest) != value['input_id']
                 or manifest['tree'] != value['source_tree'] or manifest['scope'] != value['source_scope']
-                or value['working_tree_used'] is not False or type(value['source_worktree_clean']) is not bool
-                or value['original_display_root'] != str(self.product)
+                or value['working_tree_used'] is not working or type(value['source_worktree_clean']) is not bool
+                or value['original_display_root'] != display_root
                 or retained_files(target / 'inputs', manifest['files']) != data):
             raise ValueError('validation_input_binding_changed')
         if value['execution'] != 'complete' or value['exception_type'] is not None:
             raise ValueError('validation_incomplete_execution_cannot_replay')
         port = ReplayOPA(value['native_observations'], available=value['opa_available'], tool_sha256=value['opa_sha256'])
-        files = ValidationFiles(data, manifest['membership'], label=value['original_display_root'])
+        files = ValidationFiles(data, manifest['membership'], label=value['original_display_root'],
+            native_profile=WORKING_PROFILE if working else 'product')
         result, _ = execute(files, port)
         port.finish()
         if (canonical_digest({k: value.get(k) for k in result}) != canonical_digest(result)
@@ -200,6 +224,8 @@ def run(arguments, instance_root, settings):
     runtime = sub.add_parser('runtime', allow_abbrev=False)
     runtime.add_argument('--at', required=True)
     runtime.add_argument('--output', choices=('json', 'legacy'), default='json')
+    runtime.add_argument('--source-worktree', type=Path,
+        help='Separate explicit current-data worktree at this exact product commit; never executes its scripts.')
     inspect = sub.add_parser('inspect', allow_abbrev=False)
     inspect.add_argument('--assessment', required=True)
     sub.add_parser('status', allow_abbrev=False)
@@ -211,7 +237,7 @@ def run(arguments, instance_root, settings):
     if args.operation == 'inspect':
         print(json.dumps(context.inspect(args.assessment), indent=2))
         return 0
-    operation, value = context.create(args.at)
+    operation, value = context.create(args.at, source_worktree=args.source_worktree)
     if args.output == 'legacy':
         sys.stdout.write(base64.b64decode(value['stdout_base64']).decode())
         sys.stderr.write(base64.b64decode(value['stderr_base64']).decode())
