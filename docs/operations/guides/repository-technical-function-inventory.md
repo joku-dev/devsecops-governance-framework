@@ -501,7 +501,7 @@ git ls-files 'scripts/*.py' 'scripts/*.sh' 'scripts/*.mjs' 'scripts/*.js' 'scrip
 Zählungen und Links gelten für den angegebenen Commit. Neue Dateien erfordern
 einen erneuten Dateimengenabgleich und eine Prüfung ihrer Aufgaben am Code.
 
-The first three individual technical parity declarations cover collection-attempt
+The published F8 checkpoint's first three individual technical parity declarations cover collection-attempt
 recording, intake-event recording and retry-plan preparation. Nine closed
 positive/negative/installed metadata receipts bind the complete source audit and
 actual source `8dc38fa` tests/host proofs to runtime F8. The earlier nine 2fe8
@@ -510,3 +510,11 @@ new complete audit, 1,954 local/CI tests and 16 installed groups per host, inclu
 39 Intake cases each. They do not promote
 the other 132 entrypoints, 37 CI definitions, 16 operating flows or operating authority.
 See [individual subject decisions](../planning/axiom-v2-functional-parity.md#first-three-declared-subject-decisions).
+
+The subsequent development runtime restores current-file validation through
+`validation runtime --source-worktree`: a separate exact-base product worktree,
+held bounded input acquisition, original existence decisions and private replay
+after caller deletion. Changed Rego uses a finite offline OPA profile; schema
+reference retrieval is offline. The default committed profile remains separate.
+This changed runtime requires fresh validation/installed evidence; the three F8
+states return to in-progress here, with all 18 historical receipts preserved.

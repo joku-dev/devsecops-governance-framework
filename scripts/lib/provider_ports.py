@@ -89,3 +89,4 @@ from lib.providers.intake_recording import (PROFILES as INTAKE_RECORD_PROFILES,
 
 from lib.providers.process_groups import consistent as native_cleanup_observation_valid
 from lib.providers.validation_tools import ValidationOPA
+from lib.providers.validation_worktree import ValidationWorktree

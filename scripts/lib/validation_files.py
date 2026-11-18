@@ -2,11 +2,13 @@
 import errno
 from fnmatch import fnmatchcase
 import io
+import os
 from pathlib import PurePosixPath
 
 MAX_FILES = 10000
 MAX_FILE = 16 * 1024**2
 MAX_TOTAL = 128 * 1024**2
+WORKING_PROFILE = 'working-tree-offline-v1'
 
 
 def relative(name):
@@ -19,8 +21,12 @@ def relative(name):
 
 
 class ValidationFiles:
-    def __init__(self, files, membership=None, *, label='/validation-source'):
-        if not isinstance(label, str) or not label.startswith('/') or '\\' in label or '..' in PurePosixPath(label).parts:
+    def __init__(self, files, membership=None, *, label='/validation-source', native_profile='product'):
+        if native_profile not in ('product', WORKING_PROFILE):
+            raise ValueError('invalid_validation_native_profile')
+        self.native_profile = native_profile
+        if (not isinstance(label, str) or not label.startswith('/') or '\\' in label
+                or '..' in PurePosixPath(label).parts or len(label) > 8192 or any(ord(c) < 32 for c in label)):
             raise ValueError('invalid_validation_display_root')
         self.label = label.rstrip('/')
         self.files = dict(files)
@@ -55,7 +61,7 @@ class ValidationPath:
         self.relative = relative(name) if name else ''
 
     def __truediv__(self, name):
-        name = str(name)
+        name = os.fspath(name)
         relative(name)
         return ValidationPath(self.files, '/'.join(filter(None, (self.relative, name))))
 

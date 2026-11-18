@@ -364,11 +364,12 @@ class RuntimeFingerprintClosure(unittest.TestCase):
         root = portable_runtime.ROOT
         registered = json.loads((root / 'config/axiom-v2-distribution.json').read_text())['python_files']
         expected = {name for name in registered if '/validation_' in name or name.endswith('/runtime_validation.py')}
+        expected.add('config/axiom-v2-validation-capabilities.json')
         with patch.object(portable_runtime, 'file_digest', wraps=portable_runtime.file_digest) as measured:
             baseline = portable_runtime.source_digest()
         paths = {call.args[0].relative_to(root).as_posix() for call in measured.call_args_list}
         self.assertTrue(expected <= paths, sorted(expected - paths))
-        self.assertGreaterEqual(len(expected), 8)
+        self.assertGreaterEqual(len(expected), 10)
         with tempfile.TemporaryDirectory() as temporary:
             retained = Path(temporary).resolve()
             for name in paths:
