@@ -1212,7 +1212,11 @@ or working input graph. `repository-inspect` replays native observations,
 clocks, generator order and all output bytes; `repository-status` distinguishes
 pending/incomplete and declared replay-consistent records. The private candidate
 does not update inspected source, accepted indexes or historical authority.
-Registration, focused tests and the complete local pinned suite are green
-(2,367 tests, one deployment skip). Final review and fresh installed Mac/Linux
-delivery remain separate pending gates. See the
+The published `cc32bcb` candidate has nine passing CI families, 19 passing Mac
+groups and 18 passing Linux groups. Its additional Linux reference-test issue is
+corrected separately in PR #418. The follow-up adds explicit
+`repository-inspect --bounded-worker`, with CPU/time/stream limits and observed
+RSS enforcement; it preserves existing evidence and inspection semantics.
+Its local pinned suite passed 2,381 tests with one known deployment skip; review
+and fresh exact-source delivery remain pending. See the
 [candidate guide](axiom-v2-repository-validation.md).

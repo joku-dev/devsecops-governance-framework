@@ -643,3 +643,25 @@ not establish installed delivery or close any of the 22/135/37/16 Goal scopes.
 Require full pinned validation, strict docs, source-bound review, fresh exact-
 source Mac/Linux packages and representative whole-original comparisons before
 publishing this component as a validated candidate.
+
+### Bounded read-only repository replay follow-up
+
+Add an explicitly selected `repository-inspect --bounded-worker` execution path
+without changing retained operation evidence or the existing default inspection.
+The neutral closed message contract binds one operation and its exact runtime,
+node and source. A finite provider starts only the admitted product worker,
+limits CPU, elapsed time and output, monitors resident memory and terminates its
+own process group on failure. Linux adds an address-space limit; polled RSS is
+not a kernel-enforced peak memory guarantee. A missing or stalled memory
+observation must reject completion. Resource rejection remains a structured
+exit-2 CLI error, with existing source and result bytes preserved.
+
+The registered worker source passed 2,381 pinned local tests; the single known
+deployment skip remains explicit. Whole positive/negative deleted-caller replay,
+actual timeout/RSS/pipe failures, and the public CLI resource-error boundary are
+covered. The separately published Python 3.12 reference-test correction changes
+two AST matching predicates while retaining every exact original-function
+comparison. Fresh source-bound review, CI and installed delivery remain required.
+Creation/bootstrap/test workers, original child traceback behavior and all
+remaining Goal scope stay open; no consent, Trust or operating authority is
+derived from these technical observations.

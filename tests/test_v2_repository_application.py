@@ -74,6 +74,14 @@ class RepositoryApplicationTests(unittest.TestCase):
         (self.source / 'README.md').write_bytes(b'new source revision'); self.commit()
         with self.assertRaisesRegex(ValueError, 'product_changed'):self.context.inspect(operation)
 
+    def test_bounded_replay_does_not_promote_an_incomplete_operation(self):
+        operation, _ = self.create()
+        with patch.object(app, 'inspect_repository_worker', side_effect=AssertionError('incomplete cannot replay')):
+            result = self.context.inspect(operation, bounded_worker=True)
+        self.assertEqual(result['state'], 'recorded_incomplete_replay_unverified')
+        self.assertEqual(result['outcome']['exit_code'], 2)
+        self.assertFalse(result['official_acceptance'])
+
     def test_explicit_working_source_must_be_separate_and_at_the_exact_product_commit(self):
         with self.assertRaisesRegex(ValueError, 'separate_repository_worktree'):
             self.context.create('2026-11-15T12:00:00Z', engine_profile=PROFILE, source_worktree=self.source)

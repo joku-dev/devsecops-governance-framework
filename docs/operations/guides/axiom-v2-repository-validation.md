@@ -1,10 +1,14 @@
 # V2: vollständige Repository-Prüfung und privates Replay
 
-Dieser Baustein ist im Entwicklungsbranch implementiert und registriert.
-Die vollständige lokale gepinnte Validierung ist grün: 2.367 Tests, eine
-bekannte Deployment-Auslassung. Abschlussreview, Veröffentlichung und Abnahme
-in neuen Mac-/Linux-Paketen stehen noch aus. Der zuletzt veröffentlichte Kandidat bleibt
-der unter [Goal-Fortschritt](../status/axiom-v2-goal-progress.md) benannte Stand.
+Der veröffentlichte Repository-Kandidat `cc32bcb` liegt in
+[PR #417](https://github.com/joku-dev/devsecops-governance-framework/pull/417).
+Er besteht auf dem Mac 19 und auf der VM 18 Prüfgruppen. Der zusätzliche
+Linux-Referenztest benötigt die reine Testkorrektur aus
+[PR #418](https://github.com/joku-dev/devsecops-governance-framework/pull/418).
+Der Folgebranch ergänzt den begrenzten Replay-Worker und besteht lokal die
+gepinnten 2.381 Tests mit einer bekannten Deployment-Auslassung. Sein
+Abschlussreview und neue sourcegebundene Installationsnachweise stehen noch aus.
+Der [Goal-Fortschritt](../status/axiom-v2-goal-progress.md) trennt diese Stände.
 
 ## Eine Prüfung ausführen
 
@@ -65,6 +69,44 @@ Ausgabedateien. Dabei startet es keine nativen Prozesse zur erneuten Prüfung
 der aufbewahrten Eingaben und benötigt die separate Arbeitskopie nicht mehr.
 Die unveränderte installierte Produktruntime wird weiterhin für die
 Instanzprüfung benötigt.
+
+### Begrenzter Replay-Worker
+
+Der Folgebranch ergänzt einen ausdrücklich ausgewählten Worker für das Replay:
+
+```bash
+./axiom-v2 validation repository-inspect \
+  --assessment <assessment_id> --bounded-worker
+```
+
+Die Anwendung prüft zunächst die aktuelle Instanz und den gespeicherten Lauf.
+Ein separater Python-Prozess rekonstruiert danach das vollständige Replay mit
+der registrierten Produktruntime. Der Worker läuft unter demselben Benutzer und
+liest den privaten Ergebnisdatensatz. Seine Python-Umgebung schließt das aktuelle
+Arbeitsverzeichnis, Python-Umgebungsvariablen und Benutzer-Site-Packages aus.
+Die Ergebnisdateien und das ursprüngliche Journal bleiben unverändert.
+
+| Grenze | Verhalten |
+|---|---|
+| Laufzeit | 120 Sekunden, vom Elternprozess überwacht |
+| CPU | 60 Sekunden durch das Betriebssystem begrenzt |
+| Speicher | 1 GiB gemessener RSS; Kontrolle in Abständen von etwa 100 ms |
+| Linux-Adressraum | Zusätzlich 2 GiB durch das Betriebssystem begrenzt |
+| Ausgabe | 1 MiB stdout und 64 KiB stderr |
+
+Die RSS-Kontrolle kann eine zwischen zwei Messungen auftretende Spitze nicht
+als feste Kernel-Obergrenze garantieren. Unter macOS wird dafür keine
+Adressraum-Begrenzung behauptet. Der Elternprozess prüft den eigenen Worker mit
+dem festen Systemwerkzeug `ps`. Bei überschrittenem Budget, Prozessfehler oder
+ungültiger Antwort beendet er die eigene Prozessgruppe und liefert einen
+Fehler; daraus entsteht kein erfolgreicher Replay-Zustand.
+
+Die zusätzliche `worker_observation` nennt Ressourcenprofil, beobachteten
+Speicher und Tool-Fingerprints. Sie bleibt eine technische Deklaration.
+Unvollständige gespeicherte Läufe behalten ihren bisherigen Zustand. Dieser
+Schritt begrenzt das ausdrücklich angeforderte Replay; die Erstellung einer
+neuen Repository-Prüfung und die übrige Worker-Orchestrierung sind weiter Teil
+des offenen Gesamt-Goals.
 
 | Zustand | Bedeutung |
 |---|---|

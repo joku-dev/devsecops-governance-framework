@@ -541,7 +541,15 @@ private immutable content with a durable ordered journal. Inspection replays
 the complete acquisition and engine trace without the separate caller source
 or native capsule, comparing every output byte. Pending/incomplete states and
 unpreserved original child traceback behavior remain explicit. This candidate
-has passed the complete local pinned suite (2,367 tests, one deployment skip)
-and still needs final review and fresh exact-source installed proof;
+was published as `cc32bcb` with nine green CI families, Mac 19/Linux 18 passing
+groups and an explicitly retained Python 3.12 reference-test failure, corrected
+in PR #418. The follow-up registers `repository_worker_protocol.py` and the
+finite `providers/repository_worker.py` behind the composition port and explicit
+`repository-inspect --bounded-worker` option. A fixed isolated Python process
+performs complete read-only replay under CPU/wall/stream limits and polled RSS;
+Linux additionally limits address space. It preserves inspection fields and
+adds a declared worker observation without updating original records. The
+worker source passed 2,381 pinned local tests with one deployment skip and needs
+its final review and new exact-source delivery;
 the whole Goal and all historical subject receipts retain their current scope.
 See [repository validation and replay](axiom-v2-repository-validation.md).

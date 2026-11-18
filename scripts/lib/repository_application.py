@@ -12,7 +12,7 @@ from lib.functional_parity import git_read
 from lib.portable.contracts import ROOT
 from lib.portable.runtime import source_digest, approved_opa_hashes
 from lib.provider_ports import (REPOSITORY_ENGINE_PROFILES, repository_engine_profile, repository_git_tool,
-    execute_repository_operation, load_repository_operation, repository_operation_header)
+    execute_repository_operation, load_repository_operation, repository_operation_header, inspect_repository_worker)
 from lib import repository_capture as capture
 from lib import repository_operation as contract
 from lib.repository_inspection import inspect_repository_operation
@@ -75,9 +75,14 @@ class RepositoryContext:
         self.assert_current()
         return value
 
-    def inspect(self, operation):
+    def inspect(self, operation, *, bounded_worker=False):
+        if type(bounded_worker) is not bool:raise ValueError('repository_inspection_execution_required')
         value = self.load(operation)
         if value['state'] != 'recorded_complete_replay_unverified':return self.summary(value)
+        if bounded_worker:
+            observed = inspect_repository_worker(self.operations / operation, value['binding'])
+            self.assert_current()
+            return observed
         profile = value['binding']['engine_profile']
         observed = inspect_repository_operation(value, **repository_engine_profile(profile), engine_profile=profile,
             approved_opa_hashes=frozenset(approved_opa_hashes('1.18.2')))
@@ -114,13 +119,15 @@ def run(arguments, instance_root, settings):
     repository.add_argument('--output', choices=('json', 'legacy'), default='json')
     inspect = sub.add_parser('repository-inspect', allow_abbrev=False)
     inspect.add_argument('--assessment', required=True)
+    inspect.add_argument('--bounded-worker', action='store_true',
+        help='Replay the retained operation in an isolated, resource-monitored product worker.')
     sub.add_parser('repository-status', allow_abbrev=False)
     args = parser.parse_args(arguments)
     context = RepositoryContext(instance_root, settings)
     if args.operation == 'repository-status':
         print(json.dumps({'operations': context.status(), **contract.AUTHORITY}, indent=2)); return 0
     if args.operation == 'repository-inspect':
-        print(json.dumps(context.inspect(args.assessment), indent=2)); return 0
+        print(json.dumps(context.inspect(args.assessment, bounded_worker=args.bounded_worker), indent=2)); return 0
     operation, value = context.create(args.at, engine_profile=args.profile, source_worktree=args.source_worktree)
     if args.output == 'legacy':
         sys.stdout.write(value['outcome']['stdout']); sys.stderr.write(value['outcome']['stderr'])

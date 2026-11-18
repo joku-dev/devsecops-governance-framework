@@ -12,9 +12,9 @@
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `bfcdd9e` · 2,123 Tests (davon 2 übersprungen) · Mac 18 / VM 18 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Repository-Kandidaten reviewen und als Mac/Linux-Paket nachweisen.
+**Nächster Baustein:** Begrenztes Replay ausliefern und Worker-Orchestrierung vervollständigen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -31,7 +31,7 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Letzter veröffentlichter Nachweis: bfcdd9e/5b294f33, je 18 installierte Mac/Linux-Prüfgruppen und acht grüne CI-Familien. Der neue Repository-Kandidat implementiert vollständige Engine, committed/working Source-Erfassung, private unveränderliche Inhalte, native Einzeljournale und CLI mit strengem Offline-Replay. Lokal sind 2.367 Tests in 1.188,502 Sekunden grün, eine bekannte Deployment-Auslassung; alle 149 vorgesehenen Dateien blieben während des Gesamtlaufs bytegleich. Nach den korrigierten Release-Integrationsfehlern sind zusätzlich 150 betroffene Regressionen grün. Der externe Host-Testtreiber besteht auf einer getrennten Kopie 244 Tests und ganze positive/negative Originalvergleiche über jeweils 2.588 Dateinamen und Rohinhalte. Dies sind Vorprüfungen ohne installierte Abnahme. Jetzt folgen sourcegebundener Abschlussreview, Commit/Draft-PR und neue exakte Mac/Linux-Pakete mit allen Prüfgruppen sowie dem festen ha-CPsWMS-Vergleich. Ursprüngliche Child-Tracebacks, weitere Signaturprofile, Lifecycle-Base-Ref/New-Provider und vollständige Bootstrap-/Test-/Worker-Orchestrierung bleiben offen. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen, 16 Betriebsabläufe und 18 historischen Nachweise bleiben erhalten. Keine neue Freigabe oder Betriebsautorität.
+Der neue Replay-Worker ist auf dem Folgebranch implementiert: expliziter CLI-Aufruf, geschlossener Auftrag, eigene Prozessgruppe, CPU-/Zeit-/Ausgabebudgets, RSS-Überwachung und Linux-Adressraumlimit. Die lokale gepinnte Suite besteht mit 2.381 Tests in 1.308,946 Sekunden, eine bekannte Deployment-Auslassung; alle zehn vorgesehenen Dateien blieben dabei bytegleich. Der neue Speicherbudget-Fehlerpfad liefert strukturiert Exit 2 und verändert bestehende Ergebnisse nicht. Die separat geprüfte Python-3.12-Referenzkorrektur e252d818 liegt in Draft-PR #418 und ist in den Folgebranch aufgenommen; alle 62 Funktions-ASTs werden weiter vollständig verglichen. Jetzt folgen aktualisierte Dokumentation, Abschlussreview, eigener Commit/Draft-PR und frische sourcegebundene Mac/Linux-Pakete mit vollständigen Hostprüfungen. Die 19. Linux-Gruppe von cc32bcb bleibt wegen des damaligen Referenztestfehlers ausdrücklich fehlgeschlagen; ältere Belege werden nicht umetikettiert. Weitere Erstellungs-/Bootstrap-/Test-Worker, ursprüngliche Child-Tracebacks, zusätzliche Signaturprofile und Lifecycle-Base-Ref/New-Provider bleiben offen. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen, 16 Betriebsabläufe und 18 historischen Nachweise bleiben erhalten; keine neue Betriebsautorität.
 
 - `scripts/bootstrap_validation_env.sh`
 - `scripts/validate_all.sh`
@@ -40,26 +40,27 @@ Letzter veröffentlichter Nachweis: bfcdd9e/5b294f33, je 18 installierte Mac/Lin
 
 ## Letzter vollständiger technischer Prüfstand
 
-Beobachtet: `2026-11-18T16:32:57Z`. Geprüfter Quellcommit: `bfcdd9e2e51bbd13db079b93484dc7dcecb0c20c`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
+Beobachtet: `2026-11-18T21:49:21Z`. Geprüfter Quellcommit: `cc32bcb14de6bd1fbb817bd34750b409b5b53836`. Diese datierte Beobachtung gilt für diesen Kandidaten und zertifiziert spätere Commits nicht automatisch. Die Anzeige fragt keine externen Dienste ab.
 
-- Unit-Tests: 2123 in 790.09 Sekunden; 2 plattformabhängig übersprungen.
-- Installierte Prüfgruppen: Mac 18, Linux-VM 18.
+- Unit-Tests: 2367 in 1188.502 Sekunden; 1 plattformabhängig übersprungen.
+- Installierte Prüfgruppen: Mac 19, Linux-VM 18.
 - Vollständige Ergebnisgruppen: 10 von 10 stimmen zwischen den Rechnern überein.
-- Ausgeführter Stand bfcdd9e/5b294f33: je 18 frische installierte Mac/Linux-Prüfgruppen bestanden, darunter 147 Release-Fälle, 29 Working-Tree- und 24 committed Runtime-Fälle. Ganze ursprüngliche positive/negative Release-Berichte und JSON-Ausgaben sowie CLI-Replay nach Caller-Löschung stimmen je Host mit V1 überein. Die Release-Ergebnisse und neun bisherige ganze Geschäftsergebnisgruppen, feste ha-CPsWMS-Berichte, ganzer committed DCR und je 222 ursprüngliche Dateien sind zwischen den Hosts im dokumentierten Vergleichsumfang gleich. Alle 2.474 Paketeinträge geprüft: 2.464 Git-Quelldateien, 1.804 physische Dateien, 660 beabsichtigte Sparse-Auslassungen, 854 aktive Fingerprints und zehn Tool-/Wheel-/Commit-Dateien. Native Pfade, Uhren, Schlüssel und Rohdiagnostik bleiben Host-Kontext. Beide CI-Testläufe mit je 2.123 Tests bestanden: gepinnt 790,090 Sekunden, Python 3.11 1.093,243 Sekunden, jeweils zwei ausgelassen; lokal 930,488 Sekunden, einer ausgelassen. Alle acht CI-Familien grün, finaler GitHub-Review-Lauf 44348166826 declared_complete, tatsächlicher Merge-Dateibaum exakt gleich. Die drei F8-Subjekte bleiben in Arbeit; alle 18 historischen Nachweise bleiben erhalten. Ganze Repository-Validierung, zusätzliche Signaturprofile, Bootstrap, Test-Orchestrierung und alle 22/135/37/16 bleiben offen. Keine unabhängige Abnahme oder Betriebsautorität; historischer Runner-/Pipe-Befund weiter offen.
+- Veröffentlichter Stand cc32bcb/4243a11a: Mac 19 und VM 18 installierte Prüfgruppen bestanden. Die zusätzliche Repository-Gruppe besteht auf dem Mac mit 249 Fällen; die VM beendet ihre 244 technischen Fälle mit 243 Erfolgen und einem Python-3.12-Referenztestfehler bei der AST-Anführungszeichen-Erkennung (622,571 Sekunden). Der vollständige neue Linux-Originalvergleich wurde deshalb nicht als bestanden ausgegeben. Die Korrektur e252d818 ändert nur zwei Test-Prädikate, erhält alle 62 vollständigen AST-Vergleiche und besteht gezielt auf Python 3.12 und 3.13. Neun bisherige ganze Geschäftsergebnisgruppen plus Release-Berichte, feste ha-CPsWMS-Berichte, ganzer committed DCR und je 222 ursprüngliche Dateien stimmen auf beiden Hosts überein. Alle 2.597 Paketeinträge geprüft: 2.587 Git-Dateien, 1.859 physische Dateien, 728 beabsichtigte Sparse-Auslassungen, 908 aktive Fingerprints und zehn Tool-/Wheel-/Commit-Dateien. Native Pfade, Uhren, Schlüssel und Rohdiagnostik bleiben Host-Kontext. Alle neun CI-Familien von cc32bcb sind grün; beide CI-Testläufe bestehen mit je 2.367 Tests (1.402,985 und 1.013,118 Sekunden; je drei ausgelassen). Der letzte Review-Lauf 44403226939 meldet declared_complete, tatsächlicher Merge-Dateibaum identisch. Beide Test-Nodes bleiben unabhängig, pausiert, leer und ohne Publisher. Keine unabhängige Abnahme, Betriebsautorität oder vollständige Funktionsparität; historischer Runner-/Pipe-Befund weiter offen.
 - Kanonisches Profil vollständig gleich: **ja**.
-- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `9c52d86b85e09bb916301d1e340db26f99111859610819643f5149b950873275`.
+- Vollständiger DCR-Bericht: Gleichheit **ja**; aufgezeichneter Hash `e0fd65a9cd63a6ce0b2795ea520ce206d77ff8648b53af289ddf8aa759e5be11`.
 - Technische Beobachtungen sind deklarierte Nachweise und erteilen keine unabhängige menschliche Freigabe.
 
 | CI-Workflow-Familie | Beobachteter Lauf | Ergebnis |
 | --- | --- | --- |
-| Agent Review Status | [44348166826](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44348166826) | bestanden |
-| CodeQL | [44342673021](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673021) | bestanden |
-| Consumer Lifecycle Guard | [44342673027](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673027) | bestanden |
-| Dependency Review | [44342672978](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672978) | bestanden |
-| Governance CI | [44342672851](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672851) | bestanden |
-| Governance CI v2 | [44342673254](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673254) | bestanden |
-| Governance Repository Self-Security | [44342672840](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672840) | bestanden |
-| Prepared runtime offline | [44342672955](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672955) | bestanden |
+| Agent Review Status | [44403226939](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44403226939) | bestanden |
+| Governance CI | [44390638544](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638544) | bestanden |
+| Governance CI v2 | [44390638473](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638473) | bestanden |
+| Dependency Review | [44390638740](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638740) | bestanden |
+| Consumer Lifecycle Guard | [44390638464](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638464) | bestanden |
+| Prepared runtime offline | [44390638537](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638537) | bestanden |
+| Source Document Intake | [44390638659](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638659) | bestanden |
+| Governance Repository Self-Security | [44390638482](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638482) | bestanden |
+| CodeQL | [44390638615](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638615) | bestanden |
 
 ## Stand aller Funktionsbereiche
 
@@ -102,6 +103,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `30a1157ed8bc9409dc5d01adb38d838e38228ab174af09e3d4aa298746410eef`. Beobachtungs-SHA-256: `5ce77e9d467585fc5ab887692ed70086fb465df108a57a5e07e9dc5b328ed323`.
+Matrix-SHA-256: `30a1157ed8bc9409dc5d01adb38d838e38228ab174af09e3d4aa298746410eef`. Beobachtungs-SHA-256: `342b4ea5ef4bd2661f882940925a13923761b10fcf09a1d6dcf3e184b45b013d`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).
