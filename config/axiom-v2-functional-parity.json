@@ -2551,22 +2551,22 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "in_progress",
+      "state": "verified",
       "evidence": [
         {
-          "id": "intake-retry-positive",
+          "id": "intake-retry-f8-positive",
           "kind": "positive",
-          "sha256": "1a450ccb7206b900c2dfac565731b5f123e75bf95771bf47e71ef2435a8c293b"
+          "sha256": "043089fc1ebeaf722d976dd75c38b64ea1186954f277e05ed69a6c24338174cf"
         },
         {
-          "id": "intake-retry-negative",
+          "id": "intake-retry-f8-negative",
           "kind": "negative",
-          "sha256": "8fe8924be5dcd742f268484daf7b0d3e0dbe3f3d9a06bf038548620e187de211"
+          "sha256": "bca63ec024e1abcf3996806576c8826f4e797513d88e63a490fcf85b86faba86"
         },
         {
-          "id": "intake-retry-installed",
+          "id": "intake-retry-f8-installed",
           "kind": "installed",
-          "sha256": "143d700d8fbddc6896ba76c2e2378e1d3d37038b887a315748bdb6288b992000"
+          "sha256": "2738e454a7fa22c3b0035e83d32ff69f66b36322232f5fc87f0f68f08d43cf89"
         }
       ]
     },
@@ -2868,22 +2868,22 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "in_progress",
+      "state": "verified",
       "evidence": [
         {
-          "id": "intake-attempt-positive",
+          "id": "intake-attempt-f8-positive",
           "kind": "positive",
-          "sha256": "7d534372698521be6ca8c76614f8fe48076345f70fd80ef837fea075fe54cddb"
+          "sha256": "dedfb3cd9509b456cdbc3e35f2542fafd1f3e3e99d980d95b018c2e17d9fd61c"
         },
         {
-          "id": "intake-attempt-negative",
+          "id": "intake-attempt-f8-negative",
           "kind": "negative",
-          "sha256": "6b1997ca593de0eb4cba3f207b3ac18fb69c5f95260ff4df65a6d516ae0731af"
+          "sha256": "d6f741db2e7e9bc249020f02bafaa0dc1c08488e0b28423dfdffd1d0f9c1dd3d"
         },
         {
-          "id": "intake-attempt-installed",
+          "id": "intake-attempt-f8-installed",
           "kind": "installed",
-          "sha256": "4fd994038a4b3a10ef60b144a3f6eb6cab591fa8d7a887497abbaadf38d8884c"
+          "sha256": "d1f1f3d698873a6260eb461e5525374efe1d5512c7156fe266985fa310efac67"
         }
       ]
     },
@@ -2953,22 +2953,22 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "in_progress",
+      "state": "verified",
       "evidence": [
         {
-          "id": "intake-event-positive",
+          "id": "intake-event-f8-positive",
           "kind": "positive",
-          "sha256": "ec554c2859373843d39a950e72f5e71982de0c1d63484b9aa576946c0b5b5f88"
+          "sha256": "6908089c60182b8dda0438269f11e13428d8135a955f5e2177ec742878039b7a"
         },
         {
-          "id": "intake-event-negative",
+          "id": "intake-event-f8-negative",
           "kind": "negative",
-          "sha256": "4c889aefcb8c1b3123bed9bbd90f39cbaa945bb1d3e4f671a0424101f8105476"
+          "sha256": "45f0987415900e1de7c1264b171874b3175894dbdcaf35bee1fe814fc1ba91e2"
         },
         {
-          "id": "intake-event-installed",
+          "id": "intake-event-f8-installed",
           "kind": "installed",
-          "sha256": "28e1bbac6c9b3bd6778c16ea71e01c9dab4825544a41eb69e008d7ecdc9e3c14"
+          "sha256": "39970963547c3e9529c106dd25fdfab9ab53b54d1bd0f35c31fd8e196855e4f4"
         }
       ]
     },

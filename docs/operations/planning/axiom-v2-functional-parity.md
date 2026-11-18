@@ -106,15 +106,24 @@ differences remain documented below. This is a technical declaration for three
 entrypoints; the other 132, all 37 CI definitions, 16 operating flows and all
 catalogue areas still require completion.
 
-The receipts identify the actually executed source
-`8e0688b1de4e7334f2fff43750e74a9b32825e3d`, its tree and unchanged runtime,
+The current F8 receipts identify the actually executed source
+`8dc38fab267a72422b606ddd7520d25fb1311640`, its tree and runtime,
 original and implementation hashes, and hashes/bytes of the original fixture
 contract, private coverage audit, full local/CI logs and both installed proofs.
-That source passed 1,931 local and exact-tree GitHub tests and 15 installed groups
+That source passed 1,954 local and exact-tree GitHub tests and 16 installed groups
 per host, including 39 intake cases each. The new metadata/cleanup group has 28
 cases. Counts supplement the whole-source audit rather than define its quality.
-All nine public files contain only the closed metadata fields and false authority
+All nine new public files contain only the closed metadata fields and false authority
 flags; private source material, test reports and review bodies are not published.
+
+The nine earlier 2fe8 receipts retain their original bytes and source `8e0688b`.
+The runtime-validation increment moved the three subjects back to in-progress;
+fresh complete-source/semantic audit and actual F8 tests on both installed hosts
+now support three new positive/negative/installed declarations. The current
+matrix has three verified, 71 in-progress and 61 pending entrypoints. All 22
+areas, 37 original CI definitions and 16 operating flows remain unfinished.
+The committed runtime profile passed; original working-tree runtime input and
+full repository/bootstrap/test orchestration still require implementation.
 
 The subsequent matrix/receipt/documentation commit changes no runtime code,
 schema, dependency, adapter or baseline. The audit checks that the current runtime

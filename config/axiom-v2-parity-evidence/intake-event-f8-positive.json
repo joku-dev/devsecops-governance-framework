@@ -1,0 +1,43 @@
+{
+  "authority_transferred": false,
+  "evidence_kind": "declared_technical_parity_evidence",
+  "evidence_sources": {
+    "ci_job_log": {
+      "bytes": 100043,
+      "sha256": "f45ad91e1588acd18758f9485495617ed0b8de1e06e23b930df22ef2bd7acbbc"
+    },
+    "coverage_audit": {
+      "bytes": 16709,
+      "sha256": "2d08aeaeee3f8e466948178d368d1eca5f71e01c979991520c884696e5a9b004"
+    },
+    "installed_linux": {
+      "bytes": 108564,
+      "sha256": "fed1142da954abf36fd4e54c3dbb64ca4751efd4a3085be7dfa127d3c01b3b22"
+    },
+    "installed_mac": {
+      "bytes": 108563,
+      "sha256": "d03cdff3d1d29222156bcc5ac267bde86dd20353da84578844fb813f774966c1"
+    },
+    "local_suite_log": {
+      "bytes": 5325,
+      "sha256": "b50687a3b578d1073ec1db0a93b9390480817981d60454691e205a50a7b8e41b"
+    },
+    "original_contract": {
+      "bytes": 2570,
+      "sha256": "5d741199024d76c541354d6b138a301b79fa1ddaa347a472ef3c36fba816fd4f"
+    }
+  },
+  "implementation_source_sha256": "9aca5b7cb1ff733e8046aa0dea6fed9b35431828367f7d22b67e7d0a1ad608e6",
+  "independent_human_approval": false,
+  "kind": "positive",
+  "observed_source_revision": "8dc38fab267a72422b606ddd7520d25fb1311640",
+  "observed_source_tree": "676bcf7ea8be81fb113f57e420ad52ab563a41e6",
+  "official_acceptance": false,
+  "original_source_sha256": "4ce8655acd7dfd48b98d16d7a627ab5caf30a9077658fbf178bad358c5b599f8",
+  "passed": true,
+  "production_approval": false,
+  "runtime_source_digest": "f8f6b3ec173051bf63b83a2e6a1f3c2fff963c472f98e189d017f33c2c84c787",
+  "schema_version": 1,
+  "subject": "scripts/record_intake_event.py",
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197"
+}

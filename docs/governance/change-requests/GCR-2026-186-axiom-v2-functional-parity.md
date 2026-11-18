@@ -507,3 +507,27 @@ measured implementation into an isolated directory and changes each registered
 validation module's actual bytes independently: every change must invalidate
 the runtime binding. Application fingerprint coverage alone is insufficient
 for source-bound technical parity receipts. No old receipt is rebound.
+
+## F8 Intake subject evidence refresh
+
+Classify nine new closed hash-only technical receipts as versioned product
+configuration evidence, with matrix/Goal observations and explanatory operational
+documentation under this GCR. Full Source Document Intake is not required: these
+are declared test metadata, not governance source documents or accepted downstream
+results. The original nine receipts remain byte-identical and historical.
+
+Renew the complete original helper/CLI/default/identity/error/effect audit for
+attempt, event and retry preparation against actual source `8dc38fa` and runtime
+F8. The unchanged Intake implementation and original fixtures are rehashed;
+additive validation composition is inspected separately. Actual full local/CI
+validation and both fresh installed 39-case Intake groups support three new
+positive/negative/installed declarations. No count alone establishes completion.
+
+The metadata-only follow-up changes no runtime digest. Validate receipt schemas,
+matrix binding and delivery from its own exact source; the preceding 8dc full
+execution is not relabelled as execution of a later metadata tree. Regenerate
+README/Goal projections from the matrix and dated observation. The other 132
+entrypoints, every area/CI/operating flow and full Goal remain unfinished.
+Original runtime working-tree input and repository/bootstrap/test orchestration
+remain the next work. No baseline, protected acceptance, policy, schema, official
+latest index, consumer mode, consent or operating authority is changed.
