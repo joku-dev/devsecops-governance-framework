@@ -106,9 +106,9 @@ class LifecycleHistoryTests(unittest.TestCase):
             for old in ast.walk(original):
                 if not isinstance(old, ast.JoinedStr): continue
                 spelling = ast.unparse(old)
-                if module == 'live_preparation' and spelling == 'f"github-user:{subject[\'provider_user_id\']}"':
+                if module == 'live_preparation' and dump(old) == dump(expression('f"github-user:{subject[\'provider_user_id\']}"')):
                     mapping[dump(expression("self.context.provider.subject_id(subject['provider_user_id'])"))] = old
-                if module == 'live_preparation' and spelling == 'f"https://github.com/{subject[\'login\']}"':
+                if module == 'live_preparation' and dump(old) == dump(expression('f"https://github.com/{subject[\'login\']}"')):
                     mapping[dump(expression("self.context.provider.profile_url(subject['login'])"))] = old
                 if module in ('operating_acceptance', 'generate_personal_channel_probe') and 'Diskussion: https://github.com/' in spelling:
                     variable = 'request' if module == 'generate_personal_channel_probe' else 'value'
