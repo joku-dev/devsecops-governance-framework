@@ -111,3 +111,8 @@ def load_repository_operation(*args, **options):
 def repository_operation_header(root):
     from lib.providers.repository_journal import read_journal
     return read_journal(root)[0]['payload']['binding']
+
+
+def inspect_repository_worker(root, header):
+    from lib.providers.repository_worker import inspect_operation
+    return inspect_operation(root, header)

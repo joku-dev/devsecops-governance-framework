@@ -442,8 +442,24 @@ omissions, or held current working data at the exact product revision/tree.
 `repository_operation.py` defines node/runtime/source/profile/authority bindings.
 The private operation store persists immutable content and a durable ordered
 hash chain before acquisition and each native/effect operation. The registered
-CLI is a development candidate; complete pinned validation and fresh installed
-Mac/Linux proof are still required before publication.
+CLI is published as candidate `cc32bcb` in PR #417. Its complete local pinned
+suite and nine CI families passed; fresh installations passed 19 Mac groups and
+18 Linux groups. The additional Linux technical group exposed a Python 3.12
+test-only AST quote comparison defect, corrected separately in PR #418. Fresh
+complete installed proof for the follow-up source remains required.
+
+The follow-up branch adds an explicitly selected bounded replay worker through
+`repository-inspect --bounded-worker`. The neutral message contract admits one
+retained operation and its exact node/runtime/source binding. The provider starts
+a fixed isolated Python entrypoint, limits CPU and streams, monitors wall time
+and RSS, and terminates its own process group on failure. Linux additionally
+limits address space; polled RSS is not a kernel-enforced peak RSS guarantee.
+The child replays closed evidence without invoking producer programs or native
+verification ports. It preserves the complete existing inspection result and
+adds a declared worker observation. Existing evidence and authority stay bound
+to their original operation. Full creation/test worker orchestration remains
+open. The worker source passed 2,381 pinned local tests with one known deployment
+skip; its own review, CI and exact-source package delivery remain separate steps.
 
 ## 6. Runtime View
 

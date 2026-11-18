@@ -266,70 +266,76 @@
       {
         "name": "Agent Review Status",
         "result": "passed",
-        "run_id": "44348166826",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44348166826"
-      },
-      {
-        "name": "CodeQL",
-        "result": "passed",
-        "run_id": "44342673021",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673021"
-      },
-      {
-        "name": "Consumer Lifecycle Guard",
-        "result": "passed",
-        "run_id": "44342673027",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673027"
-      },
-      {
-        "name": "Dependency Review",
-        "result": "passed",
-        "run_id": "44342672978",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672978"
+        "run_id": "44403226939",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44403226939"
       },
       {
         "name": "Governance CI",
         "result": "passed",
-        "run_id": "44342672851",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672851"
+        "run_id": "44390638544",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638544"
       },
       {
         "name": "Governance CI v2",
         "result": "passed",
-        "run_id": "44342673254",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673254"
+        "run_id": "44390638473",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638473"
       },
       {
-        "name": "Governance Repository Self-Security",
+        "name": "Dependency Review",
         "result": "passed",
-        "run_id": "44342672840",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672840"
+        "run_id": "44390638740",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638740"
+      },
+      {
+        "name": "Consumer Lifecycle Guard",
+        "result": "passed",
+        "run_id": "44390638464",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638464"
       },
       {
         "name": "Prepared runtime offline",
         "result": "passed",
-        "run_id": "44342672955",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672955"
+        "run_id": "44390638537",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638537"
+      },
+      {
+        "name": "Source Document Intake",
+        "result": "passed",
+        "run_id": "44390638659",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638659"
+      },
+      {
+        "name": "Governance Repository Self-Security",
+        "result": "passed",
+        "run_id": "44390638482",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638482"
+      },
+      {
+        "name": "CodeQL",
+        "result": "passed",
+        "run_id": "44390638615",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44390638615"
       }
     ],
     "compared_result_groups": 10,
-    "comparison_note": "Ausgeführter Stand bfcdd9e/5b294f33: je 18 frische installierte Mac/Linux-Prüfgruppen bestanden, darunter 147 Release-Fälle, 29 Working-Tree- und 24 committed Runtime-Fälle. Ganze ursprüngliche positive/negative Release-Berichte und JSON-Ausgaben sowie CLI-Replay nach Caller-Löschung stimmen je Host mit V1 überein. Die Release-Ergebnisse und neun bisherige ganze Geschäftsergebnisgruppen, feste ha-CPsWMS-Berichte, ganzer committed DCR und je 222 ursprüngliche Dateien sind zwischen den Hosts im dokumentierten Vergleichsumfang gleich. Alle 2.474 Paketeinträge geprüft: 2.464 Git-Quelldateien, 1.804 physische Dateien, 660 beabsichtigte Sparse-Auslassungen, 854 aktive Fingerprints und zehn Tool-/Wheel-/Commit-Dateien. Native Pfade, Uhren, Schlüssel und Rohdiagnostik bleiben Host-Kontext. Beide CI-Testläufe mit je 2.123 Tests bestanden: gepinnt 790,090 Sekunden, Python 3.11 1.093,243 Sekunden, jeweils zwei ausgelassen; lokal 930,488 Sekunden, einer ausgelassen. Alle acht CI-Familien grün, finaler GitHub-Review-Lauf 44348166826 declared_complete, tatsächlicher Merge-Dateibaum exakt gleich. Die drei F8-Subjekte bleiben in Arbeit; alle 18 historischen Nachweise bleiben erhalten. Ganze Repository-Validierung, zusätzliche Signaturprofile, Bootstrap, Test-Orchestrierung und alle 22/135/37/16 bleiben offen. Keine unabhängige Abnahme oder Betriebsautorität; historischer Runner-/Pipe-Befund weiter offen.",
+    "comparison_note": "Veröffentlichter Stand cc32bcb/4243a11a: Mac 19 und VM 18 installierte Prüfgruppen bestanden. Die zusätzliche Repository-Gruppe besteht auf dem Mac mit 249 Fällen; die VM beendet ihre 244 technischen Fälle mit 243 Erfolgen und einem Python-3.12-Referenztestfehler bei der AST-Anführungszeichen-Erkennung (622,571 Sekunden). Der vollständige neue Linux-Originalvergleich wurde deshalb nicht als bestanden ausgegeben. Die Korrektur e252d818 ändert nur zwei Test-Prädikate, erhält alle 62 vollständigen AST-Vergleiche und besteht gezielt auf Python 3.12 und 3.13. Neun bisherige ganze Geschäftsergebnisgruppen plus Release-Berichte, feste ha-CPsWMS-Berichte, ganzer committed DCR und je 222 ursprüngliche Dateien stimmen auf beiden Hosts überein. Alle 2.597 Paketeinträge geprüft: 2.587 Git-Dateien, 1.859 physische Dateien, 728 beabsichtigte Sparse-Auslassungen, 908 aktive Fingerprints und zehn Tool-/Wheel-/Commit-Dateien. Native Pfade, Uhren, Schlüssel und Rohdiagnostik bleiben Host-Kontext. Alle neun CI-Familien von cc32bcb sind grün; beide CI-Testläufe bestehen mit je 2.367 Tests (1.402,985 und 1.013,118 Sekunden; je drei ausgelassen). Der letzte Review-Lauf 44403226939 meldet declared_complete, tatsächlicher Merge-Dateibaum identisch. Beide Test-Nodes bleiben unabhängig, pausiert, leer und ohne Publisher. Keine unabhängige Abnahme, Betriebsautorität oder vollständige Funktionsparität; historischer Runner-/Pipe-Befund weiter offen.",
     "equal_complete_result_groups": 10,
     "evidence_kind": "declared_technical_validation_observation",
     "full_dcr_equal": true,
-    "full_dcr_sha256": "9c52d86b85e09bb916301d1e340db26f99111859610819643f5149b950873275",
+    "full_dcr_sha256": "e0fd65a9cd63a6ce0b2795ea520ce206d77ff8648b53af289ddf8aa759e5be11",
     "full_functional_parity": false,
     "independent_human_approval": false,
     "installed_groups": {
       "linux": 18,
-      "mac": 18
+      "mac": 19
     },
-    "observed_at": "2026-11-18T16:32:57Z",
-    "runtime_source_digest": "5b294f3333099388544bd53d1bae0c6615a7e0f5ddd2da0fcaaac03e526f4eb2",
-    "source_revision": "bfcdd9e2e51bbd13db079b93484dc7dcecb0c20c",
-    "unit_test_seconds": 790.09,
-    "unit_tests": 2123,
-    "unit_tests_skipped": 2
+    "observed_at": "2026-11-18T21:49:21Z",
+    "runtime_source_digest": "4243a11a6ad38e4178ce0b2457a6490bd8f8633c9f18dff6bb9dfd429b6f37a6",
+    "source_revision": "cc32bcb14de6bd1fbb817bd34750b409b5b53836",
+    "unit_test_seconds": 1188.502,
+    "unit_tests": 2367,
+    "unit_tests_skipped": 1
   },
   "matrix_sha256": "30a1157ed8bc9409dc5d01adb38d838e38228ab174af09e3d4aa298746410eef",
   "next_work": {
@@ -339,10 +345,10 @@
       "scripts/validate_governance_repo.py",
       "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Letzter veröffentlichter Nachweis: bfcdd9e/5b294f33, je 18 installierte Mac/Linux-Prüfgruppen und acht grüne CI-Familien. Der neue Repository-Kandidat implementiert vollständige Engine, committed/working Source-Erfassung, private unveränderliche Inhalte, native Einzeljournale und CLI mit strengem Offline-Replay. Lokal sind 2.367 Tests in 1.188,502 Sekunden grün, eine bekannte Deployment-Auslassung; alle 149 vorgesehenen Dateien blieben während des Gesamtlaufs bytegleich. Nach den korrigierten Release-Integrationsfehlern sind zusätzlich 150 betroffene Regressionen grün. Der externe Host-Testtreiber besteht auf einer getrennten Kopie 244 Tests und ganze positive/negative Originalvergleiche über jeweils 2.588 Dateinamen und Rohinhalte. Dies sind Vorprüfungen ohne installierte Abnahme. Jetzt folgen sourcegebundener Abschlussreview, Commit/Draft-PR und neue exakte Mac/Linux-Pakete mit allen Prüfgruppen sowie dem festen ha-CPsWMS-Vergleich. Ursprüngliche Child-Tracebacks, weitere Signaturprofile, Lifecycle-Base-Ref/New-Provider und vollständige Bootstrap-/Test-/Worker-Orchestrierung bleiben offen. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen, 16 Betriebsabläufe und 18 historischen Nachweise bleiben erhalten. Keine neue Freigabe oder Betriebsautorität.",
-    "title": "Repository-Kandidaten reviewen und als Mac/Linux-Paket nachweisen"
+    "next_step": "Der neue Replay-Worker ist auf dem Folgebranch implementiert: expliziter CLI-Aufruf, geschlossener Auftrag, eigene Prozessgruppe, CPU-/Zeit-/Ausgabebudgets, RSS-Überwachung und Linux-Adressraumlimit. Die lokale gepinnte Suite besteht mit 2.381 Tests in 1.308,946 Sekunden, eine bekannte Deployment-Auslassung; alle zehn vorgesehenen Dateien blieben dabei bytegleich. Der neue Speicherbudget-Fehlerpfad liefert strukturiert Exit 2 und verändert bestehende Ergebnisse nicht. Die separat geprüfte Python-3.12-Referenzkorrektur e252d818 liegt in Draft-PR #418 und ist in den Folgebranch aufgenommen; alle 62 Funktions-ASTs werden weiter vollständig verglichen. Jetzt folgen aktualisierte Dokumentation, Abschlussreview, eigener Commit/Draft-PR und frische sourcegebundene Mac/Linux-Pakete mit vollständigen Hostprüfungen. Die 19. Linux-Gruppe von cc32bcb bleibt wegen des damaligen Referenztestfehlers ausdrücklich fehlgeschlagen; ältere Belege werden nicht umetikettiert. Weitere Erstellungs-/Bootstrap-/Test-Worker, ursprüngliche Child-Tracebacks, zusätzliche Signaturprofile und Lifecycle-Base-Ref/New-Provider bleiben offen. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen, 16 Betriebsabläufe und 18 historischen Nachweise bleiben erhalten; keine neue Betriebsautorität.",
+    "title": "Begrenztes Replay ausliefern und Worker-Orchestrierung vervollständigen"
   },
-  "observation_sha256": "5ce77e9d467585fc5ab887692ed70086fb465df108a57a5e07e9dc5b328ed323",
+  "observation_sha256": "342b4ea5ef4bd2661f882940925a13923761b10fcf09a1d6dcf3e184b45b013d",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],
