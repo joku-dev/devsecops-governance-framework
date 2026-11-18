@@ -27,6 +27,9 @@ PROFILE='legacy-attestation-pilot-v1';AT='2026-11-18T00:00:00Z'
 
 class AttestationVerification(unittest.TestCase):
     def setUp(self):
+        # Fixtures satisfy the private-output contract independently of the
+        # invoking shell's umask (the VM operator commonly uses 0002).
+        previous_umask=os.umask(0o077);self.addCleanup(os.umask,previous_umask)
         temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup);self.base=Path(temp.name).resolve()
         self.instance=self.base/'instance';self.instance.mkdir(mode=0o700);self.settings={'node_id':'synthetic-attestation-node'}
         self.app=AttestationContext(self.instance,self.settings);self.old=oracle.Original(FIXTURES,ROOT)
@@ -197,11 +200,12 @@ class AttestationVerification(unittest.TestCase):
 
     def test_output_symlink_hardlink_fifo_and_product_paths_leave_other_files_untouched(self):
         secret=self.base/'secret';secret.write_bytes(b'controlled unrelated secret')
-        for kind in ('symlink','hardlink','fifo'):
+        for kind in ('symlink','hardlink','fifo','group-writable'):
             self.output=self.base/kind/'report.json';self.output.parent.mkdir(mode=0o700)
             if kind=='symlink':self.output.symlink_to(secret)
             elif kind=='hardlink':os.link(secret,self.output)
-            else:os.mkfifo(self.output,0o600)
+            elif kind=='fifo':os.mkfifo(self.output,0o600)
+            else:self.output.write_bytes(b'controlled unsafe output');self.output.chmod(0o660)
             with self.assertRaises((ValueError,OSError)):self.assess()
             self.assertEqual(secret.read_bytes(),b'controlled unrelated secret')
         self.output=ROOT/'forbidden-attestation-test.json'
