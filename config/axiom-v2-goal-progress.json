@@ -9,7 +9,7 @@
       "scripts/validate_governance_repo.py",
       "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Die gesamte urspr\u00fcngliche Validierungsorchestrierung mit historischen Schema-, Lifecycle-, Traceability- und OPA-Pr\u00fcfungen auditieren und als expliziten portablen Ablauf nachweisen; der heutige V2-Boundary-Check ersetzt diese Funktionen nicht. Alle \u00fcbrigen Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabl\u00e4ufe bleiben im Goal."
+    "next_step": "Die Runtime-Validierung ist als erster Baustein mit allen neun urspr\u00fcnglichen Funktionen und drei Generatorwirkungen in Umsetzung. Vollst\u00e4ndige Originalvergleiche, private Wiederholungspr\u00fcfung und frische Mac/Linux-Installation abschlie\u00dfen; die gesamte Repository-/Bootstrap-/Test-Orchestrierung bleibt offen. Die drei fr\u00fcher auf Runtime 2fe8b731 nachgewiesenen Intake-Einstiegspunkte ben\u00f6tigen wegen des ge\u00e4nderten Runtime-Digests eine neue Pr\u00fcfung und stehen im Entwicklungsbranch ausdr\u00fccklich wieder in Arbeit. Ihre neun alten Nachweise und der ver\u00f6ffentlichte Stand 359900f bleiben unver\u00e4ndert erhalten. Alle 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabl\u00e4ufe bleiben im Goal."
   },
   "last_validation": {
     "observed_at": "2026-11-18T08:39:40.154170Z",

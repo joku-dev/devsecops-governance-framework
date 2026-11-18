@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Architecture Runtime Review Gates",
+  "type": "object",
+  "required": ["source_document", "model_version", "review_gates"],
+  "properties": {
+    "source_document": { "type": "string" },
+    "model_version": { "type": "string" },
+    "review_gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "source_reference", "purpose", "minimum_thresholds", "required_evidence", "decision_outcomes"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^RG-[A-Z-]+$" },
+          "title": { "type": "string" },
+          "source_reference": { "type": "string" },
+          "purpose": { "type": "string" },
+          "minimum_thresholds": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["marker_scope", "minimum_score"],
+              "properties": {
+                "marker_scope": { "type": "string" },
+                "marker_ids": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "minimum_score": { "type": "integer", "minimum": 0, "maximum": 5 },
+                "valid_exception_allowed": { "type": "boolean" }
+              }
+            }
+          },
+          "required_evidence": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "decision_outcomes": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
