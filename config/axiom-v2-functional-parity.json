@@ -2551,8 +2551,24 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "in_progress",
-      "evidence": []
+      "state": "verified",
+      "evidence": [
+        {
+          "id": "intake-retry-positive",
+          "kind": "positive",
+          "sha256": "1a450ccb7206b900c2dfac565731b5f123e75bf95771bf47e71ef2435a8c293b"
+        },
+        {
+          "id": "intake-retry-negative",
+          "kind": "negative",
+          "sha256": "8fe8924be5dcd742f268484daf7b0d3e0dbe3f3d9a06bf038548620e187de211"
+        },
+        {
+          "id": "intake-retry-installed",
+          "kind": "installed",
+          "sha256": "143d700d8fbddc6896ba76c2e2378e1d3d37038b887a315748bdb6288b992000"
+        }
+      ]
     },
     {
       "v1_path": "scripts/prepare_document_consistency_semantic_catalog_run.py",
@@ -2852,8 +2868,24 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "in_progress",
-      "evidence": []
+      "state": "verified",
+      "evidence": [
+        {
+          "id": "intake-attempt-positive",
+          "kind": "positive",
+          "sha256": "7d534372698521be6ca8c76614f8fe48076345f70fd80ef837fea075fe54cddb"
+        },
+        {
+          "id": "intake-attempt-negative",
+          "kind": "negative",
+          "sha256": "6b1997ca593de0eb4cba3f207b3ac18fb69c5f95260ff4df65a6d516ae0731af"
+        },
+        {
+          "id": "intake-attempt-installed",
+          "kind": "installed",
+          "sha256": "4fd994038a4b3a10ef60b144a3f6eb6cab591fa8d7a887497abbaadf38d8884c"
+        }
+      ]
     },
     {
       "v1_path": "scripts/record_evidence_agent_provenance.py",
@@ -2921,8 +2953,24 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "in_progress",
-      "evidence": []
+      "state": "verified",
+      "evidence": [
+        {
+          "id": "intake-event-positive",
+          "kind": "positive",
+          "sha256": "ec554c2859373843d39a950e72f5e71982de0c1d63484b9aa576946c0b5b5f88"
+        },
+        {
+          "id": "intake-event-negative",
+          "kind": "negative",
+          "sha256": "4c889aefcb8c1b3123bed9bbd90f39cbaa945bb1d3e4f671a0424101f8105476"
+        },
+        {
+          "id": "intake-event-installed",
+          "kind": "installed",
+          "sha256": "28e1bbac6c9b3bd6778c16ea71e01c9dab4825544a41eb69e008d7ecdc9e3c14"
+        }
+      ]
     },
     {
       "v1_path": "scripts/render_governance_documents.py",

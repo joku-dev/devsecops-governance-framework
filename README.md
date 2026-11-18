@@ -29,20 +29,20 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **73 in Arbeit** und **62 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **3 vollständig nachgewiesen**, **70 in Arbeit** und **62 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 73 | 62 | 135 |
+| V1-Einstiegspunkte (135) | 3 | 70 | 62 | 132 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `a8bb8a4` · 1,900 Tests (davon 2 übersprungen) · Mac 14 / VM 14 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `8e0688b` · 1,931 Tests (davon 2 übersprungen) · Mac 15 / VM 15 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Intake-Funktionen anhand einzelner Paritätsnachweise prüfen.
+**Nächster Baustein:** Vollständige ursprüngliche Validierungsabläufe in V2 prüfen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -196,6 +196,12 @@ nicht als aktive V2-Autorität übernommen. [Bedienung und Grenzen](docs/operati
 Runtime-Stand werden gebunden; private Texte und Autoritätsbehauptungen sind
 kein zulässiger Nachweis. Die Matrix wird dadurch nicht automatisch hochgestuft.
 [Nachweise und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#subject-receipts-and-evidence-delivery).
+Für die drei Intake-Einstiegspunkte sind nach dem vollständigen Funktionsaudit
+je ein positiver, negativer und installierter Nachweis gebunden. Die Metadaten
+benennen den tatsächlich ausgeführten Stand `8e0688b` und dessen unveränderte
+Runtime; sie erklären einen späteren Metadaten-Commit nicht rückwirkend zum
+getesteten Dateibaum. Die übrigen 132 Einstiegspunkte und alle CI-/Betriebsabläufe
+bleiben im Goal. [Einzelentscheidungen](docs/operations/planning/axiom-v2-functional-parity.md#first-three-declared-subject-decisions).
 `intake-records attempt/event/retry/inspect/status` erhält Fehlerprotokolle,
 deklarierte Intake-Ereignisse und die ursprünglichen drei Wiederholungspläne.
 Native Metadaten, CI-Umgebung und Routen liegen im expliziten Adapter; erste
