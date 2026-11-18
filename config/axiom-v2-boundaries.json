@@ -31,7 +31,10 @@
     "scripts/lib/review_committed.py",
     "scripts/lib/review_pr_application.py",
     "scripts/lib/review_execution.py",
-    "scripts/lib/review_execution_application.py"
+    "scripts/lib/review_execution_application.py",
+    "scripts/lib/attestation_assessment.py",
+    "scripts/lib/attestation_application.py",
+    "scripts/lib/attestation_files.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

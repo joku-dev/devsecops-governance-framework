@@ -27,6 +27,13 @@ class GoalProgress(unittest.TestCase):
             row['state'] = 'in_progress'
         for row in self.matrix['entrypoints'][:65]:
             row['state'] = 'in_progress'
+        # Bind next work to an interior synthetic row as well. The scope tests
+        # remove/duplicate the last row; a changing live focus there must not
+        # mask the intended scope error with an unrelated observation error.
+        self.observation['next_work'] = {
+            'title': 'Synthetic unfinished work',
+            'entrypoints': [self.matrix['entrypoints'][65]['v1_path']],
+            'next_step': 'Complete the synthetic unfinished entrypoint.'}
 
     def project(self):
         return progress.project(self.matrix, self.observation,

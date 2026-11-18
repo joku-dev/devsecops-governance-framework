@@ -74,3 +74,7 @@ from lib.providers.review_execution import (PROFILES as REVIEW_EXECUTION_PROFILE
     profile as review_execution_profile, adapter as review_execution_adapter,
     command as review_execution_command, observations as review_execution_observations,
     OutputDirectory as ReviewExecutionOutput, execute as execute_review_process)
+
+from lib.providers.attestation_verification import (PROFILES as ATTESTATION_PROFILES,
+    profile as attestation_profile, verify as verify_attestation_signature,
+    initial_observation as attestation_crypto_initial, outcome as attestation_crypto_outcome)

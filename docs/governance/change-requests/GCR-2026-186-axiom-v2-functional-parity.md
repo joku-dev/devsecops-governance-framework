@@ -1,5 +1,43 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+## Original local attestation pilot restoration
+
+Classify the new neutral decision/application/file modules, explicit bounded
+native crypto adapter, private diagnostic schema and distribution routing as
+executable governance/evidence-contract changes. Frozen original source and
+public pilot examples are inert technical test references, not new normative
+source documents. Full Source Document Intake does not apply. Preserve the
+existing root registry, source registers, policies, released baselines, protected
+acceptance and official indexes.
+
+Restore the complete original helper/CLI meaning: four ordered checks, actual
+compatible local cryptographic process, default or explicit report-only registry,
+statement-declared or explicit expected context/subject, preserved effective-level
+label, optional system-clock time, native report/summary/exit and explicit output
+creation or replacement. Keep exact input and before/after bytes, durable intent,
+actual process facts and offline reconstruction. Pending operations never retry
+or undo another actor's effects. Document single-owner file coordination, bounded
+crypto/parser/file behavior and native environment requirements as explicit
+boundaries rather than claiming a transaction or unknown tool compatibility.
+
+Preserve original ordinary SafeLoader grammar, unused metadata and declared
+algorithm/date limits without changing the review-contract loader. Do not
+describe the CLI's statement-derived expected values as independently observed
+source context. Legacy native Trust labels and demo issuer registration confer
+no V2 authority; all outer records remain unverified/report-only. Require genuine
+signature checks and whole original positive/negative helper/CLI/file comparisons,
+overwrite/race/interruption/replay/privacy tests, pinned full validation, strict
+docs, accountable role review and source-bound Mac/Linux installation proof.
+Do not treat representative family checks as completion of the full Goal.
+
+The validation uncovered pipe-resource leakage when process cleanup itself
+raises. Both native process adapters now guarantee pipe cleanup on that failure;
+the review adapter also releases its held directory descriptor. Targeted fault
+injection first demonstrated both leaks. Cleanup errors remain partial failures,
+with actual start retained and no successful review/signature verdict or retry.
+This defensive correction does not by itself identify or clear the separate
+intermittent child-process test failure observed in a whole-suite run.
+
 ## Optional native review runner restoration
 
 Classify the additive `review-run` core/application, explicit native process/file

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Report-only Evidence Attestation",
+  "type": "object",
+  "required": ["schema_version", "format", "issuer", "key_id", "signed_at", "statement", "signature"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "format": { "const": "governance-evidence-attestation-json-v0.1" },
+    "issuer": { "type": "string", "minLength": 1 },
+    "key_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$" },
+    "signed_at": { "type": "string", "format": "date-time" },
+    "statement": {
+      "type": "object",
+      "required": ["repository_id", "commit_id", "run_id", "run_attempt", "artifact_name", "subject"],
+      "properties": {
+        "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "commit_id": { "type": "string", "minLength": 1 },
+        "run_id": { "type": "string", "minLength": 1 },
+        "run_attempt": { "type": "integer", "minimum": 1 },
+        "artifact_name": { "type": "string", "minLength": 1 },
+        "subject": {
+          "type": "object",
+          "required": ["id", "algorithm", "digest"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+            "algorithm": { "const": "sha256" },
+            "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "signature": { "type": "string", "minLength": 1, "contentEncoding": "base64" }
+  },
+  "additionalProperties": false
+}

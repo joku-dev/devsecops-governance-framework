@@ -28,7 +28,7 @@ Anforderungen und Baselines behalten ihre Bedeutung.
 | 10 Baselines | Bestehende unveränderte Baselines konsumieren; Freigabe neuer Baselines bleibt separater Prozess. |
 | 11 Intake | `evidence`, `collector` und privates `typed intake`/`index`; Operator-Replay und native Aufnahmen bleiben getrennt. Zusätzlich `results` für lokale CI-Bundles, manuelle Snapshots, explizite native Run-/Job-/Archiv-Erfassung und vollständige private Ergebnisindizes. Öffentliche Accepted-Result-Publikation und vollständige native Live-Abnahme bleiben offen. |
 | 12 Geschichte | Neue SQLite-/Receipt-Daten, Backup und inaktiver Restore-Kandidat; V1-Geschichte bleibt Rückfallstand. |
-| 13 Vertrauen | Explizite neutrale Trust-Prüfung, vollständige Konfigurations-/Layer-Hashes, native Frische und kontrollbezogene Assurance; keine implizite Abnahme. |
+| 13 Vertrauen | `attestation verify/inspect/status` ergänzt die ursprüngliche lokale Pilotprüfung mit echtem kompatiblem Kryptowerkzeug, privaten Beobachtungen und expliziter neuer oder vorhandener Ausgabedatei; keine Aktivierung des Registers oder Übernahme historischer Trust-Autorität. Explizite neutrale Trust-Prüfung, vollständige Konfigurations-/Layer-Hashes, native Frische und kontrollbezogene Assurance; keine implizite Abnahme. |
 | 14 Replay | Private, pro Evidenztyp und Provider-Instanz abgegrenzte Replay-Prüfung; `reports replay-triage` ergänzt die bestehende historische Einordnung ohne Trust-Änderung. Attestierungsaktionen und weitere Alt-CLIs bleiben offen. |
 | 15 Sammlungsfehler | Collector-Status, Quarantäne, Retry und private Auditdaten über gemeinsame Logik. `reports intake-health` ergänzt davon getrennte Kennzahlen des committed Datenstands mit explizitem Zeitpunkt und Zeitfenster. |
 | 16 PR-Veröffentlichung | Explizite Adapterprofile und getrennte Zugangsdaten; keine implizite GitHub-Anmeldung oder Merge-Autorität. |
@@ -182,7 +182,7 @@ Diese Einordnung erteilt keinem Quellwerkzeug neue Betriebsrechte.
 | `validate_governance_repo.py` | Quellwerkzeug |
 | `validate_requirement_lifecycle.py` | Quellwerkzeug |
 | `validate_runtime_governance.py` | Quellwerkzeug |
-| `verify_evidence_attestation.py` | Quellwerkzeug |
+| `verify_evidence_attestation.py` | Zugeordnet, vollständige Nachweisprüfung offen: `attestation verify/inspect/status`, ursprüngliche vier Pilotprüfungen und Originalausgabe/Exit0 auch bei Befunden; private Eingaben/Prozess/Dateiersetzung, keine automatische Trust-Erhöhung. |
 
 Zusätzlich zu den 130 Python-Dateien direkt unter `scripts/` existieren diese
 acht Shell-/Node-/verschachtelten Python-Einstiege. Auch sie sind im V2-Paket

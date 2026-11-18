@@ -50,6 +50,10 @@ def main():
         write('review-execution/' + path.name, path.read_bytes())
     write('review-execution/test_v2_review_execution.py', (ROOT / 'tests/test_v2_review_execution.py').read_bytes())
     write('review-execution/oracle.py', (ROOT / 'tests/acceptance/v1_review_execution_oracle.py').read_bytes())
+    for path in sorted((ROOT / 'tests/fixtures/v2-attestation-verification').iterdir()):
+        write('attestation-verification/' + path.name, path.read_bytes())
+    write('attestation-verification/test_v2_attestation_verification.py', (ROOT / 'tests/test_v2_attestation_verification.py').read_bytes())
+    write('attestation-verification/oracle.py', (ROOT / 'tests/acceptance/v1_attestation_oracle.py').read_bytes())
     for path in sorted((ROOT / 'tests/fixtures/v2-review-receipts').iterdir()):
         write('review-receipts/' + path.name, path.read_bytes())
     write('review-receipts/oracle.py', (ROOT / 'tests/acceptance/v1_review_receipts_oracle.py').read_bytes())

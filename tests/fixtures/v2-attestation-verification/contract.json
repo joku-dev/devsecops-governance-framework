@@ -1,0 +1,42 @@
+{
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "scope": "Inert original source reference and public demonstration inputs, never active authority",
+  "sources": {
+    "scripts/verify_evidence_attestation.py": {
+      "file": "scripts__verify_evidence_attestation.py.txt",
+      "sha256": "0689363d4941d034a8fcd701e39511138bb7cc62df5cebac1963687fe503011b",
+      "git_blob": "bca6aae521e90f02ff28ca4f1586d8d4f0718679",
+      "bytes": 1574
+    },
+    "scripts/lib/evidence_attestation.py": {
+      "file": "scripts__lib__evidence_attestation.py.txt",
+      "sha256": "0a81af069b02cbe97f0ccf3451425895888074023b15f4f69499c67512f0d228",
+      "git_blob": "88bb550cb052ca01e00419dcc8c8c743ca8b67be",
+      "bytes": 4970
+    },
+    "model/evidence/evidence-trust-roots.yaml": {
+      "file": "model__evidence__evidence-trust-roots.yaml.txt",
+      "sha256": "a98f80e022234d8f1dda9f0674d5924b357d6479c3fdd72180e080f7dfb8b2d4",
+      "git_blob": "d2f9c88d6f6b48b9d93c2bcae90d54085444325d",
+      "bytes": 506
+    },
+    "docs/examples/evidence-attestation.example.json": {
+      "file": "docs__examples__evidence-attestation.example.json.txt",
+      "sha256": "bbb38fd94b36d65a9e2e41f80c06d3d801cf3d43f920745aa815639be72f1710",
+      "git_blob": "67063cfaf5a5afa064fcaa9d23618877cb0536e2",
+      "bytes": 714
+    },
+    "schemas/evidence-attestation.schema.json": {
+      "file": "schemas__evidence-attestation.schema.json.txt",
+      "sha256": "6df21fb724034b2c9be121c9463738c48fd557b1a436a8a095c45cba49b43dac",
+      "git_blob": "b03c32c54acc4348e893e1d94a64d36c2a7dce7f",
+      "bytes": 1592
+    },
+    "schemas/evidence-attestation-assessment.schema.json": {
+      "file": "schemas__evidence-attestation-assessment.schema.json.txt",
+      "sha256": "9e5829f7c133ecfbcd69a4700e425cf8c6bf8a4e1f27a4dbede4338726f4dc46",
+      "git_blob": "fb2ffc9e3b38f27e6d7a99ae81ce64dc9d2bbaf5",
+      "bytes": 1356
+    }
+  }
+}

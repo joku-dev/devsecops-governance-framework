@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "source_revision",
+    "runtime_source_digest",
+    "input_id",
+    "operation_id",
+    "evaluated_at",
+    "assessment_time_source",
+    "source_worktree_clean",
+    "profile",
+    "crypto",
+    "native_result_available",
+    "output_write_attempted",
+    "output_capture_error",
+    "error_type",
+    "exit_code",
+    "files",
+    "mode",
+    "evidence_trust",
+    "registry_authority_activated",
+    "declared_context_independently_verified",
+    "key_algorithm_enforced",
+    "registry_dates_enforced",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "published",
+    "provider_invoked",
+    "agent_execution_verified",
+    "human_approval_verified",
+    "current_revision_checked",
+    "private_review_outputs_verified"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "attestation-pilot-diagnostic"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "operation_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 128
+    },
+    "assessment_time_source": {
+      "enum": [
+        "operator",
+        "system_clock"
+      ]
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "profile": {
+      "const": "legacy-attestation-pilot-v1"
+    },
+    "crypto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempted",
+        "process_started",
+        "tool_path",
+        "tool_sha256",
+        "returncode",
+        "timed_out",
+        "error_type",
+        "failure_stage",
+        "signature_valid",
+        "reason"
+      ],
+      "properties": {
+        "attempted": {
+          "type": "boolean"
+        },
+        "process_started": {
+          "type": "boolean"
+        },
+        "tool_path": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          ]
+        },
+        "tool_sha256": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          ]
+        },
+        "returncode": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "timed_out": {
+          "type": "boolean"
+        },
+        "error_type": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+            }
+          ]
+        },
+        "failure_stage": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "enum": [
+                "resolve_tool",
+                "stage_inputs",
+                "start_process",
+                "read_process",
+                "recheck_tool",
+                "adapter_failure"
+              ]
+            }
+          ]
+        },
+        "signature_valid": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          ]
+        }
+      }
+    },
+    "native_result_available": {
+      "type": "boolean"
+    },
+    "output_write_attempted": {
+      "type": "boolean"
+    },
+    "output_capture_error": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+        }
+      ]
+    },
+    "error_type": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+        }
+      ]
+    },
+    "exit_code": {
+      "enum": [
+        0,
+        2
+      ]
+    },
+    "files": {
+      "type": "object",
+      "maxProperties": 5,
+      "minProperties": 2,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "bytes",
+          "sha256"
+        ],
+        "properties": {
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1048576
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "registry_authority_activated": {
+      "const": false
+    },
+    "declared_context_independently_verified": {
+      "const": false
+    },
+    "key_algorithm_enforced": {
+      "const": false
+    },
+    "registry_dates_enforced": {
+      "const": false
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "provider_invoked": {
+      "const": false
+    },
+    "agent_execution_verified": {
+      "const": false
+    },
+    "human_approval_verified": {
+      "const": false
+    },
+    "current_revision_checked": {
+      "const": false
+    },
+    "private_review_outputs_verified": {
+      "const": false
+    }
+  }
+}
