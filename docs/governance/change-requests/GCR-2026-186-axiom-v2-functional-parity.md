@@ -665,3 +665,18 @@ comparison. Fresh source-bound review, CI and installed delivery remain required
 Creation/bootstrap/test workers, original child traceback behavior and all
 remaining Goal scope stay open; no consent, Trust or operating authority is
 derived from these technical observations.
+
+## Explicit local public-artifact hygiene profile
+
+`artifact-hygiene check --profile legacy-public-artifact-hygiene-v1` ports the
+original public text/Office hygiene entrypoint. Pure ordered text decisions and
+whole original output wires are separate from local file, ZIP and the single
+configured environment-variable adapter. Unicode folding, plain universal
+newlines, Office strict UTF-8, duplicate-name last-entry lookup and corrupt-ZIP
+fallback retain the original behavior. New explicit acquisition/matching budgets
+and unsafe/unsupported source errors are product errors, not original findings.
+No content/terms are retained, no files are published or changed, and no consent
+or authority transfers. Classified as executable governance logic with guide
+changes; no source intake, baseline release or schema change. Full installed
+parity remains open; the new matrix entry is in progress. See the
+[operator guide](../../operations/guides/axiom-v2-artifact-hygiene.md).

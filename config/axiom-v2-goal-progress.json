@@ -2,14 +2,14 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Begrenztes Replay ausliefern und Worker-Orchestrierung vervollständigen",
+    "title": "Artefaktprüfung ausliefern und portablen Kandidatenindex vervollständigen",
     "entrypoints": [
+      "scripts/check_public_artifact_hygiene.py",
+      "scripts/generate_portable_candidate_index.py",
       "scripts/bootstrap_validation_env.sh",
-      "scripts/validate_all.sh",
-      "scripts/validate_governance_repo.py",
-      "scripts/validate_runtime_governance.py"
+      "scripts/validate_all.sh"
     ],
-    "next_step": "Der neue Replay-Worker ist auf dem Folgebranch implementiert: expliziter CLI-Aufruf, geschlossener Auftrag, eigene Prozessgruppe, CPU-/Zeit-/Ausgabebudgets, RSS-Überwachung und Linux-Adressraumlimit. Die lokale gepinnte Suite besteht mit 2.381 Tests in 1.308,946 Sekunden, eine bekannte Deployment-Auslassung; alle zehn vorgesehenen Dateien blieben dabei bytegleich. Der neue Speicherbudget-Fehlerpfad liefert strukturiert Exit 2 und verändert bestehende Ergebnisse nicht. Die separat geprüfte Python-3.12-Referenzkorrektur e252d818 liegt in Draft-PR #418 und ist in den Folgebranch aufgenommen; alle 62 Funktions-ASTs werden weiter vollständig verglichen. Jetzt folgen aktualisierte Dokumentation, Abschlussreview, eigener Commit/Draft-PR und frische sourcegebundene Mac/Linux-Pakete mit vollständigen Hostprüfungen. Die 19. Linux-Gruppe von cc32bcb bleibt wegen des damaligen Referenztestfehlers ausdrücklich fehlgeschlagen; ältere Belege werden nicht umetikettiert. Weitere Erstellungs-/Bootstrap-/Test-Worker, ursprüngliche Child-Tracebacks, zusätzliche Signaturprofile und Lifecycle-Base-Ref/New-Provider bleiben offen. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen, 16 Betriebsabläufe und 18 historischen Nachweise bleiben erhalten; keine neue Betriebsautorität."
+    "next_step": "Der neue lokale Artefaktbefehl besteht 2.398 gepinnte Tests in 1.425,645 Sekunden mit einer bekannten Deployment-Auslassung; sämtliche nicht generierten Quellen blieben während dieses erfolgreichen Laufs unverändert. Die 17 gezielten Fälle bestehen zusätzlich unter Linux/Python 3.12. Der erste Gesamtlauf mit zwölf Fehlern durch die verschwundene Python-Standardbibliothek bleibt als fehlgeschlagen protokolliert; nach Wiederherstellung desselben Interpreter-Builds bestehen auch die 50 betroffenen Nachtests. Jetzt folgen Abschlussreview, Commit, Draft-PR und frische Installationsnachweise für diese Runtime. Für cff5fcc/PR #419 sind alle sieben CI-Familien und der Mac-Hostnachweis grün; der Linux-Treiber wurde mit Exit 0 beendet. Linux-Dateiaudit und abschließender Vergleich benötigen den erneuerten SSH-Zugang. Der datierte Vergleichsstand unten bleibt bis dahin cc32bcb. In einem getrennten Entwicklungscheckout bestehen neun Kandidatenindex-Tests einschließlich vollständiger V1-CLI-Dateigleichheit für 2.000 synthetische Repository-Datensätze; dessen neue öffentliche V2-Route und installierte Nachweise stehen noch aus. Weitere Erstellungs-/Bootstrap-/Test-Worker, ursprüngliche Child-Tracebacks, Signatur-, Lifecycle- und Providerprofile bleiben offen. Der gesamte Umfang 22/135/37/16 und alle 18 historischen Nachweise bleiben erhalten."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",

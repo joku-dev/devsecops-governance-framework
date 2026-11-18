@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **77 in Arbeit** und **58 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **78 in Arbeit** und **57 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 14 | 8 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 77 | 58 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 78 | 57 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Begrenztes Replay ausliefern und Worker-Orchestrierung vervollständigen.
+**Nächster Baustein:** Artefaktprüfung ausliefern und portablen Kandidatenindex vervollständigen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 

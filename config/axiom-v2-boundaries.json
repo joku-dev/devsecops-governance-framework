@@ -95,7 +95,9 @@
     "scripts/lib/repository_lifecycle/personal_channel_probe.py",
     "scripts/lib/repository_lifecycle/preparation.py",
     "scripts/lib/repository_lifecycle/store.py",
-    "scripts/lib/repository_worker_protocol.py"
+    "scripts/lib/repository_worker_protocol.py",
+    "scripts/lib/artifact_hygiene.py",
+    "scripts/lib/artifact_hygiene_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

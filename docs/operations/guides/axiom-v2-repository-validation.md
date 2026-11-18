@@ -5,9 +5,12 @@ Der veröffentlichte Repository-Kandidat `cc32bcb` liegt in
 Er besteht auf dem Mac 19 und auf der VM 18 Prüfgruppen. Der zusätzliche
 Linux-Referenztest benötigt die reine Testkorrektur aus
 [PR #418](https://github.com/joku-dev/devsecops-governance-framework/pull/418).
-Der Folgebranch ergänzt den begrenzten Replay-Worker und besteht lokal die
-gepinnten 2.381 Tests mit einer bekannten Deployment-Auslassung. Sein
-Abschlussreview und neue sourcegebundene Installationsnachweise stehen noch aus.
+Der begrenzte Replay-Worker ist als `cff5fcc` in
+[PR #419](https://github.com/joku-dev/devsecops-governance-framework/pull/419)
+veröffentlicht. Seine sieben CI-Familien sind grün. Die frische Mac-Installation
+besteht 19 Gruppen; der Linux-Treiber ist erfolgreich mit Exit 0 beendet.
+Linux-Dateiaudit und der abschließende Hostvergleich benötigen den erneuerten
+SSH-Zugang. Diese Nachweise werden ihren jeweiligen Quellen zugeordnet.
 Der [Goal-Fortschritt](../status/axiom-v2-goal-progress.md) trennt diese Stände.
 
 ## Eine Prüfung ausführen
