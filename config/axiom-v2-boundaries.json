@@ -37,7 +37,14 @@
     "scripts/lib/attestation_files.py",
     "scripts/lib/intake_recording.py",
     "scripts/lib/intake_record_files.py",
-    "scripts/lib/intake_recording_application.py"
+    "scripts/lib/intake_recording_application.py",
+    "scripts/lib/runtime_validation.py",
+    "scripts/lib/validation_files.py",
+    "scripts/lib/validation_operations.py",
+    "scripts/lib/validation_queries.py",
+    "scripts/lib/validation_replay.py",
+    "scripts/lib/validation_sources.py",
+    "scripts/lib/validation_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

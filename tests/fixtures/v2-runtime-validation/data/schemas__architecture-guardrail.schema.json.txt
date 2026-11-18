@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Architecture Guardrail Catalogue",
+  "type": "object",
+  "required": ["source_document", "model_version", "guardrails"],
+  "properties": {
+    "source_document": { "type": "string" },
+    "model_version": { "type": "string" },
+    "guardrails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "level",
+          "source_reference",
+          "business_driver",
+          "architecture_rule",
+          "process_requirement",
+          "ownership_requirement",
+          "required_evidence",
+          "exception_allowed",
+          "policy_candidate"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^AG-[A-Z]+-[0-9]{3}$" },
+          "title": { "type": "string" },
+          "level": { "type": "string", "enum": ["Enterprise", "Solution", "Product", "Governance"] },
+          "source_reference": { "type": "string" },
+          "business_driver": { "type": "string" },
+          "architecture_rule": { "type": "string" },
+          "process_requirement": { "type": "string" },
+          "ownership_requirement": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "required_evidence": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "exception_allowed": { "type": "boolean" },
+          "policy_candidate": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

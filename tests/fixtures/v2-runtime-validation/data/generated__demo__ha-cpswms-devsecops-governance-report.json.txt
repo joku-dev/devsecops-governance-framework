@@ -1,0 +1,15 @@
+{
+  "target": {
+    "path": "/workspace/ha-CPsWMS",
+    "commit": "77e8fcd",
+    "release_id": "ha-CPsWMS-demo"
+  },
+  "gate": {
+    "id": "devsecops_release_readiness",
+    "status": "pass",
+    "findings": []
+  },
+  "summary": {
+    "finding_count": 0
+  }
+}

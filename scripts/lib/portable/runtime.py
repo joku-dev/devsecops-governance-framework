@@ -109,6 +109,9 @@ def source_digest():
     paths.extend(ROOT/name for name in ('scripts/lib/review_execution.py','scripts/lib/review_execution_application.py','schemas/axiom-v2-review-execution.schema.json'))
     paths.extend(ROOT/name for name in ('scripts/lib/review_dispatch.py','scripts/lib/review_dispatch_application.py','schemas/axiom-v2-review-dispatch.schema.json'))
     paths.extend(ROOT/name for name in ('scripts/lib/review_dispatch_external.py','schemas/axiom-v2-review-dispatch-external.schema.json'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('runtime_validation.py','validation_files.py',
+        'validation_operations.py','validation_queries.py','validation_replay.py','validation_sources.py',
+        'validation_application.py'))
     return canonical_digest({str(path.relative_to(ROOT)):file_digest(path) for path in paths})
 
 

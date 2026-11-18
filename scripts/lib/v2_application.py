@@ -112,10 +112,13 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
-    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records'):
+    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation'):
         raise ValueError('v2_entrypoint_not_supported')
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='validation':
+        from lib.validation_application import run as validation_run
+        return validation_run(arguments,root,settings)
     if command=='intake-records':
         from lib.intake_recording_application import run as intake_record_run
         return intake_record_run(arguments,root,settings)

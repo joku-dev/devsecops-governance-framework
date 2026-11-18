@@ -173,7 +173,15 @@
     "scripts/lib/intake_record_files.py",
     "scripts/lib/intake_recording_application.py",
     "scripts/lib/providers/intake_recording.py",
-    "scripts/lib/providers/process_groups.py"
+    "scripts/lib/providers/process_groups.py",
+    "scripts/lib/providers/validation_tools.py",
+    "scripts/lib/runtime_validation.py",
+    "scripts/lib/validation_application.py",
+    "scripts/lib/validation_files.py",
+    "scripts/lib/validation_operations.py",
+    "scripts/lib/validation_queries.py",
+    "scripts/lib/validation_replay.py",
+    "scripts/lib/validation_sources.py"
   ],
   "data_roots": [
     "schemas",

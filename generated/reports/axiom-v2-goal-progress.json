@@ -86,9 +86,9 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 70,
-      "pending": 62,
-      "remaining": 132,
+      "in_progress": 74,
+      "pending": 61,
+      "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
         "scripts/assess_governance_repository_security.py",
@@ -182,6 +182,7 @@
         "scripts/package_governance_runtime.py",
         "scripts/portable_consumer_intake.py",
         "scripts/preflight_lifecycle_live_evidence.py",
+        "scripts/prepare_collection_attempt_retry.py",
         "scripts/prepare_document_consistency_semantic_catalog_run.py",
         "scripts/prepare_lifecycle_architecture_candidates.py",
         "scripts/prepare_lifecycle_devsecops_candidates.py",
@@ -196,7 +197,9 @@
         "scripts/publishing/build_repository_presentation.mjs",
         "scripts/reconcile_documentation_after_merge.py",
         "scripts/record_agent_review.py",
+        "scripts/record_collection_attempt.py",
         "scripts/record_evidence_agent_provenance.py",
+        "scripts/record_intake_event.py",
         "scripts/render_governance_documents.py",
         "scripts/report_agent_review_status.py",
         "scripts/run_agent_reviews.py",
@@ -225,8 +228,8 @@
       ],
       "title": "V1-Einstiegspunkte",
       "total": 135,
-      "verified": 3,
-      "verified_percent": 2.2
+      "verified": 0,
+      "verified_percent": 0.0
     },
     "operating_workflows": {
       "in_progress": 0,
@@ -328,7 +331,7 @@
     "unit_tests": 1931,
     "unit_tests_skipped": 2
   },
-  "matrix_sha256": "1300b8f1fbaa5e444b4e694ad3f4e3f7fd2756da560b33202de391d11ee2d527",
+  "matrix_sha256": "bffb8a77e7cbc94a259bd69b582461e7868551718fcd77ab42cd88161c090827",
   "next_work": {
     "entrypoints": [
       "scripts/bootstrap_validation_env.sh",
@@ -336,10 +339,10 @@
       "scripts/validate_governance_repo.py",
       "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Die gesamte ursprüngliche Validierungsorchestrierung mit historischen Schema-, Lifecycle-, Traceability- und OPA-Prüfungen auditieren und als expliziten portablen Ablauf nachweisen; der heutige V2-Boundary-Check ersetzt diese Funktionen nicht. Alle übrigen Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabläufe bleiben im Goal.",
+    "next_step": "Die Runtime-Validierung ist als erster Baustein mit allen neun ursprünglichen Funktionen und drei Generatorwirkungen in Umsetzung. Vollständige Originalvergleiche, private Wiederholungsprüfung und frische Mac/Linux-Installation abschließen; die gesamte Repository-/Bootstrap-/Test-Orchestrierung bleibt offen. Die drei früher auf Runtime 2fe8b731 nachgewiesenen Intake-Einstiegspunkte benötigen wegen des geänderten Runtime-Digests eine neue Prüfung und stehen im Entwicklungsbranch ausdrücklich wieder in Arbeit. Ihre neun alten Nachweise und der veröffentlichte Stand 359900f bleiben unverändert erhalten. Alle 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabläufe bleiben im Goal.",
     "title": "Vollständige ursprüngliche Validierungsabläufe in V2 prüfen"
   },
-  "observation_sha256": "6c8b5f49e1831d8ee3a389c0b66e06d7bc9e8fe914bef2bc6812636efd0b128d",
+  "observation_sha256": "966d45789c6a75cd064af514e514a7b4ad11a4afc25797c65bfeb7825a155a0c",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

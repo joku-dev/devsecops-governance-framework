@@ -2551,7 +2551,7 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "verified",
+      "state": "in_progress",
       "evidence": [
         {
           "id": "intake-retry-positive",
@@ -2868,7 +2868,7 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "verified",
+      "state": "in_progress",
       "evidence": [
         {
           "id": "intake-attempt-positive",
@@ -2953,7 +2953,7 @@
       ],
       "declared_actions": [],
       "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
-      "state": "verified",
+      "state": "in_progress",
       "evidence": [
         {
           "id": "intake-event-positive",
@@ -3500,8 +3500,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/runtime_validation.py:RuntimeValidation",
+      "state": "in_progress",
       "evidence": []
     },
     {

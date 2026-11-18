@@ -172,11 +172,11 @@ def traceability(root: Path):
 
 
 
-def architecture_traceability(root: Path):
+def architecture_traceability(root: Path, *, loader=load_yaml):
     rows = []
 
     for path in sorted((root / "architecture").glob("arch-*.yaml")):
-        data = load_yaml(path)
+        data = loader(path)
         level = data["level"]
         for requirement in data.get("requirements", []):
             rows.append(

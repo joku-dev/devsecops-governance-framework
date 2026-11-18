@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Architecture Level Requirement Set",
+  "type": "object",
+  "required": ["level", "name", "source_document", "requirements"],
+  "properties": {
+    "level": {
+      "type": "string",
+      "enum": ["ARCH-L1", "ARCH-L2", "ARCH-L3", "ARCH-GOV"]
+    },
+    "name": { "type": "string" },
+    "source_document": { "type": "string" },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "domain",
+          "title",
+          "requirement",
+          "verification_requirement",
+          "evidence",
+          "verification",
+          "automation",
+          "policy_as_code",
+          "exception"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ARCH-(L1|L2|L3|GOV)-REQ-[0-9]{3}$"
+          },
+          "domain": { "type": "string" },
+          "title": { "type": "string" },
+          "source_markers": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^(B|E|S|P)[0-9]+$" }
+          },
+          "source_guardrails": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^AG-[A-Z]+-[0-9]{3}$" }
+          },
+          "source_review_gates": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^RG-[A-Z-]+$" }
+          },
+          "requirement": { "type": "string" },
+          "verification_requirement": { "type": "string" },
+          "evidence": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "verification": {
+            "type": "object",
+            "required": ["method", "frequency"],
+            "properties": {
+              "method": {
+                "type": "string",
+                "enum": ["automated", "manual", "hybrid"]
+              },
+              "frequency": { "type": "string" }
+            }
+          },
+          "automation": {
+            "type": "object",
+            "required": ["type", "maturity", "check_type", "machine_readable_evidence_required", "rationale"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["blocking_gate", "warning_gate", "evidence_check", "review_check"]
+              },
+              "maturity": {
+                "type": "string",
+                "enum": ["immediate", "tool_integration_required", "future"]
+              },
+              "check_type": {
+                "type": "string",
+                "enum": ["presence", "linkage", "threshold", "configuration", "approval", "review", "integrity", "provenance"]
+              },
+              "machine_readable_evidence_required": { "type": "boolean" },
+              "rationale": { "type": "string" }
+            }
+          },
+          "policy_as_code": {
+            "type": "object",
+            "required": ["candidate", "enforcement"],
+            "properties": {
+              "candidate": { "type": "boolean" },
+              "enforcement": { "type": "string" },
+              "rule": { "type": "string" }
+            }
+          },
+          "exception": {
+            "type": "object",
+            "required": ["allowed", "authority"],
+            "properties": {
+              "allowed": { "type": "boolean" },
+              "authority": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

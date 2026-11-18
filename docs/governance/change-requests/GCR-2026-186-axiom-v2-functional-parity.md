@@ -467,3 +467,43 @@ classified separately from original rejection claims. Pinned validation, docs,
 accountable review and fresh installed Mac/Linux proof are required before this
 finding is considered resolved for a published candidate. The full Goal, all
 135 entrypoints, 37 CI definitions and 16 operating flows remain open.
+
+## Product runtime-validation increment
+
+Restore all nine original runtime-validator functions over bounded inert product
+data, with three trusted in-process report generators and an explicit pinned
+OPA execution port. The unchanged original validator and generator sources are
+hash-bound test fixtures, never installed or dispatched as caller programs.
+Their frozen data fixtures are technical examples, not new normative sources;
+full Source Document Intake is not required. Runtime implementation, private
+operation metadata, tests, distribution/composition and explanatory docs are
+classified as executable product/report-only behavior under this existing GCR.
+No policy, schema, released baseline, protected acceptance, official index or
+consumer enforcement is changed.
+
+The explicit CLI validates committed own-product data and journals inputs before
+native evaluation. It retains generated files privately, with original exit and
+report semantics; it does not write the installed source tree. Retained replay
+recomputes generators and validation decisions from declared native responses.
+It checks hashes, query/input ordering, cleanup facts and whole file bytes, but
+does not authenticate execution or grant approval. Native timeout, byte limits
+and unproven cleanup fail closed. Pending/incomplete runs never auto-resume.
+Uncaught original Python failures are explicitly recorded as incomplete with
+exit 2; generator exceptions use a sanitized diagnostic instead of an invented
+subprocess traceback. Native OPA diagnostics retain actual private host paths.
+
+Require whole original CLI stdout/stderr/exits and every generated file byte for
+positive and representative negative inputs; actual pinned native failures,
+retained replay/tamper/authority tests, full pinned validation, strict docs and
+fresh installed Mac/Linux proof. The repository validator, bootstrap and full
+test orchestration are separate unfinished entrypoints. This runtime change
+invalidates automatic reuse of the three earlier subject verifications; move
+them back to in-progress until new evidence is executed. Preserve their nine
+old receipts and published checkpoint unchanged. The full Goal remains open.
+
+The runtime fingerprint includes all seven new neutral validation modules as
+well as the automatically selected native adapter. A regression copies the
+measured implementation into an isolated directory and changes each registered
+validation module's actual bytes independently: every change must invalidate
+the runtime binding. Application fingerprint coverage alone is insufficient
+for source-bound technical parity receipts. No old receipt is rebound.

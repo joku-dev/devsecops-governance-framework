@@ -1,0 +1,88 @@
+{
+  "target": {
+    "path": "/workspace/ha-CPsWMS",
+    "commit": "77e8fcd",
+    "release_id": "ha-CPsWMS-demo",
+    "detected_services": 5
+  },
+  "gates": [
+    {
+      "id": "architecture_readiness",
+      "title": "Architecture Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "integration_readiness",
+      "title": "Integration Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "operation_readiness",
+      "title": "Operation Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    },
+    {
+      "id": "release_readiness",
+      "title": "Release Readiness",
+      "status": "pass",
+      "findings": [],
+      "remediations": []
+    }
+  ],
+  "detailed_evidence": {
+    "report_only": true,
+    "declared_types": [],
+    "by_type": {},
+    "by_coarse_type": {}
+  },
+  "advisories": [
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "threat_model",
+      "coarse_type": "security_evidence",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `threat_model` is not declared.",
+      "reason": "Security assumptions and mitigations are easier to review when a threat model is explicit."
+    },
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "interface_contract",
+      "coarse_type": "release_compatibility_declaration",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `interface_contract` is not declared.",
+      "reason": "Integration readiness depends on explicit interface ownership, versioning, and compatibility."
+    },
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "deployment_manifest",
+      "coarse_type": "deployment_evidence",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `deployment_manifest` is not declared.",
+      "reason": "Deployment readiness is stronger when runtime configuration is linked as evidence."
+    },
+    {
+      "severity": "info",
+      "mode": "report_only",
+      "evidence_type": "model_based_architecture",
+      "coarse_type": "solution_baseline",
+      "trigger": "coarse_evidence_or_marker_signal",
+      "message": "Recommended detailed evidence `model_based_architecture` is not declared.",
+      "reason": "Model-based evidence is useful for complex or release-critical systems without mandating a vendor tool."
+    }
+  ],
+  "summary": {
+    "gate_count": 4,
+    "passed": 4,
+    "with_findings": 0,
+    "finding_count": 0
+  }
+}
