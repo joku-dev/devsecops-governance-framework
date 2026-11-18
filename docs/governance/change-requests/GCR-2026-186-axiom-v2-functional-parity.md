@@ -1,5 +1,32 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+## Optional native review runner restoration
+
+Classify the additive `review-run` core/application, explicit native process/file
+adapter and closed private assessment schema as executable governance behavior,
+evidence-contract and distribution changes. Frozen original runner/adapter/source
+fixtures are inert technical test references, not normative source documents.
+Full Source Document Intake is not applicable. Keep accepted source registers,
+OPA, released baselines, protected operating acceptance and official indexes intact.
+
+Restore preparation and explicit optional execution, all original CLI options,
+operator-selected fresh private external directories and native artifacts/exits.
+Retain original specialist/Steward sequencing, recorded validation declarations,
+clean full-branch/base/source/index checks and partial failure semantics. Separate
+native adapter configuration/argv/events/process effects from neutral contracts
+and results. Add durable private intent/start/progress, immutable retained raw
+artifacts and offline reconstruction; pending operations never retry themselves.
+
+Declare privacy/resource/process-cleanup improvements and actual-start correction
+as explicit differences, rather than reproducing inaccurate V1 start facts or
+unbounded stream writes. Requested and observed models remain unauthenticated;
+execution and recorded responses grant no human/governance authority. Require
+fingerprint-bound whole-original positive/negative native wires, controlled local
+synthetic subprocess tests (no paid providers), full pinned validation, accountable
+reviews, strict docs and fresh Mac/Linux installation tests. Keep the runner
+matrix entry in progress until full subject evidence is audited; the entire
+22/135/37/16 Goal remains open.
+
 ## Intent and classification
 
 On 15 November 2026 the maintainer requested autonomous implementation of full

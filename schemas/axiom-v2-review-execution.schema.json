@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "node_id",
+    "source_revision",
+    "runtime_source_digest",
+    "operation_id",
+    "input_id",
+    "assessed_at",
+    "source_worktree_clean",
+    "profile",
+    "execute_requested",
+    "native_run_id",
+    "observations",
+    "started_roles",
+    "exit_code",
+    "error_type",
+    "capture_error",
+    "stage",
+    "files",
+    "declared_ready",
+    "mode",
+    "evidence_trust",
+    "official_acceptance",
+    "production_approval",
+    "risk_acceptance",
+    "authority_transferred",
+    "operating_acceptance_inherited",
+    "published",
+    "agent_execution_verified",
+    "human_approval_verified",
+    "current_revision_checked",
+    "private_review_outputs_verified",
+    "provider_invoked"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "local-review-execution"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "runtime_source_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "operation_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "input_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 128
+    },
+    "source_worktree_clean": {
+      "type": "boolean"
+    },
+    "profile": {
+      "const": "legacy-codex-role-review-v1"
+    },
+    "execute_requested": {
+      "type": "boolean"
+    },
+    "native_run_id": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        }
+      ]
+    },
+    "observations": {
+      "type": "object",
+      "maxProperties": 1000,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "run_id",
+          "started_at",
+          "completed_at",
+          "elapsed_seconds",
+          "requested_model",
+          "process_started",
+          "exit_code",
+          "timed_out",
+          "process_error_type"
+        ],
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{32}$"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 128
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 128
+          },
+          "elapsed_seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "requested_model": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 65536
+          },
+          "process_started": {
+            "type": "boolean"
+          },
+          "exit_code": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "timed_out": {
+            "type": "boolean"
+          },
+          "process_error_type": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "started_roles": {
+      "type": "array",
+      "maxItems": 1000,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    },
+    "exit_code": {
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "error_type": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+        }
+      ]
+    },
+    "capture_error": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,127}$"
+        }
+      ]
+    },
+    "stage": {
+      "enum": [
+        "create_output",
+        "validate_recorded_validations",
+        "prepare_role",
+        "write_prompts",
+        "execute_reviews",
+        "final_source_check"
+      ]
+    },
+    "files": {
+      "type": "object",
+      "maxProperties": 3000,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 16777216
+          }
+        }
+      }
+    },
+    "declared_ready": {
+      "type": "boolean"
+    },
+    "mode": {
+      "const": "report-only"
+    },
+    "evidence_trust": {
+      "const": "unverified"
+    },
+    "official_acceptance": {
+      "const": false
+    },
+    "production_approval": {
+      "const": false
+    },
+    "risk_acceptance": {
+      "const": false
+    },
+    "authority_transferred": {
+      "const": false
+    },
+    "operating_acceptance_inherited": {
+      "const": false
+    },
+    "published": {
+      "const": false
+    },
+    "agent_execution_verified": {
+      "const": false
+    },
+    "human_approval_verified": {
+      "const": false
+    },
+    "current_revision_checked": {
+      "const": false
+    },
+    "private_review_outputs_verified": {
+      "const": false
+    },
+    "provider_invoked": {
+      "type": "boolean"
+    }
+  }
+}

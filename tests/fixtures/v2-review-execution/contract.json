@@ -1,0 +1,36 @@
+{
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "sources": {
+    "scripts/run_agent_reviews.py": {
+      "file": "run_agent_reviews.py.txt",
+      "sha256": "6916de2ba7a0f14efefb1908c92985edc642885af2966d4ceeffdc2b0b32112b",
+      "v1_git_blob": "4dd8981365383ee39ea288780c2b6620823ee4a1",
+      "bytes": 2079
+    },
+    "scripts/lib/agent_execution.py": {
+      "file": "agent_execution.py.txt",
+      "sha256": "f263679bbbe7cd4516f76aa2072c46a455760e4ee68a4d757cddc06e61c27bce",
+      "v1_git_blob": "acf6df966316fbf229523e4088f23b5e1cd891c0",
+      "bytes": 11120
+    },
+    "scripts/lib/agent_codex.py": {
+      "file": "agent_codex.py.txt",
+      "sha256": "369a218dc8018692b413eb8b67b64a81d45bfec579f71678b9a5b85035bc3c38",
+      "v1_git_blob": "b38ec0f7afe4a15e20151b54ca6608b346b0ab17",
+      "bytes": 2128
+    },
+    "scripts/lib/agent_receipts.py": {
+      "file": "agent_receipts.py.txt",
+      "sha256": "8a03adb77fd65805f72e24e9b96d0c8b728ad4cdd0e7a40d1eb8b8998590591e",
+      "v1_git_blob": "ba092b02d9dd906ac3f2b234b8810ca2e726f3ff",
+      "bytes": 7885
+    },
+    ".agents/execution-contract.yaml": {
+      "file": "execution-contract.yaml.txt",
+      "sha256": "1d283fc37d76218722a319e3568e9d235613d8ad73b26f6413b344b26a435329",
+      "v1_git_blob": "49d296d1205fa285aedf0b3b45dec0593aa1ae65",
+      "bytes": 693
+    }
+  },
+  "scope": "Inert fingerprint-bound original source for controlled local synthetic-process comparisons; never a live provider test"
+}
