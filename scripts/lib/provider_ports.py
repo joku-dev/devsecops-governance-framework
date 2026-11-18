@@ -6,6 +6,9 @@ from an application checkout or downloaded configuration.
 """
 from typing import Protocol
 
+from lib.providers.artifact_hygiene import (capture as artifact_hygiene_capture,
+    environment_terms as artifact_hygiene_environment)
+
 from lib.providers.workbench import WorkbenchPublication
 from lib.providers.context import collect_context, checked_out_revision
 from lib.providers.transports import Reader, capture, BoundedAudit

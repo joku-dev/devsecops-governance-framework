@@ -470,8 +470,8 @@
         "paths"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/artifact_hygiene_application.py:run",
+      "state": "in_progress",
       "evidence": []
     },
     {

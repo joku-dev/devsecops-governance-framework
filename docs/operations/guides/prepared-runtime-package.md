@@ -4,6 +4,12 @@ The package complements the [VM's exact-commit internal Git mirror](portable-con
 
 ## Build from an approved exact commit
 
+For persistent installations, preprovision Python outside OS-managed temporary
+directories and keep its base standard library available. A virtual environment
+can refer to that base interpreter; the V2 source package and locked wheels do
+not make Python self-contained. Temporary proof environments require a healthy
+base interpreter for each run.
+
 Prepare a wheelhouse for the target Python/OS/architecture using the repository's unchanged hash lock. Supply the checksum-verified target OPA from the existing installer/cache. The default package contains the validation/core dependencies; `--workbench` additionally requires the source-document-intake lock and its complete wheel set. Preparation may use explicitly configured internal indexes, artifact mirrors and verified caches. Keep that online preparation separate from offline installation.
 
 ```bash

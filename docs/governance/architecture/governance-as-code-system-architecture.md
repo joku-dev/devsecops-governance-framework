@@ -459,7 +459,22 @@ verification ports. It preserves the complete existing inspection result and
 adds a declared worker observation. Existing evidence and authority stay bound
 to their original operation. Full creation/test worker orchestration remains
 open. The worker source passed 2,381 pinned local tests with one known deployment
-skip; its own review, CI and exact-source package delivery remain separate steps.
+skip. It is published as `cff5fcc` in PR #419 with source-bound coordinator
+reviews and seven successful CI families. Both exact-source test installations
+completed their drivers successfully; Mac has a complete post-test package audit.
+The Linux audit and final host comparison await renewed SSH access. The separate
+hygiene implementation and its local validation are a later source scope.
+
+### Local public-artifact hygiene component
+
+The explicit `artifact-hygiene check` route uses `artifact_hygiene` for pure text
+decisions and `artifact_hygiene_application` for the closed compatibility profile.
+Only the local `providers/artifact_hygiene` adapter reads files, Office ZIP members
+and the configured environment variable, through the composition port. Inputs
+remain read-only and ephemeral; no product evidence or publication is implied.
+The original complete output profile and additional acquisition/matching guards
+are distinguished in the [guide](../../operations/guides/axiom-v2-artifact-hygiene.md).
+
 
 ## 6. Runtime View
 

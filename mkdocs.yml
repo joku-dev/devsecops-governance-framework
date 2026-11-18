@@ -193,6 +193,7 @@ nav:
           - Portable Collector Service Candidate: operations/guides/portable-consumer-service.md
           - Prepared Runtime Package Candidate: operations/guides/prepared-runtime-package.md
           - V2 Repository Validation Candidate: operations/guides/axiom-v2-repository-validation.md
+          - V2 Public Artifact Hygiene: operations/guides/axiom-v2-artifact-hygiene.md
           - Provider assurance candidates: operations/guides/provider-assurance-candidates.md
           - Portable update and recovery: operations/guides/portable-vm-update-and-recovery.md
           - Platform portability acceptance: operations/planning/platform-portability-acceptance.md

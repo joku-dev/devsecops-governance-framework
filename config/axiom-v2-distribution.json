@@ -246,7 +246,10 @@
     "scripts/lib/vulnerability_evidence.py",
     "scripts/lib/workbench_impact.py",
     "scripts/portable_consumer_intake.py",
-    "scripts/serve_governance_workbench.py"
+    "scripts/serve_governance_workbench.py",
+    "scripts/lib/artifact_hygiene.py",
+    "scripts/lib/artifact_hygiene_application.py",
+    "scripts/lib/providers/artifact_hygiene.py"
   ],
   "data_roots": [
     "schemas",

@@ -45,8 +45,13 @@ unchanged. The worker source passed 2,381 pinned local tests with one known
 deployment skip, and its ten intended paths remained byte-identical during that
 run. The test-only Python 3.12 parent correction was then incorporated with its
 separate focused checks; executable runtime bytes are unchanged by that fix.
-Source-bound final review, CI and fresh exact-source packages for this follow-up
-remain pending.
+The worker is published as `cff5fcc` in
+[PR #419](https://github.com/joku-dev/devsecops-governance-framework/pull/419).
+Its source-bound coordinator review and all seven triggered CI families passed.
+Exact-source fresh Mac/Linux packages were installed; Mac passed all 19 groups,
+and the Linux driver exited successfully. Linux post-test package audit and the
+final cross-host comparison await renewed SSH access. Neither that pending audit
+nor the separate hygiene runtime is covered by the older cc32bcb checkpoint.
 
 Earlier 227-case foundation, six full recorded-run/replay and eleven CLI checks,
 and the separate 244-case/2,588-file preflight remain their original development
@@ -2769,3 +2774,11 @@ The complete 29-function repository validator, its 13 report effects, four
 subvalidators and five measured-helper families, bootstrap and full-suite
 orchestration remain in scope and unfinished. All 18 historical receipts and
 the unchanged 22/135/37/16 Goal scope remain retained.
+
+### Next local compatibility entrypoint: public artifact hygiene
+
+The new explicit text/Office check ports `check_public_artifact_hygiene.py`
+without the old script-name dispatcher. Complete original CLI outputs, ZIP order,
+UTF-8 and corruption behavior are compared. Product resource guards are separate
+from original findings. Source and installed proofs remain revision-bound, and
+the entrypoint is in progress. All original Goal scope remains unchanged.

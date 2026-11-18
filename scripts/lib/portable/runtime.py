@@ -97,6 +97,7 @@ def source_digest():
     paths.extend(ROOT/'scripts/lib'/name for name in ('measurement_logic.py','measured_application.py'))
     paths.extend([ROOT/'schemas/measured-l1-assessment.schema.json', ROOT/'schemas/measured-container-security.schema.json'])
     paths.append(ROOT/'schemas/axiom-v2-measured-assessment.schema.json')
+    paths.extend(ROOT/name for name in ('scripts/lib/artifact_hygiene.py','scripts/lib/artifact_hygiene_application.py','scripts/lib/providers/artifact_hygiene.py'))
     paths.extend(ROOT/name for name in ('scripts/lib/artifact_integrity.py', 'scripts/lib/evidence_verification.py', 'scripts/lib/typed_result_ledger.py', 'scripts/lib/typed_evidence_application.py', 'scripts/lib/providers/typed_capture.py', 'scripts/lib/providers/typed_containers.py', 'scripts/lib/providers/typed_ports.py', 'scripts/lib/result_ledger.py'))
     paths.extend(ROOT/name for name in ('schemas/axiom-v2-vulnerability-metadata.schema.json','schemas/axiom-v2-vulnerability-assessment.schema.json'))
     paths.extend(ROOT/name for name in ('schemas/axiom-v2-typed-assessment.schema.json','schemas/evidence-trust-record.schema.json','schemas/evidence-collector-contract.schema.json','model/evidence/evidence-trust-model.yaml'))

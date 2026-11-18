@@ -1220,3 +1220,11 @@ RSS enforcement; it preserves existing evidence and inspection semantics.
 Its local pinned suite passed 2,381 tests with one known deployment skip; review
 and fresh exact-source delivery remain pending. See the
 [candidate guide](axiom-v2-repository-validation.md).
+
+### V2 local public-artifact hygiene
+
+`artifact-hygiene check --profile legacy-public-artifact-hygiene-v1` preserves
+the original ordered text/Office findings and whole output wires through a pure
+core and explicit local acquisition adapter. No writes, publication or stored
+terms/content. Additional resource/unsafe-source errors use Exit 2. See the
+[guide](axiom-v2-artifact-hygiene.md); full installed parity remains in progress.
