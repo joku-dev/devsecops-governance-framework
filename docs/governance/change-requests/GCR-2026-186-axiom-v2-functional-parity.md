@@ -608,3 +608,38 @@ historical receipt and all 22 areas/135 entrypoints/37 CI/16 operating workflows
 Require actual whole-original positive/negative tests, native failures, journal
 and source-race guards, runtime fingerprint mutation tests, full pinned validation,
 strict docs, accountable review and fresh exact-source installed Mac/Linux proof.
+
+## Whole repository validator, captured operation and replay candidate
+
+Classify the `repository_*` neutral modules, `repository_lifecycle/` package,
+finite `providers/repository_*` adapters, CLI wiring, runtime/distribution
+registration, tests and guide as executable product behavior under this GCR.
+Frozen original Python text fixtures are inert technical comparison data, not
+authoritative governance sources; no Source Document Intake or baseline release
+is introduced. The new guide belongs under `docs/operations/guides/` and the
+as-built candidate is described in the existing arc42 document and inventories.
+
+Preserve all original whole-validator functions, generator decisions, native
+observations, original JSON/YAML grammars and historical lifecycle checks.
+Separate complete committed Git-blob acquisition from held working-file
+acquisition at the same exact product revision. Capture inspected programs only
+as inert bytes. Keep local private material outside the admitted input scope;
+an attempted dependency outside that closed scope is an explicit failure.
+
+Persist a private operation header before acquisition, every native intent/start/
+completion and ordered generator effect. Retain complete original inputs and
+outputs without writing them into the inspected checkout. Strict offline replay
+checks the entire acquisition transcript, native/clock/generator ordering and
+every output byte after the separate caller checkout and native workarea are
+removed. Hash chains provide declared consistency, never independent execution
+authentication, human approval, inherited operating acceptance or Trust.
+
+Keep pending, incomplete, recorded-but-unverified and replay-consistent states
+distinct. Native/parse/resource failures remain visible; unsupported original
+uncaught child-process traceback behavior remains incomplete exit 2. Additional
+signing profiles, lifecycle base-ref/new-provider flows and bootstrap/test
+orchestration remain open. Registration and focused development tests alone do
+not establish installed delivery or close any of the 22/135/37/16 Goal scopes.
+Require full pinned validation, strict docs, source-bound review, fresh exact-
+source Mac/Linux packages and representative whole-original comparisons before
+publishing this component as a validated candidate.

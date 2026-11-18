@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+"""Validate synthetic lifecycle history and optionally enforce an accepted Git prefix."""
+import argparse
+from pathlib import Path
+import re
+import subprocess
+
+from lib.governance_lifecycle.adapter import strict_json
+from lib.governance_lifecycle.contracts import ROOT, require, timestamp
+from lib.governance_lifecycle.kernel import project, replay
+from lib.governance_lifecycle.store import load_transactions
+from lib.governance_lifecycle.live_preparation import PREPARATION_PATH, validate_preparation
+from lib.governance_lifecycle.live_admission import OPERATING_PATH, VALIDATION_LEDGER, verify_new_receipts
+from lib.governance_lifecycle.pilot_actions import ACTION_LEDGER, verify_new_actions
+from generate_governance_lifecycle_index import DEFAULT_LEDGER, DEFAULT_INDEX, DEFAULT_PROFILE
+
+LEDGER_PATH = "governance/lifecycle/synthetic"
+PILOT_LEDGER_PATH = "governance/lifecycle/synthetic-closure"
+EXCEPTION_LEDGER_PATH = "governance/lifecycle/synthetic-exceptions"
+LEDGER_PATHS = (LEDGER_PATH, PILOT_LEDGER_PATH, EXCEPTION_LEDGER_PATH, VALIDATION_LEDGER, ACTION_LEDGER)
+EXCEPTION_PROFILE_PATH = "model/governance/lifecycle/synthetic-exception-profile.json"
+PROFILE_PATH = "model/governance/lifecycle/synthetic-grs002-profile.json"
+
+
+def git(repo, *args):
+    return subprocess.check_output(["git", *args], cwd=repo, text=True)
+
+
+def check_accepted_prefix(repo, base_ref):
+    """Preserve every accepted blob; merged union is separately replayed for forks."""
+    require(re.fullmatch(r"[a-f0-9]{40}", base_ref) is not None, "Base must be an immutable Git SHA")
+    require(base_ref != "0" * 40, "An existing accepted base is required")
+    git(repo, "cat-file", "-e", base_ref + "^{commit}")
+    tracked = git(repo, "ls-files", "--", *LEDGER_PATHS).splitlines()
+    for name in tracked:
+        require(re.fullmatch("(?:" + "|".join(re.escape(p) for p in LEDGER_PATHS) + r")/transactions/[0-9]{8,}-[a-f0-9]{64}\.json", name)
+                is not None, "Only published transactions may be tracked in the ledger")
+    entries = git(repo, "ls-tree", "-r", base_ref, "--", *LEDGER_PATHS).splitlines()
+    for entry in entries:
+        metadata, name = entry.split("\t", 1)
+        mode, kind, digest = metadata.split()
+        require(mode == "100644" and kind == "blob", "Unexpected accepted ledger file type")
+        path = Path(repo) / name
+        require(path.is_file() and not path.is_symlink(), "Accepted transaction deleted or replaced")
+        require(git(repo, "hash-object", "--", str(path)).strip() == digest, "Accepted transaction modified")
+    if any(name.split("\t", 1)[1].startswith((LEDGER_PATH + "/", PILOT_LEDGER_PATH + "/", EXCEPTION_LEDGER_PATH + "/")) for name in entries):
+        before = git(repo, "rev-parse", base_ref + ":" + PROFILE_PATH).strip()
+        after = git(repo, "hash-object", "--", PROFILE_PATH).strip()
+        require(before == after, "Accepted profile requires an explicit versioned migration")
+    snapshot = subprocess.run(["git", "cat-file", "-e", base_ref + ":" + EXCEPTION_PROFILE_PATH], cwd=repo, capture_output=True)
+    if snapshot.returncode == 0:
+        path = Path(repo) / EXCEPTION_PROFILE_PATH
+        require(path.is_file() and not path.is_symlink(), "Accepted exception profile deleted or replaced")
+        before = git(repo, "rev-parse", base_ref + ":" + EXCEPTION_PROFILE_PATH).strip()
+        require(git(repo, "hash-object", "--", str(path)).strip() == before, "Exception profile requires a versioned migration")
+    # Appointments and profile preparations are versioned separately from evidence.
+    for entry in git(repo, "ls-tree", "-r", base_ref, "--", PREPARATION_PATH, OPERATING_PATH, "model/governance/lifecycle/personal-channel", "generated/reports/lifecycle-personal-channel", "model/governance/lifecycle/operating-acceptance", "model/governance/lifecycle/action-requests", "generated/reports/lifecycle-operating-acceptance").splitlines():
+        metadata, name = entry.split("\t", 1)
+        mode, kind, digest = metadata.split()
+        require(mode == "100644" and kind == "blob", "Unexpected accepted preparation file type")
+        path = Path(repo) / name
+        require(path.is_file() and not path.is_symlink(), "Accepted preparation deleted or replaced")
+        require(git(repo, "hash-object", "--", str(path)).strip() == digest, "Accepted preparation requires a new immutable revision")
+    return len(entries)
+
+
+def validate_current(ledger=DEFAULT_LEDGER, index_path=DEFAULT_INDEX, profile_path=DEFAULT_PROFILE):
+    profile = strict_json(Path(profile_path).read_bytes())
+    transactions = load_transactions(ledger)
+    replay(transactions, profile)
+    index = strict_json(Path(index_path).read_bytes())
+    require(not transactions or timestamp(index["as_of"]) >= timestamp(transactions[-1]["recorded_at"]),
+            "Current index cannot hide a later accepted ledger transaction")
+    expected = project(transactions, profile, as_of=index["as_of"])
+    require(index == expected, "Lifecycle index differs from the immutable ledger projection")
+    return expected
+
+
+def validate_pilot(repo=ROOT):
+    from generate_governance_lifecycle_pilot import render_report
+    root = Path(repo)
+    require(all(tx["schema_version"] != "0.4.0" for tx in load_transactions(root / PILOT_LEDGER_PATH)),
+            "Exceptions require their separate scenario; closure publisher scope is unchanged")
+    index = validate_current(root / PILOT_LEDGER_PATH, root / "status/governance-lifecycle-closure-index.json",
+                             root / PROFILE_PATH)
+    report = root / "generated/reports/governance-lifecycle-pilot.md"
+    require(report.read_text() == render_report(index), "Lifecycle pilot report differs from projection")
+    return index
+
+
+def validate_exceptions(repo=ROOT):
+    from generate_governance_lifecycle_exceptions import render_report
+    root = Path(repo)
+    index = validate_current(root / EXCEPTION_LEDGER_PATH, root / "status/governance-lifecycle-exception-index.json",
+                             root / PROFILE_PATH)
+    require((root / "generated/reports/governance-lifecycle-exceptions.md").read_text() == render_report(index),
+            "Exception report differs from projection")
+    return index
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--base-ref")
+    parser.add_argument("--verify-new-provider", action="store_true")
+    args = parser.parse_args()
+    if args.base_ref:
+        count = check_accepted_prefix(ROOT, args.base_ref)
+        print(f"Preserved {count} accepted lifecycle blobs from {args.base_ref}.")
+    require(all(tx["schema_version"] != "0.4.0" for tx in load_transactions(DEFAULT_LEDGER)),
+            "Exceptions require their separate scenario")
+    validate_preparation()
+    from generate_lifecycle_pilot_validation import validate as validate_live_pilot
+    validate_live_pilot()
+    from generate_personal_channel_probe import validate as validate_personal_probe
+    validate_personal_probe()
+    from generate_personal_channel_evidence import validate as validate_channel_evidence, verify_new_captures
+    validate_channel_evidence()
+    from generate_lifecycle_pilot_actions import validate as validate_pilot_actions
+    validate_pilot_actions()
+    from lib.governance_lifecycle.operating_acceptance import validate as validate_operating, verify_new_captures as verify_operating
+    validate_operating()
+    if args.verify_new_provider:
+        require(bool(args.base_ref), "Provider verification requires an accepted base")
+        print(f"Independently checked {verify_new_receipts(ROOT, args.base_ref)} new pilot receipts against GitHub.")
+        print(f"Independently checked {verify_new_captures(ROOT, args.base_ref)} new personal-channel captures against GitHub.")
+        print(f"Independently checked {verify_new_actions(ROOT, args.base_ref)} new action proofs against GitHub.")
+        print(f"Independently checked {verify_operating(ROOT, args.base_ref)} new operating acceptance captures against GitHub.")
+    index = validate_current()
+    pilot = validate_pilot()
+    exceptions = validate_exceptions()
+    from generate_governance_lifecycle_overview import validate_overview
+    overview = validate_overview()
+    from generate_governance_lifecycle_viewer import validate_viewer
+    validate_viewer(overview=overview)
+    print(f"Lifecycle: exceptions {exceptions['counts']}; original scenario {index['counts']}; synthetic closure pilot {pilot['counts']}; no live activation.")
+
+
+if __name__ == "__main__":
+    main()

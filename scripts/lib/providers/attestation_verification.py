@@ -60,7 +60,7 @@ def executable(path):
 def stop(process):process_groups.stop(process)
 
 
-def verify(key,statement,signature,workarea,name,on_start):
+def verify(key,statement,signature,workarea,name,on_start,*,forbidden_root=None):
     """Run only the fixed legacy verification command on private retained bytes."""
     selected=profile(name);observation=initial_observation();observation['attempted']=True
     stdout=bytearray();stderr=bytearray();process=None;stage='resolve_tool'
@@ -72,6 +72,8 @@ def verify(key,statement,signature,workarea,name,on_start):
         found=shutil.which(selected['tool'])
         if found is None:raise FileNotFoundError
         tool,digest=executable(found);observation.update(tool_path=tool,tool_sha256=digest)
+        if forbidden_root is not None and Path(tool).is_relative_to(Path(forbidden_root).resolve()):
+            raise ValueError('attestation_tool_inside_inspected_source')
         stage='stage_inputs'
         with tempfile.TemporaryDirectory(prefix='.crypto-',dir=workarea) as temporary:
             root=Path(temporary)

@@ -29,20 +29,20 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **74 in Arbeit** und **61 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **77 in Arbeit** und **58 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
-| Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 74 | 61 | 135 |
+| Funktionsbereiche (22) | 0 | 14 | 8 | 22 |
+| V1-Einstiegspunkte (135) | 0 | 77 | 58 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `05c8f94` · 1,980 Tests (davon 2 übersprungen) · Mac 17 / VM 17 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `bfcdd9e` · 2,123 Tests (davon 2 übersprungen) · Mac 18 / VM 18 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Vollständige ursprüngliche Validierungsabläufe in V2 prüfen.
+**Nächster Baustein:** Repository-Kandidaten reviewen und als Mac/Linux-Paket nachweisen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 

@@ -16,33 +16,39 @@ from lib.release_inputs import collect,POLICY
 
 
 class ReleaseReferences:
-    def __init__(self,root):
+    def __init__(self,root,*,read=None):
         self.root=Path(root).resolve()
-        actual=review_git.git(self.root,'rev-parse','--show-toplevel').decode('utf-8').strip()
+        if read is not None and not callable(read):raise ValueError('release_git_reader_required')
+        self.reader=read
+        actual=self.git('rev-parse','--show-toplevel').decode('utf-8').strip()
         if Path(actual).resolve()!=self.root:raise ValueError('release_repository_root_required')
+
+    def git(self,*arguments,**options):
+        if self.reader is not None:return self.reader(*arguments,**options)
+        return review_git.git(self.root,*arguments,**options)
 
     def refs(self):
         names=set()
         for pattern in ('*baseline*','v*-public-adoption'):
-            raw=review_git.git(self.root,'-c','color.ui=false','-c','column.ui=never','tag','--list',pattern,limit=1024**2)
+            raw=self.git('-c','color.ui=false','-c','column.ui=never','tag','--list',pattern,limit=1024**2)
             for name in raw.decode('utf-8').splitlines():
                 facts.release_name(name);names.add(name)
                 if len(names)>facts.MAX_REFS:raise ValueError('release_reference_count_budget')
-        return {name:review_git.git(self.root,'rev-parse','--verify','--end-of-options','refs/tags/'+name).decode('ascii').strip() for name in sorted(names)}
+        return {name:self.git('rev-parse','--verify','--end-of-options','refs/tags/'+name).decode('ascii').strip() for name in sorted(names)}
 
     def capture(self):
-        algorithm=review_git.git(self.root,'rev-parse','--show-object-format').decode('ascii').strip()
-        head=review_git.git(self.root,'rev-parse','--verify','HEAD^{commit}').decode('ascii').strip()
-        tree=review_git.git(self.root,'rev-parse','--verify','HEAD^{tree}').decode('ascii').strip()
+        algorithm=self.git('rev-parse','--show-object-format').decode('ascii').strip()
+        head=self.git('rev-parse','--verify','HEAD^{commit}').decode('ascii').strip()
+        tree=self.git('rev-parse','--verify','HEAD^{tree}').decode('ascii').strip()
         facts.object_id(head,algorithm);facts.object_id(tree,algorithm)
         refs=self.refs();objects={};pending=list(refs.values());total=0
         while pending:
             oid=facts.object_id(pending.pop(),algorithm)
             if oid in objects:continue
             if len(objects)>=facts.MAX_OBJECTS:raise ValueError('release_reference_count_budget')
-            kind=review_git.git(self.root,'cat-file','-t',oid,limit=32).decode('ascii').strip()
+            kind=self.git('cat-file','-t',oid,limit=32).decode('ascii').strip()
             if kind not in facts.KINDS:raise ValueError('invalid_release_object_type')
-            raw=review_git.git(self.root,'cat-file',kind,oid,limit=facts.MAX_OBJECT)
+            raw=self.git('cat-file',kind,oid,limit=facts.MAX_OBJECT)
             total+=len(raw)
             if total>facts.MAX_TOTAL:raise ValueError('release_object_total_budget')
             if facts.digest(kind,raw,algorithm)!=oid:raise ValueError('release_native_object_changed')
@@ -50,7 +56,7 @@ class ReleaseReferences:
             if kind=='tag':pending.append(facts.tag_target(raw,algorithm)[0])
         value={'schema_version':1,'source_head':head,'source_tree':tree,'object_format':algorithm,'refs':refs,'objects':objects}
         facts.validate(value)
-        if (self.refs()!=refs or review_git.git(self.root,'rev-parse','--verify','HEAD^{commit}').decode('ascii').strip()!=head):
+        if (self.refs()!=refs or self.git('rev-parse','--verify','HEAD^{commit}').decode('ascii').strip()!=head):
             raise ValueError('release_references_changed_during_capture')
         return value
 

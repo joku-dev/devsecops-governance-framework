@@ -219,6 +219,9 @@ class ValidationContext:
 
 
 def run(arguments, instance_root, settings):
+    if arguments and arguments[0] in ('repository', 'repository-inspect', 'repository-status'):
+        from lib.repository_application import run as repository_run
+        return repository_run(arguments, instance_root, settings)
     if arguments and arguments[0] in ('releases','release-inspect','release-status'):
         from lib.release_validation_application import run as release_run
         return release_run(arguments,instance_root,settings)
@@ -235,6 +238,9 @@ def run(arguments, instance_root, settings):
     for name in ('releases','release-inspect','release-status'):
         sub.add_parser(name,allow_abbrev=False,add_help=False,
             help='Explicit private release-signature verification and retained replay.')
+    for name in ('repository', 'repository-inspect', 'repository-status'):
+        sub.add_parser(name, allow_abbrev=False, add_help=False,
+            help='Private whole repository validation with closed inputs and ordered offline replay.')
     args = parser.parse_args(arguments)
     context = ValidationContext(instance_root, settings)
     if args.operation == 'status':

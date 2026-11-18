@@ -2,84 +2,84 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Vollst\u00e4ndige urspr\u00fcngliche Validierungsabl\u00e4ufe in V2 pr\u00fcfen",
+    "title": "Repository-Kandidaten reviewen und als Mac/Linux-Paket nachweisen",
     "entrypoints": [
       "scripts/bootstrap_validation_env.sh",
       "scripts/validate_all.sh",
       "scripts/validate_governance_repo.py",
       "scripts/validate_runtime_governance.py"
     ],
-    "next_step": "Das Working-Tree-Runtime-Profil ist am Stand 05c8f94/312d auf Mac und Linux mit je 17 Pr\u00fcfgruppen und in der CI mit 1.980 Tests nachgewiesen. Der folgende Release-Baustein erg\u00e4nzt im Entwicklungsbranch alle zehn urspr\u00fcnglichen Signaturentscheidungen, begrenzte Git-/SSH-Ausf\u00fchrung, einzelne dauerhafte Startbelege und Replay nach Caller-L\u00f6schung; der fokussierte Umfang umfasst 143 F\u00e4lle. Als N\u00e4chstes folgen vollst\u00e4ndige gepinnte Validierung, Review und frische sourcegebundene Mac/Linux-Pakete dieses ge\u00e4nderten Runtime-Stands sowie der ganze Repository-Validator mit allen Generatoren und Unterpr\u00fcfern. Bootstrap und gesamte Test-Orchestrierung bleiben offen. Die drei fr\u00fcher auf F8 nachgewiesenen Intake-Subjekte bleiben hier in Arbeit; alle 18 historischen Nachweise sind erhalten. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen und 16 Betriebsabl\u00e4ufe bleiben im Goal."
+    "next_step": "Letzter veröffentlichter Nachweis: bfcdd9e/5b294f33, je 18 installierte Mac/Linux-Prüfgruppen und acht grüne CI-Familien. Der neue Repository-Kandidat implementiert vollständige Engine, committed/working Source-Erfassung, private unveränderliche Inhalte, native Einzeljournale und CLI mit strengem Offline-Replay. Lokal sind 2.367 Tests in 1.188,502 Sekunden grün, eine bekannte Deployment-Auslassung; alle 149 vorgesehenen Dateien blieben während des Gesamtlaufs bytegleich. Nach den korrigierten Release-Integrationsfehlern sind zusätzlich 150 betroffene Regressionen grün. Der externe Host-Testtreiber besteht auf einer getrennten Kopie 244 Tests und ganze positive/negative Originalvergleiche über jeweils 2.588 Dateinamen und Rohinhalte. Dies sind Vorprüfungen ohne installierte Abnahme. Jetzt folgen sourcegebundener Abschlussreview, Commit/Draft-PR und neue exakte Mac/Linux-Pakete mit allen Prüfgruppen sowie dem festen ha-CPsWMS-Vergleich. Ursprüngliche Child-Tracebacks, weitere Signaturprofile, Lifecycle-Base-Ref/New-Provider und vollständige Bootstrap-/Test-/Worker-Orchestrierung bleiben offen. Alle 22 Bereiche, 135 Einstiegspunkte, 37 CI-Definitionen, 16 Betriebsabläufe und 18 historischen Nachweise bleiben erhalten. Keine neue Freigabe oder Betriebsautorität."
   },
   "last_validation": {
-    "observed_at": "2026-11-18T14:23:55Z",
-    "source_revision": "05c8f94339d77b3b6efae48af6ea7956e0a192bf",
-    "runtime_source_digest": "312d2eae1b77c6ec379a22e9e57b4eb04045a85524fb80cd2fcd1d557c4a26ae",
-    "unit_tests": 1980,
-    "unit_test_seconds": 674.539,
+    "observed_at": "2026-11-18T16:32:57Z",
+    "source_revision": "bfcdd9e2e51bbd13db079b93484dc7dcecb0c20c",
+    "runtime_source_digest": "5b294f3333099388544bd53d1bae0c6615a7e0f5ddd2da0fcaaac03e526f4eb2",
+    "unit_tests": 2123,
+    "unit_test_seconds": 790.09,
     "unit_tests_skipped": 2,
     "installed_groups": {
-      "mac": 17,
-      "linux": 17
+      "mac": 18,
+      "linux": 18
     },
-    "equal_complete_result_groups": 9,
-    "compared_result_groups": 9,
+    "equal_complete_result_groups": 10,
+    "compared_result_groups": 10,
     "canonical_profile_complete_results_equal": true,
     "full_dcr_equal": true,
-    "full_dcr_sha256": "b93af31bdf37e84dcb94d38143c01a9693c0e22bf4470dacead95e346daf7902",
+    "full_dcr_sha256": "9c52d86b85e09bb916301d1e340db26f99111859610819643f5149b950873275",
     "ci_workflows": [
       {
         "name": "Agent Review Status",
-        "run_id": "44323631888",
+        "run_id": "44348166826",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44323631888"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44348166826"
       },
       {
         "name": "CodeQL",
-        "run_id": "44319126639",
+        "run_id": "44342673021",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126639"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673021"
       },
       {
         "name": "Consumer Lifecycle Guard",
-        "run_id": "44319126434",
+        "run_id": "44342673027",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126434"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673027"
       },
       {
         "name": "Dependency Review",
-        "run_id": "44319126775",
+        "run_id": "44342672978",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126775"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672978"
       },
       {
         "name": "Governance CI",
-        "run_id": "44319125631",
+        "run_id": "44342672851",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125631"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672851"
       },
       {
         "name": "Governance CI v2",
-        "run_id": "44319126116",
+        "run_id": "44342673254",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319126116"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342673254"
       },
       {
         "name": "Governance Repository Self-Security",
-        "run_id": "44319125717",
+        "run_id": "44342672840",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125717"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672840"
       },
       {
         "name": "Prepared runtime offline",
-        "run_id": "44319125538",
+        "run_id": "44342672955",
         "result": "passed",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44319125538"
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44342672955"
       }
     ],
     "evidence_kind": "declared_technical_validation_observation",
     "independent_human_approval": false,
     "full_functional_parity": false,
-    "comparison_note": "Ausgef\u00fchrter Stand 05c8f94/312d: je 17 frische installierte Mac/Linux-Pr\u00fcfgruppen bestanden, einschlie\u00dflich 29 Working-Tree- und 24 committed Runtime-F\u00e4llen je Host. Ganze Originalausgaben und je 222 Dateien in pristine/dirty-Profilen stimmen \u00fcberein; neun ganze Gesch\u00e4ftsergebnisgruppen, feste ha-CPsWMS-Berichte und ganzer committed DCR sind gleich. Alle 2.460 Paketeintr\u00e4ge wurden gepr\u00fcft: 2.450 Git-Quelldateieintr\u00e4ge, 1.796 ausgew\u00e4hlte physische Dateien, 654 beabsichtigte Sparse-Auslassungen, 846 aktive Fingerprints und zehn Commit-/Tool-/Wheel-Dateien. Native Pfade, Uhren, Schl\u00fcssel und Diagnostik bleiben tats\u00e4chliche Host-Kontexte. Alle acht CI-Familien gr\u00fcn; tats\u00e4chlicher finaler Review-Job declared_complete. GitHub: 1.980 Tests in 674.539 Sekunden, zwei ausgelassen; lokal 1.980 in 813.484 Sekunden, einer ausgelassen. Tats\u00e4chlich getesteter Merge-Dateibaum exakt gleich. Die drei F8-Subjekte bleiben nach Runtime-\u00c4nderung in Arbeit; alle 18 alten Nachweise historisch erhalten. Der folgende Release-Entwicklungsstand wird nicht als bereits auf 05c ausgef\u00fchrter Dateibaum bezeichnet. Ganzer Repository-Validator, Bootstrap, Test-Orchestrierung und alle 22/135/37/16 bleiben offen; keine unabh\u00e4ngige Authentifizierung, menschliche Abnahme oder Betriebsautorit\u00e4t. Historischer unklassifizierter Runner-/Pipe-Warnbefund weiter offen."
+    "comparison_note": "Ausgeführter Stand bfcdd9e/5b294f33: je 18 frische installierte Mac/Linux-Prüfgruppen bestanden, darunter 147 Release-Fälle, 29 Working-Tree- und 24 committed Runtime-Fälle. Ganze ursprüngliche positive/negative Release-Berichte und JSON-Ausgaben sowie CLI-Replay nach Caller-Löschung stimmen je Host mit V1 überein. Die Release-Ergebnisse und neun bisherige ganze Geschäftsergebnisgruppen, feste ha-CPsWMS-Berichte, ganzer committed DCR und je 222 ursprüngliche Dateien sind zwischen den Hosts im dokumentierten Vergleichsumfang gleich. Alle 2.474 Paketeinträge geprüft: 2.464 Git-Quelldateien, 1.804 physische Dateien, 660 beabsichtigte Sparse-Auslassungen, 854 aktive Fingerprints und zehn Tool-/Wheel-/Commit-Dateien. Native Pfade, Uhren, Schlüssel und Rohdiagnostik bleiben Host-Kontext. Beide CI-Testläufe mit je 2.123 Tests bestanden: gepinnt 790,090 Sekunden, Python 3.11 1.093,243 Sekunden, jeweils zwei ausgelassen; lokal 930,488 Sekunden, einer ausgelassen. Alle acht CI-Familien grün, finaler GitHub-Review-Lauf 44348166826 declared_complete, tatsächlicher Merge-Dateibaum exakt gleich. Die drei F8-Subjekte bleiben in Arbeit; alle 18 historischen Nachweise bleiben erhalten. Ganze Repository-Validierung, zusätzliche Signaturprofile, Bootstrap, Test-Orchestrierung und alle 22/135/37/16 bleiben offen. Keine unabhängige Abnahme oder Betriebsautorität; historischer Runner-/Pipe-Befund weiter offen."
   }
 }

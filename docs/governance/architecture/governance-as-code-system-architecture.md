@@ -7,8 +7,8 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-16; V2 foundation in PR #395 and functional-parity increments in PR #396. Exact source and validation bindings are recorded in the PR review receipt; scope and open acceptance: `config/axiom-v2-functional-parity.json` |
-| Operating observation | Separate V2 Mac/Linux candidate tested at `756a28e`; retained VM service at `adc4643`. Candidate test processes are stopped; no V2 production service takeover |
+| Last implementation review | 2026-11-18; V2 foundation in PR #395, parity stack through draft PR #416 (`bfcdd9e`) and the separate whole repository development candidate described below. Exact published source and validation bindings remain in their PR receipts; scope and open acceptance: `config/axiom-v2-functional-parity.json` |
+| Operating observation | Last proven isolated V2 Mac/Linux candidate: `bfcdd9e`, 18 groups per host. Retained V1 operation remains separate. The new whole repository candidate has no fresh installed or production acceptance |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
 | Change request | `GCR-2026-035`; prior refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154`, `GCR-2026-161`; arc42 reconciliation `GCR-2026-183`; V2 product foundation `GCR-2026-185` |
@@ -427,6 +427,24 @@ technical safeguards, not imported permission to operate an old route. A copied
 database/node identifier does not transfer authority; a new V2 operating profile
 must be reviewed and accepted for its own scope.
 
+### Whole repository validation candidate
+
+The development increment adds `validation repository`, `repository-inspect`
+and `repository-status`. The neutral `repository_validation.py` retains the
+whole original decision sequence; `repository_engine.py` composes the original
+generator functions, subvalidators, snapshot families, closed schemas and
+historical lifecycle readers over `RepositoryDataset`. Inspected programs are
+inert captured bytes. Concrete legacy capture formats and finite native
+Git/SSH/OPA/crypto implementations remain explicit provider adapters.
+
+`repository_capture.py` closes either all committed Git blobs, including sparse
+omissions, or held current working data at the exact product revision/tree.
+`repository_operation.py` defines node/runtime/source/profile/authority bindings.
+The private operation store persists immutable content and a durable ordered
+hash chain before acquisition and each native/effect operation. The registered
+CLI is a development candidate; complete pinned validation and fresh installed
+Mac/Linux proof are still required before publication.
+
 ## 6. Runtime View
 
 ### Candidate authoring transaction
@@ -647,6 +665,30 @@ adapter, cross-consumer lifecycle portfolio or Bitbucket personal-consent adapte
 The [function catalog](../../operations/guides/repository-function-catalog.md) and
 [technical inventory](../../operations/guides/repository-technical-function-inventory.md)
 provide the complete implementation entrypoints.
+
+### Whole repository operation and offline inspection
+
+The explicit legacy profile selects existing provider-format interpretation,
+schema identifiers and source configuration mapping. A private pending header
+precedes source acquisition. Every Git acquisition call and every verification
+intent, process start and raw completion is retained separately. The engine
+records original generator clocks and ordered partial effects; it writes no
+inspected checkout files. Completion binds the complete retained input/output
+graph and native contexts.
+
+Inspection first checks the current node/runtime/source binding and all stored
+bytes. It replays the complete acquisition transcript, then the whole engine
+against one ordered trace of native observations, clocks and generator effects.
+The separate caller checkout and native capsule may already be absent. The
+installed product remains necessary for runtime admission. No native verifier
+is rerun during replay. An original child failure whose traceback semantics
+cannot be preserved remains incomplete exit 2; it is never manufactured as a
+completed original result.
+
+Pending, recorded incomplete, recorded complete but unverified, and declared
+replay-consistent operations are distinct. None transfers historical consent,
+operating acceptance, independent execution authenticity or publication rights.
+See the [candidate operating guide](../../operations/guides/axiom-v2-repository-validation.md).
 
 ## 7. Deployment View
 

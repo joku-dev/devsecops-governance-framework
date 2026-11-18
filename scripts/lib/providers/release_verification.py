@@ -19,18 +19,23 @@ MAX_STREAM=65536
 
 
 class ReleaseVerificationEnvironment(ReleaseRequests):
-    def __init__(self,root,files,references,workarea,*,git_tool=None,ssh_tool=None,on_start=None,timeout=30):
+    def __init__(self,root,files,references,workarea,*,git_tool=None,ssh_tool=None,on_start=None,on_intent=None,on_finish=None,timeout=30):
         super().__init__(root,files);facts.validate(references)
         if type(timeout) not in (int,float) or not 0<timeout<=30:raise ValueError('invalid_release_native_timeout')
         workarea=Path(workarea)
         if workarea.is_symlink() or not workarea.is_dir() or workarea.stat().st_mode&0o077:
             raise ValueError('private_release_workarea_required')
+        if any(callback is not None and not callable(callback) for callback in (on_start,on_intent,on_finish)):
+            raise ValueError('release_native_journal_callback_required')
         self.timeout=timeout;self.references=deepcopy(references);self.observations=[];self.on_start=on_start
+        self.on_intent=on_intent;self.on_finish=on_finish
         self.tools={}
         for name,selected in [('git',git_tool),('ssh-keygen',ssh_tool)]:
             found=selected if selected is not None else shutil.which(name)
             if found is None:raise FileNotFoundError('release_native_tool_missing')
             self.tools[name]=executable(found)
+            if Path(self.tools[name][0]).is_relative_to(self.root):
+                raise ValueError('release_native_tool_inside_inspected_source')
         self.context=tempfile.TemporaryDirectory(prefix='release-git-',dir=workarea)
         self.capsule=Path(self.context.name);self.staged=self.capsule/'inputs';self.staged.mkdir(mode=0o700)
         self.staged_count=0
@@ -93,6 +98,7 @@ class ReleaseVerificationEnvironment(ReleaseRequests):
         row={'request':request,'tool':tool,'tool_path':self.tools[tool][0],'tool_sha256':self.tools[tool][1],
             'ssh_tool_path':self.tools['ssh-keygen'][0],'ssh_tool_sha256':self.tools['ssh-keygen'][1],
             'argv':argv,'process_started':False,'returncode':None,'timed_out':False,'output_truncated':False,'error_type':None}
+        if self.on_intent is not None:self.on_intent(deepcopy(row))
         self.observations.append(row);process=None;streams={'stdout':bytearray(),'stderr':bytearray()}
         try:
             process=subprocess.Popen(argv,cwd=self.capsule,env=self.environment,stdin=subprocess.PIPE if stdin is not None else subprocess.DEVNULL,
@@ -126,12 +132,14 @@ class ReleaseVerificationEnvironment(ReleaseRequests):
         finally:
             try:
                 if process is not None:
-                    process_groups.stop(process)
-                    for name in ('stdin','stdout','stderr'):
-                        stream=getattr(process,name)
-                        if stream is not None:stream.close()
+                    try:process_groups.stop(process)
+                    finally:
+                        for name in ('stdin','stdout','stderr'):
+                            stream=getattr(process,name)
+                            if stream is not None:stream.close()
             except BaseException as error:row['error_type']=type(error).__name__;raise
             finally:
                 row.update(process_groups.observations(process))
                 row.update({name+'_base64':base64.b64encode(bytes(raw)).decode('ascii') for name,raw in streams.items()})
+                if self.on_finish is not None:self.on_finish(deepcopy(row))
         return SimpleNamespace(returncode=row['returncode'],**{name:bytes(raw) for name,raw in streams.items()})

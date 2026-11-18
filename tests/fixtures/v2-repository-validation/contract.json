@@ -1,0 +1,1000 @@
+{
+  "schema_version": 1,
+  "source_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "source_path": "scripts/validate_governance_repo.py",
+  "source_sha256": "0cc28beae8174773982d9effa8ce655b28264253aa69ff5ce8bba65b6144f0e1",
+  "function_names": [
+    "load_yaml",
+    "load_json",
+    "validate_schema",
+    "validate_typed_evidence_results",
+    "validate_governance_graph",
+    "validate_intake_conflicts",
+    "validate_intake_events",
+    "validate_intake_health",
+    "validate_multi_consumer_readiness",
+    "validate_evidence_attestation_pilot",
+    "validate_blocking_readiness",
+    "validate_blocking_mode_alignment",
+    "validate_governance_repository_security",
+    "validate_replay_triage",
+    "validate_harmonized_requirements_candidate",
+    "run_opa_check",
+    "validate_source_lineage_report",
+    "validate_governance_change_impact_report",
+    "validate_architecture_source_replacement_assessment",
+    "validate_source_document_intake_status",
+    "validate_source_document_intake_review_briefs",
+    "validate_source_document_requirement_delta",
+    "validate_source_document_process_status",
+    "validate_authorized_source_baselines",
+    "validate_app_architecture_evidence_templates",
+    "validate_source_document_path",
+    "validate_source_document_register",
+    "validate_waiver_authority",
+    "main"
+  ],
+  "function_count": 29,
+  "technical_test_reference_only": true,
+  "source_approval_or_operating_authority_transferred": false,
+  "snapshot_helpers": {
+    "security": {
+      "source_path": "scripts/lib/measured_security.py",
+      "source_sha256": "65d86bb3bd6dcbd2c18a849e76517c2680908388f61d596ee8f48175d5c77736",
+      "class": "SecuritySnapshots",
+      "entrypoints": [
+        "validate_snapshot",
+        "load_snapshots"
+      ],
+      "functions": [
+        "validate_snapshot",
+        "load_snapshots"
+      ],
+      "root_constants": [],
+      "default_root_injected_when_omitted": true
+    },
+    "measured": {
+      "source_path": "scripts/lib/measured_l1.py",
+      "source_sha256": "ee973ef95db682b8e00f262cbc3abb1bf0e20ee8777dcb65f14cb1d98d369d95",
+      "class": "MeasuredSnapshots",
+      "entrypoints": [
+        "validate_snapshot",
+        "load_snapshots"
+      ],
+      "functions": [
+        "digest",
+        "evaluate",
+        "binding",
+        "validate_snapshot",
+        "load_snapshots"
+      ],
+      "root_constants": [],
+      "default_root_injected_when_omitted": true
+    },
+    "assurance": {
+      "source_path": "scripts/lib/control_evidence_assurance.py",
+      "source_sha256": "d46ef37aa7cda76f9bdd6cab52fe8914b976df561a0c52ba2f2563217196d193",
+      "class": "AssuranceSnapshots",
+      "entrypoints": [
+        "load_profile",
+        "validate_assurance",
+        "validate_assurance_source",
+        "load_snapshots"
+      ],
+      "functions": [
+        "canonical_digest",
+        "assurance_binding",
+        "load_profile",
+        "validate_assurance",
+        "validate_assurance_source",
+        "load_snapshots"
+      ],
+      "root_constants": [
+        "PROFILE_PATH",
+        "POLICY_PATH",
+        "EVIDENCE_TYPES_PATH",
+        "SCHEMA_PATH",
+        "RESULT_ROOT"
+      ],
+      "default_root_injected_when_omitted": true
+    },
+    "staging": {
+      "source_path": "scripts/lib/staging_deployment.py",
+      "source_sha256": "284d0524ee15c5d6d48de6ab18f5758975e69b9e0f181f8946f31d8a3780d374",
+      "class": "StagingSnapshots",
+      "entrypoints": [
+        "validate_snapshot",
+        "load_snapshots"
+      ],
+      "functions": [
+        "digest",
+        "binding",
+        "validate_snapshot",
+        "load_snapshots"
+      ],
+      "root_constants": [
+        "SCHEMA",
+        "RESULT_ROOT"
+      ],
+      "default_root_injected_when_omitted": true
+    },
+    "consolidated": {
+      "source_path": "scripts/lib/consolidated_l1.py",
+      "source_sha256": "07921b9b2315098a1d3931688d2f1781fc54b76f1169ea820eeb5632fc20309d",
+      "class": "ConsolidatedSnapshots",
+      "entrypoints": [
+        "validate_snapshot",
+        "validate_sources",
+        "load_snapshots"
+      ],
+      "functions": [
+        "binding",
+        "_same_subject",
+        "build_consolidated",
+        "validate_snapshot",
+        "validate_sources",
+        "load_snapshots"
+      ],
+      "root_constants": [
+        "SCHEMA",
+        "RESULT_ROOT"
+      ],
+      "default_root_injected_when_omitted": true
+    }
+  },
+  "subvalidators": {
+    "provenance": {
+      "source_path": "scripts/validate_evidence_agent_provenance.py",
+      "source_sha256": "d13651b2e524f47e76f5d54e7274c580802beeda93b9f2969b1ec30b0b5c126a",
+      "technical_reference_only": true
+    },
+    "dcr": {
+      "source_path": "scripts/validate_document_consistency_review_operations.py",
+      "source_sha256": "6e486f81e2ab1767e1f52bf3178ecace5cc2f12878b426f94ece599cdcef4d8a",
+      "technical_reference_only": true
+    },
+    "lifecycle_contracts": {
+      "source_path": "scripts/validate_governance_lifecycle_contracts.py",
+      "source_sha256": "4758daa3df3a4c4ffb21ffe6725a9eab960a38c8bdb532d4aa30f91aedbbacdb",
+      "technical_reference_only": true
+    }
+  },
+  "generators": {
+    "scripts/generate_source_lineage_report.py": {
+      "sha256": "c6bc1f13c2792e593fd518265eba3c902cb3a2a9b4a3a221194b66f010548ad0",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_governance_change_impact_report.py": {
+      "sha256": "1dfc539a9f8df8ba1552da2ed5643eaef92a3977fcb4d8775aa5af35972e0707",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_architecture_source_replacement_assessment.py": {
+      "sha256": "17a96b320cf61f17ee627ad80a3c90b6c91a1f529f13f2eaa8f411a84cd7a342",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_source_document_intake_status.py": {
+      "sha256": "4167d4709906c19ac4e93da6bdcd1441dedff2aea3912da853a278a9912270a7",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_source_document_intake_review_briefs.py": {
+      "sha256": "d444f389c52925c303c70408c698d7aa851414db0b9f2453a3498cfebd7c854d",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_source_document_requirement_delta.py": {
+      "sha256": "53e43c0ee639deafcb92cdd53fb55c457362c33e723e7570a0ecacbb98884b0a",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_source_document_process_status.py": {
+      "sha256": "517e4ea479a13770250aaa9b81fab5502b3e36b7433d96a757a619059ea08c4c",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_blocking_readiness.py": {
+      "sha256": "557e690d5024a8a531a82b66ac4760dfe3420db27f30f9e3d2178c59ccc05aac",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_blocking_mode_alignment.py": {
+      "sha256": "ed8114f98110182d2198cc85b3c6ec8a496d091e84209ce8717e600c6090c974",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_replay_triage_report.py": {
+      "sha256": "967e30ccf3a95928d36e5ecdc684dd03d289ca517ea333bf79cb6479d4f37ac9",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_multi_consumer_readiness.py": {
+      "sha256": "cf3a113d3fc3acfa3552ebf67c07a8ddf26fd57d5b4518d530c22680566f50e6",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/generate_governance_graph.py": {
+      "sha256": "769953990aa7946fa0409fccb313472e5e93e6f4f6fc1625f9684a6f7df17cb4",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    },
+    "scripts/verify_evidence_attestation.py": {
+      "sha256": "0689363d4941d034a8fcd701e39511138bb7cc62df5cebac1963687fe503011b",
+      "frozen_source_revision": "6b557fefe295b58272d2271326576ca3a3687197"
+    }
+  },
+  "lifecycle_helpers": {
+    "contracts": {
+      "source_path": "scripts/lib/governance_lifecycle/contracts.py",
+      "fixture": "lifecycle-contracts.py.txt",
+      "source_sha256": "ff987bc0a4bee604e7e8cb55a3538e0ffd2b50d0f5517d86df693605c204da1a",
+      "class": "LifecycleContracts",
+      "functions": [
+        "require",
+        "schema_validator",
+        "timestamp",
+        "finding_id",
+        "record_ref",
+        "versioned_ref",
+        "approval_target",
+        "observation_identity",
+        "validate_record",
+        "acceptance_statement",
+        "fixture_resource",
+        "validate_test_profile",
+        "validate_test_record",
+        "check_test_trust",
+        "resolve_record",
+        "check_closure_prerequisites",
+        "check_event_references"
+      ],
+      "standalone_functions": [
+        "check_utc_timestamp"
+      ],
+      "import_ports": {},
+      "root_constants": []
+    },
+    "kernel": {
+      "source_path": "scripts/lib/governance_lifecycle/kernel.py",
+      "fixture": "lifecycle-kernel.py.txt",
+      "source_sha256": "8ebc3c0432a6d25801f64ff269762773188dfc0598873fbf26fff0043b1bd9e7",
+      "class": "LifecycleKernel",
+      "functions": [
+        "producer_digest",
+        "transaction_ref",
+        "transaction_name",
+        "empty_state",
+        "current_revision",
+        "classify",
+        "make_event",
+        "prepare_transaction",
+        "apply_transaction",
+        "replay",
+        "project"
+      ],
+      "standalone_functions": [],
+      "import_ports": {
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "check_event_references": "self.context.contracts.check_event_references",
+        "observation_identity": "self.context.contracts.observation_identity",
+        "record_ref": "self.context.contracts.record_ref",
+        "require": "self.context.contracts.require",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp",
+        "validate_test_profile": "self.context.contracts.validate_test_profile",
+        "validate_test_record": "self.context.contracts.validate_test_record",
+        "versioned_ref": "self.context.contracts.versioned_ref"
+      },
+      "root_constants": []
+    },
+    "adapter": {
+      "source_path": "scripts/lib/governance_lifecycle/adapter.py",
+      "fixture": "lifecycle-adapter.py.txt",
+      "source_sha256": "0eef0c967904aaf7acded725068d72ce9dc278dffbd0317e75fa6797cbcf17cc",
+      "class": "LifecycleAdapter",
+      "functions": [
+        "json_bytes",
+        "strict_json",
+        "adapt_grs002"
+      ],
+      "standalone_functions": [],
+      "import_ports": {
+        "ROOT": "self.root",
+        "FORMAT_CHECKER": "self.context.contracts.format_checker",
+        "acceptance_statement": "self.context.contracts.acceptance_statement",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "finding_id": "self.context.contracts.finding_id",
+        "require": "self.context.contracts.require",
+        "validate_test_profile": "self.context.contracts.validate_test_profile",
+        "validate_test_record": "self.context.contracts.validate_test_record",
+        "versioned_ref": "self.context.contracts.versioned_ref"
+      },
+      "root_constants": []
+    },
+    "store": {
+      "source_path": "scripts/lib/governance_lifecycle/store.py",
+      "fixture": "lifecycle-store.py.txt",
+      "source_sha256": "5668593aaf4813bbd71d0d3487588cc6d0cf44199c0eb91efb954844e9cd7af2",
+      "class": "LifecycleStore",
+      "functions": [
+        "load_transactions"
+      ],
+      "standalone_functions": [],
+      "import_ports": {
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "require": "self.context.contracts.require",
+        "prepare_transaction": "self.context.kernel.prepare_transaction",
+        "replay": "self.context.kernel.replay",
+        "transaction_name": "self.context.kernel.transaction_name",
+        "transaction_ref": "self.context.kernel.transaction_ref"
+      },
+      "root_constants": []
+    },
+    "decisions": {
+      "source_path": "scripts/lib/governance_lifecycle/decisions.py",
+      "fixture": "lifecycle-decisions.py.txt",
+      "source_sha256": "57655df42042d78e9a08292bd4d97ac9b77900fc62f9828145f0565d357e98a9",
+      "class": "LifecycleDecisions",
+      "functions": [
+        "progress_statement",
+        "latest_approval",
+        "validate_decision",
+        "validate_remediation",
+        "action_event",
+        "prepare_action_transaction",
+        "apply_action",
+        "add_action_projection"
+      ],
+      "standalone_functions": [],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "check_event_references": "self.context.contracts.check_event_references",
+        "fixture_resource": "self.context.contracts.fixture_resource",
+        "record_ref": "self.context.contracts.record_ref",
+        "require": "self.context.contracts.require",
+        "resolve_record": "self.context.contracts.resolve_record",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp",
+        "validate_test_record": "self.context.contracts.validate_test_record",
+        "versioned_ref": "self.context.contracts.versioned_ref",
+        "current_revision": "self.context.kernel.current_revision",
+        "transaction_ref": "self.context.kernel.transaction_ref"
+      },
+      "root_constants": []
+    },
+    "closure": {
+      "source_path": "scripts/lib/governance_lifecycle/closure.py",
+      "fixture": "lifecycle-closure.py.txt",
+      "source_sha256": "6482978c9e3d2dc45e498a11fe5f22af005e7801f5b3f6e833574c58e1ef36d4",
+      "class": "LifecycleClosure",
+      "functions": [
+        "accepted_resources",
+        "prepare_closure_transaction",
+        "reopens",
+        "add_closure_projection"
+      ],
+      "standalone_functions": [],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "check_closure_prerequisites": "self.context.contracts.check_closure_prerequisites",
+        "check_event_references": "self.context.contracts.check_event_references",
+        "fixture_resource": "self.context.contracts.fixture_resource",
+        "record_ref": "self.context.contracts.record_ref",
+        "require": "self.context.contracts.require",
+        "resolve_record": "self.context.contracts.resolve_record",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp",
+        "validate_test_record": "self.context.contracts.validate_test_record",
+        "versioned_ref": "self.context.contracts.versioned_ref",
+        "current_revision": "self.context.kernel.current_revision",
+        "transaction_ref": "self.context.kernel.transaction_ref"
+      },
+      "root_constants": []
+    },
+    "exceptions": {
+      "source_path": "scripts/lib/governance_lifecycle/exceptions.py",
+      "fixture": "lifecycle-exceptions.py.txt",
+      "source_sha256": "5bc6d1d1f6e1d506e89542d04dd249d4b09b9f24ed43c3a484adb56d2cfc34e4",
+      "class": "LifecycleExceptions",
+      "functions": [
+        "exception_profile",
+        "read_waiver",
+        "transaction_resources",
+        "prepare_exception_transaction",
+        "apply_exception",
+        "outstanding_failures",
+        "effective_exception_status",
+        "add_exception_projection"
+      ],
+      "standalone_functions": [],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "FORMAT_CHECKER": "self.context.contracts.format_checker",
+        "approval_target": "self.context.contracts.approval_target",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "check_event_references": "self.context.contracts.check_event_references",
+        "fixture_resource": "self.context.contracts.fixture_resource",
+        "record_ref": "self.context.contracts.record_ref",
+        "require": "self.context.contracts.require",
+        "resolve_record": "self.context.contracts.resolve_record",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp",
+        "validate_test_record": "self.context.contracts.validate_test_record",
+        "versioned_ref": "self.context.contracts.versioned_ref",
+        "current_revision": "self.context.kernel.current_revision",
+        "transaction_ref": "self.context.kernel.transaction_ref"
+      },
+      "root_constants": [
+        "EXCEPTION_PROFILE"
+      ]
+    }
+  },
+  "lifecycle_history": {
+    "live_preparation": {
+      "source_path": "scripts/lib/governance_lifecycle/live_preparation.py",
+      "fixture": "history-live_preparation.py.txt",
+      "source_sha256": "f5bdabd0b5093cd6bf46f1a69d1736f9ecc4dd9dc03651f5af8c44ca079ce0e5",
+      "class": "LifecyclePreparation",
+      "module": "preparation.py",
+      "context": "preparation",
+      "functions": [
+        "revision_ref",
+        "validate_bindings",
+        "effective_assignments",
+        "load_revision_files",
+        "validate_preparation"
+      ],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "require": "self.context.contracts.require",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "revision_ref": {},
+        "validate_bindings": {},
+        "effective_assignments": {},
+        "load_revision_files": {},
+        "validate_preparation": {
+          "repo": "ROOT"
+        }
+      }
+    },
+    "live_admission": {
+      "source_path": "scripts/lib/governance_lifecycle/live_admission.py",
+      "fixture": "history-live_admission.py.txt",
+      "source_sha256": "53d9c8d91d2ed827f5727774b645219fb4b623b7245575a61489272b3d0a7a98",
+      "class": "LifecycleAdmission",
+      "module": "admission.py",
+      "context": "admission",
+      "functions": [
+        "load_operating",
+        "replay_embedded",
+        "origin_key",
+        "producer_fingerprint",
+        "prepare_receipt",
+        "replay_receipts",
+        "project_receipts"
+      ],
+      "import_ports": {
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "finding_id": "self.context.contracts.finding_id",
+        "require": "self.context.contracts.require",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp",
+        "transaction_ref": "self.context.kernel.transaction_ref",
+        "replay_capture": "self.context.provider.replay_capture",
+        "revision_ref": "self.context.preparation.revision_ref",
+        "validate_preparation": "self.context.preparation.validate_preparation",
+        "load_transactions": "self.context.store.load_transactions"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "load_operating": {
+          "repo": "ROOT"
+        },
+        "replay_embedded": {},
+        "origin_key": {},
+        "producer_fingerprint": {},
+        "prepare_receipt": {},
+        "replay_receipts": {},
+        "project_receipts": {}
+      }
+    },
+    "personal_probe": {
+      "source_path": "scripts/lib/governance_lifecycle/personal_probe.py",
+      "fixture": "history-personal_probe.py.txt",
+      "source_sha256": "206adbe1aaba930e4b34dd30b1c7bcfd202979278d7674e1c483ff827ec13b05",
+      "class": "LifecyclePersonalStatements",
+      "module": "personal.py",
+      "context": "personal",
+      "functions": [
+        "statement_body",
+        "validate_request",
+        "assess_comments",
+        "replay_probe_snapshot"
+      ],
+      "import_ports": {
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "require": "self.context.contracts.require",
+        "timestamp": "self.context.contracts.timestamp",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "load_operating": "self.context.admission.load_operating",
+        "replay_receipts": "self.context.admission.replay_receipts",
+        "VALIDATION_LEDGER": "self.context.admission.VALIDATION_LEDGER",
+        "validate_preparation": "self.context.preparation.validate_preparation",
+        "revision_ref": "self.context.preparation.revision_ref",
+        "transaction_ref": "self.context.kernel.transaction_ref",
+        "load_transactions": "self.context.store.load_transactions"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "statement_body": {},
+        "validate_request": {},
+        "assess_comments": {},
+        "replay_probe_snapshot": {}
+      }
+    },
+    "pilot_actions": {
+      "source_path": "scripts/lib/governance_lifecycle/pilot_actions.py",
+      "fixture": "history-pilot_actions.py.txt",
+      "source_sha256": "4e557449b02257a2a85e94fae0fb3a862f24f9915a0fae49ce5fe58b3273c0f9",
+      "class": "LifecyclePilotActions",
+      "module": "actions.py",
+      "context": "actions",
+      "functions": [
+        "assess_action_comments",
+        "prior_statements",
+        "proof_projection",
+        "resolve",
+        "fresh",
+        "state_at",
+        "required_role",
+        "validate_context",
+        "prepare_action",
+        "replay_actions",
+        "load_context",
+        "project_actions"
+      ],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "require": "self.context.contracts.require",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp",
+        "transaction_ref": "self.context.kernel.transaction_ref",
+        "VALIDATION_LEDGER": "self.context.admission.VALIDATION_LEDGER",
+        "load_operating": "self.context.admission.load_operating",
+        "replay_receipts": "self.context.admission.replay_receipts",
+        "validate_preparation": "self.context.preparation.validate_preparation",
+        "revision_ref": "self.context.preparation.revision_ref",
+        "assess_bound_comments": "self.context.provider.assess_bound_comments",
+        "replay_bound_snapshot": "self.context.provider.replay_bound_snapshot",
+        "comment_identity": "self.context.provider.comment_identity",
+        "load_transactions": "self.context.store.load_transactions"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "assess_action_comments": {},
+        "prior_statements": {},
+        "proof_projection": {},
+        "resolve": {},
+        "fresh": {},
+        "state_at": {},
+        "required_role": {},
+        "validate_context": {},
+        "prepare_action": {},
+        "replay_actions": {},
+        "load_context": {
+          "repo": "ROOT"
+        },
+        "project_actions": {
+          "repo": "ROOT"
+        }
+      }
+    },
+    "operating_acceptance": {
+      "source_path": "scripts/lib/governance_lifecycle/operating_acceptance.py",
+      "fixture": "history-operating_acceptance.py.txt",
+      "source_sha256": "440dd05df9041969d44932d6d454ac521962e8e5ee0f5c01dbcdf6930fc9e717",
+      "class": "LifecycleOperatingAcceptance",
+      "module": "operating.py",
+      "context": "operating",
+      "functions": [
+        "manifest",
+        "request",
+        "assess",
+        "prior_comments",
+        "captures",
+        "proof",
+        "effective",
+        "projection",
+        "render",
+        "validate",
+        "statement_template"
+      ],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "json_bytes": "self.context.adapter.json_bytes",
+        "ROOT": "self.root",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "require": "self.context.contracts.require",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp",
+        "load_operating": "self.context.admission.load_operating",
+        "validate_preparation": "self.context.preparation.validate_preparation",
+        "revision_ref": "self.context.preparation.revision_ref",
+        "assess_bound_comments": "self.context.provider.assess_bound_comments",
+        "replay_bound_snapshot": "self.context.provider.replay_bound_snapshot",
+        "comment_identity": "self.context.provider.comment_identity",
+        "project_actions": "self.context.actions.project_actions"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "manifest": {
+          "repo": "ROOT"
+        },
+        "request": {
+          "repo": "ROOT"
+        },
+        "assess": {},
+        "prior_comments": {},
+        "captures": {
+          "repo": "ROOT"
+        },
+        "proof": {},
+        "effective": {
+          "repo": "ROOT"
+        },
+        "projection": {
+          "repo": "ROOT"
+        },
+        "render": {},
+        "validate": {
+          "repo": "ROOT"
+        },
+        "statement_template": {}
+      }
+    },
+    "generate_lifecycle_pilot_validation": {
+      "source_path": "scripts/generate_lifecycle_pilot_validation.py",
+      "fixture": "history-generate_lifecycle_pilot_validation.py.txt",
+      "source_sha256": "d2e8efff2f8326b42bb49414bf3a399b08fd13cbf0b27ed56b1acbd148db2fb0",
+      "class": "LifecyclePilotValidationReport",
+      "module": "lifecycle_pilot_validation.py",
+      "context": "lifecycle_pilot_validation",
+      "functions": [
+        "render",
+        "validate"
+      ],
+      "import_ports": {
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "require": "self.context.contracts.require",
+        "VALIDATION_LEDGER": "self.context.admission.VALIDATION_LEDGER",
+        "load_operating": "self.context.admission.load_operating",
+        "project_receipts": "self.context.admission.project_receipts",
+        "load_transactions": "self.context.store.load_transactions"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "render": {},
+        "validate": {
+          "repo": "ROOT"
+        }
+      }
+    },
+    "generate_personal_channel_probe": {
+      "source_path": "scripts/generate_personal_channel_probe.py",
+      "fixture": "history-generate_personal_channel_probe.py.txt",
+      "source_sha256": "39723a275fe68e256f34b1934b364d34b2ff57b03aa4534a2cbd5acab078b25e",
+      "class": "LifecycleStatementReport",
+      "module": "personal_channel_probe.py",
+      "context": "personal_channel_probe",
+      "functions": [
+        "render",
+        "validate"
+      ],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "require": "self.context.contracts.require",
+        "validate_request": "self.context.personal.validate_request",
+        "statement_body": "self.context.personal.statement_body"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "render": {},
+        "validate": {
+          "repo": "ROOT"
+        }
+      }
+    },
+    "generate_personal_channel_evidence": {
+      "source_path": "scripts/generate_personal_channel_evidence.py",
+      "fixture": "history-generate_personal_channel_evidence.py.txt",
+      "source_sha256": "eb85d86ed1202b3647c26d69f0a221c404466116700e6f2acef4c3de42394f56",
+      "class": "LifecycleStatementEvidenceReport",
+      "module": "personal_channel_evidence.py",
+      "context": "personal_channel_evidence",
+      "functions": [
+        "prior_comments",
+        "load_captures",
+        "render",
+        "validate"
+      ],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "require": "self.context.contracts.require",
+        "timestamp": "self.context.contracts.timestamp",
+        "comment_identity": "self.context.provider.comment_identity",
+        "replay_probe_snapshot": "self.context.personal.replay_probe_snapshot",
+        "validate_request": "self.context.personal.validate_request",
+        "REQUEST": "self.context.personal_channel_probe.REQUEST"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "prior_comments": {},
+        "load_captures": {
+          "repo": "ROOT"
+        },
+        "render": {},
+        "validate": {
+          "repo": "ROOT"
+        }
+      }
+    },
+    "generate_lifecycle_pilot_actions": {
+      "source_path": "scripts/generate_lifecycle_pilot_actions.py",
+      "fixture": "history-generate_lifecycle_pilot_actions.py.txt",
+      "source_sha256": "952c47e1d4049ba1844e3f3e839622a5c80e75dd0686505bf01296b207c8a25a",
+      "class": "LifecycleActionReport",
+      "module": "lifecycle_pilot_actions.py",
+      "context": "lifecycle_pilot_actions",
+      "functions": [
+        "render",
+        "validate"
+      ],
+      "import_ports": {
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "require": "self.context.contracts.require",
+        "project_actions": "self.context.actions.project_actions"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "render": {},
+        "validate": {
+          "repo": "ROOT"
+        }
+      }
+    },
+    "generate_governance_lifecycle_overview": {
+      "source_path": "scripts/generate_governance_lifecycle_overview.py",
+      "fixture": "history-generate_governance_lifecycle_overview.py.txt",
+      "source_sha256": "0fd464a7a05a74ec6de8393d4323651b58d2ced8d03742f09b3dae046d569c38",
+      "class": "LifecycleOverview",
+      "module": "governance_lifecycle_overview.py",
+      "context": "governance_lifecycle_overview",
+      "functions": [
+        "tally",
+        "summarize",
+        "build_overview",
+        "render_report",
+        "validate_overview"
+      ],
+      "import_ports": {
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "record_ref": "self.context.contracts.record_ref",
+        "require": "self.context.contracts.require",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "timestamp": "self.context.contracts.timestamp",
+        "project": "self.context.kernel.project",
+        "transaction_ref": "self.context.kernel.transaction_ref",
+        "load_transactions": "self.context.store.load_transactions"
+      },
+      "root_constants": [],
+      "omitted_defaults": {
+        "tally": {},
+        "summarize": {},
+        "build_overview": {
+          "repo": "ROOT"
+        },
+        "render_report": {},
+        "validate_overview": {
+          "repo": "ROOT"
+        }
+      }
+    },
+    "generate_governance_lifecycle_viewer": {
+      "source_path": "scripts/generate_governance_lifecycle_viewer.py",
+      "fixture": "history-generate_governance_lifecycle_viewer.py.txt",
+      "source_sha256": "98763089ef2c2328670695da339573346af746d92697a08ffa26cc4b8c886d65",
+      "class": "LifecycleViewer",
+      "module": "governance_lifecycle_viewer.py",
+      "context": "governance_lifecycle_viewer",
+      "functions": [
+        "safe_json",
+        "render_viewer",
+        "validate_viewer"
+      ],
+      "import_ports": {
+        "validate_overview": "self.context.governance_lifecycle_overview.validate_overview",
+        "ROOT": "self.root",
+        "require": "self.context.contracts.require",
+        "schema_validator": "self.context.contracts.schema_validator"
+      },
+      "root_constants": [
+        "TEMPLATE"
+      ],
+      "omitted_defaults": {
+        "safe_json": {},
+        "render_viewer": {},
+        "validate_viewer": {
+          "repo": "ROOT"
+        }
+      }
+    },
+    "generate_governance_lifecycle_pilot": {
+      "source_path": "scripts/generate_governance_lifecycle_pilot.py",
+      "fixture": "history-generate_governance_lifecycle_pilot.py.txt",
+      "source_sha256": "db8f9541db65aafc3544b8182bebfdc5b295ed8134c03b0d43be02d13cae6079",
+      "class": "LifecyclePilotReport",
+      "module": "governance_lifecycle_pilot.py",
+      "context": "governance_lifecycle_pilot",
+      "functions": [
+        "render_report"
+      ],
+      "import_ports": {
+        "DEFAULT_PROFILE": "self.root / 'model/governance/lifecycle/synthetic-grs002-profile.json'",
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "require": "self.context.contracts.require",
+        "project": "self.context.kernel.project",
+        "load_transactions": "self.context.store.load_transactions"
+      },
+      "root_constants": [
+        "PILOT_LEDGER",
+        "PILOT_INDEX",
+        "PILOT_REPORT"
+      ],
+      "omitted_defaults": {
+        "render_report": {}
+      }
+    },
+    "generate_governance_lifecycle_exceptions": {
+      "source_path": "scripts/generate_governance_lifecycle_exceptions.py",
+      "fixture": "history-generate_governance_lifecycle_exceptions.py.txt",
+      "source_sha256": "2821f676ebb2482cca2feab0c5109b51d5b0298c16d3c7906783a736753204df",
+      "class": "LifecycleExceptionReport",
+      "module": "governance_lifecycle_exceptions.py",
+      "context": "governance_lifecycle_exceptions",
+      "functions": [
+        "render_report"
+      ],
+      "import_ports": {
+        "DEFAULT_PROFILE": "self.root / 'model/governance/lifecycle/synthetic-grs002-profile.json'",
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "require": "self.context.contracts.require",
+        "project": "self.context.kernel.project",
+        "load_transactions": "self.context.store.load_transactions"
+      },
+      "root_constants": [
+        "EXCEPTION_LEDGER",
+        "EXCEPTION_INDEX",
+        "EXCEPTION_REPORT"
+      ],
+      "omitted_defaults": {
+        "render_report": {}
+      }
+    },
+    "validate_governance_lifecycle_ledger": {
+      "source_path": "scripts/validate_governance_lifecycle_ledger.py",
+      "fixture": "history-validate_governance_lifecycle_ledger.py.txt",
+      "source_sha256": "478534ca31eff21f76c42e2f53458073dc5e2f5a69803745e8266c45c1487e6e",
+      "class": "LifecycleLedger",
+      "module": "ledger.py",
+      "context": "ledger",
+      "functions": [
+        "validate_current",
+        "validate_pilot",
+        "validate_exceptions"
+      ],
+      "import_ports": {
+        "strict_json": "self.context.adapter.strict_json",
+        "ROOT": "self.root",
+        "require": "self.context.contracts.require",
+        "timestamp": "self.context.contracts.timestamp",
+        "project": "self.context.kernel.project",
+        "replay": "self.context.kernel.replay",
+        "load_transactions": "self.context.store.load_transactions",
+        "PREPARATION_PATH": "self.context.preparation.PREPARATION_PATH",
+        "validate_preparation": "self.context.preparation.validate_preparation",
+        "OPERATING_PATH": "self.context.admission.OPERATING_PATH",
+        "VALIDATION_LEDGER": "self.context.admission.VALIDATION_LEDGER",
+        "ACTION_LEDGER": "self.context.actions.ACTION_LEDGER",
+        "DEFAULT_LEDGER": "self.root / 'governance/lifecycle/synthetic'",
+        "DEFAULT_INDEX": "self.root / 'status/governance-lifecycle-synthetic-index.json'",
+        "DEFAULT_PROFILE": "self.root / 'model/governance/lifecycle/synthetic-grs002-profile.json'"
+      },
+      "root_constants": [
+        "LEDGER_PATHS"
+      ],
+      "omitted_defaults": {
+        "validate_current": {
+          "ledger": "DEFAULT_LEDGER",
+          "index_path": "DEFAULT_INDEX",
+          "profile_path": "DEFAULT_PROFILE"
+        },
+        "validate_pilot": {
+          "repo": "ROOT"
+        },
+        "validate_exceptions": {
+          "repo": "ROOT"
+        }
+      }
+    }
+  },
+  "lifecycle_capture_adapter": {
+    "personal_probe": {
+      "source_path": "scripts/lib/governance_lifecycle/personal_probe.py",
+      "fixture": "capture-personal_probe.py.txt",
+      "source_sha256": "206adbe1aaba930e4b34dd30b1c7bcfd202979278d7674e1c483ff827ec13b05",
+      "functions": [
+        "comment_identity",
+        "assess_bound_comments",
+        "replay_bound_snapshot"
+      ],
+      "import_ports": {
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "canonical_digest": "self.context.contracts.canonical_digest",
+        "require": "self.context.contracts.require",
+        "timestamp": "self.context.contracts.timestamp",
+        "schema_validator": "self.context.contracts.schema_validator",
+        "validate_preparation": "self.context.preparation.validate_preparation",
+        "revision_ref": "self.context.preparation.revision_ref"
+      }
+    },
+    "live_evidence": {
+      "source_path": "scripts/lib/governance_lifecycle/live_evidence.py",
+      "fixture": "capture-live_evidence.py.txt",
+      "source_sha256": "85729f59c8a830d1d321097cc00ac98a987fa40bc21a529e36c5675b98ed6df5",
+      "functions": [
+        "sha",
+        "positive_id",
+        "verify_capture",
+        "replay_capture"
+      ],
+      "import_ports": {
+        "json_bytes": "self.context.adapter.json_bytes",
+        "strict_json": "self.context.adapter.strict_json",
+        "FORMAT_CHECKER": "self.context.contracts.format_checker",
+        "ROOT": "self.context.root",
+        "require": "self.context.contracts.require",
+        "timestamp": "self.context.contracts.timestamp",
+        "validate_preparation": "self.context.preparation.validate_preparation",
+        "revision_ref": "self.context.preparation.revision_ref"
+      }
+    }
+  },
+  "lifecycle_history_support": {
+    "generate_governance_lifecycle_index": {
+      "source_path": "scripts/generate_governance_lifecycle_index.py",
+      "fixture": "history-generate_governance_lifecycle_index.py.txt",
+      "source_sha256": "59b3571afeac364764ee23d40399f388b940b2cc3f0d0a8c87751a366f0f22af"
+    }
+  }
+}
