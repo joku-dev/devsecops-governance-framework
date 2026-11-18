@@ -168,7 +168,11 @@
     "scripts/lib/attestation_assessment.py",
     "scripts/lib/attestation_application.py",
     "scripts/lib/attestation_files.py",
-    "scripts/lib/providers/attestation_verification.py"
+    "scripts/lib/providers/attestation_verification.py",
+    "scripts/lib/intake_recording.py",
+    "scripts/lib/intake_record_files.py",
+    "scripts/lib/intake_recording_application.py",
+    "scripts/lib/providers/intake_recording.py"
   ],
   "data_roots": [
     "schemas",

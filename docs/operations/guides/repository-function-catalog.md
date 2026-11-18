@@ -711,6 +711,15 @@ Operator-Aktionen. Ein behobener Sammlungsfehler bedeutet nur, dass Nachweise
 schließlich übernommen werden konnten. Ihr Governance-Ergebnis kann weiterhin
 Befunde enthalten. Auch Fehlerdatensätze benötigen den Veröffentlichungsweg.
 
+Die V2-Gegenstücke `intake-records attempt/event/retry/inspect/status` schreiben
+in ein ausdrücklich gewähltes externes Ledger und erhalten die ursprünglichen
+Dateien, Identitäten und Konflikte. Der Retry-Befehl bereitet nur den nativen Plan
+und optionale Ausgabelinien vor; die Auslösung bleibt ein eigener Adapterablauf.
+Deklarierte Ereignisse bestätigen keine echte Übernahme. Private Eingaben und
+Vorher-/Nachher-Dateien sind ohne erneuten Providerzugriff prüfbar. Unabhängige
+Repo-Buckets werden getrennt koordiniert; Teilfehler werden nicht automatisch
+wiederholt. [Bedienung und Grenzen](../planning/axiom-v2-functional-parity.md#intake-records-and-retry-preparation).
+
 ## 16. Operative Änderungen über PRs veröffentlichen
 
 **Zweck:** Automatisch erzeugte operative Daten kontrolliert in den offiziellen

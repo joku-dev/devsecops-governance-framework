@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 70,
-      "pending": 65,
+      "in_progress": 73,
+      "pending": 62,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -266,80 +266,82 @@
       {
         "name": "Agent Review Status",
         "result": "passed",
-        "run_id": "44209419852",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44209419852"
+        "run_id": "44223509414",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44223509414"
       },
       {
         "name": "Dependency Review",
         "result": "passed",
-        "run_id": "44206250655",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250655"
+        "run_id": "44220622992",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622992"
       },
       {
         "name": "Governance Repository Self-Security",
         "result": "passed",
-        "run_id": "44206250554",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250554"
+        "run_id": "44220622902",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622902"
       },
       {
         "name": "Consumer Lifecycle Guard",
         "result": "passed",
-        "run_id": "44206250581",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250581"
+        "run_id": "44220622897",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622897"
       },
       {
         "name": "Prepared runtime offline",
         "result": "passed",
-        "run_id": "44206250733",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250733"
+        "run_id": "44220622890",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220622890"
       },
       {
         "name": "CodeQL",
         "result": "passed",
-        "run_id": "44206250697",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250697"
+        "run_id": "44220623679",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623679"
       },
       {
         "name": "Governance CI",
         "result": "passed",
-        "run_id": "44206250710",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250710"
+        "run_id": "44220623041",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623041"
       },
       {
         "name": "Governance CI v2",
         "result": "passed",
-        "run_id": "44206250724",
-        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44206250724"
+        "run_id": "44220623081",
+        "url": "https://github.com/joku-dev/devsecops-governance-framework/actions/runs/44220623081"
       }
     ],
     "compared_result_groups": 9,
-    "comparison_note": "Zwölf installierte Prüfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Neuer optionaler Review-Runner:22Fälle je Host einschließlich21 gezielter Original-/Prozess-/Schutztests und tatsächlichem installiertem CLI samt Offline-Prüfung. Ganze ursprüngliche Runnerdateien pro Host gleich; echte UUIDs, Zeitstempel und Pfade werden hostübergreifend nicht als identisch behauptet. Fallausgänge gleich. YAML25,externeDateien35,Planung23Fälle bestanden; native Quellberichte in6Fällen je Host ganz V1-gleich. Dispatcher29Fälle:27 ganze Fallobjekte gleich,2 Loglabels verschieden. Keine Rohnormalisierung. Ursprüngliche feste ha-CPsWMS-Berichte gleich; ganzer DCR gleich, gegenüber e03 nur reviewed_commit verändert. Alle8 tatsächlich ausgelösten CI-Familien einschließlich Offline-Paketprüfung grün; finale tatsächliche Review-Statusprüfung declared_complete. Genaue finale Dateien zusätzlich auf GitHub mit1843Tests geprüft. Erster VM-Lauf traf die intakte Speicherreserve auf der Systemplatte; auf dem freigegebenen Testvolume mit TMPDIR vollständig bestanden, ohne Grenzabsenkung. Keine Zertifizierung späterer Attestierungsänderungen, aller37CI-Definitionen oder des ganzen Goals.",
+    "comparison_note": "Dreizehn installierte Prüfgruppen je Host bestanden; neun ganze bestehende Ergebnisgruppen gleich. Attestierung: 24 Fälle je Host mit 23 Original-/Krypto-/Datei-/Schutztests und installiertem CLI; optionaler Runner: 23 Fälle mit 22 Tests und installiertem CLI. Ganze ursprüngliche native Ausgaben je Host gleich; echte UUIDs, Zeitstempel und Pfade werden hostübergreifend nicht gleichgesetzt. Native Quellberichte, Dispatcher, YAML, externe Dateien und Planung bleiben mit dokumentierten Vergleichsgrenzen geprüft. Feste ha-CPsWMS-Berichte ganz gleich; ganzer DCR gleich, gegenüber 827 nur reviewed_commit verändert. Alle acht tatsächlichen CI-Familien grün, letzter Review-Status declared_complete. Exakte finale Dateien auf GitHub: 1867 Tests in 525.860 Sekunden, zwei ausgelassen; lokale vollständige Vorgängerprüfung mit gleichem Runtime-Code und späterer Test-Umask-Korrektur separat dokumentiert. VM-Testfixtures berücksichtigen umask 0002 ohne schwächere Produktgrenzen. Ein früher intermittierender Runner-Testbefund bleibt offen; die defensive Pipe-Korrektur belegt nicht dessen Ursache. Keine Zertifizierung der neuen Intake-Änderungen, aller 37 CI-Definitionen oder des ganzen Goals.",
     "equal_complete_result_groups": 9,
     "evidence_kind": "declared_technical_validation_observation",
     "full_dcr_equal": true,
-    "full_dcr_sha256": "8b4c18fbbc6d618186f7cd9b27d1af39092cf3b664fc253fc8e01f51067e2c07",
+    "full_dcr_sha256": "5e6c2f9120a788882e9396484ce6c677e1983043d07f7abb2d1ffd01921d805a",
     "full_functional_parity": false,
     "independent_human_approval": false,
     "installed_groups": {
-      "linux": 12,
-      "mac": 12
+      "linux": 13,
+      "mac": 13
     },
-    "observed_at": "2026-11-18T00:40:25.180952Z",
-    "runtime_source_digest": "c39ca0eecf1390c2cb4af26bc6d173ba3308ddc4d6297623265d650f94a92e31",
-    "source_revision": "827025131346e832753db24440743876288ad376",
-    "unit_test_seconds": 712.899,
-    "unit_tests": 1843,
-    "unit_tests_skipped": 1
+    "observed_at": "2026-11-18T02:27:20.215984Z",
+    "runtime_source_digest": "7686ffa01ee7a0a6ff760a9f4482a4a979bf7e5f166ffacc1de3423ef695d455",
+    "source_revision": "f231cdd157fef4ad6daf712eeb911a9ca0e3538d",
+    "unit_test_seconds": 525.86,
+    "unit_tests": 1867,
+    "unit_tests_skipped": 2
   },
-  "matrix_sha256": "5e7abbd3e3210f0260f39e97f7070ece35405f768ae49fdceb70138255cf63b4",
+  "matrix_sha256": "4a8f0cba02d96f01c2ecc419f20dc2ba3f30d0420f723ac2af777662baef76a6",
   "next_work": {
     "entrypoints": [
-      "scripts/verify_evidence_attestation.py"
+      "scripts/record_collection_attempt.py",
+      "scripts/record_intake_event.py",
+      "scripts/prepare_collection_attempt_retry.py"
     ],
-    "next_step": "Ganze Originalausgaben und echte lokale Signaturen, externe Dateiersetzung, Fehler und private Wiederholungsprüfung frisch auf Mac/VM nachweisen; anschließend alle übrigen Goal-Bereiche und vollständige Einzelnachweise fortsetzen.",
-    "title": "Ursprüngliche lokale Attestierungsprüfung in V2 erhalten"
+    "next_step": "Ganze ursprüngliche CLI-/Dateiwirkungen, echte begrenzte HTTPS-Aufrufe, unabhängige Repo-Buckets und private Wiederholungsprüfung validieren und frisch auf Mac/VM nachweisen; anschließend alle verbleibenden Einzelnachweise und Betriebsabläufe fortsetzen.",
+    "title": "Intake-Protokolle und kontrollierte Wiederholungspläne in V2 erhalten"
   },
-  "observation_sha256": "0533bad929c61baabaff4b06ea6a8b5f26cf893259187b93808b81e7639d7572",
+  "observation_sha256": "13927aefc97e6884c9b69cf07bc37adb5237a5e8a790750fc1956003c1d3b616",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

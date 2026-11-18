@@ -2550,8 +2550,8 @@
         "--github-output"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2851,8 +2851,8 @@
         "--token"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2920,8 +2920,8 @@
         "--trigger-event"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/intake_recording_application.py:IntakeRecordContext",
+      "state": "in_progress",
       "evidence": []
     },
     {

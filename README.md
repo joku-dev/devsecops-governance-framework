@@ -29,20 +29,20 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **70 in Arbeit** und **65 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **73 in Arbeit** und **62 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 13 | 9 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 70 | 65 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 73 | 62 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
 ¹ Zustände der verbindlichen Paritätsmatrix; diese Anzeige führt keine Nachweis- oder Abschlussprüfung aus. „In Arbeit“ zählt nicht als erledigt.
 
-**Letzter geprüfter Kandidat:** `8270251` · 1,843 Tests (davon 1 übersprungen) · Mac 12 / VM 12 Prüfgruppen · 8 grüne CI-Workflow-Familien.
+**Letzter geprüfter Kandidat:** `f231cdd` · 1,867 Tests (davon 2 übersprungen) · Mac 13 / VM 13 Prüfgruppen · 8 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Ursprüngliche lokale Attestierungsprüfung in V2 erhalten.
+**Nächster Baustein:** Intake-Protokolle und kontrollierte Wiederholungspläne in V2 erhalten.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -186,6 +186,13 @@ Prozessbeobachtung und Schreibversuch bleiben privat nachvollziehbar. Die
 Standard-Kontextwerte stammen wie in V1 aus der Attestierung; explizite erwartete
 Werte sind möglich. Pilotregister und historische Trust-Bezeichnungen werden
 nicht als aktive V2-Autorität übernommen. [Bedienung und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#local-attestation-pilot).
+`intake-records attempt/event/retry/inspect/status` erhält Fehlerprotokolle,
+deklarierte Intake-Ereignisse und die ursprünglichen drei Wiederholungspläne.
+Native Metadaten, CI-Umgebung und Routen liegen im expliziten Adapter; erste
+Datensätze und Konflikte bleiben erhalten. Private Eingaben, Schreibversuche und
+Vorher-/Nachher-Dateien sind offline prüfbar. Unabhängige Repo-Buckets können
+parallel arbeiten; ein Retry-Plan startet keinen Workflow und aktualisiert keinen
+offiziellen Ergebnisindex. [Bedienung und Grenzen](docs/operations/planning/axiom-v2-functional-parity.md#intake-records-and-retry-preparation).
 `vulnerability-evidence create/inspect` ergänzt die lokale Sammlung vorhandener
 Scanberichte und Artefakte. Die ursprüngliche JSON-Ausgabe bleibt erhalten; Dateien
 und deklarierte Herkunftsangaben werden privat für Wiederholungsprüfungen gespeichert.

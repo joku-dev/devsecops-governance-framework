@@ -66,6 +66,7 @@ Verzeichnisse sind separate Implementierungsbereiche, keine fehlenden Einträge.
 | `scripts/record_agent_review.py` | Export an allowlisted review receipt and separate declared usage statistics. |
 | `scripts/report_agent_review_status.py` | Report missing/stale/incomplete PR review metadata without enforcing a gate. |
 | `scripts/run_agent_reviews.py` | Prepare bounded private role tasks; --execute explicitly starts provider sessions. |
+| `scripts/record_collection_attempt.py`, `scripts/record_intake_event.py`, `scripts/prepare_collection_attempt_retry.py` → V2 `intake-records` | Ursprüngliche Append-only-Datensätze, Metadaten-Fallback und drei Retry-Pläne mit privatem Vorher-/Nachher-Nachweis. Neutraler Kern und expliziter HTTPS-/Umgebungs-/Routenadapter; Repo-Buckets getrennt koordiniert. Kein Dispatch und keine offizielle Ergebnisübernahme. |
 | `scripts/verify_evidence_attestation.py` → V2 `attestation verify/inspect/status` | Ursprüngliche vier Pilotprüfungen mit kompatiblem lokalem Kryptowerkzeug, expliziter Dateiersetzung und privatem Vorher-/Nachher-Nachweis; keine Aktivierung von Trust oder Betriebsautorität. |
 | `scripts/workbench/consumer-view.js` | Private lesende Consumer-Projektion. |
 | `scripts/workbench/workspace-navigation.js` | Workbench-Navigation mit Erhalt des Sitzungszustands. |

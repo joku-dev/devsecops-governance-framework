@@ -1,5 +1,40 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+## Collection attempt, intake event and retry-plan restoration
+
+Classify the new neutral intake decision, held-file and application modules,
+explicit read-only metadata/environment/route adapter, closed private assessment
+schema and runtime/distribution routes as executable governance and evidence
+contract changes. Nine fingerprint-bound unchanged original files are inert
+technical test references, not normative sources. Full Source Document Intake
+is not applicable. Preserve approved sources, root registries, OPA, released
+baselines, protected acceptance and official indexes.
+
+Restore all three complete original CLI/helper meanings: actual bounded HTTPS
+metadata query and original fallback; declared intake outcomes and duration;
+first-identity append-only records and opaque first conflicts; schema-checked
+three-route retry preparation and exact optional native output appends. Preserve
+the original requested-path stdout even when another file is selected. Native
+identities, environment names, endpoint/headers and workflow routes stay in the
+explicit compatibility adapter. A retry plan never dispatches a workflow.
+
+Add private retained inputs before provider access, actual client observations,
+pre-effect intent, immutable before/after bytes, incomplete operation diagnostics
+and offline reconstruction. Pending operations never repeat or roll back effects.
+Repo buckets coordinate independently; global conflict history is not enumerated.
+Only the selected conflict leaf is captured in a successor input bound to the
+initial pre-query input. Shared immutable content avoids duplicating unchanged
+history. These are local coordination/resource guarantees, not a distributed lease
+or demonstrated 2,000-repository throughput. New files are private; unsafe,
+changing or oversize inputs fail visibly without replacing history.
+
+Require unchanged-original whole wire/file comparisons, actual synthetic local
+HTTPS/credential/redirect/error tests, concurrency/interruption/privacy/replay
+checks, pinned full validation, strict docs and revision-bound role reviews.
+Fresh installed Mac/Linux proof remains a separate delivery check. All three
+matrix entries remain in progress and no native declaration grants governance,
+producer authentication, operating acceptance or official result authority.
+
 ## Original local attestation pilot restoration
 
 Classify the new neutral decision/application/file modules, explicit bounded
