@@ -53,8 +53,15 @@ The output root must be fresh and outside the checkout. The input package,
 prepared environment, services, keys and existing instances stay unchanged.
 The owned test projection retains known generated timestamp/display-path effects
 as exact before/after bytes with independent pins. Only the closed nineteen
-known generated paths and their specific metadata fields may differ; changes to
-governance meaning, unknown files or other source bytes invalidate the result.
+known tracked paths and their specific metadata fields may differ. The one
+additional Git-ignored primary Viewer output, `generated/viewer/app/data.json`,
+must match the complete shared own projection byte for byte and is retained with
+its size/hash. That closed native projection phase runs known own source in the
+same admitted source context with the prepared tools; it writes no Viewer files.
+Existing lifecycle verification may use its own fixed read/replay/OPA ports.
+Changes to governance meaning, unlisted files, projection mismatches or other
+source bytes invalidate the result. Supplying a known filename alone is
+insufficient. No generated output is deleted or treated as accepted evidence.
 Native tool fingerprints are
 observed separately; no token, SSH agent or ambient provider environment is
 forwarded to the test subprocess.

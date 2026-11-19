@@ -150,7 +150,12 @@ def requirement_journey_revision(root: Path):
     return revision
 
 
-def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None):
+def project_data(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None):
+    """Compute the complete existing payload without writing Viewer outputs.
+
+    Historical lifecycle verification may use its existing native read/replay
+    ports. Callers must use this own product's source context and prepared tools.
+    """
     def read(name):
         return json.loads((root / 'status' / name).read_text(encoding='utf-8'))
     data = project(read('repository-results-index.json'), read('architecture-results-index.json'),
@@ -180,6 +185,12 @@ def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None)
     revision = requirement_journey_revision(root)
     data['requirement_journeys'] = project_requirement_journeys(root, revision)
     data['governance_requirement_lifecycle'] = project_governance_requirement_lifecycle(root)
+    return data
+
+
+def build(root: Path, technical_html=None, *, consumer_lifecycle_next_step=None):
+    data = project_data(root, technical_html,
+                        consumer_lifecycle_next_step=consumer_lifecycle_next_step)
     target = root / 'generated/viewer/app'
     target.mkdir(parents=True, exist_ok=True)
     for name in ('index.html', 'app.css', 'app.js', 'technical.js', 'technical.css'):

@@ -7,8 +7,8 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-19; published parity stack through draft PR #424 (`0f43709`). Current parentless own-test reference preparation is described below; exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
-| Operating observation | Scoped isolated Workbench/real-reference candidate `0f43709`: 63 cases per host without skips and complete fixed ha-CPsWMS report equality on Mac/target VM. The broader historical `bfcdd9e` 18-group proof retains its own source; retained V1 activation and full V2 systemd/update/recovery acceptance remain separate |
+| Last implementation review | 2026-11-19; published parity stack through draft PR #425 (`735e241`), with the separate known Viewer-output correction described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
+| Operating observation | Installed Mac `735e241`: complete fixed ha-CPsWMS report equality and 2,504 passing own tests, but controller exit 2 on its final extra-file audit; corrected acceptance remains open. Scoped `0f43709` Workbench proof retains 63 cases per host and fixed-report equality on Mac/target VM. New target-VM delivery is deferred by the maintainer; historical broader proof, V1 activation and full V2 systemd/update/recovery acceptance remain separate |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
 | Change request | `GCR-2026-035`; prior refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154`, `GCR-2026-161`; arc42 reconciliation `GCR-2026-183`; V2 product foundation `GCR-2026-185` |
@@ -1131,6 +1131,20 @@ controller retains exact before/after bytes and permits only their closed
 timestamp/display-path changes while checking every other source byte and mode.
 Four negative/retention cases protect this distinction; generated governance
 meaning changes cannot be treated as harmless test noise.
+
+The actual installed `735e241` suite passes all 2,504 tests (one known skip),
+but its controller rejects the final physical-file audit with exit 2: the normal
+Git-ignored primary Viewer payload is an additional file outside the tracked
+package inventory. That failed controller outcome remains retained. The next
+source-bound correction classifies exactly `generated/viewer/app/data.json`,
+compares its complete canonical bytes with the shared own `project_data` function
+and retains the artifact. A fixed bounded own-source phase computes that
+projection in the same source context, without writing Viewer files; existing
+lifecycle read/replay/OPA operations remain explicit prerequisites. Every other
+unknown file and every semantic mismatch is rejected. The nineteen tracked
+metadata checks and complete original test command stay intact. New corrected
+package execution remains required; neither unit success nor an explanatory
+probe reclassifies the failed controller as passing.
 
 ### Validation
 

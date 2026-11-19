@@ -22,7 +22,8 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / 'scripts'), str(ROOT / 'tests')]
 from acceptance.product_reference_inputs import prepare
-from acceptance.product_generated_effects import GENERATED, retain_effects
+from acceptance.product_generated_effects import (GENERATED, GENERATED_ADDITIONS,
+    retain_effects, retain_additions)
 from lib.runtime_package import admit, git, text_json
 from lib.providers import process_groups
 from lib.providers.attestation_verification import executable
@@ -35,7 +36,12 @@ AUTHORITY = {'official_acceptance': False, 'production_approval': False,
 
 def run_command(kind, source, environment, directory, *, timeout=TIMEOUT):
     commands = {'preflight': ['/bin/bash', './scripts/validate_all.sh', '--check-tools'],
-        'unit-tests': [sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests']}
+        'unit-tests': [sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests'],
+        'viewer-projection': [sys.executable, '-B', '-c',
+            'from pathlib import Path; import sys,json; '
+            'sys.path.insert(0,str(Path.cwd()/"scripts")); '
+            'from lib.viewer_app import project_data; '
+            'sys.stdout.write(json.dumps(project_data(Path.cwd()),ensure_ascii=False,indent=2)+"\\n")']}
     if kind not in commands or type(timeout) not in (int, float) or not 0 < timeout <= TIMEOUT:
         raise ValueError('closed_product_test_command_required')
     files = {name: directory / (kind + '-' + name + '.bin') for name in ('stdout', 'stderr')}
@@ -185,14 +191,30 @@ def execute(package, pin, output):
     after = source_files(source, manifest, generated_effects=True)
     effects = retain_effects(source, generated_before, output / 'generated-effects', example_sha)
     changed = {name for name in before if before[name] != after[name]}
+    physical = {p.relative_to(source).as_posix() for p in source.rglob('*')
+        if p.is_file() and p.relative_to(source).parts[0] != '.git'}
+    additions = physical - set(before)
+    if additions - GENERATED_ADDITIONS:
+        raise ValueError('unknown_product_test_generated_output')
+    projection = None
+    expected = None
+    if additions:
+        projection = run_command('viewer-projection', source, environment, output, timeout=120)
+        if projection['returncode'] != 0:
+            raise ValueError('product_test_viewer_projection_incomplete')
+        expected = (output / 'viewer-projection-stdout.bin').read_bytes()
+    artifacts = retain_additions(source, additions, expected, output / 'generated-artifacts')
+    if after != source_files(source, manifest, generated_effects=True):
+        raise ValueError('product_test_viewer_projection_changed_source')
+    final_physical = {p.relative_to(source).as_posix() for p in source.rglob('*')
+        if p.is_file() and p.relative_to(source).parts[0] != '.git'}
     status = git(source, 'status', '--porcelain', '--untracked-files=all', '-z').split(b'\0')
     if (changed != {r['path'] for r in effects}
             or git(source, 'rev-parse', 'HEAD').decode().strip() != revision
             or git(source, 'rev-parse', 'HEAD^{tree}').decode().strip() != manifest['source_tree']
             or any(row[:2] != b' M' for row in status if row)
             or {row[3:].decode() for row in status if row} != changed
-            or {p.relative_to(source).as_posix() for p in source.rglob('*')
-                if p.is_file() and p.relative_to(source).parts[0] != '.git'} != set(before)):
+            or final_physical != set(before) | {row['path'] for row in artifacts}):
         raise ValueError('product_test_working_source_changed')
     for value in tools.values():
         if executable(value['path']) != (value['path'], value['sha256']):
@@ -203,6 +225,7 @@ def execute(package, pin, output):
         'native_outcome': outcome, 'preflight': preflight, 'native_tools': tools,
         'reference_inputs': references, 'original_non_generated_source_files_unchanged': True,
         'generated_metadata_effects': effects, 'generated_before_after_bytes_retained': True,
+        'generated_artifacts': artifacts, 'viewer_projection_native_outcome': projection,
         'source_worktree_clean_after': not bool(changed),
         'parent_history_downloaded': False, 'inspected_consumer_programs_executed': False,
         'full_governance_compliance_orchestrator_executed': False,

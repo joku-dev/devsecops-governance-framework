@@ -1,10 +1,14 @@
-"""Check only known own-suite generated metadata effects, retaining exact bytes."""
+"""Audit closed generated metadata effects and the exact own Viewer output."""
 from datetime import datetime
 import hashlib
 from pathlib import PurePosixPath
 import re
 
 from lib.result_bytes import strict_json
+from lib.result_bytes import safe_bytes
+
+GENERATED_ADDITIONS = frozenset({'generated/viewer/app/data.json'})
+MAX_VIEWER_DATA = 8 * 1024**2
 
 GENERATED = frozenset({
     'generated/graph/governance-graph.json',
@@ -113,3 +117,27 @@ def retain_effects(source, before, destination, example_sha256):
             'before_sha256': hashlib.sha256(old).hexdigest(), 'after_sha256': hashlib.sha256(new).hexdigest(),
             'before_bytes': len(old), 'after_bytes': len(new)})
     return rows
+
+
+def retain_additions(source, names, expected_projection, destination):
+    """Only the exact own projection may become the known ignored Viewer output."""
+    if set(names) - GENERATED_ADDITIONS:
+        raise ValueError('unknown_product_test_generated_output')
+    if not names:
+        return []
+    if type(expected_projection) is not bytes or not 0 < len(expected_projection) <= MAX_VIEWER_DATA:
+        raise ValueError('complete_product_viewer_projection_required')
+    if type(strict_json(expected_projection)) is not dict:
+        raise ValueError('complete_product_viewer_projection_required')
+    name = 'generated/viewer/app/data.json'
+    raw = safe_bytes(source / name, limit=MAX_VIEWER_DATA)
+    if raw != expected_projection:
+        raise ValueError('product_test_generated_viewer_projection_mismatch')
+    destination.mkdir(mode=0o700)
+    target = destination / name
+    target.parent.mkdir(mode=0o700, parents=True)
+    target.write_bytes(raw); target.chmod(0o600)
+    return [{'path': name, 'classification': 'complete_known_own_viewer_projection',
+        'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw),
+        'raw_bytes_retained': True, 'official_acceptance': False,
+        'authority_transferred': False}]
