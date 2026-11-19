@@ -3253,8 +3253,8 @@
       "declared_symbols": [],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/start_axiom_v2_workbench.py:main",
+      "state": "in_progress",
       "evidence": []
     },
     {

@@ -170,10 +170,12 @@ class NativeEnvironmentSession:
         self.lock_path=self.target.parent/name
         fd=os.open(self.lock_path,os.O_CREAT|os.O_RDWR|os.O_NOFOLLOW,0o600)
         try:
+            fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            # Inspect only after acquiring the lease: another writer may have
+            # persisted an unfinished owner after this caller opened the inode.
             row=os.fstat(fd)
             if not stat.S_ISREG(row.st_mode) or row.st_uid!=os.geteuid() or row.st_nlink!=1 or row.st_mode&0o077:
                 raise BootstrapFailure('bootstrap_private_target_lock_required')
-            fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB)
             if row.st_size:
                 if row.st_size>16384:raise BootstrapFailure('bootstrap_previous_operation_owner_invalid')
                 raw=os.read(fd,16385)

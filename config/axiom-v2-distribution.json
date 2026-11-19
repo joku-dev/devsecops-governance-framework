@@ -144,6 +144,7 @@
     "scripts/lib/providers/validation_worktree.py",
     "scripts/lib/providers/workbench.py",
     "scripts/lib/providers/workbench_data.py",
+    "scripts/lib/providers/workbench_startup_native.py",
     "scripts/lib/providers/workbench_workspace.py",
     "scripts/lib/release_assessment.py",
     "scripts/lib/release_inputs.py",
@@ -274,8 +275,12 @@
     "scripts/lib/workbench_application.py",
     "scripts/lib/workbench_archive.py",
     "scripts/lib/workbench_impact.py",
+    "scripts/lib/workbench_startup.py",
+    "scripts/lib/workbench_startup_application.py",
+    "scripts/lib/workbench_startup_ports.py",
     "scripts/portable_consumer_intake.py",
-    "scripts/serve_governance_workbench.py"
+    "scripts/serve_governance_workbench.py",
+    "scripts/start_axiom_v2_workbench.py"
   ],
   "data_roots": [
     "schemas",
@@ -302,7 +307,8 @@
     "requirements-validation.lock",
     "requirements-validation.txt",
     "scripts/opa-download-sources.json",
-    "scripts/validation-toolchain.env"
+    "scripts/validation-toolchain.env",
+    "tests/fixtures/v2-workbench-original-start/start_governance_workbench.sh"
   ],
   "retired_entrypoints": [
     "scripts/adapt_document_consistency_provider_response.py",
