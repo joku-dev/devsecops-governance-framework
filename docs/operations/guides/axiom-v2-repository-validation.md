@@ -149,11 +149,14 @@ Orchestrierung gehören weiterhin zum offenen Gesamt-Goal.
 
 ## Vollständiger Compliance-Lauf: neuer Kandidat
 
-Der veröffentlichte Vorgänger `59c3112` in
-[PR #427](https://github.com/joku-dev/devsecops-governance-framework/pull/427)
-besteht die vollständige Mac-Paketprüfung mit 2.547 Tests und einer bekannten
-Deployment-Auslassung. Die neue Anwendung verbindet die Unterprüfer; ihre
-vollständige Paketabnahme ist ein eigener noch offener Nachweis.
+Der veröffentlichte Stand `3d6a3c7` in
+[PR #428](https://github.com/joku-dev/devsecops-governance-framework/pull/428)
+besteht den vollständigen installierten Mac-Standardlauf mit 2.589 Tests, einer
+bekannten Deployment-Auslassung und 22 OPA-Beobachtungen. Zwölf echte
+Standard-, Auslassungs-, Fehler-, Alias-, Wiederholungs- und Legacy-Fälle wurden
+mit den ganzen Originalentscheidungen über die aufbewahrten Beobachtungen
+verglichen. Dies ist kein zweiter unabhängiger nativer V1-Gesamtlauf und keine
+Ziel-VM-Abnahme. Diese Nachweise bleiben an `3d6a3c7` gebunden.
 
 In einer passenden installierten Testinstanz mit vorbereiteten Werkzeugen:
 
@@ -212,6 +215,26 @@ Dateibudgets sind sichtbare Zulassungsfehler. Ursprüngliche ungefangene Fehler
 werden typisiert festgehalten; ein historischer Prozess-Traceback wird nicht
 nachgebaut. Unvollständige Datensätze prüfen die erhaltene Entscheidung und
 Teil-Exportbytes, behaupten aber keine vollständige native Gesamtverifikation.
-Alle Baselines, Trust- und Betriebsfreigaben bleiben getrennt. Die passende
-neue Mac-Paketabnahme und ganzen Originalvergleiche stehen aus; Linux wird auf
-Wunsch später geprüft.
+Alle Baselines, Trust- und Betriebsfreigaben bleiben getrennt. Die oben genannte Mac-Abnahme gilt für ihren exakten Quellstand;
+Linux wird auf Wunsch später geprüft. Neue Quellen brauchen eigene passende
+Validierung und Paketnachweise.
+
+## OPA-Installation vor dem Python-Bootstrap
+
+Der aktive Einstieg `scripts/install_validation_opa.py` behält seine vorhandene
+CLI und aufrufbare API. Seine GitHub-Release-/Asset-API-Routen, HTTPS-Mirror,
+Transport-Header, Plattformauswahl und Cache-/Installationslogik liegen jetzt im
+expliziten Adapter `scripts/lib/providers/opa_bootstrap.py`. Die Anbindung
+`scripts/lib/opa_bootstrap_ports.py` benötigt nur die Python-Standardbibliothek.
+Sie lädt die übrigen Anwendungsadapter mit ihren noch fehlenden Abhängigkeiten
+beim Erststart nicht.
+
+Die vorhandenen Optionen wie `--describe`, `--destination`, `--cache`,
+`--offline`, `--mirror`, `--attempts` und `--timeout` bleiben erhalten. SHA-256
+wird vor jeder Ausführung geprüft, danach die gepinnte OPA-Version; eine
+Installation ersetzt die Zieldatei atomar. Offline kann ein gültiger Cache eine
+fehlende, leere oder beschädigte Installation wiederherstellen. Ohne gültiges
+Binary schlägt der Offline-Aufruf sichtbar fehl. Downloads verwenden weiterhin
+begrenzte HTTPS-Aufrufe ohne Token. Die vollständige Einrichtung, Aktualisierung
+und Reparatur beider Python-Umgebungen ist ein weiterer offener Goal-Baustein.
+Die geschützten ursprünglichen Bootstrap-Skripte bleiben unverändert.

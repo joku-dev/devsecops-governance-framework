@@ -7,7 +7,7 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-19; published parity stack through draft PR #427 (`59c3112`), followed by the complete native compliance application described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
+| Last implementation review | 2026-11-19; published parity stack through draft PR #428 (`3d6a3c7`), followed by the OPA bootstrap adapter described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
 | Operating observation | Installed Mac `73b93bb`: complete fixed ha-CPsWMS report equality, complete integration/onboarding equality and complete own controller exit 0 with 2,509 tests (one known skip). The earlier `735e241` controller exit 2 remains failed. Scoped `0f43709` Workbench proof retains 63 cases per host and fixed-report equality on Mac/target VM. New target-VM delivery is deferred by the maintainer; historical broader proof, V1 activation and full V2 systemd/update/recovery acceptance remain separate |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
@@ -205,8 +205,8 @@ or released models.
 ### Shared evaluation with explicit provider boundaries
 
 The same Python/OPA evaluator serves CI, local use and collector verification.
-The neutral core consumes normalized context and evidence; only the composition
-module and provider adapters select native implementations. Discovery/evaluation
+The neutral core consumes normalized context and evidence; only the declared composition
+modules and provider adapters select native implementations. Discovery/evaluation
 never implicitly dispatches another provider job. Repository/execution identities
 are namespaced by provider and instance; display names are not identities.
 
@@ -288,7 +288,8 @@ released consumer wrappers keep their original pins and authority.
 | Collection / proposal coordination | Bounded poll/work, frozen batches, retries, independent candidate reconciliation | `scripts/portable_consumer_intake.py`, `scripts/lib/portable_intake/controller.py`, `publisher.py`, `candidate_index.py` |
 | Operational persistence | Node-owned SQLite transactions, receipts, raw bytes, backups and inactive restore candidate | `scripts/lib/portable_intake/store.py`, `scripts/lib/consumer_intake_store.py` |
 | Private Workbench | Registered-source/candidate preparation, original bytes, append-only notes, rule-impact hints and scoped handoff | `scripts/serve_governance_workbench.py`, `scripts/workbench/`, `scripts/lib/workbench_impact.py` |
-| Provider composition | Shared read/proposal/execution contracts and explicit adapter selection | `scripts/lib/provider_ports.py` |
+| Provider composition | Shared read/proposal/execution contracts and explicit adapter selection. Bootstrap uses a separate standard-library-only composition because application dependencies do not exist yet | `scripts/lib/provider_ports.py`, `scripts/lib/opa_bootstrap_ports.py` |
+| Pinned OPA bootstrap | Active compatibility facade delegates platform pins, official release/API transport, optional HTTPS mirror, verified cache and atomic installation/repair to an explicit adapter. Hash-before-execution, version gates and existing outcomes remain. This is not complete validation/source-intake environment bootstrap parity | `scripts/install_validation_opa.py` through `scripts/lib/opa_bootstrap_ports.py`; `scripts/lib/providers/opa_bootstrap.py` |
 | Native adapters | Context/facts, HTTPS transport, discovery, SCM/Git proposals, draft verification and provider assurance | `scripts/lib/providers/context.py`, `transports.py`, `discovery.py`, `operations.py`, `workbench.py`, `assurance.py`, `github_security.py`, `legacy_interop.py` |
 | Shared integrity helpers | Neutral failure/retry types, private-file and archive checks, Trust and dependency hashes | `scripts/lib/provider_errors.py`, `private_credentials.py`, `safe_archive.py`, `evidence_trust.py`, `v2_source.py` |
 | Product distribution | Externally pinned archive admission, offline environment, sparse execution closure, private fresh prefix | `scripts/install_axiom_v2.py`, `scripts/lib/v2_distribution.py`, `runtime_package.py` |

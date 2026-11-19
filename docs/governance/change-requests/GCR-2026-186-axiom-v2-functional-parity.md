@@ -994,3 +994,37 @@ Original UTC whole-second formatting and explicit header-clock/stdout/artifact
 bindings receive additional consistency checks. Empty directory symlinks cannot
 hide outside the final source file map. The failed whole run remains failed;
 focused regressions are separate from a required fresh complete validation.
+
+
+### Native compliance acceptance and OPA bootstrap adapter follow-up
+
+The corrected published candidate `3d6a3c7` / draft PR #428 passes the complete
+pinned development validation (2,589 tests, one known deployment skip). Its
+matching installed Mac package also completes the full default native macro:
+2,589 tests, 22 OPA observations, all source bytes/modes audited, exact generator
+effects and the 678,168-byte canonical Viewer retained. Twelve actual default,
+skip, negative, alias, rerun and legacy cases pass their expected assertions and
+whole unchanged-original decision comparisons over retained observations. This
+is not a second independent native V1 macro execution. All eight observed CI
+families are green; review metadata is declared_complete. Earlier failed and
+interrupted attempts retain their original outcomes. Target-VM work stays
+deferred by the maintainer. These proofs cannot certify subsequent source.
+
+The next coherent change moves the active pinned OPA installer implementation
+into an explicit provider adapter. A standard-library-only composition avoids
+loading dependency-rich application adapters before Python bootstrap. The
+existing compatibility facade, CLI/API, platform pins, source order, mirror,
+cache repair, hash-before-execution, version gate and atomic copy remain. Whole
+unchanged V1 installer comparisons cover successful and negative outcomes,
+diagnostics and complete file effects; real isolated -I/-S startup and pinned
+offline installation/repair check the actual bootstrap dependency boundary.
+An initial attempt through application composition failed with missing YAML;
+that failure is retained separately from the corrected isolated startup proof.
+
+Classification remains executable engineering, adapter/configuration and
+descriptive guide/architecture under this GCR. No new normative source, schema,
+Rego policy, released baseline, accepted index or operating authority is created.
+All 24 protected implementation hashes stay unchanged. The matrix remains
+81 in_progress/54 pending/0 verified, full22/135/37/16 and 18 historical receipts.
+This adapter migration is a bootstrap prerequisite; complete Python environment
+creation, update and repair and the remaining operating workflows stay in scope.

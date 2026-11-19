@@ -366,6 +366,9 @@ class RuntimeFingerprintClosure(unittest.TestCase):
         expected = {name for name in registered if '/validation_' in name
                     or '/compliance_' in name or name.endswith('/runtime_validation.py')}
         expected.add('config/axiom-v2-validation-capabilities.json')
+        expected.update({'scripts/install_validation_opa.py',
+                         'scripts/lib/opa_bootstrap_ports.py',
+                         'scripts/lib/providers/opa_bootstrap.py'})
         with patch.object(portable_runtime, 'file_digest', wraps=portable_runtime.file_digest) as measured:
             baseline = portable_runtime.source_digest()
         paths = {call.args[0].relative_to(root).as_posix() for call in measured.call_args_list}

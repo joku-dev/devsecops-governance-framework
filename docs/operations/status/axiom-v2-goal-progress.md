@@ -14,7 +14,7 @@
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Vollständigen nativen Compliance-Lauf im passenden Produktpaket abnehmen.
+**Nächster Baustein:** Vollständige Bootstrap- und Betriebsabläufe anbieterneutral umsetzen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -31,7 +31,7 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Der veröffentlichte Kandidat 59c3112/PR427 besteht die gepinnte Entwicklungsvalidierung mit 2.547 Tests und einer bekannten Deployment-Auslassung. Sein vollständiger installierter Mac-Paketcontroller endet ebenfalls mit Exit 0: 2.547 Tests in 1.363,282 Sekunden, alle 2.637 Quellen und Modi geprüft, neunzehn exakte Metadatenfolgen und die vollständige 678.168-Byte-Viewer-Ausgabe gesichert. Alle sieben beobachteten CI-Familien sind grün; der Review-Status lautet declared_complete. Die festen ha-CPsWMS-Berichte, Integrations-/Onboarding-Ausgaben und die vollständige Repository-Prüfung mit 7.405 Replay-Ereignissen bestehen. Frühere Controller- und System-OpenSSL-Fehler bleiben erhalten. Der Folgebranch verbindet die vollständige ursprüngliche Compliance-Entscheidung über eine neue CLI mit echten Integrations-, Repository-, vollständigen eigenen Unit-Test- und OPA-Operationen auf derselben vollständigen eigenen Quelle. Native Rohbeobachtungen, Teilfehler, Generatorwirkungen und chronologische Exportbytes werden separat gebunden und inspiziert. Vollständige neue Paketabnahme, Standardlauf, ausdrückliches Auslassen und ganze Originalvergleiche stehen noch aus; eine kleine Ersatzsuite erfüllt das Goal nicht. Die Ziel-VM bleibt auf Wunsch zurückgestellt. Der breite ältere Hostcheckpoint und alle 18 historischen Nachweise behalten ihre Quellbindung. Der Gesamtumfang bleibt 22/135/37/16; 81 Einstiegspunkte sind in Arbeit, 54 offen, keiner vollständig nachgewiesen. Betriebs-, Bootstrap-, Recovery-, Lifecycle- und Providerabläufe bleiben erforderlich.
+Der veröffentlichte Stand 3d6a3c7/PR428 besteht die gepinnte Entwicklungsvalidierung und den vollständigen installierten Mac-Standardlauf mit je 2.589 Tests und einer bekannten Deployment-Auslassung. Der native Lauf sichert 22 OPA-Beobachtungen, alle Quellen und Modi, exakte Metadatenfolgen und die vollständige 678.168-Byte-Viewer-Ausgabe. Zwölf echte Standard-, Auslassungs-, Fehler-, Alias-, Wiederholungs- und Legacy-Fälle bestehen ihre erwarteten Ergebnisse und ganze Originalentscheidungen über aufbewahrte Beobachtungen; dies ist kein zweiter unabhängiger nativer V1-Gesamtlauf. Alle acht beobachteten CI-Familien sind grün, Review-Status declared_complete. Diese Nachweise gelten für 3d6a3c7. Der Folgebranch verschiebt die aktive OPA-Installation in einen expliziten Adapter mit eigener Standardbibliothek-Anbindung für den Erststart. Ganze Originalvergleiche sowie echte isolierte Offline-Installation und Reparatur prüfen die erhaltene Funktion. Vollständige Erstellung, Aktualisierung und Reparatur beider Python-Umgebungen, Start-, Update-, Backup-/Recovery-, Lifecycle- und Providerabläufe bleiben erforderlich. Die Ziel-VM bleibt auf Wunsch zurückgestellt. Der breite ältere Hostcheckpoint und alle 18 historischen Nachweise behalten ihre Quellbindung. Der Gesamtumfang bleibt 22/135/37/16; 81 Einstiegspunkte sind in Arbeit, 54 offen, keiner vollständig nachgewiesen.
 
 - `scripts/generate_governance_compliance_result.py`
 - `scripts/bootstrap_validation_env.sh`
@@ -103,6 +103,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `cfa3375f811cb83071b72e624a71ae6f63346b688f1f31d1aa84e9dfc4be81da`. Beobachtungs-SHA-256: `a89e492f70d5066892e516fcbc740ed5ef49d0dd77a678701d4aa6f6c0b7b51f`.
+Matrix-SHA-256: `cfa3375f811cb83071b72e624a71ae6f63346b688f1f31d1aa84e9dfc4be81da`. Beobachtungs-SHA-256: `f9d5482cbb6ceeeab7fe500c3d0d2bc18a000f3278741fc0b7bf715403f35f13`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).
