@@ -367,6 +367,7 @@ class RuntimeFingerprintClosure(unittest.TestCase):
                     or '/compliance_' in name or name.endswith('/runtime_validation.py')}
         expected.update(name for name in registered if '/environment_bootstrap' in name or name.endswith('/bootstrap_axiom_v2_environment.py'))
         expected.update(name for name in registered if '/workbench_startup' in name or name.endswith('/start_axiom_v2_workbench.py'))
+        expected.update(name for name in registered if '/validation_suite' in name or name.endswith('/run_axiom_v2_validation_suite.py') or name.endswith('/environment_lease.py') or name.endswith('/provenance_validation.py'))
         expected.add('requirements-validation.txt')
         expected.add('config/axiom-v2-validation-capabilities.json')
         expected.update({'scripts/install_validation_opa.py',

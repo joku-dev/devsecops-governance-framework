@@ -1127,3 +1127,57 @@ first new full suite was explicitly interrupted for this fix (actual exit130,
 were audited, and19 incidental raw metadata changes retained/restored. It is not
 a passed full validation. A fresh frozen full run is required for the corrected
 source. Incomplete-operation reconciliation remains a separate open workflow.
+
+
+## Complete local validation chain, in development
+
+Classify the stdlib-only finite validation-suite kernel and hash-bound unchanged
+V1 shell/toolchain/version-list test references as executable engineering and
+technical test artifacts. No normative source intake or derivation applies.
+The target remains the complete original `validate_all.sh` interface: required
+tools, OPA version, every pinned dependency, pip consistency, readiness message,
+OPA compilation, runtime/repository/provenance validators and full unit discovery.
+Keep help/usage/check-tools branches and every first-nonzero abort; default
+execution must never become a selected-test or check-tools-only shortcut.
+
+The private source audit identifies two original edge cases: help exits before
+extra-argument validation, and the unquoted OPA expansion fails before executing
+the selected tool when the environment path contains spaces. Preserve both as
+real unchanged-original observations. The native V2 adapter must address the
+selected tool unambiguously, describe this original limitation and retain actual
+native outcomes rather than emulate wrong-program execution. Host awk parsing,
+the actual original Python metadata-probe body and controlled operation failures
+prepare full stdout/stderr/status/order comparisons. Controlled validator/test
+programs are explicit doubles, not actual V2 full validation or target acceptance.
+
+The candidate now includes its stdlib frontend, shared environment-reader lease,
+explicit native effects and runtime/distribution registration. Its own exact
+committed prepared package supplies one private generated overlay for runtime,
+repository, standalone provenance and complete unit discovery. The existing
+compliance backend keeps its original preparation defaults; this caller defers
+the duplicate shell preflight and uses the original six validation pins.
+No consumer program is executed. Full default execution rejects development and
+unit-skip overrides; check-tools remains an explicit narrower branch.
+
+Private intents precede effects, captured bytes bind native phase outcomes, and
+incomplete/failed records never gain completion by omitted later phases. The
+retained suite inspector replays order, statuses and final streams, checks whole
+runtime/repository component byte closure and wires, replays provenance, and
+requires complete captured unit discovery with matching parsed statistics.
+Runtime/repository semantic replay happens at creation and is not silently
+claimed again by the enclosing inspector. All records remain declared evidence.
+
+Original shell oracle cases, the actual toolchain handoff probe and focused
+boundary tests are separate from the required complete current-source Mac/Linux
+native acceptance. Do not promote them to a full default pass. The mapped entry
+remains in progress until its complete original scope and delivery are proved;
+no parity receipt, protected script, baseline, official result or authority changes.
+
+The first H full run was explicitly interrupted at 451.306 seconds (actual130)
+after review found that a new provenance reference test read the physically
+retired V1 script. A controlled sparse-product regression reproduced the missing
+file; the corrected test binds the archived reference directly to its immutable
+6b557fe SHA-256. All2,691 pre-run file bytes/modes,24 protected files and18
+historical receipts were audited, and19 raw metadata effects retained/restored.
+That interrupted run is not a pass. The corrected source needs a fresh complete
+pinned validation and actual current-source Mac/Linux default-suite acceptance.

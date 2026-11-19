@@ -82,6 +82,7 @@
     "scripts/lib/portable_intake/store.py",
     "scripts/lib/private_credentials.py",
     "scripts/lib/provenance_application.py",
+    "scripts/lib/provenance_validation.py",
     "scripts/lib/provider_errors.py",
     "scripts/lib/provider_ports.py",
     "scripts/lib/providers/__init__.py",
@@ -101,6 +102,7 @@
     "scripts/lib/providers/environment_bootstrap_native.py",
     "scripts/lib/providers/environment_bootstrap_process.py",
     "scripts/lib/providers/environment_bootstrap_storage.py",
+    "scripts/lib/providers/environment_lease.py",
     "scripts/lib/providers/general_result_ports.py",
     "scripts/lib/providers/general_results.py",
     "scripts/lib/providers/github_security.py",
@@ -140,6 +142,9 @@
     "scripts/lib/providers/typed_capture.py",
     "scripts/lib/providers/typed_containers.py",
     "scripts/lib/providers/typed_ports.py",
+    "scripts/lib/providers/validation_suite_full.py",
+    "scripts/lib/providers/validation_suite_native.py",
+    "scripts/lib/providers/validation_suite_storage.py",
     "scripts/lib/providers/validation_tools.py",
     "scripts/lib/providers/validation_worktree.py",
     "scripts/lib/providers/workbench.py",
@@ -270,6 +275,9 @@
     "scripts/lib/validation_queries.py",
     "scripts/lib/validation_replay.py",
     "scripts/lib/validation_sources.py",
+    "scripts/lib/validation_suite.py",
+    "scripts/lib/validation_suite_application.py",
+    "scripts/lib/validation_suite_ports.py",
     "scripts/lib/vulnerability_application.py",
     "scripts/lib/vulnerability_evidence.py",
     "scripts/lib/workbench_application.py",
@@ -280,7 +288,8 @@
     "scripts/lib/workbench_startup_ports.py",
     "scripts/portable_consumer_intake.py",
     "scripts/serve_governance_workbench.py",
-    "scripts/start_axiom_v2_workbench.py"
+    "scripts/start_axiom_v2_workbench.py",
+    "scripts/run_axiom_v2_validation_suite.py"
   ],
   "data_roots": [
     "schemas",
@@ -308,6 +317,9 @@
     "requirements-validation.txt",
     "scripts/opa-download-sources.json",
     "scripts/validation-toolchain.env",
+    "tests/fixtures/v2-validation-suite-original/requirements-validation.txt",
+    "tests/fixtures/v2-validation-suite-original/validate_all.sh",
+    "tests/fixtures/v2-validation-suite-original/validation-toolchain.env",
     "tests/fixtures/v2-workbench-original-start/start_governance_workbench.sh"
   ],
   "retired_entrypoints": [
