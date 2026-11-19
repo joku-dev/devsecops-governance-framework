@@ -77,3 +77,18 @@ class ProductUnitRunner(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'controller_revision_mismatch'):
                 controller.execute(inputs / row['path'], row['sha256'], self.root / 'candidate')
         run.assert_not_called()
+
+    def test_closed_projection_phase_uses_the_complete_own_source_without_writing_outputs(self):
+        import json
+        from lib.viewer_app import project_data
+        environment = {**self.environment, 'PATH': os.environ['PATH'],
+            'GIT_CONFIG_GLOBAL': '/dev/null', 'GIT_CONFIG_NOSYSTEM': '1'}
+        folder = ROOT / 'generated/viewer/app'
+        before = {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                  for p in folder.iterdir() if p.is_file()}
+        result = controller.run_command('viewer-projection', ROOT, environment, self.output, timeout=120)
+        self.assertEqual(result['returncode'], 0)
+        raw = (self.output / 'viewer-projection-stdout.bin').read_bytes()
+        self.assertEqual(raw, (json.dumps(project_data(ROOT), ensure_ascii=False, indent=2) + '\n').encode())
+        self.assertEqual(before, {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                         for p in folder.iterdir() if p.is_file()})

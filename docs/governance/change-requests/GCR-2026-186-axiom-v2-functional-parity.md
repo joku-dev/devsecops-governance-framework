@@ -868,3 +868,44 @@ The full 22-area/135-entrypoint/37-CI/16-operating-workflow Goal, all eighteen
 historical receipts and every unfinished counterpart remain in scope. These
 fixtures and counts promote no subject to verified and grant no human,
 governance, release or operating approval.
+
+### Exact primary Viewer output in the complete own-suite projection
+
+Published `735e241` (draft PR #425) passes pinned development validation with
+2,504 tests and one known deployment skip. Its fresh installed Mac package also
+passes the complete unchanged 2,504-case suite in 1,379.308 seconds. The real
+controller nevertheless returns exit 2 at its final closed file audit. All
+2,626 tracked source files and modes remain valid except the nineteen permitted
+metadata effects, and HEAD/tree are unchanged. The sole additional file is the
+normal Git-ignored `generated/viewer/app/data.json` produced by the existing
+Viewer generator. The failed controller and all raw outputs remain retained.
+
+A separate read-only probe in that same admitted source context, with its actual
+prepared tools, compares every byte of the 678,168-byte payload with the complete
+original projection and finds exact equality. Initial probes from another source
+context or without OPA could not verify that projection; neither is a passing
+verification or a replacement for the original controller failure.
+
+Artifact classification: this is existing generated presentation output, retained
+privately as an own engineering test effect. It is not a new source document,
+accepted consumer result or approval. No source-register or baseline change is
+required. The correction extracts the existing complete projection into shared
+`project_data`; the existing writer still uses that same projection and original
+copy/serialization sequence. The fixed controller invokes only that known own
+projection in its admitted source context and prepared environment, then checks
+the entire raw payload and retains its byte/hash pin. It starts no inspected
+consumer program. Existing lifecycle verification may use fixed own read/replay
+and OPA operations; the phase is not a claim of kernel isolation or purely
+in-memory execution. All other added files, modified semantics, symlinks and
+source changes remain rejected. The full original discovery and nineteen tracked
+metadata checks remain unchanged. Fresh corrected package acceptance is required.
+
+The separate whole-repository CLI primitive was also measured at `735e241`:
+the ordinary Mac `/usr/bin/openssl` rejects required `-rawin` and the native
+validator fails; the prepared OpenSSL environment passes with the exact same
+key/statement/signature bytes. Both complete native outcomes are retained and
+bounded-worker replays match all 2,626 files, 7,372 ordered events and complete
+output/effect bytes per run. This exposes a real tool capability prerequisite;
+it is not a signature-data correction or executed full compliance orchestrator.
+The system-tool failure is preserved. Full Goal scope, all historical receipts,
+report-only defaults and separate operating authority remain unchanged.
