@@ -365,6 +365,8 @@ class RuntimeFingerprintClosure(unittest.TestCase):
         registered = json.loads((root / 'config/axiom-v2-distribution.json').read_text())['python_files']
         expected = {name for name in registered if '/validation_' in name
                     or '/compliance_' in name or name.endswith('/runtime_validation.py')}
+        expected.update(name for name in registered if '/environment_bootstrap' in name or name.endswith('/bootstrap_axiom_v2_environment.py'))
+        expected.add('requirements-validation.txt')
         expected.add('config/axiom-v2-validation-capabilities.json')
         expected.update({'scripts/install_validation_opa.py',
                          'scripts/lib/opa_bootstrap_ports.py',

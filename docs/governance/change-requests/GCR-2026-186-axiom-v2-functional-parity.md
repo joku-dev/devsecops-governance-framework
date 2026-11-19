@@ -1028,3 +1028,58 @@ All 24 protected implementation hashes stay unchanged. The matrix remains
 81 in_progress/54 pending/0 verified, full22/135/37/16 and 18 historical receipts.
 This adapter migration is a bootstrap prerequisite; complete Python environment
 creation, update and repair and the remaining operating workflows stay in scope.
+
+
+### Environment creation/update/repair follow-up in development
+
+The next engineering component covers both original validation and optional
+source-intake environment creation and repeated updates, with missing/corrupt
+pinned OPA repair. It uses a standard-library-only entry, neutral finite
+orchestration and explicit native adapters; a fresh-only installer is not the
+acceptance target. Source/target admission, durable pre-effect intent, retained
+native failures/partial effects and complete original positive/negative
+comparisons remain required before delivery. Original protected bootstrap
+files, baseline packages, accepted indexes and all authorities stay unchanged.
+Workbench first-start integration remains separate unfinished work. Classification
+is executable engineering/configuration, private technical observations and
+descriptive guide/architecture under this GCR; no new normative source is derived.
+
+Seven isolated pure-core prototype tests and twenty separate unchanged-original
+Mac bootstrap/orchestration cases prepare this work. The latter use real private
+environments and pinned tools with controlled offline transport/failure injection;
+startup-wrapper cases use an inert test backend, not the actual server or UI.
+These are not executed V2 environment parity or target-Linux/operating acceptance.
+
+
+The follow-up now implements the stdlib-only CLI and explicit native create/update
+adapters, owned-source snapshots, hash-locked pip acquisition, durable bounded
+native capture and a persisted incomplete-operation target guard. Actual private
+Mac attempts create both profiles, repeatedly update them, repair removed Python
+dependencies and restore missing/corrupt pinned OPA. A missing-wheel attempt is
+retained as an actual failed partial setup, followed by a separate explicit attempt
+with the complete wheelhouse.42 focused bootstrap tests and23 runtime tests pass;
+an initially unpinned runtime-test PATH is retained as failure, then the explicit
+pinned test environment passes. Two original bootstrap entrypoints are mapped
+in_progress:83 in_progress/52 pending/0 verified. All22/135/37/16 scope and18
+historical receipts remain. This is in-development engineering evidence; no full
+new-source repository validation, complete original/negative matrix, source-bound
+Linux package acceptance, Workbench firststart or operating approval is implied.
+
+
+The first frozen full environment-bootstrap suite completed2637 cases/1442.727s
+with one failure and one known deployment skip. The failure was the unsafe-directory
+fixture inheriting umask077, making mkdir0755 actually create0700; the unchanged
+private-directory guard correctly accepted it. The fixture now explicitly chmods
+0755 and asserts the unsafe actual mode before exercising rejection. All source
+bytes/modes and24 protected hashes were audited after that failed run; exact19
+metadata effects are retained/restored. No passed full validation is inferred.
+Two separately reproduced guard defects are corrected: unsupported platform facts
+now retain a known failed/CLI1 outcome before environment writes; a final source
+invalidation after returned phases retains incomplete/CLI2 with the actual cause,
+without inventing a failed phase or losing it to a terminal-mismatch error.44
+focused bootstrap cases also pass underumask077;23 runtime cases pass19.606s.
+Both guards additionally pass real private native probes; original failures remain
+separate. Delivery requires a new frozen full validation and matching candidate
+packages/host checks. Modern structured known-failure exit1 and private native
+codes/streams remain explicit versus original shell wire behavior; the complete
+Goal, Workbench bootstrap-firststart and operating acceptance stay open.
