@@ -476,6 +476,25 @@ The original complete output profile and additional acquisition/matching guards
 are distinguished in the [guide](../../operations/guides/axiom-v2-artifact-hygiene.md).
 
 
+### Retained portable candidate index
+
+The `candidate-index` application captures candidate data through the explicit
+`providers/candidate_index_source` port, then invokes the complete neutral
+`portable_intake/candidate_index.build_from_documents` projection. Working-tree
+acquisition and immutable Git-object acquisition are explicit choices. The
+default reads the installed product's committed candidate data, including sparse
+objects, without running producer code or contacting a CI provider.
+
+Private input manifests and complete index bytes bind the node, runtime and
+product revision. Inspection reprojects retained inputs after producer removal.
+The closed assessment schema fixes candidate-only, unverified, report-only and
+unpublished semantics. Explicit exports preserve before bytes and prepared/
+completed file-effect records. They require a single destination owner; node
+locking does not establish a distributed lease. See the
+[candidate-index guide](../../operations/guides/axiom-v2-candidate-index.md).
+Exact-source validation and installed host proofs remain separate delivery
+steps. This component does not promote candidates into official latest indexes.
+
 ## 6. Runtime View
 
 ### Candidate authoring transaction

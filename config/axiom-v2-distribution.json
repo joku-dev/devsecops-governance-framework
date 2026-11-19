@@ -249,6 +249,8 @@
     "scripts/serve_governance_workbench.py",
     "scripts/lib/artifact_hygiene.py",
     "scripts/lib/artifact_hygiene_application.py",
+    "scripts/lib/providers/candidate_index_source.py",
+    "scripts/lib/candidate_index_application.py",
     "scripts/lib/providers/artifact_hygiene.py"
   ],
   "data_roots": [

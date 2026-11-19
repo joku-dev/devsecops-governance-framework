@@ -22,6 +22,14 @@ ordnet die neuen Funktionen und Dokumentationsentwürfe zu.
 Details. Diese Ergänzung erweitert bestehende Aufgabenbereiche; sie erzeugt
 keine Baseline, Quellenfreigabe oder neue Consumer-Abnahme.
 
+## Ergänzung: portabler V2-Kandidatenindex (GCR-2026-186)
+
+Der V2-[Kandidatenindex](axiom-v2-candidate-index.md) stellt den bisherigen
+portablen Kandidaten-Lesestand über eine eigene CLI bereit. Vollständige
+Eingaben und Indexdateien bleiben privat erneut prüfbar; ein expliziter Export
+protokolliert Dateiersetzung getrennt. Kandidaten werden dadurch nicht zu
+offiziellen Ergebnissen. Diese V2-Ergänzung ist weiterhin in Umsetzung.
+
 ## Ergänzung: VM-Consumer-Intake (GCR-2026-171)
 
 Der optionale [VM-Collector](vm-consumer-intake.md) sammelt DevSecOps-L1-Ergebnisse

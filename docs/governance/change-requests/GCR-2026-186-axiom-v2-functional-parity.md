@@ -680,3 +680,32 @@ or authority transfers. Classified as executable governance logic with guide
 changes; no source intake, baseline release or schema change. Full installed
 parity remains open; the new matrix entry is in progress. See the
 [operator guide](../../operations/guides/axiom-v2-artifact-hygiene.md).
+
+## Portable candidate-index application follow-up
+
+The original `generate_portable_candidate_index.py` is mapped to a dedicated
+candidate-only V2 application and an explicit local/Git data adapter. The
+neutral complete projection is shared with the compatibility helper. A closed
+private assessment schema binds the node/runtime/revision, retained inputs and
+entire output. Reinspection and explicit file-export observations grant no
+official acceptance, native verification, publication or operating authority.
+The original source bounds are preserved; extra product guards and the changed
+private output defaults/modes are documented. Both Git object formats and the
+whole unchanged original CLI file are tested, including 2,000 synthetic records.
+This is executable governance logic, a private evidence contract and practical
+documentation, requiring full pinned validation and accountable role review.
+It is not normative source material; no source-document derivation, policy,
+accepted index, released baseline or enforcement change is introduced. The
+entrypoint remains in progress until source-bound delivery proofs are complete.
+See the [guide](../../operations/guides/axiom-v2-candidate-index.md).
+
+An additional real public-CLI comparison found that byte-level JSON parsing
+accepted UTF-16 while the original UTF-8 text reader rejected it. The application
+now explicitly decodes strict UTF-8 before JSON parsing. Seven BOM/UTF-16/32
+cases are checked against the unchanged original CLI, alongside literal Unicode
+UTF-8 success. The superseded complete test run was intentionally stopped and
+retained. The corrected runtime passed 2,420 pinned tests in 1,510.925 seconds
+with one known deployment skip; all non-generated sources and 24 protected
+implementation hashes remained unchanged. Twenty actual development CLI cases
+and a separate complete original-file comparison over 2,000 synthetic records
+also passed. Exact committed/installed delivery and the full Goal remain open.
