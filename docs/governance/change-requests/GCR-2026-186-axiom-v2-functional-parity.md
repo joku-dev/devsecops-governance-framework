@@ -1083,3 +1083,47 @@ separate. Delivery requires a new frozen full validation and matching candidate
 packages/host checks. Modern structured known-failure exit1 and private native
 codes/streams remain explicit versus original shell wire behavior; the complete
 Goal, Workbench bootstrap-firststart and operating acceptance stay open.
+
+
+## Workbench first and repeated source start
+
+Classify the stdlib starter, finite neutral startup/application/ports, explicit
+POSIX admission/exec adapter and four unchanged-original shell branch tests as
+executable engineering and private technical observations. Guide/arc42/matrix
+updates are descriptive; no normative source, baseline, protected acceptance,
+official latest result or operating authority changes. The immutable original
+starter is a hash-bound inert technical fixture, not a replacement policy.
+
+The preceding a1b9fab delivery passed a corrected frozen 2,639-test full suite
+(1,359.904s; one known deployment skip), exact 2,666-file/24-protected-file audit,
+and twenty real default committed-source installed bootstrap cases on each host.
+Both hosts reproduce the complete fixed-consumer V1 control/architecture reports.
+Those proofs retain a1b9fab binding; the earlier failed 2,637-test run remains
+failed. They do not certify this new starter or close full parity.
+
+Preserve the actual original branch: bootstrap only if environment Python is
+missing. Existing starts perform admission without package updates. Missing V2
+instances are initialized paused and independently keyed; existing/partial/foreign
+instances are never silently reinitialized. Fixed instance paths/port, clean
+source by default, explicit development and publication profiles remain visible
+compatibility/authority boundaries. Native exec preserves server PID, lifetime,
+exits and signals; handoff intent is not readiness or termination evidence.
+A shared environment reader lease survives exec and blocks the existing writer
+adapter. Require actual first/repeated HTTP start/stop and concurrent-update
+rejection on both hosts plus new-source pinned full validation before delivery.
+Structured setup failure codes differ explicitly from original shell propagation;
+raw subprocess outcomes remain private. Full OS-service/update/recovery,
+incomplete-bootstrap reconciliation and final 22/135/37/16 parity remain open.
+
+
+The shared-reader work also reproduced a prior writer admission race using real
+private records and a controlled actual flock interleaving: cached zero file size
+from before lock acquisition could overlook a newly written incomplete owner.
+Read file type/owner/mode/size after acquiring the exclusive lock. A regression
+first fails against the preceding adapter, then must reject the interrupted owner
+without replacing its pointer. No packages execute in this timing probe. The
+first new full suite was explicitly interrupted for this fix (actual exit130,
+437.400s); all2,675 source bytes/modes,24 protected hashes and18 receipt hashes
+were audited, and19 incidental raw metadata changes retained/restored. It is not
+a passed full validation. A fresh frozen full run is required for the corrected
+source. Incomplete-operation reconciliation remains a separate open workflow.

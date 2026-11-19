@@ -76,6 +76,7 @@ def source_digest():
              ROOT/'scripts/governance_runtime.py', ROOT/'scripts/install_validation_opa.py', ROOT/'scripts/lib/opa_bootstrap_ports.py',
              ROOT/'scripts/validation-toolchain.env', ROOT/'config/portable-runtime-compatibility.json', ROOT/'requirements-validation.lock', *sorted((ROOT/'schemas').glob('portable-*-v1.schema.json'))]
     paths.extend([ROOT/'scripts/serve_governance_workbench.py', ROOT/'scripts/lib/workbench_application.py', ROOT/'scripts/lib/workbench_archive.py', ROOT/'scripts/lib/workbench_impact.py'])
+    paths.extend(ROOT/name for name in ('scripts/start_axiom_v2_workbench.py', 'scripts/lib/workbench_startup.py', 'scripts/lib/workbench_startup_application.py', 'scripts/lib/workbench_startup_ports.py'))
     paths.extend(sorted((ROOT/'scripts/lib').glob('repository_*.py')))
     paths.extend(sorted((ROOT/'scripts/lib/repository_lifecycle').glob('*.py')))
     paths.extend(ROOT/name for name in ('scripts/bootstrap_axiom_v2_environment.py','scripts/lib/environment_bootstrap.py','scripts/lib/environment_bootstrap_application.py','scripts/lib/environment_bootstrap_ports.py','requirements-validation.txt'))

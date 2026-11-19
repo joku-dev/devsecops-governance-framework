@@ -35,9 +35,9 @@ The V2 server facade requires `--instance` and forwards its existing port,
 state, projection and publication options to V2 admission. It cannot silently
 create checkout-local product state. The instance fixes its port, draft root
 and consumer projection; conflicting overrides fail. The old standalone shell
-bootstrap belongs to retained V1. A V2 environment must first be installed or
-explicitly initialized with its pinned tools; full bootstrap/update service
-orchestration remains separate Goal work.
+bootstrap belongs to retained V1. The source starter below additionally supports
+first-run setup; installed prepared environments keep the existing direct route.
+Full OS service/update/recovery orchestration remains separate Goal work.
 
 The retained Ansible VM service explicitly selects
 `--legacy-service-profile vm-v1`. This preserves that older deployment's
@@ -48,6 +48,59 @@ service/update/recovery parity has been achieved. It cannot be combined with
 profile, the standalone server still fails before creating state. The real
 disposable-host deployment test retains every existing recovery transition;
 its activation-failure fixture targets the current exact main signature.
+
+## Source first start and repeated start
+
+The standard-library-only starter works before validation dependencies exist:
+
+```sh
+python3 -I -S -B scripts/start_axiom_v2_workbench.py \
+  --environment /private/operator/validation-environment \
+  --instance /private/operator/fresh-instance \
+  --port 8875
+```
+
+Select a supported Python 3.11+ interpreter explicitly with `--python` if needed.
+Missing environment Python triggers the own pinned validation bootstrap, including
+hash-locked dependencies and checksum-verified OPA. Existing environment Python
+skips dependency installation, matching the original starter branch. Startup then
+checks its Venv prefix, expected dependency versions, `pip check` and pinned OPA
+bytes. Damaged existing environments fail visibly: repair them through
+[`bootstrap_axiom_v2_environment.py`](axiom-v2-repository-validation.md#python-umgebungen-erstellen-aktualisieren-und-reparieren)
+in a separate explicit operation, then start again. A recorded incomplete
+bootstrap requires reconciliation; startup never clears its ownership record.
+
+`--offline --wheelhouse /private/operator/wheels --opa-cache /private/operator/cache`
+selects prepared acquisition. `--opa-mirror`, `--attempts` and `--timeout` are
+forwarded only when setup is necessary. A repeated start neither installs
+packages nor validates unused acquisition options. Paths must be separate from
+each other and outside product sources. The default private startup records
+reside beside the environment in `.axiom-workbench-starts`; `--state-directory`
+selects another private record root. These records include bounded admission
+process outputs and a durable handoff intention. They do not prove HTTP readiness,
+server termination, package-file attestation or operating approval.
+
+A missing instance is initialized paused, with its own key, state, projection
+and fixed port. An existing instance must match the exact source generation,
+port, tool and development mode; partial or foreign state is never replaced.
+The default requires clean committed own source. `--development` explicitly
+allows a working-source instance and cannot enable publication. Ambient old
+Workbench keys and checkout state are not imported. Publication requires both
+`--enable-pr` and a separate explicit `--publication-profile` on a nondevelopment
+instance. The V2 instance-bound projection replaces the original arbitrary
+`--consumer-projection` option; there is no silent path or authority migration.
+
+The admitted server replaces the starter process with the same PID and native
+exit/signal behavior, without a fixed service lifetime. A shared environment
+lease survives process replacement; explicit bootstrap writers remain blocked
+until every started server using that environment has stopped. This coordinates
+these local adapters, without claiming protection against arbitrary manual
+filesystem edits. Stop with Ctrl+C and use the same arguments to restart.
+Admission failures use structured exit1 or incomplete exit2. Original shell
+setup failures could propagate underlying native codes; those original codes
+and streams remain in private subprocess records, without claiming identical
+shell wire output. This implementation keeps its matrix entry in progress;
+service installation/update/recovery and final complete parity remain open.
 
 ## Private state and live source observations
 

@@ -32,6 +32,30 @@ class NativeBootstrapAdmission(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'successful_phase_native_evidence_mismatch'):
                 inspect(value.journal.root)
 
+    def test_writer_rechecks_owner_size_after_flock_when_previous_writer_finishes_during_admission(self):
+        import fcntl,hashlib
+        target=self.options['environment']
+        path=self.root/('.axiom-bootstrap-'+hashlib.sha256(str(target).encode()).hexdigest()[:24]+'.lock')
+        path.touch(mode=0o600);self.assertEqual(path.stat().st_size,0)
+        original=fcntl.flock;interleaved=False;retained=[]
+        def reordered(descriptor,operation):
+            nonlocal interleaved
+            if not interleaved:
+                interleaved=True
+                with self.session() as first:
+                    retained.append((first.journal.root,path.read_bytes()))
+                self.assertGreater(path.stat().st_size,0)
+            return original(descriptor,operation)
+        # A real previous writer creates an unfinished owner between this
+        # caller's file open/stat and actual lock acquisition. No mock sizes or
+        # invented completed result; only the finite interleaving is controlled.
+        with patch('fcntl.flock',side_effect=reordered):
+            with self.assertRaisesRegex(BootstrapFailure,'previous_operation_incomplete'):self.session()
+        self.assertEqual(len(retained),1)
+        self.assertEqual(path.read_bytes(),retained[0][1])
+        self.assertIsNone(inspect(retained[0][0])['declared_result'])
+        self.assertFalse(target.exists())
+
     def test_live_lock_blocks_second_coordinator_without_replacing_owner(self):
         with self.session() as first:
             raw=first.lock_path.read_bytes()

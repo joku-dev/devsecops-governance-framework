@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 83,
-      "pending": 52,
+      "in_progress": 84,
+      "pending": 51,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,7 +337,7 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "e3260cde1ac336c0916457954ad5dc16b253749f900e66d9b22e464280747d04",
+  "matrix_sha256": "c2e134dc7f560da262cac6df621724beec59feee98c95a506e8a0788d4aa1c5e",
   "next_work": {
     "entrypoints": [
       "scripts/generate_governance_compliance_result.py",
@@ -345,10 +345,10 @@
       "scripts/validate_all.sh",
       "scripts/start_governance_workbench.sh"
     ],
-    "next_step": "Der OPA-Adapter ist in PR429 veröffentlicht; Testkorrektur 7c44f0c besteht 2.595 gepinnte Entwicklungstests und die vollständige V2-CI. Der Paketstand 515bff1 besteht vollständige native Mac-/Linux-Standardläufe mit je 2.594 Tests und einer bekannten Auslassung sowie ganze Originalentscheidungen über aufbewahrte Beobachtungen; das ist kein zweiter unabhängiger nativer V1-Gesamtlauf. Alle zwölf Macfälle und der Workbench-HTTP-/Prüfentwurf-/Backup-/Restore-Zyklus auf beiden Hosts sind geprüft. Übrige Linuxfälle laufen weiter. Diese Nachweise behalten ihre Quellbindung. Der Folgebranch implementiert beide Python-Bootstrap-Einstiege mit Standardbibliothek-CLI, neutraler endlicher Orchestrierung, expliziten nativen Adaptern und dauerhaften privaten Protokollen. Echte Erstellung/Aktualisierung/Reparatur sowie kontrollierte Transport-, Prüfsummen-, Erstellungs-, pip- und Konsistenzfehler sind erprobt. Ein 2.637-Test-Lauf scheiterte an einer umask-abhängigen Testvorbedingung; sie ist korrigiert. 44 gezielte Bootstrap- und 23 Laufzeittests bestehen, einschließlich bekannter Plattformfehler und terminaler unvollständiger Quellinvalidierung. Lieferung setzt eine neue vollständige gepinnte Validierung, Quellaudit, aktuelle Distribution und Mac-/Linux-Abnahme voraus. Moderne strukturierte CLI und Original-Shell-Fehlerausgabe bleiben ausdrücklich unterschieden. Workbench-Erststart mit Bootstrap, Update-, Backup-/Recovery-, Lifecycle- und Providerabläufe bleiben erforderlich. Umfang22/135/37/16;83 Einstiegspunkte in Arbeit,52offen,0vollständig nachgewiesen;alle18historischen Nachweise bleiben erhalten.",
+    "next_step": "PR430 liefert a1b9fab mit 2.639 gepinnten Entwicklungstests, einer bekannten Auslassung und je20 echten installierten Bootstrapfällen auf Mac/Linux. Ganze feste ha-CPsWMS-Kontroll-/Architekturberichte stimmen mit V1 überein; diese Belege bleiben an a1b9fab gebunden. Der Folgebranch implementiert den Workbench-Erststart: Bootstrap nur bei fehlendem Umgebungs-Python, sonst keine Paketinstallation; anschließende Tool-/Abhängigkeits-/Instanzprüfung, eigener pausierter Node und nativer Prozesswechsel. Eine gemeinsame Lesesperre schützt laufende Starts vor parallelen expliziten Bootstrap-Updates. 25 fokussierte Fälle einschließlich vier unveränderter Original-Shell-Vergleiche bestehen. Ein echter privater Mac-Entwicklungslauf besteht16 Fälle mit vier gestarteten/sauber beendeten Servern, allen15 registrierten Quellen, getrennten Schlüsseln und abgelehntem parallelem Update. Die zusätzliche echte Linux-V1-Referenz besteht Erst-/Wiederstart mit unveränderten2.033Quelldateien und ganzen15Quellantworten bytegleich zum Mac-Entwicklungslauf. Eine reproduzierte vorherige Writer-Race wird durch fstat nach flock korrigiert; der erste neue Gesamtlauf wurde dafür ausdrücklich mit130 unterbrochen und vollständig auditiert. Neue vollständige Validierung sowie aktuelle installierte Mac-/Linux-Starts im normalen Profil bleiben vor Lieferung erforderlich. Strukturierte Setup-Fehler unterscheiden sich sichtbar von Original-Shell-Codes. Ganze Dienst-/Update-/Backup-/Recovery-, Lifecycle- und Providerabläufe sowie unabhängige Abnahme bleiben offen. Umfang22/135/37/16;84 Einstiegspunkte in Arbeit,51offen,0vollständig nachgewiesen;alle18historischen Nachweise bleiben erhalten.",
     "title": "Vollständige Bootstrap- und Betriebsabläufe anbieterneutral umsetzen"
   },
-  "observation_sha256": "d0ac66688342ef1cae306199a5621d3fbee1c3458819ab2c58826c8ee39b4c0b",
+  "observation_sha256": "1675e259950d34dfbb25463d97fbc8db40af7e005455b33b4e85107ee5af5e23",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],
