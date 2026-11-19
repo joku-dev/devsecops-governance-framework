@@ -2797,3 +2797,15 @@ Source-bound full validation, review/publication and fresh installed host proofs
 remain delivery tasks. The single mapped entrypoint is in progress, not verified.
 See the [guide](../guides/axiom-v2-candidate-index.md). All 22/135/37/16 original
 subjects and 18 historical receipts remain in the Goal without exceptions.
+
+### Original report input text grammar
+
+The report data readers and captured-memory generator data preserve original
+UTF-8 decoding before parsing. UTF-16/32 input rejection and the different
+JSON/YAML BOM rules are compared with actual frozen original reader functions.
+Existing raw-YAML values and strict product-JSON guards remain unchanged.
+This correction adds no verified entrypoint and changes no original Goal scope.
+Its prototype observations precede integration with the candidate-index commit.
+The combined source passed 2,427 pinned tests in 1,534.696 seconds with one known
+deployment skip and unchanged non-generated source fingerprints. Fresh source-
+bound installed evidence and the complete Goal remain open.

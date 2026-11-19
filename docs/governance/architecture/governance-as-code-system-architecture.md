@@ -495,6 +495,11 @@ locking does not establish a distributed lease. See the
 Exact-source validation and installed host proofs remain separate delivery
 steps. This component does not promote candidates into official latest indexes.
 
+Shared report readers preserve the original UTF-8 text boundary before JSON or
+YAML parsing, including filesystem and captured-memory generator data. Parser
+byte-encoding autodetection must not admit source formats rejected by the
+original readers. This boundary does not change source authority or result Trust.
+
 ## 6. Runtime View
 
 ### Candidate authoring transaction

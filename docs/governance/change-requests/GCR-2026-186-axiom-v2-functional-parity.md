@@ -709,3 +709,24 @@ with one known deployment skip; all non-generated sources and 24 protected
 implementation hashes remained unchanged. Twenty actual development CLI cases
 and a separate complete original-file comparison over 2,000 synthetic records
 also passed. Exact committed/installed delivery and the full Goal remain open.
+
+## Original UTF-8 report-input grammar follow-up
+
+The shared report and repository-generator data readers now decode original
+UTF-8 text before JSON/YAML parsing. A real frozen-reader comparison found
+that passing raw bytes to parsers additionally admitted UTF-16/32, which the
+original text readers reject. This correction covers filesystem reports and
+the captured in-memory repository dataset. YAML keeps original UTF-8 BOM
+acceptance; JSON keeps its rejection. Raw YAML null/false/scalar/list values
+and the existing strict product-JSON guards retain their distinct profiles.
+
+This is an executable compatibility correction, not normative source material.
+No source approval, schema, baseline, enforcement or accepted-result change is
+introduced. The prototype passed targeted frozen-reader, original-generator,
+dataset and native-engine comparisons. After integration on the separately
+validated candidate-index source, this combined runtime passed 2,427 pinned
+tests in 1,534.696 seconds with one known deployment skip. All non-generated
+source bytes and 24 protected implementation hashes stayed unchanged. Fresh
+installed evidence must still bind this later runtime; prior candidate-index
+installation proofs retain their original source. No verified subject or prior
+execution receipt is inferred from prototype counts or this partial increment.

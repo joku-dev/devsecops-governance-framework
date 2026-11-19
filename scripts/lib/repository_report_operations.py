@@ -46,7 +46,7 @@ class OriginalReportData(ReportData):
         return json.loads(self.raw(path).decode('utf-8'))
 
     def yaml(self, path):
-        value = yaml.safe_load(self.raw(path))
+        value = yaml.safe_load(self.raw(path).decode('utf-8'))
         return value if self.raw_yaml else value or {}
 
 
