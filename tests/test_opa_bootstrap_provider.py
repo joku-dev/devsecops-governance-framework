@@ -23,6 +23,24 @@ from lib.providers import opa_bootstrap as provider
 PAYLOAD=b'#!/bin/sh\nprintf "Version: 1.18.2\\n"\n'
 
 
+def pinned_native_fixture(destination, cache, *, candidate=None, fetch=current.download):
+    """Select only the approved asset; a different PATH build is not its fixture.
+
+    Prepared/offline packages already expose that exact asset. A development
+    environment that supplies another build acquires the approved public asset
+    through the real bounded verified installer into this private test location.
+    No system executable or validation environment is changed.
+    """
+    tool=current.select_tool()
+    found=candidate if candidate is not None else shutil.which('opa')
+    if found and current.matches(Path(found),tool.sha256):
+        return Path(found)
+    current.install(tool,destination,cache,fetch=fetch,attempts=2,timeout=60)
+    if not current.matches(destination,tool.sha256):
+        raise AssertionError('Approved pinned native fixture was not acquired')
+    return destination
+
+
 class OPABootstrapProvider(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -116,11 +134,11 @@ class OPABootstrapProvider(unittest.TestCase):
                 self.assertEqual(result.stdout,f'cache_key={tool.cache_key}\nversion={tool.version}\nasset={tool.asset}\n')
 
     def test_stdlib_only_cli_offline_installs_then_repairs_from_exact_pinned_cached_binary(self):
-        executable=shutil.which('opa')
-        self.assertIsNotNone(executable,'Pinned validation OPA is required')
-        tool=current.select_tool();self.assertEqual(hashlib.sha256(Path(executable).read_bytes()).hexdigest(),tool.sha256)
+        tool=current.select_tool()
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary);destination=root/'environment/bin/opa';cache=root/'cache'
+            executable=pinned_native_fixture(root/'fixture/opa',root/'fixture-cache')
+            self.assertEqual(hashlib.sha256(executable.read_bytes()).hexdigest(),tool.sha256)
             source=cache/tool.cache_key/'opa';source.parent.mkdir(parents=True);shutil.copyfile(executable,source)
             args=['--destination',str(destination),'--cache',str(cache),'--offline']
             for before in (None,b'corrupt existing binary',b''):
@@ -130,6 +148,22 @@ class OPABootstrapProvider(unittest.TestCase):
                 self.assertEqual(hashlib.sha256(destination.read_bytes()).hexdigest(),tool.sha256)
                 self.assertTrue(os.access(destination,os.X_OK))
             self.assertEqual(list(destination.parent.glob('.opa-*')),[])
+
+    def test_another_path_build_is_never_executed_or_accepted_as_the_pinned_fixture(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);marker=root/'unapproved-executed'
+            wrong=root/'other-opa-build'
+            wrong.write_text('#!/bin/sh\ntouch '+str(marker)+'\n');wrong.chmod(0o755)
+            tool=current.Tool('1.18.2','explicit-synthetic-fixture',hashlib.sha256(PAYLOAD).hexdigest(),464348303)
+            cache=root/'verified-cache';held=cache/tool.cache_key/'opa';held.parent.mkdir(parents=True);held.write_bytes(PAYLOAD)
+            def forbidden(*args,**kwargs):
+                raise AssertionError('Verified cached fixture must not download')
+            with patch.object(current,'select_tool',return_value=tool):
+                result=pinned_native_fixture(root/'fixture/opa',cache,candidate=str(wrong),fetch=forbidden)
+            self.assertEqual(result.read_bytes(),PAYLOAD)
+            self.assertEqual(hashlib.sha256(result.read_bytes()).hexdigest(),tool.sha256)
+            self.assertFalse(marker.exists())
+            self.assertNotEqual(wrong.read_bytes(),PAYLOAD)
 
     def test_active_facade_has_no_provider_endpoints_or_direct_provider_imports(self):
         from lib.v2_boundary import violations,validate_boundaries
