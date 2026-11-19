@@ -2883,3 +2883,32 @@ prepared packages and actual installed Mac/Linux proof follow independently.
 Only explanatory/progress metadata changes after the full run; executable
 source remains frozen. The complete Goal, all scope units and historical
 receipts remain unchanged, with no new verified subject or authority.
+
+
+## Complete repository self-security counterpart, in development
+
+The immutable V1 `assess_governance_repository_security.py` is a complete
+685-line source, SHA-256 `c825703be300f4f4f9e5407645b210d56348987dd5dc437375ecc047f48a7c60`.
+The new explicit `self-security assess/inspect` route includes all sixteen
+criteria, original remediation/evidence/presentation, custom models, provided
+observations, default or explicit collection clock, optional finding exits,
+complete exports and the seven native read-only protection-fact requests.
+Workflow/CODEOWNERS/Dependabot data capture and real release signature/artifact
+verification remain part of the route. Provider acquisition is adapter-owned;
+provided observations never silently trigger native calls. Actual source programs
+are not selected. Full positive/negative original reports and their JSON/Markdown
+wires, malformed/incomplete outcomes, private intent/response journals and
+retained whole-report/signature replay are required. Transport error text and
+private destination/credential admission differ explicitly from the original CLI.
+The [guide](../guides/axiom-v2-self-security.md) describes these boundaries.
+
+The preceding signed `f7cf969` delivery in Draft PR #432 now has actual current-
+source default complete validation on Mac and Linux: 2,710 tests each, one known
+skip, 1,414.468 and 3,029.541 seconds. Each host passes eight additional actual
+branches including original negative toolchain wires and writer/reader locking.
+All 2,701 manifest entries, 2,691 Git source files, 1,913 physical files and 955
+active fingerprints per host were audited. Whole fixed `5c3b5cb` control and
+architecture reports equal V1, business digest
+`bbcb07afaae89967ceab631b446d9751fe844703336697921d494ffd506afb70`.
+Those observations bind f7cf969 and do not certify this new security increment.
+The complete 22/135/37/16 Goal and independent acceptance remain open.

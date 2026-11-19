@@ -137,6 +137,8 @@
     "scripts/lib/providers/review_execution.py",
     "scripts/lib/providers/review_metadata.py",
     "scripts/lib/providers/review_planning.py",
+    "scripts/lib/providers/self_security_capture.py",
+    "scripts/lib/providers/self_security_native.py",
     "scripts/lib/providers/source_inspection.py",
     "scripts/lib/providers/transports.py",
     "scripts/lib/providers/typed_capture.py",
@@ -255,6 +257,8 @@
     "scripts/lib/runtime_validation.py",
     "scripts/lib/safe_archive.py",
     "scripts/lib/secure_http.py",
+    "scripts/lib/self_security.py",
+    "scripts/lib/self_security_application.py",
     "scripts/lib/source_collection.py",
     "scripts/lib/source_document_text.py",
     "scripts/lib/source_inspection_application.py",
@@ -287,9 +291,9 @@
     "scripts/lib/workbench_startup_application.py",
     "scripts/lib/workbench_startup_ports.py",
     "scripts/portable_consumer_intake.py",
+    "scripts/run_axiom_v2_validation_suite.py",
     "scripts/serve_governance_workbench.py",
-    "scripts/start_axiom_v2_workbench.py",
-    "scripts/run_axiom_v2_validation_suite.py"
+    "scripts/start_axiom_v2_workbench.py"
   ],
   "data_roots": [
     "schemas",
@@ -317,6 +321,7 @@
     "requirements-validation.txt",
     "scripts/opa-download-sources.json",
     "scripts/validation-toolchain.env",
+    "tests/fixtures/v2-self-security-original/assess_governance_repository_security.py.txt",
     "tests/fixtures/v2-validation-suite-original/requirements-validation.txt",
     "tests/fixtures/v2-validation-suite-original/validate_all.sh",
     "tests/fixtures/v2-validation-suite-original/validation-toolchain.env",

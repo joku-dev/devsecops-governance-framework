@@ -260,10 +260,17 @@
     {
       "id": "FP-19",
       "title": "Betrieb und eigene Sicherheit überwachen",
-      "state": "pending",
-      "v2_capabilities": [],
-      "positive_tests": [],
-      "negative_tests": [],
+      "state": "in_progress",
+      "v2_capabilities": [
+        "self-security assess/inspect: sixteen original criteria, full JSON/Markdown/stdout, provided observations, seven read-only native requests, inert local scans, real release verification and retained replay; no publisher or authority"
+      ],
+      "positive_tests": [
+        "tests/test_v2_self_security.py:whole immutable-V1 decisions and ordered collector observations",
+        "tests/test_v2_self_security_application.py:complete native/provided reports and retained signature replay"
+      ],
+      "negative_tests": [
+        "tests/test_v2_self_security_application.py:missing admin facts, actual signature/artifact failure, journals, tampering, source drift and incomplete inputs"
+      ],
       "installed_evidence": [],
       "comparison_evidence": []
     },
@@ -413,8 +420,8 @@
         "--repository"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/self_security_application.py",
+      "state": "in_progress",
       "evidence": []
     },
     {

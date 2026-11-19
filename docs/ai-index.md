@@ -98,6 +98,7 @@ Use it as the first navigation point after `AGENTS.md`.
 | Understand architecture baseline releases | `docs/releases/architecture-baseline-l1-v0.1.0.md` |
 | Understand intake and viewer | `docs/operations/evidence/governance-result-intake-and-viewer-usage.md` |
 | Operate Evidence- und Governance-Hardening | `docs/operations/guides/evidence-and-governance-hardening-guide.md` |
+| Inspect the V2 self-security candidate | `docs/operations/guides/axiom-v2-self-security.md`, `scripts/lib/self_security.py`, `scripts/lib/self_security_application.py`, explicit capture/native adapters (development; full delivery pending) |
 | Assess governance repository self-security | `docs/operations/security/governance-repository-self-security.md`, `model/controls/governance-repository-security.yaml`, `scripts/assess_governance_repository_security.py`, `generated/reports/governance-repository-security.md` |
 | Export and review the repository dependency SBOM | `docs/operations/security/repository-sbom-and-vulnerability-management.md`, `scripts/export_repository_sbom.py`, `.github/workflows/repository-sbom.yml`, `docs/governance/change-requests/GCR-2026-107-repository-sbom-export.md` |
 | Verify governance release-tag integrity | `model/governance/release-signing-policy.yaml`, `releases/release-tag-integrity.json`, `scripts/lib/release_integrity.py` |

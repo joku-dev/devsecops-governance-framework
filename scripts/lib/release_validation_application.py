@@ -109,7 +109,7 @@ class ReleaseValidationContext:
         atomic_json(target/'assessment.json',value)
         return operation,deepcopy(value)
 
-    def inspect(self,operation):
+    def inspect(self,operation,*,with_replayed_report=False):
         target=self.operations/identity(operation)
         if target.is_symlink() or not target.is_dir() or target.stat().st_mode&0o077:raise ValueError('unsafe_release_operation')
         if not (target/'assessment.json').exists():raise ValueError('release_operation_pending_requires_review')
@@ -156,7 +156,11 @@ class ReleaseValidationContext:
         replay=ReplayReleaseEnvironment(target/'inputs',data,references,value['native_context'],rows)
         report=ReleaseVerification(replay).verify_release_integrity();replay.finish()
         if canonical_digest(report)!=canonical_digest(value['report']):raise ValueError('release_report_replay_changed')
-        self.assert_current();return deepcopy(value)
+        self.assert_current()
+        # Composing report generators need the original insertion order, too.
+        # Atomic journal serialization sorts keys; returning its parsed report
+        # would change the complete legacy wire despite equal JSON values.
+        return (deepcopy(value),deepcopy(report)) if with_replayed_report else deepcopy(value)
 
     def status(self):
         rows=[]
