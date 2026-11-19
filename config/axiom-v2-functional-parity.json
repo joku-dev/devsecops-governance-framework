@@ -282,7 +282,8 @@
         "review-dispatch ordinary minimal role selection, original window/continuous/status/summary and complete stdout/state/log; private generations or explicit caller-file adapter with durable frozen intent, partial resume, completed-output verification and explicit non-success abandonment; no provider starts or authority transfer",
         "review-plan check-file accepts bounded external original plan/results files without node-plan ownership; rederives whole current Git/contract-bound plan and original readiness report; version2 retained external origin/no parent, version1 prepare/check preserved; private replay claims no current target or provider/approval",
         "shared review contract parser restores original SafeLoader scalar/list/mapping aliases and inert safe extension types; bounded composition and expanded graph before construction, unique keys and original required-field/authority guards; record formats/source-bound historical runtimes unchanged",
-        "Whole repository CLI candidate with original generator/subvalidator composition, committed/held working capture, durable per-native/effect journal and strict deleted-caller ordered replay; exact-source installed delivery and original child traceback semantics remain open."
+        "Whole repository CLI candidate with original generator/subvalidator composition, committed/held working capture, durable per-native/effect journal and strict deleted-caller ordered replay; exact-source installed delivery and original child traceback semantics remain open.",
+        "stdlib-only owned validation/source-intake environment creation, repeated dependency updates and pinned OPA repair; durable pre-effect records and interrupted-operation guard; full host/negative/original acceptance pending"
       ],
       "positive_tests": [
         "tests/test_v2_evidence_agent_provenance.py:actual original record/index/conflict/validator wires and immutable private generations",
@@ -297,7 +298,8 @@
         "tests/test_v2_external_review_check.py and tests/acceptance/axiom_v2_external_review_check.py:unchanged original CLI external file checks, complete report/exit equality across both native formats and based/baseless/explicit scope, retained exact operator bytes and caller-deletion replay",
         "tests/test_v2_review_contract_yaml.py and tests/acceptance/axiom_v2_review_contract_yaml.py:whole unchanged original plans/checks/dispatch/receipt-log/committed-PR JSON and Markdown across SHA1/SHA256 and four YAML variants; exact raw input retention and caller-deletion replay",
         "tests/test_v2_repository_inspection.py",
-        "tests/test_v2_repository_application.py"
+        "tests/test_v2_repository_application.py",
+        "tests/test_v2_environment_bootstrap*.py:finite phase replay, durable journal and own native capture; private actual create/update/repair observations remain engineering-only"
       ],
       "negative_tests": [
         "tests/test_v2_evidence_agent_provenance.py:source conflicts, malformed/schema-invalid data, stale reports, traversal, foreign nodes, quotas and no inherited authority",
@@ -312,7 +314,8 @@
         "tests/test_v2_external_review_check.py:stale HEAD/source/index/mode/contracts/scope, rehashed roles/authority/validations/extra fields, malformed/oversize/duplicate JSON, admission drift, input tamper and version/origin/parent relabel rejection",
         "tests/test_v2_review_contract_yaml.py:cycles and node/byte expansion fail before value construction; alias/composition/depth/source budgets, duplicate alias keys, unsafe tags, original-unsupported merge keys, protocol authority and retained-byte tamper rejection; installed guard classifications distinguish original negatives from application resource/authority limits",
         "tests/test_v2_repository_inspection.py",
-        "tests/test_v2_repository_application.py"
+        "tests/test_v2_repository_application.py",
+        "tests/test_v2_environment_bootstrap_native.py:incomplete prior operation, live lock, corrupt record/source inputs, alias/unrecognized target and credential-bearing mirror admission"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -422,8 +425,8 @@
       "declared_symbols": [],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/bootstrap_axiom_v2_environment.py:main",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -434,8 +437,8 @@
       "declared_symbols": [],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/bootstrap_axiom_v2_environment.py:main",
+      "state": "in_progress",
       "evidence": []
     },
     {

@@ -238,3 +238,79 @@ Binary schlägt der Offline-Aufruf sichtbar fehl. Downloads verwenden weiterhin
 begrenzte HTTPS-Aufrufe ohne Token. Die vollständige Einrichtung, Aktualisierung
 und Reparatur beider Python-Umgebungen ist ein weiterer offener Goal-Baustein.
 Die geschützten ursprünglichen Bootstrap-Skripte bleiben unverändert.
+
+
+## Python-Umgebungen erstellen, aktualisieren und reparieren
+
+Der Folgebranch bietet `scripts/bootstrap_axiom_v2_environment.py` als eigenen
+Einstieg vor der Installation der Python-Abhängigkeiten. Er benötigt nur die
+Standardbibliothek. `validation` richtet die sechs gepinnten Prüfabhängigkeiten
+und OPA ein; `source-intake` richtet die optionale PDF-Abhängigkeit ein. Beide
+Profile installieren ihre Abhängigkeiten bei jedem ausdrücklichen Aufruf erneut,
+auch wenn das Ziel bereits eine Python-Umgebung enthält. Fehlendes oder
+beschädigtes OPA wird aus einem gültigen Cache oder über den expliziten nativen
+OPA-Adapter ersetzt. Geschützte ursprüngliche Shell-Einstiege bleiben unverändert.
+
+Beispiel für einen bewusst ausgewählten Entwicklungs-Checkout und ein privates
+externes Ziel; Pfade zu Interpreter, Ziel, Wheelhouse und Cache sind Betreiberangaben:
+
+```bash
+python3 -I -S -B scripts/bootstrap_axiom_v2_environment.py validation \
+  --python /absolute/path/to/python3 \
+  --environment /absolute/private/axiom-validation \
+  --state-directory /absolute/private/bootstrap-records \
+  --offline --wheelhouse /absolute/private/prepared-wheels \
+  --opa-cache /absolute/private/verified-opa-cache --development
+```
+
+Für das zweite Profil wird `validation` durch `source-intake` ersetzt. Ohne
+`--offline` verwendet pip die explizit zugelassene Netz-/Indexkonfiguration und
+OPA seine begrenzten Quellen, gegebenenfalls `--opa-mirror`. Beide Profile nutzen
+ausschließlich die eigenen aufbewahrten Lockdateien mit `--require-hashes`.
+Beim Validierungsprofil verstärkt das die ursprüngliche Installation über die
+Versionsliste; fremde Requirements oder Consumer-Programme werden nicht ausgeführt.
+Die Versionsliste, Lockdateien und Tool-Pins bleiben unverändert. Vorhandene
+Installationen werden auf Python-Präfix und erwartete Versionen geprüft; eine
+vollständige Attestierung aller bereits installierten Paketdateien erfolgt nicht.
+
+Jeder Versuch erhält einen privaten neuen Datensatz: eigene Quellfingerprints und
+Eingabebytes, dauerhaftes Phasen- und Prozess-Intent vor der Wirkung, tatsächliche
+Exitcodes, begrenzte Rohstreams und Prüfsummen. Zielalias, unerkannte bestehende
+Verzeichnisse und konkurrierende Koordinatoren werden zurückgewiesen. Ein
+zurückgelassener unvollständiger Vorgang blockiert weitere automatische Versuche
+an diesem Ziel auch nach Freigabe der Dateisperre. Aus einer freien Sperre oder
+einer Datei wird keine Aussage über die Lebensdauer früherer Prozesse abgeleitet.
+Es gibt keine automatische Wiederaufnahme oder Löschung unvollständiger Vorgänge.
+
+```bash
+python3 -I -S -B scripts/bootstrap_axiom_v2_environment.py inspect \
+  --record /absolute/private/bootstrap-records/OPERATION_ID
+```
+
+`inspect` prüft ausschließlich aufbewahrte erklärte Bytes, Reihenfolge, native
+Ergebnisse und die endliche Entscheidung; es startet keine Prozesse und prüft
+die aktuelle Umgebung nicht erneut. Bei Erstellung und Aktualisierung bedeutet Rückgabecode 0 einen erklärten
+Abschluss, 1 einen protokollierten bekannten Fehler, 2 einen unvollständigen oder
+abgewiesenen Vorgang. Bei `inspect` bedeutet 0 einen konsistenten terminalen
+Datensatz, einschließlich eines dort erklärten Fehlers; das Feld `declared_result`
+unterscheidet diese Zustände. Ein offener Datensatz ergibt 2. Die strukturierte Ausgabe verweist auf die privaten
+Diagnosen. Keine dieser Ausgaben erteilt Trust, Governance- oder Betriebsfreigabe.
+
+Die tatsächliche Mac-Erprobung umfasst Erstellung beider Profile, wiederholte
+Aktualisierung, entfernte Python-Abhängigkeiten und fehlendes/beschädigtes OPA.
+44 gezielte Speicher-/Prozess-/Orchestrierungsprüfungen und 23 Laufzeittests
+bestehen. Kontrollierte native Erstellungs-/pip-/Konsistenzfehler und OPA-Transport-/
+Prüfsummenfehler erhalten ihre Teilwirkungen und tatsächlichen nativen Codes.
+Die strukturierte CLI meldet bekannte Fehler einheitlich mit 1; die ursprünglichen
+Shell-Aufrufe können native Codes wie 22/23/24/25 direkt weiterreichen. Die rohen
+Diagnosen bleiben privat aufbewahrt; identische Shell-Ausgabebytes werden nicht
+behauptet. Eine nicht unterstützte Plattform ist ein bekannter Fehler vor jeder
+Umgebungsänderung. Eine abschließende Quellinvalidierung nach den Phasen erhält
+einen terminalen unvollständigen Datensatz mit ihrer tatsächlichen Ursache.
+Ein erster vollständiger 2.637-Test-Lauf scheiterte an einer umask-abhängigen
+unsicheren Testvorbedingung; der fehlgeschlagene Lauf bleibt erhalten und die
+Vorbedingung wird nun ausdrücklich mit chmod hergestellt, ohne die Schutzprüfung
+abzuschwächen. Lieferung erfordert einen neuen vollständigen gepinnten Lauf,
+Quellaudit, passende Distribution und Mac-/Linux-Nachweise für diesen Baustein. Der echte Workbench-Erststart
+bleibt ein eigener offener Ablauf; ein früherer Originalvergleich mit inertem
+Test-Backend weist keinen gestarteten Dienst oder eine geprüfte UI nach.

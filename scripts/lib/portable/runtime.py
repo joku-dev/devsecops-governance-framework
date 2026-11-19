@@ -78,6 +78,7 @@ def source_digest():
     paths.extend([ROOT/'scripts/serve_governance_workbench.py', ROOT/'scripts/lib/workbench_application.py', ROOT/'scripts/lib/workbench_archive.py', ROOT/'scripts/lib/workbench_impact.py'])
     paths.extend(sorted((ROOT/'scripts/lib').glob('repository_*.py')))
     paths.extend(sorted((ROOT/'scripts/lib/repository_lifecycle').glob('*.py')))
+    paths.extend(ROOT/name for name in ('scripts/bootstrap_axiom_v2_environment.py','scripts/lib/environment_bootstrap.py','scripts/lib/environment_bootstrap_application.py','scripts/lib/environment_bootstrap_ports.py','requirements-validation.txt'))
     paths.extend([ROOT/'scripts/lib/v2_distribution.py', ROOT/'scripts/lib/v2_source.py', ROOT/'scripts/lib/functional_parity.py', ROOT/'config/axiom-v2-distribution.json'])
     paths.extend([ROOT/'scripts/lib/full_evaluation.py',ROOT/'scripts/lib/architecture_assessment.py',ROOT/'scripts/lib/tool_integrity.py'])
     paths.extend(ROOT/'scripts/lib'/name for name in ('candidate_workspace.py','requirement_application.py','requirement_workspace.py','requirement_lifecycle.py'))
