@@ -31,13 +31,23 @@ python scripts/axiom_v2.py --instance /private/operator/instance workbench
 python scripts/serve_governance_workbench.py --instance /private/operator/instance
 ```
 
-The direct server facade requires `--instance` and forwards its existing port,
+The V2 server facade requires `--instance` and forwards its existing port,
 state, projection and publication options to V2 admission. It cannot silently
 create checkout-local product state. The instance fixes its port, draft root
 and consumer projection; conflicting overrides fail. The old standalone shell
 bootstrap belongs to retained V1. A V2 environment must first be installed or
 explicitly initialized with its pinned tools; full bootstrap/update service
 orchestration remains separate Goal work.
+
+The retained Ansible VM service explicitly selects
+`--legacy-service-profile vm-v1`. This preserves that older deployment's
+checkout-local state, environment key and existing backup/recovery contract.
+It is a named V1 compatibility route, not a V2 instance or evidence that V2
+service/update/recovery parity has been achieved. It cannot be combined with
+`--instance` or replace an admitted V2 application. Without either explicit
+profile, the standalone server still fails before creating state. The real
+disposable-host deployment test retains every existing recovery transition;
+its activation-failure fixture targets the current exact main signature.
 
 ## Private state and live source observations
 
