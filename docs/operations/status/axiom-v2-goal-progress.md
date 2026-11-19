@@ -14,7 +14,7 @@
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Portablen Kandidatenindex validieren und quellgebunden ausliefern.
+**Nächster Baustein:** Textformat-Korrektur quellgebunden ausliefern und vollständige Abläufe fortsetzen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -31,7 +31,7 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Die korrigierte Kandidatenindex-Runtime 8c5869d besteht die vollständige gepinnte Validierung mit 2.420 Tests in 1.510,925 Sekunden und einer bekannten Deployment-Auslassung. Alle nicht generierten Quellen blieben während des erfolgreichen Laufs unverändert; alle 24 geschützten Implementierungs-Hashes sind unverändert. 29 gezielte Tests und 20 tatsächliche Entwicklungs-CLI-Fälle einschließlich der sieben ursprünglichen BOM-/UTF-16-/UTF-32-Ablehnungen bestehen. Der vollständige V1-Dateivergleich über 2.000 synthetische Repository-Datensätze aus drei Providerprofilen besteht mit unveränderten Quelldateien. Der frühere Lauf bleibt nach der gefundenen UTF-16-Abweichung als gezielt unterbrochen erhalten. Jetzt folgen Abschlussreview, Commit, Draft-PR und frische installierte Mac-/Linux-Nachweise. Der vorherige Hygiene-Stand edeb557/PR #420 hat acht erfolgreiche CI-Familien und einen frischen Mac-Nachweis mit 25 Fällen. Neue Linux-Nachweise und das cff5fcc-Dateiaudit benötigen den erneuerten SSH-Zugang; der datierte Vergleich unten bleibt unverändert. Die gleiche Textformat-Abweichung der Report-Leser ist in einem getrennten Entwicklungscheckout korrigiert und besteht 62 gezielte Prüfungen; sie wird erst nach Integration vollständig validiert. Weitere Workbench-/Betriebsabläufe, vollständige Erstellungs-/Bootstrap-/Test-Worker, ursprüngliche Child-Tracebacks, Signatur-, Lifecycle- und Providerprofile bleiben offen. Der gesamte Umfang 22/135/37/16 und alle 18 historischen Nachweise bleiben erhalten.
+Die auf Kandidatenindex-Commit 7a331a4 integrierte Report-Leser-Korrektur besteht die vollständige gepinnte Validierung mit 2.427 Tests in 1.534,696 Sekunden und einer bekannten Deployment-Auslassung. Alle nicht generierten Quellen und alle 24 geschützten Implementierungs-Hashes blieben während des erfolgreichen Laufs unverändert. JSON-/YAML-Textformate, BOM-Regeln, rohe YAML-Werte und vorhandene JSON-Schutzprüfungen entsprechen ihrem ursprünglichen Profil. Jetzt folgen Abschlussreview, eigener Commit/Draft-PR und frische Pakete sowie installierte Prüfungen dieser späteren Runtime. Die bereits veröffentlichten Mac-Nachweise von 7a331a4/PR #421 bleiben davon getrennt: 20 Kandidatenindex- und 25 Hygiene-Fälle, 2.000 identische synthetische Datensätze, vollständiger ha-CPsWMS-Vergleich im dokumentierten Profil sowie alle 2.601 Git-Dateiinhalte sind geprüft; die frühere gepinnte Gesamtprüfung umfasst 2.420 Tests. Linux-Pakete und ein hashgebundener Testtreiber sind vorbereitet. Der Ziel-VM-Zugang und das abschließende cff5fcc-Dateiaudit benötigen weiterhin den erneuerten SSH-Zugang; der datierte Vergleich unten bleibt unverändert. Vollständige Workbench-/Betriebsabläufe, Compliance-Orchestrierung, Erstellungs-/Bootstrap-/Test-Worker, ursprüngliche Child-Tracebacks, Signatur-, Lifecycle- und Providerprofile bleiben offen. Der gesamte Umfang 22/135/37/16 und alle 18 historischen Nachweise bleiben erhalten.
 
 - `scripts/check_public_artifact_hygiene.py`
 - `scripts/generate_portable_candidate_index.py`
@@ -103,6 +103,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `b92b60b91fff4ecf6f9196f445da240b4d23a98ecd136a35dc3f500de1b9d40e`. Beobachtungs-SHA-256: `6975480319bd1492c064f27a22767a0294b7f23915f26c7f7ba01c7f510a81ba`.
+Matrix-SHA-256: `b92b60b91fff4ecf6f9196f445da240b4d23a98ecd136a35dc3f500de1b9d40e`. Beobachtungs-SHA-256: `95ff7bc54357c02254eaf2e2fbab80cfbdd5ba2e32e4bc6d41b6084649fc527e`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).

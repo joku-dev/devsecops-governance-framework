@@ -62,10 +62,10 @@ class ReportData:
         return safe_bytes(safe_source(self.root, name), limit=16 * 1024**2)
 
     def yaml(self, path):
-        return yaml.safe_load(self.raw(path)) or {}
+        return yaml.safe_load(self.raw(path).decode('utf-8')) or {}
 
     def json(self, path):
-        return strict_json(self.raw(path))
+        return strict_json(self.raw(path).decode('utf-8'))
 
     def extract(self, path):
         from lib.source_document_text import SourceDocumentExtractionError, extract_source_document
