@@ -73,7 +73,7 @@ def source_digest():
     # Whole repository execution and its closed historical data readers.
     paths = [*(p for p in sorted((ROOT/'scripts/lib/portable').glob('*.py')) if p.name!='adapters.py'),
              *sorted((ROOT/'scripts/lib/providers').glob('*.py')), ROOT/'scripts/lib/provider_errors.py', ROOT/'scripts/lib/provider_ports.py', ROOT/'scripts/lib/application_source.py', ROOT/'scripts/lib/v2_boundary.py', ROOT/'scripts/lib/v2_application.py', ROOT/'scripts/axiom_v2.py', ROOT/'config/axiom-v2-boundaries.json', ROOT/'schemas/workbench-publication-v2.schema.json', ROOT/'scripts/control_evaluation.py',
-             ROOT/'scripts/governance_runtime.py', ROOT/'scripts/install_validation_opa.py',
+             ROOT/'scripts/governance_runtime.py', ROOT/'scripts/install_validation_opa.py', ROOT/'scripts/lib/opa_bootstrap_ports.py',
              ROOT/'scripts/validation-toolchain.env', ROOT/'config/portable-runtime-compatibility.json', ROOT/'requirements-validation.lock', *sorted((ROOT/'schemas').glob('portable-*-v1.schema.json'))]
     paths.extend([ROOT/'scripts/serve_governance_workbench.py', ROOT/'scripts/lib/workbench_application.py', ROOT/'scripts/lib/workbench_archive.py', ROOT/'scripts/lib/workbench_impact.py'])
     paths.extend(sorted((ROOT/'scripts/lib').glob('repository_*.py')))

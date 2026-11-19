@@ -105,10 +105,12 @@
     "scripts/lib/compliance_replay.py",
     "scripts/lib/compliance_application.py",
     "scripts/lib/compliance_operation.py",
-    "scripts/lib/validation_generated_effects.py"
+    "scripts/lib/validation_generated_effects.py",
+    "scripts/install_validation_opa.py"
   ],
   "composition": [
-    "scripts/lib/provider_ports.py"
+    "scripts/lib/provider_ports.py",
+    "scripts/lib/opa_bootstrap_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [

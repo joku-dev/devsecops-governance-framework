@@ -1,6 +1,6 @@
 """The explicit composition boundary between neutral applications and adapters.
 
-Core callers consume normalized contracts here. Only this composition module and
+Core callers consume normalized contracts here. Only declared composition modules and
 provider modules select concrete implementations; no plugin code is discovered
 from an application checkout or downloaded configuration.
 """
