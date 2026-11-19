@@ -1181,3 +1181,32 @@ file; the corrected test binds the archived reference directly to its immutable
 historical receipts were audited, and19 raw metadata effects retained/restored.
 That interrupted run is not a pass. The corrected source needs a fresh complete
 pinned validation and actual current-source Mac/Linux default-suite acceptance.
+
+
+## Repository self-security capture and complete reports
+
+Classify the neutral original decision/presentation kernel, private application,
+explicit read-only source/API adapters and revision-bound unchanged V1 fixture
+as executable engineering and technical test artifacts. The guide, arc42 and
+matrix records are descriptive. Source Document Intake is not required; no new
+normative controls, model, baseline, accepted state or operating authority follows.
+
+The scope is the whole original assessment: sixteen criteria and remediation,
+custom models, provided observations, original clocks, all seven protection
+requests, workflow/CODEOWNERS/Dependabot scans, real release integrity, full
+JSON/Markdown/stdout and optional finding-exit/local exports. The legacy shim
+reexports the same pure decisions. The native adapter selects finite GET-only
+requests and explicit private credentials; bounded redacted transport failures
+are visible and are not claimed byte-identical to arbitrary original gh stderr.
+Missing facts remain findings. Mixed API/local-source scope and model-owned
+report labels are disclosed; no consumer protection or historical-time
+attestation is invented. Full new-source validation, role-lens reviews, matching
+Mac/Linux candidates and current source-bound checks are required before delivery.
+
+The original-order release result now composes from semantic replay rather than
+sorted journal keys. Full wire equality tests first reproduced this ordering
+failure, then pass after the correction. The first targeted VM run failed at
+unchanged free-space admission because temporary files used the small system
+partition. Its failed log remains; the same 23-case group passes in 8.161 seconds
+with TMPDIR on the existing approved testvolume. No storage guard was weakened.
+Those are focused development tests, not a full installed-candidate claim.

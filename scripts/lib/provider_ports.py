@@ -149,3 +149,10 @@ def workbench_data(*args, **options):
 def workbench_workspace(*args, **options):
     from lib.providers.workbench_workspace import WorkbenchWorkspace
     return WorkbenchWorkspace(*args, **options)
+
+
+from lib.providers.self_security_capture import (PROFILE as SELF_SECURITY_PROFILE,
+    SecurityCollector, request_paths as security_request_paths)
+from lib.providers.self_security_native import (SecurityAPI, ReplaySecurityAPI,
+    capture_source as capture_security_source, utc_now as security_clock,
+    repository_default as security_repository_default)

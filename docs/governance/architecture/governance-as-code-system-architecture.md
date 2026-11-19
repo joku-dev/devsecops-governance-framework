@@ -330,6 +330,29 @@ maps all 22 catalogue areas and every Python/Shell/Node entrypoint to this scope
 A capability present in the development repository is not automatically an
 installed or operating V2 feature.
 
+### Repository self-security candidate
+
+`self_security.py` retains the complete original sixteen-criterion decisions,
+remediation, evidence references and JSON/Markdown presentation over explicit
+observations. `self_security_application.py` owns private operation intent,
+inputs, full outputs, optional local exports and retained replay. The composition
+port selects `providers/self_security_capture.py` and `self_security_native.py`:
+seven ordered GETs, actual effective Main rules, inert workflow/CODEOWNERS scans,
+explicit credential admission and bounded endpoint-specific failure codes.
+No native provider response selects a program or grants governance authority.
+
+Live collection composes the existing full private release verification and its
+captured Git/signature/artifact graph; inspection replays its decisions without
+fresh native execution. It returns the recomputed original-order release report
+for byte-preserving composition rather than the sorted journal representation.
+Provided observations bypass every native collection phase. Both routes preserve
+the full original report; missing administrative facts remain visible findings.
+The default report-only result and explicit finding-exit switch grant no Main
+write, release, consumer acceptance, publisher or operating authority. The named
+legacy profile describes its provider-specific evidence vocabulary; other target
+platforms are not silently treated as verified. See the
+[self-security guide](../../operations/guides/axiom-v2-self-security.md).
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)
