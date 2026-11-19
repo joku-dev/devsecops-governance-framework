@@ -7,8 +7,8 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-19; published parity stack through draft PR #425 (`735e241`), with the separate known Viewer-output correction described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
-| Operating observation | Installed Mac `735e241`: complete fixed ha-CPsWMS report equality and 2,504 passing own tests, but controller exit 2 on its final extra-file audit; corrected acceptance remains open. Scoped `0f43709` Workbench proof retains 63 cases per host and fixed-report equality on Mac/target VM. New target-VM delivery is deferred by the maintainer; historical broader proof, V1 activation and full V2 systemd/update/recovery acceptance remain separate |
+| Last implementation review | 2026-11-19; published parity stack through draft PR #426 (`73b93bb`), followed by the complete compliance decision/adapter primitives described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
+| Operating observation | Installed Mac `73b93bb`: complete fixed ha-CPsWMS report equality, complete integration/onboarding equality and complete own controller exit 0 with 2,509 tests (one known skip). The earlier `735e241` controller exit 2 remains failed. Scoped `0f43709` Workbench proof retains 63 cases per host and fixed-report equality on Mac/target VM. New target-VM delivery is deferred by the maintainer; historical broader proof, V1 activation and full V2 systemd/update/recovery acceptance remain separate |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
 | Change request | `GCR-2026-035`; prior refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154`, `GCR-2026-161`; arc42 reconciliation `GCR-2026-183`; V2 product foundation `GCR-2026-185` |
@@ -1145,6 +1145,61 @@ unknown file and every semantic mismatch is rejected. The nineteen tracked
 metadata checks and complete original test command stay intact. New corrected
 package execution remains required; neither unit success nor an explanatory
 probe reclassifies the failed controller as passing.
+
+Subsequent actual `73b93bb` Mac package execution closes that specific controller
+failure: all 2,509 tests pass in 1,371.603 seconds (one known deployment skip),
+the enclosing controller exits 0, all 2,627 source files/modes remain admitted,
+and the complete 678,168-byte payload equals the native shared projection.
+The post-run installed-package audit independently rechecks all 2,637 manifest
+entries, all 2,627 Git blobs, 1,872 selected physical files and 918 active files.
+The matching target-Linux package is locally prepared; its execution remains
+deferred. The complete repository primitive/replay at this source also preserves
+2,627 files, 7,375 ordered records and all native result/output bytes.
+
+### Complete compliance decisions and acquisition adapters
+
+`lib/compliance_result.py` preserves the complete original extended-compliance
+decision order behind explicit environment ports. The default still requests
+integration, whole own repository validation, whole own unit discovery, OPA check,
+all ten ordered outer queries, the complete control report, eight artifact slots
+and adjacent/control/combined outputs. Artifact presence is inventoried and is
+not an additional original pass predicate. Explicit unit skipping preserves its
+original wire value but must remain an actual `not_run` in the acquisition record.
+The original empty-integration-stdout/native-error vacuous pass is retained as a
+known wire limitation; it never establishes successful acquisition or approval.
+
+`lib/compliance_replay.py` records every environment call, result, attempted
+write, returned write or original exception. Replay resolves retained path
+labels without inspecting their former filesystem and starts no programs or
+exports. `providers/compliance_decisions.py` flushes each intent before calling
+the port, retains a private exact decision record, and compares its complete
+ordered trace during replay. Nested JSON insertion order is preserved in memory
+and on disk, so canonical journal hashing never rewrites the original report
+wire. Whole original-main comparisons cover direct and recorded execution.
+A crash leaves `pending_incomplete`; records are
+never resumed. Decision consistency explicitly does not verify native
+acquisition. It is not authentication against a writer able to replace the
+entire private declaration coherently, nor proof of actual partial OS file bytes.
+
+Native mechanisms stay in adapters. `providers/compliance_opa.py` freezes input
+bytes and the complete exact committed own policy inventory, pins OPA 1.18.2,
+and permits only the whole check and ten named queries. It retains actual raw
+streams, command/tool/input/policy bindings and bounded outcomes.
+`providers/product_test_worker.py` freezes and readmits a prepared exact-source
+package, selects only the known own controller, supervises its process group,
+and requires the full discovery report and raw stream pins. Consumer programs,
+caller-selected commands and archived launcher fallbacks are not selected.
+Timeout, output overflow, changed source/tool/input or incomplete controller
+results cannot become a complete worker outcome. This is same-user engineering
+execution, not kernel network or process-tree isolation.
+
+These modules are composition prerequisites. They do not add a completed
+compliance CLI or prove the complete default macro operation. Its application
+must still bind actual native suboperations and their ordered generated effects
+to the same owned complete source projection, input, node, clock and tools;
+preserve full default and explicit-skip flows; and pass fresh Mac/Linux package
+and whole original-oracle comparisons. Report-only, separate finding exits,
+operating authority, all Goal subjects and historical receipts remain unchanged.
 
 ### Validation
 

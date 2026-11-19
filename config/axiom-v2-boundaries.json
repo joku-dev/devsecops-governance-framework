@@ -100,7 +100,9 @@
     "scripts/lib/artifact_hygiene_application.py",
     "scripts/lib/candidate_index_application.py",
     "scripts/lib/workbench_application.py",
-    "scripts/lib/workbench_archive.py"
+    "scripts/lib/workbench_archive.py",
+    "scripts/lib/compliance_result.py",
+    "scripts/lib/compliance_replay.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"
