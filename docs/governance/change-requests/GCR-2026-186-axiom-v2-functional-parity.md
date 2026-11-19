@@ -909,3 +909,56 @@ output/effect bytes per run. This exposes a real tool capability prerequisite;
 it is not a signature-data correction or executed full compliance orchestrator.
 The system-tool failure is preserved. Full Goal scope, all historical receipts,
 report-only defaults and separate operating authority remain unchanged.
+
+### Complete compliance decision and acquisition primitives
+
+The corrected installed Mac `73b93bb` package controller has now actually ended
+exit 0: 2,509 tests in 1,371.603 seconds, one known deployment skip. Its full audit
+checks all 2,627 source entries/modes, nineteen retained metadata effects and
+the sole complete 678,168-byte Viewer payload against the native own projection.
+The installed product is unchanged afterwards. Complete fixed ha-CPsWMS controls,
+architecture and three integration/onboarding outputs equal the original V1
+comparisons. The full own repository primitive and bounded replay preserve
+2,627 files and 7,375 events. These new proofs do not relabel the old failed
+controller or the ordinary-system-OpenSSL capability failure. Matching new Linux
+delivery remains locally prepared and deferred by the maintainer.
+
+Artifact classification: the added neutral decision/replay helpers, native
+adapters, distribution/boundary entries and tests are executable governance
+engineering under this GCR. They introduce no normative source, schema,
+baseline, approved result index or source-register decision. Architecture,
+operations guidance and script-generated Goal projections describe this scope.
+
+The complete original extended-compliance main is preserved through explicit
+ports, including the full default own test request, fourteen default commands,
+ten outer policy queries, eight artifact slots, exact output ordering, reruns,
+both output aliases, missing parents and original error behavior. The empty
+integration stdout/native failure limitation remains visible as original wire
+behavior and does not prove complete acquisition. Pure decision comparisons
+use declared observations; they never claim that the fixture ran the full suite.
+
+An offline decision replay checks the entire call/response/exception order.
+Three-way whole-main comparisons require the original, direct neutral core and
+recorded core to produce identical complete report bytes and errors. Nested
+mapping order is retained by both cloning and private storage; sorted journal
+encoding cannot substitute for the original report serialization.
+Durable storage flushes each intent before invoking its environment and leaves
+interruptions pending. Node/source/tree/runtime/package/profile bindings and
+exact private file membership prevent accidental cross-instance reuse.
+Consistent declared decisions are explicitly separate from verified native
+acquisition and independent execution authentication.
+
+The OPA adapter executes only the exact committed own policy inventory with a
+pinned tool, one frozen input and the closed whole-check/ten-query surface.
+Positive and negative full original datasets match all original deny arrays.
+The own-suite parent retains and readmits a complete prepared package at the
+exact current commit, rejects working worker overrides, supervises and cleans
+its owned process, and verifies complete raw outcomes. Capture mutation,
+symlinks, reused destinations, short stream writes, timeout and output overflow
+have focused boundary coverage. No inspected consumer code is selected.
+
+The full native compliance application/CLI, ordered common-source effects and
+fresh complete macro acceptance remain required. These prerequisites are not a
+skip-only implementation or a new reduced acceptance target. All 22 areas,
+135 entrypoints, 37 CI definitions, 16 operating workflows and 18 historical
+receipts stay in scope; no matrix subject is promoted to verified by this work.
