@@ -2,14 +2,14 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Textformat-Korrektur quellgebunden ausliefern und vollständige Abläufe fortsetzen",
+    "title": "Vollständige private Workbench quellgebunden prüfen und ausliefern",
     "entrypoints": [
-      "scripts/check_public_artifact_hygiene.py",
-      "scripts/generate_portable_candidate_index.py",
+      "scripts/serve_governance_workbench.py",
+      "scripts/start_governance_workbench.sh",
       "scripts/bootstrap_validation_env.sh",
       "scripts/validate_all.sh"
     ],
-    "next_step": "Die auf Kandidatenindex-Commit 7a331a4 integrierte Report-Leser-Korrektur besteht die vollständige gepinnte Validierung mit 2.427 Tests in 1.534,696 Sekunden und einer bekannten Deployment-Auslassung. Alle nicht generierten Quellen und alle 24 geschützten Implementierungs-Hashes blieben während des erfolgreichen Laufs unverändert. JSON-/YAML-Textformate, BOM-Regeln, rohe YAML-Werte und vorhandene JSON-Schutzprüfungen entsprechen ihrem ursprünglichen Profil. Jetzt folgen Abschlussreview, eigener Commit/Draft-PR und frische Pakete sowie installierte Prüfungen dieser späteren Runtime. Die bereits veröffentlichten Mac-Nachweise von 7a331a4/PR #421 bleiben davon getrennt: 20 Kandidatenindex- und 25 Hygiene-Fälle, 2.000 identische synthetische Datensätze, vollständiger ha-CPsWMS-Vergleich im dokumentierten Profil sowie alle 2.601 Git-Dateiinhalte sind geprüft; die frühere gepinnte Gesamtprüfung umfasst 2.420 Tests. Linux-Pakete und ein hashgebundener Testtreiber sind vorbereitet. Der Ziel-VM-Zugang und das abschließende cff5fcc-Dateiaudit benötigen weiterhin den erneuerten SSH-Zugang; der datierte Vergleich unten bleibt unverändert. Vollständige Workbench-/Betriebsabläufe, Compliance-Orchestrierung, Erstellungs-/Bootstrap-/Test-Worker, ursprüngliche Child-Tracebacks, Signatur-, Lifecycle- und Providerprofile bleiben offen. Der gesamte Umfang 22/135/37/16 und alle 18 historischen Nachweise bleiben erhalten."
+    "next_step": "Die vollständige private Workbench nutzt einen getrennten Instanz-Arbeitsbereich und neutrale Extraktions-/Prozessfunktionen. 59 gezielte Tests und ein echter CLI-/HTTP-Durchlauf mit zwei unabhängigen Entwicklungsinstanzen sind grün. Nach dem im Review gefundenen und korrigierten Import-/Exportpfadfehler besteht der frische gepinnte Gesamtlauf 2.486 Tests in 1.288,466 Sekunden mit einer bekannten Deployment-Auslassung; alle 2.473 nicht generierten Quellen und 24 Schutz-Hashes blieben dabei unverändert. Demo und Viewer sind geprüft; 19 reine Zeit-/Pfadfolgen wurden mit Rohbytes archiviert und zurückgesetzt. Jetzt folgen der quellgebundene Abschlussreview, Commit/Draft-PR und frische tatsächliche Mac-/Linux-Installationsnachweise. Historische Entwürfe bleiben bei explizitem Import Daten mit Originalkontext und Stale-Sperren; Schlüssel, Sitzungen und Betriebsautorität werden nicht übertragen. Die älteren vollständigen 73d573c/PR422-Nachweise bleiben ihrem Quellstand zugeordnet. Der Ziel-VM-Zugang sowie das cff5fcc-Dateiaudit und ausstehende Linux-Auslieferungen sind weiterhin offen. Vollständige Installations-/Update-/Instanz-Recovery-Abläufe, Compliance-Orchestrierung, Erstellungs-/Bootstrap-/Test-Worker und weitere Lifecycle-/Providerprofile bleiben im gesamten Umfang 22/135/37/16 erforderlich. Alle 18 historischen Nachweise bleiben erhalten; keine Zeile wird automatisch als vollständig nachgewiesen erklärt."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",

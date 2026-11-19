@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 79,
-      "pending": 56,
+      "in_progress": 80,
+      "pending": 55,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,18 +337,18 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "b92b60b91fff4ecf6f9196f445da240b4d23a98ecd136a35dc3f500de1b9d40e",
+  "matrix_sha256": "080a7f661013c46534a920c0fb38cded55ae71f4a805d21c2bae610f4e623c7b",
   "next_work": {
     "entrypoints": [
-      "scripts/check_public_artifact_hygiene.py",
-      "scripts/generate_portable_candidate_index.py",
+      "scripts/serve_governance_workbench.py",
+      "scripts/start_governance_workbench.sh",
       "scripts/bootstrap_validation_env.sh",
       "scripts/validate_all.sh"
     ],
-    "next_step": "Die auf Kandidatenindex-Commit 7a331a4 integrierte Report-Leser-Korrektur besteht die vollständige gepinnte Validierung mit 2.427 Tests in 1.534,696 Sekunden und einer bekannten Deployment-Auslassung. Alle nicht generierten Quellen und alle 24 geschützten Implementierungs-Hashes blieben während des erfolgreichen Laufs unverändert. JSON-/YAML-Textformate, BOM-Regeln, rohe YAML-Werte und vorhandene JSON-Schutzprüfungen entsprechen ihrem ursprünglichen Profil. Jetzt folgen Abschlussreview, eigener Commit/Draft-PR und frische Pakete sowie installierte Prüfungen dieser späteren Runtime. Die bereits veröffentlichten Mac-Nachweise von 7a331a4/PR #421 bleiben davon getrennt: 20 Kandidatenindex- und 25 Hygiene-Fälle, 2.000 identische synthetische Datensätze, vollständiger ha-CPsWMS-Vergleich im dokumentierten Profil sowie alle 2.601 Git-Dateiinhalte sind geprüft; die frühere gepinnte Gesamtprüfung umfasst 2.420 Tests. Linux-Pakete und ein hashgebundener Testtreiber sind vorbereitet. Der Ziel-VM-Zugang und das abschließende cff5fcc-Dateiaudit benötigen weiterhin den erneuerten SSH-Zugang; der datierte Vergleich unten bleibt unverändert. Vollständige Workbench-/Betriebsabläufe, Compliance-Orchestrierung, Erstellungs-/Bootstrap-/Test-Worker, ursprüngliche Child-Tracebacks, Signatur-, Lifecycle- und Providerprofile bleiben offen. Der gesamte Umfang 22/135/37/16 und alle 18 historischen Nachweise bleiben erhalten.",
-    "title": "Textformat-Korrektur quellgebunden ausliefern und vollständige Abläufe fortsetzen"
+    "next_step": "Die vollständige private Workbench nutzt einen getrennten Instanz-Arbeitsbereich und neutrale Extraktions-/Prozessfunktionen. 59 gezielte Tests und ein echter CLI-/HTTP-Durchlauf mit zwei unabhängigen Entwicklungsinstanzen sind grün. Nach dem im Review gefundenen und korrigierten Import-/Exportpfadfehler besteht der frische gepinnte Gesamtlauf 2.486 Tests in 1.288,466 Sekunden mit einer bekannten Deployment-Auslassung; alle 2.473 nicht generierten Quellen und 24 Schutz-Hashes blieben dabei unverändert. Demo und Viewer sind geprüft; 19 reine Zeit-/Pfadfolgen wurden mit Rohbytes archiviert und zurückgesetzt. Jetzt folgen der quellgebundene Abschlussreview, Commit/Draft-PR und frische tatsächliche Mac-/Linux-Installationsnachweise. Historische Entwürfe bleiben bei explizitem Import Daten mit Originalkontext und Stale-Sperren; Schlüssel, Sitzungen und Betriebsautorität werden nicht übertragen. Die älteren vollständigen 73d573c/PR422-Nachweise bleiben ihrem Quellstand zugeordnet. Der Ziel-VM-Zugang sowie das cff5fcc-Dateiaudit und ausstehende Linux-Auslieferungen sind weiterhin offen. Vollständige Installations-/Update-/Instanz-Recovery-Abläufe, Compliance-Orchestrierung, Erstellungs-/Bootstrap-/Test-Worker und weitere Lifecycle-/Providerprofile bleiben im gesamten Umfang 22/135/37/16 erforderlich. Alle 18 historischen Nachweise bleiben erhalten; keine Zeile wird automatisch als vollständig nachgewiesen erklärt.",
+    "title": "Vollständige private Workbench quellgebunden prüfen und ausliefern"
   },
-  "observation_sha256": "95ff7bc54357c02254eaf2e2fbab80cfbdd5ba2e32e4bc6d41b6084649fc527e",
+  "observation_sha256": "a337a0125536f9d758ebd8867e0b53a0a0064da218ae9abce7ea0c3aa3a1210b",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

@@ -1236,3 +1236,15 @@ the original ordered text/Office findings and whole output wires through a pure
 core and explicit local acquisition adapter. No writes, publication or stored
 terms/content. Additional resource/unsafe-source errors use Exit 2. See the
 [guide](axiom-v2-artifact-hygiene.md); full installed parity remains in progress.
+
+
+## V2 complete private Workbench follow-up
+
+`workbench_application` retains the complete local preparation/HTTP surface with
+explicit private-instance data/workspace ports. Uploads and drafts are outside
+the product checkout; original extraction/process functions are neutral calls.
+Explicit draft-only backup/verification/restore retains old bytes and stale
+contexts, excludes keys/sessions/credentials/publication worktrees and permits
+historical source import only as an explicit operator choice. Complete source-
+bound validation and installed host proof remain separate from focused tests.
+See [V2 Workbench operation](axiom-v2-workbench.md). Full Goal scope is unchanged.

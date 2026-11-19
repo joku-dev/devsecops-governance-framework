@@ -122,3 +122,13 @@ def repository_operation_header(root):
 def inspect_repository_worker(root, header):
     from lib.providers.repository_worker import inspect_operation
     return inspect_operation(root, header)
+
+
+def workbench_data(*args, **options):
+    from lib.providers.workbench_data import WorkbenchData
+    return WorkbenchData(*args, **options)
+
+
+def workbench_workspace(*args, **options):
+    from lib.providers.workbench_workspace import WorkbenchWorkspace
+    return WorkbenchWorkspace(*args, **options)

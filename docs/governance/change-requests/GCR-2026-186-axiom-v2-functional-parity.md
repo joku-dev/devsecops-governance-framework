@@ -730,3 +730,63 @@ source bytes and 24 protected implementation hashes stayed unchanged. Fresh
 installed evidence must still bind this later runtime; prior candidate-index
 installation proofs retain their original source. No verified subject or prior
 execution receipt is inferred from prototype counts or this partial increment.
+
+
+## Complete Workbench private-instance follow-up
+
+The existing model/HTTP/browser surface is retained while `workbench_application`
+binds drafts/uploads to `instance/state/workbench`. Explicit local data and
+workspace ports replace old requirement/process producer imports and bind native
+identity reads, a full-server lease, private file guards and separate publication
+recovery workspaces. The direct facade requires an explicit V2 instance. No
+source/model/baseline/accepted-index or enforcement change occurs.
+
+The focused59-case suite passes with zero skips: all32existing private Workbench
+cases, nine complete immutable-V1 object/file/process comparisons, fourteen
+backup/restore cases and two facade cases. Eleven application tests pass. The
+private backup format requires explicit whole-archive SHA verification, exact
+bytes/member/schema checks and an empty restore target. Historical-data import
+after a source change is explicit and retains old contexts and stale guards.
+No keys, sessions, credentials, publisher or operating authority transfer.
+
+One server entrypoint moves pending to in progress; none becomes verified. All
+22areas/135entrypoints/37CIdefinitions/16operatingflows and18historical receipts
+remain retained. Full bootstrap, installation/instance recovery, source-bound
+complete validation/review and fresh installed Mac/Linux proof remain separate
+work. The successful73d/PR422 local+CI+Mac proofs retain their original source.
+See the [operating guide](../../operations/guides/axiom-v2-workbench.md).
+
+
+The archive/export review reproduced a further gap in the old loose draft
+schema: a coherently edited candidate source destination could become an unsafe
+ZIP packet member. The first new full-suite run was deliberately interrupted
+(exit130) while its non-generated sources remained frozen; it is not reported
+as passed. A common pure draft check now verifies candidate ID/suffix/destination
+and bounded registered-source/scope paths before private save/load, backup
+import and packet handoff. The additional regressions include malicious but
+CRC/hash/schema-consistent archives with an explicitly matching whole-file SHA.
+Historical-source opt-in cannot bypass those path checks. A fresh full-source
+validation and new-runtime installed evidence are required after this fix.
+
+
+### Complete guarded Workbench validation checkpoint
+
+The corrected combined-source pinned bootstrap/full validation passed **2,486
+tests in 1,288.466 seconds**, with one known deployment skip. All **2,473
+non-generated file bytes** and all **24 protected implementation hashes** stayed
+unchanged throughout that successful run. The earlier interrupted run remains
+recorded as exit130. Demo and Viewer checks passed; nineteen observed generated
+clock/path effects were archived with complete before/after bytes and restored.
+The executable runtime is `5436813c8935f5ded5a05a06d887dba29fd4b42af53a4909cb634c7dc1e4af4a`.
+
+The actual public CLI/HTTP development proof used two fresh private nodes,
+read all fifteen registered product documents, created three preparations and
+restored all four saved JSON/upload files byte-identically. Complete ZIP member
+bytes agreed; keys/sessions stayed independent, live-server backup was held and
+verification created no workspace. Both ports are closed; collectors remain
+paused/empty and publication is off. This remains **development evidence**, not
+a fresh installed or cross-host acceptance. Current committed-source review,
+prepared packages and actual installed Mac/Linux proof follow independently.
+Only explanatory/progress metadata changes after the full run; executable
+source remains frozen. The complete Goal, all scope units and historical
+receipts remain unchanged, with no new verified subject or authority.
