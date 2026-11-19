@@ -7,8 +7,8 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-18; V2 foundation in PR #395, parity stack through draft PR #416 (`bfcdd9e`) and the separate whole repository development candidate described below. Exact published source and validation bindings remain in their PR receipts; scope and open acceptance: `config/axiom-v2-functional-parity.json` |
-| Operating observation | Last proven isolated V2 Mac/Linux candidate: `bfcdd9e`, 18 groups per host. Retained V1 operation remains separate. The new whole repository candidate has no fresh installed or production acceptance |
+| Last implementation review | 2026-11-19; published parity stack through draft PR #424 (`0f43709`). Current parentless own-test reference preparation is described below; exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
+| Operating observation | Scoped isolated Workbench/real-reference candidate `0f43709`: 63 cases per host without skips and complete fixed ha-CPsWMS report equality on Mac/target VM. The broader historical `bfcdd9e` 18-group proof retains its own source; retained V1 activation and full V2 systemd/update/recovery acceptance remain separate |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
 | Change request | `GCR-2026-035`; prior refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154`, `GCR-2026-161`; arc42 reconciliation `GCR-2026-183`; V2 product foundation `GCR-2026-185` |
@@ -1097,6 +1097,41 @@ service levels or governance requirements.
 | Restart, replay, lost provider reply | Persistent tests retain task/receipt identity and reconcile the same frozen proposal | Live provider/version behavior and shadow/ownership handoff remain open |
 | 1,000/2,000 repository identities arrive | Versioned distinct-identity load/audit fixtures measure queue/API/CPU/RSS/storage behavior | Real payload, arrival distribution, quotas, retention and hardware SLOs still need capacity approval |
 
+### Parentless own-product test inputs
+
+The full own test suite includes comparisons with immutable V1 and lifecycle
+producer bytes. An admitted V2 source snapshot intentionally has no parent
+history; missing reference objects must not turn these checks into skips or
+substitute a smaller test set. The engineering fixtures under
+`tests/fixtures/product-test-reference-inputs/` retain the complete original
+`6b557fe` and `c225032` source trees as closed SHA-pinned data archives. Admission
+reconstructs their exact commits/trees and checks every original blob, mode,
+length and SHA-256 before test preparation.
+
+`tests/acceptance/product_reference_inputs.py` accepts only a fresh private
+parentless test clone. It adds two separate reference roots and immutable Git
+object data while retaining current HEAD/tree/working files; it neither restores
+parent history nor starts archived launchers. Existing tests can explicitly run
+their known pinned original functions. This is not a production fallback to
+inspected consumer code, a new authoritative governance source or inherited
+operating approval. Corrupt or coherently changed archives, shared Git state
+and automatic reuse of interrupted preparations are rejected.
+
+Six new fixture tests and 137 unchanged previously affected regressions pass.
+The latter use a controlled complete `0f43709` copy with separately supplied
+prototype fixtures; they are not relabelled as self-contained `0f43709` package
+evidence. The complete unchanged suite with those separately supplied inputs
+passes 2,490 tests (one known deployment skip). A fixed exact-source engineering
+controller can admit a prepared package, prepare the reference data and run the
+complete discovery command with bounded output/wall time. Its four native
+runner tests pass; actual new-package controller execution, the full compliance
+orchestrator and full V2 operating recovery still need their own source proof.
+The full suite regenerates nineteen known reports/viewer metadata files. The
+controller retains exact before/after bytes and permits only their closed
+timestamp/display-path changes while checking every other source byte and mode.
+Four negative/retention cases protect this distinction; generated governance
+meaning changes cannot be treated as harmless test noise.
+
 ### Validation
 
 Use the repository-pinned validation entry points before committing current-state
@@ -1128,6 +1163,7 @@ CODEOWNER approval or a separately scoped operating acceptance.
 | Portable candidate scope is five pipeline-L1 controls | Eleven L1 controls are not evaluated by that result; legacy full-L1 reports are a different path |
 | Historical consumer evidence may not meet the V2 physical binding contract | Earlier replay gaps describe those retained artifacts, not the later producer or V2 host fixtures; require a new exact producer/runtime binding for live V2 intake |
 | Retained VM still uses V1 operation; V2 is a separate candidate | No automatic service replacement, old queue import, personal pilot acceptance or publisher handoff |
+| Full own tests require immutable historical comparison inputs | Parentless fixture preparation preserves every existing assertion; complete default test/compliance orchestration and actual packaged execution remain separate work |
 | Operational attestation/role authority is not generally enabled | Candidate observations and demo issuer proof cannot grant real roles or production `attested` Trust |
 | Per-host private drafts/keys and queues | No automatic Mac/VM synchronization; explicit draft import and schema-compatible recovery only |
 | Timers, checks or a governance PASS may be overinterpreted | Timer activity is not collection; successful execution is not freshness, compliance, accepted risk or production approval |

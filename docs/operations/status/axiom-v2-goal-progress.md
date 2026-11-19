@@ -14,7 +14,7 @@
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Vollständige private Workbench quellgebunden prüfen und ausliefern.
+**Nächster Baustein:** Vollständigen Produkttest ohne Elternhistorie und Compliance-Orchestrierung umsetzen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -31,12 +31,12 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Die vollständige private Workbench nutzt einen getrennten Instanz-Arbeitsbereich und neutrale Extraktions-/Prozessfunktionen. 59 gezielte Tests und ein echter CLI-/HTTP-Durchlauf mit zwei unabhängigen Entwicklungsinstanzen sind grün. Nach dem im Review gefundenen und korrigierten Import-/Exportpfadfehler besteht der frische gepinnte Gesamtlauf 2.486 Tests in 1.288,466 Sekunden mit einer bekannten Deployment-Auslassung; alle 2.473 nicht generierten Quellen und 24 Schutz-Hashes blieben dabei unverändert. Demo und Viewer sind geprüft; 19 reine Zeit-/Pfadfolgen wurden mit Rohbytes archiviert und zurückgesetzt. Jetzt folgen der quellgebundene Abschlussreview, Commit/Draft-PR und frische tatsächliche Mac-/Linux-Installationsnachweise. Historische Entwürfe bleiben bei explizitem Import Daten mit Originalkontext und Stale-Sperren; Schlüssel, Sitzungen und Betriebsautorität werden nicht übertragen. Die älteren vollständigen 73d573c/PR422-Nachweise bleiben ihrem Quellstand zugeordnet. Der Ziel-VM-Zugang sowie das cff5fcc-Dateiaudit und ausstehende Linux-Auslieferungen sind weiterhin offen. Vollständige Installations-/Update-/Instanz-Recovery-Abläufe, Compliance-Orchestrierung, Erstellungs-/Bootstrap-/Test-Worker und weitere Lifecycle-/Providerprofile bleiben im gesamten Umfang 22/135/37/16 erforderlich. Alle 18 historischen Nachweise bleiben erhalten; keine Zeile wird automatisch als vollständig nachgewiesen erklärt.
+Der veröffentlichte Kandidat 0f43709/PR424 besteht die gepinnte Vollvalidierung mit 2.490 Tests und einer bekannten Deployment-Auslassung. Zwei frische Installationen je Host bestehen auf Mac und Ziel-VM jeweils 63 Workbench-/Kompatibilitätsprüfungen ohne Auslassung sowie den echten CLI-/HTTP-Backup-/Restore-Lauf. Die vollständigen festen ha-CPsWMS-Kontroll- und Architekturberichte stimmen überein; pro Installation sind alle 2.615 Git-Blobs und 2.625 Manifesteinträge geprüft. Schlüssel/Knoten sind getrennt, Ports geschlossen, Collector pausiert/leer und Publisher aus. SSH und der bisher offene cff5fcc-VM-Dateiaudit sind wiederhergestellt bzw. bestanden. Sieben CI-Familien sind grün; die systemd-/Recovery-Abnahme endete nach fünf erwarteten Übergängen am bisherigen 120-Minuten-Limit. Der Folgelauf erhält 360 Minuten; alle zwölf Übergänge und vollständigen Prüfungen bleiben erhalten. Ein vollständiger Produkttest aus dem älteren installierten Snapshot ohne Elternhistorie ist wegen fehlender ursprünglicher Referenzobjekte fehlgeschlagen. Feste Vergleichsdaten für 6b557fe und c225032 beheben dies im Prototyp: 137 unveränderte betroffene Prüfungen und sechs neue Positiv-/Negativtests sind grün. Der ganze unveränderte Wiederholungslauf mit separat bereitgestellten Referenzdaten besteht 2.490 Tests mit einer bekannten Auslassung. Der feste Paket-Testcontroller hat vier zusätzliche native Prüfungen bestanden; seine tatsächliche neue Paketausführung und der vollständige Standard-Compliance-Worker folgen getrennt. Keine kleinere Testsuite ersetzt den vollständigen Ablauf. Vollständige Installations-/Update-/Instanz-Recovery-, Erstellungs-/Bootstrap- und weitere Lifecycle-/Providerabläufe bleiben im unveränderten Gesamtumfang 22/135/37/16 erforderlich. Der ältere breite Validierungscheckpoint bleibt seinem Quellstand zugeordnet. Alle 18 historischen Nachweise bleiben erhalten; kein Zähler erklärt einen Gegenstand automatisch als verifiziert.
 
-- `scripts/serve_governance_workbench.py`
-- `scripts/start_governance_workbench.sh`
+- `scripts/generate_governance_compliance_result.py`
 - `scripts/bootstrap_validation_env.sh`
 - `scripts/validate_all.sh`
+- `scripts/start_governance_workbench.sh`
 
 ## Letzter vollständiger technischer Prüfstand
 
@@ -103,6 +103,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `080a7f661013c46534a920c0fb38cded55ae71f4a805d21c2bae610f4e623c7b`. Beobachtungs-SHA-256: `a337a0125536f9d758ebd8867e0b53a0a0064da218ae9abce7ea0c3aa3a1210b`.
+Matrix-SHA-256: `080a7f661013c46534a920c0fb38cded55ae71f4a805d21c2bae610f4e623c7b`. Beobachtungs-SHA-256: `14336e341b4b68acfad5e4c02d18a0a8d114af95a2df7f51e37d5b6e31f4025d`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).
