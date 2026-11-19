@@ -1,0 +1,28 @@
+{
+  "authority_transferred": false,
+  "independent_execution_attested": false,
+  "operating_acceptance_inherited": false,
+  "production_approval": false,
+  "purpose": "immutable-original-test-reference-data",
+  "schema_version": 1,
+  "snapshots": [
+    {
+      "bytes": 6861218,
+      "id": "v1",
+      "path": "v1.zip",
+      "sha256": "e1a41b9cc00e88d30a5f55f4403313b9b56bc23d188308c5c2552f7b6661123a",
+      "source_files": 2033,
+      "source_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+      "source_tree": "a4ee8509f66cb6e7155b007894a948f78dbbccaa"
+    },
+    {
+      "bytes": 3112741,
+      "id": "lifecycle-pilot",
+      "path": "lifecycle-pilot.zip",
+      "sha256": "0b85f3faaf808c30ef41725b17506d12ae36bf0c311b7c4eec29b1120ff7ea61",
+      "source_files": 1319,
+      "source_revision": "c2250325f34d938ea4f607036e003a36a3f2f9da",
+      "source_tree": "6c774b086ad61de3098160f34db6090fc072361b"
+    }
+  ]
+}

@@ -803,3 +803,68 @@ key and every deployment/recovery transition stay under that V1 service
 contract. V2 instance admission, private state and explicit publication remain
 separate. This correction does not establish V2 systemd/update/recovery parity
 or turn the failed CI into a passing run; a fresh actual run is required.
+
+### Complete own-product test inputs without parent history
+
+The corrected published source `0f43709` (PR #424) passes pinned full validation
+with 2,490 tests and one known deployment skip. Two fresh installed prefixes on
+each of Mac and the actual target VM pass 63 Workbench/compatibility cases per
+host without skips, actual public CLI/HTTP backup/restore and the complete fixed
+ha-CPsWMS controls/architecture comparison. All 2,615 Git blobs and 2,625 manifest
+entries are checked per prefix; keys/nodes are distinct, ports closed,
+collectors paused/empty and publisher off. These scoped installed results do not
+replace full V2 service/update/recovery acceptance. The new systemd CI remains
+separate; seven other CI families are green. Job `135378988786` confirmed five
+expected deployment transitions before cancellation at its configured 120-minute
+budget. The follow-up allows 360 minutes, retaining all twelve transitions,
+complete validations and the final credential/UID/schedule/projection checks.
+No shortened suite or silent validation cache replaces them. The older cff5fcc VM snapshot's
+previously pending whole Git/file audit has now passed as its own source proof.
+
+A separate complete test run from the installed parentless `428fe5e` snapshot
+failed 25 errors and two failures: existing comparisons needed exact original
+`6b557fe` and lifecycle-producer `c225032` source objects. The failing run is
+retained, not converted to skipped tests or a pass. The follow-up supplies two
+closed, SHA-pinned complete original snapshots as engineering conformance
+fixtures, with raw commits, complete trees and every original blob/mode/length/
+SHA-256 binding. They contain 2,033 and 1,319 source files respectively. Admission
+reconstructs the immutable original identities; no parent history or original
+hosting service is required.
+
+Artifact classification: derived engineering test/reference inputs under
+`tests/fixtures/product-test-reference-inputs/`, with fixed test-only preparation
+and reproduction helpers under `tests/acceptance/`. They are not newly
+authoritative source documents, accepted results, releases or approval records.
+No source-register promotion or control/policy derivation applies. Archived
+governance and consent records retain their original historical context and
+transfer no authority. The helper starts no archived launcher; existing tests
+may explicitly execute their known pinned original functions for comparison.
+
+Preparation is limited to a fresh private shallow test clone. It keeps current
+HEAD/tree/working files unchanged, adds only the two fixed reference roots and
+verified immutable Git objects, rejects corrupt or coherently changed archives,
+and does not silently reuse interrupted preparations. Six new positive/negative
+fixture tests pass. In a controlled complete copy of admitted `0f43709`, all
+137 unchanged previously affected regression cases now pass with these separately
+provided fixtures. The whole unchanged `0f43709` suite with these separately
+provided references now passes 2,490 tests in 1,221.432 seconds with one known
+deployment skip. All 2,615 source files and modes are checked: all 2,474
+non-generated sources stay unchanged; the nineteen observed changes are only
+closed generation timestamps or the unchanged local attestation display path.
+Their exact before/after bytes remain retained. That is prototype
+evidence: the new helpers/data are not part of the original `0f43709` package.
+The fixed engineering controller admits a prepared exact-source package and
+checks that its own source revision/helper bytes match before any test command.
+It prepares the reference data, checks the pinned tools and executes the full
+fixed discovery command with bounded pipes/wall time and actual raw outcomes.
+Four native runner tests cover exact execution/output, output/time limits and
+rejection of another pinned source before execution. Fresh packaged controller
+acceptance remains required; this is not a claim that the complete default
+compliance/test worker, installation or production acceptance has finished.
+Four metadata-audit tests additionally cover raw byte retention and rejection
+of semantic, unknown-path, wrong-example and non-graph timestamp changes.
+
+The full 22-area/135-entrypoint/37-CI/16-operating-workflow Goal, all eighteen
+historical receipts and every unfinished counterpart remain in scope. These
+fixtures and counts promote no subject to verified and grant no human,
+governance, release or operating approval.
