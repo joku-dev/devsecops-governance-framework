@@ -102,7 +102,10 @@
     "scripts/lib/workbench_application.py",
     "scripts/lib/workbench_archive.py",
     "scripts/lib/compliance_result.py",
-    "scripts/lib/compliance_replay.py"
+    "scripts/lib/compliance_replay.py",
+    "scripts/lib/compliance_application.py",
+    "scripts/lib/compliance_operation.py",
+    "scripts/lib/validation_generated_effects.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py"

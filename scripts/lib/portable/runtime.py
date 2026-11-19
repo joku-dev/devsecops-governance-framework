@@ -118,6 +118,9 @@ def source_digest():
         'validation_operations.py','validation_queries.py','validation_replay.py','validation_sources.py',
         'validation_application.py'))
     paths.append(ROOT/'config/axiom-v2-validation-capabilities.json')
+    paths.extend(ROOT/'scripts/lib'/name for name in ('compliance_result.py',
+        'compliance_replay.py','compliance_operation.py','compliance_application.py',
+        'validation_generated_effects.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('release_verification.py',
         'release_reference_facts.py','release_requests.py','release_replay.py',
         'release_inputs.py','release_validation_application.py'))

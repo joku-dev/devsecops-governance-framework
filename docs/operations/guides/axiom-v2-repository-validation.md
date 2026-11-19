@@ -147,36 +147,71 @@ unvollständig dokumentiert. Die vollständige originale Betriebssystem-Prozess-
 Semantik sowie weitere Provider-/Signaturprofile und die gesamte Bootstrap-/Test-
 Orchestrierung gehören weiterhin zum offenen Gesamt-Goal.
 
-## Nächster Baustein: vollständiger Compliance-Bericht
+## Vollständiger Compliance-Lauf: neuer Kandidat
 
-Der separate veröffentlichte Kandidat `73b93bb` in
-[PR #426](https://github.com/joku-dev/devsecops-governance-framework/pull/426)
-besteht inzwischen den vollständigen installierten Mac-Paketcontroller mit
-2.509 Tests, einer bekannten Deployment-Auslassung und Abschlusscode 0.
-Die Prüfung schließt die vollständige eigene Quelle und die exakte zusätzliche
-Viewer-Ausgabe ein. Die passende Linux-Ausführung ist auf Wunsch zurückgestellt.
-Dies ist ein Nachweis des eigenen Testmechanismus; ein vollständiger
-Compliance-Durchlauf entsteht daraus noch nicht.
+Der veröffentlichte Vorgänger `59c3112` in
+[PR #427](https://github.com/joku-dev/devsecops-governance-framework/pull/427)
+besteht die vollständige Mac-Paketprüfung mit 2.547 Tests und einer bekannten
+Deployment-Auslassung. Die neue Anwendung verbindet die Unterprüfer; ihre
+vollständige Paketabnahme ist ein eigener noch offener Nachweis.
 
-Der Folgebaustein erhält die komplette ursprüngliche Compliance-Entscheidung
-und ergänzt interne Mechanismen für deren Aufzeichnung, Wiederholung, echte
-OPA-Aufrufe und den eigenen vollständigen Testprozess. Es gibt dafür in diesem
-Baustein noch keinen abgeschlossenen neuen CLI-Aufruf. Der bestehende
-`validation repository`-Befehl bleibt der vollständige Repository-Unterprüfer.
+In einer passenden installierten Testinstanz mit vorbereiteten Werkzeugen:
 
-| Nachweis | Aussage und Grenze |
+```bash
+./axiom-v2 validation compliance \
+  --profile legacy-extended-compliance-v1 \
+  --package /absoluter/pfad/zum/passenden-produktpaket.zip \
+  --sha256 <paket-sha256> \
+  --at 2026-11-15T12:00:00Z \
+  --target-repo /absoluter/pfad/zu/ha-CPsWMS \
+  --input-file /absoluter/pfad/zum/pruefeingang.json \
+  --output-file /absoluter/pfad/zu/expliziten-exporten/compliance.json
+./axiom-v2 validation compliance-inspect --assessment <assessment_id>
+./axiom-v2 validation compliance-status
+```
+
+Das Paket muss zum exakten aktuellen eigenen Commit, Git-Baum und Host passen.
+Der Exportordner muss bereits existieren. Relative Pfade beziehen sich auf das
+ursprüngliche Aufrufverzeichnis. Ohne `--target-repo` wird die vollständige
+private eigene Quelle geprüft; ohne `--input-file` deren ursprünglicher
+Release-Candidate-Beispieleingang. Die Consumer-Quelle wird als Daten gelesen;
+ihre Programme und Tests werden nicht gestartet.
+
+Der ursprüngliche Bericht stellt die gewählte Zeit als UTC mit ganzen Sekunden
+dar; die angegebene Zeitzone und Genauigkeit bleiben im Erfassungsbeleg erhalten.
+Die Inspektion bindet diese Berichtsuhr, die ursprüngliche Textausgabe und alle
+Artefakt-Präsenzangaben an den Header und den aufbewahrten Zustand.
+
+Standardmäßig laufen die vollständigen eigenen Unit-Tests. Nur ein bewusster
+Aufruf mit `--skip-unit-tests` zeichnet tatsächlich `not_run` auf. Das originale
+JSON zeigt dafür weiterhin `pass` und `skipped in nested/test context`.
+Die drei ursprünglichen Exporte werden in Originalreihenfolge geschrieben:
+Kontroll-JSON, Kontroll-Markdown und Gesamtbericht. Aliase, Überschreiben und
+Teilfolgen vor einem Schreibfehler bleiben erhalten. Die Prüfdaten behalten
+alle chronologischen Vorher-/Nachherbytes unabhängig von späteren Exporten.
+
+| Rückgabe / Zustand | Bedeutung |
 |---|---|
-| Vollständiger ursprünglicher Entscheidungsvergleich | Gleiche Befehlsreihenfolge, Ergebnisse, Ausgabealiase und Fehler auf deklarierten Beobachtungen; kein Nachweis eines ausgeführten nativen Gesamtlaufs. |
-| Dauerhafte Entscheidungsprüfspur | Absicht wird vor jedem Aufruf geschrieben; Abbruch bleibt unvollständig. Ein passendes Replay führt keine Programme aus und schreibt keine Exporte. |
-| Tatsächlicher OPA-Aufruf | Gepinntes OPA, vollständig festgehaltene eigene Produktregeln, Eingabebytes und Rohdiagnostik; keine vom Consumer ausgewählten Programme oder Regeln. |
-| Eigener vollständiger Testprozess | Fest an den aktuellen eigenen Commit und ein separat gepinntes Paket gebunden; keine kleine Ersatzsuite und kein Start von Consumer-Tests. |
+| JSON-Modus, Exit 0 | Vollständige Erfassung und eigene Prüfbereitschaft; Consumer-Befunde bleiben report-only sichtbar. |
+| JSON-Modus, Exit 1 | Eigener Repository-Validator oder eigene Tests fehlgeschlagen; außerdem bei ausdrücklich gewähltem `--fail-on-findings`. |
+| JSON-Modus, Exit 2 | Unvollständige Erfassung, Abbruch oder ursprüngliche Ausnahme; keine erfolgreiche Gesamtprüfung. |
+| `--output legacy` | Ursprüngliche stdout-Ausgabe und ursprünglicher Befundcode 0/1, wenn die Originalentscheidung zurückkehrt. Auch ihr bekannter leerer Integrations-Randfall bleibt sichtbar; Ausnahmen erhalten Exit 2. |
+| `pending_incomplete` | Kein vollständiger Workerabschluss; keine Aussage über einen noch lebenden Prozess, keine automatische Fortsetzung. |
+| `retained_declared_complete_compliance_consistent` | Vollständige aufbewahrte Unterprüfungen, Quellen, Rohdaten, Reihenfolge und Exporte stimmen überein; keine unabhängige Ausführungsattestierung. |
 
-Die vollständige Anwendung muss diese Mechanismen noch in der ursprünglichen
-Reihenfolge auf derselben vollständigen eigenen Quellprojektion verbinden,
-Generatorfolgen erhalten und Standardlauf, ausdrückliches Auslassen, Fehler und
-Mac/Linux-Auslieferung vergleichen. Ein ausdrücklich ausgelassener Test bleibt
-in der tatsächlichen Ausführung `not_run`, auch wenn das ursprüngliche JSON dafür
-`pass` und `skipped in nested/test context` anzeigt. Ebenso kann das ursprüngliche
-JSON bei leerer Integrationsausgabe einen nativen Erfassungsfehler übersehen;
-dieser bekannte Randfall wird erhalten und außerhalb der Kompatibilitätsausgabe
-sichtbar gemacht. Daraus folgt keine Betriebs-, Trust- oder Governance-Freigabe.
+Private Daten liegen unter `<instance>/state/compliance/operations/<assessment_id>`.
+Der feste Elternprozess überwacht den eigenen Worker bis 4.200 Sekunden und
+64 KiB je Ausgabestrom; der vollständige innere Testlauf bis 3.600 Sekunden und
+8 MiB je Strom. Das ist eine Ausführung unter demselben Benutzer mit begrenzten
+bekannten Programmen, keine Kernel-Isolation von Netzwerk, Speicher oder allen
+Nachfahren. Vorbereitete gepinnte OPA-/Python-Abhängigkeiten sowie Node, Git und
+ein OpenSSL mit den benötigten Signaturfunktionen sind erforderlich.
+
+Export-Symlinks, mehrfach verlinkte Exportdateien, Spezialdateien, Exporte in Produkt/Instanz und überschrittene
+Dateibudgets sind sichtbare Zulassungsfehler. Ursprüngliche ungefangene Fehler
+werden typisiert festgehalten; ein historischer Prozess-Traceback wird nicht
+nachgebaut. Unvollständige Datensätze prüfen die erhaltene Entscheidung und
+Teil-Exportbytes, behaupten aber keine vollständige native Gesamtverifikation.
+Alle Baselines, Trust- und Betriebsfreigaben bleiben getrennt. Die passende
+neue Mac-Paketabnahme und ganzen Originalvergleiche stehen aus; Linux wird auf
+Wunsch später geprüft.

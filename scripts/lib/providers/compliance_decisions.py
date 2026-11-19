@@ -47,11 +47,17 @@ def binding(value):
     return value
 
 
-def record(root, header, environment, **options):
+def record(root, header, environment, *, on_event=None, **options):
     """The caller supplies a fresh private directory and admitted environment."""
     binding(header)
+    if on_event is not None and not callable(on_event):
+        raise ValueError('compliance_decision_forward_callback_required')
     with RepositoryJournal(root, header) as journal:
-        value = record_generation(environment, on_event=journal.append, **options)
+        def emit(row):
+            journal.append(row)
+            if on_event is not None:
+                on_event(row)
+        value = record_generation(environment, on_event=emit, **options)
         inspect_generation(value)
         raw = decision_wire(value)
         if len(raw) > MAX_BYTES:

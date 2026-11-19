@@ -219,6 +219,9 @@ class ValidationContext:
 
 
 def run(arguments, instance_root, settings):
+    if arguments and arguments[0] in ('compliance','compliance-inspect','compliance-status'):
+        from lib.compliance_application import run as compliance_run
+        return compliance_run(arguments,instance_root,settings)
     if arguments and arguments[0] in ('repository', 'repository-inspect', 'repository-status'):
         from lib.repository_application import run as repository_run
         return repository_run(arguments, instance_root, settings)
@@ -227,6 +230,9 @@ def run(arguments, instance_root, settings):
         return release_run(arguments,instance_root,settings)
     parser = argparse.ArgumentParser(prog='axiom-v2 validation', allow_abbrev=False)
     sub = parser.add_subparsers(dest='operation', required=True)
+    for name in ('compliance','compliance-inspect','compliance-status'):
+        sub.add_parser(name,allow_abbrev=False,add_help=False,
+            help='Complete own-source compliance with actual full tests and retained native/decision evidence.')
     runtime = sub.add_parser('runtime', allow_abbrev=False)
     runtime.add_argument('--at', required=True)
     runtime.add_argument('--output', choices=('json', 'legacy'), default='json')

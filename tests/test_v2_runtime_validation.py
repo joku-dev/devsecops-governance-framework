@@ -363,7 +363,8 @@ class RuntimeFingerprintClosure(unittest.TestCase):
     def test_each_installed_validation_module_byte_change_invalidates_runtime_binding(self):
         root = portable_runtime.ROOT
         registered = json.loads((root / 'config/axiom-v2-distribution.json').read_text())['python_files']
-        expected = {name for name in registered if '/validation_' in name or name.endswith('/runtime_validation.py')}
+        expected = {name for name in registered if '/validation_' in name
+                    or '/compliance_' in name or name.endswith('/runtime_validation.py')}
         expected.add('config/axiom-v2-validation-capabilities.json')
         with patch.object(portable_runtime, 'file_digest', wraps=portable_runtime.file_digest) as measured:
             baseline = portable_runtime.source_digest()

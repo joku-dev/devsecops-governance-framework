@@ -962,3 +962,35 @@ fresh complete macro acceptance remain required. These prerequisites are not a
 skip-only implementation or a new reduced acceptance target. All 22 areas,
 135 entrypoints, 37 CI definitions, 16 operating workflows and 18 historical
 receipts stay in scope; no matrix subject is promoted to verified by this work.
+
+### Native complete-compliance application candidate
+
+The follow-up adds a source/node/package-bound CLI, fixed supervised own worker
+and retained whole-operation inspection. Native integration, full own repository
+validation, default whole unit discovery and complete OPA/control evaluation use
+one owned complete source with exact sequential generator effects. Explicit skip
+is actual not_run. All export attempts retain original before/after effects,
+including OS failures and aliases. The modern outcome separates acquisition,
+own readiness and report-only consumer findings; explicit legacy returned wire
+remains original. Original uncaught errors are typed incomplete exit 2, not a
+fabricated same-process traceback. Closed tool, input, path, time and stream
+bounds are operating prerequisites, without kernel isolation or authority claims.
+
+Classification remains executable engineering and descriptive architecture under
+this GCR; no new normative source, approved result or baseline. The one newly
+mapped original compliance entrypoint moves pending to in_progress, producing
+81 in_progress/54 pending/0 verified. All 135 entrypoints, 37 CI definitions,
+16 workflows, 22 areas and 18 historical receipts remain intact. Whole matching
+package/default/skip/error/original comparisons are still required. Linux target
+work remains deferred; published predecessor acceptance cannot certify this
+new source. The unchanged V1 reference and all earlier native failures stay kept.
+
+The first complete new-source regression ends failed: 2,585 tests in 1,381.070
+seconds, one known deployment skip and one runtime fingerprint-closure failure.
+The missing shared generated-effect helper exposed incomplete runtime hashing.
+The correction adds all neutral compliance modules and that helper to the digest;
+the unchanged byte-mutation invariant is expanded to registered compliance modules.
+Original UTC whole-second formatting and explicit header-clock/stdout/artifact
+bindings receive additional consistency checks. Empty directory symlinks cannot
+hide outside the final source file map. The failed whole run remains failed;
+focused regressions are separate from a required fresh complete validation.

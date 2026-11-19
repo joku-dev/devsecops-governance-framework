@@ -8,6 +8,7 @@ import hashlib
 import os
 import re
 import selectors
+import signal
 import shutil
 import stat
 import subprocess
@@ -116,6 +117,16 @@ def supervise(command, cwd, environment, target, *, timeout=WALL_LIMIT, stream_l
     finally:
         if process is not None:
             try:
+                # This worker starts a known Python controller. Let its finally
+                # blocks stop the owned inner unit/projection groups before
+                # forcing the outer group down. This is cooperative cleanup,
+                # not a kernel guarantee for arbitrary descendant processes.
+                if process.poll() is None:
+                    process.send_signal(signal.SIGINT)
+                    try:
+                        process.wait(timeout=5)
+                    except subprocess.TimeoutExpired:
+                        pass
                 process_groups.stop(process, graceful=process.poll() is None)
             finally:
                 for name in counts:
