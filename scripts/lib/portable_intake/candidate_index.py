@@ -39,17 +39,27 @@ def validate_candidate(document):
 
 def build_index(root,*,limit=50000,byte_limit=128*1024**2):
     root=Path(root).resolve();source=root/'status/portable/v2/candidates'
-    histories={};latest={};total=0;count=0
-    if any(path.is_symlink() for path in (root/'status',root/'status/portable',root/'status/portable/v2',source)) or not source.resolve().is_relative_to(root):
-        raise ValueError('candidate_source_symlink')
-    for visited,path in enumerate(source.rglob('*') if source.exists() else [],start=1):
-        if visited>3*limit+4:raise ValueError('candidate_index_budget_exceeded')
-        if path.is_symlink():raise ValueError('candidate_member_symlink')
-        if path.is_dir():continue
-        count+=1;size=path.stat().st_size;total+=size
-        if count>limit or size>65536 or total>byte_limit:raise ValueError('candidate_index_budget_exceeded')
-        if path.suffix!='.json':raise ValueError('unexpected_candidate_member')
-        document=validate_candidate(read_json(path));relative=str(path.relative_to(root))
+    def documents():
+        total=0;count=0
+        if any(path.is_symlink() for path in (root/'status',root/'status/portable',root/'status/portable/v2',source)) or not source.resolve().is_relative_to(root):
+            raise ValueError('candidate_source_symlink')
+        for visited,path in enumerate(source.rglob('*') if source.exists() else [],start=1):
+            if visited>3*limit+4:raise ValueError('candidate_index_budget_exceeded')
+            if path.is_symlink():raise ValueError('candidate_member_symlink')
+            if path.is_dir():continue
+            count+=1;size=path.stat().st_size;total+=size
+            if count>limit or size>65536 or total>byte_limit:raise ValueError('candidate_index_budget_exceeded')
+            if path.suffix!='.json':raise ValueError('unexpected_candidate_member')
+            yield str(path.relative_to(root)),read_json(path)
+    return build_from_documents(documents())
+
+
+def build_from_documents(documents):
+    """Complete original projection from bounded decoded candidate inputs."""
+    histories={};latest={};count=0
+    for relative,document in documents:
+        count+=1
+        document=validate_candidate(document)
         if relative!=path_for(document):raise ValueError('candidate_path_identity_mismatch')
         kind='pull_request' if document['event']=='pull_request' else 'manual' if document['event'] in ('manual','schedule','unknown') else 'branch'
         record={'path':relative,'content_digest':canonical_digest(document),'context':kind,

@@ -1620,8 +1620,8 @@
         "--root"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/candidate_index_application.py:CandidateIndexContext",
+      "state": "in_progress",
       "evidence": []
     },
     {

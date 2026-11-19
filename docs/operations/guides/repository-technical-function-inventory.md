@@ -561,3 +561,14 @@ the original ordered text/Office findings and whole output wires through a pure
 core and explicit local acquisition adapter. No writes, publication or stored
 terms/content. Additional resource/unsafe-source errors use Exit 2. See the
 [guide](axiom-v2-artifact-hygiene.md); full installed parity remains in progress.
+
+### V2 retained portable candidate index
+
+`candidate-index generate --profile legacy-portable-candidate-index-v1` exposes
+the complete original candidate projection through explicit working-tree/Git
+data acquisition and private retained input/output bindings. `inspect` replays
+the complete artifact; `export` records original replacement effects separately.
+The default uses committed product data; `--root` selects a working tree.
+Candidate declarations never prove mainline, verification or official acceptance.
+The original 50,000-file/128-MiB input scope is preserved. See the
+[guide](axiom-v2-candidate-index.md). Full delivery remains in progress.

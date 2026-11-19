@@ -2782,3 +2782,18 @@ without the old script-name dispatcher. Complete original CLI outputs, ZIP order
 UTF-8 and corruption behavior are compared. Product resource guards are separate
 from original findings. Source and installed proofs remain revision-bound, and
 the entrypoint is in progress. All original Goal scope remains unchanged.
+
+### Retained portable candidate read model
+
+The separate `candidate-index` route now captures committed/default product data
+or an explicitly selected working tree and retains the entire original index.
+Whole unchanged V1 CLI comparisons cover all three declared provider profiles,
+history/latest-context rules, both Git formats and 2,000 synthetic repositories.
+Private replay works after source removal; explicit export retains before bytes
+and prepared/completed observations. Candidate data remains unverified and never
+becomes an official result through this route. The original 50,000-file/128-MiB
+input scope is retained; additional path/file/manifest/output guards are explicit.
+Source-bound full validation, review/publication and fresh installed host proofs
+remain delivery tasks. The single mapped entrypoint is in progress, not verified.
+See the [guide](../guides/axiom-v2-candidate-index.md). All 22/135/37/16 original
+subjects and 18 historical receipts remain in the Goal without exceptions.

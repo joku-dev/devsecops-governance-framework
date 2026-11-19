@@ -92,6 +92,9 @@ from lib.providers.intake_recording import (PROFILES as INTAKE_RECORD_PROFILES,
 
 from lib.providers.process_groups import consistent as native_cleanup_observation_valid
 from lib.providers.validation_tools import ValidationOPA
+from lib.providers.candidate_index_source import (PROFILE as CANDIDATE_INDEX_PROFILE,
+    capture as capture_candidate_source, output_destination as candidate_index_destination,
+    observe_output as observe_candidate_index_output, replace_output as replace_candidate_index_output)
 from lib.providers.validation_worktree import ValidationWorktree
 from lib.providers.release_references import ReleaseReferences,ReleaseSource
 from lib.providers.release_verification import ReleaseVerificationEnvironment
