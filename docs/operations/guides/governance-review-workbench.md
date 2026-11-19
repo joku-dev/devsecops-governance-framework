@@ -21,7 +21,22 @@ The public [Governance Workspace](governance-viewer-app.md) remains a read-only
 publication surface. The workbench is a separate private operational surface;
 it is not included in GitHub Pages or the generated public viewer.
 
-## Start
+<a id="start"></a>
+
+## V2 candidate start
+
+An admitted V2 installation now starts with `axiom-v2 workbench` and stores its
+full preparation state in its private instance. It uses that instance's key and
+port, not the retained V1 environment-key/checkout-local defaults. See the
+[V2 Workbench guide](axiom-v2-workbench.md) for exact startup, independent Mac/VM
+state, explicit draft backup/restore and publication boundaries. Current-source
+installed delivery must be checked separately from the retained V1 service.
+
+## Retained V1 start
+
+The commands in this section describe the retained V1 checkout/service only.
+For the new V2 candidate, use the explicit instance route above.
+
 
 From the repository checkout, run one command:
 

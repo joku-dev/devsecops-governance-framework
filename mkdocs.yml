@@ -195,6 +195,7 @@ nav:
           - V2 Repository Validation Candidate: operations/guides/axiom-v2-repository-validation.md
           - V2 Public Artifact Hygiene: operations/guides/axiom-v2-artifact-hygiene.md
           - V2 Portable Candidate Index: operations/guides/axiom-v2-candidate-index.md
+          - V2 Private Workbench: operations/guides/axiom-v2-workbench.md
           - Provider assurance candidates: operations/guides/provider-assurance-candidates.md
           - Portable update and recovery: operations/guides/portable-vm-update-and-recovery.md
           - Platform portability acceptance: operations/planning/platform-portability-acceptance.md

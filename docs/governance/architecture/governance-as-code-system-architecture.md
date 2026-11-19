@@ -687,6 +687,25 @@ state. Unknown write outcomes stop for reconciliation; neither the Workbench nor
 an adapter merges or approves source/requirements. Browser links require the
 returned explicit matching HTTPS instance, including for self-hosted providers.
 
+The V2 Workbench application binds drafts and uploads to the explicit private
+instance's `state/workbench`, with a process-owned lease covering the entire
+server lifetime. Data acquisition and native Git identity are explicit local
+ports; requirement extraction and process projection call neutral functions.
+The old producer scripts are not installed as Workbench dependencies. The
+existing complete HTTP/authentication, note/history, impact and packet flows
+remain, including live observations of newly registered and missing sources.
+Upload `source_path` metadata uses a documented logical private namespace.
+
+A separate draft-only archive format retains exact JSON/upload bytes and pinned
+source/runtime metadata. Verification does not create a workspace. Restore
+requires an empty destination and explicit archive SHA; cross-source historical
+imports need an explicit operator choice and preserve original context/stale
+semantics. No executable, key, session, credential, publisher or operating
+acceptance is copied. Native publication worktrees stay separate for manual
+reconciliation. This is not a full installation backup or update takeover.
+Current implementation and delivery evidence remain distinct; see the
+[V2 Workbench guide](../../operations/guides/axiom-v2-workbench.md).
+
 ### Runtime Context and Latest-State Semantics
 
 The system distinguishes mainline, pull-request, branch, and manual or
@@ -783,7 +802,7 @@ flowchart TB
 | `instance/workbench-key.json`, `instance/credentials/` | Private independent key and explicitly referenced provider credentials |
 | `instance/state/consumers/`, `instance/state/evidence/`, `instance/state/evidence-restore-candidate/` | Private queue, receipts/raw processing data and separately inactive restore slot |
 | `instance/projection/` | Bounded redacted collector view for this instance |
-| `package/source/.local/governance-workbench/<node_id>/` | Node-owned draft/upload/note state required by the local source-review path |
+| `instance/state/workbench/` | Private draft/upload/note state, bound to the instance; separate native publication recovery under `state/workbench-publications/` |
 | `installation.json`, `axiom-v2` | Private install receipt and prefix-relative finite product launcher |
 
 The installer creates no system service and starts collection paused. The private

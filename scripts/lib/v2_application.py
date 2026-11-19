@@ -224,17 +224,5 @@ def run(command, arguments, *, instance_path=None):
         args=arguments if arguments[0]=='bundle' else set_option(arguments,'--root',slot)
         if arguments[0] in ('verify-local','collect'):args=set_option(args,'--opa',settings['opa'])
         return intake_portable_evidence.main(args)
-    import serve_governance_workbench
-    if settings['development'] and '--enable-pr' in arguments:
-        raise ValueError('development_v2_instance_cannot_publish')
-    check_private_file(root/'workbench-key.json')
-    key=read_json(root/'workbench-key.json')['key']
-    args=set_option(arguments,'--port',settings['port'])
-    args=set_option(args,'--state-dir',ROOT/'.local/governance-workbench'/settings['node_id'])
-    args=set_option(args,'--consumer-projection',root/'projection')
-    previous=os.environ.get('AXIOM_WORKBENCH_KEY')
-    os.environ['AXIOM_WORKBENCH_KEY']=key
-    try:return serve_governance_workbench.main(args)
-    finally:
-        if previous is None:os.environ.pop('AXIOM_WORKBENCH_KEY',None)
-        else:os.environ['AXIOM_WORKBENCH_KEY']=previous
+    from lib.workbench_application import run as workbench
+    return workbench(root, settings, arguments)

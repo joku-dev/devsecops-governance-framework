@@ -86,10 +86,13 @@ class Instances(unittest.TestCase):
 
     def test_workbench_uses_node_state_port_and_key_without_printing_it(self):
         settings=self.create();out=io.StringIO()
-        def server(argv):
+        def server(argv, *, application, access_key):
             self.assertEqual(argv[argv.index('--port')+1],'8875')
-            self.assertIn(settings['node_id'],argv[argv.index('--state-dir')+1])
-            self.assertGreaterEqual(len(os.environ['AXIOM_WORKBENCH_KEY']),24)
+            self.assertEqual(application.state_dir, self.path.resolve()/'state/workbench')
+            self.assertEqual(application.consumer_projection, self.path.resolve()/'projection')
+            self.assertEqual(access_key, json.loads((self.path/'workbench-key.json').read_bytes())['key'])
+            self.assertEqual(os.environ['AXIOM_WORKBENCH_KEY'], 'prior synthetic test key')
+            self.assertFalse((ROOT/'.local/governance-workbench'/settings['node_id']).exists())
             return 0
         with patch.dict(os.environ,{'AXIOM_WORKBENCH_KEY':'prior synthetic test key'}),redirect_stdout(out),patch(
                 'serve_governance_workbench.main',side_effect=server):

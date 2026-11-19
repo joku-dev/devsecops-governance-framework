@@ -1161,9 +1161,10 @@ writers keep their original JSON escaping. Complete byte comparisons use the
 actual frozen V1 functions/renderers in two exact committed input contexts.
 Original dependency writers execute only in the private V1 oracle; V2 uses
 direct pure function calls. The corresponding installed acceptance compares all
-thirty-three files, and records only actually observed host execution. Existing generic
-Workbench imports remain unchanged until their candidate/workspace context has
-its own migration and interface tests.
+thirty-three files, and records only actually observed host execution. The later private Workbench increment now supplies an explicit candidate/workspace
+data adapter and independent full-function/interface tests; see the
+[V2 Workbench guide](../guides/axiom-v2-workbench.md). Its current validation and
+installed evidence remain separate from these earlier source-report proofs.
 
 
 ### Model follow-up reports and explicit data-layout repair
@@ -1915,8 +1916,10 @@ control/architecture report routes, four-action runtime CLI, pinned OPA installe
 and source-package build/admit/environment library as counterparts. Existing
 original byte comparisons and operating tests support the mapping. They remain
 `in_progress`: mapping is not a complete revision-bound installed parity receipt.
-The compliance-result wrapper, evidence migration actions, complete Workbench
-flows and remaining lifecycle/review/publication operations remain outstanding.
+The compliance-result wrapper, evidence migration actions and remaining
+lifecycle/review/publication operations remain outstanding. Complete Workbench
+flows now have a private-instance implementation with original comparisons;
+current-source complete validation and installed delivery remain unfinished.
 
 
 The retained real ha-CPsWMS scan from capture `43767248960` has no `produced_at`.
@@ -2809,3 +2812,74 @@ Its prototype observations precede integration with the candidate-index commit.
 The combined source passed 2,427 pinned tests in 1,534.696 seconds with one known
 deployment skip and unchanged non-generated source fingerprints. Fresh source-
 bound installed evidence and the complete Goal remain open.
+
+
+## Complete private Workbench increment
+
+The full existing Workbench surface now uses `workbench_application` and the
+explicit `workbench_data`/`workbench_workspace` ports. Drafts/uploads live in the
+private instance, with a whole-server lease and separate native-publication
+recovery directory. All existing 22 model methods and authenticated HTTP/client
+flows remain in scope. Neutral source extraction and process projection replace
+imports of the two old producer scripts; those scripts are physically omitted
+from the V2 selected runtime. The direct server facade forwards only through an
+explicit V2 instance. The retained standalone shell/bootstrap flow still needs
+its full operating counterpart; it remains pending in the matrix.
+
+The focused 59-case suite runs all 32 existing Workbench tests against a
+disjoint private instance, nine independent whole-object/packet/process/live-
+source comparisons against SHA-pinned complete V1 modules, sixteen backup
+cases and two facade cases. Only validated private upload `source_path` labels
+are rebound; complete remaining objects/files and original negative outcomes
+are compared. Four initial Node skips and the subsequently corrected missing-
+source/test-fixture failures remain in their raw failed/superseded logs. The
+corrected focused suite has zero skips. Eleven application tests also pass.
+
+Private backup/verification/restore retains complete draft/upload bytes, including
+stale history and interrupted empty directories, with an independently supplied
+whole archive SHA and closed schema/member validation. Same-source import is
+default; an explicit historical-data choice permits compatible drafts after a
+source update, with unchanged saved contexts and normal stale/export guards.
+Keys, sessions, credentials, collector state and native worktrees are excluded.
+This is not full installation/instance recovery or operating acceptance.
+
+Only the Workbench server entrypoint moves from pending to in progress. Counts
+are now80 in progress/55 pending/0 verified; all22/135/37/16 scope and18historical
+receipts remain. Current-source full validation, review and installed delivery
+are subsequent evidence, not implied by a unit count or prior73d proofs. See
+the [operator guide](../guides/axiom-v2-workbench.md).
+
+
+The archive/export review reproduced a further gap in the old loose draft
+schema: a coherently edited candidate source destination could become an unsafe
+ZIP packet member. The first new full-suite run was deliberately interrupted
+(exit130) while its non-generated sources remained frozen; it is not reported
+as passed. A common pure draft check now verifies candidate ID/suffix/destination
+and bounded registered-source/scope paths before private save/load, backup
+import and packet handoff. The additional regressions include malicious but
+CRC/hash/schema-consistent archives with an explicitly matching whole-file SHA.
+Historical-source opt-in cannot bypass those path checks. A fresh full-source
+validation and new-runtime installed evidence are required after this fix.
+
+
+### Complete guarded Workbench validation checkpoint
+
+The corrected combined-source pinned bootstrap/full validation passed **2,486
+tests in 1,288.466 seconds**, with one known deployment skip. All **2,473
+non-generated file bytes** and all **24 protected implementation hashes** stayed
+unchanged throughout that successful run. The earlier interrupted run remains
+recorded as exit130. Demo and Viewer checks passed; nineteen observed generated
+clock/path effects were archived with complete before/after bytes and restored.
+The executable runtime is `5436813c8935f5ded5a05a06d887dba29fd4b42af53a4909cb634c7dc1e4af4a`.
+
+The actual public CLI/HTTP development proof used two fresh private nodes,
+read all fifteen registered product documents, created three preparations and
+restored all four saved JSON/upload files byte-identically. Complete ZIP member
+bytes agreed; keys/sessions stayed independent, live-server backup was held and
+verification created no workspace. Both ports are closed; collectors remain
+paused/empty and publication is off. This remains **development evidence**, not
+a fresh installed or cross-host acceptance. Current committed-source review,
+prepared packages and actual installed Mac/Linux proof follow independently.
+Only explanatory/progress metadata changes after the full run; executable
+source remains frozen. The complete Goal, all scope units and historical
+receipts remain unchanged, with no new verified subject or authority.

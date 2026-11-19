@@ -397,11 +397,14 @@ class WorkbenchTests(unittest.TestCase):
                                 text=True, capture_output=True, check=False)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def other_workbench(self, name):
+        return wb.Workbench(self.root, state_dir=self.app.state_dir/name)
+
     def test_one_browser_cookie_jar_keeps_two_ports_signed_in_after_logout(self):
         from http.cookiejar import CookieJar
         from urllib.request import build_opener,HTTPCookieProcessor,Request
         from urllib.error import HTTPError
-        other=wb.Workbench(self.root,state_dir=self.app.state_dir/'browser-node')
+        other=self.other_workbench('browser-node')
         keys=['first-browser-access-key-123456','second-browser-access-key-789012']
         servers=[wb.make_server(app,key,port=0) for app,key in zip((self.app,other),keys)]
         threads=[threading.Thread(target=s.serve_forever,daemon=True) for s in servers]
@@ -429,7 +432,7 @@ class WorkbenchTests(unittest.TestCase):
 
     def test_two_running_instances_keep_sessions_keys_and_drafts_separate(self):
         first=self.upload()
-        other=wb.Workbench(self.root,state_dir=self.app.state_dir/'independent-node')
+        other=self.other_workbench('independent-node')
         second=other.create_draft({'filename':'second.md','content_base64':base64.b64encode(b'# Second private draft').decode(),
             'metadata':{'id':'SECOND-SRC-001','title':'Second','owner':'other-owner','version':'1','governance_domains':['devsecops']}})
         self.assertEqual([d['draft_id'] for d in self.app.state()['drafts']],[first['draft_id']])

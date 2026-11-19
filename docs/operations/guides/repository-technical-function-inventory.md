@@ -572,3 +572,15 @@ The default uses committed product data; `--root` selects a working tree.
 Candidate declarations never prove mainline, verification or official acceptance.
 The original 50,000-file/128-MiB input scope is preserved. See the
 [guide](axiom-v2-candidate-index.md). Full delivery remains in progress.
+
+
+## V2 complete private Workbench follow-up
+
+`workbench_application` retains the complete local preparation/HTTP surface with
+explicit private-instance data/workspace ports. Uploads and drafts are outside
+the product checkout; original extraction/process functions are neutral calls.
+Explicit draft-only backup/verification/restore retains old bytes and stale
+contexts, excludes keys/sessions/credentials/publication worktrees and permits
+historical source import only as an explicit operator choice. Complete source-
+bound validation and installed host proof remain separate from focused tests.
+See [V2 Workbench operation](axiom-v2-workbench.md). Full Goal scope is unchanged.

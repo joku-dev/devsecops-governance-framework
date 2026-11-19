@@ -1,0 +1,21 @@
+{
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "serve_governance_workbench.py.txt": {
+      "original_path": "scripts/serve_governance_workbench.py",
+      "sha256": "988927753f9a268c5d36aab0ccabd45577d3db11ace45ae0565283c81f55809d"
+    },
+    "generate_source_document_requirement_delta.py.txt": {
+      "original_path": "scripts/generate_source_document_requirement_delta.py",
+      "sha256": "53e43c0ee639deafcb92cdd53fb55c457362c33e723e7570a0ecacbb98884b0a"
+    },
+    "generate_source_document_process_status.py.txt": {
+      "original_path": "scripts/generate_source_document_process_status.py",
+      "sha256": "517e4ea479a13770250aaa9b81fab5502b3e36b7433d96a757a619059ea08c4c"
+    },
+    "source_document_text.py.txt": {
+      "original_path": "scripts/lib/source_document_text.py",
+      "sha256": "e9ec50a9da77cb4cc294fd0f48283cc564228206d4bb84658c8c9b2c6f061ebc"
+    }
+  }
+}

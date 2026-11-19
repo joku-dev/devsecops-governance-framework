@@ -28,12 +28,11 @@ import zipfile
 import jsonschema
 import yaml
 from lib.source_document_text import extract_source_document, SourceDocumentExtractionError
-from generate_source_document_requirement_delta import extract_requirements, compare_requirements
-from generate_source_document_process_status import build_report
+from lib.report_requirement_delta import compare_requirements
 from lib.document_consistency_view import project_public
 from lib.explicit_requirements import is_requirement_id
 from lib.workbench_impact import ImpactProjection
-from lib.provider_ports import WorkbenchPublication
+from lib.provider_ports import WorkbenchPublication, workbench_data
 from lib.provider_errors import AccessFailure
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -108,15 +107,19 @@ def serialized_request(method):
 
 
 class Workbench:
-    def __init__(self, root=ROOT, state_dir=None, enable_pr=False, consumer_projection=None, publisher=None):
+    def __init__(self, root=ROOT, state_dir=None, enable_pr=False, consumer_projection=None, publisher=None, backend=None):
         self.consumer_projection = consumer_projection
         self.root = Path(root).resolve()
         self.state_dir = Path(state_dir or self.root / '.local/governance-workbench').resolve()
-        # Existing extraction uses repository-relative source locations. Keep drafts inside the checkout.
-        self.state_dir.relative_to(self.root)
-        self.state_dir.relative_to((self.root / '.local/governance-workbench').resolve())
-        self.state_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
-        os.chmod(self.state_dir, 0o700)
+        if backend is None:
+            # The retained standalone compatibility route keeps its original scope.
+            self.state_dir.relative_to(self.root)
+            self.state_dir.relative_to((self.root / '.local/governance-workbench').resolve())
+            self.state_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
+            os.chmod(self.state_dir, 0o700)
+            backend = workbench_data(self.root, self.state_dir, live_process=self.root == ROOT)
+        backend.bind(self.root, self.state_dir)
+        self.backend = backend
         self.enable_pr = enable_pr
         self.publisher = publisher
 
@@ -129,7 +132,7 @@ class Workbench:
         return path
 
     def head(self):
-        return run(['git', 'rev-parse', 'HEAD'], self.root)
+        return self.backend.head()
 
     def context(self):
         return {'commit': self.head(), 'register_sha256': digest((self.root / REGISTER).read_bytes()),
@@ -144,11 +147,11 @@ class Workbench:
 
     def inspect(self, source):
         path = self.source_path(source)
-        extracted = extract_source_document(path)
+        extracted = self.backend.extract(path)
         origin = source.get('requirement_identifier_origin', self.register().get('requirement_identifier_origin_default', 'unverified'))
         detail = {'source': source, 'sha256': digest(path.read_bytes()),
                 'lines': [vars(x) for x in extracted.lines], 'warnings': list(extracted.warnings),
-                'requirements': extract_requirements(source['id'], path, origin),
+                'requirements': self.backend.requirements(source['id'], path, origin),
                 'formal_status': self.formal_status(source, digest(path.read_bytes())),
                 'extraction_limit': 'Only explicitly labelled requirements (for example DSCB-L1-REQ-001); no prose inference. Identifier provenance and source authority still require review.'}
         detail['implementation'] = self.implementation(detail)
@@ -228,12 +231,15 @@ class Workbench:
         if not DRAFT_PATTERN.fullmatch(draft_id):
             raise ValueError('Invalid draft identifier')
         path = self.state_dir / draft_id
+        if self.backend.instance is not None:
+            if not path.exists(): raise ValueError('Unknown draft')
+            self.backend.validate_folder(path)
         if not (path / 'draft.json').is_file():
             raise ValueError('Unknown draft')
         return path
 
     def draft(self, draft_id):
-        data = read_json(self.draft_dir(draft_id) / 'draft.json')
+        data = self.backend.draft(self.draft_dir(draft_id) / 'draft.json')
         context = self.context()
         old = data['context']
         reasons = []
@@ -276,7 +282,7 @@ class Workbench:
         context = self.context()
         drafts = [self.draft(p.name) for p in sorted(self.state_dir.iterdir()) if p.is_dir() and DRAFT_PATTERN.fullmatch(p.name) and (p / 'draft.json').is_file()]
         # Existing readiness generator is read-only and uses the same repository checkout.
-        process = build_report() if self.root == ROOT else read_json(self.root / 'generated/reports/source-document-process-status.json')
+        process = self.backend.process_report()
         projection = project_public(self.root) if (self.root / 'status/document-consistency-public-projection.json').is_file() else {}
         return {'context': context, 'documents': self.register()['documents'], 'drafts': drafts,
                 'process': process, 'dcr': projection,
@@ -333,8 +339,8 @@ class Workbench:
         upload.write_bytes(raw)
         os.chmod(upload, 0o600)
         try:
-            extraction = extract_source_document(upload)
-            requirements = extract_requirements(source_id, upload)
+            extraction = self.backend.extract(upload)
+            requirements = self.backend.requirements(source_id, upload)
             target = self.inspect(self.document(replacement)) if replacement else None
             if target:
                 target.pop('formal_status', None)  # A live projection is not part of the saved predecessor.
@@ -369,8 +375,10 @@ class Workbench:
         return clean
 
     def save(self, folder, data):
+        self.backend.validate_folder(folder)
         clean = self.persisted(data)
         jsonschema.validate(clean, read_json(self.root / 'schemas/governance-workbench-draft.schema.json'))
+        self.backend.validate_saved(folder, clean)
         atomic_json(folder / 'draft.json', clean)
 
     def note(self, draft_id, payload):
@@ -478,7 +486,7 @@ class Workbench:
         data = self.draft(draft_id)
         if data.get('pr'):
             return data['pr']
-        result=self.publisher.publish(root=self.root,destination=self.state_dir/('pr-'+draft_id),
+        result=self.publisher.publish(root=self.root,destination=self.backend.publication_destination(draft_id),
             draft_id=draft_id,context=data['context'],files=self.packet_files(draft_id),
             kind=data['kind'],at=now(),local_run=run)
         data['pr']=result
@@ -641,23 +649,34 @@ def make_server(workbench, key, port=8765):
     return server
 
 
-def main(argv=None):
+def main(argv=None, *, application=None, access_key=None):
     parser = argparse.ArgumentParser(description=__doc__,allow_abbrev=False)
-    parser.add_argument('--port', type=int, default=8765)
+    parser.add_argument('--instance', type=Path, help='Explicit private V2 instance')
+    parser.add_argument('--port', type=int)
     parser.add_argument('--consumer-projection', type=Path, help='Read-only redacted collector projection directory')
     parser.add_argument('--enable-pr', action='store_true', help='Enable explicit proposal publication through the configured SCM adapter')
     parser.add_argument('--publication-profile',type=Path,help='Private explicit SCM publication profile')
-    parser.add_argument('--state-dir',type=Path,help='Private node directory within this checkout Workbench scope')
+    parser.add_argument('--state-dir',type=Path,help='Instance-owned private Workbench directory')
     args = parser.parse_args(argv)
+    if application is None:
+        if args.instance is None:
+            parser.error('Use axiom-v2 --instance PRIVATE_INSTANCE workbench, or provide --instance here')
+        from lib.v2_application import run as product
+        forwarded = []
+        for name, value in (('--port', args.port), ('--state-dir', args.state_dir),
+                            ('--consumer-projection', args.consumer_projection),
+                            ('--publication-profile', args.publication_profile)):
+            if value is not None: forwarded.extend((name, str(value)))
+        if args.enable_pr: forwarded.append('--enable-pr')
+        return product('workbench', forwarded, instance_path=args.instance)
     os.umask(0o077)
-    key = os.environ.get('AXIOM_WORKBENCH_KEY') or secrets.token_urlsafe(24)
+    key = access_key or os.environ.get('AXIOM_WORKBENCH_KEY') or secrets.token_urlsafe(24)
     if len(key) < 24:
         parser.error('AXIOM_WORKBENCH_KEY must contain at least 24 characters')
-    publisher=WorkbenchPublication.from_file(args.publication_profile) if args.publication_profile else None
-    if args.enable_pr and publisher is None:parser.error('--enable-pr requires --publication-profile')
-    server = make_server(Workbench(enable_pr=args.enable_pr, consumer_projection=args.consumer_projection,publisher=publisher,state_dir=args.state_dir), key, args.port)
+    app = application
+    server = make_server(app, key, args.port)
     print(f'AXIOM Workbench: http://127.0.0.1:{server.server_address[1]}', flush=True)
-    if 'AXIOM_WORKBENCH_KEY' not in os.environ:
+    if access_key is None and 'AXIOM_WORKBENCH_KEY' not in os.environ:
         print(f'Local access key: {key}', flush=True)
     print('Local drafts only. Ctrl+C to stop. No automatic semantic execution or source approval.', flush=True)
     try:
