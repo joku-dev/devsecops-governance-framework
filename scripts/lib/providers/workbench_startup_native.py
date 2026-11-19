@@ -159,28 +159,8 @@ class NativeStartup:
         self.journal.append({'kind':'environment-bootstrap-record','record_root':report['record_root']})
 
     def _lease(self):
-        # Same inode/name as the environment bootstrap writer. Readers share a
-        # lease across exec; explicit updates require every server to stop first.
-        name='.axiom-bootstrap-'+hashlib.sha256(str(self.target).encode()).hexdigest()[:24]+'.lock'
-        fd=os.open(self.target.parent/name,os.O_CREAT|os.O_RDWR|os.O_NOFOLLOW,0o600)
-        try:
-            fcntl.flock(fd,fcntl.LOCK_SH|fcntl.LOCK_NB)
-            row=os.fstat(fd)
-            if (not stat.S_ISREG(row.st_mode) or row.st_uid!=os.geteuid()
-                    or row.st_nlink!=1 or row.st_mode&0o077 or row.st_size>16384):
-                raise BootstrapFailure('workbench_startup_private_environment_lease_required')
-            if row.st_size:
-                previous=document(os.read(fd,16385))
-                if (set(previous)!={'schema_version','target','record_root'}
-                        or type(previous['schema_version']) is not int or previous['schema_version']!=1
-                        or previous['target']!=str(self.target) or type(previous['record_root']) is not str):
-                    raise BootstrapFailure('workbench_startup_previous_bootstrap_owner_invalid')
-                retained=inspect_bootstrap(normalized(previous['record_root']))
-                if retained['declared_result']!='complete' or retained['incomplete_native_captures']:
-                    raise BootstrapFailure('workbench_startup_bootstrap_reconciliation_required')
-        except BaseException:
-            os.close(fd);raise
-        self.lease=fd
+        from lib.providers.environment_lease import shared_environment_lease
+        self.lease=shared_environment_lease(self.target,prefix='workbench_startup')
 
     def admit_environment(self):
         self._lease()

@@ -40,7 +40,10 @@ CONTROLLER = 'tests/integration/run_product_unit_tests.py'
 
 class NativeComplianceEnvironment:
     def __init__(self, *, instance_root, package, package_pin, workarea,
-                 at, output_file, cwd, target_repo=None, input_file=None, on_event):
+                 at, output_file, cwd, target_repo=None, input_file=None, on_event,
+                 perform_preflight=True, require_source_intake=True):
+        if type(perform_preflight) is not bool or type(require_source_intake) is not bool:
+            raise ValueError('complete_compliance_explicit_preparation_required')
         from lib.v2_application import instance
         self.revision = git_read(ROOT, 'rev-parse', 'HEAD').decode().strip()
         if git_read(ROOT, 'show', self.revision + ':' + OWN_MODULE) != Path(__file__).read_bytes():
@@ -67,10 +70,11 @@ class NativeComplianceEnvironment:
                 or self.manifest['target'] != {'system': platform.system(), 'machine': platform.machine()}):
             raise ValueError('exact_current_prepared_compliance_package_required')
         self.root.chmod(0o700)
-        for name, version in re.findall(r'^([A-Za-z0-9_.-]+)==([^\s;]+)',
-                (self.root / 'requirements-source-document-intake.lock').read_text(), re.M):
-            if importlib.metadata.version(name) != version:
-                raise ValueError('pinned_complete_compliance_dependency_required')
+        if require_source_intake:
+            for name, version in re.findall(r'^([A-Za-z0-9_.-]+)==([^\s;]+)',
+                    (self.root / 'requirements-source-document-intake.lock').read_text(), re.M):
+                if importlib.metadata.version(name) != version:
+                    raise ValueError('pinned_complete_compliance_dependency_required')
         # Loading this fixed current own engineering helper is distinct from
         # loading caller/consumer code. Its complete archive was just admitted.
         helper = self.root / CONTROLLER
@@ -116,11 +120,13 @@ class NativeComplianceEnvironment:
         # original validator's generated effects, never by discarding them.
         self.references = self.controller.prepare(self.root, self.revision,
             self.root / 'tests/fixtures/product-test-reference-inputs', self.area / 'reference-inputs')
-        self.on_event({'kind': 'compliance-preflight', 'phase': 'intent'})
-        self.preflight = self.controller.run_command('preflight', self.root, self.environment, self.native, timeout=120)
-        self.on_event({'kind': 'compliance-preflight', 'phase': 'finished', 'outcome': deepcopy(self.preflight)})
-        if self.preflight['returncode']:
-            raise ValueError('complete_compliance_toolchain_preflight_failed')
+        self.preflight=None
+        if perform_preflight:
+            self.on_event({'kind': 'compliance-preflight', 'phase': 'intent'})
+            self.preflight = self.controller.run_command('preflight', self.root, self.environment, self.native, timeout=120)
+            self.on_event({'kind': 'compliance-preflight', 'phase': 'finished', 'outcome': deepcopy(self.preflight)})
+            if self.preflight['returncode']:
+                raise ValueError('complete_compliance_toolchain_preflight_failed')
         self.cwd = Path(cwd)
         if not self.cwd.is_absolute():
             raise ValueError('absolute_compliance_cwd_required')

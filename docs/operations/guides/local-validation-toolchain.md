@@ -56,7 +56,8 @@ This executes, in order:
 1. OPA policy syntax validation.
 2. Architecture runtime governance validation.
 3. Governance repository validation.
-4. The complete unit-test suite.
+4. Evidence-agent provenance validation.
+5. The complete unit-test suite.
 
 Check only the prepared toolchain with:
 
@@ -106,3 +107,66 @@ Python interpreter changed, delete the selected validation environment first
 and recreate it. If checksum verification fails, do not bypass it; verify the
 official OPA release asset and update the reviewed checksum in a separate,
 explicit toolchain maintenance change.
+
+## V2 complete suite candidate
+
+The separate V2 entry is `scripts/run_axiom_v2_validation_suite.py`. It starts
+with the Python standard library, checks the selected environment, then changes
+to that environment's interpreter. It shares the bootstrap writer's environment
+lock as a reader; an incomplete bootstrap owner requires explicit reconciliation.
+It does not install or repair dependencies. Prepare them explicitly with
+`scripts/bootstrap_axiom_v2_environment.py`.
+
+Check only the selected pinned toolchain:
+
+```bash
+python3 scripts/run_axiom_v2_validation_suite.py \
+  --environment /absolute/private/validation-env --check-tools
+```
+
+Run the complete chain from a clean committed V2 source and its exact prepared
+package for this host:
+
+```bash
+python3 scripts/run_axiom_v2_validation_suite.py \
+  --environment /absolute/private/validation-env \
+  --instance /absolute/private/validation-node \
+  --package /absolute/private/prepared-runtime.zip \
+  --sha256 PACKAGE_SHA256 --at 2026-11-15T12:00:00Z \
+  --state-directory /absolute/private/suite-records
+```
+
+Choose separate private environment, instance and record directories outside the
+product source. The package must match this exact committed source, platform,
+OPA and prepared dependencies. A missing instance is initialized paused with its
+own key; an existing foreign or partial instance is rejected. Full execution
+does not accept development overrides or a unit-test skip. The native unit
+worker needs Git, Node and OpenSSL in the operator's tool path.
+
+The finite core preserves the original order: tool presence, OPA version, all
+six dependency pins, `pip check`, readiness text, OPA compilation, runtime,
+repository, provenance and complete unit discovery. Each first nonzero result
+stops later work. Runtime and repository generated effects become an exact
+private overlay shared with subsequent phases. Consumer programs never execute.
+
+Every started phase has a private durable intent. Raw native outputs and final
+legacy streams remain separate from the JSON summary. `--output legacy` emits
+the original phase streams and shell exit convention, including `128 + signal`;
+JSON output distinguishes known validation failure (1) from incomplete execution
+(2). A ready-toolchain message alone does not mean full validation passed.
+
+Use `--inspect /absolute/private/suite-records/RECORD` to check retained evidence
+without repeating native validation. Inspection replays the suite decisions,
+binds captured streams and component files, replays provenance and checks the
+unit summary. Runtime/repository semantic replay occurs during creation; their
+later inspection here checks byte closure and result binding. It does not
+authenticate execution, recheck the live environment, resume an interrupted
+phase or grant operating approval. Keep incomplete records for diagnosis and
+start any authorized retry as a fresh operation.
+
+The original protected shell entry remains unchanged. Its unquoted OPA expansion
+fails for environment paths containing spaces; the V2 adapter invokes the exact
+selected tool as an argv element. Original shell comparisons retain that
+limitation explicitly. The full current-source Mac/Linux acceptance and complete
+V1 parity remain separate delivery requirements; this candidate alone does not
+complete the Goal.

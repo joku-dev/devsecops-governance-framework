@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 84,
-      "pending": 51,
+      "in_progress": 85,
+      "pending": 50,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,7 +337,7 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "c2e134dc7f560da262cac6df621724beec59feee98c95a506e8a0788d4aa1c5e",
+  "matrix_sha256": "20520896716623074f51d3bb76ca2c75713e99894aa758e1e8e1b6040f11d764",
   "next_work": {
     "entrypoints": [
       "scripts/generate_governance_compliance_result.py",

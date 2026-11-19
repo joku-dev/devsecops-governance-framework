@@ -3265,8 +3265,8 @@
       "declared_symbols": [],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/run_axiom_v2_validation_suite.py:main",
+      "state": "in_progress",
       "evidence": []
     },
     {

@@ -112,13 +112,18 @@
     "scripts/lib/environment_bootstrap_application.py",
     "scripts/start_axiom_v2_workbench.py",
     "scripts/lib/workbench_startup.py",
-    "scripts/lib/workbench_startup_application.py"
+    "scripts/lib/workbench_startup_application.py",
+    "scripts/run_axiom_v2_validation_suite.py",
+    "scripts/lib/validation_suite.py",
+    "scripts/lib/validation_suite_application.py",
+    "scripts/lib/provenance_validation.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
     "scripts/lib/opa_bootstrap_ports.py",
     "scripts/lib/environment_bootstrap_ports.py",
-    "scripts/lib/workbench_startup_ports.py"
+    "scripts/lib/workbench_startup_ports.py",
+    "scripts/lib/validation_suite_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [
