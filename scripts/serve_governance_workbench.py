@@ -651,14 +651,17 @@ def make_server(workbench, key, port=8765):
 
 def main(argv=None, *, application=None, access_key=None):
     parser = argparse.ArgumentParser(description=__doc__,allow_abbrev=False)
-    parser.add_argument('--instance', type=Path, help='Explicit private V2 instance')
+    profile = parser.add_mutually_exclusive_group()
+    profile.add_argument('--instance', type=Path, help='Explicit private V2 instance')
+    profile.add_argument('--legacy-service-profile', choices=('vm-v1',),
+        help='Explicit retained V1 VM service contract; not an admitted V2 instance')
     parser.add_argument('--port', type=int)
     parser.add_argument('--consumer-projection', type=Path, help='Read-only redacted collector projection directory')
     parser.add_argument('--enable-pr', action='store_true', help='Enable explicit proposal publication through the configured SCM adapter')
     parser.add_argument('--publication-profile',type=Path,help='Private explicit SCM publication profile')
     parser.add_argument('--state-dir',type=Path,help='Instance-owned private Workbench directory')
     args = parser.parse_args(argv)
-    if application is None:
+    if application is None and args.legacy_service_profile is None:
         if args.instance is None:
             parser.error('Use axiom-v2 --instance PRIVATE_INSTANCE workbench, or provide --instance here')
         from lib.v2_application import run as product
@@ -674,7 +677,15 @@ def main(argv=None, *, application=None, access_key=None):
     if len(key) < 24:
         parser.error('AXIOM_WORKBENCH_KEY must contain at least 24 characters')
     app = application
-    server = make_server(app, key, args.port)
+    if args.legacy_service_profile is not None:
+        if application is not None or access_key is not None:
+            parser.error('Retained VM service profile cannot replace an admitted V2 application')
+        publisher = WorkbenchPublication.from_file(args.publication_profile) if args.publication_profile else None
+        if args.enable_pr and publisher is None:
+            parser.error('--enable-pr requires --publication-profile')
+        app = Workbench(enable_pr=args.enable_pr, consumer_projection=args.consumer_projection,
+            publisher=publisher, state_dir=args.state_dir)
+    server = make_server(app, key, args.port if args.port is not None else 8765)
     print(f'AXIOM Workbench: http://127.0.0.1:{server.server_address[1]}', flush=True)
     if access_key is None and 'AXIOM_WORKBENCH_KEY' not in os.environ:
         print(f'Local access key: {key}', flush=True)

@@ -64,7 +64,7 @@ def main():
     run(['git', 'commit', '-am', 'Disposable update fixture'], cwd=fixture)
     second = run(['git', 'rev-parse', 'HEAD'], cwd=fixture)
     server = fixture / 'scripts/serve_governance_workbench.py'
-    signature = 'def main(argv=None):\n'
+    signature = 'def main(argv=None, *, application=None, access_key=None):\n'
     original = server.read_text()
     if original.count(signature) != 1:
         raise AssertionError('Activation-failure fixture must target the exact Workbench main signature')

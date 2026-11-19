@@ -790,3 +790,16 @@ prepared packages and actual installed Mac/Linux proof follow independently.
 Only explanatory/progress metadata changes after the full run; executable
 source remains frozen. The complete Goal, all scope units and historical
 receipts remain unchanged, with no new verified subject or authority.
+
+### Follow-up: retained VM service compatibility
+
+The actual disposable-host CI for Workbench commit `428fe5e` stopped before
+installation because its activation-failure fixture expected the old main
+signature. The older service also needed an explicit compatibility route after
+V2 made instance admission mandatory. The follow-up selects the named
+`--legacy-service-profile vm-v1` in the retained Ansible unit and updates the
+fault fixture to the exact current signature. The existing state, environment
+key and every deployment/recovery transition stay under that V1 service
+contract. V2 instance admission, private state and explicit publication remain
+separate. This correction does not establish V2 systemd/update/recovery parity
+or turn the failed CI into a passing run; a fresh actual run is required.
