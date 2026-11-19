@@ -1194,8 +1194,8 @@
         "--target-repo"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/compliance_application.py:run",
+      "state": "in_progress",
       "evidence": []
     },
     {

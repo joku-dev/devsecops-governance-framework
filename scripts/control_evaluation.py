@@ -71,13 +71,13 @@ def run(cmd: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, check=False)
 
 
-def evaluate_policies(input_path: Path, *, opa=None) -> dict[str, dict]:
+def evaluate_policies(input_path: Path, *, opa=None, native_run=None) -> dict[str, dict]:
     if opa is not None:
         from lib.tool_integrity import require_opa
         opa = require_opa(opa)
     results = {}
     for policy_id, query in POLICY_QUERIES.items():
-        result = run(
+        result = (run if native_run is None else native_run)(
             [
                 str(opa) if opa is not None else "opa",
                 "eval",
@@ -452,10 +452,13 @@ def evaluate_single_control(control: dict, payload: dict, policy_results: dict[s
     )
 
 
-def generate_control_evaluation_report(input_path: Path, *, opa=None) -> dict:
+def generate_control_evaluation_report(input_path: Path, *, opa=None, native_run=None) -> dict:
     payload = load_json(input_path)
     controls = load_controls()
-    policy_results = evaluate_policies(input_path) if opa is None else evaluate_policies(input_path, opa=opa)
+    if native_run is None:
+        policy_results = evaluate_policies(input_path) if opa is None else evaluate_policies(input_path, opa=opa)
+    else:
+        policy_results = evaluate_policies(input_path, opa=opa, native_run=native_run)
     decisions = [evaluate_single_control(control, payload, policy_results) for control in controls]
     summary = {
         "total_controls": len(decisions),

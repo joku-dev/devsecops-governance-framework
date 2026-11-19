@@ -25,7 +25,7 @@ class ComplianceOPA:
                  input_bytes, workarea, on_event):
         if not callable(on_event):
             raise ValueError('compliance_opa_journal_required')
-        if type(input_bytes) is not bytes or len(input_bytes) > MAX_INPUT:
+        if input_bytes is not None and (type(input_bytes) is not bytes or len(input_bytes) > MAX_INPUT):
             raise ValueError('bounded_compliance_input_bytes_required')
         self.tool = executable(tool)
         if self.tool[1] not in approved_opa_hashes('1.18.2'):
@@ -42,7 +42,10 @@ class ComplianceOPA:
             raise ValueError('fresh_private_compliance_opa_workarea_required')
         self.root.mkdir(mode=0o700)
         self.frozen = self.root / 'frozen'; self.frozen.mkdir(mode=0o700)
-        self.files = {'input.json': input_bytes}
+        # None is an explicit failed/missing input observation. Preserve native
+        # check/eval ordering instead of replacing every failed eval by an early
+        # Python exception; the control reader later exposes its original error.
+        self.files = {} if input_bytes is None else {'input.json': input_bytes}
         records = git_read(ROOT, 'ls-tree', '-r', '-z', source_revision, '--', 'policies/opa').split(b'\0')
         for record in filter(None, records):
             meta, name = record.split(b'\t', 1)
@@ -100,7 +103,8 @@ class ComplianceOPA:
         area = self.root / ('native-' + str(sequence)); area.mkdir(mode=0o700)
         row = {'sequence': sequence, 'declared_command': deepcopy(declared),
             'tool_path': self.tool[0], 'tool_sha256': self.tool[1],
-            'input_sha256': hashlib.sha256(self.files['input.json']).hexdigest(),
+            'input_present': 'input.json' in self.files,
+            'input_sha256': None if 'input.json' not in self.files else hashlib.sha256(self.files['input.json']).hexdigest(),
             'policy_files': {n: hashlib.sha256(raw).hexdigest() for n, raw in self.files.items() if n != 'input.json'}}
         self.on_event({'kind': 'compliance-opa', 'phase': 'intent', 'observation': deepcopy(row)})
         self.observations.append(row)

@@ -15,7 +15,7 @@ from lib.portable.contracts import canonical_digest
 MAX_EVENTS = 128
 MAX_BYTES = 64 * 1024**2
 ERRORS = {cls.__name__: cls for cls in (ValueError, TypeError, KeyError,
-    IndexError, RuntimeError, FileNotFoundError, FileExistsError,
+    IndexError, AttributeError, RecursionError, RuntimeError, FileNotFoundError, FileExistsError,
     IsADirectoryError, NotADirectoryError, PermissionError, OSError)}
 PORTS = {'resolve', 'run', 'control_report', 'control_markdown',
          'write', 'exists', 'timestamp', 'print'}

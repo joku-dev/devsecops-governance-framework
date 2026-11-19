@@ -6,6 +6,23 @@ from an application checkout or downloaded configuration.
 """
 from typing import Protocol
 
+
+def execute_complete_compliance_operation(*args, **options):
+    from lib.providers.compliance_execution import execute
+    return execute(*args, **options)
+
+
+def load_complete_compliance_operation(*args, **options):
+    from lib.providers.compliance_records import load
+    return load(*args, **options)
+
+
+def complete_compliance_request(root):
+    from lib.providers.compliance_records import read
+    from lib.result_bytes import strict_json
+    from lib.compliance_operation import request
+    return request(strict_json(read(root,'request.json',64*1024)))
+
 from lib.providers.artifact_hygiene import (capture as artifact_hygiene_capture,
     environment_terms as artifact_hygiene_environment)
 

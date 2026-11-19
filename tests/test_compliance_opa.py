@@ -119,3 +119,14 @@ class CompleteComplianceOPA(unittest.TestCase):
         self.assertNotIn('native_outcome', self.events[-2]['observation'])
         self.assertEqual(self.events[-1]['observation']['native_outcome']['exit_code'], 0)
         self.assertEqual(opa.observations[1]['declared_command'], self.query(POLICY_QUERIES['sbom']))
+
+    def test_observed_missing_input_preserves_whole_check_then_every_native_query_failure(self):
+        opa = self.create(input_bytes=None)
+        checked = opa.run(['opa', 'check', str(self.product / 'policies/opa')])
+        self.assertEqual(checked.returncode, 0)
+        for query in POLICY_QUERIES.values():
+            result = opa.run(self.query(query))
+            self.assertNotEqual(result.returncode, 0)
+            self.assertTrue(result.stderr or result.stdout)
+        self.assertEqual(len(opa.observations), 12)
+        self.assertTrue(all(row['input_sha256'] is None and not row['input_present'] for row in opa.observations))

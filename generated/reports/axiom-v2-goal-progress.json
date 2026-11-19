@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 80,
-      "pending": 55,
+      "in_progress": 81,
+      "pending": 54,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,7 +337,7 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "080a7f661013c46534a920c0fb38cded55ae71f4a805d21c2bae610f4e623c7b",
+  "matrix_sha256": "cfa3375f811cb83071b72e624a71ae6f63346b688f1f31d1aa84e9dfc4be81da",
   "next_work": {
     "entrypoints": [
       "scripts/generate_governance_compliance_result.py",
@@ -345,10 +345,10 @@
       "scripts/validate_all.sh",
       "scripts/start_governance_workbench.sh"
     ],
-    "next_step": "Der veröffentlichte Kandidat 73b93bb/PR426 besteht die gepinnte Entwicklungsvalidierung mit 2.509 Tests und einer bekannten Deployment-Auslassung. Sein frischer vollständiger Mac-Paketcontroller endet ebenfalls mit Exit 0: 2.509 Tests in 1.371,603 Sekunden, alle 2.627 Quellen und Modi geprüft, neunzehn exakte Metadatenfolgen gesichert und genau eine vollständige primäre Viewer-Datei gegen die eigene native Projektion verglichen. Der frühere Controller-Fehler 735e241 bleibt als Fehllauf erhalten. Die festen vollständigen ha-CPsWMS-Kontroll-/Architekturberichte und alle drei Integrations-/Onboarding-Ausgaben stimmen mit V1 überein. Die vollständige Repository-CLI besteht mit vorbereiteten Werkzeugen; ihr begrenztes Replay stimmt über 2.627 Dateien und 7.375 Ereignisse überein. Die gewöhnliche Mac-System-OpenSSL-Ausführung scheitert an fehlendem -rawin und bleibt getrennt erhalten. Der nächste technische Baustein erhält die komplette ursprüngliche Compliance-Entscheidung, alle vierzehn Standardbefehle, zehn äußeren Policy-Abfragen, acht Artefaktplätze, Ausgabealiase und Fehlerfolgen. Er ergänzt eine dauerhaft geschriebene Entscheidungsprüfspur, begrenzte echte OPA-Aufrufe und einen fest an den eigenen Commit gebundenen vollständigen Testprozess. Die konkrete vollständige Anwendung, CLI und native Zusammenschaltung dieser Teile bleiben erforderlich; deklarierte Entscheidungs-Replays sind kein Nachweis einer vollständigen nativen Ausführung. Kein ausgelassener Standardtest und keine kleine Ersatzsuite erfüllen das Goal. Die Ziel-VM wird auf Wunsch später geprüft; die passende Linux-Auslieferung ist nur lokal vorbereitet. Vollständige V2-Betriebs-/Erstellungs-/Bootstrap-/Recovery-, Lifecycle- und Providerabläufe bleiben im unveränderten Gesamtumfang 22/135/37/16 enthalten. Der historische breite Validierungscheckpoint und alle 18 historischen Nachweise behalten ihre Quellbindung; 80 Einträge bleiben in Arbeit, 55 offen und keiner wird automatisch als verifiziert erklärt.",
-    "title": "Vollständige Compliance-Orchestrierung mit eigenem Produkttest verbinden"
+    "next_step": "Der veröffentlichte Kandidat 59c3112/PR427 besteht die gepinnte Entwicklungsvalidierung mit 2.547 Tests und einer bekannten Deployment-Auslassung. Sein vollständiger installierter Mac-Paketcontroller endet ebenfalls mit Exit 0: 2.547 Tests in 1.363,282 Sekunden, alle 2.637 Quellen und Modi geprüft, neunzehn exakte Metadatenfolgen und die vollständige 678.168-Byte-Viewer-Ausgabe gesichert. Alle sieben beobachteten CI-Familien sind grün; der Review-Status lautet declared_complete. Die festen ha-CPsWMS-Berichte, Integrations-/Onboarding-Ausgaben und die vollständige Repository-Prüfung mit 7.405 Replay-Ereignissen bestehen. Frühere Controller- und System-OpenSSL-Fehler bleiben erhalten. Der Folgebranch verbindet die vollständige ursprüngliche Compliance-Entscheidung über eine neue CLI mit echten Integrations-, Repository-, vollständigen eigenen Unit-Test- und OPA-Operationen auf derselben vollständigen eigenen Quelle. Native Rohbeobachtungen, Teilfehler, Generatorwirkungen und chronologische Exportbytes werden separat gebunden und inspiziert. Vollständige neue Paketabnahme, Standardlauf, ausdrückliches Auslassen und ganze Originalvergleiche stehen noch aus; eine kleine Ersatzsuite erfüllt das Goal nicht. Die Ziel-VM bleibt auf Wunsch zurückgestellt. Der breite ältere Hostcheckpoint und alle 18 historischen Nachweise behalten ihre Quellbindung. Der Gesamtumfang bleibt 22/135/37/16; 81 Einstiegspunkte sind in Arbeit, 54 offen, keiner vollständig nachgewiesen. Betriebs-, Bootstrap-, Recovery-, Lifecycle- und Providerabläufe bleiben erforderlich.",
+    "title": "Vollständigen nativen Compliance-Lauf im passenden Produktpaket abnehmen"
   },
-  "observation_sha256": "e7a5a24a5b52797591c67a22595b2dafb8881430f5573380b5727fa171b32ffa",
+  "observation_sha256": "a89e492f70d5066892e516fcbc740ed5ef49d0dd77a678701d4aa6f6c0b7b51f",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

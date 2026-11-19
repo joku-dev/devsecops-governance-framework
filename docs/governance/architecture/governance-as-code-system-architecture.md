@@ -7,7 +7,7 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-19; published parity stack through draft PR #426 (`73b93bb`), followed by the complete compliance decision/adapter primitives described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
+| Last implementation review | 2026-11-19; published parity stack through draft PR #427 (`59c3112`), followed by the complete native compliance application described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
 | Operating observation | Installed Mac `73b93bb`: complete fixed ha-CPsWMS report equality, complete integration/onboarding equality and complete own controller exit 0 with 2,509 tests (one known skip). The earlier `735e241` controller exit 2 remains failed. Scoped `0f43709` Workbench proof retains 63 cases per host and fixed-report equality on Mac/target VM. New target-VM delivery is deferred by the maintainer; historical broader proof, V1 activation and full V2 systemd/update/recovery acceptance remain separate |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
@@ -1193,13 +1193,52 @@ Timeout, output overflow, changed source/tool/input or incomplete controller
 results cannot become a complete worker outcome. This is same-user engineering
 execution, not kernel network or process-tree isolation.
 
-These modules are composition prerequisites. They do not add a completed
-compliance CLI or prove the complete default macro operation. Its application
-must still bind actual native suboperations and their ordered generated effects
-to the same owned complete source projection, input, node, clock and tools;
-preserve full default and explicit-skip flows; and pass fresh Mac/Linux package
-and whole original-oracle comparisons. Report-only, separate finding exits,
-operating authority, all Goal subjects and historical receipts remain unchanged.
+The following implementation adds `validation compliance`, `compliance-inspect`
+and `compliance-status`. Neutral request/options/status contracts and the CLI
+compose closed native adapters through provider ports. A fixed, current committed
+own worker readmits the exact prepared package and executes integration, the
+whole repository validator, default whole own unit discovery and all original
+OPA/control decisions in order. The inspected consumer remains data. Working
+worker overrides and caller-selected programs are rejected.
+
+One complete owned source projection retains the actual repository generator
+outputs before the unit phase. Unit changes must match the closed metadata
+classifier and the entire canonical Viewer payload; every other source byte,
+mode and member stays bound. Actual raw unit/OPA streams, suboperation references,
+clock, node, package and sequential source effects are retained. Export attempts
+retain before/after bytes even after a partial OS write failure; aliases and
+reruns preserve original chronology and do not roll back effects.
+
+The parent supervises the fixed worker for 4,200 seconds with 64 KiB per stream;
+the complete inner discovery allows 3,600 seconds and 8 MiB per stream. A known
+Python controller receives cooperative interruption before forced process-group
+cleanup, allowing its own finally cleanup. No hard memory, network or kernel
+process-tree isolation is claimed. Exports must be three explicitly selected
+ordinary paths outside the installed product and private instance; symlinks, hard links,
+special files and oversized input/exports are visible admission failures.
+
+Inspection rechecks retained full package Git blobs, native streams, full
+repository replay, default unit discovery, both sets of ten OPA queries, all
+46 control decisions and whole final source/export effects. It grants no
+independent execution authentication or authority. Incomplete runs cannot become
+complete through the original empty-check vacuous pass. Modern report-only exit
+status separates own readiness/acquisition from consumer findings; explicit
+legacy output retains the original finding exit when returned. An original
+uncaught exception remains a typed incomplete outcome with exit 2, without a
+fabricated original process traceback.
+
+The runtime fingerprint includes every neutral compliance module and the shared
+generated-effect classifier as well as native adapters. Mutation tests cover the
+registered compliance and validation modules. Inspection separately binds the
+original UTC whole-second clock to the supplied instant, legacy stdout to print
+effects and artifact presence to the retained own source/export sequence.
+
+The published predecessor `59c3112` passes its complete installed own-suite parent
+with 2,547 tests/one known deployment skip and all seven observed CI families.
+That is not acceptance of this new complete macro. Fresh matching Mac/Linux
+packages and whole default/explicit-skip/error original-oracle comparisons remain
+required. Linux target execution is deferred by the maintainer. No matrix entry
+is promoted to verified; all Goal subjects and historical receipts remain.
 
 ### Validation
 
