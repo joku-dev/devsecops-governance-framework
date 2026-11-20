@@ -547,6 +547,65 @@ producer, authorize a live action or transfer operating acceptance. The five
 entrypoints remain in progress; the live/personal reporters remain in the full
 Goal. See the [lifecycle guide](../../operations/guides/axiom-v2-synthetic-lifecycle-reporting.md).
 
+### Complete synthetic ledger candidate
+
+`synthetic_ledger_programs.py`, `synthetic_ledger_packets.py` and
+`synthetic_ledger_store.py` retain all24 original functions/587 lines across the
+six complete demo/intake mains, three packet modules and original seven-function
+store. `synthetic_ledger_execution.py` binds explicit data paths and effects only
+after successful original parsing. Help/parser exits do not inspect source data.
+`synthetic_ledger_application.py` exposes `synthetic-ledger generate/inspect/replay`
+with one explicit program/profile; the ports composition verifies the registered
+closure and complete product/runtime/node generation. Six source compatibility
+facades and their six whole legacy adapters stay outside the installed product
+and runtime fingerprint. No selected source program is loaded.
+
+The default private path combines lazy owned preimages and directory membership
+with a finite inode/descriptor/buffer/lock model. Its mask077 and logical identity
+namespace describe candidate effects, without certifying native durability or
+concurrent writers. Explicit POSIX effects retain before/intent/outcome/after
+namespace and descriptor observations, full partial buffered prefixes, fsyncs,
+exclusive link publication and finally cleanup. Exact owned pending/canonical
+pairs can survive unlink failure and remain readable for an explicit original
+duplicate retry; outside/additional/replaced aliases are rejected.
+
+Shared transition validation and closed replay reconstruct the complete original
+program, streams/errors, candidate/native maps and end-of-kernel descriptor state.
+Native adapter teardown releases owned host descriptors separately after the
+kernel ends, including when journal exhaustion prevents original finally calls.
+It preserves retained kernel-end facts and reports release status in the capture
+receipt. Replaced descriptors are not closed. Unobserved buffered flushing,
+remaining descriptors or cleanup errors yield incomplete capture without an
+original verdict; no history reset or original-operation retry occurs.
+Replay repeats no selected data reads, native effects, external programs or
+providers. Request/code/node/authority, raw blobs and entire result bindings are
+checked. Explicit schema-resource inputs close URI resolution without implicit
+HTTP/file retrieval. Additional observation/capture limits yield incomplete capture
+without an original verdict or implicit retry. Synthetic records confer no live,
+personal, waiver, compliance or operating authority. Six entrypoints remain in
+progress; full Goal/operating acceptance stays separate. See the
+[ledger guide](../../operations/guides/axiom-v2-synthetic-ledger.md).
+
+
+The cross-host parser correction retains the producer's complete CPython argparse
+profile, version, observed width and English translation profile in the request.
+Native observation verifies an exact admitted complete stdlib module identity;
+pure execution selects retained 3.11/3.12/3.13 parser modules without consumer
+terminal or translation discovery. Complete PSF licenses/provenance are packaged,
+and whole-module AST fixtures retain all original behavior except the explicit
+width/English-translation/SUPPRESS-identity composition changes. Unsupported or
+modified native modules fail before selected data or record creation. Missing
+context never defaults to the replay host. The original programs, their exits,
+and lazy selected-data binding remain unchanged. No final-stream normalization
+or adoption of stored stdout is used.
+
+The prior signed development candidate a5ea574 replayed 25/28 whole Linux records
+on Mac; three help/parser records differed only in CPython usage wrapping. Its
+old records have no parser context and are preserved as historical evidence,
+without relabeling. This correction needs fresh pinned validation, declared
+reviews and matching signed installed host/peer proofs. It does not declare
+full parity, producer authentication, governance approval or operating authority.
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)

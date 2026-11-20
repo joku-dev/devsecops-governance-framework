@@ -1,0 +1,101 @@
+{
+  "profiles": {
+    "cpython-3.11-argparse-v1": {
+      "implementation": "cpython",
+      "major": 3,
+      "minor": 11,
+      "observed_patch": 18,
+      "original_class_sha256": "e837fb886b9ed6548a03f3158c3f70db039b64e42d329d320dd9c0679a80d2a6",
+      "module": "lib.argparse_profiles.cpython311",
+      "argparse_official_git_blob": "2f5ecda9239eb5ba006b3b3c91ca636fc34108cd",
+      "original_module_sha256": "e878677e158d0bc0fb5119e0df74d94236f3653777bc9f2ea3fee49c167fe001",
+      "original_module_portable_ast_sha256": "cc83b9c7432cee6ac186296906c8fb7c174fd036000aed65b1013baf701911b3",
+      "original_translation_node_source": "from gettext import gettext as _, ngettext"
+    },
+    "cpython-3.12-argparse-v1": {
+      "implementation": "cpython",
+      "major": 3,
+      "minor": 12,
+      "observed_patch": 3,
+      "original_class_sha256": "ebf3bba744ae3c9bc849d5dc098881ae91da6580ab29aef492776fb830ae9a16",
+      "module": "lib.argparse_profiles.cpython312",
+      "original_module_sha256": "29395feb61bc376ca4ff9d44069af8d914ec2a1f25a4bd7978f6e2afef5bc07f",
+      "original_module_portable_ast_sha256": "51da150437d5e9833d537b097795ed5d100845a28c139d17ede23af5796377f3",
+      "original_translation_node_source": "try:\n    from gettext import gettext as _, ngettext\nexcept ImportError:\n    def _(message):\n        return message\n    def ngettext(singular,plural,n):\n        if n == 1:\n            return singular\n        else:\n            return plural"
+    },
+    "cpython-3.13-argparse-v1": {
+      "implementation": "cpython",
+      "major": 3,
+      "minor": 13,
+      "observed_patch": 18,
+      "original_class_sha256": "650974d76b2cc4276b7f714d3656f1fdc85514d4ece71d8974736031df45fd2f",
+      "module": "lib.argparse_profiles.cpython313",
+      "original_module_sha256": "51d0cac86f746dccdb2488515ee0c2ad0969c599a0e2d6006cdbbce5cd00b3cb",
+      "original_module_portable_ast_sha256": "bd335e158e48adfcd4836e35a279a8a17dac5fefe079e24e5b7aaffe12aa03a6",
+      "original_translation_node_source": "from gettext import gettext as _, ngettext"
+    }
+  },
+  "translation_profile": "stdlib-en-v1",
+  "formatter_translation_inputs": [
+    "%(heading)s:",
+    "usage: "
+  ],
+  "class_modification": "__init__: replace first width-is-None environment lookup with ValueError; all remaining original AST bodies retained.",
+  "translation_inputs": [
+    " (default: %(default)s)",
+    "%(heading)s:",
+    "%(prog)s: error: %(message)s\n",
+    "%(prog)s: warning: %(message)s\n",
+    "%r is not callable",
+    "'required' is an invalid argument for positionals",
+    ".__call__() not defined",
+    "ambiguous option: %(option)s could match %(matches)s",
+    "argument \"-\" with mode %r",
+    "argument %(argument_name)s: %(message)s",
+    "argument '%(argument_name)s' is deprecated",
+    "can't open '%(filename)s': %(error)s",
+    "cannot have multiple subparser arguments",
+    "cannot merge actions - two groups are named %r",
+    "command '%(parser_name)s' is deprecated",
+    "conflicting subparser alias: %s",
+    "conflicting subparser: %s",
+    "dest= is required for options like %r",
+    "expected at least one argument",
+    "expected at most one argument",
+    "expected one argument",
+    "ignored explicit argument %r",
+    "invalid %(type)s value: %(value)r",
+    "invalid choice: %(value)r (choose from %(choices)s)",
+    "invalid conflict_resolution value: %r",
+    "invalid option string %(option)r: must start with a character %(prefix_chars)r",
+    "mutually exclusive arguments must be optional",
+    "not allowed with argument %s",
+    "one of the arguments %s is required",
+    "option '%(option)s' is deprecated",
+    "options",
+    "positional arguments",
+    "show program's version number and exit",
+    "show this help message and exit",
+    "subcommands",
+    "the following arguments are required: %s",
+    "unexpected option string: %s",
+    "unknown parser %(parser_name)r (choices: %(choices)s)",
+    "unrecognized arguments: %s",
+    "usage: "
+  ],
+  "plural_translation_inputs": [
+    [
+      "conflicting option string: %s",
+      "conflicting option strings: %s"
+    ],
+    [
+      "expected %s argument",
+      "expected %s arguments"
+    ]
+  ],
+  "module_modifications": [
+    "HelpFormatter.__init__ first width-None branch requires explicit width",
+    "Replace whole gettext import/fallback with explicit English identity/plural functions",
+    "Link SUPPRESS scalar identity to native value before class definitions"
+  ]
+}

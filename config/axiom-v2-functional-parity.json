@@ -336,7 +336,8 @@
       "state": "in_progress",
       "v2_capabilities": [
         "Neutral lifecycle contract, synthetic/history and zero-argument default ledger validation over closed captured bytes; offline legacy capture replay only. Native base-ref/new-provider flows, live actions and operating authority remain open.",
-        "synthetic-lifecycle generate/inspect/replay preserves all five whole synthetic generators and all19 functions: original ledger/cutoff/output guards, private source-preimage candidate overlay and explicit owned native writes, complete JSON/Markdown/CSP HTML, ordered partial failures and original0/1/2 exits; captured default text codec and closed raw/code/node-bound replay; no live/personal/operating authority transfer"
+        "synthetic-lifecycle generate/inspect/replay preserves all five whole synthetic generators and all19 functions: original ledger/cutoff/output guards, private source-preimage candidate overlay and explicit owned native writes, complete JSON/Markdown/CSP HTML, ordered partial failures and original0/1/2 exits; captured default text codec and closed raw/code/node-bound replay; no live/personal/operating authority transfer",
+        "synthetic-ledger generate/inspect/replay retains all six whole original synthetic demo/intake mains and all24 functions across ten modules (587 original lines), lazy original argument parsing, private source-preimage ledger and explicit native POSIX effects; complete buffered/fsync/link/unlink/lock outcomes, partial errors and pending/canonical alias retry, closed raw/code/node-bound replay without repeated source effects; no personal/live/operating authority transfer"
       ],
       "positive_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
@@ -345,7 +346,11 @@
         "tests/test_v2_synthetic_lifecycle_context.py:whole five original CLIs and inert context",
         "tests/test_v2_synthetic_lifecycle_outputs.py:actual whole original native exports and source-deletion replay",
         "tests/test_v2_synthetic_lifecycle_projection.py:whole private source-preimage projections and direct original generate/validate APIs",
-        "tests/test_v2_synthetic_lifecycle_application.py:complete application results, node-bound inspection and portable replay"
+        "tests/test_v2_synthetic_lifecycle_application.py:complete application results, node-bound inspection and portable replay",
+        "tests/test_v2_synthetic_ledger_core.py:all24 whole original AST bodies, six original CLI results and full file/mode maps",
+        "tests/test_v2_synthetic_ledger_private_journal.py:lazy source-preimage private candidate versus whole original six mains, closed source-deletion replay and exact pending/canonical pair",
+        "tests/test_v2_synthetic_ledger_native_oracle.py:entire native original mains, eight injected whole-program errors and source-deletion replay",
+        "tests/test_v2_synthetic_ledger_application.py:both modes, original parser exits, explicit schema resources and own-node inspection/portable replay"
       ],
       "negative_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
@@ -353,7 +358,12 @@
         "tests/test_v2_synthetic_lifecycle_inputs.py:unstable/alias/private inputs and coherently changed observations",
         "tests/test_v2_synthetic_lifecycle_outputs.py:actual permission/open/partial/truncation/descriptor-replacement failures",
         "tests/test_v2_synthetic_lifecycle_projection.py:source/candidate separation, modified validators and explicit replay text codec",
-        "tests/test_v2_synthetic_lifecycle_application.py:incomplete capture/terminal, foreign node, authority/type/request/result/closed-blob tampering and product/instance export guards"
+        "tests/test_v2_synthetic_lifecycle_application.py:incomplete capture/terminal, foreign node, authority/type/request/result/closed-blob tampering and product/instance export guards",
+        "tests/test_v2_synthetic_ledger_files.py:outside/extra/changed aliases, ordinary owned files and exact scoped pair admission",
+        "tests/test_v2_synthetic_ledger_effects.py:partial writes, lock contention, journal reservation and post-publication fsync/unlink failures",
+        "tests/test_v2_synthetic_ledger_projection.py:private descriptor/buffer/link/lock and ordered partial effects without native durability claim",
+        "tests/test_v2_synthetic_ledger_native_oracle.py:resealed metadata/resource/payload/alias/intent/transition tampering",
+        "tests/test_v2_synthetic_ledger_application.py:incomplete capture, authority/type/source/request/binding/result/blob mutations and missing schema-resource admission"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -2221,8 +2231,8 @@
         "--synthetic"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_ledger_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2244,8 +2254,8 @@
         "--trust"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_ledger_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3129,8 +3139,8 @@
         "--output"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_ledger_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3148,8 +3158,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_ledger_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3167,8 +3177,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_ledger_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3185,8 +3195,8 @@
         "--output"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_ledger_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

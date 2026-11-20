@@ -3173,3 +3173,70 @@ with explicitly selected resource bytes. New regression cases compare the whole
 original program with a controlled schema transport and remove both selected
 data and resource files before offline replay. Fresh full validation and current
 signed installed proofs are required.
+
+## Delivered reporting checkpoint and complete synthetic ledger counterpart
+
+The reporting increment is delivered as signed `257e945` in
+[draft PR #440](https://github.com/joku-dev/devsecops-governance-framework/pull/440).
+The source passed3,089 pinned tests. Both fresh signed installations passed68
+focused methods and108 actual V2 CLI calls, including26 complete unchanged V1
+program executions. All26 complete records replayed in each direction; all52
+foreign peer inspections and52 local inspections of foreign records were rejected.
+Both fixed5c consumer reports equal V1, with whole package/source audits unchanged.
+These are component observations, not full Goal or operating acceptance.
+
+The following [synthetic ledger increment](../guides/axiom-v2-synthetic-ledger.md)
+assigns all six whole demo/intake programs and all24 functions across ten modules
+(587 original lines) to `synthetic_ledger_application.py:generate`. It retains
+original parser/exit decisions, all four action record types, immutable transaction
+publication, duplicate/stale outcomes and complete ordered failures. Six whole
+source-only adapters preserve compatibility while remaining outside the installed
+product and runtime fingerprint.
+
+The private path uses lazy source preimages and a bounded inode/descriptor/buffer/
+link/lock model, with mask077 and no native durability claim. The explicit native
+path retains full namespace/resource before/after images, including the exact
+pending/canonical hardlink pair and post-publication fsync/unlink failures. Pure
+closed replay repeats the complete original execution without selected source
+reads or native effects. Code/request/node/authority and entire result maps are
+checked. Explicit schema-resource bytes retain complete validation without implicit
+URI retrieval. Technical admission and incomplete capture confer no original
+verdict or live/personal/operating authority.
+
+Development proofs bind exact earlier source snapshots; they do not certify the
+current application or a future package. Full pinned validation, declared reviews,
+signed source and fresh matching Mac/Linux installation proofs are still delivery
+requirements. Mapping only:104 in progress,31 pending,zero verified. Full22areas/
+135entrypoints/37CIdefinitions/16operatingflows and all protected/historical
+acceptance remain in the Goal.
+
+The current source review reproduced a native writer lock retained after journal
+exhaustion prevented original finally calls. Adapter teardown now releases owned
+host resources separately from the reconstructed original execution, preserving
+its end-of-kernel facts. Replaced descriptor identity is protected; unobserved
+buffered cleanup or failed/incomplete release cannot obtain an original verdict.
+Four focused regressions cover abort-after-lock, original failed close, buffered
+teardown and descriptor substitution. The earlier 99-test development snapshot
+and interrupted full validation do not certify this correction; fresh full pinned
+validation and matching host proofs are required.
+
+### Producer parser context correction
+
+The cross-host parser correction retains the producer's complete CPython argparse
+profile, version, observed width and English translation profile in the request.
+Native observation verifies an exact admitted complete stdlib module identity;
+pure execution selects retained 3.11/3.12/3.13 parser modules without consumer
+terminal or translation discovery. Complete PSF licenses/provenance are packaged,
+and whole-module AST fixtures retain all original behavior except the explicit
+width/English-translation/SUPPRESS-identity composition changes. Unsupported or
+modified native modules fail before selected data or record creation. Missing
+context never defaults to the replay host. The original programs, their exits,
+and lazy selected-data binding remain unchanged. No final-stream normalization
+or adoption of stored stdout is used.
+
+The prior signed development candidate a5ea574 replayed 25/28 whole Linux records
+on Mac; three help/parser records differed only in CPython usage wrapping. Its
+old records have no parser context and are preserved as historical evidence,
+without relabeling. This correction needs fresh pinned validation, declared
+reviews and matching signed installed host/peer proofs. It does not declare
+full parity, producer authentication, governance approval or operating authority.

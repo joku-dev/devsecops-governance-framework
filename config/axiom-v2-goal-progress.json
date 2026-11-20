@@ -2,15 +2,16 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Vollst\u00e4ndige synthetische Lifecycle-Berichte in V2 absichern und liefern",
+    "title": "Vollst\u00e4ndige synthetische Ledger-Abl\u00e4ufe in V2 absichern und liefern",
     "entrypoints": [
-      "scripts/generate_governance_lifecycle_index.py",
-      "scripts/generate_governance_lifecycle_pilot.py",
-      "scripts/generate_governance_lifecycle_exceptions.py",
-      "scripts/generate_governance_lifecycle_overview.py",
-      "scripts/generate_governance_lifecycle_viewer.py"
+      "scripts/run_governance_lifecycle_synthetic_demo.py",
+      "scripts/run_governance_lifecycle_action_demo.py",
+      "scripts/run_governance_lifecycle_closure_demo.py",
+      "scripts/run_governance_lifecycle_exception_demo.py",
+      "scripts/intake_governance_lifecycle_observation.py",
+      "scripts/intake_governance_lifecycle_action.py"
     ],
-    "next_step": "Alle f\u00fcnf urspr\u00fcnglichen Generatoren und 19 Funktionen, direkte \u00dcbersicht-/Viewer-Pr\u00fcfungen, private Kandidaten und native Teil-Ausgaben \u00fcber die registrierte V2-Anwendung vollst\u00e4ndig gepinnt validieren und als identische signierte Mac-/Linux-Kandidaten liefern. Der Renderer eb17af4 ist in Draft-PR #439 mit 3.020 Quelltests, je 168 gezielten installierten Methoden/152 CLI-Aufrufen, 31 ganzen Peer-Nachweisen je Richtung und 8 gr\u00fcnen CI-Familien geliefert. Die separat datierte \u00e4ltere Gesamtvergleichsbeobachtung bleibt erhalten; aktuelle Komponentenbelege zertifizieren sp\u00e4tere Pakete nicht automatisch. Alle 22/135/37/16 Einheiten und alle live/pers\u00f6nlichen/Betriebsabl\u00e4ufe bleiben im Goal; keine vollst\u00e4ndige Parit\u00e4t oder Freigabe wird erkl\u00e4rt."
+    "next_step": "Alle sechs urspr\u00fcnglichen Demo-/Intake-Programme und 24 Funktionen einschlie\u00dflich vollst\u00e4ndiger privater/nativer Ledger-Effekte liefern. Der bisherige signierte Entwicklungskandidat a5ea574 erreichte im ganzen Linux-auf-Mac-Nachweisvergleich 25/28; drei Parser-Ausgaben wichen mit CPython 3.12/3.13 ab. Der Korrekturkandidat beh\u00e4lt deshalb das vollst\u00e4ndige explizite Parserprofil, Version, Breite und englische \u00dcbersetzungen im Request; er ben\u00f6tigt frische vollst\u00e4ndige gepinnte Validierung, deklarierte Reviews und passende signierte Mac-/Linux-Pakete mit ganzen Peer-Nachweisen. Keine Normalisierung oder \u00dcbernahme gespeicherter stdout-Ergebnisse. Der vorherige Berichtsstand 257e945 in Draft-PR #440 hat alle acht CI-Familien gr\u00fcn sowie 3.089 Quelltests, je 68 installierte Methoden/108 CLI-Aufrufe, 26 ganze Peer-Nachweise je Richtung und identische feste Consumer-Ergebnisse. Historische Gesamtbeobachtung und alte Records bleiben separat. Vollst\u00e4ndiger Umfang 22/135/37/16 und alle live/pers\u00f6nlichen/Betriebsabl\u00e4ufe bleiben im Goal; keine vollst\u00e4ndige Parit\u00e4t oder Betriebsfreigabe."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",
