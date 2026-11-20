@@ -99,7 +99,11 @@ Der folgende [synthetische Ledger-Baustein](docs/operations/guides/axiom-v2-synt
 überführt alle sechs bisherigen Demo-/Intake-Programme einschließlich privater
 Kandidaten, ausdrücklicher POSIX-Dateieffekte, ursprünglicher Teilfehler und
 gespeicherter Nachrechnung. Seine vollständige aktuelle Validierung und
-signierte Mac-/Linux-Lieferung stehen noch aus.
+signierte Mac-/Linux-Lieferung stehen noch aus. Im bisherigen Hostvergleich
+stimmten 25 von 28 ganzen Ledger-Nachweisen überein; drei Parser-Ausgaben wichen
+zwischen Python 3.12 und 3.13 ab. Der Korrekturkandidat speichert deshalb das
+vollständige Parserprofil samt Breite und Sprache als Eingang der Nachrechnung.
+Die vollständige erneute Prüfung und Lieferung dieses Kandidaten bleibt offen.
 
 Der [datierte Zwischenstand mit Mac-/VM-Nachweisen](docs/operations/status/axiom-v2-parity-progress-2026-11-15.md)
 trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch

@@ -24,7 +24,9 @@ class PrivateInputs:
         self.store(b'')
         # Test-only complete, explicit, stable source preimage. Product admission
         # will obtain retained bounded snapshots through a separate adapter.
-        directories = list(reversed(source.parents)) + [source]
+        # The preimage anchor is the selected data root. Shared host ancestors
+        # such as /tmp are outside this private candidate, not source metadata.
+        directories = [source]
         paths = directories + sorted(source.rglob('*'))
         for serial, path in enumerate(paths, 1):
             value = {'kind': 'directory' if path.is_dir() else 'file',

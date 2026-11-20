@@ -171,7 +171,12 @@
     "scripts/lib/synthetic_ledger_replay_effects.py",
     "scripts/lib/synthetic_ledger_execution.py",
     "scripts/lib/synthetic_ledger_private.py",
-    "scripts/lib/synthetic_ledger_application.py"
+    "scripts/lib/synthetic_ledger_application.py",
+    "scripts/lib/retained_argparse.py",
+    "scripts/lib/argparse_profiles/__init__.py",
+    "scripts/lib/argparse_profiles/cpython312.py",
+    "scripts/lib/argparse_profiles/cpython313.py",
+    "scripts/lib/argparse_profiles/cpython311.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",

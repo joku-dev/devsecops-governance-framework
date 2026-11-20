@@ -10,23 +10,25 @@ from lib.synthetic_ledger_replay_effects import ReplayLedgerEffects
 from lib.synthetic_lifecycle_application import closed_validator, request_valid as report_request
 from lib.synthetic_lifecycle_io import path_spec
 from lib.synthetic_lifecycle_projection import PRIVATE_MASK
+from lib.retained_argparse import validate_context as validate_parser_context
 from lib.repository_lifecycle.context import RepositoryLifecycle
 from lib.requirement_validation_budget import InputAdmissionError
 from lib.synthetic_ledger_ports import (NativeIO, NativeLedgerEffects, Record, read_record, encode,
-    AUTHORITY, owned_directory, current_source, ROOT)
+    AUTHORITY, owned_directory, current_source, ROOT, capture_parser_context)
 
 PROFILE = 'legacy-synthetic-ledger-v1'
 
 
 def request_valid(value):
-    keys = {'schema_version', 'profile', 'program', 'source_label', 'cwd_label', 'argv', 'export_mode', 'resources'}
+    keys = {'schema_version', 'profile', 'program', 'source_label', 'cwd_label', 'argv', 'export_mode', 'resources','parser_context'}
     if (type(value) is not dict or set(value) != keys or value['profile'] != PROFILE
             or type(value['program']) is not str or value['program'] not in PROGRAMS):
         raise ValueError('synthetic_ledger_request_changed')
     # Reuse the exact finite text/path/resource admission contract. The
     # reporting discriminator here is only a validator bridge, never execution.
     from lib.synthetic_lifecycle_application import PROFILE as REPORT_PROFILE
-    report_request({**{k: v for k, v in value.items() if k not in ('profile', 'program')},
+    validate_parser_context(value['parser_context'])
+    report_request({**{k: v for k, v in value.items() if k not in ('profile', 'program','parser_context')},
                     'profile': REPORT_PROFILE, 'generator': 'index'})
     return value
 
@@ -86,7 +88,7 @@ def inspect(root, *, node=None):
         return {'state': 'incomplete', 'retained_declared_replay_consistent': False, **AUTHORITY}
     bind, selected = factory(request, events=events, blob=blob)
     execution = execute(request['source_label'], request['cwd_label'], request['program'], request['argv'],
-        port_factory=bind, validator_factory=lambda io: closed_validator(io, request))
+        port_factory=bind, validator_factory=lambda io: closed_validator(io, request),parser_context=request['parser_context'])
     if selected: selected[0][0].finish()
     elif len(events) != 3: raise ValueError('synthetic_ledger_unbound_execution_events_changed')
     result = result_value(execution, request)
@@ -116,6 +118,7 @@ def generate(options, instance, settings):
     request = request_valid({'schema_version': 1, 'profile': PROFILE, 'program': options['program'],
         'source_label': root, 'cwd_label': cwd, 'argv': argv,
         'export_mode': 'selected-files' if options.get('write_selected_files') else 'private-candidate',
+        'parser_context':capture_parser_context(),
         'resources': [{'uri': uri, 'label': posixpath.normpath(str(Path(path).expanduser().absolute()))}
                       for uri, path in options.get('schema_resource', []) or []]})
     instance = owned_directory(instance)
@@ -130,7 +133,7 @@ def generate(options, instance, settings):
                'remaining_descriptors': 0, 'buffered_streams': 0, 'errors': []}
     try:
         execution = execute(root, cwd, request['program'], argv, port_factory=bind,
-            validator_factory=lambda io: closed_validator(io, request))
+            validator_factory=lambda io: closed_validator(io, request),parser_context=request['parser_context'])
         result = result_value(execution, request)
         if encode(current_source(node)) != encode(source): raise InputAdmissionError('synthetic_ledger_product_changed')
     except Exception as caught: error = caught

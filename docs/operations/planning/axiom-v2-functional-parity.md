@@ -3219,3 +3219,24 @@ Four focused regressions cover abort-after-lock, original failed close, buffered
 teardown and descriptor substitution. The earlier 99-test development snapshot
 and interrupted full validation do not certify this correction; fresh full pinned
 validation and matching host proofs are required.
+
+### Producer parser context correction
+
+The cross-host parser correction retains the producer's complete CPython argparse
+profile, version, observed width and English translation profile in the request.
+Native observation verifies an exact admitted complete stdlib module identity;
+pure execution selects retained 3.11/3.12/3.13 parser modules without consumer
+terminal or translation discovery. Complete PSF licenses/provenance are packaged,
+and whole-module AST fixtures retain all original behavior except the explicit
+width/English-translation/SUPPRESS-identity composition changes. Unsupported or
+modified native modules fail before selected data or record creation. Missing
+context never defaults to the replay host. The original programs, their exits,
+and lazy selected-data binding remain unchanged. No final-stream normalization
+or adoption of stored stdout is used.
+
+The prior signed development candidate a5ea574 replayed 25/28 whole Linux records
+on Mac; three help/parser records differed only in CPython usage wrapping. Its
+old records have no parser context and are preserved as historical evidence,
+without relabeling. This correction needs fresh pinned validation, declared
+reviews and matching signed installed host/peer proofs. It does not declare
+full parity, producer authentication, governance approval or operating authority.

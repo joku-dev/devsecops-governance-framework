@@ -31,7 +31,7 @@ Bereiche, Einstiegspunkte, CI-Definitionen und Betriebsabläufe überschneiden s
 
 ## Nächste Arbeit
 
-Alle sechs ursprünglichen Demo-/Intake-Programme, 24 Funktionen und vollständige private/native Ledger-Effekte über die registrierte Anwendung gepinnt validieren, dokumentieren und als passende signierte Mac-/Linux-Kandidaten liefern. Der vorangehende Berichtsstand 257e945 ist in Draft-PR #440 mit 3.089 Quelltests, je 68 installierten Methoden/108 CLI-Aufrufen, 26 vollständigen Nachweisen je Richtung und identischen festen Consumer-Ergebnissen geliefert. Seine beiden vollständigen CI-Läufe sind noch offen; sechs weitere CI-Familien sind grün. Die ältere datierte Gesamtbeobachtung bleibt separat. Aktuelle Entwicklungsbelege zertifizieren noch keinen signierten Folge-Kandidaten. Vollständiger Umfang 22/135/37/16 und alle live/persönlichen/Betriebsabläufe bleiben im Goal; keine Parität oder Betriebsfreigabe wird erklärt.
+Alle sechs ursprünglichen Demo-/Intake-Programme und 24 Funktionen einschließlich vollständiger privater/nativer Ledger-Effekte liefern. Der bisherige signierte Entwicklungskandidat a5ea574 erreichte im ganzen Linux-auf-Mac-Nachweisvergleich 25/28; drei Parser-Ausgaben wichen mit CPython 3.12/3.13 ab. Der Korrekturkandidat behält deshalb das vollständige explizite Parserprofil, Version, Breite und englische Übersetzungen im Request; er benötigt frische vollständige gepinnte Validierung, deklarierte Reviews und passende signierte Mac-/Linux-Pakete mit ganzen Peer-Nachweisen. Keine Normalisierung oder Übernahme gespeicherter stdout-Ergebnisse. Der vorherige Berichtsstand 257e945 in Draft-PR #440 hat alle acht CI-Familien grün sowie 3.089 Quelltests, je 68 installierte Methoden/108 CLI-Aufrufe, 26 ganze Peer-Nachweise je Richtung und identische feste Consumer-Ergebnisse. Historische Gesamtbeobachtung und alte Records bleiben separat. Vollständiger Umfang 22/135/37/16 und alle live/persönlichen/Betriebsabläufe bleiben im Goal; keine vollständige Parität oder Betriebsfreigabe.
 
 - `scripts/run_governance_lifecycle_synthetic_demo.py`
 - `scripts/run_governance_lifecycle_action_demo.py`
@@ -105,6 +105,6 @@ Im vollständigen Entwicklungs-Checkout aktualisiert der erste Befehl README, di
 
 Der formale Goal-Abschluss bleibt die separate Prüfung `axiom-v2 parity --reference V1_CHECKOUT --evidence-directory PARITY_RECEIPTS --require-complete`. Sie prüft die erforderlichen positiven, negativen und installierten Nachweise. Diese Übersicht ersetzt sie nicht.
 
-Matrix-SHA-256: `df50003a95d4206e2dd400f6906b508b64dfb97c056d7f7b7ec5e8461fc89d56`. Beobachtungs-SHA-256: `f22ddc757362ec536a5843c2b09b1819720a2fcc1c4c254990c730b4fd1a2869`.
+Matrix-SHA-256: `df50003a95d4206e2dd400f6906b508b64dfb97c056d7f7b7ec5e8461fc89d56`. Beobachtungs-SHA-256: `6fde9d477d63f3ba47c5afded7e25f3e67362f17c2a83eaf0508fb05ef7634b5`.
 
 Siehe [vollständigen Paritätsplan](../planning/axiom-v2-functional-parity.md).

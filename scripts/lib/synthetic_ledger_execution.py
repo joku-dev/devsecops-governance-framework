@@ -12,6 +12,7 @@ from lib.synthetic_ledger_context import compose, PROGRAMS
 from lib.requirement_validation_budget import InputAdmissionError
 from lib.requirement_validation_replay import IntegrityError
 from lib.requirement_review_output import RetainedOutputError
+from lib.retained_argparse import formatter_factory,parser_base
 
 
 class SelectedPorts:
@@ -51,12 +52,17 @@ class LazyEffects:
         return getattr(self.ports.effects, name)
 
 
-def execute(source, cwd, program, argv, *, port_factory, validator_factory):
+def execute(source, cwd, program, argv, *, port_factory, validator_factory, parser_context=None):
     if program not in PROGRAMS: raise InputAdmissionError('synthetic_ledger_program_not_supported')
     ports = SelectedPorts(port_factory)
     selected = LazyIO(ports)
     paths = LifecyclePaths(source, cwd, selected)
-    class OriginalParser(argparse.ArgumentParser):
+    class OriginalParser(parser_base(parser_context) if parser_context is not None else argparse.ArgumentParser):
+        def __init__(self,*args,**kwargs):
+            if parser_context is not None:
+                if kwargs.get('fromfile_prefix_chars') is not None:raise InputAdmissionError('retained_argparse_argument_file_expansion_not_admitted')
+                kwargs['formatter_class']=formatter_factory(parser_context)
+            super().__init__(*args,**kwargs)
         def parse_args(self, *args, **kwargs):
             values = super().parse_args(*args, **kwargs)
             ports.bind(paths, values.ledger)

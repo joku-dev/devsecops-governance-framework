@@ -1,0 +1,64 @@
+{
+  "evidence_scope": "Historical actual installed Linux312 outputs at signeda5; kernel-only formatter regression fixture, not new source/installation acceptance. Original a5 requests did not retain a width. Width78 reproduces all complete observed streams.",
+  "source_revision": "a5ea5743313ccfcae2ad974a0294d6829f801687",
+  "version": [
+    3,
+    12,
+    3
+  ],
+  "profile": "cpython-3.12-argparse-v1",
+  "reconstruction_width": 78,
+  "cases": [
+    {
+      "case": "ledger-25-closure-help-native",
+      "program": "closure",
+      "argv": [
+        "--help"
+      ],
+      "kernel_result": {
+        "exit_code": 0,
+        "kernel_exception": null,
+        "original_exit_signal": {
+          "type": "SystemExit",
+          "value": 0
+        },
+        "stderr": "",
+        "stdout": "usage: run_governance_lifecycle_closure_demo.py [-h] --ledger LEDGER --output\n                                                OUTPUT --report REPORT\n\nRun an isolated synthetic FAIL/consent/remediation/PASS/closure/reopening\npilot.\n\noptions:\n  -h, --help       show this help message and exit\n  --ledger LEDGER\n  --output OUTPUT\n  --report REPORT\n"
+      }
+    },
+    {
+      "case": "ledger-26-action-parser-private",
+      "program": "action",
+      "argv": [
+        "--unknown"
+      ],
+      "kernel_result": {
+        "exit_code": 2,
+        "kernel_exception": null,
+        "original_exit_signal": {
+          "type": "SystemExit",
+          "value": 2
+        },
+        "stderr": "usage: run_governance_lifecycle_action_demo.py [-h] --ledger LEDGER --output\n                                               OUTPUT\nrun_governance_lifecycle_action_demo.py: error: the following arguments are required: --ledger, --output\n",
+        "stdout": ""
+      }
+    },
+    {
+      "case": "ledger-27-record-parser-native",
+      "program": "record",
+      "argv": [
+        "--unknown"
+      ],
+      "kernel_result": {
+        "exit_code": 2,
+        "kernel_exception": null,
+        "original_exit_signal": {
+          "type": "SystemExit",
+          "value": 2
+        },
+        "stderr": "usage: intake_governance_lifecycle_action.py [-h] --synthetic --ledger LEDGER\n                                             --record RECORD --resources\n                                             RESOURCES --expected-revision\n                                             EXPECTED_REVISION\nintake_governance_lifecycle_action.py: error: the following arguments are required: --synthetic, --ledger, --record, --resources, --expected-revision\n",
+        "stdout": ""
+      }
+    }
+  ]
+}

@@ -32,6 +32,39 @@ parser handles required fields, abbreviations, `--ledger=...`, repeated options,
 help and parser errors. Ledger ports bind only after successful parsing. Help
 and parser exits need no selected source or ledger access.
 
+## Producer parser context and portability
+
+A complete request retains `parser_context`: CPython implementation/version,
+explicit `cpython-3.11-argparse-v1`, `cpython-3.12-argparse-v1` or
+`cpython-3.13-argparse-v1` profile, observed formatter width and
+`stdlib-en-v1` translations. Native composition admits the exact complete
+stdlib module identities observed in the pinned 3.11.18 CI, 3.12.3 Linux and
+3.13.18 Mac runtimes. It also checks the original formatter defaults and English
+singular/plural translations. Other or modified module identities and translated
+native parsers require a new explicit profile; capture refuses them before
+selected source access or record creation. A minor-version label alone does not
+admit an arbitrary Python distribution. Missing or malformed retained context
+has no consumer-native fallback.
+
+Pure replay selects the complete retained producer parser, including its groups,
+actions, help and usage formatter. Its terminal width and English translations
+are explicit inputs. It does not consult the consumer's terminal, environment or
+gettext functions, copy retained final stdout, or normalize wrapping differences.
+The original six programs still decide their own parser exits before ledger ports
+bind. Retained modules have their complete PSF licenses and provenance notices
+under `scripts/lib/argparse_profiles/`; source fixtures verify the complete module
+AST except the three documented composition changes. Argument-file expansion is
+not an admitted source-data channel for these fixed original parsers.
+
+The earlier signed development candidate `a5ea574` passed 25 of 28 complete
+Linux-to-Mac record replays; three help/parser records differed because CPython
+3.12 and 3.13 wrap usage differently. That comparison did not establish full
+installed parity, and its records lack the new required context. They remain
+historical records, without relabeling or silent migration. The corrected
+candidate requires fresh source validation, signed packages and complete
+Mac/Linux peer comparisons before delivery. Synthetic and operating authority
+remain separate from this technical parser context.
+
 ## Default private preparation
 
 ```bash
