@@ -1426,3 +1426,58 @@ The entrypoint is in_progress. Whole pinned validation, revision-bound declared
 coordinator review, signed source and fresh matching Mac/Linux installation tests
 remain delivery prerequisites. Full22areas/135entrypoints/37CIdefinitions/
 16operatingflows and all protected/historical acceptance remain unchanged.
+
+
+## Engineering increment P: whole synthetic lifecycle reporting
+
+The whole five original generators/19 functions, source-only legacy adapters,
+neutral generator/context/projection/replay code and explicit native ports are
+engineering/reference artifacts. Existing frozen originals are reused. Private
+ordinary source preimages, candidate bytes and journals are manual technical
+test evidence. Guide, arc42 and Goal updates are descriptive. No normative
+source document or source-register change is present; Source Document Intake
+is not required for this engineering change.
+
+Index, closure-pilot, exception, overview and viewer behavior remain fully in
+scope, including direct generation/validation helpers, explicit time, complete
+history verification, immutable/model/distinct-output/official-viewer guards,
+original parser/exceptions and complete report/CSP bytes. Source programs are
+not loaded. Compatibility retains the entire original implementations through
+explicit source-only adapters. Both the five root facades and these five legacy
+adapters are excluded from the active installation and runtime fingerprint.
+
+Default private preparation is a source-preimage-backed logical candidate with
+read-after-write, file/directory probes and combined membership. Its mask 077 and
+modeled owner preconditions confer no future native ACL/umask/disk assertion.
+Explicit native effects capture original files, modes, opened descriptor identity,
+truncation, exact partial byte prefixes and original errors. Source/instance
+overlap, installed-product/private-state exports, unsafe aliases and additional
+budgets are technical admission boundaries, not original governance verdicts.
+
+The separate journal has finite event/byte limits and retains the original
+default read codec for another host. Request, code generation, node, complete
+result/effect/candidate maps, closed blobs and observation chain are checked by
+replay without repeating selected reads, native programs or writes. Interruptions
+and failed observation cannot imply original success or implicit resume.
+
+The three synthetic histories do not become three portfolio repositories.
+Displayed source/decision/exception/consent/closure labels do not grant source,
+waiver, personal action, compliance or operating authority. The protected 24
+implementation files and 18 historical parity receipts remain unchanged. Five
+entrypoints are in_progress and none becomes verified from test counts. The full
+22 areas/135 entrypoints/37 CI definitions/16 operating workflows Goal, including separate
+live/personal reporters, remains open. Full pinned validation, exact current
+declared coordinator reviews, signed source and fresh matching installed Mac/Linux
+whole comparisons are delivery prerequisites.
+
+The synthetic reporting review additionally found implicit JSON Schema remote
+retrieval on the selected security-report schema. The previous 3,087-test run
+passed but did not cover this separate defect and does not certify the corrected
+source. Closed registries now retain explicit `--schema-resource URI FILE`
+selections through bounded input ports; missing selections yield incomplete
+capture with no original verdict. No implicit HTTP/file URI fetch occurs during
+capture or replay. The complete original schema validation remains available
+with explicitly selected resource bytes. New regression cases compare the whole
+original program with a controlled schema transport and remove both selected
+data and resource files before offline replay. Fresh full validation and current
+signed installed proofs are required.

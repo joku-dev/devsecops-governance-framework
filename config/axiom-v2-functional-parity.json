@@ -335,15 +335,25 @@
       "title": "Findings, Entscheidungen und Ma\u00dfnahmen im Lifecycle verfolgen",
       "state": "in_progress",
       "v2_capabilities": [
-        "Neutral lifecycle contract, synthetic/history and zero-argument default ledger validation over closed captured bytes; offline legacy capture replay only. Native base-ref/new-provider flows, live actions and operating authority remain open."
+        "Neutral lifecycle contract, synthetic/history and zero-argument default ledger validation over closed captured bytes; offline legacy capture replay only. Native base-ref/new-provider flows, live actions and operating authority remain open.",
+        "synthetic-lifecycle generate/inspect/replay preserves all five whole synthetic generators and all19 functions: original ledger/cutoff/output guards, private source-preimage candidate overlay and explicit owned native writes, complete JSON/Markdown/CSP HTML, ordered partial failures and original0/1/2 exits; captured default text codec and closed raw/code/node-bound replay; no live/personal/operating authority transfer"
       ],
       "positive_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
-        "tests/test_v2_repository_lifecycle_history.py"
+        "tests/test_v2_repository_lifecycle_history.py",
+        "tests/test_v2_synthetic_lifecycle_reports.py:all19 original bodies and complete report/viewer bytes",
+        "tests/test_v2_synthetic_lifecycle_context.py:whole five original CLIs and inert context",
+        "tests/test_v2_synthetic_lifecycle_outputs.py:actual whole original native exports and source-deletion replay",
+        "tests/test_v2_synthetic_lifecycle_projection.py:whole private source-preimage projections and direct original generate/validate APIs",
+        "tests/test_v2_synthetic_lifecycle_application.py:complete application results, node-bound inspection and portable replay"
       ],
       "negative_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
-        "tests/test_v2_repository_lifecycle_history.py"
+        "tests/test_v2_repository_lifecycle_history.py",
+        "tests/test_v2_synthetic_lifecycle_inputs.py:unstable/alias/private inputs and coherently changed observations",
+        "tests/test_v2_synthetic_lifecycle_outputs.py:actual permission/open/partial/truncation/descriptor-replacement failures",
+        "tests/test_v2_synthetic_lifecycle_projection.py:source/candidate separation, modified validators and explicit replay text codec",
+        "tests/test_v2_synthetic_lifecycle_application.py:incomplete capture/terminal, foreign node, authority/type/request/result/closed-blob tampering and product/instance export guards"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -1251,8 +1261,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_lifecycle_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1269,8 +1279,8 @@
         "--output"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_lifecycle_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1293,8 +1303,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_lifecycle_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1314,8 +1324,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_lifecycle_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1334,8 +1344,8 @@
         "--output"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/synthetic_lifecycle_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

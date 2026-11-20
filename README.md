@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **93 in Arbeit** und **42 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **98 in Arbeit** und **37 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 93 | 42 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 98 | 37 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Vollständigen Dokument-Renderer in V2 absichern und liefern.
+**Nächster Baustein:** Vollständige synthetische Lifecycle-Berichte in V2 absichern und liefern.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -77,11 +77,21 @@ vollständigen bisherigen Import einschließlich eigener Ausgabepfade, Teilfehle
 und ursprünglichen Parser-Exits. Dieser Stand ist als `9acc87e` in
 [PR #438](https://github.com/joku-dev/devsecops-governance-framework/pull/438)
 mit 2.947 Quelltests, je 96 installierten Methoden und 95 CLI-Aufrufen geliefert;
-alle acht CI-Familien sind grün. Der nächste
+alle acht CI-Familien sind grün. Der
 [Dokument-Renderer](docs/operations/guides/axiom-v2-document-rendering.md)
 überführt den vollständigen bisherigen Ablauf einschließlich optionalem Pandoc,
-privater Vorbereitung, ausdrücklicher Dateiausgaben und Nachrechnung. Seine
-aktuelle vollständige Validierung und signierte Host-Abnahme stehen noch aus.
+privater Vorbereitung, ausdrücklicher Dateiausgaben und Nachrechnung. Dieser
+Stand ist als `eb17af4` in
+[PR #439](https://github.com/joku-dev/devsecops-governance-framework/pull/439)
+mit 3.020 Quelltests, je 168 gezielten installierten Methoden und 152 tatsächlichen
+CLI-Aufrufen geliefert. Beide festen Consumer-Berichte stimmen auf Mac und VM
+mit V1 überein; alle acht CI-Familien sind grün. Diese Komponentenbelege ersetzen
+die oben separat datierte Gesamtvergleichsbeobachtung nicht rückwirkend.
+Der nächste [synthetische Lifecycle-Baustein](docs/operations/guides/axiom-v2-synthetic-lifecycle-reporting.md)
+überführt alle fünf bisherigen Generatoren und 19 Funktionen einschließlich
+Übersichts-/Viewer-Prüfung, privater Dateiprojektion, ausdrücklicher nativer
+Ausgaben und Nachrechnung ursprünglicher Teilfehler. Seine aktuelle vollständige
+Validierung und signierte Mac-/Linux-Installation bleiben Lieferbedingungen.
 
 Der [datierte Zwischenstand mit Mac-/VM-Nachweisen](docs/operations/status/axiom-v2-parity-progress-2026-11-15.md)
 trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch

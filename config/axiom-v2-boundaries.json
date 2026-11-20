@@ -153,7 +153,14 @@
     "scripts/lib/document_rendering.py",
     "scripts/lib/document_rendering_context.py",
     "scripts/lib/document_rendering_io.py",
-    "scripts/lib/document_rendering_application.py"
+    "scripts/lib/document_rendering_application.py",
+    "scripts/lib/synthetic_lifecycle_reports.py",
+    "scripts/lib/synthetic_lifecycle_context.py",
+    "scripts/lib/synthetic_lifecycle_io.py",
+    "scripts/lib/synthetic_lifecycle_output.py",
+    "scripts/lib/synthetic_lifecycle_projection.py",
+    "scripts/lib/synthetic_lifecycle_projection_io.py",
+    "scripts/lib/synthetic_lifecycle_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
@@ -166,7 +173,8 @@
     "scripts/lib/requirement_validation_ports.py",
     "scripts/lib/requirement_review_ports.py",
     "scripts/lib/workbook_import_ports.py",
-    "scripts/lib/document_rendering_ports.py"
+    "scripts/lib/document_rendering_ports.py",
+    "scripts/lib/synthetic_lifecycle_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [
@@ -180,7 +188,12 @@
     "scripts/generate_implemented_requirement_migration.py",
     "scripts/generate_pra_requirement_platform_review.py",
     "scripts/import_harmonized_requirements_workbook.py",
-    "scripts/render_governance_documents.py"
+    "scripts/render_governance_documents.py",
+    "scripts/generate_governance_lifecycle_index.py",
+    "scripts/generate_governance_lifecycle_pilot.py",
+    "scripts/generate_governance_lifecycle_exceptions.py",
+    "scripts/generate_governance_lifecycle_overview.py",
+    "scripts/generate_governance_lifecycle_viewer.py"
   ],
   "browser_core": [
     "scripts/workbench/app.js",
