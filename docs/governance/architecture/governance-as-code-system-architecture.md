@@ -7,8 +7,8 @@
 | Document type | Current-state system architecture, organized with arc42 |
 | Status | V2 product-development architecture; implemented candidate, retained V1 operation and future product decisions are distinguished |
 | Effective date | 2026-07-17; original document identity retained |
-| Last implementation review | 2026-11-19; published parity stack through draft PR #428 (`3d6a3c7`), followed by the OPA bootstrap adapter described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
-| Operating observation | Installed Mac `73b93bb`: complete fixed ha-CPsWMS report equality, complete integration/onboarding equality and complete own controller exit 0 with 2,509 tests (one known skip). The earlier `735e241` controller exit 2 remains failed. Scoped `0f43709` Workbench proof retains 63 cases per host and fixed-report equality on Mac/target VM. New target-VM delivery is deferred by the maintainer; historical broader proof, V1 activation and full V2 systemd/update/recovery acceptance remain separate |
+| Last implementation mapping review | 2026-11-20; published parity stack through draft PR #439 (`eb17af4`), followed by the synthetic lifecycle candidate described below. Exact source and validation bindings remain in PR receipts and `config/axiom-v2-functional-parity.json` |
+| Operating observation | Paused isolated Mac/Linux candidate `eb17af4`: 168 focused installed methods and 152 actual CLI calls per host, full fixed ha-CPsWMS reports equal V1, all eight CI families successful. This component delivery includes the target VM and does not replace historical whole-system observations or certify the newer lifecycle increment. V1 activation and full V2 systemd/update/recovery acceptance remain separate |
 | Requirement journey explanation | `GCR-2026-161`; existing five-phase reading guide retained |
 | Owner | Governance Platform Maintainers |
 | Change request | `GCR-2026-035`; prior refreshes `GCR-2026-058`, `GCR-2026-078`, `GCR-2026-154`, `GCR-2026-161`; arc42 reconciliation `GCR-2026-183`; V2 product foundation `GCR-2026-185` |
@@ -504,6 +504,48 @@ producer authentication. Additional finite input/YAML/tool/capture boundaries
 produce incomplete capture without an original verdict. Rendered status/approval
 labels confer no authority. The entrypoint remains in progress; see the
 [renderer guide](../../operations/guides/axiom-v2-document-rendering.md).
+
+### Complete synthetic lifecycle reporting candidate
+
+`synthetic_lifecycle_reports.py` retains all 19 original functions from the five
+index/pilot/exception/overview/viewer generators. `synthetic_lifecycle_context.py`
+binds the original root, parser, current-directory and logical path operations
+to an explicit data context. Complete history verification, evaluation cutoffs,
+immutable/model/output guards, report bytes, CSP HTML and direct overview/viewer
+validation retain their original decisions. Selected source programs are never
+loaded by the V2 application.
+
+`synthetic_lifecycle_application.py` exposes
+`synthetic-lifecycle generate/inspect/replay` with an explicit generator/profile.
+`synthetic_lifecycle_ports.py` composes the registered native adapters and binds
+the complete product fingerprints, source generation and instance context.
+Closed schema registries combine local lifecycle resources with explicitly
+selected URI/file bytes, read through retained ports. Unselected references
+make capture incomplete; capture and replay never fetch HTTP or file URIs.
+Source-only compatibility facades alias the complete original adapters. Both
+the five facades and their five legacy adapters are excluded from the active
+installation and its runtime fingerprint; the neutral application uses its
+registered native ports.
+
+The private path uses actual owned source preimages and a finite logical
+filesystem overlay in `synthetic_lifecycle_projection*.py`. Subsequent reads,
+probes, directory membership and validators see the candidate. Its explicit
+creation mask `077` and identity namespace describe a private model; source
+effects stay empty and future ACL/disk/native-umask behavior is not asserted.
+The selected-files adapter holds native parents and records preimages, opened
+file identity/mode, truncation and partial writes. Additional observation failure
+is incomplete capture rather than an original governance verdict. The effective
+default text-read codec is retained for reconstruction on a different host.
+
+The separate finite journal permits 16,384 events and 32 MiB of event bytes;
+older profile budgets are unchanged. Pure replay reconstructs original exits 0/1/2
+outcomes, complete candidate/export maps and partial failures from the closed
+retained bytes without selected source reads, external programs or repeated
+exports. Own-node inspection and portable replay remain separate. Neither
+consistency nor synthetic decision/exception/closure labels authenticate a
+producer, authorize a live action or transfer operating acceptance. The five
+entrypoints remain in progress; the live/personal reporters remain in the full
+Goal. See the [lifecycle guide](../../operations/guides/axiom-v2-synthetic-lifecycle-reporting.md).
 
 ### Local preparation, requirement authority and public projection
 

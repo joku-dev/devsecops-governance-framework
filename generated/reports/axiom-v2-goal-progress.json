@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 93,
-      "pending": 42,
+      "in_progress": 98,
+      "pending": 37,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,15 +337,19 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "03d35248e29f8c80a6c093e25e66fb1a16d885474fceeb2d54489e7683875239",
+  "matrix_sha256": "f2b24c81f07b356f8bbf334bbd7a963d7f73f7cbd17d6b2645e2337b9362ee76",
   "next_work": {
     "entrypoints": [
-      "scripts/render_governance_documents.py"
+      "scripts/generate_governance_lifecycle_index.py",
+      "scripts/generate_governance_lifecycle_pilot.py",
+      "scripts/generate_governance_lifecycle_exceptions.py",
+      "scripts/generate_governance_lifecycle_overview.py",
+      "scripts/generate_governance_lifecycle_viewer.py"
     ],
-    "next_step": "Den ganzen bisherigen Renderer einschließlich optionalem Pandoc, ursprünglicher CLI-Exits, vollständiger Markdown-/HTML-/DOCX-Ausgaben und realer Teilfehler gepinnt validieren und als identische signierte Mac-/Linux-Kandidaten liefern. Der Workbook-Import 9acc87e ist in PR #438 mit 2.947 Quelltests, je 96 installierten Methoden und 95 CLI-Aufrufen sowie 20 ganzen Peer-Nachweisen je Richtung geliefert; alle acht CI-Familien sind grün. Alle 22/135/37/16 Goal-Einheiten bleiben im Umfang; keine vollständige Parität oder Betriebsfreigabe ist erklärt.",
-    "title": "Vollständigen Dokument-Renderer in V2 absichern und liefern"
+    "next_step": "Alle fünf ursprünglichen Generatoren und 19 Funktionen, direkte Übersicht-/Viewer-Prüfungen, private Kandidaten und native Teil-Ausgaben über die registrierte V2-Anwendung vollständig gepinnt validieren und als identische signierte Mac-/Linux-Kandidaten liefern. Der Renderer eb17af4 ist in Draft-PR #439 mit 3.020 Quelltests, je 168 gezielten installierten Methoden/152 CLI-Aufrufen, 31 ganzen Peer-Nachweisen je Richtung und 8 grünen CI-Familien geliefert. Die separat datierte ältere Gesamtvergleichsbeobachtung bleibt erhalten; aktuelle Komponentenbelege zertifizieren spätere Pakete nicht automatisch. Alle 22/135/37/16 Einheiten und alle live/persönlichen/Betriebsabläufe bleiben im Goal; keine vollständige Parität oder Freigabe wird erklärt.",
+    "title": "Vollständige synthetische Lifecycle-Berichte in V2 absichern und liefern"
   },
-  "observation_sha256": "ee51245757595ef989be37faf245cf5589ca83944eb14bbe7a2844c6757cd789",
+  "observation_sha256": "512efcb8bea771ed2f62e5118e3efd8fa90e1c12ea82b0cab2e08d915aee1ebc",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

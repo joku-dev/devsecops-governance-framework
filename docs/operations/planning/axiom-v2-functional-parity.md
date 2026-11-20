@@ -3119,3 +3119,57 @@ signed delivery and fresh matching installed acceptance are still required.
 The [guide](../guides/axiom-v2-document-rendering.md) describes the limits and
 semantics. Mapping only:93 in progress,42 pending,zero verified. Full22/135/37/16,
 all historical receipts and all governance/operating authority boundaries remain.
+
+
+## Delivered renderer checkpoint and synthetic lifecycle counterpart
+
+Signed `eb17af4` in [draft PR #439](https://github.com/joku-dev/devsecops-governance-framework/pull/439)
+passed the full pinned 3,020-test source run. Fresh isolated Mac/Linux packages
+each passed 168 focused installed methods and 152 actual CLI calls; all six
+complete renderer exports and real DOCX members matched. Thirty-one complete
+records replayed each direction and all 62 foreign-node inspections were rejected.
+Both whole fixed5c consumer reports equal V1. All eight CI families are green;
+both full CI suites report 3,020 tests with four skipped tests, documentation
+builds and finalized artifacts. The quiet logs do not list individual skip reasons.
+The post-body review status is `declared_complete`, a declared coordinator
+receipt rather than independent human approval. This checkpoint certifies that
+component/source and leaves broader Goal/operating acceptance separate.
+
+The five original synthetic lifecycle generators, 367 lines and 19 functions, are
+now assigned to `synthetic_lifecycle_application.py:generate`. The complete
+original bodies, source-only compatibility APIs, original exits 0/1/2 outcomes, full
+JSON/Markdown/CSP HTML, cutoff/full-history rules and direct overview/viewer
+validators remain in scope. The five source-only facades and their complete
+legacy adapters are excluded from the active installation and runtime fingerprint.
+The [guide](../guides/axiom-v2-synthetic-lifecycle-reporting.md)
+explains explicit data/current-directory context and the two output modes.
+
+Private candidates retain actual source preimages and a logical filesystem
+overlay with subsequent candidate reads, probes and directory membership. Its
+explicit mask 077 is a private model rather than a native ACL/umask/disk claim.
+Actual selected files retain original ownership/alias admission, ordered mkdirs,
+file identity/mode, truncation and partial bytes. Default text-read encoding is
+retained. Closed request/code/node-bound replay repeats neither sources nor
+exports. Failed observation or terminal capture has no original verdict and no
+automatic retry. Synthetic exception, consent and closure labels remain display
+data with no live/personal/operating authority transfer.
+
+Current registered application validation, full pinned source validation,
+revision-bound declared reviews and fresh matching signed Mac/Linux delivery
+remain required for this increment. Historical development proofs bind their
+exact earlier source and do not certify a newer package. Mapping only: 98 in
+progress, 37 pending, zero verified. All 22/135/37/16 units, all protected acceptance
+and historical receipts, and the remaining live/personal reporters remain in
+the full Goal.
+
+The synthetic reporting review additionally found implicit JSON Schema remote
+retrieval on the selected security-report schema. The previous 3,087-test run
+passed but did not cover this separate defect and does not certify the corrected
+source. Closed registries now retain explicit `--schema-resource URI FILE`
+selections through bounded input ports; missing selections yield incomplete
+capture with no original verdict. No implicit HTTP/file URI fetch occurs during
+capture or replay. The complete original schema validation remains available
+with explicitly selected resource bytes. New regression cases compare the whole
+original program with a controlled schema transport and remove both selected
+data and resource files before offline replay. Fresh full validation and current
+signed installed proofs are required.

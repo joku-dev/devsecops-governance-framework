@@ -71,8 +71,16 @@ def baseline(root=ROOT, baseline_id=None):
 
 def source_digest():
     # Whole repository execution and its closed historical data readers.
+    # Source-only synthetic compatibility adapters are absent from sparse V2.
     paths = [*(p for p in sorted((ROOT/'scripts/lib/portable').glob('*.py')) if p.name!='adapters.py'),
-             *sorted((ROOT/'scripts/lib/providers').glob('*.py')), ROOT/'scripts/lib/provider_errors.py', ROOT/'scripts/lib/provider_ports.py', ROOT/'scripts/lib/application_source.py', ROOT/'scripts/lib/v2_boundary.py', ROOT/'scripts/lib/v2_application.py', ROOT/'scripts/axiom_v2.py', ROOT/'config/axiom-v2-boundaries.json', ROOT/'schemas/workbench-publication-v2.schema.json', ROOT/'scripts/control_evaluation.py',
+             *(p for p in sorted((ROOT/'scripts/lib/providers').glob('*.py'))
+               if p.name not in {
+                   'legacy_synthetic_lifecycle_exceptions.py',
+                   'legacy_synthetic_lifecycle_index.py',
+                   'legacy_synthetic_lifecycle_overview.py',
+                   'legacy_synthetic_lifecycle_pilot.py',
+                   'legacy_synthetic_lifecycle_viewer.py',
+               }), ROOT/'scripts/lib/provider_errors.py', ROOT/'scripts/lib/provider_ports.py', ROOT/'scripts/lib/application_source.py', ROOT/'scripts/lib/v2_boundary.py', ROOT/'scripts/lib/v2_application.py', ROOT/'scripts/axiom_v2.py', ROOT/'config/axiom-v2-boundaries.json', ROOT/'schemas/workbench-publication-v2.schema.json', ROOT/'scripts/control_evaluation.py',
              ROOT/'scripts/governance_runtime.py', ROOT/'scripts/install_validation_opa.py', ROOT/'scripts/lib/opa_bootstrap_ports.py',
              ROOT/'scripts/validation-toolchain.env', ROOT/'config/portable-runtime-compatibility.json', ROOT/'requirements-validation.lock', *sorted((ROOT/'schemas').glob('portable-*-v1.schema.json'))]
     paths.extend([ROOT/'scripts/serve_governance_workbench.py', ROOT/'scripts/lib/workbench_application.py', ROOT/'scripts/lib/workbench_archive.py', ROOT/'scripts/lib/workbench_impact.py'])
@@ -86,6 +94,7 @@ def source_digest():
     paths.extend(ROOT/'scripts/lib'/name for name in ('candidate_workspace.py','requirement_application.py','requirement_workspace.py','requirement_lifecycle.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('requirement_validation.py','requirement_validation_budget.py','requirement_validation_context.py','requirement_validation_replay.py','requirement_validation_application.py','requirement_validation_ports.py','requirement_migration_generation.py','requirement_platform_generation.py','requirement_review_context.py','requirement_review_output.py','requirement_review_application.py','requirement_review_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('document_rendering.py','document_rendering_context.py','document_rendering_io.py','document_rendering_ports.py','document_rendering_application.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('synthetic_lifecycle_reports.py', 'synthetic_lifecycle_context.py', 'synthetic_lifecycle_io.py', 'synthetic_lifecycle_output.py', 'synthetic_lifecycle_projection.py', 'synthetic_lifecycle_projection_io.py', 'synthetic_lifecycle_ports.py', 'synthetic_lifecycle_application.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('harmonized_workbook_import.py','workbook_import_context.py','workbook_import_limits.py','workbook_import_io.py','workbook_import_application.py','workbook_import_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_application.py', 'dcr_manifest.py', 'dcr_structure.py', 'dcr_semantics.py', 'dcr_response.py', 'dcr_evaluation.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_source_context.py','dcr_operations.py','dcr_catalog.py','dcr_projection.py','document_consistency_view.py'))
