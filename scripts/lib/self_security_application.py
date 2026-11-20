@@ -159,74 +159,18 @@ class SecurityContext:
         return operation, deepcopy(value)
 
     def inspect(self, operation):
+        from lib.provider_ports import capture_retained_security_tree
+        from lib.retained_security import security
         operation = identity(operation)
         target = self.operations / operation
         if target.is_symlink() or not target.is_dir() or target.stat().st_mode & 0o077:
             raise ValueError('private_security_operation_required')
-        value = strict_json(safe_bytes(target / 'assessment.json', limit=MAX_RECORD))
-        pending = strict_json(safe_bytes(target / 'pending.json', limit=4 * 1024**2))
-        if (set(pending) != PENDING or set(value) != PENDING | OUTCOME
-                or canonical_digest({k: value[k] for k in PENDING}) != canonical_digest(pending)
-                or canonical_digest({k: value[k] for k in {*self.binding, *AUTHORITY}}) != canonical_digest({**self.binding, **AUTHORITY})
-                or value['operation_id'] != operation or value['kind'] != KIND
-                or type(value['schema_version']) is not int or value['schema_version'] != 1
-                or value['profile'] != SELF_SECURITY_PROFILE or type(value['provided_observation']) is not bool
-                or type(value['fail_on_findings']) is not bool
-                or type(value['exit_code']) is not int
-                or value['execution'] != 'complete' or value['exception_type'] is not None):
-            raise ValueError('security_binding_or_execution_changed')
-        if canonical_digest(strict_json(safe_bytes(target / 'native-results.json', limit=MAX_RECORD))) != canonical_digest(value):
-            raise ValueError('security_result_journal_changed')
-        if {p.name for p in target.iterdir()} != {'inputs', 'requests', 'responses', 'pending.json', 'outputs', 'native-results.json', 'assessment.json'}:
-            raise ValueError('security_operation_members_changed')
-        inputs = retained_files(target / 'inputs', value['input_files'])
-        expected_directories = {parent for name in inputs for parent in Path(name).parents if str(parent) != '.'}
-        if not value['provided_observation']:
-            expected_directories.add(Path('source'))
-        actual_directories = {path.relative_to(target / 'inputs') for path in (target / 'inputs').rglob('*') if path.is_dir()}
-        if actual_directories != expected_directories:
-            raise ValueError('security_input_directory_members_changed')
-        if hashlib.sha256(inputs['model.yaml']).hexdigest() != value['model_sha256']:
-            raise ValueError('security_model_changed')
-        provided = value['provided_observation']
-        request_paths = [] if provided else security_request_paths(value['repository'])
-        for directory in ('requests', 'responses'):
-            root = target / directory
-            if root.is_symlink() or not root.is_dir() or root.stat().st_mode & 0o077:
-                raise ValueError('private_security_request_journal_required')
-            if {p.name for p in root.iterdir()} != {f'{i:02}.json' for i in range(1, len(request_paths) + 1)}:
-                raise ValueError('security_request_journal_members_changed')
-        if provided:
-            if (set(inputs) != {'model.yaml', 'observation.json'} or value['native_responses'] != []
-                    or value['release_assessment'] is not None or value['source_root'] is not None
-                    or value['resolved_observed_at'] is not None):
-                raise ValueError('provided_security_observation_scope_changed')
-            observation = json.loads(inputs['observation.json'].decode('utf-8'))
-        else:
-            if (not isinstance(value['source_root'], str) or not Path(value['source_root']).is_absolute()
-                    or not isinstance(value['resolved_observed_at'], str)
-                    or set(inputs) - {'model.yaml'} != {n for n in inputs if n.startswith('source/.github/')}):
-                raise ValueError('security_native_scope_changed')
-            if not isinstance(value['native_responses'], list) or len(value['native_responses']) != 7:
-                raise ValueError('security_native_response_count')
-            for index, path in enumerate(request_paths, 1):
-                expected = {'sequence': index, 'method': 'GET', 'path': path}
-                actual = strict_json(safe_bytes(target / 'requests' / f'{index:02}.json'))
-                row = strict_json(safe_bytes(target / 'responses' / f'{index:02}.json', limit=5 * 1024**2))
-                if actual != expected or canonical_digest(row) != canonical_digest(value['native_responses'][index - 1]):
-                    raise ValueError('security_request_journal_changed')
-            release, release_report = self.releases().inspect(value['release_assessment'], with_replayed_report=True)
-            if release['source_root'] != value['source_root']:
-                raise ValueError('security_release_scope_changed')
-            api = ReplaySecurityAPI(value['repository'], value['native_responses'])
-            observation = SecurityCollector(target / 'inputs/source', api, release_report).collect_live(
-                value['repository'], value['resolved_observed_at'])
-            api.finish()
-        files, code = render(inputs['model.yaml'], observation, value['fail_on_findings'])
-        if set(files) != set(FILES) or code != value['exit_code'] or retained_files(target / 'outputs', value['output_files']) != files:
-            raise ValueError('security_complete_report_replay_changed')
         self.assert_current()
-        return deepcopy(value)
+        tree = capture_retained_security_tree(target)
+        value, _ = security(tree, self.binding, operation,
+            lambda child: self.releases().inspect(child, with_replayed_report=True))
+        self.assert_current()
+        return value
 
 
 def run(arguments, instance_root, settings):

@@ -110,57 +110,18 @@ class ReleaseValidationContext:
         return operation,deepcopy(value)
 
     def inspect(self,operation,*,with_replayed_report=False):
+        from lib.provider_ports import capture_retained_security_tree
+        from lib.retained_security import release
         target=self.operations/identity(operation)
-        if target.is_symlink() or not target.is_dir() or target.stat().st_mode&0o077:raise ValueError('unsafe_release_operation')
-        if not (target/'assessment.json').exists():raise ValueError('release_operation_pending_requires_review')
-        if {p.name for p in target.iterdir()}!={'inputs','input-manifest.json','references.json','pending.json','starts','native-work','native-results.json','assessment.json'}:
-            raise ValueError('release_operation_members_changed')
-        pending=strict_json(safe_bytes(target/'pending.json',limit=MAX_MANIFEST))
-        value=strict_json(safe_bytes(target/'assessment.json',limit=MAX_RECORD))
-        if (not isinstance(pending,dict) or set(pending)!=PENDING_FIELDS
-                or not isinstance(value,dict) or set(value)!={*PENDING_FIELDS,'execution','exception_type','exit_code','report','native_context','native_observations'}
-                or canonical_digest({k:value.get(k) for k in PENDING_FIELDS})!=canonical_digest(pending)
-                or canonical_digest({k:value.get(k) for k in {**self.binding,**AUTHORITY}})!=canonical_digest({**self.binding,**AUTHORITY})
-                or value.get('operation_id')!=operation or type(value.get('schema_version')) is not int or value['schema_version']!=1
-                or value['kind']!=KIND or value['source_tree']!=self.tree):
-            raise ValueError('release_record_binding_or_authority_changed')
-        if canonical_digest(strict_json(safe_bytes(target/'native-results.json',limit=MAX_RECORD)))!=canonical_digest(value):
-            raise ValueError('release_native_result_journal_changed')
-        workarea=target/'native-work'
-        if workarea.is_symlink() or not workarea.is_dir() or workarea.stat().st_mode&0o077 or any(workarea.iterdir()):
-            raise ValueError('release_native_workarea_not_clean')
-        explicit_time(value['assessed_at'])
-        manifest=strict_json(safe_bytes(target/'input-manifest.json',limit=MAX_MANIFEST))
-        references=strict_json(safe_bytes(target/'references.json',limit=MAX_REFERENCES))
-        if not isinstance(manifest,dict) or not isinstance(manifest.get('files'),dict):raise ValueError('invalid_release_input_manifest')
-        data=retained_files(target/'inputs',manifest['files'])
-        check_manifest(manifest,data,references,revision=self.binding['source_revision'],tree=self.tree)
-        if value['input_id']!=canonical_digest(manifest) or value['source_root']!=manifest['source_root']:
-            raise ValueError('release_input_binding_changed')
-        if (value['execution']!='complete' or value['exception_type'] is not None
-                or type(value['exit_code']) is not int or value['exit_code']!=0):
-            raise ValueError('release_incomplete_execution_cannot_replay')
-        rows=value['native_observations']
-        if not isinstance(rows,list) or len(rows)>16384:raise ValueError('release_native_observation_budget')
-        starts=target/'starts'
-        if starts.is_symlink() or not starts.is_dir() or starts.stat().st_mode&0o077:raise ValueError('unsafe_release_start_journal')
-        if {p.name for p in starts.iterdir()}!={f'{i:05}.json' for i in range(1,len(rows)+1)}:
-            raise ValueError('release_start_journal_members_changed')
-        for index,row in enumerate(rows,1):
-            if not isinstance(row,dict) or not START_FIELDS<=set(row):raise ValueError('release_start_observation_missing')
-            start={key:deepcopy(row[key]) for key in START_FIELDS}
-            start.update(returncode=None,timed_out=False,output_truncated=False,error_type=None)
-            expected={'operation_id':operation,'input_id':value['input_id'],'sequence':index,'observation':start}
-            if canonical_digest(strict_json(safe_bytes(starts/f'{index:05}.json',limit=MAX_START)))!=canonical_digest(expected):
-                raise ValueError('release_start_journal_changed')
-        replay=ReplayReleaseEnvironment(target/'inputs',data,references,value['native_context'],rows)
-        report=ReleaseVerification(replay).verify_release_integrity();replay.finish()
-        if canonical_digest(report)!=canonical_digest(value['report']):raise ValueError('release_report_replay_changed')
+        if target.is_symlink() or not target.is_dir() or target.stat().st_mode&0o077:
+            raise ValueError('unsafe_release_operation')
+        if not (target/'assessment.json').exists():
+            raise ValueError('release_operation_pending_requires_review')
         self.assert_current()
-        # Composing report generators need the original insertion order, too.
-        # Atomic journal serialization sorts keys; returning its parsed report
-        # would change the complete legacy wire despite equal JSON values.
-        return (deepcopy(value),deepcopy(report)) if with_replayed_report else deepcopy(value)
+        value,report=release(capture_retained_security_tree(target),
+            {**self.binding,'source_tree':self.tree},operation)
+        self.assert_current()
+        return (value,report) if with_replayed_report else value
 
     def status(self):
         rows=[]

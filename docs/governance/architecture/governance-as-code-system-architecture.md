@@ -377,6 +377,37 @@ complete new-source delivery remain open. See the
 [SBOM export guide](../../operations/guides/axiom-v2-sbom-export.md).
 
 
+### Daily operations report candidate
+
+`operations_execution.py` owns the whole original input/time/collection/report/
+three-export order; `operations_collection.py` assembles complete observations and
+`operations_reporting.py` retains the full original decisions and presentation.
+`operations_application.py` adds explicit source/credential selection, private
+capture, optional original output and whole retained inspection. The composition
+module selects a fixed read-only workflow/PR protocol and the bounded local source
+adapter. Native spellings, URLs, GraphQL fields and error presentation stay under
+`providers/`. The original root entrypoint becomes a legacy-adapter facade and is
+excluded from installed execution.
+
+The collector includes all three indexes, full intake telemetry and snapshots,
+all sixteen security criteria and real release integrity. Shared
+`retained_security.py` reconstructs the complete nested security/release records
+using inert path namespaces and retained native observations; the existing security
+and release inspect APIs use that same reconstruction. Original-order report bytes
+remain distinct from sorted metadata. Native capture holds private file descriptors;
+replay selects no program or current input/source tree.
+
+An observation object does not acquire native facts. Original JSON-null fallback
+requires explicit admission before any source or credential acquisition. Fixed
+REST reads and a single static read-only GraphQL document preserve original 100/
+1000 caps and visible unknowns; isolated workers have a 60-second operation budget
+and credentials only on private stdin. Three ordered export pre/postimages retain
+partial writes. Instance inspection binds its node; explicit portable replay
+compares the same registered code without authenticating the declared producer.
+No official result, trust, baseline or operating acceptance follows. This remains
+an in-progress counterpart; see the
+[daily operations guide](../../operations/guides/axiom-v2-operations-report.md).
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)

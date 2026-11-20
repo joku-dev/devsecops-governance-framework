@@ -128,6 +128,9 @@ def source_digest():
         'release_reference_facts.py','release_requests.py','release_replay.py',
         'release_inputs.py','release_validation_application.py'))
     paths.extend(ROOT/name for name in ('scripts/lib/self_security.py','scripts/lib/self_security_application.py'))
+    paths.append(ROOT/'scripts/lib/operations_input_binding.py')
+    paths.extend(ROOT/name for name in ('scripts/lib/operations_application.py', 'scripts/lib/operations_application_replay.py', 'scripts/lib/operations_output_replay.py', 'scripts/lib/operations_ports.py', 'schemas/governance-operations-report.schema.json', '.github/operations-report.json'))
+    paths.extend(ROOT/name for name in ('scripts/lib/operations_collection.py', 'scripts/lib/operations_execution.py', 'scripts/lib/operations_replay.py', 'scripts/lib/operations_reporting.py', 'scripts/lib/operations_security.py', 'scripts/lib/operations_sources.py', 'scripts/lib/retained_security.py', 'scripts/lib/retained_security_tree.py'))
     paths.extend(ROOT/name for name in ('scripts/lib/sbom_export.py', 'scripts/lib/sbom_export_application.py', 'scripts/lib/sbom_export_replay.py', 'scripts/export_axiom_v2_sbom.py', 'scripts/lib/sbom_export_ports.py'))
     return canonical_digest({str(path.relative_to(ROOT)):file_digest(path) for path in paths})
 

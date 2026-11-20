@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 87,
-      "pending": 48,
+      "in_progress": 88,
+      "pending": 47,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,15 +337,15 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "8e366120d3f1e7462733ac95e11794e9b0226ac91655cbb7bccd7ad6b8715527",
+  "matrix_sha256": "0e8f6adee9484f09ebace333909ad33724e583bbe197d958fcee22da0995d3cb",
   "next_work": {
     "entrypoints": [
-      "scripts/export_repository_sbom.py"
+      "scripts/generate_operations_report.py"
     ],
-    "next_step": "Den ganzen SBOM-Ablauf einschließlich Standardbibliothek, Commitbindung vor und nach der Erzeugung, Polling, Redirects, beiden Exporten und gespeicherter Nachprüfung vollständig validieren und als Mac-/Linux-Kandidaten liefern. Anonyme Live-Erzeugung erhielt auf beiden Hosts HTTP 404; ein erfolgreicher Vendor-Export bleibt offen. Gezielte Entwicklungs- und TLS-Tests ersetzen weder vollständige Lieferung noch Paritätsabschluss.",
-    "title": "Vollständiger commitgebundener SBOM-Export in V2"
+    "next_step": "Den vollständigen Ablauf einschließlich eigener und bereitgestellter Beobachtungen, aller Workflow-/PR-/Intake-/Sicherheitsdaten, verschachtelter Signaturnachweise und drei Exportdateien quellenweit validieren und als passenden Mac-/Linux-Kandidaten liefern. Aktuelle fokussierte Tests ersetzen weder vollständige Lieferung noch Paritätsabschluss. Der vorherige SBOM-Kandidat 8863164 ist mit acht grünen CI-Familien geliefert; seine tatsächliche positive Vendor-Erzeugung bleibt nach HTTP404 auf beiden Hosts offen.",
+    "title": "Vollständiger täglicher Betriebsbericht in V2"
   },
-  "observation_sha256": "2b2777bfef7b25b485c8816103f7a58b6820130b6b72e2948f63b66a5891f53c",
+  "observation_sha256": "534453feda0e9b714225697e87be8f29d0175917bfd23aeaf314cdf07f1ac213",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],
