@@ -118,21 +118,27 @@
     "scripts/lib/validation_suite_application.py",
     "scripts/lib/provenance_validation.py",
     "scripts/lib/self_security.py",
-    "scripts/lib/self_security_application.py"
+    "scripts/lib/self_security_application.py",
+    "scripts/lib/sbom_export.py",
+    "scripts/lib/sbom_export_application.py",
+    "scripts/lib/sbom_export_replay.py",
+    "scripts/export_axiom_v2_sbom.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
     "scripts/lib/opa_bootstrap_ports.py",
     "scripts/lib/environment_bootstrap_ports.py",
     "scripts/lib/workbench_startup_ports.py",
-    "scripts/lib/validation_suite_ports.py"
+    "scripts/lib/validation_suite_ports.py",
+    "scripts/lib/sbom_export_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [
     "scripts/lib/portable/adapters.py",
     "scripts/lib/portable_intake/assurance.py",
     "scripts/lib/portable_intake/operations.py",
-    "scripts/lib/portable_intake/transport.py"
+    "scripts/lib/portable_intake/transport.py",
+    "scripts/export_repository_sbom.py"
   ],
   "browser_core": [
     "scripts/workbench/app.js",

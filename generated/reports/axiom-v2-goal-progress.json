@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 86,
-      "pending": 49,
+      "in_progress": 87,
+      "pending": 48,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,15 +337,15 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "a2e83798b99e92db37de1106d03bc4ddd8c534ae669f510584b35e37532370fa",
+  "matrix_sha256": "8e366120d3f1e7462733ac95e11794e9b0226ac91655cbb7bccd7ad6b8715527",
   "next_work": {
     "entrypoints": [
-      "scripts/assess_governance_repository_security.py"
+      "scripts/export_repository_sbom.py"
     ],
-    "next_step": "Alle ursprünglichen Erfassungs- und Berichtszweige mit vollständiger neuer Quellvalidierung, Review und passenden installierten Mac-/Linux-Kandidaten nachweisen. Die gezielten Entwicklungstests ersetzen diese Lieferung nicht.",
-    "title": "Vollständige Repository-Sicherheitsbewertung in V2"
+    "next_step": "Den ganzen SBOM-Ablauf einschließlich Standardbibliothek, Commitbindung vor und nach der Erzeugung, Polling, Redirects, beiden Exporten und gespeicherter Nachprüfung vollständig validieren und als Mac-/Linux-Kandidaten liefern. Anonyme Live-Erzeugung erhielt auf beiden Hosts HTTP 404; ein erfolgreicher Vendor-Export bleibt offen. Gezielte Entwicklungs- und TLS-Tests ersetzen weder vollständige Lieferung noch Paritätsabschluss.",
+    "title": "Vollständiger commitgebundener SBOM-Export in V2"
   },
-  "observation_sha256": "93ae75c999716cd88baa90c12f5ddec6461f6733fbddb99f86eb32ceec7ea345",
+  "observation_sha256": "2b2777bfef7b25b485c8816103f7a58b6820130b6b72e2948f63b66a5891f53c",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

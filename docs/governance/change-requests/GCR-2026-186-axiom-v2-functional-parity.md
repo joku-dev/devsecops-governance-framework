@@ -1210,3 +1210,41 @@ unchanged free-space admission because temporary files used the small system
 partition. Its failed log remains; the same 23-case group passes in 8.161 seconds
 with TMPDIR on the existing approved testvolume. No storage guard was weakened.
 Those are focused development tests, not a full installed-candidate claim.
+
+
+## Whole commit-bound SBOM export counterpart
+
+Classify the stdlib kernel, explicit provider profile/native adapters, private
+capture/replay, unchanged V1 reference and documentation as executable engineering
+and descriptive test artifacts. No normative source intake or derivation applies.
+The complete 286-line original is bound to SHA-256
+`acbb6441bd8fd74e1974ad40d755466e1882d6a5fb3c5dcef0880046d24adf3b`.
+The original root invocation is a facade; its unchanged implementation moves to
+`lib/providers/legacy_repository_sbom.py`. Existing imported API and patch behavior
+remain available. The new product route includes both exports, metadata, clock,
+all request/default-head guards, generation, finite polling, credential-free
+bounded downloads and redirects. Provider spelling remains in the selected profile.
+
+Durable private intents precede effects; temporary download paths/queries and
+bearer values are not retained. Same-code standalone inspection is portable;
+instance inspection binds its node. Reconstruction performs no new native effects
+and grants no independent authentication or authority. Complete failed operation
+capture remains distinct from successful export. Incomplete captures never resume.
+
+The additive explicitly selected anonymous mode sends no invented credential and
+requires public visibility. Initial real Mac/Linux calls for the fixed consumer
+received HTTP404 at generation, exported nothing and replayed consistently in
+both directions. Positive controlled transport and original-decision tests do not
+resolve that external live limitation. Preserve the full original scope and all
+historical receipts. Source validation, review and current installed candidates
+remain required; the assigned counterpart is in progress, never verified.
+
+
+The first J full-source run was interrupted with actual exit130 after a separate
+standard-call probe reproduced macOS's default tempfile base traversing the
+system `/var` alias. No pass was inferred. All2,714 frozen source bytes/modes,
+24 protected files and18 historical receipts were audited;18 actually changed
+metadata effects were retained and exactly restored. The correction canonicalizes
+only the system-selected temporary base; explicit state paths and the private
+leaf still reject symlinks. A native regression exercises both admission branches.
+A fresh complete validation is required for the corrected source.

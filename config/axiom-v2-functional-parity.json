@@ -825,8 +825,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/sbom_export_application.py:execute",
+      "state": "in_progress",
       "evidence": []
     },
     {

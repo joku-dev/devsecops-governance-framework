@@ -128,6 +128,7 @@ def source_digest():
         'release_reference_facts.py','release_requests.py','release_replay.py',
         'release_inputs.py','release_validation_application.py'))
     paths.extend(ROOT/name for name in ('scripts/lib/self_security.py','scripts/lib/self_security_application.py'))
+    paths.extend(ROOT/name for name in ('scripts/lib/sbom_export.py', 'scripts/lib/sbom_export_application.py', 'scripts/lib/sbom_export_replay.py', 'scripts/export_axiom_v2_sbom.py', 'scripts/lib/sbom_export_ports.py'))
     return canonical_digest({str(path.relative_to(ROOT)):file_digest(path) for path in paths})
 
 
