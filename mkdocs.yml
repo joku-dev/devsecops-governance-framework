@@ -196,6 +196,7 @@ nav:
           - V2 Self-Security Candidate: operations/guides/axiom-v2-self-security.md
           - V2 SBOM Export Candidate: operations/guides/axiom-v2-sbom-export.md
           - V2 Daily Operations Candidate: operations/guides/axiom-v2-operations-report.md
+          - V2 Requirement Validation Candidate: operations/guides/axiom-v2-requirement-validation.md
           - V2 Public Artifact Hygiene: operations/guides/axiom-v2-artifact-hygiene.md
           - V2 Portable Candidate Index: operations/guides/axiom-v2-candidate-index.md
           - V2 Private Workbench: operations/guides/axiom-v2-workbench.md

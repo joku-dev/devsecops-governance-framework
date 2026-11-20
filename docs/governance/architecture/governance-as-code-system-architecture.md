@@ -408,6 +408,29 @@ No official result, trust, baseline or operating acceptance follows. This remain
 an in-progress counterpart; see the
 [daily operations guide](../../operations/guides/axiom-v2-operations-report.md).
 
+### Complete requirement authority validation candidate
+
+`requirement_validation.py` retains the complete original 373-line requirement
+validator, including every catalog/authority/case/decision/activation/policy/
+platform/artifact/publication decision. `requirement_validation_context.py`
+executes it over read-only structural paths and explicit history ports. Native
+source and local Git acquisition remain under `providers/`; source programs are
+never executed. The root entrypoint remains an unchanged legacy-adapter facade
+and is excluded from installed execution.
+
+`requirement_validation_application.py` records private raw input and ordered
+source/history observations before presenting the whole original result.
+`requirement_validation_replay.py` replays every read and original history
+fallback without native programs or the observed source tree. Raw schema bytes
+are observed data, not inherited policy authority. Instance inspection binds its
+node; explicit portable replay binds the same product bytes without authenticating
+a producer. External schema URI resources use explicitly selected local bytes,
+lazy acquisition and nested namespace resolution; no implicit resource fetch occurs.
+Resource/admission guards and incomplete capture remain distinct from
+original validation failures. No decision, activation, source approval, accepted
+history, official index or operating authority is changed. See the
+[requirement validation guide](../../operations/guides/axiom-v2-requirement-validation.md).
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)
