@@ -194,6 +194,7 @@ nav:
           - Prepared Runtime Package Candidate: operations/guides/prepared-runtime-package.md
           - V2 Repository Validation Candidate: operations/guides/axiom-v2-repository-validation.md
           - V2 Self-Security Candidate: operations/guides/axiom-v2-self-security.md
+          - V2 SBOM Export Candidate: operations/guides/axiom-v2-sbom-export.md
           - V2 Public Artifact Hygiene: operations/guides/axiom-v2-artifact-hygiene.md
           - V2 Portable Candidate Index: operations/guides/axiom-v2-candidate-index.md
           - V2 Private Workbench: operations/guides/axiom-v2-workbench.md

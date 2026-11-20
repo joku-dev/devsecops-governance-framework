@@ -353,6 +353,30 @@ legacy profile describes its provider-specific evidence vocabulary; other target
 platforms are not silently treated as verified. See the
 [self-security guide](../../operations/guides/axiom-v2-self-security.md).
 
+
+### Commit-bound SBOM export candidate
+
+The stdlib-only `sbom_export` kernel owns the complete export decisions: request
+validation, before/after default-head binding, finite polling, original SPDX root
+identity checks, two ordered exports, metadata clock and final streams/status.
+`sbom_export_application` composes explicit ports with a selected native profile.
+The profile and provider modules own API spelling, read credential admission,
+HTTP/TLS, bounded downloads, redirects, clock, filesystem effects and private
+records. The former root script is an import/invocation facade to the unchanged
+legacy adapter. The installed surface is `axiom-v2 sbom`; the standalone stdlib
+frontend is available before third-party Python dependencies.
+
+Temporary signed download addresses stay in memory. Private hash-bound observations
+retain opaque locator descriptors, payload bytes, output pre/postimages and actual
+native results. Same-code read-only inspection reconstructs full decisions and
+exports without new HTTP, waits, time or writes. Instance inspection also binds
+its node; portable standalone reconstruction does not authenticate the producer.
+The explicit anonymous public mode and API-redirect rejection are adapter choices.
+Both initial native consumer calls returned HTTP404; a positive live export and
+complete new-source delivery remain open. See the
+[SBOM export guide](../../operations/guides/axiom-v2-sbom-export.md).
+
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)

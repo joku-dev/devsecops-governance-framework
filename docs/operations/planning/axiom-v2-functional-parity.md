@@ -2912,3 +2912,22 @@ architecture reports equal V1, business digest
 `bbcb07afaae89967ceab631b446d9751fe844703336697921d494ffd506afb70`.
 Those observations bind f7cf969 and do not certify this new security increment.
 The complete 22/135/37/16 Goal and independent acceptance remain open.
+
+
+## Complete commit-bound SBOM export counterpart, in development
+
+The matrix assigns the whole original `export_repository_sbom.py` to the new
+stdlib application and `sbom export/inspect`, not merely its SPDX validator.
+All before/after branch and commit guards, generation201 and locator admission,
+18 polling attempts/5-second waits, credential-free25MiB download/redirect checks,
+original SPDX decisions, both complete files, clock order and statuses are in
+scope. The untouched original fixture and moved legacy adapter preserve reference
+and root compatibility. The [guide](../guides/axiom-v2-sbom-export.md) describes
+explicit token/legacy-environment/anonymous modes and read-only retained inspection.
+
+Initial development tests passed on Linux with matching active source bytes and
+cross-host replay. Real anonymous generation returned HTTP404 on both hosts;
+that is a fully captured failure, not live positive acceptance. Source-wide pinned
+validation, roles, matching installed packages and whole acceptance remain open.
+The matrix changes assignment only: 87 in progress,48 pending,zero verified.
+No historical receipt, released baseline or official acceptance is changed.
