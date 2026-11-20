@@ -122,7 +122,19 @@
     "scripts/lib/sbom_export.py",
     "scripts/lib/sbom_export_application.py",
     "scripts/lib/sbom_export_replay.py",
-    "scripts/export_axiom_v2_sbom.py"
+    "scripts/export_axiom_v2_sbom.py",
+    "scripts/lib/operations_collection.py",
+    "scripts/lib/operations_execution.py",
+    "scripts/lib/operations_replay.py",
+    "scripts/lib/operations_reporting.py",
+    "scripts/lib/operations_security.py",
+    "scripts/lib/operations_sources.py",
+    "scripts/lib/retained_security.py",
+    "scripts/lib/retained_security_tree.py",
+    "scripts/lib/operations_application.py",
+    "scripts/lib/operations_application_replay.py",
+    "scripts/lib/operations_output_replay.py",
+    "scripts/lib/operations_input_binding.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
@@ -130,7 +142,8 @@
     "scripts/lib/environment_bootstrap_ports.py",
     "scripts/lib/workbench_startup_ports.py",
     "scripts/lib/validation_suite_ports.py",
-    "scripts/lib/sbom_export_ports.py"
+    "scripts/lib/sbom_export_ports.py",
+    "scripts/lib/operations_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [
@@ -138,7 +151,8 @@
     "scripts/lib/portable_intake/assurance.py",
     "scripts/lib/portable_intake/operations.py",
     "scripts/lib/portable_intake/transport.py",
-    "scripts/export_repository_sbom.py"
+    "scripts/export_repository_sbom.py",
+    "scripts/generate_operations_report.py"
   ],
   "browser_core": [
     "scripts/workbench/app.js",

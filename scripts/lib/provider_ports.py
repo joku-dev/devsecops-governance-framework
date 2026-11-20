@@ -151,6 +151,11 @@ def workbench_workspace(*args, **options):
     return WorkbenchWorkspace(*args, **options)
 
 
+def capture_retained_security_tree(path):
+    from lib.providers.retained_security_files import capture
+    return capture(path)
+
+
 from lib.providers.self_security_capture import (PROFILE as SELF_SECURITY_PROFILE,
     SecurityCollector, request_paths as security_request_paths)
 from lib.providers.self_security_native import (SecurityAPI, ReplaySecurityAPI,

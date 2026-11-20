@@ -23,7 +23,7 @@
     },
     {
       "id": "FP-02",
-      "title": "Änderungen an Vorgaben vorbereiten",
+      "title": "\u00c4nderungen an Vorgaben vorbereiten",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -33,7 +33,7 @@
     },
     {
       "id": "FP-03",
-      "title": "Herkunft und Zusammenhänge nachweisen",
+      "title": "Herkunft und Zusammenh\u00e4nge nachweisen",
       "state": "in_progress",
       "v2_capabilities": [
         "reports graph/control coverage/three traceability routes",
@@ -80,7 +80,7 @@
     },
     {
       "id": "FP-06",
-      "title": "OPA-Prüfregeln ausführen",
+      "title": "OPA-Pr\u00fcfregeln ausf\u00fchren",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -129,7 +129,7 @@
     },
     {
       "id": "FP-10",
-      "title": "Baselines veröffentlichen und konsumieren",
+      "title": "Baselines ver\u00f6ffentlichen und konsumieren",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -149,7 +149,7 @@
     },
     {
       "id": "FP-12",
-      "title": "Ergebnisgeschichte schützen",
+      "title": "Ergebnisgeschichte sch\u00fctzen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -207,7 +207,7 @@
     },
     {
       "id": "FP-16",
-      "title": "Operative Änderungen über PRs veröffentlichen",
+      "title": "Operative \u00c4nderungen \u00fcber PRs ver\u00f6ffentlichen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -227,7 +227,7 @@
     },
     {
       "id": "FP-18",
-      "title": "Einführung und Betriebsreife bewerten",
+      "title": "Einf\u00fchrung und Betriebsreife bewerten",
       "state": "in_progress",
       "v2_capabilities": [
         "reports portfolio preserves committed registry/index/previous-projection and explicit clock; remaining readiness/live acceptance open",
@@ -259,7 +259,7 @@
     },
     {
       "id": "FP-19",
-      "title": "Betrieb und eigene Sicherheit überwachen",
+      "title": "Betrieb und eigene Sicherheit \u00fcberwachen",
       "state": "in_progress",
       "v2_capabilities": [
         "self-security assess/inspect: sixteen original criteria, full JSON/Markdown/stdout, provided observations, seven read-only native requests, inert local scans, real release verification and retained replay; no publisher or authority"
@@ -276,7 +276,7 @@
     },
     {
       "id": "FP-20",
-      "title": "Reviews, Validierung und Kommunikation unterstützen",
+      "title": "Reviews, Validierung und Kommunikation unterst\u00fctzen",
       "state": "in_progress",
       "v2_capabilities": [
         "provenance private record/import/index/check/inspect preserves original declared association wires; no verified execution or approval",
@@ -329,7 +329,7 @@
     },
     {
       "id": "FP-21",
-      "title": "Findings, Entscheidungen und Maßnahmen im Lifecycle verfolgen",
+      "title": "Findings, Entscheidungen und Ma\u00dfnahmen im Lifecycle verfolgen",
       "state": "in_progress",
       "v2_capabilities": [
         "Neutral lifecycle contract, synthetic/history and zero-argument default ledger validation over closed captured bytes; offline legacy capture replay only. Native base-ref/new-provider flows, live actions and operating authority remain open."
@@ -1504,8 +1504,8 @@
         "--output-dir"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/operations_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

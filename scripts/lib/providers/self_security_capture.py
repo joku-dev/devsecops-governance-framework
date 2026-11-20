@@ -51,8 +51,13 @@ def request_paths(repository):
 
 
 class SecurityCollector:
-    def __init__(self,root,api,release_report):
-        self.root=Path(root);self.gh_api=api;self.release_report=deepcopy(release_report) if not callable(release_report) else release_report
+    def __init__(self,root,api,release_report,*,inert_files=None):
+        if inert_files is None:
+            self.root=Path(root)
+        else:
+            from lib.validation_files import ValidationFiles
+            self.root=ValidationFiles(inert_files,label=str(root)).root
+        self.gh_api=api;self.release_report=deepcopy(release_report) if not callable(release_report) else release_report
 
     def tag_verification(self):return self.release_report() if callable(self.release_report) else deepcopy(self.release_report)
     def workflow_files(self) -> list[Path]:

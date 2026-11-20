@@ -1122,7 +1122,7 @@ from before lock acquisition could overlook a newly written incomplete owner.
 Read file type/owner/mode/size after acquiring the exclusive lock. A regression
 first fails against the preceding adapter, then must reject the interrupted owner
 without replacing its pointer. No packages execute in this timing probe. The
-first new full suite was explicitly interrupted for this fix (actual exit130,
+first new full suite was explicitly interrupted for this fix (actual exit 130,
 437.400s); all2,675 source bytes/modes,24 protected hashes and18 receipt hashes
 were audited, and19 incidental raw metadata changes retained/restored. It is not
 a passed full validation. A fresh frozen full run is required for the corrected
@@ -1248,3 +1248,56 @@ metadata effects were retained and exactly restored. The correction canonicalize
 only the system-selected temporary base; explicit state paths and the private
 leaf still reject symlinks. A native regression exercises both admission branches.
 A fresh complete validation is required for the corrected source.
+
+
+## Whole daily operations report and shared nested inspection
+
+Classify the whole neutral execution/collection/report kernels, explicit native
+profile/adapters, shared inert security/release reconstruction, private journal,
+unchanged V1 oracle and descriptive guide/arc42/progress mapping as executable
+engineering and technical test artifacts. No new normative source, candidate
+policy derivation, release, official result or operating authority is introduced.
+
+The original 325-line daily report is bound to SHA-256
+`a390f8bc7cac07201efef4623ab50331e6d8793c0a418bca425b9a40ed493448`.
+All registry/index/telemetry/snapshot reads, workflow/PR caps, original thresholds,
+full security/release evaluation, schema/time/checkout behavior, all three complete
+exports and partial-write effects are in scope. Source/credential/output admission
+and explicit null-observation fallback are disclosed boundaries, not new findings
+or enforcement policy. The compatibility facade preserves original imports and
+calls; the native body moves to the explicit legacy adapter.
+
+Both existing inspect APIs now share the same complete retained security/release
+reconstruction used by operations composition. Held bounded private trees retain
+whole input/output/request/response/start journals; inert path namespaces and
+native-observation replay perform no fresh source/API/signature/clock work.
+Producer identity and remote facts remain declarations; no receipt or source hash
+confers independent approval or trust. Failed/incomplete native capture and
+complete original report-only outcomes remain distinct. No historical receipt,
+released package or protected acceptance changes. Whole source validation,
+revision-bound coordinator reviews, signed delivery and current installed
+Mac/Linux proof remain prerequisites; mapping is in_progress, never verified.
+
+The first shared replay exposed an inert-path adapter mismatch in three focused
+cases; the corrected shared inspector passes 55 existing application methods.
+The first Linux 132-case archive lacked actual Git identity for six provided-report
+fixtures. That failed log is retained. Importing only the real parentcommit/root-
+tree objects into the isolated development fixture, with all 2,735 source bytes/modes
+unchanged and production guards intact, gives 132 passes on both hosts. Complete
+nested records containing 16 actual private Git/SSH invocations and seven controlled API reads
+replay in both directions. This is explicitly development/controlled evidence.
+
+
+A concrete review finding stopped the first K full-source run with actual exit 130,
+after 565.084 seconds. All 2,744 source bytes/modes, 24 protected files and 18 historical
+receipts were audited; all 19 classified generation effects were retained/restored.
+The interrupted run is not a pass. One audit's final own-index lock required the
+normal Git sandbox escalation; the completed audit checks the exact staged tree.
+
+The regression reproduced two accepted coherent journal rewrites: different
+schema bytes and a different schema label, despite the recorded own product-source
+fingerprints. Actual and retained input paths now require the fixed product-schema
+label and exact source-map byte digest, with the same binding for the own default
+configuration. Explicit external configurations remain selected inputs. Both
+rewrites are rejected; all 14 full CLI cases pass. A fresh full-source run is required
+for the corrected generation; no producer authentication or authority is inferred.

@@ -2931,3 +2931,34 @@ that is a fully captured failure, not live positive acceptance. Source-wide pinn
 validation, roles, matching installed packages and whole acceptance remain open.
 The matrix changes assignment only: 87 in progress,48 pending,zero verified.
 No historical receipt, released baseline or official acceptance is changed.
+
+
+## Whole daily operations counterpart, in development
+
+The complete original 325-line `generate_operations_report.py`, immutable SHA-256
+`a390f8bc7cac07201efef4623ab50331e6d8793c0a418bca425b9a40ed493448`,
+is assigned to `operations_application.py:generate`. It includes the complete
+live/provided collector,100-workflow/1000-PR caps and errors, registry/all three
+indexes/full intake-health records, nested self-security/real release verification,
+all report decisions, original clock/schema/checkout ordering, complete JSON/
+observation/Markdown exports and original successful stdout/exit. Native acquisition
+and presentation remain explicit adapters; the root script is a compatibility
+facade to the full legacy implementation, excluded from installed execution.
+
+Private journals retain actual raw inputs, responses, nested signature records,
+all ordered export pre/postimages and partial-write outcomes. Shared complete
+security/release inspection uses inert inputs and the same original decisions.
+Instance inspection and explicitly portable same-code replay remain distinct;
+producer authentication, historical API attestation and authority are not inferred.
+JSON-null provided-observation fallback requires explicit native admission; a
+normal supplied object performs no acquisition. Additional source/credential/export
+admission guards are disclosed in the
+[guide](../guides/axiom-v2-operations-report.md).
+
+The prior library source snapshot passed 132 focused methods on Mac and Linux,
+including both-direction whole nested-record replay with actual private Git/SSH
+fixtures and controlled API data. The initial full CLI passes 13 additional focused
+Mac methods. These are dated development observations, not a full new-source or
+installed-candidate claim. Complete pinned validation, role reviews, signed source
+and matching current Mac/Linux packages remain required. Matrix assignment only:
+88 in progress, 47 pending, zero verified; full 22/135/37/16 scope unchanged.

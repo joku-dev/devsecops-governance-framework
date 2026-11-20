@@ -114,12 +114,24 @@ Abnahme oder Betriebsautorität werden aktiviert.
 
 ## Aktueller Prüfstand
 
-Der erste Entwicklungsstand bestand auf der VM 32 fokussierte Tests und den
-beidseitigen Mac-/Linux-Replay derselben Fehleraufnahmen. Die tatsächlichen
-anonymen Erzeugungsanfragen für `joku-dev/ha-CPsWMS` am festgehaltenen Commit
-`5c3b5cb50d2260bfbde736c9ac80667271406d99` erhielten auf beiden Hosts HTTP 404.
-Es entstanden keine SBOM-Exportdateien. Ein erfolgreicher Live-Export bleibt
-offen. Der folgende Stand ergänzt lokale TLS-Tests und die Adapterverlagerung;
-diese Tests bestätigen keinen positiven Vendor-Lauf. Vollständige neue
-Quellvalidierung, Review, veröffentlichter Kandidat und installierte Abnahme
-stehen für diesen SBOM-Baustein noch aus. Der Matrixeintrag bleibt `in_progress`.
+Der signierte Kandidat `886316456b72437c8b4051191e2d54acf273d586` ist in
+[Draft PR #434](https://github.com/joku-dev/devsecops-governance-framework/pull/434)
+geliefert. Die vollständige gepinnte Quellvalidierung besteht 2.759 Tests
+(1.412,547 Sekunden, eine bekannte Auslassung). Alle acht CI-Prüffamilien sind
+am selben Commit erfolgreich; die beiden CI-Gesamtläufe bestehen ebenfalls
+2.759 Tests mit je vier ausgelassenen Umgebungsfällen.
+
+Die frischen passenden Mac-/Linux-Kandidaten bestehen jeweils 26 installierte
+Original-/Native-/TLS-Tests, neun tatsächliche CLI-Fälle und drei kontrollierte
+instanzgebundene Exportfälle. Die vollständigen Paketmanifeste und Quellbytes
+sind geprüft. Ganze festgehaltene ha-CPsWMS-Kontroll- und Architekturberichte
+stimmen auf beiden Hosts mit V1 überein. Diese gezielten SBOM-Prüfungen behaupten
+keinen neuen vollständigen installierten Standard-Validierungslauf.
+
+Die tatsächlichen anonymen Erzeugungsanfragen für `joku-dev/ha-CPsWMS` am festen
+Commit `5c3b5cb50d2260bfbde736c9ac80667271406d99` erhalten auf beiden Hosts
+HTTP 404, Rückgabe eins, ohne Exportdateien. Beide vollständigen Fehlernachweise
+lassen sich auf dem eigenen Node und mit demselben Code auf dem anderen Host
+prüfen. Ein erfolgreicher Live-Export bleibt offen; aus HTTP 404 wird keine
+Berechtigungs- oder Ursachenbehauptung abgeleitet. Der Matrixeintrag bleibt
+`in_progress`, der vollständige Paritäts- und Abnahmeumfang bleibt offen.
