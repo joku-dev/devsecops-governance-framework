@@ -3240,3 +3240,102 @@ old records have no parser context and are preserved as historical evidence,
 without relabeling. This correction needs fresh pinned validation, declared
 reviews and matching signed installed host/peer proofs. It does not declare
 full parity, producer authentication, governance approval or operating authority.
+
+## Complete documentation reconciliation counterpart
+
+The next own branch retains the seven complete original functions and165 lines
+of `reconcile_documentation_after_merge.py`. It exposes a registered private/native
+`documentation-reconciliation generate/inspect/replay` application with complete
+request/product/node/result bindings. The local Git selection, all four document
+exports and whole tracked-Markdown link audit remain intact. The original
+`--github-output` is an ordinary selected append file, including opaque existing
+bytes, no inserted separator, earlier document aliasing and original partial/close
+errors. Native buffering is observed separately from the finite private model.
+Aborted capture releases owned host streams separately and confers no original
+verdict. Build status remains a caller declaration, and editorial review stays
+human.
+
+The frozen prototype passed23 methods on both hosts and ten complete peer records
+per direction with source/Git/file/network access forbidden during reconstruction.
+Its whole707-Markdown audit is a separate earlier data-tree proof, not a current
+installation claim. Registered application development tests add product/node,
+authority, whole-result and closed-blob checks. Full pinned regression, declared
+revision-bound reviews, signed source, installed Mac/Linux and fixed-consumer
+comparison remain required before delivery. The source-only facade, unchanged
+original module and binding helper are excluded from the active product/runtime.
+This entrypoint becomes in_progress; the complete22/135/37/16 scope remains,
+with105 in progress,30 pending,zero verified. No protected acceptance or historical
+parity receipt changes.
+
+A pure negative-signal wire probe reproduced an impossible diagnostic admitted
+by the earlier command-prefix check. The first full run was deliberately stopped
+with actual130 after619.789 seconds; all19 classified effects were retained and
+exactly restored, with24 protected and18 historical files unchanged. It is not a
+passed full run. Explicit producer CPython/OS context and finite signal profiles
+now derive the entire original message; whole actual Git termination and six
+resealed signal variants are covered by additional current tests. Fresh pinned
+full validation and signed installed delivery remain required after correction.
+
+### Documentation parser context integration
+
+The documentation application now retains required complete producer argparse
+context through the same pinned 3.11/3.12/3.13 profiles as the corrected ledger
+candidate. Native identity/width/English observation and pure parser reconstruction
+are separate. Missing/unsupported context fails before selected data or records;
+replay has no consumer terminal/gettext defaults or final-stdout normalization.
+Current tests compare unchanged original help/unknown/empty streams at three
+widths in both modes, inert replay and resealed context/output attacks. These
+source tests and the unchanged original165-line program do not replace current
+full validation, declared review, signed installation or whole-peer proof.
+
+## Complete diagnostic lifecycle candidate preparation counterpart
+
+The next own branch retains both complete original preparation CLIs, their
+shared writer, candidate normalization and both DevSecOps/architecture adapters:
+seven original functions/161 lines from immutable V1. The registered
+`lifecycle-candidates generate/inspect/replay` application has explicit native
+parser identity/width/English context, closed schema/data inputs, product/node
+bindings and whole original private/native output/error reconstruction.
+Eight direct original-comparison groups passed on the Mac before application
+registration; they are a dated source-development scope, not current full or
+installed acceptance. Current focused application tests and full pinned source,
+declared review, signed Mac/Linux and fixed-consumer/whole-peer gates remain.
+
+Both entrypoints are in_progress, with107 in_progress/28pending/zeroverified;
+full22/135/37/16 remains. Diagnostic candidates retain `report_only`, `unverified`,
+`not_evaluated`, `official_state:false` and all original acceptance gaps. No gate
+message is promoted to a marker finding; no accepted observation/ledger/index,
+producer authentication, personal consent or operating authority is inferred.
+Protected acceptance and historical parity receipts remain unchanged.
+
+## Complete parser producer context in prior execution APIs
+
+A fresh older synthetic pilot help record reproduces a pure replay failure when
+only the consumer terminal width changes:80pass/40fail/80pass with closed bytes,
+three events and selected-source/native-program observers forbidden. Prior host
+proofs stay dated. The correction extends explicit complete producer parser
+profiles/version/width/English context to all five reporting parsers, workbook
+import and document rendering, retaining all original body/IO/argv/exit behavior.
+The metadata-only request helper is separated from required execution admission;
+ledger/candidate bridges never gain a missing-context fallback.
+
+Seven new targeted groups pass on the Mac. Current broad original regression,
+all three pinned runtimes, full validation/review and matching signed installed
+Mac/Linux/whole-peer/fixed-consumer proofs remain required. No historical record
+is relabeled, output normalized or verified receipt added. Full22/135/37/16 and
+all live/personal/operating scopes remain; mapping stays107in_progress28pending0verified.
+
+## Complete diagnostic pilot projection counterpart
+
+`pilot-projections generate/inspect/replay` retains both complete original
+pilot-report programs over explicit lifecycle context and closed IO. The required
+capture profile selects original retained provider-field checks through a port;
+there is no provider fetch or inferred current consent. Original writes, ignored
+argv, streams, errors and index-before-report partial effects remain visible.
+The immutable V1 fixture contains two receipts and no actions; later histories
+are not substituted. A separate correction marks possible native partial effects
+for original candidate write failures; the original kernel and admission guards
+remain unchanged. Focused source checks are development evidence; current full,
+pinned, reviewed, signed installed/peer/consumer evidence is still required.
+Full22/135/37/16 remains, now109in_progress/26pending/0verified entrypoints.
+See [pilot projections](../guides/axiom-v2-pilot-projections.md).

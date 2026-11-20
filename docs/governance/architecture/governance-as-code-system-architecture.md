@@ -606,6 +606,95 @@ without relabeling. This correction needs fresh pinned validation, declared
 reviews and matching signed installed host/peer proofs. It does not declare
 full parity, producer authentication, governance approval or operating authority.
 
+### Complete documentation reconciliation candidate
+
+`documentation_reconciliation.py` retains all seven original function bodies
+and the full 165-line program through explicit logical paths, local Git and
+parser ports. `documentation_reconciliation_context.py` preserves whole-main
+streams and original errors. Required producer parser context selects the complete
+retained CPython parser, observed width and English translations; replay has no
+consumer terminal/gettext fallback. Exact admitted native module identity is
+checked before selected inputs or record creation. The application exposes
+`documentation-reconciliation generate/inspect/replay` with a closed request,
+complete product/runtime/node binding and explicit local inspection versus
+portable consistency reconstruction. No selected source program is loaded.
+
+Private document/append effects share one finite candidate filesystem, so the
+whole original link audit sees preceding candidate exports. The native Git port
+retains finite read requests, raw process streams, terminal and tool/source
+identities. Producer CPython/OS context binds complete signal diagnostics to
+finite Linux/macOS signal profiles, with native enumeration and whole original
+SIGTERM/SIGUSR1/SIGKILL tests. The separate append provider observes real buffered open/write/close,
+opaque existing bytes, exact partial prefixes, identities, modes and original
+errors; it adds no separator, mkdir, truncation or fsync. Source-only facade,
+unchanged original module and constant-binding helper are excluded from the
+active package and runtime fingerprint.
+
+Pure replay validates full observations and results without repeating source
+reads, programs or effects. Native host-stream release after capture abort is
+separate from original kernel behavior; an unobserved flush has no original
+verdict. Private mask077 describes a model rather than native durability.
+Caller build status is a declaration; human editorial review, producer identity
+and operating authority are separate. This entrypoint remains in progress;
+current full regression and signed installed delivery remain required. See the
+[documentation reconciliation guide](../../operations/guides/axiom-v2-documentation-reconciliation.md).
+
+### Complete diagnostic lifecycle candidate preparation
+
+`lifecycle_candidate_preparation.py` retains the complete seven original
+functions/161 lines across both preparation CLIs, shared writer, normalization
+and DevSecOps/architecture adapters. Explicit context contracts, logical paths,
+closed schema validation and complete producer argparse profiles replace implicit
+root/parser dependencies. `lifecycle_candidate_preparation_application.py`
+exposes `lifecycle-candidates generate/inspect/replay` with whole
+request/product/node/result bindings. No selected source program is executed.
+
+Raw report digest, context, UTC time, schema, duplicate, summary and output guards
+are preserved. Demo declarations remain explicit. Control rows retain their
+control granularity; architecture gates and messages never imply marker outcomes.
+Candidate IDs and all diagnostic/unverified/nonaccepted flags and acceptance gaps
+remain original data. Private mask077 is a bounded candidate model; explicit
+native writes preserve original partial errors without retry or rollback.
+Closed replay repeats no selected reads, outputs, programs or provider calls.
+Incomplete observation/record storage obtains no original verdict. Candidate
+consistency grants no accepted lifecycle, producer, personal or operating authority.
+Current full regression/review and signed matching installed host/peer evidence
+remain required; see the [candidate preparation guide](../../operations/guides/axiom-v2-lifecycle-candidate-preparation.md).
+
+### Diagnostic pilot projection boundary
+
+`pilot-projections generate/inspect/replay` retains both complete original
+pilot-report programs over explicit lifecycle context and closed IO. The required
+capture profile selects original retained provider-field checks through a port;
+there is no provider fetch or inferred current consent. Original writes, ignored
+argv, streams, errors and index-before-report partial effects remain visible.
+The immutable V1 fixture contains two receipts and no actions; later histories
+are not substituted. A separate correction marks possible native partial effects
+for original candidate write failures; the original kernel and admission guards
+remain unchanged. Focused source checks are development evidence; current full,
+pinned, reviewed, signed installed/peer/consumer evidence is still required.
+Full22/135/37/16 remains, now109in_progress/26pending/0verified entrypoints.
+See [pilot projections](../../operations/guides/axiom-v2-pilot-projections.md).
+
+
+### Complete producer parser context across prior capture APIs
+
+The synthetic lifecycle reporting, workbook import and document-rendering
+applications now require the same explicit complete producer parser profile,
+version, observed width and English translation context as the later ledger,
+documentation and diagnostic candidate APIs. Native adapter observation precedes
+record creation; core reconstruction uses retained complete parser modules
+without consumer terminal/gettext defaults. The entire code/license closure is
+required by each composition. Original program bodies, lazy path selection,
+stream/exit behavior and file/tool effects remain unchanged.
+
+Reporting metadata-only shape validation is a separately named helper. It cannot
+admit an executable request without parser context; ledger/candidate applications
+validate their own complete context before using that helper. Old records remain
+dated, without relabeling or stdout normalization. Current full regression,
+revision-bound review and signed installed comparisons are still required; see
+the [producer parser guide](../../operations/guides/axiom-v2-producer-parser-context.md).
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)

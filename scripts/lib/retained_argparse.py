@@ -31,3 +31,9 @@ PARSERS={'cpython-3.11-argparse-v1':Parser311,'cpython-3.12-argparse-v1':Parser3
 def parser_base(context):
     validate_context(context)
     return PARSERS[context['profile']]
+
+# Complete code/license closure required by each capture composition.
+COMPONENTS=('retained_argparse.py','providers/retained_argparse.py','argparse_profiles/__init__.py',
+    'argparse_profiles/cpython311.py','argparse_profiles/cpython312.py','argparse_profiles/cpython313.py',
+    'argparse_profiles/LICENSE-3.11.txt','argparse_profiles/LICENSE-3.12.txt','argparse_profiles/LICENSE-3.13.txt',
+    'argparse_profiles/NOTICE-3.11.md','argparse_profiles/NOTICE-3.12.md','argparse_profiles/NOTICE-3.13.md')

@@ -1,0 +1,16 @@
+{
+  "baseline_ref": "synthetic-baseline",
+  "branch": "main",
+  "commit_id": "1111111111111111111111111111111111111111",
+  "event": "push",
+  "observed_at": "2026-09-13T12:00:00Z",
+  "policy_revision": "2222222222222222222222222222222222222222",
+  "producer_id": "fixture:architecture-gates",
+  "purpose": "diagnostic",
+  "release_context": false,
+  "report_sha256": "d6e67b0cbb737e83e9324ed84ae5e8e8ae7ebe76b99466e60f3541c4662bc003",
+  "repository_id": "synthetic/lifecycle-adapters",
+  "run_attempt": 1,
+  "run_id": "12",
+  "synthetic": true
+}

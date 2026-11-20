@@ -1,0 +1,422 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-overview.schema.json",
+  "title": "Separate Synthetic Lifecycle Scenario Overview 0.1.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "report_type": {
+      "const": "governance-lifecycle-synthetic-overview"
+    },
+    "environment": {
+      "const": "synthetic"
+    },
+    "official_state": {
+      "const": false
+    },
+    "enforcement": {
+      "const": "report_only"
+    },
+    "as_of": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+    },
+    "aggregation": {
+      "const": "separate_scenarios"
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "scenario_id": {
+            "enum": [
+              "synthetic",
+              "synthetic-closure",
+              "synthetic-exceptions"
+            ]
+          },
+          "ledger_path": {
+            "enum": [
+              "governance/lifecycle/synthetic",
+              "governance/lifecycle/synthetic-closure",
+              "governance/lifecycle/synthetic-exceptions"
+            ]
+          },
+          "projection": {
+            "oneOf": [
+              {
+                "$ref": "governance-lifecycle-index.schema.json"
+              },
+              {
+                "$ref": "governance-lifecycle-action-index.schema.json"
+              },
+              {
+                "$ref": "governance-lifecycle-closure-index.schema.json"
+              },
+              {
+                "$ref": "governance-lifecycle-exception-index.schema.json"
+              }
+            ]
+          },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "records": {
+                "type": "object",
+                "properties": {
+                  "transactions": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "observations": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "events": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "conflicts": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "decisions": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "remediations": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "closures": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "exceptions": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "transactions",
+                  "observations",
+                  "events",
+                  "conflicts",
+                  "decisions",
+                  "remediations",
+                  "closures",
+                  "exceptions"
+                ],
+                "additionalProperties": false
+              },
+              "event_types": {
+                "type": "object",
+                "properties": {
+                  "finding_opened": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "observation_added": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "clarification_required": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "decision_recorded": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "remediation_recorded": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "finding_closed": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "finding_reopened": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "exception_recorded": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "finding_opened",
+                  "observation_added",
+                  "clarification_required",
+                  "decision_recorded",
+                  "remediation_recorded",
+                  "finding_closed",
+                  "finding_reopened",
+                  "exception_recorded"
+                ],
+                "additionalProperties": false
+              },
+              "accepted_observation_results": {
+                "type": "object",
+                "properties": {
+                  "pass": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "fail": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "pass",
+                  "fail"
+                ],
+                "additionalProperties": false
+              },
+              "current_finding_states": {
+                "type": "object",
+                "properties": {
+                  "open": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "closed": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "needs_clarification": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "open",
+                  "closed",
+                  "needs_clarification"
+                ],
+                "additionalProperties": false
+              },
+              "current_remediation_progress": {
+                "type": "object",
+                "properties": {
+                  "planned": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "in_progress": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "completed": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "planned",
+                  "in_progress",
+                  "completed"
+                ],
+                "additionalProperties": false
+              },
+              "current_overdue_cases": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "current_exception_statuses": {
+                "type": "object",
+                "properties": {
+                  "scheduled": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "active": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "expired": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "revoked": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "rejected": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "withdrawal_recorded": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "scheduled",
+                  "active",
+                  "expired",
+                  "revoked",
+                  "rejected",
+                  "withdrawal_recorded"
+                ],
+                "additionalProperties": false
+              },
+              "current_coverage_by_finding": {
+                "type": "object",
+                "properties": {
+                  "not_evaluated": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "not_applicable": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "none": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "partial": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "full": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "not_evaluated",
+                  "not_applicable",
+                  "none",
+                  "partial",
+                  "full"
+                ],
+                "additionalProperties": false
+              },
+              "current_findings_needing_renewed_decision": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "records",
+              "event_types",
+              "accepted_observation_results",
+              "current_finding_states",
+              "current_remediation_progress",
+              "current_overdue_cases",
+              "current_exception_statuses",
+              "current_coverage_by_finding",
+              "current_findings_needing_renewed_decision"
+            ],
+            "additionalProperties": false
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "transaction_ref": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "digest": {
+                      "$ref": "governance-lifecycle-common.schema.json#/$defs/digest"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "digest"
+                  ],
+                  "additionalProperties": false
+                },
+                "event_ref": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "digest": {
+                      "$ref": "governance-lifecycle-common.schema.json#/$defs/digest"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "digest"
+                  ],
+                  "additionalProperties": false
+                },
+                "finding_id": {
+                  "type": "string",
+                  "pattern": "^finding:[a-f0-9]{64}$"
+                },
+                "revision": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "event_type": {
+                  "enum": [
+                    "finding_opened",
+                    "observation_added",
+                    "clarification_required",
+                    "decision_recorded",
+                    "remediation_recorded",
+                    "finding_closed",
+                    "finding_reopened",
+                    "exception_recorded"
+                  ]
+                },
+                "recorded_at": {
+                  "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+                },
+                "effective_at": {
+                  "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+                }
+              },
+              "required": [
+                "transaction_ref",
+                "event_ref",
+                "finding_id",
+                "revision",
+                "event_type",
+                "recorded_at",
+                "effective_at"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "scenario_id",
+          "ledger_path",
+          "projection",
+          "metrics",
+          "events"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "report_type",
+    "environment",
+    "official_state",
+    "enforcement",
+    "as_of",
+    "aggregation",
+    "scenarios"
+  ],
+  "additionalProperties": false
+}

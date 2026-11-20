@@ -1545,3 +1545,110 @@ old records have no parser context and are preserved as historical evidence,
 without relabeling. This correction needs fresh pinned validation, declared
 reviews and matching signed installed host/peer proofs. It does not declare
 full parity, producer authentication, governance approval or operating authority.
+
+## Complete documentation reconciliation development candidate
+
+Retain all seven functions/165 original lines of the documentation reconciler
+through an explicit neutral whole-program context, finite local Git provider,
+private candidate filesystem and native buffered append observations. Preserve
+all four document exports, full link audit, opaque preimages, original errors
+and ordered partial effects. Replay repeats neither selected files nor Git nor
+native writes; requests, product generation, node, authority, blobs and whole
+results remain bound. Portable consistency does not authenticate a producer;
+local node inspection remains separate. A caller's build status does not execute
+a build, and prepared documents require human editorial review.
+
+Prototype23-method and ten-record-per-direction host proofs remain development
+evidence. Full current validation, declared coordinator review, signed source,
+installed host comparisons and fixed ha-CPsWMS equality remain delivery gates.
+Move only this entrypoint to in_progress:105 in progress,30 pending,zero verified.
+No scope exception, acceptance transfer, released baseline or historical receipt
+change is introduced.
+
+The current review reproduced an overly broad negative-signal Git diagnostic
+check. Exact producer CPython/OS signal context now derives the whole original
+message, with actual Git termination and resealed-wire negative tests. The
+controlled interrupted full run is retained as incomplete; all19 classified
+effects are exactly restored and24 protected/18 historical files remain intact.
+It does not certify the correction; fresh current-source and installed gates
+remain delivery requirements.
+
+### Documentation parser context integration
+
+The documentation application now retains required complete producer argparse
+context through the same pinned 3.11/3.12/3.13 profiles as the corrected ledger
+candidate. Native identity/width/English observation and pure parser reconstruction
+are separate. Missing/unsupported context fails before selected data or records;
+replay has no consumer terminal/gettext defaults or final-stdout normalization.
+Current tests compare unchanged original help/unknown/empty streams at three
+widths in both modes, inert replay and resealed context/output attacks. These
+source tests and the unchanged original165-line program do not replace current
+full validation, declared review, signed installation or whole-peer proof.
+
+## Complete diagnostic lifecycle candidate preparation development
+
+The next engineering/reference increment retains both complete original candidate
+preparation CLIs, their shared writer, complete candidate normalization and both
+DevSecOps-control/architecture-gate adapters. These seven original functions
+remain diagnostic, report-only and unverified; architecture gate messages do not
+become marker findings, and no accepted lifecycle observation, live intake or
+operating authority is inferred. Original context/digest/time/schema/summary guards
+and candidate IDs, output guards, native/private error behavior and parser exits
+remain in scope. Explicit selected data/closed schema/parser dependencies replace
+implicit product-root/global coupling.
+
+This is source-code engineering and descriptive documentation, not authoritative
+governance source intake. No source register, released baseline, OPA policy,
+protected acceptance or historical parity receipt is changed. Current work is
+development only: whole original comparison, pinned full validation, declared
+revision-bound review and signed matching installed Mac/Linux delivery are still
+required. No matrix entry is promoted before its application is implemented.
+
+The candidate source now retains all seven immutable original function bodies
+(161 whole-source lines); offline AST composition exposes only explicit context,
+path/parser/argv and default-adapter bindings. The product never executes source
+text. Eight original CLI/core groups passed before application registration.
+The complete registered application adds private/native capture, closed schema
+resources, source/product/node and entire-result checks, inert replay and
+original-versus-incomplete error separation. Both entrypoints are now in_progress;
+no verified receipt is added. Current full source, declared review, signed
+installed and fixed-consumer/whole-peer proofs remain delivery conditions.
+
+The original native-oracle dependency closure, schemas and examples are frozen
+as exact checked fixtures. Test execution requires no historical Git objects;
+the original oracle runs in a separate process over its own copied source/data.
+Product execution never imports those fixtures. This preserves complete original
+comparison in sparse installed packages and independent Linux source fixtures.
+
+## Complete producer parser context for prior capture APIs
+
+A fresh older synthetic lifecycle help record reproduces a whole-result replay
+failure when only the consumer terminal width changes. Earlier host/CI proofs
+are dated scopes and do not establish all-environment portability. The next own
+branch extends the complete explicit producer parser profiles/version/width and
+English translation inputs to older synthetic-lifecycle, workbook-import and
+document-rendering capture/replay, retaining all original program bodies, argument
+selection, IO/partial-error semantics and whole-result checks. Historical records
+are retained without relabeling or final-stream normalization.
+
+Execution requests require their producer context; shared metadata-only shape
+validation receives a distinct helper, without a consumer-native fallback. This
+is an engineering/reference correction, not normative source-document intake.
+No source register, OPA policy, released baseline, protected acceptance file or
+historical parity receipt changes. Current source/full/revision-bound review
+and signed Mac/Linux installed proofs remain required; the full Goal stays open.
+
+## Complete diagnostic pilot projection development
+
+`pilot-projections generate/inspect/replay` retains both complete original
+pilot-report programs over explicit lifecycle context and closed IO. The required
+capture profile selects original retained provider-field checks through a port;
+there is no provider fetch or inferred current consent. Original writes, ignored
+argv, streams, errors and index-before-report partial effects remain visible.
+The immutable V1 fixture contains two receipts and no actions; later histories
+are not substituted. A separate correction marks possible native partial effects
+for original candidate write failures; the original kernel and admission guards
+remain unchanged. Focused source checks are development evidence; current full,
+pinned, reviewed, signed installed/peer/consumer evidence is still required.
+Full22/135/37/16 remains, now109in_progress/26pending/0verified entrypoints.
+See [pilot projections](../../operations/guides/axiom-v2-pilot-projections.md).

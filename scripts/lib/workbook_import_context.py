@@ -6,6 +6,7 @@ from pathlib import PurePosixPath
 import posixpath
 
 from lib.harmonized_workbook_import import HarmonizedWorkbookImport
+from lib.retained_argparse import parser_base,formatter_factory
 from lib.workbook_import_limits import InputAdmissionError,yaml_text,workbook_archive
 from lib.requirement_validation_replay import IntegrityError
 from lib.requirement_review_output import RetainedOutputError
@@ -44,12 +45,17 @@ class WorkbookPath:
         return self.namespace.output.write_text(self.namespace.absolute(self.value),data,encoding,str(self))
 
 
-def execute(source_label,cwd_label,argv,data_port,output_port,*,program='import_harmonized_requirements_workbook.py',selection=None):
+def execute(source_label,cwd_label,argv,data_port,output_port,*,program='import_harmonized_requirements_workbook.py',selection=None,parser_context=None):
     namespace=WorkbookPaths(cwd_label,data_port,output_port);root=namespace.path(source_label)
     if not root.value.is_absolute() or '..' in root.value.parts:
         raise ValueError('workbook_import_source_label_invalid')
     stdout,stderr=io.StringIO(),io.StringIO()
-    class SelectedParser(argparse.ArgumentParser):
+    class SelectedParser(argparse.ArgumentParser if parser_context is None else parser_base(parser_context)):
+        def __init__(self,*args,**kwargs):
+            if parser_context is not None:
+                if kwargs.get('fromfile_prefix_chars') is not None:raise InputAdmissionError('retained_argparse_argument_file_expansion_not_admitted')
+                kwargs['formatter_class']=formatter_factory(parser_context)
+            super().__init__(*args,**kwargs)
         def parse_args(self,*args,**kwargs):
             value=super().parse_args(*args,**kwargs)
             if selection is not None:

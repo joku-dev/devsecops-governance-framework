@@ -10,12 +10,14 @@ from lib.synthetic_lifecycle_context import execute,GENERATORS
 from lib.synthetic_lifecycle_io import ReplayIO,path_spec
 from lib.synthetic_lifecycle_projection import PRIVATE_MASK
 from lib.requirement_validation_budget import InputAdmissionError
-from lib.synthetic_lifecycle_ports import NativeIO,Record,read_record,encode,AUTHORITY,owned_directory,current_source,ROOT
+from lib.synthetic_lifecycle_ports import NativeIO,Record,read_record,encode,AUTHORITY,owned_directory,current_source,ROOT,capture_parser_context
+
+from lib.retained_argparse import validate_context as validate_parser_context
 
 PROFILE='legacy-synthetic-lifecycle-reporting-v1'
 
 
-def request_valid(value):
+def request_fields_valid(value):
  keys={'schema_version','profile','generator','source_label','cwd_label','argv','export_mode','resources'}
  if (type(value) is not dict or set(value)!=keys or type(value['schema_version']) is not int or value['schema_version']!=1
      or value['profile']!=PROFILE or type(value['generator']) is not str or value['generator'] not in GENERATORS
@@ -32,6 +34,14 @@ def request_valid(value):
   if (type(uri) is not str or not uri or len(uri)>8192 or uri in seen
       or any(ord(c)<33 or 0xd800<=ord(c)<=0xdfff for c in uri)):raise ValueError('synthetic_lifecycle_schema_resource_invalid')
   path_spec(label,label,value['cwd_label']);seen.add(uri)
+ return value
+
+
+def request_valid(value):
+ """Execution admission; metadata-only bridge validation never executes a request."""
+ if type(value) is not dict or 'parser_context' not in value:raise ValueError('synthetic_lifecycle_request_changed')
+ validate_parser_context(value['parser_context'])
+ request_fields_valid({key:item for key,item in value.items() if key!='parser_context'})
  return value
 
 
@@ -74,7 +84,7 @@ def inspect(root,*,node=None):
  if retained['state'] not in ('complete','incomplete') or retained['state']=='complete' and retained['exception_type'] is not None:raise ValueError('synthetic_lifecycle_terminal_changed')
  if retained['state']=='incomplete':return {'state':'incomplete','retained_declared_replay_consistent':False,**AUTHORITY}
  io=ReplayIO(events,blob,request['export_mode'],request['cwd_label'])
- kernel=execute(request['source_label'],request['cwd_label'],request['generator'],request['argv'],io,validator_class=closed_validator(io,request));io.finish()
+ kernel=execute(request['source_label'],request['cwd_label'],request['generator'],request['argv'],io,validator_class=closed_validator(io,request),parser_context=request['parser_context']);io.finish()
  if (encode(result_value(kernel,io))!=encode(retained['result']) or encode(io.touched)!=encode(retained['touched_files'])
      or encode(events[-1])!=encode({'kind':'terminal','state':'complete','exit_code':kernel['exit_code']}) or not closed()):raise ValueError('synthetic_lifecycle_whole_result_changed')
  return {'state':'complete','generator':request['generator'],'original_exit_code':kernel['exit_code'],
@@ -92,14 +102,15 @@ def generate(options,instance,settings):
  if argv[:1]==['--']:argv=argv[1:]
  request=request_valid({'schema_version':1,'profile':PROFILE,'generator':options['generator'],
   'source_label':root,'cwd_label':cwd,'argv':argv,'export_mode':'selected-files' if options.get('write_selected_reports') else 'private-candidate',
-  'resources':[{'uri':uri,'label':str(Path(path).expanduser().absolute())} for uri,path in options.get('schema_resource',[]) or []]})
+  'resources':[{'uri':uri,'label':str(Path(path).expanduser().absolute())} for uri,path in options.get('schema_resource',[]) or []],
+  'parser_context':capture_parser_context()})
  instance=owned_directory(instance)
  if Path(root).is_relative_to(instance) or instance.is_relative_to(Path(root)):raise ValueError('synthetic_lifecycle_source_instance_overlap')
  source=current_source(node);state=owned_directory(instance/'state/synthetic-lifecycle/records',True)
  record=Record(state,request,source);record.append({'kind':'execution-intent','request':request});io=result=error=None
  try:
   io=NativeIO(record,mode=request['export_mode'],cwd=cwd,private_state=instance,product_root=ROOT)
-  kernel=execute(root,cwd,request['generator'],argv,io,validator_class=closed_validator(io,request));result=result_value(kernel,io)
+  kernel=execute(root,cwd,request['generator'],argv,io,validator_class=closed_validator(io,request),parser_context=request['parser_context']);result=result_value(kernel,io)
   if encode(current_source(node))!=encode(source):raise InputAdmissionError('synthetic_lifecycle_product_changed')
  except Exception as caught:error=caught
  completeness='incomplete' if error is not None or record.capture_incomplete else 'complete';journal_complete=True
@@ -109,7 +120,7 @@ def generate(options,instance,settings):
  return {'state':completeness,'record_root':str(record.root),'journal_terminal_written':journal_complete,
   'generator':request['generator'],'exit_code':2 if completeness=='incomplete' else result['exit_code'],
   'original_exit_code':None if completeness=='incomplete' else result['exit_code'],'export_mode':request['export_mode'],
-  'source_export_requested':request['export_mode']=='selected-files','source_effects_may_be_partial':completeness=='incomplete' and request['export_mode']=='selected-files',
+  'source_export_requested':request['export_mode']=='selected-files','source_effects_may_be_partial':request['export_mode']=='selected-files' and (completeness=='incomplete' or result['exit_code']!=0),
   'source_output_paths_observed':sorted({} if io is None else io.touched),**AUTHORITY},result
 
 

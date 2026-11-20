@@ -176,7 +176,19 @@
     "scripts/lib/argparse_profiles/__init__.py",
     "scripts/lib/argparse_profiles/cpython312.py",
     "scripts/lib/argparse_profiles/cpython313.py",
-    "scripts/lib/argparse_profiles/cpython311.py"
+    "scripts/lib/argparse_profiles/cpython311.py",
+    "scripts/lib/documentation_reconciliation.py",
+    "scripts/lib/documentation_reconciliation_append.py",
+    "scripts/lib/documentation_reconciliation_application.py",
+    "scripts/lib/documentation_reconciliation_context.py",
+    "scripts/lib/documentation_reconciliation_git.py",
+    "scripts/lib/documentation_reconciliation_private.py",
+    "scripts/lib/lifecycle_candidate_preparation.py",
+    "scripts/lib/lifecycle_candidate_preparation_context.py",
+    "scripts/lib/lifecycle_candidate_preparation_application.py",
+    "scripts/lib/pilot_projection_programs.py",
+    "scripts/lib/pilot_projection_context.py",
+    "scripts/lib/pilot_projection_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
@@ -191,7 +203,10 @@
     "scripts/lib/workbook_import_ports.py",
     "scripts/lib/document_rendering_ports.py",
     "scripts/lib/synthetic_lifecycle_ports.py",
-    "scripts/lib/synthetic_ledger_ports.py"
+    "scripts/lib/synthetic_ledger_ports.py",
+    "scripts/lib/documentation_reconciliation_ports.py",
+    "scripts/lib/lifecycle_candidate_preparation_ports.py",
+    "scripts/lib/pilot_projection_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [
@@ -216,7 +231,8 @@
     "scripts/run_governance_lifecycle_closure_demo.py",
     "scripts/run_governance_lifecycle_exception_demo.py",
     "scripts/run_governance_lifecycle_synthetic_demo.py",
-    "scripts/validate_requirement_lifecycle.py"
+    "scripts/validate_requirement_lifecycle.py",
+    "scripts/reconcile_documentation_after_merge.py"
   ],
   "browser_core": [
     "scripts/workbench/app.js",

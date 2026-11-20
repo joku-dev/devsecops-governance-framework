@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **104 in Arbeit** und **31 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **109 in Arbeit** und **26 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 104 | 31 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 109 | 26 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Vollständige synthetische Ledger-Abläufe in V2 absichern und liefern.
+**Nächster Baustein:** Diagnostische Pilot-Berichte vollständig portieren und aktuelle installierte Nachweise abschließen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -104,6 +104,32 @@ stimmten 25 von 28 ganzen Ledger-Nachweisen überein; drei Parser-Ausgaben wiche
 zwischen Python 3.12 und 3.13 ab. Der Korrekturkandidat speichert deshalb das
 vollständige Parserprofil samt Breite und Sprache als Eingang der Nachrechnung.
 Die vollständige erneute Prüfung und Lieferung dieses Kandidaten bleibt offen.
+
+Der anschließende [Dokumentationsabgleich](docs/operations/guides/axiom-v2-documentation-reconciliation.md)
+überführt das vollständige ursprüngliche Programm mit sieben Funktionen:
+Git-Änderungsauswahl, vier Dokumentausgaben, Linkprüfung und ausgewählte
+Append-Datei. Private Kandidaten und gespeicherte Nachrechnung bleiben von
+tatsächlichen Dateieffekten getrennt. Der eigene Entwicklungsbranch ergänzt
+Quell-/Instanzbindung; seine Vollvalidierung und signierte Host-Lieferung sind
+noch offen. Ein übergebener Build-Status führt keinen Dokumentationsbuild aus.
+
+Der nächste [diagnostische Kandidatenbaustein](docs/operations/guides/axiom-v2-lifecycle-candidate-preparation.md)
+überführt beide ursprünglichen Vorbereitungsprogramme, den gemeinsamen Writer
+und beide vollständigen Reportadapter. Die Ergebnisse bleiben unverifizierte
+Kandidaten; Architektur-Gate-Meldungen werden nicht als Marker-Befunde umgedeutet.
+Seine vollständige Prüfung und signierte Lieferung stehen noch aus.
+
+Die nächsten [diagnostischen Pilot-Berichte](docs/operations/guides/axiom-v2-pilot-projections.md)
+sind als vollständige ursprüngliche Aktions-/Validierungsprogramme in Arbeit.
+Ein ausdrückliches Capture-Profil prüft gespeicherte Provider- und Personenfelder;
+die Auswertung erteilt keine neue Zustimmung oder Betriebsfreigabe.
+
+Die folgende [Parserkontext-Korrektur](docs/operations/guides/axiom-v2-producer-parser-context.md)
+erweitert die gespeicherten Erzeugerprofile auf die älteren Lifecycle-Berichte,
+den Workbook-Import und den Dokument-Renderer. Damit hängt ihre Nachrechnung
+nicht mehr von Terminalbreite oder Übersetzungen des ausführenden Hosts ab.
+Die sieben neuen gezielten Prüfgruppen bestehen auf dem Mac; vollständige
+Regression und signierte Host-Lieferung dieses Folgezweigs bleiben offen.
 
 Der [datierte Zwischenstand mit Mac-/VM-Nachweisen](docs/operations/status/axiom-v2-parity-progress-2026-11-15.md)
 trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch

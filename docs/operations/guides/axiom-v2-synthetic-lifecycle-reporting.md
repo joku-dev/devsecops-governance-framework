@@ -171,3 +171,19 @@ and native CLI runs, source-deletion replay, foreign-node rejection and complete
 fixed `ha-CPsWMS` reports must be checked against that exact candidate. Earlier
 development snapshots and the preceding renderer's delivered evidence do not
 certify a newer package automatically.
+
+## Explicit producer parser inputs
+
+The current correction candidate requires complete producer parser context in
+capture/replay requests: admitted module profile/version, observed width and
+English translations. Pure replay uses those inputs without consumer terminal
+or gettext defaults. Missing context has no native fallback; old records remain
+historical without relabeling. Whole original bodies, argument/IO/error behavior
+and any selected tool observations remain in scope. See the
+[producer parser contract](axiom-v2-producer-parser-context.md); fresh full and
+signed installed proof is still required for this correction.
+
+A complete failed original selected-files execution can retain earlier writes.
+`source_effects_may_be_partial` is true for these outcomes as well as for
+incomplete selected-files captures. This receipt indication does not retry,
+roll back, alter the retained original error or repeat any effects during replay.

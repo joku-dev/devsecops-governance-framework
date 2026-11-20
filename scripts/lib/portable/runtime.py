@@ -75,6 +75,8 @@ def source_digest():
     paths = [*(p for p in sorted((ROOT/'scripts/lib/portable').glob('*.py')) if p.name!='adapters.py'),
              *(p for p in sorted((ROOT/'scripts/lib/providers').glob('*.py'))
                if p.name not in {
+                   'legacy_documentation_reconciliation.py',
+                   'documentation_reconciliation_compatibility.py',
                    'legacy_synthetic_ledger_synthetic.py',
                    'legacy_synthetic_ledger_action.py',
                    'legacy_synthetic_ledger_closure.py',
@@ -100,6 +102,9 @@ def source_digest():
     paths.extend(ROOT/'scripts/lib'/name for name in ('candidate_workspace.py','requirement_application.py','requirement_workspace.py','requirement_lifecycle.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('requirement_validation.py','requirement_validation_budget.py','requirement_validation_context.py','requirement_validation_replay.py','requirement_validation_application.py','requirement_validation_ports.py','requirement_migration_generation.py','requirement_platform_generation.py','requirement_review_context.py','requirement_review_output.py','requirement_review_application.py','requirement_review_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('document_rendering.py','document_rendering_context.py','document_rendering_io.py','document_rendering_ports.py','document_rendering_application.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('lifecycle_candidate_preparation.py', 'lifecycle_candidate_preparation_context.py', 'lifecycle_candidate_preparation_application.py', 'lifecycle_candidate_preparation_ports.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('pilot_projection_programs.py', 'pilot_projection_context.py', 'pilot_projection_application.py', 'pilot_projection_ports.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('documentation_reconciliation.py', 'documentation_reconciliation_context.py', 'documentation_reconciliation_git.py', 'documentation_reconciliation_private.py', 'documentation_reconciliation_append.py', 'documentation_reconciliation_application.py', 'documentation_reconciliation_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('synthetic_lifecycle_reports.py', 'synthetic_lifecycle_context.py', 'synthetic_lifecycle_io.py', 'synthetic_lifecycle_output.py', 'synthetic_lifecycle_projection.py', 'synthetic_lifecycle_projection_io.py', 'synthetic_lifecycle_ports.py', 'synthetic_lifecycle_application.py'))
     paths.extend(ROOT/name for name in ('scripts/lib/retained_argparse.py', 'scripts/lib/providers/retained_argparse.py', 'scripts/lib/argparse_profiles/__init__.py', 'scripts/lib/argparse_profiles/cpython311.py', 'scripts/lib/argparse_profiles/LICENSE-3.11.txt', 'scripts/lib/argparse_profiles/NOTICE-3.11.md', 'scripts/lib/argparse_profiles/cpython312.py', 'scripts/lib/argparse_profiles/cpython313.py', 'scripts/lib/argparse_profiles/LICENSE-3.12.txt', 'scripts/lib/argparse_profiles/LICENSE-3.13.txt', 'scripts/lib/argparse_profiles/NOTICE-3.12.md', 'scripts/lib/argparse_profiles/NOTICE-3.13.md'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('synthetic_ledger_context.py', 'synthetic_ledger_packets.py', 'synthetic_ledger_programs.py', 'synthetic_ledger_store.py', 'synthetic_ledger_projection.py', 'synthetic_ledger_io.py', 'synthetic_ledger_effect_state.py', 'synthetic_ledger_replay_effects.py', 'synthetic_ledger_execution.py', 'synthetic_ledger_private.py', 'synthetic_ledger_application.py', 'synthetic_ledger_ports.py'))

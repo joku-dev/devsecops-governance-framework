@@ -1,0 +1,44 @@
+{
+  "controls": [
+    {
+      "control_id": "DSCB-L1-REQ-001",
+      "level": "L1",
+      "message": "Synthetic declared outcome; not a live control evaluation.",
+      "status": "pass"
+    },
+    {
+      "control_id": "DSCB-L1-REQ-002",
+      "level": "L1",
+      "message": "Synthetic declared outcome; not a live control evaluation.",
+      "status": "fail"
+    },
+    {
+      "control_id": "DSCB-L1-REQ-003",
+      "level": "L1",
+      "message": "Synthetic declared outcome; not a live control evaluation.",
+      "status": "not_tested"
+    },
+    {
+      "control_id": "DSCB-L1-REQ-004",
+      "level": "L1",
+      "message": "Synthetic declared outcome; not a live control evaluation.",
+      "status": "not_applicable"
+    }
+  ],
+  "run_context": {
+    "event": "push",
+    "purpose": "diagnostic",
+    "release_context": false,
+    "source": "demo"
+  },
+  "schema_version": "1.0.0",
+  "summary": {
+    "applicable_controls": 3,
+    "fail": 1,
+    "not_applicable": 1,
+    "not_tested": 1,
+    "pass": 1,
+    "tested_controls": 2,
+    "total_controls": 4
+  }
+}

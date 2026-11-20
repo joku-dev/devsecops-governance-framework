@@ -337,7 +337,8 @@
       "v2_capabilities": [
         "Neutral lifecycle contract, synthetic/history and zero-argument default ledger validation over closed captured bytes; offline legacy capture replay only. Native base-ref/new-provider flows, live actions and operating authority remain open.",
         "synthetic-lifecycle generate/inspect/replay preserves all five whole synthetic generators and all19 functions: original ledger/cutoff/output guards, private source-preimage candidate overlay and explicit owned native writes, complete JSON/Markdown/CSP HTML, ordered partial failures and original0/1/2 exits; captured default text codec and closed raw/code/node-bound replay; no live/personal/operating authority transfer",
-        "synthetic-ledger generate/inspect/replay retains all six whole original synthetic demo/intake mains and all24 functions across ten modules (587 original lines), lazy original argument parsing, private source-preimage ledger and explicit native POSIX effects; complete buffered/fsync/link/unlink/lock outcomes, partial errors and pending/canonical alias retry, closed raw/code/node-bound replay without repeated source effects; no personal/live/operating authority transfer"
+        "synthetic-ledger generate/inspect/replay retains all six whole original synthetic demo/intake mains and all24 functions across ten modules (587 original lines), lazy original argument parsing, private source-preimage ledger and explicit native POSIX effects; complete buffered/fsync/link/unlink/lock outcomes, partial errors and pending/canonical alias retry, closed raw/code/node-bound replay without repeated source effects; no personal/live/operating authority transfer",
+        "pilot-projections actions/validation: whole original diagnostic generation, explicit legacy captured-evidence profile, private/selected effects and closed source-bound replay; development only"
       ],
       "positive_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
@@ -350,7 +351,8 @@
         "tests/test_v2_synthetic_ledger_core.py:all24 whole original AST bodies, six original CLI results and full file/mode maps",
         "tests/test_v2_synthetic_ledger_private_journal.py:lazy source-preimage private candidate versus whole original six mains, closed source-deletion replay and exact pending/canonical pair",
         "tests/test_v2_synthetic_ledger_native_oracle.py:entire native original mains, eight injected whole-program errors and source-deletion replay",
-        "tests/test_v2_synthetic_ledger_application.py:both modes, original parser exits, explicit schema resources and own-node inspection/portable replay"
+        "tests/test_v2_synthetic_ledger_application.py:both modes, original parser exits, explicit schema resources and own-node inspection/portable replay",
+        "tests/test_v2_pilot_projections.py:whole original streams, all index/report file bytes/modes, default ignored argv; tests/test_v2_pilot_projection_application.py:source-bound complete private/native records"
       ],
       "negative_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
@@ -363,7 +365,8 @@
         "tests/test_v2_synthetic_ledger_effects.py:partial writes, lock contention, journal reservation and post-publication fsync/unlink failures",
         "tests/test_v2_synthetic_ledger_projection.py:private descriptor/buffer/link/lock and ordered partial effects without native durability claim",
         "tests/test_v2_synthetic_ledger_native_oracle.py:resealed metadata/resource/payload/alias/intent/transition tampering",
-        "tests/test_v2_synthetic_ledger_application.py:incomplete capture, authority/type/source/request/binding/result/blob mutations and missing schema-resource admission"
+        "tests/test_v2_synthetic_ledger_application.py:incomplete capture, authority/type/source/request/binding/result/blob mutations and missing schema-resource admission",
+        "tests/test_v2_pilot_projections.py:changed operating/role/receipt data and ordered index-before-report failure; tests/test_v2_pilot_projection_application.py:missing profile, capture failure, terminal failure, foreign node and resealed tampering"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -1450,8 +1453,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/pilot_projection_programs.py:PilotActionProgram",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1466,8 +1469,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/pilot_projection_programs.py:PilotValidationProgram",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2651,8 +2654,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/lifecycle_candidate_preparation_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2671,8 +2674,8 @@
         "--report"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/lifecycle_candidate_preparation_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2864,8 +2867,8 @@
         "--title"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/documentation_reconciliation_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

@@ -1,0 +1,26 @@
+{
+  "original_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "original_path": "scripts/reconcile_documentation_after_merge.py",
+  "original_sha256": "35f3160271f000a2078d2f337ce0e2c2c61b11405b886e1d01a154bf059391d4",
+  "original_lines": 165,
+  "whole_functions": [
+    "changed_paths",
+    "clean_summary",
+    "functional",
+    "link_audit",
+    "main",
+    "render",
+    "replace_block"
+  ],
+  "prototype_only": true,
+  "registered_or_installed_or_approved": false,
+  "changes_current_Q_source": false,
+  "explicit_port_substitutions": {
+    "globals": "explicit root and unchanged constants",
+    "subprocess.run": "explicit process.run",
+    "argparse.ArgumentParser": "explicit argument_parser",
+    "Path": "explicit path_factory",
+    "parser.parse_args()": "parser.parse_args(self.argv)",
+    "function_calls": "bound self methods only"
+  }
+}

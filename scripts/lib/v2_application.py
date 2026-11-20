@@ -112,6 +112,15 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
+    if command=='pilot-projections' and not instance_path and arguments[:1]==['replay']:
+        from lib.pilot_projection_application import run as pilot_projection_run
+        return pilot_projection_run(arguments)
+    if command=='lifecycle-candidates' and not instance_path and arguments[:1]==['replay']:
+        from lib.lifecycle_candidate_preparation_application import run as candidate_preparation_run
+        return candidate_preparation_run(arguments)
+    if command=='documentation-reconciliation' and not instance_path and arguments[:1]==['replay']:
+        from lib.documentation_reconciliation_application import run as documentation_run
+        return documentation_run(arguments)
     if command=='synthetic-ledger' and not instance_path and arguments[:1]==['replay']:
         from lib.synthetic_ledger_application import run as ledger_run
         return ledger_run(arguments)
@@ -133,10 +142,19 @@ def run(command, arguments, *, instance_path=None):
     if command=='operations-report' and not instance_path and arguments[:1]==['replay']:
         from lib.operations_application import run as operations_run
         return operations_run(arguments)
-    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger'):
+    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger','documentation-reconciliation','lifecycle-candidates','pilot-projections'):
         raise ValueError('v2_entrypoint_not_supported')
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='pilot-projections':
+        from lib.pilot_projection_application import run as pilot_projection_run
+        return pilot_projection_run(arguments,instance_path,settings)
+    if command=='lifecycle-candidates':
+        from lib.lifecycle_candidate_preparation_application import run as candidate_preparation_run
+        return candidate_preparation_run(arguments,root,settings)
+    if command=='documentation-reconciliation':
+        from lib.documentation_reconciliation_application import run as documentation_run
+        return documentation_run(arguments,root,settings)
     if command=='synthetic-ledger':
         from lib.synthetic_ledger_application import run as ledger_run
         return ledger_run(arguments,root,settings)

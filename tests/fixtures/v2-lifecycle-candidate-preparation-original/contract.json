@@ -1,0 +1,505 @@
+{
+  "v1_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "scripts/lib/governance_lifecycle/candidates.py": {
+      "sha256": "1bfc88bae4b5db4a123b887f41687a41ef2b84a9b16bbc3228c9ec1b895439ba",
+      "git_blob": "1826e309914561530c74f459c5aae94dd025cbae",
+      "lines": 46,
+      "functions": [
+        "check_context",
+        "make_candidates"
+      ]
+    },
+    "scripts/lib/governance_lifecycle/devsecops_candidates.py": {
+      "sha256": "68460f97ef20b16bea486da5bc051c067effdc76e0c2efe60f7e3471c4e6da31",
+      "git_blob": "433c39377205d5fc64e28ce4bc2af072fcf8a230",
+      "lines": 28,
+      "functions": [
+        "adapt_devsecops"
+      ]
+    },
+    "scripts/lib/governance_lifecycle/architecture_candidates.py": {
+      "sha256": "d5f178c5ca788306dd66d4afb4b8a46b56570969fda2a7d24a64dac714384ab6",
+      "git_blob": "72056163db0394e241dfa2d83d997a2ab65deaa8",
+      "lines": 29,
+      "functions": [
+        "adapt_architecture"
+      ]
+    },
+    "scripts/prepare_lifecycle_devsecops_candidates.py": {
+      "sha256": "6fcdea72e2aaccdd614cf045b05ae215398125590ebb987d63b8312ebdb469f8",
+      "git_blob": "c6d9e229da0c7328ff34dd59132b7f66dd6d12c2",
+      "lines": 36,
+      "functions": [
+        "write_candidates",
+        "main"
+      ]
+    },
+    "scripts/prepare_lifecycle_architecture_candidates.py": {
+      "sha256": "42af521f9a8c6ade098a10768607561d80b84b1a98003dc3440f96ff45cc4ca1",
+      "git_blob": "0c19eadb8a1065a6f2a776a35ff63921fd266613",
+      "lines": 22,
+      "functions": [
+        "main"
+      ]
+    }
+  },
+  "composition": "Explicit context/path/parser/argv and writer-default adapter dependencies only; all seven original bodies retained. No normative or live authority.",
+  "classes": {
+    "CandidateNormalization": {
+      "source": "scripts/lib/governance_lifecycle/candidates.py",
+      "functions": [
+        "check_context",
+        "make_candidates"
+      ],
+      "global_bindings": {
+        "schema_validator": "self.contracts.schema_validator",
+        "require": "self.contracts.require",
+        "timestamp": "self.contracts.timestamp",
+        "canonical_digest": "self.contracts.canonical_digest",
+        "check_context": "self.check_context"
+      },
+      "explicit_argv": false,
+      "writer_default_prologue": false
+    },
+    "DevsecopsCandidateAdapter": {
+      "source": "scripts/lib/governance_lifecycle/devsecops_candidates.py",
+      "functions": [
+        "adapt_devsecops"
+      ],
+      "global_bindings": {
+        "schema_validator": "self.contracts.schema_validator",
+        "require": "self.contracts.require",
+        "timestamp": "self.contracts.timestamp",
+        "canonical_digest": "self.contracts.canonical_digest",
+        "check_context": "self.normalization.check_context",
+        "make_candidates": "self.normalization.make_candidates",
+        "strict_json": "self.strict_json"
+      },
+      "explicit_argv": false,
+      "writer_default_prologue": false
+    },
+    "ArchitectureCandidateAdapter": {
+      "source": "scripts/lib/governance_lifecycle/architecture_candidates.py",
+      "functions": [
+        "adapt_architecture"
+      ],
+      "global_bindings": {
+        "schema_validator": "self.contracts.schema_validator",
+        "require": "self.contracts.require",
+        "timestamp": "self.contracts.timestamp",
+        "canonical_digest": "self.contracts.canonical_digest",
+        "check_context": "self.normalization.check_context",
+        "make_candidates": "self.normalization.make_candidates",
+        "strict_json": "self.strict_json"
+      },
+      "explicit_argv": false,
+      "writer_default_prologue": false
+    },
+    "CandidateWriter": {
+      "source": "scripts/prepare_lifecycle_devsecops_candidates.py",
+      "functions": [
+        "write_candidates"
+      ],
+      "global_bindings": {
+        "Path": "self.Path",
+        "ROOT": "self.ROOT",
+        "require": "self.require",
+        "strict_json": "self.strict_json",
+        "json_bytes": "self.json_bytes",
+        "adapt_devsecops": "_DEFAULT_DEVSECOPS_ADAPTER"
+      },
+      "explicit_argv": false,
+      "writer_default_prologue": true
+    },
+    "DevsecopsCandidateProgram": {
+      "source": "scripts/prepare_lifecycle_devsecops_candidates.py",
+      "functions": [
+        "main"
+      ],
+      "global_bindings": {
+        "Path": "self.Path",
+        "__doc__": "self.description",
+        "write_candidates": "self.writer.write_candidates"
+      },
+      "explicit_argv": true,
+      "writer_default_prologue": false
+    },
+    "ArchitectureCandidateProgram": {
+      "source": "scripts/prepare_lifecycle_architecture_candidates.py",
+      "functions": [
+        "main"
+      ],
+      "global_bindings": {
+        "Path": "self.Path",
+        "__doc__": "self.description",
+        "write_candidates": "self.writer.write_candidates",
+        "adapt_architecture": "self.adapter"
+      },
+      "explicit_argv": true,
+      "writer_default_prologue": false
+    }
+  },
+  "whole_original_function_count": 7,
+  "whole_original_source_lines": 161,
+  "oracle_files": {
+    "docs/examples/lifecycle-candidates/architecture-candidates.json": {
+      "fixture": "data/docs__examples__lifecycle-candidates__architecture-candidates.json.txt",
+      "sha256": "a2300c439b0c6fe884263ae31bb3f3b43aa2b6324670c5e3a9afbe76346f96b0",
+      "bytes": 3385,
+      "git_blob": "248753a780d2cb2d032a0d7019e21e5a2e964bdb",
+      "git_mode": "100644"
+    },
+    "docs/examples/lifecycle-candidates/architecture-context.json": {
+      "fixture": "data/docs__examples__lifecycle-candidates__architecture-context.json.txt",
+      "sha256": "fe895970f0bf7360a13f58f789af02d7b951fc02b239770a0558d7d1fbbd33dc",
+      "bytes": 546,
+      "git_blob": "f068053a10379aa5505dc038c47f2e7d774d8fa6",
+      "git_mode": "100644"
+    },
+    "docs/examples/lifecycle-candidates/architecture-report.json": {
+      "fixture": "data/docs__examples__lifecycle-candidates__architecture-report.json.txt",
+      "sha256": "d6e67b0cbb737e83e9324ed84ae5e8e8ae7ebe76b99466e60f3541c4662bc003",
+      "bytes": 1109,
+      "git_blob": "d8150d4c3f8019b00592e4860b58d502a2f6e323",
+      "git_mode": "100644"
+    },
+    "docs/examples/lifecycle-candidates/devsecops-candidates.json": {
+      "fixture": "data/docs__examples__lifecycle-candidates__devsecops-candidates.json.txt",
+      "sha256": "61b22b9d8e9a8677febf75510fb33dc9090d1e2b2c4e0d9d9b2fc7e38eb66c1c",
+      "bytes": 3512,
+      "git_blob": "a836082ea889fc29a862484ba75bcddac6bf8814",
+      "git_mode": "100644"
+    },
+    "docs/examples/lifecycle-candidates/devsecops-context.json": {
+      "fixture": "data/docs__examples__lifecycle-candidates__devsecops-context.json.txt",
+      "sha256": "2efdce7b97076584285380c1d0bd8f969d92af6cf9012ba12fcfa9859abc4148",
+      "bytes": 546,
+      "git_blob": "3924aade5316f46165c9d3a04e33799dec3adad4",
+      "git_mode": "100644"
+    },
+    "docs/examples/lifecycle-candidates/devsecops-report.json": {
+      "fixture": "data/docs__examples__lifecycle-candidates__devsecops-report.json.txt",
+      "sha256": "fb9d1dcfdfae8fe5ae61cddca6e8d0d66a86d94d28697570803b811785f60abe",
+      "bytes": 1069,
+      "git_blob": "10274509a1d0fb038e8f5a4171d6d74a9188e7ae",
+      "git_mode": "100644"
+    },
+    "schemas/evidence-trust-record.schema.json": {
+      "fixture": "data/schemas__evidence-trust-record.schema.json.txt",
+      "sha256": "151424a5f283e4b7591397602c02205e0e5ddaeb2c3cc6dd76313be00f04acb9",
+      "bytes": 8976,
+      "git_blob": "1fb0f2f257bd356daff12286316cb645599238cd",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-action-index.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-action-index.schema.json.txt",
+      "sha256": "224434b2b9f59631cf97214d806679617a9b559312c7914134d75476cc827be6",
+      "bytes": 8550,
+      "git_blob": "2435b37bffd3698184fe993ab079295fcfac971f",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-action-transaction.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-action-transaction.schema.json.txt",
+      "sha256": "5bad663f1d6abbe40dab49e52180643d7019be94df93a6a03c188c72f489e527",
+      "bytes": 2458,
+      "git_blob": "364f71c5cbe81e8a8e12d7f8df6040fbd2639c94",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-architecture-source.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-architecture-source.schema.json.txt",
+      "sha256": "a4018968fa16c1978a48344daf714a4564cf5b0049cb04c03ec9ff6617b39e9a",
+      "bytes": 2386,
+      "git_blob": "df1dfc298979fa1cf8bf96054f980399f0059581",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-candidate-context.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-candidate-context.schema.json.txt",
+      "sha256": "c9378c1a57d53a8d98ce8484f5d920467e9a2ebb8e37c7795749222e9f598975",
+      "bytes": 1700,
+      "git_blob": "bc97fff4a215f7c9b2bc73ea3216893155c105e5",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-candidates.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-candidates.schema.json.txt",
+      "sha256": "64f2bab84ce2807b6b677aa1c23613a857f62c8851c91fc5a5172d28bffad441",
+      "bytes": 4959,
+      "git_blob": "bcf012b9ecdb2feeda9b5438f5684db3a592fcce",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-closure-index.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-closure-index.schema.json.txt",
+      "sha256": "e4b1d90835ac224460e4321cd1a66bf0f18495ec4a9f8ba6bffa3d4d5a6d7ba6",
+      "bytes": 9313,
+      "git_blob": "80f97b957ad91861fe6be176e62ad23534f19654",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-closure-transaction.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-closure-transaction.schema.json.txt",
+      "sha256": "3c5a31739e8507eaf1675196b3f968afa013097ac1d4bd0f6b16c818995a3585",
+      "bytes": 2266,
+      "git_blob": "682a6c3bb6b4561739ecf7dbf7a6902b66178ce9",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-closure-v0.2.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-closure-v0.2.schema.json.txt",
+      "sha256": "7226a8f7640fa9a1c8e4fe6ed1388b355626dddbb153aaae75a62fd75071b099",
+      "bytes": 3290,
+      "git_blob": "43dfe85d7dc1c936cd593e4fde2bb43d38d615a5",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-closure.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-closure.schema.json.txt",
+      "sha256": "1d817260954bc311890e99cee3e8503783a1da91cf68112e1765b1804a49eb61",
+      "bytes": 3645,
+      "git_blob": "abd77fc2234b8f78c34fd208b6e5813bfd5ca565",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-common.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-common.schema.json.txt",
+      "sha256": "a2bb62d0c819e32d86b459694439687d21ad41cdbaef8502d180496b192aff5a",
+      "bytes": 5600,
+      "git_blob": "cea6fcdf36e083ae28365516a31db857fbe82bd1",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-decision-v0.2.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-decision-v0.2.schema.json.txt",
+      "sha256": "68fe05269af1d706351653b1196abe2a8c2e233d2d19b45d9aca149a8d5177df",
+      "bytes": 4242,
+      "git_blob": "a9e5a229dc459ed3ab6a555e5bd2f8f7a6ffb20b",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-decision.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-decision.schema.json.txt",
+      "sha256": "821ea74acf08ae53b40d96de787258a1c302c234b9187ea0363f53fa7a13af7c",
+      "bytes": 3306,
+      "git_blob": "7eba3edb2e1b7d52ce17ccf7e55af21694c24a88",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-devsecops-source.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-devsecops-source.schema.json.txt",
+      "sha256": "985a5d1fed7b6aaa7a7c9e07a2e95683b3bab43a3d03f4374e7f8516ae8c4c45",
+      "bytes": 2557,
+      "git_blob": "715ad20f013a3ee116ab3a590fed2b1773860207",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-event-v0.2.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-event-v0.2.schema.json.txt",
+      "sha256": "3632fc2e858f3fe568c11fe811d36926f0a75fd8a1378e0feeb1d81858001c54",
+      "bytes": 3575,
+      "git_blob": "b4789c73de411e15cb456b1f643597d0d34c5443",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-event.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-event.schema.json.txt",
+      "sha256": "5485a44efe75e02bb0ea7ca3cf5a50a3130dc7cc5d0dd953c0c39b9e906ef909",
+      "bytes": 3578,
+      "git_blob": "fac3bd744e4ca8bda29e4f0b000064a9ec2b0eb9",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-exception-index.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-exception-index.schema.json.txt",
+      "sha256": "45e66ba93a47d2926f87a34d9642e55a8538b8ea8cf5048dad11d022835f43cb",
+      "bytes": 13067,
+      "git_blob": "53549a4a4ed799ed15385aec515e31ec0e075506",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-exception-profile.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-exception-profile.schema.json.txt",
+      "sha256": "fa566f3924e296acc8cb8b30235fa4cbf31e2730c5cfa883a3a398fdecff8c0b",
+      "bytes": 4253,
+      "git_blob": "019829f0c0cde0093926be8b6a011ab813bb9e43",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-exception-transaction.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-exception-transaction.schema.json.txt",
+      "sha256": "d39c860bae7fd603b60c0eec84dd06d3d5fc144f14b697025029c4a8b197e36e",
+      "bytes": 2266,
+      "git_blob": "df56af188902cef928401c2eb3d395fd599ad05b",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-exception.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-exception.schema.json.txt",
+      "sha256": "c51a2b5df5916bd9f9f7e7c36870dfc98f644eb949ea7a9af6cb234466f88968",
+      "bytes": 3722,
+      "git_blob": "3c0e6619d0ec65cb6dc438ee74a6de9438852fdf",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-index.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-index.schema.json.txt",
+      "sha256": "1a33eb18d0d2a218ebe64107359431545fbe979a3d3901140d1e3de16a763d59",
+      "bytes": 5271,
+      "git_blob": "200359316038cdc8bdb16e2e370e880ba21c1b22",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-live-profile-preparation.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-live-profile-preparation.schema.json.txt",
+      "sha256": "910c7dd119f368d9a99dec489708f266f15e35c26ea2635e5234161f85e888cc",
+      "bytes": 4396,
+      "git_blob": "d04be6094862a39b556e8496a5df5147bc759fb1",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-observation.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-observation.schema.json.txt",
+      "sha256": "4c4818c6e0f4192ffe9f96b6fb640646676f03c504bb476bb6d256c5bb80b438",
+      "bytes": 4510,
+      "git_blob": "bb237b9660d0c8d49474bbf7e81eab54d2d39fbd",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-operating-acceptance.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-operating-acceptance.schema.json.txt",
+      "sha256": "657846cfb69777e8583065dc9e5b5ab4b79f186152a2f494977fcff6fd33d959",
+      "bytes": 3334,
+      "git_blob": "3466061dc22a5cdacac1cccc31ef04c476fcc85f",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-overview.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-overview.schema.json.txt",
+      "sha256": "d8266c8a599cbcbb183628e8e564ca197002701cab234fe6b5cc13c5e8106050",
+      "bytes": 12905,
+      "git_blob": "8c8000dc38ca94e7242667c8f8d73639ee71ef9c",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-personal-channel-probe.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-personal-channel-probe.schema.json.txt",
+      "sha256": "9606e8bb9fe0505cdc23b537907d184a084ee2abff457344529f14cc94f07dd5",
+      "bytes": 2538,
+      "git_blob": "35908a1004815d15a7a4993402be7c51a2d7b811",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-pilot-action-receipt.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-pilot-action-receipt.schema.json.txt",
+      "sha256": "ab3ae655e1cd9456e1603a7d1c9c692a6d22b6a0682f10b582507c6580405efa",
+      "bytes": 2343,
+      "git_blob": "4115314be387cb7b9d0baeede640b4a0ae553cd8",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-pilot-action-request.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-pilot-action-request.schema.json.txt",
+      "sha256": "a91acc87204d37f3b6d3ed4dbb18bb9508ef20cbb8897cecc3f02a4a91756e00",
+      "bytes": 10276,
+      "git_blob": "79733d9b04406a00716deb2de4cacab56ca5bbd4",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-pilot-operating.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-pilot-operating.schema.json.txt",
+      "sha256": "84e4ba7a6ecb5846906432db0254669fe3e8a0e0a9a86b9bdc7ce005140b6222",
+      "bytes": 2847,
+      "git_blob": "25f0c94787d3a078f1de556b62221c07f22a864f",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-pilot-receipt.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-pilot-receipt.schema.json.txt",
+      "sha256": "17e55b61f645a508c13947711c8b908d85e4d372fb931957cbf719d804360347",
+      "bytes": 3432,
+      "git_blob": "92d41ce1bb122191c4be0198cfa3cf2f1890c54d",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-pilot-role-binding.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-pilot-role-binding.schema.json.txt",
+      "sha256": "9c6dbba31757f6ba392cdd411a8496dfd51488371e4fc60e65ab6d9f5de456a1",
+      "bytes": 4335,
+      "git_blob": "ca8433c3fe7f4ce2319142e3f736709ec41c7725",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-profile.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-profile.schema.json.txt",
+      "sha256": "68e304e2ba294a56e121974c639d8fa92d2cf981f921d7e06bcbc6ef1e0694e2",
+      "bytes": 3299,
+      "git_blob": "7bd5d64dbe36cbcbd8e9367ddc55e9cb59070ae9",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-remediation-v0.2.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-remediation-v0.2.schema.json.txt",
+      "sha256": "e20a86faa9da9c340f7e9c784338ecc06e85998f87988d177c498bbba4ebcf51",
+      "bytes": 2943,
+      "git_blob": "94732f16e99878b7343095da1bf047b07757817c",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-remediation.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-remediation.schema.json.txt",
+      "sha256": "cd60920f97c0f6cda95cca773cd97840d631d59761ab60e619a4176139ca053c",
+      "bytes": 2543,
+      "git_blob": "e29bfc190ce77766f2ceea0e4e27c04c645f91be",
+      "git_mode": "100644"
+    },
+    "schemas/governance-lifecycle-transaction.schema.json": {
+      "fixture": "data/schemas__governance-lifecycle-transaction.schema.json.txt",
+      "sha256": "55fd33fa183f83983616b87db6244a1fb005d3985c2adefb80961088aa0b59bb",
+      "bytes": 2533,
+      "git_blob": "b5fab73b7346181c8b4b792bc63128cba12698f4",
+      "git_mode": "100644"
+    },
+    "scripts/lib/__init__.py": {
+      "fixture": "data/scripts__lib____init__.py.txt",
+      "sha256": "3b5a8e2d67e7a7fad7d398b141de8f55b0a1801624b3fe65bc3bd0e9c23cec83",
+      "bytes": 56,
+      "git_blob": "6c220c46a5c55af9051d3f4620e33c8478ffb211",
+      "git_mode": "100644"
+    },
+    "scripts/lib/governance_lifecycle/__init__.py": {
+      "fixture": "data/scripts__lib__governance_lifecycle____init__.py.txt",
+      "sha256": "c7134c005cbeecf640aebc8d9c11a54904ecfeb9e8499c951050a0c8b8c1ac35",
+      "bytes": 85,
+      "git_blob": "f69d8b13de942b0b1187c220f8a9e586de9ea370",
+      "git_mode": "100644"
+    },
+    "scripts/lib/governance_lifecycle/adapter.py": {
+      "fixture": "data/scripts__lib__governance_lifecycle__adapter.py.txt",
+      "sha256": "0eef0c967904aaf7acded725068d72ce9dc278dffbd0317e75fa6797cbcf17cc",
+      "bytes": 4444,
+      "git_blob": "9eee876c1763f3d09fc14330fea9afd468989f25",
+      "git_mode": "100644"
+    },
+    "scripts/lib/governance_lifecycle/architecture_candidates.py": {
+      "fixture": "architecture_candidates.py.txt",
+      "sha256": "d5f178c5ca788306dd66d4afb4b8a46b56570969fda2a7d24a64dac714384ab6",
+      "bytes": 2098,
+      "git_blob": "72056163db0394e241dfa2d83d997a2ab65deaa8",
+      "git_mode": "100644"
+    },
+    "scripts/lib/governance_lifecycle/candidates.py": {
+      "fixture": "candidates.py.txt",
+      "sha256": "1bfc88bae4b5db4a123b887f41687a41ef2b84a9b16bbc3228c9ec1b895439ba",
+      "bytes": 2904,
+      "git_blob": "1826e309914561530c74f459c5aae94dd025cbae",
+      "git_mode": "100644"
+    },
+    "scripts/lib/governance_lifecycle/contracts.py": {
+      "fixture": "data/scripts__lib__governance_lifecycle__contracts.py.txt",
+      "sha256": "ff987bc0a4bee604e7e8cb55a3538e0ffd2b50d0f5517d86df693605c204da1a",
+      "bytes": 16365,
+      "git_blob": "a8a57c1efc307fc2939b0a641b92c84ef588dcd7",
+      "git_mode": "100644"
+    },
+    "scripts/lib/governance_lifecycle/devsecops_candidates.py": {
+      "fixture": "devsecops_candidates.py.txt",
+      "sha256": "68460f97ef20b16bea486da5bc051c067effdc76e0c2efe60f7e3471c4e6da31",
+      "bytes": 1964,
+      "git_blob": "433c39377205d5fc64e28ce4bc2af072fcf8a230",
+      "git_mode": "100644"
+    },
+    "scripts/lib/result_ledger.py": {
+      "fixture": "data/scripts__lib__result_ledger.py.txt",
+      "sha256": "b16ec64a034326e92fb44dea365903f3bf8b7309c00dd6d6d1d01dbe4c099f1c",
+      "bytes": 14258,
+      "git_blob": "c2a9952f327d5fae171438c03914fc1160217e4e",
+      "git_mode": "100644"
+    },
+    "scripts/prepare_lifecycle_architecture_candidates.py": {
+      "fixture": "prepare_lifecycle_architecture_candidates.py.txt",
+      "sha256": "42af521f9a8c6ade098a10768607561d80b84b1a98003dc3440f96ff45cc4ca1",
+      "bytes": 939,
+      "git_blob": "0c19eadb8a1065a6f2a776a35ff63921fd266613",
+      "git_mode": "100644"
+    },
+    "scripts/prepare_lifecycle_devsecops_candidates.py": {
+      "fixture": "prepare_lifecycle_devsecops_candidates.py.txt",
+      "sha256": "6fcdea72e2aaccdd614cf045b05ae215398125590ebb987d63b8312ebdb469f8",
+      "bytes": 1770,
+      "git_blob": "c6d9e229da0c7328ff34dd59132b7f66dd6d12c2",
+      "git_mode": "100644"
+    }
+  },
+  "oracle_runtime_contract": "Read only these exact fixture bytes, independent of history and any selected source. Native oracle executes its own isolated copied original modules. Product never loads them."
+}

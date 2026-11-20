@@ -93,3 +93,14 @@ Ein solcher Abbruch bleibt `incomplete`, auch wenn zuvor Dateien entstanden.
 Nachrechnung bestätigt Konsistenz deklarierter Daten. Sie authentifiziert
 keinen Produzenten. Gerenderte Angaben zu Freigabe, Zuständigkeit oder Status
 übertragen keine Quell-, Governance-, Compliance- oder Betriebsfreigabe.
+
+## Explicit producer parser inputs
+
+The current correction candidate requires complete producer parser context in
+capture/replay requests: admitted module profile/version, observed width and
+English translations. Pure replay uses those inputs without consumer terminal
+or gettext defaults. Missing context has no native fallback; old records remain
+historical without relabeling. Whole original bodies, argument/IO/error behavior
+and any selected tool observations remain in scope. See the
+[producer parser contract](axiom-v2-producer-parser-context.md); fresh full and
+signed installed proof is still required for this correction.
