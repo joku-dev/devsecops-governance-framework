@@ -1301,3 +1301,41 @@ label and exact source-map byte digest, with the same binding for the own defaul
 configuration. Explicit external configurations remain selected inputs. Both
 rewrites are rejected; all 14 full CLI cases pass. A fresh full-source run is required
 for the corrected generation; no producer authentication or authority is inferred.
+
+
+## Engineering increment L: complete requirement authority validation
+
+This classifies the original373-line validator and its immutable oracle as
+executable engineering/reference artifacts, the private raw captures as manual
+branch test evidence, and the guide/arc42/Goal update as descriptive documentation.
+No new governance source document, normative requirement, decision, activation,
+source status, baseline, accepted record or official result is introduced.
+
+All original schema/catalog/authority/case/policy/platform/artifact/publication
+checks and their original ordered output/error behavior remain in scope. The
+local history adapter supports both native object formats and preserves previous
+value/path-existence failures and the three-dot/direct changed-path fallback.
+Ordinary bounded source admission, no external Git programs/network loading,
+source/state separation and complete private reconstruction are disclosed adapter
+boundaries. No program in observed source data is executed. Retained consistency
+is unverified declared evidence, not producer authentication or imported authority.
+
+The whole V1 fixture SHA is
+`0ec1602133b3a0c481963d8c862c35e99ffd426cc5953d166bea072adaadaa6f`.
+Exact mapped-method/main-prefix AST checks complement full V1 decisions/streams/
+exceptions, real SHA1/SHA256 history/fallback fixtures, source deletion and
+coherently rehashed impossible metadata/unused trace/changed command tests.
+Full pinned validation, coordinator role reviews and exact matching current
+Mac/Linux installations are prerequisites for focused signed delivery; matrix
+assignment remains in_progress with no evidence or verified promotion.
+
+The corrected preceding K source was delivered as203e5ef in PR #435: actual
+full2850/skip1/exit0, all2745bytes/modes+24protected+18historical, classified effects
+retained/restored; demo/Viewer/Goal/strictdocs pass. Fresh Mac/Linux installations
+each pass163methods+sixCLIs and whole fixed5c V1 consumer comparison. Real public
+read-only collection and all16securitycriteria compare with V1 on each captured
+input; three whole records replay each direction. Authenticated PRpaging remains
+unproved and all original100/1000caps remain visible. This is component evidence,
+not retrospective full-product acceptance or a replacement of earlier failures.
+
+External schema URI resources have an explicit local-file selector with lazy bounded capture and whole retained replay. The original evaluator and nested URI resolution operate on the same selected bytes; a real loopback HTTP V1 oracle supplies complete positive/negative comparisons. Unselected URI retrieval is refused without implicit HTTP/file-URI access. This is an input-resource boundary, not approval of operator-supplied schema bytes.

@@ -84,6 +84,7 @@ def source_digest():
     paths.extend([ROOT/'scripts/lib/v2_distribution.py', ROOT/'scripts/lib/v2_source.py', ROOT/'scripts/lib/functional_parity.py', ROOT/'config/axiom-v2-distribution.json'])
     paths.extend([ROOT/'scripts/lib/full_evaluation.py',ROOT/'scripts/lib/architecture_assessment.py',ROOT/'scripts/lib/tool_integrity.py'])
     paths.extend(ROOT/'scripts/lib'/name for name in ('candidate_workspace.py','requirement_application.py','requirement_workspace.py','requirement_lifecycle.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('requirement_validation.py','requirement_validation_context.py','requirement_validation_replay.py','requirement_validation_application.py','requirement_validation_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_application.py', 'dcr_manifest.py', 'dcr_structure.py', 'dcr_semantics.py', 'dcr_response.py', 'dcr_evaluation.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_source_context.py','dcr_operations.py','dcr_catalog.py','dcr_projection.py','document_consistency_view.py'))
     for name in ('document-consistency-review-semantic', 'document-consistency-review-semantic-v2', 'document-consistency-review-operations'):

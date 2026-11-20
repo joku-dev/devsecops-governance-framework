@@ -134,7 +134,11 @@
     "scripts/lib/operations_application.py",
     "scripts/lib/operations_application_replay.py",
     "scripts/lib/operations_output_replay.py",
-    "scripts/lib/operations_input_binding.py"
+    "scripts/lib/operations_input_binding.py",
+    "scripts/lib/requirement_validation.py",
+    "scripts/lib/requirement_validation_context.py",
+    "scripts/lib/requirement_validation_replay.py",
+    "scripts/lib/requirement_validation_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
@@ -143,7 +147,8 @@
     "scripts/lib/workbench_startup_ports.py",
     "scripts/lib/validation_suite_ports.py",
     "scripts/lib/sbom_export_ports.py",
-    "scripts/lib/operations_ports.py"
+    "scripts/lib/operations_ports.py",
+    "scripts/lib/requirement_validation_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [
@@ -152,7 +157,8 @@
     "scripts/lib/portable_intake/operations.py",
     "scripts/lib/portable_intake/transport.py",
     "scripts/export_repository_sbom.py",
-    "scripts/generate_operations_report.py"
+    "scripts/generate_operations_report.py",
+    "scripts/validate_requirement_lifecycle.py"
   ],
   "browser_core": [
     "scripts/workbench/app.js",

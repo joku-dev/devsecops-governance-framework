@@ -2,11 +2,11 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Vollst\u00e4ndiger t\u00e4glicher Betriebsbericht in V2",
+    "title": "Vollst\u00e4ndige Pr\u00fcfung des Anforderungs-Lifecycles in V2",
     "entrypoints": [
-      "scripts/generate_operations_report.py"
+      "scripts/validate_requirement_lifecycle.py"
     ],
-    "next_step": "Den vollst\u00e4ndigen Ablauf einschlie\u00dflich eigener und bereitgestellter Beobachtungen, aller Workflow-/PR-/Intake-/Sicherheitsdaten, verschachtelter Signaturnachweise und drei Exportdateien quellenweit validieren und als passenden Mac-/Linux-Kandidaten liefern. Aktuelle fokussierte Tests ersetzen weder vollst\u00e4ndige Lieferung noch Parit\u00e4tsabschluss. Der vorherige SBOM-Kandidat 8863164 ist mit acht gr\u00fcnen CI-Familien geliefert; seine tats\u00e4chliche positive Vendor-Erzeugung bleibt nach HTTP404 auf beiden Hosts offen."
+    "next_step": "Den vollst\u00e4ndigen bisherigen Pr\u00fcfer mit unver\u00e4nderlicher Historie, tats\u00e4chlichen SHA-1-/SHA-256-Datenarbeitsb\u00e4umen und vollst\u00e4ndiger Nachpr\u00fcfung quellenweit gepinnt validieren und als identische Mac-/Linux-Installationen liefern. Vorheriger Betriebsbericht 203e5ef ist in PR #435 mit 2.850 Quelltests und je 163 installierten Pr\u00fcfungen geliefert; authentifizierte positive PR-Daten und der vollst\u00e4ndige Goal-Abschluss bleiben offen."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",

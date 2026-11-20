@@ -2933,7 +2933,7 @@ The matrix changes assignment only: 87 in progress,48 pending,zero verified.
 No historical receipt, released baseline or official acceptance is changed.
 
 
-## Whole daily operations counterpart, in development
+## Whole daily operations counterpart
 
 The complete original 325-line `generate_operations_report.py`, immutable SHA-256
 `a390f8bc7cac07201efef4623ab50331e6d8793c0a418bca425b9a40ed493448`,
@@ -2962,3 +2962,34 @@ Mac methods. These are dated development observations, not a full new-source or
 installed-candidate claim. Complete pinned validation, role reviews, signed source
 and matching current Mac/Linux packages remain required. Matrix assignment only:
 88 in progress, 47 pending, zero verified; full 22/135/37/16 scope unchanged.
+
+
+The exact daily-report generation was delivered as signed `203e5ef` in
+[PR #435](https://github.com/joku-dev/devsecops-governance-framework/pull/435).
+Pinned source validation passed 2,850 tests with one known skip; fresh Mac and
+Linux candidates each passed 163 installed methods and six actual CLI cases.
+All three supplied export files and the fixed5c whole consumer reports agree
+between hosts and with V1. Each installed host also performed real anonymous
+collection, with full original report comparison on its captured inputs; three
+complete records replay in each direction. Caps and denied PR facts remain
+visible. This component evidence does not replace the dated whole-product
+checkpoint above or complete any remaining Goal area.
+
+## Whole requirement lifecycle validation counterpart, in development
+
+The complete original 373-line `validate_requirement_lifecycle.py` is assigned
+to `requirement_validation_application.py:check`, retaining immutable SHA-256
+`0ec1602133b3a0c481963d8c862c35e99ffd426cc5953d166bea072adaadaa6f`.
+The neutral kernel covers the complete original schema, catalog, authority,
+proposal/decision/activation, policy/platform review, artifact and publication
+sequence. Explicit native ports retain all used raw data and original local Git
+history behavior, including three-dot/direct fallback and missing-read outcomes.
+The stored execution reconstructs complete streams and failures without native
+programs or current observed source. SHA-1 and SHA-256 actual data fixtures,
+whole original AST/decision/output comparisons and coherent tamper attacks are
+covered by focused tests. Source-wide validation, revision-bound review and fresh
+matching installed acceptance remain required. The
+[guide](../guides/axiom-v2-requirement-validation.md) describes selection, source
+admission, legacy diagnostics and declared evidence limits. Mapping only:
+89 in progress,46 pending,zero verified; full22/135/37/16 scope and historical
+receipts remain unchanged.

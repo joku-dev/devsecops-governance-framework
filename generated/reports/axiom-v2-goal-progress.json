@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 88,
-      "pending": 47,
+      "in_progress": 89,
+      "pending": 46,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,15 +337,15 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "0e8f6adee9484f09ebace333909ad33724e583bbe197d958fcee22da0995d3cb",
+  "matrix_sha256": "4a130bb0e4d30d03bf8252d08910a2b73b617426e4624dfb33067133504c5fd4",
   "next_work": {
     "entrypoints": [
-      "scripts/generate_operations_report.py"
+      "scripts/validate_requirement_lifecycle.py"
     ],
-    "next_step": "Den vollständigen Ablauf einschließlich eigener und bereitgestellter Beobachtungen, aller Workflow-/PR-/Intake-/Sicherheitsdaten, verschachtelter Signaturnachweise und drei Exportdateien quellenweit validieren und als passenden Mac-/Linux-Kandidaten liefern. Aktuelle fokussierte Tests ersetzen weder vollständige Lieferung noch Paritätsabschluss. Der vorherige SBOM-Kandidat 8863164 ist mit acht grünen CI-Familien geliefert; seine tatsächliche positive Vendor-Erzeugung bleibt nach HTTP404 auf beiden Hosts offen.",
-    "title": "Vollständiger täglicher Betriebsbericht in V2"
+    "next_step": "Den vollständigen bisherigen Prüfer mit unveränderlicher Historie, tatsächlichen SHA-1-/SHA-256-Datenarbeitsbäumen und vollständiger Nachprüfung quellenweit gepinnt validieren und als identische Mac-/Linux-Installationen liefern. Vorheriger Betriebsbericht 203e5ef ist in PR #435 mit 2.850 Quelltests und je 163 installierten Prüfungen geliefert; authentifizierte positive PR-Daten und der vollständige Goal-Abschluss bleiben offen.",
+    "title": "Vollständige Prüfung des Anforderungs-Lifecycles in V2"
   },
-  "observation_sha256": "534453feda0e9b714225697e87be8f29d0175917bfd23aeaf314cdf07f1ac213",
+  "observation_sha256": "6067bbfd4bd397efd9713d6bd7d54bfb27c45845707c48544c37eadbbc052a86",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],
