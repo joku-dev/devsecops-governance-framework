@@ -144,7 +144,12 @@
     "scripts/lib/requirement_review_context.py",
     "scripts/lib/requirement_validation_budget.py",
     "scripts/lib/requirement_review_output.py",
-    "scripts/lib/requirement_review_application.py"
+    "scripts/lib/requirement_review_application.py",
+    "scripts/lib/harmonized_workbook_import.py",
+    "scripts/lib/workbook_import_context.py",
+    "scripts/lib/workbook_import_limits.py",
+    "scripts/lib/workbook_import_io.py",
+    "scripts/lib/workbook_import_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
@@ -155,7 +160,8 @@
     "scripts/lib/sbom_export_ports.py",
     "scripts/lib/operations_ports.py",
     "scripts/lib/requirement_validation_ports.py",
-    "scripts/lib/requirement_review_ports.py"
+    "scripts/lib/requirement_review_ports.py",
+    "scripts/lib/workbook_import_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [
@@ -167,7 +173,8 @@
     "scripts/generate_operations_report.py",
     "scripts/validate_requirement_lifecycle.py",
     "scripts/generate_implemented_requirement_migration.py",
-    "scripts/generate_pra_requirement_platform_review.py"
+    "scripts/generate_pra_requirement_platform_review.py",
+    "scripts/import_harmonized_requirements_workbook.py"
   ],
   "browser_core": [
     "scripts/workbench/app.js",

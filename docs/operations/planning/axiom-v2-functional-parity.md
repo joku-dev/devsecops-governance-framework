@@ -3040,3 +3040,50 @@ acceptance remain required. The
 [guide](../guides/axiom-v2-requirement-review-generation.md) describes the commands
 and boundaries. Mapping only:91 in progress,44 pending,zero verified; the full
 22/135/37/16 Goal, all 18 historical receipts and authority boundaries remain.
+
+The whole advisory generators are delivered as signed `68440d4` in
+[PR #437](https://github.com/joku-dev/devsecops-governance-framework/pull/437).
+The exact source passed 2,903 pinned tests with one known deployment skip, all
+2,773 source bytes/modes plus 24 protected files and 18 historical receipts,
+classified generated-effect retention/restoration, demo/Viewer/Goal and strict
+documentation checks. Fresh signed Mac/Linux candidates each passed 53 installed
+methods and 39 actual CLI calls. Ten complete records replayed each direction;
+all 20 foreign peer-node inspections were rejected. Post-peer package audits
+were identical: 2,783 entries/2,773 Git blobs/1,975 physical/798 sparse/1,009 active/
+ten dependencies each. The whole fixed5c consumer reports match V1 with digest
+`bbcb07afaae89967ceab631b446d9751fe844703336697921d494ffd506afb70`.
+This component evidence does not replace the dated whole-product checkpoint,
+authenticate producers or complete the full Goal.
+
+## Complete harmonized workbook import counterpart, in development
+
+The full original 423-line `import_harmonized_requirements_workbook.py`, SHA-256
+`524c5cb67753b59e10890dc021d1f1625850ce5d7dd460323ffa0e2cdbc59a0f`,
+is assigned to `workbook_import_application.py:generate`. Every original helper,
+constant, main/parser/default, fixed worksheet/row selection, classification,
+mapping and coverage decision is preserved. Explicit path/archive/YAML/parser
+ports keep all three original mkdir/write intents, selected custom or repeated
+output paths, partial files and post-write diagnostic errors. Original numeric
+and string SystemExit values are complete program outcomes; additional admission,
+capture and stream limits produce incomplete capture without an original verdict.
+
+Raw selected inputs, ordered output observations and full program results remain
+private. The no-effect replay derives all original outputs/errors without current
+selected files or native programs. Own-node inspection and explicit portable
+reconstruction are separate; product bytes and private instance files cannot be
+selected native exports. No source program is loaded. Candidate mappings retain
+their human review boundary and confer no new authority, priority or enforcement.
+
+Whole immutable original AST/method/main comparisons, actual original CLI0/1/2,
+relative/outside/repeated paths, directory/short-write faults, disappearing inputs
+and parents, private observer failure, source deletion and coherent tamper attacks
+are covered by development tests. A separate unchanged source checkpoint passed
+43 methods and 56 real development CLI calls per host on identical pinned
+synthetic input bytes; all positive complete export bytes matched between hosts.
+Later bounded-stream and visible error-message refinements require their own
+current-source validation. These development observations are not current signed
+installed acceptance. The [guide](../guides/axiom-v2-workbook-import.md) describes
+the modes, original row window, diagnostic differences and additional admission.
+Full pinned source validation, accountable review and fresh matching signed
+Mac/Linux delivery remain required. Mapping only:92 in progress,43 pending,
+zero verified; full22/135/37/16 and all historical receipts remain retained.
