@@ -3018,8 +3018,8 @@
         "--document-id"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/document_rendering_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

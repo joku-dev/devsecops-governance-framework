@@ -2,11 +2,11 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Vollst\u00e4ndigen Workbook-Import in V2 absichern und liefern",
+    "title": "Vollst\u00e4ndigen Dokument-Renderer in V2 absichern und liefern",
     "entrypoints": [
-      "scripts/import_harmonized_requirements_workbook.py"
+      "scripts/render_governance_documents.py"
     ],
-    "next_step": "Den ganzen bisherigen Import einschlie\u00dflich urspr\u00fcnglicher CLI-Exits, eigener Ausgabepfade, realer Teilfehler und vollst\u00e4ndiger Nachrechnung quellenweit gepinnt validieren und als identische signierte Mac-/Linux-Kandidaten liefern. Die Berichtsgeneratoren 68440d4 sind in PR #437 mit 2.903 Quelltests, je 53 installierten Methoden und 39 CLI-Aufrufen sowie zehn ganzen Peer-Nachweisen je Richtung geliefert. Alle 22/135/37/16 Goal-Einheiten bleiben im Umfang; keine vollst\u00e4ndige Parit\u00e4t oder Betriebsfreigabe ist erkl\u00e4rt."
+    "next_step": "Den ganzen bisherigen Renderer einschlie\u00dflich optionalem Pandoc, urspr\u00fcnglicher CLI-Exits, vollst\u00e4ndiger Markdown-/HTML-/DOCX-Ausgaben und realer Teilfehler gepinnt validieren und als identische signierte Mac-/Linux-Kandidaten liefern. Der Workbook-Import 9acc87e ist in PR #438 mit 2.947 Quelltests, je 96 installierten Methoden und 95 CLI-Aufrufen sowie 20 ganzen Peer-Nachweisen je Richtung geliefert; alle acht CI-Familien sind gr\u00fcn. Alle 22/135/37/16 Goal-Einheiten bleiben im Umfang; keine vollst\u00e4ndige Parit\u00e4t oder Betriebsfreigabe ist erkl\u00e4rt."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",

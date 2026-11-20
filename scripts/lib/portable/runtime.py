@@ -85,6 +85,7 @@ def source_digest():
     paths.extend([ROOT/'scripts/lib/full_evaluation.py',ROOT/'scripts/lib/architecture_assessment.py',ROOT/'scripts/lib/tool_integrity.py'])
     paths.extend(ROOT/'scripts/lib'/name for name in ('candidate_workspace.py','requirement_application.py','requirement_workspace.py','requirement_lifecycle.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('requirement_validation.py','requirement_validation_budget.py','requirement_validation_context.py','requirement_validation_replay.py','requirement_validation_application.py','requirement_validation_ports.py','requirement_migration_generation.py','requirement_platform_generation.py','requirement_review_context.py','requirement_review_output.py','requirement_review_application.py','requirement_review_ports.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('document_rendering.py','document_rendering_context.py','document_rendering_io.py','document_rendering_ports.py','document_rendering_application.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('harmonized_workbook_import.py','workbook_import_context.py','workbook_import_limits.py','workbook_import_io.py','workbook_import_application.py','workbook_import_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_application.py', 'dcr_manifest.py', 'dcr_structure.py', 'dcr_semantics.py', 'dcr_response.py', 'dcr_evaluation.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_source_context.py','dcr_operations.py','dcr_catalog.py','dcr_projection.py','document_consistency_view.py'))
