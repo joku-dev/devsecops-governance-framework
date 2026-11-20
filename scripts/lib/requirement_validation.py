@@ -13,7 +13,8 @@ from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
 from referencing.exceptions import NoSuchResource
 import yaml
-from lib.operations_sources import yaml_value, text
+from lib.operations_sources import text
+from lib.requirement_validation_budget import yaml_text
 from lib.requirement_lifecycle import parse_native_requirement
 
 
@@ -27,10 +28,6 @@ def local_validator(schema, *, retrieve=None, **options):
             return refused_resource(uri)
         return Resource.from_contents(json.loads(text(retrieve(uri))), default_specification=DRAFT202012)
     return Draft202012Validator(schema, registry=Registry(retrieve=selected_resource), **options)
-
-
-def yaml_text(value):
-    return yaml_value(value.encode('utf-8'))
 
 
 class NativePath:

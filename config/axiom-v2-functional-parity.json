@@ -1388,8 +1388,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/requirement_review_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -1670,8 +1670,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/requirement_review_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

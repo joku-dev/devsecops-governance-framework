@@ -127,7 +127,7 @@ def check(options, instance, settings):
     record.finish(state,result,{},error)
     if state=='complete': inspect(record.root,node=node)
     return {'state':state,'record_root':str(record.root),'exit_code':2 if state=='incomplete' else result['exit_code'],
-            'original_exit_code':None if result is None else result['exit_code'],**AUTHORITY},result
+            'original_exit_code':result['exit_code'] if state=='complete' and result is not None else None,**AUTHORITY},result
 
 
 def run(arguments,instance=None,settings=None):

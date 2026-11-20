@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **89 in Arbeit** und **46 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **91 in Arbeit** und **44 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 89 | 46 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 91 | 44 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Vollständige Prüfung des Anforderungs-Lifecycles in V2.
+**Nächster Baustein:** Vollständige Generatoren für Anforderungszuordnung und Plattform-Review in V2.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -60,6 +60,15 @@ Der neue [tägliche Betriebsbericht](docs/operations/guides/axiom-v2-operations-
 Sicherheits- und Release-Prüfung, drei Originalexporten und gespeicherter Nachrechnung.
 Er ist im Entwicklungsbranch in Arbeit; neue vollständige Quellvalidierung und
 passende installierte Kandidaten sind noch erforderlich.
+Der [vollständige Anforderungsprüfer](docs/operations/guides/axiom-v2-requirement-validation.md)
+ist als `5b40de4` in [PR #436](https://github.com/joku-dev/devsecops-governance-framework/pull/436)
+mit 2.877 Quelltests und passenden Mac-/Linux-Kandidaten geliefert.
+Der nächste [Baustein zur Anforderungszuordnung](docs/operations/guides/axiom-v2-requirement-review-generation.md)
+überführt beide bisherigen Berichtsgeneratoren mit vollständigen privaten Ausgaben,
+ausdrücklichen Quell-Dateiexporten und Nachrechnung ursprünglicher Teilfehler.
+Dieser Folgestand ist noch in Arbeit; seine vollständige Validierung und aktuelle
+installierte Kandidaten stehen aus. Die zusätzliche YAML-Aufnahmegrenze wird
+darin als unvollständige Erfassung ausgewiesen, ohne ursprünglichen Fachbefund.
 
 Der [datierte Zwischenstand mit Mac-/VM-Nachweisen](docs/operations/status/axiom-v2-parity-progress-2026-11-15.md)
 trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch

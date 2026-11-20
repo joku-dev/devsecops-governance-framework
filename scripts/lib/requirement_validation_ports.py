@@ -9,7 +9,7 @@ from lib.functional_parity import git_read
 
 
 def current_source(node, product_tree=None):
-    required = {'scripts/lib/requirement_validation.py','scripts/lib/requirement_validation_context.py',
+    required = {'scripts/lib/requirement_validation.py','scripts/lib/requirement_validation_budget.py','scripts/lib/requirement_validation_context.py',
                 'scripts/lib/requirement_validation_replay.py','scripts/lib/requirement_validation_application.py',
                 'scripts/lib/requirement_validation_ports.py','scripts/lib/providers/requirement_validation_source.py'}
     if not required <= set(selected_paths(ROOT)):

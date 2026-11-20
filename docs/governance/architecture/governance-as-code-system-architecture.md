@@ -431,6 +431,29 @@ original validation failures. No decision, activation, source approval, accepted
 history, official index or operating authority is changed. See the
 [requirement validation guide](../../operations/guides/axiom-v2-requirement-validation.md).
 
+### Whole advisory requirement report generation candidate
+
+`requirement_migration_generation.py` and `requirement_platform_generation.py`
+retain both complete original report generators. Structural input paths and an
+explicit output port preserve every original decision, JSON/Markdown byte,
+ordered write and error. Provider-specific workflow inventory roots live only
+in `providers/requirement_review_profile.py`; observed source programs are never
+loaded. Compatibility facades retain the old entrypoints outside installed use.
+
+`requirement_review_application.py` exposes `requirement-review generate`,
+instance-bound `inspect` and portable `replay`. Default private candidates retain
+the complete two-file output without source exports. The explicit
+`--write-source-reports` adapter writes only the original fixed report paths,
+with held owned files, original overwrite order and recorded partial progress.
+`requirement_review_output.py` reconstructs all output intents, bytes, original
+errors and touched paths without repeating native effects. Producer Python
+diagnostic spelling is retained explicitly for cross-host failure replay.
+Additional admission failures, including YAML budgets, remain incomplete capture
+with no original verdict. Consistency does not authenticate a producer or import
+source decisions, authority, activation or official acceptance. Both entrypoints
+remain in progress; see the
+[requirement review guide](../../operations/guides/axiom-v2-requirement-review-generation.md).
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)
