@@ -3,6 +3,7 @@ from fnmatch import fnmatchcase
 from lib.repository_paths import RepositoryPaths
 from lib.requirement_validation import RequirementValidation
 from lib.requirement_validation_replay import IntegrityError
+from lib.requirement_validation_budget import InputAdmissionError
 
 
 def validate(source_label, io_port, history, *, base_ref=None, resource=None):
@@ -23,7 +24,7 @@ def validate(source_label, io_port, history, *, base_ref=None, resource=None):
     try:
         value = RequirementValidation(root, history, reviews, resource).validate(base_ref)
         return {**value, 'kernel_exception': None}
-    except IntegrityError:
+    except (IntegrityError, InputAdmissionError):
         raise
     except Exception as error:
         # Original uncaught errors exit1 before any summary. This finite capture

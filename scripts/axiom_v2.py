@@ -13,7 +13,7 @@ def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--version',action='version',version=VERSION)
     parser.add_argument('--instance',type=Path)
-    parser.add_argument('command',choices=('init','check','runtime','evidence','collector','workbench','parity','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation'))
+    parser.add_argument('command',choices=('init','check','runtime','evidence','collector','workbench','parity','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review'))
     parser.add_argument('arguments',nargs=argparse.REMAINDER)
     args=parser.parse_args(argv)
     try:

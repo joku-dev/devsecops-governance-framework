@@ -1339,3 +1339,33 @@ unproved and all original100/1000caps remain visible. This is component evidence
 not retrospective full-product acceptance or a replacement of earlier failures.
 
 External schema URI resources have an explicit local-file selector with lazy bounded capture and whole retained replay. The original evaluator and nested URI resolution operate on the same selected bytes; a real loopback HTTP V1 oracle supplies complete positive/negative comparisons. Unselected URI retrieval is refused without implicit HTTP/file-URI access. This is an input-resource boundary, not approval of operator-supplied schema bytes.
+
+## Engineering increment M: complete advisory requirement report generators
+
+The two original164/233-line generators, immutable whole-source fixtures, neutral
+kernels and explicit native output/profile adapters are executable engineering
+and reference artifacts. The private source/output journals are manual branch
+technical evidence; guide, arc42 and Goal projections are descriptive. No
+normative source, requirement, approval, activation, released baseline, accepted
+result or operating authority is introduced. Both matrix assignments remain
+in_progress, with no new verified subject or historical receipt replacement.
+
+Every original helper/main decision, lineage/candidate selection, JSON/Markdown,
+stream, ordered overwrite and partial error stays in scope. Default private
+candidates are explicit projections, not claims of native source export.
+`--write-source-reports` selects only the original two paths per generator;
+whole output intents, before/after snapshots and actual partial writes support
+no-effect reconstruction. Observed source programs are never executed. Workflow
+inventory roots remain in the explicit legacy profile. The existing Requirement
+Lifecycle workflow observes the new core/adapters and retains all original
+validation/preview steps; advisory inventory hashes are regenerated accordingly.
+
+The actual previous valid-YAML admission issue is corrected by a dedicated
+non-ValueError admission exception propagated outside original handlers. Budget,
+alias and capture failures have no original exit claim. Whole V1 originals and
+real file errors, including Unicode truncation and controlled partial ENOSPC,
+remain the comparison authority. Python diagnostic spelling is a retained
+producer observation for portable replay, not independent producer identity.
+Whole pinned validation, accountable coordinator reviews and matching signed
+Mac/Linux installations remain required before delivery. Full135entrypoints,
+37CIdefinitions,16operatingflows and22areas remain the unchanged Goal scope.

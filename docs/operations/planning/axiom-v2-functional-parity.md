@@ -2993,3 +2993,50 @@ matching installed acceptance remain required. The
 admission, legacy diagnostics and declared evidence limits. Mapping only:
 89 in progress,46 pending,zero verified; full22/135/37/16 scope and historical
 receipts remain unchanged.
+
+The validator is delivered as signed `0e8b94e` plus the two generator-produced
+advisory inventory refresh files in signed `5b40de4`,
+[PR #436](https://github.com/joku-dev/devsecops-governance-framework/pull/436).
+The final source passed 2,877 pinned tests with one known deployment skip.
+Fresh exact-source Mac/Linux installations each passed 27 focused methods and
+ten actual CLI cases; four whole records replayed each direction, and all eight
+foreign-node inspections were rejected. The fixed5c whole consumer results match
+V1 with digest `bbcb07afaae89967ceab631b446d9751fe844703336697921d494ffd506afb70`.
+All 2,766 package entries, 2,756 Git blobs, 998 active fingerprints and ten
+dependency entries were audited on each host. This is component evidence; the
+older dated whole-product checkpoint and full Goal remain distinct. An actual
+valid duplicate-key YAML probe found an additional admission budget classified
+as an original error in this delivered generation. Increment M corrects that
+classification to incomplete capture with no original exit; it does not relabel
+the older result as corrected.
+
+## Whole advisory requirement report generation counterpart, in development
+
+The complete 164-line migration and 233-line PRA report generators are assigned
+to `requirement_review_application.py:generate`. Their immutable originals retain
+SHA-256 `e80f6d2a371da8fad3c726bfeb4290cb88d2001708db97c42800a0d2d9eca81d`
+and `5160bb924bd38c8411a91f32b5d50299ae489f74776da4989ae1ac024b800a79`.
+The neutral kernels preserve all original helpers/main, lineage, similarity
+threshold/top-eight order, classification, JSON/Markdown, streams and failures.
+The explicit legacy adapter selects original workflow inventory paths; observed
+source programs are never loaded. Root compatibility facades keep original use.
+
+`requirement-review generate` defaults to a private two-file candidate. Explicit
+`--write-source-reports` selects the original fixed paths, ordered native
+overwrites, directory creation and partial writes. Intent, actual progress,
+before/after bytes and original error diagnostics remain private. Own-node
+inspection and portable replay reconstruct the full execution without current
+observed data or repeated effects. A retained producer diagnostic preserves
+empty-minimum errors across Python versions. Original captured failures exit one;
+admission/integrity/budget problems remain incomplete with exit two and no
+original verdict. The shared YAML admission exception directly inherits from
+Exception so the original frontmatter ValueError handler cannot swallow it.
+
+Whole immutable original AST/wire comparisons, actual directory/Unicode/short-
+write errors, partial first-file output, deleted sources and coherent tamper
+attacks are covered by focused development tests. Full pinned validation,
+revision-bound review, signed delivery and fresh matching installed Mac/Linux
+acceptance remain required. The
+[guide](../guides/axiom-v2-requirement-review-generation.md) describes the commands
+and boundaries. Mapping only:91 in progress,44 pending,zero verified; the full
+22/135/37/16 Goal, all 18 historical receipts and authority boundaries remain.

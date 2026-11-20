@@ -112,16 +112,22 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
+    if command=='requirement-review' and not instance_path and arguments[:1]==['replay']:
+        from lib.requirement_review_application import run as review
+        return review(arguments)
     if command=='requirement-validation' and not instance_path and arguments[:1]==['replay']:
         from lib.requirement_validation_application import run as requirement_validation_run
         return requirement_validation_run(arguments)
     if command=='operations-report' and not instance_path and arguments[:1]==['replay']:
         from lib.operations_application import run as operations_run
         return operations_run(arguments)
-    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation'):
+    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review'):
         raise ValueError('v2_entrypoint_not_supported')
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='requirement-review':
+        from lib.requirement_review_application import run as review
+        return review(arguments,root,settings)
     if command=='requirement-validation':
         from lib.requirement_validation_application import run as requirement_validation_run
         return requirement_validation_run(arguments,root,settings)
