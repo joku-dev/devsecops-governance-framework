@@ -4,7 +4,7 @@
   "status": "review_required",
   "summary": {
     "source_requirements": 867,
-    "artifact_records": 508,
+    "artifact_records": 564,
     "requirements_with_candidates": 824,
     "requirements_without_candidates": 43,
     "confirmed_register_entries": 19,
@@ -14,8 +14,8 @@
       "platform": 74,
       "policies": 14,
       "releases": 201,
-      "schemas": 130,
-      "workflows": 29
+      "schemas": 178,
+      "workflows": 37
     }
   },
   "sources": {
@@ -1088,6 +1088,13 @@
       "source_basis": "ARCH-SDD-REQ-001"
     },
     {
+      "path": "schemas/agent-review-receipt.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "f0925fdbc86fbdf79742939964d8a91f29c49e1c81e27ad49614a2706dc81384",
+      "source_basis": null
+    },
+    {
       "path": "schemas/app-architecture-evidence.schema.json",
       "type": "schemas",
       "artifact_id": null,
@@ -1141,6 +1148,251 @@
       "type": "schemas",
       "artifact_id": null,
       "sha256": "5b6dfb14d651e8e5c786e81c20482365430428e27dcc7371a4a4de4fd11eac1c",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-agent-usage.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "4000eab3e86788c7d0844ac38b9569fd716f71586641a13635305fceee7e175f",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-attestation-verification.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "567a953a0b5e0ba43c9786a876f8ae66e74d801f4723815c29533c57b5cc606a",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-candidate-index.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "11e1e02f0e536dd3fa7aa7748e490da3975e4654038f5f92763f6159aa261ec5",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-domain-report.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "7d4443a4d30f6d2322adfb7cbcb4d5850ee1cf9e38c7a1684aeb1de87dffe17e",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-full-assessment.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "eeb5f7675ad584f455f969f70ec4248ea293d8a3aedfb6d1a9e4409704926f27",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-functional-parity.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "6d28112e2bc3a485fe9b20e881cfc265d28a0ea68232e4fa13a95fffb7b286e8",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-intake-records.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "0b1c7b817af50be6944a6ae96b3dad5df8117f05b6b3e35f1ddbbf9a96b17cdd",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-local-source-inspection.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "60a6593ed12e6daecb1007b43a9e5fcf11dc9d3e61492efa79caa9828bac7ca9",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-measured-assessment.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "b7eb2ad7698d224b222b63160aa10de15dba7d804c3d6839406afe8dcc693aae",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-native-result-assessment.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "9f2e43992601c34b86ffda197996f1c1c3c8b8a8eab739462ac249cb0d28673b",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-parity-receipt.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "9c44168da1d7652193abe1cd788daa0005eace107ce32673051c67ff1dcbbd4c",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-pipeline-assessment.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "ba8cd918512f459d16e5b4aab59c38b772c604f643d976165e21970e72f1b2ab",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-pipeline-parameters.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "8f8b509731563b9ca612df840105d1c8ca5f078d6fb4992d3f5aaa81aba4a59b",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-provenance-context.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "402c97567104d584f916ac528119da850db09144c834a760c25783e75f408004",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-provenance-metadata.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "66a98ba27173b0850df261a075ee51749cb906e6f06428bd9ebe162f10e10e81",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-report-assessment.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "86767555372f647e0034c6d87bd686f88ad8aeedc33b063a1f0785bc6b60b208",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-result-assessment.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "274dbcd91c2811d4178e514174e8944c83c6f4fa528c94e2cfdc753e6470f923",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-result-metadata.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "6906e923ff424a18d7fed90187f25ee01c7c2008ed03f55640af0fa692b39351",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-result-projection.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "6f388251e1d61f5a18b6341e01769d9be2db8cda8bfbc3adb8337e32b240fdcd",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-result-snapshot.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "00f87da5325aabb3f6438f03eb4b51c9aee6aeafe172fdaf19077306197ecf2c",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-dispatch-external.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "03ca002966243fbc8346b9641921185a02f9a18a2bbb2230dbbf05f93ec9d1e9",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-dispatch.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "e56031b16c2a209f576373366249656fefbed6ab39a8efb33053b53dcac17af2",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-execution.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "a7111e5f0d54fbd92e811173373c18990a6b5e07fd53a210d3a8af330ed47951",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-metadata.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "aee7c3ed2214684ec2b46b13305787637ccf7cfa2f11825d790de7bc7f8cb527",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-planning.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "33e659bf9ffaa0cb7293c5f41c3569cbe67a5c1d0759cffd4380a637877bc040",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-pr.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "c68d8028754955b996fc732d04d190d147b6a9fcc6252980228a5766e43654fb",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-quality.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "57e56af6a033a933d884c0fa1edc4762ae46eb8652b8f163cde64cea1445c108",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-receipt-export.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "4bdc8ee22b34ec340fe9b6a094692a457026bce7d4452c550137e8fdc79434da",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-results.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "0057e6d180632a98b2888750afaed9fd492c1b3d071fb45607bc8a632799ca2b",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-review-subject.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "420b6190a2d08a4f6598fed407da7ab7de2783cc9e143c85d1c9d2725fb987bd",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-source-inspection.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "826b7314298d8ee094828c8f534e8b2d61bc4ce74abc76cbd9a345bf82da3ce2",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-supplement.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "78931477ee6f22a079ac723aeec2fa6f0f82520ba06102961df51b09ccd41670",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-typed-assessment.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "58e8a4a20376dfcd64f256e66fa36ac53c2650629bfc139e4843296d3473dc75",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-vulnerability-assessment.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "61f222f5824d6351f076af40e5d8eba3651334da8b26902f212c4ac3c17e263e",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/axiom-v2-vulnerability-metadata.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "414f2e7db18fb42b8cee2210248dd124baaef6bcc10de010c92d45e2a40f4bb3",
       "source_basis": null
     },
     {
@@ -1809,6 +2061,13 @@
       "source_basis": null
     },
     {
+      "path": "schemas/intake-candidate-v1.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "5044a4489645ad9e114430a76376f59fb8a3b8cfe0ad9f55c39e9d7abb51fae9",
+      "source_basis": null
+    },
+    {
       "path": "schemas/intake-conflict.schema.json",
       "type": "schemas",
       "artifact_id": null,
@@ -1872,10 +2131,73 @@
       "source_basis": null
     },
     {
+      "path": "schemas/portable-consumer-registry-v1.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "4d574fbee5c12122944333fee49a0bb6358c0b0adf810f7359fff1ab2372da0a",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/portable-consumer-service-v1.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "1a394a08b28d19596ad64bfd478720ec885ba19824327c2f3b31b87c636f7894",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/portable-context-v1.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "e3a24610b1280fdcc5f62fe74dc5f8cb62e8820f388b2e804babdcfcbed5a4c2",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/portable-intake-bundle-v2.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "e9a801ddf87eccc72a1a010fae9d65d50b2d8ec5b7ee57a239082de0a47b805d",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/portable-intake-policy-v2.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "5321b509af33fbe7e8d8fb94987327b0fa70b88d2b5d72d75f78bed175593372",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/portable-intake-receipt-v2.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "755d90650944d23b8d81a367477b5428ce38cb2abc62e2c478e162dd750d652c",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/portable-profile-v1.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "99698e0f656ee92e83244b51488abdb096394b1054ec5823454af1119b0b0813",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/portable-result-v1.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "8549948a1dde53a66c1117a8843459182e2c54ad508c1e8615dcf78ff6ff144d",
+      "source_basis": null
+    },
+    {
       "path": "schemas/pra-requirement-platform-review.schema.json",
       "type": "schemas",
       "artifact_id": null,
       "sha256": "a3e4337b7dd070cb7315adea2cdf9931fe7d03a786ff2c07b6cdeea858d2a31a",
+      "source_basis": null
+    },
+    {
+      "path": "schemas/provider-role-candidate-v1.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "aeeddf0c25cb6a21335a79318b3a227afdf7b98db4bffb657e4963489134bebc",
       "source_basis": null
     },
     {
@@ -1942,6 +2264,13 @@
       "source_basis": null
     },
     {
+      "path": "schemas/runtime-package-v1.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "7b046cd74c20dc6833b9c56ad9d20017503d30205de18a5d0577d1df4117b274",
+      "source_basis": null
+    },
+    {
       "path": "schemas/source-document-process-status.schema.json",
       "type": "schemas",
       "artifact_id": null,
@@ -1998,6 +2327,20 @@
       "source_basis": null
     },
     {
+      "path": "schemas/workbench-publication-v2.schema.json",
+      "type": "schemas",
+      "artifact_id": null,
+      "sha256": "9cb98799d666da11c57462edb3291a3373b9473967e2555c77091cce8e276e04",
+      "source_basis": null
+    },
+    {
+      "path": ".github/workflows/agent-review-status.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "0fc3b3ea006c3976f6145e5da32732f76307c3ae622c69ac60c8220f78ac5fec",
+      "source_basis": null
+    },
+    {
       "path": ".github/workflows/architecture-baseline-l1-v0.1.0.yml",
       "type": "workflows",
       "artifact_id": null,
@@ -2008,7 +2351,7 @@
       "path": ".github/workflows/codeql.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "cf6730db040c5ca366bb27162a14f97088a4c83cc6ac83db73176964ac7a98e9",
+      "sha256": "521adf941f7fda4bbdd6918c6761ae746feb5027aa738157fd59aef01de1c67f",
       "source_basis": null
     },
     {
@@ -2029,7 +2372,7 @@
       "path": ".github/workflows/dependency-review.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "107168fa9bb00747da0bdf02416538cbe80c453fe84f54055cf089ee5eeb8d6f",
+      "sha256": "017160bbe7ebaa1f4a9213ba907e44ec9a25b9bf9f6ef149b3729dce11c982c1",
       "source_basis": null
     },
     {
@@ -2064,21 +2407,21 @@
       "path": ".github/workflows/devsecops-baseline-l1-v1.1.3.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "577018a9672c0b6fabdb690000565b174558defafdae0076f05d40c88a5b21fe",
+      "sha256": "ffd0a5fcb380803405cabeea8588282193905c9a0ff974cc9cb8736e6c2dc28c",
       "source_basis": null
     },
     {
       "path": ".github/workflows/devsecops-baseline-l1-v1.2.0.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "925f6c70842f3a46feab1418c82abd3957dfcad551d632c328252bc1551c9b5d",
+      "sha256": "38c7347150633332b7b0be75cb92dea355c1b3a16c7d94c1a90f9cb1ff6c0179",
       "source_basis": null
     },
     {
       "path": ".github/workflows/devsecops-baseline-l1-v1.2.1.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "5953f16f11290e383e8d1d0a3954424cb4141e09361181259942eddea7b7cd95",
+      "sha256": "8efc06813f220d5798a426b7d79ca43a093df65a5e92e65c2fa9bc0d0b8ae711",
       "source_basis": null
     },
     {
@@ -2086,6 +2429,13 @@
       "type": "workflows",
       "artifact_id": null,
       "sha256": "2fbb9b86f5fffb2d9f1e62419aae2c1076e63b554d67f1a9a3f5e5f463572f13",
+      "source_basis": null
+    },
+    {
+      "path": ".github/workflows/devsecops-portable-v1.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "68983f0da71458a22dbff1826895c8804451582d1b936e427e881789356d8d39",
       "source_basis": null
     },
     {
@@ -2100,6 +2450,13 @@
       "type": "workflows",
       "artifact_id": null,
       "sha256": "3e4ed2ffa574dd6748b30b435ebeebb99c687ff71f5dfb2a832e05d0c1df684b",
+      "source_basis": null
+    },
+    {
+      "path": ".github/workflows/governance-ci-v2.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "c93364d5b1a542babb52460a76bbe099ce5d75d31ba7e47b96eeb50d6cc9dc6a",
       "source_basis": null
     },
     {
@@ -2120,7 +2477,7 @@
       "path": ".github/workflows/governance-repository-security.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "7c06d417f4153b15a7c161dab869126a3bf27aedbb3d8d4e3323c3b84dfa2029",
+      "sha256": "c633e9e19b2c5842a7b61cc18e5ba058d7d6a6de0af00b93972f4e5febf31221",
       "source_basis": null
     },
     {
@@ -2141,7 +2498,7 @@
       "path": ".github/workflows/intake-governance-result.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "fd56d44d5a975da1f3e02722417d80efdf80344527721713dbc9321de5b1eca6",
+      "sha256": "eb48635da740b9485f316d22fc2d0225e4fa518c4a606b9694c361c3ded53744",
       "source_basis": null
     },
     {
@@ -2149,6 +2506,13 @@
       "type": "workflows",
       "artifact_id": null,
       "sha256": "e70b6ae49fb32ad745205dab4cece5b31e0c762d3c6ce2a413718420d5ff5388",
+      "source_basis": null
+    },
+    {
+      "path": ".github/workflows/portable-capacity.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "85e36ff9267ff2de51eca0c9f8c1d43ad4f8ad65fea9a0729b7d7e33388edbf1",
       "source_basis": null
     },
     {
@@ -2162,7 +2526,7 @@
       "path": ".github/workflows/publish-docs.yml",
       "type": "workflows",
       "artifact_id": null,
-      "sha256": "cea09e1671c10d96be0a76d3786394ba4b75886ef06a3dd1a69d1505d0e47618",
+      "sha256": "75e479884b9eb71d9ea4226d9890a99c0c8ebf1530facb5a9f5d1e873ad93a05",
       "source_basis": null
     },
     {
@@ -2194,10 +2558,38 @@
       "source_basis": null
     },
     {
+      "path": ".github/workflows/runtime-package.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "9fe38ebd05899db28561dbd4334d0a64d5a5debb62b61a6a40ce5abbffc4c6fd",
+      "source_basis": null
+    },
+    {
       "path": ".github/workflows/source-document-intake.yml",
       "type": "workflows",
       "artifact_id": null,
       "sha256": "b8f6498b3fc8706b005786eba7454171352fcadbdf2faa2de6d8f450bc8adcdc",
+      "source_basis": null
+    },
+    {
+      "path": ".github/workflows/viewer-ui.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "3bb28048be13d15e47c0c63a5bfc3c5a32190fde0262abeb8f4c3637a9b9cf31",
+      "source_basis": null
+    },
+    {
+      "path": ".github/workflows/vm-installation.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "4c8573f9e2441614e2bd1e91aa7ae1bac4b527c6358d93b8ae49bce7df33fa27",
+      "source_basis": null
+    },
+    {
+      "path": ".github/workflows/workbench-ui.yml",
+      "type": "workflows",
+      "artifact_id": null,
+      "sha256": "0881eeb64f4690cf7c4ba912faed31d9f83b21a58ff433540bf3f33d1dc6fef6",
       "source_basis": null
     },
     {
