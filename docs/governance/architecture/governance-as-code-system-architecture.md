@@ -454,6 +454,31 @@ source decisions, authority, activation or official acceptance. Both entrypoints
 remain in progress; see the
 [requirement review guide](../../operations/guides/axiom-v2-requirement-review-generation.md).
 
+### Complete harmonized workbook import candidate
+
+`harmonized_workbook_import.py` retains the complete original 423-line importer,
+including every ZIP/XML, classification, mapping, coverage, parser/default and
+ordered export decision. Explicit path, archive, YAML and parser factories retain
+the original main. `workbook_import_context.py` supplies logical paths and lazy
+selected IO; the original numeric and string `SystemExit` outcomes remain separate
+from uncaught exceptions and additional admission failures.
+
+`workbook_import_application.py` exposes `workbook-import generate/inspect/replay`.
+The explicit native adapter holds ordinary selected files and export anchors;
+all three directory intents, ordered overwrites, raw inputs, partial file states
+and producer failures remain private. Repeated output paths retain each write.
+`workbook_import_io.py` reconstructs that whole execution without current observed
+source, external programs or repeated exports. Default private projections and
+explicit selected-file writes remain distinct. The own installed product and
+private instance state are protected from selected native exports. Compatibility
+invocation remains a facade over the retained complete original adapter.
+
+The original fixed worksheet/row selection and candidate-only classification are
+explicit profile behavior, not new source approval or normative derivation. Exact
+code/node bindings and ordinary bounded input/output admission do not authenticate
+a producer or transfer operating authority. The entrypoint remains in progress;
+see the [workbook guide](../../operations/guides/axiom-v2-workbook-import.md).
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)

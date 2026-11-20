@@ -1369,3 +1369,35 @@ producer observation for portable replay, not independent producer identity.
 Whole pinned validation, accountable coordinator reviews and matching signed
 Mac/Linux installations remain required before delivery. Full135entrypoints,
 37CIdefinitions,16operatingflows and22areas remain the unchanged Goal scope.
+
+## Engineering increment N: complete harmonized workbook import
+
+The retained whole423-line original fixture and compatibility adapter, neutral
+kernel, explicit selected-file ports and reconstruction are engineering/reference
+artifacts. Private synthetic workbook inputs and raw journals are manual branch
+technical test evidence. Guide/arc42/Goal updates are descriptive. No source
+document or source register change is present; full Source Document Intake is
+not required. This classification does not approve incoming workbooks.
+
+Every original ZIP/XML/parser/default/classification/mapping/coverage decision,
+numeric or string SystemExit, three initial mkdirs and ordered UTF8 writes remains
+in scope. Custom relative, repeated and outside-root targets and errors after
+all files have been written are retained. Private projections and explicit
+selected native files are distinct. Own installed product and private state are
+protected; ordinary ownership, stable repeated reads/parents, alias/secret-path
+rejection and bounded inputs/archives/YAML/messages/capture are additional
+admission boundaries with no original verdict. Observer failure after a real
+partial effect cannot become successful original execution.
+
+The original fixed row window, source alias/identifier/content/fallback rules,
+synthetic hash groups and human_review_required mappings remain candidate-only.
+They associate existing target requirements; they do not derive or activate new
+normative requirements, controls, policies, baselines or consumers. Copied source
+labels/hashes do not authenticate author identity, source status or authority.
+
+All original functions/constants/main are covered by exact mapped AST and whole
+positive/negative stream/file/exception comparisons. Current signed source and
+Mac/Linux installations, whole fixed5c consumer reports and complete declared
+coordinator review remain delivery prerequisites. The matrix entry is in_progress;
+no historical receipt or protected acceptance is replaced and the unchanged
+22areas/135entrypoints/37CIdefinitions/16operatingflows Goal remains open.

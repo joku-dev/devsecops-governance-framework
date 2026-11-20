@@ -2,12 +2,11 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Vollst\u00e4ndige Generatoren f\u00fcr Anforderungszuordnung und Plattform-Review in V2",
+    "title": "Vollst\u00e4ndigen Workbook-Import in V2 absichern und liefern",
     "entrypoints": [
-      "scripts/generate_implemented_requirement_migration.py",
-      "scripts/generate_pra_requirement_platform_review.py"
+      "scripts/import_harmonized_requirements_workbook.py"
     ],
-    "next_step": "Beide ganzen V1-Generatoren einschlie\u00dflich nativer Teilfehler, privater Ausgaben und portabler Nachrechnung quellenweit gepinnt validieren und als identische Mac-/Linux-Installationen liefern. Der vorherige Anforderungspr\u00fcfer 5b40de4 ist in PR #436 mit 2.877 Quelltests sowie je 27 installierten Methoden und zehn CLI-F\u00e4llen geliefert; seine YAML-Aufnahmegrenze wird im Folgestand als unvollst\u00e4ndige Erfassung korrigiert. Alle 22/135/37/16 Goal-Einheiten bleiben im Umfang; keine ist vollst\u00e4ndig abgenommen."
+    "next_step": "Den ganzen bisherigen Import einschlie\u00dflich urspr\u00fcnglicher CLI-Exits, eigener Ausgabepfade, realer Teilfehler und vollst\u00e4ndiger Nachrechnung quellenweit gepinnt validieren und als identische signierte Mac-/Linux-Kandidaten liefern. Die Berichtsgeneratoren 68440d4 sind in PR #437 mit 2.903 Quelltests, je 53 installierten Methoden und 39 CLI-Aufrufen sowie zehn ganzen Peer-Nachweisen je Richtung geliefert. Alle 22/135/37/16 Goal-Einheiten bleiben im Umfang; keine vollst\u00e4ndige Parit\u00e4t oder Betriebsfreigabe ist erkl\u00e4rt."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",
