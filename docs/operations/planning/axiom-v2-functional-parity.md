@@ -3087,3 +3087,35 @@ the modes, original row window, diagnostic differences and additional admission.
 Full pinned source validation, accountable review and fresh matching signed
 Mac/Linux delivery remain required. Mapping only:92 in progress,43 pending,
 zero verified; full22/135/37/16 and all historical receipts remain retained.
+
+
+The whole workbook importer is delivered as signed `9acc87e` in
+[PR #438](https://github.com/joku-dev/devsecops-governance-framework/pull/438).
+The complete source passed 2,947 pinned tests; each fresh signed host passed
+96 installed methods and 95 actual CLI calls. Twenty complete records replayed
+each direction; all 40 foreign peer inspections were rejected. Package audits
+remained unchanged and fixed5c whole consumer reports matched V1. All eight CI
+families are green, including both full 2,947-test suites. These observations
+are component evidence and do not complete the full Goal.
+
+## Complete governance document renderer counterpart, in development
+
+The entire original 216-line renderer, SHA-256
+`e98b4768f231788de391537237e1c43b35958731ce320bec461677c8b97f3df7`,
+is assigned to `document_rendering_application.py:generate`. All nine functions,
+catalog/profile/filter decisions, Markdown/HTML bytes, optional Pandoc invocation
+and original partial/error/parser behavior remain in scope. Private candidates,
+explicit selected exports, program/raw process observations and whole no-native
+reconstruction remain separate. Zero-exit missing DOCX, nonzero partial files,
+decode/start errors, ordered own-output reads and actual short writes are
+retained; finite capture/admission failures have no original verdict.
+
+Development comparisons cover the entire immutable original, real current
+policy/directive catalog and controlled negative tools. Separately captured real
+Pandoc3.14 executions produced all six complete exports on Mac/Linux with the
+same SOURCE_DATE_EPOCH. Earlier source snapshots remain explicitly dated
+development evidence; current registered application, full pinned validation,
+signed delivery and fresh matching installed acceptance are still required.
+The [guide](../guides/axiom-v2-document-rendering.md) describes the limits and
+semantics. Mapping only:93 in progress,42 pending,zero verified. Full22/135/37/16,
+all historical receipts and all governance/operating authority boundaries remain.

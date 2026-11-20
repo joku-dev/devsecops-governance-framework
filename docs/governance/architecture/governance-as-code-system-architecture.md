@@ -479,6 +479,32 @@ code/node bindings and ordinary bounded input/output admission do not authentica
 a producer or transfer operating authority. The entrypoint remains in progress;
 see the [workbook guide](../../operations/guides/axiom-v2-workbook-import.md).
 
+### Complete document rendering candidate
+
+`document_rendering.py` retains the entire original 216-line renderer and all
+nine functions, including catalog/profile selection, filtering, frontmatter,
+Markdown/HTML decisions and the optional original Pandoc command. Logical paths,
+named bounded YAML streams and explicit parser/file/tool ports preserve original
+successes, errors, help and numeric parser exits. The source compatibility facade
+retains the whole original adapter; it is excluded from the active installation.
+
+`document_rendering_application.py` exposes `document-rendering generate/inspect/replay`.
+The default private projection and explicit selected-file exports have separate
+ordered before/after observations. A finite external process adapter captures
+the resolved Pandoc binary identity, raw streams, actual terminal and observed
+DOCX bytes. A zero tool exit cannot invent a missing file; nonzero and decode
+errors retain observed partial output. Private staging is a projection, without
+claiming identical native source effects or OS network isolation.
+
+`document_rendering_io.py` reconstructs the whole execution from raw observations
+without current selected sources, native processes or repeated exports. Reads
+of the renderer's own earlier outputs retain their logical order. Product/runtime
+and own-node inspection bindings remain distinct from portable replay and from
+producer authentication. Additional finite input/YAML/tool/capture boundaries
+produce incomplete capture without an original verdict. Rendered status/approval
+labels confer no authority. The entrypoint remains in progress; see the
+[renderer guide](../../operations/guides/axiom-v2-document-rendering.md).
+
 ### Local preparation, requirement authority and public projection
 
 The [Review Workbench](../../operations/guides/governance-review-workbench.md)

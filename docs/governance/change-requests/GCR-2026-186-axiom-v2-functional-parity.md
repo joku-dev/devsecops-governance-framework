@@ -1401,3 +1401,28 @@ Mac/Linux installations, whole fixed5c consumer reports and complete declared
 coordinator review remain delivery prerequisites. The matrix entry is in_progress;
 no historical receipt or protected acceptance is replaced and the unchanged
 22areas/135entrypoints/37CIdefinitions/16operatingflows Goal remains open.
+
+
+## Engineering increment O: complete governance document rendering
+
+The retained whole216-line original fixture and compatibility adapter, neutral
+renderer, explicit selected-file/tool ports, application and reconstruction are
+engineering/reference artifacts. Private controlled programs, rendered outputs
+and raw journals are manual technical test evidence. Guide/arc42/Goal updates
+are descriptive. No normative source or source register change is present;
+full Source Document Intake is not required for this engineering increment.
+
+All nine original functions, catalog/profile/filter/default decisions and
+Markdown/HTML/DOCX behavior remain in scope. Native and private candidate
+modes retain ordered text writes and observed tool files separately. Original
+zero/missing outputs, nonzero partial outputs, start/decoding errors and earlier
+own-output reads are preserved. Program identity and process observations do not
+attest OS network isolation or authenticate an external producer. Additional
+ordinary-file, stable-read, YAML/stream/capture/time bounds produce incomplete
+capture, without an original verdict or inferred approval. Source status and
+approval labels remain display data; no authority or enforcement is activated.
+
+The entrypoint is in_progress. Whole pinned validation, revision-bound declared
+coordinator review, signed source and fresh matching Mac/Linux installation tests
+remain delivery prerequisites. Full22areas/135entrypoints/37CIdefinitions/
+16operatingflows and all protected/historical acceptance remain unchanged.
