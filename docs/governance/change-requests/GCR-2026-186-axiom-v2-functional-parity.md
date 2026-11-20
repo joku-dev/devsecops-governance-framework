@@ -1481,3 +1481,46 @@ with explicitly selected resource bytes. New regression cases compare the whole
 original program with a controlled schema transport and remove both selected
 data and resource files before offline replay. Fresh full validation and current
 signed installed proofs are required.
+
+## Engineering increment Q: complete synthetic ledger programs
+
+The six whole original demo/intake mains, three packet modules and seven-function
+store, 24 functions/587 original lines in total, are engineering/reference
+artifacts. Complete frozen originals and source-only compatibility adapters retain
+lineage to immutable V1. Neutral application/context/projection/replay code and
+explicit POSIX ports implement this increment. Raw journals and disposable
+candidate histories are manual technical test evidence. Guide/arc42/Goal changes
+are descriptive. No normative source or source register changes are present;
+Source Document Intake is not required for this engineering increment.
+
+Original parser behavior binds ledger ports lazily after successful parsing.
+Help and invalid arguments require no source data. The default private model
+captures owned source preimages and exact directory membership, then retains
+candidate inode/descriptor/buffer/link/lock/publication effects. Its mask077 and
+logical identities do not certify future native persistence or concurrency.
+Explicit native mode retains full before/after filesystem/resource observations,
+including post-publication failures, pending/canonical aliases and explicit
+original duplicate retries. Additional admission/capture limits have no original
+verdict; failed observation never implies retry, rollback or success.
+
+Closed reconstruction repeats the entire original execution without native
+source effects. Product/request/node and closed-blob bindings reject inconsistent
+or relabeled evidence, without authenticating its producer. Selected schema
+resources are retained through explicit ports, with no implicit network/file-URI
+retrieval. Synthetic observation/decision/remediation/closure/exception labels
+carry no live, personal, compliance or operating authority.
+
+The six entrypoints become in_progress, none verified. The complete22/135/37/16
+scope, all24 protected acceptance files and all18 historical parity receipts
+remain. Full pinned validation, revision-bound declared coordinator reviews,
+signed source and matching fresh installed Mac/Linux comparisons remain required.
+
+The current source review reproduced a native writer lock retained after journal
+exhaustion prevented original finally calls. Adapter teardown now releases owned
+host resources separately from the reconstructed original execution, preserving
+its end-of-kernel facts. Replaced descriptor identity is protected; unobserved
+buffered cleanup or failed/incomplete release cannot obtain an original verdict.
+Four focused regressions cover abort-after-lock, original failed close, buffered
+teardown and descriptor substitution. The earlier 99-test development snapshot
+and interrupted full validation do not certify this correction; fresh full pinned
+validation and matching host proofs are required.

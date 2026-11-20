@@ -2,15 +2,16 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Vollst\u00e4ndige synthetische Lifecycle-Berichte in V2 absichern und liefern",
+    "title": "Vollst\u00e4ndige synthetische Ledger-Abl\u00e4ufe in V2 absichern und liefern",
     "entrypoints": [
-      "scripts/generate_governance_lifecycle_index.py",
-      "scripts/generate_governance_lifecycle_pilot.py",
-      "scripts/generate_governance_lifecycle_exceptions.py",
-      "scripts/generate_governance_lifecycle_overview.py",
-      "scripts/generate_governance_lifecycle_viewer.py"
+      "scripts/run_governance_lifecycle_synthetic_demo.py",
+      "scripts/run_governance_lifecycle_action_demo.py",
+      "scripts/run_governance_lifecycle_closure_demo.py",
+      "scripts/run_governance_lifecycle_exception_demo.py",
+      "scripts/intake_governance_lifecycle_observation.py",
+      "scripts/intake_governance_lifecycle_action.py"
     ],
-    "next_step": "Alle f\u00fcnf urspr\u00fcnglichen Generatoren und 19 Funktionen, direkte \u00dcbersicht-/Viewer-Pr\u00fcfungen, private Kandidaten und native Teil-Ausgaben \u00fcber die registrierte V2-Anwendung vollst\u00e4ndig gepinnt validieren und als identische signierte Mac-/Linux-Kandidaten liefern. Der Renderer eb17af4 ist in Draft-PR #439 mit 3.020 Quelltests, je 168 gezielten installierten Methoden/152 CLI-Aufrufen, 31 ganzen Peer-Nachweisen je Richtung und 8 gr\u00fcnen CI-Familien geliefert. Die separat datierte \u00e4ltere Gesamtvergleichsbeobachtung bleibt erhalten; aktuelle Komponentenbelege zertifizieren sp\u00e4tere Pakete nicht automatisch. Alle 22/135/37/16 Einheiten und alle live/pers\u00f6nlichen/Betriebsabl\u00e4ufe bleiben im Goal; keine vollst\u00e4ndige Parit\u00e4t oder Freigabe wird erkl\u00e4rt."
+    "next_step": "Alle sechs urspr\u00fcnglichen Demo-/Intake-Programme, 24 Funktionen und vollst\u00e4ndige private/native Ledger-Effekte \u00fcber die registrierte Anwendung gepinnt validieren, dokumentieren und als passende signierte Mac-/Linux-Kandidaten liefern. Der vorangehende Berichtsstand 257e945 ist in Draft-PR #440 mit 3.089 Quelltests, je 68 installierten Methoden/108 CLI-Aufrufen, 26 vollst\u00e4ndigen Nachweisen je Richtung und identischen festen Consumer-Ergebnissen geliefert. Seine beiden vollst\u00e4ndigen CI-L\u00e4ufe sind noch offen; sechs weitere CI-Familien sind gr\u00fcn. Die \u00e4ltere datierte Gesamtbeobachtung bleibt separat. Aktuelle Entwicklungsbelege zertifizieren noch keinen signierten Folge-Kandidaten. Vollst\u00e4ndiger Umfang 22/135/37/16 und alle live/pers\u00f6nlichen/Betriebsabl\u00e4ufe bleiben im Goal; keine Parit\u00e4t oder Betriebsfreigabe wird erkl\u00e4rt."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",

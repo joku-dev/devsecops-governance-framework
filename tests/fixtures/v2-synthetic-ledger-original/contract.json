@@ -1,0 +1,101 @@
+{
+  "source_commit": "6b557fefe295b58272d2271326576ca3a3687197",
+  "sources": {
+    "scripts/run_governance_lifecycle_synthetic_demo.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/run_governance_lifecycle_synthetic_demo.py.txt",
+      "sha256": "18ff6213c8c4c05074105d2f8a93ac378e19f45cd9ce8665fea16ec3a3c2e037",
+      "lines": 51,
+      "functions": [
+        "run_demo",
+        "main"
+      ]
+    },
+    "scripts/run_governance_lifecycle_action_demo.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/run_governance_lifecycle_action_demo.py.txt",
+      "sha256": "822b485e3674aad6bcdb5df68a4b4cbb098d96e6fccbc06afd3f5946d77c1482",
+      "lines": 60,
+      "functions": [
+        "append_demo_actions",
+        "run_action_demo",
+        "main"
+      ]
+    },
+    "scripts/run_governance_lifecycle_closure_demo.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/run_governance_lifecycle_closure_demo.py.txt",
+      "sha256": "65b64153b4377e0720e06445b363dc4b5f96714d09e4616712a5c81ad68faf1a",
+      "lines": 64,
+      "functions": [
+        "run_closure_demo",
+        "main"
+      ]
+    },
+    "scripts/run_governance_lifecycle_exception_demo.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/run_governance_lifecycle_exception_demo.py.txt",
+      "sha256": "62794cffef878de6fa982250b7bc85d06e712fce670fa10b6ec93fb1800a9643",
+      "lines": 68,
+      "functions": [
+        "run_exception_demo",
+        "main"
+      ]
+    },
+    "scripts/intake_governance_lifecycle_observation.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/intake_governance_lifecycle_observation.py.txt",
+      "sha256": "da88093568cdf645025860afb400668b9251646522c0956c6bccd5b4bcd7d1e7",
+      "lines": 32,
+      "functions": [
+        "main"
+      ]
+    },
+    "scripts/intake_governance_lifecycle_action.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/intake_governance_lifecycle_action.py.txt",
+      "sha256": "a30aaa66db15d88299b504bfe84db5bcd486db9d4396f6814907d368a92ef809",
+      "lines": 48,
+      "functions": [
+        "main"
+      ]
+    },
+    "scripts/lib/governance_lifecycle/store.py": {
+      "fixture": "tests/fixtures/v2-repository-validation/lifecycle-store.py.txt",
+      "sha256": "5668593aaf4813bbd71d0d3487588cc6d0cf44199c0eb91efb954844e9cd7af2",
+      "lines": 113,
+      "functions": [
+        "writer_lock",
+        "load_transactions",
+        "publish_transaction",
+        "append_observation",
+        "append_action",
+        "append_closure",
+        "append_exception"
+      ]
+    },
+    "scripts/lib/governance_lifecycle/synthetic.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/synthetic.py.txt",
+      "sha256": "7b27fd406e5d3fb04648f0b9f01a3cf3236b4ee8fc2df106f4ef1627d7ca7b19",
+      "lines": 36,
+      "functions": [
+        "synthetic_packet"
+      ]
+    },
+    "scripts/lib/governance_lifecycle/synthetic_actions.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/synthetic_actions.py.txt",
+      "sha256": "aba17ea17d0292905e93f2d3c9b5deddff0c182b247e089b5a910cfaffa8ed05",
+      "lines": 74,
+      "functions": [
+        "resource",
+        "decision_packet",
+        "remediation_packet",
+        "closure_packet"
+      ]
+    },
+    "scripts/lib/governance_lifecycle/synthetic_exceptions.py": {
+      "fixture": "tests/fixtures/v2-synthetic-ledger-original/synthetic_exceptions.py.txt",
+      "sha256": "84df939e8cad38cc6f92097711cfa050759494c11f5fd25c87bceb935e1d7cfa",
+      "lines": 41,
+      "functions": [
+        "exception_packet"
+      ]
+    }
+  },
+  "no_history_required_for_oracles": true,
+  "scope": "complete6 entrypoints,3 packet helpers and existing whole store reference, not authority"
+}

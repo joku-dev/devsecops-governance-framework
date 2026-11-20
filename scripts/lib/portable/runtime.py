@@ -75,6 +75,12 @@ def source_digest():
     paths = [*(p for p in sorted((ROOT/'scripts/lib/portable').glob('*.py')) if p.name!='adapters.py'),
              *(p for p in sorted((ROOT/'scripts/lib/providers').glob('*.py'))
                if p.name not in {
+                   'legacy_synthetic_ledger_synthetic.py',
+                   'legacy_synthetic_ledger_action.py',
+                   'legacy_synthetic_ledger_closure.py',
+                   'legacy_synthetic_ledger_exception.py',
+                   'legacy_synthetic_ledger_observation.py',
+                   'legacy_synthetic_ledger_record.py',
                    'legacy_synthetic_lifecycle_exceptions.py',
                    'legacy_synthetic_lifecycle_index.py',
                    'legacy_synthetic_lifecycle_overview.py',
@@ -95,6 +101,7 @@ def source_digest():
     paths.extend(ROOT/'scripts/lib'/name for name in ('requirement_validation.py','requirement_validation_budget.py','requirement_validation_context.py','requirement_validation_replay.py','requirement_validation_application.py','requirement_validation_ports.py','requirement_migration_generation.py','requirement_platform_generation.py','requirement_review_context.py','requirement_review_output.py','requirement_review_application.py','requirement_review_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('document_rendering.py','document_rendering_context.py','document_rendering_io.py','document_rendering_ports.py','document_rendering_application.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('synthetic_lifecycle_reports.py', 'synthetic_lifecycle_context.py', 'synthetic_lifecycle_io.py', 'synthetic_lifecycle_output.py', 'synthetic_lifecycle_projection.py', 'synthetic_lifecycle_projection_io.py', 'synthetic_lifecycle_ports.py', 'synthetic_lifecycle_application.py'))
+    paths.extend(ROOT/'scripts/lib'/name for name in ('synthetic_ledger_context.py', 'synthetic_ledger_packets.py', 'synthetic_ledger_programs.py', 'synthetic_ledger_store.py', 'synthetic_ledger_projection.py', 'synthetic_ledger_io.py', 'synthetic_ledger_effect_state.py', 'synthetic_ledger_replay_effects.py', 'synthetic_ledger_execution.py', 'synthetic_ledger_private.py', 'synthetic_ledger_application.py', 'synthetic_ledger_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('harmonized_workbook_import.py','workbook_import_context.py','workbook_import_limits.py','workbook_import_io.py','workbook_import_application.py','workbook_import_ports.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_application.py', 'dcr_manifest.py', 'dcr_structure.py', 'dcr_semantics.py', 'dcr_response.py', 'dcr_evaluation.py'))
     paths.extend(ROOT/'scripts/lib'/name for name in ('dcr_source_context.py','dcr_operations.py','dcr_catalog.py','dcr_projection.py','document_consistency_view.py'))
