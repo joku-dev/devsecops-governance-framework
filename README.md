@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **109 in Arbeit** und **26 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **112 in Arbeit** und **23 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 109 | 26 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 112 | 23 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Diagnostische Pilot-Berichte vollständig portieren und aktuelle installierte Nachweise abschließen.
+**Nächster Baustein:** Personal-Channel-Programme vollständig prüfen und aktuelle Host-Nachweise abschließen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -98,12 +98,14 @@ Nachweise je Richtung. Beide festen Consumer-Berichte stimmen mit V1 überein.
 Der folgende [synthetische Ledger-Baustein](docs/operations/guides/axiom-v2-synthetic-ledger.md)
 überführt alle sechs bisherigen Demo-/Intake-Programme einschließlich privater
 Kandidaten, ausdrücklicher POSIX-Dateieffekte, ursprünglicher Teilfehler und
-gespeicherter Nachrechnung. Seine vollständige aktuelle Validierung und
-signierte Mac-/Linux-Lieferung stehen noch aus. Im bisherigen Hostvergleich
-stimmten 25 von 28 ganzen Ledger-Nachweisen überein; drei Parser-Ausgaben wichen
-zwischen Python 3.12 und 3.13 ab. Der Korrekturkandidat speichert deshalb das
-vollständige Parserprofil samt Breite und Sprache als Eingang der Nachrechnung.
-Die vollständige erneute Prüfung und Lieferung dieses Kandidaten bleibt offen.
+gespeicherter Nachrechnung. Der korrigierte Stand `2882573` ist in
+[Draft-PR #441](https://github.com/joku-dev/devsecops-governance-framework/pull/441)
+mit 3.204 Quelltests und signierten Mac-/Linux-Kandidaten geliefert: jeweils
+114 installierte Methoden, 122 CLI-Aufrufe und 28 ganze Nachweise je Richtung.
+Alle acht GitHub-Prüffamilien sind abgeschlossen und grün. Das vollständige
+Erzeugerprofil erhält die ursprünglichen Parser-Ausgaben beider Python-Versionen
+ohne Vereinheitlichung; die festen Consumer-Berichte stimmen mit V1 überein.
+Die breitere Folgeabnahme mit den zusätzlichen Bausteinen läuft separat.
 
 Der anschließende [Dokumentationsabgleich](docs/operations/guides/axiom-v2-documentation-reconciliation.md)
 überführt das vollständige ursprüngliche Programm mit sieben Funktionen:
@@ -123,6 +125,15 @@ Die nächsten [diagnostischen Pilot-Berichte](docs/operations/guides/axiom-v2-pi
 sind als vollständige ursprüngliche Aktions-/Validierungsprogramme in Arbeit.
 Ein ausdrückliches Capture-Profil prüft gespeicherte Provider- und Personenfelder;
 die Auswertung erteilt keine neue Zustimmung oder Betriebsfreigabe.
+
+Der folgende [Personal-Channel-Baustein](docs/operations/guides/axiom-v2-personal-channel.md)
+stellt die drei vollständigen ursprünglichen Programme für Erklärungsvorlage,
+Kanalprüfung und Evidenzbericht samt Prüfung neuer Captures bereit. Explizite
+Ports erfassen begrenzte Provider-Lesezugriffe, lokale Git-Auswahl, Uhrzeit und
+exklusive Dateiausgabe. Private Kandidaten und gespeicherte Nachrechnung sind
+implementiert; persönliche Erklärungen werden ausschließlich als Text erzeugt.
+Vollvalidierung, Review und signierte Mac-/Linux-Lieferung dieses neuen
+Entwicklungsstands stehen noch aus.
 
 Die folgende [Parserkontext-Korrektur](docs/operations/guides/axiom-v2-producer-parser-context.md)
 erweitert die gespeicherten Erzeugerprofile auf die älteren Lifecycle-Berichte,

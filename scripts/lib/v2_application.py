@@ -112,6 +112,9 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
+    if command=='personal-channel' and not instance_path and arguments[:1]==['replay']:
+        from lib.personal_channel_application import run as personal_channel_run
+        return personal_channel_run(arguments)
     if command=='pilot-projections' and not instance_path and arguments[:1]==['replay']:
         from lib.pilot_projection_application import run as pilot_projection_run
         return pilot_projection_run(arguments)
@@ -142,10 +145,13 @@ def run(command, arguments, *, instance_path=None):
     if command=='operations-report' and not instance_path and arguments[:1]==['replay']:
         from lib.operations_application import run as operations_run
         return operations_run(arguments)
-    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger','documentation-reconciliation','lifecycle-candidates','pilot-projections'):
+    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger','documentation-reconciliation','lifecycle-candidates','pilot-projections','personal-channel'):
         raise ValueError('v2_entrypoint_not_supported')
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='personal-channel':
+        from lib.personal_channel_application import run as personal_channel_run
+        return personal_channel_run(arguments,root,settings)
     if command=='pilot-projections':
         from lib.pilot_projection_application import run as pilot_projection_run
         return pilot_projection_run(arguments,instance_path,settings)

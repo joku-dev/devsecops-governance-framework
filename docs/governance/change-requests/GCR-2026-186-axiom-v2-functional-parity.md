@@ -1,5 +1,49 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+## Personal-channel programs, explicit read transport and exclusive output
+
+Classify the new neutral program/context/application/reconstruction modules,
+explicit provider/process/clock/output adapters, product routing and immutable
+original test references as executable portability and evidence-contract work.
+The 80 frozen oracle members retain their original hashes and history; private
+fixtures may select a recorded valid prefix without editing real protected
+acceptance, source registers, released baselines or historical receipts. No
+normative source or derived control/policy is introduced; full source-document
+intake does not apply to this engineering/reference increment.
+
+Preserve all three original complete mains, nine named program functions,
+original current-head/request/history validation, bounded GET pagination and
+before/after race rejection, capture clock sampled after responses, exact raw
+capture bytes and exclusive output. Restore full new-capture verification over
+original local Git selection and provider projection, including its integer
+return value. Statement/evidence mains continue to ignore argv; only the check
+main receives the original complete producer argparse profile. No original
+validation outcome is replaced or inferred from a captured declaration.
+
+Use closed process/clock/exclusive-output observations with whole raw stderr
+bytes and original Git text/exception semantics. Actual resource, stream-budget
+or journal failures are incomplete; owned cleanup may flush bytes separately
+without granting an original verdict. Finite private mask077 projection does
+not assert native buffering/durability. Pure replay consumes the same observed
+inputs after selected source and executable removal, without native effects.
+Require product/source/node/request/result/event/blob and authority bindings.
+Provider defaults belong in explicit composition; architecture-boundary checks
+must reject provider literals in the neutral application.
+An actual delayed-constructor comparison reproduced premature transport timeout;
+start its original timeout after process creation, matching `check_output`.
+The extra finite local-Git deadline instead remains technical incompleteness:
+the original Git call supplies no timeout and must obtain no invented original
+`TimeoutExpired` verdict. Preserve both failing-before regression logs and
+reject a resealed Git timeout verdict during pure reconstruction.
+
+Keep three subjects in progress until their complete individual evidence and
+full pinned/reviewed/signed installed Mac/Linux/peer/consumer checks support
+promotion. All22/135/37/16 remain. Rendered historical personal statements,
+transport observations and technical replay confer no current personal consent,
+producer authentication, operating acceptance, live activation or posting
+authority. Full external interpreter traceback equality remains open. See the
+[personal-channel guide](../../operations/guides/axiom-v2-personal-channel.md).
+
 ## Subject evidence delivery and audit
 
 ### Initial individual technical declarations

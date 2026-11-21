@@ -673,8 +673,31 @@ are not substituted. A separate correction marks possible native partial effects
 for original candidate write failures; the original kernel and admission guards
 remain unchanged. Focused source checks are development evidence; current full,
 pinned, reviewed, signed installed/peer/consumer evidence is still required.
-Full22/135/37/16 remains, now109in_progress/26pending/0verified entrypoints.
+All22/135/37/16 remain in scope; current subject states are tracked in the
+[Goal progress](../../operations/status/axiom-v2-goal-progress.md).
 See [pilot projections](../../operations/guides/axiom-v2-pilot-projections.md).
+
+### Personal-channel read and exclusive-output boundary
+
+`personal-channel generate/inspect/replay` retains all three original statement,
+check and evidence programs plus the complete `verify_new_captures` function.
+`personal_channel_context.py` supplies logical paths, closed schema validation,
+complete producer parser context and explicit binary exclusive output. Neutral
+reconstruction validates ordered raw provider stderr references, original Git
+text decoding, clock observations and exclusive write/close effects. Provider
+names, GET routes, executable lookup, real processes and clock sampling reside
+in adapters selected through `personal_channel_ports.py`.
+
+New captures preserve request/head/history checks, before/after pagination and
+race rejection, clock sampling after responses, and original `xb` replacement
+guards. Private mask077 projection and explicit native effects are separately
+identified. Unobserved journal/cleanup effects confer no original verdict.
+Replay requires no selected files, executable, provider or native clock and
+binds the complete result to product/source/node/request/event/blob context.
+These diagnostic operations provide no posting port or personal/live/operating
+authority. The registered source increment remains subject to full validation,
+review and signed installed Mac/Linux/peer/consumer acceptance. See the
+[personal-channel guide](../../operations/guides/axiom-v2-personal-channel.md).
 
 
 ### Complete producer parser context across prior capture APIs

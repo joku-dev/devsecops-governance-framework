@@ -1,0 +1,172 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "profile_id": {
+      "const": "profile:clg-synthetic-exceptions"
+    },
+    "version": {
+      "const": "0.1.0"
+    },
+    "environment": {
+      "const": "synthetic"
+    },
+    "live_intake_enabled": {
+      "const": false
+    },
+    "source_path": {
+      "const": "model/waivers/waiver-authorities.yaml"
+    },
+    "source_digest": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/digest"
+    },
+    "authority_model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bindings": {
+      "type": "object",
+      "properties": {
+        "low": {
+          "type": "object",
+          "properties": {
+            "authority": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subjects": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "authority",
+            "subjects"
+          ],
+          "additionalProperties": false
+        },
+        "medium": {
+          "type": "object",
+          "properties": {
+            "authority": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subjects": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "authority",
+            "subjects"
+          ],
+          "additionalProperties": false
+        },
+        "high_cybersecurity": {
+          "type": "object",
+          "properties": {
+            "authority": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subjects": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "authority",
+            "subjects"
+          ],
+          "additionalProperties": false
+        },
+        "high_safety": {
+          "type": "object",
+          "properties": {
+            "authority": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subjects": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "authority",
+            "subjects"
+          ],
+          "additionalProperties": false
+        },
+        "critical": {
+          "type": "object",
+          "properties": {
+            "authority": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subjects": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^test-human:[a-zA-Z0-9._-]+$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "authority",
+            "subjects"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "low",
+        "medium",
+        "high_cybersecurity",
+        "high_safety",
+        "critical"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile_id",
+    "version",
+    "environment",
+    "live_intake_enabled",
+    "source_path",
+    "source_digest",
+    "authority_model",
+    "bindings"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-exception-profile.schema.json"
+}

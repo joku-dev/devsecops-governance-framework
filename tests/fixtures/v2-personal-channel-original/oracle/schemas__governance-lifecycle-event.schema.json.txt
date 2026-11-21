@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-event.schema.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "record_id",
+    "environment",
+    "profile_ref",
+    "finding",
+    "recorded_at",
+    "body"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "event"
+    },
+    "record_id": {
+      "type": "string",
+      "pattern": "^event:[a-zA-Z0-9._-]+$"
+    },
+    "environment": {
+      "enum": [
+        "synthetic",
+        "live"
+      ]
+    },
+    "profile_ref": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/versioned_ref"
+    },
+    "finding": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/finding"
+    },
+    "recorded_at": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "event_type",
+        "revision",
+        "expected_revision",
+        "previous_event_ref",
+        "effective_at",
+        "policy_version",
+        "source_refs"
+      ],
+      "properties": {
+        "event_type": {
+          "enum": [
+            "finding_opened",
+            "observation_added",
+            "decision_recorded",
+            "remediation_recorded",
+            "finding_closed",
+            "finding_reopened",
+            "clarification_required"
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "previous_event_ref": {
+          "oneOf": [
+            {
+              "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effective_at": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+        },
+        "policy_version": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/version"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "title": "Governance Lifecycle Event (pilot 0.1.0)",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "body": {
+            "properties": {
+              "revision": {
+                "const": 1
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "body": {
+            "properties": {
+              "expected_revision": {
+                "const": 0
+              },
+              "previous_event_ref": {
+                "type": "null"
+              },
+              "event_type": {
+                "const": "finding_opened"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "body": {
+            "properties": {
+              "previous_event_ref": {
+                "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+              },
+              "event_type": {
+                "not": {
+                  "const": "finding_opened"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

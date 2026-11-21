@@ -206,6 +206,7 @@ nav:
           - AXIOM V2 Lifecycle Candidate Preparation: operations/guides/axiom-v2-lifecycle-candidate-preparation.md
           - AXIOM V2 Producer Parser Context: operations/guides/axiom-v2-producer-parser-context.md
           - AXIOM V2 Diagnostic Pilot Projections: operations/guides/axiom-v2-pilot-projections.md
+          - AXIOM V2 Personal Channel: operations/guides/axiom-v2-personal-channel.md
           - V2 Public Artifact Hygiene: operations/guides/axiom-v2-artifact-hygiene.md
           - V2 Portable Candidate Index: operations/guides/axiom-v2-candidate-index.md
           - V2 Private Workbench: operations/guides/axiom-v2-workbench.md

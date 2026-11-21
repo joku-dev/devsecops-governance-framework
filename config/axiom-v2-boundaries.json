@@ -188,7 +188,14 @@
     "scripts/lib/lifecycle_candidate_preparation_application.py",
     "scripts/lib/pilot_projection_programs.py",
     "scripts/lib/pilot_projection_context.py",
-    "scripts/lib/pilot_projection_application.py"
+    "scripts/lib/pilot_projection_application.py",
+    "scripts/lib/personal_channel_programs.py",
+    "scripts/lib/personal_channel_collection.py",
+    "scripts/lib/personal_channel_context.py",
+    "scripts/lib/personal_channel_exclusive.py",
+    "scripts/lib/personal_channel_private.py",
+    "scripts/lib/personal_channel_process.py",
+    "scripts/lib/personal_channel_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
@@ -206,7 +213,8 @@
     "scripts/lib/synthetic_ledger_ports.py",
     "scripts/lib/documentation_reconciliation_ports.py",
     "scripts/lib/lifecycle_candidate_preparation_ports.py",
-    "scripts/lib/pilot_projection_ports.py"
+    "scripts/lib/pilot_projection_ports.py",
+    "scripts/lib/personal_channel_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [

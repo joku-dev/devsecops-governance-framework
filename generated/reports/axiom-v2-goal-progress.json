@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 109,
-      "pending": 26,
+      "in_progress": 112,
+      "pending": 23,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,16 +337,17 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "cb7b30da91b885336bbc4664c1aad0c0f05f4e7aebca3bcc3d8562af3e0da0af",
+  "matrix_sha256": "5d4c21875591293298816d355e723c72b02adb7dabe48dd2f8edb61c151741da",
   "next_work": {
     "entrypoints": [
-      "scripts/generate_lifecycle_pilot_actions.py",
-      "scripts/generate_lifecycle_pilot_validation.py"
+      "scripts/check_lifecycle_personal_channel.py",
+      "scripts/generate_personal_channel_evidence.py",
+      "scripts/generate_personal_channel_probe.py"
     ],
-    "next_step": "Die vollständigen Aktions-/Validierungsprogramme sind über pilot-projections mit ausdrücklich gewähltem Capture-Profil implementiert; dreizehn neue Quelltests bestehen gegen die unveränderte V1-Referenz mit zwei Nachweisen und null Aktionen. Ein im unveröffentlichten Kandidatenmodul reproduzierter falscher Hinweis nach nativer 7-Byte-Teilausgabe ist korrigiert und erhält eine Regression. Vollständige weitere Historien-/Fehlerfälle, gepinnte Laufzeiten, Gesamtvalidierung, deklarierte Reviews und signierte installierte Host-/Peer-/Consumer-Nachweise bleiben erforderlich. Aktuelle Ledger- und Parserprüfungen laufen separat; frühere Nachweise behalten ihre ursprünglichen Revisionen. Alle22/135/37/16 bleiben enthalten, keine vollständige Parität oder übertragene persönliche/live/Betriebsautorität.",
-    "title": "Diagnostische Pilot-Berichte vollständig portieren und aktuelle installierte Nachweise abschließen"
+    "next_step": "Die drei vollständigen Programme und die Prüfung neuer Captures sind über personal-channel mit expliziten Provider-/Git-/Uhr-/Ausgabeports registriert. Ganze Originalprogramme, Binärdiagnostik, native/private Effekte und quellenloses Replay sind lokal geprüft; gemeinsame aktuelle Python-Prüfungen, Vollvalidierung, deklarierte Reviews und signierte installierte Mac-/Linux-/Peer-/Consumer-Nachweise stehen für diesen neuen Stand aus. Der unveränderte signierte Vorgänger dac61c6 hat seine Mac-Abnahme einschließlich ganzer Consumer-Berichte bestanden; sein unabhängiger Linux-Lauf und anschließender Peer-Vergleich bleiben separat offen. Frühere Beobachtungen behalten ihre Revisionen. Alle22/135/37/16 bleiben im Scope;112 Einstiegspunkte in Arbeit,23 offen,0 vollständig nachgewiesen. Keine persönliche/live/Betriebsautorität wird übertragen.",
+    "title": "Personal-Channel-Programme vollständig prüfen und aktuelle Host-Nachweise abschließen"
   },
-  "observation_sha256": "5d1d05a54797110916149850452f78a80020efbb4360c8b540d7d99a2b27a0cf",
+  "observation_sha256": "22c1c41914df4538c6348ba2b9a7dd157bb06a3bad6c6da1b22d9e3dcdc7da1f",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],
