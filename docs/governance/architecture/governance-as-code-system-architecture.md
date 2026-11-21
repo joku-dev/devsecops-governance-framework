@@ -750,6 +750,27 @@ verdict. This engineering candidate grants no personal, producer, Source,
 compliance or operating authority; full source and signed installed acceptance
 remain separate. See the [pilot action intake guide](../../operations/guides/axiom-v2-pilot-action-intake.md).
 
+### Complete diagnostic provider preflight
+
+`live-preflight generate/inspect/replay` retains the complete original capture
+and saved-bundle main program. The neutral program/context and pure path/effect
+reconstruction are separate from the explicitly selected legacy GET adapter,
+its original verifier, raw producer fields and fixed request protocol. Provider
+queries, before/after race checks and the sampled clock precede original
+verification; exclusive directory/file creation and the completion manifest
+remain in original order. Existing personal-channel stream limits stay intact;
+the new transport admits the original complete10-MiB archive boundary.
+
+An ordinary competing output entry is an external observation, never an owned
+write. Pure replay retains the original error and all observed own/external
+progress after selected source and programs are deleted. A partial buffered
+write keeps the original bytes and error. Missing observations receive no
+original verdict; separate host-resource teardown does not certify unobserved
+flushes. The command is diagnostic and creates no lifecycle receipt, personal
+consent or operating acceptance. Full pinned and signed installed evidence
+remain separate from the current source tests. See the
+[diagnostic preflight guide](../../operations/guides/axiom-v2-live-preflight.md).
+
 ### Complete producer parser context across prior capture APIs
 
 The synthetic lifecycle reporting, workbook import and document-rendering

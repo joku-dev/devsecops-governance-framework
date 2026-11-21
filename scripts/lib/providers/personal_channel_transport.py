@@ -6,7 +6,7 @@ from lib.providers.document_rendering_tools import program_identity
 from lib.providers.workbook_import_io import ordinary_ancestors,original_error,failure_value
 from lib.providers.personal_channel_process import NativeReadProcess
 from lib.providers.synthetic_lifecycle_io import capture_port
-from lib.personal_channel_process import process_value,clock_value,MAX_CALLS
+from lib.personal_channel_process import process_value,clock_value,MAX_CALLS,MAX_STDOUT,MAX_STDERR
 from lib.requirement_validation_budget import InputAdmissionError
 
 def lookup(name,cwd,environment):
@@ -17,11 +17,11 @@ def lookup(name,cwd,environment):
     return None
 
 class NativePersonalTransport:
-    def __init__(self,owner,root,profile,*,emit_stderr,environment=None,provider_executable='gh'):
+    def __init__(self,owner,root,profile,*,emit_stderr,environment=None,provider_executable='gh',stream_limits=(MAX_STDOUT,MAX_STDERR)):
         self.owner,self.root,self.profile,self.emit_stderr=owner,str(root),profile,emit_stderr
         self.environment=dict(os.environ if environment is None else environment);self.provider_executable=provider_executable
         if type(provider_executable) is not str or not provider_executable or '\0' in provider_executable or len(provider_executable)>8192:raise InputAdmissionError('personal_provider_executable_required')
-        self.calls=0;self.process_factory=NativeReadProcess
+        self.calls=0;self.stream_limits=stream_limits;self.process_factory=lambda:NativeReadProcess(stream_limits=stream_limits)
 
     @property
     def record(self):return self.owner.record
@@ -69,7 +69,7 @@ class NativePersonalTransport:
                     'signal_context':signal_context,'effective_encoding':codec,'observation':observe}
         try:
             wire=self.owner.perform('personal-read-process',spec,effect)
-            return process_value(wire,spec,self.profile,lambda ref:cache[ref['sha256']],emit_stderr=self.emit_stderr)
+            return process_value(wire,spec,self.profile,lambda ref:cache[ref['sha256']],emit_stderr=self.emit_stderr,stream_limits=self.stream_limits)
         except (UnicodeError,):raise
         except Exception as error:
             from lib.requirement_review_output import RetainedOutputError

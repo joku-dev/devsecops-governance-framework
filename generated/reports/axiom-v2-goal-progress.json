@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 114,
-      "pending": 21,
+      "in_progress": 115,
+      "pending": 20,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,15 +337,16 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "094fd8f832ec2f683b33b8d9991e71fedb882a24fed6fb7bfd66205316ce347b",
+  "matrix_sha256": "6bed4f101747d67d07feba6950553d3b0b5afb933c66514205d763e76fc31f27",
   "next_work": {
     "entrypoints": [
-      "scripts/intake_lifecycle_pilot_action.py"
+      "scripts/preflight_lifecycle_live_evidence.py",
+      "scripts/intake_lifecycle_pilot_run.py"
     ],
-    "next_step": "Der vollständige ursprüngliche Intake-Main-Block samt collect_action und append_action_snapshot ist als pilot-action-intake registriert: frische explizite Provider-Leseabfragen, getrennte Capture-/recorded_at-Zeitpunkte, zwei Ledger-Sperren in Originalreihenfolge, erneutes Laden und atomisches Anhängen. Der frühere unregistrierte6-Gruppen-Prototyp besteht auf Python3.13/3.11/3.12; vollständige API-Vergleiche und ein Test mit zwei echten konkurrierenden Prozessen bestehen lokal. Der registrierte Anwendungsstand prüft Herkunft, Manipulationen, native fsync-Teilfehler, Journalabbrüche und CLI-Nachrechnung. Aktuelle gemeinsame Quellprüfungen, Gesamtvalidierung, deklarierte Reviews und signierte installierte Mac-/Linux-/Peer-/Consumer-Nachweise stehen noch aus. Datierten Vorgängern werden keine neuen Abnahmen zugerechnet; der Vorbereitungszweig hat seine gepinnte Gesamtprüfung mit3.337Tests sowie Demo/Viewer/Goal/striktem Dokumentationsbuild und deklarierte Quellreviews bestanden; sein eigener signierter Hostvergleich bleibt separat. Alle22/135/37/16 bleiben im Scope:114 Einstiegspunkte in Arbeit,21 offen,0 vollständig nachgewiesen. Keine persönliche/live/Betriebsautorität wird übertragen.",
-    "title": "Aktions-Intake vollständig prüfen und gemeinsame Liefernachweise abschließen"
+    "next_step": "Der vollständige ursprüngliche Preflight-Main und collect_preflight sind als live-preflight registriert, mit expliziten GETs, unverändertem Originalverifier, Erfassungszeit und exklusiver Ausgabe samt letzter Abschlussdatei. Neun gezielte Kernprüfgruppen bestehen, einschließlich gültigem10-MiB-Archiv, zwei Ausgabemodi, Original-APIs, Konkurrenz und sieben Byte Teilfehler. Sechs Anwendungsgruppen sowie CLI und native Teilfehlerprüfung bestehen separat. Eine frühere66-Gruppen-Regression bestätigt unveränderte3194Quelldateien und die bisherigen8-MiB-Transportgrenzen. Die aktuellen17Quellgruppen bestehen auf3.13/3.11/3.12; eigene Gesamtvalidierung und signierte Hostabnahmen stehen aus. Der signierte Vorgänger dac61c6 hat seinen korrigierten Hostvergleich mit104Nachweisen je Richtung und208Fremdinstanz-Ablehnungen abgeschlossen; ursprünglicher Harnessfehler und gesonderte Korrektur bleiben erhalten. Der Vorbereitungsstand5350904 besteht3337Quelltests und430installierte Mac-Gruppen; übrige CLI-/Linux-/Peer-Abnahme läuft separat. Der Intake-Quellstand besteht3352Tests und deklarierte Reviews; seine eigene signierte Hostabnahme bleibt separat. run-intake ist weiter offen. Unverändert22/135/37/16 im Scope:115 in Arbeit,20 offen,0 vollständig verifiziert. Keine Source-, persönliche, Producer- oder Betriebsautorität wird übertragen.",
+    "title": "Diagnostischen Preflight vollständig prüfen und gemeinsame Liefernachweise abschließen"
   },
-  "observation_sha256": "73be5e61e84b431ccb75c1f0aa89724d6fef5c24fad60c7a6b839e8db19e21ef",
+  "observation_sha256": "bf5d62ba1faac735ad0eca0e2a928fdbdaece19908f7abebdf9b409e0e9e28a4",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **114 in Arbeit** und **21 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **115 in Arbeit** und **20 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 114 | 21 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 115 | 20 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Aktions-Intake vollständig prüfen und gemeinsame Liefernachweise abschließen.
+**Nächster Baustein:** Diagnostischen Preflight vollständig prüfen und gemeinsame Liefernachweise abschließen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -153,9 +153,19 @@ Anhängen. Frische Provider-Lesezugriffe, beide Zeitpunkte, Ledger-Sperren und
 Zustandsprüfung nach dem Warten bleiben erhalten. Native Teilfehler und
 unvollständige Journale werden unterschieden; eigene offene Ressourcen werden
 getrennt freigegeben. Original-API- und Konkurrenzvergleiche bestehen lokal.
-Die aktuelle gepinnte Gesamtprüfung und signierte installierte Abnahme dieses
-Folgezweigs stehen noch aus. Private Kandidaten und technische Nachrechnung
-übertragen keine persönliche oder betriebliche Zustimmung.
+Der Aktions-Intake-Quellstand ist mit3.352Tests, Demo/Viewer/Goal/striktem
+Dokumentationsbuild und deklarierten Quellreviews geprüft. Seine eigene signierte
+installierte Abnahme wird separat abgeschlossen. Private Kandidaten und
+technische Nachrechnung übertragen keine persönliche oder betriebliche Zustimmung.
+
+Der [diagnostische Preflight](docs/operations/guides/axiom-v2-live-preflight.md)
+überführt den vollständigen ursprünglichen Capture-/Replay-Ablauf. GETs,
+Producer-Revisionen, Originalvalidierung und Erfassungszeit bleiben erhalten.
+Exklusive Ausgabe und letzte Abschlussdatei verhindern das Ersetzen bestehender
+Bundles; konkurrierende Einträge und native Teilfehler bleiben sichtbar.
+Gezielte Original-, API-, CLI- und Nachrechnungsvergleiche bestehen lokal.
+Aktuelle Gesamtvalidierung und eigene signierte Hostabnahme stehen aus.
+Der Befehl ist diagnostisch und schreibt keinen Lifecycle-Receipt.
 
 Die folgende [Parserkontext-Korrektur](docs/operations/guides/axiom-v2-producer-parser-context.md)
 erweitert die gespeicherten Erzeugerprofile auf die älteren Lifecycle-Berichte,

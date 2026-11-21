@@ -1,6 +1,34 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
 
+## Whole diagnostic capture and saved-bundle preflight
+
+Classify the neutral full original program/context/reconstruction/application,
+explicit GET/clock/exclusive-output composition, larger binary transport profile
+and immutable original references as executable engineering/evidence-contract
+portability under this GCR. No new normative source, control, policy, baseline,
+source register, official latest-result index or operating acceptance changes.
+Full Source Document Intake does not apply to these technical references.
+
+Retain the entire1,035-byte original main and complete collect_preflight body,
+plus unchanged original capture verification and bundle replay. Keep original
+profile/assignment checks, fixed read-only GETs, paginated artifacts, raw pinned
+producer files, before/after races, capture sample,10-MiB archive verification,
+exclusive directory and buffered xb files with completion manifest last. The
+new explicitly selected16-MiB process stdout budget does not weaken the existing
+personal-channel8-MiB profile. AST comparisons retain all original decisions.
+
+Compare native/private full bytes, modes, streams and direct API returns, then
+pure replay after source/program deletion. Include actual ordinary competing
+entries during GETs and mkdir, original EEXIST, exact7-byte partial-write errors,
+and source/node/parser/result/event/blob/authority mutation rejection. Record
+external appearances separately from owned outputs. Missing input/clock/journal
+observations obtain no original verdict; separately release owned host handles.
+These tests, legacy markers and reconstructed consistency confer no producer,
+personal, Source, compliance or operating authority. Outer Python traceback
+wire and complete Goal acceptance remain open; run-intake is a separate pending
+entrypoint. See the [preflight guide](../../operations/guides/axiom-v2-live-preflight.md).
+
 ## Whole fresh pilot action intake and two-ledger publication
 
 Classify the neutral original program/context/application/reconstruction,

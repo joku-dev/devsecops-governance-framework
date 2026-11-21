@@ -5,13 +5,15 @@ from lib.personal_channel_process import MAX_STDOUT,MAX_STDERR
 from lib.requirement_validation_budget import InputAdmissionError
 
 class NativeReadProcess:
-    def __init__(self):
+    def __init__(self,*,stream_limits=(MAX_STDOUT,MAX_STDERR)):
+        if type(stream_limits) is not tuple or len(stream_limits)!=2 or type(stream_limits[0]) is not int or not 0<stream_limits[0]<=16*1024**2 or type(stream_limits[1]) is not int or stream_limits[1]!=MAX_STDERR:raise InputAdmissionError("personal_process_stream_profile")
+        self.stream_limits=stream_limits
         self.observation={'started':False,'terminal_observed':False,'returncode':None,'timed_out':False,
             'stream_budget_exceeded':False,'cleanup_signal_permission_denied':False,'cleanup_absence_check':'not_needed',
             'OS_network_or_process_tree_isolation_attested':False}
 
     def run(self,arguments,cwd,environment,timeout):
-        process=None;buffers={'stdout':bytearray(),'stderr':bytearray()};limits={'stdout':MAX_STDOUT,'stderr':MAX_STDERR}
+        process=None;buffers={'stdout':bytearray(),'stderr':bytearray()};limits=dict(zip(('stdout','stderr'),self.stream_limits))
         drain_deadline=None
         try:
             process=subprocess.Popen(arguments,cwd=cwd,env=environment,stdout=subprocess.PIPE,stderr=subprocess.PIPE,start_new_session=True)

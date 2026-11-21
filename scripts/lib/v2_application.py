@@ -112,6 +112,9 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
+    if command=='live-preflight' and not instance_path and arguments[:1]==['replay']:
+        from lib.lifecycle_preflight_application import run as preflight_run
+        return preflight_run(arguments)
     if command=='pilot-action-intake' and not instance_path and arguments[:1]==['replay']:
         from lib.pilot_action_intake_application import run as action_intake_run
         return action_intake_run(arguments)
@@ -151,10 +154,13 @@ def run(command, arguments, *, instance_path=None):
     if command=='operations-report' and not instance_path and arguments[:1]==['replay']:
         from lib.operations_application import run as operations_run
         return operations_run(arguments)
-    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger','documentation-reconciliation','lifecycle-candidates','pilot-projections','personal-channel','pilot-action-requests','pilot-action-intake'):
+    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger','documentation-reconciliation','lifecycle-candidates','pilot-projections','personal-channel','pilot-action-requests','pilot-action-intake','live-preflight'):
         raise ValueError('v2_entrypoint_not_supported')
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='live-preflight':
+        from lib.lifecycle_preflight_application import run as preflight_run
+        return preflight_run(arguments,root,settings)
     if command=='pilot-action-intake':
         from lib.pilot_action_intake_application import run as action_intake_run
         return action_intake_run(arguments,root,settings)

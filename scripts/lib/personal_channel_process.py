@@ -20,7 +20,8 @@ def context(value):
             or type(value['uid']) is not int or value['uid']<0):fail('source_context_changed')
     return value
 
-def process_value(wire,spec,profile,blob,*,emit_stderr):
+def process_value(wire,spec,profile,blob,*,emit_stderr,stream_limits=(MAX_STDOUT,MAX_STDERR)):
+    if type(stream_limits) is not tuple or len(stream_limits)!=2 or type(stream_limits[0]) is not int or not 0<stream_limits[0]<=16*1024**2 or type(stream_limits[1]) is not int or stream_limits[1]!=MAX_STDERR:fail("stream_profile_changed")
     fields={'schema_version','specification','actual_arguments','program','source_before','source_after',
             'returncode','stdout','stderr','start_error','original_error','signal_context','effective_encoding','observation'}
     if type(wire) is not dict or set(wire)!=fields or type(wire['schema_version']) is not int or wire['schema_version']!=1 or wire['specification']!=spec:fail('wire_changed')
@@ -41,7 +42,7 @@ def process_value(wire,spec,profile,blob,*,emit_stderr):
         selected=identity['label']
     if wire['actual_arguments']!=profile.actual_arguments(spec,selected):fail('actual_arguments_changed')
     raw=[]
-    for name,limit in [('stdout',MAX_STDOUT),('stderr',MAX_STDERR)]:
+    for name,limit in zip(('stdout','stderr'),stream_limits):
         ref=wire[name]
         if type(ref) is not dict or set(ref)!={'sha256','bytes'} or type(ref['bytes']) is not int or not 0<=ref['bytes']<=limit:fail('stream_changed')
         value=blob(ref)
@@ -102,15 +103,15 @@ def clock_value(value):
     return value['value']
 
 class ReplayPersonalTransport:
-    def __init__(self,owner,root,profile,*,emit_stderr):
-        self.owner,self.root,self.profile,self.emit_stderr=owner,str(root),profile,emit_stderr;self.calls=0
+    def __init__(self,owner,root,profile,*,emit_stderr,stream_limits=(MAX_STDOUT,MAX_STDERR)):
+        self.owner,self.root,self.profile,self.emit_stderr=owner,str(root),profile,emit_stderr;self.calls=0;self.stream_limits=stream_limits
     def request(self,kind,args):
         self.calls+=1
         if self.calls>MAX_CALLS:fail('operation_budget')
         spec=self.profile.request(kind,args,self.root,self.owner.cwd)
         ok,wire=self.owner.outcome('personal-read-process',spec,'json')
         if not ok:fail('process_capture_incomplete')
-        return process_value(wire,spec,self.profile,self.owner.blob,emit_stderr=self.emit_stderr)
+        return process_value(wire,spec,self.profile,self.owner.blob,emit_stderr=self.emit_stderr,stream_limits=self.stream_limits)
     def fetch(self,endpoint):return self.request('get',{'endpoint':endpoint})
     def check_output(self,command,*,cwd,text):return self.request('git-tree',{'command':command,'cwd':str(cwd),'text':text})
     def clock(self):
