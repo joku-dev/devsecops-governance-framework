@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **112 in Arbeit** und **23 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **113 in Arbeit** und **22 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 112 | 23 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 113 | 22 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Personal-Channel-Programme vollständig prüfen und aktuelle Host-Nachweise abschließen.
+**Nächster Baustein:** Pilot-Aktionsvorbereitung vollständig prüfen und aktuelle Liefernachweise abschließen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -132,8 +132,19 @@ Kanalprüfung und Evidenzbericht samt Prüfung neuer Captures bereit. Explizite
 Ports erfassen begrenzte Provider-Lesezugriffe, lokale Git-Auswahl, Uhrzeit und
 exklusive Dateiausgabe. Private Kandidaten und gespeicherte Nachrechnung sind
 implementiert; persönliche Erklärungen werden ausschließlich als Text erzeugt.
-Vollvalidierung, Review und signierte Mac-/Linux-Lieferung dieses neuen
-Entwicklungsstands stehen noch aus.
+Der Personal-Channel-Quellstand ist mit3.322Tests und deklarierten
+Quellreviews geprüft; die44gezielten Gruppen bestehen auf Python3.13,3.11
+und3.12. Die nächste signierte Host-Lieferung enthält diesen Baustein zusammen
+mit der folgenden Aktionsvorbereitung und wird separat geprüft.
+
+Die anschließende [Pilot-Aktionsvorbereitung](docs/operations/guides/axiom-v2-pilot-action-preparation.md)
+überführt die vollständige ursprüngliche Vorbereitungsfunktion und ihren
+Kommandozeilenablauf. Rollen, Ledger-Köpfe, Revisionen, Frische und Aktionskette
+werden nach den ursprünglichen Regeln geprüft; Ausgabe und Erklärungstext
+bleiben an den vollständigen Request gebunden. Private Vorschau und gespeicherte
+Nachrechnung sind implementiert. Die Vorbereitung erteilt keine persönliche
+Zustimmung und veröffentlicht keine Erklärung. Aktuelle Gesamtvalidierung,
+Review und signierte Host-Lieferung dieses Folgezweigs bleiben offen.
 
 Die folgende [Parserkontext-Korrektur](docs/operations/guides/axiom-v2-producer-parser-context.md)
 erweitert die gespeicherten Erzeugerprofile auf die älteren Lifecycle-Berichte,

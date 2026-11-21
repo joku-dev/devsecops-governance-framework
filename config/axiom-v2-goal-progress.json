@@ -2,13 +2,11 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Personal-Channel-Programme vollst\u00e4ndig pr\u00fcfen und aktuelle Host-Nachweise abschlie\u00dfen",
+    "title": "Pilot-Aktionsvorbereitung vollst\u00e4ndig pr\u00fcfen und aktuelle Liefernachweise abschlie\u00dfen",
     "entrypoints": [
-      "scripts/check_lifecycle_personal_channel.py",
-      "scripts/generate_personal_channel_evidence.py",
-      "scripts/generate_personal_channel_probe.py"
+      "scripts/prepare_lifecycle_pilot_action.py"
     ],
-    "next_step": "Die drei vollst\u00e4ndigen Programme und die Pr\u00fcfung neuer Captures sind \u00fcber personal-channel mit expliziten Provider-/Git-/Uhr-/Ausgabeports registriert. Ganze Originalprogramme, Bin\u00e4rdiagnostik, native/private Effekte und quellenloses Replay sind lokal gepr\u00fcft; gemeinsame aktuelle Python-Pr\u00fcfungen, Vollvalidierung, deklarierte Reviews und signierte installierte Mac-/Linux-/Peer-/Consumer-Nachweise stehen f\u00fcr diesen neuen Stand aus. Der unver\u00e4nderte signierte Vorg\u00e4nger dac61c6 hat seine Mac-Abnahme einschlie\u00dflich ganzer Consumer-Berichte bestanden; sein unabh\u00e4ngiger Linux-Lauf und anschlie\u00dfender Peer-Vergleich bleiben separat offen. Fr\u00fchere Beobachtungen behalten ihre Revisionen. Alle22/135/37/16 bleiben im Scope;112 Einstiegspunkte in Arbeit,23 offen,0 vollst\u00e4ndig nachgewiesen. Keine pers\u00f6nliche/live/Betriebsautorit\u00e4t wird \u00fcbertragen."
+    "next_step": "Die vollst\u00e4ndige urspr\u00fcngliche Vorbereitungsfunktion und ihr Main-Block sind als pilot-action-requests mit explizitem Zeit-, Kontext- und exklusivem Ausgabeport registriert. Acht Originalvergleichsgruppen und sieben Anwendungsgruppen bestehen lokal; echte Sieben-Byte-Teilfehler sowie validierte synthetische Entscheidungs-/Fortschritts-/Abschluss-/Widerrufshistorien sind gepr\u00fcft. Gemeinsame gepinnte Quellpr\u00fcfungen, Gesamtvalidierung, deklarierte Reviews und signierte installierte Mac-/Linux-/Peer-/Consumer-Nachweise dieses neuen Stands stehen noch aus. Vorg\u00e4nger-Nachweise behalten ihre jeweilige Revision: Personal-Channel-44 ist auf Python3.13/3.11/3.12 mit unver\u00e4nderten Quellen gepr\u00fcft, seine gepinnte Gesamtvalidierung mit3.322Tests sowie Demo/Viewer/Goal/striktem Dokumentationsbuild und deklarierte Quellreviews sind bestanden; der Pilot-Berichtsvorg\u00e4nger hat seine Mac-Abnahme bestanden und wartet auf den eigenen Linux-/Peer-Abschluss. Alle22/135/37/16 bleiben im Scope:113 Einstiegspunkte in Arbeit,22 offen,0 vollst\u00e4ndig nachgewiesen. Keine pers\u00f6nliche/live/Betriebsautorit\u00e4t wird \u00fcbertragen."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",

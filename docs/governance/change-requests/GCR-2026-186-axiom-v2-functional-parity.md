@@ -1,5 +1,44 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+## Complete pilot action request preparation
+
+Classify the new neutral preparation/context/application/clock reconstruction,
+explicit clock and captured-field/output composition, distribution routing and
+immutable references as executable engineering/evidence-contract work. Preserve
+the complete original 2,368-byte program as a hashed technical reference, plus
+its unchanged original injected-test helper and the existing80 original oracle
+members. The authored history builder creates internally validated synthetic
+receipt/action histories and does not represent provider or personal authority.
+No normative source, requirement, control, policy, release or source register is
+changed; full Source Document Intake does not apply to these engineering inputs.
+
+Retain the entire original `prepare` function and main guard, including all
+original role, receipt, action, head, revision, schema and freshness validation,
+the creation sample after context loading, explicit `created_at` semantics,
+exclusive output without implicit parent creation, and complete printed
+request-bound statement. Whole original native/private cases cover decision,
+progress, closure, both withdrawals, role withdrawal, missing receipts, PASS
+without finding, quarantined history, inactive roles and stale evidence. Exact
+AST restoration after only declared ports checks both complete original bodies.
+
+Preserve original ledger canonical hashes, including ASCII escaping of Unicode
+statements. A wrong test helper initially used the distinct portable encoder;
+stronger original-success assertions exposed its rejected action references.
+Correct only that fixture selection, retaining failed logs and unchanged
+original validators. Observe actual context completion before clock sampling;
+do not infer this phase from equal fixed timestamps alone.
+
+The registered application must bind full request/product/node/result/event/blob
+and authority context. Native seven-byte output failure is compared with the
+original, retains partial bytes, prints no success statement and reports possible
+partial effects. Clock/input/journal incompleteness obtains no original verdict.
+Closed replay repeats no native source, output, program or clock operation.
+Keep this subject in progress until full pinned/source/review and signed matching
+installed Mac/Linux/peer/consumer evidence supports promotion. No preparation,
+rendered personal text, retained declaration or technical consistency transfers
+personal, producer, live or operating authority. See the
+[preparation guide](../../operations/guides/axiom-v2-pilot-action-preparation.md).
+
 ## Personal-channel programs, explicit read transport and exclusive output
 
 Classify the new neutral program/context/application/reconstruction modules,

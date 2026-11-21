@@ -1,0 +1,62 @@
+"""Explicitly injected fixture history; never personal consent or live evidence."""
+from pathlib import Path
+import base64,copy,hashlib,importlib.util,io,json,os,shutil,sys,zipfile
+from unittest.mock import patch
+os.umask(0o077);root=Path(sys.argv[1]).resolve();fixture_owner=Path(__file__).resolve().parent;assert root.is_relative_to(fixture_owner) and (root.name=='data' or root.name.startswith('prototype-data')), 'Private synthetic fixture root required';scenario=sys.argv[2];sys.path.insert(0,str(root/'scripts'))
+from lib.governance_lifecycle.adapter import json_bytes
+from lib.governance_lifecycle.live_evidence import collect_preflight
+from lib.governance_lifecycle.live_admission import prepare_receipt,replay_embedded
+from lib.governance_lifecycle.store import publish_transaction
+from lib.governance_lifecycle.kernel import transaction_ref
+path=root/'tests/original_test_actions.py';spec=importlib.util.spec_from_file_location('immutable_original_action_fixture',path);original=importlib.util.module_from_spec(spec);spec.loader.exec_module(original)
+template=json.loads(next((root/'governance/lifecycle/live-validation/transactions').glob('*.json')).read_bytes());template_files={n:base64.b64decode(raw,validate=True) for n,raw in template['capture'].items()}
+for name in ('governance/lifecycle/live-validation','governance/lifecycle/pilot-actions'):
+ p=root/name
+ if p.exists():shutil.rmtree(p)
+ (p/'transactions').mkdir(mode=0o700,parents=True)
+
+class CompleteFixture(original.PilotActionTests):
+ def receipt(self,result,second,*,same_origin=False):
+  number=len(self.receipts)+1;identifier=1 if same_origin else number
+  files=copy.deepcopy(template_files);prepared=json.loads(files['profile.json']);report=json.loads(files['report.json']);run=json.loads(files['run-before.json']);artifact=json.loads(files['artifact-before.json']);repo=json.loads(files['repository.json']);workflow=json.loads(files['workflow.json'])
+  observed=original.at(0 if same_origin else second);at=original.at(second);run_id=900000000+identifier;artifact_id=910000000+number;commit=f'{identifier:040x}'
+  report['observed_at']=observed;report['observation']['observed_at']=observed;report['observation']['repository']['required_approving_reviews']=0 if result=='fail' else 1
+  criterion=next(c for c in report['criteria'] if c['id']=='GRS-002');criterion.update(status=result,observed=result=='pass',detail='INJECTED TEST TRANSPORT; required_approving_reviews='+('0' if result=='fail' else '1'))
+  failed=[c for c in report['criteria'] if c['status']=='fail'];report['summary']={'criteria':len(report['criteria']),'pass':len(report['criteria'])-len(failed),'fail':len(failed),'critical_failures':sum(c['severity']=='critical' for c in failed),'high_failures':sum(c['severity']=='high' for c in failed)};report['overall_status']='findings' if failed else 'pass';report['risk_statement']='INJECTED SYNTHETIC TEST TRANSPORT; no real provider capture, human consent or operating authority.'
+  report_raw=json_bytes(report);buffer=io.BytesIO()
+  with zipfile.ZipFile(io.BytesIO(files['artifact.zip'])) as old,zipfile.ZipFile(buffer,'w') as new:
+   for row in old.infolist():new.writestr(row,report_raw if row.filename==prepared['source']['report_path'] else b'# Injected fixture only\n\nGRS-002: '+result.encode()+b'. No real capture, consent or authority.\n')
+  archive=buffer.getvalue();run.update(id=run_id,head_sha=commit,created_at=observed,run_started_at=observed,updated_at=at,display_title='INJECTED SYNTHETIC TEST TRANSPORT')
+  if 'head_commit' in run:run['head_commit'].update(id=commit,timestamp=observed,message='INJECTED SYNTHETIC TEST FIXTURE')
+  artifact.update(id=artifact_id,size_in_bytes=len(archive),digest='sha256:'+hashlib.sha256(archive).hexdigest(),created_at=at,updated_at=at);artifact['workflow_run'].update(id=run_id,head_sha=commit)
+  def fetch(endpoint,*,raw=False):
+   if raw:
+    name=endpoint.split('/contents/',1)[1].split('?ref=',1)[0];return files['producer/'+name]
+   if endpoint.endswith('/zip'):return archive
+   if '/artifacts?' in endpoint:return json_bytes({'total_count':1,'artifacts':[artifact]})
+   if '/actions/artifacts/' in endpoint:return json_bytes(artifact)
+   if '/actions/runs/' in endpoint:return json_bytes(run)
+   if '/actions/workflows/' in endpoint:return json_bytes(workflow)
+   if endpoint=='repos/'+prepared['scope']['repository_id']:return json_bytes(repo)
+   raise AssertionError('No unspecified transport endpoint: '+endpoint)
+  capture_dir=root.parent/('injected-capture-'+scenario+'-'+str(number));capture=collect_preflight(str(run_id),capture_dir,repo_root=root,fetch=fetch,captured_at=at)
+  assert capture['capture']['method']=='injected_test_transport'
+  encoded={p.relative_to(capture_dir).as_posix():base64.b64encode(p.read_bytes()).decode() for p in sorted(capture_dir.rglob('*')) if p.is_file()}
+  assert replay_embedded(encoded)=={k:v for k,v in capture.items() if k!='capture'}
+  record=prepare_receipt(capture,encoded,self.profile,self.receipts,recorded_at=at,expected_sequence=len(self.receipts));assert record is not None
+  self.receipts.append(record);return record
+
+fixture=CompleteFixture('test_decision_progress_pass_and_closure_require_exact_bound_chain')
+with patch('subprocess.Popen',side_effect=AssertionError('No native provider program in fixture builder')),patch('urllib.request.urlopen',side_effect=AssertionError('No network in fixture builder')),patch('socket.create_connection',side_effect=AssertionError('No network in fixture builder')):
+ fixture.setUp();decision,closure=fixture.closed()
+ if scenario=='reopened':fixture.receipt('fail',fixture.clock+1)
+ elif scenario=='decision-revoked':fixture.append(decision['request'],disposition='revoke',previous=decision['snapshot']['result']['last_statement_id'],issued=original.at(fixture.clock+1))
+ elif scenario=='progress-revoked':
+  progress=fixture.actions[2];fixture.append(progress['request'],disposition='revoke',previous=progress['snapshot']['result']['last_statement_id'],issued=original.at(fixture.clock+1))
+ elif scenario=='closure-withdrawn':fixture.append(fixture.request({'kind':'withdrawal','target_ref':transaction_ref(closure),'reason':'Injected fixture correction'}))
+ elif scenario=='roles-withdrawn':fixture.append(fixture.request({'kind':'role_withdrawal','reason':'Injected fixture role withdrawal'}))
+ elif scenario=='quarantined':fixture.receipt('pass',fixture.clock+1,same_origin=True)
+ elif scenario!='closed':raise AssertionError('Unknown fixture scenario')
+ for name,rows in (('live-validation',fixture.receipts),('pilot-actions',fixture.actions)):
+  for row in rows:publish_transaction(root/'governance/lifecycle'/name/'transactions',row)
+index=original.project_actions(root);print(json.dumps({'scenario':scenario,'finding_state':index['finding_state'],'counts':index['counts'],'roles_active':index['roles_active'],'official_state':False,'live_activation_approved':False,'transport':'injected_test_transport','real_provider_authentication':False,'real_personal_or_operating_approval':False}))

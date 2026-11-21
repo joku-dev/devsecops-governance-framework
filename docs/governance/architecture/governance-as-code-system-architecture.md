@@ -699,6 +699,27 @@ authority. The registered source increment remains subject to full validation,
 review and signed installed Mac/Linux/peer/consumer acceptance. See the
 [personal-channel guide](../../operations/guides/axiom-v2-personal-channel.md).
 
+### Original pilot action request preparation
+
+`pilot-action-requests generate/inspect/replay` executes the complete original
+request-preparation function and main guard over explicit lifecycle context,
+logical paths, a sampled UTC clock and exclusive binary output. The creation
+sample remains after context loading. Existing required-role selection,
+profile/binding/head/revision/freshness/action-chain checks, original request
+bytes and printed statement remain intact. No receipt/action append or provider
+fetch is substituted for request preparation.
+
+`pilot_action_preparation_ports.py` selects original captured-field validation
+and explicit native/replay clock and native/private output ports. Closed replay
+consumes the original inputs and sampled time without selected source, native
+effects or a new clock read, with whole node/product/request/result/event/blob
+binding. Original partial native failures remain visible; technical observation
+failures confer no original verdict. Private projections do not attest native
+buffering/durability. All preparation artifacts remain separate from personal
+consent or operating authority. Source-development checks are distinct from
+full pinned/reviewed/signed installed acceptance; see
+[pilot action preparation](../../operations/guides/axiom-v2-pilot-action-preparation.md).
+
 
 ### Complete producer parser context across prior capture APIs
 

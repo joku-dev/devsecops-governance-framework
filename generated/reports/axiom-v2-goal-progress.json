@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 112,
-      "pending": 23,
+      "in_progress": 113,
+      "pending": 22,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,17 +337,15 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "5d4c21875591293298816d355e723c72b02adb7dabe48dd2f8edb61c151741da",
+  "matrix_sha256": "124780906174b6cacd500b7afd9c6fd86ddb20e47ebc516851b3a0042fe96210",
   "next_work": {
     "entrypoints": [
-      "scripts/check_lifecycle_personal_channel.py",
-      "scripts/generate_personal_channel_evidence.py",
-      "scripts/generate_personal_channel_probe.py"
+      "scripts/prepare_lifecycle_pilot_action.py"
     ],
-    "next_step": "Die drei vollständigen Programme und die Prüfung neuer Captures sind über personal-channel mit expliziten Provider-/Git-/Uhr-/Ausgabeports registriert. Ganze Originalprogramme, Binärdiagnostik, native/private Effekte und quellenloses Replay sind lokal geprüft; gemeinsame aktuelle Python-Prüfungen, Vollvalidierung, deklarierte Reviews und signierte installierte Mac-/Linux-/Peer-/Consumer-Nachweise stehen für diesen neuen Stand aus. Der unveränderte signierte Vorgänger dac61c6 hat seine Mac-Abnahme einschließlich ganzer Consumer-Berichte bestanden; sein unabhängiger Linux-Lauf und anschließender Peer-Vergleich bleiben separat offen. Frühere Beobachtungen behalten ihre Revisionen. Alle22/135/37/16 bleiben im Scope;112 Einstiegspunkte in Arbeit,23 offen,0 vollständig nachgewiesen. Keine persönliche/live/Betriebsautorität wird übertragen.",
-    "title": "Personal-Channel-Programme vollständig prüfen und aktuelle Host-Nachweise abschließen"
+    "next_step": "Die vollständige ursprüngliche Vorbereitungsfunktion und ihr Main-Block sind als pilot-action-requests mit explizitem Zeit-, Kontext- und exklusivem Ausgabeport registriert. Acht Originalvergleichsgruppen und sieben Anwendungsgruppen bestehen lokal; echte Sieben-Byte-Teilfehler sowie validierte synthetische Entscheidungs-/Fortschritts-/Abschluss-/Widerrufshistorien sind geprüft. Gemeinsame gepinnte Quellprüfungen, Gesamtvalidierung, deklarierte Reviews und signierte installierte Mac-/Linux-/Peer-/Consumer-Nachweise dieses neuen Stands stehen noch aus. Vorgänger-Nachweise behalten ihre jeweilige Revision: Personal-Channel-44 ist auf Python3.13/3.11/3.12 mit unveränderten Quellen geprüft, seine gepinnte Gesamtvalidierung mit3.322Tests sowie Demo/Viewer/Goal/striktem Dokumentationsbuild und deklarierte Quellreviews sind bestanden; der Pilot-Berichtsvorgänger hat seine Mac-Abnahme bestanden und wartet auf den eigenen Linux-/Peer-Abschluss. Alle22/135/37/16 bleiben im Scope:113 Einstiegspunkte in Arbeit,22 offen,0 vollständig nachgewiesen. Keine persönliche/live/Betriebsautorität wird übertragen.",
+    "title": "Pilot-Aktionsvorbereitung vollständig prüfen und aktuelle Liefernachweise abschließen"
   },
-  "observation_sha256": "22c1c41914df4538c6348ba2b9a7dd157bb06a3bad6c6da1b22d9e3dcdc7da1f",
+  "observation_sha256": "c67b8eb9915de1d243a0d5ea6bf89ad16f8522dae93c62dfe3d1c020abd17c93",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

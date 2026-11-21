@@ -1,0 +1,21 @@
+{
+  "original_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "original_path": "scripts/prepare_lifecycle_pilot_action.py",
+  "sha256": "93a73a77ea930ca05bf70eb9a0993a69cb16e014ec814187436fad915db0d383",
+  "git_blob": "fd58251e4dd6f454b24a5177ca854dd5e8d2a9fb",
+  "bytes": 2368,
+  "shared_oracle_contract": "tests/fixtures/v2-personal-channel-original/contract.json",
+  "shared_immutable_reference_members": 80,
+  "classification": "Engineering immutable code/data references; no normative source or real personal/operating authority",
+  "additional_immutable_original_test_helper": {
+    "original_path": "tests/test_lifecycle_pilot_actions.py",
+    "sha256": "1e9c0251bfb2503f327d5e57f4d9f9f88ed0ca764df92d6c3390d8542600d900",
+    "fixture": "original_test_actions.py.txt"
+  },
+  "injected_history_builder": {
+    "fixture": "build_mock_history.py",
+    "sha256": "1bdfca51f4cee40b0bd1c16b470005f4f41af94a141ded96831d60aab83f9ed2",
+    "origin": "Previously exercised authored engineering fixture helper; not immutableV1 product source",
+    "meaning": "Complete internally validated injected captures/receipts/actions, no real personal/provider/operating authority"
+  }
+}
