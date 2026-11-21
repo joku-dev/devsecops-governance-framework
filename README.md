@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **115 in Arbeit** und **20 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **116 in Arbeit** und **19 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 115 | 20 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 116 | 19 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Diagnostischen Preflight vollständig prüfen und gemeinsame Liefernachweise abschließen.
+**Nächster Baustein:** Frischen Run-Intake vollständig absichern und signierte gemeinsame Liefernachweise abschließen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -166,6 +166,20 @@ Bundles; konkurrierende Einträge und native Teilfehler bleiben sichtbar.
 Gezielte Original-, API-, CLI- und Nachrechnungsvergleiche bestehen lokal.
 Aktuelle Gesamtvalidierung und eigene signierte Hostabnahme stehen aus.
 Der Befehl ist diagnostisch und schreibt keinen Lifecycle-Receipt.
+
+Der [frische Pilot-Run-Intake](docs/operations/guides/axiom-v2-pilot-run-intake.md)
+führt Erfassung, vollständige Bundle-Prüfung und atomisches Receipt-Anhängen in
+ursprünglicher Reihenfolge zusammen. Erfassungs- und Receipt-Zeit bleiben
+getrennt. Eigene temporäre Verzeichnisse werden vor der Ausgabe bereinigt;
+Teilfehler nach Veröffentlichung erhalten das bereits geschriebene Receipt.
+Der private Modus verwendet ein logisches Dateisystem. Native Erfassung,
+konkurrierende Writer, große gültige Receipts und quellfreie Nachrechnung sind
+gezielt mit dem vollständigen Original verglichen. Die27Quellgruppen bestehen
+auf3.13/3.11/3.12 am datierten Quellstand; sieben zusätzliche Anwendungsgruppen
+und ein eigener echter CLI-Hilfe-/Inspect-/Replay-Test bestehen lokal.
+Aktuelle Vollprüfung und signierte installierte Hostvergleiche bleiben offen.
+Ein technisches Eligibility-Receipt erteilt keine persönliche oder betriebliche
+Zustimmung; die unabhängige Prüfung neuer Receipts bleibt ein eigener Ablauf.
 
 Die folgende [Parserkontext-Korrektur](docs/operations/guides/axiom-v2-producer-parser-context.md)
 erweitert die gespeicherten Erzeugerprofile auf die älteren Lifecycle-Berichte,

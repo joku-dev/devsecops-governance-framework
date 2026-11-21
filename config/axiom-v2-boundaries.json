@@ -208,7 +208,14 @@
     "scripts/lib/lifecycle_preflight_program.py",
     "scripts/lib/lifecycle_preflight_context.py",
     "scripts/lib/lifecycle_preflight_io.py",
-    "scripts/lib/lifecycle_preflight_application.py"
+    "scripts/lib/lifecycle_preflight_application.py",
+    "scripts/lib/pilot_run_intake.py",
+    "scripts/lib/pilot_run_intake_context.py",
+    "scripts/lib/pilot_run_intake_io.py",
+    "scripts/lib/pilot_run_temporary.py",
+    "scripts/lib/pilot_run_private_temporary.py",
+    "scripts/lib/synthetic_ledger_budget.py",
+    "scripts/lib/pilot_run_intake_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
@@ -230,7 +237,8 @@
     "scripts/lib/personal_channel_ports.py",
     "scripts/lib/pilot_action_preparation_ports.py",
     "scripts/lib/pilot_action_intake_ports.py",
-    "scripts/lib/lifecycle_preflight_ports.py"
+    "scripts/lib/lifecycle_preflight_ports.py",
+    "scripts/lib/pilot_run_intake_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [

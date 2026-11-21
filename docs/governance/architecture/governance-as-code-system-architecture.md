@@ -771,6 +771,40 @@ consent or operating acceptance. Full pinned and signed installed evidence
 remain separate from the current source tests. See the
 [diagnostic preflight guide](../../operations/guides/axiom-v2-live-preflight.md).
 
+### Complete fresh pilot-run intake and temporary scope
+
+`pilot-run-intake generate/inspect/replay` composes the whole original fresh
+main, complete saved-capture validation and atomic single-ledger append. The
+neutral program/context uses separate historical-capture and fresh GET/clock
+adapters, preserving the capture sample and later receipt sample. The original
+writer lock encloses history reload, duplicate-before-stale selection and
+buffered pending-file flush/fsync/link/directory-fsync/unlink publication.
+
+The temporary-scope port separates owned native `TemporaryDirectory` effects,
+logical private candidate nodes and inert reconstruction. Before native cleanup,
+root identity and the bounded complete set of own children must match. Unknown
+children are rejected before reading their contents; replaced roots are not
+deleted and their finalizers are detached. Original cleanup errors retain partial
+capture state and any already-published receipt, with no later print or automatic
+cleanup retry. Intentional owned-root removal holds a duplicate admitted
+descriptor without weakening the shared stable-path guard. This does not claim
+isolation from a hostile process with the same OS identity.
+
+Only the run-intake composition chooses the fixed64-MiB transaction-file and
+2-GiB repeated-read allowance, retaining the original25-MiB capture bound and
+other ledger profiles'16/128-MiB defaults. Wide snapshots remain limited to the
+selected transaction directory; hardlink-pair and inode checks remain closed.
+The private temporary anchor is explicit model/environment data, with an owned
+home anchor by default; native mode observes the canonical system-temp anchor.
+Replay uses saved parent/clock/raw/stream/effect facts, never the consumer's
+current temp environment or selected source. Product/source/node/request/result/
+journal/blob/authority binding and partial-journal teardown stay explicit.
+
+The direct original comparisons do not replace full repository or signed
+installed/peer/consumer evidence. Eligibility consistency does not authenticate
+a producer or confer Source, personal, compliance or operating authority. See
+the [pilot-run intake guide](../../operations/guides/axiom-v2-pilot-run-intake.md).
+
 ### Complete producer parser context across prior capture APIs
 
 The synthetic lifecycle reporting, workbook import and document-rendering

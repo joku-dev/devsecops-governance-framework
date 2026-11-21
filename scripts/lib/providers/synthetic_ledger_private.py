@@ -21,9 +21,15 @@ class CaptureProjection(ProjectionMixin, ReportCapture):
             except InputAdmissionError as error:
                 if str(error) != 'workbook_regular_bounded_output_required': raise
                 _, observed = self.io.ledger_files.read(name, name)
-                if observed['metadata']['nlink'] != 2:
+                if observed['metadata']['nlink'] == 2:
+                    kind = 'synthetic-ledger-private-alias-preimage'
+                elif (observed['metadata']['nlink'] == 1
+                      and 16 * 1024**2 < observed['metadata']['bytes'] <= self.io.ledger_budget.file
+                      and self.io.ledger_path(name)):
+                    kind = 'synthetic-ledger-private-wide-preimage'
+                else:
                     raise InputAdmissionError('synthetic_ledger_private_alias_observation_changed')
-                self.emit({'kind': 'synthetic-ledger-private-alias-preimage', 'path': name, 'observation': observed})
+                self.emit({'kind': kind, 'path': name, 'observation': observed})
                 value = observed['snapshot']
                 if name in self.observer.observed and self.observer.observed[name] != value:
                     raise InputAdmissionError('synthetic_ledger_private_alias_preimage_changed')

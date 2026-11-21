@@ -19,7 +19,7 @@ def same(left, right):
 
 
 class ProjectionMixin:
-    def ledger_tree(self, blob): self.tree = LedgerProjection(blob)
+    def ledger_tree(self, blob): self.tree = LedgerProjection(blob, budget=self.io.ledger_budget, ledger=str(self.io.ledger))
 
     def start(self):
         if self.started: return
@@ -71,13 +71,21 @@ class ReplayProjection(ProjectionMixin, ReportReplay):
     def obtain(self, path, label):
         aliases = {}
         while (self.io.position < self.io.limit and type(self.io.events[self.io.position]) is dict
-               and self.io.events[self.io.position].get('kind') == 'synthetic-ledger-private-alias-preimage'):
+               and self.io.events[self.io.position].get('kind') in ('synthetic-ledger-private-alias-preimage', 'synthetic-ledger-private-wide-preimage')):
             row = self.io.row()
             if set(row) != {'kind', 'path', 'observation'} or row['path'] in aliases:
                 raise IntegrityError('synthetic_ledger_private_alias_preimage_changed')
             path_spec(row['path'], row['path'], self.io.cwd)
-            info = observation(row['observation'], self.io.blob, path=row['path'], ledger=str(self.io.ledger), transaction_name=self.io.transaction_name)
-            if info is None or info['kind'] != 'file' or info['nlink'] != 2:
+            info = observation(row['observation'], self.io.blob, path=row['path'], ledger=str(self.io.ledger), transaction_name=self.io.transaction_name, max_file=self.io.ledger_budget.file)
+            wide = row['kind'] == 'synthetic-ledger-private-wide-preimage'
+            if info is None or info['kind'] != 'file':
+                raise IntegrityError('synthetic_ledger_private_preimage_profile_changed')
+            if wide:
+                if (info['nlink'] != 1
+                        or not 16 * 1024**2 < info['bytes'] <= self.io.ledger_budget.file
+                        or not self.io.ledger_path(row['path'])):
+                    raise IntegrityError('synthetic_ledger_private_wide_preimage_changed')
+            elif info['nlink'] != 2:
                 raise IntegrityError('synthetic_ledger_private_alias_pair_required')
             aliases[row['path']] = row['observation']
         frame, values = super().obtain(path, label)

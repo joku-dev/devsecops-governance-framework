@@ -10,15 +10,34 @@ from pathlib import PurePosixPath
 from lib.synthetic_lifecycle_projection import Projection, PRIVATE_MASK, EMPTY
 from lib.requirement_validation_budget import InputAdmissionError
 from lib.requirement_validation_replay import IntegrityError
-from lib.validation_files import MAX_FILE, MAX_TOTAL
+from lib.requirement_review_output import snapshot
+from lib.synthetic_ledger_budget import DEFAULT, admitted
 
 
 class LedgerProjection(Projection):
     """Shared logical inode content, unlink tombstones and directory membership."""
 
-    def __init__(self, blob):
-        super().__init__(blob)
+    def __init__(self, blob, *, budget=DEFAULT, ledger=None):
+        self.budget = admitted(budget)
+        self.ledger = ledger
+        super().__init__(blob, max_file=self.budget.file, max_total=self.budget.total)
         self.memberships = {}
+
+    def bounded_scope(self, path, value):
+        # Validate bytes and metadata before consulting fields of a retained
+        # snapshot. A malformed or dishonest reference is never a scope grant.
+        snapshot(value, self.blob, max_file=self.budget.file)
+        if (value['kind'] == 'file' and len(self.blob(value['content'])) > DEFAULT.file
+                and (self.ledger is None or PurePosixPath(path).parent != PurePosixPath(self.ledger) / 'transactions')):
+            raise IntegrityError('synthetic_ledger_wide_file_scope_changed')
+
+    def load_one(self, path, value):
+        self.bounded_scope(path, value)
+        return super().load_one(path, value)
+
+    def put(self, path, value):
+        self.bounded_scope(path, value)
+        return super().put(path, value)
 
     def load_membership(self, path, names):
         if (self.state(path)['kind'] != 'directory' or type(names) is not list
@@ -251,7 +270,7 @@ class PrivateLedgerStream:
         self.require_open()
         if type(raw) is not bytes:
             raise InputAdmissionError('synthetic_ledger_private_bytes_required')
-        if len(self.buffer) + len(raw) > MAX_FILE or self.owner.total + len(raw) > MAX_TOTAL:
+        if len(self.buffer) + len(raw) > self.owner.tree.budget.file or self.owner.total + len(raw) > self.owner.tree.budget.total:
             raise InputAdmissionError('synthetic_ledger_private_stream_budget')
         self.owner.begin('stream-write', {'descriptor': self.descriptor,
                                           'payload': self.owner.store(raw)})

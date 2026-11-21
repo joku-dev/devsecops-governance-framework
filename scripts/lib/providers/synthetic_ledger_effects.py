@@ -19,7 +19,7 @@ from lib.providers.synthetic_lifecycle_io import capture_port
 from lib.requirement_validation_budget import InputAdmissionError
 from lib.synthetic_ledger_projection import PrivateLedgerEffects
 from lib.synthetic_lifecycle_io import path_spec
-from lib.validation_files import MAX_FILE, MAX_TOTAL
+from lib.synthetic_ledger_budget import DEFAULT, admitted
 from lib.synthetic_ledger_effect_state import EffectState
 from lib.requirement_validation_replay import IntegrityError
 
@@ -43,20 +43,23 @@ class NativeLedgerEffects:
             raise InputAdmissionError('synthetic_ledger_native_selected_files_required')
         if type(lock_seconds) not in (int, float) or not 0 < lock_seconds <= 30:
             raise InputAdmissionError('synthetic_ledger_finite_lock_budget_required')
+        self.budget = admitted(getattr(owner, "ledger_budget", DEFAULT))
         self.io, self.ledger = owner, Path(ledger)
         self.files = getattr(owner, 'ledger_files', None)
-        if self.files is None: self.files = LedgerFiles(owner, ledger, transaction_name=transaction_name)
-        if self.files.ledger != self.ledger:
+        if self.files is None: self.files = LedgerFiles(owner, ledger, transaction_name=transaction_name, budget=self.budget)
+        if self.files.ledger != self.ledger or self.files.budget != self.budget:
             raise InputAdmissionError('synthetic_ledger_file_scope_changed')
         self.transaction_name, self.lock_seconds = transaction_name, lock_seconds
         self.descriptors, self.temporary_names, self.observed = {}, set(), {}
         self.serial = self.operations = self.total = 0
-        self.state = EffectState(owner.blob, str(self.ledger), owner.cwd, transaction_name)
+        self.state = EffectState(owner.blob, str(self.ledger), owner.cwd, transaction_name, budget=self.budget)
         # Capturing resolves retained blob references without reading selected
         # source again. The record owns these inert private bytes.
         from lib.providers.sbom_export_storage import read_private
         def retained(ref):
-            raw = read_private(owner.record.blobs / ref['sha256'])
+            if type(ref.get('bytes')) is not int or not 0 <= ref['bytes'] <= self.budget.file:
+                raise InputAdmissionError('synthetic_ledger_private_blob_budget')
+            raw = read_private(owner.record.blobs / ref['sha256'], self.budget.file)
             if len(raw) != ref['bytes'] or hashlib.sha256(raw).hexdigest() != ref['sha256']:
                 raise InputAdmissionError('synthetic_ledger_private_blob_changed')
             return raw
@@ -434,7 +437,7 @@ class NativeLedgerStream:
     @capture_port
     def write(self, raw):
         row = self.row()
-        if type(raw) is not bytes or len(raw) > MAX_FILE or self.owner.total + len(raw) > MAX_TOTAL:
+        if type(raw) is not bytes or len(raw) > self.owner.budget.file or self.owner.total + len(raw) > self.owner.budget.total:
             raise InputAdmissionError('synthetic_ledger_original_stream_byte_budget')
         self.owner.total += len(raw)
         return self.owner.call('stream-write', {'descriptor': self.token, 'payload': self.io.blob(raw)},

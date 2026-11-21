@@ -5,20 +5,20 @@ from pathlib import PurePosixPath as P
 from lib.synthetic_ledger_io import observation
 from lib.synthetic_lifecycle_io import path_spec
 from lib.requirement_validation_replay import IntegrityError
-from lib.validation_files import MAX_FILE, MAX_TOTAL
+from lib.synthetic_ledger_budget import DEFAULT, admitted
 
 
 def require(value, reason):
     if not value: raise IntegrityError('synthetic_ledger_' + reason)
 
 
-def observed(value, blob, path, ledger, name_of):
+def observed(value, blob, path, ledger, name_of, *, max_file=DEFAULT.file):
     require(type(value) is dict, 'effect_observation_changed')
     state = value.get('snapshot', {})
     if state.get('kind') == 'directory':
         require(set(value) == {'snapshot', 'metadata', 'aliases', 'members'}, 'directory_observation_changed')
         basic = {key: value[key] for key in ('snapshot', 'metadata', 'aliases')}
-        info = observation(basic, blob, path=path, ledger=ledger, transaction_name=name_of)
+        info = observation(basic, blob, path=path, ledger=ledger, transaction_name=name_of, max_file=max_file)
         names = value['members']
         require(type(names) is list and len(names) <= 10000
                 and all(type(n) is str and n and n not in ('.', '..') and '/' not in n
@@ -27,11 +27,12 @@ def observed(value, blob, path, ledger, name_of):
                 and sum(len(n.encode('utf-8')) for n in names) <= 2 * 1024**2,
                 'directory_members_changed')
         return info
-    return observation(value, blob, path=path, ledger=ledger, transaction_name=name_of)
+    return observation(value, blob, path=path, ledger=ledger, transaction_name=name_of, max_file=max_file)
 
 
 class EffectState:
-    def __init__(self, blob, ledger, cwd, transaction_name):
+    def __init__(self, blob, ledger, cwd, transaction_name, *, budget=DEFAULT):
+        self.budget = admitted(budget)
         self.blob, self.ledger, self.cwd, self.name_of = blob, ledger, cwd, transaction_name
         self.observed, self.descriptors, self.payloads, self.relaxed_dirs = {}, {}, {}, {}
         self.temporaries, self.uncertain = set(), set()
@@ -59,7 +60,7 @@ class EffectState:
         for name, value in values.items():
             path_spec(name, name, self.cwd)
             require(P(name).is_relative_to(self.ledger), 'effect_file_scope_changed')
-            observed(value, self.blob, name, self.ledger, self.name_of)
+            observed(value, self.blob, name, self.ledger, self.name_of, max_file=self.budget.file)
 
     def resource_rows(self, rows):
         require(type(rows) is list and len(rows) <= 128, 'resource_rows_changed')
@@ -183,7 +184,7 @@ class EffectState:
                 require(row['role'] == 'temporary' and row['stream'], 'stream_resource_changed')
                 if action == 'stream-write':
                     raw = self.blob(args['payload']); self.total += len(raw)
-                    require(len(raw) <= MAX_FILE and self.total <= MAX_TOTAL, 'stream_payload_budget')
+                    require(len(raw) <= self.budget.file and self.total <= self.budget.total, 'stream_payload_budget')
                     if ok: require(type(value) is int and 0 <= value <= len(raw), 'stream_write_return_changed')
                     self.payloads[token] += raw[:value] if ok else raw
                     if not ok: self.uncertain.add(token)

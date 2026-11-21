@@ -23,7 +23,7 @@
     },
     {
       "id": "FP-02",
-      "title": "\u00c4nderungen an Vorgaben vorbereiten",
+      "title": "Änderungen an Vorgaben vorbereiten",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -33,7 +33,7 @@
     },
     {
       "id": "FP-03",
-      "title": "Herkunft und Zusammenh\u00e4nge nachweisen",
+      "title": "Herkunft und Zusammenhänge nachweisen",
       "state": "in_progress",
       "v2_capabilities": [
         "reports graph/control coverage/three traceability routes",
@@ -80,7 +80,7 @@
     },
     {
       "id": "FP-06",
-      "title": "OPA-Pr\u00fcfregeln ausf\u00fchren",
+      "title": "OPA-Prüfregeln ausführen",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -129,7 +129,7 @@
     },
     {
       "id": "FP-10",
-      "title": "Baselines ver\u00f6ffentlichen und konsumieren",
+      "title": "Baselines veröffentlichen und konsumieren",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -149,7 +149,7 @@
     },
     {
       "id": "FP-12",
-      "title": "Ergebnisgeschichte sch\u00fctzen",
+      "title": "Ergebnisgeschichte schützen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -207,7 +207,7 @@
     },
     {
       "id": "FP-16",
-      "title": "Operative \u00c4nderungen \u00fcber PRs ver\u00f6ffentlichen",
+      "title": "Operative Änderungen über PRs veröffentlichen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -227,7 +227,7 @@
     },
     {
       "id": "FP-18",
-      "title": "Einf\u00fchrung und Betriebsreife bewerten",
+      "title": "Einführung und Betriebsreife bewerten",
       "state": "in_progress",
       "v2_capabilities": [
         "reports portfolio preserves committed registry/index/previous-projection and explicit clock; remaining readiness/live acceptance open",
@@ -259,7 +259,7 @@
     },
     {
       "id": "FP-19",
-      "title": "Betrieb und eigene Sicherheit \u00fcberwachen",
+      "title": "Betrieb und eigene Sicherheit überwachen",
       "state": "in_progress",
       "v2_capabilities": [
         "self-security assess/inspect: sixteen original criteria, full JSON/Markdown/stdout, provided observations, seven read-only native requests, inert local scans, real release verification and retained replay; no publisher or authority"
@@ -276,7 +276,7 @@
     },
     {
       "id": "FP-20",
-      "title": "Reviews, Validierung und Kommunikation unterst\u00fctzen",
+      "title": "Reviews, Validierung und Kommunikation unterstützen",
       "state": "in_progress",
       "v2_capabilities": [
         "provenance private record/import/index/check/inspect preserves original declared association wires; no verified execution or approval",
@@ -332,13 +332,14 @@
     },
     {
       "id": "FP-21",
-      "title": "Findings, Entscheidungen und Ma\u00dfnahmen im Lifecycle verfolgen",
+      "title": "Findings, Entscheidungen und Maßnahmen im Lifecycle verfolgen",
       "state": "in_progress",
       "v2_capabilities": [
         "Neutral lifecycle contract, synthetic/history and zero-argument default ledger validation over closed captured bytes; offline legacy capture replay only. Native base-ref/new-provider flows, live actions and operating authority remain open.",
         "synthetic-lifecycle generate/inspect/replay preserves all five whole synthetic generators and all19 functions: original ledger/cutoff/output guards, private source-preimage candidate overlay and explicit owned native writes, complete JSON/Markdown/CSP HTML, ordered partial failures and original0/1/2 exits; captured default text codec and closed raw/code/node-bound replay; no live/personal/operating authority transfer",
         "synthetic-ledger generate/inspect/replay retains all six whole original synthetic demo/intake mains and all24 functions across ten modules (587 original lines), lazy original argument parsing, private source-preimage ledger and explicit native POSIX effects; complete buffered/fsync/link/unlink/lock outcomes, partial errors and pending/canonical alias retry, closed raw/code/node-bound replay without repeated source effects; no personal/live/operating authority transfer",
-        "pilot-projections actions/validation: whole original diagnostic generation, explicit legacy captured-evidence profile, private/selected effects and closed source-bound replay; development only"
+        "pilot-projections actions/validation: whole original diagnostic generation, explicit legacy captured-evidence profile, private/selected effects and closed source-bound replay; development only",
+        "pilot-run-intake: whole original fresh main, two separate clocks, complete captured-bundle validation, owned native or logical private temporary scope and original atomic receipt append; technical capture and consistency do not authenticate producers or transfer authority; final installed/peer/full-Goal evidence remains open"
       ],
       "positive_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
@@ -352,7 +353,8 @@
         "tests/test_v2_synthetic_ledger_private_journal.py:lazy source-preimage private candidate versus whole original six mains, closed source-deletion replay and exact pending/canonical pair",
         "tests/test_v2_synthetic_ledger_native_oracle.py:entire native original mains, eight injected whole-program errors and source-deletion replay",
         "tests/test_v2_synthetic_ledger_application.py:both modes, original parser exits, explicit schema resources and own-node inspection/portable replay",
-        "tests/test_v2_pilot_projections.py:whole original streams, all index/report file bytes/modes, default ignored argv; tests/test_v2_pilot_projection_application.py:source-bound complete private/native records"
+        "tests/test_v2_pilot_projections.py:whole original streams, all index/report file bytes/modes, default ignored argv; tests/test_v2_pilot_projection_application.py:source-bound complete private/native records",
+        "tests/test_v2_pilot_run_fresh.py: whole unchanged fresh main in both modes, independent capture/receipt clocks and exact complete receipts; tests/test_v2_pilot_run_intake.py: original saved-capture APIs; tests/test_v2_pilot_run_race.py: two actual native processes recheck history under original writer lock"
       ],
       "negative_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
@@ -366,7 +368,8 @@
         "tests/test_v2_synthetic_ledger_projection.py:private descriptor/buffer/link/lock and ordered partial effects without native durability claim",
         "tests/test_v2_synthetic_ledger_native_oracle.py:resealed metadata/resource/payload/alias/intent/transition tampering",
         "tests/test_v2_synthetic_ledger_application.py:incomplete capture, authority/type/source/request/binding/result/blob mutations and missing schema-resource admission",
-        "tests/test_v2_pilot_projections.py:changed operating/role/receipt data and ordered index-before-report failure; tests/test_v2_pilot_projection_application.py:missing profile, capture failure, terminal failure, foreign node and resealed tampering"
+        "tests/test_v2_pilot_projections.py:changed operating/role/receipt data and ordered index-before-report failure; tests/test_v2_pilot_projection_application.py:missing profile, capture failure, terminal failure, foreign node and resealed tampering",
+        "tests/test_v2_pilot_run_temporary.py: replacement/unknown-child/product-parent admission, original partial cleanup and private collision/source-deleted replay; tests/test_v2_pilot_run_ledger_budget.py: per-profile bounded wide receipts, old defaults and transaction-only large preimages; fresh partial-write/fsync/post-publication-cleanup failures and stale competing receipt origins"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -2353,8 +2356,8 @@
         "--run-id"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/pilot_run_intake_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {

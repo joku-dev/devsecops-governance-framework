@@ -1,6 +1,39 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
 
+## Whole fresh pilot-run intake and owned temporary capture
+
+Classify the neutral original main/API/context/application, explicit legacy
+GET and two-clock composition, native/private/pure temporary-scope and ledger
+ports, bounded receipt storage, distribution routing and immutable original
+references as executable engineering/evidence-contract portability. No new
+normative source, policy, control, baseline, source register, official latest
+index or operating acceptance changes; these original references do not require
+normative Source Document Intake.
+
+Retain the complete original1,107-byte main, `capture_files` and `append_capture`.
+Fresh collection and whole original verification precede the later receipt clock;
+inside the writer lock, reload complete history and check exact redelivery before
+expected sequence. Preserve atomic buffered publication and original cleanup
+order, including receipts surviving directory-fsync or later temporary cleanup
+errors. Two actual competing processes must not share a sequence.
+
+Keep the original25-MiB capture bound. Its base64 receipt uses a separate fixed
+64-MiB transaction-file/2-GiB repeated-read profile; old16/128-MiB defaults and
+all alias/inode/scope checks remain intact. Reject replacement/unknown children
+before cleanup and deactivate finalizers after ownership loss. Logical private
+temporaries confer no native durability guarantee. Full source-deleted pure
+reconstruction repeats no GET, clock, source, write, lock or cleanup effects.
+
+Record whole V1 positive/negative native/private comparisons, large valid
+captures without altered frozen profiles/schemas, real writer barriers and
+partial/journal failures. Keep the27-method dated source proof separate from
+subsequent registered application, exact-source full, signed installed/peer and
+fixed-consumer gates. Current registration remains in progress; full Goal and
+outer Python traceback parity are open. No personal, producer, Source,
+compliance or operating authority is transferred. See the
+[run-intake guide](../../operations/guides/axiom-v2-pilot-run-intake.md).
+
 ## Whole diagnostic capture and saved-bundle preflight
 
 Classify the neutral full original program/context/reconstruction/application,
@@ -26,8 +59,8 @@ external appearances separately from owned outputs. Missing input/clock/journal
 observations obtain no original verdict; separately release owned host handles.
 These tests, legacy markers and reconstructed consistency confer no producer,
 personal, Source, compliance or operating authority. Outer Python traceback
-wire and complete Goal acceptance remain open; run-intake is a separate pending
-entrypoint. See the [preflight guide](../../operations/guides/axiom-v2-live-preflight.md).
+wire and complete Goal acceptance remain open; run-intake is a separate
+following engineering increment. See the [preflight guide](../../operations/guides/axiom-v2-live-preflight.md).
 
 ## Whole fresh pilot action intake and two-ledger publication
 

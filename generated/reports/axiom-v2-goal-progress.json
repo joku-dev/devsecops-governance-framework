@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 115,
-      "pending": 20,
+      "in_progress": 116,
+      "pending": 19,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,16 +337,16 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "6bed4f101747d67d07feba6950553d3b0b5afb933c66514205d763e76fc31f27",
+  "matrix_sha256": "bde020ea59730cb6aaeed6febfd329647f20e1b291d5eec108d775ceaa95c6a1",
   "next_work": {
     "entrypoints": [
       "scripts/preflight_lifecycle_live_evidence.py",
       "scripts/intake_lifecycle_pilot_run.py"
     ],
-    "next_step": "Der vollständige ursprüngliche Preflight-Main und collect_preflight sind als live-preflight registriert, mit expliziten GETs, unverändertem Originalverifier, Erfassungszeit und exklusiver Ausgabe samt letzter Abschlussdatei. Neun gezielte Kernprüfgruppen bestehen, einschließlich gültigem10-MiB-Archiv, zwei Ausgabemodi, Original-APIs, Konkurrenz und sieben Byte Teilfehler. Sechs Anwendungsgruppen sowie CLI und native Teilfehlerprüfung bestehen separat. Eine frühere66-Gruppen-Regression bestätigt unveränderte3194Quelldateien und die bisherigen8-MiB-Transportgrenzen. Die aktuellen17Quellgruppen bestehen auf3.13/3.11/3.12; eigene Gesamtvalidierung und signierte Hostabnahmen stehen aus. Der signierte Vorgänger dac61c6 hat seinen korrigierten Hostvergleich mit104Nachweisen je Richtung und208Fremdinstanz-Ablehnungen abgeschlossen; ursprünglicher Harnessfehler und gesonderte Korrektur bleiben erhalten. Der Vorbereitungsstand5350904 besteht3337Quelltests und430installierte Mac-Gruppen; übrige CLI-/Linux-/Peer-Abnahme läuft separat. Der Intake-Quellstand besteht3352Tests und deklarierte Reviews; seine eigene signierte Hostabnahme bleibt separat. run-intake ist weiter offen. Unverändert22/135/37/16 im Scope:115 in Arbeit,20 offen,0 vollständig verifiziert. Keine Source-, persönliche, Producer- oder Betriebsautorität wird übertragen.",
-    "title": "Diagnostischen Preflight vollständig prüfen und gemeinsame Liefernachweise abschließen"
+    "next_step": "Der vollständige frische Run-Intake ist als pilot-run-intake mit originaler Bundle-Prüfung, zwei getrennten Uhren, Writer-Lock, atomischem Receipt und eigener temporärer Bereinigung registriert. Die27Quellgruppen bestehen auf3.13/3.11/3.12 am datierten3216-Dateien-Stand. Sieben zusätzliche Anwendungsgruppen und ein echter CLI-Hilfe-/Inspect-/Replay-Test bestehen lokal; aktuelle vollständige Prüfung und eigene signierte Mac/VM-/Peer-/Consumer-Abnahme bleiben offen. Der diagnostische Preflight besteht3369Tests am älteren1e545-Quellbaum. Eine anschließend gefundene Zeile mit vier Leerzeichen wurde ohne AST-/Codeobjektänderung bereinigt; für den neuen2e732-Quellbaum laufen frische Nachweise, alte Ergebnisse bleiben datiert. Weitere vorgelagerte signierte Stände behalten ihre getrennten Nachweise und offenen Abnahmen. Unverändert22/135/37/16 im Scope:116 in Arbeit,19 offen,0 vollständig verifiziert. Keine Source-, persönliche, Producer-, Compliance- oder Betriebsautorität wird übertragen.",
+    "title": "Frischen Run-Intake vollständig absichern und signierte gemeinsame Liefernachweise abschließen"
   },
-  "observation_sha256": "bf5d62ba1faac735ad0eca0e2a928fdbdaece19908f7abebdf9b409e0e9e28a4",
+  "observation_sha256": "0818af89599bc326a98ea4cfede0f6014d8bf5ec0963684286acef7ef1495db9",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

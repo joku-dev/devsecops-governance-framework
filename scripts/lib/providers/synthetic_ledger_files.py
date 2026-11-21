@@ -13,25 +13,27 @@ from lib.providers.validation_worktree import signature
 from lib.providers.workbook_import_io import ordinary_ancestors
 from lib.providers.synthetic_lifecycle_io import metadata
 from lib.requirement_validation_budget import InputAdmissionError
-from lib.validation_files import MAX_FILE, MAX_TOTAL
+from lib.validation_files import MAX_FILE
+from lib.synthetic_ledger_budget import DEFAULT, admitted
 
 
 class LedgerFiles:
-    def __init__(self, owner, ledger, *, transaction_name):
+    def __init__(self, owner, ledger, *, transaction_name, budget=DEFAULT):
         self.io, self.ledger, self.transaction_name = owner, Path(ledger), transaction_name
         if not self.ledger.is_absolute():
             raise InputAdmissionError('synthetic_ledger_absolute_root_required')
+        self.budget = admitted(budget)
         self.total = 0
 
     @staticmethod
-    def admit(value):
+    def admit(value, *, max_file=MAX_FILE):
         # Linux does not apply the process umask to symlink mode bits; reject
         # the object kind before platform-dependent permission diagnostics.
         if not stat.S_ISREG(value.st_mode):
             raise InputAdmissionError('synthetic_ledger_regular_bounded_file_required')
         if value.st_uid != os.geteuid() or value.st_mode & 0o7022:
             raise InputAdmissionError('synthetic_ledger_owned_unshared_file_required')
-        if not 1 <= value.st_nlink <= 2 or value.st_size > MAX_FILE:
+        if not 1 <= value.st_nlink <= 2 or value.st_size > max_file:
             raise InputAdmissionError('synthetic_ledger_regular_bounded_file_required')
 
     def members(self, parent):
@@ -75,7 +77,7 @@ class LedgerFiles:
             candidate = os.stat(name, dir_fd=parent, follow_symlinks=False)
             if (candidate.st_dev, candidate.st_ino) != (value.st_dev, value.st_ino):
                 continue
-            self.admit(candidate)
+            self.admit(candidate, max_file=self.budget.file)
             if signature(candidate) != signature(value):
                 raise InputAdmissionError('synthetic_ledger_alias_metadata_changed')
             aliases.append(name)
@@ -103,6 +105,7 @@ class LedgerFiles:
     def read(self, path, label):
         self.io.check(path, label)
         selected = Path(path)
+        file_limit = self.budget.file if selected.parent == self.ledger / "transactions" else DEFAULT.file
         ordinary_ancestors(selected.parent)
         with held_root(selected.parent) as parent:
             parent_value = os.fstat(parent)
@@ -110,17 +113,17 @@ class LedgerFiles:
                     or parent_value.st_mode & 0o7022):
                 raise InputAdmissionError('synthetic_ledger_owned_unshared_parent_required')
             entry = os.stat(selected.name, dir_fd=parent, follow_symlinks=False)
-            self.admit(entry)
+            self.admit(entry, max_file=file_limit)
             descriptor = os.open(selected.name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=parent)
             try:
                 before = os.fstat(descriptor)
                 if signature(before) != signature(entry):
                     raise InputAdmissionError('synthetic_ledger_file_replaced_before_read')
                 chunks, size = [], 0
-                while block := os.read(descriptor, min(65536, MAX_FILE + 1 - size)):
+                while block := os.read(descriptor, min(65536, file_limit + 1 - size)):
                     chunks.append(block)
                     size += len(block)
-                    if size > MAX_FILE:
+                    if size > file_limit:
                         raise InputAdmissionError('synthetic_ledger_file_byte_budget')
                 raw = b''.join(chunks)
                 aliases = self.pair(parent, selected, before, raw)
@@ -128,7 +131,7 @@ class LedgerFiles:
                 if signature(before) != signature(os.fstat(descriptor)) or signature(before) != signature(current):
                     raise InputAdmissionError('synthetic_ledger_file_changed_during_read')
                 self.total += len(raw)
-                if self.total > MAX_TOTAL:
+                if self.total > self.budget.total:
                     raise InputAdmissionError('synthetic_ledger_read_total_budget')
                 return raw, {'snapshot': {'kind': 'file', 'mode': stat.S_IMODE(before.st_mode),
                     'identity': [before.st_dev, before.st_ino], 'content': self.io.blob(raw)},

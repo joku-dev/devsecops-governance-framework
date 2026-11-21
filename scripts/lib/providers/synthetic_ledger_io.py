@@ -1,4 +1,5 @@
 """Lazy ledger-aware input capture; all other source IO retains its contract."""
+from lib.synthetic_ledger_budget import DEFAULT, admitted
 import os
 from pathlib import Path
 import stat
@@ -9,10 +10,11 @@ from lib.providers.workbook_import_io import original_error
 
 
 class NativeIO(LifecycleIO):
-    def __init__(self, *args, ledger, transaction_name, **kwargs):
+    def __init__(self, *args, ledger, transaction_name, ledger_budget=DEFAULT, **kwargs):
+        self.ledger_budget = admitted(ledger_budget)
         super().__init__(*args, **kwargs)
         self.ledger = Path(ledger)
-        self.ledger_files = LedgerFiles(self, ledger, transaction_name=transaction_name)
+        self.ledger_files = LedgerFiles(self, ledger, transaction_name=transaction_name, budget=self.ledger_budget)
         self.transaction_name = transaction_name
         self.ledger_reads = {}
         if self.mode == 'private-candidate':

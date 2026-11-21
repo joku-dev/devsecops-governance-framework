@@ -1,0 +1,17 @@
+{
+  "reference_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "scripts/intake_lifecycle_pilot_run.py": {
+      "fixture": "intake_lifecycle_pilot_run.py.txt",
+      "sha256": "a879d5534f9db8b8f0ae4eac2aa36cf41b743db875b4c7bfa04f6dacd5424b7c",
+      "git_blob": "b80a2ce0f72293c43b23423155b74374e23860e8",
+      "bytes": 1107
+    },
+    "scripts/lib/governance_lifecycle/live_admission.py": {
+      "fixture": "live_admission.py.txt",
+      "sha256": "53d9c8d91d2ed827f5727774b645219fb4b623b7245575a61489272b3d0a7a98",
+      "git_blob": "16b2a44f3107f54eb9931f88aaa0c931cddd0c27",
+      "bytes": 10326
+    }
+  }
+}
