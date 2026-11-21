@@ -86,8 +86,8 @@
       "verified_percent": 0.0
     },
     "entrypoints": {
-      "in_progress": 113,
-      "pending": 22,
+      "in_progress": 114,
+      "pending": 21,
       "remaining": 135,
       "remaining_subjects": [
         "scripts/adapt_document_consistency_provider_response.py",
@@ -337,15 +337,15 @@
     "unit_tests": 2367,
     "unit_tests_skipped": 1
   },
-  "matrix_sha256": "124780906174b6cacd500b7afd9c6fd86ddb20e47ebc516851b3a0042fe96210",
+  "matrix_sha256": "094fd8f832ec2f683b33b8d9991e71fedb882a24fed6fb7bfd66205316ce347b",
   "next_work": {
     "entrypoints": [
-      "scripts/prepare_lifecycle_pilot_action.py"
+      "scripts/intake_lifecycle_pilot_action.py"
     ],
-    "next_step": "Die vollständige ursprüngliche Vorbereitungsfunktion und ihr Main-Block sind als pilot-action-requests mit explizitem Zeit-, Kontext- und exklusivem Ausgabeport registriert. Acht Originalvergleichsgruppen und sieben Anwendungsgruppen bestehen lokal; echte Sieben-Byte-Teilfehler sowie validierte synthetische Entscheidungs-/Fortschritts-/Abschluss-/Widerrufshistorien sind geprüft. Gemeinsame gepinnte Quellprüfungen, Gesamtvalidierung, deklarierte Reviews und signierte installierte Mac-/Linux-/Peer-/Consumer-Nachweise dieses neuen Stands stehen noch aus. Vorgänger-Nachweise behalten ihre jeweilige Revision: Personal-Channel-44 ist auf Python3.13/3.11/3.12 mit unveränderten Quellen geprüft, seine gepinnte Gesamtvalidierung mit3.322Tests sowie Demo/Viewer/Goal/striktem Dokumentationsbuild und deklarierte Quellreviews sind bestanden; der Pilot-Berichtsvorgänger hat seine Mac-Abnahme bestanden und wartet auf den eigenen Linux-/Peer-Abschluss. Alle22/135/37/16 bleiben im Scope:113 Einstiegspunkte in Arbeit,22 offen,0 vollständig nachgewiesen. Keine persönliche/live/Betriebsautorität wird übertragen.",
-    "title": "Pilot-Aktionsvorbereitung vollständig prüfen und aktuelle Liefernachweise abschließen"
+    "next_step": "Der vollständige ursprüngliche Intake-Main-Block samt collect_action und append_action_snapshot ist als pilot-action-intake registriert: frische explizite Provider-Leseabfragen, getrennte Capture-/recorded_at-Zeitpunkte, zwei Ledger-Sperren in Originalreihenfolge, erneutes Laden und atomisches Anhängen. Der frühere unregistrierte6-Gruppen-Prototyp besteht auf Python3.13/3.11/3.12; vollständige API-Vergleiche und ein Test mit zwei echten konkurrierenden Prozessen bestehen lokal. Der registrierte Anwendungsstand prüft Herkunft, Manipulationen, native fsync-Teilfehler, Journalabbrüche und CLI-Nachrechnung. Aktuelle gemeinsame Quellprüfungen, Gesamtvalidierung, deklarierte Reviews und signierte installierte Mac-/Linux-/Peer-/Consumer-Nachweise stehen noch aus. Datierten Vorgängern werden keine neuen Abnahmen zugerechnet; der Vorbereitungszweig hat seine gepinnte Gesamtprüfung mit3.337Tests sowie Demo/Viewer/Goal/striktem Dokumentationsbuild und deklarierte Quellreviews bestanden; sein eigener signierter Hostvergleich bleibt separat. Alle22/135/37/16 bleiben im Scope:114 Einstiegspunkte in Arbeit,21 offen,0 vollständig nachgewiesen. Keine persönliche/live/Betriebsautorität wird übertragen.",
+    "title": "Aktions-Intake vollständig prüfen und gemeinsame Liefernachweise abschließen"
   },
-  "observation_sha256": "c67b8eb9915de1d243a0d5ea6bf89ad16f8522dae93c62dfe3d1c020abd17c93",
+  "observation_sha256": "73be5e61e84b431ccb75c1f0aa89724d6fef5c24fad60c7a6b839e8db19e21ef",
   "remaining_effort_estimate": null,
   "schema_version": 1,
   "scope_exceptions": [],

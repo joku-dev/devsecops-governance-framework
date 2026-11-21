@@ -1,5 +1,41 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+
+## Whole fresh pilot action intake and two-ledger publication
+
+Classify the neutral original program/context/application/reconstruction,
+explicit transport/clock/ledger composition, distribution routing and immutable
+original references as engineering/evidence-contract portability. The entire
+1,033-byte original intake and complete original pilot-actions module retain
+hashed technical references. No new normative source, approved requirement,
+control, policy, baseline, source register or operating acceptance changes.
+
+Retain the whole original main, `collect_action` and `append_action_snapshot`,
+including the default/explicit collection parameters, actual fresh GET marker,
+full history/role/head/schema/freshness/statement validation, capture time and
+later recording time, same-order two-ledger locks, context reload, duplicate
+short circuit, expected sequence, atomic pending-file write/flush/fsync/link,
+directory fsync and cleanup. Whole AST restoration checks these entire bodies.
+Unchanged original validation functions build and check the synthetic fixtures.
+
+Compare native/private whole file bytes, modes, streams and API returns. Two
+real writer processes demonstrate actual lock waiting and changed-state
+sequence rejection; portable replay uses the observed history after source
+removal. Preserve complete native errors and already published action bytes
+after directory-fsync failure. A lost journal confers no original verdict;
+release owned host resources without relabelling unobserved cleanup as part of
+the original execution. Retain end-of-kernel descriptor and ledger observations.
+
+The application binds strict profile/parser/source/product/node/result/event/
+blob/authority context and rejects resealed result, clock, metadata and orphan
+attacks. Exact external Python traceback wire equality remains open. Dated
+source/prototype/API/concurrency checks do not establish current signed installed
+acceptance or full135/37/16 parity. Keep the subject in progress until full
+pinned review and matching signed Mac/Linux/peer/consumer evidence support it.
+No private projection, captured statement or technical consistency transfers
+personal, live, Source, producer or operating authority. See the
+[intake guide](../../operations/guides/axiom-v2-pilot-action-intake.md).
+
 ## Complete pilot action request preparation
 
 Classify the new neutral preparation/context/application/clock reconstruction,

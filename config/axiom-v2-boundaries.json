@@ -199,7 +199,12 @@
     "scripts/lib/pilot_action_preparation.py",
     "scripts/lib/pilot_action_preparation_context.py",
     "scripts/lib/pilot_action_preparation_clock.py",
-    "scripts/lib/pilot_action_preparation_application.py"
+    "scripts/lib/pilot_action_preparation_application.py",
+    "scripts/lib/pilot_action_intake.py",
+    "scripts/lib/pilot_action_intake_context.py",
+    "scripts/lib/pilot_action_intake_clock.py",
+    "scripts/lib/pilot_action_ledgers.py",
+    "scripts/lib/pilot_action_intake_application.py"
   ],
   "composition": [
     "scripts/lib/provider_ports.py",
@@ -219,7 +224,8 @@
     "scripts/lib/lifecycle_candidate_preparation_ports.py",
     "scripts/lib/pilot_projection_ports.py",
     "scripts/lib/personal_channel_ports.py",
-    "scripts/lib/pilot_action_preparation_ports.py"
+    "scripts/lib/pilot_action_preparation_ports.py",
+    "scripts/lib/pilot_action_intake_ports.py"
   ],
   "adapters": "scripts/lib/providers",
   "compatibility_facades": [

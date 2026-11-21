@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **113 in Arbeit** und **22 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **114 in Arbeit** und **21 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
 | Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 113 | 22 | 135 |
+| V1-Einstiegspunkte (135) | 0 | 114 | 21 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Pilot-Aktionsvorbereitung vollständig prüfen und aktuelle Liefernachweise abschließen.
+**Nächster Baustein:** Aktions-Intake vollständig prüfen und gemeinsame Liefernachweise abschließen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -143,8 +143,19 @@ Kommandozeilenablauf. Rollen, Ledger-Köpfe, Revisionen, Frische und Aktionskett
 werden nach den ursprünglichen Regeln geprüft; Ausgabe und Erklärungstext
 bleiben an den vollständigen Request gebunden. Private Vorschau und gespeicherte
 Nachrechnung sind implementiert. Die Vorbereitung erteilt keine persönliche
-Zustimmung und veröffentlicht keine Erklärung. Aktuelle Gesamtvalidierung,
-Review und signierte Host-Lieferung dieses Folgezweigs bleiben offen.
+Zustimmung und veröffentlicht keine Erklärung. Der Vorbereitungs-Quellstand
+ist mit3.337Tests, Demo/Viewer/Goal/striktem Dokumentationsbuild und deklarierten
+Quellreviews geprüft. Sein signierter Hostvergleich wird separat abgeschlossen.
+
+Der neue [Pilot-Aktions-Intake](docs/operations/guides/axiom-v2-pilot-action-intake.md)
+überführt den vollständigen ursprünglichen Intake samt Erfassung und atomischem
+Anhängen. Frische Provider-Lesezugriffe, beide Zeitpunkte, Ledger-Sperren und
+Zustandsprüfung nach dem Warten bleiben erhalten. Native Teilfehler und
+unvollständige Journale werden unterschieden; eigene offene Ressourcen werden
+getrennt freigegeben. Original-API- und Konkurrenzvergleiche bestehen lokal.
+Die aktuelle gepinnte Gesamtprüfung und signierte installierte Abnahme dieses
+Folgezweigs stehen noch aus. Private Kandidaten und technische Nachrechnung
+übertragen keine persönliche oder betriebliche Zustimmung.
 
 Die folgende [Parserkontext-Korrektur](docs/operations/guides/axiom-v2-producer-parser-context.md)
 erweitert die gespeicherten Erzeugerprofile auf die älteren Lifecycle-Berichte,

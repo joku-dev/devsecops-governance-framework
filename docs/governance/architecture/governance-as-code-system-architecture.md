@@ -721,6 +721,35 @@ full pinned/reviewed/signed installed acceptance; see
 [pilot action preparation](../../operations/guides/axiom-v2-pilot-action-preparation.md).
 
 
+### Whole fresh pilot action intake and two-ledger append
+
+`pilot-action-intake generate/inspect/replay` retains the whole original main,
+`collect_action` and `append_action_snapshot` over explicit context, logical
+paths, provider transport, two distinct sampled times and store effects. The
+collection clock follows the original GET/pagination/race checks; the ledger
+recording sample follows complete collection validation. Receipt then action
+locks preserve their original order. Context is reloaded under both locks
+before duplicate/sequence validation and atomic publication.
+
+`pilot_action_intake_ports.py` composes the explicit legacy read adapter, native
+or retained clock and two exact ledger scopes. The neutral store retains its
+whole original hardlink/fsync/unlink algorithm. A shared ordered IO cursor and
+logical descriptor router keep each ledger's native state/ownership separate;
+private projections make no native locking or durability claim. The record
+binds complete source/product/node/request/result/event/blob/authority context,
+both clocks, both ledger after-images and immutable end-of-kernel descriptors.
+Replay repeats no selected-source, process, provider, effect or native-clock
+operation. Own host-handle teardown is separate from the original program and
+cannot certify observations lost during a journal failure.
+
+Whole original API comparisons and two real competing writer processes preserve
+original state/sequence behavior. A native directory-fsync error can retain an
+already visible action, which remains a complete original failure with a
+partial-effects indication. Technical incompleteness receives no original
+verdict. This engineering candidate grants no personal, producer, Source,
+compliance or operating authority; full source and signed installed acceptance
+remain separate. See the [pilot action intake guide](../../operations/guides/axiom-v2-pilot-action-intake.md).
+
 ### Complete producer parser context across prior capture APIs
 
 The synthetic lifecycle reporting, workbook import and document-rendering
