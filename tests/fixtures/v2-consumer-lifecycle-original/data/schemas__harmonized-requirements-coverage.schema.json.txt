@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Harmonized Requirements Candidate Coverage",
+  "type": "object",
+  "required": ["schema_version", "report_id", "status", "normative", "enforcement", "source_document_id", "summary", "coverage_by_requirement", "decision_boundary"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "report_id": { "const": "harmonized-requirements-candidate-coverage" },
+    "status": { "const": "candidate" },
+    "normative": { "const": false },
+    "enforcement": { "const": "none" },
+    "source_document_id": { "const": "CISO-REQ-SRC-001" },
+    "summary": {
+      "type": "object",
+      "required": ["harmonized_requirements", "covered", "partial", "gap", "source_requirements", "source_covered", "source_partial", "source_gap", "weighted_design_coverage_pct"],
+      "properties": {
+        "harmonized_requirements": { "type": "integer", "minimum": 1 },
+        "covered": { "type": "integer", "minimum": 0 },
+        "partial": { "type": "integer", "minimum": 0 },
+        "gap": { "type": "integer", "minimum": 0 },
+        "source_requirements": { "type": "integer", "minimum": 1 },
+        "source_covered": { "type": "integer", "minimum": 0 },
+        "source_partial": { "type": "integer", "minimum": 0 },
+        "source_gap": { "type": "integer", "minimum": 0 },
+        "weighted_design_coverage_pct": { "type": "number", "minimum": 0, "maximum": 100 }
+      },
+      "additionalProperties": false
+    },
+    "coverage_by_requirement": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "domain", "target_area", "status", "refs", "gap", "mapped_source_requirements"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^HREQ-[A-Z]+-[0-9]{3}$" },
+          "title": { "type": "string", "minLength": 1 },
+          "domain": { "type": "string", "minLength": 1 },
+          "target_area": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["covered", "partial", "gap"] },
+          "refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+          "gap": { "type": ["string", "null"] },
+          "mapped_source_requirements": { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "decision_boundary": {
+      "type": "object",
+      "required": ["control_changes_authorized", "policy_changes_authorized", "release_changes_authorized", "consumer_compliance_claim_authorized"],
+      "properties": {
+        "control_changes_authorized": { "const": false },
+        "policy_changes_authorized": { "const": false },
+        "release_changes_authorized": { "const": false },
+        "consumer_compliance_claim_authorized": { "const": false }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

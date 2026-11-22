@@ -1,0 +1,20 @@
+{
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "sha256": "a1dacc35228600a8fac5808bd01e5a6c6b4db792d7ef4ebc7c03ecedb6153093",
+  "git_blob": "dab3261b276b07bcd06605936583c05ae6c2568f",
+  "functions": [
+    "git",
+    "github_api",
+    "normalized_report",
+    "materially_equal",
+    "blocking_api_errors",
+    "validate_viewer_projection",
+    "changed_paths",
+    "report_at",
+    "open_refresh_pr",
+    "write_outputs",
+    "publish",
+    "main"
+  ],
+  "Goal_complete": false
+}

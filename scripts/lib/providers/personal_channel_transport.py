@@ -36,7 +36,7 @@ class NativePersonalTransport:
         self.calls+=1
         if self.calls>MAX_CALLS:raise InputAdmissionError('personal_transport_operation_budget')
         spec=self.profile.request(kind,arguments,self.root,self.owner.cwd);environment=dict(self.environment)
-        if kind=='git-tree':
+        if kind in ('git-tree','git-run','git-checked-run'):
             environment={k:v for k,v in environment.items() if not k.startswith(('GIT_','LD_','DYLD_'))}
             environment.update(GIT_CONFIG_GLOBAL='/dev/null',GIT_CONFIG_SYSTEM='/dev/null',GIT_CONFIG_NOSYSTEM='1',GIT_CONFIG_COUNT='0',GIT_OPTIONAL_LOCKS='0',GIT_NO_REPLACE_OBJECTS='1',GIT_NO_LAZY_FETCH='1',GIT_ALLOW_PROTOCOL='',GIT_TERMINAL_PROMPT='0',GIT_ASKPASS='/bin/false')
         cache={}
@@ -58,10 +58,10 @@ class NativePersonalTransport:
             if observe['stream_budget_exceeded']:raise InputAdmissionError('personal_process_capture_incomplete')
             # The original local Git call has no timeout. Our finite capture
             # deadline cannot be represented as an original TimeoutExpired.
-            if observe['timed_out'] and kind=='git-tree':raise InputAdmissionError('personal_git_observation_deadline')
+            if observe['timed_out'] and kind in ('git-tree','git-run','git-checked-run'):raise InputAdmissionError('personal_git_observation_deadline')
             signal_context=None;error=None
             if observe['timed_out']:error={'type':'TimeoutExpired','message':str(subprocess.TimeoutExpired(spec['original_arguments'],spec['timeout'],output=out))}
-            elif code:
+            elif code and kind!='git-run':
                 error={'type':'CalledProcessError','message':str(subprocess.CalledProcessError(code,spec['original_arguments'],output=out))}
                 if code<0:signal_context={'implementation':sys.implementation.name,'version':list(sys.version_info[:3]),'system':platform.system()}
             return {'schema_version':1,'specification':spec,'actual_arguments':actual,'program':identity,'source_before':before,'source_after':after,

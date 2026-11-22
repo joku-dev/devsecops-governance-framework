@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1.0",
+  "request_type": "consumer-lifecycle-action",
+  "environment": "live_pilot_validation",
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "scope": {
+    "domain": "architecture",
+    "enforcement": "report_only",
+    "github_repository_id": 1301526448,
+    "pilot_only": true,
+    "repository_id": "joku-dev/governance-framework-demo-consumer",
+    "resource": "repository",
+    "rule_id": "operation_readiness"
+  },
+  "operating_profile_ref": {
+    "revision": 1,
+    "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541"
+  },
+  "role_binding_ref": {
+    "revision": 1,
+    "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95"
+  },
+  "created_at": "2026-10-03T07:49:24Z",
+  "discussion_number": 195,
+  "required_role": "remediation_decider",
+  "required_subject_id": "github-user:81616324",
+  "expected_receipt_head": {
+    "id": "transaction:ecbc490979c92d39391102e91025f78d2eac579f0d2f53e715532836ab5329a1",
+    "digest": "8375aef5bf198181cf9ee79b35b1a4273b560d90c191798d735e5ed3da8f72b5"
+  },
+  "expected_action_head": {
+    "id": "transaction:cc1b9f606e9dc5e8631fa1bb8d20eec46a116bc11dee6c54f545fb23dff28457",
+    "digest": "8ae75e8ccd6e9a7c841b54dc9507a64be69ac2dc0b34fc50dad76f3d594fdb27"
+  },
+  "expected_revision": 4,
+  "body": {
+    "kind": "progress",
+    "decision_ref": {
+      "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7",
+      "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
+    },
+    "progress": "completed",
+    "evidence_note": "The scoped operation_readiness remediation was completed in consumer PR #8 (head 97c751d7f9c242990ef09d2ba2bf3db8d4e5b026; merged as e3c6c815f78421ab537c98d2b3b6564fef114566). The PR records the lifecycle progress and valid evidence path in docs/OPERATION_READINESS_ACTION.md. Architecture Governance run 37105987460 was a successful push on that merge commit. The central pilot captured its operation_readiness PASS as eligible receipt #2 (source observed 2026-10-03T07:20:02Z; receipt recorded 2026-10-03T07:21:31Z). This statement records completed only. A fresh mainline PASS after this completed record and separate personal closure approval remain outstanding."
+  }
+}

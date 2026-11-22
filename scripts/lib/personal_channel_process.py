@@ -2,6 +2,7 @@
 import codecs,hashlib,re
 from datetime import datetime,timezone
 from pathlib import PurePosixPath
+from types import SimpleNamespace
 from lib.requirement_review_output import RetainedOutputError
 from lib.requirement_validation_replay import IntegrityError
 from lib.documentation_reconciliation_git import signal_diagnostic
@@ -74,11 +75,17 @@ def process_value(wire,spec,profile,blob,*,emit_stderr,stream_limits=(MAX_STDOUT
         raise RetainedOutputError(start['type'],start['message'])
     if (identity is None or type(code) is not int or not -255<=code<=255 or not observation['started']
             or not observation['terminal_observed'] or type(observation['returncode']) is not int or observation['returncode']!=code):fail('terminal_changed')
-    if observation['timed_out'] and spec['kind']=='git-tree':fail('git_capture_deadline_is_not_original_verdict')
-    if raw[1]:emit_stderr(wire['stderr'])
+    if observation['timed_out'] and spec['kind'] in ('git-tree','git-run','git-checked-run'):fail('git_capture_deadline_is_not_original_verdict')
+    run_capture=spec['kind'] in ('git-run','git-checked-run','opa-checked-run')
+    unchecked_run=spec['kind']=='git-run'
+    if run_capture and spec['text'] is not False:fail('binary_run_capture_required')
+    if raw[1] and not run_capture:emit_stderr(wire['stderr'])
     if observation['timed_out']:
         if wire['signal_context'] is not None:fail('timeout_signal_conflict')
         expected={'type':'TimeoutExpired','message':f"Command '{spec['original_arguments']}' timed out after {spec['timeout']} seconds"}
+    elif unchecked_run:
+        if wire['signal_context'] is not None:fail('run_signal_context_not_used')
+        expected=None
     elif code:
         if code<0:message=signal_diagnostic(wire['signal_context'],code,spec['original_arguments'])
         else:
@@ -93,6 +100,8 @@ def process_value(wire,spec,profile,blob,*,emit_stderr,stream_limits=(MAX_STDOUT
     value=raw[0].decode(wire['effective_encoding']).replace('\r\n','\n').replace('\r','\n') if spec['text'] and not observation['timed_out'] else raw[0]
     if error!=expected:fail('original_error_diagnostic_changed')
     if error is not None:raise RetainedOutputError(error['type'],error['message'])
+    if run_capture:
+        return SimpleNamespace(args=spec['original_arguments'],returncode=code,stdout=raw[0],stderr=raw[1])
     return value
 
 def clock_value(value):

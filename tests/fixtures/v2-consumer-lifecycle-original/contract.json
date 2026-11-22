@@ -1,0 +1,1161 @@
+{
+  "source_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "scripts/lib/governance_lifecycle/consumer_contracts.py": {
+      "fixture": "scripts__lib__governance_lifecycle__consumer_contracts.py.txt",
+      "sha256": "f48015b4a7643284d82a3f27e9c137303f93c1eb83998fae5d35b6e1df95c17d",
+      "git_blob": "bbc1abb43bd428960d8c19dff7b21eea17c09006"
+    },
+    "scripts/lib/governance_lifecycle/consumer_evidence.py": {
+      "fixture": "scripts__lib__governance_lifecycle__consumer_evidence.py.txt",
+      "sha256": "d2f6449a9ce49eba03acae1d8c4685ea71c8067f6f32a06e391e6d59a778fc1a",
+      "git_blob": "55780b31000fcf0b54271b6bd6d47f03ac85d526"
+    },
+    "scripts/lib/governance_lifecycle/consumer_admission.py": {
+      "fixture": "scripts__lib__governance_lifecycle__consumer_admission.py.txt",
+      "sha256": "468e11a702ef3cbd9fa2adb7e04d0609e0c29b53d5534e7fb18e8acf17fcba5b",
+      "git_blob": "0b84254aa7dd191e67ae7ab76c123575b3547a79"
+    },
+    "scripts/lib/governance_lifecycle/consumer_actions.py": {
+      "fixture": "scripts__lib__governance_lifecycle__consumer_actions.py.txt",
+      "sha256": "77370085327881e61bdafdf8eccc8436b25aaa28303c23e2cfa2097323ccc508",
+      "git_blob": "8d6359c74ec134c7caf33f9cbae85ead2e4997c9"
+    },
+    "scripts/lib/governance_lifecycle/consumer_acceptance.py": {
+      "fixture": "scripts__lib__governance_lifecycle__consumer_acceptance.py.txt",
+      "sha256": "f2b9d1c7b189365502e018003628342b9246287d7f563e7afc930fe75914daa2",
+      "git_blob": "4ccebfec64e294fd82085c915d2020938b023485"
+    },
+    "scripts/run_consumer_lifecycle.py": {
+      "fixture": "scripts__run_consumer_lifecycle.py.txt",
+      "sha256": "67a990ce094eaec90af4458c6b5d299e93b71a2057d519f64f658efd99636eb4",
+      "git_blob": "ab53a570b5df6a7396a0e59c50fe835d08d080d1"
+    }
+  },
+  "normative_source_or_authority": false,
+  "oracle_data": {
+    "scope": "Immutable V1 engineering reference bytes only. Replayed historical statements and evidence do not grant this V2 node personal consent, consumer activation or new policy authority. Original Python is executed only by isolated test oracles.",
+    "reused_personal_channel_contract": "tests/fixtures/v2-personal-channel-original/contract.json",
+    "reused_paths": [
+      "schemas/evidence-trust-record.schema.json",
+      "schemas/governance-lifecycle-action-index.schema.json",
+      "schemas/governance-lifecycle-action-transaction.schema.json",
+      "schemas/governance-lifecycle-architecture-source.schema.json",
+      "schemas/governance-lifecycle-candidate-context.schema.json",
+      "schemas/governance-lifecycle-candidates.schema.json",
+      "schemas/governance-lifecycle-closure-index.schema.json",
+      "schemas/governance-lifecycle-closure-transaction.schema.json",
+      "schemas/governance-lifecycle-closure-v0.2.schema.json",
+      "schemas/governance-lifecycle-closure.schema.json",
+      "schemas/governance-lifecycle-common.schema.json",
+      "schemas/governance-lifecycle-decision-v0.2.schema.json",
+      "schemas/governance-lifecycle-decision.schema.json",
+      "schemas/governance-lifecycle-devsecops-source.schema.json",
+      "schemas/governance-lifecycle-event-v0.2.schema.json",
+      "schemas/governance-lifecycle-event.schema.json",
+      "schemas/governance-lifecycle-exception-index.schema.json",
+      "schemas/governance-lifecycle-exception-profile.schema.json",
+      "schemas/governance-lifecycle-exception-transaction.schema.json",
+      "schemas/governance-lifecycle-exception.schema.json",
+      "schemas/governance-lifecycle-index.schema.json",
+      "schemas/governance-lifecycle-live-profile-preparation.schema.json",
+      "schemas/governance-lifecycle-observation.schema.json",
+      "schemas/governance-lifecycle-operating-acceptance.schema.json",
+      "schemas/governance-lifecycle-overview.schema.json",
+      "schemas/governance-lifecycle-personal-channel-probe.schema.json",
+      "schemas/governance-lifecycle-pilot-action-receipt.schema.json",
+      "schemas/governance-lifecycle-pilot-action-request.schema.json",
+      "schemas/governance-lifecycle-pilot-operating.schema.json",
+      "schemas/governance-lifecycle-pilot-receipt.schema.json",
+      "schemas/governance-lifecycle-pilot-role-binding.schema.json",
+      "schemas/governance-lifecycle-profile.schema.json",
+      "schemas/governance-lifecycle-remediation-v0.2.schema.json",
+      "schemas/governance-lifecycle-remediation.schema.json",
+      "schemas/governance-lifecycle-transaction.schema.json",
+      "scripts/lib/governance_lifecycle/__init__.py",
+      "scripts/lib/governance_lifecycle/adapter.py",
+      "scripts/lib/governance_lifecycle/architecture_candidates.py",
+      "scripts/lib/governance_lifecycle/candidates.py",
+      "scripts/lib/governance_lifecycle/closure.py",
+      "scripts/lib/governance_lifecycle/consumer_acceptance.py",
+      "scripts/lib/governance_lifecycle/consumer_actions.py",
+      "scripts/lib/governance_lifecycle/consumer_admission.py",
+      "scripts/lib/governance_lifecycle/consumer_contracts.py",
+      "scripts/lib/governance_lifecycle/consumer_evidence.py",
+      "scripts/lib/governance_lifecycle/contracts.py",
+      "scripts/lib/governance_lifecycle/decisions.py",
+      "scripts/lib/governance_lifecycle/devsecops_candidates.py",
+      "scripts/lib/governance_lifecycle/exceptions.py",
+      "scripts/lib/governance_lifecycle/kernel.py",
+      "scripts/lib/governance_lifecycle/live_admission.py",
+      "scripts/lib/governance_lifecycle/live_evidence.py",
+      "scripts/lib/governance_lifecycle/live_preparation.py",
+      "scripts/lib/governance_lifecycle/operating_acceptance.py",
+      "scripts/lib/governance_lifecycle/personal_probe.py",
+      "scripts/lib/governance_lifecycle/pilot_actions.py",
+      "scripts/lib/governance_lifecycle/store.py",
+      "scripts/lib/governance_lifecycle/synthetic.py",
+      "scripts/lib/governance_lifecycle/synthetic_actions.py",
+      "scripts/lib/governance_lifecycle/synthetic_exceptions.py"
+    ],
+    "files": {
+      ".github/workflows/consumer-lifecycle-guard.yml": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/.github__workflows__consumer-lifecycle-guard.yml.txt",
+        "sha256": "77404c32d68c325758df64591723eb048e487a4d8465c7c8132dc644d6f97168",
+        "git_blob": "d16b3ce277934409918c48333e33e3e4475d65b5",
+        "bytes": 2538,
+        "git_mode": "100644"
+      },
+      ".github/workflows/consumer-lifecycle-update.yml": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/.github__workflows__consumer-lifecycle-update.yml.txt",
+        "sha256": "7534216e909c7fd7d7a0fd7d67f237db58ac50c32ddfe5d535d4c23e694f9250",
+        "git_blob": "a88bacbb0b4fc112599af3ee21575e5fb199cd22",
+        "bytes": 2115,
+        "git_mode": "100644"
+      },
+      "docs/operations/evidence/consumer-lifecycle-operation.md": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/docs__operations__evidence__consumer-lifecycle-operation.md.txt",
+        "sha256": "6c43eccda8d698bc9ee8b2c5b0f808e55a89eb01ba5e9d39b23800c33517b5b7",
+        "git_blob": "8c5a38f98338391c73b9b5e6ad2c079ab9ef66ff",
+        "bytes": 8389,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-acceptance-statement.md": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-acceptance-statement.md.txt",
+        "sha256": "42198ce8e2f2ae741f24965722bc41a3bf8f486d4982ca2bd6d2aa44e3b3d749",
+        "git_blob": "fc220722ada9c31c1ffe10636c9b7571829836b1",
+        "bytes": 822,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/artifact-after.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__artifact-after.json.txt",
+        "sha256": "571626f09974ca2d127d3471f40f9db75561b7ff4c881df87e7f37bb7eff8bb1",
+        "git_blob": "4ff5f398b622df940bf77e67ec7ff4a3f914501a",
+        "bytes": 744,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/artifact-before.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__artifact-before.json.txt",
+        "sha256": "571626f09974ca2d127d3471f40f9db75561b7ff4c881df87e7f37bb7eff8bb1",
+        "git_blob": "4ff5f398b622df940bf77e67ec7ff4a3f914501a",
+        "bytes": 744,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/artifact.zip": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__artifact.zip.txt",
+        "sha256": "f78e6c004dbb3cf3977634a5bc1164e1232fcd30e6a1598ffe572a3ca74de7da",
+        "git_blob": "fa4dd136c4d45a557960a20de26f8988e6152a73",
+        "bytes": 6351,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/baseline-ref.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__baseline-ref.json.txt",
+        "sha256": "b4da28d0508b4174c2b6305b460eccd223aae129398c55ef8a1bf12bf9855b34",
+        "git_blob": "83a341ab14938ca8246c786659d333f7166a341e",
+        "bytes": 459,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/baseline-tag.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__baseline-tag.json.txt",
+        "sha256": "6fec60632fbccdcc2d4a71d200da3a42479fbffe6ce2afce46f2c9eee41aee05",
+        "git_blob": "244a86205d308a9f48e9ba105ddc28e06aac8804",
+        "bytes": 772,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/consumer-workflow.yml": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__consumer-workflow.yml.txt",
+        "sha256": "54c292e56967c4a3c33eb6845def5806ec5d21eee1a6cf595db8ae20605562e4",
+        "git_blob": "b538c38e8968ba641d67cc47549425c32d989c6c",
+        "bytes": 524,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/preflight.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__preflight.json.txt",
+        "sha256": "d742cb907a655d77dd655dc2e57587763f60391bf4e842120e534daf226fd3b0",
+        "git_blob": "2745c66c6522e18bf0495baf966d4f433b477da6",
+        "bytes": 3696,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/producer/.github/workflows/architecture-baseline-l1-v0.1.0.yml": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__producer__.github__workflows__architecture-baseline-l1-v0.1.0.yml.txt",
+        "sha256": "e3ee0c5c694b4226f50828fc5b8f3cdde4f8171a34fa9bff92e20e48d03ecd92",
+        "git_blob": "485291f71500b0ec8dc852d485ad6a9cd7743ba4",
+        "bytes": 4641,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/producer/policies/opa/architecture_operation_readiness.rego": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__producer__policies__opa__architecture_operation_readiness.rego.txt",
+        "sha256": "7fd4dbfeb08aea67600b7e083363cfdff1dc93d2e0d457c90d6ca2b0b1a44fda",
+        "git_blob": "96fae9d0d2525fe5b3c91fa5342192723ed6e895",
+        "bytes": 1549,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/producer/schemas/architecture-release-candidate.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__producer__schemas__architecture-release-candidate.schema.json.txt",
+        "sha256": "02154f5147784504f54324b3e9f7d48482c9f3699ac69d311d9bc618fd7f4882",
+        "git_blob": "73d7a0dce6d91b418f289319ebc133df73efeb36",
+        "bytes": 6446,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/producer/scripts/collect_architecture_release_input.py": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__producer__scripts__collect_architecture_release_input.py.txt",
+        "sha256": "75855e8d40f507d898692f829cc0c4f42074566476fbb6247b47f8105c03922e",
+        "git_blob": "67fc6ab9d20bec983a7096e8a6f4813128ccf5eb",
+        "bytes": 21092,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/producer/scripts/generate_architecture_governance_report.py": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__producer__scripts__generate_architecture_governance_report.py.txt",
+        "sha256": "adfc6ca7eabd24f41f9c34779f6cb9ef91444749e2f59ea8482ed6aabfeaf7f4",
+        "git_blob": "2d5d015a09d3f3b07dd826142f2e0111d1b68358",
+        "bytes": 11527,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/profile.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__profile.json.txt",
+        "sha256": "ca65a9b9321f5b416d59f20a68e1fc6a2b558edbdfde0ebeadd139e4a8693c38",
+        "git_blob": "6aae37bf0caa560cc363cb78828f1da81982580f",
+        "bytes": 2721,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/repository.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__repository.json.txt",
+        "sha256": "f2b3a603830c636ed5a70506e453be116c8b6ce5b7eebea267642bf03b68cf79",
+        "git_blob": "b02329d6be7e6ee79c7863863ca6a475d7144862",
+        "bytes": 6920,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/run-after.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__run-after.json.txt",
+        "sha256": "556d440b204c49502abc5a4f46bebc0cd77106b4eef83c958fb49506f8f5104f",
+        "git_blob": "2a10e18e66330b938b442b79e60e632f193dbbbe",
+        "bytes": 14642,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/run-before.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__run-before.json.txt",
+        "sha256": "556d440b204c49502abc5a4f46bebc0cd77106b4eef83c958fb49506f8f5104f",
+        "git_blob": "2a10e18e66330b938b442b79e60e632f193dbbbe",
+        "bytes": 14642,
+        "git_mode": "100644"
+      },
+      "generated/reports/consumer-lifecycle-preflight/main-run-34778861076/workflow.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__consumer-lifecycle-preflight__main-run-34778861076__workflow.json.txt",
+        "sha256": "4f9556756860f5d11b135aff25e0ffaec0b5fa6c6cd7b2ecc0fafb6a50015683",
+        "git_blob": "99ac45ab28bd95e8fee4ebf3df07f2559c9fee0d",
+        "bytes": 606,
+        "git_mode": "100644"
+      },
+      "generated/reports/governance-consumer-lifecycle.md": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/generated__reports__governance-consumer-lifecycle.md.txt",
+        "sha256": "52aa55f9234583a162ec1f4ad0b1cc99a243be076ff66b819598cf0884597aae",
+        "git_blob": "4e64ac7ffd8f071a2622f3943300113cab0c02ab",
+        "bytes": 630,
+        "git_mode": "100644"
+      },
+      "governance/consumer-lifecycle/acceptance/00000001.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/governance__consumer-lifecycle__acceptance__00000001.json.txt",
+        "sha256": "15537d03e72cfb5e3fbb81a1e876fc9f2eadba7af0b3bd486ef3de0db7b22aa3",
+        "git_blob": "3c0896cffdb1ab15ac133436d516bc2f130bde1e",
+        "bytes": 25604,
+        "git_mode": "100644"
+      },
+      "governance/consumer-lifecycle/actions/transactions/00000001-cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/governance__consumer-lifecycle__actions__transactions__00000001-cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1.json.txt",
+        "sha256": "ac34f45d87df35582168c008d4a47059f97ccbf47fd29631fa9734d5afca263e",
+        "git_blob": "7726670d0783a7f57dd33ffeb04e8bf94f4ae0a8",
+        "bytes": 19891,
+        "git_mode": "100644"
+      },
+      "governance/consumer-lifecycle/actions/transactions/00000002-cc1b9f606e9dc5e8631fa1bb8d20eec46a116bc11dee6c54f545fb23dff28457.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/governance__consumer-lifecycle__actions__transactions__00000002-cc1b9f606e9dc5e8631fa1bb8d20eec46a116bc11dee6c54f545fb23dff28457.json.txt",
+        "sha256": "04222b6a4fce94b1cd73efc440a44d06717b91b6b46fc55a9b3a10af9e3a0ad8",
+        "git_blob": "23d8d5d949d1d7a8768351e223eb59e1837abebf",
+        "bytes": 20070,
+        "git_mode": "100644"
+      },
+      "governance/consumer-lifecycle/actions/transactions/00000003-c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/governance__consumer-lifecycle__actions__transactions__00000003-c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552.json.txt",
+        "sha256": "2b19b10fd65732ebd7bef4d0d8b34cd76b906897eb074abe799478af6d582746",
+        "git_blob": "97b5d43b153bce6bc55cdc167fef0dad534dc4c0",
+        "bytes": 18689,
+        "git_mode": "100644"
+      },
+      "governance/consumer-lifecycle/actions/transactions/00000004-533b0008c14e1f7ae972b859d82ff642ed7c365da0a0e5274cbf25116492ed40.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/governance__consumer-lifecycle__actions__transactions__00000004-533b0008c14e1f7ae972b859d82ff642ed7c365da0a0e5274cbf25116492ed40.json.txt",
+        "sha256": "d80280b92bad6241fd6fa0678f50f89be28de66b7025ffeedda59d4a12a04f4c",
+        "git_blob": "3662a6e0886a8ec68157f9007eb90f1ec21821f7",
+        "bytes": 18231,
+        "git_mode": "100644"
+      },
+      "governance/consumer-lifecycle/observations/transactions/00000001-a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/governance__consumer-lifecycle__observations__transactions__00000001-a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2.json.txt",
+        "sha256": "dfa5ba128bdb67f9f63b869c33152c30c314c216141bd9db361a2d1a28fc41d4",
+        "git_blob": "c52273aaa2e6225e26b0dc942df3b4a62d6db43a",
+        "bytes": 134179,
+        "git_mode": "100644"
+      },
+      "governance/consumer-lifecycle/observations/transactions/00000002-ecbc490979c92d39391102e91025f78d2eac579f0d2f53e715532836ab5329a1.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/governance__consumer-lifecycle__observations__transactions__00000002-ecbc490979c92d39391102e91025f78d2eac579f0d2f53e715532836ab5329a1.json.txt",
+        "sha256": "580e555ee23037edd0cc159b32be5770fde8a2e06999c08c43f763a6a039b5a9",
+        "git_blob": "d73e0511c268e0f7042c6b5ea89725c1daaf9b1b",
+        "bytes": 132638,
+        "git_mode": "100644"
+      },
+      "governance/consumer-lifecycle/observations/transactions/00000003-90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/governance__consumer-lifecycle__observations__transactions__00000003-90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c.json.txt",
+        "sha256": "dccf26f4263e205a1b9ab1f591c840c787661c7f62afa70253bb31d99d89bd63",
+        "git_blob": "4544ac083a818c239e3bc3f062d216eea865dd2f",
+        "bytes": 132791,
+        "git_mode": "100644"
+      },
+      "model/governance/lifecycle/consumer-operation/acceptance.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/model__governance__lifecycle__consumer-operation__acceptance.json.txt",
+        "sha256": "3f9315ee606d495daa49f6a05d79dc32d50694024ab02c7945aec65b2dd996bb",
+        "git_blob": "a5e9c8dc786d2e9199ac857dc27a6f030bb5a9e3",
+        "bytes": 10914,
+        "git_mode": "100644"
+      },
+      "model/governance/lifecycle/consumer-operation/action-requests/00000001.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/model__governance__lifecycle__consumer-operation__action-requests__00000001.json.txt",
+        "sha256": "8e0e0eaa531391fc35deb49be20296019c0417a99f65f77b10019ca5f880e80d",
+        "git_blob": "b4caa97539d35c38ae4b4866e82fd1181e5d2163",
+        "bytes": 2119,
+        "git_mode": "100644"
+      },
+      "model/governance/lifecycle/consumer-operation/action-requests/00000002.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/model__governance__lifecycle__consumer-operation__action-requests__00000002.json.txt",
+        "sha256": "0e569b6a89a0b675eae54c234dba65e54db2b0e4188f5b59dd667cdfc7a34a55",
+        "git_blob": "5c956f91153a0d910cc8626625ab7058a828eb71",
+        "bytes": 2339,
+        "git_mode": "100644"
+      },
+      "model/governance/lifecycle/consumer-operation/action-requests/00000003.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/model__governance__lifecycle__consumer-operation__action-requests__00000003.json.txt",
+        "sha256": "27bc015432f54f07c78b3f8f41f4b889aa383fc0c5c7cb10209832f1c0ce3e92",
+        "git_blob": "0719f0e09ffd38d5ac9f06277a14f13d1fef7c7a",
+        "bytes": 2285,
+        "git_mode": "100644"
+      },
+      "model/governance/lifecycle/consumer-operation/action-requests/00000004.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/model__governance__lifecycle__consumer-operation__action-requests__00000004.json.txt",
+        "sha256": "673d3a35b90517e12c39cc4bf5d4a92385224bc8d7f6560a0eaeb6a75de333bd",
+        "git_blob": "b0c1672d07f67a049857575cf961141ab70ecab6",
+        "bytes": 1968,
+        "git_mode": "100644"
+      },
+      "model/governance/lifecycle/consumer-operation/profile.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/model__governance__lifecycle__consumer-operation__profile.json.txt",
+        "sha256": "1eb3e1bc5e6196a454f12f2f40b2296b3a740866f0c01270a75f711814cd3605",
+        "git_blob": "ae13ec6830ddd75fcbc93110e27c274955f4c041",
+        "bytes": 2717,
+        "git_mode": "100644"
+      },
+      "model/governance/lifecycle/consumer-operation/roles.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/model__governance__lifecycle__consumer-operation__roles.json.txt",
+        "sha256": "4f287c0aaa5b9435d872e2ef796ebeb71d2c42da1655ccbc1797bf5b65f81c34",
+        "git_blob": "797f7252356f843d857573a9ec8316abf2f235d8",
+        "bytes": 1607,
+        "git_mode": "100644"
+      },
+      "requirements-validation.txt": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/requirements-validation.txt.txt",
+        "sha256": "d554f9277aa3f1508e1c6c4d9f8ebca01d88a3d1867945effaf57e0550255748",
+        "git_blob": "5adc36ef615a250f22fc7a7e0e9844e93d843e90",
+        "bytes": 121,
+        "git_mode": "100644"
+      },
+      "schemas/agent-review-receipt.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__agent-review-receipt.schema.json.txt",
+        "sha256": "f0925fdbc86fbdf79742939964d8a91f29c49e1c81e27ad49614a2706dc81384",
+        "git_blob": "55808554e172da5e8d483b43cfe2bafcfa313c29",
+        "bytes": 2721,
+        "git_mode": "100644"
+      },
+      "schemas/app-architecture-evidence.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__app-architecture-evidence.schema.json.txt",
+        "sha256": "5a5427b41bcb581427c0f307570bc403205f7f4b7cfd011fad16121a81ecaedd",
+        "git_blob": "b311112b1fb48092e4e0ad0ac3d488384c0b4a4f",
+        "bytes": 3016,
+        "git_mode": "100644"
+      },
+      "schemas/app-devsecops-evidence.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__app-devsecops-evidence.schema.json.txt",
+        "sha256": "81e77da94aeb337c3ccd36c7050d1e764105df088398f36484d4185584f99cc8",
+        "git_blob": "5523c771b8686cbc5c2920b1f841a4ccf2177d4a",
+        "bytes": 1766,
+        "git_mode": "100644"
+      },
+      "schemas/architecture-exception.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__architecture-exception.schema.json.txt",
+        "sha256": "9f1f41d9396abd7b19fc4174f3ad286595545c045e807d63b10eba4badb3cf52",
+        "git_blob": "d3c7eef91c5063c8d4f0272da0cdd76b9c9dab3c",
+        "bytes": 2091,
+        "git_mode": "100644"
+      },
+      "schemas/architecture-guardrail.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__architecture-guardrail.schema.json.txt",
+        "sha256": "678d9a3d1d37c1a2e4a34596e652a7ab40fce3a58ff979a55f6b4b6e7c09424d",
+        "git_blob": "d24ffe347aaf485f7aa626cd6de3363cdeab37ff",
+        "bytes": 1549,
+        "git_mode": "100644"
+      },
+      "schemas/architecture-level.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__architecture-level.schema.json.txt",
+        "sha256": "ffe132f91725cbb43dcada66dbf778fd7a545be5d6aa832649cd9de77ee47ef8",
+        "git_blob": "262df104c531ccf75854fbe7c9b02e60cc1e90c9",
+        "bytes": 3470,
+        "git_mode": "100644"
+      },
+      "schemas/architecture-release-candidate.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__architecture-release-candidate.schema.json.txt",
+        "sha256": "02154f5147784504f54324b3e9f7d48482c9f3699ac69d311d9bc618fd7f4882",
+        "git_blob": "73d7a0dce6d91b418f289319ebc133df73efeb36",
+        "bytes": 6446,
+        "git_mode": "100644"
+      },
+      "schemas/architecture-results-index.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__architecture-results-index.schema.json.txt",
+        "sha256": "86350a7ebb10029e4954ad3021ce70228f30f635d61a2408f6b55c2bc8673745",
+        "git_blob": "4f4d12022e43a68a8bace863aa12d27c6d95994a",
+        "bytes": 3247,
+        "git_mode": "100644"
+      },
+      "schemas/authorized-source-baseline.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__authorized-source-baseline.schema.json.txt",
+        "sha256": "5b6dfb14d651e8e5c786e81c20482365430428e27dcc7371a4a4de4fd11eac1c",
+        "git_blob": "28f8226ddfda67cbc0069b1bc9f085d5db19d509",
+        "bytes": 2513,
+        "git_mode": "100644"
+      },
+      "schemas/blocking-mode-alignment-model.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__blocking-mode-alignment-model.schema.json.txt",
+        "sha256": "b49707e908322932394e51689974892729b9ca99991e14a80dcc9222246e0b7f",
+        "git_blob": "3c1cbe851ded847991b96736a6022f66af0f06f9",
+        "bytes": 2411,
+        "git_mode": "100644"
+      },
+      "schemas/blocking-mode-alignment.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__blocking-mode-alignment.schema.json.txt",
+        "sha256": "a0facc07a24a26b209fbbe2f77c89312f4d13efa6500d400a10e34d4bc788b45",
+        "git_blob": "2189ace0a0d14765e8ed85ce320c8d5784199278",
+        "bytes": 2732,
+        "git_mode": "100644"
+      },
+      "schemas/blocking-readiness-model.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__blocking-readiness-model.schema.json.txt",
+        "sha256": "bf906fc3e0c724c110a7fb73175750916c4b5601646568657d4b8dee9235b745",
+        "git_blob": "fdc572a49fbe290f054311333e39ad09ce916156",
+        "bytes": 2043,
+        "git_mode": "100644"
+      },
+      "schemas/blocking-readiness.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__blocking-readiness.schema.json.txt",
+        "sha256": "541fd5da3319bedda2319f055ded69398e83c15161bc20e508b5c719b096ac4a",
+        "git_blob": "726ef333afd68f41f986c9ba211ca593a24f1fca",
+        "bytes": 2525,
+        "git_mode": "100644"
+      },
+      "schemas/consolidated-l1-assessment.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__consolidated-l1-assessment.schema.json.txt",
+        "sha256": "8fc4912c035fc27ec98d3114851e34f5722744e16c1fd008a627d35a869e2ded",
+        "git_blob": "2d6d217fef56d10097faff535c2973e8ed1c8502",
+        "bytes": 6036,
+        "git_mode": "100644"
+      },
+      "schemas/control-coverage.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__control-coverage.schema.json.txt",
+        "sha256": "bbc1a176a0c93e45d54bcabcf354aff2f3de80dc6a74026f19395294c5423485",
+        "git_blob": "4b2f4cbfa3d7b3d6e364ecf8f4c030dbb92bc65f",
+        "bytes": 1066,
+        "git_mode": "100644"
+      },
+      "schemas/control-evidence-assurance.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__control-evidence-assurance.schema.json.txt",
+        "sha256": "81b795e1ed918102a0931fd0f501217814ede52009da6e8157b76392b4c99c97",
+        "git_blob": "bd551633f9c31a1cca7a2a76e34cda21cac9acc7",
+        "bytes": 8281,
+        "git_mode": "100644"
+      },
+      "schemas/control.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__control.schema.json.txt",
+        "sha256": "9ef4fb9b6b1fb01af2c609b55800aa0e667d8518093c3476d04279f8b3fef0de",
+        "git_blob": "5937ec4f8208b7c71cfade47fb443720c31c7a26",
+        "bytes": 2677,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-finding-ledger.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-finding-ledger.schema.json.txt",
+        "sha256": "5181435cad9244fcce48cf6b2551938d7965d253b8956be8d29a5e308652cad9",
+        "git_blob": "80d0a21cebe3b4d8b90f6b91ac5ce54151a25dbe",
+        "bytes": 2576,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-human-decision.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-human-decision.schema.json.txt",
+        "sha256": "d73998050b3d77741f583f15a63b926562df7f895bb5497e604b5b579a4e496b",
+        "git_blob": "df1f81d929b9e11f4ebb8337e7b418c4e9a08b4b",
+        "bytes": 1483,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-operating-model.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-operating-model.schema.json.txt",
+        "sha256": "12f8fc534ef69b8659c82a9d40cb6ed6d89e0425a46226c99f84656851da0c5f",
+        "git_blob": "6a77e0cf755bae52872d36f1597720b52f689d31",
+        "bytes": 1546,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-provider-adapter-config.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-provider-adapter-config.schema.json.txt",
+        "sha256": "6b965d39cea0b914121b031c90b6e744076b5700edfa8810feeb64714caeda15",
+        "git_blob": "d8c7ec9f22cf05390b25058bb1b37e6d8d6b4e7d",
+        "bytes": 1408,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-provider-projection.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-provider-projection.schema.json.txt",
+        "sha256": "83ae80f32e3c91e96fd6bcb14a1321d3c4aded60ad7fa2d6912e26861d0f529f",
+        "git_blob": "2542d3b44d3b07a7fcd4bf6f36b96bcf927f8288",
+        "bytes": 3387,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-public-projection.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-public-projection.schema.json.txt",
+        "sha256": "ed739c8c879cd984aa1f2156998f45f284569b3c146b738df3cef0ae64052fb7",
+        "git_blob": "ffcc572dbe8e659cd1da01b81f6808084091f7f5",
+        "bytes": 5828,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-review-manifest.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-review-manifest.schema.json.txt",
+        "sha256": "eef05976df2ca7f5b8e71059ff2116c5f6d0f1060a90ccb50126dc1e2b3dab57",
+        "git_blob": "b0fbb77f37257118fb6ea8fe918e778f39826a33",
+        "bytes": 2219,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-review-model.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-review-model.schema.json.txt",
+        "sha256": "69fe1ee24bdb1307ba5efc0fa39b683c4d6ed52974060607e168ae03b917410b",
+        "git_blob": "9a63a2a1e188e84eaba80afebb02efa3324e5a55",
+        "bytes": 5588,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-review-package.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-review-package.schema.json.txt",
+        "sha256": "3115037017e53c770a3f4fb9e9fc92738905dd81fe575de80ae2c2a4c7f153e0",
+        "git_blob": "626a42f34fe0f17c53c92440ba643e0260765dc5",
+        "bytes": 1096,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-reviewer-config.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-reviewer-config.schema.json.txt",
+        "sha256": "26cbea5c4dd7cd56efc7765ff8078f6a1f7ccf42bfe393ed75f2f446918e96e9",
+        "git_blob": "2f4f95814159240d3cbbb05410adcefdd59d0412",
+        "bytes": 2080,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-rollout-decision-v2.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-rollout-decision-v2.schema.json.txt",
+        "sha256": "4b879b7114e7663801d60e1ad3dde10ba314df31436c287d37700c19bcad6739",
+        "git_blob": "170c51efe4f092aaa8829741fdddc1e99919942f",
+        "bytes": 2673,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-rollout-decision.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-rollout-decision.schema.json.txt",
+        "sha256": "3f2c519c6efb4f592971cfdc67851abe9b6e0773f59ca485d4b36acbe4e0c812",
+        "git_blob": "761df859f97150050795a25c811fc84a3bf4850d",
+        "bytes": 732,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-semantic-catalog-run-package.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-semantic-catalog-run-package.schema.json.txt",
+        "sha256": "f34ff557e07ad5b812adea1e4a1a065076f3e97277ce75195b82767f634efb36",
+        "git_blob": "87c63696f5896b9a66a15f51889178a8a53a545d",
+        "bytes": 1607,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-semantic-evaluation-catalog.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-semantic-evaluation-catalog.schema.json.txt",
+        "sha256": "47009e5d665d005548ce96ae4b49e4d7da0fc4c36f7878abe4a259282d5e0627",
+        "git_blob": "97164304cde76d4904d5d2a23bddc604c9a5567a",
+        "bytes": 1824,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-semantic-evaluation-report.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-semantic-evaluation-report.schema.json.txt",
+        "sha256": "60d8f81a62dc7d7f0de898a11f4298cfabc72a582646f7c285793a3fd077de08",
+        "git_blob": "f4a25d5c1ee10574349536156a2a70a7c60f97f0",
+        "bytes": 1908,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-semantic-report.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-semantic-report.schema.json.txt",
+        "sha256": "3b97cd1f2993873c1b142c0b66610ab7cb603287861e31c7bd23b61b475b2c94",
+        "git_blob": "8c681e391a05c5eb3e49a6ddd8456be6e070a72d",
+        "bytes": 4705,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-semantic-response.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-semantic-response.schema.json.txt",
+        "sha256": "1ec7108049a1520295d59331736c5a96bf47e7cbdcce909dfef526e0ac0e652a",
+        "git_blob": "fae3ef1a36f0a3594ef3db7e8149bf22b7426482",
+        "bytes": 4689,
+        "git_mode": "100644"
+      },
+      "schemas/document-consistency-trigger-scope.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-consistency-trigger-scope.schema.json.txt",
+        "sha256": "d5e29261f4d8f7877d10d0a8938f7ba8f6f1c7061605b33c0fa088fa0c9272aa",
+        "git_blob": "21ee70ff30795347f5d921dd3265e57e98e149a8",
+        "bytes": 1169,
+        "git_mode": "100644"
+      },
+      "schemas/document-control-traceability.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__document-control-traceability.schema.json.txt",
+        "sha256": "04c2652cf0369555190822d7eaef82e6e29c6f477479f2ac830cef7e586bab2c",
+        "git_blob": "a2d88515354dc122a44a25f7bddd80c9b860605f",
+        "bytes": 954,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-agent-provenance-index.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-agent-provenance-index.schema.json.txt",
+        "sha256": "17aba0b659e7b46b4602c9c546228bed6c318cab5ba0588345a0821464685a62",
+        "git_blob": "c3661ca3c080883d724a618a95e6732cf0605bda",
+        "bytes": 933,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-agent-provenance.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-agent-provenance.schema.json.txt",
+        "sha256": "7a6b5ecc51bbcf6ec62922503555f0b2425c2f954fdcb188b9fe415a25b5d334",
+        "git_blob": "1c08c287e4f265e516bf9355b7dc205c09329de5",
+        "bytes": 2171,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-attestation-assessment.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-attestation-assessment.schema.json.txt",
+        "sha256": "9e5829f7c133ecfbcd69a4700e425cf8c6bf8a4e1f27a4dbede4338726f4dc46",
+        "git_blob": "fb2ffc9e3b38f27e6d7a99ae81ce64dc9d2bbaf5",
+        "bytes": 1356,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-attestation.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-attestation.schema.json.txt",
+        "sha256": "6df21fb724034b2c9be121c9463738c48fd557b1a436a8a095c45cba49b43dac",
+        "git_blob": "b03c32c54acc4348e893e1d94a64d36c2a7dce7f",
+        "bytes": 1592,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-collection-attempt.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-collection-attempt.schema.json.txt",
+        "sha256": "82a43ebd3621ad36fecda742358b9666156edfeb58a42fdbb8b479585cf0cc46",
+        "git_blob": "e9817ba1d51db4ce31c718481d192b2bd19abd31",
+        "bytes": 2172,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-collector-contract.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-collector-contract.schema.json.txt",
+        "sha256": "5a459970f8f5a9bfb4c5c2ebbaaf88cb0d1d8ad43792c81a6e33158af87ad8c1",
+        "git_blob": "88189d8ddb7a8c99b8eaaa8819a9b4b38fc8a37e",
+        "bytes": 5454,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-collector-record.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-collector-record.schema.json.txt",
+        "sha256": "3c6d78c1b7cbbc66a4143184ab1744484af972457834d5504ae25bcae808d719",
+        "git_blob": "aad2c564f620337f2d82bf973a9e9881f5904b1e",
+        "bytes": 6911,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-freshness-policies.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-freshness-policies.schema.json.txt",
+        "sha256": "7491a5d84c6a36d53b7db277fab4354f79b530a8201268d3a873bfe68cf4c27d",
+        "git_blob": "f3121bcebcbd13709deb151d8d562439f2079f03",
+        "bytes": 3524,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-trust-model.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-trust-model.schema.json.txt",
+        "sha256": "f2ebf17b209998eec7161af2372926fdf3cf542e887970d3214979c2d89ebbe3",
+        "git_blob": "e90719a377faa95720502842b0f28d51dd1d26e0",
+        "bytes": 6878,
+        "git_mode": "100644"
+      },
+      "schemas/evidence-trust-root-registry.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence-trust-root-registry.schema.json.txt",
+        "sha256": "8eb254a77d004d5a90717db97391f6c842326f7f04b752889c36ff0d569efbfa",
+        "git_blob": "7994b0d15eec9a3163004befd51ba433b9dc1631",
+        "bytes": 1357,
+        "git_mode": "100644"
+      },
+      "schemas/evidence.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__evidence.schema.json.txt",
+        "sha256": "fcc8f769de0d82c18415385e75511722b325b4bcdb6a5356610fdd38a4b38626",
+        "git_blob": "9b8c2036a87048c384aadd25b00a7c518c636d11",
+        "bytes": 985,
+        "git_mode": "100644"
+      },
+      "schemas/governance-compliance-result.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-compliance-result.schema.json.txt",
+        "sha256": "2fba6acb9c61f159f8a0075f6b77f0895c23e481c34b4219570ff0cfdefae47d",
+        "git_blob": "0420879ddae839417bc1cc1aea8d18728a9834d7",
+        "bytes": 4136,
+        "git_mode": "100644"
+      },
+      "schemas/governance-consumer-acceptance.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-consumer-acceptance.schema.json.txt",
+        "sha256": "39a89cf20b933be7fc330179ce344e0f3b9e1ef91f593119a2b9acf040db0ad6",
+        "git_blob": "68c1dffbe73c35cb36eefafa448b3a627e942b16",
+        "bytes": 3323,
+        "git_mode": "100644"
+      },
+      "schemas/governance-consumer-action-receipt.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-consumer-action-receipt.schema.json.txt",
+        "sha256": "1b261101ab06adc0536eb86a126d8cbf2b7a7aa6d038f6ec7f35ef4d21defc11",
+        "git_blob": "b6566a92f3bb5a8840884676398c8a0c83ba6348",
+        "bytes": 3372,
+        "git_mode": "100644"
+      },
+      "schemas/governance-consumer-action-request.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-consumer-action-request.schema.json.txt",
+        "sha256": "52dc3043217b430587866ca6553fc353b3526bf2d26208abc5259317b3ad212d",
+        "git_blob": "abf1412cb3d087c83e2abc782c2f3e53655a0290",
+        "bytes": 10302,
+        "git_mode": "100644"
+      },
+      "schemas/governance-consumer-profile.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-consumer-profile.schema.json.txt",
+        "sha256": "b0a36c31933e31106969c582b52c27f4c01b381667f02f6f2ed2a085a246ca59",
+        "git_blob": "518589ef6844e90477f8d987ede78702d2cd4a07",
+        "bytes": 3029,
+        "git_mode": "100644"
+      },
+      "schemas/governance-consumer-receipt.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-consumer-receipt.schema.json.txt",
+        "sha256": "397ff74c74d385b017e9adae05882646fa2df95fe187c023b4aabd78ee155a2e",
+        "git_blob": "32c84a3868923bea4e44f0ca898c28aab6765d34",
+        "bytes": 6116,
+        "git_mode": "100644"
+      },
+      "schemas/governance-consumer-roles.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-consumer-roles.schema.json.txt",
+        "sha256": "a7515d48ffd450cb41f5d3a96aa53dac20a943e17369ee7e2825acf06db55e52",
+        "git_blob": "bb6b28d4a0eabbd20996e8d42e1f938586ccd73f",
+        "bytes": 1895,
+        "git_mode": "100644"
+      },
+      "schemas/governance-document-catalog.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-document-catalog.schema.json.txt",
+        "sha256": "f3769dfc221a5d4e6392cecb895f7251b5bc7b8c50d09a831e563efd8367d4f1",
+        "git_blob": "447f838c2d75bd5872ccdad78cd581e2f00f44b4",
+        "bytes": 1104,
+        "git_mode": "100644"
+      },
+      "schemas/governance-document-rendering.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-document-rendering.schema.json.txt",
+        "sha256": "f02a3ad286f8978afb41bb4b2119ac7357e39de9be2d01556ddf8e6d81205a14",
+        "git_blob": "51c65c8485bee156b6434a8a1b3be98e4a767b17",
+        "bytes": 1153,
+        "git_mode": "100644"
+      },
+      "schemas/governance-graph.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-graph.schema.json.txt",
+        "sha256": "e5e886908cb97a3372c3f455b7bf829f9f5e835898cb51d35b30211a43d87a0a",
+        "git_blob": "919e227b92331761af0474a3f3b5eba598b5944d",
+        "bytes": 2701,
+        "git_mode": "100644"
+      },
+      "schemas/governance-operations-report.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-operations-report.schema.json.txt",
+        "sha256": "6c78a625a3e136a64f1c4bdda311b85379d1c2f3c3b82bd5dadaa72c23a65ed7",
+        "git_blob": "9fd7f243d94d4bff4cf6bc403d9785be3f231e23",
+        "bytes": 2892,
+        "git_mode": "100644"
+      },
+      "schemas/governance-repository-security-model.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-repository-security-model.schema.json.txt",
+        "sha256": "2215b08f5768f6cc66c6433d91970a2f5a90614ed967460fe6067ece0cfdcfde",
+        "git_blob": "aa4852d651652489f16a2a340373ca7aa4d36099",
+        "bytes": 2656,
+        "git_mode": "100644"
+      },
+      "schemas/governance-repository-security-report.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-repository-security-report.schema.json.txt",
+        "sha256": "ad3af768f8fdf2adb2f8053a6c6a5316048d0d0733e1a97a8e6a446673933026",
+        "git_blob": "233520c76a81c95f098afa358d04bc02d402ced9",
+        "bytes": 3682,
+        "git_mode": "100644"
+      },
+      "schemas/governance-requirement-catalog.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-requirement-catalog.schema.json.txt",
+        "sha256": "23299224e838159bf511a4616850360cd64fa883e2e455e643b20dc49ab65741",
+        "git_blob": "b0adec86c680bdf34bb13a5eff1e20baa0207c70",
+        "bytes": 3154,
+        "git_mode": "100644"
+      },
+      "schemas/governance-requirement.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-requirement.schema.json.txt",
+        "sha256": "0e948ec0c1765cf22523b849ce234eda8a7eb26536b8b552568e45ef780593ad",
+        "git_blob": "05c815fceec98b781c1d9cfb6ac966ee1f566acb",
+        "bytes": 2026,
+        "git_mode": "100644"
+      },
+      "schemas/governance-results-index.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-results-index.schema.json.txt",
+        "sha256": "54d16e1d1eb83dcd68cf07239d2688c8258f4331af8c327eac696e9df5b52e4d",
+        "git_blob": "7938f4b092740864dff74c19c5ff416a30475b0c",
+        "bytes": 2986,
+        "git_mode": "100644"
+      },
+      "schemas/governance-run-input.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-run-input.schema.json.txt",
+        "sha256": "7dbddb60e930b1145b951097fede10d9da4c2bd445130a8be09c75e0031d0122",
+        "git_blob": "e6ccf53b12c1edc8b2cbd27c3061873cdccf9943",
+        "bytes": 10104,
+        "git_mode": "100644"
+      },
+      "schemas/governance-workbench-draft.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__governance-workbench-draft.schema.json.txt",
+        "sha256": "c848655c6db434117b6d7bac7fc90102b6a3c37148dc6ab5246f6e04de73346c",
+        "git_blob": "eae5a9198a79fa57991ee6494772afde9031a55b",
+        "bytes": 3356,
+        "git_mode": "100644"
+      },
+      "schemas/harmonized-requirements-coverage.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__harmonized-requirements-coverage.schema.json.txt",
+        "sha256": "8b7bbf5129da40fd8f6f159c5029ccc4b21f21840241ad9382a8ef94bbd3debc",
+        "git_blob": "3fcfef68fc1049e379324d76f454788d84d9b57c",
+        "bytes": 2921,
+        "git_mode": "100644"
+      },
+      "schemas/harmonized-requirements-maturity-mapping.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__harmonized-requirements-maturity-mapping.schema.json.txt",
+        "sha256": "746f08a147ec70696a03388dd4e4a810769568e7f97c9ba9f20d36789f22d532",
+        "git_blob": "af85f596a74d56c95a1a73a5300c8ae87e60f4d8",
+        "bytes": 3606,
+        "git_mode": "100644"
+      },
+      "schemas/harmonized-requirements-maturity-report.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__harmonized-requirements-maturity-report.schema.json.txt",
+        "sha256": "8c0ecec2b67fe201947423b49ed06b744c97a80bfb6cc7df55dc6272ca0c5260",
+        "git_blob": "1ec05af9c9bbd920d0ebc0412232101e88133acb",
+        "bytes": 4138,
+        "git_mode": "100644"
+      },
+      "schemas/harmonized-requirements.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__harmonized-requirements.schema.json.txt",
+        "sha256": "fc1d9b39e77a81d1587801097d4522d3b8c2ef32a2a3c64d9355cf247b97ea5a",
+        "git_blob": "b87b8173e16358235ff7278291e4dece5c39382b",
+        "bytes": 2554,
+        "git_mode": "100644"
+      },
+      "schemas/intake-candidate-v1.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__intake-candidate-v1.schema.json.txt",
+        "sha256": "5044a4489645ad9e114430a76376f59fb8a3b8cfe0ad9f55c39e9d7abb51fae9",
+        "git_blob": "0662d0a807d9bd7bc9215cc1e79f1dd7bc723959",
+        "bytes": 4601,
+        "git_mode": "100644"
+      },
+      "schemas/intake-conflict.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__intake-conflict.schema.json.txt",
+        "sha256": "34817c73c73403037d4026ba01e5c51725db86d99e2e9f19851af8c74cbefe2e",
+        "git_blob": "b886e5d5d24eed5b28c1de404cd6eae6de8c659e",
+        "bytes": 979,
+        "git_mode": "100644"
+      },
+      "schemas/intake-health.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__intake-health.schema.json.txt",
+        "sha256": "a3193da244aaa253c4e12533303aa30c35088a5b4e25b1949f42113a113ae03e",
+        "git_blob": "2db7566b2f9638a6e69ca3eaf60343de1737c085",
+        "bytes": 4392,
+        "git_mode": "100644"
+      },
+      "schemas/intake-operation-event.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__intake-operation-event.schema.json.txt",
+        "sha256": "42bbd6616aada0bfc6cacbf1394be2d5f4e64396ffe9da5cc3ee3c99d65cbbf2",
+        "git_blob": "4992e02d7ef4828aef94bec8f13eda2142cc83b8",
+        "bytes": 3179,
+        "git_mode": "100644"
+      },
+      "schemas/measured-container-security.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__measured-container-security.schema.json.txt",
+        "sha256": "093918b73086c345a683e190c982a3e471bd501d2c99fce9bf74019a43e50324",
+        "git_blob": "c65859eeb3218033a236d8aeb6dd6c3fd372f47e",
+        "bytes": 6951,
+        "git_mode": "100644"
+      },
+      "schemas/measured-l1-assessment.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__measured-l1-assessment.schema.json.txt",
+        "sha256": "6f729d78c75ca394de25b449a5f2844a2fc4b65e6fd0da37ef3d8fede1fe666b",
+        "git_blob": "da574de5422690065eab8f77b55b6856e982bf28",
+        "bytes": 21691,
+        "git_mode": "100644"
+      },
+      "schemas/multi-consumer-readiness.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__multi-consumer-readiness.schema.json.txt",
+        "sha256": "b0d53ae8f7dac0961e9c136a0ad023bc1749ca770a92faab2c9bab3e40659649",
+        "git_blob": "d12a7c48d7b8bf2f74020d73ca4b18c60735815a",
+        "bytes": 2815,
+        "git_mode": "100644"
+      },
+      "schemas/native-requirement-source.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__native-requirement-source.schema.json.txt",
+        "sha256": "280166cf0ca3207a02bbea3d26e175ab91e95527b559552aa95a390a863c49e6",
+        "git_blob": "c4dc1cdab98e946784396e90167ba5996dacc87d",
+        "bytes": 742,
+        "git_mode": "100644"
+      },
+      "schemas/pipeline-evidence-input.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__pipeline-evidence-input.schema.json.txt",
+        "sha256": "5e95ab6e235b3626d965346d988a369f79c3487ef23606d7e95b876c58d4b4bb",
+        "git_blob": "3970dbe01303e12b602ea8d8d458ca87d32dc822",
+        "bytes": 2278,
+        "git_mode": "100644"
+      },
+      "schemas/platform-context.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__platform-context.schema.json.txt",
+        "sha256": "22ba4b8be812cb8b152382a29433307762c3c156bec657b51ab9fb5e9a9d1913",
+        "git_blob": "69f3485d3fbc12a48a9717700e6b34d299d590fb",
+        "bytes": 838,
+        "git_mode": "100644"
+      },
+      "schemas/portable-consumer-registry-v1.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__portable-consumer-registry-v1.schema.json.txt",
+        "sha256": "4d574fbee5c12122944333fee49a0bb6358c0b0adf810f7359fff1ab2372da0a",
+        "git_blob": "2be4f47c6a1d2611eeed095a176388964844ebc7",
+        "bytes": 1179,
+        "git_mode": "100644"
+      },
+      "schemas/portable-consumer-service-v1.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__portable-consumer-service-v1.schema.json.txt",
+        "sha256": "1a394a08b28d19596ad64bfd478720ec885ba19824327c2f3b31b87c636f7894",
+        "git_blob": "919f8c806e589a1398c563630b09bd2cf75d5a9c",
+        "bytes": 675,
+        "git_mode": "100644"
+      },
+      "schemas/portable-context-v1.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__portable-context-v1.schema.json.txt",
+        "sha256": "e3a24610b1280fdcc5f62fe74dc5f8cb62e8820f388b2e804babdcfcbed5a4c2",
+        "git_blob": "3078afd8f27cafc8bcc5cd10c8167c7f558bb0f7",
+        "bytes": 5898,
+        "git_mode": "100644"
+      },
+      "schemas/portable-intake-bundle-v2.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__portable-intake-bundle-v2.schema.json.txt",
+        "sha256": "e9a801ddf87eccc72a1a010fae9d65d50b2d8ec5b7ee57a239082de0a47b805d",
+        "git_blob": "f2c943d3e13d44719f2cf9af6ac1f7c9464a31d3",
+        "bytes": 1117,
+        "git_mode": "100644"
+      },
+      "schemas/portable-intake-policy-v2.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__portable-intake-policy-v2.schema.json.txt",
+        "sha256": "5321b509af33fbe7e8d8fb94987327b0fa70b88d2b5d72d75f78bed175593372",
+        "git_blob": "ceee4cc9bedd22b22b8302fb484b55a39137023a",
+        "bytes": 2930,
+        "git_mode": "100644"
+      },
+      "schemas/portable-intake-receipt-v2.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__portable-intake-receipt-v2.schema.json.txt",
+        "sha256": "755d90650944d23b8d81a367477b5428ce38cb2abc62e2c478e162dd750d652c",
+        "git_blob": "cbf7277ba61626bc879a6d6f65642f7f43dd55ac",
+        "bytes": 1765,
+        "git_mode": "100644"
+      },
+      "schemas/portable-profile-v1.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__portable-profile-v1.schema.json.txt",
+        "sha256": "99698e0f656ee92e83244b51488abdb096394b1054ec5823454af1119b0b0813",
+        "git_blob": "501e3e20a7e99cae70a297d1db2c9ab0651dc06f",
+        "bytes": 2362,
+        "git_mode": "100644"
+      },
+      "schemas/portable-result-v1.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__portable-result-v1.schema.json.txt",
+        "sha256": "8549948a1dde53a66c1117a8843459182e2c54ad508c1e8615dcf78ff6ff144d",
+        "git_blob": "fa1f0b388d0e7412d805f5ba3fbae4e8dbf318b0",
+        "bytes": 11450,
+        "git_mode": "100644"
+      },
+      "schemas/pra-requirement-platform-review.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__pra-requirement-platform-review.schema.json.txt",
+        "sha256": "a3e4337b7dd070cb7315adea2cdf9931fe7d03a786ff2c07b6cdeea858d2a31a",
+        "git_blob": "6a6ef5ba95995868fc5663880dac90ff9092d4b2",
+        "bytes": 2643,
+        "git_mode": "100644"
+      },
+      "schemas/provider-role-candidate-v1.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__provider-role-candidate-v1.schema.json.txt",
+        "sha256": "aeeddf0c25cb6a21335a79318b3a227afdf7b98db4bffb657e4963489134bebc",
+        "git_blob": "c9a309a6b75ffc986c00995824e7dad20ec8cba3",
+        "bytes": 1754,
+        "git_mode": "100644"
+      },
+      "schemas/quality-marker.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__quality-marker.schema.json.txt",
+        "sha256": "9ebdb4c801bed8028ac3493a1119d549c070ec06b439ce88fc6fbb49748ebae5",
+        "git_blob": "4f2a72a6c6939444dd31d32e582ff526461eec70",
+        "bytes": 2408,
+        "git_mode": "100644"
+      },
+      "schemas/release-signing-policy.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__release-signing-policy.schema.json.txt",
+        "sha256": "c51027a6b4875a8e77d332255e8ab1d31da7ce1b7d78c15102b47da05e74f0ae",
+        "git_blob": "6f9d62ef825c06b385e2d51b7f8af052472bcfc2",
+        "bytes": 2807,
+        "git_mode": "100644"
+      },
+      "schemas/release-tag-integrity.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__release-tag-integrity.schema.json.txt",
+        "sha256": "c6eaf63990ba2ae29e530fad3e716d36359a880a25de99da7ba7a2bd49cb06dd",
+        "git_blob": "61a8dc2d13c25b958aa7a25f507b0e0df8b0520f",
+        "bytes": 1970,
+        "git_mode": "100644"
+      },
+      "schemas/replay-triage.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__replay-triage.schema.json.txt",
+        "sha256": "7719fc6b2afb059c89eac51605c95c8be3e9109dbe2c7824201146a447457aee",
+        "git_blob": "8f2926883021561607e31581afcfd73c282715d6",
+        "bytes": 5491,
+        "git_mode": "100644"
+      },
+      "schemas/requirement-artifact-register.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__requirement-artifact-register.schema.json.txt",
+        "sha256": "05c805b27736e4bec9b292eee629befa31c2d4fda14fa8ee98b6ab3e72c20086",
+        "git_blob": "4eb98a12f59802274a8e11190640bb1bc750fdb5",
+        "bytes": 2685,
+        "git_mode": "100644"
+      },
+      "schemas/requirement-authority-ledger.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__requirement-authority-ledger.schema.json.txt",
+        "sha256": "29f3fa95fd3cae07b654fe3529fa082f8981965e9e8963f00c170244d0259e5e",
+        "git_blob": "a8de42933e9b3ed62fa17fc49d5565c4e834a46a",
+        "bytes": 1820,
+        "git_mode": "100644"
+      },
+      "schemas/requirement-lifecycle-case.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__requirement-lifecycle-case.schema.json.txt",
+        "sha256": "b96a6e72d4da2533c166e2724dda8816558187068211d608cb292b3ee9ef7546",
+        "git_blob": "3f7db77e7b91be26f325b6c22dd10fdecb138d45",
+        "bytes": 4404,
+        "git_mode": "100644"
+      },
+      "schemas/requirement-policy-equivalence-review.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__requirement-policy-equivalence-review.schema.json.txt",
+        "sha256": "5e58318a1c43019d3c17e484b0a76329c3d9d12c09a8287765eb980b411968b2",
+        "git_blob": "81765de1865a00323bd96a3432c960a0673b5b8b",
+        "bytes": 4175,
+        "git_mode": "100644"
+      },
+      "schemas/review-gate.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__review-gate.schema.json.txt",
+        "sha256": "702be8196233328fd33639d1adebb8984c0e82bd973c04635a8795491bde6771",
+        "git_blob": "84d3625eeb8eee17ee8140671c71069fa9d7ecea",
+        "bytes": 1602,
+        "git_mode": "100644"
+      },
+      "schemas/runtime-package-v1.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__runtime-package-v1.schema.json.txt",
+        "sha256": "7b046cd74c20dc6833b9c56ad9d20017503d30205de18a5d0577d1df4117b274",
+        "git_blob": "12d124fd82bfec51465f1f5c8b62564e0f08ba3c",
+        "bytes": 1789,
+        "git_mode": "100644"
+      },
+      "schemas/source-document-process-status.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__source-document-process-status.schema.json.txt",
+        "sha256": "f0395013e12f28fd23020428c2c144d1b77c8ebeee2bf13a3e9830dc3d4abda6",
+        "git_blob": "df59e4783f21c698be10b146cbb59ec30bd8adc6",
+        "bytes": 6148,
+        "git_mode": "100644"
+      },
+      "schemas/source-document-register.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__source-document-register.schema.json.txt",
+        "sha256": "b0a0c41dc248caee83506269c8727ef13034bc575b083f33403fa3690075f801",
+        "git_blob": "5b390f911ac41ae045b2416c4585d92b46391cf6",
+        "bytes": 3899,
+        "git_mode": "100644"
+      },
+      "schemas/staging-deployment-result.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__staging-deployment-result.schema.json.txt",
+        "sha256": "8669744ad3200880faace869e4d525b7473e43fd39d830c66f91a7724e7c4506",
+        "git_blob": "38a797d28920a06e16499a63c01135f07cab6e1e",
+        "bytes": 7394,
+        "git_mode": "100644"
+      },
+      "schemas/standards-requirement-mapping.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__standards-requirement-mapping.schema.json.txt",
+        "sha256": "e53d62821f5e1fa5caec938808947193faae8aa8f0315249c9d853218f810cf3",
+        "git_blob": "4f61ad7f707efc7a5cd06b7417506ce11e2db4bd",
+        "bytes": 3495,
+        "git_mode": "100644"
+      },
+      "schemas/typed-evidence-result.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__typed-evidence-result.schema.json.txt",
+        "sha256": "ef1c805a184fab8efa3ebbc88a3c379fad78d1877873bef90b773379137a3c01",
+        "git_blob": "87291adc392efb41e094f420981e91fdb1abb3db",
+        "bytes": 2790,
+        "git_mode": "100644"
+      },
+      "schemas/typed-evidence-results-index.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__typed-evidence-results-index.schema.json.txt",
+        "sha256": "42765b087880db5d40610d572d7ce6aa63892f83615443953a2fdf896b24b5b0",
+        "git_blob": "1df23b121c9f8f5e700d3f70874cf6b4dcc6f636",
+        "bytes": 9666,
+        "git_mode": "100644"
+      },
+      "schemas/vulnerability-scan-input.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__vulnerability-scan-input.schema.json.txt",
+        "sha256": "b2f5d69d7f092f71761864d4c11d26ae5250924b79f72877e60321a0bf5509e3",
+        "git_blob": "d9c03b207dc8113787027109a780844f3eb3e6ef",
+        "bytes": 1679,
+        "git_mode": "100644"
+      },
+      "schemas/waiver.schema.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/schemas__waiver.schema.json.txt",
+        "sha256": "01a91616c35782172ae5a837bcccc29b6e8703cd4d8e909f594bdf68847ca2bc",
+        "git_blob": "1ce36904063c1a612f470009b8e85ce32f6bcb04",
+        "bytes": 1320,
+        "git_mode": "100644"
+      },
+      "scripts/bootstrap_validation_env.sh": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/scripts__bootstrap_validation_env.sh.txt",
+        "sha256": "c80a7f961c31d2578b6200973465371dae85a859fef433ae5ed69062e42cdef4",
+        "git_blob": "297fce8bd097fc05cd5cb9e11e69502dd4e08f3f",
+        "bytes": 3293,
+        "git_mode": "100755"
+      },
+      "scripts/publish_consumer_lifecycle.py": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/scripts__publish_consumer_lifecycle.py.txt",
+        "sha256": "10eb0e76f6640b32378700f87294c3db9289eea19ec3d60a6e2458ee4806283a",
+        "git_blob": "a4b424b4d84a61be0d1f11fd09b198761ac363b9",
+        "bytes": 7119,
+        "git_mode": "100644"
+      },
+      "scripts/run_consumer_lifecycle.py": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/scripts__run_consumer_lifecycle.py.txt",
+        "sha256": "67a990ce094eaec90af4458c6b5d299e93b71a2057d519f64f658efd99636eb4",
+        "git_blob": "ab53a570b5df6a7396a0e59c50fe835d08d080d1",
+        "bytes": 5693,
+        "git_mode": "100644"
+      },
+      "scripts/validate_all.sh": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/scripts__validate_all.sh.txt",
+        "sha256": "0afc7a62effc614493e9b3dc434f93ac33d0d28495b808dbc7c67b13a98717a7",
+        "git_blob": "87d14d62a5922d7dd5aa592007cefb45cb848457",
+        "bytes": 2435,
+        "git_mode": "100755"
+      },
+      "scripts/validation-toolchain.env": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/scripts__validation-toolchain.env.txt",
+        "sha256": "c7c68b1cdfe872ad65a66c50485a51b9c6e4b1a5a29c231c68e3b2d2624dc6fd",
+        "git_blob": "040e09e37439623c7f0489b109a998ed34cbc947",
+        "bytes": 387,
+        "git_mode": "100644"
+      },
+      "status/governance-consumer-lifecycle.json": {
+        "fixture": "tests/fixtures/v2-consumer-lifecycle-original/data/status__governance-consumer-lifecycle.json.txt",
+        "sha256": "f29191d051df9c8ae65224b20cf9c9243abec14f441ac2c4314bf0a05b9737bc",
+        "git_blob": "ed674f9f63cf0a0229e6d289f2bfd07a8daf7366",
+        "bytes": 1826,
+        "git_mode": "100644"
+      }
+    }
+  }
+}

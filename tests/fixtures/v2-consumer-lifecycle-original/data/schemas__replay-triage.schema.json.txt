@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Replay Triage Report",
+  "type": "object",
+  "required": ["schema_version", "projection_type", "generated_at", "enforcement", "decision_boundary", "summary", "official_latest_findings", "assessments"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "projection_type": { "const": "replay-triage" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "enforcement": { "const": "report_only" },
+    "decision_boundary": {
+      "type": "object",
+      "required": ["historical_snapshots_rewritten", "latest_selection_changed", "trust_levels_changed", "enforcement_change_authorized"],
+      "properties": {
+        "historical_snapshots_rewritten": { "const": false },
+        "latest_selection_changed": { "const": false },
+        "trust_levels_changed": { "const": false },
+        "enforcement_change_authorized": { "const": false }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": ["assessments", "recorded_failures", "recalculated_failures", "legacy_assessments_superseded", "official_latest_findings", "classification_counts"],
+      "properties": {
+        "assessments": { "type": "integer", "minimum": 0 },
+        "recorded_failures": { "type": "integer", "minimum": 0 },
+        "recalculated_failures": { "type": "integer", "minimum": 0 },
+        "legacy_assessments_superseded": { "type": "integer", "minimum": 0 },
+        "official_latest_findings": { "type": "integer", "minimum": 0 },
+        "classification_counts": {
+          "type": "object",
+          "propertyNames": { "enum": ["not_evaluated", "new_evidence", "idempotent_reintake", "compatible_reuse", "deterministic_report_reuse", "legacy_assessment_superseded", "cross_commit_reuse", "cross_repository_reuse", "cross_artifact_reuse", "cross_subject_conflict", "same_context_content_conflict"] },
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "additionalProperties": false
+    },
+    "official_latest_findings": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["domain", "repository_id", "generated_at", "run_id", "event", "commit_id", "artifact_name", "artifact_digest_available", "source_file", "official_latest", "recorded_result", "recalculated_result", "classification", "recommended_action", "explanation", "replay_key", "relationships"],
+        "properties": {
+          "domain": { "enum": ["devsecops", "architecture", "typed_evidence"] },
+          "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+          "generated_at": { "type": "string", "format": "date-time" },
+          "run_id": { "type": "string", "minLength": 1 },
+          "event": { "type": "string", "minLength": 1 },
+          "commit_id": { "type": "string", "minLength": 1 },
+          "artifact_name": { "type": "string", "minLength": 1 },
+          "artifact_digest_available": { "type": "boolean" },
+          "source_file": { "type": "string", "minLength": 1 },
+          "official_latest": { "type": "boolean" },
+          "recorded_result": { "enum": ["pass", "fail", "not_evaluated"] },
+          "recalculated_result": { "enum": ["pass", "fail", "not_evaluated"] },
+          "classification": { "enum": ["not_evaluated", "new_evidence", "idempotent_reintake", "compatible_reuse", "deterministic_report_reuse", "legacy_assessment_superseded", "cross_commit_reuse", "cross_repository_reuse", "cross_artifact_reuse", "cross_subject_conflict", "same_context_content_conflict"] },
+          "recommended_action": { "enum": ["none", "collect_complete_replay_identity", "use_current_policy_on_new_intake", "reverify_with_artifact_digest", "investigate_cross_repository_provenance", "investigate_artifact_binding", "investigate_subject_identity", "investigate_same_context_mutation"] },
+          "explanation": { "type": "string", "minLength": 1 },
+          "replay_key": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" },
+          "relationships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["classification", "replay_key", "source_file", "repository_id", "commit_id", "run_id", "artifact_name", "shared_subject_ids"],
+              "properties": {
+                "classification": { "enum": ["idempotent_reintake", "compatible_reuse", "deterministic_report_reuse", "cross_commit_reuse", "cross_repository_reuse", "cross_artifact_reuse", "cross_subject_conflict", "same_context_content_conflict"] },
+                "replay_key": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" },
+                "source_file": { "type": "string", "minLength": 1 },
+                "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+                "commit_id": { "type": "string", "minLength": 1 },
+                "run_id": { "type": "string", "minLength": 1 },
+                "artifact_name": { "type": "string", "minLength": 1 },
+                "shared_subject_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

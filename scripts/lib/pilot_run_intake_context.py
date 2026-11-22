@@ -1,4 +1,4 @@
-"""Whole saved-capture append API; fresh main awaits its explicit temporary port."""
+"""Whole fresh and saved-capture run intake over explicit ledger, GET, clock and temporary ports."""
 
 from contextlib import redirect_stdout,redirect_stderr
 from copy import deepcopy

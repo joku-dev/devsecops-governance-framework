@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1.0",
+  "request_type": "consumer-lifecycle-action",
+  "environment": "live_pilot_validation",
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "scope": {
+    "domain": "architecture",
+    "enforcement": "report_only",
+    "github_repository_id": 1301526448,
+    "pilot_only": true,
+    "repository_id": "joku-dev/governance-framework-demo-consumer",
+    "resource": "repository",
+    "rule_id": "operation_readiness"
+  },
+  "operating_profile_ref": {
+    "revision": 1,
+    "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541"
+  },
+  "role_binding_ref": {
+    "revision": 1,
+    "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95"
+  },
+  "created_at": "2026-10-03T09:54:24Z",
+  "discussion_number": 198,
+  "required_role": "closure_approver",
+  "required_subject_id": "github-user:81616324",
+  "expected_receipt_head": {
+    "id": "transaction:90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c",
+    "digest": "72db8383ef1acfd5b8bea1d12ebd90df8f96826113470ca3cec7b89d73d36154"
+  },
+  "expected_action_head": {
+    "id": "transaction:c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552",
+    "digest": "9de269e94efb5336202afbaa74437354d37b68ce84ab08ff194140c6ae97b6e3"
+  },
+  "expected_revision": 6,
+  "body": {
+    "kind": "closure",
+    "decision_ref": {
+      "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1",
+      "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7"
+    },
+    "progress_ref": {
+      "id": "transaction:c7e82e042cbfb2d6d945d80a9c37c1bf292cd509dbc87859a82950f6cda57552",
+      "digest": "9de269e94efb5336202afbaa74437354d37b68ce84ab08ff194140c6ae97b6e3"
+    },
+    "passing_ref": {
+      "id": "transaction:90e4814626927357a8b72a0e08d76356c1b964789d7e053790d72b0d0a8cc83c",
+      "digest": "72db8383ef1acfd5b8bea1d12ebd90df8f96826113470ca3cec7b89d73d36154"
+    }
+  }
+}

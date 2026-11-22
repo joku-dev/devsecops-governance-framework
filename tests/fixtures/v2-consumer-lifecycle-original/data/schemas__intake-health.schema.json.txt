@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Report-Only Intake Health Projection",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "projection_type",
+    "generated_at",
+    "enforcement",
+    "observation_status",
+    "window",
+    "summary",
+    "dimensions",
+    "latest_results",
+    "source_files"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "projection_type": { "const": "intake-health" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "enforcement": { "const": "report_only" },
+    "observation_status": { "enum": ["observed", "no_data"] },
+    "window": {
+      "type": "object",
+      "required": ["days", "started_at", "ended_at"],
+      "properties": {
+        "days": { "type": "integer", "minimum": 1 },
+        "started_at": { "type": "string", "format": "date-time" },
+        "ended_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": ["events", "collection_attempts", "intake_conflicts"],
+      "properties": {
+        "events": { "$ref": "#/$defs/eventMetrics" },
+        "collection_attempts": {
+          "type": "object",
+          "required": ["total", "open", "resolved", "permanent"],
+          "properties": {
+            "total": { "type": "integer", "minimum": 0 },
+            "open": { "type": "integer", "minimum": 0 },
+            "resolved": { "type": "integer", "minimum": 0 },
+            "permanent": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "intake_conflicts": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["dimension", "value", "metrics"],
+        "properties": {
+          "dimension": {
+            "enum": ["repository_id", "collector", "intake_type", "evidence_type"]
+          },
+          "value": { "type": "string", "minLength": 1 },
+          "metrics": { "$ref": "#/$defs/eventMetrics" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "latest_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "domain",
+          "repository_id",
+          "run_id",
+          "generated_at",
+          "age_ms",
+          "source_file"
+        ],
+        "properties": {
+          "domain": { "enum": ["devsecops", "architecture", "typed_evidence"] },
+          "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+          "run_id": { "type": "string", "minLength": 1 },
+          "generated_at": { "type": "string", "format": "date-time" },
+          "age_ms": { "type": "integer", "minimum": 0 },
+          "source_file": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "source_files": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "nullableDuration": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "eventMetrics": {
+      "type": "object",
+      "required": [
+        "total",
+        "success",
+        "partial",
+        "failed",
+        "success_rate_pct",
+        "failure_rate_pct",
+        "duration_ms"
+      ],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "success": { "type": "integer", "minimum": 0 },
+        "partial": { "type": "integer", "minimum": 0 },
+        "failed": { "type": "integer", "minimum": 0 },
+        "success_rate_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "failure_rate_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "duration_ms": {
+          "type": "object",
+          "required": ["minimum", "p50", "p95", "maximum"],
+          "properties": {
+            "minimum": { "$ref": "#/$defs/nullableDuration" },
+            "p50": { "$ref": "#/$defs/nullableDuration" },
+            "p95": { "$ref": "#/$defs/nullableDuration" },
+            "maximum": { "$ref": "#/$defs/nullableDuration" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

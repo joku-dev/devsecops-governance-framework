@@ -1,0 +1,50 @@
+{
+  "frozen_original": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "requirements-validation.txt": {
+      "fixture": "requirements-validation.txt.txt",
+      "sha256": "d554f9277aa3f1508e1c6c4d9f8ebca01d88a3d1867945effaf57e0550255748"
+    },
+    "scripts/validation-toolchain.env": {
+      "fixture": "scripts__validation-toolchain.env.txt",
+      "sha256": "c7c68b1cdfe872ad65a66c50485a51b9c6e4b1a5a29c231c68e3b2d2624dc6fd"
+    },
+    "scripts/bootstrap_validation_env.sh": {
+      "fixture": "scripts__bootstrap_validation_env.sh.txt",
+      "sha256": "c80a7f961c31d2578b6200973465371dae85a859fef433ae5ed69062e42cdef4"
+    },
+    "scripts/validate_all.sh": {
+      "fixture": "scripts__validate_all.sh.txt",
+      "sha256": "0afc7a62effc614493e9b3dc434f93ac33d0d28495b808dbc7c67b13a98717a7"
+    },
+    "scripts/run_lifecycle_pilot_update.py": {
+      "fixture": "scripts__run_lifecycle_pilot_update.py.txt",
+      "sha256": "17737cafe995a82a2dda35c0defe8eb80f006f3babe77c36ae0eda25d10e869b"
+    },
+    "scripts/publish_operational_update.py": {
+      "fixture": "scripts__publish_operational_update.py.txt",
+      "sha256": "6b30a3f6c1a55ef88451f8372b129e05a23a5f6337cd7998143a11e3cb550228"
+    },
+    "scripts/validate_governance_lifecycle_ledger.py": {
+      "fixture": "scripts__validate_governance_lifecycle_ledger.py.txt",
+      "sha256": "478534ca31eff21f76c42e2f53458073dc5e2f5a69803745e8266c45c1487e6e"
+    },
+    ".github/workflows/lifecycle-pilot-update.yml": {
+      "fixture": ".github__workflows__lifecycle-pilot-update.yml.txt",
+      "sha256": "e70b6ae49fb32ad745205dab4cece5b31e0c762d3c6ce2a413718420d5ff5388"
+    },
+    ".github/workflows/governance-ci.yml": {
+      "fixture": ".github__workflows__governance-ci.yml.txt",
+      "sha256": "af6e2aa0d5969b678a1fc4c9eae16a9da18f80a3599801de241d5f9fa4ea9fa5"
+    },
+    "docs/operations/evidence/governance-lifecycle-live-operation.md": {
+      "fixture": "docs__operations__evidence__governance-lifecycle-live-operation.md.txt",
+      "sha256": "73f933fe91f630b904f6b506fc2833c7572e9d6605e08c90fea4278469cbc876"
+    },
+    "model/governance/lifecycle/operating-acceptance/00000001.json": {
+      "fixture": "model__governance__lifecycle__operating-acceptance__00000001.json.txt",
+      "sha256": "4eee48ed81d9153f3210eba560176a2e8d1d84a0346a36a246af5aa8d4393db7"
+    }
+  },
+  "scope": "Immutable original bytes supplement existing personal-channel oracle. Operating-request hash manifest is recomputed only inside isolated synthetic fixtures before original statement/capture construction; this does not modify accepted repository state or authenticate human/provider consent."
+}

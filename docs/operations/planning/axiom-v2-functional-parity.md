@@ -3339,3 +3339,159 @@ remain unchanged. Focused source checks are development evidence; current full,
 pinned, reviewed, signed installed/peer/consumer evidence is still required.
 Full22/135/37/16 remains, now109in_progress/26pending/0verified entrypoints.
 See [pilot projections](../guides/axiom-v2-pilot-projections.md).
+
+
+### Operational publisher library follow-up
+
+The [publisher library](../guides/axiom-v2-operational-publisher.md) retains the
+whole original orchestration with explicit native Git/POST and real lifecycle
+gate composition. Native comparisons use owned local origins and a fake provider;
+real gate scenarios are separate from labelled orchestration stand-ins.
+The publisher entrypoint is in progress, giving 118 in progress, 17 pending and
+zero fully verified across the unchanged 135 entrypoints. Complete durable
+publisher journal/replay, operator CLI/admission, pinned cross-version/full
+source review/signature and installed Mac/Linux/consumer acceptance remain open.
+No production activation or transfer of source authority accompanies this step.
+
+
+### Whole operational publisher recording follow-up
+
+The full original publisher now has a registered one-shot command and durable
+raw-process/path/gate observations with source-free replay. Original errors and
+potential partial writes remain visible; failed observation does not become an
+original business verdict. Local acceptance uses owned test origins/fake POSTs
+and separately exercises real lifecycle gates. No service/operating authority
+transfers. Current cross-version/full source review/signature and installed
+Mac/Linux/consumer comparisons remain required. Scope22/135/37/16 and the
+118/17/0 entrypoint states remain intact; see the
+[publisher guide](../guides/axiom-v2-operational-publisher.md).
+
+
+### Complete consumer lifecycle runner and recorded effects
+
+The seven original consumer operations now compose all 53 original functions
+and the complete executable footer through `consumer-lifecycle`. Whole-function
+structure and behavior retain model/role/scope/sequence, personal statements,
+independent pinned OPA, both ledgers, acceptance manifests, required guard and
+publication checks. Native and private effects are captured and reexecuted
+without source files, programs, current clocks or repeated writes. Source
+implementation manifests and provider facts stay in adapters; personal/guard
+credentials are separate from the optional consumer evidence read token.
+
+The real complete flow exceeded the smaller journal/output profiles. A distinct
+consumer profile permits 65,536 events / 128 MiB and 4,096 native output operations,
+while existing profiles, byte bounds, identity checks and original governance
+logic remain unchanged. Lost completion and added technical failures remain
+incomplete, without an original verdict, retry or inferred authority. Initial
+failed budget and test-fixture runs are retained as failed development evidence.
+
+This entrypoint moves to in progress: 119 in progress, 16 pending, zero verified.
+The scope remains 22 areas / 135 entrypoints / 37 CI definitions / 16 flows.
+Current full source regression, bound review, signature, fresh installed
+Mac/Linux/ha-CPsWMS/peer acceptance and the separate consumer publisher remain
+open. Materialized private OPA filenames stay in raw diagnostics; outer V1
+tracebacks and safe Source aliases remain final parity work. See the
+[consumer lifecycle guide](../guides/axiom-v2-consumer-lifecycle.md).
+
+
+### Separate whole consumer publisher in progress
+
+The complete six-function consumer publisher now has its own
+`consumer-publisher publish/inspect/replay` composition and finite legacy adapter.
+The original optional/default consumer scope, append-only selection, unconditional
+full consumer acceptance publication gate, actor/PR formatting, pipeline appends
+and all four workflow dispatches are retained. Both the model namespace bridge
+and the same central/evidence credential separation are explicit. No generic
+publisher gate is substituted. Native process outcomes and partial effects are
+recorded before source-free replay; lost completion cannot become original
+success, a retry or automatic rollback. This does not activate a publisher service
+or transfer operating authority.
+
+The matrix now has 120 entrypoints in progress, 15 pending and zero verified,
+with the unchanged 22/135/37/16 total scope. Current pinned full/source validation,
+revision-bound review, signature, installed Mac/Linux/peer/ha-CPsWMS acceptance,
+remaining CI/operating flows, safe Source aliases and outer V1 diagnostics remain
+open. Earlier frozen source/full runs remain unchanged. See the
+[consumer publisher guide](../guides/axiom-v2-consumer-publisher.md).
+
+
+### Whole typed-evidence publication extension in progress
+
+`typed-publisher publish/inspect/replay` preserves both original typed wrapper
+functions over the entire original operational publisher. Three additional
+measured-security/measured-L1/control-assurance append-only ledgers are selected
+through an isolated configuration namespace. All original scopes, scope selection,
+full applicable lifecycle gates, native Git/POST/append order and three dispatches
+remain unchanged. Configure state, native process outcomes and partial effects
+are captured and completely replayed without repeating writes. Inherited generic
+control flow and existing native safety remain unchanged; full finite typed
+command/path admission binds the exact additional rules. No publisher service or
+operating authority is activated.
+
+The unchanged total scope is 22/135/37/16, now 121 entrypoints in progress, 14 pending
+and zero verified. Current full source/installed acceptance, review, signature, fixed
+ha-CPsWMS and peer comparisons, other CI/operating flows and final parity audit
+remain open. The prior frozen consumer candidate and its full run remain untouched.
+See the [typed publisher guide](../guides/axiom-v2-typed-publisher.md).
+
+
+### Whole self-security publication in progress
+
+`self-security-publisher publish/inspect/replay` preserves all twelve original
+functions. The original viewer/ref gates, report allowlist and material
+comparison remain whole; only the two original observation clocks are ignored.
+Native standalone-clone reset/clean/switch/merge, actual report restore,
+commit/push, GET/create/PATCH, five ordered dispatches and final appends are
+captured and replayed without repeating writes. Admitted Git transitions carry
+closed before/after file epochs, preserving identity/mode/content changes and
+original partial failures without loosening other profiles. No private fake
+restore precedes real Git staging, no source authority is transferred and no
+publisher service, automatic retry or rollback is activated.
+
+The unchanged total scope is 22/135/37/16, now 122 entrypoints in progress,
+13 pending and zero verified. Focused original/native/capture/replay/application
+checks passed during development, including an advanced-main merge and real
+report restore. Current pinned full source validation, fresh bound review,
+signature, installed Mac/Linux/peer and fixed ha-CPsWMS acceptance, remaining
+CI/operating flows and final parity audit remain open. Earlier frozen full-run
+sources remain untouched. See the [self-security publisher guide](../guides/axiom-v2-self-security-publisher.md).
+
+
+### Shared atomic private-output ports for pending intake operators
+
+The complete original `consumer_intake_store.atomic_json` function is retained in
+`lib/intake_atomic_json.py`, with explicit path, temporary and native ports. Its
+whole temporary/write/flush/fsync/close/chmod/replace/final-unlink order is kept.
+`lib/intake_atomic_effects.py` reconstructs those operations, while the dedicated
+native adapter holds an ordinary owned private root and records intent before
+each primitive. Outcomes retain original errors, file identities/modes/bytes,
+text-buffer progress and actual partial state. Physical file prefixes must come
+from emitted JSON text; successful flushes and replacements require the exact
+emitted bytes. Closed stream descriptors cannot acquire a later reused OS fd.
+
+This is an internal supporting library, registered in distribution, runtime
+fingerprints and core/composition/adapter boundaries. It does not add a public
+operator command or mark any of the pending intake entrypoints complete. Native
+admission currently requires an existing 0700 ordinary root, a finite closed
+allowlist, private ordinary target files or observed directory-error cases, no
+unselected root members and no overlap with product or record storage. The profile
+has finite file/live-buffer/descriptor/journal bounds. Larger state directories,
+credentials, SQLite, full operator integration and their exact context bindings
+remain separate work; this helper is not their substitute.
+
+Pure replay uses retained logical descriptors, file snapshots and native outcomes
+without opening selected files or running programs. A corrupted snapshot or lost
+retained bytes is an integrity failure, never an original IO verdict. Missing
+journal completion stops further native operations; adapter resource teardown is
+explicitly outside the original program and makes capture incomplete when extra
+resources remain. A failed cleanup after successful replace retains the new
+file. Neither replay nor incomplete capture retries or rolls back a write, assigns
+trust, grants consent, promotes accepted state or activates a publisher.
+
+The supporting tests include the complete immutable original function/AST,
+actual POSIX output and errors, durable capture/replay after producer removal,
+a mandatory final audit-file write following candidate failure, fd reuse,
+corruption, original IO errors and lost completion after physical flush. These
+focused source checks do not establish current full or installed acceptance.
+The unchanged overall scope remains22/135/37/16,122 entrypoints in progress,
+13 pending and zero fully verified.

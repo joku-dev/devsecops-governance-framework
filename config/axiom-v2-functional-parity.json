@@ -23,7 +23,7 @@
     },
     {
       "id": "FP-02",
-      "title": "Änderungen an Vorgaben vorbereiten",
+      "title": "\u00c4nderungen an Vorgaben vorbereiten",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -33,7 +33,7 @@
     },
     {
       "id": "FP-03",
-      "title": "Herkunft und Zusammenhänge nachweisen",
+      "title": "Herkunft und Zusammenh\u00e4nge nachweisen",
       "state": "in_progress",
       "v2_capabilities": [
         "reports graph/control coverage/three traceability routes",
@@ -80,7 +80,7 @@
     },
     {
       "id": "FP-06",
-      "title": "OPA-Prüfregeln ausführen",
+      "title": "OPA-Pr\u00fcfregeln ausf\u00fchren",
       "state": "in_progress",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -129,7 +129,7 @@
     },
     {
       "id": "FP-10",
-      "title": "Baselines veröffentlichen und konsumieren",
+      "title": "Baselines ver\u00f6ffentlichen und konsumieren",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -149,7 +149,7 @@
     },
     {
       "id": "FP-12",
-      "title": "Ergebnisgeschichte schützen",
+      "title": "Ergebnisgeschichte sch\u00fctzen",
       "state": "pending",
       "v2_capabilities": [],
       "positive_tests": [],
@@ -207,9 +207,11 @@
     },
     {
       "id": "FP-16",
-      "title": "Operative Änderungen über PRs veröffentlichen",
-      "state": "pending",
-      "v2_capabilities": [],
+      "title": "Operative \u00c4nderungen \u00fcber PRs ver\u00f6ffentlichen",
+      "state": "in_progress",
+      "v2_capabilities": [
+        "Whole operational publisher: all six original functions/scopes, explicit native Git/POST/profile ports and real lifecycle gates; durable intent/raw-result/append capture, registered one-shot CLI and closed source-free replay. Technical admission limits, cross-version/full/review/installed acceptance and other operational publishers remain open."
+      ],
       "positive_tests": [],
       "negative_tests": [],
       "installed_evidence": [],
@@ -227,7 +229,7 @@
     },
     {
       "id": "FP-18",
-      "title": "Einführung und Betriebsreife bewerten",
+      "title": "Einf\u00fchrung und Betriebsreife bewerten",
       "state": "in_progress",
       "v2_capabilities": [
         "reports portfolio preserves committed registry/index/previous-projection and explicit clock; remaining readiness/live acceptance open",
@@ -259,7 +261,7 @@
     },
     {
       "id": "FP-19",
-      "title": "Betrieb und eigene Sicherheit überwachen",
+      "title": "Betrieb und eigene Sicherheit \u00fcberwachen",
       "state": "in_progress",
       "v2_capabilities": [
         "self-security assess/inspect: sixteen original criteria, full JSON/Markdown/stdout, provided observations, seven read-only native requests, inert local scans, real release verification and retained replay; no publisher or authority"
@@ -276,7 +278,7 @@
     },
     {
       "id": "FP-20",
-      "title": "Reviews, Validierung und Kommunikation unterstützen",
+      "title": "Reviews, Validierung und Kommunikation unterst\u00fctzen",
       "state": "in_progress",
       "v2_capabilities": [
         "provenance private record/import/index/check/inspect preserves original declared association wires; no verified execution or approval",
@@ -332,14 +334,17 @@
     },
     {
       "id": "FP-21",
-      "title": "Findings, Entscheidungen und Maßnahmen im Lifecycle verfolgen",
+      "title": "Findings, Entscheidungen und Ma\u00dfnahmen im Lifecycle verfolgen",
       "state": "in_progress",
       "v2_capabilities": [
         "Neutral lifecycle contract, synthetic/history and zero-argument default ledger validation over closed captured bytes; offline legacy capture replay only. Native base-ref/new-provider flows, live actions and operating authority remain open.",
         "synthetic-lifecycle generate/inspect/replay preserves all five whole synthetic generators and all19 functions: original ledger/cutoff/output guards, private source-preimage candidate overlay and explicit owned native writes, complete JSON/Markdown/CSP HTML, ordered partial failures and original0/1/2 exits; captured default text codec and closed raw/code/node-bound replay; no live/personal/operating authority transfer",
         "synthetic-ledger generate/inspect/replay retains all six whole original synthetic demo/intake mains and all24 functions across ten modules (587 original lines), lazy original argument parsing, private source-preimage ledger and explicit native POSIX effects; complete buffered/fsync/link/unlink/lock outcomes, partial errors and pending/canonical alias retry, closed raw/code/node-bound replay without repeated source effects; no personal/live/operating authority transfer",
         "pilot-projections actions/validation: whole original diagnostic generation, explicit legacy captured-evidence profile, private/selected effects and closed source-bound replay; development only",
-        "pilot-run-intake: whole original fresh main, two separate clocks, complete captured-bundle validation, owned native or logical private temporary scope and original atomic receipt append; technical capture and consistency do not authenticate producers or transfer authority; final installed/peer/full-Goal evidence remains open"
+        "pilot-run-intake: whole original fresh main, two separate clocks, complete captured-bundle validation, owned native or logical private temporary scope and original atomic receipt append; technical capture and consistency do not authenticate producers or transfer authority; final installed/peer/full-Goal evidence remains open",
+        "pilot-receipt-verification generate/inspect/replay: whole original verify_new_receipts API, original Git-tree selection and independently refetched complete producer artifact/source/clock checks; structural ledger and complete original validator-main/publication orchestration remain separate open scopes",
+        "pilot-action-verification generate/inspect/replay: whole original verify_new_actions helper, action context/base selection, fresh personal proof/time/evidence-head and active prerequisite checks; full original prefix/validator/publication/operating fresh orchestration remains open",
+        "operating-verification generate/inspect/replay: whole original collect/verify_provider/verify_new_captures with full historical model, readonly operating tree/binary Git show, new/accepted captures and changed effective index fresh recheck; full original prefix/validator/publication/remaining operating flows remain open"
       ],
       "positive_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
@@ -354,7 +359,10 @@
         "tests/test_v2_synthetic_ledger_native_oracle.py:entire native original mains, eight injected whole-program errors and source-deletion replay",
         "tests/test_v2_synthetic_ledger_application.py:both modes, original parser exits, explicit schema resources and own-node inspection/portable replay",
         "tests/test_v2_pilot_projections.py:whole original streams, all index/report file bytes/modes, default ignored argv; tests/test_v2_pilot_projection_application.py:source-bound complete private/native records",
-        "tests/test_v2_pilot_run_fresh.py: whole unchanged fresh main in both modes, independent capture/receipt clocks and exact complete receipts; tests/test_v2_pilot_run_intake.py: original saved-capture APIs; tests/test_v2_pilot_run_race.py: two actual native processes recheck history under original writer lock"
+        "tests/test_v2_pilot_run_fresh.py: whole unchanged fresh main in both modes, independent capture/receipt clocks and exact complete receipts; tests/test_v2_pilot_run_intake.py: original saved-capture APIs; tests/test_v2_pilot_run_race.py: two actual native processes recheck history under original writer lock",
+        "tests/test_v2_pilot_receipt_verification*.py:whole immutable original helper AST/return, real local Git and fixed fake GET, accepted versus new receipts, native/private temporary capture, source/provider-deleted pure replay and actual registered CLI with accepted base",
+        "tests/test_v2_pilot_action_verification*.py:whole original helper AST and complete histories, new closure with two live prerequisites, accepted base, permission-reducing withdrawal branches, explicit/default check clocks, raw GET order, unchanged source, source-deleted replay and registered CLI",
+        "tests/test_v2_operating_*.py:whole original3helper ASTs and private complete source model, new/accepted captures, changed and absent base index provider recheck, inactive rejection, all3APIs and unchanged source/deleted-source pure replay; raw binary run success/nonzero/signal/start-error separate from inherited check-output semantics"
       ],
       "negative_tests": [
         "tests/test_v2_repository_lifecycle_kernel.py",
@@ -369,7 +377,10 @@
         "tests/test_v2_synthetic_ledger_native_oracle.py:resealed metadata/resource/payload/alias/intent/transition tampering",
         "tests/test_v2_synthetic_ledger_application.py:incomplete capture, authority/type/source/request/binding/result/blob mutations and missing schema-resource admission",
         "tests/test_v2_pilot_projections.py:changed operating/role/receipt data and ordered index-before-report failure; tests/test_v2_pilot_projection_application.py:missing profile, capture failure, terminal failure, foreign node and resealed tampering",
-        "tests/test_v2_pilot_run_temporary.py: replacement/unknown-child/product-parent admission, original partial cleanup and private collision/source-deleted replay; tests/test_v2_pilot_run_ledger_budget.py: per-profile bounded wide receipts, old defaults and transaction-only large preimages; fresh partial-write/fsync/post-publication-cleanup failures and stale competing receipt origins"
+        "tests/test_v2_pilot_run_temporary.py: replacement/unknown-child/product-parent admission, original partial cleanup and private collision/source-deleted replay; tests/test_v2_pilot_run_ledger_budget.py: per-profile bounded wide receipts, old defaults and transaction-only large preimages; fresh partial-write/fsync/post-publication-cleanup failures and stale competing receipt origins",
+        "tests/test_v2_pilot_receipt_verification*.py:different fresh artifact, stale and future receipt time, missing Git base, request/source/node/result/authority/event/blob tampering, unobserved input and lost journal after native temp creation",
+        "tests/test_v2_pilot_action_verification*.py:changed current statement/decision/progress, future recording, stale evidence head, missing Git base, unclaimed capture/provider race, strict request/source/node/count/authority/clock/blob closure, unobserved input and lost journal after actual provider GET",
+        "tests/test_v2_operating_*.py:future capture, changed implementation and new/provider-withdrawn statements, missing Git base, strict operation/base/check-time/source/node/authority/blob closure, unobserved input/journal loss and resealed binary run wire/deadline attacks"
       ],
       "installed_evidence": [],
       "comparison_evidence": []
@@ -2716,8 +2727,8 @@
         "--scope"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/consumer_publication_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2758,8 +2769,8 @@
         "--scope"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/operational_publication.py",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2783,8 +2794,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/self_security_publication_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -2798,8 +2809,8 @@
       ],
       "cli_options": [],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/typed_publication_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3107,8 +3118,8 @@
         "--verify-provider"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/consumer_lifecycle_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3219,8 +3230,8 @@
         "--source-run-id"
       ],
       "declared_actions": [],
-      "v2_implementation": null,
-      "state": "pending",
+      "v2_implementation": "scripts/lib/pilot_update_application.py:generate",
+      "state": "in_progress",
       "evidence": []
     },
     {
@@ -3462,7 +3473,7 @@
         "--verify-new-provider"
       ],
       "declared_actions": [],
-      "v2_implementation": "scripts/lib/repository_lifecycle/context.py:RepositoryLifecycle.validate_default_ledger",
+      "v2_implementation": "scripts/lib/lifecycle_ledger_validation_application.py:generate",
       "state": "in_progress",
       "evidence": []
     },

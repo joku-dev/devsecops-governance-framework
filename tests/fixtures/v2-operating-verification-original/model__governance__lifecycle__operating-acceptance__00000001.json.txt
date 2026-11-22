@@ -1,0 +1,69 @@
+{
+  "channel_probe_comment": "https://github.com/joku-dev/devsecops-governance-framework/pull/87#issuecomment-5653982008",
+  "created_at": "2026-09-13T15:27:24Z",
+  "discussion_number": 91,
+  "excluded_operations": [
+    "automatic_remediation",
+    "blocking_enforcement",
+    "direct_main_writes",
+    "waiver_authority",
+    "baseline_changes",
+    "other_consumers",
+    "bitbucket_operation"
+  ],
+  "implementation_manifest": {
+    ".github/workflows/governance-ci.yml": "af6e2aa0d5969b678a1fc4c9eae16a9da18f80a3599801de241d5f9fa4ea9fa5",
+    ".github/workflows/lifecycle-pilot-update.yml": "e70b6ae49fb32ad745205dab4cece5b31e0c762d3c6ce2a413718420d5ff5388",
+    "docs/operations/evidence/governance-lifecycle-live-operation.md": "73f933fe91f630b904f6b506fc2833c7572e9d6605e08c90fea4278469cbc876",
+    "requirements-validation.txt": "d554f9277aa3f1508e1c6c4d9f8ebca01d88a3d1867945effaf57e0550255748",
+    "schemas/governance-lifecycle-operating-acceptance.schema.json": "657846cfb69777e8583065dc9e5b5ab4b79f186152a2f494977fcff6fd33d959",
+    "schemas/governance-lifecycle-pilot-action-receipt.schema.json": "ab3ae655e1cd9456e1603a7d1c9c692a6d22b6a0682f10b582507c6580405efa",
+    "schemas/governance-lifecycle-pilot-action-request.schema.json": "a91acc87204d37f3b6d3ed4dbb18bb9508ef20cbb8897cecc3f02a4a91756e00",
+    "scripts/bootstrap_validation_env.sh": "c80a7f961c31d2578b6200973465371dae85a859fef433ae5ed69062e42cdef4",
+    "scripts/generate_lifecycle_pilot_actions.py": "952c47e1d4049ba1844e3f3e839622a5c80e75dd0686505bf01296b207c8a25a",
+    "scripts/generate_lifecycle_pilot_validation.py": "d2e8efff2f8326b42bb49414bf3a399b08fd13cbf0b27ed56b1acbd148db2fb0",
+    "scripts/lib/governance_lifecycle/adapter.py": "0eef0c967904aaf7acded725068d72ce9dc278dffbd0317e75fa6797cbcf17cc",
+    "scripts/lib/governance_lifecycle/contracts.py": "ff987bc0a4bee604e7e8cb55a3538e0ffd2b50d0f5517d86df693605c204da1a",
+    "scripts/lib/governance_lifecycle/live_admission.py": "53d9c8d91d2ed827f5727774b645219fb4b623b7245575a61489272b3d0a7a98",
+    "scripts/lib/governance_lifecycle/live_evidence.py": "85729f59c8a830d1d321097cc00ac98a987fa40bc21a529e36c5675b98ed6df5",
+    "scripts/lib/governance_lifecycle/operating_acceptance.py": "440dd05df9041969d44932d6d454ac521962e8e5ee0f5c01dbcdf6930fc9e717",
+    "scripts/lib/governance_lifecycle/personal_probe.py": "206adbe1aaba930e4b34dd30b1c7bcfd202979278d7674e1c483ff827ec13b05",
+    "scripts/lib/governance_lifecycle/pilot_actions.py": "4e557449b02257a2a85e94fae0fb3a862f24f9915a0fae49ce5fe58b3273c0f9",
+    "scripts/lib/governance_lifecycle/store.py": "5668593aaf4813bbd71d0d3487588cc6d0cf44199c0eb91efb954844e9cd7af2",
+    "scripts/lib/result_ledger.py": "b16ec64a034326e92fb44dea365903f3bf8b7309c00dd6d6d1d01dbe4c099f1c",
+    "scripts/publish_operational_update.py": "6b30a3f6c1a55ef88451f8372b129e05a23a5f6337cd7998143a11e3cb550228",
+    "scripts/run_lifecycle_pilot_update.py": "17737cafe995a82a2dda35c0defe8eb80f006f3babe77c36ae0eda25d10e869b",
+    "scripts/validate_all.sh": "0afc7a62effc614493e9b3dc434f93ac33d0d28495b808dbc7c67b13a98717a7",
+    "scripts/validate_governance_lifecycle_ledger.py": "478534ca31eff21f76c42e2f53458073dc5e2f5a69803745e8266c45c1487e6e",
+    "scripts/validation-toolchain.env": "c7c68b1cdfe872ad65a66c50485a51b9c6e4b1a5a29c231c68e3b2d2624dc6fd"
+  },
+  "operating_profile_ref": {
+    "digest": "8f72bbc7a9258005b130c1725dc6957e18ef80c78571c07497b0733aebfb31dd",
+    "revision": 1
+  },
+  "permitted_operations": [
+    "manual_observation_intake",
+    "personal_action_intake",
+    "pilot_state_publication_via_pr"
+  ],
+  "promotion_scope": "retained_eligible_grs002_receipts_and_personal_action_history_in_this_pilot_only",
+  "purpose": "accept_manual_grs002_report_only_pilot_with_individual_personal_action_consent",
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "request_type": "lifecycle-operating-acceptance",
+  "required_role": "role_registry_owner",
+  "required_subject_id": "github-user:81616324",
+  "role_binding_ref": {
+    "digest": "937efa993a2de218f7754927c81a5db8e92c44e1555bb22efd88ccbf2cc82cd5",
+    "revision": 1
+  },
+  "schema_version": "0.1.0",
+  "scope": {
+    "domain": "governance_repository_security",
+    "enforcement": "report_only",
+    "github_repository_id": 1301369468,
+    "pilot_only": true,
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "resource": "refs/heads/main",
+    "rule_id": "GRS-002"
+  }
+}

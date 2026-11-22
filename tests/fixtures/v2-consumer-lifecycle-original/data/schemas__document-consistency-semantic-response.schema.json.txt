@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Semantic Review Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "response_type",
+    "review_id",
+    "source_manifest_sha256",
+    "execution",
+    "findings",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "response_type": {"const": "document_consistency_semantic_response"},
+    "review_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution": {"$ref": "#/$defs/execution"},
+    "findings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/finding"}
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "status",
+        "provider",
+        "model",
+        "prompt_version",
+        "configuration_version",
+        "truncated"
+      ],
+      "properties": {
+        "mode": {"enum": ["synthetic_fixture", "provider"]},
+        "status": {"enum": ["completed", "failed", "not_run"]},
+        "provider": {"type": ["string", "null"]},
+        "model": {"type": ["string", "null"]},
+        "prompt_version": {"type": "string", "minLength": 1},
+        "configuration_version": {"type": "string", "minLength": 1},
+        "truncated": {"type": "boolean"}
+      }
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": {"const": "requirement_id"},
+        "value": {"type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "source_id", "content_sha256", "locator", "excerpt"],
+      "properties": {
+        "evidence_id": {"type": "string", "pattern": "^EVID-[0-9]{3}$"},
+        "source_id": {"type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"},
+        "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "locator": {"$ref": "#/$defs/locator"},
+        "excerpt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^[^\\r\\n]+$"
+        }
+      }
+    },
+    "search_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_ids", "method", "limitations"],
+      "properties": {
+        "source_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"}
+        },
+        "method": {"type": "string", "minLength": 1},
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "finding_id",
+        "category",
+        "statement",
+        "interpretation",
+        "recommendation",
+        "semantic_state",
+        "confidence",
+        "applicability",
+        "evidence",
+        "search_scope"
+      ],
+      "properties": {
+        "finding_id": {"type": "string", "pattern": "^DCR-SEM-[0-9]{3}$"},
+        "category": {
+          "enum": [
+            "conflict",
+            "coverage_gap",
+            "terminology",
+            "duplicate_definition",
+            "relationship_coverage"
+          ]
+        },
+        "statement": {"type": "string", "minLength": 1},
+        "interpretation": {"type": "string", "minLength": 1},
+        "recommendation": {"type": ["string", "null"]},
+        "semantic_state": {"enum": ["proposed", "context_missing", "not_assessable"]},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "applicability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": {"enum": ["same_context", "different_context", "unknown"]},
+            "rationale": {"type": "string", "minLength": 1}
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/evidence"}
+        },
+        "search_scope": {
+          "oneOf": [
+            {"$ref": "#/$defs/search_scope"},
+            {"type": "null"}
+          ]
+        }
+      }
+    }
+  }
+}

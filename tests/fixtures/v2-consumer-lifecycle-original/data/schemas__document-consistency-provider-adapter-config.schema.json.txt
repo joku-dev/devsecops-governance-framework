@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Provider Adapter Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "configuration_id", "status", "provider_binding", "projection_schema", "canonical_schema", "normalization", "decision_boundary"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "configuration_id": {"type": "string", "pattern": "^dcr-adapter-[0-9]{4}$"},
+    "status": {"enum": ["active", "retired"]},
+    "provider_binding": {"const": "runtime_required"},
+    "projection_schema": {"type": "string", "const": "schemas/document-consistency-provider-projection.schema.json"},
+    "canonical_schema": {"type": "string", "const": "schemas/document-consistency-semantic-response.schema.json"},
+    "normalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["misplaced_semantic_states", "empty_recommendation", "search_scope", "unknown_values"],
+      "properties": {
+        "misplaced_semantic_states": {"type": "object", "const": {"context_missing": "context_missing", "not_assessable": "not_assessable"}},
+        "empty_recommendation": {"const": "null"},
+        "search_scope": {"const": "explicit_status"},
+        "unknown_values": {"const": "reject"}
+      }
+    },
+    "decision_boundary": {"type": "string", "minLength": 1}
+  }
+}

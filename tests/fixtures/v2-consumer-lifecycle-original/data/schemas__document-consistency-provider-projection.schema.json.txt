@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Provider Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "response_type", "findings", "limitations"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["1.0.0"]},
+    "response_type": {"type": "string", "enum": ["document_consistency_provider_projection"]},
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": {"type": "string", "enum": ["requirement_id"]},
+        "value": {"type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "source_id", "content_sha256", "locator", "excerpt"],
+      "properties": {
+        "evidence_id": {"type": "string", "pattern": "^EVID-[0-9]{3}$"},
+        "source_id": {"type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"},
+        "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "locator": {"$ref": "#/$defs/locator"},
+        "excerpt": {"type": "string", "minLength": 1, "maxLength": 500, "pattern": "^[^\\r\\n]+$"}
+      }
+    },
+    "search_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "source_ids", "method", "limitations"],
+      "properties": {
+        "status": {"type": "string", "enum": ["provided", "not_applicable"]},
+        "source_ids": {"type": "array", "items": {"type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"}},
+        "method": {"type": "string"},
+        "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["finding_id", "category", "statement", "interpretation", "recommendation", "semantic_state", "confidence", "applicability", "evidence", "search_scope"],
+      "properties": {
+        "finding_id": {"type": "string", "pattern": "^DCR-SEM-[0-9]{3}$"},
+        "category": {"type": "string", "enum": ["conflict", "coverage_gap", "terminology", "duplicate_definition", "relationship_coverage"]},
+        "statement": {"type": "string", "minLength": 1},
+        "interpretation": {"type": "string", "minLength": 1},
+        "recommendation": {"type": "string"},
+        "semantic_state": {"type": "string", "enum": ["proposed", "context_missing", "not_assessable"]},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "applicability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "rationale"],
+          "properties": {
+            "status": {"type": "string", "enum": ["same_context", "different_context", "unknown", "context_missing", "not_assessable"]},
+            "rationale": {"type": "string", "minLength": 1}
+          }
+        },
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+        "search_scope": {"$ref": "#/$defs/search_scope"}
+      }
+    }
+  }
+}

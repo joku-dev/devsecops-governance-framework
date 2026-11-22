@@ -1,0 +1,16 @@
+{
+  "source_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "scripts/lib/governance_lifecycle/operating_acceptance.py": {
+      "fixture": "scripts__lib__governance_lifecycle__operating_acceptance.py.txt",
+      "source_sha256": "440dd05df9041969d44932d6d454ac521962e8e5ee0f5c01dbcdf6930fc9e717",
+      "source_git_blob": "c9e84790a97b3319d4e4e02efe47483d8e820e14"
+    },
+    "scripts/publish_operational_update.py": {
+      "fixture": "scripts__publish_operational_update.py.txt",
+      "source_sha256": "6b30a3f6c1a55ef88451f8372b129e05a23a5f6337cd7998143a11e3cb550228",
+      "source_git_blob": "e193546d57034f2cc5c881e7317e5e836517bb0b"
+    }
+  },
+  "normative_source_or_authority": false
+}

@@ -211,6 +211,20 @@ nav:
           - AXIOM V2 Pilot Action Intake: operations/guides/axiom-v2-pilot-action-intake.md
           - AXIOM V2 Diagnostic Live Preflight: operations/guides/axiom-v2-live-preflight.md
           - AXIOM V2 Pilot Run Intake: operations/guides/axiom-v2-pilot-run-intake.md
+          - AXIOM V2 Pilot Receipt Verification: operations/guides/axiom-v2-pilot-receipt-verification.md
+          - AXIOM V2 Pilot Action Verification: operations/guides/axiom-v2-pilot-action-verification.md
+          - AXIOM V2 Operating Verification: operations/guides/axiom-v2-operating-verification.md
+          - AXIOM V2 Accepted Prefix: operations/guides/axiom-v2-accepted-prefix.md
+          - AXIOM V2 Lifecycle Validator: operations/guides/axiom-v2-lifecycle-validator.md
+          - AXIOM V2 Pilot Update: operations/guides/axiom-v2-pilot-update.md
+          - AXIOM V2 Launcher Replay: operations/guides/axiom-v2-launcher-replay.md
+          - AXIOM V2 Publication Validation: operations/guides/axiom-v2-publication-validation.md
+          - AXIOM V2 Operational Publisher: operations/guides/axiom-v2-operational-publisher.md
+          - AXIOM V2 Consumer Lifecycle: operations/guides/axiom-v2-consumer-lifecycle.md
+          - AXIOM V2 Consumer Publisher: operations/guides/axiom-v2-consumer-publisher.md
+          - AXIOM V2 Typed Evidence Publisher: operations/guides/axiom-v2-typed-publisher.md
+          - AXIOM V2 Self Security Publisher: operations/guides/axiom-v2-self-security-publisher.md
+          - AXIOM V2 Provider Observation: operations/guides/axiom-v2-provider-observation.md
           - V2 Public Artifact Hygiene: operations/guides/axiom-v2-artifact-hygiene.md
           - V2 Portable Candidate Index: operations/guides/axiom-v2-candidate-index.md
           - V2 Private Workbench: operations/guides/axiom-v2-workbench.md

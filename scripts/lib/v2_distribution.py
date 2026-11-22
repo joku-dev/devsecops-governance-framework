@@ -30,6 +30,45 @@ def verify_source(source):
     if not validate_boundaries(source)['passed']:raise ValueError('v2_architecture_boundary_failed')
 
 
+def launcher_text():
+    """Let the application choose its default node after source-free dispatch."""
+    return ('#!/bin/sh\nset -eu\nAXIOM_V2_PREFIX=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)\n'
+        'exec "$AXIOM_V2_PREFIX/venv/bin/python" "$AXIOM_V2_PREFIX/package/source/scripts/axiom_v2.py" '
+        '--default-instance "$AXIOM_V2_PREFIX/instance" "$@"\n')
+
+
+def admitted_launcher_text(source, python):
+    """Use the admitted revision's starter, retaining older archives' contract."""
+    import subprocess
+    program = (
+        'import json,sys\n'
+        'sys.path.insert(0,sys.argv[1])\n'
+        'from lib import v2_distribution as distribution\n'
+        'missing=object();factory=getattr(distribution,"launcher_text",missing)\n'
+        'print(json.dumps({"contract":"legacy-instance","text":None} if factory is missing '
+        'else {"contract":"admitted","text":factory()}))\n'
+    )
+    result = subprocess.run([str(python), '-I', '-B', '-c', program,
+        str(Path(source) / 'scripts')], capture_output=True, timeout=120)
+    if result.returncode or len(result.stdout) > 16384:
+        raise ValueError('admitted_v2_launcher_initialization_failed')
+    try:
+        value = json.loads(result.stdout)
+    except (ValueError, UnicodeError) as error:
+        raise ValueError('admitted_v2_launcher_contract_invalid') from error
+    if type(value) is not dict or set(value) != {'contract', 'text'}:
+        raise ValueError('admitted_v2_launcher_contract_invalid')
+    if value == {'contract': 'legacy-instance', 'text': None}:
+        return ('#!/bin/sh\nset -eu\nAXIOM_V2_PREFIX=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)\n'
+            'exec "$AXIOM_V2_PREFIX/venv/bin/python" "$AXIOM_V2_PREFIX/package/source/scripts/axiom_v2.py" '
+            '--instance "$AXIOM_V2_PREFIX/instance" "$@"\n')
+    text = value['text']
+    if (value['contract'] != 'admitted' or type(text) is not str
+            or not text.startswith('#!/bin/sh\n') or '\0' in text):
+        raise ValueError('admitted_v2_launcher_contract_invalid')
+    return text
+
+
 def install(package,sha256,destination,python,*,port=8875):
     """Fresh private prefix only; never touches an existing service, key or state."""
     destination=Path(destination)
@@ -44,12 +83,17 @@ def install(package,sha256,destination,python,*,port=8875):
     prepare_environment(destination/'package',destination/'venv',python,package=package,expected_sha256=sha256)
     source=destination/'package/source'
     fingerprints=restrict_source(source)
+    # The admitted executable is already hash/version checked. Consumer tool
+    # ports exclude private-looking canonical paths such as venv/bin/opa.
+    # Select the same pinned package binary, outside source and instance state.
+    opa=destination/'package/opa'
     # Invoke the admitted revision with its own offline environment, not installer imports.
     import subprocess
     result=subprocess.run([str(destination/'venv/bin/python'),str(source/'scripts/axiom_v2.py'),
-        '--instance',str(destination/'instance'),'init','--opa',str(destination/'venv/bin/opa'),'--port',str(port)],
+        '--instance',str(destination/'instance'),'init','--opa',str(opa),'--port',str(port)],
         capture_output=True,timeout=120)
     if result.returncode:raise ValueError('admitted_v2_instance_initialization_failed')
+    launcher_body = admitted_launcher_text(source, destination/'venv/bin/python')
     receipt={'schema_version':2,'product':'axiom-v2','source_commit':manifest['source_commit'],
              'source_tree':manifest['source_tree'],'package_sha256':sha256,'mode':'paused',
              'active_files':len(fingerprints),'active_digest':hashlib.sha256(text_json(fingerprints).encode()).hexdigest(),
@@ -57,8 +101,6 @@ def install(package,sha256,destination,python,*,port=8875):
     receipt_path=destination/'installation.json';receipt_path.write_text(text_json(receipt));receipt_path.chmod(0o600)
     launcher=destination/'axiom-v2'
     # All variable paths are derived from this file, with no interpolated shell strings.
-    launcher.write_text('#!/bin/sh\nset -eu\nAXIOM_V2_PREFIX=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)\n'
-        'exec "$AXIOM_V2_PREFIX/venv/bin/python" "$AXIOM_V2_PREFIX/package/source/scripts/axiom_v2.py" '
-        '--instance "$AXIOM_V2_PREFIX/instance" "$@"\n')
+    launcher.write_text(launcher_body)
     launcher.chmod(0o700)
     return receipt

@@ -13,7 +13,8 @@ def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--version',action='version',version=VERSION)
     parser.add_argument('--instance',type=Path)
-    parser.add_argument('command',choices=('init','check','runtime','evidence','collector','workbench','parity','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger','documentation-reconciliation','lifecycle-candidates','pilot-projections','personal-channel','pilot-action-requests','pilot-action-intake','live-preflight','pilot-run-intake'))
+    parser.add_argument('--default-instance',type=Path,help=argparse.SUPPRESS)
+    parser.add_argument('command',choices=('init','check','runtime','evidence','collector','workbench','parity','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger','documentation-reconciliation','lifecycle-candidates','pilot-projections','personal-channel','pilot-action-requests','pilot-action-intake','live-preflight','pilot-run-intake','pilot-receipt-verification','pilot-action-verification','operating-verification','accepted-prefix','lifecycle-validator','pilot-update','publication-validation','operational-publisher','consumer-lifecycle','consumer-publisher','typed-publisher','self-security-publisher','provider-observation'))
     parser.add_argument('arguments',nargs=argparse.REMAINDER)
     args=parser.parse_args(argv)
     try:
@@ -23,12 +24,14 @@ def main(argv=None):
             sub.add_argument('--opa',type=Path,required=True)
             sub.add_argument('--development',action='store_true')
             settings=sub.parse_args(args.arguments)
-            if not args.instance:parser.error('init requires --instance FRESH_PRIVATE_DIRECTORY')
-            value=initialize(args.instance,port=settings.port,opa=settings.opa,development=settings.development)
+            instance_path=args.instance or args.default_instance
+            if not instance_path:parser.error('init requires --instance FRESH_PRIVATE_DIRECTORY')
+            value=initialize(instance_path,port=settings.port,opa=settings.opa,development=settings.development)
             print(json.dumps({'product':value['product'],'version':value['version'],
                               'node_id':value['node_id'],'mode':'paused','source_revision':value['source_revision']}))
             return 0
-        return run(args.command,args.arguments,instance_path=args.instance)
+        return run(args.command,args.arguments,instance_path=args.instance,
+                   default_instance_path=args.default_instance)
     except (ValueError,OSError,KeyError,TypeError,AccessFailure) as error:
         code=str(error) if isinstance(error,(ValueError,AccessFailure)) else ''
         if not re.fullmatch('[a-z][a-z0-9_]{0,100}',code):code='v2_operation_failed'

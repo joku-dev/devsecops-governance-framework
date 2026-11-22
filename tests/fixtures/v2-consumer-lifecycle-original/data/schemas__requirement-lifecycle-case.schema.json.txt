@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requirement Lifecycle Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "case_id", "intake_type", "status", "created_at", "source", "proposals"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "case_id": {"type": "string", "pattern": "^RLC-[A-Z0-9-]+$"},
+    "intake_type": {"enum": ["source_document", "native_git"]},
+    "status": {"enum": ["proposed", "analyzed", "decision_required", "approved", "partially_activated", "activated", "closed"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "source_path", "source_sha256", "owner", "decision_ref"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "source_path": {"type": "string", "minLength": 1},
+        "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "owner": {"type": "string", "minLength": 1},
+        "decision_ref": {"type": "string", "minLength": 1}
+      }
+    },
+    "proposals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["proposal_id", "source_requirement_id", "title", "statement", "normative_strength", "domain", "analysis", "decision", "activation"],
+        "properties": {
+          "proposal_id": {"type": "string", "minLength": 1},
+          "source_requirement_id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "statement": {"type": "string", "minLength": 1},
+          "normative_strength": {"enum": ["MUST", "SHOULD", "MAY", "REQUIREMENT"]},
+          "domain": {"type": "string", "minLength": 1},
+          "analysis": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["suggested_classification", "confidence", "candidate_matches", "method"],
+            "properties": {
+              "suggested_classification": {"enum": ["duplicate", "new", "extend", "change", "supersede", "conflict"]},
+              "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+              "candidate_matches": {"type": "array", "items": {"type": "object", "required": ["requirement_id", "similarity"], "properties": {"requirement_id": {"type": "string"}, "similarity": {"type": "number", "minimum": 0, "maximum": 1}}, "additionalProperties": false}},
+              "method": {"enum": ["deterministic_exact", "deterministic_similarity", "no_catalog_match"]}
+            }
+          },
+          "decision": {
+            "oneOf": [
+              {"type": "null"},
+              {"type": "object", "additionalProperties": false, "required": ["disposition", "classification", "target_requirement_id", "decided_by", "decision_role", "decided_at", "decision_ref", "rationale", "authorized_derivations", "runtime_enforcement"], "properties": {
+                "disposition": {"enum": ["approve", "reject"]},
+                "classification": {"enum": ["duplicate", "new", "extend", "change", "supersede", "conflict"]},
+                "target_requirement_id": {"type": ["string", "null"]},
+                "decided_by": {"type": "string", "minLength": 1},
+                "decision_role": {"type": "string", "minLength": 1},
+                "decided_at": {"type": "string", "format": "date-time"},
+                "decision_ref": {"type": "string", "minLength": 1},
+                "rationale": {"type": "string", "minLength": 1},
+                "authorized_derivations": {"type": "array", "uniqueItems": true, "items": {"enum": ["documentation", "controls", "platform", "architecture", "policies", "schemas", "workflows", "releases"]}},
+                "runtime_enforcement": {"enum": ["none", "report_only", "blocking"]}
+              }}
+            ]
+          },
+          "activation": {"oneOf": [{"type": "null"}, {"type": "object", "additionalProperties": false, "required": ["requirement_id", "revision", "effective_from", "commit"], "properties": {"requirement_id": {"type": "string", "pattern": "^GRQ-[0-9]{6}$"}, "revision": {"type": "integer", "minimum": 1}, "effective_from": {"type": "string", "format": "date"}, "commit": {"type": "string", "minLength": 1}}}]}
+        }
+      }
+    }
+  }
+}

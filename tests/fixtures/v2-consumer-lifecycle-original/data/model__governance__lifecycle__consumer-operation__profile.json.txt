@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "consumer-lifecycle-operating-profile",
+  "profile_id": "profile:demo-operation-readiness",
+  "revision": 1,
+  "scope": {
+    "domain": "architecture",
+    "enforcement": "report_only",
+    "github_repository_id": 1301526448,
+    "pilot_only": true,
+    "repository_id": "joku-dev/governance-framework-demo-consumer",
+    "resource": "repository",
+    "rule_id": "operation_readiness"
+  },
+  "authorization": {
+    "channel": "maintainer_conversation",
+    "confirmed_on": "2026-09-13",
+    "statement": "ich bestätige",
+    "decision_ref": "docs/governance/change-requests/GCR-2026-080-consumer-lifecycle-admission.md",
+    "runtime_consent_proof": false
+  },
+  "role_binding_ref": {
+    "revision": 1,
+    "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95"
+  },
+  "personal_consent_required": true,
+  "official_state": false,
+  "live_activation_approved": false,
+  "environment": "live_pilot_validation",
+  "operating_policy": {
+    "maximum_age_seconds": 86400,
+    "maximum_future_skew_seconds": 0,
+    "automatic_deletion": false,
+    "retention": "complete_immutable_pilot_history",
+    "retention_review": "at_pilot_completion",
+    "replay_policy": "same_origin_same_content_is_noop_conflicting_content_is_quarantined"
+  },
+  "source": {
+    "provider": "github",
+    "api_origin": "https://api.github.com",
+    "allowed_branch": "main",
+    "allowed_event": "push",
+    "workflow_path": ".github/workflows/architecture-governance.yml",
+    "workflow_sha256": "54c292e56967c4a3c33eb6845def5806ec5d21eee1a6cf595db8ae20605562e4",
+    "artifact_name": "architecture-governance-evidence",
+    "report_path": "architecture-governance-report.json",
+    "input_path": "architecture-release-input.json",
+    "baseline_repository": "joku-dev/devsecops-governance-framework",
+    "baseline_ref": "architecture-baseline-l1-v0.1.0",
+    "baseline_tag_object": "407ee1013e9f3d4fadcd5bc27011d65a78cd6505",
+    "reference_commit": "19e281d323eb69be26bdb2cbf4368caadfbccaa7",
+    "reference_files": {
+      ".github/workflows/architecture-baseline-l1-v0.1.0.yml": "e3ee0c5c694b4226f50828fc5b8f3cdde4f8171a34fa9bff92e20e48d03ecd92",
+      "scripts/collect_architecture_release_input.py": "75855e8d40f507d898692f829cc0c4f42074566476fbb6247b47f8105c03922e",
+      "scripts/generate_architecture_governance_report.py": "adfc6ca7eabd24f41f9c34779f6cb9ef91444749e2f59ea8482ed6aabfeaf7f4",
+      "schemas/architecture-release-candidate.schema.json": "02154f5147784504f54324b3e9f7d48482c9f3699ac69d311d9bc618fd7f4882",
+      "policies/opa/architecture_operation_readiness.rego": "7fd4dbfeb08aea67600b7e083363cfdff1dc93d2e0d457c90d6ca2b0b1a44fda"
+    }
+  }
+}

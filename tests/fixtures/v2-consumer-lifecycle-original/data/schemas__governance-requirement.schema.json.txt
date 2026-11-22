@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DevSecOps Governance Requirement Set",
+  "type": "object",
+  "required": ["source_document", "id_prefix", "requirements"],
+  "properties": {
+    "source_document": { "type": "string" },
+    "id_prefix": { "type": "string" },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "domain",
+          "title",
+          "requirement",
+          "verification_requirement",
+          "automation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(DSPOL|DSDIR)-REQ-[0-9]{3}$"
+          },
+          "domain": { "type": "string" },
+          "title": { "type": "string" },
+          "requirement": { "type": "string" },
+          "verification_requirement": { "type": "string" },
+          "derived_controls": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "implemented_by": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "automation": {
+            "type": "object",
+            "required": ["type", "maturity", "check_type", "machine_readable_evidence_required", "rationale"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["blocking_gate", "warning_gate", "evidence_check", "review_check"]
+              },
+              "maturity": {
+                "type": "string",
+                "enum": ["immediate", "tool_integration_required", "future"]
+              },
+              "check_type": {
+                "type": "string",
+                "enum": ["presence", "linkage", "threshold", "configuration", "approval", "review", "integrity", "provenance"]
+              },
+              "machine_readable_evidence_required": { "type": "boolean" },
+              "rationale": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

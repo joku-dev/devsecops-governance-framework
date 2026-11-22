@@ -1,0 +1,7 @@
+{
+  "frozen_original": "6b557fefe295b58272d2271326576ca3a3687197",
+  "path": "scripts/generate_governance_lifecycle_index.py",
+  "fixture": "generate_governance_lifecycle_index.py.txt",
+  "sha256": "59b3571afeac364764ee23d40399f388b940b2cc3f0d0a8c87751a366f0f22af",
+  "scope": "Immutable extra import dependency for original accepted-prefix oracle. Does not execute original main, change models, establish provenance or grant acceptance."
+}

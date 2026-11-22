@@ -1,0 +1,47 @@
+{
+  "body": {
+    "failure_ref": {
+      "digest": "32d15df680deedb2880403f3034efe1af853df7cf23e4cda2a89d3eb15493c11",
+      "id": "transaction:a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2"
+    },
+    "kind": "decision",
+    "plan": {
+      "action": "Resolve operation_readiness for the non-deployed demo: bind the confirmed feedback action and CI-local function diagnostics to actual mainline artifacts, update only feedback/observability evidence from reviewed to approved after this decision, record personally authorized in_progress and completed progress, then obtain a fresh mainline gate PASS after completed remediation and a separate personal closure decision. Other gates, baselines and enforcement remain outside this action.",
+      "owner_id": "github-user:81616324",
+      "target_at": "2026-09-23T21:59:59Z",
+      "work_url": "https://github.com/joku-dev/devsecops-governance-framework/pull/102"
+    },
+    "supersedes_ref": null
+  },
+  "created_at": "2026-09-16T14:22:26Z",
+  "discussion_number": 102,
+  "environment": "live_pilot_validation",
+  "expected_action_head": null,
+  "expected_receipt_head": {
+    "digest": "32d15df680deedb2880403f3034efe1af853df7cf23e4cda2a89d3eb15493c11",
+    "id": "transaction:a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2"
+  },
+  "expected_revision": 1,
+  "operating_profile_ref": {
+    "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541",
+    "revision": 1
+  },
+  "repository_id": "joku-dev/devsecops-governance-framework",
+  "request_type": "consumer-lifecycle-action",
+  "required_role": "remediation_decider",
+  "required_subject_id": "github-user:81616324",
+  "role_binding_ref": {
+    "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95",
+    "revision": 1
+  },
+  "schema_version": "0.1.0",
+  "scope": {
+    "domain": "architecture",
+    "enforcement": "report_only",
+    "github_repository_id": 1301526448,
+    "pilot_only": true,
+    "repository_id": "joku-dev/governance-framework-demo-consumer",
+    "resource": "repository",
+    "rule_id": "operation_readiness"
+  }
+}

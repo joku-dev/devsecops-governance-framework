@@ -1,6 +1,9 @@
 """Actual sparse Git admission, closed file inventory and isolated install failures."""
 from pathlib import Path
 import json
+import hashlib
+import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -72,6 +75,33 @@ class Distribution(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'fresh_v2_installation_required'):
             install(self.base/'not-opened.zip','0'*64,prefix,sys.executable)
         self.assertEqual((prefix/'key').read_text(),'synthetic V1 fixture')
+
+    def test_installed_opa_selection_passes_the_actual_consumer_external_tool_guard(self):
+        from lib.providers.consumer_lifecycle_tools import approved_external_program
+        prefix=self.base.resolve()/'installed';seen=[]
+        def admit_fixture(package,sha,destination):
+            destination.mkdir();(destination/'source').mkdir()
+            shutil.copyfile(OPA,destination/'opa');(destination/'opa').chmod(0o755)
+            return {'locks':['requirements-validation.lock','requirements-source-document-intake.lock'],
+                    'source_commit':'a'*40,'source_tree':'b'*40}
+        def prepare_fixture(admitted,venv,python,**options):
+            (venv/'bin').mkdir(parents=True)
+            shutil.copyfile(OPA,venv/'bin/opa');(venv/'bin/opa').chmod(0o755)
+        def initialize_fixture(command,**options):
+            selected=Path(command[command.index('--opa')+1])
+            identity=approved_external_program(str(selected),str(self.base),prefix/'package/source',
+                prefix/'instance',frozenset({hashlib.sha256(OPA.read_bytes()).hexdigest()}))
+            seen.append(identity)
+            return subprocess.CompletedProcess(command,0,b'{}',b'')
+        with patch('lib.v2_distribution.admit',side_effect=admit_fixture),\
+             patch('lib.v2_distribution.prepare_environment',side_effect=prepare_fixture),\
+             patch('lib.v2_distribution.restrict_source',return_value={}),\
+             patch('lib.v2_distribution.admitted_launcher_text',return_value='#!/bin/sh\nexit 0\n'),\
+             patch('subprocess.run',side_effect=initialize_fixture):
+            receipt=install(self.base/'fixture.zip','0'*64,prefix,sys.executable)
+        self.assertEqual(len(seen),1)
+        self.assertEqual(Path(seen[0]['label']),prefix/'package/opa')
+        self.assertFalse(receipt['services_started']);self.assertEqual(receipt['mode'],'paused')
 
     def test_interrupted_initialization_has_no_admission_marker(self):
         target=self.base/'instance'
