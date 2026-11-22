@@ -1,5 +1,34 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+## Whole private Store and explicit SQLite primitives
+
+Classify the complete twelve-method Store algorithm, shared typed DB-API facade,
+native SQLite adapter, pure ordered reconstruction and whole database snapshots
+as executable engineering/evidence-contract portability under this GCR. Reuse
+the entire existing immutable V1 source fixture; no normative source, released
+baseline, official result, operating acceptance or historical receipt changes.
+
+Retain every original class body after only explicit path/SQLite/clock bindings,
+including original transactions, retry/claim behavior, namespace refusal and
+errors. Compare native results, SQL traces and complete database bytes to the
+whole original at identical explicit clock inputs. Record real primitive
+outcomes, not a fabricated Store result. Pure replay repeats the Store algorithm
+without SQLite, original files or new clock samples; native SQL outcomes remain
+declared observations rather than independently authenticated database truth.
+
+Keep durable call intent, sticky capture failure and separate owned-resource
+cleanup. A committed row survives missing completion capture; do not retry or
+claim rollback. Preserve original unclosed connections as explicit cleanup facts.
+Check whole initial/final database files, typed scalars, exact requests, hashes,
+row shapes and resource release. Root/inode/file admission is not SQLite VFS
+isolation or a claim that Python enables the C no-follow flag.
+
+This is an internal increment without a new public operator command. The whole
+operator, locking, disk/file helpers, backups and restore remain Goal work.
+Targeted tests do not establish current signed installed acceptance or complete
+22/135/37/16 parity. See the
+[private Store guide](../../operations/guides/axiom-v2-private-intake-store.md).
+
 
 ## Whole fresh pilot-run intake and owned temporary capture
 

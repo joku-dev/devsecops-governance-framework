@@ -225,6 +225,7 @@ nav:
           - AXIOM V2 Typed Evidence Publisher: operations/guides/axiom-v2-typed-publisher.md
           - AXIOM V2 Self Security Publisher: operations/guides/axiom-v2-self-security-publisher.md
           - AXIOM V2 Provider Observation: operations/guides/axiom-v2-provider-observation.md
+          - AXIOM V2 Private Intake Store: operations/guides/axiom-v2-private-intake-store.md
           - V2 Public Artifact Hygiene: operations/guides/axiom-v2-artifact-hygiene.md
           - V2 Portable Candidate Index: operations/guides/axiom-v2-candidate-index.md
           - V2 Private Workbench: operations/guides/axiom-v2-workbench.md
