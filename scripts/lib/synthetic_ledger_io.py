@@ -1,4 +1,5 @@
 """Closed retained ledger file observations, including one exact alias pair."""
+from lib.synthetic_ledger_budget import DEFAULT, admitted
 from pathlib import PurePosixPath
 from lib.requirement_review_output import snapshot
 from lib.requirement_validation_replay import IntegrityError
@@ -22,11 +23,12 @@ def retained_error(wire, failed):
     return error
 
 
-def observation(value, blob, *, path, ledger, transaction_name):
+def observation(value, blob, *, path, ledger, transaction_name, max_file=DEFAULT.file):
     if type(value) is not dict or set(value) != {'snapshot', 'metadata', 'aliases'}:
         raise IntegrityError('synthetic_ledger_file_observation_changed')
     state, info, aliases = value['snapshot'], value['metadata'], value['aliases']
-    snapshot(state, blob)
+    file_limit = max_file if PurePosixPath(path).parent == PurePosixPath(ledger) / "transactions" else DEFAULT.file
+    snapshot(state, blob, max_file=file_limit)
     if type(aliases) is not list:
         raise IntegrityError('synthetic_ledger_alias_list_changed')
     if state['kind'] in ('missing', 'unreachable'):
@@ -69,7 +71,8 @@ from lib.synthetic_lifecycle_io import ReplayIO as LifecycleReplay, path_spec, P
 
 
 class ReplayIO(LifecycleReplay):
-    def __init__(self, *args, ledger, transaction_name, **kwargs):
+    def __init__(self, *args, ledger, transaction_name, ledger_budget=DEFAULT, **kwargs):
+        self.ledger_budget = admitted(ledger_budget)
         super().__init__(*args, **kwargs)
         self.ledger, self.transaction_name = ledger, transaction_name
         self.ledger_reads = {}
@@ -88,7 +91,7 @@ class ReplayIO(LifecycleReplay):
             if created and hasattr(self, 'effect_state'): self.effect_state.mkdir(created)
 
     def remember_ledger(self, path, value):
-        info = observation(value, self.blob, path=path, ledger=self.ledger, transaction_name=self.transaction_name)
+        info = observation(value, self.blob, path=path, ledger=self.ledger, transaction_name=self.transaction_name, max_file=self.ledger_budget.file)
         info = info or {'kind': 'missing'}
         if path in self.metadata and self.metadata[path] != info:
             raise IntegrityError('synthetic_ledger_repeated_metadata_changed')

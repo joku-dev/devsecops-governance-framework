@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Trust Record",
+  "type": "object",
+  "required": [
+    "model_id",
+    "capture_phase",
+    "effective_level",
+    "assessment_status",
+    "verifier",
+    "verified_at",
+    "checks",
+    "capture"
+  ],
+  "properties": {
+    "model_id": { "const": "evidence-trust-model-v1" },
+    "capture_phase": { "const": "additive_capture" },
+    "effective_level": {
+      "enum": ["unverified", "integrity_verified", "provenance_verified", "attested"]
+    },
+    "assessment_status": { "enum": ["not_evaluated", "evaluated"] },
+    "verifier": { "type": ["string", "null"] },
+    "verified_at": { "type": ["string", "null"] },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "result", "evidence_refs"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "result": { "enum": ["pass", "fail", "unknown", "not_evaluated"] },
+          "evidence_refs": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "policy_id": { "type": "string", "minLength": 1 },
+          "policy_version": { "type": "string", "minLength": 1 },
+          "policy_status": { "enum": ["provisional", "approved", "retired"] },
+          "produced_at": { "type": ["string", "null"] },
+          "evaluated_at": { "type": "string", "minLength": 1 },
+          "age_seconds": { "type": "integer" },
+          "maximum_age_seconds": { "type": ["integer", "null"], "minimum": 1 },
+          "finding_effect": { "const": "report_only" },
+          "reason": { "type": "string", "minLength": 1 },
+          "replay_key": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "related_replay_keys": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "capture": {
+      "type": "object",
+      "required": ["collector", "captured_at", "source", "subjects", "custody"],
+      "properties": {
+        "contract_id": { "const": "evidence-collector-contract" },
+        "contract_version": { "const": "0.1.0" },
+        "status": { "enum": ["collected", "partial", "failed"] },
+        "enforcement": { "const": "report_only" },
+        "evidence_type": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "governance_domain": { "enum": ["devsecops", "architecture"] },
+        "collector": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            {
+              "type": "object",
+              "required": ["id", "version"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+                "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "produced_at": { "type": "string", "minLength": 1 },
+        "captured_at": { "type": "string", "minLength": 1 },
+        "source": {
+          "type": "object",
+          "required": [
+            "repository_id",
+            "commit_id",
+            "workflow_name",
+            "run_id",
+            "run_attempt",
+            "artifact_name",
+            "source_uri"
+          ],
+          "properties": {
+            "provider": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+            "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+            "commit_id": { "type": "string", "minLength": 1 },
+            "workflow_name": { "type": "string", "minLength": 1 },
+            "run_id": { "type": "string", "minLength": 1 },
+            "run_attempt": { "type": ["integer", "null"], "minimum": 1 },
+            "artifact_name": { "type": "string", "minLength": 1 },
+            "artifact_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "source_uri": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "subjects": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "evidence_ref", "algorithm", "digest", "size_bytes"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+              "evidence_ref": { "type": "string", "minLength": 1 },
+              "algorithm": { "const": "sha256" },
+              "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "size_bytes": { "type": "integer", "minimum": 0 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "custody": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["sequence", "action", "actor", "at", "source_uri", "output_refs"],
+            "properties": {
+              "sequence": { "type": "integer", "minimum": 1 },
+              "action": { "enum": ["download", "extract_and_hash"] },
+              "actor": { "type": "string", "minLength": 1 },
+              "at": { "type": "string", "minLength": 1 },
+              "source_uri": { "type": "string", "minLength": 1 },
+              "output_refs": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 1 },
+                "uniqueItems": true
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "custody_record": {
+          "type": "object",
+          "required": ["collector", "collected_at", "raw_digest", "raw_artifacts", "normalized_digest", "transformations"],
+          "properties": {
+            "collector": { "type": "string", "minLength": 1 },
+            "collected_at": { "type": "string", "format": "date-time" },
+            "raw_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "raw_artifacts": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "object",
+                "required": ["artifact_id", "sha256"],
+                "properties": {
+                  "artifact_id": { "type": "string", "minLength": 1 },
+                  "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+                },
+                "additionalProperties": false
+              }
+            },
+            "normalized_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "transformations": {
+              "type": "array",
+              "minItems": 5,
+              "items": { "enum": ["download_github_actions_artifacts", "verify_zip_metadata_and_sha256", "extract_selected_members", "verify_subject_hashes", "normalize_typed_evidence"] },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["code", "message", "retryable"],
+            "properties": {
+              "code": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+              "message": { "type": "string", "minLength": 1 },
+              "retryable": { "type": "boolean" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "observations": { "type": "object" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "collector": { "type": "object" } },
+            "required": ["collector"]
+          },
+          "then": {
+            "required": [
+              "contract_id",
+              "contract_version",
+              "status",
+              "enforcement",
+              "evidence_type",
+              "governance_domain",
+              "produced_at",
+              "errors"
+            ],
+            "properties": {
+              "status": { "const": "collected" },
+              "errors": { "maxItems": 0 },
+              "source": { "required": ["provider"] }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "assessment_status": { "const": "not_evaluated" } } },
+      "then": {
+        "properties": {
+          "effective_level": { "const": "unverified" },
+          "verifier": { "type": "null" },
+          "verified_at": { "type": "null" },
+          "checks": { "maxItems": 0 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "assessment_status": { "const": "evaluated" } } },
+      "then": {
+        "properties": {
+          "verifier": { "type": "string", "minLength": 1 },
+          "verified_at": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

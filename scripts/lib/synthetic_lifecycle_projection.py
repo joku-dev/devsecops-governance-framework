@@ -18,11 +18,12 @@ EMPTY={'sha256':hashlib.sha256(b'').hexdigest(),'bytes':0}
 
 
 class Projection:
- def __init__(self,blob):
+ def __init__(self,blob,*,max_file=MAX_FILE,max_total=MAX_TOTAL):
+  self.max_file,self.max_total=max_file,max_total
   self.blob=blob;self.base={};self.nodes={};self.serial=0;self.total=0;self.read_total=0;self.changed=[]
  def load(self,frame,values,path):
   if type(frame) is not dict or set(frame)!={'path','snapshot'}:raise IntegrityError('lifecycle_projection_anchor_changed')
-  root=frame['path'];snapshot(frame['snapshot'],self.blob)
+  root=frame['path'];snapshot(frame['snapshot'],self.blob,max_file=self.max_file)
   if frame['snapshot']['kind']!='directory':raise IntegrityError('lifecycle_projection_directory_anchor_required')
   paths=ancestor_paths(root,path)
   if len(paths)>100 or type(values) is not dict or set(values)!=set(paths):raise IntegrityError('lifecycle_projection_preimage_paths_changed')
@@ -30,7 +31,7 @@ class Projection:
   for name in paths:self.load_one(name,values[name])
   return paths
  def load_one(self,path,value):
-  snapshot(value,self.blob)
+  snapshot(value,self.blob,max_file=self.max_file)
   if path in self.base and self.base[path]!=value:raise IntegrityError('lifecycle_projection_source_preimage_changed')
   self.base[path]=value
  def state(self,path):
@@ -85,9 +86,9 @@ class Projection:
    value={**before,'content':EMPTY}
   self.put(path,value)
   if encoding_error is not None:raise encoding_error
-  if type(raw) is not bytes or len(raw)>MAX_FILE:raise InputAdmissionError('lifecycle_projection_output_byte_budget')
+  if type(raw) is not bytes or len(raw)>self.max_file:raise InputAdmissionError('lifecycle_projection_output_byte_budget')
   self.total+=len(raw)
-  if self.total>MAX_TOTAL:raise InputAdmissionError('lifecycle_projection_output_total_budget')
+  if self.total>self.max_total:raise InputAdmissionError('lifecycle_projection_output_total_budget')
   self.put(path,{**value,'content':payload})
  def read(self,path,label):
   self.parent(path,label);value=self.state(path)
@@ -96,7 +97,7 @@ class Projection:
   if value['kind']=='directory':self.fail(errno.EISDIR,label)
   if not value['mode']&0o400:self.fail(errno.EACCES,label)
   raw=self.blob(value['content']);self.read_total+=len(raw)
-  if len(raw)>MAX_FILE or self.read_total>MAX_TOTAL:raise InputAdmissionError('lifecycle_projection_read_byte_budget')
+  if len(raw)>self.max_file or self.read_total>self.max_total:raise InputAdmissionError('lifecycle_projection_read_byte_budget')
   return raw
  def probe(self,path,kind):
   value=self.state(path)

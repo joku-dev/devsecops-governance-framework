@@ -3,6 +3,7 @@ from pathlib import PurePosixPath as P
 import posixpath
 
 from lib.synthetic_ledger_effect_state import EffectState, require
+from lib.synthetic_ledger_budget import DEFAULT, admitted
 from lib.synthetic_ledger_io import retained_error
 from lib.synthetic_lifecycle_io import path_spec
 from lib.synthetic_ledger_projection import PrivateLedgerEffects
@@ -17,7 +18,8 @@ class ReplayLedgerEffects:
     def __init__(self, owner, ledger, *, transaction_name):
         self.io, self.ledger = owner, P(ledger)
         require(owner.mode == 'selected-files', 'replay_native_mode_changed')
-        self.state = EffectState(owner.blob, str(self.ledger), owner.cwd, transaction_name)
+        self.state = EffectState(owner.blob, str(self.ledger), owner.cwd, transaction_name,
+            budget=admitted(getattr(owner, "ledger_budget", DEFAULT)))
         owner.effect_state = self.state
 
     @property

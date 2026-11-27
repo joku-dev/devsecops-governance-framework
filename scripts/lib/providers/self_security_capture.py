@@ -51,9 +51,9 @@ def request_paths(repository):
 
 
 class SecurityCollector:
-    def __init__(self,root,api,release_report,*,inert_files=None):
+    def __init__(self,root,api,release_report,*,inert_files=None,path_factory=Path):
         if inert_files is None:
-            self.root=Path(root)
+            self.root=path_factory(root)
         else:
             from lib.validation_files import ValidationFiles
             self.root=ValidationFiles(inert_files,label=str(root)).root

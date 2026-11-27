@@ -8,6 +8,7 @@ import posixpath
 import yaml
 
 from lib.document_rendering import GovernanceDocumentRenderer
+from lib.retained_argparse import parser_base,formatter_factory
 from lib.operations_sources import SourceLoader
 from lib.requirement_validation_budget import InputAdmissionError,YAML_ADMISSION_LIMITS
 from lib.requirement_validation_replay import IntegrityError
@@ -67,11 +68,15 @@ class DocumentPath:
         return self.namespace.output.write_text(self.namespace.absolute(self.value),value,encoding,str(self))
 
 
-def execute(source_label,argv,data,output,tools,*,program='render_governance_documents.py'):
+def execute(source_label,argv,data,output,tools,*,program='render_governance_documents.py',parser_context=None):
     paths=DocumentPaths(source_label,data,output);stdout,stderr=io.StringIO(),io.StringIO()
+    def parser():
+        cls=argparse.ArgumentParser if parser_context is None else parser_base(parser_context)
+        options={} if parser_context is None else {'formatter_class':formatter_factory(parser_context)}
+        return cls(prog=program,**options)
     renderer=GovernanceDocumentRenderer(paths.path(source_label),path_factory=paths.path,
         yaml_load=named_yaml,which=tools.which,run_process=tools.run,
-        argument_parser=lambda:argparse.ArgumentParser(prog=program),argv=argv)
+        argument_parser=parser,argv=argv)
     with redirect_stdout(stdout),redirect_stderr(stderr):
         try:code,error,signal=renderer.main(),None,None
         except (InputAdmissionError,IntegrityError):raise

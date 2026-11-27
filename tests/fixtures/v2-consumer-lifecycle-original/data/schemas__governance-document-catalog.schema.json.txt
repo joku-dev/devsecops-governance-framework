@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Document Catalog",
+  "type": "object",
+  "required": ["documents"],
+  "properties": {
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "title", "status", "repository_path", "purpose"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(DEVSECOPS-(POL|DIR)-[0-9]{3}|(DSCB|PRA)-STD-[0-9]{3})$"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["policy", "directive", "standard"]
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["draft", "imported", "approved", "retired"]
+          },
+          "repository_path": {
+            "type": "string"
+          },
+          "source_documents": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "purpose": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

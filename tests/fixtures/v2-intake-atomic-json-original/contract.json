@@ -1,0 +1,11 @@
+{
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "v1_path": "scripts/lib/consumer_intake_store.py",
+  "git_blob": "6d2e240f74c418889e3d8e9a53977c5931663c5e",
+  "sha256": "d8ecb4902f86bb82b61570aafbe22c117bb0e9246b5c3b616429d1561c9b82d5",
+  "retained_function": "atomic_json",
+  "whole_operator_or_public_CLI_completion_claimed": false,
+  "Goal_complete": false,
+  "complete_original_function_canonical_AST_sha256": "030c12c9cd2a0158d7d14cfeb72ee17fcca2c64067d96ec272f088e59c5d6a4d",
+  "canonical_ast_profile": "All ast.iter_fields semantic fields retained; missing type_params on Python3.11 is explicitly the empty list, matching Python3.12/3.13 nongeneric definitions. Source raw bytes and full local original/ported AST comparison remain exact."
+}

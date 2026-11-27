@@ -1,0 +1,183 @@
+{
+  "environment": "live_pilot_validation",
+  "live_activation_approved": false,
+  "official_state": false,
+  "outcome": "eligible_for_pilot",
+  "previous_ref": null,
+  "receipt_head_at_recording": {
+    "digest": "32d15df680deedb2880403f3034efe1af853df7cf23e4cda2a89d3eb15493c11",
+    "id": "transaction:a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2"
+  },
+  "record_type": "lifecycle-pilot-action-receipt",
+  "recorded_at": "2026-09-16T15:42:03Z",
+  "request": {
+    "body": {
+      "failure_ref": {
+        "digest": "32d15df680deedb2880403f3034efe1af853df7cf23e4cda2a89d3eb15493c11",
+        "id": "transaction:a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2"
+      },
+      "kind": "decision",
+      "plan": {
+        "action": "Resolve operation_readiness for the non-deployed demo: bind the confirmed feedback action and CI-local function diagnostics to actual mainline artifacts, update only feedback/observability evidence from reviewed to approved after this decision, record personally authorized in_progress and completed progress, then obtain a fresh mainline gate PASS after completed remediation and a separate personal closure decision. Other gates, baselines and enforcement remain outside this action.",
+        "owner_id": "github-user:81616324",
+        "target_at": "2026-09-23T21:59:59Z",
+        "work_url": "https://github.com/joku-dev/devsecops-governance-framework/pull/102"
+      },
+      "supersedes_ref": null
+    },
+    "created_at": "2026-09-16T14:22:26Z",
+    "discussion_number": 102,
+    "environment": "live_pilot_validation",
+    "expected_action_head": null,
+    "expected_receipt_head": {
+      "digest": "32d15df680deedb2880403f3034efe1af853df7cf23e4cda2a89d3eb15493c11",
+      "id": "transaction:a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2"
+    },
+    "expected_revision": 1,
+    "operating_profile_ref": {
+      "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541",
+      "revision": 1
+    },
+    "repository_id": "joku-dev/devsecops-governance-framework",
+    "request_type": "consumer-lifecycle-action",
+    "required_role": "remediation_decider",
+    "required_subject_id": "github-user:81616324",
+    "role_binding_ref": {
+      "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95",
+      "revision": 1
+    },
+    "schema_version": "0.1.0",
+    "scope": {
+      "domain": "architecture",
+      "enforcement": "report_only",
+      "github_repository_id": 1301526448,
+      "pilot_only": true,
+      "repository_id": "joku-dev/governance-framework-demo-consumer",
+      "resource": "repository",
+      "rule_id": "operation_readiness"
+    }
+  },
+  "schema_version": "0.1.0",
+  "sequence": 1,
+  "snapshot": {
+    "capture_method": "github_api_get_via_gh",
+    "comment_pages_after": [
+      "[{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5700249154\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/102#issuecomment-5700249154\",\"issue_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102\",\"id\":5700249154,\"node_id\":\"IC_kwDOTZFSfM8AAAABU8LmQg\",\"user\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"created_at\":\"2026-09-16T15:40:52Z\",\"updated_at\":\"2026-09-16T15:40:52Z\",\"body\":\"CLG-PERSONAL-CONSENT/1\\r\\n{\\r\\n  \\\"disposition\\\": \\\"approve\\\",\\r\\n  \\\"request_digest\\\": \\\"666bcc1c53780253a832ca47f6f62fdb2f6457910e05f6b712ded176d5c50dc4\\\",\\r\\n  \\\"statement\\\": \\\"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\\\",\\r\\n  \\\"supersedes_comment_id\\\": null\\r\\n}\",\"author_association\":\"OWNER\",\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5700249154/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"performed_via_github_app\":null,\"minimized\":null}]"
+    ],
+    "comment_pages_before": [
+      "[{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5700249154\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/102#issuecomment-5700249154\",\"issue_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102\",\"id\":5700249154,\"node_id\":\"IC_kwDOTZFSfM8AAAABU8LmQg\",\"user\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"created_at\":\"2026-09-16T15:40:52Z\",\"updated_at\":\"2026-09-16T15:40:52Z\",\"body\":\"CLG-PERSONAL-CONSENT/1\\r\\n{\\r\\n  \\\"disposition\\\": \\\"approve\\\",\\r\\n  \\\"request_digest\\\": \\\"666bcc1c53780253a832ca47f6f62fdb2f6457910e05f6b712ded176d5c50dc4\\\",\\r\\n  \\\"statement\\\": \\\"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\\\",\\r\\n  \\\"supersedes_comment_id\\\": null\\r\\n}\",\"author_association\":\"OWNER\",\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5700249154/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"performed_via_github_app\":null,\"minimized\":null}]"
+    ],
+    "issue_response": "{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102\",\"repository_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework\",\"labels_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102/labels{/name}\",\"comments_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102/comments\",\"events_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102/events\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/102\",\"id\":5475749686,\"node_id\":\"PR_kwDOTZFSfM8AAAABDx6DqQ\",\"number\":102,\"title\":\"Activate consumer lifecycle, admit first finding and prepare remediation decision\",\"user\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"labels\":[],\"state\":\"closed\",\"locked\":false,\"assignees\":[],\"milestone\":null,\"comments\":1,\"created_at\":\"2026-09-16T14:18:11Z\",\"updated_at\":\"2026-09-16T15:40:52Z\",\"closed_at\":\"2026-09-16T14:30:58Z\",\"assignee\":null,\"author_association\":\"CONTRIBUTOR\",\"active_lock_reason\":null,\"draft\":false,\"pull_request\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/pulls/102\",\"html_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/102\",\"diff_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/102.diff\",\"patch_url\":\"https://github.com/joku-dev/devsecops-governance-framework/pull/102.patch\",\"merged_at\":\"2026-09-16T14:30:58Z\"},\"body\":\"Activate the separately accepted demo-consumer lifecycle and publish its first real `operation_readiness` finding. The maintainer personally posted operating acceptance in [PR #101, comment 5698945870](https://github.com/joku-dev/devsecops-governance-framework/pull/101#issuecomment-5698945870); protected-main workflow [35107314433](https://github.com/joku-dev/devsecops-governance-framework/actions/runs/35107314433) captured it at 14:16:03 UTC and opened this proposal.\\n\\nThe proposal now also retains the independently collected mainline architecture run [35107862511](https://github.com/joku-dev/governance-framework-demo-consumer/actions/runs/35107862511) on consumer commit `5da284d0a3e7d526df644266451206e09084a556`. Complete provider bytes and pinned source files reproduce the gate with OPA: one open finding with B5/P11 messages, one admitted observation, zero action records. Old diagnostic candidates, general result indexes, released baselines and the existing GRS-002 pilot are unchanged. Consumer Lifecycle Guard independently re-fetches this new evidence and operating consent before merge.\\n\\nA pending personal decision request at `model/governance/lifecycle/consumer-operation/action-requests/00000001.json` binds this exact receipt and revision 1. Proposed owner: `joku-dev`; deadline: 23 September 2026, 23:59:59 Europe/Berlin. The plan covers feedback/CI-local observability evidence approval, separate personal progress and a fresh mainline PASS followed by separate personal closure. The prepared statement in `generated/reports/consumer-lifecycle-decision-statement.md` must be posted by the maintainer; this PR creates no action consent.\\n\\nUpdate current documentation accordingly. The empty-ledger regression now injects an empty ledger instead of assuming the real repository remains empty. Ignore local consumer append locks and pending transaction files; a publisher regression checks that they cannot enter or obstruct publication. All implementation fingerprints bound by both operating acceptances remain unchanged.\\n\\nValidation: pinned full suite (510 tests), 40 targeted consumer tests against the proposed real state, independent provider verification, strict MkDocs build, and git diff --check. Consumer PR #6 passed all four checks and restored its review requirement after the scoped merge. GCR-2026-081 records artifact classification and provenance.\\n\\nMerge under the maintainer's standing technical review exception only after successful required checks, then restore the normal review count. The operating acceptance is effective on publication; the remediation request remains pending until its own personal statement is captured.\\n\",\"closed_by\":{\"login\":\"joku-dev\",\"id\":81616324,\"node_id\":\"MDQ6VXNlcjgxNjE2MzI0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/81616324?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/joku-dev\",\"html_url\":\"https://github.com/joku-dev\",\"followers_url\":\"https://api.github.com/users/joku-dev/followers\",\"following_url\":\"https://api.github.com/users/joku-dev/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/joku-dev/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/joku-dev/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/joku-dev/subscriptions\",\"organizations_url\":\"https://api.github.com/users/joku-dev/orgs\",\"repos_url\":\"https://api.github.com/users/joku-dev/repos\",\"events_url\":\"https://api.github.com/users/joku-dev/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/joku-dev/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"reactions\":{\"url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102/reactions\",\"total_count\":0,\"+1\":0,\"-1\":0,\"laugh\":0,\"hooray\":0,\"confused\":0,\"heart\":0,\"rocket\":0,\"eyes\":0},\"timeline_url\":\"https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102/timeline\",\"performed_via_github_app\":null,\"state_reason\":null}",
+    "previous_comments": [],
+    "request": {
+      "body": {
+        "failure_ref": {
+          "digest": "32d15df680deedb2880403f3034efe1af853df7cf23e4cda2a89d3eb15493c11",
+          "id": "transaction:a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2"
+        },
+        "kind": "decision",
+        "plan": {
+          "action": "Resolve operation_readiness for the non-deployed demo: bind the confirmed feedback action and CI-local function diagnostics to actual mainline artifacts, update only feedback/observability evidence from reviewed to approved after this decision, record personally authorized in_progress and completed progress, then obtain a fresh mainline gate PASS after completed remediation and a separate personal closure decision. Other gates, baselines and enforcement remain outside this action.",
+          "owner_id": "github-user:81616324",
+          "target_at": "2026-09-23T21:59:59Z",
+          "work_url": "https://github.com/joku-dev/devsecops-governance-framework/pull/102"
+        },
+        "supersedes_ref": null
+      },
+      "created_at": "2026-09-16T14:22:26Z",
+      "discussion_number": 102,
+      "environment": "live_pilot_validation",
+      "expected_action_head": null,
+      "expected_receipt_head": {
+        "digest": "32d15df680deedb2880403f3034efe1af853df7cf23e4cda2a89d3eb15493c11",
+        "id": "transaction:a54f246ad4bd302f2df4ac68451839ae4ace023075c8290a278547d32b0232a2"
+      },
+      "expected_revision": 1,
+      "operating_profile_ref": {
+        "digest": "e66285c4c135b0374c4c91105da7016016497b7f31ce3a32051d1057cc999541",
+        "revision": 1
+      },
+      "repository_id": "joku-dev/devsecops-governance-framework",
+      "request_type": "consumer-lifecycle-action",
+      "required_role": "remediation_decider",
+      "required_subject_id": "github-user:81616324",
+      "role_binding_ref": {
+        "digest": "27d3a93bb8b7b65b12919814880e14cf1ea21a96e0ee51ebc8748d0c0eb73e95",
+        "revision": 1
+      },
+      "schema_version": "0.1.0",
+      "scope": {
+        "domain": "architecture",
+        "enforcement": "report_only",
+        "github_repository_id": 1301526448,
+        "pilot_only": true,
+        "repository_id": "joku-dev/governance-framework-demo-consumer",
+        "resource": "repository",
+        "rule_id": "operation_readiness"
+      }
+    },
+    "result": {
+      "captured_at": "2026-09-16T15:42:03Z",
+      "human_presence": "explicitly_self_attested_not_provider_attested",
+      "issues": [],
+      "last_statement_id": 5700249154,
+      "live_activation_approved": false,
+      "official_state": false,
+      "record_type": "lifecycle-pilot-action-consent-result",
+      "relevant_comments": [
+        {
+          "author_association": "OWNER",
+          "body": "CLG-PERSONAL-CONSENT/1\r\n{\r\n  \"disposition\": \"approve\",\r\n  \"request_digest\": \"666bcc1c53780253a832ca47f6f62fdb2f6457910e05f6b712ded176d5c50dc4\",\r\n  \"statement\": \"Ich habe diese Anfrage pers\u00f6nlich gepr\u00fcft und gebe diese Erkl\u00e4rung selbst ab; keine Automation handelt dabei f\u00fcr mich.\",\r\n  \"supersedes_comment_id\": null\r\n}",
+          "created_at": "2026-09-16T15:40:52Z",
+          "html_url": "https://github.com/joku-dev/devsecops-governance-framework/pull/102#issuecomment-5700249154",
+          "id": 5700249154,
+          "issue_url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/102",
+          "minimized": null,
+          "node_id": "IC_kwDOTZFSfM8AAAABU8LmQg",
+          "performed_via_github_app": null,
+          "reactions": {
+            "+1": 0,
+            "-1": 0,
+            "confused": 0,
+            "eyes": 0,
+            "heart": 0,
+            "hooray": 0,
+            "laugh": 0,
+            "rocket": 0,
+            "total_count": 0,
+            "url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5700249154/reactions"
+          },
+          "updated_at": "2026-09-16T15:40:52Z",
+          "url": "https://api.github.com/repos/joku-dev/devsecops-governance-framework/issues/comments/5700249154",
+          "user": {
+            "avatar_url": "https://avatars.githubusercontent.com/u/81616324?v=4",
+            "events_url": "https://api.github.com/users/joku-dev/events{/privacy}",
+            "followers_url": "https://api.github.com/users/joku-dev/followers",
+            "following_url": "https://api.github.com/users/joku-dev/following{/other_user}",
+            "gists_url": "https://api.github.com/users/joku-dev/gists{/gist_id}",
+            "gravatar_id": "",
+            "html_url": "https://github.com/joku-dev",
+            "id": 81616324,
+            "login": "joku-dev",
+            "node_id": "MDQ6VXNlcjgxNjE2MzI0",
+            "organizations_url": "https://api.github.com/users/joku-dev/orgs",
+            "received_events_url": "https://api.github.com/users/joku-dev/received_events",
+            "repos_url": "https://api.github.com/users/joku-dev/repos",
+            "site_admin": false,
+            "starred_url": "https://api.github.com/users/joku-dev/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/joku-dev/subscriptions",
+            "type": "User",
+            "url": "https://api.github.com/users/joku-dev",
+            "user_view_type": "public"
+          }
+        }
+      ],
+      "remediation_or_closure_authorized": false,
+      "request_digest": "666bcc1c53780253a832ca47f6f62fdb2f6457910e05f6b712ded176d5c50dc4",
+      "schema_version": "0.1.0",
+      "status": "confirmed",
+      "unauthorized_comment_ids": []
+    }
+  },
+  "transaction_id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
+}

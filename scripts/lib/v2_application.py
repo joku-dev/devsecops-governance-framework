@@ -92,7 +92,7 @@ def set_option(arguments, name, value):
     return result if found else [*result,name,str(value)]
 
 
-def run(command, arguments, *, instance_path=None):
+def run(command, arguments, *, instance_path=None, default_instance_path=None):
     """An explicit allowlist, never a script-name or shell-command dispatcher."""
     if command=='parity':
         import argparse
@@ -112,6 +112,69 @@ def run(command, arguments, *, instance_path=None):
         if (ROOT/'.git/info/sparse-checkout').is_file():verify_active_scripts(ROOT)
         report=validate_boundaries(ROOT);print(json.dumps(report,indent=2))
         return 0 if report['passed'] else 1
+    if command=='provider-observation' and not instance_path and arguments[:1]==['replay']:
+        from lib.provider_observation_application import run as observation_run
+        return observation_run(arguments)
+    if command=='self-security-publisher' and not instance_path and arguments[:1]==['replay']:
+        from lib.self_security_publication_application import run as self_security_publisher_run
+        return self_security_publisher_run(arguments)
+    if command=='typed-publisher' and not instance_path and arguments[:1]==['replay']:
+        from lib.typed_publication_application import run as typed_publisher_run
+        return typed_publisher_run(arguments)
+    if command=='consumer-publisher' and not instance_path and arguments[:1]==['replay']:
+        from lib.consumer_publication_application import run as consumer_publisher_run
+        return consumer_publisher_run(arguments)
+    if command=='consumer-lifecycle' and not instance_path and arguments[:1]==['replay']:
+        from lib.consumer_lifecycle_application import run as consumer_run
+        return consumer_run(arguments)
+    if command=='operational-publisher' and not instance_path and arguments[:1]==['replay']:
+        from lib.operational_publication_application import run as publisher_run
+        return publisher_run(arguments)
+    if command=='publication-validation' and not instance_path and arguments[:1]==['replay']:
+        from lib.operating_publication_validation_application import run as publication_run
+        return publication_run(arguments)
+    if command=='pilot-update' and not instance_path and arguments[:1]==['replay']:
+        from lib.pilot_update_application import run as pilot_update_run
+        return pilot_update_run(arguments)
+    if command=='lifecycle-validator' and not instance_path and arguments[:1]==['replay']:
+        from lib.lifecycle_ledger_validation_application import run as lifecycle_validator_run
+        return lifecycle_validator_run(arguments)
+    if command=='accepted-prefix' and not instance_path and arguments[:1]==['replay']:
+        from lib.accepted_prefix_application import run as accepted_prefix_run
+        return accepted_prefix_run(arguments)
+    if command=='operating-verification' and not instance_path and arguments[:1]==['replay']:
+        from lib.operating_verification_application import run as operating_verification_run
+        return operating_verification_run(arguments)
+    if command=='pilot-action-verification' and not instance_path and arguments[:1]==['replay']:
+        from lib.pilot_action_verification_application import run as action_verification_run
+        return action_verification_run(arguments)
+    if command=='pilot-receipt-verification' and not instance_path and arguments[:1]==['replay']:
+        from lib.pilot_receipt_verification_application import run as pilot_receipt_verification_run
+        return pilot_receipt_verification_run(arguments)
+    if command=='pilot-run-intake' and not instance_path and arguments[:1]==['replay']:
+        from lib.pilot_run_intake_application import run as pilot_run_intake_run
+        return pilot_run_intake_run(arguments)
+    if command=='live-preflight' and not instance_path and arguments[:1]==['replay']:
+        from lib.lifecycle_preflight_application import run as preflight_run
+        return preflight_run(arguments)
+    if command=='pilot-action-intake' and not instance_path and arguments[:1]==['replay']:
+        from lib.pilot_action_intake_application import run as action_intake_run
+        return action_intake_run(arguments)
+    if command=='pilot-action-requests' and not instance_path and arguments[:1]==['replay']:
+        from lib.pilot_action_preparation_application import run as preparation_run
+        return preparation_run(arguments)
+    if command=='personal-channel' and not instance_path and arguments[:1]==['replay']:
+        from lib.personal_channel_application import run as personal_channel_run
+        return personal_channel_run(arguments)
+    if command=='pilot-projections' and not instance_path and arguments[:1]==['replay']:
+        from lib.pilot_projection_application import run as pilot_projection_run
+        return pilot_projection_run(arguments)
+    if command=='lifecycle-candidates' and not instance_path and arguments[:1]==['replay']:
+        from lib.lifecycle_candidate_preparation_application import run as candidate_preparation_run
+        return candidate_preparation_run(arguments)
+    if command=='documentation-reconciliation' and not instance_path and arguments[:1]==['replay']:
+        from lib.documentation_reconciliation_application import run as documentation_run
+        return documentation_run(arguments)
     if command=='synthetic-ledger' and not instance_path and arguments[:1]==['replay']:
         from lib.synthetic_ledger_application import run as ledger_run
         return ledger_run(arguments)
@@ -133,10 +196,74 @@ def run(command, arguments, *, instance_path=None):
     if command=='operations-report' and not instance_path and arguments[:1]==['replay']:
         from lib.operations_application import run as operations_run
         return operations_run(arguments)
-    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger'):
+    if command not in ('evidence','collector','workbench','evaluate','requirements','dcr','collect-source','measured','supplement','typed','results','reports','source-inspection','provenance','pipeline-evidence','agent-usage','review-quality','vulnerability-evidence','review-metadata','review-plan','review-receipts','review-pr','review-dispatch','review-run','attestation','intake-records','validation','artifact-hygiene','candidate-index','self-security','sbom','operations-report','requirement-validation','requirement-review','workbook-import','document-rendering','synthetic-lifecycle','synthetic-ledger','documentation-reconciliation','lifecycle-candidates','pilot-projections','personal-channel','pilot-action-requests','pilot-action-intake','live-preflight','pilot-run-intake','pilot-receipt-verification','pilot-action-verification','operating-verification','accepted-prefix','lifecycle-validator','pilot-update','publication-validation','operational-publisher','consumer-lifecycle','consumer-publisher','typed-publisher','self-security-publisher','provider-observation'):
         raise ValueError('v2_entrypoint_not_supported')
+    if not instance_path:instance_path=default_instance_path
     if not instance_path:raise ValueError('explicit_v2_instance_required')
     root,settings=instance(instance_path)
+    if command=='provider-observation':
+        from lib.provider_observation_application import run as observation_run
+        return observation_run(arguments,root,settings)
+    if command=='self-security-publisher':
+        from lib.self_security_publication_application import run as self_security_publisher_run
+        return self_security_publisher_run(arguments,root,settings)
+    if command=='typed-publisher':
+        from lib.typed_publication_application import run as typed_publisher_run
+        return typed_publisher_run(arguments,root,settings)
+    if command=='consumer-publisher':
+        from lib.consumer_publication_application import run as consumer_publisher_run
+        return consumer_publisher_run(arguments,root,settings)
+    if command=='consumer-lifecycle':
+        from lib.consumer_lifecycle_application import run as consumer_run
+        return consumer_run(arguments,root,settings)
+    if command=='operational-publisher':
+        from lib.operational_publication_application import run as publisher_run
+        return publisher_run(arguments,root,settings)
+    if command=='publication-validation':
+        from lib.operating_publication_validation_application import run as publication_run
+        return publication_run(arguments,root,settings)
+    if command=='pilot-update':
+        from lib.pilot_update_application import run as pilot_update_run
+        return pilot_update_run(arguments,root,settings)
+    if command=='lifecycle-validator':
+        from lib.lifecycle_ledger_validation_application import run as lifecycle_validator_run
+        return lifecycle_validator_run(arguments,root,settings)
+    if command=='accepted-prefix':
+        from lib.accepted_prefix_application import run as accepted_prefix_run
+        return accepted_prefix_run(arguments,root,settings)
+    if command=='operating-verification':
+        from lib.operating_verification_application import run as operating_verification_run
+        return operating_verification_run(arguments,root,settings)
+    if command=='pilot-action-verification':
+        from lib.pilot_action_verification_application import run as action_verification_run
+        return action_verification_run(arguments,root,settings)
+    if command=='pilot-receipt-verification':
+        from lib.pilot_receipt_verification_application import run as pilot_receipt_verification_run
+        return pilot_receipt_verification_run(arguments,root,settings)
+    if command=='pilot-run-intake':
+        from lib.pilot_run_intake_application import run as pilot_run_intake_run
+        return pilot_run_intake_run(arguments,root,settings)
+    if command=='live-preflight':
+        from lib.lifecycle_preflight_application import run as preflight_run
+        return preflight_run(arguments,root,settings)
+    if command=='pilot-action-intake':
+        from lib.pilot_action_intake_application import run as action_intake_run
+        return action_intake_run(arguments,root,settings)
+    if command=='pilot-action-requests':
+        from lib.pilot_action_preparation_application import run as preparation_run
+        return preparation_run(arguments,root,settings)
+    if command=='personal-channel':
+        from lib.personal_channel_application import run as personal_channel_run
+        return personal_channel_run(arguments,root,settings)
+    if command=='pilot-projections':
+        from lib.pilot_projection_application import run as pilot_projection_run
+        return pilot_projection_run(arguments,instance_path,settings)
+    if command=='lifecycle-candidates':
+        from lib.lifecycle_candidate_preparation_application import run as candidate_preparation_run
+        return candidate_preparation_run(arguments,root,settings)
+    if command=='documentation-reconciliation':
+        from lib.documentation_reconciliation_application import run as documentation_run
+        return documentation_run(arguments,root,settings)
     if command=='synthetic-ledger':
         from lib.synthetic_ledger_application import run as ledger_run
         return ledger_run(arguments,root,settings)

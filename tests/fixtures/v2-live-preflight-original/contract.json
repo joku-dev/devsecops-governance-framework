@@ -1,0 +1,17 @@
+{
+  "reference_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "scripts/preflight_lifecycle_live_evidence.py": {
+      "fixture": "preflight_lifecycle_live_evidence.py.txt",
+      "sha256": "157cb12ecef17a014f09b17842287c19e2d20f386f1c766b02c7136011bf9a10",
+      "git_blob": "13494676f605444c23f11ade7874ca2cd9880916",
+      "bytes": 1035
+    },
+    "scripts/lib/governance_lifecycle/live_evidence.py": {
+      "fixture": "live_evidence.py.txt",
+      "sha256": "85729f59c8a830d1d321097cc00ac98a987fa40bc21a529e36c5675b98ed6df5",
+      "git_blob": "ef0b9faa7892607cb3fe4bacbdf76445b26b2206",
+      "bytes": 14360
+    }
+  }
+}

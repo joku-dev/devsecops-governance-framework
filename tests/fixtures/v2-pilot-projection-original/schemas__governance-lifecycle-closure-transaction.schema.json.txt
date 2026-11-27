@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-closure-transaction.schema.json",
+  "title": "Synthetic Lifecycle Closure Transaction 0.3.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.3.0"
+    },
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^transaction:[a-f0-9]{64}$"
+    },
+    "environment": {
+      "const": "synthetic"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "previous_ref": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^transaction:[a-f0-9]{64}$"
+            },
+            "digest": {
+              "$ref": "governance-lifecycle-common.schema.json#/$defs/digest"
+            }
+          },
+          "required": [
+            "id",
+            "digest"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "profile_ref": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/versioned_ref"
+    },
+    "recorded_at": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+    },
+    "expected_revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "outcome": {
+      "const": "accepted"
+    },
+    "reason": {
+      "const": "finding_closed"
+    },
+    "resources": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "patternProperties": {
+        "^fixture://[^\\s]+$": {
+          "type": "string",
+          "minLength": 1,
+          "contentEncoding": "base64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "event": {
+      "$ref": "governance-lifecycle-event.schema.json"
+    },
+    "record": {
+      "$ref": "governance-lifecycle-closure-v0.2.schema.json"
+    }
+  },
+  "required": [
+    "schema_version",
+    "transaction_id",
+    "environment",
+    "sequence",
+    "previous_ref",
+    "profile_ref",
+    "recorded_at",
+    "expected_revision",
+    "outcome",
+    "reason",
+    "resources",
+    "event",
+    "record"
+  ],
+  "additionalProperties": false
+}

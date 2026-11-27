@@ -1,0 +1,45 @@
+{
+  "active_closure_ref": {
+    "digest": "ef0eeb4633a444ade2db5fd1deccdfb51e798906a04ebacdedd6d9b2c919b182",
+    "id": "transaction:533b0008c14e1f7ae972b859d82ff642ed7c365da0a0e5274cbf25116492ed40"
+  },
+  "active_decision_ref": {
+    "digest": "dfbc2c3af31810855f9ca4ba27adf618f9c74026343b0aa06462744954b8a0f7",
+    "id": "transaction:cb4f15651ea83d0fbd4190a88dd7836c278fe1d91999d6e0f4a25b72f30efaf1"
+  },
+  "as_of": "2026-10-03T10:58:04Z",
+  "candidate_projection_digest": "05f5aead6ec33c5bd85f7b1e6df980d264487b044624d6605b67f81e2a33f537",
+  "counts": {
+    "actions": 4,
+    "failures": 1,
+    "quarantined": 0,
+    "receipts": 3
+  },
+  "enforcement": "report_only",
+  "evidence_as_of": "2026-10-03T10:58:04Z",
+  "finding_state": "closed",
+  "index_type": "governance-consumer-lifecycle-pilot",
+  "limitation": "Manual report-only operation_readiness pilot for the neutral demo only; no automatic remediation, waivers or baseline changes.",
+  "live_activation_approved": true,
+  "official_state": true,
+  "operating_acceptance": {
+    "capture_digest": "78bedcef600d52afa562698772746f48784fbf4404f82ba4ce6ff0aa4aed556b",
+    "captured_at": "2026-09-16T14:16:03Z",
+    "effective": true,
+    "implementation_matches": true,
+    "request_digest": "8f2ea542869a364cb7d774cd2772276608824f2e5100a9ff22cc370c2fc8b753",
+    "roles_active": true,
+    "status": "confirmed"
+  },
+  "promotion_basis": "Explicit consumer operating acceptance of the separate pilot validation projection; source receipts remain unchanged",
+  "schema_version": "0.1.0",
+  "scope": {
+    "domain": "architecture",
+    "enforcement": "report_only",
+    "github_repository_id": 1301526448,
+    "pilot_only": true,
+    "repository_id": "joku-dev/governance-framework-demo-consumer",
+    "resource": "repository",
+    "rule_id": "operation_readiness"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Multi-Consumer Readiness Report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "report_id",
+    "generated_at",
+    "enforcement",
+    "ready",
+    "summary",
+    "checks",
+    "repositories"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "report_id": { "const": "multi-consumer-readiness" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "enforcement": { "const": "report_only" },
+    "ready": { "type": "boolean" },
+    "summary": {
+      "type": "object",
+      "required": [
+        "registered_consumers",
+        "devsecops_consumers",
+        "architecture_consumers",
+        "typed_evidence_consumers",
+        "telemetry_consumers",
+        "passed_checks",
+        "failed_checks"
+      ],
+      "properties": {
+        "registered_consumers": { "type": "integer", "minimum": 0 },
+        "devsecops_consumers": { "type": "integer", "minimum": 0 },
+        "architecture_consumers": { "type": "integer", "minimum": 0 },
+        "typed_evidence_consumers": { "type": "integer", "minimum": 0 },
+        "telemetry_consumers": { "type": "integer", "minimum": 0 },
+        "passed_checks": { "type": "integer", "minimum": 0 },
+        "failed_checks": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "result", "reason", "evidence_refs"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "result": { "enum": ["pass", "fail"] },
+          "reason": { "type": "string", "minLength": 1 },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "repositories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository_id",
+          "governance_mode",
+          "devsecops_result",
+          "architecture_result",
+          "typed_evidence_result",
+          "telemetry_events"
+        ],
+        "properties": {
+          "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+          "governance_mode": { "type": "string", "minLength": 1 },
+          "devsecops_result": { "type": "boolean" },
+          "architecture_result": { "type": "boolean" },
+          "typed_evidence_result": { "type": "boolean" },
+          "telemetry_events": { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -132,3 +132,14 @@ Die Nachprüfung belegt Konsistenz deklarierter Daten. Sie authentifiziert keine
 Produzenten und erteilt keine Source-, Compliance- oder Betriebsfreigabe.
 Quellweite gepinnte Validierung, revisionsgebundene Reviews und passende signierte
 Mac-/Linux-Installationen bleiben vor der Lieferung erforderlich.
+
+## Explicit producer parser inputs
+
+The current correction candidate requires complete producer parser context in
+capture/replay requests: admitted module profile/version, observed width and
+English translations. Pure replay uses those inputs without consumer terminal
+or gettext defaults. Missing context has no native fallback; old records remain
+historical without relabeling. Whole original bodies, argument/IO/error behavior
+and any selected tool observations remain in scope. See the
+[producer parser contract](axiom-v2-producer-parser-context.md); fresh full and
+signed installed proof is still required for this correction.

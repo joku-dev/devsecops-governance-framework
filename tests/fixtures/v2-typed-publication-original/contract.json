@@ -1,0 +1,11 @@
+{
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "sha256": "33c381c6a8511b4771e7a086b675e904b651528142a61b48c9ad0f95b1df3591",
+  "git_blob": "25aee8d97d2d042f0e4c2ef5eef473030e22f8b1",
+  "functions": [
+    "configure",
+    "main"
+  ],
+  "whole_original_publisher_fixture": "tests/fixtures/v2-operational-publisher-original/publish_operational_update.py.txt",
+  "Goal_complete": false
+}

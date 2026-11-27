@@ -8,18 +8,21 @@ from lib.workbook_import_context import execute
 from lib.workbook_import_io import ReplayIO,MODES,path_spec
 from lib.requirement_validation_budget import InputAdmissionError
 from lib.workbook_import_ports import (Data,Output,Selection,Capture,Record,read_record,
-    owned_directory,encode,AUTHORITY,current_source,ROOT)
+    owned_directory,encode,AUTHORITY,current_source,ROOT,capture_parser_context)
+
+from lib.retained_argparse import validate_context as validate_parser_context
 
 PROFILE='legacy-harmonized-workbook-v1'
 
 
 def request_valid(value):
-    if (type(value) is not dict or set(value)!={'schema_version','profile','source_label','cwd_label','argv','export_mode'}
+    if (type(value) is not dict or set(value)!={'schema_version','profile','source_label','cwd_label','argv','export_mode','parser_context'}
             or type(value['schema_version']) is not int or value['schema_version']!=1 or value['profile']!=PROFILE
             or type(value['export_mode']) is not str or value['export_mode'] not in MODES
             or type(value['argv']) is not list or len(value['argv'])>64
             or any(type(arg) is not str or len(arg)>8192 or any(ord(c)<32 or 0xd800<=ord(c)<=0xdfff for c in arg) for arg in value['argv'])
             or sum(len(arg) for arg in value['argv'])>32768):raise ValueError('workbook_import_request_changed')
+    validate_parser_context(value['parser_context'])
     for key in ('source_label','cwd_label'):
         path_spec({'path':value[key],'label':value[key]})
     return value
@@ -45,7 +48,7 @@ def inspect(root,*,node=None):
         raise ValueError('workbook_import_terminal_state_changed')
     if retained['state']=='incomplete':return {'state':'incomplete','retained_declared_replay_consistent':False,**AUTHORITY}
     io=ReplayIO(events,blob,request['export_mode'],request['cwd_label'])
-    kernel=execute(request['source_label'],request['cwd_label'],request['argv'],io,io,selection=io.select)
+    kernel=execute(request['source_label'],request['cwd_label'],request['argv'],io,io,selection=io.select,parser_context=request['parser_context'])
     io.finish()
     if (encode(result_value(kernel,io))!=encode(retained['result']) or io.touched!=retained['touched_files']
             or events[-1]!={'kind':'terminal','state':'complete','exit_code':kernel['exit_code']} or not closed()):
@@ -65,13 +68,13 @@ def generate(options,instance,settings):
     argv=list(options['legacy_arguments'])
     if argv[:1]==['--']:argv=argv[1:]
     request=request_valid({'schema_version':1,'profile':PROFILE,'source_label':root,'cwd_label':cwd,'argv':argv,
-        'export_mode':'selected-files' if options.get('write_selected_reports') else 'private-candidate'})
+        'export_mode':'selected-files' if options.get('write_selected_reports') else 'private-candidate','parser_context':capture_parser_context()})
     source=current_source(node);instance=Path(instance);state=owned_directory(instance/'state/workbook-import/records',True)
     record=Record(state,request,source);capture=Capture(record);capture.append({'kind':'execution-intent','request':request})
     output=None;result=error=None
     try:
         data=Data(record);output=Output(record,request['export_mode']);selection=Selection(record,cwd,data,output,instance,ROOT)
-        kernel=execute(root,cwd,argv,data,output,selection=selection)
+        kernel=execute(root,cwd,argv,data,output,selection=selection,parser_context=request['parser_context'])
         result=result_value(kernel,output)
         if current_source(node)!=source:raise InputAdmissionError('workbook_import_product_changed')
     except Exception as failure:error=failure

@@ -7,7 +7,7 @@ from lib.synthetic_ledger_context import PROGRAMS
 from lib.synthetic_ledger_io import ReplayIO
 from lib.synthetic_ledger_private import PrivateLedgerPort
 from lib.synthetic_ledger_replay_effects import ReplayLedgerEffects
-from lib.synthetic_lifecycle_application import closed_validator, request_valid as report_request
+from lib.synthetic_lifecycle_application import closed_validator, request_fields_valid as report_request
 from lib.synthetic_lifecycle_io import path_spec
 from lib.synthetic_lifecycle_projection import PRIVATE_MASK
 from lib.retained_argparse import validate_context as validate_parser_context

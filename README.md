@@ -29,12 +29,12 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 <!-- V2_GOAL_PROGRESS:start -->
 ### V2-Goal: aktueller Fortschritt
 
-**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **104 in Arbeit** und **31 noch offen**.
+**Goal offen.** Von 135 V1-Einstiegspunkten sind **0 vollständig nachgewiesen**, **122 in Arbeit** und **13 noch offen**.
 
 | Umfang | Vollständig nachgewiesen¹ | In Arbeit | Noch offen | Insgesamt noch abzuschließen |
 | --- | ---: | ---: | ---: | ---: |
-| Funktionsbereiche (22) | 0 | 15 | 7 | 22 |
-| V1-Einstiegspunkte (135) | 0 | 104 | 31 | 135 |
+| Funktionsbereiche (22) | 0 | 16 | 6 | 22 |
+| V1-Einstiegspunkte (135) | 0 | 122 | 13 | 135 |
 | V1-CI-Definitionen (37) | 0 | 0 | 37 | 37 |
 | Betriebsabläufe (16) | 0 | 0 | 16 | 16 |
 
@@ -42,7 +42,7 @@ gesamte Überführung und den Vergleich mit `ha-CPsWMS`.
 
 **Letzter geprüfter Kandidat:** `cc32bcb` · 2,367 Tests (davon 1 übersprungen) · Mac 19 / VM 18 Prüfgruppen · 9 grüne CI-Workflow-Familien.
 
-**Nächster Baustein:** Vollständige synthetische Ledger-Abläufe in V2 absichern und liefern.
+**Nächster Baustein:** Vollständige Publisher und übrige Intake-/Betriebsabläufe abnehmen.
 
 Die Einheiten sind unterschiedlich groß. Aus diesen Zahlen lässt sich keine belastbare Restzeit ableiten; grüne Tests ersetzen keinen vollständigen Paritätsnachweis.
 
@@ -98,12 +98,159 @@ Nachweise je Richtung. Beide festen Consumer-Berichte stimmen mit V1 überein.
 Der folgende [synthetische Ledger-Baustein](docs/operations/guides/axiom-v2-synthetic-ledger.md)
 überführt alle sechs bisherigen Demo-/Intake-Programme einschließlich privater
 Kandidaten, ausdrücklicher POSIX-Dateieffekte, ursprünglicher Teilfehler und
-gespeicherter Nachrechnung. Seine vollständige aktuelle Validierung und
-signierte Mac-/Linux-Lieferung stehen noch aus. Im bisherigen Hostvergleich
-stimmten 25 von 28 ganzen Ledger-Nachweisen überein; drei Parser-Ausgaben wichen
-zwischen Python 3.12 und 3.13 ab. Der Korrekturkandidat speichert deshalb das
-vollständige Parserprofil samt Breite und Sprache als Eingang der Nachrechnung.
-Die vollständige erneute Prüfung und Lieferung dieses Kandidaten bleibt offen.
+gespeicherter Nachrechnung. Der korrigierte Stand `2882573` ist in
+[Draft-PR #441](https://github.com/joku-dev/devsecops-governance-framework/pull/441)
+mit 3.204 Quelltests und signierten Mac-/Linux-Kandidaten geliefert: jeweils
+114 installierte Methoden, 122 CLI-Aufrufe und 28 ganze Nachweise je Richtung.
+Alle acht GitHub-Prüffamilien sind abgeschlossen und grün. Das vollständige
+Erzeugerprofil erhält die ursprünglichen Parser-Ausgaben beider Python-Versionen
+ohne Vereinheitlichung; die festen Consumer-Berichte stimmen mit V1 überein.
+Die breitere Folgeabnahme mit den zusätzlichen Bausteinen läuft separat.
+
+Der anschließende [Dokumentationsabgleich](docs/operations/guides/axiom-v2-documentation-reconciliation.md)
+überführt das vollständige ursprüngliche Programm mit sieben Funktionen:
+Git-Änderungsauswahl, vier Dokumentausgaben, Linkprüfung und ausgewählte
+Append-Datei. Private Kandidaten und gespeicherte Nachrechnung bleiben von
+tatsächlichen Dateieffekten getrennt. Der eigene Entwicklungsbranch ergänzt
+Quell-/Instanzbindung; seine Vollvalidierung und signierte Host-Lieferung sind
+noch offen. Ein übergebener Build-Status führt keinen Dokumentationsbuild aus.
+
+Der nächste [diagnostische Kandidatenbaustein](docs/operations/guides/axiom-v2-lifecycle-candidate-preparation.md)
+überführt beide ursprünglichen Vorbereitungsprogramme, den gemeinsamen Writer
+und beide vollständigen Reportadapter. Die Ergebnisse bleiben unverifizierte
+Kandidaten; Architektur-Gate-Meldungen werden nicht als Marker-Befunde umgedeutet.
+Seine vollständige Prüfung und signierte Lieferung stehen noch aus.
+
+Die nächsten [diagnostischen Pilot-Berichte](docs/operations/guides/axiom-v2-pilot-projections.md)
+sind als vollständige ursprüngliche Aktions-/Validierungsprogramme in Arbeit.
+Ein ausdrückliches Capture-Profil prüft gespeicherte Provider- und Personenfelder;
+die Auswertung erteilt keine neue Zustimmung oder Betriebsfreigabe.
+
+Der folgende [Personal-Channel-Baustein](docs/operations/guides/axiom-v2-personal-channel.md)
+stellt die drei vollständigen ursprünglichen Programme für Erklärungsvorlage,
+Kanalprüfung und Evidenzbericht samt Prüfung neuer Captures bereit. Explizite
+Ports erfassen begrenzte Provider-Lesezugriffe, lokale Git-Auswahl, Uhrzeit und
+exklusive Dateiausgabe. Private Kandidaten und gespeicherte Nachrechnung sind
+implementiert; persönliche Erklärungen werden ausschließlich als Text erzeugt.
+Der Personal-Channel-Quellstand ist mit3.322Tests und deklarierten
+Quellreviews geprüft; die44gezielten Gruppen bestehen auf Python3.13,3.11
+und3.12. Die nächste signierte Host-Lieferung enthält diesen Baustein zusammen
+mit der folgenden Aktionsvorbereitung und wird separat geprüft.
+
+Die anschließende [Pilot-Aktionsvorbereitung](docs/operations/guides/axiom-v2-pilot-action-preparation.md)
+überführt die vollständige ursprüngliche Vorbereitungsfunktion und ihren
+Kommandozeilenablauf. Rollen, Ledger-Köpfe, Revisionen, Frische und Aktionskette
+werden nach den ursprünglichen Regeln geprüft; Ausgabe und Erklärungstext
+bleiben an den vollständigen Request gebunden. Private Vorschau und gespeicherte
+Nachrechnung sind implementiert. Die Vorbereitung erteilt keine persönliche
+Zustimmung und veröffentlicht keine Erklärung. Der Vorbereitungs-Quellstand
+ist mit3.337Tests, Demo/Viewer/Goal/striktem Dokumentationsbuild und deklarierten
+Quellreviews geprüft. Sein signierter Hostvergleich wird separat abgeschlossen.
+
+Der neue [Pilot-Aktions-Intake](docs/operations/guides/axiom-v2-pilot-action-intake.md)
+überführt den vollständigen ursprünglichen Intake samt Erfassung und atomischem
+Anhängen. Frische Provider-Lesezugriffe, beide Zeitpunkte, Ledger-Sperren und
+Zustandsprüfung nach dem Warten bleiben erhalten. Native Teilfehler und
+unvollständige Journale werden unterschieden; eigene offene Ressourcen werden
+getrennt freigegeben. Original-API- und Konkurrenzvergleiche bestehen lokal.
+Der Aktions-Intake-Quellstand ist mit3.352Tests, Demo/Viewer/Goal/striktem
+Dokumentationsbuild und deklarierten Quellreviews geprüft. Seine eigene signierte
+installierte Abnahme wird separat abgeschlossen. Private Kandidaten und
+technische Nachrechnung übertragen keine persönliche oder betriebliche Zustimmung.
+
+Der [diagnostische Preflight](docs/operations/guides/axiom-v2-live-preflight.md)
+überführt den vollständigen ursprünglichen Capture-/Replay-Ablauf. GETs,
+Producer-Revisionen, Originalvalidierung und Erfassungszeit bleiben erhalten.
+Exklusive Ausgabe und letzte Abschlussdatei verhindern das Ersetzen bestehender
+Bundles; konkurrierende Einträge und native Teilfehler bleiben sichtbar.
+Gezielte Original-, API-, CLI- und Nachrechnungsvergleiche bestehen lokal.
+Aktuelle Gesamtvalidierung und eigene signierte Hostabnahme stehen aus.
+Der Befehl ist diagnostisch und schreibt keinen Lifecycle-Receipt.
+
+Der [frische Pilot-Run-Intake](docs/operations/guides/axiom-v2-pilot-run-intake.md)
+führt Erfassung, vollständige Bundle-Prüfung und atomisches Receipt-Anhängen in
+ursprünglicher Reihenfolge zusammen. Erfassungs- und Receipt-Zeit bleiben
+getrennt. Eigene temporäre Verzeichnisse werden vor der Ausgabe bereinigt;
+Teilfehler nach Veröffentlichung erhalten das bereits geschriebene Receipt.
+Der private Modus verwendet ein logisches Dateisystem. Native Erfassung,
+konkurrierende Writer, große gültige Receipts und quellfreie Nachrechnung sind
+gezielt mit dem vollständigen Original verglichen. Die35Quellmethoden bestehen
+auf3.13/3.11/3.12 am eingefrorenen9ae/3220-Stand. Zwölf vollständige V1-Vergleiche
+über54 tatsächliche Entwicklungs-CLI-Aufrufe bestehen mit gleichen aktiven
+Produktbytes; ihre ursprüngliche Entwicklungs-Revision bleibt erhalten.
+Der vorausgehende Run-Intake hat 3.404 vollständige Tests bestanden und ist als `a04ff37f` signiert. Seine gemeinsame installierte Host-/Peer-Abnahme bleibt eine eigene Lieferbedingung.
+Ein technisches Eligibility-Receipt erteilt keine persönliche oder betriebliche
+Zustimmung; die unabhängige Prüfung neuer Receipts bleibt ein eigener Ablauf.
+
+Die [unabhängige Receipt-Prüfung](docs/operations/guides/axiom-v2-pilot-receipt-verification.md)
+überführt den vollständigen ursprünglichen Helfer für neu hinzugekommene Receipts:
+Git-Basis, frische Rohartefakte, Producer-Fingerprint und Zeitprüfungen bleiben
+erhalten. Der Prüf-Scope wird ausdrücklich ausgegeben; die strukturelle Ledger-
+Prüfung und der vollständige Validator-/Publikationsablauf bleiben eigene Schritte.
+Die14Quellmethoden bestehen auf3.11/3.12/3.13 am datierten51b9-Stand; zwölf
+vollständige V1-API-Vergleiche über49 tatsächliche Entwicklungs-CLI-Aufrufe
+bewahren ihre ursprüngliche Produkt-/Node-Revision. Aktuelle vollständige Repo-
+und signierte installierte Liefernachweise bleiben erforderlich.
+
+Die [frische Aktionsprüfung](docs/operations/guides/axiom-v2-pilot-action-verification.md)
+erhält den vollständigen ursprünglichen Prüfhelfer für neue persönliche Aktionen,
+einschließlich frischer Entscheidung und Fortschrittsvoraussetzungen. Git-Basis,
+Evidence-Head, Zukunftszeit und Widerrufsbedingungen bleiben erhalten. Der Scope
+bleibt ausdrücklich auf diesen Helfer begrenzt; vollständige Repo-Prüfung und
+signierte Installationsnachweise dieses Folgebausteins stehen noch aus.
+
+Die [frische Betriebsabnahme-Prüfung](docs/operations/guides/axiom-v2-operating-verification.md)
+erhält die drei ursprünglichen Helfer für Sammlung, Provider-Prüfung und neue
+Aufnahmen. Auch die erneute Prüfung bei einer geänderten wirksamen Indexprojektion
+bleibt erhalten. Binäre Git-Ergebnisse bleiben von `check_output`-Ausnahmen
+unterschieden. Gespeicherte ursprüngliche Zustimmung aktiviert keine V2-Instanz.
+Die aktuellen vollständigen Quell- und Installationsnachweise dieses Folgebausteins
+stehen noch aus.
+
+Die [Prüfung des akzeptierten Quellbestands](docs/operations/guides/axiom-v2-accepted-prefix.md)
+überführt den vollständigen ursprünglichen Prefix-Helfer mit unveränderlicher
+Git-Basis, Profil- und Transaktionsprüfung. Auch von Git zitierte Dateinamen
+behalten die wörtliche ursprüngliche Pfadauswahl. Git-Konvertierungen und Indexdaten
+werden für die Aufnahme gebunden; die Wiedergabe benötigt keine Quelle und kein
+Git. Die aktuelle signierte Lieferabnahme bleibt ein eigener offener Schritt.
+
+Der [vollständige Lifecycle-Validator](docs/operations/guides/axiom-v2-lifecycle-validator.md)
+verbindet den gesamten ursprünglichen Hauptablauf mit struktureller Prüfung,
+akzeptiertem Prefix und allen vier frischen Provider-Prüfungen. Die ursprünglichen
+Optionen und ihre Reihenfolge bleiben erhalten. Aufzeichnungen können ohne
+Quellrepo und Provider wiedergegeben werden. Vollständige gemeinsame Lieferabnahme
+und Publikations-/Runner-Ablauf bleiben offen.
+
+Der [Pilot-Update-Ablauf](docs/operations/guides/axiom-v2-pilot-update.md)
+verbindet die ursprünglichen Operationen `acceptance`, `observe`, `action` und
+`refresh` mit dem vollständigen Parser, den zwei Ledgers und den anschließenden
+Berichten. Standardmäßig entstehen private Kandidaten. Der ausdrücklich gewählte
+Dateiexport schreibt nur die vom ursprünglichen Ablauf ausgewählten Dateien;
+eine Veröffentlichung und die Aktivierung einer Instanz bleiben getrennt.
+Die aktuellen gemeinsamen Quell-, Review- und Installationsnachweise sind offen.
+
+Die [Vorprüfung eines Veröffentlichungsvorschlags](docs/operations/guides/axiom-v2-publication-validation.md)
+übernimmt die vollständige ursprüngliche Prüfung von akzeptiertem Bestand,
+neuen Nachweisen, Aktionen und Betriebsfreigabe. Sie erhält berechtigungsreduzierende
+Korrekturen und weist unzulässige neue Freigaben zurück. Git-Push, Pull Request und
+CI-Dispatch sind zusätzlich als [operativen Publisher](docs/operations/guides/axiom-v2-operational-publisher.md)
+mit echten Lifecycle-Gates umgesetzt. `operational-publisher publish/inspect/replay`
+erhält den gesamten Ablauf als privaten Nachweis und rechnet ihn ohne erneute
+Git-/Provider-Aufrufe oder Dateianhänge nach. Teilergebnisse nach Fehlern bleiben
+sichtbar. Die aktuelle signierte Quell- und Lieferabnahme steht noch aus.
+
+Die [Wiedergabe ohne Standardinstanz](docs/operations/guides/axiom-v2-launcher-replay.md)
+bleibt auch über den installierten Starter möglich. Seine Standardinstanz wird
+erst für Befehle gewählt, die sie benötigen. Explizite Instanzen bleiben bindend;
+eine beschädigte Standardinstanz wird bei gewöhnlicher Erfassung weiter abgewiesen.
+Die aktuelle signierte Mac-/Linux-Lieferabnahme dieser Korrektur steht aus.
+
+Die folgende [Parserkontext-Korrektur](docs/operations/guides/axiom-v2-producer-parser-context.md)
+erweitert die gespeicherten Erzeugerprofile auf die älteren Lifecycle-Berichte,
+den Workbook-Import und den Dokument-Renderer. Damit hängt ihre Nachrechnung
+nicht mehr von Terminalbreite oder Übersetzungen des ausführenden Hosts ab.
+Die Parserkontext-Korrektur ist Bestandteil der bisherigen vollständigen
+Quellprüfungen. Die frische gemeinsame signierte Host-Lieferung läuft.
 
 Der [datierte Zwischenstand mit Mac-/VM-Nachweisen](docs/operations/status/axiom-v2-parity-progress-2026-11-15.md)
 trennt reale Source-Auswertungen, synthetische Measured-Tests und den noch
@@ -279,6 +426,35 @@ gleichem Produktstand, Zeitpunkt und explizit gleichem Ziel. Die Ausgaben bleibe
 unverifizierte Operator-Diagnosen ohne Freigabe oder öffentliche Veröffentlichung.
 
 <!-- DOCS_REFRESH_LATEST:start -->
+Der [Consumer-Lifecycle](docs/operations/guides/axiom-v2-consumer-lifecycle.md)
+ist über `consumer-lifecycle generate/inspect/replay` angebunden. Er erhält alle
+sieben ursprünglichen Operationen, unabhängige gepinnte OPA-Prüfung, persönliche
+Aktionsbindungen, beide Ledgers und Betriebsannahme. Provider-Leseports halten
+Consumer-Evidenz- und zentrale Zugangsdaten getrennt. Private und native Schritte
+werden vollständig nachgerechnet; eine Source-Betriebsannahme aktiviert keine
+V2-Instanz. Der separate [Consumer-Publisher](docs/operations/guides/axiom-v2-consumer-publisher.md)
+erhält die vollständige obligatorische Consumer-Freigabeprüfung, gezielte native
+Git-/PR-Schritte und vier Prüfworkflow-Dispatches. Er wird explizit aufgerufen;
+eine automatische Betriebsaktivierung ist damit nicht verbunden. Vollständige
+aktuelle Quell- und Installationsabnahme bleiben offen.
+Der [Typed-Evidence-Publisher](docs/operations/guides/axiom-v2-typed-publisher.md)
+ergänzt die drei ursprünglichen append-only Mess-/Assurance-Ledgers über eine
+eigene Konfiguration und erhält den vollständigen allgemeinen Publish-Ablauf.
+Der [Self-Security-Publisher](docs/operations/guides/axiom-v2-self-security-publisher.md)
+erhält den vollständigen bisherigen Reportvergleich, Viewer-Abgleich, nativen
+Branch-/PR-Ablauf und fünf Prüfworkflow-Dispatches. Beobachtete Dateizustände
+binden Git-Übergänge und die tatsächliche Wiederherstellung beider Reports an
+eine vollständig nachrechenbare Aufnahme. Der native Aufruf benötigt einen
+eigenen vorgesehenen Clone; Teilwirkungen führen weder zu Wiederanlauf noch
+automatischer Freigabe. Die vollständige aktuelle Abnahme bleibt offen.
+
+Die [Provider-Beobachtung](docs/operations/guides/axiom-v2-provider-observation.md)
+bindet den bisherigen Review-/Security-Beobachter über begrenzte HTTPS-GETs,
+getrennte Credential-Capabilities und vollständige lokale Git-/Release-Prüfungen
+an. `capture/inspect/replay` erhält die ursprünglichen Kandidaten und atomaren
+Ausgaben. Die öffentliche Anbindung befindet sich in Entwicklung; ihre aktuelle
+vollständige Quell- und Installationsabnahme bleibt offen.
+
 ## Implementation readback — 15 November 2026
 
 Implementation source: `adc4643bb7a5c962e4efb1525298ad9e652c73d2`. The

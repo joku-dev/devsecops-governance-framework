@@ -8,6 +8,7 @@ ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(R
 from lib.synthetic_lifecycle_application import generate,inspect,run,PROFILE,request_valid
 from lib.synthetic_lifecycle_ports import current_source,read_record,encode
 from lib.portable.runtime import source_digest
+from lib.providers.retained_argparse import capture_context
 from lib.functional_parity import git_read
 import test_v2_synthetic_lifecycle_context as reference
 from test_v2_synthetic_lifecycle_reports import REFERENCES,frozen
@@ -33,7 +34,7 @@ class WholeSyntheticLifecycleApplication(unittest.TestCase):
   args=['--as-of',reference.AT,'--report',str(self.data/'generated/reports')]
   old=subprocess.run([sys.executable,str(self.data/'scripts'/REFERENCES['pilot'][0]),*args],cwd=self.data,capture_output=True,timeout=120,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','PYTHONPATH':str(self.data/'scripts')})
   self.assertEqual(old.returncode,1);receipt,result=self.execute('pilot',native=True,args=args)
-  self.assertEqual(receipt['state'],'complete');self.assertEqual(receipt['original_exit_code'],1);self.assertEqual(len(result['successful_outputs']),1)
+  self.assertEqual(receipt['state'],'complete');self.assertEqual(receipt['original_exit_code'],1);self.assertEqual(len(result['successful_outputs']),1);self.assertTrue(receipt['source_effects_may_be_partial'])
   kernel=result['kernel_result'];self.assertEqual(kernel['stdout'].encode(),old.stdout);self.assertEqual(kernel['kernel_exception']['type'],'IsADirectoryError');self.assertTrue(old.stderr.decode().endswith('IsADirectoryError: '+kernel['kernel_exception']['message']+'\n'))
   checked=inspect(receipt['record_root']);self.assertEqual(len(checked['source_output_paths_observed']),1);self.assertFalse(checked['private_projected_changes'])
  def test_complete_original_help_zero_and_parser_two_need_no_selected_source(self):
@@ -87,7 +88,8 @@ class WholeSyntheticLifecycleApplication(unittest.TestCase):
      next(row for row in events if row['kind']=='lifecycle-private-context')['native_source_effects']=True;self.reseal(root,events,value)
     with self.assertRaises((ValueError,TypeError,KeyError)):inspect(root)
  def test_request_generation_binding_and_missing_closure_rejected_before_records(self):
-  request={'schema_version':1,'profile':PROFILE,'generator':'index','source_label':str(self.data),'cwd_label':str(self.data),'argv':['--as-of',reference.AT],'export_mode':'private-candidate','resources':[]}
+  request={'schema_version':1,'profile':PROFILE,'generator':'index','source_label':str(self.data),'cwd_label':str(self.data),'argv':['--as-of',reference.AT],'export_mode':'private-candidate','resources':[],'parser_context':capture_context()}
+  self.assertEqual(request_valid(request),request)
   for change in ({'schema_version':True},{'generator':'live-pilot'},{'argv':['bad\n']},{'argv':['x'*8193]},{'source_label':'//changed'},{'extra':False},{'export_mode':'automatic-publish'},{'resources':None},{'resources':[{'uri':'bad uri','label':str(self.data)}]},{'resources':[{'uri':'urn:x','label':str(self.data)},{'uri':'urn:x','label':str(self.data)}]},{'resources':[{'uri':'urn:x','label':'relative'}]},{'resources':[{'uri':'urn:'+str(n),'label':str(self.data)} for n in range(129)]}):
    with self.subTest(change=change),self.assertRaises(ValueError):request_valid({**request,**change})
   for change in ({'source_revision':'0'*40},{'runtime_source_digest':'0'*64},{'node_id':'invalid'}):

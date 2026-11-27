@@ -1,0 +1,63 @@
+{
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-pilot-operating.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "const": {
+    "authorization": {
+      "channel": "maintainer_conversation",
+      "confirmed_on": "2026-09-13",
+      "decision_ref": "docs/governance/change-requests/GCR-2026-073-lifecycle-durable-pilot-intake.md",
+      "statement": "ja"
+    },
+    "environment": "live_pilot_validation",
+    "live_activation_approved": false,
+    "official_state": false,
+    "operating_policy": {
+      "automatic_deletion": false,
+      "maximum_age_seconds": 86400,
+      "maximum_future_skew_seconds": 0,
+      "replay_policy": "same_origin_same_content_is_noop_conflicting_content_is_quarantined",
+      "retention": "complete_immutable_pilot_history",
+      "retention_review": "at_pilot_completion"
+    },
+    "personal_consent_required": true,
+    "preparation_ref": {
+      "digest": "89aa908091f40c5ad5ada7604178c8e0a64b5226c116b9ee8247fb2884ada847",
+      "revision": 1
+    },
+    "profile_id": "profile:clg-grs002-operating",
+    "record_type": "lifecycle-pilot-operating-profile",
+    "revision": 1,
+    "role_binding_ref": {
+      "digest": "937efa993a2de218f7754927c81a5db8e92c44e1555bb22efd88ccbf2cc82cd5",
+      "revision": 1
+    },
+    "schema_version": "0.1.0",
+    "scope": {
+      "domain": "governance_repository_security",
+      "enforcement": "report_only",
+      "github_repository_id": 1301369468,
+      "pilot_only": true,
+      "repository_id": "joku-dev/devsecops-governance-framework",
+      "resource": "refs/heads/main",
+      "rule_id": "GRS-002"
+    },
+    "source": {
+      "allowed_branch": "main",
+      "allowed_event": "push",
+      "api_origin": "https://api.github.com",
+      "artifact_name": "governance-repository-security",
+      "provider": "github",
+      "reference_commit": "026e437fe2bab471e4c2c1eb3b01ad8105de4b1b",
+      "reference_files": {
+        ".github/workflows/governance-repository-security.yml": "c66e4aecb3b161cee6e5f6d27a6914b2e96ab1ceb776b31f4b2c3f902e751d75",
+        "model/controls/governance-repository-security.yaml": "10909f3d26e23b1fab0ba3284131754e9a117024cf798a4e3abc812aaafe5031",
+        "requirements-validation.txt": "d554f9277aa3f1508e1c6c4d9f8ebca01d88a3d1867945effaf57e0550255748",
+        "schemas/governance-repository-security-report.schema.json": "ad3af768f8fdf2adb2f8053a6c6a5316048d0d0733e1a97a8e6a446673933026",
+        "scripts/assess_governance_repository_security.py": "1c14b2cf7715c229080bd0dc1faa54fda7c366678527deb48cfd322954c2cf7c"
+      },
+      "report_path": "governance-repository-security.json",
+      "workflow_path": ".github/workflows/governance-repository-security.yml"
+    }
+  },
+  "title": "Confirmed GRS-002 pilot operating policy, pending live acceptance"
+}

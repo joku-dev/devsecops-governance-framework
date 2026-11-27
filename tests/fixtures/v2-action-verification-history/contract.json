@@ -1,0 +1,7 @@
+{
+  "frozen_original": "6b557fefe295b58272d2271326576ca3a3687197",
+  "original_path": "tests/test_lifecycle_pilot_actions.py",
+  "original_sha256": "1e9c0251bfb2503f327d5e57f4d9f9f88ed0ca764df92d6c3390d8542600d900",
+  "builder_sha256": "5197d0c43386a031c42b18c88e21e2a345958d83ba102968893ec79fb47bd880",
+  "scope": "Explicit injected whole-history fixture only. No production validation or replay function replaced; no authenticated provider or human/operating acceptance. Original test claim_provider switch constructs test input required to exercise original verification guard, not actual provider provenance."
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Rollout Readiness Decision v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_id",
+    "assessed_at",
+    "production_rollout",
+    "readiness_level",
+    "basis",
+    "authorization",
+    "criteria",
+    "evidence",
+    "open_requirements",
+    "prohibited_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "decision_id": {"type": "string", "pattern": "^dcr-rollout-[0-9]{4}$"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "production_rollout": {"const": "pending"},
+    "readiness_level": {"enum": ["not_ready", "limited_pilot_ready", "production_ready"]},
+    "basis": {"enum": ["infrastructure_only", "validated_bounded_pilots", "production_evidence"]},
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_mode", "per_run_authorization_required", "automatic_execution", "blocking_enforcement", "publication"],
+      "properties": {
+        "allowed_mode": {"const": "separately_authorized_report_only_pilot"},
+        "per_run_authorization_required": {"const": true},
+        "automatic_execution": {"const": false},
+        "blocking_enforcement": {"const": false},
+        "publication": {"const": false}
+      }
+    },
+    "criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "rationale", "evidence_ids"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"},
+          "status": {"enum": ["met", "partial", "open"]},
+          "rationale": {"type": "string", "minLength": 1},
+          "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^DCR-EV-[0-9]{3}$"}}
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "path", "sha256"],
+        "properties": {
+          "evidence_id": {"type": "string", "pattern": "^DCR-EV-[0-9]{3}$"},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "open_requirements": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "prohibited_claims": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

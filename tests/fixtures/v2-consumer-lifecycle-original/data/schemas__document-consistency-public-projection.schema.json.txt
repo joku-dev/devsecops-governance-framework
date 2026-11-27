@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public Document Consistency Review Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projection_version", "projection_type", "audience", "review_id",
+    "overall_status", "freshness", "scope", "semantic_comparison_coverage", "coverage", "execution", "sections",
+    "documents", "findings", "limitations"
+  ],
+  "properties": {
+    "projection_version": {"const": "1.0.0"},
+    "projection_type": {"const": "document_consistency_public_projection"},
+    "audience": {"const": "public_redacted"},
+    "review_id": {"type": "string", "minLength": 1},
+    "overall_status": {"enum": ["synthetic_only", "not_run", "partial", "provider_failed"]},
+    "freshness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "reviewed_commit", "manifest_matches", "sources_match", "source_register_matches", "source_register_sha256", "source_population_sha256"],
+      "properties": {
+        "status": {"enum": ["current", "stale", "unknown"]},
+        "reviewed_commit": {"type": ["string", "null"]},
+        "manifest_matches": {"type": ["boolean", "null"]},
+        "sources_match": {"type": ["boolean", "null"]},
+        "source_register_matches": {"type": ["boolean", "null"]},
+        "source_register_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$|^$"},
+        "source_population_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$|^$"}
+      }
+    },
+    "scope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_count", "source_ids"],
+      "properties": {
+        "source_count": {"type": "integer", "minimum": 0},
+        "source_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }
+    },
+    "semantic_comparison_coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assessed_count", "population_count", "status"],
+      "properties": {
+        "assessed_count": {"type": ["integer", "null"], "minimum": 0},
+        "population_count": {"type": ["integer", "null"], "minimum": 0},
+        "status": {"enum": ["targeted_non_exhaustive", "not_measured"]}
+      }
+    },
+    "coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "source_population_count", "in_scope_source_count", "omitted_source_count",
+        "source_integrity_verified_count", "source_scope_status", "section_count",
+        "structurally_inventoried_section_count", "semantically_assessed_section_count",
+        "semantic_section_coverage_status", "requirement_count",
+        "structurally_inventoried_requirement_count", "semantically_assessed_requirement_count",
+        "semantic_item_coverage_status", "semantic_review_status"
+      ],
+      "properties": {
+        "source_population_count": {"type": "integer", "minimum": 0},
+        "in_scope_source_count": {"type": "integer", "minimum": 0},
+        "omitted_source_count": {"type": "integer", "minimum": 0},
+        "source_integrity_verified_count": {"type": "integer", "minimum": 0},
+        "source_scope_status": {"enum": ["complete", "partial"]},
+        "section_count": {"type": "integer", "minimum": 0},
+        "structurally_inventoried_section_count": {"type": "integer", "minimum": 0},
+        "semantically_assessed_section_count": {"type": ["integer", "null"], "minimum": 0},
+        "semantic_section_coverage_status": {"enum": ["not_run", "not_measured"]},
+        "requirement_count": {"type": "integer", "minimum": 0},
+        "structurally_inventoried_requirement_count": {"type": "integer", "minimum": 0},
+        "semantically_assessed_requirement_count": {"type": ["integer", "null"], "minimum": 0},
+        "semantic_item_coverage_status": {"enum": ["not_run", "not_measured"]},
+        "semantic_review_status": {"enum": ["synthetic_only", "not_run", "partial", "provider_failed"]}
+      }
+    },
+    "execution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "status", "truncated"],
+      "properties": {
+        "mode": {"enum": ["synthetic_fixture", "provider"]},
+        "status": {"enum": ["completed", "failed", "not_run"]},
+        "truncated": {"type": "boolean"}
+      }
+    },
+    "sections": {
+      "type": "object", "additionalProperties": false,
+      "required": ["formal_validation", "semantic_review", "human_decisions", "implementation_coverage"],
+      "properties": {
+        "formal_validation": {"type": "string"},
+        "semantic_review": {"type": "string"},
+        "human_decisions": {"type": "string"},
+        "implementation_coverage": {"type": "string"}
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "status", "version"],
+        "properties": {"id": {"type": "string"}, "status": {"type": "string"}, "version": {"type": "string"}}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "category", "semantic_state", "evidence_status", "disposition"],
+        "properties": {
+          "id": {"type": "string"}, "category": {"type": "string"},
+          "semantic_state": {"type": "string"}, "evidence_status": {"type": "string"},
+          "disposition": {"type": "string"}
+        }
+      }
+    },
+    "limitations": {
+      "type": "object", "additionalProperties": false,
+      "required": ["redacted", "no_consistency_claim", "no_public_internal_view", "message"],
+      "properties": {
+        "redacted": {"const": true}, "no_consistency_claim": {"const": true},
+        "no_public_internal_view": {"const": true}, "message": {"type": "string"}
+      }
+    }
+  }
+}

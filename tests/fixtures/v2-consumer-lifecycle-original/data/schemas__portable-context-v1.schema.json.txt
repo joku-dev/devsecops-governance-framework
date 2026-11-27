@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable governance context v1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scm": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "enum": [
+            "github",
+            "gitlab",
+            "bitbucket-dc"
+          ]
+        },
+        "instance": {
+          "type": "string",
+          "pattern": "^https://[^@?#]+$"
+        },
+        "native_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https://[^@?#]+$"
+        }
+      },
+      "required": [
+        "provider",
+        "instance",
+        "native_id",
+        "path",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "ci": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "enum": [
+            "github-actions",
+            "gitlab-ci",
+            "bamboo"
+          ]
+        },
+        "instance": {
+          "type": "string",
+          "pattern": "^https://[^@?#]+$"
+        },
+        "run_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "job_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attempt": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "event": {
+          "enum": [
+            "push",
+            "pull_request",
+            "manual",
+            "schedule",
+            "unknown"
+          ]
+        },
+        "native_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "provider",
+        "instance",
+        "run_id",
+        "job_id",
+        "attempt",
+        "event",
+        "native_reference"
+      ],
+      "additionalProperties": false
+    },
+    "revision": {
+      "type": "object",
+      "properties": {
+        "tested": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "branch": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "branch",
+            "source-head",
+            "merge-result"
+          ]
+        }
+      },
+      "required": [
+        "tested",
+        "source",
+        "target",
+        "branch",
+        "mode"
+      ],
+      "additionalProperties": false
+    },
+    "change_request": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "pull_request",
+                "merge_request"
+              ]
+            },
+            "id": {
+              "type": "string"
+            },
+            "source_repository": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "target_repository": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source_branch": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "target_branch": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "source_repository",
+            "target_repository",
+            "source_branch",
+            "target_branch"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "available",
+              "missing",
+              "unsupported",
+              "error"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "source",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_id",
+        "baseline_digest",
+        "domain",
+        "scope",
+        "runtime_version",
+        "runtime_source_digest",
+        "adapter_version"
+      ],
+      "properties": {
+        "baseline_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "baseline_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "domain": {
+          "const": "devsecops"
+        },
+        "scope": {
+          "const": "pipeline-l1"
+        },
+        "runtime_version": {
+          "const": "1.0.0"
+        },
+        "runtime_source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "adapter_version": {
+          "const": "1.0.0"
+        }
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "scm",
+    "ci",
+    "revision",
+    "change_request",
+    "capabilities",
+    "synthetic",
+    "governance"
+  ],
+  "additionalProperties": false
+}

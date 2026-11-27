@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governance Release Tag Integrity Statement",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "statement_type",
+    "repository_id",
+    "issued_at",
+    "signer_principal",
+    "purpose",
+    "legacy_tags"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "statement_type": { "const": "governance-release-tag-integrity" },
+    "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+    "issued_at": { "type": "string", "format": "date-time" },
+    "signer_principal": { "type": "string", "minLength": 1 },
+    "purpose": { "type": "string", "minLength": 1 },
+    "legacy_tags": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "tag_name",
+          "tag_object_sha",
+          "target_commit_sha",
+          "assurance_mode",
+          "artifacts"
+        ],
+        "properties": {
+          "tag_name": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]+$" },
+          "tag_object_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+          "target_commit_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+          "assurance_mode": { "const": "legacy_retrospective_attestation" },
+          "artifacts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["path", "role", "sha256"],
+              "properties": {
+                "path": { "type": "string", "pattern": "^(docs/releases|releases)/[A-Za-z0-9._/-]+$" },
+                "role": { "enum": ["package_checksums", "release_document"] },
+                "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

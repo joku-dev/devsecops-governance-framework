@@ -164,8 +164,13 @@ class WorkerReplayTests(unittest.TestCase):
         self.assertFalse(actual['independent_execution_attested'])
         import axiom_v2 as cli
         stdout,stderr=io.StringIO(),io.StringIO()
+        def inspect_admitted_context(command,arguments,*,instance_path,default_instance_path=None):
+            self.assertEqual(command,'validation')
+            self.assertEqual(instance_path,instance)
+            self.assertIsNone(default_instance_path)
+            return app.run(arguments,instance,settings)
         with patch.object(app,'RepositoryContext',return_value=context), \
-             patch.object(cli,'run',side_effect=lambda command,arguments,instance_path:app.run(arguments,instance,settings)), \
+             patch.object(cli,'run',side_effect=inspect_admitted_context), \
              patch.object(protocol,'MEMORY_BYTES',32*1024**2), \
              contextlib.redirect_stdout(stdout),contextlib.redirect_stderr(stderr):
             code=cli.main(['--instance',str(instance),'validation','repository-inspect','--assessment',operation,'--bounded-worker'])

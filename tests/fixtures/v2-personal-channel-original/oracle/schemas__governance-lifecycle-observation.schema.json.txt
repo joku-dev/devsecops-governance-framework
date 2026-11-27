@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-observation.schema.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "record_id",
+    "environment",
+    "profile_ref",
+    "finding",
+    "recorded_at",
+    "body"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "observation"
+    },
+    "record_id": {
+      "type": "string",
+      "pattern": "^observation:[a-zA-Z0-9._-]+$"
+    },
+    "environment": {
+      "enum": [
+        "synthetic",
+        "live"
+      ]
+    },
+    "profile_ref": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/versioned_ref"
+    },
+    "finding": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/finding"
+    },
+    "recorded_at": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "observed_at",
+        "result",
+        "rule_key",
+        "granularity",
+        "profile_version",
+        "policy_version",
+        "source_schema",
+        "source_context",
+        "snapshot_ref",
+        "trust",
+        "acceptance"
+      ],
+      "properties": {
+        "observed_at": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+        },
+        "result": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown",
+            "not_evaluated"
+          ]
+        },
+        "rule_key": {
+          "const": "pull_request_review_required"
+        },
+        "granularity": {
+          "const": "criterion"
+        },
+        "profile_version": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/version"
+        },
+        "policy_version": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/version"
+        },
+        "source_schema": {
+          "const": "governance-repository-security-report.schema.json@0.2.0"
+        },
+        "source_context": {
+          "type": "object",
+          "required": [
+            "kind",
+            "repository_id",
+            "commit_id",
+            "producer_id",
+            "run_id",
+            "run_attempt"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "test",
+                "mainline",
+                "release",
+                "branch",
+                "pull_request",
+                "manual"
+              ]
+            },
+            "repository_id": {
+              "type": "string",
+              "pattern": "^[^/]+/[^/]+$"
+            },
+            "commit_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            },
+            "producer_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "run_attempt": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "snapshot_ref": {
+          "$ref": "governance-lifecycle-common.schema.json#/$defs/resource_ref"
+        },
+        "trust": {
+          "$ref": "evidence-trust-record.schema.json"
+        },
+        "acceptance": {
+          "type": "object",
+          "required": [
+            "evaluated_at",
+            "profile_ref",
+            "outcome",
+            "verifier_id",
+            "proof_ref"
+          ],
+          "properties": {
+            "evaluated_at": {
+              "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+            },
+            "profile_ref": {
+              "$ref": "governance-lifecycle-common.schema.json#/$defs/versioned_ref"
+            },
+            "outcome": {
+              "enum": [
+                "accepted",
+                "rejected",
+                "needs_review"
+              ]
+            },
+            "verifier_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "proof_ref": {
+              "$ref": "governance-lifecycle-common.schema.json#/$defs/resource_ref"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "title": "Governance Lifecycle Observation (pilot 0.1.0)"
+}

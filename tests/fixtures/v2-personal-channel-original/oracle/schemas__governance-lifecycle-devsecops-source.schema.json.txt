@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-devsecops-source.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "run_context": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "release_context": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "event",
+        "purpose",
+        "release_context"
+      ],
+      "additionalProperties": true
+    },
+    "controls": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "control_id": {
+            "type": "string",
+            "pattern": "^DSCB-(L[123]|GOV)-REQ-[0-9]{3}$"
+          },
+          "level": {
+            "enum": [
+              "L1",
+              "L2",
+              "L3",
+              "GOV"
+            ]
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "fail",
+              "not_tested",
+              "not_applicable"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "control_id",
+          "level",
+          "status"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_controls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pass": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fail": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_tested": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_applicable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "applicable_controls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tested_controls": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "total_controls",
+        "pass",
+        "fail",
+        "not_tested",
+        "not_applicable",
+        "applicable_controls",
+        "tested_controls"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "run_context",
+    "controls",
+    "summary"
+  ],
+  "additionalProperties": true
+}

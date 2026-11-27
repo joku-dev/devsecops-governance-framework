@@ -1,0 +1,71 @@
+{
+  "v1_reference": "6b557fefe295b58272d2271326576ca3a3687197",
+  "sources": {
+    "entrypoint": {
+      "v1_path": "scripts/observe_provider_assurance.py",
+      "sha256": "d78a436e6c2d99b38d4fe7c02a8e8f84100bbce62daeaa5b5269ca6c316ac8a0",
+      "git_blob": "e5d43dc63eb499bc6f765907a6c27af5d2fa7c1b"
+    },
+    "assurance": {
+      "v1_path": "scripts/lib/portable_intake/assurance.py",
+      "sha256": "ea8e5db86949b1a0c58693808b204a5df9f276e1e2560bd62e03a5055741c284",
+      "git_blob": "a0bc4e7bb682b4366fea09bfcaed2eac23049b39"
+    },
+    "runtime": {
+      "v1_path": "scripts/lib/portable/runtime.py",
+      "sha256": "107e76d7121890b0cc4046aaf4072514bfde051d72d67c9dbb388416714744ba",
+      "git_blob": "390e102a2e7de30b5657d3b8667ccc89e7d8edd6"
+    },
+    "transport": {
+      "v1_path": "scripts/lib/portable_intake/transport.py",
+      "sha256": "062b5ec09c895cd477cf799e64c084106fcf08c6dac2e14891c68209f21a3bfa",
+      "git_blob": "4f95ab8c8128ba852d052f82a1c0acc0588acd14"
+    },
+    "private-credentials": {
+      "v1_path": "scripts/lib/private_credentials.py",
+      "sha256": "47fea7a7c2c7812e176942f193c450c544677a19350dd0a37400e41791ac04c5",
+      "git_blob": "a7d1743275840650af798284fb8f9073bdaa8fba"
+    }
+  },
+  "entrypoint_functions": [
+    "main"
+  ],
+  "assurance_functions": [
+    "capture_reviews",
+    "capture_security",
+    "check_reader",
+    "legacy_module",
+    "role_candidate",
+    "subject"
+  ],
+  "whole_read_json_function_retained": true,
+  "global_port_aliases": {
+    "entrypoint": {
+      "argparse": "argparse",
+      "Path": "path",
+      "os": "native",
+      "__doc__": "description",
+      "Reader": "Reader",
+      "BoundedAudit": "BoundedAudit",
+      "check_private_file": "check_private_file",
+      "read_json": "read_json",
+      "capture_reviews": "capture_reviews",
+      "capture_security": "capture_security",
+      "atomic_json": "atomic_json",
+      "datetime": "datetime"
+    },
+    "assurance": {
+      "role_candidate": "role_candidate",
+      "capture_reviews": "capture_reviews",
+      "subject": "subject",
+      "check_reader": "check_reader",
+      "capture_security": "capture_security",
+      "legacy_module": "legacy_module",
+      "ROOT": "root",
+      "subprocess": "process",
+      "importlib": "loader"
+    }
+  },
+  "whole_native_or_public_operator_acceptance_claimed": false,
+  "Goal_complete": false
+}

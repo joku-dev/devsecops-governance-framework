@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Finding Continuity Ledger",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "ledger_type", "scope", "findings"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "ledger_type": {"const": "document_consistency_finding_continuity"},
+    "scope": {"const": "synthetic_fixture"},
+    "findings": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["persistent_id", "kind", "stable_identity", "occurrences", "links", "triage"], "properties": {
+      "persistent_id": {"type": "string", "pattern": "^DCR-F-[0-9]{4}$"},
+      "kind": {"enum": ["deterministic", "semantic"]},
+      "stable_identity": {"type": "object", "additionalProperties": false, "required": ["rule_or_category", "entities", "scope_key"], "properties": {"rule_or_category": {"type": "string"}, "entities": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}, "scope_key": {"type": "string"}}},
+      "occurrences": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["review_id", "state", "severity", "source_ids", "reassessed"], "properties": {"review_id": {"type": "string"}, "state": {"enum": ["new", "unchanged", "worsened", "resolved", "reopened", "not_reassessed"]}, "severity": {"enum": ["info", "low", "medium", "high", "critical"]}, "source_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "reassessed": {"type": "boolean"}}}},
+      "links": {"type": "object", "additionalProperties": false, "required": ["predecessors", "successors", "relationship"], "properties": {"predecessors": {"type": "array", "items": {"type": "string"}}, "successors": {"type": "array", "items": {"type": "string"}}, "relationship": {"enum": ["none", "merge", "split"]}}},
+      "triage": {"type": "object", "additionalProperties": false, "required": ["owner_route", "priority", "decision", "next_action", "target_date", "escalation_route", "decision_scope", "rationale"], "properties": {"owner_route": {"type": ["string", "null"]}, "priority": {"enum": ["unassigned", "low", "medium", "high", "urgent"]}, "decision": {"enum": ["pending", "accepted_for_resolution", "false_positive", "accepted_exception"]}, "next_action": {"type": "string"}, "target_date": {"type": ["string", "null"], "format": "date"}, "escalation_route": {"type": "string"}, "decision_scope": {"type": "string"}, "rationale": {"type": "string"}}}
+    }}}
+  }
+}

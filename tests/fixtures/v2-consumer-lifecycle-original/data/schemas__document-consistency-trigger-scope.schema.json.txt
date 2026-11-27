@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Document Consistency Trigger and Scope Matrix",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "matrix_id", "default_mode", "rules"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "matrix_id": {"type": "string", "pattern": "^dcr-trigger-matrix-[0-9]{4}$"},
+    "default_mode": {"const": "full_review"},
+    "rules": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["change_type", "scope", "invalidate_evidence", "required_actions"], "properties": {
+      "change_type": {"enum": ["source_document", "source_status", "implementation_artifact", "role", "term", "relationship", "topic_authority", "schema", "review_rule", "converter", "prompt", "model", "provider", "deletion", "rename"]},
+      "scope": {"enum": ["affected_and_dependencies", "full_if_impact_unknown", "full_review", "methodology_comparison"]},
+      "invalidate_evidence": {"type": "boolean"},
+      "required_actions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+    }}}
+  }
+}

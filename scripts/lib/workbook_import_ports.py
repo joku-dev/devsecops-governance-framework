@@ -6,6 +6,8 @@ from lib.v2_source import active_fingerprints,selected_paths
 from lib.portable.contracts import ROOT,canonical_digest
 from lib.portable.runtime import source_digest
 from lib.functional_parity import git_read
+from lib.retained_argparse import COMPONENTS as PARSER_COMPONENTS
+from lib.providers.retained_argparse import capture_context as capture_parser_context
 
 
 def current_source(node,product_tree=None):
@@ -13,6 +15,7 @@ def current_source(node,product_tree=None):
         'workbook_import_limits.py','workbook_import_io.py','workbook_import_application.py','workbook_import_ports.py',
         'providers/workbook_import_io.py','requirement_validation_budget.py','requirement_validation_replay.py',
         'requirement_review_output.py')}
+    required.update('scripts/lib/'+name for name in PARSER_COMPONENTS)
     if not required<=set(selected_paths(ROOT)):raise ValueError('workbook_import_closure_not_registered')
     if (type(node) is not dict or set(node)!={'node_id','source_revision','runtime_source_digest'}
             or type(node['node_id']) is not str or not re.fullmatch('[a-f0-9]{32}',node['node_id'])

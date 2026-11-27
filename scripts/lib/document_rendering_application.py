@@ -6,19 +6,22 @@ from lib.document_rendering_context import execute
 from lib.document_rendering_io import ReplayIO,path_spec
 from lib.requirement_validation_budget import InputAdmissionError
 from lib.document_rendering_ports import (Data,Output,Tools,Record,read_record,
-    owned_directory,encode,AUTHORITY,current_source,ROOT)
+    owned_directory,encode,AUTHORITY,current_source,ROOT,capture_parser_context)
+
+from lib.retained_argparse import validate_context as validate_parser_context
 
 PROFILE='legacy-governance-documents-v1'
 
 
 def request_valid(value):
-    keys={'schema_version','profile','source_label','cwd_label','argv','export_mode','tool_path','source_date_epoch','tool_timeout'}
+    keys={'schema_version','profile','source_label','cwd_label','argv','export_mode','tool_path','source_date_epoch','tool_timeout','parser_context'}
     if (type(value) is not dict or set(value)!=keys or type(value['schema_version']) is not int or value['schema_version']!=1 or value['profile']!=PROFILE
             or value['export_mode'] not in ('private-candidate','selected-files')
             or type(value['argv']) is not list or len(value['argv'])>64
             or any(type(arg) is not str or len(arg)>8192 or any(ord(c)<32 or 0xd800<=ord(c)<=0xdfff for c in arg) for arg in value['argv'])
             or sum(map(len,value['argv']))>32768 or type(value['tool_timeout']) not in (int,float)
             or not math.isfinite(value['tool_timeout']) or not 0<value['tool_timeout']<=600):raise ValueError('document_rendering_request_changed')
+    validate_parser_context(value['parser_context'])
     for key in ('source_label','cwd_label'):path_spec({'path':value[key],'label':value[key]})
     for key,limit in (('tool_path',32768),('source_date_epoch',8192)):
         if value[key] is not None and (type(value[key]) is not str or len(value[key])>limit or '\0' in value[key]):raise ValueError('document_rendering_environment_context_changed')
@@ -46,7 +49,7 @@ def inspect(root,*,node=None):
     if retained['state'] not in ('complete','incomplete') or retained['state']=='complete' and retained['exception_type'] is not None:raise ValueError('document_rendering_terminal_changed')
     if retained['state']=='incomplete':return {'state':'incomplete','retained_declared_replay_consistent':False,**AUTHORITY}
     io=ReplayIO(events,blob,request['export_mode'],request['source_label'],request)
-    kernel=execute(request['source_label'],request['argv'],io,io,io);io.finish()
+    kernel=execute(request['source_label'],request['argv'],io,io,io,parser_context=request['parser_context']);io.finish()
     if (encode(result_value(kernel,io))!=encode(retained['result']) or encode(io.touched)!=encode(retained['touched_files'])
             or encode(events[-1])!=encode({'kind':'terminal','state':'complete','exit_code':kernel['exit_code']}) or not closed()):
         raise ValueError('document_rendering_whole_result_changed')
@@ -67,7 +70,7 @@ def generate(options,instance,settings):
         'argv':argv,'export_mode':'selected-files' if options.get('write_selected_reports') else 'private-candidate',
         'tool_path':options.get('tool_path') if options.get('tool_path') is not None else os.environ.get('PATH'),
         'source_date_epoch':options.get('source_date_epoch') if options.get('source_date_epoch') is not None else os.environ.get('SOURCE_DATE_EPOCH'),
-        'tool_timeout':options.get('tool_timeout') if options.get('tool_timeout') is not None else 120})
+        'tool_timeout':options.get('tool_timeout') if options.get('tool_timeout') is not None else 120,'parser_context':capture_parser_context()})
     source=current_source(node);instance=Path(instance);state=owned_directory(instance/'state/document-rendering/records',True)
     record=Record(state,request,source);record.append({'kind':'execution-intent','request':request})
     output=result=error=None
@@ -78,7 +81,7 @@ def generate(options,instance,settings):
             if value is None:environment.pop(key,None)
             else:environment[key]=value
         tools=Tools(record,output,instance/'state/document-rendering/scratch',cwd=cwd,environment=environment,timeout=request['tool_timeout'])
-        kernel=execute(source_label,argv,data,output,tools);result=result_value(kernel,output)
+        kernel=execute(source_label,argv,data,output,tools,parser_context=request['parser_context']);result=result_value(kernel,output)
         if current_source(node)!=source:raise InputAdmissionError('document_rendering_product_changed')
     except Exception as caught:error=caught
     state='incomplete' if error is not None or record.capture_incomplete else 'complete'

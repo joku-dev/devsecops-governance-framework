@@ -1,0 +1,11 @@
+{
+  "source_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "scripts/publish_operational_update.py": {
+      "fixture": "publish_operational_update.py.txt",
+      "sha256": "6b30a3f6c1a55ef88451f8372b129e05a23a5f6337cd7998143a11e3cb550228",
+      "git_blob": "e193546d57034f2cc5c881e7317e5e836517bb0b"
+    }
+  },
+  "normative_source_or_authority": false
+}

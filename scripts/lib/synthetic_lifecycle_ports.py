@@ -7,6 +7,8 @@ from lib.v2_source import active_fingerprints,selected_paths
 from lib.portable.contracts import ROOT,canonical_digest
 from lib.portable.runtime import source_digest
 from lib.functional_parity import git_read
+from lib.retained_argparse import COMPONENTS as PARSER_COMPONENTS
+from lib.providers.retained_argparse import capture_context as capture_parser_context
 
 COMPONENTS=('synthetic_lifecycle_reports.py','synthetic_lifecycle_context.py',
  'synthetic_lifecycle_io.py','synthetic_lifecycle_output.py','synthetic_lifecycle_projection.py',
@@ -18,6 +20,7 @@ COMPONENTS=('synthetic_lifecycle_reports.py','synthetic_lifecycle_context.py',
 def current_source(node,product_tree=None):
  required={'scripts/lib/'+name for name in COMPONENTS}
  required.add('scripts/templates/governance-lifecycle-viewer.html')
+ required.update('scripts/lib/'+name for name in PARSER_COMPONENTS)
  if not required<=set(selected_paths(ROOT)):raise ValueError('synthetic_lifecycle_closure_not_registered')
  if (type(node) is not dict or set(node)!={'node_id','source_revision','runtime_source_digest'}
      or type(node['node_id']) is not str or re.fullmatch('[a-f0-9]{32}',node['node_id']) is None

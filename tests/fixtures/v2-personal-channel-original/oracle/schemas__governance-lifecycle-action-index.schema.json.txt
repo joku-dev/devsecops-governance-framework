@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-lifecycle-action-index.schema.json",
+  "title": "Governance Lifecycle Action Projection 0.2.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.2.0"
+    },
+    "index_type": {
+      "const": "governance-lifecycle-synthetic"
+    },
+    "environment": {
+      "const": "synthetic"
+    },
+    "official_state": {
+      "const": false
+    },
+    "enforcement": {
+      "const": "report_only"
+    },
+    "as_of": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+    },
+    "profile_ref": {
+      "$ref": "governance-lifecycle-common.schema.json#/$defs/versioned_ref"
+    },
+    "ledger_head_ref": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^transaction:[a-f0-9]{64}$"
+            },
+            "digest": {
+              "$ref": "governance-lifecycle-common.schema.json#/$defs/digest"
+            }
+          },
+          "required": [
+            "id",
+            "digest"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "transactions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observations": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "events": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conflicts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "findings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "decisions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "remediations": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "transactions",
+        "observations",
+        "events",
+        "conflicts",
+        "findings",
+        "decisions",
+        "remediations"
+      ],
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^finding:[a-f0-9]{64}$"
+          },
+          "identity": {
+            "$ref": "governance-lifecycle-common.schema.json#/$defs/finding"
+          },
+          "state": {
+            "enum": [
+              "open",
+              "needs_clarification"
+            ]
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "occurrences": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "first_failure_ref": {
+            "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+          },
+          "latest_observation_ref": {
+            "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+          },
+          "last_event_ref": {
+            "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+          },
+          "evidence_status": {
+            "enum": [
+              "pass",
+              "fail"
+            ]
+          },
+          "observation_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+            },
+            "uniqueItems": true
+          },
+          "conflict_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^transaction:[a-f0-9]{64}$"
+                },
+                "digest": {
+                  "$ref": "governance-lifecycle-common.schema.json#/$defs/digest"
+                }
+              },
+              "required": [
+                "id",
+                "digest"
+              ],
+              "additionalProperties": false
+            },
+            "uniqueItems": true
+          },
+          "closure_supported": {
+            "const": false
+          },
+          "active_decision_ref": {
+            "oneOf": [
+              {
+                "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decision_records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "record_ref": {
+                  "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+                },
+                "disposition": {
+                  "enum": [
+                    "approve",
+                    "reject",
+                    "revoke"
+                  ]
+                },
+                "effective_status": {
+                  "enum": [
+                    "approved",
+                    "rejected",
+                    "withdrawal_recorded",
+                    "revoked",
+                    "superseded"
+                  ]
+                }
+              },
+              "required": [
+                "record_ref",
+                "disposition",
+                "effective_status"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "remediation_cases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "remediation_id": {
+                  "type": "string",
+                  "pattern": "^remediation-case:[a-zA-Z0-9._-]+$"
+                },
+                "latest_record_ref": {
+                  "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+                },
+                "decision_ref": {
+                  "$ref": "governance-lifecycle-common.schema.json#/$defs/record_ref"
+                },
+                "owner_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "target_at": {
+                  "$ref": "governance-lifecycle-common.schema.json#/$defs/timestamp"
+                },
+                "progress": {
+                  "enum": [
+                    "planned",
+                    "in_progress",
+                    "completed"
+                  ]
+                },
+                "authorization_status": {
+                  "enum": [
+                    "approved",
+                    "revoked",
+                    "superseded"
+                  ]
+                },
+                "overdue": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "remediation_id",
+                "latest_record_ref",
+                "decision_ref",
+                "owner_id",
+                "target_at",
+                "progress",
+                "authorization_status",
+                "overdue"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "finding_id",
+          "identity",
+          "state",
+          "revision",
+          "occurrences",
+          "first_failure_ref",
+          "latest_observation_ref",
+          "last_event_ref",
+          "evidence_status",
+          "observation_refs",
+          "conflict_refs",
+          "closure_supported",
+          "active_decision_ref",
+          "decision_records",
+          "remediation_cases"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "conflict_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^transaction:[a-f0-9]{64}$"
+          },
+          "digest": {
+            "$ref": "governance-lifecycle-common.schema.json#/$defs/digest"
+          }
+        },
+        "required": [
+          "id",
+          "digest"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "index_type",
+    "environment",
+    "official_state",
+    "enforcement",
+    "as_of",
+    "profile_ref",
+    "ledger_head_ref",
+    "counts",
+    "findings",
+    "conflict_refs"
+  ],
+  "additionalProperties": false
+}

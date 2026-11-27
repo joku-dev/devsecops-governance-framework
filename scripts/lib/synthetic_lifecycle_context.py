@@ -8,6 +8,7 @@ from lib.repository_lifecycle.context import RepositoryLifecycle
 from lib.synthetic_lifecycle_reports import (SyntheticIndex,SyntheticPilot,
     SyntheticExceptions,SyntheticOverview,SyntheticViewer)
 from lib.requirement_validation_budget import InputAdmissionError
+from lib.retained_argparse import parser_base,formatter_factory
 from lib.requirement_validation_replay import IntegrityError
 from lib.requirement_review_output import RetainedOutputError
 
@@ -87,14 +88,20 @@ class LifecyclePath:
  def write_text(self,value,encoding=None,errors=None):return self.namespace.io.write_text(self.namespace.absolute(self.value),value,encoding,errors,str(self))
 
 
-def execute(source,cwd,name,argv,io_port,*,validator_class):
+def execute(source,cwd,name,argv,io_port,*,validator_class,parser_context=None):
  if name not in GENERATORS:raise InputAdmissionError('synthetic_lifecycle_generator_not_supported')
  paths=LifecyclePaths(source,cwd,io_port);root=paths.path(source)
  context=RepositoryLifecycle(root,validator_class=validator_class,path_factory=paths.path)
+ def parser(filename,**options):
+  cls=argparse.ArgumentParser if parser_context is None else parser_base(parser_context)
+  if parser_context is not None:
+   if options.get('fromfile_prefix_chars') is not None:raise InputAdmissionError('retained_argparse_argument_file_expansion_not_admitted')
+   options['formatter_class']=formatter_factory(parser_context)
+  return cls(prog=filename,**options)
  def make(kind,overview=None):
   filename,cls=GENERATORS[kind]
   return cls(root,context,path_factory=paths.path,
-      argument_parser=lambda **kw:argparse.ArgumentParser(prog=filename,**kw),argv=argv,overview=overview)
+      argument_parser=lambda **kw:parser(filename,**kw),argv=argv,overview=overview)
  overview=make('overview');context.governance_lifecycle_overview=overview
  item=overview if name=='overview' else make(name,overview)
  out,err=io.StringIO(),io.StringIO()

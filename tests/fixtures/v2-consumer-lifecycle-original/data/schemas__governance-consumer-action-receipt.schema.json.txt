@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joku-dev.github.io/devsecops-governance-framework/schemas/governance-consumer-action-receipt.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "lifecycle-pilot-action-receipt"
+    },
+    "environment": {
+      "const": "live_pilot_validation"
+    },
+    "official_state": {
+      "const": false
+    },
+    "live_activation_approved": {
+      "const": false
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "previous_ref": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^transaction:[a-f0-9]{64}$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "digest"
+          ]
+        }
+      ]
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "request": {
+      "$ref": "governance-consumer-action-request.schema.json"
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "request": {
+          "$ref": "governance-consumer-action-request.schema.json"
+        },
+        "result": {
+          "type": "object"
+        },
+        "issue_response": {
+          "type": "string"
+        },
+        "comment_pages_before": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "comment_pages_after": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "previous_comments": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "capture_method": {
+          "enum": [
+            "github_api_get_via_gh",
+            "injected_test_transport"
+          ]
+        }
+      },
+      "required": [
+        "request",
+        "result",
+        "issue_response",
+        "comment_pages_before",
+        "comment_pages_after",
+        "previous_comments",
+        "capture_method"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "eligible_for_pilot",
+        "rejected",
+        "withdrawn",
+        "needs_clarification"
+      ]
+    },
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^transaction:[a-f0-9]{64}$"
+    },
+    "receipt_head_at_recording": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^transaction:[a-f0-9]{64}$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "digest"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "environment",
+    "official_state",
+    "live_activation_approved",
+    "sequence",
+    "previous_ref",
+    "recorded_at",
+    "request",
+    "snapshot",
+    "outcome",
+    "transaction_id",
+    "receipt_head_at_recording"
+  ]
+}

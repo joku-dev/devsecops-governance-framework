@@ -1,5 +1,214 @@
 # GCR-2026-186: complete V1 functional parity in the AXIOM V2 product
 
+## Whole private Store and explicit SQLite primitives
+
+Classify the complete twelve-method Store algorithm, shared typed DB-API facade,
+native SQLite adapter, pure ordered reconstruction and whole database snapshots
+as executable engineering/evidence-contract portability under this GCR. Reuse
+the entire existing immutable V1 source fixture; no normative source, released
+baseline, official result, operating acceptance or historical receipt changes.
+
+Retain every original class body after only explicit path/SQLite/clock bindings,
+including original transactions, retry/claim behavior, namespace refusal and
+errors. Compare native results, SQL traces and complete database bytes to the
+whole original at identical explicit clock inputs. Record real primitive
+outcomes, not a fabricated Store result. Pure replay repeats the Store algorithm
+without SQLite, original files or new clock samples; native SQL outcomes remain
+declared observations rather than independently authenticated database truth.
+
+Keep durable call intent, sticky capture failure and separate owned-resource
+cleanup. A committed row survives missing completion capture; do not retry or
+claim rollback. Preserve original unclosed connections as explicit cleanup facts.
+Check whole initial/final database files, typed scalars, exact requests, hashes,
+row shapes and resource release. Root/inode/file admission is not SQLite VFS
+isolation or a claim that Python enables the C no-follow flag.
+
+This is an internal increment without a new public operator command. The whole
+operator, locking, disk/file helpers, backups and restore remain Goal work.
+Targeted tests do not establish current signed installed acceptance or complete
+22/135/37/16 parity. See the
+[private Store guide](../../operations/guides/axiom-v2-private-intake-store.md).
+
+
+## Whole fresh pilot-run intake and owned temporary capture
+
+Classify the neutral original main/API/context/application, explicit legacy
+GET and two-clock composition, native/private/pure temporary-scope and ledger
+ports, bounded receipt storage, distribution routing and immutable original
+references as executable engineering/evidence-contract portability. No new
+normative source, policy, control, baseline, source register, official latest
+index or operating acceptance changes; these original references do not require
+normative Source Document Intake.
+
+Retain the complete original1,107-byte main, `capture_files` and `append_capture`.
+Fresh collection and whole original verification precede the later receipt clock;
+inside the writer lock, reload complete history and check exact redelivery before
+expected sequence. Preserve atomic buffered publication and original cleanup
+order, including receipts surviving directory-fsync or later temporary cleanup
+errors. Two actual competing processes must not share a sequence.
+
+Keep the original25-MiB capture bound. Its base64 receipt uses a separate fixed
+64-MiB transaction-file/2-GiB repeated-read profile; old16/128-MiB defaults and
+all alias/inode/scope checks remain intact. Reject replacement/unknown children
+before cleanup and deactivate finalizers after ownership loss. Logical private
+temporaries confer no native durability guarantee. Full source-deleted pure
+reconstruction repeats no GET, clock, source, write, lock or cleanup effects.
+
+Record whole V1 positive/negative native/private comparisons, large valid
+captures without altered frozen profiles/schemas, real writer barriers and
+partial/journal failures. Keep the27-method dated source proof separate from
+subsequent registered application, exact-source full, signed installed/peer and
+fixed-consumer gates. Current registration remains in progress; full Goal and
+outer Python traceback parity are open. No personal, producer, Source,
+compliance or operating authority is transferred. See the
+[run-intake guide](../../operations/guides/axiom-v2-pilot-run-intake.md).
+
+## Whole diagnostic capture and saved-bundle preflight
+
+Classify the neutral full original program/context/reconstruction/application,
+explicit GET/clock/exclusive-output composition, larger binary transport profile
+and immutable original references as executable engineering/evidence-contract
+portability under this GCR. No new normative source, control, policy, baseline,
+source register, official latest-result index or operating acceptance changes.
+Full Source Document Intake does not apply to these technical references.
+
+Retain the entire1,035-byte original main and complete collect_preflight body,
+plus unchanged original capture verification and bundle replay. Keep original
+profile/assignment checks, fixed read-only GETs, paginated artifacts, raw pinned
+producer files, before/after races, capture sample,10-MiB archive verification,
+exclusive directory and buffered xb files with completion manifest last. The
+new explicitly selected16-MiB process stdout budget does not weaken the existing
+personal-channel8-MiB profile. AST comparisons retain all original decisions.
+
+Compare native/private full bytes, modes, streams and direct API returns, then
+pure replay after source/program deletion. Include actual ordinary competing
+entries during GETs and mkdir, original EEXIST, exact7-byte partial-write errors,
+and source/node/parser/result/event/blob/authority mutation rejection. Record
+external appearances separately from owned outputs. Missing input/clock/journal
+observations obtain no original verdict; separately release owned host handles.
+These tests, legacy markers and reconstructed consistency confer no producer,
+personal, Source, compliance or operating authority. Outer Python traceback
+wire and complete Goal acceptance remain open; run-intake is a separate
+following engineering increment. See the [preflight guide](../../operations/guides/axiom-v2-live-preflight.md).
+
+## Whole fresh pilot action intake and two-ledger publication
+
+Classify the neutral original program/context/application/reconstruction,
+explicit transport/clock/ledger composition, distribution routing and immutable
+original references as engineering/evidence-contract portability. The entire
+1,033-byte original intake and complete original pilot-actions module retain
+hashed technical references. No new normative source, approved requirement,
+control, policy, baseline, source register or operating acceptance changes.
+
+Retain the whole original main, `collect_action` and `append_action_snapshot`,
+including the default/explicit collection parameters, actual fresh GET marker,
+full history/role/head/schema/freshness/statement validation, capture time and
+later recording time, same-order two-ledger locks, context reload, duplicate
+short circuit, expected sequence, atomic pending-file write/flush/fsync/link,
+directory fsync and cleanup. Whole AST restoration checks these entire bodies.
+Unchanged original validation functions build and check the synthetic fixtures.
+
+Compare native/private whole file bytes, modes, streams and API returns. Two
+real writer processes demonstrate actual lock waiting and changed-state
+sequence rejection; portable replay uses the observed history after source
+removal. Preserve complete native errors and already published action bytes
+after directory-fsync failure. A lost journal confers no original verdict;
+release owned host resources without relabelling unobserved cleanup as part of
+the original execution. Retain end-of-kernel descriptor and ledger observations.
+
+The application binds strict profile/parser/source/product/node/result/event/
+blob/authority context and rejects resealed result, clock, metadata and orphan
+attacks. Exact external Python traceback wire equality remains open. Dated
+source/prototype/API/concurrency checks do not establish current signed installed
+acceptance or full135/37/16 parity. Keep the subject in progress until full
+pinned review and matching signed Mac/Linux/peer/consumer evidence support it.
+No private projection, captured statement or technical consistency transfers
+personal, live, Source, producer or operating authority. See the
+[intake guide](../../operations/guides/axiom-v2-pilot-action-intake.md).
+
+## Complete pilot action request preparation
+
+Classify the new neutral preparation/context/application/clock reconstruction,
+explicit clock and captured-field/output composition, distribution routing and
+immutable references as executable engineering/evidence-contract work. Preserve
+the complete original 2,368-byte program as a hashed technical reference, plus
+its unchanged original injected-test helper and the existing80 original oracle
+members. The authored history builder creates internally validated synthetic
+receipt/action histories and does not represent provider or personal authority.
+No normative source, requirement, control, policy, release or source register is
+changed; full Source Document Intake does not apply to these engineering inputs.
+
+Retain the entire original `prepare` function and main guard, including all
+original role, receipt, action, head, revision, schema and freshness validation,
+the creation sample after context loading, explicit `created_at` semantics,
+exclusive output without implicit parent creation, and complete printed
+request-bound statement. Whole original native/private cases cover decision,
+progress, closure, both withdrawals, role withdrawal, missing receipts, PASS
+without finding, quarantined history, inactive roles and stale evidence. Exact
+AST restoration after only declared ports checks both complete original bodies.
+
+Preserve original ledger canonical hashes, including ASCII escaping of Unicode
+statements. A wrong test helper initially used the distinct portable encoder;
+stronger original-success assertions exposed its rejected action references.
+Correct only that fixture selection, retaining failed logs and unchanged
+original validators. Observe actual context completion before clock sampling;
+do not infer this phase from equal fixed timestamps alone.
+
+The registered application must bind full request/product/node/result/event/blob
+and authority context. Native seven-byte output failure is compared with the
+original, retains partial bytes, prints no success statement and reports possible
+partial effects. Clock/input/journal incompleteness obtains no original verdict.
+Closed replay repeats no native source, output, program or clock operation.
+Keep this subject in progress until full pinned/source/review and signed matching
+installed Mac/Linux/peer/consumer evidence supports promotion. No preparation,
+rendered personal text, retained declaration or technical consistency transfers
+personal, producer, live or operating authority. See the
+[preparation guide](../../operations/guides/axiom-v2-pilot-action-preparation.md).
+
+## Personal-channel programs, explicit read transport and exclusive output
+
+Classify the new neutral program/context/application/reconstruction modules,
+explicit provider/process/clock/output adapters, product routing and immutable
+original test references as executable portability and evidence-contract work.
+The 80 frozen oracle members retain their original hashes and history; private
+fixtures may select a recorded valid prefix without editing real protected
+acceptance, source registers, released baselines or historical receipts. No
+normative source or derived control/policy is introduced; full source-document
+intake does not apply to this engineering/reference increment.
+
+Preserve all three original complete mains, nine named program functions,
+original current-head/request/history validation, bounded GET pagination and
+before/after race rejection, capture clock sampled after responses, exact raw
+capture bytes and exclusive output. Restore full new-capture verification over
+original local Git selection and provider projection, including its integer
+return value. Statement/evidence mains continue to ignore argv; only the check
+main receives the original complete producer argparse profile. No original
+validation outcome is replaced or inferred from a captured declaration.
+
+Use closed process/clock/exclusive-output observations with whole raw stderr
+bytes and original Git text/exception semantics. Actual resource, stream-budget
+or journal failures are incomplete; owned cleanup may flush bytes separately
+without granting an original verdict. Finite private mask077 projection does
+not assert native buffering/durability. Pure replay consumes the same observed
+inputs after selected source and executable removal, without native effects.
+Require product/source/node/request/result/event/blob and authority bindings.
+Provider defaults belong in explicit composition; architecture-boundary checks
+must reject provider literals in the neutral application.
+An actual delayed-constructor comparison reproduced premature transport timeout;
+start its original timeout after process creation, matching `check_output`.
+The extra finite local-Git deadline instead remains technical incompleteness:
+the original Git call supplies no timeout and must obtain no invented original
+`TimeoutExpired` verdict. Preserve both failing-before regression logs and
+reject a resealed Git timeout verdict during pure reconstruction.
+
+Keep three subjects in progress until their complete individual evidence and
+full pinned/reviewed/signed installed Mac/Linux/peer/consumer checks support
+promotion. All22/135/37/16 remain. Rendered historical personal statements,
+transport observations and technical replay confer no current personal consent,
+producer authentication, operating acceptance, live activation or posting
+authority. Full external interpreter traceback equality remains open. See the
+[personal-channel guide](../../operations/guides/axiom-v2-personal-channel.md).
+
 ## Subject evidence delivery and audit
 
 ### Initial individual technical declarations
@@ -1545,3 +1754,595 @@ old records have no parser context and are preserved as historical evidence,
 without relabeling. This correction needs fresh pinned validation, declared
 reviews and matching signed installed host/peer proofs. It does not declare
 full parity, producer authentication, governance approval or operating authority.
+
+## Complete documentation reconciliation development candidate
+
+Retain all seven functions/165 original lines of the documentation reconciler
+through an explicit neutral whole-program context, finite local Git provider,
+private candidate filesystem and native buffered append observations. Preserve
+all four document exports, full link audit, opaque preimages, original errors
+and ordered partial effects. Replay repeats neither selected files nor Git nor
+native writes; requests, product generation, node, authority, blobs and whole
+results remain bound. Portable consistency does not authenticate a producer;
+local node inspection remains separate. A caller's build status does not execute
+a build, and prepared documents require human editorial review.
+
+Prototype23-method and ten-record-per-direction host proofs remain development
+evidence. Full current validation, declared coordinator review, signed source,
+installed host comparisons and fixed ha-CPsWMS equality remain delivery gates.
+Move only this entrypoint to in_progress:105 in progress,30 pending,zero verified.
+No scope exception, acceptance transfer, released baseline or historical receipt
+change is introduced.
+
+The current review reproduced an overly broad negative-signal Git diagnostic
+check. Exact producer CPython/OS signal context now derives the whole original
+message, with actual Git termination and resealed-wire negative tests. The
+controlled interrupted full run is retained as incomplete; all19 classified
+effects are exactly restored and24 protected/18 historical files remain intact.
+It does not certify the correction; fresh current-source and installed gates
+remain delivery requirements.
+
+### Documentation parser context integration
+
+The documentation application now retains required complete producer argparse
+context through the same pinned 3.11/3.12/3.13 profiles as the corrected ledger
+candidate. Native identity/width/English observation and pure parser reconstruction
+are separate. Missing/unsupported context fails before selected data or records;
+replay has no consumer terminal/gettext defaults or final-stdout normalization.
+Current tests compare unchanged original help/unknown/empty streams at three
+widths in both modes, inert replay and resealed context/output attacks. These
+source tests and the unchanged original165-line program do not replace current
+full validation, declared review, signed installation or whole-peer proof.
+
+## Complete diagnostic lifecycle candidate preparation development
+
+The next engineering/reference increment retains both complete original candidate
+preparation CLIs, their shared writer, complete candidate normalization and both
+DevSecOps-control/architecture-gate adapters. These seven original functions
+remain diagnostic, report-only and unverified; architecture gate messages do not
+become marker findings, and no accepted lifecycle observation, live intake or
+operating authority is inferred. Original context/digest/time/schema/summary guards
+and candidate IDs, output guards, native/private error behavior and parser exits
+remain in scope. Explicit selected data/closed schema/parser dependencies replace
+implicit product-root/global coupling.
+
+This is source-code engineering and descriptive documentation, not authoritative
+governance source intake. No source register, released baseline, OPA policy,
+protected acceptance or historical parity receipt is changed. Current work is
+development only: whole original comparison, pinned full validation, declared
+revision-bound review and signed matching installed Mac/Linux delivery are still
+required. No matrix entry is promoted before its application is implemented.
+
+The candidate source now retains all seven immutable original function bodies
+(161 whole-source lines); offline AST composition exposes only explicit context,
+path/parser/argv and default-adapter bindings. The product never executes source
+text. Eight original CLI/core groups passed before application registration.
+The complete registered application adds private/native capture, closed schema
+resources, source/product/node and entire-result checks, inert replay and
+original-versus-incomplete error separation. Both entrypoints are now in_progress;
+no verified receipt is added. Current full source, declared review, signed
+installed and fixed-consumer/whole-peer proofs remain delivery conditions.
+
+The original native-oracle dependency closure, schemas and examples are frozen
+as exact checked fixtures. Test execution requires no historical Git objects;
+the original oracle runs in a separate process over its own copied source/data.
+Product execution never imports those fixtures. This preserves complete original
+comparison in sparse installed packages and independent Linux source fixtures.
+
+## Complete producer parser context for prior capture APIs
+
+A fresh older synthetic lifecycle help record reproduces a whole-result replay
+failure when only the consumer terminal width changes. Earlier host/CI proofs
+are dated scopes and do not establish all-environment portability. The next own
+branch extends the complete explicit producer parser profiles/version/width and
+English translation inputs to older synthetic-lifecycle, workbook-import and
+document-rendering capture/replay, retaining all original program bodies, argument
+selection, IO/partial-error semantics and whole-result checks. Historical records
+are retained without relabeling or final-stream normalization.
+
+Execution requests require their producer context; shared metadata-only shape
+validation receives a distinct helper, without a consumer-native fallback. This
+is an engineering/reference correction, not normative source-document intake.
+No source register, OPA policy, released baseline, protected acceptance file or
+historical parity receipt changes. Current source/full/revision-bound review
+and signed Mac/Linux installed proofs remain required; the full Goal stays open.
+
+## Complete diagnostic pilot projection development
+
+`pilot-projections generate/inspect/replay` retains both complete original
+pilot-report programs over explicit lifecycle context and closed IO. The required
+capture profile selects original retained provider-field checks through a port;
+there is no provider fetch or inferred current consent. Original writes, ignored
+argv, streams, errors and index-before-report partial effects remain visible.
+The immutable V1 fixture contains two receipts and no actions; later histories
+are not substituted. A separate correction marks possible native partial effects
+for original candidate write failures; the original kernel and admission guards
+remain unchanged. Focused source checks are development evidence; current full,
+pinned, reviewed, signed installed/peer/consumer evidence is still required.
+Full22/135/37/16 remains, now109in_progress/26pending/0verified entrypoints.
+See [pilot projections](../../operations/guides/axiom-v2-pilot-projections.md).
+
+
+## Independent fresh verification of new pilot receipts
+
+This engineering increment ports the complete original `verify_new_receipts`
+helper without replacing its fresh provider collection by retained claims. It
+preserves the original local Git-tree selection, full preflight validation,
+raw artifact/producer fingerprint, two clocks and temporal guards. Explicit
+native/private/pure temporary scopes and a fixed read-only legacy protocol
+supply external effects. A closed application/CLI binds source generation,
+request/base, node, complete result/events/blobs and false authority fields.
+Its declared helper scope keeps structural ledger validation and the complete
+original validator/publication route as separate open obligations.
+
+Six kernel methods and eight initial application methods passed as development
+checks; explicit helper-scope output fields and final byte-bound source checks
+are following work. Prior Run-Intake source35 passed3.13/3.11/3.12 at9ae/3220;
+its current full3404 is still running. Corrected Preflight full3369 passed and
+signed eacbb5a is undergoing fresh paused Mac/VM installation checks. Earlier
+step counts and proofs retain their original dated scope. No new normative
+source, model, policy, schema, baseline, history or protected acceptance changes.
+Current entrypoints remain116in_progress/19pending/0verified within the unchanged
+22/135/37/16 Goal. Full source/revision-bound reviews, signed installed/peer/fixed
+consumer/package evidence and remaining functions stay required.
+
+
+### Current independent-verification validation observation
+
+All14focused methods passed3.11/3.12/3.13 at exact51b9/3228, and12wholeoriginalAPI/49actualCLI comparisons passed with their actual earlier source/node generations retained. Parent Run-Intake full3404/post/review/sign completed as `a04ff37f0a82fd1103b77cd71d0b6da3fea57b7f`; own AA branch adopted its exact9ae tree preserving all3228 byte/mode pairs. Only five explanatory validation-observation files refresh before current full3418; code, models, original fixtures, protected24 and historical18 stay identical to the focused source. Current full/revision-bound source review/sign and actual signed installed/peer/consumer/package evidence remain required; original validator/publication orchestration remains open.
+
+
+### Whole original new-action verification over explicit read-only ports
+
+The next own branch retains the complete immutable original `verify_new_actions`
+function, including actual historical action replay, base-tree selection, fresh
+personal proof comparison, future recording time, current evidence head,
+permission-reducing exceptions and fresh decision/progress prerequisites. The
+core uses the existing lifecycle context and explicit path/provider/Git ports;
+a dedicated legacy protocol permits only the original action-ledger tree and
+fixed personal GET operations. No ledger writer, temporary export or publisher
+is composed. The explicit `checked_at` API parameter and actual default clocks
+remain distinct observations.
+
+The closed application adds strict request/profile/source/node/result/events/blob
+binding and source-deleted replay. Whole original reference tests construct
+complete receipt/action histories using immutable V1 code and injected test
+transport, without replacing structural validation/replay functions. Their
+claimed capture-method field exercises the original guard as an explicit test
+input; it does not assert real provider authentication or human approval.
+Original traceback type/message suffix and raw provider stderr are checked;
+external interpreter traceback wire equality stays open.
+
+The preceding AA source remains frozen for its actual full3418/review/signature
+and signed installed pipeline. This branch inherits its exact3228-source bytes
+and modes and will adopt its signed commit only after that commit actually
+exists and the inherited source is verified. The new increment requires its own
+complete validation, revision-bound coordinator review, signature, paused Mac/VM,
+whole-peer, fixed5c consumer and complete package evidence. Remaining accepted
+Git prefix, full validator-main/publication and operating fresh verification
+are not replaced by this helper. No source/model/policy/baseline/protected
+acceptance/history or authority changes; full Goal remains22/135/37/16 and
+116in_progress/19pending/0verified.
+
+
+### Whole fresh operating-acceptance helpers and binary Git run semantics
+
+The next isolated branch ports all original collect/verify_provider/
+verify_new_captures functions, with entire function AST restoration checks and
+complete unchanged historical model replay. The adapter supplies fixed personal
+GETs, original clocks, operating-capture ls-tree and binary index Git show.
+Changed/new and missing base indexes recheck the provider even without new
+captures. Future captures, changed implementation manifests and provider changes
+retain their original guards. Returned original acceptance fields do not grant
+this node authority, and no capture writer or publisher is composed.
+
+An explicit additional git-run style in the shared transport preserves binary
+CompletedProcess-shaped results, including nonzero/negative statuses and captured
+stderr. It neither raises an invented CalledProcessError nor emits captured
+stderr. Existing check-output/GET styles retain their prior semantics. Technical
+local Git deadlines have no original verdict. Initial direct-run test record
+bookkeeping omitted its required exit_code and failed; only the prototype record
+payload was corrected. The actual four binary transport checks pass, as do20
+existing shared transport/context checks. Whole original9 helper methods pass;
+current closed application and full/source/installed proofs remain separate.
+
+Frozen V1 fixture supplements contain11 original files plus an explicit checksum
+contract. Implementation manifests and simulated statements are derived only
+inside private selected test copies. Original validators/projections are not
+patched, and protected accepted repository state, source models, schemas,
+policies, baselines and historical receipts remain unchanged. The preceding AB
+source stays frozen for its17 cross-version checks and full3435 pipeline. This
+branch will adopt its actual signed parent only after that parent exists and all
+inherited source bytes/modes are checked. Remaining accepted Git prefix, complete
+validator/publication orchestration, capture/runner flows, full external traceback
+wire and all other22/135/37/16 Goal obligations remain open. No scope exception,
+Source/personal/producer/compliance/operating authority or publication consent is
+inferred from these tests.
+
+
+## Complete accepted-prefix helper and isolated Git conversion capture
+
+Classify this increment as engineering and evidence-contract portability of the
+entire frozen original check_accepted_prefix/git functions. The core retains all
+original guards and call order, including the optional binary exception probe
+and every preparation namespace. Explicit context/path/Git ports replace native
+calls. No normative source, released baseline, original accepted implementation
+manifest or historical ledger is changed.
+
+Closed generate/inspect/replay records bind origin node, actual product bytes,
+source/base, original returns/errors/streams, ordered observations, auxiliary
+scope and all blobs. The read-only command offers no source export, writer,
+provider command or acceptance transfer. Pure replay performs no source/Git/
+clock/auxiliary operations. The helper scope states that complete structural
+ledger validation and original validator/publication orchestration are separate.
+
+Builtin Git clean conversion uses frozen effective attributes, relevant builtin
+configuration and captured index/shared-index bytes in owned private metadata.
+It preserves EOL/ident/encoding behavior; no-filters is not an equivalent
+shortcut. Selected source clean/process commands must never execute or enter
+records; capture observes their key names and fails technically before hashing.
+Unselected drivers do not trigger blanket rejection. Context drift, changed
+input or lost journal cannot produce an original compliance verdict. Closed
+owned-scope cleanup quarantines unknown/changed children and failed captures;
+there is no broad recursive cleanup or automatic resume.
+
+Retain exact whole-original comparisons over positive, invalid base, modified,
+deleted, symlink, profile/preparation migration, missing-parent and conversion
+cases; source bytes/modes, original diagnostics and portable no-source replay
+are compared. Separate tests cover real split index/worktree metadata, selected
+filter nonexecution, changed context, forged records and journal-loss effects.
+Dated focused tests and prototype observations are not current full signed
+source/installed delivery acceptance. The original 22/135/37/16 scope and
+116-in-progress/19-pending/0-verified remain unchanged. Full external Python
+traceback wire and full validator/publication remain required. See the
+[prefix guide](../../operations/guides/axiom-v2-accepted-prefix.md).
+
+
+## Complete original lifecycle validator orchestration
+
+Classify this increment as engineering portability of the entire frozen
+validator main, not a new governance source or authority decision. Preserve
+both original flags and every original call, including all four fresh provider
+checks between operating validation and final projections. The neutral core
+uses the existing model and explicit prefix/receipt/personal/action/operating
+ports. Original provider text is held in a separate legacy rendering profile.
+
+Read-only lifecycle-validator generate/inspect/replay binds complete producer
+parser context, source/base/flags, selected temporary mode, actual node/product
+bytes, original returns/errors/streams and every ordered observation/blob. No
+publisher, source export, new AI-provider execution or consent transfer occurs.
+Private coherent fixtures use unmodified original producers and a fake read-only
+provider to compare entire original executions, both temporary modes, all four
+fresh helper paths, changed provider data, active/inactive operating guards,
+parser failures, prefix failures and source-free reconstruction. Test fixtures
+are private manual engineering evidence, not real approvals or official latest
+results. Original validation is not weakened or replaced with a stub.
+
+Current full source, revision-bound review/sign and installed host/peer/consumer
+acceptance remain required. Full outer Python traceback wire and original
+publication/runner orchestration remain open. No released baseline, accepted
+implementation manifest or historical ledger is changed. The 22/135/37/16 scope
+and 116-in-progress/19-pending/0-verified remain unchanged. See the
+[validator guide](../../operations/guides/axiom-v2-lifecycle-validator.md).
+
+
+## Preserve literal Git-quoted preparation path semantics
+
+Classify this follow-up as a fidelity correction to the existing read-only
+accepted-prefix adapter. The frozen original helper joins Git's C-quoted tree
+label literally; decoding it would select a different source file. The finite
+protocol now admits that unchanged literal label only within the same selected
+ledger/preparation namespaces. Original helper and validator-main algorithms,
+tracked transaction grammar, source write permissions and authority remain
+unchanged. Malformed/foreign/traversing labels remain outside admission.
+
+Complete original subprocess comparisons expose the previous technical
+hash-selection failure for quoted names. They retain original diagnostics for
+missing literal paths and original successful hashing when a literal quoted
+path coincidentally exists. Unicode with core.quotePath=false and quoted
+nontransaction ledger names have separate original comparisons. Captured native
+execution and source-free replay preserve return/error/raw diagnostics and all
+source bytes/modes. New recordings remain manual engineering evidence; they do
+not update official latest or accepted history.
+
+Current shared source/full/review/sign and installed delivery remain required.
+Safe source alias/external conversion capture, complete outer Python traceback
+and launcher diagnostics, publication/runner/other operating flows and final
+subject audit remain Goal conditions. Scope22/135/37/16 and
+116-in-progress/19-pending/0-verified remain unchanged.
+
+
+## Complete pilot update runner and operating writes
+
+The new `pilot-update` entrypoint ports the whole original runner and executable
+parser, and complete operating acceptance `capture` / `generate` helpers from the
+frozen V1 reference. Acceptance, observation, committed action and refresh retain
+their original order, guards, two-ledger effects and generated reports. Checked
+read-only Git results preserve binary outputs and exceptions without re-emitting
+captured stderr. Provider-specific wire requests stay in explicit adapters.
+
+Default private candidates and explicitly selected native exports are distinct;
+partial original writes remain observable after a later original error. Closed
+record inspection and source-free replay bind source/product/node, complete
+observations, parser context and every blob. No publisher, service activation or
+source/personal/producer/compliance authority is transferred.
+
+Whole original execution and AST comparisons, checked Git process tests, public
+API/CLI integrity tests and current three-version source/full/review/signature /
+installed host delivery are required. This section records implementation scope,
+not a completed acceptance. The original runner entry moves pending to in_progress:
+117-in-progress/18-pending/0-verified within unchanged scope22/135/37/16.
+Consumer runner, publication, source aliases/external conversion, outer traceback
+and launcher wire, other operations and final subject audit remain open.
+
+
+## Preserve source-free replay through the installed starter
+
+An actual installed e2a620e8 candidate reproduced a difference: direct Python
+replay succeeds without an instance, while an otherwise identical isolated
+starter prefix without its default instance returns2. The previous shell starter
+always supplied an explicit instance, preventing source-free dispatch.
+
+The starter now supplies a separate default. The application chooses it only
+after its existing global and source-free routes. Explicit user instances remain
+binding and retain validation. Missing or malformed defaults cannot create an
+instance or authorize ordinary operations. Starter text is shared by the installer
+and real subprocess development fixtures, including a prefix containing spaces.
+No record integrity, product/node binding, input admission or authority changes.
+
+Current source/full/review/sign and actual new signed installed Mac/Linux
+acceptance remain required. Same-generation diagnostic comparisons are not full
+outer V1 traceback parity. Scope22/135/37/16,117in_progress18pending0verified
+remain unchanged; publication, consumer runner, safe aliases/external conversions,
+other operations and the final subject audit remain open.
+
+
+The same-generation starter fix exposed a mixed-version installation regression:
+current host starter text passed the new option to an older admitted program,
+which rejected it. The original old starter succeeds with the exact same package,
+interpreter and `check` request. Installation now obtains starter text from the
+admitted source under its prepared interpreter. Only absent factories use the
+legacy contract; failed or malformed present factories fail before the final
+installation receipt. Three native child-process regressions cover older source,
+admitted factory selection over host text, and fail-closed malformed/error cases.
+Previous source3b96/65-method evidence remains dated; the refined source needs its
+own three-version/full/signature/installed evidence without relabelling passes.
+
+
+The follow-up `publication-validation` capability ports the complete original
+`operating_acceptance.validate_publication(repo,base_ref)` prerequisite. The
+entire function body, original helper order, complete returned source index,
+active fresh recheck, inactive new-observation/new-positive-grant rejection and
+permission-reducing corrections remain present. The shared whole-validator
+composition supplies all real model/receipt/action/operating helpers; the new
+explicit port admits only the original ordered two-ledger Git-tree read.
+No commit, push, PR, dispatch, approval or merge occurs through this function.
+
+New files are executable governance logic, engineering fixtures frozen to V1,
+tests and practical/arc42 documentation under this existing change request;
+they are not normative input or new accepted history. The original publisher
+source is retained as an engineering scope reference, without importing or
+executing selected source programs in the product. Whole original/native/pure
+comparisons and actual top-level record/CLI tests are distinct from explicitly
+isolated policy-branch stand-ins. Fresh pinned source, review/signature and
+installed Mac/Linux acceptance remain required. Publisher orchestration, the
+consumer runner and every remaining original scope item remain open; matrix
+states and historical validation observations are not promoted by this helper.
+
+
+The remaining uncommitted complete validator, literal Git-label correction,
+pilot runner, version-bound starter and publication precondition are consolidated
+for one current candidate over the already signed3506-test parent. Six observed
+childless waiters before unstarted intermediate full validations were handed
+off; the running3531-test source validation, Linux source checks and installed
+tests were not stopped or rewritten. Their original outcomes remain separate
+revision-bound evidence. The combined candidate still requires its own exact
+three-version source scope, whole CLI comparison, pinned full validation,
+protected/history/release integrity checks, current review, signature and
+installed acceptance. No existing source/record is relabelled as current and no
+entrypoint, CI definition, operating flow or original helper is removed.
+
+
+## Operational publisher native library and real gate integration
+
+This follow-up ports all six whole original publisher functions (five neutral
+functions and the original provider POST helper), complete scope/constants and
+explicit legacy profile. Native Git/POST ports retain automation branch creation,
+exact staging, commit, local push, PR, output append and CI dispatch ordering,
+including observable partial success before later failures. Original source is
+retained as engineering fixtures only, not a new normative intake or authority.
+
+Real lifecycle gate composition uses the complete accepted-prefix, receipt,
+action, operating and synthetic pilot/overview/viewer helpers. Orchestration
+test doubles and additional admission tests remain labelled separately. The
+native standalone clone profile rejects shared/aliased Git write state,
+external filters/configuration and unselected targets. There is no operating
+activation or concurrent-writer/OS-isolation claim. No live provider writes are
+used for current tests.
+
+The entrypoint moves from pending to in progress: 118 in progress, 17 pending,
+zero fully verified. Scope22/135/37/16 remains unchanged. Complete publisher
+journal/replay and operator CLI, current pinned regression/review/signature,
+installed Mac/Linux and fixed-consumer comparison still remain required.
+Neither the read-only gate record nor in-memory native observations replace
+those obligations. No release, accepted history or immutable baseline changes.
+
+
+## Whole operational publisher journal, CLI and source-free replay
+
+The full publisher now composes original main/callable execution, all six scopes,
+real lifecycle gates and explicit native process/path ports through
+`operational-publisher publish/inspect/replay`. Durable intent precedes each
+original native call; raw POST input/streams, original/actual command binding,
+source/Git/program/remote/context observations, ordered CI open/write/close
+preimages/prefixes/modes and original errors are retained. Pure replay executes
+none of those native effects. Source and tools can be removed before replay.
+
+Original partial success and failure are preserved; unobserved or lost completion
+remains incomplete without an original verdict, retry or rollback. Additional
+technical admission rejects source/private executable tools, shared/aliased Git
+state and unselected targets, disables recursive fetch/automatic maintenance,
+and does not attest OS/concurrent-writer isolation. Public declared workflow
+metadata is separated from native credentials. No operating authority transfers
+and no persistent publisher is activated. Tests use local origins/fake POSTs;
+real lifecycle gates are distinguished from orchestration-only stand-ins.
+
+The current implementation still needs pinned three-version/full validation,
+fresh source review/signature and installed Mac/Linux/consumer acceptance.
+Source aliases/converters, outer diagnostics and remaining publishers/consumer
+and CI/operating flows remain open. Scope22/135/37/16 and118in_progress17pending
+0verified stay unchanged; there is no released-baseline or accepted-history edit.
+
+
+### Complete consumer lifecycle runner and recorded effects
+
+The seven original consumer operations now compose all 53 original functions
+and the complete executable footer through `consumer-lifecycle`. Whole-function
+structure and behavior retain model/role/scope/sequence, personal statements,
+independent pinned OPA, both ledgers, acceptance manifests, required guard and
+publication checks. Native and private effects are captured and reexecuted
+without source files, programs, current clocks or repeated writes. Source
+implementation manifests and provider facts stay in adapters; personal/guard
+credentials are separate from the optional consumer evidence read token.
+
+The real complete flow exceeded the smaller journal/output profiles. A distinct
+consumer profile permits 65,536 events / 128 MiB and 4,096 native output operations,
+while existing profiles, byte bounds, identity checks and original governance
+logic remain unchanged. Lost completion and added technical failures remain
+incomplete, without an original verdict, retry or inferred authority. Initial
+failed budget and test-fixture runs are retained as failed development evidence.
+
+This entrypoint moves to in progress: 119 in progress, 16 pending, zero verified.
+The scope remains 22 areas / 135 entrypoints / 37 CI definitions / 16 flows.
+Current full source regression, bound review, signature, fresh installed
+Mac/Linux/ha-CPsWMS/peer acceptance and the separate consumer publisher remain
+open. Materialized private OPA filenames stay in raw diagnostics; outer V1
+tracebacks and safe Source aliases remain final parity work. See the
+[consumer lifecycle guide](../../operations/guides/axiom-v2-consumer-lifecycle.md).
+
+The Linux test setup initially selected a regular OPA file under `venv`; the
+existing private-path guard correctly returned technical incompleteness.
+Its approved bytes are copied to a separate ordinary tools directory for a
+fresh same-source run. An environment-selection layout can also expose an external
+OPA tool through a `.venv-validation` symlink. A separate provider binding now resolves and binds
+that stable selection alias before applying the unchanged target/private,
+source/node, ownership and approved-hash checks. Credential-labelled aliases
+and actual private binary targets remain forbidden. Original selection labels
+and actual process arguments are retained, including during source-free replay.
+The original frozen candidate and running full validations remain unchanged.
+
+
+### Separate whole consumer publisher in progress
+
+The complete six-function consumer publisher now has its own
+`consumer-publisher publish/inspect/replay` composition and finite legacy adapter.
+The original optional/default consumer scope, append-only selection, unconditional
+full consumer acceptance publication gate, actor/PR formatting, pipeline appends
+and all four workflow dispatches are retained. Both the model namespace bridge
+and the same central/evidence credential separation are explicit. No generic
+publisher gate is substituted. Native process outcomes and partial effects are
+recorded before source-free replay; lost completion cannot become original
+success, a retry or automatic rollback. This does not activate a publisher service
+or transfer operating authority.
+
+The matrix now has 120 entrypoints in progress, 15 pending and zero verified,
+with the unchanged 22/135/37/16 total scope. Current pinned full/source validation,
+revision-bound review, signature, installed Mac/Linux/peer/ha-CPsWMS acceptance,
+remaining CI/operating flows, safe Source aliases and outer V1 diagnostics remain
+open. Earlier frozen source/full runs remain unchanged. See the
+[consumer publisher guide](../../operations/guides/axiom-v2-consumer-publisher.md).
+
+
+The earlier combined publication-record full run completed 3,674 tests with one
+failure and one skip. Its public worker-budget CLI test still supplied a callback
+without the newly forwarded `default_instance_path` keyword. The callback raised
+TypeError before the intended worker path; the CLI correctly redacted that error.
+The focused correction only updates this test callback to accept both explicit
+instance inputs and assert their bindings. Production code, actual worker
+execution and the 32-MiB negative test budget remain unchanged. The corrected
+worker suite passes on the actual Mac with process observation available.
+The earlier full failure and its classified generated effects are retained; it
+is not relabelled as a passed full run. Current combined full validation remains
+required.
+
+
+### Whole typed-evidence publication extension in progress
+
+`typed-publisher publish/inspect/replay` preserves both original typed wrapper
+functions over the entire original operational publisher. Three additional
+measured-security/measured-L1/control-assurance append-only ledgers are selected
+through an isolated configuration namespace. All original scopes, scope selection,
+full applicable lifecycle gates, native Git/POST/append order and three dispatches
+remain unchanged. Configure state, native process outcomes and partial effects
+are captured and completely replayed without repeating writes. Inherited generic
+control flow and existing native safety remain unchanged; full finite typed
+command/path admission binds the exact additional rules. No publisher service or
+operating authority is activated.
+
+The unchanged total scope is 22/135/37/16, now 121 entrypoints in progress, 14 pending
+and zero verified. Current full source/installed acceptance, review, signature, fixed
+ha-CPsWMS and peer comparisons, other CI/operating flows and final parity audit
+remain open. The prior frozen consumer candidate and its full run remain untouched.
+See the [typed publisher guide](../../operations/guides/axiom-v2-typed-publisher.md).
+
+
+### Whole self-security publication in progress
+
+`self-security-publisher publish/inspect/replay` preserves all twelve original
+functions. The original viewer/ref gates, report allowlist and material
+comparison remain whole; only the two original observation clocks are ignored.
+Native standalone-clone reset/clean/switch/merge, actual report restore,
+commit/push, GET/create/PATCH, five ordered dispatches and final appends are
+captured and replayed without repeating writes. Admitted Git transitions carry
+closed before/after file epochs, preserving identity/mode/content changes and
+original partial failures without loosening other profiles. No private fake
+restore precedes real Git staging, no source authority is transferred and no
+publisher service, automatic retry or rollback is activated.
+
+The unchanged total scope is 22/135/37/16, now 122 entrypoints in progress,
+13 pending and zero verified. Focused original/native/capture/replay/application
+checks passed during development, including an advanced-main merge and real
+report restore. Current pinned full source validation, fresh bound review,
+signature, installed Mac/Linux/peer and fixed ha-CPsWMS acceptance, remaining
+CI/operating flows and final parity audit remain open. Earlier frozen full-run
+sources remain untouched. See the [self-security publisher guide](../../operations/guides/axiom-v2-self-security-publisher.md).
+
+
+### Shared atomic private-output ports for pending intake operators
+
+The complete original `consumer_intake_store.atomic_json` function is retained in
+`lib/intake_atomic_json.py`, with explicit path, temporary and native ports. Its
+whole temporary/write/flush/fsync/close/chmod/replace/final-unlink order is kept.
+`lib/intake_atomic_effects.py` reconstructs those operations, while the dedicated
+native adapter holds an ordinary owned private root and records intent before
+each primitive. Outcomes retain original errors, file identities/modes/bytes,
+text-buffer progress and actual partial state. Physical file prefixes must come
+from emitted JSON text; successful flushes and replacements require the exact
+emitted bytes. Closed stream descriptors cannot acquire a later reused OS fd.
+
+This is an internal supporting library, registered in distribution, runtime
+fingerprints and core/composition/adapter boundaries. It does not add a public
+operator command or mark any of the pending intake entrypoints complete. Native
+admission currently requires an existing 0700 ordinary root, a finite closed
+allowlist, private ordinary target files or observed directory-error cases, no
+unselected root members and no overlap with product or record storage. The profile
+has finite file/live-buffer/descriptor/journal bounds. Larger state directories,
+credentials, SQLite, full operator integration and their exact context bindings
+remain separate work; this helper is not their substitute.
+
+Pure replay uses retained logical descriptors, file snapshots and native outcomes
+without opening selected files or running programs. A corrupted snapshot or lost
+retained bytes is an integrity failure, never an original IO verdict. Missing
+journal completion stops further native operations; adapter resource teardown is
+explicitly outside the original program and makes capture incomplete when extra
+resources remain. A failed cleanup after successful replace retains the new
+file. Neither replay nor incomplete capture retries or rolls back a write, assigns
+trust, grants consent, promotes accepted state or activates a publisher.
+
+The supporting tests include the complete immutable original function/AST,
+actual POSIX output and errors, durable capture/replay after producer removal,
+a mandatory final audit-file write following candidate failure, fd reuse,
+corruption, original IO errors and lost completion after physical flush. These
+focused source checks do not establish current full or installed acceptance.
+The unchanged overall scope remains22/135/37/16,122 entrypoints in progress,
+13 pending and zero fully verified.

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blocking Readiness Assessment",
+  "type": "object",
+  "required": ["schema_version", "projection_type", "generated_at", "enforcement", "enforcement_change_authorized", "summary", "repositories"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "projection_type": { "const": "blocking-readiness" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "enforcement": { "const": "report_only" },
+    "enforcement_change_authorized": { "const": false },
+    "summary": {
+      "type": "object",
+      "required": ["repositories", "ready", "not_ready", "already_blocking_but_not_ready"],
+      "properties": {
+        "repositories": { "type": "integer", "minimum": 0 },
+        "ready": { "type": "integer", "minimum": 0 },
+        "not_ready": { "type": "integer", "minimum": 0 },
+        "already_blocking_but_not_ready": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "repositories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["repository_id", "current_mode", "decision", "technical_ready", "manual_approval", "mode_alignment", "criteria"],
+        "properties": {
+          "repository_id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+          "current_mode": { "type": "string", "minLength": 1 },
+          "decision": { "enum": ["ready_for_approval", "not_ready"] },
+          "technical_ready": { "type": "boolean" },
+          "manual_approval": { "enum": ["approved", "pending"] },
+          "mode_alignment": { "enum": ["aligned", "already_blocking_but_not_ready"] },
+          "criteria": {
+            "type": "array", "minItems": 12,
+            "items": {
+              "type": "object",
+              "required": ["id", "status", "required", "observed", "expected", "evidence_refs"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+                "status": { "enum": ["pass", "fail", "manual_review", "not_applicable"] },
+                "required": { "type": "boolean" },
+                "observed": {},
+                "expected": {},
+                "evidence_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

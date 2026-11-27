@@ -31,7 +31,7 @@ def prefixes(name):
     return ['/'.join(parts[:n]) for n in range(1,len(parts)+1)]
 
 
-def snapshot(value, blob):
+def snapshot(value, blob, *, max_file=MAX_FILE):
     if type(value) is not dict or value.get('kind') not in ('missing','unreachable','file','directory'):
         raise IntegrityError('requirement_review_snapshot_kind_changed')
     kind=value['kind']
@@ -47,7 +47,7 @@ def snapshot(value, blob):
             or type(value['identity']) is not list or len(value['identity'])!=2
             or any(type(x) is not int or x<0 for x in value['identity'])):
         raise IntegrityError('requirement_review_snapshot_metadata_changed')
-    if kind=='file' and len(blob(value['content']))>MAX_FILE:
+    if kind=='file' and len(blob(value['content']))>max_file:
         raise IntegrityError('requirement_review_snapshot_byte_budget')
 
 

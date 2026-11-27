@@ -2,16 +2,13 @@
   "schema_version": 1,
   "goal_id": "AXIOM-V2-FUNCTIONAL-PARITY-001",
   "next_work": {
-    "title": "Vollst\u00e4ndige synthetische Ledger-Abl\u00e4ufe in V2 absichern und liefern",
+    "title": "Vollst\u00e4ndige Publisher und \u00fcbrige Intake-/Betriebsabl\u00e4ufe abnehmen",
     "entrypoints": [
-      "scripts/run_governance_lifecycle_synthetic_demo.py",
-      "scripts/run_governance_lifecycle_action_demo.py",
-      "scripts/run_governance_lifecycle_closure_demo.py",
-      "scripts/run_governance_lifecycle_exception_demo.py",
-      "scripts/intake_governance_lifecycle_observation.py",
-      "scripts/intake_governance_lifecycle_action.py"
+      "scripts/publish_typed_evidence_assurance_update.py",
+      "scripts/publish_self_security_refresh.py",
+      "scripts/consumer_intake.py"
     ],
-    "next_step": "Alle sechs urspr\u00fcnglichen Demo-/Intake-Programme und 24 Funktionen einschlie\u00dflich vollst\u00e4ndiger privater/nativer Ledger-Effekte liefern. Der bisherige signierte Entwicklungskandidat a5ea574 erreichte im ganzen Linux-auf-Mac-Nachweisvergleich 25/28; drei Parser-Ausgaben wichen mit CPython 3.12/3.13 ab. Der Korrekturkandidat beh\u00e4lt deshalb das vollst\u00e4ndige explizite Parserprofil, Version, Breite und englische \u00dcbersetzungen im Request; er ben\u00f6tigt frische vollst\u00e4ndige gepinnte Validierung, deklarierte Reviews und passende signierte Mac-/Linux-Pakete mit ganzen Peer-Nachweisen. Keine Normalisierung oder \u00dcbernahme gespeicherter stdout-Ergebnisse. Der vorherige Berichtsstand 257e945 in Draft-PR #440 hat alle acht CI-Familien gr\u00fcn sowie 3.089 Quelltests, je 68 installierte Methoden/108 CLI-Aufrufe, 26 ganze Peer-Nachweise je Richtung und identische feste Consumer-Ergebnisse. Historische Gesamtbeobachtung und alte Records bleiben separat. Vollst\u00e4ndiger Umfang 22/135/37/16 und alle live/pers\u00f6nlichen/Betriebsabl\u00e4ufe bleiben im Goal; keine vollst\u00e4ndige Parit\u00e4t oder Betriebsfreigabe."
+    "next_step": "Self-Security-Publisher mit allen zw\u00f6lf urspr\u00fcnglichen Funktionen, vollst\u00e4ndiger Viewer-/Ref-Pr\u00fcfung, materiellem Reportvergleich, echten isolierten Git-/PR-Schritten und f\u00fcnf Dispatches angebunden. Beobachtete Dateiepochen binden Git-\u00dcberg\u00e4nge und echte Report-Wiederherstellung; ganze Originalfunktionen und Source-freie Nachrechnung werden gepr\u00fcft. Consumer- und Typed-Publisher sind auf Mac und VM gezielt bestanden; gefrorene Gesamtvalidierungen bleiben unver\u00e4ndert. Aktuelle vollst\u00e4ndige Quellvalidierung, gebundener Review, Signatur, frische Mac-/Linux-/Peer- und feste ha-CPsWMS-Abnahme sowie \u00fcbrige Intake-/CI-/Betriebsabl\u00e4ufe, Source-Aliase und \u00e4u\u00dfere V1-Diagnostik bleiben offen. Scope22/135/37/16:122inArbeit13offen0vollst\u00e4ndigVerifiziert."
   },
   "last_validation": {
     "observed_at": "2026-11-18T21:49:21Z",

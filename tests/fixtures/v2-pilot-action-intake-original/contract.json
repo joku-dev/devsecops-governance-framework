@@ -1,0 +1,17 @@
+{
+  "reference_revision": "6b557fefe295b58272d2271326576ca3a3687197",
+  "files": {
+    "scripts/intake_lifecycle_pilot_action.py": {
+      "fixture": "intake_lifecycle_pilot_action.py.txt",
+      "sha256": "3a4b249542661aa5f56a9bd85f12664cfb48072b94b3fa5d5c22ec5145038827",
+      "git_blob": "63f36b5e4e977a793fddd5240197c2220e315ce2",
+      "bytes": 1033
+    },
+    "scripts/lib/governance_lifecycle/pilot_actions.py": {
+      "fixture": "pilot_actions.py.txt",
+      "sha256": "4e557449b02257a2a85e94fae0fb3a862f24f9915a0fae49ce5fe58b3273c0f9",
+      "git_blob": "bc35cd3b0e1ac56697ca423d279526cf8bac50fb",
+      "bytes": 17907
+    }
+  }
+}
